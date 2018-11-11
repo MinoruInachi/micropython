@@ -1,0 +1,1714 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-2018, Damien P. George, Paul Sokolovsky, and
+# contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.9.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-03 14:13+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../../wipy/general.rst:4
+msgid "General information about the WiPy"
+msgstr ""
+
+#: ../../../wipy/general.rst:7
+msgid "No floating point support"
+msgstr ""
+
+#: ../../../wipy/general.rst:9
+msgid ""
+"Due to space reasons, there's no floating point support, and no math "
+"module. This means that floating point numbers cannot be used anywhere in"
+" the code, and that all divisions must be performed using '//' instead of"
+" '/'. Example::"
+msgstr ""
+
+#: ../../../wipy/general.rst:13
+msgid ""
+">>> r = 4 // 2  # this will work\n"
+">>> r = 4 / 2   # this WON'T"
+msgstr ""
+
+#: ../../../wipy/general.rst:17
+msgid "Before applying power"
+msgstr ""
+
+#: ../../../wipy/general.rst:21
+msgid ""
+"The GPIO pins of the WiPy are NOT 5V tolerant, connecting them to "
+"voltages higher than 3.6V will cause irreparable damage to the board. ADC"
+" pins, when configured in analog mode cannot withstand voltages above "
+"1.8V. Keep these considerations in mind when wiring your electronics."
+msgstr ""
+
+#: ../../../wipy/general.rst:27
+msgid "WLAN default behaviour"
+msgstr ""
+
+#: ../../../wipy/general.rst:29
+msgid ""
+"When the WiPy boots with the default factory configuration starts in "
+"Access Point mode with ``ssid`` that starts with: ``wipy-wlan`` and "
+"``key: www.wipy.io``. Connect to this network and the WiPy will be "
+"reachable at ``192.168.1.1``. In order to gain access to the interactive "
+"prompt, open a telnet session to that IP address on the default port "
+"(23). You will be asked for credentials: ``login: micro`` and ``password:"
+" python``"
+msgstr ""
+
+#: ../../../wipy/general.rst:39
+msgid "Telnet REPL"
+msgstr ""
+
+#: ../../../wipy/general.rst:41
+msgid ""
+"Linux stock telnet works like a charm (also on OSX), but other tools like"
+" putty work quite well too. The default credentials are: **user:** "
+"``micro``, **password:** ``python``. See :class:`network.Server` for info"
+" on how to change the defaults. For instance, on a linux shell (when "
+"connected to the WiPy in AP mode)::"
+msgstr ""
+
+#: ../../../wipy/general.rst:46 ../../../wipy/tutorial/repl.rst:49
+#: ../../../wipy/tutorial/repl.rst:67
+msgid "$ telnet 192.168.1.1"
+msgstr ""
+
+#: ../../../wipy/general.rst:51
+msgid "Local file system and FTP access"
+msgstr ""
+
+#: ../../../wipy/general.rst:53
+msgid ""
+"There is a small internal file system (a drive) on the WiPy, called "
+"``/flash``, which is stored within the external serial flash memory.  If "
+"a micro SD card is hooked-up and mounted, it will be available as well."
+msgstr ""
+
+#: ../../../wipy/general.rst:57
+msgid ""
+"When the WiPy starts up, it always boots from the ``boot.py`` located in "
+"the ``/flash`` file system. On boot up, the current directory is "
+"``/flash``."
+msgstr ""
+
+#: ../../../wipy/general.rst:60
+msgid ""
+"The file system is accessible via the native FTP server running in the "
+"WiPy. Open your FTP client of choice and connect to:"
+msgstr ""
+
+#: ../../../wipy/general.rst:63
+msgid ""
+"**url:** ``ftp://192.168.1.1``, **user:** ``micro``, **password:** "
+"``python``"
+msgstr ""
+
+#: ../../../wipy/general.rst:65
+msgid ""
+"See :class:`network.Server` for info on how to change the defaults. The "
+"recommended clients are: Linux stock FTP (also in OSX), Filezilla and "
+"FireFTP. For example, on a linux shell::"
+msgstr ""
+
+#: ../../../wipy/general.rst:69
+msgid "$ ftp 192.168.1.1"
+msgstr ""
+
+#: ../../../wipy/general.rst:71
+msgid ""
+"The FTP server on the WiPy doesn't support active mode, only passive, "
+"therefore, if using the native unix ftp client, just after logging in "
+"do::"
+msgstr ""
+
+#: ../../../wipy/general.rst:74
+msgid "ftp> passive"
+msgstr ""
+
+#: ../../../wipy/general.rst:76
+msgid ""
+"Besides that, the FTP server only supports one data connection at a time."
+" Check out the Filezilla settings section below for more info."
+msgstr ""
+
+#: ../../../wipy/general.rst:80
+msgid "FileZilla settings"
+msgstr ""
+
+#: ../../../wipy/general.rst:81
+msgid ""
+"Do not use the quick connect button, instead, open the site manager and "
+"create a new configuration. In the ``General`` tab make sure that "
+"encryption is set to: ``Only use plain FTP (insecure)``. In the Transfer "
+"Settings tab limit the max number of connections to one, otherwise "
+"FileZilla will try to open a second command connection when retrieving "
+"and saving files, and for simplicity and to reduce code size, only one "
+"command and one data connections are possible. Other FTP clients might "
+"behave in a similar way."
+msgstr ""
+
+#: ../../../wipy/general.rst:91
+msgid "Upgrading the firmware Over The Air"
+msgstr ""
+
+#: ../../../wipy/general.rst:93
+msgid ""
+"OTA software updates can be performed through the FTP server. Upload the "
+"``mcuimg.bin`` file to: ``/flash/sys/mcuimg.bin`` it will take around 6s."
+" You won't see the file being stored inside ``/flash/sys/`` because it's "
+"actually saved bypassing the user file system, so it ends up inside the "
+"internal **hidden** file system, but rest assured that it was "
+"successfully transferred, and it has been signed with a MD5 checksum to "
+"verify its integrity. Now, reset the WiPy by pressing the switch on the "
+"board, or by typing::"
+msgstr ""
+
+#: ../../../wipy/general.rst:100
+msgid ""
+">>> import machine\n"
+">>> machine.reset()"
+msgstr ""
+
+#: ../../../wipy/general.rst:103
+msgid ""
+"Software updates can be found in: https://github.com/wipy/wipy/releases "
+"(**Binaries.zip**). It's always recommended to update to the latest "
+"software, but make sure to read the **release notes** before."
+msgstr ""
+
+#: ../../../wipy/general.rst:109
+msgid ""
+"The ``bootloader.bin`` found inside ``Binaries.zip`` is there only for "
+"reference, it's not needed for the Over The Air update."
+msgstr ""
+
+#: ../../../wipy/general.rst:112
+msgid "In order to check your software version, do::"
+msgstr ""
+
+#: ../../../wipy/general.rst:114
+msgid ""
+">>> import os\n"
+">>> os.uname().release"
+msgstr ""
+
+#: ../../../wipy/general.rst:117
+msgid ""
+"If the version number is lower than the latest release found in `the "
+"releases <https://github.com/wipy/wipy/releases>`_, go ahead and update "
+"your WiPy!"
+msgstr ""
+
+#: ../../../wipy/general.rst:124
+msgid "Boot modes and safe boot"
+msgstr ""
+
+#: ../../../wipy/general.rst:126
+msgid ""
+"If you power up normally, or press the reset button, the WiPy will boot "
+"into standard mode; the ``boot.py`` file will be executed first, then "
+"``main.py`` will run."
+msgstr ""
+
+#: ../../../wipy/general.rst:130
+msgid ""
+"You can override this boot sequence by pulling ``GP28`` **up** (connect "
+"it to the 3v3 output pin) during reset. This procedure also allows going "
+"back in time to old firmware versions. The WiPy can hold up to 3 "
+"different firmware versions, which are: the factory firmware plus 2 user "
+"updates."
+msgstr ""
+
+#: ../../../wipy/general.rst:135
+msgid ""
+"After reset, if ``GP28`` is held high, the heartbeat LED will start "
+"flashing slowly, if after 3 seconds the pin is still being held high, the"
+" LED will start blinking a bit faster and the WiPy will select the "
+"previous user update to boot. If the previous user update is the desired "
+"firmware image, ``GP28`` must be released before 3 more seconds elapse. "
+"If 3 seconds later the pin is still high, the factory firmware will be "
+"selected, the LED will flash quickly for 1.5 seconds and the WiPy will "
+"proceed to boot. The firmware selection mechanism is as follows:"
+msgstr ""
+
+#: ../../../wipy/general.rst:144
+msgid "**Safe Boot Pin** ``GP28`` **released during:**"
+msgstr ""
+
+#: ../../../wipy/general.rst:147
+msgid "1st 3 secs window"
+msgstr ""
+
+#: ../../../wipy/general.rst:147
+msgid "2nd 3 secs window"
+msgstr ""
+
+#: ../../../wipy/general.rst:147
+msgid "Final 1.5 secs window"
+msgstr ""
+
+#: ../../../wipy/general.rst
+msgid "Safe boot, *latest*"
+msgstr ""
+
+#: ../../../wipy/general.rst
+msgid "firmware is selected"
+msgstr ""
+
+#: ../../../wipy/general.rst
+msgid "Safe boot, *previous*"
+msgstr ""
+
+#: ../../../wipy/general.rst
+msgid "user update selected"
+msgstr ""
+
+#: ../../../wipy/general.rst
+msgid "Safe boot, the *factory*"
+msgstr ""
+
+#: ../../../wipy/general.rst:153
+msgid ""
+"On all of the above 3 scenarios, safe boot mode is entered, meaning that "
+"the execution of both ``boot.py`` and ``main.py`` is skipped. This is "
+"useful to recover from crash situations caused by the user scripts. The "
+"selection made during safe boot is not persistent, therefore after the "
+"next normal reset the latest firmware will run again."
+msgstr ""
+
+#: ../../../wipy/general.rst:160
+msgid "The heartbeat LED"
+msgstr ""
+
+#: ../../../wipy/general.rst:162
+msgid ""
+"By default the heartbeat LED flashes once every 4s to signal that the "
+"system is alive. This can be overridden through the :mod:`wipy` module::"
+msgstr ""
+
+#: ../../../wipy/general.rst:165
+msgid ""
+">>> import wipy\n"
+">>> wipy.heartbeat(False)"
+msgstr ""
+
+#: ../../../wipy/general.rst:168
+msgid "There are currently 2 kinds of errors that you might see:"
+msgstr ""
+
+#: ../../../wipy/general.rst:170
+msgid ""
+"If the heartbeat LED flashes quickly, then a Python script (eg "
+"``main.py``) has an error.  Use the REPL to debug it."
+msgstr ""
+
+#: ../../../wipy/general.rst:172
+msgid ""
+"If the heartbeat LED stays on, then there was a hard fault, you cannot "
+"recover from this, the only way out is to press the reset switch."
+msgstr ""
+
+#: ../../../wipy/general.rst:176
+msgid "Details on sleep modes"
+msgstr ""
+
+#: ../../../wipy/general.rst:178
+msgid ""
+"``machine.idle()``: Power consumption: ~12mA (in WLAN STA mode). Wake "
+"sources: any hardware interrupt (including systick with period of 1ms), "
+"no special configuration required."
+msgstr ""
+
+#: ../../../wipy/general.rst:181
+msgid ""
+"``machine.sleep()``: 950uA (in WLAN STA mode). Wake sources are ``Pin``, "
+"``RTC`` and ``WLAN``"
+msgstr ""
+
+#: ../../../wipy/general.rst:183
+msgid "``machine.deepsleep()``: ~350uA. Wake sources are ``Pin`` and ``RTC``."
+msgstr ""
+
+#: ../../../wipy/general.rst:186
+msgid "Additional details for machine.Pin"
+msgstr ""
+
+#: ../../../wipy/general.rst:188
+msgid "On the WiPy board the pins are identified by their string id::"
+msgstr ""
+
+#: ../../../wipy/general.rst:190
+msgid ""
+"from machine import Pin\n"
+"g = machine.Pin('GP9', mode=Pin.OUT, pull=None, drive=Pin.MED_POWER, "
+"alt=-1)"
+msgstr ""
+
+#: ../../../wipy/general.rst:193
+msgid "You can also configure the Pin to generate interrupts. For instance::"
+msgstr ""
+
+#: ../../../wipy/general.rst:195
+msgid ""
+"from machine import Pin\n"
+"\n"
+"def pincb(pin):\n"
+"    print(pin.id())\n"
+"\n"
+"pin_int = Pin('GP10', mode=Pin.IN, pull=Pin.PULL_DOWN)\n"
+"pin_int.irq(trigger=Pin.IRQ_RISING, handler=pincb)\n"
+"# the callback can be triggered manually\n"
+"pin_int.irq()()\n"
+"# to disable the callback\n"
+"pin_int.irq().disable()"
+msgstr ""
+
+#: ../../../wipy/general.rst:207
+msgid ""
+"Now every time a falling edge is seen on the gpio pin, the callback will "
+"be executed. Caution: mechanical push buttons have \"bounce\" and pushing"
+" or releasing a switch will often generate multiple edges. See: "
+"http://www.eng.utah.edu/~cs5780/debouncing.pdf for a detailed "
+"explanation, along with various techniques for debouncing."
+msgstr ""
+
+#: ../../../wipy/general.rst:213
+msgid ""
+"All pin objects go through the pin mapper to come up with one of the gpio"
+" pins."
+msgstr ""
+
+#: ../../../wipy/general.rst:216
+msgid "For the ``drive`` parameter the strengths are:"
+msgstr ""
+
+#: ../../../wipy/general.rst:218
+msgid "``Pin.LOW_POWER`` - 2mA drive capability."
+msgstr ""
+
+#: ../../../wipy/general.rst:219
+msgid "``Pin.MED_POWER`` - 4mA drive capability."
+msgstr ""
+
+#: ../../../wipy/general.rst:220
+msgid "``Pin.HIGH_POWER`` - 6mA drive capability."
+msgstr ""
+
+#: ../../../wipy/general.rst:222
+msgid ""
+"For the ``alt`` parameter please refer to the pinout and alternate "
+"functions table at "
+"<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_ "
+"for the specific alternate functions that each pin supports."
+msgstr ""
+
+#: ../../../wipy/general.rst:226
+msgid ""
+"For interrupts, the ``priority`` can take values in the range 1-7.  And "
+"the ``wake`` parameter has the following properties:"
+msgstr ""
+
+#: ../../../wipy/general.rst:229
+msgid "If ``wake_from=machine.Sleep.ACTIVE`` any pin can wake the board."
+msgstr ""
+
+#: ../../../wipy/general.rst:230
+msgid ""
+"If ``wake_from=machine.Sleep.SUSPENDED`` pins ``GP2``, ``GP4``, ``GP10``,"
+" ``GP11``, GP17`` or ``GP24`` can wake the board. Note that only 1 of "
+"this pins can be enabled as a wake source at the same time, so, only the "
+"last enabled pin as a ``machine.Sleep.SUSPENDED`` wake source will have "
+"effect."
+msgstr ""
+
+#: ../../../wipy/general.rst:234
+msgid ""
+"If ``wake_from=machine.Sleep.SUSPENDED`` pins ``GP2``, ``GP4``, ``GP10``,"
+" ``GP11``, ``GP17`` and ``GP24`` can wake the board. In this case all of "
+"the 6 pins can be enabled as a ``machine.Sleep.HIBERNATE`` wake source at"
+" the same time."
+msgstr ""
+
+#: ../../../wipy/general.rst:238
+msgid "Additional Pin methods:"
+msgstr ""
+
+#: ../../../wipy/general.rst:242
+msgid ""
+"Returns a list of the alternate functions supported by the pin. List "
+"items are a tuple of the form: ``('ALT_FUN_NAME', ALT_FUN_INDEX)``"
+msgstr ""
+
+#: ../../../wipy/general.rst:246
+msgid "Additional details for machine.I2C"
+msgstr ""
+
+#: ../../../wipy/general.rst:248
+msgid ""
+"On the WiPy there is a single hardware I2C peripheral, identified by "
+"\"0\".  By default this is the peripheral that is used when constructing "
+"an I2C instance. The default pins are GP23 for SCL and GP13 for SDA, and "
+"one can create the default I2C peripheral simply by doing::"
+msgstr ""
+
+#: ../../../wipy/general.rst:253
+msgid "i2c = machine.I2C()"
+msgstr ""
+
+#: ../../../wipy/general.rst:255
+msgid "The pins and frequency can be specified as::"
+msgstr ""
+
+#: ../../../wipy/general.rst:257
+msgid "i2c = machine.I2C(freq=400000, scl='GP23', sda='GP13')"
+msgstr ""
+
+#: ../../../wipy/general.rst:259
+msgid ""
+"Only certain pins can be used as SCL/SDA.  Please refer to the pinout for"
+" further information."
+msgstr ""
+
+#: ../../../wipy/general.rst:263
+msgid "Known issues"
+msgstr ""
+
+#: ../../../wipy/general.rst:266
+msgid "Incompatible way to create SSL sockets"
+msgstr ""
+
+#: ../../../wipy/general.rst:268
+msgid ""
+"SSL sockets need to be created the following way before wrapping them "
+"with. ``ssl.wrap_socket``::"
+msgstr ""
+
+#: ../../../wipy/general.rst:271
+msgid ""
+"import socket\n"
+"import ssl\n"
+"s = socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_SEC)\n"
+"ss = ssl.wrap_socket(s)"
+msgstr ""
+
+#: ../../../wipy/general.rst:276
+msgid ""
+"Certificates must be used in order to validate the other side of the "
+"connection, and also to authenticate ourselves with the other end. Such "
+"certificates must be stored as files using the FTP server, and they must "
+"be placed in specific paths with specific names."
+msgstr ""
+
+#: ../../../wipy/general.rst:280
+msgid ""
+"The certificate to validate the other side goes in: "
+"**'/flash/cert/ca.pem'**"
+msgstr ""
+
+#: ../../../wipy/general.rst:281
+msgid ""
+"The certificate to authenticate ourselves goes in: "
+"**'/flash/cert/cert.pem'**"
+msgstr ""
+
+#: ../../../wipy/general.rst:282
+msgid "The key for our own certificate goes in: **'/flash/cert/private.key'**"
+msgstr ""
+
+#: ../../../wipy/general.rst:286
+msgid ""
+"When these files are stored, they are placed inside the internal "
+"**hidden** file system (just like firmware updates), and therefore they "
+"are never visible."
+msgstr ""
+
+#: ../../../wipy/general.rst:289
+msgid ""
+"For instance to connect to the Blynk servers using certificates, take the"
+" file ``ca.pem`` located in the `blynk examples folder "
+"<https://github.com/wipy/wipy/tree/master/examples/blynk>`_. and put it "
+"in '/flash/cert/'. Then do::"
+msgstr ""
+
+#: ../../../wipy/general.rst:293
+msgid ""
+"import socket\n"
+"import ssl\n"
+"s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_SEC)"
+"\n"
+"ss = ssl.wrap_socket(s, cert_reqs=ssl.CERT_REQUIRED, "
+"ca_certs='/flash/cert/ca.pem')\n"
+"ss.connect(socket.getaddrinfo('cloud.blynk.cc', 8441)[0][-1])"
+msgstr ""
+
+#: ../../../wipy/general.rst:300
+msgid "Incompatibilities in uhashlib module"
+msgstr ""
+
+#: ../../../wipy/general.rst:302
+msgid ""
+"Due to hardware implementation details of the WiPy, data must be buffered"
+" before being digested, which would make it impossible to calculate the "
+"hash of big blocks of data that do not fit in RAM. In this case, since "
+"most likely the total size of the data is known in advance, the size can "
+"be passed to the constructor and hence the HASH hardware engine of the "
+"WiPy can be properly initialized without needing buffering. If "
+"``block_size`` is to be given, an initial chunk of ``data`` must be "
+"passed as well. **When using this extension, care must be taken to make "
+"sure that the length of all intermediate chunks (including the initial "
+"one) is a multiple of 4 bytes.** The last chunk may be of any length."
+msgstr ""
+
+#: ../../../wipy/general.rst:311 ../../../wipy/general.rst:336
+msgid "Example::"
+msgstr ""
+
+#: ../../../wipy/general.rst:313
+msgid ""
+"hash = uhashlib.sha1('abcd1234', 1001)    # length of the initial piece "
+"is multiple of 4 bytes\n"
+"hash.update('1234')                       # also multiple of 4 bytes\n"
+"...\n"
+"hash.update('12345')                      # last chunk may be of any "
+"length\n"
+"hash.digest()"
+msgstr ""
+
+#: ../../../wipy/general.rst:320
+msgid "Unrelated function in machine module"
+msgstr ""
+
+#: ../../../wipy/general.rst:324
+msgid ""
+"Set the filename of the main script to run after boot.py is finished.  If"
+" this function is not called then the default file main.py will be "
+"executed."
+msgstr ""
+
+#: ../../../wipy/general.rst:327
+msgid "It only makes sense to call this function from within boot.py."
+msgstr ""
+
+#: ../../../wipy/general.rst:330
+msgid "Adhoc way to control telnet/FTP server via network module"
+msgstr ""
+
+#: ../../../wipy/general.rst:332
+msgid ""
+"The ``Server`` class controls the behaviour and the configuration of the "
+"FTP and telnet services running on the WiPy. Any changes performed using "
+"this class' methods will affect both."
+msgstr ""
+
+#: ../../../wipy/general.rst:338
+msgid ""
+"import network\n"
+"server = network.Server()\n"
+"server.deinit() # disable the server\n"
+"# enable the server again with new settings\n"
+"server.init(login=('user', 'password'), timeout=600)"
+msgstr ""
+
+#: ../../../wipy/general.rst:346
+msgid "Create a server instance, see ``init`` for parameters of initialization."
+msgstr ""
+
+#: ../../../wipy/general.rst:350
+msgid ""
+"Init (and effectively start the server). Optionally a new ``user``, "
+"``password`` and ``timeout`` (in seconds) can be passed."
+msgstr ""
+
+#: ../../../wipy/general.rst:355
+msgid "Stop the server"
+msgstr ""
+
+#: ../../../wipy/general.rst:359
+msgid "Get or set the server timeout."
+msgstr ""
+
+#: ../../../wipy/general.rst:363
+msgid "Returns ``True`` if the server is running, ``False`` otherwise."
+msgstr ""
+
+#: ../../../wipy/general.rst:366
+msgid "Adhoc VFS-like support"
+msgstr ""
+
+#: ../../../wipy/general.rst:368
+msgid ""
+"WiPy doesn't implement full MicroPython VFS support, instead following "
+"functions are defined in ``uos`` module:"
+msgstr ""
+
+#: ../../../wipy/general.rst:373
+msgid ""
+"Mounts a block device (like an ``SD`` object) in the specified mount "
+"point. Example::"
+msgstr ""
+
+#: ../../../wipy/general.rst:376
+msgid "os.mount(sd, '/sd')"
+msgstr ""
+
+#: ../../../wipy/general.rst:380
+msgid "Unmounts a previously mounted block device from the given path."
+msgstr ""
+
+#: ../../../wipy/general.rst:384
+msgid ""
+"Formats the specified path, must be either ``/flash`` or ``/sd``. A block"
+" device can also be passed like an ``SD`` object before being mounted."
+msgstr ""
+
+#: ../../../wipy/quickref.rst:4
+msgid "Quick reference for the WiPy"
+msgstr ""
+
+msgid ""
+".. image:: "
+"https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png\n"
+"   :alt: WiPy pinout and alternate functions table"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:10
+msgid ""
+"Below is a quick reference for CC3200/WiPy.  If it is your first time "
+"working with this board please consider reading the following sections "
+"first:"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:20
+msgid "General board control (including sleep modes)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:22
+msgid "See the :mod:`machine` module::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:24
+msgid ""
+"import machine\n"
+"\n"
+"help(machine) # display all members from the machine module\n"
+"machine.freq() # get the CPU frequency\n"
+"machine.unique_id() # return the 6-byte unique id of the board (the "
+"WiPy's MAC address)\n"
+"\n"
+"machine.idle()        # average current decreases to (~12mA), any "
+"interrupts wake it up\n"
+"machine.sleep()       # everything except for WLAN is powered down "
+"(~950uA avg. current)\n"
+"                      # wakes from Pin, RTC or WLAN\n"
+"machine.deepsleep()   # deepest sleep mode, MCU starts from reset. Wakes "
+"from Pin and RTC."
+msgstr ""
+
+#: ../../../wipy/quickref.rst:36
+msgid "Pins and GPIO"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:38
+msgid "See :ref:`machine.Pin <machine.Pin>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:40
+msgid ""
+"from machine import Pin\n"
+"\n"
+"# initialize GP2 in gpio mode (alt=0) and make it an output\n"
+"p_out = Pin('GP2', mode=Pin.OUT)\n"
+"p_out.value(1)\n"
+"p_out.value(0)\n"
+"p_out.toggle()\n"
+"p_out(True)\n"
+"\n"
+"# make GP1 an input with the pull-up enabled\n"
+"p_in = Pin('GP1', mode=Pin.IN, pull=Pin.PULL_UP)\n"
+"p_in() # get value, 0 or 1"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:54
+msgid "Timers"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:56
+msgid ""
+"See :ref:`machine.TimerWiPy <machine.TimerWiPy>` and :ref:`machine.Pin "
+"<machine.Pin>`. Timer ``id``'s take values from 0 to 3.::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:59
+msgid ""
+"from machine import Timer\n"
+"from machine import Pin\n"
+"\n"
+"tim = Timer(0, mode=Timer.PERIODIC)\n"
+"tim_a = tim.channel(Timer.A, freq=1000)\n"
+"tim_a.freq(5) # 5 Hz\n"
+"\n"
+"p_out = Pin('GP2', mode=Pin.OUT)\n"
+"tim_a.irq(trigger=Timer.TIMEOUT, handler=lambda t: p_out.toggle())"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:70
+msgid "PWM (pulse width modulation)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:72
+msgid ""
+"See :ref:`machine.Pin <machine.Pin>` and :ref:`machine.Timer "
+"<machine.Timer>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:74
+#, python-format
+msgid ""
+"from machine import Timer\n"
+"\n"
+"# timer 1 in PWM mode and width must be 16 buts\n"
+"tim = Timer(1, mode=Timer.PWM, width=16)\n"
+"\n"
+"# enable channel A @1KHz with a 50.55% duty cycle\n"
+"tim_a = tim.channel(Timer.A, freq=1000, duty_cycle=5055)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:83
+msgid "ADC (analog to digital conversion)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:85
+msgid "See :ref:`machine.ADC <machine.ADC>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:87
+msgid ""
+"from machine import ADC\n"
+"\n"
+"adc = ADC()\n"
+"apin = adc.channel(pin='GP3')\n"
+"apin() # read value, 0-4095"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:94
+msgid "UART (serial bus)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:96
+msgid "See :ref:`machine.UART <machine.UART>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:98
+msgid ""
+"from machine import UART\n"
+"uart = UART(0, baudrate=9600)\n"
+"uart.write('hello')\n"
+"uart.read(5) # read up to 5 bytes"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:104
+msgid "SPI bus"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:106
+msgid "See :ref:`machine.SPI <machine.SPI>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:108
+msgid ""
+"from machine import SPI\n"
+"\n"
+"# configure the SPI master @ 2MHz\n"
+"spi = SPI(0, SPI.MASTER, baudrate=200000, polarity=0, phase=0)\n"
+"spi.write('hello')\n"
+"spi.read(5) # receive 5 bytes on the bus\n"
+"rbuf = bytearray(5)\n"
+"spi.write_readinto('hello', rbuf) # send and receive 5 bytes"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:118
+msgid "I2C bus"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:120
+msgid "See :ref:`machine.I2C <machine.I2C>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:122
+msgid ""
+"from machine import I2C\n"
+"# configure the I2C bus\n"
+"i2c = I2C(baudrate=100000)\n"
+"i2c.scan() # returns list of slave addresses\n"
+"i2c.writeto(0x42, 'hello') # send 5 bytes to slave with address 0x42\n"
+"i2c.readfrom(0x42, 5) # receive 5 bytes from slave\n"
+"i2c.readfrom_mem(0x42, 0x10, 2) # read 2 bytes from slave 0x42, slave "
+"memory 0x10\n"
+"i2c.writeto_mem(0x42, 0x10, 'xy') # write 2 bytes to slave 0x42, slave "
+"memory 0x10"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:132
+msgid "Watchdog timer (WDT)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:134
+msgid "See :ref:`machine.WDT <machine.WDT>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:136
+msgid ""
+"from machine import WDT\n"
+"\n"
+"# enable the WDT with a timeout of 5s (1s is the minimum)\n"
+"wdt = WDT(timeout=5000)\n"
+"wdt.feed()"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:143
+msgid "Real time clock (RTC)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:145
+msgid "See :ref:`machine.RTC <machine.RTC>` ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:147
+msgid ""
+"from machine import RTC\n"
+"\n"
+"rtc = RTC() # init with default time and date\n"
+"rtc = RTC(datetime=(2015, 8, 29, 9, 0, 0, 0, None)) # init with a "
+"specific time and date\n"
+"print(rtc.now())\n"
+"\n"
+"def alarm_handler (rtc_o):\n"
+"    pass\n"
+"    # do some non blocking operations\n"
+"    # warning printing on an irq via telnet is not\n"
+"    # possible, only via UART\n"
+"\n"
+"# create a RTC alarm that expires after 5 seconds\n"
+"rtc.alarm(time=5000, repeat=False)\n"
+"\n"
+"# enable RTC interrupts\n"
+"rtc_i = rtc.irq(trigger=RTC.ALARM0, handler=alarm_handler, "
+"wake=machine.SLEEP)\n"
+"\n"
+"# go into suspended mode waiting for the RTC alarm to expire and wake us "
+"up\n"
+"machine.sleep()"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:169
+msgid "SD card"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:171
+msgid "See :ref:`machine.SD <machine.SD>`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:173
+msgid ""
+"from machine import SD\n"
+"import os\n"
+"\n"
+"# clock pin, cmd pin, data0 pin\n"
+"sd = SD(pins=('GP10', 'GP11', 'GP15'))\n"
+"# or use default ones for the expansion board\n"
+"sd = SD()\n"
+"os.mount(sd, '/sd')"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:183
+msgid "WLAN (WiFi)"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:185
+msgid "See :ref:`network.WLAN <network.WLAN>` and :mod:`machine`. ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:187
+msgid ""
+"import machine\n"
+"from network import WLAN\n"
+"\n"
+"# configure the WLAN subsystem in station mode (the default is AP)\n"
+"wlan = WLAN(mode=WLAN.STA)\n"
+"# go for fixed IP settings\n"
+"wlan.ifconfig(config=('192.168.0.107', '255.255.255.0', '192.168.0.1', "
+"'8.8.8.8'))\n"
+"wlan.scan()     # scan for available networks\n"
+"wlan.connect(ssid='mynetwork', auth=(WLAN.WPA2, 'mynetworkkey'))\n"
+"while not wlan.isconnected():\n"
+"    pass\n"
+"print(wlan.ifconfig())\n"
+"# enable wake on WLAN\n"
+"wlan.irq(trigger=WLAN.ANY_EVENT, wake=machine.SLEEP)\n"
+"# go to sleep\n"
+"machine.sleep()\n"
+"# now, connect to the FTP or the Telnet server and the WiPy will wake-up"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:206
+msgid "Telnet and FTP server"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:208
+msgid "See :class:`network.Server` ::"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:210
+msgid ""
+"from network import Server\n"
+"\n"
+"# init with new user, password and seconds timeout\n"
+"server = Server(login=('user', 'password'), timeout=60)\n"
+"server.timeout(300) # change the timeout\n"
+"server.timeout() # get the timeout\n"
+"server.isrunning() # check whether the server is running or not"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:219
+msgid "Heart beat LED"
+msgstr ""
+
+#: ../../../wipy/quickref.rst:221
+msgid "See :mod:`wipy`. ::"
+msgstr ""
+
+#: ../../../<rst_epilog>:223
+msgid ""
+"import wipy\n"
+"\n"
+"wipy.heartbeat(False)  # disable the heartbeat LED\n"
+"wipy.heartbeat(True)   # enable the heartbeat LED\n"
+"wipy.heartbeat()       # get the heartbeat state"
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:2
+msgid "Getting started with Blynk and the WiPy"
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:4
+msgid ""
+"Blynk is a platform with iOS and Android apps to control Arduino, "
+"Raspberry Pi and the likes over the Internet. You can easily build "
+"graphic interfaces for all your projects by simply dragging and dropping "
+"widgets."
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:9
+msgid ""
+"There are several examples available that work out-of-the-box with the "
+"WiPy. Before anything else, make sure that your WiPy is running the "
+"latest software, check :ref:`OTA How-To <wipy_firmware_upgrade>` for "
+"instructions."
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:13
+msgid ""
+"Get the `Blynk library "
+"<https://github.com/wipy/wipy/blob/master/lib/blynk/BlynkLib.py>`_ and "
+"put it in ``/flash/lib/`` via FTP."
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:14
+msgid ""
+"Get the `Blynk examples "
+"<https://github.com/wipy/wipy/tree/master/examples/blynk>`_, edit the "
+"network settings, and afterwards upload them to ``/flash/lib/`` via FTP "
+"as well."
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:16
+msgid ""
+"Follow the instructions on each example to setup the Blynk dashboard on "
+"your smartphone or tablet."
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:17
+msgid "Give it a try, for instance::"
+msgstr ""
+
+#: ../../../wipy/tutorial/blynk.rst:19
+msgid ">>> execfile('01_simple.py')"
+msgstr ""
+
+#: ../../../wipy/tutorial/index.rst:4
+msgid "WiPy tutorials and examples"
+msgstr ""
+
+#: ../../../wipy/tutorial/index.rst:6
+msgid ""
+"Before starting, make sure that you are running the latest firmware, for "
+"instructions see :ref:`OTA How-To <wipy_firmware_upgrade>`."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:2
+msgid "Introduction to the WiPy"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:4
+msgid ""
+"To get the most out of your WiPy, there are a few basic things to "
+"understand about how it works."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:8
+msgid "Caring for your WiPy and expansion board"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:10
+msgid ""
+"Because the WiPy/expansion board does not have a housing it needs a bit "
+"of care:"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:12
+msgid ""
+"Be gentle when plugging/unplugging the USB cable.  Whilst the USB "
+"connector is well soldered and is relatively strong, if it breaks off it "
+"can be very difficult to fix."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:16
+msgid ""
+"Static electricity can shock the components on the WiPy and destroy them."
+" If you experience a lot of static electricity in your area (eg dry and "
+"cold climates), take extra care not to shock the WiPy.  If your WiPy came"
+" in a ESD bag, then this bag is the best way to store and carry the WiPy "
+"as it will protect it against static discharges."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:22
+msgid ""
+"As long as you take care of the hardware, you should be okay.  It's "
+"almost impossible to break the software on the WiPy, so feel free to play"
+" around with writing code as much as you like.  If the filesystem gets "
+"corrupt, see below on how to reset it. In the worst case you might need "
+"to do a safe boot, which is explained in detail in "
+":ref:`wipy_boot_modes`."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:29
+msgid "Plugging into the expansion board and powering on"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:31
+msgid ""
+"The expansion board can power the WiPy via USB. The WiPy comes with a "
+"sticker on top of the RF shield that labels all pins, and this should "
+"match the label numbers on the expansion board headers. When plugging it "
+"in, the WiPy antenna will end up on top of the SD card connector of the "
+"expansion board. A video showing how to do this can be found `here on "
+"YouTube <https://www.youtube.com/watch?v=47D9MZ9zFQw>`_."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:38
+msgid "Expansion board hardware guide"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:40
+msgid ""
+"The document explaining the hardware details of the expansion board can "
+"be found `in this PDF "
+"<https://github.com/wipy/wipy/blob/master/docs/User_manual_exp_board.pdf>`_."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:44
+msgid "Powering by an external power source"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:46
+msgid "The WiPy can be powered by a battery or other external power source."
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:48
+msgid ""
+"**Be sure to connect the positive lead of the power supply to VIN, and "
+"ground to GND.  There is no polarity protection on the WiPy so you must "
+"be careful when connecting anything to VIN.**"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:52
+msgid "When powering via ``VIN``:"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:54
+msgid "**The input voltage must be between 3.6V and 5.5V.**"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:56
+msgid "When powering via ``3V3``:"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:58
+msgid ""
+"**The input voltage must be exactly 3V3, ripple free and from a supply "
+"capable of sourcing at least 300mA of current**"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:62
+msgid "Performing firmware upgrades"
+msgstr ""
+
+#: ../../../wipy/tutorial/intro.rst:64
+msgid "For detailed instructions see :ref:`OTA How-To <wipy_firmware_upgrade>`."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:2
+msgid "Getting a MicroPython REPL prompt"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:4
+msgid ""
+"REPL stands for Read Evaluate Print Loop, and is the name given to the "
+"interactive MicroPython prompt that you can access on the WiPy.  Using "
+"the REPL is by far the easiest way to test out your code and run "
+"commands. You can use the REPL in addition to writing scripts in "
+"``main.py``."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:11
+msgid ""
+"To use the REPL, you must connect to the WiPy either via :ref:`telnet "
+"<wipy_telnet>`, or with a USB to serial converter wired to one of the two"
+" UARTs on the WiPy. To enable REPL duplication on UART0 (the one "
+"accessible via the expansion board) do::"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:16
+msgid ""
+">>> from machine import UART\n"
+">>> import os\n"
+">>> uart = UART(0, 115200)\n"
+">>> os.dupterm(uart)"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:21
+msgid ""
+"Place this piece of code inside your ``boot.py`` so that it's done "
+"automatically after reset."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:25
+msgid "Windows"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:27
+msgid ""
+"First you need to install the FTDI drivers for the expansion board's USB "
+"to serial converter. Then you need a terminal software. The best option "
+"is to download the free program PuTTY: `putty.exe "
+"<http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:31
+msgid "**In order to get to the telnet REPL:**"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:33
+msgid ""
+"Using putty, select ``Telnet`` as connection type, leave the default port"
+" (23) and enter the IP address of your WiPy (192.168.1.1 when in "
+"``WLAN.AP`` mode), then click open."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:37
+msgid "**In order to get to the REPL UART:**"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:39
+msgid ""
+"Using your serial program you must connect to the COM port that you found"
+" in the previous step.  With PuTTY, click on \"Session\" in the left-hand"
+" panel, then click the \"Serial\" radio button on the right, then enter "
+"you COM port (eg COM4) in the \"Serial Line\" box.  Finally, click the "
+"\"Open\" button."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:45
+msgid "Mac OS X"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:47 ../../../wipy/tutorial/repl.rst:65
+msgid "Open a terminal and run::"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:51 ../../../wipy/tutorial/repl.rst:69
+msgid "or::"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:53
+msgid "$ screen /dev/tty.usbmodem* 115200"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:55
+msgid ""
+"When you are finished and want to exit ``screen``, type CTRL-A CTRL-\\\\."
+" If your keyboard does not have a \\\\-key (i.e. you need an obscure "
+"combination for \\\\ like ALT-SHIFT-7) you can remap the ``quit`` "
+"command:"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:57
+msgid "create ``~/.screenrc``"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:58
+msgid "add ``bind q quit``"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:60
+msgid "This will allow you to quit ``screen`` by hitting CTRL-A Q."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:63
+msgid "Linux"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:71
+msgid "$ screen /dev/ttyUSB0 115200"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:73
+msgid ""
+"You can also try ``picocom`` or ``minicom`` instead of screen.  You may "
+"have to use ``/dev/ttyUSB01`` or a higher number for ``ttyUSB``.  And, "
+"you may need to give yourself the correct permissions to access this "
+"devices (eg group ``uucp`` or ``dialout``, or use sudo)."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:79
+msgid "Using the REPL prompt"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:81
+msgid "Now let's try running some MicroPython code directly on the WiPy."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:83
+msgid ""
+"With your serial program open (PuTTY, screen, picocom, etc) you may see a"
+" blank screen with a flashing cursor.  Press Enter and you should be "
+"presented with a MicroPython prompt, i.e. ``>>>``.  Let's make sure it is"
+" working with the obligatory test::"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:87
+msgid ""
+">>> print(\"hello WiPy!\")\n"
+"hello WiPy!"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:90
+msgid ""
+"In the above, you should not type in the ``>>>`` characters.  They are "
+"there to indicate that you should type the text after it at the prompt.  "
+"In the end, once you have entered the text ``print(\"hello WiPy!\")`` and"
+" pressed Enter, the output on your screen should look like it does above."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:95
+msgid "If you already know some Python you can now try some basic commands here."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:97
+msgid ""
+"If any of this is not working you can try either a hard reset or a soft "
+"reset; see below."
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:100
+msgid "Go ahead and try typing in some other commands.  For example::"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:102
+msgid ""
+">>> from machine import Pin\n"
+">>> import wipy\n"
+">>> wipy.heartbeat(False)  # disable the heartbeat\n"
+">>> led = Pin('GP25', mode=Pin.OUT)\n"
+">>> led(1)\n"
+">>> led(0)\n"
+">>> led.toggle()\n"
+">>> 1 + 2\n"
+"3\n"
+">>> 4 // 2\n"
+"2\n"
+">>> 20 * 'py'\n"
+"'pypypypypypypypypypypypypypypypypypypypy'"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:117
+msgid "Resetting the board"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:119
+msgid ""
+"If something goes wrong, you can reset the board in two ways. The first "
+"is to press CTRL-D at the MicroPython prompt, which performs a soft "
+"reset.  You will see a message something like::"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:122
+msgid ""
+">>>\n"
+"PYB: soft reboot\n"
+"MicroPython v1.4.6-146-g1d8b5e5 on 2015-10-21; WiPy with CC3200\n"
+"Type \"help()\" for more information.\n"
+">>>"
+msgstr ""
+
+#: ../../../wipy/tutorial/repl.rst:128
+msgid ""
+"If that isn't working you can perform a hard reset (turn-it-off-and-on-"
+"again) by pressing the RST switch (the small black button next to the "
+"heartbeat LED). During telnet, this will end your session, disconnecting "
+"whatever program that you used to connect to the WiPy."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:2
+msgid "Reset and boot modes"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:4
+msgid "There are soft resets and hard resets."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:6
+msgid ""
+"A soft reset simply clears the state of the MicroPython virtual machine, "
+"but leaves hardware peripherals unaffected. To do a soft reset, simply "
+"press **Ctrl+D** on the REPL, or within a script do::"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:10
+msgid ""
+"import sys\n"
+"sys.exit()"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:13
+msgid ""
+"A hard reset is the same as performing a power cycle to the board. In "
+"order to hard reset the WiPy, press the switch on the board or::"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:16
+msgid ""
+"import machine\n"
+"machine.reset()"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:20
+msgid "Safe boot"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:22
+msgid ""
+"If something goes wrong with your WiPy, don't panic!  It is almost "
+"impossible for you to break the WiPy by programming the wrong thing."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:25
+msgid ""
+"The first thing to try is to boot in safe mode: this temporarily skips "
+"execution of ``boot.py`` and ``main.py`` and gives default WLAN settings."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:28
+msgid ""
+"If you have problems with the filesystem you can :ref:`format the "
+"internal flash drive <wipy_factory_reset>`."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:31
+msgid ""
+"To boot in safe mode, follow the detailed instructions described "
+":ref:`here <wipy_boot_modes>`."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:33
+msgid ""
+"In safe mode, the ``boot.py`` and ``main.py`` files are not executed, and"
+" so the WiPy boots up with default settings.  This means you now have "
+"access to the filesystem, and you can edit ``boot.py`` and ``main.py`` to"
+" fix any problems."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:37
+msgid ""
+"Entering safe mode is temporary, and does not make any changes to the "
+"files on the WiPy."
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:43
+msgid "Factory reset the filesystem"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:45
+msgid ""
+"If you WiPy's filesystem gets corrupted (very unlikely, but possible), "
+"you can format it very easily by doing::"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:48
+msgid ""
+">>> import os\n"
+">>> os.mkfs('/flash')"
+msgstr ""
+
+#: ../../../wipy/tutorial/reset.rst:51
+msgid ""
+"Resetting the filesystem deletes all files on the internal WiPy storage "
+"(not the SD card), and restores the files ``boot.py`` and ``main.py`` "
+"back to their original state after the next reset."
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:2
+msgid "Hardware timers"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:4
+msgid ""
+"Timers can be used for a great variety of tasks, calling a function "
+"periodically, counting events, and generating a PWM signal are among the "
+"most common use cases. Each timer consists of two 16-bit channels and "
+"this channels can be tied together to form one 32-bit timer. The "
+"operating mode needs to be configured per timer, but then the period (or "
+"the frequency) can be independently configured on each channel. By using "
+"the callback method, the timer event can call a Python function."
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:11
+msgid "Example usage to toggle an LED at a fixed frequency::"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:13
+msgid ""
+"from machine import Timer\n"
+"from machine import Pin\n"
+"led = Pin('GP16', mode=Pin.OUT)                  # enable GP16 as output "
+"to drive the LED\n"
+"tim = Timer(3)                                   # create a timer object "
+"using timer 3\n"
+"tim.init(mode=Timer.PERIODIC)                    # initialize it in "
+"periodic mode\n"
+"tim_ch = tim.channel(Timer.A, freq=5)            # configure channel A at"
+" a frequency of 5Hz\n"
+"tim_ch.irq(handler=lambda t:led.toggle(), trigger=Timer.TIMEOUT)        #"
+" toggle a LED on every cycle of the timer"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:21
+msgid "Example using named function for the callback::"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:23
+msgid ""
+"from machine import Timer\n"
+"from machine import Pin\n"
+"tim = Timer(1, mode=Timer.PERIODIC, width=32)\n"
+"tim_a = tim.channel(Timer.A | Timer.B, freq=1)   # 1 Hz frequency "
+"requires a 32 bit timer\n"
+"\n"
+"led = Pin('GP16', mode=Pin.OUT) # enable GP16 as output to drive the LED\n"
+"\n"
+"def tick(timer):                # we will receive the timer object when "
+"being called\n"
+"    global led\n"
+"    led.toggle()                # toggle the LED\n"
+"\n"
+"tim_a.irq(handler=tick, trigger=Timer.TIMEOUT)         # create the "
+"interrupt"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:36
+msgid "Further examples::"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:38
+#, python-format
+msgid ""
+"from machine import Timer\n"
+"tim1 = Timer(1, mode=Timer.ONE_SHOT)                               # "
+"initialize it in one shot mode\n"
+"tim2 = Timer(2, mode=Timer.PWM)                                    # "
+"initialize it in PWM mode\n"
+"tim1_ch = tim1.channel(Timer.A, freq=10, polarity=Timer.POSITIVE)  # "
+"start the event counter with a frequency of 10Hz and triggered by "
+"positive edges\n"
+"tim2_ch = tim2.channel(Timer.B, freq=10000, duty_cycle=5000)       # "
+"start the PWM on channel B with a 50% duty cycle\n"
+"tim2_ch.freq(20)                                                   # set "
+"the frequency (can also get)\n"
+"tim2_ch.duty_cycle(3010)                                           # set "
+"the duty cycle to 30.1% (can also get)\n"
+"tim2_ch.duty_cycle(3020, Timer.NEGATIVE)                           # set "
+"the duty cycle to 30.2% and change the polarity to negative\n"
+"tim2_ch.period(2000000)                                            # "
+"change the period to 2 seconds"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:50
+msgid "Additional constants for Timer class"
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:54
+msgid "PWM timer operating mode."
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:59
+msgid ""
+"Selects the timer channel. Must be ORed (``Timer.A`` | ``Timer.B``) when "
+"using a 32-bit timer."
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:65
+msgid "Timer channel polarity selection (only relevant in PWM mode)."
+msgstr ""
+
+#: ../../../wipy/tutorial/timer.rst:70
+msgid "Timer channel IRQ triggers."
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:2
+msgid "WLAN step by step"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:4
+msgid ""
+"The WLAN is a system feature of the WiPy, therefore it is always enabled "
+"(even while in ``machine.SLEEP``), except when deepsleep mode is entered."
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:7
+msgid "In order to retrieve the current WLAN instance, do::"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:9
+msgid ""
+">>> from network import WLAN\n"
+">>> wlan = WLAN() # we call the constructor without params"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:12
+msgid ""
+"You can check the current mode (which is always ``WLAN.AP`` after power "
+"up)::"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:14
+msgid ">>> wlan.mode()"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:17
+msgid ""
+"When you change the WLAN mode following the instructions below, your WLAN"
+" connection to the WiPy will be broken. This means you will not be able "
+"to run these commands interactively over the WLAN."
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:22
+msgid "There are two ways around this::"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:22
+msgid ""
+"put this setup code into your :ref:`boot.py file<wipy_filesystem>` so "
+"that it gets executed automatically after reset."
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:23
+msgid ""
+":ref:`duplicate the REPL on UART <wipy_uart>`, so that you can run "
+"commands via USB."
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:26
+msgid "Connecting to your home router"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:28
+msgid ""
+"The WLAN network card always boots in ``WLAN.AP`` mode, so we must first "
+"configure it as a station::"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:31
+msgid ""
+"from network import WLAN\n"
+"wlan = WLAN(mode=WLAN.STA)"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:35
+msgid "Now you can proceed to scan for networks::"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:37
+msgid ""
+"nets = wlan.scan()\n"
+"for net in nets:\n"
+"    if net.ssid == 'mywifi':\n"
+"        print('Network found!')\n"
+"        wlan.connect(net.ssid, auth=(net.sec, 'mywifikey'), timeout=5000)"
+"\n"
+"        while not wlan.isconnected():\n"
+"            machine.idle() # save power while waiting\n"
+"        print('WLAN connection succeeded!')\n"
+"        break"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:48
+msgid "Assigning a static IP address when booting"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:50
+msgid ""
+"If you want your WiPy to connect to your home router after boot-up, and "
+"with a fixed IP address so that you can access it via telnet or FTP, use "
+"the following script as /flash/boot.py::"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:53
+msgid ""
+"import machine\n"
+"from network import WLAN\n"
+"wlan = WLAN() # get current object, without changing the mode\n"
+"\n"
+"if machine.reset_cause() != machine.SOFT_RESET:\n"
+"    wlan.init(WLAN.STA)\n"
+"    # configuration below MUST match your home router settings!!\n"
+"    wlan.ifconfig(config=('192.168.178.107', '255.255.255.0', "
+"'192.168.178.1', '8.8.8.8'))\n"
+"\n"
+"if not wlan.isconnected():\n"
+"    # change the line below to match your network ssid, security and "
+"password\n"
+"    wlan.connect('mywifi', auth=(WLAN.WPA2, 'mywifikey'), timeout=5000)\n"
+"    while not wlan.isconnected():\n"
+"        machine.idle() # save power while waiting"
+msgstr ""
+
+#: ../../../wipy/tutorial/wlan.rst:70
+msgid ""
+"Notice how we check for the reset cause and the connection status, this "
+"is crucial in order to be able to soft reset the WiPy during a telnet "
+"session without breaking the connection."
+msgstr ""
+

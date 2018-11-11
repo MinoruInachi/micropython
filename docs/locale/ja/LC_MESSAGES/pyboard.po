@@ -1,0 +1,4261 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-2018, Damien P. George, Paul Sokolovsky, and
+# contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.9.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-03 14:13+0900\n"
+"PO-Revision-Date: 2018-11-11 14:42+0900\n"
+"Last-Translator: Minoru Inachi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../../pyboard/general.rst:4
+msgid "General information about the pyboard"
+msgstr "pyboard に関する一般的なこと"
+
+#: ../../../pyboard/general.rst:9
+msgid "Local filesystem and SD card"
+msgstr "ローカルファイルシステムと SD カード"
+
+#: ../../../pyboard/general.rst:11
+msgid ""
+"There is a small internal filesystem (a drive) on the pyboard, called "
+"``/flash``, which is stored within the microcontroller's flash memory.  "
+"If a micro SD card is inserted into the slot, it is available as ``/sd``."
+msgstr ""
+"pyboard には小さな内部ファイルシステム（ドライブ）があります。これには "
+"``/flash`` という名前がついていて、マイクロコントローラのフラッシュメモリに"
+"あります。マイクロSDカードがスロットに挿入されている場合は ``/sd`` として利用できます。
+
+#: ../../../pyboard/general.rst:15
+msgid ""
+"When the pyboard boots up, it needs to choose a filesystem to boot from."
+"  If there is no SD card, then it uses the internal filesystem ``/flash``"
+" as the boot filesystem, otherwise, it uses the SD card ``/sd``. After "
+"the boot, the current directory is set to one of the directories above."
+msgstr ""
+"pyboard の起動時には、ブートするファイルシステムを決める必要があります。SD カードが"
+"ない場合は内部ファイルシステム ``/flash`` をブートファイルシステムとして使います。"
+"SD カードがある場合は SD カード ``/sd`` を使います。起動後、現在のディレクトリは"
+"上記のいずれかのディレクトリに設定されます。"
+
+#: ../../../pyboard/general.rst:20
+msgid ""
+"If needed, you can prevent the use of the SD card by creating an empty "
+"file called ``/flash/SKIPSD``.  If this file exists when the pyboard "
+"boots up then the SD card will be skipped and the pyboard will always "
+"boot from the internal filesystem (in this case the SD card won't be "
+"mounted but you can still mount and use it later in your program using "
+"``os.mount``)."
+msgstr ""
+"必要に応じて、 ``/flash/SKIPSD`` という空のファイルを作成して SD カードの使用を"
+"防げますができます。このファイルが pyboard の起動時に存在する場合、SDカードは"
+"スキップされ、pyboard は常に内部ファイルシステムから起動します（この場合、SDカードは"
+"マウントされませんが、後からでもプログラムで ``os.mount`` を使ってマウントすることに"
+"より、SD カードを使えるようになります。"
+
+#: ../../../pyboard/general.rst:26
+msgid ""
+"(Note that on older versions of the board, ``/flash`` is called ``0:/`` "
+"and ``/sd`` is called ``1:/``)."
+msgstr ""
+"（ボードの古いバージョンでは、 ``/flash`` が ``0:/`` 、 ``/sd`` が ``1:/`` "
+"となっているので注意してください）。
+
+#: ../../../pyboard/general.rst:29
+msgid ""
+"The boot filesystem is used for 2 things: it is the filesystem from which"
+" the ``boot.py`` and ``main.py`` files are searched for, and it is the "
+"filesystem which is made available on your PC over the USB cable."
+msgstr ""
+"ブートファイルシステムは２つのことのために使われます。１つは、 ``boot.py`` と "
+"``main.py`` ファイルが探されるファイルシステムということであり、もう１つは"
+"USB ケーブルを介して PC 上で利用可能になるファイルシステムということです。"
+
+#: ../../../pyboard/general.rst:33
+msgid ""
+"The filesystem will be available as a USB flash drive on your PC.  You "
+"can save files to the drive, and edit ``boot.py`` and ``main.py``."
+msgstr ""
+"ファイルシステムは PC の USBフラッシュドライブとして利用できます。このドライブには"
+"ファイルを保存できますし、 ``boot.py`` と ``main.py`` の編集もできます。"
+
+#: ../../../pyboard/general.rst:36
+msgid ""
+"*Remember to eject (on Linux, unmount) the USB drive before you reset "
+"your pyboard.*"
+msgstr ""
+"*pyboard をリセットする前には、USB ドライブを取り出す（Linuxではアンマウント）する"
+"ことを忘れないでください。*"
+
+#: ../../../pyboard/general.rst:40
+msgid "Boot modes"
+msgstr "ブートモード"
+
+#: ../../../pyboard/general.rst:42
+msgid ""
+"If you power up normally, or press the reset button, the pyboard will "
+"boot into standard mode: the ``boot.py`` file will be executed first, "
+"then the USB will be configured, then ``main.py`` will run."
+msgstr ""
+"普通に電源を入れるかリセットボタンを押すと、pyboard は標準モードでブートします。"
+"``boot.py`` ファイルが最初に実行され、USB の設定され、 ``main.py`` が実行"
+"されます。"
+
+#: ../../../pyboard/general.rst:46
+msgid ""
+"You can override this boot sequence by holding down the user switch as "
+"the board is booting up.  Hold down user switch and press reset, and then"
+" as you continue to hold the user switch, the LEDs will count in binary. "
+"When the LEDs have reached the mode you want, let go of the user switch, "
+"the LEDs for the selected mode will flash quickly, and the board will "
+"boot."
+msgstr ""
+"ボードの起動時にユーザスイッチを押し続けると、ブートシーケンスを変更できます。ユーザ"
+"スイッチを押したままリセットを押し、ユーザスイッチを押し続けると、LED が２進数で"
+"カウントを行います。LED が必要なモードになったら、ユーザースイッチを放してください。"
+"選択されたモードの LED がすばやく点滅し、ボードがブートを行います。"
+
+#: ../../../pyboard/general.rst:52
+msgid "The modes are:"
+msgstr "モードには次のものがあります。"
+
+#: ../../../pyboard/general.rst:54
+msgid "Green LED only, *standard boot*: run ``boot.py`` then ``main.py``."
+msgstr "グリーン LED のみは *標準ブート* です: ``boot.py`` の実行の後に ``main.py`` を実行します。"
+
+#: ../../../pyboard/general.rst:55
+msgid "Orange LED only, *safe boot*: don't run any scripts on boot-up."
+msgstr "オレンジ LED のみは *セーフブート* です: ブード時にスクリプトを実行しません。"
+
+#: ../../../pyboard/general.rst:56
+msgid ""
+"Green and orange LED together, *filesystem reset*: resets the flash "
+"filesystem to its factory state, then boots in safe mode."
+msgstr ""
+"グリーンとオレンジの両 LED の場合は *ファイルシステムリセット* です: flash "
+"ファイルシステムを出荷時の状態にリセットしてから、セーフモードで起動します。"
+
+#: ../../../pyboard/general.rst:59
+msgid ""
+"If your filesystem becomes corrupt, boot into mode 3 to fix it. If "
+"resetting the filesystem while plugged into your compute doesn't work, "
+"you can try doing the same procedure while the board is plugged into a "
+"USB charger, or other USB power supply without data connection."
+msgstr ""
+"ファイルシステムが壊れた場合は、モード 3 で起動して修正してください。コンピュータに"
+"接続されているためにファイルシステムのリセットがうまくいかない場合には、USB 充電器か、"
+"データ通信なしで電源供給だけの USB ケーブルを使って再度試してみてください。"
+
+#: ../../../pyboard/general.rst:65
+msgid "Errors: flashing LEDs"
+msgstr "エラー: LED の点滅"
+
+#: ../../../pyboard/general.rst:67
+msgid "There are currently 2 kinds of errors that you might see:"
+msgstr "現在のところ、次の2種類のエラーが表示されます:"
+
+#: ../../../pyboard/general.rst:69
+msgid "If the red and green LEDs flash alternatively, then a Python script"
+msgstr "赤と緑のLEDが交互に点滅している場合は、"
+
+#: ../../../pyboard/general.rst:70
+msgid "(eg ``main.py``) has an error.  Use the REPL to debug it."
+msgstr "Pythonスクリプト(たとえば ``main.py``)にエラーがあります。REPLを使ってデバッグしてください。"
+
+#: ../../../pyboard/general.rst:71
+msgid ""
+"If all 4 LEDs cycle on and off slowly, then there was a hard fault. This "
+"cannot be recovered from and you need to do a hard reset."
+msgstr ""
+"4つのLEDすべてがゆっくりとオン/オフを繰り返している場合は重大な障害が発生しています。"
+"これは回復できませんので、ハードリセットを行う必要があります。"
+
+#: ../../../pyboard/general.rst:75
+msgid "Guide for using the pyboard with Windows"
+msgstr "Windows で pyboard を使用するためのガイド"
+
+#: ../../../pyboard/general.rst:77
+msgid ""
+"The following PDF guide gives information about using the pyboard with "
+"Windows, including setting up the serial prompt and downloading new "
+"firmware using DFU programming: `PDF guide "
+"<http://micropython.org/resources/Micro-Python-Windows-setup.pdf>`__."
+msgstr ""
+"次の PDF ガイドでは、シリアルプロンプトの設定や DFU プログラミング使った"
+"新しいファームウェアのダウンロードなど、Windows で pyboard を使用する方法について"
+"説明しています: `PDF ガイド "
+"<http://micropython.org/resources/Micro-Python-Windows-setup.pdf>`__ 。"
+
+#: ../../../pyboard/hardware/index.rst:2
+msgid "The pyboard hardware"
+msgstr "pyboard ハードウェア"
+
+#: ../../../pyboard/hardware/index.rst:4
+msgid "For the pyboard:"
+msgstr "pyboard 本体:"
+
+#: ../../../pyboard/hardware/index.rst:6
+msgid ""
+"`PYBv1.0 schematics and layout "
+"<http://micropython.org/resources/PYBv10b.pdf>`_ (2.4MiB PDF)"
+msgstr ""
+"`PYBv1.0 回路図とレイアウト "
+"<http://micropython.org/resources/PYBv10b.pdf>`_ (2.4MiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:7
+msgid ""
+"`PYBv1.0 metric dimensions <http://micropython.org/resources/PYBv10b-"
+"metric-dimensions.pdf>`_ (360KiB PDF)"
+msgstr ""
+"`PYBv1.0 メートル法寸法 <http://micropython.org/resources/PYBv10b-"
+"metric-dimensions.pdf>`_ (360KiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:8
+msgid ""
+"`PYBv1.0 imperial dimensions <http://micropython.org/resources/PYBv10b-"
+"imperial-dimensions.pdf>`_ (360KiB PDF)"
+msgstr ""
+"`PYBv1.0 帝国単位寸法 <http://micropython.org/resources/PYBv10b-"
+"imperial-dimensions.pdf>`_ (360KiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:10
+msgid "For the official skin modules:"
+msgstr "公式スキンモジュール:"
+
+#: ../../../pyboard/hardware/index.rst:12
+msgid ""
+"`LCD32MKv1.0 schematics "
+"<http://micropython.org/resources/LCD32MKv10-schematics.pdf>`_ (194KiB "
+"PDF)"
+msgstr ""
+"`LCD32MKv1.0 回路図 "
+"<http://micropython.org/resources/LCD32MKv10-schematics.pdf>`_ (194KiB "
+"PDF)"
+
+#: ../../../pyboard/hardware/index.rst:13
+msgid ""
+"`AMPv1.0 schematics "
+"<http://micropython.org/resources/AMPv10-schematics.pdf>`_ (209KiB PDF)"
+msgstr ""
+"`AMPv1.0 回路図 "
+"<http://micropython.org/resources/AMPv10-schematics.pdf>`_ (209KiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:14
+msgid "LCD160CRv1.0: see :mod:`lcd160cr`"
+msgstr ""
+
+#: ../../../pyboard/hardware/index.rst:17
+msgid "Datasheets for the components on the pyboard"
+msgstr "pyboard 上のコンポーネントのデータシート"
+
+#: ../../../pyboard/hardware/index.rst:19
+msgid ""
+"The microcontroller: `STM32F405RGT6 "
+"<http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1577/LN1035/PF252144>`_"
+" (link to manufacturer's site)"
+msgstr ""
+"マイクロコントローラ: `STM32F405RGT6 "
+"<http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1577/LN1035/PF252144>`_"
+" (製造元サイトへのリンク)"
+
+#: ../../../pyboard/hardware/index.rst:20
+msgid ""
+"The accelerometer: `Freescale MMA7660 "
+"<http://micropython.org/resources/datasheets/MMA7660FC.pdf>`_ (800kiB "
+"PDF)"
+msgstr ""
+"加速度センサー: `Freescale MMA7660 "
+"<http://micropython.org/resources/datasheets/MMA7660FC.pdf>`_ (800kiB "
+"PDF)"
+
+#: ../../../pyboard/hardware/index.rst:21
+msgid ""
+"The LDO voltage regulator: `Microchip MCP1802 "
+"<http://micropython.org/resources/datasheets/MCP1802-22053C.pdf>`_ "
+"(400kiB PDF)"
+msgstr ""
+"LDO 電圧レギュレータ: `Microchip MCP1802 "
+"<http://micropython.org/resources/datasheets/MCP1802-22053C.pdf>`_ "
+"(400kiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:24
+msgid "Datasheets for other components"
+msgstr "他のコンポーネントのデータシート"
+
+#: ../../../pyboard/hardware/index.rst:26
+msgid ""
+"The LCD display on the LCD touch-sensor skin: `Newhaven Display NHD-"
+"C12832A1Z-FSW-FBW-3V3 <http://micropython.org/resources/datasheets/NHD-"
+"C12832A1Z-FSW-FBW-3V3.pdf>`_ (460KiB PDF)"
+msgstr ""
+"LCD タッチセンサースキン上の LCD ディスプレイ: `Newhaven Display NHD-"
+"C12832A1Z-FSW-FBW-3V3 <http://micropython.org/resources/datasheets/NHD-"
+"C12832A1Z-FSW-FBW-3V3.pdf>`_ (460KiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:27
+msgid ""
+"The touch sensor chip on the LCD touch-sensor skin: `Freescale MPR121 "
+"<http://micropython.org/resources/datasheets/MPR121.pdf>`_ (280KiB PDF)"
+msgstr ""
+"LCD タッチセンサースキン上のタッチセンサーチップ: `Freescale MPR121 "
+"<http://micropython.org/resources/datasheets/MPR121.pdf>`_ (280KiB PDF)"
+
+#: ../../../pyboard/hardware/index.rst:28
+msgid ""
+"The digital potentiometer on the audio skin: `Microchip MCP4541 "
+"<http://micropython.org/resources/datasheets/MCP4541-22107B.pdf>`_ "
+"(2.7MiB PDF)"
+msgstr ""
+"オーディオスキン上のデジタル電位差計: `Microchip MCP4541 "
+"<http://micropython.org/resources/datasheets/MCP4541-22107B.pdf>`_ "
+"(2.7MiB PDF)"
+
+#: ../../../pyboard/quickref.rst:4
+msgid "Quick reference for the pyboard"
+msgstr "pyboard 用クイックリファレンス"
+
+#: ../../../pyboard/quickref.rst:6
+msgid ""
+"The below pinout is for PYBv1.0.  You can also view pinouts for other "
+"versions of the pyboard: `PYBv1.1 "
+"<http://micropython.org/resources/pybv11-pinout.jpg>`__ or "
+"`PYBLITEv1.0-AC <http://micropython.org/resources/pyblitev10ac-"
+"pinout.jpg>`__ or `PYBLITEv1.0 "
+"<http://micropython.org/resources/pyblitev10-pinout.jpg>`__."
+msgstr ""
+"以下のピン配置は PYBv1.0 用です。pyboard の他のバージョン（"
+"`PYBv1.1 <http://micropython.org/resources/pybv11-pinout.jpg>`__ 、"
+"`PYBLITEv1.0-AC <http://micropython.org/resources/pyblitev10ac-pinout.jpg>`__ 、"
+"`PYBLITEv1.0 <http://micropython.org/resources/pyblitev10-pinout.jpg>`__ ）"
+"のピン配置もあります。"
+
+msgid ""
+".. image:: http://micropython.org/resources/pybv10-pinout.jpg\n"
+"   :alt: PYBv1.0 pinout"
+msgstr ""
+
+msgid ""
+".. image:: http://micropython.org/resources/pybv10-pinout-800px.jpg\n"
+"   :alt: PYBv1.0 pinout"
+msgstr ""
+
+#: ../../../pyboard/quickref.rst:23
+msgid ""
+"Below is a quick reference for the pyboard.  If it is your first time "
+"working with this board please consider reading the following sections "
+"first:"
+msgstr ""
+"以下は pyboard のクイックリファレンスです。このボードを初めて使用する場合は、"
+"まず次の章を読むよう検討してください。"
+
+#: ../../../pyboard/quickref.rst:33
+msgid "General board control"
+msgstr "ボードの一般的な制御"
+
+#: ../../../pyboard/quickref.rst:35
+msgid "See :mod:`pyb`. ::"
+msgstr "モジュール :mod:`pyb` を参照してください::"
+
+#: ../../../pyboard/quickref.rst:37
+msgid ""
+"import pyb\n"
+"\n"
+"pyb.repl_uart(pyb.UART(1, 9600)) # duplicate REPL on UART(1)\n"
+"pyb.wfi() # pause CPU, waiting for interrupt\n"
+"pyb.freq() # get CPU and bus frequencies\n"
+"pyb.freq(60000000) # set CPU freq to 60MHz\n"
+"pyb.stop() # stop CPU, waiting for external interrupt"
+msgstr ""
+"import pyb\n"
+"\n"
+"pyb.repl_uart(pyb.UART(1, 9600)) # REPL を UART(1) に複製\n"
+"pyb.wfi() # 割込みまで CPU を一時停止します\n"
+"pyb.freq() # CPU とバスの周波数を得ます\n"
+"pyb.freq(60000000) # CPU の周波数を 60MHz に設定します\n"
+"pyb.stop() # 外部割込みまで CPU を停止します"
+
+#: ../../../pyboard/quickref.rst:46
+msgid "Delay and timing"
+msgstr "遅延とタイミング"
+
+#: ../../../pyboard/quickref.rst:48
+msgid "Use the :mod:`time <utime>` module::"
+msgstr "モジュール :mod:`time <utime>` を使います::"
+
+#: ../../../pyboard/quickref.rst:50
+msgid ""
+"import time\n"
+"\n"
+"time.sleep(1)           # sleep for 1 second\n"
+"time.sleep_ms(500)      # sleep for 500 milliseconds\n"
+"time.sleep_us(10)       # sleep for 10 microseconds\n"
+"start = time.ticks_ms() # get value of millisecond counter\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
+msgstr ""
+"import time\n"
+"\n"
+"time.sleep(1)           # 1 秒スリープします\n"
+"time.sleep_ms(500)      # 500 ミリ秒スリープします\n"
+"time.sleep_us(10)       # 10 マイクロ秒スリープします\n"
+"start = time.ticks_ms() # ミリ秒カウンターの値を得ます\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # 時間差を算出します"
+
+#: ../../../pyboard/quickref.rst:59
+msgid "Internal LEDs"
+msgstr "ボード上の LED"
+
+#: ../../../pyboard/quickref.rst:61
+msgid "See :ref:`pyb.LED <pyb.LED>`. ::"
+msgstr ":ref:`pyb.LED <pyb.LED>` を参照::"
+
+#: ../../../pyboard/quickref.rst:63
+msgid ""
+"from pyb import LED\n"
+"\n"
+"led = LED(1) # 1=red, 2=green, 3=yellow, 4=blue\n"
+"led.toggle()\n"
+"led.on()\n"
+"led.off()\n"
+"\n"
+"# LEDs 3 and 4 support PWM intensity (0-255)\n"
+"LED(4).intensity()    # get intensity\n"
+"LED(4).intensity(128) # set intensity to half"
+msgstr ""
+"from pyb import LED\n"
+"\n"
+"led = LED(1) # 1=赤、2=緑、3=黄色、4=青\n"
+"led.toggle()\n"
+"led.on()\n"
+"led.off()\n"
+"\n"
+"# LED 3 と 4 は PWM 照度(0-255)をサポートします\n"
+"LED(4).intensity()    # 照度を得ます\n"
+"LED(4).intensity(128) # 照度を半分に設定します"
+
+#: ../../../pyboard/quickref.rst:75
+msgid "Internal switch"
+msgstr "ボード上のスイッチ"
+
+#: ../../../pyboard/quickref.rst:77
+msgid "See :ref:`pyb.Switch <pyb.Switch>`. ::"
+msgstr ":ref:`pyb.Switch <pyb.Switch>` を参照::"
+
+#: ../../../pyboard/quickref.rst:79
+msgid ""
+"from pyb import Switch\n"
+"\n"
+"sw = Switch()\n"
+"sw.value() # returns True or False\n"
+"sw.callback(lambda: pyb.LED(1).toggle())"
+msgstr ""
+"from pyb import Switch\n"
+"\n"
+"sw = Switch()\n"
+"sw.value() # True または False を返します\n"
+"sw.callback(lambda: pyb.LED(1).toggle())"
+
+#: ../../../pyboard/quickref.rst:86
+msgid "Pins and GPIO"
+msgstr "ピンと GPIO"
+
+#: ../../../pyboard/quickref.rst:88
+msgid "See :ref:`pyb.Pin <pyb.Pin>`. ::"
+msgstr ":ref:`pyb.Pin <pyb.Pin>` を参照::"
+
+#: ../../../pyboard/quickref.rst:90
+msgid ""
+"from pyb import Pin\n"
+"\n"
+"p_out = Pin('X1', Pin.OUT_PP)\n"
+"p_out.high()\n"
+"p_out.low()\n"
+"\n"
+"p_in = Pin('X2', Pin.IN, Pin.PULL_UP)\n"
+"p_in.value() # get value, 0 or 1"
+msgstr ""
+"from pyb import Pin\n"
+"\n"
+"p_out = Pin('X1', Pin.OUT_PP)\n"
+"p_out.high()\n"
+"p_out.low()\n"
+"\n"
+"p_in = Pin('X2', Pin.IN, Pin.PULL_UP)\n"
+"p_in.value() # 0 または 1 を返します"
+
+#: ../../../pyboard/quickref.rst:100
+msgid "Servo control"
+msgstr "サーボ制御"
+
+#: ../../../pyboard/quickref.rst:102
+msgid "See :ref:`pyb.Servo <pyb.Servo>`. ::"
+msgstr ":ref:`pyb.Servo <pyb.Servo>` を参照::"
+
+#: ../../../pyboard/quickref.rst:104
+msgid ""
+"from pyb import Servo\n"
+"\n"
+"s1 = Servo(1) # servo on position 1 (X1, VIN, GND)\n"
+"s1.angle(45) # move to 45 degrees\n"
+"s1.angle(-60, 1500) # move to -60 degrees in 1500ms\n"
+"s1.speed(50) # for continuous rotation servos"
+msgstr ""
+"from pyb import Servo\n"
+"\n"
+"s1 = Servo(1) # ポジション 1 (X1, VIN, GND)のサーボ\n"
+"s1.angle(45) # 45 度に回転\n"
+"s1.angle(-60, 1500) # 1500ms で -60 度に回転\n"
+"s1.speed(50) # 以降のサーボの回転に適用"
+
+#: ../../../pyboard/quickref.rst:112
+msgid "External interrupts"
+msgstr "外部割込み"
+
+#: ../../../pyboard/quickref.rst:114
+msgid "See :ref:`pyb.ExtInt <pyb.ExtInt>`. ::"
+msgstr ":ref:`pyb.ExtInt <pyb.ExtInt>` を参照::"
+
+#: ../../../pyboard/quickref.rst:116
+msgid ""
+"from pyb import Pin, ExtInt\n"
+"\n"
+"callback = lambda e: print(\"intr\")\n"
+"ext = ExtInt(Pin('Y1'), ExtInt.IRQ_RISING, Pin.PULL_NONE, callback)"
+msgstr ""
+
+#: ../../../pyboard/quickref.rst:122
+msgid "Timers"
+msgstr "タイマー"
+
+#: ../../../pyboard/quickref.rst:124
+msgid "See :ref:`pyb.Timer <pyb.Timer>`. ::"
+msgstr ":ref:`pyb.Timer <pyb.Timer>` を参照::"
+
+#: ../../../pyboard/quickref.rst:126
+msgid ""
+"from pyb import Timer\n"
+"\n"
+"tim = Timer(1, freq=1000)\n"
+"tim.counter() # get counter value\n"
+"tim.freq(0.5) # 0.5 Hz\n"
+"tim.callback(lambda t: pyb.LED(1).toggle())"
+msgstr ""
+"from pyb import Timer\n"
+"\n"
+"tim = Timer(1, freq=1000)\n"
+"tim.counter() # カウンター値を得ます\n"
+"tim.freq(0.5) # 0.5 Hz\n"
+"tim.callback(lambda t: pyb.LED(1).toggle())"
+
+#: ../../../pyboard/quickref.rst:134
+msgid "RTC (real time clock)"
+msgstr "RTC (リアルタイムクロック)"
+
+#: ../../../pyboard/quickref.rst:136
+msgid "See :ref:`pyb.RTC <pyb.RTC>` ::"
+msgstr ":ref:`pyb.RTC <pyb.RTC>` を参照::"
+
+#: ../../../pyboard/quickref.rst:138
+msgid ""
+"from pyb import RTC\n"
+"\n"
+"rtc = RTC()\n"
+"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
+"time\n"
+"rtc.datetime() # get date and time"
+msgstr ""
+"from pyb import RTC\n"
+"\n"
+"rtc = RTC()\n"
+"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定します\n"
+"rtc.datetime() # 日時を得ます"
+
+#: ../../../pyboard/quickref.rst:145
+msgid "PWM (pulse width modulation)"
+msgstr "PWM (パルス幅変調)"
+
+#: ../../../pyboard/quickref.rst:147
+msgid "See :ref:`pyb.Pin <pyb.Pin>` and :ref:`pyb.Timer <pyb.Timer>`. ::"
+msgstr ":ref:`pyb.Pin <pyb.Pin>` と :ref:`pyb.Timer <pyb.Timer>` を参照::"
+
+#: ../../../pyboard/quickref.rst:149
+msgid ""
+"from pyb import Pin, Timer\n"
+"\n"
+"p = Pin('X1') # X1 has TIM2, CH1\n"
+"tim = Timer(2, freq=1000)\n"
+"ch = tim.channel(1, Timer.PWM, pin=p)\n"
+"ch.pulse_width_percent(50)"
+msgstr ""
+"from pyb import Pin, Timer\n"
+"\n"
+"p = Pin('X1') # X1 は TIM2, CH1 を持ちます\n"
+"tim = Timer(2, freq=1000)\n"
+"ch = tim.channel(1, Timer.PWM, pin=p)\n"
+"ch.pulse_width_percent(50)"
+
+#: ../../../pyboard/quickref.rst:157
+msgid "ADC (analog to digital conversion)"
+msgstr "ADC (アナログ-デジタル変換)"
+
+#: ../../../pyboard/quickref.rst:159
+msgid "See :ref:`pyb.Pin <pyb.Pin>` and :ref:`pyb.ADC <pyb.ADC>`. ::"
+msgstr ":ref:`pyb.Pin <pyb.Pin>` と :ref:`pyb.ADC <pyb.ADC>` を参照::"
+
+#: ../../../pyboard/quickref.rst:161
+msgid ""
+"from pyb import Pin, ADC\n"
+"\n"
+"adc = ADC(Pin('X19'))\n"
+"adc.read() # read value, 0-4095"
+msgstr ""
+"from pyb import Pin, ADC\n"
+"\n"
+"adc = ADC(Pin('X19'))\n"
+"adc.read() # 値 0-4095 を読み込みます"
+
+#: ../../../pyboard/quickref.rst:167
+msgid "DAC (digital to analog conversion)"
+msgstr "DAC (デジタル-アナログ変換)"
+
+#: ../../../pyboard/quickref.rst:169
+msgid "See :ref:`pyb.Pin <pyb.Pin>` and :ref:`pyb.DAC <pyb.DAC>`. ::"
+msgstr ":ref:`pyb.Pin <pyb.Pin>` と :ref:`pyb.DAC <pyb.DAC>` を参照::"
+
+#: ../../../pyboard/quickref.rst:171
+msgid ""
+"from pyb import Pin, DAC\n"
+"\n"
+"dac = DAC(Pin('X5'))\n"
+"dac.write(120) # output between 0 and 255"
+msgstr ""
+"from pyb import Pin, DAC\n"
+"\n"
+"dac = DAC(Pin('X5'))\n"
+"dac.write(120) # 0 から 255 の範囲で出力"
+
+#: ../../../pyboard/quickref.rst:177
+msgid "UART (serial bus)"
+msgstr "UART (シリアルバス)"
+
+#: ../../../pyboard/quickref.rst:179
+msgid "See :ref:`pyb.UART <pyb.UART>`. ::"
+msgstr ":ref:`pyb.UART <pyb.UART>` を参照::"
+
+#: ../../../pyboard/quickref.rst:181
+msgid ""
+"from pyb import UART\n"
+"\n"
+"uart = UART(1, 9600)\n"
+"uart.write('hello')\n"
+"uart.read(5) # read up to 5 bytes"
+msgstr ""
+"from pyb import UART\n"
+"\n"
+"uart = UART(1, 9600)\n"
+"uart.write('hello')\n"
+"uart.read(5) # 5 バイトまで読み込みます"
+
+#: ../../../pyboard/quickref.rst:188
+msgid "SPI bus"
+msgstr "SPI バス"
+
+#: ../../../pyboard/quickref.rst:190
+msgid "See :ref:`pyb.SPI <pyb.SPI>`. ::"
+msgstr ":ref:`pyb.SPI <pyb.SPI>` を参照::"
+
+#: ../../../pyboard/quickref.rst:192
+msgid ""
+"from pyb import SPI\n"
+"\n"
+"spi = SPI(1, SPI.MASTER, baudrate=200000, polarity=1, phase=0)\n"
+"spi.send('hello')\n"
+"spi.recv(5) # receive 5 bytes on the bus\n"
+"spi.send_recv('hello') # send and receive 5 bytes"
+msgstr ""
+"from pyb import SPI\n"
+"\n"
+"spi = SPI(1, SPI.MASTER, baudrate=200000, polarity=1, phase=0)\n"
+"spi.send('hello')\n"
+"spi.recv(5) # バス上で 5 バイトを受信\n"
+"spi.send_recv('hello') # 5 バイトを送受信"
+
+#: ../../../pyboard/quickref.rst:200
+msgid "I2C bus"
+msgstr "I2C バス"
+
+#: ../../../pyboard/quickref.rst:202
+msgid "See :ref:`pyb.I2C <pyb.I2C>`. ::"
+msgstr ":ref:`pyb.I2C <pyb.I2C>` を参照::"
+
+#: ../../../pyboard/quickref.rst:204
+msgid ""
+"from pyb import I2C\n"
+"\n"
+"i2c = I2C(1, I2C.MASTER, baudrate=100000)\n"
+"i2c.scan() # returns list of slave addresses\n"
+"i2c.send('hello', 0x42) # send 5 bytes to slave with address 0x42\n"
+"i2c.recv(5, 0x42) # receive 5 bytes from slave\n"
+"i2c.mem_read(2, 0x42, 0x10) # read 2 bytes from slave 0x42, slave memory "
+"0x10\n"
+"i2c.mem_write('xy', 0x42, 0x10) # write 2 bytes to slave 0x42, slave "
+"memory 0x10"
+msgstr ""
+"from pyb import I2C\n"
+"\n"
+"i2c = I2C(1, I2C.MASTER, baudrate=100000)\n"
+"i2c.scan() # スレーブアドレスのリストを返します\n"
+"i2c.send('hello', 0x42) # アドレス 0x42 でスレーブに 5 バイトを送信します\n"
+"i2c.recv(5, 0x42) # スレーブから 5 バイトを受信します\n"
+"i2c.mem_read(2, 0x42, 0x10) # スレーブ 0x42、スレーブメモリ 0x10 から 2 バイト読み込みます\n"
+"i2c.mem_write('xy', 0x42, 0x10) # スレーブ 0x42、スレーブメモリ 0x10 へ 2 バイト書き込みます"
+
+#: ../../../pyboard/quickref.rst:214
+msgid "CAN bus (controller area network)"
+msgstr "CAN バス (Controller Area Network)"
+
+#: ../../../pyboard/quickref.rst:216
+msgid "See :ref:`pyb.CAN <pyb.CAN>`. ::"
+msgstr ":ref:`pyb.CAN <pyb.CAN>` を参照::"
+
+#: ../../../pyboard/quickref.rst:218
+msgid ""
+"from pyb import CAN\n"
+"\n"
+"can = CAN(1, CAN.LOOPBACK)\n"
+"can.setfilter(0, CAN.LIST16, 0, (123, 124, 125, 126))\n"
+"can.send('message!', 123)   # send a message with id 123\n"
+"can.recv(0)                 # receive message on FIFO 0"
+msgstr ""
+"from pyb import CAN\n"
+"\n"
+"can = CAN(1, CAN.LOOPBACK)\n"
+"can.setfilter(0, CAN.LIST16, 0, (123, 124, 125, 126))\n"
+"can.send('message!', 123)   # id 123 でメッセージを送信\n"
+"can.recv(0)                 # FIFO 0 でメッセージを受信"
+
+#: ../../../pyboard/quickref.rst:226
+msgid "Internal accelerometer"
+msgstr "ボード上の加速度センサー"
+
+#: ../../../pyboard/quickref.rst:228
+msgid "See :ref:`pyb.Accel <pyb.Accel>`. ::"
+msgstr ":ref:`pyb.Accel <pyb.Accel>` を参照::"
+
+#: ../../../<rst_epilog>:230
+msgid ""
+"from pyb import Accel\n"
+"\n"
+"accel = Accel()\n"
+"print(accel.x(), accel.y(), accel.z(), accel.tilt())"
+msgstr ""
+
+#: ../../../pyboard/tutorial/accel.rst:2
+msgid "The accelerometer"
+msgstr "加速度センサー"
+
+#: ../../../pyboard/tutorial/accel.rst:4
+msgid ""
+"Here you will learn how to read the accelerometer and signal using LEDs "
+"states like tilt left and tilt right."
+msgstr ""
+"ここでは、加速度センサーの値を読み込んで、左傾斜と右傾斜のような状態を LED で示す"
+"方法を学習します。"
+
+#: ../../../pyboard/tutorial/accel.rst:7
+msgid "Using the accelerometer"
+msgstr "加速度センサーの使用方法"
+
+#: ../../../pyboard/tutorial/accel.rst:9
+msgid ""
+"The pyboard has an accelerometer (a tiny mass on a tiny spring) that can "
+"be used to detect the angle of the board and motion. There is a different"
+" sensor for each of the x, y, z directions. To get the value of the "
+"accelerometer, create a pyb.Accel() object and then call the x() method. "
+"::"
+msgstr ""
+"pyboard には、ボードの傾斜角度やモーションを検出に使える加速度センサー(小さなバネに"
+"つながった小さな錘)があります。x, y, z 方向の各々に対して異なるセンサがあります。"
+"加速度センサーの値を得るには、pyb.Accel() オブジェクトを作成してた後に x() "
+"メソッドを呼び出します::"
+
+#: ../../../pyboard/tutorial/accel.rst:14
+msgid ""
+">>> accel = pyb.Accel()\n"
+">>> accel.x()\n"
+"7"
+msgstr ""
+
+#: ../../../pyboard/tutorial/accel.rst:18
+msgid ""
+"This returns a signed integer with a value between around -30 and 30. "
+"Note that the measurement is very noisy, this means that even if you keep"
+" the board perfectly still there will be some variation in the number "
+"that you measure. Because of this, you shouldn't use the exact value of "
+"the x() method but see if it is in a certain range."
+msgstr ""
+"これは -30 から 30 の間の符号付き整数を返します。測定値には非常にノイズが多いことに"
+"注意してください。これは、ボードを完全に静止していても、測定する数値に多少のばらつきが"
+"あることを意味します。このため、x() メソッドの値を精密に検査するのではなく、特定の"
+"範囲内にあるかどうかを確認するようにしてください。"
+
+#: ../../../pyboard/tutorial/accel.rst:24
+msgid ""
+"We will start by using the accelerometer to turn on a light if it is not "
+"flat. ::"
+msgstr ""
+"加速度計を使って、ボードが水平状態でない場合は、ライトを点灯するようにして"
+"みましょう::"
+
+#: ../../../pyboard/tutorial/accel.rst:26
+msgid ""
+"accel = pyb.Accel()\n"
+"light = pyb.LED(3)\n"
+"SENSITIVITY = 3\n"
+"\n"
+"while True:\n"
+"    x = accel.x()\n"
+"    if abs(x) > SENSITIVITY:\n"
+"        light.on()\n"
+"    else:\n"
+"        light.off()\n"
+"\n"
+"    pyb.delay(100)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/accel.rst:39
+msgid ""
+"We create Accel and LED objects, then get the value of the x direction of"
+" the accelerometer. If the magnitude of x is bigger than a certain value "
+"``SENSITIVITY``, then the LED turns on, otherwise it turns off. The loop "
+"has a small ``pyb.delay()`` otherwise the LED flashes annoyingly when the"
+" value of x is close to ``SENSITIVITY``. Try running this on the pyboard "
+"and tilt the board left and right to make the LED turn on and off."
+msgstr ""
+"Accel と LED オブジェクトを作成し、加速度センサーの x 方向の値を取得しています。"
+"x の大きさがある値 ``SENSITIVITY`` より大きい場合に LED を点灯し、そうでない場合は"
+"消灯します。ループ中の ``pyb.delay()`` を小さくすると、x の値が SENSITIVITY に"
+"近い場合に、LED がうっとうしく点滅します。これをボード上で動かし、ボードを左右に"
+"傾けて LED を点灯/消灯してみてください。"
+
+#: ../../../pyboard/tutorial/accel.rst:46
+msgid ""
+"**Exercise: Change the above script so that the blue LED gets brighter "
+"the more you tilt the pyboard.  HINT: You will need to rescale the "
+"values, intensity goes from 0-255.**"
+msgstr ""
+"**練習問題: 上のスクリプトを変更して、pyboard の傾き加減に応じて青の LED の"
+"照度が変わるようにしてください。ヒント: 値を再スケールする必要があります。"
+"LED の照度は 0 から 255 までです。**"
+
+#: ../../../pyboard/tutorial/accel.rst:51
+msgid "Making a spirit level"
+msgstr "水準器の作成"
+
+#: ../../../pyboard/tutorial/accel.rst:53
+msgid ""
+"The example above is only sensitive to the angle in the x direction but "
+"if we use the ``y()`` value and more LEDs we can turn the pyboard into a "
+"spirit level. ::"
+msgstr ""
+"上の例は x 方向の角度にのみ反応しますが、 ``y()`` の値を使い、LED も増やすと、"
+"pyboard を水準器にできます::"
+
+#: ../../../pyboard/tutorial/accel.rst:56
+msgid ""
+"xlights = (pyb.LED(2), pyb.LED(3))\n"
+"ylights = (pyb.LED(1), pyb.LED(4))\n"
+"\n"
+"accel = pyb.Accel()\n"
+"SENSITIVITY = 3\n"
+"\n"
+"while True:\n"
+"    x = accel.x()\n"
+"    if x > SENSITIVITY:\n"
+"        xlights[0].on()\n"
+"        xlights[1].off()\n"
+"    elif x < -SENSITIVITY:\n"
+"        xlights[1].on()\n"
+"        xlights[0].off()\n"
+"    else:\n"
+"        xlights[0].off()\n"
+"        xlights[1].off()\n"
+"\n"
+"    y = accel.y()\n"
+"    if y > SENSITIVITY:\n"
+"        ylights[0].on()\n"
+"        ylights[1].off()\n"
+"    elif y < -SENSITIVITY:\n"
+"        ylights[1].on()\n"
+"        ylights[0].off()\n"
+"    else:\n"
+"        ylights[0].off()\n"
+"        ylights[1].off()\n"
+"\n"
+"    pyb.delay(100)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/accel.rst:87
+msgid ""
+"We start by creating a tuple of LED objects for the x and y directions. "
+"Tuples are immutable objects in python which means they can't be modified"
+" once they are created. We then proceed as before but turn on a different"
+" LED for positive and negative x values. We then do the same for the y "
+"direction. This isn't particularly sophisticated but it does the job. Run"
+" this on your pyboard and you should see different LEDs turning on "
+"depending on how you tilt the board."
+msgstr ""
+"まず、x 方向と y 方向の LED オブジェクトのタプルを作成します。タプルは、Python では"
+"不変なオブジェクトです。つまり、ひとたびそれらが作成されると変更することはできません。"
+"先の例と同様に処理しますが、正と負の x 値について異なる LED を点灯させます。"
+"y方向についても同じことを行います。これは大して洗練されていませんが、とにかく動きます。"
+"これを pyboard で実行すると、ボードの傾きに応じて異なるLEDが点灯するはずです。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:2
+msgid "The AMP audio skin"
+msgstr "AMP オーディオスキン"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:4
+msgid "Soldering and using the AMP audio skin."
+msgstr "AMP オーディオスキンのはんだづけと利用法。"
+
+msgid ""
+".. image:: pyboard/tutorial/img/skin_amp_1.jpg\n"
+"   :alt: AMP skin"
+msgstr ""
+".. image:: pyboard/tutorial/img/skin_amp_1.jpg\n"
+"   :alt: AMP スキン"
+
+msgid ""
+".. image:: pyboard/tutorial/img/skin_amp_2.jpg\n"
+"   :alt: AMP skin"
+msgstr ""
+".. image:: pyboard/tutorial/img/skin_amp_2.jpg\n"
+"   :alt: AMP スキン"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:14
+msgid ""
+"The following video shows how to solder the headers, microphone and "
+"speaker onto the AMP skin."
+msgstr ""
+"次のビデオは、ヘッダー、マイク、スピーカーを AMP スキンにはんだづけする手順を"
+"示しています。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:20
+#: ../../../pyboard/tutorial/lcd_skin.rst:21
+msgid ""
+"For circuit schematics and datasheets for the components on the skin see "
+":ref:`hardware_index`."
+msgstr ""
+"スキンの回路図と使われている部品のデータシートについては :ref:`hardware_index` "
+"を参照してください。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:23
+msgid "Example code"
+msgstr "サンプルコード"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:25
+msgid ""
+"The AMP skin has a speaker which is connected to ``DAC(1)`` via a small "
+"power amplifier.  The volume of the amplifier is controlled by a digital "
+"potentiometer, which is an I2C device with address 46 on the ``IC2(1)`` "
+"bus."
+msgstr ""
+"AMP スキンにはスピーカがあり、小さなパワーアンプを介して ``DAC(1)`` に接続されています。"
+"アンプのボリュームは、デジタルポテンショメータで制御します。"
+"デジタルポテンショメータは ``I2C(1)`` バスのアドレス 46 でアクセスする I2C デバイスです。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:29
+msgid "To set the volume, define the following function::"
+msgstr "ボリュームを設定するために以下の関数を用意します::"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:31
+msgid ""
+"import pyb\n"
+"def volume(val):\n"
+"    pyb.I2C(1, pyb.I2C.MASTER).mem_write(val, 46, 0)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/amp_skin.rst:35
+#: ../../../pyboard/tutorial/amp_skin.rst:64
+msgid "Then you can do::"
+msgstr "用意ができたら次のようにできます::"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:37
+msgid ""
+">>> volume(0)   # minimum volume\n"
+">>> volume(127) # maximum volume"
+msgstr ""
+">>> volume(0)   # 最小ボリューム\n"
+">>> volume(127) # 最大ボリューム"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:40
+msgid ""
+"To play a sound, use the ``write_timed`` method of the ``DAC`` object. "
+"For example::"
+msgstr ""
+"音を鳴らすには ``DAC`` オブジェクトの ``write_timed`` メソッドを使います。"
+"たとえば次のようにします。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:43
+msgid ""
+"import math\n"
+"from pyb import DAC\n"
+"\n"
+"# create a buffer containing a sine-wave\n"
+"buf = bytearray(100)\n"
+"for i in range(len(buf)):\n"
+"    buf[i] = 128 + int(127 * math.sin(2 * math.pi * i / len(buf)))\n"
+"\n"
+"# output the sine-wave at 400Hz\n"
+"dac = DAC(1)\n"
+"dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)"
+msgstr ""
+"import math\n"
+"from pyb import DAC\n"
+"\n"
+"# 正弦波のデータのバッファを作成する\n"
+"buf = bytearray(100)\n"
+"for i in range(len(buf)):\n"
+"    buf[i] = 128 + int(127 * math.sin(2 * math.pi * i / len(buf)))\n"
+"\n"
+"# 正弦波を 400Hz で出力する\n"
+"dac = DAC(1)\n"
+"dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:55
+msgid ""
+"You can also play WAV files using the Python ``wave`` module.  You can "
+"get the wave module `here "
+"<http://micropython.org/resources/examples/wave.py>`__ and you will also "
+"need the chunk module available `here "
+"<http://micropython.org/resources/examples/chunk.py>`__.  Put these on "
+"your pyboard (either on the flash or the SD card in the top-level "
+"directory).  You will need an 8-bit WAV file to play, such as `this one "
+"<http://micropython.org/resources/examples/test.wav>`_, or to convert any"
+" file you have with the command::"
+msgstr ""
+"また、Python ``wave`` モジュールを使って WAV ファイルを再生することもできます。"
+"wave モジュールは `ここ <http://micropython.org/resources/examples/wave.py>`__ "
+"から入手できます。chunk モジュールも必要になりますが、 `ここ "
+"<http://micropython.org/resources/examples/chunk.py>`__ から入手できます。"
+"入手したモジュールを pyboard (フラッシュまたは SDカードの最上位ディレクトリ)に"
+"入れてください。再生するには `このような "
+"<http://micropython.org/resources/examples/test.wav>`_ 8ビット WAV ファイルが"
+"必要ですが、さもなければ次のようにしてファイルを変換します::"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:62
+msgid "avconv -i original.wav -ar 22050 -codec pcm_u8 test.wav"
+msgstr ""
+
+#: ../../../pyboard/tutorial/amp_skin.rst:66
+msgid ""
+">>> import wave\n"
+">>> from pyb import DAC\n"
+">>> dac = DAC(1)\n"
+">>> f = wave.open('test.wav')\n"
+">>> dac.write_timed(f.readframes(f.getnframes()), f.getframerate())"
+msgstr ""
+
+#: ../../../pyboard/tutorial/amp_skin.rst:72
+msgid ""
+"This should play the WAV file. Note that this will read the whole file "
+"into RAM so it has to be small enough to fit in it."
+msgstr ""
+"これでWAVファイルが再生されます。これはファイル全体を RAM に読み込むので、"
+"RAM に収まるほど小さくなければならないことに注意してください。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:75
+msgid ""
+"To play larger wave files you will have to use the micro-SD card to store"
+" it. Also the file must be read and sent to the DAC in small chunks that "
+"will fit the RAM limit of the microcontroller.  Here is an example "
+"function that can play 8-bit wave files with up to 16kHz sampling::"
+msgstr ""
+"大きな wave ファイルを再生するには、micro-SD カードを使用して保存する必要があります。"
+"また、ファイルを読み取り、マイクロコントローラの RAM 制限に適合する小さなチャンクで "
+"DAC に送信する必要があります。最大 16kHz サンプリングの8ビットウェーブファイルを"
+"再生できる関数の例を次に示します。"
+
+#: ../../../pyboard/tutorial/amp_skin.rst:80
+msgid ""
+"import wave\n"
+"from pyb import DAC\n"
+"from pyb import delay\n"
+"dac = DAC(1)\n"
+"\n"
+"def play(filename):\n"
+"    f = wave.open(filename, 'r')\n"
+"    total_frames = f.getnframes()\n"
+"    framerate = f.getframerate()\n"
+"\n"
+"    for position in range(0, total_frames, framerate):\n"
+"        f.setpos(position)\n"
+"        dac.write_timed(f.readframes(framerate), framerate)\n"
+"        delay(1000)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/amp_skin.rst:95
+msgid ""
+"This function reads one second worth of data and sends it to DAC.  It "
+"then waits one second and moves the file cursor to the new position to "
+"read the next second of data in the next iteration of the for-loop.  It "
+"plays one second of audio at a time every one second."
+msgstr ""
+"この関数は1秒分のデータを読み取り、それをDACに送信します。次に1秒間待機し、"
+"ファイルカーソルを新しい位置に移動して、for ループの次の反復で次のデータを読み取ります。"
+"1秒ごとに1秒間に1秒間オーディオを再生します。"
+
+#: ../../../pyboard/tutorial/assembler.rst:4
+msgid "Inline assembler"
+msgstr "インラインアセンブラ"
+
+#: ../../../pyboard/tutorial/assembler.rst:6
+msgid "Here you will learn how to write inline assembler in MicroPython."
+msgstr "ここでは MicroPython でインラインアセンブラを書く方法を学びます。"
+
+#: ../../../pyboard/tutorial/assembler.rst:8
+msgid ""
+"**Note**: this is an advanced tutorial, intended for those who already "
+"know a bit about microcontrollers and assembly language."
+msgstr ""
+"**注記**: これは上級者向けのチュートリアルです。マイクロコントローラとアセンブル言語"
+"について既に知っている方を対象としています。"
+
+#: ../../../pyboard/tutorial/assembler.rst:11
+msgid ""
+"MicroPython includes an inline assembler.  It allows you to write "
+"assembly routines as a Python function, and you can call them as you "
+"would a normal Python function."
+msgstr ""
+"MicroPython にはインラインアセンブラがあります。アセンブリ言語のルーチンを "
+"Python 関数として書いて、普通の Python 関数と同様に呼び出せます。"
+
+#: ../../../pyboard/tutorial/assembler.rst:16
+msgid "Returning a value"
+msgstr "値の戻し方"
+
+#: ../../../pyboard/tutorial/assembler.rst:18
+msgid ""
+"Inline assembler functions are denoted by a special function decorator. "
+"Let's start with the simplest example::"
+msgstr ""
+"インラインアセンブラ関数は特殊な関数デコレータで示します。最も単純な例から始めて
+"みましょう。"
+
+#: ../../../pyboard/tutorial/assembler.rst:21
+msgid ""
+"@micropython.asm_thumb\n"
+"def fun():\n"
+"    movw(r0, 42)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/assembler.rst:25
+msgid ""
+"You can enter this in a script or at the REPL.  This function takes no "
+"arguments and returns the number 42.  ``r0`` is a register, and the value"
+" in this register when the function returns is the value that is "
+"returned. MicroPython always interprets the ``r0`` as an integer, and "
+"converts it to an integer object for the caller."
+msgstr ""
+"この入力はスクリプトからでも REPL からでもかまいません。この関数は引数をとらず、"
+"数値 42 を返します。 ``r0`` はレジスタで、関数が返るときのこのレジスタの値が"
+"戻り値になります。MicroPython は、常に ``r0`` を整数として解釈し、それを"
+"呼び出し元の整数オブジェクトに変換します。"
+
+#: ../../../pyboard/tutorial/assembler.rst:31
+msgid "If you run ``print(fun())`` you will see it print out 42."
+msgstr "``print(fun())`` を実行すると、42 が印字されるでしょう。"
+
+#: ../../../pyboard/tutorial/assembler.rst:34
+msgid "Accessing peripherals"
+msgstr "ペリフェラルへのアクセス"
+
+#: ../../../pyboard/tutorial/assembler.rst:36
+msgid "For something a bit more complicated, let's turn on an LED::"
+msgstr "もう少し複雑な例として、LED を点灯してみましょう::"
+
+#: ../../../pyboard/tutorial/assembler.rst:38
+msgid ""
+"@micropython.asm_thumb\n"
+"def led_on():\n"
+"    movwt(r0, stm.GPIOA)\n"
+"    movw(r1, 1 << 13)\n"
+"    strh(r1, [r0, stm.GPIO_BSRRL])"
+msgstr ""
+
+#: ../../../pyboard/tutorial/assembler.rst:44
+msgid "This code uses a few new concepts:"
+msgstr "このコードでは新しい概念をいくつか使います::"
+
+#: ../../../pyboard/tutorial/assembler.rst:46
+msgid ""
+"``stm`` is a module which provides a set of constants for easy access to "
+"the registers of the pyboard's microcontroller.  Try running ``import "
+"stm`` and then ``help(stm)`` at the REPL.  It will give you a list of all"
+" the available constants."
+msgstr ""
+"``stm`` は pyboard のマイクロコントローラのレジスタに簡単にアクセスするための定数の"
+"セットを提供するモジュールです。REPL で ``import stm`` を実行してみた後に、 "
+"``help(stm)`` としてみてください。利用可能なすべての定数の一覧が表示されます。"
+
+#: ../../../pyboard/tutorial/assembler.rst:51
+msgid ""
+"``stm.GPIOA`` is the address in memory of the GPIOA peripheral. On the "
+"pyboard, the red LED is on port A, pin PA13."
+msgstr ""
+"``stm.GPIOA`` は GPIOA ペリフェラルのメモリ内アドレスです。pyboard の赤い LED "
+"は、ポート A、ピン PA13 にあります。"
+
+#: ../../../pyboard/tutorial/assembler.rst:54
+msgid ""
+"``movwt`` moves a 32-bit number into a register.  It is a convenience "
+"function that turns into 2 thumb instructions: ``movw`` followed by "
+"``movt``. The ``movt`` also shifts the immediate value right by 16 bits."
+msgstr ""
+"``movwt`` は32ビットの数値をレジスタに移動します。これは２つの thumb 命令、"
+"``movt`` と ``movw`` に変わる便利な関数です。 ``movt`` は即値を上位16ビットに"
+"ロードします。"
+
+#: ../../../pyboard/tutorial/assembler.rst:58
+msgid ""
+"``strh`` stores a half-word (16 bits).  The instruction above stores the "
+"lower 16-bits of ``r1`` into the memory location ``r0 + stm.GPIO_BSRRL``."
+" This has the effect of setting high all those pins on port A for which "
+"the corresponding bit in ``r0`` is set.  In our example above, the 13th "
+"bit in ``r0`` is set, so PA13 is pulled high.  This turns on the red LED."
+msgstr ""
+"``strh`` はハーフワード(16ビット)をストアします。例では ``r1`` 下位16ビットを"
+"メモリ位置 ``r0 + stm.GPIO_BSRRL`` にストアしています。これには、ポートA の"
+"ピンのうちの ``r1`` で設定したビットに該当するものすべてをハイにする効果があります。"
+"上記の例では ``r1`` の13番目のビットがセットされているので、PA13 がハイになります。"
+"これは赤のLEDを点灯させます。"
+
+#: ../../../pyboard/tutorial/assembler.rst:65
+msgid "Accepting arguments"
+msgstr "引数の受入れ"
+
+#: ../../../pyboard/tutorial/assembler.rst:67
+msgid ""
+"Inline assembler functions can accept up to 4 arguments.  If they are "
+"used, they must be named ``r0``, ``r1``, ``r2`` and ``r3`` to reflect the"
+" registers and the calling conventions."
+msgstr ""
+"インラインアセンブラ関数は、最大4つの引数を受け入れられます。引数を使う場合には、"
+"レジスタと呼び出しの慣例にしたがい、名前を ``r0``, ``r1``, ``r2``, ``r3`` に"
+"しなければなりません。"
+
+#: ../../../pyboard/tutorial/assembler.rst:71
+msgid "Here is a function that adds its arguments::"
+msgstr "次の関数は、２つの引数を加算する例です::"
+
+#: ../../../pyboard/tutorial/assembler.rst:73
+msgid ""
+"@micropython.asm_thumb\n"
+"def asm_add(r0, r1):\n"
+"    add(r0, r0, r1)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/assembler.rst:77
+msgid ""
+"This performs the computation ``r0 = r0 + r1``.  Since the result is put "
+"in ``r0``, that is what is returned.  Try ``asm_add(1, 2)``, it should "
+"return 3."
+msgstr ""
+"これは ``r0 = r0 + r1`` を計算します。結果は ``r0`` に設定されますが、これが"
+"戻り値になります。 ``asm_add(1, 2)`` を実行すれば、3 が返るはずです。"
+
+#: ../../../pyboard/tutorial/assembler.rst:82
+msgid "Loops"
+msgstr "ループ"
+
+#: ../../../pyboard/tutorial/assembler.rst:84
+msgid ""
+"We can assign labels with ``label(my_label)``, and branch to them using "
+"``b(my_label)``, or a conditional branch like ``bgt(my_label)``."
+msgstr ""
+"インラインアセンブラでは ``label(my_label)`` でラベルを割り当てられます。"
+"ラベルを割り当てておけば、 ``b(my_label)`` のようにラベルを指定して分岐できますし、"
+"条件分岐も ``bgt(my_label)`` のようにしてできます。"
+
+#: ../../../pyboard/tutorial/assembler.rst:87
+msgid ""
+"The following example flashes the green LED.  It flashes it ``r0`` times."
+" ::"
+msgstr ""
+"次の例では、緑のLEDが点滅します。それはそれを回すr0。
+
+#: ../../../pyboard/tutorial/assembler.rst:89
+msgid ""
+"@micropython.asm_thumb\n"
+"def flash_led(r0):\n"
+"    # get the GPIOA address in r1\n"
+"    movwt(r1, stm.GPIOA)\n"
+"\n"
+"    # get the bit mask for PA14 (the pin LED #2 is on)\n"
+"    movw(r2, 1 << 14)\n"
+"\n"
+"    b(loop_entry)\n"
+"\n"
+"    label(loop1)\n"
+"\n"
+"    # turn LED on\n"
+"    strh(r2, [r1, stm.GPIO_BSRRL])\n"
+"\n"
+"    # delay for a bit\n"
+"    movwt(r4, 5599900)\n"
+"    label(delay_on)\n"
+"    sub(r4, r4, 1)\n"
+"    cmp(r4, 0)\n"
+"    bgt(delay_on)\n"
+"\n"
+"    # turn LED off\n"
+"    strh(r2, [r1, stm.GPIO_BSRRH])\n"
+"\n"
+"    # delay for a bit\n"
+"    movwt(r4, 5599900)\n"
+"    label(delay_off)\n"
+"    sub(r4, r4, 1)\n"
+"    cmp(r4, 0)\n"
+"    bgt(delay_off)\n"
+"\n"
+"    # loop r0 times\n"
+"    sub(r0, r0, 1)\n"
+"    label(loop_entry)\n"
+"    cmp(r0, 0)\n"
+"    bgt(loop1)"
+msgstr ""
+"@micropython.asm_thumb\n"
+"def flash_led(r0):\n"
+"    # GPIOA アドレスを r1 に格納\n"
+"    movwt(r1, stm.GPIOA)\n"
+"\n"
+"    # PA14 のビットマスク(LED #2 のピンをオンにする)を設定\n"
+"    movw(r2, 1 << 14)\n"
+"\n"
+"    b(loop_entry)\n"
+"\n"
+"    label(loop1)\n"
+"\n"
+"    # LED を点灯\n"
+"    strh(r2, [r1, stm.GPIO_BSRRL])\n"
+"\n"
+"    # 少し遅延させる\n"
+"    movwt(r4, 5599900)\n"
+"    label(delay_on)\n"
+"    sub(r4, r4, 1)\n"
+"    cmp(r4, 0)\n"
+"    bgt(delay_on)\n"
+"\n"
+"    # LED を消灯\n"
+"    strh(r2, [r1, stm.GPIO_BSRRH])\n"
+"\n"
+"    # 少し遅延させる\n"
+"    movwt(r4, 5599900)\n"
+"    label(delay_off)\n"
+"    sub(r4, r4, 1)\n"
+"    cmp(r4, 0)\n"
+"    bgt(delay_off)\n"
+"\n"
+"    # r0 回だけループ\n"
+"    sub(r0, r0, 1)\n"
+"    label(loop_entry)\n"
+"    cmp(r0, 0)\n"
+"    bgt(loop1)"
+
+#: ../../../pyboard/tutorial/assembler.rst:128
+#: ../../../pyboard/tutorial/switch.rst:112
+msgid "Further reading"
+msgstr "参考文献"
+
+#: ../../../pyboard/tutorial/assembler.rst:130
+msgid ""
+"For further information about supported instructions of the inline "
+"assembler, see the :ref:`reference documentation <asm_thumb2_index>`."
+msgstr ""
+"インラインアセンブラでサポートされる命令の詳細については、 "
+":ref:`リファレンスドキュメント <asm_thumb2_index>` を"
+"参照してください。"
+
+#: ../../../pyboard/tutorial/debounce.rst:2
+msgid "Debouncing a pin input"
+msgstr "ピン入力のデバウンシング"
+
+#: ../../../pyboard/tutorial/debounce.rst:4
+msgid ""
+"A pin used as input from a switch or other mechanical device can have a "
+"lot of noise on it, rapidly changing from low to high when the switch is "
+"first pressed or released.  This noise can be eliminated using a "
+"capacitor (a debouncing circuit).  It can also be eliminated using a "
+"simple function that makes sure the value on the pin is stable."
+msgstr ""
+"スイッチまたは他の機械装置からの入力として使用されるピンは、スイッチが最初に押されたり"
+"離されたときに、低から高に急激に変化するノイズを多く含んでいます。"
+"このノイズは、コンデンサ(デバウンシング回路)を使って除去できます。また、ピンの値が安定"
+"していることを確認する簡単な関数を使用することで、これを排除することもできます。"
+
+#: ../../../pyboard/tutorial/debounce.rst:10
+msgid ""
+"The following function does just this.  It gets the current value of the "
+"given pin, and then waits for the value to change.  The new pin value "
+"must be stable for a continuous 20ms for it to register the change.  You "
+"can adjust this time (to say 50ms) if you still have noise. ::"
+msgstr ""
+"次の関数はこれを行います。指定されたピンの現在の値を取得し、値が変更されるのを待ちます。"
+"新しいピン値が変わったと判断するには連続して 20ms の間安定していなければなりません。"
+"これでもノイズがある場合は、この時間を調整することができます(たとえば50ms) ::"
+
+#: ../../../pyboard/tutorial/debounce.rst:15
+msgid ""
+"import pyb\n"
+"\n"
+"def wait_pin_change(pin):\n"
+"    # wait for pin to change value\n"
+"    # it needs to be stable for a continuous 20ms\n"
+"    cur_value = pin.value()\n"
+"    active = 0\n"
+"    while active < 20:\n"
+"        if pin.value() != cur_value:\n"
+"            active += 1\n"
+"        else:\n"
+"            active = 0\n"
+"        pyb.delay(1)"
+msgstr ""
+"import pyb\n"
+"\n"
+"def wait_pin_change(pin):\n"
+"    # ピンの値の変化を待つ\n"
+"    # 値の変化は連続して20msの間安定していることは必要\n"
+"    cur_value = pin.value()\n"
+"    active = 0\n"
+"    while active < 20:\n"
+"        if pin.value() != cur_value:\n"
+"            active += 1\n"
+"        else:\n"
+"            active = 0\n"
+"        pyb.delay(1)"
+
+#: ../../../pyboard/tutorial/debounce.rst:30
+msgid "Use it something like this::"
+msgstr "この関数は次のようにして使います::"
+
+#: ../../../<rst_epilog>:32
+msgid ""
+"import pyb\n"
+"\n"
+"pin_x1 = pyb.Pin('X1', pyb.Pin.IN, pyb.Pin.PULL_DOWN)\n"
+"while True:\n"
+"    wait_pin_change(pin_x1)\n"
+"    pyb.LED(4).toggle()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/fading_led.rst:2
+msgid "Fading LEDs"
+msgstr "LED のフェーディング"
+
+#: ../../../pyboard/tutorial/fading_led.rst:4
+msgid ""
+"In addition to turning LEDs on and off, it is also possible to control "
+"the brightness of an LED using `Pulse-Width Modulation (PWM) "
+"<http://en.wikipedia.org/wiki/Pulse-width_modulation>`_, a common "
+"technique for obtaining variable output from a digital pin. This allows "
+"us to fade an LED:"
+msgstr ""
+"LED をオン/オフすることに加えて、 `パルス幅変調(PWM) "
+"<https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%AB%E3%82%B9%E5%B9%85%E5%A4%89%E8%AA%BF>`__ "
+"を使って LED の輝度を制御することもできます。パルス幅変調はデジタルピンから可変出力を得るための"
+"一般的な技術です。これにより LED のフェーディングを実現できます::"
+
+#: ../../../pyboard/tutorial/fading_led.rst:8
+msgid ".. image:: http://upload.wikimedia.org/wikipedia/commons/a/a9/Fade.gif"
+msgstr ""
+
+#: ../../../pyboard/tutorial/fading_led.rst:11
+msgid "Components"
+msgstr "部品"
+
+#: ../../../pyboard/tutorial/fading_led.rst:13
+msgid "You will need:"
+msgstr "次のものを用意してください。"
+
+#: ../../../pyboard/tutorial/fading_led.rst:15
+msgid "Standard 5 or 3 mm LED"
+msgstr "標準的な 5mm または 3mm の LED"
+
+#: ../../../pyboard/tutorial/fading_led.rst:16
+msgid "100 Ohm resistor"
+msgstr "100Ωの抵抗"
+
+#: ../../../pyboard/tutorial/fading_led.rst:17
+msgid "Wires"
+msgstr "配線のためのワイヤー"
+
+#: ../../../pyboard/tutorial/fading_led.rst:18
+msgid ""
+"`Breadboard <http://en.wikipedia.org/wiki/Breadboard>`_ (optional, but "
+"makes things easier)"
+msgstr ""
+"`ブレッドボード "
+"<https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AC%E3%83%83%E3%83%89%E3%83%9C%E3%83%BC%E3%83%89>`__ "
+"(オプションですが、作業が楽になります)"
+
+#: ../../../pyboard/tutorial/fading_led.rst:21
+msgid "Connecting Things Up"
+msgstr "配線"
+
+#: ../../../pyboard/tutorial/fading_led.rst:23
+msgid ""
+"For this tutorial, we will use the ``X1`` pin. Connect one end of the "
+"resistor to ``X1``, and the other end to the **anode** of the LED, which "
+"is the longer leg. Connect the **cathode** of the LED to ground."
+msgstr ""
+"このチュートリアルでは ``X1`` ピンを使います。抵抗の一端を ``X1`` に、もう一端を "
+"LEDの長い方 **アノード** に接続します。LED のカソードはグランドに接続します。"
+
+#: ../../../pyboard/tutorial/fading_led.rst:26
+msgid ".. image:: pyboard/tutorial/img/fading_leds_breadboard_fritzing.png"
+msgstr ""
+
+#: ../../../pyboard/tutorial/fading_led.rst:28
+msgid "Code"
+msgstr "コード"
+
+#: ../../../pyboard/tutorial/fading_led.rst:29
+msgid ""
+"By examining the :ref:`pyboard_quickref`, we see that ``X1`` is connected"
+" to channel 1 of timer 5 (``TIM5 CH1``). Therefore we will first create a"
+" ``Timer`` object for timer 5, then create a ``TimerChannel`` object for "
+"channel 1::"
+msgstr ""
+":ref:`quickref` を調べると、 ``X1`` がタイマー5のチャンネル1 (``TIM5 CH1``) に"
+"接続されていることがわかります。したがって、最初にタイマー5の ``Timer`` "
+"オブジェクトを作成してから、チャネル1の ``TimerChannel`` オブジェクトを作成します::"
+
+#: ../../../pyboard/tutorial/fading_led.rst:31
+msgid ""
+"from pyb import Timer\n"
+"from time import sleep\n"
+"\n"
+"# timer 5 will be created with a frequency of 100 Hz\n"
+"tim = pyb.Timer(5, freq=100)\n"
+"tchannel = tim.channel(1, Timer.PWM, pin=pyb.Pin.board.X1, pulse_width=0)"
+msgstr ""
+"from pyb import Timer\n"
+"from time import sleep\n"
+"\n"
+"# タイマー5を 100Hz の周波数で作成\n"
+"tim = pyb.Timer(5, freq=100)\n"
+"tchannel = tim.channel(1, Timer.PWM, pin=pyb.Pin.board.X1, pulse_width=0)"
+
+#: ../../../pyboard/tutorial/fading_led.rst:38
+msgid ""
+"Brightness of the LED in PWM is controlled by controlling the pulse-"
+"width, that is the amount of time the LED is on every cycle. With a timer"
+" frequency of 100 Hz, each cycle takes 0.01 second, or 10 ms."
+msgstr ""
+"PWM による LED の輝度は、パルス幅、すなわち LED が各サイクルにかかる時間の量を制御"
+"することによって制御されます。100Hz のタイマー周波数では、各サイクルに0.01秒(つまり"
+"10ミリ秒)かかります。"
+
+#: ../../../pyboard/tutorial/fading_led.rst:40
+msgid ""
+"To achieve the fading effect shown at the beginning of this tutorial, we "
+"want to set the pulse-width to a small value, then slowly increase the "
+"pulse-width to brighten the LED, and start over when we reach some "
+"maximum brightness::"
+msgstr ""
+"このチュートリアルの冒頭に示したフェーディング効果を得るには、パルス幅を小さな値に"
+"設定してから徐々にパルス幅を広げてLEDを明るくし、最大輝度に達すると再び開始する"
+"ようにします。"
+
+#: ../../../pyboard/tutorial/fading_led.rst:42
+msgid ""
+"# maximum and minimum pulse-width, which corresponds to maximum\n"
+"# and minimum brightness\n"
+"max_width = 200000\n"
+"min_width = 20000\n"
+"\n"
+"# how much to change the pulse-width by each step\n"
+"wstep = 1500\n"
+"cur_width = min_width\n"
+"\n"
+"while True:\n"
+"  tchannel.pulse_width(cur_width)\n"
+"\n"
+"  # this determines how often we change the pulse-width. It is\n"
+"  # analogous to frames-per-second\n"
+"  sleep(0.01)\n"
+"\n"
+"  cur_width += wstep\n"
+"\n"
+"  if cur_width > max_width:\n"
+"    cur_width = min_width"
+msgstr ""
+"# 最大と最小のパルス幅：それぞれ最大と最小の輝度に相当\n"
+"max_width = 200000\n"
+"min_width = 20000\n"
+"\n"
+"# 各ステップで上げていくパルス幅の大きさ\n"
+"wstep = 1500\n"
+"cur_width = min_width\n"
+"\n"
+"while True:\n"
+"  tchannel.pulse_width(cur_width)\n"
+"\n"
+"  # パルスは幅を変更する頻度を決めます。これは\n"
+"  # 動画のフレームレートに似ています\n"
+"  sleep(0.01)\n"
+"\n"
+"  cur_width += wstep\n"
+"\n"
+"  if cur_width > max_width:\n"
+"    cur_width = min_width"
+
+#: ../../../pyboard/tutorial/fading_led.rst:64
+msgid "Breathing Effect"
+msgstr "呼吸効果"
+
+#: ../../../pyboard/tutorial/fading_led.rst:66
+msgid ""
+"If we want to have a breathing effect, where the LED fades from dim to "
+"bright then bright to dim, then we simply need to reverse the sign of "
+"``wstep`` when we reach maximum brightness, and reverse it again at "
+"minimum brightness. To do this we modify the ``while`` loop to be::"
+msgstr ""
+"呼吸効果、すなわち LED が暗い状態から明るい状態に変化し、明るい状態から暗い状態に"
+"フェードするようにしたい場合、最大輝度に達っしたら ``wstep`` の符号を反転し、"
+"最小輝度で再度反転する必要があるだけです。これを行うには ``while`` ループを"
+"次のように変更します::"
+
+#: ../../../pyboard/tutorial/fading_led.rst:68
+msgid ""
+"while True:\n"
+"  tchannel.pulse_width(cur_width)\n"
+"\n"
+"  sleep(0.01)\n"
+"\n"
+"  cur_width += wstep\n"
+"\n"
+"  if cur_width > max_width:\n"
+"    cur_width = max_width\n"
+"    wstep *= -1\n"
+"  elif cur_width < min_width:\n"
+"    cur_width = min_width\n"
+"    wstep *= -1"
+msgstr ""
+
+#: ../../../pyboard/tutorial/fading_led.rst:83
+msgid "Advanced Exercise"
+msgstr "上級問題"
+
+#: ../../../pyboard/tutorial/fading_led.rst:85
+msgid ""
+"You may have noticed that the LED brightness seems to fade slowly, but "
+"increases quickly. This is because our eyes interprets brightness "
+"logarithmically (`Weber's Law <http://www.telescope-"
+"optics.net/eye_intensity_response.htm>`_ ), while the LED's brightness "
+"changes linearly, that is by the same amount each time. How do you solve "
+"this problem? (Hint: what is the opposite of the logarithmic function?)"
+msgstr ""
+"LED の輝度が暗くなるときはゆっくり、明るくなるときは早く見えるかもしれません。"
+"これは、私たちの目が輝度を対数的に解釈するため(`ウェーバーの法則 "
+"<http://www.telescope-optics.net/eye_intensity_response.htm>`_ )、"
+"LED の輝度は毎回同じ量だけ直線的に変化していても、そのように感じてしまいます。"
+"この問題をどうやって解決しますか？ (ヒント：対数関数の逆は何ですか？)"
+
+#: ../../../pyboard/tutorial/fading_led.rst:89
+msgid "Addendum"
+msgstr "追録"
+
+#: ../../../pyboard/tutorial/fading_led.rst:91
+msgid ""
+"We could have also used the digital-to-analog converter (DAC) to achieve "
+"the same effect. The PWM method has the advantage that it drives the LED "
+"with the same current each time, but for different lengths of time. This "
+"allows better control over the brightness, because LEDs do not "
+"necessarily exhibit a linear relationship between the driving current and"
+" brightness."
+msgstr ""
+"同じ効果を達成するためにデジタル/アナログコンバータ（DAC）を使用することもできました。"
+"PWM 方式には、時間の長さを変えるだけで毎度同じ電流で LED を駆動するという利点が"
+"あります。LED では駆動電流と輝度との間に必ずしも線形関係を示すわけではないので、"
+"輝度をより良好に制御することを可能にします。"
+
+#: ../../../pyboard/tutorial/index.rst:4
+msgid "MicroPython tutorial for the pyboard"
+msgstr "pyboard 用 MicroPython チュートリアル"
+
+#: ../../../pyboard/tutorial/index.rst:6
+msgid ""
+"This tutorial is intended to get you started with your pyboard. All you "
+"need is a pyboard and a micro-USB cable to connect it to your PC.  If it "
+"is your first time, it is recommended to follow the tutorial through in "
+"the order below."
+msgstr ""
+"このチュートリアルは、pyboard を使い始められるようになることを目的としています。"
+"必要なのは、pyboard と PC に接続するための マイクロUSBケーブルだけです。"
+"初めての場合は、以降のチュートリアルの手順に従うことをお勧めします。"
+
+#: ../../../pyboard/tutorial/index.rst:28
+msgid "Tutorials requiring extra components"
+msgstr "外付け部品の制御に関するチュートリアル"
+
+#: ../../../pyboard/tutorial/index.rst:41
+msgid "Tips, tricks and useful things to know"
+msgstr "ヒント、トリック、知っておくと便利なこと"
+
+#: ../../../pyboard/tutorial/intro.rst:2
+msgid "Introduction to the pyboard"
+msgstr "pyboard について"
+
+#: ../../../pyboard/tutorial/intro.rst:4
+msgid ""
+"To get the most out of your pyboard, there are a few basic things to "
+"understand about how it works."
+msgstr ""
+"pyboard を最大限に活用するには、どのように動作するかを理解するために、いくつか"
+"知っておくべき基本的なことがあります。"
+
+#: ../../../pyboard/tutorial/intro.rst:8
+msgid "Caring for your pyboard"
+msgstr "pyboard の取扱いについて"
+
+#: ../../../pyboard/tutorial/intro.rst:10
+msgid "Because the pyboard does not have a housing it needs a bit of care:"
+msgstr "pyboard には筐体がないので、少し注意が必要です:"
+
+#: ../../../pyboard/tutorial/intro.rst:12
+msgid ""
+"Be gentle when plugging/unplugging the USB cable.  Whilst the USB "
+"connector is soldered through the board and is relatively strong, if it "
+"breaks off it can be very difficult to fix."
+msgstr ""
+"USB ケーブルを抜き差しするときは丁寧に作業してください。USBコネクタは基板に"
+"はんだ付けされ、比較的強固ですが、破損した場合は修正するのが非常に困難です。"
+
+#: ../../../pyboard/tutorial/intro.rst:16
+msgid ""
+"Static electricity can shock the components on the pyboard and destroy "
+"them. If you experience a lot of static electricity in your area (eg dry "
+"and cold climates), take extra care not to shock the pyboard.  If your "
+"pyboard came in a black plastic box, then this box is the best way to "
+"store and carry the pyboard as it is an anti-static box (it is made of a "
+"conductive plastic, with conductive foam inside)."
+msgstr ""
+"静電気は、pyboard 上の部品に衝撃を与え、破壊する可能性があります。あなたの地域で"
+"静電気が多く発生していると感じた場合(乾燥していたり、寒い日など)、pyboard に"
+"衝撃を与えないように十分注意してください。pyboard を黒のプラスチック製ボックスに"
+"入れておけば、このボックスは静電気防止ボックス(内部に導電性の泡が入った導電性"
+"プラスチック製)であるため、pyboardを保管して運ぶ最も良い方法です。"
+
+#: ../../../pyboard/tutorial/intro.rst:23
+msgid ""
+"As long as you take care of the hardware, you should be okay.  It's "
+"almost impossible to break the software on the pyboard, so feel free to "
+"play around with writing code as much as you like.  If the filesystem "
+"gets corrupt, see below on how to reset it.  In the worst case you might "
+"need to reflash the MicroPython software, but that can be done over USB."
+msgstr ""
+"ハードウェアに注意しておけば、あとは大丈夫でしょう。pyboard をソフトウェアで壊す"
+"ことはほとんど不可能です。好きなだけコードを書いて遊んでみてください。ファイル"
+"システムを破損した場合は、以下のリセット方法を参照してください。最悪の場合、"
+"MicroPythonソフトウェアをリフレッシュする必要があるかもしれませんが、これは "
+"USB経由で行うことができます。"
+
+#: ../../../pyboard/tutorial/intro.rst:30
+msgid "Layout of the pyboard"
+msgstr "pyboard のレイアウト"
+
+#: ../../../pyboard/tutorial/intro.rst:32
+msgid ""
+"The micro USB connector is on the top right, the micro SD card slot on "
+"the top left of the board.  There are 4 LEDs between the SD slot and USB "
+"connector.  The colours are: red on the bottom, then green, orange, and "
+"blue on the top.  There are 2 switches: the right one is the reset "
+"switch, the left is the user switch."
+msgstr ""
+"マイクロUSBコネクタは右上にあり、マイクロSDカードスロットはボードの左上にあります。"
+"SDスロットとUSBコネクタの間には4つのLEDがあります。色は一番下が赤で、緑、オレンジ"
+"が続き、一番上に青があります。"2つのスイッチがあります: 右はリセットスイッチ、"
+"左はユーザースイッチです。"
+
+#: ../../../pyboard/tutorial/intro.rst:39
+msgid "Plugging in and powering on"
+msgstr "USB ケーブルを差し込んで電源を入れる"
+
+#: ../../../pyboard/tutorial/intro.rst:41
+msgid ""
+"The pyboard can be powered via USB.  Connect it to your PC via a micro "
+"USB cable.  There is only one way that the cable will fit.  Once "
+"connected, the green LED on the board should flash quickly."
+msgstr ""
+"pyboard は USB 経由で給電できます。マイクロ USB ケーブルで PC に接続します。"
+"コネクタ部分を差し込む向きは一通りです(なので間違えることはないでしょう)。"
+"接続すると、ボード上の緑の LED がすばやく点滅するはずです。"
+
+#: ../../../pyboard/tutorial/intro.rst:46
+msgid "Powering by an external power source"
+msgstr "外部電源による電力供給"
+
+#: ../../../pyboard/tutorial/intro.rst:48
+msgid "The pyboard can be powered by a battery or other external power source."
+msgstr "pyboard は、バッテリまたは他の外部電源で電力を供給できます。"
+
+#: ../../../pyboard/tutorial/intro.rst:50
+msgid ""
+"**Be sure to connect the positive lead of the power supply to VIN, and "
+"ground to GND.  There is no polarity protection on the pyboard so you "
+"must be careful when connecting anything to VIN.**"
+msgstr ""
+"**電源のプラスのコードをVINに接続し、グランドを GND に接続してください。"
+"pyboard には極性保護がありませんので、VIN への接続の際には注意してください。**"
+
+#: ../../../pyboard/tutorial/intro.rst:54
+msgid "**The input voltage must be between 3.6V and 10V.**"
+msgstr "入力電圧は 3.6V〜10V でなければなりません。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:2
+msgid "The LCD160CR skin"
+msgstr "LCD160CR スキン"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:4
+msgid "This tutorial shows how to get started using the LCD160CR skin."
+msgstr "このチュートリアルでは、LCD160CR スキンの始め方を説明します。"
+
+msgid ""
+".. image:: http://micropython.org/resources/LCD160CRv10-positions.jpg\n"
+"   :alt: LCD160CRv1.0 picture"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:10
+msgid ""
+"For detailed documentation of the driver for the display see the "
+":mod:`lcd160cr` module."
+msgstr ""
+"このディスプレイ用ドライバの詳細な説明については "
+":mod:`lcd160cr` モジュールを参照してください。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:14
+msgid "Plugging in the display"
+msgstr "ディスプレイのプラグイン"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:16
+msgid ""
+"The display can be plugged directly into a pyboard (all pyboard versions "
+"are supported).  You plug the display onto the top of the pyboard either "
+"in the X or Y positions.  The display should cover half of the pyboard. "
+"See the picture above for how to achieve this; the left half of the "
+"picture shows the X position, and the right half shows the Y position."
+msgstr ""
+"ディスプレイは pyboard に直接差し込めます(すべての pyboard バージョンがサポート"
+"されています)。X または Y のいずれかの位置で、ディスプレイを pyboard の上に載せて"
+"接続します。ディスプレイは pyboard の半分を覆うように載るはずです。実際に"
+"どうなるかは上の画像を参照してください。画像の左半分は X 位置、右半分は Y 位置に"
+"載せた場合を示しています。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:23
+msgid "Getting the driver"
+msgstr "ドライバーの導入"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:25
+msgid ""
+"You can control the display directly using a power/enable pin and an I2C "
+"bus, but it is much more convenient to use the driver provided by the "
+":mod:`lcd160cr` module.  This driver is included in recent version of the"
+" pyboard firmware (see `here <http://micropython.org/download>`__).  You "
+"can also find the driver in the GitHub repository `here "
+"<https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr.py>`__,"
+" and to use this version you will need to copy the file to your board, "
+"into a directory that is searched by import (usually the lib/ directory)."
+msgstr ""
+"電源/有効ピンとI2Cバスを使用してディスプレイを直接制御できますが、 :mod:`lcd160cr` "
+"モジュールの提供するドライバを使用する方がはるかに便利です。このドライバは最新版の "
+"pyboard ファームウェアに含まれています( `こちら "
+"<http://micropython.org/download>`__ を参照)。また、 `GitHub リポジトリ "
+"<https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr.py>`__ "
+"でドライバを見つけられます。この GitHub にあるものを使うには、ファイルをボードに"
+"コピーする必要があります。import 文で検索されるディレクトリ(通常は lib/ ディレクトリ)"
+"にコピーしてください。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:34
+msgid "Once you have the driver installed you need to import it to use it::"
+msgstr "ドライバをインストールしたら、それを import する必要があります:"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:36
+msgid "import lcd160cr"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:39
+msgid "Testing the display"
+msgstr "ディスプレイのテスト"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:41
+msgid ""
+"There is a test program which you can use to test the features of the "
+"display, and which also serves as a basis to start creating your own code"
+" that uses the LCD.  This test program is included in recent versions of "
+"the pyboard firmware and is also available on GitHub `here "
+"<https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr_test.py>`__."
+msgstr ""
+"ディスプレイの機能をテストし、LCD を使用して独自のコードを作成するための参考ともなる"
+"テストプログラムがあります。このテストプログラムは、最新版の pyboard ファームウェアに"
+"含まれており、 `こちらの "
+"<https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr_test.py>`__ "
+"からも入手できます。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:47
+msgid "To run the test from the MicroPython prompt do::"
+msgstr "MicroPython プロンプトからテストを実行するには、次のようにします::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:49
+msgid ">>> import lcd160cr_test"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:51
+msgid ""
+"It will then print some brief instructions.  You will need to know which "
+"position your display is connected to (X or Y) and then you can run "
+"(assuming you have the display on position X)::"
+msgstr ""
+"これを行うと、簡単な説明が印字されます。ディスプレイをどの位置に接続したか(X または Y)"
+"を確認しておきましょう。位置が分かれば次のようにしてテストプログラムを実行できます"
+"(この例では位置を X としています)::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:55
+msgid ">>> test_all('X')"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:58
+msgid "Drawing some graphics"
+msgstr "グラフィックスの描画"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:60
+msgid ""
+"You must first create an LCD160CR object which will control the display."
+"  Do this using::"
+msgstr ""
+"まず、ディスプレイを制御する LCD160CR オブジェクトを作成する必要があります。"
+"これを行うには次のようにします::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:63
+msgid ""
+">>> import lcd160cr\n"
+">>> lcd = lcd160cr.LCD160CR('X')"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:66
+msgid ""
+"This assumes your display is connected in the X position.  If it's in the"
+" Y position then use ``lcd = lcd160cr.LCD160CR('Y')`` instead."
+msgstr ""
+"これはディスプレイが X 位置に接続されていることを前提としています。"
+"Y 位置にある場合は代わりに ``lcd = lcd160cr.LCD160CR('Y')`` とします。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:69
+msgid "To erase the screen and draw a line, try::"
+msgstr "画面を消去して線を引くには、以下を試してみてください::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:71
+msgid ""
+">>> lcd.set_pen(lcd.rgb(255, 0, 0), lcd.rgb(64, 64, 128))\n"
+">>> lcd.erase()\n"
+">>> lcd.line(10, 10, 50, 80)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:75
+msgid ""
+"The next example draws random rectangles on the screen.  You can copy-"
+"and-paste it into the MicroPython prompt by first pressing \"Ctrl-E\" at "
+"the prompt, then \"Ctrl-D\" once you have pasted the text. ::"
+msgstr ""
+"次の例では、画面上にランダムに四角形を描きます。プロンプトで \"Ctrl-E\" を押し、"
+"次にテキストをペーストしたら \"Ctrl-D\" を押すことで、MicroPython プロンプトに"
+"コピー＆ペーストできます::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:79
+msgid ""
+"from random import randint\n"
+"for i in range(1000):\n"
+"    fg = lcd.rgb(randint(128, 255), randint(128, 255), randint(128, 255))"
+"\n"
+"    bg = lcd.rgb(randint(0, 128), randint(0, 128), randint(0, 128))\n"
+"    lcd.set_pen(fg, bg)\n"
+"    lcd.rect(randint(0, lcd.w), randint(0, lcd.h), randint(10, 40), "
+"randint(10, 40))"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:87
+#: ../../../pyboard/tutorial/lcd_skin.rst:46
+msgid "Using the touch sensor"
+msgstr "タッチセンサーの使用方法"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:89
+msgid ""
+"The display includes a resistive touch sensor that can report the "
+"position (in pixels) of a single force-based touch on the screen.  To see"
+" if there is a touch on the screen use::"
+msgstr ""
+"ディスプレイには、画面上の一点タッチの位置(ピクセル単位)を返すことができる"
+"感圧型タッチセンサーが含まれています。画面に触れているかどうかを確認するには"
+"次のようにします::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:93
+msgid ">>> lcd.is_touched()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:95
+msgid ""
+"This will return either ``False`` or ``True``.  Run the above command "
+"while touching the screen to see the result."
+msgstr ""
+"これは ``False`` か ``True`` のどちらを返します。画面をタッチしながら上記のコマンドを"
+"実行して、結果を確認してみてください。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:98
+msgid "To get the location of the touch you can use the method::"
+msgstr "タッチの位置を取得するには、次のメソッドを使用します::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:100
+msgid ">>> lcd.get_touch()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:102
+msgid ""
+"This will return a 3-tuple, with the first entry being 0 or 1 depending "
+"on whether there is currently anything touching the screen (1 if there "
+"is), and the second and third entries in the tuple being the x and y "
+"coordinates of the current (or most recent) touch."
+msgstr ""
+"これは３項目のタプルを返します。最初の項目は、現在何かが画面に触れているかどうか"
+"によって 0 または 1 になります(触れている場合は1)。タプルの2番目と3番目の項目は、"
+"現在の(または最新の)タッチ位置となります。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:108
+msgid "Directing the MicroPython output to the display"
+msgstr "MicroPython の出力をディスプレイに出す"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:110
+msgid ""
+"The display supports input from a UART and implements basic VT100 "
+"commands, which means it can be used as a simple, general purpose "
+"terminal.  Let's set up the pyboard to redirect its output to the "
+"display."
+msgstr ""
+"このディスプレイは UART からの入力をサポートし、基本的な VT100 コマンドを"
+"実装しています。つまり、汎用端末として使用できるということです。pyboard を"
+"設定して、出力をディスプレイにリダイレクトしましょう。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:114
+msgid "First you need to create a UART object::"
+msgstr "最初に UART オブジェクトを作成する必要があります::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:116
+msgid ""
+">>> import pyb\n"
+">>> uart = pyb.UART('XA', 115200)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:119
+msgid ""
+"This assumes your display is connected to position X.  If it's on "
+"position Y then use ``uart = pyb.UART('YA', 115200)`` instead."
+msgstr ""
+"これはディスプレイが X 位置に接続されていることを前提としています。"
+"Y 位置にある場合は代わりに ``uart = pyb.UART('YA', 115200)`` "
+"としてください。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:122
+msgid "Now, connect the REPL output to this UART::"
+msgstr "今度は、REPL 出力をこのUARTに接続してください::"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:124
+msgid ">>> pyb.repl_uart(uart)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:126
+msgid ""
+"From now on anything you type at the MicroPython prompt, and any output "
+"you receive, will appear on the display."
+msgstr ""
+"以後は MicroPython のプロンプトで入力したものと、受け取った出力がディスプレイに"
+"表示されます。"
+
+#: ../../../pyboard/tutorial/lcd160cr_skin.rst:129
+msgid ""
+"No set-up commands are required for this mode to work and you can use the"
+" display to monitor the output of any UART, not just from the pyboard.  "
+"All that is needed is for the display to have power, ground and the "
+"power/enable pin driven high. Then any characters on the display's UART "
+"input will be printed to the screen. You can adjust the UART baudrate "
+"from the default of 115200 using the `set_uart_baudrate` method."
+msgstr ""
+"このモードを動作させるためのセットアップコマンドは不要で、ディスプレイを使って "
+"pyboard だけでなく UART の出力を監視することもできます。必要とされるのは、"
+"ディスプレイに電源、グランド、電源/有効ピンが high で駆動されることだけです。"
+"ディスプレイの UART 入力の文字が画面に表示されます。メソッド `set_uart_baudrate` "
+"を使って UART のボーレートをデフォルトの 115200 から調整できます。"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:2
+msgid "The LCD and touch-sensor skin"
+msgstr "LCD and touch-sensor スキン"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:4
+msgid "Soldering and using the LCD and touch-sensor skin."
+msgstr "LCD and touch-sensor スキンのハンダ付けと使用方法。"
+
+msgid ""
+".. image:: pyboard/tutorial/img/skin_lcd_1.jpg\n"
+"   :alt: pyboard with LCD skin"
+msgstr ""
+
+msgid ""
+".. image:: pyboard/tutorial/img/skin_lcd_2.jpg\n"
+"   :alt: pyboard with LCD skin"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:14
+msgid ""
+"The following video shows how to solder the headers onto the LCD skin. At"
+" the end of the video, it shows you how to correctly connect the LCD skin"
+" to the pyboard."
+msgstr ""
+"次のビデオは、ヘッダーを LCD スキンにハンダ付けする方法を示しています。"
+"ビデオの最後には、LCD スキンを pyboard に正しく接続する方法が示されています。"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:24
+msgid "Using the LCD"
+msgstr "LCD の使用方法"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:26
+msgid ""
+"To get started using the LCD, try the following at the MicroPython "
+"prompt. Make sure the LCD skin is attached to the pyboard as pictured at "
+"the top of this page. ::"
+msgstr ""
+"LCD を使い始めるには、MicroPython プロンプトで次のように試してみてください。"
+"このページの上の画像どおりに、LCDスキンが pyboard に取り付けられていることを"
+"確認してください::"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:29
+msgid ""
+">>> import pyb\n"
+">>> lcd = pyb.LCD('X')\n"
+">>> lcd.light(True)\n"
+">>> lcd.write('Hello uPy!\\n')"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:34
+msgid "You can make a simple animation using the code::"
+msgstr "次コードを使って簡単なアニメーションを作ることができます::"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:36
+msgid ""
+"import pyb\n"
+"lcd = pyb.LCD('X')\n"
+"lcd.light(True)\n"
+"for x in range(-80, 128):\n"
+"    lcd.fill(0)\n"
+"    lcd.text('Hello uPy!', x, 10, 1)\n"
+"    lcd.show()\n"
+"    pyb.delay(25)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:48
+msgid ""
+"To read the touch-sensor data you need to use the I2C bus.  The MPR121 "
+"capacitive touch sensor has address 90."
+msgstr ""
+"タッチセンサーのデータを読み取るには、I2C バスを使用する必要があります。"
+"MPR121 静電容量式タッチセンサーはアドレス 90 を持っています。"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:51
+msgid "To get started, try::"
+msgstr "まずは、次を試してください::"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:53
+msgid ""
+">>> import pyb\n"
+">>> i2c = pyb.I2C(1, pyb.I2C.MASTER)\n"
+">>> i2c.mem_write(4, 90, 0x5e)\n"
+">>> touch = i2c.mem_read(1, 90, 0)[0]"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:58
+msgid ""
+"The first line above makes an I2C object, and the second line enables the"
+" 4 touch sensors.  The third line reads the touch status and the "
+"``touch`` variable holds the state of the 4 touch buttons (A, B, X, Y)."
+msgstr ""
+"上の2行目は I2C オブジェクトを作成し、3行目は４つのタッチセンサーを有効にします。"
+"4行目はタッチ状態を読み取り、 ``touch`` 変数に４つのタッチボタン(A, B, X, Y)の"
+"状態を格納します。"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:63
+msgid ""
+"There is a simple driver `here "
+"<http://micropython.org/resources/examples/mpr121.py>`__ which allows you"
+" to set the threshold and debounce parameters, and easily read the touch "
+"status and electrode voltage levels.  Copy this script to your pyboard "
+"(either flash or SD card, in the top directory or ``lib/`` directory) and"
+" then try::"
+msgstr ""
+"シンプルなドライバが `ここ <http://micropython.org/resources/examples/mpr121.py>`__ "
+"にあり、しきい値やデバウンスパラメータを設定して、簡単にタッチ状態や電極の電圧レベルを"
+"読み取ることができます。このスクリプトをあなたの pyboard (flash あるいは SD カードの"
+"トップディレクトリまたは ``lib/`` ディレクトリ)にコピーし、次のコードを試してみてください::"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:69
+msgid ""
+">>> import pyb\n"
+">>> import mpr121\n"
+">>> m = mpr121.MPR121(pyb.I2C(1, pyb.I2C.MASTER))\n"
+">>> for i in range(100):\n"
+"...   print(m.touch_status())\n"
+"...   pyb.delay(100)\n"
+"..."
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:77
+msgid ""
+"This will continuously print out the touch status of all electrodes. Try "
+"touching each one in turn."
+msgstr ""
+"これは、すべての電極のタッチ状態が連続的にプリントアウトされます。順番にそれぞれに"
+"触れてみてください。"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:80
+msgid ""
+"Note that if you put the LCD skin in the Y-position, then you need to "
+"initialise the I2C bus using::"
+msgstr ""
+"LCD スキンを Y ポジションに置くと、次のように I2C バスを初期化する必要があります。"
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:83
+msgid ">>> m = mpr121.MPR121(pyb.I2C(2, pyb.I2C.MASTER))"
+msgstr ""
+
+#: ../../../pyboard/tutorial/lcd_skin.rst:85
+msgid ""
+"There is also a demo which uses the LCD and the touch sensors together, "
+"and can be found `here "
+"<http://micropython.org/resources/examples/lcddemo.py>`__."
+msgstr ""
+"LCDとタッチセンサーを併用したデモもあり、 "
+"`ここ <http://micropython.org/resources/examples/lcddemo.py>`__ "
+"で見つけることができます。"
+
+#: ../../../pyboard/tutorial/leds.rst:2
+msgid "Turning on LEDs and basic Python concepts"
+msgstr "LED の点灯と Python の基本"
+
+#: ../../../pyboard/tutorial/leds.rst:4
+msgid ""
+"The easiest thing to do on the pyboard is to turn on the LEDs attached to"
+" the board. Connect the board, and log in as described in tutorial 1. We "
+"will start by turning and LED on in the interpreter, type the following "
+"::"
+msgstr ""
+"pyboard で行う最も簡単なことは、ボードに取り付けられた LED を点灯することです。"
+"ボードを接続し、チュートリアル１で説明したようにログインします。"
+"まず、インタープリタから LED を点灯/消灯させてみましょう。"
+"次のように入力してみてください::"
+
+#: ../../../pyboard/tutorial/leds.rst:6
+msgid ""
+">>> myled = pyb.LED(1)\n"
+">>> myled.on()\n"
+">>> myled.off()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/leds.rst:10
+msgid "These commands turn the LED on and off."
+msgstr "これらのコマンドは LED を点灯し、消灯します。"
+
+#: ../../../pyboard/tutorial/leds.rst:12
+msgid ""
+"This is all very well but we would like this process to be automated. "
+"Open the file MAIN.PY on the pyboard in your favourite text editor. Write"
+" or paste the following lines into the file. If you are new to python, "
+"then make sure you get the indentation correct since this matters! ::"
+msgstr ""
+"これは実にうまくいっていますが、このプロセスを自動化してみましょう。"
+"好みのテキストエディタで pyboard の main.py ファイルを開きます。"
+"次の行をファイルに書き込むか、貼り付けます。あなたが Python を初めて"
+"使っているなら、インデントが正しいことを確認してください。これが大事なのです！"
+
+#: ../../../pyboard/tutorial/leds.rst:14
+msgid ""
+"led = pyb.LED(2)\n"
+"while True:\n"
+"    led.toggle()\n"
+"    pyb.delay(1000)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/leds.rst:19
+msgid ""
+"When you save, the red light on the pyboard should turn on for about a "
+"second. To run the script, do a soft reset (CTRL-D). The pyboard will "
+"then restart and you should see a green light continuously flashing on "
+"and off. Success, the first step on your path to building an army of evil"
+" robots! When you are bored of the annoying flashing light then press "
+"CTRL-C at your terminal to stop it running."
+msgstr ""
+"保存すると、pyboard の赤いライトが約1秒間点灯するはずです。スクリプトを実行するには、"
+"ソフトリセット（CTRL-D）を実行します。その後、pyboard が再起動し、緑のランプが"
+"連続的に点滅していることがわかります。成功です。"悪のロボット軍団を作り上げる"
+"最初ステップが成功しました！　鬱陶しい光の点滅に飽きたときには、ターミナルで CTRL-C "
+"を押して実行を停止してください。"
+
+#: ../../../pyboard/tutorial/leds.rst:21
+msgid ""
+"So what does this code do? First we need some terminology. Python is an "
+"object-oriented language, almost everything in python is a *class* and "
+"when you create an instance of a class you get an *object*. Classes have "
+"*methods* associated to them. A method (also called a member function) is"
+" used to interact with or control the object."
+msgstr ""
+"では、このコードは何をしていますか？　まず、いくつか用語の説明が必要です。Python は"
+"オブジェクト指向言語であり、Python のほとんどすべてのものが *クラス* であり、"
+"クラスのインスタンスを作成すると *オブジェクト* が得られます。クラスには *メソッド* "
+"が関連付けられています。メソッド(メンバ関数とも呼ばれる)は、オブジェクトの操作や制御に"
+"使われます。"
+
+#: ../../../pyboard/tutorial/leds.rst:23
+msgid ""
+"The first line of code creates an LED object which we have then called "
+"led. When we create the object, it takes a single parameter which must be"
+" between 1 and 4, corresponding to the 4 LEDs on the board. The pyb.LED "
+"class has three important member functions that we will use: on(), off() "
+"and toggle(). The other function that we use is pyb.delay() this simply "
+"waits for a given time in miliseconds. Once we have created the LED "
+"object, the statement while True: creates an infinite loop which toggles "
+"the led between on and off and waits for 1 second."
+msgstr ""
+"コードの最初の行は LED オブジェクトを作成し、それに led という名前をつけています。"
+"オブジェクトを作成するときは、ボード上の４つの LED に対応する1〜4の間でなければ"
+"ならない単一のパラメータが必要です。pyb.LED クラスには on(), off(), toggle() "
+"の３つの重要なメンバー関数があります。他に使っている関数とｓては pyb.delay() "
+"があります。これはミリ秒単位で指定された時間だけ待機します。LED オブジェクトを"
+"作成すると、ステートメント while True: は、一秒ごとに LED の点灯と消灯を行う"
+"無限ループを作成します。"
+
+#: ../../../pyboard/tutorial/leds.rst:25
+msgid ""
+"**Exercise: Try changing the time between toggling the led and turning on"
+" a different LED.**"
+msgstr ""
+"**練習問題: LED の点灯と消灯の間の時間を変更したり、別の LED を点灯したりしてみて"
+"ください。**"
+
+#: ../../../pyboard/tutorial/leds.rst:27
+msgid ""
+"**Exercise: Connect to the pyboard directly, create a pyb.LED object and "
+"turn it on using the on() method.**"
+msgstr ""
+"**練習問題: pyboard に直接繋いで、pyb.LED オブジェクトを作成して、on() メソッドを"
+"使って LED を点灯させてください。**”
+
+#: ../../../pyboard/tutorial/leds.rst:30
+msgid "A Disco on your pyboard"
+msgstr "pybord でディスコ"
+
+#: ../../../pyboard/tutorial/leds.rst:32
+msgid ""
+"So far we have only used a single LED but the pyboard has 4 available. "
+"Let's start by creating an object for each LED so we can control each of "
+"them. We do that by creating a list of LEDS with a list comprehension. ::"
+msgstr ""
+"これまでは１つのLEDのみを使用していましたが、pyboard には４つのLEDがあります。"
+"各 LED のオブジェクトを作成して、それぞれの LED を制御できるようにしましょう。"
+"ここではリストというものを使ってみます。次のコードで LED のリストが作成できます。"
+
+#: ../../../pyboard/tutorial/leds.rst:34
+msgid "leds = [pyb.LED(i) for i in range(1,5)]"
+msgstr ""
+
+#: ../../../pyboard/tutorial/leds.rst:36
+msgid ""
+"If you call pyb.LED() with a number that isn't 1,2,3,4 you will get an "
+"error message. Next we will set up an infinite loop that cycles through "
+"each of the LEDs turning them on and off. ::"
+msgstr ""
+"1,2,3,4 以外の番号で pyb.LED() を呼び出すと、エラーメッセージが表示されます。"
+"次に、各 LED を循環させてオンとオフを切り替える無限ループを設定します。"
+
+#: ../../../pyboard/tutorial/leds.rst:39
+msgid ""
+"n = 0\n"
+"while True:\n"
+"  n = (n + 1) % 4\n"
+"  leds[n].toggle()\n"
+"  pyb.delay(50)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/leds.rst:45
+#, python-format
+msgid ""
+"Here, n keeps track of the current LED and every time the loop is "
+"executed we cycle to the next n (the % sign is a modulus operator that "
+"keeps n between 0 and 3.) Then we access the nth LED and toggle it. If "
+"you run this you should see each of the LEDs turning on then all turning "
+"off again in sequence."
+msgstr ""
+"ここで n は現在の LED が何であるかを持ち、ループが実行されるたびに次の n に循環します"
+"(% 記号は n の値が 0 と 3 の間なるようにする剰余演算子です)。次に n 番目の LED に"
+"アクセスしてそれを切り替えます。これを実行すると、各 LED が点灯してから、すべてのLEDが"
+"順番に消灯するのを確認できるでしょう。"
+
+#: ../../../pyboard/tutorial/leds.rst:47
+msgid ""
+"One problem you might find is that if you stop the script and then start "
+"it again that the LEDs are stuck on from the previous run, ruining our "
+"carefully choreographed disco. We can fix this by turning all the LEDs "
+"off when we initialise the script and then using a try/finally block. "
+"When you press CTRL-C, MicroPython generates a VCPInterrupt exception. "
+"Exceptions normally mean something has gone wrong and you can use a try: "
+"command to \"catch\" an exception. In this case it is just the user "
+"interrupting the script, so we don't need to catch the error but just "
+"tell MicroPython what to do when we exit. The finally block does this, "
+"and we use it to make sure all the LEDs are off. The full code is::"
+msgstr ""
+"もう見つけたかもしれませんが、このスクリプトの問題の1つは、実行停止して、再度実行すると "
+"LED が前回実行したままになっているので、慎重に振り付けたはずのディスコが台無しに"
+"なってしますことです。スクリプトの初期化、および try/finally ブロックを使って、"
+"すべての LED を消すようにすることで修正できます。CTRL-C を押すと、MicroPython は "
+"VCPInterrupt 例外を生成します。例外は通常何かが間違っていることを意味し、"
+"try: コマンドを使って例外を「捕まえる」ことができます。この場合、スクリプトを中断するのは"
+"ユーザだけなので、エラーをキャッチする必要はなく、終了時に MicroPython に何をすべきかを"
+"伝えるだけです。finally ブロックはこれを行い、すべての LED がオフなるようにします。"
+"出来上がったコードは次のとおりです。"
+
+#: ../../../pyboard/tutorial/leds.rst:49
+msgid ""
+"leds = [pyb.LED(i) for i in range(1,5)]\n"
+"for l in leds:\n"
+"    l.off()\n"
+"\n"
+"n = 0\n"
+"try:\n"
+"   while True:\n"
+"      n = (n + 1) % 4\n"
+"      leds[n].toggle()\n"
+"      pyb.delay(50)\n"
+"finally:\n"
+"    for l in leds:\n"
+"        l.off()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/leds.rst:64
+msgid "The Special LEDs"
+msgstr "特別な LED"
+
+#: ../../../pyboard/tutorial/leds.rst:66
+msgid ""
+"The yellow and blue LEDs are special. As well as turning them on and off,"
+" you can control their intensity using the intensity() method. This takes"
+" a number between 0 and 255 that determines how bright it is. The "
+"following script makes the blue LED gradually brighter then turns it off "
+"again. ::"
+msgstr ""
+"黄色と青の LED は特別です。それらは点灯/消灯するだけでなく、intensity() メソッドで"
+"輝度を調整することもできます。このメソッドは、どれくらい明るいかを決める 0〜255 の"
+"数値をとります。次のスクリプトは、青色のLEDを徐々に明るくし、消灯するといったことを"
+"繰り返します。"
+
+#: ../../../pyboard/tutorial/leds.rst:68
+msgid ""
+"led = pyb.LED(4)\n"
+"intensity = 0\n"
+"while True:\n"
+"    intensity = (intensity + 1) % 255\n"
+"    led.intensity(intensity)\n"
+"    pyb.delay(20)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/leds.rst:75
+msgid ""
+"You can call intensity() on LEDs 1 and 2 but they can only be off or on. "
+"0 sets them off and any other number up to 255 turns them on."
+msgstr ""
+"LED 1 と 2 で intensity() を呼び出すことはできますが、点灯/消灯しかできません。"
+"0 消灯であり、1〜255 の他の数字は点灯になります。"
+
+#: ../../../pyboard/tutorial/pass_through.rst:2
+msgid "Making a UART - USB pass through"
+msgstr "UART を作る - USB を通す"
+
+#: ../../../pyboard/tutorial/pass_through.rst:4
+msgid "It's as simple as::"
+msgstr "それは次のように簡単です::"
+
+#: ../../../<rst_epilog>:6
+msgid ""
+"import pyb\n"
+"import select\n"
+"\n"
+"def pass_through(usb, uart):\n"
+"    usb.setinterrupt(-1)\n"
+"    while True:\n"
+"        select.select([usb, uart], [], [])\n"
+"        if usb.any():\n"
+"            uart.write(usb.read(256))\n"
+"        if uart.any():\n"
+"            usb.write(uart.read(256))\n"
+"\n"
+"pass_through(pyb.USB_VCP(), pyb.UART(1, 9600, timeout=0))"
+msgstr ""
+
+#: ../../../pyboard/tutorial/power_ctrl.rst:2
+msgid "Power control"
+msgstr "電源制御"
+
+#: ../../../pyboard/tutorial/power_ctrl.rst:4
+msgid ""
+":meth:`pyb.wfi` is used to reduce power consumption while waiting for an "
+"event such as an interrupt.  You would use it in the following "
+"situation::"
+msgstr ""
+":meth:`pyb.wfi` は割込みなどのイベントを待っている間の消費電力を抑えるために"
+"使われます。これを使うには次のようにします::"
+
+#: ../../../pyboard/tutorial/power_ctrl.rst:7
+msgid ""
+"while True:\n"
+"    do_some_processing()\n"
+"    pyb.wfi()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/power_ctrl.rst:11
+msgid "Control the frequency using :meth:`pyb.freq`::"
+msgstr "CPU 周波数の制御は :meth:`pyb.freq` を使います::"
+
+#: ../../../<rst_epilog>:13
+msgid "pyb.freq(30000000) # set CPU frequency to 30MHz"
+msgstr "pyb.freq(30000000) # CPU 周波数を 30MHz に設定"
+
+#: ../../../pyboard/tutorial/repl.rst:2
+msgid "Getting a MicroPython REPL prompt"
+msgstr "MicroPython REPLプロンプトの表示"
+
+#: ../../../pyboard/tutorial/repl.rst:4
+msgid ""
+"REPL stands for Read Evaluate Print Loop, and is the name given to the "
+"interactive MicroPython prompt that you can access on the pyboard.  Using"
+" the REPL is by far the easiest way to test out your code and run "
+"commands. You can use the REPL in addition to writing scripts in "
+"``main.py``."
+msgstr ""
+"REPL は Read Evaluate Print Loop の略で、対話型 MicroPython プロンプトに与えられた"
+"名前で、これを使って pyboard にアクセスできます。REPL を使うことは、コードをテストして"
+"コマンドを実行する最も簡単な方法です。 ``main.py`` にスクリプトを書くことに加えて、"
+"REPL も使えるようになりましょう。"
+
+#: ../../../pyboard/tutorial/repl.rst:9
+msgid ""
+"To use the REPL, you must connect to the serial USB device on the "
+"pyboard. How you do this depends on your operating system."
+msgstr ""
+"REPL を使うには、pyboard 上のシリアル USB デバイスに接続する必要があります。"
+"どのようにこれを行うかは、オペレーティングシステムによって異なります。"
+
+#: ../../../pyboard/tutorial/repl.rst:13
+msgid "Windows"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:15
+msgid ""
+"You need to install the pyboard driver to use the serial USB device. The "
+"driver is on the pyboard's USB flash drive, and is called ``pybcdc.inf``."
+msgstr ""
+"シリアル USB デバイスを使用するには pyboard ドライバをインストールする必要があります。"
+"ドライバは pyboard の USB フラッシュドライブ上にあり、 ``pybcdc.inf`` という名前です。"
+
+#: ../../../pyboard/tutorial/repl.rst:18
+msgid ""
+"To install this driver you need to go to Device Manager for your "
+"computer, find the pyboard in the list of devices (it should have a "
+"warning sign next to it because it's not working yet), right click on the"
+" pyboard device, select Properties, then Install Driver.  You need to "
+"then select the option to find the driver manually (don't use Windows "
+"auto update), navigate to the pyboard's USB drive, and select that.  It "
+"should then install. After installing, go back to the Device Manager to "
+"find the installed pyboard, and see which COM port it is (eg COM4). More "
+"comprehensive instructions can be found in the `Guide for pyboard on "
+"Windows (PDF) <http://micropython.org/resources/Micro-Python-Windows-"
+"setup.pdf>`_. Please consult this guide if you are having problems "
+"installing the driver."
+msgstr ""
+"このドライバをインストールするには、コンピュータのデバイスマネージャーに移動し、デバイスの"
+"リストの中の pyboard を見つけてください(まだ動作していないので警告サインが表示されている"
+"はずです)。pyboard デバイスを右クリックし、ドライバのインストールを行います。ドライバを"
+"手動で検索する(Windows の自動更新を使用しない)オプションを選択し、pyboard の USB "
+"ドライブに移動し、そのドライバを選択する必要があります。その後、インストールする必要が"
+"あります。インストール後、デバイスマネージャーに戻ってインストールされている pyboard を"
+"見つけて、それがどの COM ポートであるかを確認します(たとえばCOM4)。より包括的な説明は、"
+"`Guide for pyboard on Windows (PDF) <http://micropython.org/resources/Micro-Python-Windows-setup.pdf>`_ "
+"にあります。ドライバのインストールに問題がある場合は、このガイドを参照してください。"
+
+#: ../../../pyboard/tutorial/repl.rst:30
+msgid ""
+"You now need to run your terminal program.  You can use HyperTerminal if "
+"you have it installed, or download the free program PuTTY: `putty.exe "
+"<http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_. "
+"Using your serial program you must connect to the COM port that you found"
+" in the previous step.  With PuTTY, click on \"Session\" in the left-hand"
+" panel, then click the \"Serial\" radio button on the right, then enter "
+"you COM port (eg COM4) in the \"Serial Line\" box.  Finally, click the "
+"\"Open\" button."
+msgstr ""
+"次に端末プログラムを実行する必要があります。HyperTerminal をインストールしている"
+"場合はそれを使うか、無料のプログラム PuTTY: "
+"`putty.exe <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ "
+"をダウンロードしてください。シリアルプログラムを使う場合は、前の手順で見つかった COM ポート"
+"に接続する必要があります。PuTTY では、左側のパネルの \"Session\" をクリックし、右側の "
+"\"Serial\" ラジオボタンをクリックし、 \"Serial Line\" ボックスに COM ポート (たとえば "
+"COM4)を入力します。最後に \"Open\"" ボタンをクリックします。"
+
+#: ../../../pyboard/tutorial/repl.rst:39
+msgid "Mac OS X"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:41 ../../../pyboard/tutorial/repl.rst:50
+msgid "Open a terminal and run::"
+msgstr "ターミナルを開き、以下を実行してください::"
+
+#: ../../../pyboard/tutorial/repl.rst:43
+msgid "screen /dev/tty.usbmodem*"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:45
+msgid "When you are finished and want to exit screen, type CTRL-A CTRL-\\\\."
+msgstr "終了して screen から抜けるには、CTRL-A CTRL-\\\\ と入力します。"
+
+#: ../../../pyboard/tutorial/repl.rst:48
+msgid "Linux"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:52
+msgid "screen /dev/ttyACM0"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:54
+msgid ""
+"You can also try ``picocom`` or ``minicom`` instead of screen.  You may "
+"have to use ``/dev/ttyACM1`` or a higher number for ``ttyACM``.  And, you"
+" may need to give yourself the correct permissions to access this devices"
+" (eg group ``uucp`` or ``dialout``, or use sudo)."
+msgstr ""
+"screen の代わりに ``picocom`` や ``minicom`` を試すこともできます。"
+"``ttyACM`` については ``/dev/ttyACM1`` やさらに大きい番号を使う必要があるかも"
+"しれません。また、このデバイスにアクセスするための適切な権限を与える必要もあるかも"
+"しれません(たとえば、グループを uucp や dialout にするとか、sudo を使うかなど)。"
+
+#: ../../../pyboard/tutorial/repl.rst:60
+msgid "Using the REPL prompt"
+msgstr "REPL プロンプトの使い方"
+
+#: ../../../pyboard/tutorial/repl.rst:62
+msgid "Now let's try running some MicroPython code directly on the pyboard."
+msgstr "では、pyboard 上で MicroPythonコードを直接実行してみましょう。"
+
+#: ../../../pyboard/tutorial/repl.rst:64
+msgid ""
+"With your serial program open (PuTTY, screen, picocom, etc) you may see a"
+" blank screen with a flashing cursor.  Press Enter and you should be "
+"presented with a MicroPython prompt, i.e. ``>>>``.  Let's make sure it is"
+" working with the obligatory test::"
+msgstr ""
+"シリアルプログラム(PuTTY, screen, picocom など)を開いた状態で、点滅するカーソルが"
+"ある空白の画面が表示されているでしょう。Enter キーを押すと、MicroPython プロンプト "
+"``>>>`` が表示されます。次の義務的なテストで動作を確認してみしましょう::"
+
+#: ../../../pyboard/tutorial/repl.rst:68
+msgid ""
+">>> print(\"hello pyboard!\")\n"
+"hello pyboard!"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:71
+msgid ""
+"In the above, you should not type in the ``>>>`` characters.  They are "
+"there to indicate that you should type the text after it at the prompt.  "
+"In the end, once you have entered the text ``print(\"hello pyboard!\")`` "
+"and pressed Enter, the output on your screen should look like it does "
+"above."
+msgstr ""
+"上記では ``>>>`` 文字を入力しないでください。これはプロンプトで、この後にテキスト"
+"入力することを示すためにあります。最後に、テキスト ``print(\"hello pyboard!\")`` "
+"を入力して Enter キーを押すと、画面上の出力は上記のようになります。"
+
+#: ../../../pyboard/tutorial/repl.rst:76
+msgid "If you already know some python you can now try some basic commands here."
+msgstr "すでに python を知っているなら、ここでいくつかの基本的なコマンドを試せます。"
+
+#: ../../../pyboard/tutorial/repl.rst:78
+msgid ""
+"If any of this is not working you can try either a hard reset or a soft "
+"reset; see below."
+msgstr ""
+"いずれかが動作しない場合は、ハードリセットまたはソフトリセットをしてみてください。"
+"下記を参照。"
+
+#: ../../../pyboard/tutorial/repl.rst:81
+msgid "Go ahead and try typing in some other commands.  For example::"
+msgstr "他のコマンドも入力してみてください。たとえば::"
+
+#: ../../../pyboard/tutorial/repl.rst:83
+msgid ""
+">>> pyb.LED(1).on()\n"
+">>> pyb.LED(2).on()\n"
+">>> 1 + 2\n"
+"3\n"
+">>> 1 / 2\n"
+"0.5\n"
+">>> 20 * 'py'\n"
+"'pypypypypypypypypypypypypypypypypypypypy'"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:93
+msgid "Resetting the board"
+msgstr "ボードのリセット"
+
+#: ../../../pyboard/tutorial/repl.rst:95
+msgid ""
+"If something goes wrong, you can reset the board in two ways. The first "
+"is to press CTRL-D at the MicroPython prompt, which performs a soft "
+"reset.  You will see a message something like ::"
+msgstr ""
+"何か問題が生じた場合、ボードを２つの方法でリセットできます。最初は、MicroPython "
+"プロンプトで CTRL-D を押してソフトリセットを実行します。次のようなメッセージが"
+"表示されるでしょう。"
+
+#: ../../../pyboard/tutorial/repl.rst:98
+msgid ""
+">>>\n"
+"PYB: sync filesystems\n"
+"PYB: soft reboot\n"
+"Micro Python v1.0 on 2014-05-03; PYBv1.0 with STM32F405RG\n"
+"Type \"help()\" for more information.\n"
+">>>"
+msgstr ""
+
+#: ../../../pyboard/tutorial/repl.rst:105
+msgid ""
+"If that isn't working you can perform a hard reset (turn-it-off-and-on-"
+"again) by pressing the RST switch (the small black button closest to the "
+"micro-USB socket on the board). This will end your session, disconnecting"
+" whatever program (PuTTY, screen, etc) that you used to connect to the "
+"pyboard."
+msgstr ""
+"それが機能しない場合は、RST スイッチ(ボード上のマイクロ USB ソケットに最も近い小さな"
+"黒いボタン)を押して、ハードリセット(電源を切ってから再度オンにする)を実行できます。"
+"これはセッションを終了し、pyboard への接続に使用したプログラム(PuTTY, screen など)"
+"を切断します。"
+
+#: ../../../pyboard/tutorial/repl.rst:109
+msgid ""
+"If you are going to do a hard-reset, it's recommended to first close your"
+" serial program and eject/unmount the pyboard drive."
+msgstr ""
+"ハードリセットを行う場合は、最初にシリアルプログラムを閉じ、pyboard ドライブの"
+"取り出し/アンマウントを行うことをお勧めします。"
+
+#: ../../../pyboard/tutorial/reset.rst:2
+msgid "Safe mode and factory reset"
+msgstr "セーフモードと工場出荷時リセット"
+
+#: ../../../pyboard/tutorial/reset.rst:4
+msgid ""
+"If something goes wrong with your pyboard, don't panic!  It is almost "
+"impossible for you to break the pyboard by programming the wrong thing."
+msgstr ""
+"pyboard で何かがうまくいかなくても慌てないでください！　間違ったプログラムで "
+"pyboard を壊すことはまず不可能です。"
+
+#: ../../../pyboard/tutorial/reset.rst:7
+msgid ""
+"The first thing to try is to enter safe mode: this temporarily skips "
+"execution of ``boot.py`` and ``main.py`` and gives default USB settings."
+msgstr ""
+"最初に試してみるのはセーフモードに入ることです。これは ``boot.py`` と ``main.py`` "
+"の実行を一時的にスキップし、デフォルトの USB 設定を使います。"
+
+#: ../../../pyboard/tutorial/reset.rst:10
+msgid ""
+"If you have problems with the filesystem you can do a factory reset, "
+"which restores the filesystem to its original state."
+msgstr ""
+"ファイルシステムに問題がある場合は、工場出荷時リセットを試せます。これはファイル"
+"システムを元の状態に復元します。"
+
+#: ../../../pyboard/tutorial/reset.rst:14
+msgid "Safe mode"
+msgstr "セーフモード"
+
+#: ../../../pyboard/tutorial/reset.rst:16
+msgid "To enter safe mode, do the following steps:"
+msgstr "セーフモードに入るのには次の手順を行います:"
+
+#: ../../../pyboard/tutorial/reset.rst:18
+#: ../../../pyboard/tutorial/reset.rst:49
+msgid "Connect the pyboard to USB so it powers up."
+msgstr "pyboard を USB に繋いで電源を入れます。"
+
+#: ../../../pyboard/tutorial/reset.rst:19
+#: ../../../pyboard/tutorial/reset.rst:50
+#: ../../../pyboard/tutorial/usb_mouse.rst:84
+msgid "Hold down the USR switch."
+msgstr "USR スイッチを押し続けます。"
+
+#: ../../../pyboard/tutorial/reset.rst:20
+#: ../../../pyboard/tutorial/reset.rst:51
+#: ../../../pyboard/tutorial/usb_mouse.rst:85
+msgid "While still holding down USR, press and release the RST switch."
+msgstr "USR を押しながら、RST スイッチを押して放します。"
+
+#: ../../../pyboard/tutorial/reset.rst:21
+#: ../../../pyboard/tutorial/reset.rst:52
+#: ../../../pyboard/tutorial/usb_mouse.rst:86
+msgid "The LEDs will then cycle green to orange to green+orange and back again."
+msgstr "その後、LED が緑からオレンジ、緑+オレンジへ、そして元に戻るということを繰り返します。"
+
+#: ../../../pyboard/tutorial/reset.rst:22
+#: ../../../pyboard/tutorial/usb_mouse.rst:87
+msgid ""
+"Keep holding down USR until *only the orange LED is lit*, and then let go"
+" of the USR switch."
+msgstr ""
+"*オレンジの LED だけが点灯* するまで USR を押し続け、USR スイッチを放します。"
+
+#: ../../../pyboard/tutorial/reset.rst:24
+#: ../../../pyboard/tutorial/usb_mouse.rst:89
+msgid "The orange LED should flash quickly 4 times, and then turn off."
+msgstr "オレンジの LED はすばやく４回点滅してから消灯します。"
+
+#: ../../../pyboard/tutorial/reset.rst:25
+#: ../../../pyboard/tutorial/usb_mouse.rst:90
+msgid "You are now in safe mode."
+msgstr "これでセーフモードになりました。"
+
+#: ../../../pyboard/tutorial/reset.rst:27
+msgid ""
+"In safe mode, the ``boot.py`` and ``main.py`` files are not executed, and"
+" so the pyboard boots up with default settings.  This means you now have "
+"access to the filesystem (the USB drive should appear), and you can edit "
+"``boot.py`` and ``main.py`` to fix any problems."
+msgstr ""
+"セーフモードでは ``boot.py`` と ``main.py`` ファイルが実行されないので、pyboard は"
+"デフォルト設定で起動します。つまり、ファイルシステムにアクセスできるようになり(USB "
+"ドライブが現れるはずです)、問題を修正するために ``boot.py`` と ``main.py`` を"
+"編集できます。"
+
+#: ../../../pyboard/tutorial/reset.rst:32
+msgid ""
+"Entering safe mode is temporary, and does not make any changes to the "
+"files on the pyboard."
+msgstr ""
+"セーフモードへの移行は一時的なもので、pyboard 上のファイルは維持されます。"
+
+#: ../../../pyboard/tutorial/reset.rst:36
+msgid "Factory reset the filesystem"
+msgstr "ファイルシステムの工場出荷時リセット"
+
+#: ../../../pyboard/tutorial/reset.rst:38
+msgid ""
+"If you pyboard's filesystem gets corrupted (for example, you forgot to "
+"eject/unmount it), or you have some code in ``boot.py`` or ``main.py`` "
+"which you can't escape from, then you can reset the filesystem."
+msgstr ""
+"pyboard ファイルシステムが壊れた場合(たとえば、アンマウント/取り出しを忘れた場合など)、"
+"または ``boot.py`` か　``main.py`` で救えないコードがある場合、ファイルシステムを"
+"リセットすることができます。"
+
+#: ../../../pyboard/tutorial/reset.rst:42
+msgid ""
+"Resetting the filesystem deletes all files on the internal pyboard "
+"storage (not the SD card), and restores the files ``boot.py``, "
+"``main.py``, ``README.txt`` and ``pybcdc.inf`` back to their original "
+"state."
+msgstr ""
+"ファイルシステムをリセットすると、内部 pyboard ストレージ(SD カードではない)の"
+"すべてのファイルを削除し、ファイル ``boot.py``, ``main.py``, ``README.txt``, "
+"``pybcdc.inf`` を元の状態に復元します。"
+
+#: ../../../pyboard/tutorial/reset.rst:46
+msgid ""
+"To do a factory reset of the filesystem you follow a similar procedure as"
+" you did to enter safe mode, but release USR on green+orange:"
+msgstr ""
+"ファイルシステムを工場出荷時の状態に戻すには、セーフモードを入力したのと同じ手順に"
+"したがいますが、緑+オレンジ で USR を放します。"
+
+#: ../../../pyboard/tutorial/reset.rst:53
+msgid ""
+"Keep holding down USR until *both the green and orange LEDs are lit*, and"
+" then let go of the USR switch."
+msgstr ""
+"*緑とオレンジの両方の LED が点灯* するまで USR を押し続け、USR スイッチを放します。"
+
+#: ../../../pyboard/tutorial/reset.rst:55
+msgid "The green and orange LEDs should flash quickly 4 times."
+msgstr "緑とオレンジの LED がすばやく４回点滅します。"
+
+#: ../../../pyboard/tutorial/reset.rst:56
+msgid "The red LED will turn on (so red, green and orange are now on)."
+msgstr "赤い LED が点灯します(そして、赤、緑、オレンジが点灯します）。"
+
+#: ../../../pyboard/tutorial/reset.rst:57
+msgid "The pyboard is now resetting the filesystem (this takes a few seconds)."
+msgstr "pyboard はファイルシステムをリセットします(これには数秒かかります)。"
+
+#: ../../../pyboard/tutorial/reset.rst:58
+msgid "The LEDs all turn off."
+msgstr "LED がすべて消灯します。"
+
+#: ../../../pyboard/tutorial/reset.rst:59
+msgid "You now have a reset filesystem, and are in safe mode."
+msgstr "これで、ファイルシステムがリセットされ、セーフモードになりました。"
+
+#: ../../../pyboard/tutorial/reset.rst:60
+msgid "Press and release the RST switch to boot normally."
+msgstr "通常どおりブートするには RSTスイッチを押して放します。"
+
+#: ../../../pyboard/tutorial/script.rst:2
+msgid "Running your first script"
+msgstr "最初のスクリプトの実行"
+
+#: ../../../pyboard/tutorial/script.rst:4
+msgid ""
+"Let's jump right in and get a Python script running on the pyboard.  "
+"After all, that's what it's all about!"
+msgstr ""
+"すぐに飛び込んで、pyboard 上で Python スクリプトを実行しましょう。"
+"とにかく、ここでやることはそれだけです！"
+
+#: ../../../pyboard/tutorial/script.rst:8
+msgid "Connecting your pyboard"
+msgstr "pyboard の接続"
+
+#: ../../../pyboard/tutorial/script.rst:10
+msgid ""
+"Connect your pyboard to your PC (Windows, Mac or Linux) with a micro USB "
+"cable. There is only one way that the cable will connect, so you can't "
+"get it wrong."
+msgstr ""
+"マイクロ USB ケーブルで PC (Windows, Mac, Linux)に pyboard を接続します。"
+"ケーブルを接続する方法は１つしかないので、間違うことはありません。"
+
+#: ../../../pyboard/tutorial/script.rst:14
+msgid ".. image:: pyboard/tutorial/img/pyboard_usb_micro.jpg"
+msgstr ""
+
+#: ../../../pyboard/tutorial/script.rst:15
+msgid ""
+"When the pyboard is connected to your PC it will power on and enter the "
+"start up process (the boot process).  The green LED should light up for "
+"half a second or less, and when it turns off it means the boot process "
+"has completed."
+msgstr ""
+"PC に pyboard が接続されると、電源が入り、起動処理(ブート処理)に入ります。"
+"緑色の LED が 0.5 秒間点灯して消灯すると、ブート処理が完了したことを意味します。"
+
+#: ../../../pyboard/tutorial/script.rst:20
+msgid "Opening the pyboard USB drive"
+msgstr "pyboard USB ドライブを開く"
+
+#: ../../../pyboard/tutorial/script.rst:22
+msgid ""
+"Your PC should now recognise the pyboard.  It depends on the type of PC "
+"you have as to what happens next:"
+msgstr ""
+"ここで、利用している PC は pyboard を認識するはずです。次に何が起こるかは"
+"利用している PC のタイプに依存します:"
+
+#: ../../../pyboard/tutorial/script.rst:25
+msgid ""
+"**Windows**: Your pyboard will appear as a removable USB flash drive. "
+"Windows may automatically pop-up a window, or you may need to go there "
+"using Explorer."
+msgstr ""
+"**Windows:** pyboard はリムーバブル USB フラッシュドライブとして表示されます。"
+"Windows が自動的にウィンドウをポップアップしなければ、エクスプローラで USB "
+"フラッシュドライブに移動する必要があります。"
+
+#: ../../../pyboard/tutorial/script.rst:29
+msgid ""
+"Windows will also see that the pyboard has a serial device, and it will "
+"try to automatically configure this device.  If it does, cancel the "
+"process. We will get the serial device working in the next tutorial."
+msgstr ""
+"Windows は pyboard にシリアルデバイスがあることも確認し、このデバイスを自動的に"
+"設定しようとします。シリアルデバイスが存在する場合はこの処理ををキャンセルします。"
+"シリアルデバイスは次のチュートリアルで動作させます。"
+
+#: ../../../pyboard/tutorial/script.rst:33
+msgid ""
+"**Mac**: Your pyboard will appear on the desktop as a removable disc. It "
+"will probably be called \"NONAME\".  Click on it to open the pyboard "
+"folder."
+msgstr ""
+"**Mac:** pyboard はリムーバブルディスクとしてデスクトップに表示されます。"
+"おそらく \"NONAME\" という名前になります。それをクリックすると、pyboard "
+"フォルダが開きます。"
+
+#: ../../../pyboard/tutorial/script.rst:36
+msgid ""
+"**Linux**: Your pyboard will appear as a removable medium.  On Ubuntu it "
+"will mount automatically and pop-up a window with the pyboard folder. On "
+"other Linux distributions, the pyboard may be mounted automatically, or "
+"you may need to do it manually.  At a terminal command line, type "
+"``lsblk`` to see a list of connected drives, and then ``mount /dev/sdb1``"
+" (replace ``sdb1`` with the appropriate device).  You may need to be root"
+" to do this."
+msgstr ""
+"**Linux:** pyboard はリムーバブルメディアとして表示されます。Ubuntu では自動的に"
+"マウントされ、pyboard フォルダがウィンドウにポップアップ表示されます。他の Linux "
+"ディストリビューションでは、pyboard は自動的にマウントされるか、手動で行う必要が"
+"あります。ターミナルのコマンドラインで ``lsblk`` を入力して、接続されているドライブの"
+"一覧を表示し、 ``mount /dev/sdb1`` を入力します( ``sdb1`` は適切なデバイスに"
+"置き換えてください)。これを行うには root である必要があります。"
+
+#: ../../../pyboard/tutorial/script.rst:43
+msgid ""
+"Okay, so you should now have the pyboard connected as a USB flash drive, "
+"and a window (or command line) should be showing the files on the pyboard"
+" drive."
+msgstr ""
+"さて、これで pyboard が USBフラッシュドライブとして接続されていて、"
+"ウィンドウ(またはコマンドライン)は pyboard ドライブ上のファイルを表示しているでしょう。"
+
+#: ../../../pyboard/tutorial/script.rst:46
+msgid ""
+"The drive you are looking at is known as ``/flash`` by the pyboard, and "
+"should contain the following 4 files:"
+msgstr ""
+"見ているドライブは pyboard により ``/flash`` として知られていて、以下の４つの"
+"ファイルがあるはずです:"
+
+#: ../../../pyboard/tutorial/script.rst:50
+msgid ""
+"`boot.py <http://micropython.org/resources/fresh-pyboard/boot.py>`_ -- "
+"this script is executed when the pyboard boots up.  It sets"
+msgstr ""
+"`boot.py <http://micropython.org/resources/fresh-pyboard/boot.py>`_ -- "
+"このスクリプトは pyboard が起動すると実行されます。
+
+#: ../../../pyboard/tutorial/script.rst:50
+msgid "up various configuration options for the pyboard."
+msgstr "これは pyboard のさまざまな設定オプションを設定します。"
+
+#: ../../../pyboard/tutorial/script.rst:53
+msgid ""
+"`main.py <http://micropython.org/resources/fresh-pyboard/main.py>`_ -- "
+"this is the main script that will contain your Python program."
+msgstr ""
+"`main.py <http://micropython.org/resources/fresh-pyboard/main.py>`_ -- "
+"これは Python プログラムを含むメインスクリプトです。"
+
+#: ../../../pyboard/tutorial/script.rst:53
+msgid "It is executed after ``boot.py``."
+msgstr "``boot.py`` の後に実行されます。"
+
+#: ../../../pyboard/tutorial/script.rst:56
+msgid ""
+"`README.txt <http://micropython.org/resources/fresh-pyboard/README.txt>`_"
+" -- this contains some very basic information about getting"
+msgstr ""
+"`README.txt <http://micropython.org/resources/fresh-pyboard/README.txt>`_"
+" -- これには pyboard を使い始めるにあたっての"
+
+#: ../../../pyboard/tutorial/script.rst:56
+msgid "started with the pyboard."
+msgstr "ごく基本的な情報が載っています。"
+
+#: ../../../pyboard/tutorial/script.rst:59
+msgid ""
+"`pybcdc.inf <http://micropython.org/resources/fresh-pyboard/pybcdc.inf>`_"
+" -- this is a Windows driver file to configure the serial USB"
+msgstr ""
+"`pybcdc.inf <http://micropython.org/resources/fresh-pyboard/pybcdc.inf>`_"
+" -- これは、シリアル USB デバイスを設定するための Windows ドライバ"
+
+#: ../../../pyboard/tutorial/script.rst:59
+msgid "device.  More about this in the next tutorial."
+msgstr "ファイルです。これについては、次のチュートリアルで詳しく説明します。"
+
+#: ../../../pyboard/tutorial/script.rst:62
+msgid "Editing ``main.py``"
+msgstr "``main.py`` の編集"
+
+#: ../../../pyboard/tutorial/script.rst:64
+msgid ""
+"Now we are going to write our Python program, so open the ``main.py`` "
+"file in a text editor.  On Windows you can use notepad, or any other "
+"editor. On Mac and Linux, use your favourite text editor.  With the file "
+"open you will see it contains 1 line::"
+msgstr ""
+"今度は Python プログラムを書きます。 テキストエディタで ``main.py`` ファイルを"
+"開いてください。Windows では、メモ帳などのエディタを使用できます。Mac と Linux "
+"では、お気に入りのテキストエディタを使ってください。ファイルを開くと、次の１行が"
+"表示されます::"
+
+#: ../../../pyboard/tutorial/script.rst:69
+msgid "# main.py -- put your code here!"
+msgstr ""
+
+#: ../../../pyboard/tutorial/script.rst:71
+msgid ""
+"This line starts with a # character, which means that it is a *comment*."
+"  Such lines will not do anything, and are there for you to write notes "
+"about your program."
+msgstr ""
+"この行は ＃ 文字で始まり、 *コメント* であることを意味します。そのような行は何も"
+"行わず、プログラムに関するメモを書くためにそこにあります。"
+
+#: ../../../pyboard/tutorial/script.rst:75
+msgid "Let's add 2 lines to this ``main.py`` file, to make it look like this::"
+msgstr ""
+"この ``main.py`` ファイルに次のように２行を追加してみてくｄさい。"
+
+#: ../../../pyboard/tutorial/script.rst:77
+msgid ""
+"# main.py -- put your code here!\n"
+"import pyb\n"
+"pyb.LED(4).on()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/script.rst:81
+msgid ""
+"The first line we wrote says that we want to use the ``pyb`` module. This"
+" module contains all the functions and classes to control the features of"
+" the pyboard."
+msgstr ""
+"追加した最初の行は ``pyb`` モジュールを使いたいと言っています。このモジュールには "
+"pyboard の機能を制御するためのすべての関数とクラスが含まれています。"
+
+#: ../../../pyboard/tutorial/script.rst:85
+msgid ""
+"The second line that we wrote turns the blue LED on: it first gets the "
+"``LED`` class from the ``pyb`` module, creates LED number 4 (the blue "
+"LED), and then turns it on."
+msgstr ""
+"追加した２行目は、青いLEDを点灯します。まず ``pyb`` モジュールから ``LED`` クラスを"
+"取得し、LED 番号 4 (青色LED) を作成してから、点灯にします。"
+
+#: ../../../pyboard/tutorial/script.rst:90
+msgid "Resetting the pyboard"
+msgstr "pyboard のリセット"
+
+#: ../../../pyboard/tutorial/script.rst:92
+msgid ""
+"To run this little script, you need to first save and close the "
+"``main.py`` file, and then eject (or unmount) the pyboard USB drive.  Do "
+"this like you would a normal USB flash drive."
+msgstr ""
+"この小さなスクリプトを実行するには、まず ``main.py`` ファイルを保存して閉じ、"
+"次に pyboard USB ドライブを取り出し(またはマウント解除)をする必要があります。"
+"通常のUSBフラッシュドライブと同じように行います。"
+
+#: ../../../pyboard/tutorial/script.rst:96
+msgid ""
+"When the drive is safely ejected/unmounted you can get to the fun part: "
+"press the RST switch on the pyboard to reset and run your script. The RST"
+" switch is the small black button just below the USB connector on the "
+"board, on the right edge."
+msgstr ""
+"ドライブが安全にイジェクト/アンマウントされたら、いよいよお楽しみです: "
+"pyboard 上の RST スイッチを押して、スクリプトをリセットして実行します。RST "
+"スイッチは、ボードの右端の USB コネクタのすぐ下にある小さな黒のボタンです。"
+
+#: ../../../pyboard/tutorial/script.rst:101
+msgid ""
+"When you press RST the green LED will flash quickly, and then the blue "
+"LED should turn on and stay on."
+msgstr ""
+"RSTを押すと緑色の LED が素早く点滅し、青色の LED が点灯し、その状態が続きます。"
+
+#: ../../../pyboard/tutorial/script.rst:104
+msgid ""
+"Congratulations!  You have written and run your very first MicroPython "
+"program!"
+msgstr ""
+"おめでとうございます！　最初の MicroPython プログラムを作成して実行しました！"
+
+#: ../../../pyboard/tutorial/servo.rst:2
+msgid "Controlling hobby servo motors"
+msgstr "ホビー用サーボモータの制御"
+
+#: ../../../pyboard/tutorial/servo.rst:4
+#, python-format
+msgid ""
+"There are 4 dedicated connection points on the pyboard for connecting up "
+"hobby servo motors (see eg `Wikipedia "
+"<http://en.wikipedia.org/wiki/Servo_%28radio_control%29>`__). These "
+"motors have 3 wires: ground, power and signal.  On the pyboard you can "
+"connect them in the bottom right corner, with the signal pin on the far "
+"right.  Pins X1, X2, X3 and X4 are the 4 dedicated servo signal pins."
+msgstr ""
+"pybord には、ホピー用サーボモーター(`Wikipedia <http://en.wikipedia.org/wiki/Servo_%28radio_control%29>`__ "
+"を参照)を接続するための４つの専用接続点があります。このモーターは、グラウンド、"
+"電源、信号の３つのワイヤーを持っています。pyboard の右下隅に、信号ピンを右端にして"
+"接続します。ピン X1, X2, X3, X4 は４つの専用サーボ信号ピンです。"
+
+#: ../../../pyboard/tutorial/servo.rst:12
+msgid ".. image:: pyboard/tutorial/img/pyboard_servo.jpg"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:13
+msgid ""
+"In this picture there are male-male double adaptors to connect the servos"
+" to the header pins on the pyboard."
+msgstr ""
+"この写真では、サーボを pyboard のヘッダーピンに接続するためにオス-オスのダブルアダプター"
+"を使っています。"
+
+#: ../../../pyboard/tutorial/servo.rst:16
+msgid ""
+"The ground wire on a servo is usually the darkest coloured one, either "
+"black or dark brown.  The power wire will most likely be red."
+msgstr ""
+"サーボのグラウンド線は、通常、黒または濃い茶色の最も暗い色になっています。電源線は"
+"おそらく赤色になります。"
+
+#: ../../../pyboard/tutorial/servo.rst:19
+msgid ""
+"The power pin for the servos (labelled VIN) is connected directly to the "
+"input power source of the pyboard.  When powered via USB, VIN is powered "
+"through a diode by the 5V USB power line.  Connect to USB, the pyboard "
+"can power at least 4 small to medium sized servo motors."
+msgstr ""
+"サーボの電源ピン(VINと表示)は、pyboard の入力電源に直接接続されています。USB から"
+"給電されると、VIN　には 5V の USB 電源ラインによってダイオードを介して給電されます。"
+"USB に接続する場合、pyboard は少なくとも４つの電源を中小サイズのサーボモータに"
+"供給できます。"
+
+#: ../../../pyboard/tutorial/servo.rst:24
+msgid ""
+"If using a battery to power the pyboard and run servo motors, make sure "
+"it is not greater than 6V, since this is the maximum voltage most servo "
+"motors can take.  (Some motors take only up to 4.8V, so check what type "
+"you are using.)"
+msgstr ""
+"バッテリーを使用して pyboard に給電してサーボモータを動かす場合は、6V 以下である"
+"ことを確認してください。これは、ほとんどのサーボモータにかけられる最大電圧が 6V で"
+"あるためです(モーターによっては最大 4.8V であることもあるため、使うモータのタイプを"
+"確認してください）。"
+
+#: ../../../pyboard/tutorial/servo.rst:30
+msgid "Creating a Servo object"
+msgstr "Servo オブジェクトの作成"
+
+#: ../../../pyboard/tutorial/servo.rst:32
+msgid ""
+"Plug in a servo to position 1 (the one with pin X1) and create a servo "
+"object using::"
+msgstr ""
+"サーボを位置 1 (ピン X1 を持つもの)に差し込み、次のようにして Servo オブジェクトを"
+"作成します。"
+
+#: ../../../pyboard/tutorial/servo.rst:35
+msgid ">>> servo1 = pyb.Servo(1)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:37
+msgid "To change the angle of the servo use the ``angle`` method::"
+msgstr "サーボの角度を変更するには、次のように ``angle`` メソッドを使います::"
+
+#: ../../../pyboard/tutorial/servo.rst:39
+msgid ""
+">>> servo1.angle(45)\n"
+">>> servo1.angle(-60)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:42
+msgid ""
+"The angle here is measured in degrees, and ranges from about -90 to +90, "
+"depending on the motor.  Calling ``angle`` without parameters will return"
+" the current angle::"
+msgstr ""
+"ここでの角度は度で測定され、モータに依存して約 -90 〜 +90 の範囲です。 ``angle`` "
+"をパラメータなしで呼び出すと、現在の角度が返ります::"
+
+#: ../../../pyboard/tutorial/servo.rst:46
+msgid ""
+">>> servo1.angle()\n"
+"-60"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:49
+msgid ""
+"Note that for some angles, the returned angle is not exactly the same as "
+"the angle you set, due to rounding errors in setting the pulse width."
+msgstr ""
+"角度によっては、パルス幅を設定する際の丸め誤差のため、返される角度が設定した角度と"
+"まったく同じではないことに注意してください。"
+
+#: ../../../pyboard/tutorial/servo.rst:52
+msgid ""
+"You can pass a second parameter to the ``angle`` method, which specifies "
+"how long to take (in milliseconds) to reach the desired angle.  For "
+"example, to take 1 second (1000 milliseconds) to go from the current "
+"position to 50 degrees, use ::"
+msgstr ""
+"``angle`` メソッドには２番目のパラメータを渡すことができます。このパラメータには、"
+"必要な角度に達するまでの時間(ミリ秒単位)を指定します。たとえば、現在の位置から"
+"50度に1秒(1000ミリ秒)かけるようにするには、次のように入力します::"
+
+#: ../../../pyboard/tutorial/servo.rst:57
+msgid ">>> servo1.angle(50, 1000)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:59
+msgid ""
+"This command will return straight away and the servo will continue to "
+"move to the desired angle, and stop when it gets there.  You can use this"
+" feature as a speed control, or to synchronise 2 or more servo motors.  "
+"If we have another servo motor (``servo2 = pyb.Servo(2)``) then we can do"
+" ::"
+msgstr ""
+"このコマンドからはすぐに戻り、サーボは希望の角度に移動し続け、そこに到達すると停止します。"
+"この機能を速度制御として使用することも、２つ以上のサーボモータを同期させることもできます。"
+"別のサーボモータ(``servo2 = pyb.Servo(2)``)があれば次のようにできます。
+
+#: ../../../pyboard/tutorial/servo.rst:64
+msgid ">>> servo1.angle(-45, 2000); servo2.angle(60, 2000)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:66
+msgid ""
+"This will move the servos together, making them both take 2 seconds to "
+"reach their final angles."
+msgstr ""
+"これにより、サーボが一緒に移動し、最終角度に達するまでに2秒かかります。"
+
+#: ../../../pyboard/tutorial/servo.rst:69
+msgid ""
+"Note: the semicolon between the 2 expressions above is used so that they "
+"are executed one after the other when you press enter at the REPL prompt."
+" In a script you don't need to do this, you can just write them one line "
+"after the other."
+msgstr ""
+"注記: 上記の2つの式の間にセミコロンを使うと、REPL プロンプトで Enter キーを押した"
+"順番に実行されます。スクリプトでは、これを行う必要はありません。それそれ１行に書く"
+"だけで済みます。"
+
+#: ../../../pyboard/tutorial/servo.rst:75
+msgid "Continuous rotation servos"
+msgstr "連続回転サーボ"
+
+#: ../../../pyboard/tutorial/servo.rst:77
+msgid ""
+"So far we have been using standard servos that move to a specific angle "
+"and stay at that angle.  These servo motors are useful to create joints "
+"of a robot, or things like pan-tilt mechanisms.  Internally, the motor "
+"has a variable resistor (potentiometer) which measures the current angle "
+"and applies power to the motor proportional to how far it is from the "
+"desired angle.  The desired angle is set by the width of a high-pulse on "
+"the servo signal wire.  A pulse width of 1500 microsecond corresponds to "
+"the centre position (0 degrees).  The pulses are sent at 50 Hz, ie 50 "
+"pulses per second."
+msgstr ""
+"これまでは、特定の角度に移動してその角度にとどまる標準的なサーボを使用してきました。"
+"これらのサーボモータは、ロボットのジョイントやパンチルト機構などを作成するのに便利です。"
+"内部的には、モータは現在の角度を測定し、所望の角度からの距離に比例してモータに電力を"
+"供給する可変抵抗(ポテンショメータ)を有します。所望の角度は、サーボ信号線上のハイパルス"
+"の幅によって設定されます。1500 マイクロ秒のパルス幅は中心位置（0度）に対応します。"
+"パルスは 50Hz、すなわち毎秒50パルスで送られます。"
+
+#: ../../../pyboard/tutorial/servo.rst:87
+msgid ""
+"You can also get **continuous rotation** servo motors which turn "
+"continuously clockwise or counterclockwise.  The direction and speed of "
+"rotation is set by the pulse width on the signal wire.  A pulse width of "
+"1500 microseconds corresponds to a stopped motor.  A pulse width smaller "
+"or larger than this means rotate one way or the other, at a given speed."
+msgstr ""
+"時計回りまたは反時計回りに連続的に回転する連続回転サーボモータを得ることもできます。"
+"回転の方向と速度は、信号線のパルス幅によって設定されます。1500マイクロ秒のパルス幅は"
+"停止したモータに対応します。この手段よりも小さいまたは大きいパルス幅は、ある速度で"
+"一方向または他の方向に回転します。"
+
+#: ../../../pyboard/tutorial/servo.rst:94
+msgid ""
+"On the pyboard, the servo object for a continuous rotation motor is the "
+"same as before.  In fact, using ``angle`` you can set the speed.  But to "
+"make it easier to understand what is intended, there is another method "
+"called ``speed`` which sets the speed::"
+msgstr ""
+"pyboard では、連続回転モータの Servo オブジェクトは以前と同じです。実際のところ "
+"``angle`` で速度を設定することができます。しかし、何が意図されているかを理解"
+"しやすくするために、スピードを設定する別のメソッド ``speed`` を用意しています。"
+
+#: ../../../pyboard/tutorial/servo.rst:99
+msgid ">>> servo1.speed(30)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:101
+msgid ""
+"``speed`` has the same functionality as ``angle``: you can get the speed,"
+" set it, and set it with a time to reach the final speed. ::"
+msgstr ""
+"``speed`` は ``angle`` と同様の機能を持ちます。つまり、スピードの取得、スピードの"
+"設定、最終速度に達するまでの時間を設定できます::"
+
+#: ../../../pyboard/tutorial/servo.rst:104
+msgid ""
+">>> servo1.speed()\n"
+"30\n"
+">>> servo1.speed(-20)\n"
+">>> servo1.speed(0, 2000)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:109
+msgid ""
+"The final command above will set the motor to stop, but take 2 seconds to"
+" do it.  This is essentially a control over the acceleration of the "
+"continuous servo."
+msgstr ""
+"上の最後のコマンドはモーターを止めるように設定しますが、それを行うのに2秒かかります。"
+"これは本質的に連続サーボの加速に対する制御です。"
+
+#: ../../../pyboard/tutorial/servo.rst:113
+msgid ""
+"A servo speed of 100 (or -100) is considered maximum speed, but actually "
+"you can go a bit faster than that, depending on the particular motor."
+msgstr ""
+"100 (または -100)のサーボ速度が最大速度と見なされますが、特定のモータにおいては"
+"実際にはそれより少し速く進むことができます。"
+
+#: ../../../pyboard/tutorial/servo.rst:116
+msgid ""
+"The only difference between the ``angle`` and ``speed`` methods (apart "
+"from the name) is the way the input numbers (angle or speed) are "
+"converted to a pulse width."
+msgstr ""
+"``angle`` と ``speed`` メソッドの唯一の違いは、与えた数値(角度または速度)を"
+"パルス幅に変換する方法です。"
+
+#: ../../../pyboard/tutorial/servo.rst:121
+msgid "Calibration"
+msgstr "キャリブレーション"
+
+#: ../../../pyboard/tutorial/servo.rst:123
+msgid ""
+"The conversion from angle or speed to pulse width is done by the servo "
+"object using its calibration values.  To get the current calibration, use"
+" ::"
+msgstr ""
+"角度または速度からパルス幅への変換は、そのキャリブレーション値を使って Servo "
+"オブジェクトによって行われます。現在のキャリブレーションを取得するには次のようにします::"
+
+#: ../../../pyboard/tutorial/servo.rst:127
+msgid ""
+">>> servo1.calibration()\n"
+"(640, 2420, 1500, 2470, 2200)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:130
+msgid "There are 5 numbers here, which have meaning:"
+msgstr "取得した５つの数字は次の意味を持っています:"
+
+#: ../../../pyboard/tutorial/servo.rst:132
+msgid "Minimum pulse width; the smallest pulse width that the servo accepts."
+msgstr "最小パルス幅; サーボが受け入れる最小のパルス幅。"
+
+#: ../../../pyboard/tutorial/servo.rst:133
+msgid "Maximum pulse width; the largest pulse width that the servo accepts."
+msgstr "最大パルス幅; サーボが受け入れる最大のパルス幅。"
+
+#: ../../../pyboard/tutorial/servo.rst:134
+msgid ""
+"Centre pulse width; the pulse width that puts the servo at 0 degrees or 0"
+" speed."
+msgstr ""
+"中心パルス幅; サーボを 0 度または 0 スピードにするパルス幅。"
+
+#: ../../../pyboard/tutorial/servo.rst:136
+msgid ""
+"The pulse width corresponding to 90 degrees.  This sets the conversion in"
+" the method ``angle`` of angle to pulse width."
+msgstr ""
+"90度に対応するパルス幅。これは、メソッド ``angle`` での角度からパルス幅への変換に"
+"使います。"
+
+#: ../../../pyboard/tutorial/servo.rst:138
+msgid ""
+"The pulse width corresponding to a speed of 100.  This sets the "
+"conversion in the method ``speed`` of speed to pulse width."
+msgstr ""
+"100 の 速度に対応するパルス幅。これは、メソッド ``speed`` でのスピードから"
+"パルス幅への変換に使います。"
+
+#: ../../../pyboard/tutorial/servo.rst:141
+msgid "You can recalibrate the servo (change its default values) by using::"
+msgstr "次のコマンドを使用して、サーボを再キャリブレーションできます(デフォルト値を変更します)::"
+
+#: ../../../pyboard/tutorial/servo.rst:143
+msgid ">>> servo1.calibration(700, 2400, 1510, 2500, 2000)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/servo.rst:145
+msgid ""
+"Of course, you would change the above values to suit your particular "
+"servo motor."
+msgstr ""
+"もちろん、上記の値を特定のサーボモータに合わせて変更します。"
+
+#: ../../../pyboard/tutorial/switch.rst:4
+msgid "The Switch, callbacks and interrupts"
+msgstr "スイッチ、コールバック、割り込み"
+
+#: ../../../pyboard/tutorial/switch.rst:6
+msgid ""
+"The pyboard has 2 small switches, labelled USR and RST.  The RST switch "
+"is a hard-reset switch, and if you press it then it restarts the pyboard "
+"from scratch, equivalent to turning the power off then back on."
+msgstr ""
+"pyboard には USR と RST の２つの小さなスイッチがあります。RST スイッチは"
+"ハードリセットのスイッチで、このスイッチを押すと、電源をオフにしてからオンに"
+"戻すことと同じように、最初から pyboard を再起動します。"
+
+#: ../../../pyboard/tutorial/switch.rst:10
+msgid ""
+"The USR switch is for general use, and is controlled via a Switch object."
+" To make a switch object do::"
+msgstr ""
+"USR スイッチは一般的な用途に使用され、Switch オブジェクトを介して制御されます。"
+"Switch オブジェクトを作成するには次のようにします::"
+
+#: ../../../pyboard/tutorial/switch.rst:13
+msgid ">>> sw = pyb.Switch()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:15
+msgid ""
+"Remember that you may need to type ``import pyb`` if you get an error "
+"that the name ``pyb`` does not exist."
+msgstr ""
+"名前 ``pyb`` が存在しないというエラーが発生した場合は、 ``import pyb`` を入力"
+"してみてください。"
+
+#: ../../../pyboard/tutorial/switch.rst:18
+msgid "With the switch object you can get its status::"
+msgstr "Swicth オブジェクトを使うと、次のようにして状態を取得できます::"
+
+#: ../../../pyboard/tutorial/switch.rst:20
+msgid ""
+">>> sw.value()\n"
+"False"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:23
+msgid ""
+"This will print ``False`` if the switch is not held, or ``True`` if it is"
+" held. Try holding the USR switch down while running the above command."
+msgstr ""
+"スイッチが押されていなければ ``False`` が表示され、押されていれば ``True`` が"
+"表示されます。USR スイッチを押したままで。上記のコマンドを実行してみてください。"
+
+#: ../../../pyboard/tutorial/switch.rst:26
+msgid ""
+"There is also a shorthand notation to get the switch status, by "
+"\"calling\" the switch object::"
+msgstr ""
+"Switch オブジェクトを「呼び出す」ことによって、スイッチの状態を取得する省略記法もあります::"
+
+#: ../../../pyboard/tutorial/switch.rst:29
+msgid ""
+">>> sw()\n"
+"False"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:33
+msgid "Switch callbacks"
+msgstr "スイッチのコールバック"
+
+#: ../../../pyboard/tutorial/switch.rst:35
+msgid ""
+"The switch is a very simple object, but it does have one advanced "
+"feature: the ``sw.callback()`` function.  The callback function sets up "
+"something to run when the switch is pressed, and uses an interrupt.  It's"
+" probably best to start with an example before understanding how "
+"interrupts work.  Try running the following at the prompt::"
+msgstr ""
+"Switch オブジェクトは非常に簡単なものですが、高度な機能が１つあります。それは"
+"``sw.callback()`` 関数です。コールバック関数は、スイッチが押されたときに実行"
+"するものを設定し、割り込みを使用します。割り込みの仕組みを理解する前に、例を"
+"あげるところから始めるのが一番よいでしょう。プロンプトで次のコマンドを実行して"
+"ください。"
+
+#: ../../../pyboard/tutorial/switch.rst:41
+msgid ">>> sw.callback(lambda:print('press!'))"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:43
+msgid ""
+"This tells the switch to print ``press!`` each time the switch is pressed"
+" down.  Go ahead and try it: press the USR switch and watch the output on"
+" your PC.  Note that this print will interrupt anything you are typing, "
+"and is an example of an interrupt routine running asynchronously."
+msgstr ""
+"これは、スイッチが押されるたびに ``press!`` を表示するように Switch オブジェクトに"
+"伝えます。これを試してみてください。USR スイッチを押して PC の出力を見てください。"
+"これは、入力に割り込み、非同期に実行される割り込みルーチンの例です。"
+
+#: ../../../pyboard/tutorial/switch.rst:48
+msgid "As another example try::"
+msgstr "もう一つの例をあげておきます::"
+
+#: ../../../pyboard/tutorial/switch.rst:50
+msgid ">>> sw.callback(lambda:pyb.LED(1).toggle())"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:52
+msgid ""
+"This will toggle the red LED each time the switch is pressed.  And it "
+"will even work while other code is running."
+msgstr ""
+"これは、スイッチを押すたびに赤色の LED の点灯/消灯を切り替えます。そして、他の"
+"コードが実行されている間も動作します。"
+
+#: ../../../pyboard/tutorial/switch.rst:55
+msgid "To disable the switch callback, pass ``None`` to the callback function::"
+msgstr "スイッチのコールバックを無効にするには ``None`` をコールバック関数に渡します::"
+
+#: ../../../pyboard/tutorial/switch.rst:57
+msgid ">>> sw.callback(None)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:59
+msgid ""
+"You can pass any function (that takes zero arguments) to the switch "
+"callback. Above we used the ``lambda`` feature of Python to create an "
+"anonymous function on the fly.  But we could equally do::"
+msgstr ""
+"スイッチのコールバックには、(引数の無い)関数を渡すことができます。"
+"上の例では Python の ``lambda`` 機能を使って無名関数を作成しました。"
+"しかし、次のようにしても同ことができます::"
+
+#: ../../../pyboard/tutorial/switch.rst:63
+msgid ""
+">>> def f():\n"
+"...   pyb.LED(1).toggle()\n"
+"...\n"
+">>> sw.callback(f)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/switch.rst:68
+msgid ""
+"This creates a function called ``f`` and assigns it to the switch "
+"callback. You can do things this way when your function is more "
+"complicated than a ``lambda`` will allow."
+msgstr ""
+"これは ``f`` という関数を作成し、それをスイッチコールバックに割り当てます。"
+"機能が ``lambda`` で扱うには複雑である場合は、このようにすることができます。"
+
+#: ../../../pyboard/tutorial/switch.rst:72
+msgid ""
+"Note that your callback functions must not allocate any memory (for "
+"example they cannot create a tuple or list).  Callback functions should "
+"be relatively simple.  If you need to make a list, make it beforehand and"
+" store it in a global variable (or make it local and close over it).  If "
+"you need to do a long, complicated calculation, then use the callback to "
+"set a flag which some other code then responds to."
+msgstr ""
+"コールバック関数ではメモリを割り当ててはいけません(たとえば、タプルやリストは作成"
+"できません)。コールバック関数は比較的シンプルでなければなりません。リストを作成する"
+"必要がある場合は、事前に作成してグローバル変数に格納します(またはローカル変数にして、
+"そのローカル内に閉じるようにしてください)。長くて複雑な計算が必要な場合、コールバック"
+"ではフラグを設定するようにし、そのフラグに他のコードが応答するようにしてください。"
+
+#: ../../../pyboard/tutorial/switch.rst:80
+msgid "Technical details of interrupts"
+msgstr "割り込みの技術的な詳細"
+
+#: ../../../pyboard/tutorial/switch.rst:82
+msgid ""
+"Let's step through the details of what is happening with the switch "
+"callback.  When you register a function with ``sw.callback()``, the "
+"switch sets up an external interrupt trigger (falling edge) on the pin "
+"that the switch is connected to.  This means that the microcontroller "
+"will listen on the pin for any changes, and the following will occur:"
+msgstr ""
+"スイッチのコールバックで何が起きているのかを詳しく見てみましょう。 "
+"``sw.callback()`` で関数を登録すると、Switch オブジェクトはスイッチが接続"
+"されているピンに外部割り込みトリガ(立下りエッジ)を設定します。これにより、マイクロ"
+"コントローラがピンの変化を監視するようになり、次のことが起きます:"
+
+#: ../../../pyboard/tutorial/switch.rst:88
+msgid ""
+"When the switch is pressed a change occurs on the pin (the pin goes from "
+"low to high), and the microcontroller registers this change."
+msgstr ""
+"スイッチが押されると、ピンに変化が生じ(ピンがローからハイに変化する)、マイクロ"
+"コントローラはこの変化を登録します。"
+
+#: ../../../pyboard/tutorial/switch.rst:90
+msgid ""
+"The microcontroller finishes executing the current machine instruction, "
+"stops execution, and saves its current state (pushes the registers on the"
+" stack).  This has the effect of pausing any code, for example your "
+"running Python script."
+msgstr ""
+"マイクロコントローラは、現在の機械命令の実行を終了し、処理を中断し、現在の状態を"
+"保存します(レジスタをスタックにプッシュする)。これには、任意のコード、たとえば
+"実行中の Python スクリプトを一時停止するという効果があります。"
+
+#: ../../../pyboard/tutorial/switch.rst:94
+msgid ""
+"The microcontroller starts executing the special interrupt handler "
+"associated with the switch's external trigger.  This interrupt handler "
+"get the function that you registered with ``sw.callback()`` and executes "
+"it."
+msgstr ""
+"マイクロコントローラは、スイッチの外部トリガに関連付けられた特別な割り込みハンドラの"
+"実行を開始します。この割り込みハンドラは ``sw.callback()`` で登録した関数を取得して"
+"実行します。"
+
+#: ../../../pyboard/tutorial/switch.rst:98
+msgid ""
+"Your callback function is executed until it finishes, returning control "
+"to the switch interrupt handler."
+msgstr ""
+"コールバック関数が終了するまで実行され、スイッチの割り込みハンドラに制御を戻します。"
+
+#: ../../../pyboard/tutorial/switch.rst:100
+msgid ""
+"The switch interrupt handler returns, and the microcontroller is notified"
+" that the interrupt has been dealt with."
+msgstr ""
+"スイッチ割り込みハンドラが復帰し、割り込みが処理されたことがマイクロコントローラに"
+"通知されます。"
+
+#: ../../../pyboard/tutorial/switch.rst:102
+msgid "The microcontroller restores the state that it saved in step 2."
+msgstr "マイクロコントローラは、ステップ２で保存した状態を復元します。"
+
+#: ../../../pyboard/tutorial/switch.rst:103
+msgid ""
+"Execution continues of the code that was running at the beginning.  Apart"
+" from the pause, this code does not notice that it was interrupted."
+msgstr ""
+"最初に実行されていたコードの実行が継続されます。このコードは割り込まれたことに"
+"感づいていません。"
+
+#: ../../../pyboard/tutorial/switch.rst:106
+msgid ""
+"The above sequence of events gets a bit more complicated when multiple "
+"interrupts occur at the same time.  In that case, the interrupt with the "
+"highest priority goes first, then the others in order of their priority. "
+"The switch interrupt is set at the lowest priority."
+msgstr ""
+"上記の一連のイベントは、複数の割り込みが同時に発生した場合には少し複雑になります。"
+"その場合、最も優先順位の高い割り込みが優先され、次に優先順位の高い順に割り込みが"
+"実行されます。スイッチ割り込みは、最も低い優先度に設定されます。"
+
+#: ../../../pyboard/tutorial/switch.rst:114
+msgid ""
+"For further information about using hardware interrupts see :ref:`writing"
+" interrupt handlers <isr_rules>`."
+msgstr ""
+"ハードウェア割り込み利用の詳細については、 "
+":ref:`writing interrupt handlers <isr_rules>` の記述を参照してください。"
+
+#: ../../../pyboard/tutorial/timer.rst:2
+msgid "The Timers"
+msgstr "タイマー"
+
+#: ../../../pyboard/tutorial/timer.rst:4
+msgid ""
+"The pyboard has 14 timers which each consist of an independent counter "
+"running at a user-defined frequency.  They can be set up to run a "
+"function at specific intervals. The 14 timers are numbered 1 through 14, "
+"but 3 is reserved for internal use, and 5 and 6 are used for servo and "
+"ADC/DAC control. Avoid using these timers if possible."
+msgstr ""
+"pyboard には１４個のタイマーがあり、それぞれのタイマーはユーザー定義の周波数で"
+"動作する独立したカウンターで構成されています。これらは特定の間隔で関数を実行する"
+"ように設定できます。１４個のタイマーは 1 から 14 までの番号が付けられていますが、"
+"2 は内部使用のために予約されており、5 と 6 はサーボおよび ADC/DAC 制御に"
+"使用されています。できれば、これらのタイマーを使わないでください。"
+
+#: ../../../pyboard/tutorial/timer.rst:11
+msgid "Let's create a timer object::"
+msgstr "タイマーオブジェクトを作成してみましょう::"
+
+#: ../../../pyboard/tutorial/timer.rst:13
+msgid ">>> tim = pyb.Timer(4)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:15
+msgid "Now let's see what we just created::"
+msgstr "作成したものを見てみましょう::"
+
+#: ../../../pyboard/tutorial/timer.rst:17
+msgid ""
+">>> tim\n"
+"Timer(4)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:20
+msgid ""
+"The pyboard is telling us that ``tim`` is attached to timer number 4, but"
+" it's not yet initialised.  So let's initialise it to trigger at 10 Hz "
+"(that's 10 times per second)::"
+msgstr ""
+"これで ``tim`` にはタイマー番号 4 になっていることがわかりますが、まだ初期化されて"
+"いません。ですから 10Hz (毎秒10回)でトリガするように初期化しましょう::"
+
+#: ../../../pyboard/tutorial/timer.rst:24
+msgid ">>> tim.init(freq=10)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:26
+msgid "Now that it's initialised, we can see some information about the timer::"
+msgstr "これで初期化されたので、タイマーに関するいくつかの情報を見ることができます::"
+
+#: ../../../pyboard/tutorial/timer.rst:28
+msgid ""
+">>> tim\n"
+"Timer(4, prescaler=624, period=13439, mode=UP, div=1)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:31
+msgid ""
+"The information means that this timer is set to run at the peripheral "
+"clock speed divided by 624+1, and it will count from 0 up to 13439, at "
+"which point it triggers an interrupt, and then starts counting again from"
+" 0.  These numbers are set to make the timer trigger at 10 Hz: the source"
+" frequency of the timer is 84MHz (found by running ``tim.source_freq()``)"
+" so we get 84MHz / 625 / 13440 = 10Hz."
+msgstr ""
+"この情報は、このタイマーがペリフェラルクロック速度を 624+1 で割った値で動作するように"
+"設定されていることを意味し、0 から 13439 までカウントし、その時点で割り込みをトリガ"
+"し、0 から再びカウントを開始します。これはタイマのトリガが 10Hz になるように設定します。"
+"タイマのソース周波数は 84MHz (``tim.source_freq()`` の実行でわかります)なので、"
+"84MHz/625/13440 = 10Hz になります。"
+
+#: ../../../pyboard/tutorial/timer.rst:39
+msgid "Timer counter"
+msgstr "タイマーカウンター"
+
+#: ../../../pyboard/tutorial/timer.rst:41
+msgid ""
+"So what can we do with our timer?  The most basic thing is to get the "
+"current value of its counter::"
+msgstr ""
+"では、このタイマーで何ができるでしょうか？　最も基本的なことは、カウンタの現在の"
+"値を取得することです::"
+
+#: ../../../pyboard/tutorial/timer.rst:44
+msgid ""
+">>> tim.counter()\n"
+"21504"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:47
+msgid "This counter will continuously change, and counts up."
+msgstr "このカウンタは連続的に変化し、カウントアップしていきます。"
+
+#: ../../../pyboard/tutorial/timer.rst:50
+msgid "Timer callbacks"
+msgstr "タイマーコールバック"
+
+#: ../../../pyboard/tutorial/timer.rst:52
+msgid ""
+"The next thing we can do is register a callback function for the timer to"
+" execute when it triggers (see the :ref:`switch tutorial "
+"<pyboard_tutorial_switch>` for an introduction to callback functions)::"
+msgstr ""
+"次に、タイマーがトリガーするときに実行するコールバック関数を登録します(コールバック"
+"関数については :ref:`スイッチのチュートリアル <pyboard_tutorial_switch>` を"
+"参照)::"
+
+#: ../../../pyboard/tutorial/timer.rst:56
+msgid ">>> tim.callback(lambda t:pyb.LED(1).toggle())"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:58
+msgid ""
+"This should start the red LED flashing right away.  It will be flashing "
+"at 5 Hz (2 toggle's are needed for 1 flash, so toggling at 10 Hz makes it"
+" flash at 5 Hz).  You can change the frequency by re-initialising the "
+"timer::"
+msgstr ""
+"すぐに赤いLEDが点滅し始めるはずです。5Hzで点滅します(１回のフラッシュに２回のトグルが"
+"必要なため、10Hz でトグルすると 5Hz で点滅します)。タイマーを再初期化することによって、"
+"周波数を変更できます::"
+
+#: ../../../pyboard/tutorial/timer.rst:63
+msgid ">>> tim.init(freq=20)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:65
+msgid "You can disable the callback by passing it the value ``None``::"
+msgstr "コールバックを無効にするには、値を ``None`` を渡します::"
+
+#: ../../../pyboard/tutorial/timer.rst:67
+msgid ">>> tim.callback(None)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:69
+msgid ""
+"The function that you pass to callback must take 1 argument, which is the"
+" timer object that triggered.  This allows you to control the timer from "
+"within the callback function."
+msgstr ""
+"コールバックに渡す関数は、トリガーしたタイマーオブジェクトである引数１つを取る必要が"
+"あります。これにより、コールバック関数内からタイマーを制御できます。"
+
+#: ../../../pyboard/tutorial/timer.rst:73
+msgid "We can create 2 timers and run them independently::"
+msgstr "２つのタイマーを作成して、それぞれ独立して実行できます::"
+
+#: ../../../pyboard/tutorial/timer.rst:75
+msgid ""
+">>> tim4 = pyb.Timer(4, freq=10)\n"
+">>> tim7 = pyb.Timer(7, freq=20)\n"
+">>> tim4.callback(lambda t: pyb.LED(1).toggle())\n"
+">>> tim7.callback(lambda t: pyb.LED(2).toggle())"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:80
+msgid ""
+"Because the callbacks are proper hardware interrupts, we can continue to "
+"use the pyboard for other things while these timers are running."
+msgstr ""
+"コールバックは適切なハードウェア割り込みであるため、これらのタイマーが実行されている"
+"間も、他の処理のために pyboard を使い続けることができます。"
+
+#: ../../../pyboard/tutorial/timer.rst:84
+msgid "Making a microsecond counter"
+msgstr "マイクロ秒カウンタを作る"
+
+#: ../../../pyboard/tutorial/timer.rst:86
+msgid ""
+"You can use a timer to create a microsecond counter, which might be "
+"useful when you are doing something which requires accurate timing. We "
+"will use timer 2 for this, since timer 2 has a 32-bit counter (so does "
+"timer 5, but if you use timer 5 then you can't use the Servo driver at "
+"the same time)."
+msgstr ""
+"タイマーを使用してマイクロ秒カウンタを作成できます。これは、正確なタイミングが"
+"必要な作業を行う場合に便利です。このためには、32ビットのカンターを持つタイマー "
+"2 を使います(タイマー 5 も同様ですが、タイマー 5 を使ってしまうと、同時には"
+"サーボドライバーを使えなくなります)。"
+
+#: ../../../pyboard/tutorial/timer.rst:92
+msgid "We set up timer 2 as follows::"
+msgstr "タイマー 2 は次のように設定します::"
+
+#: ../../../pyboard/tutorial/timer.rst:94
+msgid ">>> micros = pyb.Timer(2, prescaler=83, period=0x3fffffff)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:96
+msgid ""
+"The prescaler is set at 83, which makes this timer count at 1 MHz. This "
+"is because the CPU clock, running at 168 MHz, is divided by 2 and then by"
+" prescaler+1, giving a frequency of 168 MHz/2/(83+1)=1 MHz for timer 2.  "
+"The period is set to a large number so that the timer can count up to a "
+"large number before wrapping back around to zero. In this case it will "
+"take about 17 minutes before it cycles back to zero."
+msgstr ""
+"prescaler を 83 に設定するので、このタイマは 1MHz でカウントされます。つまり、"
+"168MHz で動作するCPUクロックを2で割った後、prescaler+1 で割ることで、タイマー "
+"2 に 168MHz/2/(83+1)=1MHz の周波数を与えているということです。period を大きな"
+"値にしているので、タイマーは大量にカウントアップしないと 0 に戻りません。この場合は、"
+"この場合、サイクルが0に戻る前に約17分かかります。"
+
+#: ../../../pyboard/tutorial/timer.rst:104
+msgid "To use this timer, it's best to first reset it to 0::"
+msgstr "このタイマーを使用するには、最初に0にリセットすることをお勧めします::"
+
+#: ../../../pyboard/tutorial/timer.rst:106
+msgid ">>> micros.counter(0)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/timer.rst:108
+msgid "and then perform your timing::"
+msgstr "では、実行してみてください::"
+
+#: ../../../<rst_epilog>:110
+msgid ""
+">>> start_micros = micros.counter()\n"
+"\n"
+"... do some stuff ...\n"
+"\n"
+">>> end_micros = micros.counter()"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:2
+msgid "Making the pyboard act as a USB mouse"
+msgstr "pyboard を USB マウスとして動作させる"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:4
+msgid ""
+"The pyboard is a USB device, and can configured to act as a mouse instead"
+" of the default USB flash drive."
+msgstr ""
+"pyboard は USB デバイスであり、デフォルトの USB フラッシュドライブの代わりにマウス"
+"として機能するように設定できます。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:7
+msgid ""
+"To do this we must first edit the ``boot.py`` file to change the USB "
+"configuration.  If you have not yet touched your ``boot.py`` file then it"
+" will look something like this::"
+msgstr ""
+"これを行うには、最初に ``boot.py`` ファイルを編集して、USB 構成を変更する必要があります。"
+"まだ ``boot.py`` を一度も編集してない場合は、次のような内容になっています::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:11
+msgid ""
+"# boot.py -- run on boot-up\n"
+"# can run arbitrary Python, but best to keep it minimal\n"
+"\n"
+"import pyb\n"
+"#pyb.main('main.py') # main script to run after this one\n"
+"#pyb.usb_mode('VCP+MSC') # act as a serial and a storage device\n"
+"#pyb.usb_mode('VCP+HID') # act as a serial device and a mouse"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:19
+msgid ""
+"To enable the mouse mode, uncomment the last line of the file, to make it"
+" look like::"
+msgstr ""
+"マウスモードを有効にするには、ファイルの最後の行のコメントを外して、次のようにします::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:22
+msgid "pyb.usb_mode('VCP+HID') # act as a serial device and a mouse"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:24
+msgid ""
+"If you already changed your ``boot.py`` file, then the minimum code it "
+"needs to work is::"
+msgstr ""
+"すでに ``boot.py`` ファイルを変更していた場合、動作させるのに必要な最小限のコードは"
+"次のとおりです::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:27
+msgid ""
+"import pyb\n"
+"pyb.usb_mode('VCP+HID')"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:30
+msgid ""
+"This tells the pyboard to configure itself as a VCP (Virtual COM Port, ie"
+" serial port) and HID (human interface device, in our case a mouse) USB "
+"device when it boots up."
+msgstr ""
+"これは、起動時に VCP (仮想COMポート、すなわちシリアルポート)および HID (Human "
+"Interface Device、ここではマウス) USB デバイスとして構成するように pyboard に"
+"指示します。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:34
+msgid ""
+"Eject/unmount the pyboard drive and reset it using the RST switch. Your "
+"PC should now detect the pyboard as a mouse!"
+msgstr ""
+"pyboard ドライブを取り出し/アンマウントし、RST スイッチを使用してリセットします。"
+"これで PC は pyboard をマウスとして検出するはずです！"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:38
+msgid "Sending mouse events by hand"
+msgstr "手動でマウスイベントを送信する"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:40
+msgid ""
+"To get the py-mouse to do anything we need to send mouse events to the "
+"PC. We will first do this manually using the REPL prompt.  Connect to "
+"your pyboard using your serial program and type the following::"
+msgstr ""
+"py マウスに何かをさせるには、マウスイベントを PC に送る必要があります。最初に "
+"REPL プロンプトを使って手動で行います。シリアルプログラムを使用して pyboard に"
+"接続し、次のように入力します::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:44
+msgid ""
+">>> hid = pyb.USB_HID()\n"
+">>> hid.send((0, 10, 0, 0))"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:47
+msgid ""
+"Your mouse should move 10 pixels to the right!  In the command above you "
+"are sending 4 pieces of information: button status, x, y and scroll.  The"
+" number 10 is telling the PC that the mouse moved 10 pixels in the x "
+"direction."
+msgstr ""
+"あなたのマウスは10ピクセル右に移動するはずです！　上のコマンドでは、ボタンステータス、"
+"x、y、スクロールの４つの情報を送信しています。数字 10 は、マウスが x 方向に 10 "
+"ピクセル移動することを PC に伝えています。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:51
+msgid "Let's make the mouse oscillate left and right::"
+msgstr "マウスを左右に振動させてみましょう::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:53
+msgid ""
+">>> import math\n"
+">>> def osc(n, d):\n"
+"...   for i in range(n):\n"
+"...     hid.send((0, int(20 * math.sin(i / 10)), 0, 0))\n"
+"...     pyb.delay(d)\n"
+"...\n"
+">>> osc(100, 50)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:61
+msgid ""
+"The first argument to the function ``osc`` is the number of mouse events "
+"to send, and the second argument is the delay (in milliseconds) between "
+"events.  Try playing around with different numbers."
+msgstr ""
+"関数 ``osc`` 第１引数は送信するマウスイベントの数であり、第２引数はイベント間の遅延"
+"(ミリ秒単位)です。違う値に変えて遊んでみてください。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:65
+msgid "**Exercise: make the mouse go around in a circle.**"
+msgstr "**練習問題: マウスを円状に回してください。**"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:68
+msgid "Making a mouse with the accelerometer"
+msgstr "加速度センサーでマウス操作する"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:70
+msgid ""
+"Now lets make the mouse move based on the angle of the pyboard, using the"
+" accelerometer.  The following code can be typed directly at the REPL "
+"prompt, or put in the ``main.py`` file.  Here, we'll put in in "
+"``main.py`` because to do that we will learn how to go into safe mode."
+msgstr ""
+"今度は、加速度センサーを使って、マウスを pyboard の角度に基づいて移動させます。"
+"次のコードは、REPL プロンプトで直接入力することも、main.pyファイルに入れることも"
+"できます。ここでは、セーフモードに入る方法を学習するために ``main.py`` にコードを"
+"入れることにします。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:75
+msgid ""
+"At the moment the pyboard is acting as a serial USB device and an HID (a "
+"mouse). So you cannot access the filesystem to edit your ``main.py`` "
+"file."
+msgstr ""
+"現時点では、pyboard がシリアル USB デバイスと HID (マウス)として動作しています。"
+"したがって、ファイルシステムにアクセスして ``main.py`` ファイルを編集することは"
+"できません。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:78
+msgid ""
+"You also can't edit your ``boot.py`` to get out of HID-mode and back to "
+"normal mode with a USB drive..."
+msgstr ""
+"また、 ``boot.py`` も編集できないので、HID モードから抜け出して、USB ドライブが"
+"使える通常のモードに戻ることもできません..."
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:81
+msgid ""
+"To get around this we need to go into *safe mode*.  This was described in"
+" the [safe mode tutorial](tut-reset), but we repeat the instructions "
+"here:"
+msgstr ""
+"これを回避するには **セーフモード** に入る必要があります。これは "
+"[セーフモードのチュートリアル](tut-reset)に説明されていますが、ここでも"
+"手順を示しておきます:"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:92
+msgid ""
+"In safe mode, the ``boot.py`` and ``main.py`` files are not executed, and"
+" so the pyboard boots up with default settings.  This means you now have "
+"access to the filesystem (the USB drive should appear), and you can edit "
+"``main.py``. (Leave ``boot.py`` as-is, because we still want to go back "
+"to HID-mode after we finish editing ``main.py``.)"
+msgstr ""
+"セーフモードでは ``boot.py`` と ``main.py`` ファイルは実行されないので、"
+"pyboard はデフォルト設定で起動します。つまり、ファイルシステムにアクセスできる"
+"ようになり(USBドライブが表示されます)、 ``main.py`` を編集できます。
+"(``main.py`` の編集を終えてから HID モードに戻したいので、``boot.py`` は"
+"そのままの状態にしておきます。)"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:98
+msgid "In ``main.py`` put the following code::"
+msgstr "``main.py`` に次のコードを書き込みます::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:100
+msgid ""
+"import pyb\n"
+"\n"
+"switch = pyb.Switch()\n"
+"accel = pyb.Accel()\n"
+"hid = pyb.USB_HID()\n"
+"\n"
+"while not switch():\n"
+"    hid.send((0, accel.x(), accel.y(), 0))\n"
+"    pyb.delay(20)"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:110
+msgid ""
+"Save your file, eject/unmount your pyboard drive, and reset it using the "
+"RST switch.  It should now act as a mouse, and the angle of the board "
+"will move the mouse around.  Try it out, and see if you can make the "
+"mouse stand still!"
+msgstr ""
+"ファイルを保存し、pyboard ドライブの取り出し/アンマウントを行い、RST スイッチを"
+"使ってリセットします。これでマウスとして機能し、ボードの角度によってマウスが動きます。"
+"それを試してみて、さらにマウスを静かにできるかを確かめてください！"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:114
+msgid "Press the USR switch to stop the mouse motion."
+msgstr "マウスの動きを止めるには、USR スイッチを押します。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:116
+msgid ""
+"You'll note that the y-axis is inverted.  That's easy to fix: just put a "
+"minus sign in front of the y-coordinate in the ``hid.send()`` line above."
+msgstr ""
+"y軸は反転していることに気づくでしょう。これは簡単に修正できます: "
+"上記のコードの ``hid.send()`` のy座標の前にマイナス記号を付けるだけです。"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:120
+msgid "Restoring your pyboard to normal"
+msgstr "pyboardを通常の状態に戻す"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:122
+msgid ""
+"If you leave your pyboard as-is, it'll behave as a mouse everytime you "
+"plug it in.  You probably want to change it back to normal.  To do this "
+"you need to first enter safe mode (see above), and then edit the "
+"``boot.py`` file. In the ``boot.py`` file, comment out (put a # in front "
+"of) the line with the ``VCP+HID`` setting, so it looks like::"
+msgstr ""
+"pyboard をそのままにしておくと、USB に繋ぐたびにマウスのように振る舞います。"
+"おそらくは通常の状態に戻したいと思うでしょう。これを行うには、最初にセーフモードに"
+"入り(上記参照)、 ``boot.py`` ファイルを編集する必要があります。"
+"``boot.py`` ファイルの ``VCP+HID`` 設定の行をコメントアウト(該当行の先頭に # を"
+"置きます)。それは次のようになります::"
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:128
+msgid "#pyb.usb_mode('VCP+HID') # act as a serial device and a mouse"
+msgstr ""
+
+#: ../../../pyboard/tutorial/usb_mouse.rst:130
+msgid ""
+"Save your file, eject/unmount the drive, and reset the pyboard.  It is "
+"now back to normal operating mode."
+msgstr ""
+"ファイルを保存し、ドライブの取り出し/アンマウント、および pyboard のリセットを"
+"行います。これで通常の動作モードに戻ります。"
+

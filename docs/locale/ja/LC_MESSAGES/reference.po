@@ -1,0 +1,4614 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-2018, Damien P. George, Paul Sokolovsky, and
+# contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.9.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-03 14:13+0900\n"
+"PO-Revision-Date: 2018-11-09 21:37+0900\n"
+"Last-Translator: Minoru Inachi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../../reference/asm_thumb2_arith.rst:2
+msgid "Arithmetic instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:5
+#: ../../../reference/asm_thumb2_compare.rst:9
+#: ../../../reference/asm_thumb2_float.rst:17
+#: ../../../reference/asm_thumb2_index.rst:18
+#: ../../../reference/asm_thumb2_label_branch.rst:16
+#: ../../../reference/asm_thumb2_ldr.rst:5
+#: ../../../reference/asm_thumb2_logical_bit.rst:5
+#: ../../../reference/asm_thumb2_mov.rst:5
+#: ../../../reference/asm_thumb2_stack.rst:5
+#: ../../../reference/asm_thumb2_str.rst:5
+msgid "Document conventions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:7
+msgid ""
+"Notation: ``Rd, Rm, Rn`` denote ARM registers R0-R7. ``immN`` denotes an "
+"immediate value having a width of N bits e.g. ``imm8``, ``imm3``. "
+"``carry`` denotes the carry condition flag, ``not(carry)`` denotes its "
+"complement. In the case of instructions with more than one register "
+"argument, it is permissible for some to be identical. For example the "
+"following will add the contents of R0 to itself, placing the result in "
+"R0:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:13
+msgid "add(r0, r0, r0)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:15
+msgid "Arithmetic instructions affect the condition flags except where stated."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:18
+msgid "Addition"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:20
+msgid "add(Rdn, imm8) ``Rdn = Rdn + imm8``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:21
+msgid "add(Rd, Rn, imm3) ``Rd = Rn + imm3``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:22
+msgid "add(Rd, Rn, Rm) ``Rd = Rn +Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:23
+msgid "adc(Rd, Rn) ``Rd = Rd + Rn + carry``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:26
+msgid "Subtraction"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:28
+msgid "sub(Rdn, imm8) ``Rdn = Rdn - imm8``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:29
+msgid "sub(Rd, Rn, imm3) ``Rd = Rn - imm3``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:30
+msgid "sub(Rd, Rn, Rm) ``Rd = Rn - Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:31
+msgid "sbc(Rd, Rn) ``Rd = Rd - Rn - not(carry)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:34
+msgid "Negation"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:36
+msgid "neg(Rd, Rn) ``Rd = -Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:39
+msgid "Multiplication and division"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:41
+msgid "mul(Rd, Rn) ``Rd = Rd * Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:43
+msgid ""
+"This produces a 32 bit result with overflow lost. The result may be "
+"treated as signed or unsigned according to the definition of the "
+"operands."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:46
+msgid "sdiv(Rd, Rn, Rm) ``Rd = Rn / Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:47
+msgid "udiv(Rd, Rn, Rm) ``Rd = Rn / Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_arith.rst:49
+msgid ""
+"These functions perform signed and unsigned division respectively. "
+"Condition flags are not affected."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:2
+#: ../../../reference/asm_thumb2_compare.rst:49
+msgid "Comparison instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:4
+msgid ""
+"These perform an arithmetic or logical instruction on two arguments, "
+"discarding the result but setting the condition flags. Typically these "
+"are used to test data values without changing them prior to executing a "
+"conditional branch."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:11
+msgid ""
+"Notation: ``Rd, Rm, Rn`` denote ARM registers R0-R7. ``imm8`` denotes an "
+"immediate value having a width of 8 bits."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:15
+msgid "The Application Program Status Register (APSR)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:17
+msgid ""
+"This contains four bits which are tested by the conditional branch "
+"instructions. Typically a conditional branch will test multiple bits, for"
+" example ``bge(LABEL)``. The meaning of condition codes can depend on "
+"whether the operands of an arithmetic instruction are viewed as signed or"
+" unsigned integers. Thus ``bhi(LABEL)`` assumes unsigned numbers were "
+"processed while ``bgt(LABEL)`` assumes signed operands."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:24
+msgid "APSR Bits"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:26
+msgid "Z (zero)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:28
+msgid ""
+"This is set if the result of an operation is zero or the operands of a "
+"comparison are equal."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:30
+msgid "N (negative)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:32
+msgid "Set if the result is negative."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:34
+msgid "C (carry)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:36
+msgid ""
+"An addition sets the carry flag when the result overflows out of the MSB,"
+" for example adding 0x80000000 and 0x80000000. By the nature of two's "
+"complement arithmetic this behaviour is reversed on subtraction, with a "
+"borrow indicated by the carry bit being clear. Thus 0x10 - 0x01 is "
+"executed as 0x10 + 0xffffffff which will set the carry bit."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:41
+msgid "V (overflow)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:43
+msgid ""
+"The overflow flag is set if the result, viewed as a two's compliment "
+"number, has the \"wrong\" sign in relation to the operands. For example "
+"adding 1 to 0x7fffffff will set the overflow bit because the result "
+"(0x8000000), viewed as a two's complement integer, is negative. Note that"
+" in this instance the carry bit is not set."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:51
+msgid ""
+"These set the APSR (Application Program Status Register) N (negative), Z "
+"(zero), C (carry) and V (overflow) flags."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:54
+msgid "cmp(Rn, imm8) ``Rn - imm8``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:55
+msgid "cmp(Rn, Rm) ``Rn - Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:56
+msgid "cmn(Rn, Rm) ``Rn + Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:57
+msgid "tst(Rn, Rm) ``Rn & Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:60
+msgid "Conditional execution"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:62
+msgid ""
+"The ``it`` and ``ite`` instructions provide a means of conditionally "
+"executing from one to four subsequent instructions without the need for a"
+" label."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:65
+msgid "it(<condition>) If then"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:67
+msgid "Execute the next instruction if <condition> is true:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:71
+msgid ""
+"cmp(r0, r1)\n"
+"it(eq)\n"
+"mov(r0, 100) # runs if r0 == r1\n"
+"# execution continues here"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:76
+msgid "ite(<condition>) If then else"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:78
+msgid ""
+"If <condtion> is true, execute the next instruction, otherwise execute "
+"the subsequent one. Thus:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:83
+msgid ""
+"cmp(r0, r1)\n"
+"ite(eq)\n"
+"mov(r0, 100) # runs if r0 == r1\n"
+"mov(r0, 200) # runs if r0 != r1\n"
+"# execution continues here"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_compare.rst:89
+msgid ""
+"This may be extended to control the execution of upto four subsequent "
+"instructions: it[x[y[z]]] where x,y,z=t/e; e.g. itt, itee, itete, ittte, "
+"itttt, iteee, etc."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:2
+msgid "Assembler Directives"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:5
+msgid "Labels"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:7
+msgid "label(INNER1)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:9
+msgid ""
+"This defines a label for use in a branch instruction. Thus elsewhere in "
+"the code a ``b(INNER1)`` will cause execution to continue with the "
+"instruction after the label directive."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:13
+msgid "Defining inline data"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:15
+msgid ""
+"The following assembler directives facilitate embedding data in an "
+"assembler code block."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:17
+msgid "data(size, d0, d1 .. dn)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:19
+msgid ""
+"The data directive creates n array of data values in memory. The first "
+"argument specifies the size in bytes of the subsequent arguments. Hence "
+"the first statement below will cause the assembler to put three bytes "
+"(with values 2, 3 and 4) into consecutive memory locations while the "
+"second will cause it to emit two four byte words."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:26
+msgid ""
+"data(1, 2, 3, 4)\n"
+"data(4, 2, 100000)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:29
+msgid ""
+"Data values longer than a single byte are stored in memory in little-"
+"endian format."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:31
+msgid "align(nBytes)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_directives.rst:33
+msgid ""
+"Align the following instruction to an nBytes value. ARM Thumb-2 "
+"instructions must be two byte aligned, hence it's advisable to issue "
+"``align(2)`` after ``data`` directives and prior to any subsequent code. "
+"This ensures that the code will run irrespective of the size of the data "
+"array."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:2
+msgid "Floating Point instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:4
+msgid ""
+"These instructions support the use of the ARM floating point coprocessor "
+"(on platforms such as the Pyboard which are equipped with one). The FPU "
+"has 32 registers known as ``s0-s31`` each of which can hold a single "
+"precision float. Data can be passed between the FPU registers and the ARM"
+" core registers with the ``vmov`` instruction."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:10
+msgid ""
+"Note that MicroPython doesn't support passing floats to assembler "
+"functions, nor can you put a float into ``r0`` and expect a reasonable "
+"result. There are two ways to overcome this. The first is to use arrays, "
+"and the second is to pass and/or return integers and convert to and from "
+"floats in code."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:19
+msgid ""
+"Notation: ``Sd, Sm, Sn`` denote FPU registers, ``Rd, Rm, Rn`` denote ARM "
+"core registers. The latter can be any ARM core register although "
+"registers ``R13-R15`` are unlikely to be appropriate in this context."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:24
+msgid "Arithmetic"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:26
+msgid "vadd(Sd, Sn, Sm) ``Sd = Sn + Sm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:27
+msgid "vsub(Sd, Sn, Sm) ``Sd = Sn - Sm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:28
+msgid "vneg(Sd, Sm) ``Sd = -Sm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:29
+msgid "vmul(Sd, Sn, Sm) ``Sd = Sn * Sm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:30
+msgid "vdiv(Sd, Sn, Sm) ``Sd = Sn / Sm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:31
+msgid "vsqrt(Sd, Sm) ``Sd = sqrt(Sm)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:33
+msgid ""
+"Registers may be identical: ``vmul(S0, S0, S0)`` will execute ``S0 = "
+"S0*S0``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:36
+msgid "Move between ARM core and FPU registers"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:38
+msgid "vmov(Sd, Rm) ``Sd = Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:39
+msgid "vmov(Rd, Sm) ``Rd = Sm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:41
+msgid ""
+"The FPU has a register known as FPSCR, similar to the ARM core's APSR, "
+"which stores condition codes plus other data. The following instructions "
+"provide access to this."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:44
+msgid "vmrs(APSR\\_nzcv, FPSCR)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:46
+msgid ""
+"Move the floating-point N, Z, C, and V flags to the APSR N, Z, C, and V "
+"flags."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:48
+msgid ""
+"This is done after an instruction such as an FPU comparison to enable the"
+" condition codes to be tested by the assembler code. The following is a "
+"more general form of the instruction."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:52
+msgid "vmrs(Rd, FPSCR) ``Rd = FPSCR``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:55
+msgid "Move between FPU register and memory"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:57
+msgid "vldr(Sd, [Rn, offset]) ``Sd = [Rn + offset]``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:58
+msgid "vstr(Sd, [Rn, offset]) ``[Rn + offset] = Sd``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:60
+msgid ""
+"Where ``[Rn + offset]`` denotes the memory address obtained by adding Rn "
+"to the offset. This is specified in bytes. Since each float value "
+"occupies a 32 bit word, when accessing arrays of floats the offset must "
+"always be a multiple of four bytes."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:65
+msgid "Data Comparison"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:67
+msgid "vcmp(Sd, Sm)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:69
+msgid ""
+"Compare the values in Sd and Sm and set the FPU N, Z, C, and V flags. "
+"This would normally be followed by ``vmrs(APSR_nzcv, FPSCR)`` to enable "
+"the results to be tested."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:74
+msgid "Convert between integer and float"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:76
+msgid "vcvt\\_f32\\_s32(Sd, Sm) ``Sd = float(Sm)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_float.rst:77
+msgid "vcvt\\_s32\\_f32(Sd, Sm) ``Sd = int(Sm)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:2
+msgid "Hints and tips"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:4
+msgid ""
+"The following are some examples of the use of the inline assembler and "
+"some information on how to work around its limitations. In this document "
+"the term \"assembler function\" refers to a function declared in Python "
+"with the ``@micropython.asm_thumb`` decorator, whereas \"subroutine\" "
+"refers to assembler code called from within an assembler function."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:11
+msgid "Code branches and subroutines"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:13
+msgid ""
+"It is important to appreciate that labels are local to an assembler "
+"function. There is currently no way for a subroutine defined in one "
+"function to be called from another."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:17
+msgid ""
+"To call a subroutine the instruction ``bl(LABEL)`` is issued. This "
+"transfers control to the instruction following the ``label(LABEL)`` "
+"directive and stores the return address in the link register (``lr`` or "
+"``r14``). To return the instruction ``bx(lr)`` is issued which causes "
+"execution to continue with the instruction following the subroutine call."
+" This mechanism implies that, if a subroutine is to call another, it must"
+" save the link register prior to the call and restore it before "
+"terminating."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:25
+msgid ""
+"The following rather contrived example illustrates a function call. Note "
+"that it's necessary at the start to branch around all subroutine calls: "
+"subroutines end execution with ``bx(lr)`` while the outer function simply"
+" \"drops off the end\" in the style of Python functions."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:32
+msgid ""
+"@micropython.asm_thumb\n"
+"def quad(r0):\n"
+"    b(START)\n"
+"    label(DOUBLE)\n"
+"    add(r0, r0, r0)\n"
+"    bx(lr)\n"
+"    label(START)\n"
+"    bl(DOUBLE)\n"
+"    bl(DOUBLE)\n"
+"\n"
+"print(quad(10))"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:44
+msgid ""
+"The following code example demonstrates a nested (recursive) call: the "
+"classic Fibonacci sequence. Here, prior to a recursive call, the link "
+"register is saved along with other registers which the program logic "
+"requires to be preserved."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:50
+msgid ""
+"@micropython.asm_thumb\n"
+"def fib(r0):\n"
+"    b(START)\n"
+"    label(DOFIB)\n"
+"    push({r1, r2, lr})\n"
+"    cmp(r0, 1)\n"
+"    ble(FIBDONE)\n"
+"    sub(r0, 1)\n"
+"    mov(r2, r0) # r2 = n -1\n"
+"    bl(DOFIB)\n"
+"    mov(r1, r0) # r1 = fib(n -1)\n"
+"    sub(r0, r2, 1)\n"
+"    bl(DOFIB)   # r0 = fib(n -2)\n"
+"    add(r0, r0, r1)\n"
+"    label(FIBDONE)\n"
+"    pop({r1, r2, lr})\n"
+"    bx(lr)\n"
+"    label(START)\n"
+"    bl(DOFIB)\n"
+"\n"
+"for n in range(10):\n"
+"    print(fib(n))"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:74
+msgid "Argument passing and return"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:76
+msgid ""
+"The tutorial details the fact that assembler functions can support from "
+"zero to three arguments, which must (if used) be named ``r0``, ``r1`` and"
+" ``r2``. When the code executes the registers will be initialised to "
+"those values."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:80
+msgid ""
+"The data types which can be passed in this way are integers and memory "
+"addresses. With current firmware all possible 32 bit values may be passed"
+" and returned. If the return value may have the most significant bit set "
+"a Python type hint should be employed to enable MicroPython to determine "
+"whether the value should be interpreted as a signed or unsigned integer: "
+"types are ``int`` or ``uint``."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:89
+msgid ""
+"@micropython.asm_thumb\n"
+"def uadd(r0, r1) -> uint:\n"
+"    add(r0, r0, r1)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:93
+msgid ""
+"``hex(uadd(0x40000000,0x40000000))`` will return 0x80000000, "
+"demonstrating the passing and return of integers where bits 30 and 31 "
+"differ."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:96
+msgid ""
+"The limitations on the number of arguments and return values can be "
+"overcome by means of the ``array`` module which enables any number of "
+"values of any type to be accessed."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:100
+msgid "Multiple arguments"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:102
+msgid ""
+"If a Python array of integers is passed as an argument to an assembler "
+"function, the function will receive the address of a contiguous set of "
+"integers. Thus multiple arguments can be passed as elements of a single "
+"array. Similarly a function can return multiple values by assigning them "
+"to array elements. Assembler functions have no means of determining the "
+"length of an array: this will need to be passed to the function."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:109
+msgid ""
+"This use of arrays can be extended to enable more than three arrays to be"
+" used. This is done using indirection: the ``uctypes`` module supports "
+"``addressof()`` which will return the address of an array passed as its "
+"argument. Thus you can populate an integer array with the addresses of "
+"other arrays:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:116
+msgid ""
+"from uctypes import addressof\n"
+"@micropython.asm_thumb\n"
+"def getindirect(r0):\n"
+"    ldr(r0, [r0, 0]) # Address of array loaded from passed array\n"
+"    ldr(r0, [r0, 4]) # Return element 1 of indirect array (24)\n"
+"\n"
+"def testindirect():\n"
+"    a = array.array('i',[23, 24])\n"
+"    b = array.array('i',[0,0])\n"
+"    b[0] = addressof(a)\n"
+"    print(getindirect(b))"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:129
+msgid "Non-integer data types"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:131
+msgid ""
+"These may be handled by means of arrays of the appropriate data type. For"
+" example, single precision floating point data may be processed as "
+"follows. This code example takes an array of floats and replaces its "
+"contents with their squares."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:138
+msgid ""
+"from array import array\n"
+"\n"
+"@micropython.asm_thumb\n"
+"def square(r0, r1):\n"
+"    label(LOOP)\n"
+"    vldr(s0, [r0, 0])\n"
+"    vmul(s0, s0, s0)\n"
+"    vstr(s0, [r0, 0])\n"
+"    add(r0, 4)\n"
+"    sub(r1, 1)\n"
+"    bgt(LOOP)\n"
+"\n"
+"a = array('f', (x for x in range(10)))\n"
+"square(a, len(a))\n"
+"print(a)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:154
+msgid ""
+"The uctypes module supports the use of data structures beyond simple "
+"arrays. It enables a Python data structure to be mapped onto a bytearray "
+"instance which may then be passed to the assembler function."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:159
+msgid "Named constants"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:161
+msgid ""
+"Assembler code may be made more readable and maintainable by using named "
+"constants rather than littering code with numbers. This may be achieved "
+"thus:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:167
+msgid ""
+"MYDATA = const(33)\n"
+"\n"
+"@micropython.asm_thumb\n"
+"def foo():\n"
+"    mov(r0, MYDATA)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:173
+msgid ""
+"The const() construct causes MicroPython to replace the variable name "
+"with its value at compile time. If constants are declared in an outer "
+"Python scope they can be shared between multiple assembler functions and "
+"with Python code."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:179
+msgid "Assembler code as class methods"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:181
+msgid ""
+"MicroPython passes the address of the object instance as the first "
+"argument to class methods. This is normally of little use to an assembler"
+" function. It can be avoided by declaring the function as a static method"
+" thus:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:187
+msgid ""
+"class foo:\n"
+"  @staticmethod\n"
+"  @micropython.asm_thumb\n"
+"  def bar(r0):\n"
+"    add(r0, r0, r0)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:194
+msgid "Use of unsupported instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:196
+msgid ""
+"These can be coded using the data statement as shown below. While "
+"``push()`` and ``pop()`` are supported the example below illustrates the "
+"principle. The necessary machine code may be found in the ARM v7-M "
+"Architecture Reference Manual. Note that the first argument of data calls"
+" such as"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:204
+msgid "data(2, 0xe92d, 0x0f00) # push r8,r9,r10,r11"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:206
+msgid "indicates that each subsequent argument is a two byte quantity."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:209
+msgid "Overcoming MicroPython's integer restriction"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_hints_tips.rst:211
+msgid ""
+"The Pyboard chip includes a CRC generator. Its use presents a problem in "
+"MicroPython because the returned values cover the full gamut of 32 bit "
+"quantities whereas small integers in MicroPython cannot have differing "
+"values in bits 30 and 31. This limitation is overcome with the following "
+"code, which uses assembler to put the result into an array and Python "
+"code to coerce the result into an arbitrary precision unsigned integer."
+msgstr ""
+
+#: ../../../<rst_epilog>:220
+msgid ""
+"from array import array\n"
+"import stm\n"
+"\n"
+"def enable_crc():\n"
+"    stm.mem32[stm.RCC + stm.RCC_AHB1ENR] |= 0x1000\n"
+"\n"
+"def reset_crc():\n"
+"    stm.mem32[stm.CRC+stm.CRC_CR] = 1\n"
+"\n"
+"@micropython.asm_thumb\n"
+"def getval(r0, r1):\n"
+"    movwt(r3, stm.CRC + stm.CRC_DR)\n"
+"    str(r1, [r3, 0])\n"
+"    ldr(r2, [r3, 0])\n"
+"    str(r2, [r0, 0])\n"
+"\n"
+"def getcrc(value):\n"
+"    a = array('i', [0])\n"
+"    getval(a, value)\n"
+"    return a[0] & 0xffffffff # coerce to arbitrary precision\n"
+"\n"
+"enable_crc()\n"
+"reset_crc()\n"
+"for x in range(20):\n"
+"    print(hex(getcrc(0)))"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:4
+msgid "Inline Assembler for Thumb2 architectures"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:6
+msgid ""
+"This document assumes some familiarity with assembly language programming"
+" and should be read after studying the :ref:`tutorial "
+"<pyboard_tutorial_assembler>`. For a detailed description of the "
+"instruction set consult the Architecture Reference Manual detailed below."
+" The inline assembler supports a subset of the ARM Thumb-2 instruction "
+"set described here. The syntax tries to be as close as possible to that "
+"defined in the above ARM manual, converted to Python function calls."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:12
+msgid ""
+"Instructions operate on 32 bit signed integer data except where stated "
+"otherwise. Most supported instructions operate on registers ``R0-R7`` "
+"only: where ``R8-R15`` are supported this is stated. Registers ``R8-R12``"
+" must be restored to their initial value before return from a function. "
+"Registers ``R13-R15`` constitute the Link Register, Stack Pointer and "
+"Program Counter respectively."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:20
+msgid ""
+"Where possible the behaviour of each instruction is described in Python, "
+"for example"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:22
+msgid "add(Rd, Rn, Rm) ``Rd = Rn + Rm``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:24
+msgid ""
+"This enables the effect of instructions to be demonstrated in Python. In "
+"certain case this is impossible because Python doesn't support concepts "
+"such as indirection. The pseudocode employed in such cases is described "
+"on the relevant page."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:29
+msgid "Instruction Categories"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:31
+msgid ""
+"The following sections details the subset of the ARM Thumb-2 instruction "
+"set supported by MicroPython."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:50
+msgid "Usage examples"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:52
+msgid ""
+"These sections provide further code examples and hints on the use of the "
+"assembler."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:61
+#: ../../../reference/packages.rst:308
+msgid "References"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:63
+msgid ":ref:`Assembler Tutorial <pyboard_tutorial_assembler>`"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:64
+msgid ""
+"`Wiki hints and tips "
+"<http://wiki.micropython.org/platforms/boards/pyboard/assembler>`__"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:66
+msgid ""
+"`uPy Inline Assembler source-code, emitinlinethumb.c "
+"<https://github.com/micropython/micropython/blob/master/py/emitinlinethumb.c>`__"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:68
+msgid ""
+"`ARM Thumb2 Instruction Set Quick Reference Card "
+"<http://infocenter.arm.com/help/topic/com.arm.doc.qrc0001l/QRC0001_UAL.pdf>`__"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:70
+#, python-format
+msgid ""
+"`RM0090 Reference Manual "
+"<http://www.google.ae/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&sqi=2&ved=0CBoQFjAA&url=http%3A%2F%2Fwww.st.com"
+"%2Fst-web-"
+"ui%2Fstatic%2Factive%2Fen%2Fresource%2Ftechnical%2Fdocument%2Freference_manual%2FDM00031020.pdf&ei=G0rSU66xFeuW0QWYwoD4CQ&usg=AFQjCNFuW6TgzE4QpahO_U7g3f3wdwecAg&sig2"
+"=iET-R0y9on_Pbflzf9aYDw&bvm=bv.71778758,bs.1,d.bGQ>`__"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_index.rst:72
+msgid ""
+"ARM v7-M Architecture Reference Manual (Available on the ARM site after a"
+" simple registration procedure. Also available on academic sites but "
+"beware of out of date versions.)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:2
+msgid "Branch instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:4
+msgid ""
+"These cause execution to jump to a target location usually specified by a"
+" label (see the ``label`` assembler directive). Conditional branches and "
+"the ``it`` and ``ite`` instructions test the Application Program Status "
+"Register (APSR) N (negative), Z (zero), C (carry) and V (overflow) flags "
+"to determine whether the branch should be executed."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:9
+msgid ""
+"Most of the exposed assembler instructions (including move operations) "
+"set the flags but there are explicit comparison instructions to enable "
+"values to be tested."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:12
+msgid ""
+"Further detail on the meaning of the condition flags is provided in the "
+"section describing comparison functions."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:18
+msgid ""
+"Notation: ``Rm`` denotes ARM registers R0-R15. ``LABEL`` denotes a label "
+"defined with the ``label()`` assembler directive. ``<condition>`` "
+"indicates one of the following condition specifiers:"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:22
+msgid "eq Equal to (result was zero)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:23
+msgid "ne Not equal"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:24
+msgid "cs Carry set"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:25
+msgid "cc Carry clear"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:26
+msgid "mi Minus (negative)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:27
+msgid "pl Plus (positive)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:28
+msgid "vs Overflow set"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:29
+msgid "vc Overflow clear"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:30
+msgid "hi > (unsigned comparison)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:31
+msgid "ls <= (unsigned comparison)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:32
+msgid "ge >= (signed comparison)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:33
+msgid "lt < (signed comparison)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:34
+msgid "gt > (signed comparison)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:35
+msgid "le <= (signed comparison)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:38
+msgid "Branch to label"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:40
+msgid "b(LABEL) Unconditional branch"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:41
+msgid "beq(LABEL) branch if equal"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:42
+msgid "bne(LABEL) branch if not equal"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:43
+msgid "bge(LABEL) branch if greater than or equal"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:44
+msgid "bgt(LABEL) branch if greater than"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:45
+msgid "blt(LABEL) branch if less than (<) (signed)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:46
+msgid "ble(LABEL) branch if less than or equal to (<=) (signed)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:47
+msgid "bcs(LABEL) branch if carry flag is set"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:48
+msgid "bcc(LABEL) branch if carry flag is clear"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:49
+msgid "bmi(LABEL) branch if negative"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:50
+msgid "bpl(LABEL) branch if positive"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:51
+msgid "bvs(LABEL) branch if overflow flag set"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:52
+msgid "bvc(LABEL) branch if overflow flag is clear"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:53
+msgid "bhi(LABEL) branch if higher (unsigned)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:54
+msgid "bls(LABEL) branch if lower or equal (unsigned)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:57
+msgid "Long branches"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:59
+msgid ""
+"The code produced by the branch instructions listed above uses a fixed "
+"bit width to specify the branch destination, which is PC relative. "
+"Consequently in long programs where the branch instruction is remote from"
+" its destination the assembler will produce a \"branch not in range\" "
+"error. This can be overcome with the \"wide\" variants such as"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:64
+msgid "beq\\_w(LABEL) long branch if equal"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:66
+msgid ""
+"Wide branches use 4 bytes to encode the instruction (compared with 2 "
+"bytes for standard branch instructions)."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:69
+msgid "Subroutines (functions)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:71
+msgid ""
+"When entering a subroutine the processor stores the return address in "
+"register r14, also known as the link register (lr). Return to the "
+"instruction after the subroutine call is performed by updating the "
+"program counter (r15 or pc) from the link register, This process is "
+"handled by the following instructions."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:76
+msgid "bl(LABEL)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:78
+msgid ""
+"Transfer execution to the instruction after ``LABEL`` storing the return "
+"address in the link register (r14)."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:81
+msgid "bx(Rm) Branch to address specified by Rm."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_label_branch.rst:83
+msgid ""
+"Typically ``bx(lr)`` is issued to return from a subroutine. For nested "
+"subroutines the link register of outer scopes must be saved (usually on "
+"the stack) before performing inner subroutine calls."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:2
+msgid "Load register from memory"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:7
+msgid ""
+"Notation: ``Rt, Rn`` denote ARM registers R0-R7 except where stated. "
+"``immN`` represents an immediate value having a width of N bits hence "
+"``imm5`` is constrained to the range 0-31. ``[Rn + immN]`` is the "
+"contents of the memory address obtained by adding Rn and the offset "
+"``immN``. Offsets are measured in bytes. These instructions affect the "
+"condition flags."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:13
+msgid "Register Load"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:15
+msgid "ldr(Rt, [Rn, imm7]) ``Rt = [Rn + imm7]`` Load a 32 bit word"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:16
+msgid "ldrb(Rt, [Rn, imm5]) ``Rt = [Rn + imm5]`` Load a byte"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:17
+msgid "ldrh(Rt, [Rn, imm6]) ``Rt = [Rn + imm6]`` Load a 16 bit half word"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:19
+msgid "Where a byte or half word is loaded, it is zero-extended to 32 bits."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_ldr.rst:21
+msgid ""
+"The specified immediate offsets are measured in bytes. Hence in the case "
+"of ``ldr`` the 7 bit value enables 32 bit word aligned values to be "
+"accessed with a maximum offset of 31 words. In the case of ``ldrh`` the 6"
+" bit value enables 16 bit half-word aligned values to be accessed with a "
+"maximum offset of 31 half-words."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:2
+msgid "Logical & Bitwise instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:7
+msgid ""
+"Notation: ``Rd, Rn`` denote ARM registers R0-R7 except in the case of the"
+" special instructions where R0-R15 may be used. ``Rn<a-b>`` denotes an "
+"ARM register whose contents must lie in range ``a <= contents <= b``. In "
+"the case of instructions with two register arguments, it is permissible "
+"for them to be identical. For example the following will zero R0 (Python "
+"``R0 ^= R0``) regardless of its initial contents."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:13
+msgid "eor(r0, r0)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:15
+msgid "These instructions affect the condition flags except where stated."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:18
+msgid "Logical instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:20
+msgid "and\\_(Rd, Rn) ``Rd &= Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:21
+msgid "orr(Rd, Rn) ``Rd |= Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:22
+msgid "eor(Rd, Rn) ``Rd ^= Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:23
+msgid "mvn(Rd, Rn) ``Rd = Rn ^ 0xffffffff`` i.e. Rd = 1's complement of Rn"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:24
+msgid "bic(Rd, Rn) ``Rd &= ~Rn`` bit clear Rd using mask in Rn"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:26
+msgid ""
+"Note the use of \"and\\_\" instead of \"and\", because \"and\" is a "
+"reserved keyword in Python."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:29
+msgid "Shift and rotation instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:31
+msgid "lsl(Rd, Rn<0-31>) ``Rd <<= Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:32
+msgid "lsr(Rd, Rn<1-32>) ``Rd = (Rd & 0xffffffff) >> Rn`` Logical shift right"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:33
+msgid "asr(Rd, Rn<1-32>) ``Rd >>= Rn`` arithmetic shift right"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:34
+msgid ""
+"ror(Rd, Rn<1-31>) ``Rd = rotate_right(Rd, Rn)`` Rd is rotated right Rn "
+"bits."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:36
+msgid ""
+"A rotation by (for example) three bits works as follows. If Rd initially "
+"contains bits ``b31 b30..b0`` after rotation it will contain ``b2 b1 b0 "
+"b31 b30..b3``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:40
+msgid "Special instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:42
+msgid "Condition codes are unaffected by these instructions."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:44
+msgid "clz(Rd, Rn) ``Rd = count_leading_zeros(Rn)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:46
+msgid ""
+"count_leading_zeros(Rn) returns the number of binary zero bits before the"
+" first binary one bit in Rn."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:48
+msgid "rbit(Rd, Rn) ``Rd = bit_reverse(Rn)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:50
+msgid ""
+"bit_reverse(Rn) returns the bit-reversed contents of Rn. If Rn contains "
+"bits ``b31 b30..b0`` Rd will be set to ``b0 b1 b2..b31``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_logical_bit.rst:53
+msgid ""
+"Trailing zeros may be counted by performing a bit reverse prior to "
+"executing clz."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:2
+msgid "Miscellaneous instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:4
+msgid "nop() ``pass`` no operation."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:5
+msgid "wfi() Suspend execution in a low power state until an interrupt occurs."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:6
+msgid "cpsid(flags) set the Priority Mask Register - disable interrupts."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:7
+msgid "cpsie(flags) clear the Priority Mask Register - enable interrupts."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:8
+msgid ""
+"mrs(Rd, special_reg) ``Rd = special_reg`` copy a special register to a "
+"general register. The special register may be IPSR (Interrupt Status "
+"Register) or BASEPRI (Base Priority Register). The IPSR provides a means "
+"of determining the exception number of an interrupt being processed. It "
+"contains zero if no interrupt is being processed."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_misc.rst:12
+msgid ""
+"Currently the ``cpsie()`` and ``cpsid()`` functions are partially "
+"implemented. They require but ignore the flags argument and serve as a "
+"means of enabling and disabling interrupts."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:2
+msgid "Register move instructions"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:7
+msgid ""
+"Notation: ``Rd, Rn`` denote ARM registers R0-R15. ``immN`` denotes an "
+"immediate value having a width of N bits. These instructions affect the "
+"condition flags."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:11
+msgid "Register moves"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:13
+msgid ""
+"Where immediate values are used, these are zero-extended to 32 bits. Thus"
+" ``mov(R0, 0xff)`` will set R0 to 255."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:16
+msgid "mov(Rd, imm8) ``Rd = imm8``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:17
+msgid "mov(Rd, Rn) ``Rd = Rn``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:18
+msgid "movw(Rd, imm16) ``Rd = imm16``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:19
+msgid "movt(Rd, imm16) ``Rd = (Rd & 0xffff) | (imm16 << 16)``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:21
+msgid ""
+"movt writes an immediate value to the top halfword of the destination "
+"register. It does not affect the contents of the bottom halfword."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:24
+msgid "movwt(Rd, imm32) ``Rd = imm32``"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_mov.rst:26
+msgid ""
+"movwt is a pseudo-instruction: the MicroPython assembler emits a ``movw``"
+" followed by a ``movt`` to move a 32-bit value into Rd."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:2
+msgid "Stack push and pop"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:7
+msgid ""
+"The ``push()`` and ``pop()`` instructions accept as their argument a "
+"register set containing a subset, or possibly all, of the general-purpose"
+" registers R0-R12 and the link register (lr or R14). As with any Python "
+"set the order in which the registers are specified is immaterial. Thus "
+"the in the following example the pop() instruction would restore R1, R7 "
+"and R8 to their contents prior to the push():"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:13
+msgid "push({r1, r8, r7}) Save three registers on the stack."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:14
+msgid "pop({r7, r1, r8}) Restore them"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:17
+msgid "Stack operations"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:19
+msgid "push({regset}) Push a set of registers onto the stack"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_stack.rst:20
+msgid "pop({regset}) Restore a set of registers from the stack"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:2
+msgid "Store register to memory"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:7
+msgid ""
+"Notation: ``Rt, Rn`` denote ARM registers R0-R7 except where stated. "
+"``immN`` represents an immediate value having a width of N bits hence "
+"``imm5`` is constrained to the range 0-31. ``[Rn + imm5]`` is the "
+"contents of the memory address obtained by adding Rn and the offset "
+"``imm5``. Offsets are measured in bytes. These instructions do not affect"
+" the condition flags."
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:13
+msgid "Register Store"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:15
+msgid "str(Rt, [Rn, imm7]) ``[Rn + imm7] = Rt`` Store a 32 bit word"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:16
+msgid "strb(Rt, [Rn, imm5]) ``[Rn + imm5] = Rt`` Store a byte (b0-b7)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:17
+msgid ""
+"strh(Rt, [Rn, imm6]) ``[Rn + imm6] = Rt`` Store a 16 bit half word "
+"(b0-b15)"
+msgstr ""
+
+#: ../../../reference/asm_thumb2_str.rst:19
+msgid ""
+"The specified immediate offsets are measured in bytes. Hence in the case "
+"of ``str`` the 7 bit value enables 32 bit word aligned values to be "
+"accessed with a maximum offset of 31 words. In the case of ``strh`` the 6"
+" bit value enables 16 bit half-word aligned values to be accessed with a "
+"maximum offset of 31 half-words."
+msgstr ""
+
+#: ../../../reference/constrained.rst:4
+msgid "MicroPython on Microcontrollers"
+msgstr ""
+
+#: ../../../reference/constrained.rst:6
+msgid ""
+"MicroPython is designed to be capable of running on microcontrollers. "
+"These have hardware limitations which may be unfamiliar to programmers "
+"more familiar with conventional computers. In particular the amount of "
+"RAM and nonvolatile \"disk\" (flash memory) storage is limited. This "
+"tutorial offers ways to make the most of the limited resources. Because "
+"MicroPython runs on controllers based on a variety of architectures, the "
+"methods presented are generic: in some cases it will be necessary to "
+"obtain detailed information from platform specific documentation."
+msgstr ""
+
+#: ../../../reference/constrained.rst:16
+msgid "Flash Memory"
+msgstr ""
+
+#: ../../../reference/constrained.rst:18
+msgid ""
+"On the Pyboard the simple way to address the limited capacity is to fit a"
+" micro SD card. In some cases this is impractical, either because the "
+"device does not have an SD card slot or for reasons of cost or power "
+"consumption; hence the on-chip flash must be used. The firmware including"
+" the MicroPython subsystem is stored in the onboard flash. The remaining "
+"capacity is available for use. For reasons connected with the physical "
+"architecture of the flash memory part of this capacity may be "
+"inaccessible as a filesystem. In such cases this space may be employed by"
+" incorporating user modules into a firmware build which is then flashed "
+"to the device."
+msgstr ""
+
+#: ../../../reference/constrained.rst:28
+msgid ""
+"There are two ways to achieve this: frozen modules and frozen bytecode. "
+"Frozen modules store the Python source with the firmware. Frozen bytecode"
+" uses the cross compiler to convert the source to bytecode which is then "
+"stored with the firmware. In either case the module may be accessed with "
+"an import statement:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:36
+msgid "import mymodule"
+msgstr ""
+
+#: ../../../reference/constrained.rst:37
+msgid ""
+"The procedure for producing frozen modules and bytecode is platform "
+"dependent; instructions for building the firmware can be found in the "
+"README files in the relevant part of the source tree."
+msgstr ""
+
+#: ../../../reference/constrained.rst:41
+msgid "In general terms the steps are as follows:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:43
+msgid ""
+"Clone the MicroPython `repository "
+"<https://github.com/micropython/micropython>`_."
+msgstr ""
+
+#: ../../../reference/constrained.rst:44
+msgid "Acquire the (platform specific) toolchain to build the firmware."
+msgstr ""
+
+#: ../../../reference/constrained.rst:45
+msgid "Build the cross compiler."
+msgstr ""
+
+#: ../../../reference/constrained.rst:46
+msgid ""
+"Place the modules to be frozen in a specified directory (dependent on "
+"whether the module is to be frozen as source or as bytecode)."
+msgstr ""
+
+#: ../../../reference/constrained.rst:48
+msgid ""
+"Build the firmware. A specific command may be required to build frozen "
+"code of either type - see the platform documentation."
+msgstr ""
+
+#: ../../../reference/constrained.rst:50
+msgid "Flash the firmware to the device."
+msgstr ""
+
+#: ../../../reference/constrained.rst:53
+msgid "RAM"
+msgstr ""
+
+#: ../../../reference/constrained.rst:55
+msgid ""
+"When reducing RAM usage there are two phases to consider: compilation and"
+" execution. In addition to memory consumption, there is also an issue "
+"known as heap fragmentation. In general terms it is best to minimise the "
+"repeated creation and destruction of objects. The reason for this is "
+"covered in the section covering the `heap`_."
+msgstr ""
+
+#: ../../../reference/constrained.rst:62
+msgid "Compilation Phase"
+msgstr ""
+
+#: ../../../reference/constrained.rst:64
+msgid ""
+"When a module is imported, MicroPython compiles the code to bytecode "
+"which is then executed by the MicroPython virtual machine (VM). The "
+"bytecode is stored in RAM. The compiler itself requires RAM, but this "
+"becomes available for use when the compilation has completed."
+msgstr ""
+
+#: ../../../reference/constrained.rst:69
+msgid ""
+"If a number of modules have already been imported the situation can arise"
+" where there is insufficient RAM to run the compiler. In this case the "
+"import statement will produce a memory exception."
+msgstr ""
+
+#: ../../../reference/constrained.rst:73
+msgid ""
+"If a module instantiates global objects on import it will consume RAM at "
+"the time of import, which is then unavailable for the compiler to use on "
+"subsequent imports. In general it is best to avoid code which runs on "
+"import; a better approach is to have initialisation code which is run by "
+"the application after all modules have been imported. This maximises the "
+"RAM available to the compiler."
+msgstr ""
+
+#: ../../../reference/constrained.rst:80
+msgid ""
+"If RAM is still insufficient to compile all modules one solution is to "
+"precompile modules. MicroPython has a cross compiler capable of compiling"
+" Python modules to bytecode (see the README in the mpy-cross directory). "
+"The resulting bytecode file has a .mpy extension; it may be copied to the"
+" filesystem and imported in the usual way. Alternatively some or all "
+"modules may be implemented as frozen bytecode: on most platforms this "
+"saves even more RAM as the bytecode is run directly from flash rather "
+"than being stored in RAM."
+msgstr ""
+
+#: ../../../reference/constrained.rst:89
+msgid "Execution Phase"
+msgstr ""
+
+#: ../../../reference/constrained.rst:91
+msgid "There are a number of coding techniques for reducing RAM usage."
+msgstr ""
+
+#: ../../../reference/constrained.rst:93
+msgid "**Constants**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:95
+msgid "MicroPython provides a ``const`` keyword which may be used as follows:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:104
+msgid ""
+"from micropython import const\n"
+"ROWS = const(33)\n"
+"_COLS = const(0x10)\n"
+"a = ROWS\n"
+"b = _COLS"
+msgstr ""
+
+#: ../../../reference/constrained.rst:105
+msgid ""
+"In both instances where the constant is assigned to a variable the "
+"compiler will avoid coding a lookup to the name of the constant by "
+"substituting its literal value. This saves bytecode and hence RAM. "
+"However the ``ROWS`` value will occupy at least two machine words, one "
+"each for the key and value in the globals dictionary. The presence in the"
+" dictionary is necessary because another module might import or use it. "
+"This RAM can be saved by prepending the name with an underscore as in "
+"``_COLS``: this symbol is not visible outside the module so will not "
+"occupy RAM."
+msgstr ""
+
+#: ../../../reference/constrained.rst:114
+msgid ""
+"The argument to ``const()`` may be anything which, at compile time, "
+"evaluates to an integer e.g. ``0x100`` or ``1 << 8``. It can even include"
+" other const symbols that have already been defined, e.g. ``1 << BIT``."
+msgstr ""
+
+#: ../../../reference/constrained.rst:118
+msgid "**Constant data structures**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:120
+msgid ""
+"Where there is a substantial volume of constant data and the platform "
+"supports execution from Flash, RAM may be saved as follows. The data "
+"should be located in Python modules and frozen as bytecode. The data must"
+" be defined as `bytes` objects. The compiler 'knows' that `bytes` objects"
+" are immutable and ensures that the objects remain in flash memory rather"
+" than being copied to RAM. The `ustruct` module can assist in converting "
+"between `bytes` types and other Python built-in types."
+msgstr ""
+
+#: ../../../reference/constrained.rst:128
+msgid ""
+"When considering the implications of frozen bytecode, note that in Python"
+" strings, floats, bytes, integers and complex numbers are immutable. "
+"Accordingly these will be frozen into flash. Thus, in the line"
+msgstr ""
+
+#: ../../../reference/constrained.rst:135
+msgid "mystring = \"The quick brown fox\""
+msgstr ""
+
+#: ../../../reference/constrained.rst:136
+msgid ""
+"the actual string \"The quick brown fox\" will reside in flash. At "
+"runtime a reference to the string is assigned to the *variable* "
+"``mystring``. The reference occupies a single machine word. In principle "
+"a long integer could be used to store constant data:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:144
+msgid "bar = 0xDEADBEEF0000DEADBEEF"
+msgstr ""
+
+#: ../../../reference/constrained.rst:145
+msgid ""
+"As in the string example, at runtime a reference to the arbitrarily large"
+" integer is assigned to the variable ``bar``. That reference occupies a "
+"single machine word."
+msgstr ""
+
+#: ../../../reference/constrained.rst:149
+msgid ""
+"It might be expected that tuples of integers could be employed for the "
+"purpose of storing constant data with minimal RAM use. With the current "
+"compiler this is ineffective (the code works, but RAM is not saved)."
+msgstr ""
+
+#: ../../../reference/constrained.rst:156
+msgid "foo = (1, 2, 3, 4, 5, 6, 100000)"
+msgstr ""
+
+#: ../../../reference/constrained.rst:157
+msgid ""
+"At runtime the tuple will be located in RAM. This may be subject to "
+"future improvement."
+msgstr ""
+
+#: ../../../reference/constrained.rst:160
+msgid "**Needless object creation**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:162
+msgid ""
+"There are a number of situations where objects may unwittingly be created"
+" and destroyed. This can reduce the usability of RAM through "
+"fragmentation. The following sections discuss instances of this."
+msgstr ""
+
+#: ../../../reference/constrained.rst:166
+msgid "**String concatenation**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:168
+msgid ""
+"Consider the following code fragments which aim to produce constant "
+"strings:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:177
+msgid ""
+"var = \"foo\" + \"bar\"\n"
+"var1 = \"foo\" \"bar\"\n"
+"var2 = \"\"\"\\\n"
+"foo\\\n"
+"bar\"\"\""
+msgstr ""
+
+#: ../../../reference/constrained.rst:178
+msgid ""
+"Each produces the same outcome, however the first needlessly creates two "
+"string objects at runtime, allocates more RAM for concatenation before "
+"producing the third. The others perform the concatenation at compile time"
+" which is more efficient, reducing fragmentation."
+msgstr ""
+
+#: ../../../reference/constrained.rst:183
+msgid ""
+"Where strings must be dynamically created before being fed to a stream "
+"such as a file it will save RAM if this is done in a piecemeal fashion. "
+"Rather than creating a large string object, create a substring and feed "
+"it to the stream before dealing with the next."
+msgstr ""
+
+#: ../../../reference/constrained.rst:188
+msgid ""
+"The best way to create dynamic strings is by means of the string "
+"``format()`` method:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:194
+msgid "var = \"Temperature {:5.2f} Pressure {:06d}\\n\".format(temp, press)"
+msgstr ""
+
+#: ../../../reference/constrained.rst:195
+msgid "**Buffers**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:197
+msgid ""
+"When accessing devices such as instances of UART, I2C and SPI interfaces,"
+" using pre-allocated buffers avoids the creation of needless objects. "
+"Consider these two loops:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:211
+msgid ""
+"while True:\n"
+"    var = spi.read(100)\n"
+"    # process data\n"
+"\n"
+"buf = bytearray(100)\n"
+"while True:\n"
+"    spi.readinto(buf)\n"
+"    # process data in buf"
+msgstr ""
+
+#: ../../../reference/constrained.rst:212
+msgid ""
+"The first creates a buffer on each pass whereas the second re-uses a pre-"
+"allocated buffer; this is both faster and more efficient in terms of "
+"memory fragmentation."
+msgstr ""
+
+#: ../../../reference/constrained.rst:215
+msgid "**Bytes are smaller than ints**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:217
+msgid ""
+"On most platforms an integer consumes four bytes. Consider the two calls "
+"to the function ``foo()``:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:227
+msgid ""
+"def foo(bar):\n"
+"    for x in bar:\n"
+"        print(x)\n"
+"foo((1, 2, 0xff))\n"
+"foo(b'\\1\\2\\xff')"
+msgstr ""
+
+#: ../../../reference/constrained.rst:228
+msgid ""
+"In the first call a tuple of integers is created in RAM. The second "
+"efficiently creates a `bytes` object consuming the minimum amount of RAM."
+" If the module were frozen as bytecode, the `bytes` object would reside "
+"in flash."
+msgstr ""
+
+#: ../../../reference/constrained.rst:232
+msgid "**Strings Versus Bytes**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:234
+msgid ""
+"Python3 introduced Unicode support. This introduced a distinction between"
+" a string and an array of bytes. MicroPython ensures that Unicode strings"
+" take no additional space so long as all characters in the string are "
+"ASCII (i.e. have a value < 126). If values in the full 8-bit range are "
+"required `bytes` and `bytearray` objects can be used to ensure that no "
+"additional space will be required. Note that most string methods (e.g. "
+":meth:`str.strip()`) apply also to `bytes` instances so the process of "
+"eliminating Unicode can be painless."
+msgstr ""
+
+#: ../../../reference/constrained.rst:246
+msgid ""
+"s = 'the quick brown fox'   # A string instance\n"
+"b = b'the quick brown fox'  # A bytes instance"
+msgstr ""
+
+#: ../../../reference/constrained.rst:247
+msgid ""
+"Where it is necessary to convert between strings and bytes the "
+":meth:`str.encode` and the :meth:`bytes.decode` methods can be used. Note"
+" that both strings and bytes are immutable. Any operation which takes as "
+"input such an object and produces another implies at least one RAM "
+"allocation to produce the result. In the second line below a new bytes "
+"object is allocated. This would also occur if ``foo`` were a string."
+msgstr ""
+
+#: ../../../reference/constrained.rst:258
+msgid ""
+"foo = b'   empty whitespace'\n"
+"foo = foo.lstrip()"
+msgstr ""
+
+#: ../../../reference/constrained.rst:259
+msgid "**Runtime compiler execution**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:261
+msgid ""
+"The Python funcitons `eval` and `exec` invoke the compiler at runtime, "
+"which requires significant amounts of RAM. Note that the ``pickle`` "
+"library from `micropython-lib` employs `exec`. It may be more RAM "
+"efficient to use the `ujson` library for object serialisation."
+msgstr ""
+
+#: ../../../reference/constrained.rst:266
+msgid "**Storing strings in flash**"
+msgstr ""
+
+#: ../../../reference/constrained.rst:268
+msgid ""
+"Python strings are immutable hence have the potential to be stored in "
+"read only memory. The compiler can place in flash strings defined in "
+"Python code. As with frozen modules it is necessary to have a copy of the"
+" source tree on the PC and the toolchain to build the firmware. The "
+"procedure will work even if the modules have not been fully debugged, so "
+"long as they can be imported and run."
+msgstr ""
+
+#: ../../../reference/constrained.rst:274
+msgid "After importing the modules, execute:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:279
+#: ../../../reference/constrained.rst:290
+msgid "micropython.qstr_info(1)"
+msgstr ""
+
+#: ../../../reference/constrained.rst:280
+msgid ""
+"Then copy and paste all the Q(xxx) lines into a text editor. Check for "
+"and remove lines which are obviously invalid. Open the file "
+"qstrdefsport.h which will be found in ports/stm32 (or the equivalent "
+"directory for the architecture in use). Copy and paste the corrected "
+"lines at the end of the file. Save the file, rebuild and flash the "
+"firmware. The outcome can be checked by importing the modules and again "
+"issuing:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:291
+msgid "The Q(xxx) lines should be gone."
+msgstr ""
+
+#: ../../../reference/constrained.rst:296
+msgid "The Heap"
+msgstr ""
+
+#: ../../../reference/constrained.rst:298
+msgid ""
+"When a running program instantiates an object the necessary RAM is "
+"allocated from a fixed size pool known as the heap. When the object goes "
+"out of scope (in other words becomes inaccessible to code) the redundant "
+"object is known as \"garbage\". A process known as \"garbage collection\""
+" (GC) reclaims that memory, returning it to the free heap. This process "
+"runs automatically, however it can be invoked directly by issuing "
+"`gc.collect()`."
+msgstr ""
+
+#: ../../../reference/constrained.rst:305
+msgid ""
+"The discourse on this is somewhat involved. For a 'quick fix' issue the "
+"following periodically:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:312
+#: ../../../reference/constrained.rst:413
+msgid ""
+"gc.collect()\n"
+"gc.threshold(gc.mem_free() // 4 + gc.mem_alloc())"
+msgstr ""
+
+#: ../../../reference/constrained.rst:314
+msgid "Fragmentation"
+msgstr ""
+
+#: ../../../reference/constrained.rst:316
+msgid ""
+"Say a program creates an object ``foo``, then an object ``bar``. "
+"Subsequently ``foo`` goes out of scope but ``bar`` remains. The RAM used "
+"by ``foo`` will be reclaimed by GC. However if ``bar`` was allocated to a"
+" higher address, the RAM reclaimed from ``foo`` will only be of use for "
+"objects no bigger than ``foo``. In a complex or long running program the "
+"heap can become fragmented: despite there being a substantial amount of "
+"RAM available, there is insufficient contiguous space to allocate a "
+"particular object, and the program fails with a memory error."
+msgstr ""
+
+#: ../../../reference/constrained.rst:325
+msgid ""
+"The techniques outlined above aim to minimise this. Where large permanent"
+" buffers or other objects are required it is best to instantiate these "
+"early in the process of program execution before fragmentation can occur."
+" Further improvements may be made by monitoring the state of the heap and"
+" by controlling GC; these are outlined below."
+msgstr ""
+
+#: ../../../reference/constrained.rst:332
+msgid "Reporting"
+msgstr ""
+
+#: ../../../reference/constrained.rst:334
+msgid ""
+"A number of library functions are available to report on memory "
+"allocation and to control GC. These are to be found in the `gc` and "
+"`micropython` modules. The following example may be pasted at the REPL "
+"(``ctrl e`` to enter paste mode, ``ctrl d`` to run it)."
+msgstr ""
+
+#: ../../../reference/constrained.rst:357
+msgid ""
+"import gc\n"
+"import micropython\n"
+"gc.collect()\n"
+"micropython.mem_info()\n"
+"print('-----------------------------')\n"
+"print('Initial free: {} allocated: {}'.format(gc.mem_free(), "
+"gc.mem_alloc()))\n"
+"def func():\n"
+"    a = bytearray(10000)\n"
+"gc.collect()\n"
+"print('Func definition: {} allocated: {}'.format(gc.mem_free(), "
+"gc.mem_alloc()))\n"
+"func()\n"
+"print('Func run free: {} allocated: {}'.format(gc.mem_free(), "
+"gc.mem_alloc()))\n"
+"gc.collect()\n"
+"print('Garbage collect free: {} allocated: {}'.format(gc.mem_free(), "
+"gc.mem_alloc()))\n"
+"print('-----------------------------')\n"
+"micropython.mem_info(1)"
+msgstr ""
+
+#: ../../../reference/constrained.rst:358
+msgid "Methods employed above:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:360
+msgid "`gc.collect()` Force a garbage collection. See footnote."
+msgstr ""
+
+#: ../../../reference/constrained.rst:361
+msgid "`micropython.mem_info()` Print a summary of RAM utilisation."
+msgstr ""
+
+#: ../../../reference/constrained.rst:362
+msgid "`gc.mem_free()` Return the free heap size in bytes."
+msgstr ""
+
+#: ../../../reference/constrained.rst:363
+msgid "`gc.mem_alloc()` Return the number of bytes currently allocated."
+msgstr ""
+
+#: ../../../reference/constrained.rst:364
+msgid ""
+"``micropython.mem_info(1)`` Print a table of heap utilisation (detailed "
+"below)."
+msgstr ""
+
+#: ../../../reference/constrained.rst:366
+msgid ""
+"The numbers produced are dependent on the platform, but it can be seen "
+"that declaring the function uses a small amount of RAM in the form of "
+"bytecode emitted by the compiler (the RAM used by the compiler has been "
+"reclaimed). Running the function uses over 10KiB, but on return ``a`` is "
+"garbage because it is out of scope and cannot be referenced. The final "
+"`gc.collect()` recovers that memory."
+msgstr ""
+
+#: ../../../reference/constrained.rst:373
+msgid ""
+"The final output produced by ``micropython.mem_info(1)`` will vary in "
+"detail but may be interpreted as follows:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:377
+msgid "Symbol"
+msgstr ""
+
+#: ../../../reference/constrained.rst:377
+msgid "Meaning"
+msgstr ""
+
+#: ../../../reference/constrained.rst:379
+msgid "."
+msgstr ""
+
+#: ../../../reference/constrained.rst:379
+msgid "free block"
+msgstr ""
+
+#: ../../../reference/constrained.rst:380
+msgid "h"
+msgstr ""
+
+#: ../../../reference/constrained.rst:380
+msgid "head block"
+msgstr ""
+
+#: ../../../reference/constrained.rst:381
+msgid "="
+msgstr ""
+
+#: ../../../reference/constrained.rst:381
+msgid "tail block"
+msgstr ""
+
+#: ../../../reference/constrained.rst:382
+msgid "m"
+msgstr ""
+
+#: ../../../reference/constrained.rst:382
+msgid "marked head block"
+msgstr ""
+
+#: ../../../reference/constrained.rst:383
+msgid "T"
+msgstr ""
+
+#: ../../../reference/constrained.rst:383
+msgid "tuple"
+msgstr ""
+
+#: ../../../reference/constrained.rst:384
+msgid "L"
+msgstr ""
+
+#: ../../../reference/constrained.rst:384
+msgid "list"
+msgstr ""
+
+#: ../../../reference/constrained.rst:385
+msgid "D"
+msgstr ""
+
+#: ../../../reference/constrained.rst:385
+msgid "dict"
+msgstr ""
+
+#: ../../../reference/constrained.rst:386
+msgid "F"
+msgstr ""
+
+#: ../../../reference/constrained.rst:386
+msgid "float"
+msgstr ""
+
+#: ../../../reference/constrained.rst:387
+msgid "B"
+msgstr ""
+
+#: ../../../reference/constrained.rst:387
+msgid "byte code"
+msgstr ""
+
+#: ../../../reference/constrained.rst:388
+msgid "M"
+msgstr ""
+
+#: ../../../reference/constrained.rst:388
+msgid "module"
+msgstr ""
+
+#: ../../../reference/constrained.rst:391
+msgid ""
+"Each letter represents a single block of memory, a block being 16 bytes. "
+"So each line of the heap dump represents 0x400 bytes or 1KiB of RAM."
+msgstr ""
+
+#: ../../../reference/constrained.rst:395
+msgid "Control of Garbage Collection"
+msgstr ""
+
+#: ../../../reference/constrained.rst:397
+msgid ""
+"A GC can be demanded at any time by issuing `gc.collect()`. It is "
+"advantageous to do this at intervals, firstly to pre-empt fragmentation "
+"and secondly for performance. A GC can take several milliseconds but is "
+"quicker when there is little work to do (about 1ms on the Pyboard). An "
+"explicit call can minimise that delay while ensuring it occurs at points "
+"in the program when it is acceptable."
+msgstr ""
+
+#: ../../../reference/constrained.rst:403
+msgid ""
+"Automatic GC is provoked under the following circumstances. When an "
+"attempt at allocation fails, a GC is performed and the allocation re-"
+"tried. Only if this fails is an exception raised. Secondly an automatic "
+"GC will be triggered if the amount of free RAM falls below a threshold. "
+"This threshold can be adapted as execution progresses:"
+msgstr ""
+
+#: ../../../reference/constrained.rst:414
+#, python-format
+msgid ""
+"This will provoke a GC when more than 25% of the currently free heap "
+"becomes occupied."
+msgstr ""
+
+#: ../../../reference/constrained.rst:417
+msgid ""
+"In general modules should instantiate data objects at runtime using "
+"constructors or other initialisation functions. The reason is that if "
+"this occurs on initialisation the compiler may be starved of RAM when "
+"subsequent modules are imported. If modules do instantiate data on import"
+" then `gc.collect()` issued after the import will ameliorate the problem."
+msgstr ""
+
+#: ../../../reference/constrained.rst:424
+msgid "String Operations"
+msgstr ""
+
+#: ../../../reference/constrained.rst:426
+msgid ""
+"MicroPython handles strings in an efficient manner and understanding this"
+" can help in designing applications to run on microcontrollers. When a "
+"module is compiled, strings which occur multiple times are stored once "
+"only, a process known as string interning. In MicroPython an interned "
+"string is known as a ``qstr``. In a module imported normally that single "
+"instance will be located in RAM, but as described above, in modules "
+"frozen as bytecode it will be located in flash."
+msgstr ""
+
+#: ../../../reference/constrained.rst:433
+msgid ""
+"String comparisons are also performed efficiently using hashing rather "
+"than character by character. The penalty for using strings rather than "
+"integers may hence be small both in terms of performance and RAM usage - "
+"a fact which may come as a surprise to C programmers."
+msgstr ""
+
+#: ../../../reference/constrained.rst:439
+msgid "Postscript"
+msgstr ""
+
+#: ../../../reference/constrained.rst:441
+msgid ""
+"MicroPython passes, returns and (by default) copies objects by reference."
+" A reference occupies a single machine word so these processes are "
+"efficient in RAM usage and speed."
+msgstr ""
+
+#: ../../../reference/constrained.rst:445
+msgid ""
+"Where variables are required whose size is neither a byte nor a machine "
+"word there are standard libraries which can assist in storing these "
+"efficiently and in performing conversions. See the `array`, `ustruct` and"
+" `uctypes` modules."
+msgstr ""
+
+#: ../../../reference/constrained.rst:451
+msgid "Footnote: gc.collect() return value"
+msgstr ""
+
+#: ../../../reference/constrained.rst:453
+msgid ""
+"On Unix and Windows platforms the `gc.collect()` method returns an "
+"integer which signifies the number of distinct memory regions that were "
+"reclaimed in the collection (more precisely, the number of heads that "
+"were turned into frees). For efficiency reasons bare metal ports do not "
+"return this value."
+msgstr ""
+
+#: ../../../reference/glossary.rst:2
+msgid "Glossary"
+msgstr "用語集"
+
+#: ../../../reference/glossary.rst:5
+msgid "baremetal"
+msgstr "ベアメタル"
+
+#: ../../../reference/glossary.rst:7
+msgid ""
+"A system without a (full-fledged) OS, for example an :term:`MCU`-based "
+"system. When running on a baremetal system, MicroPython effectively "
+"becomes its user-facing OS with a command interpreter (REPL)."
+msgstr ""
+":term:`MCU` ベースのシステムなど、(本格的な) OS のないシステム。ベアメタルのシステム上で"
+"動作する場合、MicroPython が事実上、コマンドインタプリタ(REPL)を備えたユーザ向け "
+"OS になります。"
+
+#: ../../../reference/glossary.rst:11
+msgid "board"
+msgstr "ボード"
+
+#: ../../../reference/glossary.rst:13
+msgid ""
+"A PCB board. Oftentimes, the term is used to denote a particular model of"
+" an :term:`MCU` system. Sometimes, it is used to actually refer to "
+":term:`MicroPython port` to a particular board (and then may also refer "
+"to \"boardless\" ports like :term:`Unix port <MicroPython Unix port>`)."
+msgstr ""
+"PCB ボードのこと。この用語は、 :term:`MCU` システムの特定のモデルを示すために"
+"多用されます。場合によっては、特定のボートに対する MicroPython ポートを指す場合"
+"にも使われることがあります(さらには、 :term:`Unix ポート <MicroPython Unix port>` "
+"のような「ボードレス」なポートに対しても使われることがあります)。"
+
+#: ../../../reference/glossary.rst:18
+msgid "callee-owned tuple"
+msgstr "呼出し先所有タプル"
+
+#: ../../../reference/glossary.rst:20
+msgid ""
+"A tuple returned by some builtin function/method, containing data which "
+"is valid for a limited time, usually until next call to the same function"
+" (or a group of related functions). After next call, data in the tuple "
+"may be changed. This leads to the following restriction on the usage of "
+"callee-owned tuples - references to them cannot be stored. The only valid"
+" operation is extracting values from them (including making a copy). "
+"Callee-owned tuples is a MicroPython-specific construct (not available in"
+" the general Python language), introduced for memory allocation "
+"optimization. The idea is that callee-owned tuple is allocated once and "
+"stored on the callee side. Subsequent calls don't require allocation, "
+"allowing to return multiple values when allocation is not possible (e.g. "
+"in interrupt context) or not desirable (because allocation inherently "
+"leads to memory fragmentation). Note that callee-owned tuples are "
+"effectively mutable tuples, making an exception to Python's rule that "
+"tuples are immutable. (It may be interesting why tuples were used for "
+"such a purpose then, instead of mutable lists - the reason for that is "
+"that lists are mutable from user application side too, so a user could do"
+" things to a callee-owned list which the callee doesn't expect and could "
+"lead to problems; a tuple is protected from this.)"
+msgstr ""
+"いくつかの組込み関数/メソッドが返すタプルで、有効な期間が限定されたデータが含まれて"
+"います。通常、同じ関数(または関連する関数のグループ)への次の呼び出しまでが有効と"
+"なります。次の呼出しを行うと、タプル内のデータが変更されることがあります。これにより、"
+"呼び出し先所有タプルの利用に関しては次の制限が生じます。それらの参照を他には格納"
+"できません。唯一の有効な操作は、値を抽出することです(コピーの作成を含む)。"
+"呼出し先所有タプルは、メモリ割り当ての最適化のために導入された MicroPython 固有の"
+"構造体です(一般的な Python 言語では利用できません)。呼出し先所有タプルは一度だけ"
+"割り当てられ、呼出し先側に格納されます。後続の呼出しは割当てが不可能な場合でも"
+"(例：割り込みコンテキスト)、割当てが望ましくない場合(割り当てが本質的にメモリの"
+"断片化につながるため)でも、複数の値を返すことができます。呼出し先所有タプルは、"
+"実質的には内容が変化しうるタプルであり、タプルは不変であるという Python のルールに"
+"違反していることに注意してください。(このような目的のために、変更可能なリストでは"
+"なく、タプルが使われた理由に関心を持たれたかもしれません - その理由は、リストにして"
+"しまうと、ユーザアプリケーション側からも変更できてしまうからです。ユーザは、呼出し先"
+"所有リストに対して、呼び出し先が予期しないことをできてしまい、問題につながる可能性が"
+"あります。タプルはこのようなことから保護されます。)"
+
+#: ../../../reference/glossary.rst:41
+msgid "CPython"
+msgstr ""
+
+#: ../../../reference/glossary.rst:43
+msgid ""
+"CPython is the reference implementation of Python programming language, "
+"and the most well-known one, which most of the people run. It is however "
+"one of many implementations (among which Jython, IronPython, PyPy, and "
+"many more, including MicroPython). As there is no formal specification of"
+" the Python language, only CPython documentation, it is not always easy "
+"to draw a line between Python the language and CPython its particular "
+"implementation. This however leaves more freedom for other "
+"implementations. For example, MicroPython does a lot of things "
+"differently than CPython, while still aspiring to be a Python language "
+"implementation."
+msgstr ""
+"CPython は、Pythonプログラミング言語のリファレンス実装であり、ほとんどの Python "
+"利用者が動かしている最も有名なものです。しかし、これは多くの実装(Jython, "
+"IronPython, PyPy, MicroPython などなど)の１つです。Python 言語の正式な仕様は"
+"なく、CPython のドキュメントだけであるため、Python 言語とその特定お処理系である "
+"CPython を線引きすることは必ずしも容易ではありません。しかし、これにより他の処理系"
+"のための自由度が増します。たとえば、MicroPython は CPython とは多少の違いがあり"
+"ますが、Python 言語の実装を目指しています。"
+
+#: ../../../reference/glossary.rst:54
+msgid "GPIO"
+msgstr ""
+
+#: ../../../reference/glossary.rst:56
+msgid ""
+"General-purpose input/output. The simplest means to control electrical "
+"signals. With GPIO, user can configure hardware signal pin to be either "
+"input or output, and set or get its digital signal value (logical \"0\" "
+"or \"1\"). MicroPython abstracts GPIO access using :class:`machine.Pin` "
+"and :class:`machine.Signal` classes."
+msgstr ""
+"汎用入出力(General-purpose input/output)のこと。電気信号を制御する最も簡単な"
+"手段です。GPIO を使用すると、ハードウェア信号ピンを入力または出力に設定し、"
+"デジタル信号値(論理 \"0\" または \"1\")を設定または取得できます。MicroPython は "
+"machine.Pin、と machine.Signal クラスを使って GPIO アクセスを抽象化しています。"
+
+#: ../../../reference/glossary.rst:62
+msgid "GPIO port"
+msgstr "GPIO ポート"
+
+#: ../../../reference/glossary.rst:64
+msgid ""
+"A group of :term:`GPIO` pins, usually based on hardware properties of "
+"these pins (e.g. controllable by the same register)."
+msgstr ""
+"`GPIO` ピンのグループのことで、通常、これらのピンのハードウェア特性に基づいています"
+"(たとえば、同じレジスタで制御可能であるなど)。"
+
+#: ../../../reference/glossary.rst:67
+msgid "interned string"
+msgstr "隔離文字列"
+
+#: ../../../reference/glossary.rst:69
+msgid ""
+"A string referenced by its (unique) identity rather than its address. "
+"Interned strings are thus can be quickly compared just by their "
+"identifiers, instead of comparing by content. The drawbacks of interned "
+"strings are that interning operation takes time (proportional to the "
+"number of existing interned strings, i.e. becoming slower and slower over"
+" time) and that the space used for interned strings is not reclaimable. "
+"String interning is done automatically by MicroPython compiler and "
+"runtimer when it's either required by the implementation (e.g. function "
+"keyword arguments are represented by interned string id's) or deemed "
+"beneficial (e.g. for short enough strings, which have a chance to be "
+"repeated, and thus interning them would save memory on copies). Most of "
+"string and I/O operations don't produce interned strings due to drawbacks"
+" described above."
+msgstr ""
+"アドレスではなく、(一意な) ID によって参照される文字列。したがって、隔離文字列は、"
+"内容を比較しなくとも、識別子だけで高速に比較できます。隔離文字列の欠点は、隔離操作に"
+"時間がかかり(既存の隔離文字列の数に比例、すなわち時間の経過とともにどんどん遅くなる)、"
+"メモリ内で隔離文字列に使われたスペースが再利用されないことです。文字列の隔離は、"
+"処理系の要求(たとえば、関数のキーワード引数は隔離文字列の ID で表されます)、または"
+"有益であると判断された場合(たとえば、文字列が十分に短く、繰り返し使われる場合に、"
+"コピー要するメモリを節約するなど）に、MicroPython コンパイラとランタイムによって"
+"自動的に実行されます。文字列操作と I/O 操作のほとんどは、上記の欠点のために隔離"
+"文字列を生成しません。"
+
+#: ../../../reference/glossary.rst:83
+msgid "MCU"
+msgstr ""
+
+#: ../../../reference/glossary.rst:85
+msgid ""
+"Microcontroller. Microcontrollers usually have much less resources than a"
+" full-fledged computing system, but smaller, cheaper and require much "
+"less power. MicroPython is designed to be small and optimized enough to "
+"run on an average modern microcontroller."
+msgstr ""
+"マイクロコントローラのこと。マイクロコントローラは、通常、本格的なコンピュータシステム"
+"よりもはるかにリソースが少ないですが、小型で安価であり、消費電力は非常に少なくて済み"
+"ます。MicroPython は、平均的な最新のマイクロコントローラで動作するよう、十分小さく、"
+"最適化されています。"
+
+#: ../../../reference/glossary.rst:89
+msgid "micropython-lib"
+msgstr ""
+
+#: ../../../reference/glossary.rst:91
+msgid ""
+"MicroPython is (usually) distributed as a single executable/binary file "
+"with just few builtin modules. There is no extensive standard library "
+"comparable with :term:`CPython`. Instead, there is a related, but "
+"separate project `micropython-lib <https://github.com/micropython"
+"/micropython-lib>`_ which provides implementations for many modules from "
+"CPython's standard library. However, large subset of these modules "
+"require POSIX-like environment (Linux, FreeBSD, MacOS, etc.; Windows may "
+"be partially supported), and thus would work or make sense only with "
+"`MicroPython Unix port`. Some subset of modules is however usable for "
+"`baremetal` ports too."
+msgstr ""
+"MicroPython は(通常)わずかな組込みモジュールしか持たない単一の実行可能/バイナリ"
+"ファイルとして配布されます。 :term:`CPython` に匹敵する広範な標準ライブラリは"
+"ありません。代わりに、関連しているが別個のプロジェクト "
+"`micropython-lib <https://github.com/micropython/micropython-lib>`_ "
+"があり、CPython の標準ライブラリにある多くのモジュールの実装を提供しています。"
+"しかし、これらのモジュールの大部分は POSIX のような環境(Linux, FreeBSD, MacOS "
+"など; Windows は部分的にサポート)を必要としていて、MicroPython Unix ポートでしか"
+"うまく動作しないものもあります。しかし、モジュールのいくつかのサブセットはベア"
+"メタルへのポートにも使えます。"
+
+#: ../../../reference/glossary.rst:103
+msgid ""
+"Unlike monolithic :term:`CPython` stdlib, micropython-lib modules are "
+"intended to be installed individually - either using manual copying or "
+"using :term:`upip`."
+msgstr ""
+"モノリシックの :term:`CPython` 標準ライブラリと違い、micropython-lib モジュールは、"
+"個別にインストールしなければなりません - 手作業でコピーするか、 :term:`upip` を使って"
+"インストールします。"
+
+#: ../../../reference/glossary.rst:106
+msgid "MicroPython port"
+msgstr "MicroPython ポート"
+
+#: ../../../reference/glossary.rst:108
+msgid ""
+"MicroPython supports different :term:`boards <board>`, RTOSes, and OSes, "
+"and can be relatively easily adapted to new systems. MicroPython with "
+"support for a particular system is called a \"port\" to that system. "
+"Different ports may have widely different functionality. This "
+"documentation is intended to be a reference of the generic APIs available"
+" across different ports (\"MicroPython core\"). Note that some ports may "
+"still omit some APIs described here (e.g. due to resource constraints). "
+"Any such differences, and port-specific extensions beyond MicroPython "
+"core functionality, would be described in the separate port-specific "
+"documentation."
+msgstr ""
+"MicroPython はさまざまな :term:`ボード <board>` 、RTOS、OS をサポートしており、"
+"新しいシステムに比較的容易に適応できます。特定のシステムをサポートする MicroPython "
+"は、そのシステムの「ポート」と呼ばれます。異なるポートは、機能が大きく異なる場合が"
+"あります。このドキュメントは、異なるポート間で利用可能な汎用API (「MicroPythonコア」）の"
+"リファレンスを意図しています。一部のポートでは、ここで説明されているいくつかの "
+"API (リソースの制約など)がまだ省略されていることに注意してください。このような"
+"違いや、MicroPython のコア機能を超えるポート固有の拡張機能については、それぞれの"
+"ポート固有のマニュアルに記載されています。"
+
+#: ../../../reference/glossary.rst:118
+msgid "MicroPython Unix port"
+msgstr "MicroPython Unix ポート"
+
+#: ../../../reference/glossary.rst:120
+msgid ""
+"Unix port is one of the major :term:`MicroPython ports <MicroPython "
+"port>`. It is intended to run on POSIX-compatible operating systems, like"
+" Linux, MacOS, FreeBSD, Solaris, etc. It also serves as the basis of "
+"Windows port. The importance of Unix port lies in the fact that while "
+"there are many different :term:`boards <board>`, so two random users "
+"unlikely have the same board, almost all modern OSes have some level of "
+"POSIX compatibility, so Unix port serves as a kind of \"common ground\" "
+"to which any user can have access. So, Unix port is used for initial "
+"prototyping, different kinds of testing, development of machine-"
+"independent features, etc. All users of MicroPython, even those which are"
+" interested only in running MicroPython on :term:`MCU` systems, are "
+"recommended to be familiar with Unix (or Windows) port, as it is "
+"important productivity helper and a part of normal MicroPython workflow."
+msgstr ""
+"Unix ポートは、主要な :term:`MicroPython ポート <MicroPython port>` の"
+"１つです。これは、Linux, MacOS, FreeBSD, Solaris などの POSIX 互換"
+"オペレーティングシステム上で動作するように意図されています。これは、Windows "
+"ポートの基礎としても機能します。Unix ポートの重要性は、多くの異なる "
+":term:`ボード <board>` が存在するにもかかわらず、２人のランダムな"
+"ユーザーが同じボードを持つ可能性は低いことにあります。ほとんどの現代的な OS "
+"はある程度のレベルの POSIX 互換性を持っているため、Unixポートは、任意の"
+"ユーザーが利用できる、一種の「共通の土台」としても役目を持ちます。したがって、"
+"Unix ポートは、初期プロトタイプ作成、さまざまな種類のテスト、マシンに依存しない"
+"機能の開発などに使用されます。MicroPython のすべてのユーザーは、MicroPython を "
+":term:`MCU` 上で実行することだけに興味がありますが、Unix (または Windows)"
+"ポートに精通することをお勧めします。これは、生産性のための重要なヘルパーであり、"
+"通常の MicroPython ワークフローの一部であるためです。"
+
+#: ../../../reference/glossary.rst:134
+msgid "port"
+msgstr "ポート"
+
+#: ../../../reference/glossary.rst:136
+msgid ""
+"Either :term:`MicroPython port` or :term:`GPIO port`. If not clear from "
+"context, it's recommended to use full specification like one of the "
+"above."
+msgstr ""
+":term:`MicroPython ポート <MicroPython port>` か :term:`GPIOポート <GPIO port>` "
+"のどちらか。文脈からどちらか不明となる場合は、先述のような用語をきちんと書くことをお勧めします。"
+
+#: ../../../reference/glossary.rst:139
+msgid "stream"
+msgstr "ストリーム"
+
+#: ../../../reference/glossary.rst:141
+msgid ""
+"Also known as a \"file-like object\". An object which provides sequential"
+" read-write access to the underlying data. A stream object implements a "
+"corresponding interface, which consists of methods like ``read()``, "
+"``write()``, ``readinto()``, ``seek()``, ``flush()``, ``close()``, etc. A"
+" stream is an important concept in MicroPython, many I/O objects "
+"implement the stream interface, and thus can be used consistently and "
+"interchangeably in different contexts. For more information on streams in"
+" MicroPython, see `uio` module."
+msgstr ""
+"「ファイルのようなオブジェクト」とも呼ばれます。基礎となるデータへの連続的な読み書き"
+"アクセスを提供するオブジェクトです。ストリームオブジェクトは対応するインタフェースを"
+"実装したもので、 ``read()``, ``write()``, ``readinto()``, ``seek()``, "
+"``flush()``, ``close()`` などのメソッドを持ちます。ストリームは MicroPython "
+"における重要な概念であり、多くの I/O オブジェクトはストリームインタフェースを実装"
+"しているので、異なるコンテキスト間でも一貫かつ交換可能に使用することができます。"
+"MicroPython のストリームの詳細については、uio モジュールを参照してください。"
+
+#: ../../../reference/glossary.rst:149
+msgid "upip"
+msgstr ""
+
+#: ../../../reference/glossary.rst:151
+msgid ""
+"(Literally, \"micro pip\"). A package manage for MicroPython, inspired by"
+" :term:`CPython`'s pip, but much smaller and with reduced functionality. "
+"upip runs both on :term:`Unix port <MicroPython Unix port>` and on "
+":term:`baremetal` ports (those which offer filesystem and networking "
+"support)."
+msgstr ""
+"(言い換えれば、"micro pip")。MicroPython のパッケージ管理は :term:`CPython` "
+"の pip に影響されていますが、はるかに小さく、限定された機能になっています。upip は "
+":term:`Unix ポート <MicroPython Unix port>` と :term:`ベアメタル <baremetal>` ポート"
+"(ファイルシステムとネットワークのサポートを提供するポート)の両方で動作します。"
+
+#: ../../../reference/index.rst:2
+msgid "The MicroPython language"
+msgstr "MicroPython 言語"
+
+#: ../../../reference/index.rst:4
+msgid ""
+"MicroPython aims to implement the Python 3.4 standard (with selected "
+"features from later versions) with respect to language syntax, and most "
+"of the features of MicroPython are identical to those described by the "
+"\"Language Reference\" documentation at `docs.python.org "
+"<https://docs.python.org/3/reference/index.html>`_."
+msgstr ""
+"MicroPython は、言語の構文に関しては Python 3.4 標準(と後のバージョン"
+"から選択した機能)の実装を目指しています。MicroPython のほとんどの機能は、"
+"`docs.python.org <https://docs.python.org/ja/3/reference/index.html>`_ "
+"にある「言語リファレンス」ドキュメントで説明しているものと同じです。"
+
+#: ../../../reference/index.rst:10
+msgid ""
+"The MicroPython standard library is described in the :ref:`corresponding "
+"chapter <micropython_lib>`. The :ref:`cpython_diffs` chapter describes "
+"differences between MicroPython and CPython (which mostly concern "
+"standard library and types, but also some language-level features)."
+msgstr ""
+"MicroPython の標準ライブラリについては、 :ref:該当する章 <micropython_lib>` "
+"で説明しています。 :ref:`cpython_diffs` 章では、MicroPython と CPython の間の"
+"違いについて説明しています(主に標準ライブラリとデータ型についての注意となりますが、"
+"言語レベルの機能についてもいくつかあります)。"
+
+#: ../../../reference/index.rst:16
+msgid ""
+"This chapter describes features and peculiarities of MicroPython "
+"implementation and the best practices to use them."
+msgstr ""
+"この章では MicroPython 処理系の機能と特徴、およびそれらを使用するための"
+"ベストプラクティスについて説明します。"
+
+#: ../../../reference/isr_rules.rst:4
+msgid "Writing interrupt handlers"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:6
+msgid ""
+"On suitable hardware MicroPython offers the ability to write interrupt "
+"handlers in Python. Interrupt handlers - also known as interrupt service "
+"routines (ISR's) - are defined as callback functions. These are executed "
+"in response to an event such as a timer trigger or a voltage change on a "
+"pin. Such events can occur at any point in the execution of the program "
+"code. This carries significant consequences, some specific to the "
+"MicroPython language. Others are common to all systems capable of "
+"responding to real time events. This document covers the language "
+"specific issues first, followed by a brief introduction to real time "
+"programming for those new to it."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:13
+msgid ""
+"This introduction uses vague terms like \"slow\" or \"as fast as "
+"possible\". This is deliberate, as speeds are application dependent. "
+"Acceptable durations for an ISR are dependent on the rate at which "
+"interrupts occur, the nature of the main program, and the presence of "
+"other concurrent events."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:18
+msgid "Tips and recommended practices"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:20
+msgid ""
+"This summarises the points detailed below and lists the principal "
+"recommendations for interrupt handler code."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:22
+msgid "Keep the code as short and simple as possible."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:23
+msgid ""
+"Avoid memory allocation: no appending to lists or insertion into "
+"dictionaries, no floating point."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:24
+msgid ""
+"Consider using ``micropython.schedule`` to work around the above "
+"constraint."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:25
+msgid ""
+"Where an ISR returns multiple bytes use a pre-allocated ``bytearray``. If"
+" multiple integers are to be shared between an ISR and the main program "
+"consider an array (``array.array``)."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:27
+msgid ""
+"Where data is shared between the main program and an ISR, consider "
+"disabling interrupts prior to accessing the data in the main program and "
+"re-enabling them immediately afterwards (see Critical Sections)."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:29
+msgid "Allocate an emergency exception buffer (see below)."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:33
+msgid "MicroPython Issues"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:36
+msgid "The emergency exception buffer"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:38
+msgid ""
+"If an error occurs in an ISR, MicroPython is unable to produce an error "
+"report unless a special buffer is created for the purpose. Debugging is "
+"simplified if the following code is included in any program using "
+"interrupts."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:45
+msgid ""
+"import micropython\n"
+"micropython.alloc_emergency_exception_buf(100)"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:47
+msgid "Simplicity"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:49
+msgid ""
+"For a variety of reasons it is important to keep ISR code as short and "
+"simple as possible. It should do only what has to be done immediately "
+"after the event which caused it: operations which can be deferred should "
+"be delegated to the main program loop. Typically an ISR will deal with "
+"the hardware device which caused the interrupt, making it ready for the "
+"next interrupt to occur. It will communicate with the main loop by "
+"updating shared data to indicate that the interrupt has occurred, and it "
+"will return. An ISR should return control to the main loop as quickly as "
+"possible. This is not a specific MicroPython issue so is covered in more "
+"detail :ref:`below <ISR>`."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:57
+msgid "Communication between an ISR and the main program"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:59
+msgid ""
+"Normally an ISR needs to communicate with the main program. The simplest "
+"means of doing this is via one or more shared data objects, either "
+"declared as global or shared via a class (see below). There are various "
+"restrictions and hazards around doing this, which are covered in more "
+"detail below. Integers, ``bytes`` and ``bytearray`` objects are commonly "
+"used for this purpose along with arrays (from the array module) which can"
+" store various data types."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:65
+msgid "The use of object methods as callbacks"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:67
+msgid ""
+"MicroPython supports this powerful technique which enables an ISR to "
+"share instance variables with the underlying code. It also enables a "
+"class implementing a device driver to support multiple device instances. "
+"The following example causes two LED's to flash at different rates."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:84
+msgid ""
+"import pyb, micropython\n"
+"micropython.alloc_emergency_exception_buf(100)\n"
+"class Foo(object):\n"
+"    def __init__(self, timer, led):\n"
+"        self.led = led\n"
+"        timer.callback(self.cb)\n"
+"    def cb(self, tim):\n"
+"        self.led.toggle()\n"
+"\n"
+"red = Foo(pyb.Timer(4, freq=1), pyb.LED(1))\n"
+"green = Foo(pyb.Timer(2, freq=0.8), pyb.LED(2))"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:85
+msgid ""
+"In this example the ``red`` instance associates timer 4 with LED 1: when "
+"a timer 4 interrupt occurs ``red.cb()`` is called causing LED 1 to change"
+" state. The ``green`` instance operates similarly: a timer 2 interrupt "
+"results in the execution of ``green.cb()`` and toggles LED 2. The use of "
+"instance methods confers two benefits. Firstly a single class enables "
+"code to be shared between multiple hardware instances. Secondly, as a "
+"bound method the callback function's first argument is ``self``. This "
+"enables the callback to access instance data and to save state between "
+"successive calls. For example, if the class above had a variable "
+"``self.count`` set to zero in the constructor, ``cb()`` could increment "
+"the counter. The ``red`` and ``green`` instances would then maintain "
+"independent counts of the number of times each LED had changed state."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:95
+msgid "Creation of Python objects"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:97
+msgid ""
+"ISR's cannot create instances of Python objects. This is because "
+"MicroPython needs to allocate memory for the object from a store of free "
+"memory block called the heap. This is not permitted in an interrupt "
+"handler because heap allocation is not re-entrant. In other words the "
+"interrupt might occur when the main program is part way through "
+"performing an allocation - to maintain the integrity of the heap the "
+"interpreter disallows memory allocations in ISR code."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:103
+msgid ""
+"A consequence of this is that ISR's can't use floating point arithmetic; "
+"this is because floats are Python objects. Similarly an ISR can't append "
+"an item to a list. In practice it can be hard to determine exactly which "
+"code constructs will attempt to perform memory allocation and provoke an "
+"error message: another reason for keeping ISR code short and simple."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:107
+msgid ""
+"One way to avoid this issue is for the ISR to use pre-allocated buffers. "
+"For example a class constructor creates a ``bytearray`` instance and a "
+"boolean flag. The ISR method assigns data to locations in the buffer and "
+"sets the flag. The memory allocation occurs in the main program code when"
+" the object is instantiated rather than in the ISR."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:111
+msgid ""
+"The MicroPython library I/O methods usually provide an option to use a "
+"pre-allocated buffer. For example ``pyb.i2c.recv()`` can accept a mutable"
+" buffer as its first argument: this enables its use in an ISR."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:114
+msgid ""
+"A means of creating an object without employing a class or globals is as "
+"follows:"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:123
+msgid ""
+"def set_volume(t, buf=bytearray(3)):\n"
+"    buf[0] = 0xa5\n"
+"    buf[1] = t >> 4\n"
+"    buf[2] = 0x5a\n"
+"    return buf"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:124
+msgid ""
+"The compiler instantiates the default ``buf`` argument when the function "
+"is loaded for the first time (usually when the module it's in is "
+"imported)."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:127
+msgid ""
+"An instance of object creation occurs when a reference to a bound method "
+"is created. This means that an ISR cannot pass a bound method to a "
+"function. One solution is to create a reference to the bound method in "
+"the class constructor and to pass that reference in the ISR. For example:"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:149
+msgid ""
+"class Foo():\n"
+"    def __init__(self):\n"
+"        self.bar_ref = self.bar  # Allocation occurs here\n"
+"        self.x = 0.1\n"
+"        tim = pyb.Timer(4)\n"
+"        tim.init(freq=2)\n"
+"        tim.callback(self.cb)\n"
+"\n"
+"    def bar(self, _):\n"
+"        self.x *= 1.2\n"
+"        print(self.x)\n"
+"\n"
+"    def cb(self, t):\n"
+"        # Passing self.bar would cause allocation.\n"
+"        micropython.schedule(self.bar_ref, 0)"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:150
+msgid ""
+"Other techniques are to define and instantiate the method in the "
+"constructor or to pass :meth:`Foo.bar` with the argument *self*."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:154
+msgid "Use of Python objects"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:156
+msgid ""
+"A further restriction on objects arises because of the way Python works. "
+"When an ``import`` statement is executed the Python code is compiled to "
+"bytecode, with one line of code typically mapping to multiple bytecodes. "
+"When the code runs the interpreter reads each bytecode and executes it as"
+" a series of machine code instructions. Given that an interrupt can occur"
+" at any time between machine code instructions, the original line of "
+"Python code may be only partially executed. Consequently a Python object "
+"such as a set, list or dictionary modified in the main loop may lack "
+"internal consistency at the moment the interrupt occurs."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:163
+msgid ""
+"A typical outcome is as follows. On rare occasions the ISR will run at "
+"the precise moment in time when the object is partially updated. When the"
+" ISR tries to read the object, a crash results. Because such problems "
+"typically occur on rare, random occasions they can be hard to diagnose. "
+"There are ways to circumvent this issue, described in :ref:`Critical "
+"Sections <Critical>` below."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:168
+msgid ""
+"It is important to be clear about what constitutes the modification of an"
+" object. An alteration to a built-in type such as a dictionary is "
+"problematic. Altering the contents of an array or bytearray is not. This "
+"is because bytes or words are written as a single machine code "
+"instruction which is not interruptible: in the parlance of real time "
+"programming the write is atomic. A user defined object might instantiate "
+"an integer, array or bytearray. It is valid for both the main loop and "
+"the ISR to alter the contents of these."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:174
+msgid ""
+"MicroPython supports integers of arbitrary precision. Values between "
+"2**30 -1 and -2**30 will be stored in a single machine word. Larger "
+"values are stored as Python objects. Consequently changes to long "
+"integers cannot be considered atomic. The use of long integers in ISR's "
+"is unsafe because memory allocation may be attempted as the variable's "
+"value changes."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:180
+msgid "Overcoming the float limitation"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:182
+msgid ""
+"In general it is best to avoid using floats in ISR code: hardware devices"
+" normally handle integers and conversion to floats is normally done in "
+"the main loop. However there are a few DSP algorithms which require "
+"floating point. On platforms with hardware floating point (such as the "
+"Pyboard) the inline ARM Thumb assembler can be used to work round this "
+"limitation. This is because the processor stores float values in a "
+"machine word; values can be shared between the ISR and main program code "
+"via an array of floats."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:189
+msgid "Using micropython.schedule"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:191
+msgid ""
+"This function enables an ISR to schedule a callback for execution \"very "
+"soon\". The callback is queued for execution which will take place at a "
+"time when the heap is not locked. Hence it can create Python objects and "
+"use floats. The callback is also guaranteed to run at a time when the "
+"main program has completed any update of Python objects, so the callback "
+"will not encounter partially updated objects."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:196
+msgid ""
+"Typical usage is to handle sensor hardware. The ISR acquires data from "
+"the hardware and enables it to issue a further interrupt. It then "
+"schedules a callback to process the data."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:199
+msgid ""
+"Scheduled callbacks should comply with the principles of interrupt "
+"handler design outlined below. This is to avoid problems resulting from "
+"I/O activity and the modification of shared data which can arise in any "
+"code which pre-empts the main program loop."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:203
+msgid ""
+"Execution time needs to be considered in relation to the frequency with "
+"which interrupts can occur. If an interrupt occurs while the previous "
+"callback is executing, a further instance of the callback will be queued "
+"for execution; this will run after the current instance has completed. A "
+"sustained high interrupt repetition rate therefore carries a risk of "
+"unconstrained queue growth and eventual failure with a ``RuntimeError``."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:208
+msgid ""
+"If the callback to be passed to `schedule()` is a bound method, consider "
+"the note in \"Creation of Python objects\"."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:212
+msgid "Exceptions"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:214
+msgid ""
+"If an ISR raises an exception it will not propagate to the main loop. The"
+" interrupt will be disabled unless the exception is handled by the ISR "
+"code."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:218
+msgid "General Issues"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:220
+msgid ""
+"This is merely a brief introduction to the subject of real time "
+"programming. Beginners should note that design errors in real time "
+"programs can lead to faults which are particularly hard to diagnose. This"
+" is because they can occur rarely and at intervals which are essentially "
+"random. It is crucial to get the initial design right and to anticipate "
+"issues before they arise. Both interrupt handlers and the main program "
+"need to be designed with an appreciation of the following issues."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:229
+msgid "Interrupt Handler Design"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:231
+msgid ""
+"As mentioned above, ISR's should be designed to be as simple as possible."
+" They should always return in a short, predictable period of time. This "
+"is important because when the ISR is running, the main loop is not: "
+"inevitably the main loop experiences pauses in its execution at random "
+"points in the code. Such pauses can be a source of hard to diagnose bugs "
+"particularly if their duration is long or variable. In order to "
+"understand the implications of ISR run time, a basic grasp of interrupt "
+"priorities is required."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:237
+msgid ""
+"Interrupts are organised according to a priority scheme. ISR code may "
+"itself be interrupted by a higher priority interrupt. This has "
+"implications if the two interrupts share data (see Critical Sections "
+"below). If such an interrupt occurs it interposes a delay into the ISR "
+"code. If a lower priority interrupt occurs while the ISR is running, it "
+"will be delayed until the ISR is complete: if the delay is too long, the "
+"lower priority interrupt may fail. A further issue with slow ISR's is the"
+" case where a second interrupt of the same type occurs during its "
+"execution. The second interrupt will be handled on termination of the "
+"first. However if the rate of incoming interrupts consistently exceeds "
+"the capacity of the ISR to service them the outcome will not be a happy "
+"one."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:245
+msgid ""
+"Consequently looping constructs should be avoided or minimised. I/O to "
+"devices other than to the interrupting device should normally be avoided:"
+" I/O such as disk access, ``print`` statements and UART access is "
+"relatively slow, and its duration may vary. A further issue here is that "
+"filesystem functions are not reentrant: using filesystem I/O in an ISR "
+"and the main program would be hazardous. Crucially ISR code should not "
+"wait on an event. I/O is acceptable if the code can be guaranteed to "
+"return in a predictable period, for example toggling a pin or LED. "
+"Accessing the interrupting device via I2C or SPI may be necessary but the"
+" time taken for such accesses should be calculated or measured and its "
+"impact on the application assessed."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:253
+msgid ""
+"There is usually a need to share data between the ISR and the main loop. "
+"This may be done either through global variables or via class or instance"
+" variables. Variables are typically integer or boolean types, or integer "
+"or byte arrays (a pre-allocated integer array offers faster access than a"
+" list). Where multiple values are modified by the ISR it is necessary to "
+"consider the case where the interrupt occurs at a time when the main "
+"program has accessed some, but not all, of the values. This can lead to "
+"inconsistencies."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:259
+msgid ""
+"Consider the following design. An ISR stores incoming data in a "
+"bytearray, then adds the number of bytes received to an integer "
+"representing total bytes ready for processing. The main program reads the"
+" number of bytes, processes the bytes, then clears down the number of "
+"bytes ready. This will work until an interrupt occurs just after the main"
+" program has read the number of bytes. The ISR puts the added data into "
+"the buffer and updates the number received, but the main program has "
+"already read the number, so processes the data originally received. The "
+"newly arrived bytes are lost."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:266
+msgid ""
+"There are various ways of avoiding this hazard, the simplest being to use"
+" a circular buffer. If it is not possible to use a structure with "
+"inherent thread safety other ways are described below."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:270
+msgid "Reentrancy"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:272
+msgid ""
+"A potential hazard may occur if a function or method is shared between "
+"the main program and one or more ISR's or between multiple ISR's. The "
+"issue here is that the function may itself be interrupted and a further "
+"instance of that function run. If this is to occur, the function must be "
+"designed to be reentrant. How this is done is an advanced topic beyond "
+"the scope of this tutorial."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:280
+msgid "Critical Sections"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:282
+msgid ""
+"An example of a critical section of code is one which accesses more than "
+"one variable which can be affected by an ISR. If the interrupt happens to"
+" occur between accesses to the individual variables, their values will be"
+" inconsistent. This is an instance of a hazard known as a race condition:"
+" the ISR and the main program loop race to alter the variables. To avoid "
+"inconsistency a means must be employed to ensure that the ISR does not "
+"alter the values for the duration of the critical section. One way to "
+"achieve this is to issue ``pyb.disable_irq()`` before the start of the "
+"section, and ``pyb.enable_irq()`` at the end. Here is an example of this "
+"approach:"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:322
+msgid ""
+"import pyb, micropython, array\n"
+"micropython.alloc_emergency_exception_buf(100)\n"
+"\n"
+"class BoundsException(Exception):\n"
+"    pass\n"
+"\n"
+"ARRAYSIZE = const(20)\n"
+"index = 0\n"
+"data = array.array('i', 0 for x in range(ARRAYSIZE))\n"
+"\n"
+"def callback1(t):\n"
+"    global data, index\n"
+"    for x in range(5):\n"
+"        data[index] = pyb.rng() # simulate input\n"
+"        index += 1\n"
+"        if index >= ARRAYSIZE:\n"
+"            raise BoundsException('Array bounds exceeded')\n"
+"\n"
+"tim4 = pyb.Timer(4, freq=100, callback=callback1)\n"
+"\n"
+"for loop in range(1000):\n"
+"    if index > 0:\n"
+"        irq_state = pyb.disable_irq() # Start of critical section\n"
+"        for x in range(index):\n"
+"            print(data[x])\n"
+"        index = 0\n"
+"        pyb.enable_irq(irq_state) # End of critical section\n"
+"        print('loop {}'.format(loop))\n"
+"    pyb.delay(1)\n"
+"\n"
+"tim4.callback(None)"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:323
+msgid ""
+"A critical section can comprise a single line of code and a single "
+"variable. Consider the following code fragment."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:334
+msgid ""
+"count = 0\n"
+"def cb(): # An interrupt callback\n"
+"    count +=1\n"
+"def main():\n"
+"    # Code to set up the interrupt callback omitted\n"
+"    while True:\n"
+"        count += 1"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:335
+msgid ""
+"This example illustrates a subtle source of bugs. The line ``count += 1``"
+" in the main loop carries a specific race condition hazard known as a "
+"read-modify-write. This is a classic cause of bugs in real time systems. "
+"In the main loop MicroPython reads the value of ``t.counter``, adds 1 to "
+"it, and writes it back. On rare occasions the  interrupt occurs after the"
+" read and before the write. The interrupt modifies ``t.counter`` but its "
+"change is overwritten by the main loop when the ISR returns. In a real "
+"system this could lead to rare, unpredictable failures."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:341
+msgid ""
+"As mentioned above, care should be taken if an instance of a Python built"
+" in type is modified in the main code and that instance is accessed in an"
+" ISR. The code performing the modification should be regarded as a "
+"critical section to ensure that the instance is in a valid state when the"
+" ISR runs."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:345
+msgid ""
+"Particular care needs to be taken if a dataset is shared between "
+"different ISR's. The hazard here is that the higher priority interrupt "
+"may occur when the lower priority one has partially updated the shared "
+"data. Dealing with this situation is an advanced topic beyond the scope "
+"of this introduction other than to note that mutex objects described "
+"below can sometimes be used."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:350
+msgid ""
+"Disabling interrupts for the duration of a critical section is the usual "
+"and simplest way to proceed, but it disables all interrupts rather than "
+"merely the one with the potential to cause problems. It is generally "
+"undesirable to disable an interrupt for long. In the case of timer "
+"interrupts it introduces variability to the time when a callback occurs. "
+"In the case of device interrupts, it can lead to the device being "
+"serviced too late with possible loss of data or overrun errors in the "
+"device hardware. Like ISR's, a critical section in the main code should "
+"have a short, predictable duration."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:357
+msgid ""
+"An approach to dealing with critical sections which radically reduces the"
+" time for which interrupts are disabled is to use an object termed a "
+"mutex (name derived from the notion of mutual exclusion). The main "
+"program locks the mutex before running the critical section and unlocks "
+"it at the end. The ISR tests whether the mutex is locked. If it is, it "
+"avoids the critical section and returns. The design challenge is defining"
+" what the ISR should do in the event that access to the critical "
+"variables is denied. A simple example of a mutex may be found `here "
+"<https://github.com/peterhinch/micropython-samples.git>`_. Note that the "
+"mutex code does disable interrupts, but only for the duration of eight "
+"machine instructions: the benefit of this approach is that other "
+"interrupts are virtually unaffected."
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:367
+msgid "Interrupts and the REPL"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:369
+msgid ""
+"Interrupt handlers, such as those associated with timers, can continue to"
+" run after a program terminates.  This may produce unexpected results "
+"where you might have expected the object raising the callback to have "
+"gone out of scope.  For example on the Pyboard:"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:380
+msgid ""
+"def bar():\n"
+"    foo = pyb.Timer(2, freq=4, callback=lambda t: print('.', end=''))\n"
+"\n"
+"bar()"
+msgstr ""
+
+#: ../../../reference/isr_rules.rst:381
+msgid ""
+"This continues to run until the timer is explicitly disabled or the board"
+" is reset with ``ctrl D``."
+msgstr ""
+
+#: ../../../reference/packages.rst:2
+msgid "Distribution packages, package management, and deploying applications"
+msgstr ""
+
+#: ../../../reference/packages.rst:4
+msgid ""
+"Just as the \"big\" Python, MicroPython supports creation of \"third "
+"party\" packages, distributing them, and easily installing them in each "
+"user's environment. This chapter discusses how these actions are "
+"achieved. Some familiarity with Python packaging is recommended."
+msgstr ""
+
+#: ../../../reference/packages.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../../reference/packages.rst:12
+msgid ""
+"Steps below represent a high-level workflow when creating and consuming "
+"packages:"
+msgstr ""
+
+#: ../../../reference/packages.rst:15
+msgid ""
+"Python modules and packages are turned into distribution package "
+"archives, and published at the Python Package Index (PyPI)."
+msgstr ""
+
+#: ../../../reference/packages.rst:17
+msgid ""
+"`upip` package manager can be used to install a distribution package on a"
+" `MicroPython port` with networking capabilities (for example, on the "
+"Unix port)."
+msgstr ""
+
+#: ../../../reference/packages.rst:20
+msgid ""
+"For ports without networking capabilities, an \"installation image\" can "
+"be prepared on the Unix port, and transferred to a device by suitable "
+"means."
+msgstr ""
+
+#: ../../../reference/packages.rst:23
+msgid ""
+"For low-memory ports, the installation image can be frozen as the "
+"bytecode into MicroPython executable, thus minimizing the memory storage "
+"overheads."
+msgstr ""
+
+#: ../../../reference/packages.rst:27
+msgid "The sections below describe this process in details."
+msgstr ""
+
+#: ../../../reference/packages.rst:30
+msgid "Distribution packages"
+msgstr ""
+
+#: ../../../reference/packages.rst:32
+msgid ""
+"Python modules and packages can be packaged into archives suitable for "
+"transfer between systems, storing at the well-known location (PyPI), and "
+"downloading on demand for deployment. These archives are known as "
+"*distribution packages* (to differentiate them from Python packages "
+"(means to organize Python source code))."
+msgstr ""
+
+#: ../../../reference/packages.rst:38
+msgid ""
+"The MicroPython distribution package format is a well-known tar.gz "
+"format, with some adaptations however. The Gzip compressor, used as an "
+"external wrapper for TAR archives, by default uses 32KB dictionary size, "
+"which means that to uncompress a compressed stream, 32KB of contguous "
+"memory needs to be allocated. This requirement may be not satisfiable on "
+"low-memory devices, which may have total memory available less than that "
+"amount, and even if not, a contiguous block like that may be hard to "
+"allocate due to memory fragmentation. To accommodate these constraints, "
+"MicroPython distribution packages use Gzip compression with the "
+"dictionary size of 4K, which should be a suitable compromise with still "
+"achieving some compression while being able to uncompressed even by the "
+"smallest devices."
+msgstr ""
+
+#: ../../../reference/packages.rst:51
+msgid ""
+"Besides the small compression dictionary size, MicroPython distribution "
+"packages also have other optimizations, like removing any files from the "
+"archive which aren't used by the installation process. In particular, "
+"`upip` package manager doesn't execute ``setup.py`` during installation "
+"(see below), and thus that file is not included in the archive."
+msgstr ""
+
+#: ../../../reference/packages.rst:57
+msgid ""
+"At the same time, these optimizations make MicroPython distribution "
+"packages not compatible with `CPython`'s package manager, ``pip``. This "
+"isn't considered a big problem, because:"
+msgstr ""
+
+#: ../../../reference/packages.rst:61
+msgid ""
+"Packages can be installed with `upip`, and then can be used with CPython "
+"(if they are compatible with it)."
+msgstr ""
+
+#: ../../../reference/packages.rst:63
+msgid ""
+"In the other direction, majority of CPython packages would be "
+"incompatible with MicroPython by various reasons, first of all, the "
+"reliance on features not implemented by MicroPython."
+msgstr ""
+
+#: ../../../reference/packages.rst:67
+msgid ""
+"Summing up, the MicroPython distribution package archives are highly "
+"optimized for MicroPython's target environments, which are highly "
+"resource constrained devices."
+msgstr ""
+
+#: ../../../reference/packages.rst:73
+msgid "``upip`` package manager"
+msgstr ""
+
+#: ../../../reference/packages.rst:75
+msgid ""
+"MicroPython distribution packages are intended to be installed using the "
+"`upip` package manager. `upip` is a Python application which is usually "
+"distributed (as frozen bytecode) with network-enabled `MicroPython ports "
+"<MicroPython port>`. At the very least, `upip` is available in the "
+"`MicroPython Unix port`."
+msgstr ""
+
+#: ../../../reference/packages.rst:81
+msgid ""
+"On any `MicroPython port` providing `upip`, it can be accessed as "
+"following::"
+msgstr ""
+
+#: ../../../reference/packages.rst:84
+msgid ""
+"import upip\n"
+"upip.help()\n"
+"upip.install(package_or_package_list, [path])"
+msgstr ""
+
+#: ../../../reference/packages.rst:88
+msgid ""
+"Where *package_or_package_list* is the name of a distribution package to "
+"install, or a list of such names to install multiple packages. Optional "
+"*path* parameter specifies filesystem location to install under and "
+"defaults to the standard library location (see below)."
+msgstr ""
+
+#: ../../../reference/packages.rst:94
+msgid "An example of installing a specific package and then using it::"
+msgstr ""
+
+#: ../../../reference/packages.rst:96
+msgid ""
+">>> import upip\n"
+">>> upip.install(\"micropython-pystone_lowmem\")\n"
+"[...]\n"
+">>> import pystone_lowmem\n"
+">>> pystone_lowmem.main()"
+msgstr ""
+
+#: ../../../reference/packages.rst:102
+msgid ""
+"Note that the name of Python package and the name of distribution package"
+" for it in general don't have to match, and oftentimes they don't. This "
+"is because PyPI provides a central package repository for all different "
+"Python implementations and versions, and thus distribution package names "
+"may need to be namespaced for a particular implementation. For example, "
+"all packages from `micropython-lib` follow this naming convention: for a "
+"Python module or package named ``foo``, the distribution package name is "
+"``micropython-foo``."
+msgstr ""
+
+#: ../../../reference/packages.rst:111
+msgid ""
+"For the ports which run MicroPython executable from the OS command "
+"prompts (like the Unix port), `upip` can be (and indeed, usually is) run "
+"from the command line instead of MicroPython's own REPL. The commands "
+"which corresponds to the example above are::"
+msgstr ""
+
+#: ../../../reference/packages.rst:116
+msgid ""
+"micropython -m upip -h\n"
+"micropython -m upip install [-p <path>] <packages>...\n"
+"micropython -m upip install micropython-pystone_lowmem"
+msgstr ""
+
+#: ../../../reference/packages.rst:120
+msgid "[TODO: Describe installation path.]"
+msgstr ""
+
+#: ../../../reference/packages.rst:124
+msgid "Cross-installing packages"
+msgstr ""
+
+#: ../../../reference/packages.rst:126
+msgid ""
+"For `MicroPython ports <MicroPython port>` without native networking "
+"capabilities, the recommend process is \"cross-installing\" them into a "
+"\"directory image\" using the `MicroPython Unix port`, and then "
+"transferring this image to a device by suitable means."
+msgstr ""
+
+#: ../../../reference/packages.rst:131
+msgid "Installing to a directory image involves using ``-p`` switch to `upip`::"
+msgstr ""
+
+#: ../../../reference/packages.rst:133
+msgid "micropython -m upip install -p install_dir micropython-pystone_lowmem"
+msgstr ""
+
+#: ../../../reference/packages.rst:135
+msgid ""
+"After this command, the package content (and contents of every depenency "
+"packages) will be available in the ``install_dir/`` subdirectory. You "
+"would need to transfer contents of this directory (without the "
+"``install_dir/`` prefix) to the device, at the suitable location, where "
+"it can be found by the Python ``import`` statement (see discussion of the"
+" `upip` installation path above)."
+msgstr ""
+
+#: ../../../reference/packages.rst:144
+msgid "Cross-installing packages with freezing"
+msgstr ""
+
+#: ../../../reference/packages.rst:146
+msgid ""
+"For the low-memory `MicroPython ports <MicroPython port>`, the process "
+"described in the previous section does not provide the most efficient "
+"resource usage,because the packages are installed in the source form, so "
+"need to be compiled to the bytecome on each import. This compilation "
+"requires RAM, and the resulting bytecode is also stored in RAM, reducing "
+"its amount available for storing application data. Moreover, the process "
+"above requires presence of the filesystem on a device, and the most "
+"resource-constrained devices may not even have it."
+msgstr ""
+
+#: ../../../reference/packages.rst:155
+msgid ""
+"The bytecode freezing is a process which resolves all the issues "
+"mentioned above:"
+msgstr ""
+
+#: ../../../reference/packages.rst:158
+msgid "The source code is pre-compiled into bytecode and store as such."
+msgstr ""
+
+#: ../../../reference/packages.rst:159
+msgid "The bytecode is stored in ROM, not RAM."
+msgstr ""
+
+#: ../../../reference/packages.rst:160
+msgid "Filesystem is not required for frozen packages."
+msgstr ""
+
+#: ../../../reference/packages.rst:162
+msgid ""
+"Using frozen bytecode requires building the executable (firmware) for a "
+"given `MicroPython port` from the C source code. Consequently, the "
+"process is:"
+msgstr ""
+
+#: ../../../reference/packages.rst:166
+msgid ""
+"Follow the instructions for a particular port on setting up a toolchain "
+"and building the port. For example, for ESP8266 port, study instructions "
+"in ``ports/esp8266/README.md`` and follow them. Make sure you can build "
+"the port and deploy the resulting executable/firmware successfully before"
+" proceeding to the next steps."
+msgstr ""
+
+#: ../../../reference/packages.rst:171
+msgid ""
+"Build `MicroPython Unix port` and make sure it is in your PATH and you "
+"can execute ``micropython``."
+msgstr ""
+
+#: ../../../reference/packages.rst:173
+msgid "Change to port's directory (e.g. ``ports/esp8266/`` for ESP8266)."
+msgstr ""
+
+#: ../../../reference/packages.rst:174
+msgid ""
+"Run ``make clean-frozen``. This step cleans up any previous modules which"
+" were installed for freezing (consequently, you need to skip this step to"
+" add additional modules, instead of starting from scratch)."
+msgstr ""
+
+#: ../../../reference/packages.rst:178
+msgid ""
+"Run ``micropython -m upip install -p modules <packages>...`` to install "
+"packages you want to freeze."
+msgstr ""
+
+#: ../../../reference/packages.rst:180
+msgid "Run ``make clean``."
+msgstr ""
+
+#: ../../../reference/packages.rst:181
+msgid "Run ``make``."
+msgstr ""
+
+#: ../../../reference/packages.rst:183
+msgid ""
+"After this, you should have the executable/firmware with modules as the "
+"bytecode inside, which you can deploy the usual way."
+msgstr ""
+
+#: ../../../reference/packages.rst:186
+msgid "Few notes:"
+msgstr ""
+
+#: ../../../reference/packages.rst:188
+msgid ""
+"Step 5 in the sequence above assumes that the distribution package is "
+"available from PyPI. If that is not the case, you would need to copy "
+"Python source files manually to ``modules/`` subdirectory of the port "
+"port directory. (Note that upip does not support installing from e.g. "
+"version control repositories)."
+msgstr ""
+
+#: ../../../reference/packages.rst:193
+msgid ""
+"The firmware for baremetal devices usually has size restrictions, so "
+"adding too many frozen modules may overflow it. Usually, you would get a "
+"linking error if this happens. However, in some cases, an image may be "
+"produced, which is not runnable on a device. Such cases are in general "
+"bugs, and should be reported and further investigated. If you face such a"
+" situation, as an initial step, you may want to decrease the amount of "
+"frozen modules included."
+msgstr ""
+
+#: ../../../reference/packages.rst:203
+msgid "Creating distribution packages"
+msgstr ""
+
+#: ../../../reference/packages.rst:205
+msgid ""
+"Distribution packages for MicroPython are created in the same manner as "
+"for CPython or any other Python implementation, see references at the end"
+" of chapter. Setuptools (instead of distutils) should be used, because "
+"distutils do not support dependencies and other features. \"Source "
+"distribution\" (``sdist``) format is used for packaging. The post-"
+"processing discussed above, (and pre-processing discussed in the "
+"following section) is achieved by using custom ``sdist`` command for "
+"setuptools. Thus, packaging steps remain the same as for the standard "
+"setuptools, the user just needs to override ``sdist`` command "
+"implementation by passing the appropriate argument to ``setup()`` call::"
+msgstr ""
+
+#: ../../../reference/packages.rst:216
+msgid ""
+"from setuptools import setup\n"
+"import sdist_upip\n"
+"\n"
+"setup(\n"
+"    ...,\n"
+"    cmdclass={'sdist': sdist_upip.sdist}\n"
+")"
+msgstr ""
+
+#: ../../../reference/packages.rst:224
+msgid ""
+"The sdist_upip.py module as referenced above can be found in "
+"`micropython-lib`: https://github.com/micropython/micropython-"
+"lib/blob/master/sdist_upip.py"
+msgstr ""
+
+#: ../../../reference/packages.rst:230
+msgid "Application resources"
+msgstr ""
+
+#: ../../../reference/packages.rst:232
+msgid ""
+"A complete application, besides the source code, oftentimes also consists"
+" of data files, e.g. web page templates, game images, etc. It's clear how"
+" to deal with those when application is installed manually - you just put"
+" those data files in the filesystem at some location and use the normal "
+"file access functions."
+msgstr ""
+
+#: ../../../reference/packages.rst:238
+msgid ""
+"The situation is different when deploying applications from packages - "
+"this is more advanced, streamlined and flexible way, but also requires "
+"more advanced approach to accessing data files. This approach is treating"
+" the data files as \"resources\", and abstracting away access to them."
+msgstr ""
+
+#: ../../../reference/packages.rst:243
+msgid ""
+"Python supports resource access using its \"setuptools\" library, using "
+"``pkg_resources`` module. MicroPython, following its usual approach, "
+"implements subset of the functionality of that module, specifically "
+"``pkg_resources.resource_stream(package, resource)`` function. The idea "
+"is that an application calls this function, passing a resource "
+"identifier, which is a relative path to data file within the specified "
+"package (usually top-level application package). It returns a stream "
+"object which can be used to access resource contents. Thus, the "
+"``resource_stream()`` emulates interface of the standard `open()` "
+"function."
+msgstr ""
+
+#: ../../../reference/packages.rst:254
+msgid ""
+"Implementation-wise, ``resource_stream()`` uses file operations "
+"underlyingly, if distribution package is install in the filesystem. "
+"However, it also supports functioning without the underlying filesystem, "
+"e.g. if the package is frozen as the bytecode. This however requires an "
+"extra intermediate step when packaging application - creation of \"Python"
+" resource module\"."
+msgstr ""
+
+#: ../../../reference/packages.rst:261
+msgid ""
+"The idea of this module is to convert binary data to a Python bytes "
+"object, and put it into the dictionary, indexed by the resource name. "
+"This conversion is done automatically using overridden ``sdist`` command "
+"described in the previous section."
+msgstr ""
+
+#: ../../../reference/packages.rst:266
+msgid ""
+"Let's trace the complete process using the following example. Suppose "
+"your application has the following structure::"
+msgstr ""
+
+#: ../../../reference/packages.rst:269
+msgid ""
+"my_app/\n"
+"    __main__.py\n"
+"    utils.py\n"
+"    data/\n"
+"        page.html\n"
+"        image.png"
+msgstr ""
+
+#: ../../../reference/packages.rst:276
+msgid ""
+"``__main__.py`` and ``utils.py`` should access resources using the "
+"following calls::"
+msgstr ""
+
+#: ../../../reference/packages.rst:279
+msgid ""
+"import pkg_resources\n"
+"\n"
+"pkg_resources.resource_stream(__name__, \"data/page.html\")\n"
+"pkg_resources.resource_stream(__name__, \"data/image.png\")"
+msgstr ""
+
+#: ../../../reference/packages.rst:284
+msgid ""
+"You can develop and debug using the `MicroPython Unix port` as usual. "
+"When time comes to make a distribution package out of it, just use "
+"overridden \"sdist\" command from sdist_upip.py module as described in "
+"the previous section."
+msgstr ""
+
+#: ../../../reference/packages.rst:289
+msgid ""
+"This will create a Python resource module named ``R.py``, based on the "
+"files declared in ``MANIFEST`` or ``MANIFEST.in`` files (any non-``.py`` "
+"file will be considered a resource and added to ``R.py``) - before "
+"proceeding with the normal packaging steps."
+msgstr ""
+
+#: ../../../reference/packages.rst:294
+msgid ""
+"Prepared like this, your application will work both when deployed to "
+"filesystem and as frozen bytecode."
+msgstr ""
+
+#: ../../../reference/packages.rst:297
+msgid "If you would like to debug ``R.py`` creation, you can run::"
+msgstr ""
+
+#: ../../../reference/packages.rst:299
+msgid "python3 setup.py sdist --manifest-only"
+msgstr ""
+
+#: ../../../reference/packages.rst:301
+msgid ""
+"Alternatively, you can use tools/mpy_bin2res.py script from the "
+"MicroPython distribution, in which can you will need to pass paths to all"
+" resource files::"
+msgstr ""
+
+#: ../../../reference/packages.rst:305
+msgid "mpy_bin2res.py data/page.html data/image.png"
+msgstr ""
+
+#: ../../../reference/packages.rst:310
+msgid "Python Packaging User Guide: https://packaging.python.org/"
+msgstr ""
+
+#: ../../../reference/packages.rst:311
+msgid "Setuptools documentation: https://setuptools.readthedocs.io/"
+msgstr ""
+
+#: ../../../reference/packages.rst:312
+msgid "Distutils documentation: https://docs.python.org/3/library/distutils.html"
+msgstr ""
+
+#: ../../../reference/repl.rst:2
+msgid "The MicroPython Interactive Interpreter Mode (aka REPL)"
+msgstr "MicroPython 対話インタプリタモード (別名 REPL)"
+
+#: ../../../reference/repl.rst:4
+msgid ""
+"This section covers some characteristics of the MicroPython Interactive "
+"Interpreter Mode. A commonly used term for this is REPL (read-eval-print-"
+"loop) which will be used to refer to this interactive prompt."
+msgstr ""
+"この章は、MicroPython の対話インタプリタモードのいくつかの特性を扱います。"
+"この機能の一般的に使用される用語は、REPL(read-eval-print-loop)です。"
+"以後、この用語を対話プロンプトを示すものとして使います。"
+
+#: ../../../reference/repl.rst:9
+msgid "Auto-indent"
+msgstr "自動インデント"
+
+#: ../../../reference/repl.rst:11
+msgid ""
+"When typing python statements which end in a colon (for example if, for, "
+"while) then the prompt will change to three dots (...) and the cursor "
+"will be indented by 4 spaces. When you press return, the next line will "
+"continue at the same level of indentation for regular statements or an "
+"additional level of indentation where appropriate. If you press the "
+"backspace key then it will undo one level of indentation."
+msgstr ""
+"python の文をコロンで終わるところまで入力すると(if, for while など)、プロンプトが"
+"３つのドット(...)に変わり、カーソルは４文字の空白でインデントされます。リターンを"
+"押すと、次の行は通常の文のために同じレベルでインデントを継続するか、適切な追加の"
+"インデントレベルになります。バックスペースキーを押すと、インデントのレベルが１つ"
+"取り消されます。"
+
+#: ../../../reference/repl.rst:18
+msgid ""
+"If your cursor is all the way back at the beginning, pressing RETURN will"
+" then execute the code that you've entered. The following shows what "
+"you'd see after entering a for statement (the underscore shows where the "
+"cursor winds up):"
+msgstr ""
+"カーソルを先頭に戻して RETURN を押すと、入力したコードを実行します。以下は、"
+"for 文を入力した後にどうなっているかを示しています(下線はカーソル位置を示して"
+"います)。"
+
+#: ../../../reference/repl.rst:25
+msgid ""
+"If you then enter an if statement, an additional level of indentation "
+"will be provided:"
+msgstr ""
+"if 文を入力すると、インデントの追加のレベルが提供されます。"
+
+#: ../../../reference/repl.rst:32
+msgid "Now enter ``break`` followed by RETURN and press BACKSPACE:"
+msgstr "ここで ``break`` を入力して RETURN キーを押し、BACKSPACE キーを押してください。"
+
+#: ../../../reference/repl.rst:39
+msgid ""
+"Finally type ``print(i)``, press RETURN, press BACKSPACE and press RETURN"
+" again:"
+msgstr ""
+"最後に ``print(i)`` を入力し、RETURN キーを押し、BACKSPACE キーを押して、
+"再び RETURN キーを押してください。"
+
+#: ../../../reference/repl.rst:52
+msgid ""
+"Auto-indent won't be applied if the previous two lines were all spaces.  "
+"This means that you can finish entering a compound statement by pressing "
+"RETURN twice, and then a third press will finish and execute."
+msgstr ""
+"前の２行がすべてスペースであった場合には、自動インデントが適用されません。これは、"
+"２回 RETURN を押せば、複合文を入力し終えることができ、その後、３回目の押下で入力が"
+"終了し、実行することを意味します。"
+
+#: ../../../reference/repl.rst:57
+msgid "Auto-completion"
+msgstr "自動補間"
+
+#: ../../../reference/repl.rst:59
+msgid ""
+"While typing a command at the REPL, if the line typed so far corresponds "
+"to the beginning of the name of something, then pressing TAB will show "
+"possible things that could be entered. For example, first import the "
+"machine module by entering ``import machine`` and pressing RETURN. Then "
+"type ``m`` and press TAB and it should expand to ``machine``. Enter a dot"
+" ``.`` and press TAB again. You should see something like:"
+msgstr ""
+"REPL でコマンドを入力しているとき、入力中のものが、何かの名前の先頭部分に該当して"
+"いれば、次に TAB を押すことにより入力している可能性のあるものが表示されます。"
+"たとえば ``m`` を入力して TAB キーを押すと、 ``machine`` に展開されます。"
+"続けてドット ``.`` を入力して もう一度　TAB キーを押してください。次のような"
+"ものが表示されるはずです。"
+
+#: ../../../reference/repl.rst:72
+msgid ""
+"The word will be expanded as much as possible until multiple "
+"possibilities exist. For example, type ``machine.Pin.AF3`` and press TAB "
+"and it will expand to ``machine.Pin.AF3_TIM``. Pressing TAB a second time"
+" will show the possible expansions:"
+msgstr ""
+"複数の候補があれば、それだけのワードが展開されます。たとえば ``machine.Pin.AF3`` "
+"を入力して TAB キーを押すと、 ``machine.Pin.AF3_TIM`` に展開されます。TAB "
+"をもう一度押すと、次の候補が表示されます。"
+
+#: ../../../reference/repl.rst:82
+msgid "Interrupting a running program"
+msgstr "実行中のプログラムの中断"
+
+#: ../../../reference/repl.rst:84
+msgid ""
+"You can interrupt a running program by pressing Ctrl-C. This will raise a"
+" KeyboardInterrupt which will bring you back to the REPL, providing your "
+"program doesn't intercept the KeyboardInterrupt exception."
+msgstr ""
+"Ctrl+C キーを押すことで実行中のプログラムを中断できます。これは KeyboardInterrupt "
+"例外を発生させ、REPL に戻ります。KeyboardInterrupt をプログラム中で捕らえることは"
+"できません。"
+
+#: ../../../reference/repl.rst:88
+msgid "For example:"
+msgstr "中断の例:"
+
+#: ../../../reference/repl.rst:107
+msgid "Paste Mode"
+msgstr "貼付けモード"
+
+#: ../../../reference/repl.rst:109
+msgid ""
+"If you want to paste some code into your terminal window, the auto-indent"
+" feature will mess things up. For example, if you had the following "
+"python code: ::"
+msgstr ""
+"ターミナルウィンドウで何かのコードを貼り付けたい場合、自動インデント機能のせいでうまく"
+"いかないことがあります。たとえば、次の Python コードがある場合:"
+
+#: ../../../reference/repl.rst:112
+msgid ""
+"def foo():\n"
+"    print('This is a test to show paste mode')\n"
+"    print('Here is a second line')\n"
+"foo()"
+msgstr ""
+
+#: ../../../reference/repl.rst:117
+msgid ""
+"and you try to paste this into the normal REPL, then you will see "
+"something like this:"
+msgstr ""
+"通常の REPL にこれを貼り付けてみると、次のようになってしまいます。"
+
+#: ../../../reference/repl.rst:129
+msgid ""
+"If you press Ctrl-E, then you will enter paste mode, which essentially "
+"turns off the auto-indent feature, and changes the prompt from ``>>>`` to"
+" ``===``. For example:"
+msgstr ""
+"Ctrl-E を押すと、貼付けモードとなり、基本的に自動インデント機能が無効となり、"
+"プロンプトが ``>>>`` から ``===`` に変わります。次に例を示します。"
+
+#: ../../../reference/repl.rst:143
+msgid ""
+"Paste Mode allows blank lines to be pasted. The pasted text is compiled "
+"as if it were a file. Pressing Ctrl-D exits paste mode and initiates the "
+"compilation."
+msgstr ""
+"貼付けモードでは、空白行を貼り付けることができるようになります。ファイルであるかの"
+"ように貼り付けたテキストがコンパイルされます。Ctrl+Dキーを押すと、ペーストモードを"
+"終了し、コンパイルを開始します。"
+
+#: ../../../reference/repl.rst:147
+msgid "Soft Reset"
+msgstr "ソフトリセット"
+
+#: ../../../reference/repl.rst:149
+msgid ""
+"A soft reset will reset the python interpreter, but tries not to reset "
+"the method by which you're connected to the MicroPython board (USB-"
+"serial, or Wifi)."
+msgstr ""
+"ソフトリセットは python インタプリタをリセットしますが、MicroPython ボード"
+"に接続している手段(USBシリアル、または無線LAN)をリセットしないよう試みます。"
+
+#: ../../../reference/repl.rst:152
+msgid ""
+"You can perform a soft reset from the REPL by pressing Ctrl-D, or from "
+"your python code by executing: ::"
+msgstr ""
+"ソフトリセットは Ctrl-D を押すことで起こせます。python コード中からも次を実行"
+"することでソフトリセットを起こせます。"
+
+#: ../../../reference/repl.rst:155
+msgid "machine.soft_reset()"
+msgstr ""
+
+#: ../../../reference/repl.rst:157
+msgid ""
+"For example, if you reset your MicroPython board, and you execute a dir()"
+" command, you'd see something like this:"
+msgstr ""
+"たとえば MicroPython ボードをリセットし、dir() 命令を実行すると、次のようになる"
+"でしょう。"
+
+#: ../../../reference/repl.rst:163
+msgid "Now create some variables and repeat the dir() command:"
+msgstr "ここで、いくつかの変数の作成と dir() 命令を繰り返します。"
+
+#: ../../../reference/repl.rst:172
+msgid ""
+"Now if you enter Ctrl-D, and repeat the dir() command, you'll see that "
+"your variables no longer exist:"
+msgstr ""
+"ここで Ctrl-D を押して、再度 dir() を行ってみれば、変数がもはや存在しないことが"
+"わかります。"
+
+#: ../../../reference/repl.rst:175
+msgid ""
+"PYB: sync filesystems\n"
+"PYB: soft reboot\n"
+"MicroPython v1.5-51-g6f70283-dirty on 2015-10-30; PYBv1.0 with "
+"STM32F405RG\n"
+"Type \"help()\" for more information.\n"
+">>> dir()\n"
+"['__name__', 'pyb']\n"
+">>>"
+msgstr ""
+
+#: ../../../reference/repl.rst:186
+msgid "The special variable _ (underscore)"
+msgstr "特殊変数 _ (下線)"
+
+#: ../../../reference/repl.rst:188
+msgid ""
+"When you use the REPL, you may perform computations and see the results. "
+"MicroPython stores the results of the previous statement in the variable "
+"_ (underscore). So you can use the underscore to save the result in a "
+"variable. For example:"
+msgstr ""
+"REPL を使っているときには、計算を実行した結果を使いたいことがあります。"
+"MicroPython は、前の文の結果を変数 _　(下線)に格納します。ですから、"
+"変数に結果を保存するために、アンダースコアが使えます。たとえば"
+"次のように使えます。"
+
+#: ../../../reference/repl.rst:200
+msgid "Raw Mode"
+msgstr "raw モード"
+
+#: ../../../reference/repl.rst:202
+msgid ""
+"Raw mode is not something that a person would normally use. It is "
+"intended for programmatic use. It essentially behaves like paste mode "
+"with echo turned off."
+msgstr ""
+"raw モードは、人が通常使うものではありません。これは、プログラムで使うよう意図"
+"されています。本質的には、エコーが無効になったペーストモードのように動作します。"
+
+#: ../../../reference/repl.rst:205
+msgid ""
+"Raw mode is entered using Ctrl-A. You then send your python code, "
+"followed by a Ctrl-D. The Ctrl-D will be acknowledged by 'OK' and then "
+"the python code will be compiled and executed. Any output (or errors) "
+"will be sent back. Entering Ctrl-B will leave raw mode and return the the"
+" regular (aka friendly) REPL."
+msgstr ""
+"raw モードには、Ctrl+A キーを使って入ります。続いて python コード と Ctrl-D を"
+"送信します。Ctrl-D は「OK」によって承認され、その後 python コードがコンパイルされ、"
+"実行されます。任意の出力(またはエラー)が戻ってきます。Ctrl-B を入力すると、raw "
+"モードを終了して、通常の(フレンドリーな) REPL に戻ります。"
+
+#: ../../../reference/repl.rst:210
+msgid ""
+"The ``tools/pyboard.py`` program uses the raw REPL to execute python "
+"files on the MicroPython board."
+msgstr ""
+"``tools/pyboard.py`` プログラムは MicroPython ボード上の python ファイルを"
+"実行するために、raw REPL を使っています。"
+
+#: ../../../reference/speed_python.rst:2
+msgid "Maximising MicroPython Speed"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:4
+msgid "目次"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:6
+msgid ""
+"This tutorial describes ways of improving the performance of MicroPython "
+"code. Optimisations involving other languages are covered elsewhere, "
+"namely the use of modules written in C and the MicroPython inline "
+"assembler."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:10
+msgid ""
+"The process of developing high performance code comprises the following "
+"stages which should be performed in the order listed."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:13
+msgid "Design for speed."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:14
+msgid "Code and debug."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:16
+msgid "Optimisation steps:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:18
+msgid "Identify the slowest section of code."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:19
+msgid "Improve the efficiency of the Python code."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:20
+msgid "Use the native code emitter."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:21
+msgid "Use the viper code emitter."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:22
+msgid "Use hardware-specific optimisations."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:25
+msgid "Designing for speed"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:27
+msgid ""
+"Performance issues should be considered at the outset. This involves "
+"taking a view on the sections of code which are most performance critical"
+" and devoting particular attention to their design. The process of "
+"optimisation begins when the code has been tested: if the design is "
+"correct at the outset optimisation will be straightforward and may "
+"actually be unnecessary."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:34
+msgid "Algorithms"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:36
+msgid ""
+"The most important aspect of designing any routine for performance is "
+"ensuring that the best algorithm is employed. This is a topic for "
+"textbooks rather than for a MicroPython guide but spectacular performance"
+" gains can sometimes be achieved by adopting algorithms known for their "
+"efficiency."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:42
+msgid "RAM Allocation"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:44
+msgid ""
+"To design efficient MicroPython code it is necessary to have an "
+"understanding of the way the interpreter allocates RAM. When an object is"
+" created or grows in size (for example where an item is appended to a "
+"list) the necessary RAM is allocated from a block known as the heap. This"
+" takes a significant amount of time; further it will on occasion trigger "
+"a process known as garbage collection which can take several "
+"milliseconds."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:51
+msgid ""
+"Consequently the performance of a function or method can be improved if "
+"an object is created once only and not permitted to grow in size. This "
+"implies that the object persists for the duration of its use: typically "
+"it will be instantiated in a class constructor and used in various "
+"methods."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:56
+msgid ""
+"This is covered in further detail :ref:`Controlling garbage collection "
+"<controlling_gc>` below."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:59
+msgid "Buffers"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:61
+msgid ""
+"An example of the above is the common case where a buffer is required, "
+"such as one used for communication with a device. A typical driver will "
+"create the buffer in the constructor and use it in its I/O methods which "
+"will be called repeatedly."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:65
+msgid ""
+"The MicroPython libraries typically provide support for pre-allocated "
+"buffers. For example, objects which support stream interface (e.g., file "
+"or UART) provide ``read()`` method which allocates new buffer for read "
+"data, but also a ``readinto()`` method to read data into an existing "
+"buffer."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:71
+msgid "Floating Point"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:73
+msgid ""
+"Some MicroPython ports allocate floating point numbers on heap. Some "
+"other ports may lack dedicated floating-point coprocessor, and perform "
+"arithmetic operations on them in \"software\" at considerably lower speed"
+" than on integers. Where performance is important, use integer operations"
+" and restrict the use of floating point to sections of the code where "
+"performance is not paramount. For example, capture ADC readings as "
+"integers values to an array in one quick go, and only then convert them "
+"to floating-point numbers for signal processing."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:82
+msgid "Arrays"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:84
+msgid ""
+"Consider the use of the various types of array classes as an alternative "
+"to lists. The `array` module supports various element types with 8-bit "
+"elements supported by Python's built in `bytes` and `bytearray` classes. "
+"These data structures all store elements in contiguous memory locations. "
+"Once again to avoid memory allocation in critical code these should be "
+"pre-allocated and passed as arguments or as bound objects."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:90
+msgid ""
+"When passing slices of objects such as `bytearray` instances, Python "
+"creates a copy which involves allocation of the size proportional to the "
+"size of slice. This can be alleviated using a `memoryview` object. "
+"`memoryview` itself is allocated on heap, but is a small, fixed-size "
+"object, regardless of the size of slice it points too."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:102
+msgid ""
+"ba = bytearray(10000)  # big array\n"
+"func(ba[30:2000])      # a copy is passed, ~2K new allocation\n"
+"mv = memoryview(ba)    # small object is allocated\n"
+"func(mv[30:2000])      # a pointer to memory is passed"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:103
+msgid ""
+"A `memoryview` can only be applied to objects supporting the buffer "
+"protocol - this includes arrays but not lists. Small caveat is that while"
+" memoryview object is live, it also keeps alive the original buffer "
+"object. So, a memoryview isn't a universal panacea. For instance, in the "
+"example above, if you are done with 10K buffer and just need those bytes "
+"30:2000 from it, it may be better to make a slice, and let the 10K buffer"
+" go (be ready for garbage collection), instead of making a long-living "
+"memoryview and keeping 10K blocked for GC."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:111
+msgid ""
+"Nonetheless, `memoryview` is indispensable for advanced preallocated "
+"buffer management. ``readinto()`` method discussed above puts data at the"
+" beginning of buffer and fills in entire buffer. What if you need to put "
+"data in the middle of existing buffer? Just create a memoryview into the "
+"needed section of buffer and pass it to ``readinto()``."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:118
+msgid "Identifying the slowest section of code"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:120
+msgid ""
+"This is a process known as profiling and is covered in textbooks and (for"
+" standard Python) supported by various software tools. For the type of "
+"smaller embedded application likely to be running on MicroPython "
+"platforms the slowest function or method can usually be established by "
+"judicious use of the timing ``ticks`` group of functions documented in "
+"`utime`. Code execution time can be measured in ms, us, or CPU cycles."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:127
+msgid ""
+"The following enables any function or method to be timed by adding an "
+"``@timed_function`` decorator:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:141
+msgid ""
+"def timed_function(f, *args, **kwargs):\n"
+"    myname = str(f).split(' ')[1]\n"
+"    def new_func(*args, **kwargs):\n"
+"        t = utime.ticks_us()\n"
+"        result = f(*args, **kwargs)\n"
+"        delta = utime.ticks_diff(utime.ticks_us(), t)\n"
+"        print('Function {} Time = {:6.3f}ms'.format(myname, delta/1000))\n"
+"        return result\n"
+"    return new_func"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:143
+msgid "MicroPython code improvements"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:146
+msgid "The const() declaration"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:148
+msgid ""
+"MicroPython provides a ``const()`` declaration. This works in a similar "
+"way to ``#define`` in C in that when the code is compiled to bytecode the"
+" compiler substitutes the numeric value for the identifier. This avoids a"
+" dictionary lookup at runtime. The argument to ``const()`` may be "
+"anything which, at compile time, evaluates to an integer e.g. ``0x100`` "
+"or ``1 << 8``."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:157
+msgid "Caching object references"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:159
+msgid ""
+"Where a function or method repeatedly accesses objects performance is "
+"improved by caching the object in a local variable:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:171
+msgid ""
+"class foo(object):\n"
+"    def __init__(self):\n"
+"        ba = bytearray(100)\n"
+"    def bar(self, obj_display):\n"
+"        ba_ref = self.ba\n"
+"        fb = obj_display.framebuffer\n"
+"        # iterative code using these two objects"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:172
+msgid ""
+"This avoids the need repeatedly to look up ``self.ba`` and "
+"``obj_display.framebuffer`` in the body of the method ``bar()``."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:178
+msgid "Controlling garbage collection"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:180
+msgid ""
+"When memory allocation is required, MicroPython attempts to locate an "
+"adequately sized block on the heap. This may fail, usually because the "
+"heap is cluttered with objects which are no longer referenced by code. If"
+" a failure occurs, the process known as garbage collection reclaims the "
+"memory used by these redundant objects and the allocation is then tried "
+"again - a process which can take several milliseconds."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:187
+msgid ""
+"There may be benefits in pre-empting this by periodically issuing "
+"`gc.collect()`. Firstly doing a collection before it is actually required"
+" is quicker - typically on the order of 1ms if done frequently. Secondly "
+"you can determine the point in code where this time is used rather than "
+"have a longer delay occur at random points, possibly in a speed critical "
+"section. Finally performing collections regularly can reduce "
+"fragmentation in the heap. Severe fragmentation can lead to non-"
+"recoverable allocation failures."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:196
+msgid "The Native code emitter"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:198
+msgid ""
+"This causes the MicroPython compiler to emit native CPU opcodes rather "
+"than bytecode. It covers the bulk of the MicroPython functionality, so "
+"most functions will require no adaptation (but see below). It is invoked "
+"by means of a function decorator:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:208
+msgid ""
+"@micropython.native\n"
+"def foo(self, arg):\n"
+"    buf = self.linebuf # Cached object\n"
+"    # code"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:209
+msgid ""
+"There are certain limitations in the current implementation of the native"
+" code emitter."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:211
+msgid "Context managers are not supported (the ``with`` statement)."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:212
+msgid "Generators are not supported."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:213
+msgid "If ``raise`` is used an argument must be supplied."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:215
+msgid ""
+"The trade-off for the improved performance (roughly twices as fast as "
+"bytecode) is an increase in compiled code size."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:219
+msgid "The Viper code emitter"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:221
+msgid ""
+"The optimisations discussed above involve standards-compliant Python "
+"code. The Viper code emitter is not fully compliant. It supports special "
+"Viper native data types in pursuit of performance. Integer processing is "
+"non-compliant because it uses machine words: arithmetic on 32 bit "
+"hardware is performed modulo 2**32."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:226
+msgid ""
+"Like the Native emitter Viper produces machine instructions but further "
+"optimisations are performed, substantially increasing performance "
+"especially for integer arithmetic and bit manipulations. It is invoked "
+"using a decorator:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:235
+msgid ""
+"@micropython.viper\n"
+"def foo(self, arg: int) -> int:\n"
+"    # code"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:236
+msgid ""
+"As the above fragment illustrates it is beneficial to use Python type "
+"hints to assist the Viper optimiser. Type hints provide information on "
+"the data types of arguments and of the return value; these are a standard"
+" Python language feature formally defined here `PEP0484 "
+"<https://www.python.org/dev/peps/pep-0484/>`_. Viper supports its own set"
+" of types namely ``int``, ``uint`` (unsigned integer), ``ptr``, ``ptr8``,"
+" ``ptr16`` and ``ptr32``. The ``ptrX`` types are discussed below. "
+"Currently the ``uint`` type serves a single purpose: as a type hint for a"
+" function return value. If such a function returns ``0xffffffff`` Python "
+"will interpret the result as 2**32 -1 rather than as -1."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:244
+msgid ""
+"In addition to the restrictions imposed by the native emitter the "
+"following constraints apply:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:246
+msgid "Functions may have up to four arguments."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:247
+msgid "Default argument values are not permitted."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:248
+msgid "Floating point may be used but is not optimised."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:250
+msgid "Viper provides pointer types to assist the optimiser. These comprise"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:252
+msgid "``ptr`` Pointer to an object."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:253
+msgid "``ptr8`` Points to a byte."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:254
+msgid "``ptr16`` Points to a 16 bit half-word."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:255
+msgid "``ptr32`` Points to a 32 bit machine word."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:257
+msgid ""
+"The concept of a pointer may be unfamiliar to Python programmers. It has "
+"similarities to a Python `memoryview` object in that it provides direct "
+"access to data stored in memory. Items are accessed using subscript "
+"notation, but slices are not supported: a pointer can return a single "
+"item only. Its purpose is to provide fast random access to data stored in"
+" contiguous memory locations - such as data stored in objects which "
+"support the buffer protocol, and memory-mapped peripheral registers in a "
+"microcontroller. It should be noted that programming using pointers is "
+"hazardous: bounds checking is not performed and the compiler does nothing"
+" to prevent buffer overrun errors."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:266
+msgid "Typical usage is to cache variables:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:276
+msgid ""
+"@micropython.viper\n"
+"def foo(self, arg: int) -> int:\n"
+"    buf = ptr8(self.linebuf) # self.linebuf is a bytearray or bytes "
+"object\n"
+"    for x in range(20, 30):\n"
+"        bar = buf[x] # Access a data item through the pointer\n"
+"        # code omitted"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:277
+msgid ""
+"In this instance the compiler \"knows\" that ``buf`` is the address of an"
+" array of bytes; it can emit code to rapidly compute the address of "
+"``buf[x]`` at runtime. Where casts are used to convert objects to Viper "
+"native types these should be performed at the start of the function "
+"rather than in critical timing loops as the cast operation can take "
+"several microseconds. The rules for casting are as follows:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:283
+msgid ""
+"Casting operators are currently: ``int``, ``bool``, ``uint``, ``ptr``, "
+"``ptr8``, ``ptr16`` and ``ptr32``."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:284
+msgid "The result of a cast will be a native Viper variable."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:285
+msgid "Arguments to a cast can be a Python object or a native Viper variable."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:286
+msgid ""
+"If argument is a native Viper variable, then cast is a no-op (i.e. costs "
+"nothing at runtime) that just changes the type (e.g. from ``uint`` to "
+"``ptr8``) so that you can then store/load using this pointer."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:289
+msgid ""
+"If the argument is a Python object and the cast is ``int`` or ``uint``, "
+"then the Python object must be of integral type and the value of that "
+"integral object is returned."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:291
+msgid ""
+"The argument to a bool cast must be integral type (boolean or integer); "
+"when used as a return type the viper function will return True or False "
+"objects."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:293
+msgid ""
+"If the argument is a Python object and the cast is ``ptr``, ``ptr``, "
+"``ptr16`` or ``ptr32``, then the Python object must either have the "
+"buffer protocol with read-write capabilities (in which case a pointer to "
+"the start of the buffer is returned) or it must be of integral type (in "
+"which case the value of that integral object is returned)."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:298
+msgid ""
+"The following example illustrates the use of a ``ptr16`` cast to toggle "
+"pin X1 ``n`` times:"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:308
+msgid ""
+"BIT0 = const(1)\n"
+"@micropython.viper\n"
+"def toggle_n(n: int):\n"
+"    odr = ptr16(stm.GPIOA + stm.GPIO_ODR)\n"
+"    for _ in range(n):\n"
+"        odr[0] ^= BIT0"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:309
+msgid ""
+"A detailed technical description of the three code emitters may be found "
+"on Kickstarter here `Note 1 "
+"<https://www.kickstarter.com/projects/214379695/micro-python-python-for-"
+"microcontrollers/posts/664832>`_ and here `Note 2 "
+"<https://www.kickstarter.com/projects/214379695/micro-python-python-for-"
+"microcontrollers/posts/665145>`_"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:314
+msgid "Accessing hardware directly"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:318
+msgid ""
+"Code examples in this section are given for the Pyboard. The techniques "
+"described however may be applied to other MicroPython ports too."
+msgstr ""
+
+#: ../../../reference/speed_python.rst:321
+msgid ""
+"This comes into the category of more advanced programming and involves "
+"some knowledge of the target MCU. Consider the example of toggling an "
+"output pin on the Pyboard. The standard approach would be to write"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:328
+msgid "mypin.value(mypin.value() ^ 1) # mypin was instantiated as an output pin"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:329
+msgid ""
+"This involves the overhead of two calls to the :class:`~machine.Pin` "
+"instance's :meth:`~machine.Pin.value()` method. This overhead can be "
+"eliminated by performing a read/write to the relevant bit of the chip's "
+"GPIO port output data register (odr). To facilitate this the ``stm`` "
+"module provides a set of constants providing the addresses of the "
+"relevant registers. A fast toggle of pin ``P4`` (CPU pin ``A14``) - "
+"corresponding to the green LED - can be performed as follows:"
+msgstr ""
+
+#: ../../../<rst_epilog>:1
+msgid ""
+"import machine\n"
+"import stm\n"
+"\n"
+"BIT14 = const(1 << 14)\n"
+"machine.mem16[stm.GPIOA + stm.GPIO_ODR] ^= BIT14"
+msgstr ""
+

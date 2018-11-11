@@ -1,0 +1,2855 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-2018, Damien P. George, Paul Sokolovsky, and
+# contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.9.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-03 14:13+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../../esp8266/general.rst:4
+msgid "General information about the ESP8266 port"
+msgstr ""
+
+#: ../../../esp8266/general.rst:6
+msgid ""
+"ESP8266 is a popular WiFi-enabled System-on-Chip (SoC) by Espressif "
+"Systems."
+msgstr ""
+
+#: ../../../esp8266/general.rst:9
+msgid "Multitude of boards"
+msgstr ""
+
+#: ../../../esp8266/general.rst:11
+msgid ""
+"There is a multitude of modules and boards from different sources which "
+"carry the ESP8266 chip. MicroPython tries to provide a generic port which"
+" would run on as many boards/modules as possible, but there may be "
+"limitations. Adafruit Feather HUZZAH board is taken as a reference board "
+"for the port (for example, testing is performed on it). If you have "
+"another board, please make sure you have a datasheet, schematics and "
+"other reference materials for your board handy to look up various aspects"
+" of your board functioning."
+msgstr ""
+
+#: ../../../esp8266/general.rst:19
+msgid ""
+"To make a generic ESP8266 port and support as many boards as possible, "
+"the following design and implementation decision were made:"
+msgstr ""
+
+#: ../../../esp8266/general.rst:22
+msgid ""
+"GPIO pin numbering is based on ESP8266 chip numbering, not some "
+"\"logical\" numbering of a particular board. Please have the manual/pin "
+"diagram of your board at hand to find correspondence between your board "
+"pins and actual ESP8266 pins. We also encourage users of various boards "
+"to share this mapping via MicroPython forum, with the idea to collect "
+"community-maintained reference materials eventually."
+msgstr ""
+
+#: ../../../esp8266/general.rst:28
+msgid ""
+"All pins which make sense to support, are supported by MicroPython (for "
+"example, pins which are used to connect SPI flash are not exposed, as "
+"they're unlikely useful for anything else, and operating on them will "
+"lead to board lock-up). However, any particular board may expose only "
+"subset of pins. Consult your board reference manual."
+msgstr ""
+
+#: ../../../esp8266/general.rst:33
+msgid ""
+"Some boards may lack external pins/internal connectivity to support "
+"ESP8266 deepsleep mode."
+msgstr ""
+
+#: ../../../esp8266/general.rst:38
+msgid "Technical specifications and SoC datasheets"
+msgstr ""
+
+#: ../../../esp8266/general.rst:40
+msgid ""
+"The datasheets and other reference material for ESP8266 chip are "
+"available from the vendor site: "
+"http://bbs.espressif.com/viewtopic.php?f=67&t=225 . They are the primary "
+"reference for the chip technical specifications, capabilities, operating "
+"modes, internal functioning, etc."
+msgstr ""
+
+#: ../../../esp8266/general.rst:45
+msgid "For your convenience, some of technical specifications are provided below:"
+msgstr ""
+
+#: ../../../esp8266/general.rst:47
+msgid "Architecture: Xtensa lx106"
+msgstr ""
+
+#: ../../../esp8266/general.rst:48
+msgid "CPU frequency: 80MHz overclockable to 160MHz"
+msgstr ""
+
+#: ../../../esp8266/general.rst:49
+msgid "Total RAM available: 96KB (part of it reserved for system)"
+msgstr ""
+
+#: ../../../esp8266/general.rst:50
+msgid "BootROM: 64KB"
+msgstr ""
+
+#: ../../../esp8266/general.rst:51
+msgid "Internal FlashROM: None"
+msgstr ""
+
+#: ../../../esp8266/general.rst:52
+msgid "External FlashROM: code and data, via SPI Flash. Normal sizes 512KB-4MB."
+msgstr ""
+
+#: ../../../esp8266/general.rst:53
+msgid ""
+"GPIO: 16 + 1 (GPIOs are multiplexed with other functions, including "
+"external FlashROM, UART, deep sleep wake-up, etc.)"
+msgstr ""
+
+#: ../../../esp8266/general.rst:55
+msgid "UART: One RX/TX UART (no hardware handshaking), one TX-only UART."
+msgstr ""
+
+#: ../../../esp8266/general.rst:56
+msgid "SPI: 2 SPI interfaces (one used for FlashROM)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:57
+msgid ""
+"I2C: No native external I2C (bitbang implementation available on any "
+"pins)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:58
+msgid "I2S: 1."
+msgstr ""
+
+#: ../../../esp8266/general.rst:59
+msgid ""
+"Programming: using BootROM bootloader from UART. Due to external FlashROM"
+" and always-available BootROM bootloader, ESP8266 is not brickable."
+msgstr ""
+
+#: ../../../esp8266/general.rst:64
+msgid "Scarcity of runtime resources"
+msgstr ""
+
+#: ../../../esp8266/general.rst:66
+msgid ""
+"ESP8266 has very modest resources (first of all, RAM memory). So, please "
+"avoid allocating too big container objects (lists, dictionaries) and "
+"buffers. There is also no full-fledged OS to keep track of resources and "
+"automatically clean them up, so that's the task of a user/user "
+"application: please be sure to close open files, sockets, etc. as soon as"
+" possible after use."
+msgstr ""
+
+#: ../../../esp8266/general.rst:75
+msgid "Boot process"
+msgstr ""
+
+#: ../../../esp8266/general.rst:77
+msgid ""
+"On boot, MicroPython EPS8266 port executes ``_boot.py`` script from "
+"internal frozen modules. It mounts filesystem in FlashROM, or if it's not"
+" available, performs first-time setup of the module and creates the "
+"filesystem. This part of the boot process is considered fixed, and not "
+"available for customization for end users (even if you build from source,"
+" please refrain from changes to it; customization of early boot process "
+"is available only to advanced users and developers, who can diagnose "
+"themselves any issues arising from modifying the standard process)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:86
+msgid ""
+"Once the filesystem is mounted, ``boot.py`` is executed from it. The "
+"standard version of this file is created during first-time module set up "
+"and has commands to start a WebREPL daemon (disabled by default, "
+"configurable with ``webrepl_setup`` module), etc. This file is "
+"customizable by end users (for example, you may want to set some "
+"parameters or add other services which should be run on a module start-"
+"up). But keep in mind that incorrect modifications to boot.py may still "
+"lead to boot loops or lock ups, requiring to reflash a module from "
+"scratch. (In particular, it's recommended that you use either "
+"``webrepl_setup`` module or manual editing to configure WebREPL, but not "
+"both)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:98
+msgid ""
+"As a final step of boot procedure, ``main.py`` is executed from "
+"filesystem, if exists. This file is a hook to start up a user application"
+" each time on boot (instead of going to REPL). For small test "
+"applications, you may name them directly as ``main.py``, and upload to "
+"module, but instead it's recommended to keep your application(s) in "
+"separate files, and have just the following in ``main.py``::"
+msgstr ""
+
+#: ../../../esp8266/general.rst:105
+msgid ""
+"import my_app\n"
+"my_app.main()"
+msgstr ""
+
+#: ../../../esp8266/general.rst:108
+msgid ""
+"This will allow to keep the structure of your application clear, as well "
+"as allow to install multiple applications on a board, and switch among "
+"them."
+msgstr ""
+
+#: ../../../esp8266/general.rst:113
+msgid "Known Issues"
+msgstr ""
+
+#: ../../../esp8266/general.rst:116
+msgid "Real-time clock"
+msgstr ""
+
+#: ../../../esp8266/general.rst:118
+msgid ""
+"RTC in ESP8266 has very bad accuracy, drift may be seconds per minute. As"
+" a workaround, to measure short enough intervals you can use "
+"``utime.time()``, etc. functions, and for wall clock time, synchronize "
+"from the net using included ``ntptime.py`` module."
+msgstr ""
+
+#: ../../../esp8266/general.rst:123
+msgid ""
+"Due to limitations of the ESP8266 chip the internal real-time clock (RTC)"
+" will overflow every 7:45h.  If a long-term working RTC time is required "
+"then ``time()`` or ``localtime()`` must be called at least once within 7 "
+"hours. MicroPython will then handle the overflow."
+msgstr ""
+
+#: ../../../esp8266/general.rst:129
+msgid "Sockets and WiFi buffers overflow"
+msgstr ""
+
+#: ../../../esp8266/general.rst:131
+msgid ""
+"Socket instances remain active until they are explicitly closed. This has"
+" two consequences. Firstly they occupy RAM, so an application which opens"
+" sockets without closing them may eventually run out of memory. Secondly "
+"not properly closed socket can cause the low-level part of the vendor "
+"WiFi stack to emit ``Lmac`` errors. This occurs if data comes in for a "
+"socket and is not processed in a timely manner. This can overflow the "
+"WiFi stack input queue and lead to a deadlock. The only recovery is by a "
+"hard reset."
+msgstr ""
+
+#: ../../../esp8266/general.rst:139
+msgid ""
+"The above may also happen after an application terminates and quits to "
+"the REPL for any reason including an exception. Subsequent arrival of "
+"data provokes the failure with the above error message repeatedly issued."
+" So, sockets should be closed in any case, regardless whether an "
+"application terminates successfully or by an exeption, for example using "
+"try/finally::"
+msgstr ""
+
+#: ../../../esp8266/general.rst:145
+msgid ""
+"sock = socket(...)\n"
+"try:\n"
+"    # Use sock\n"
+"finally:\n"
+"    sock.close()"
+msgstr ""
+
+#: ../../../esp8266/general.rst:153
+msgid "SSL/TLS limitations"
+msgstr ""
+
+#: ../../../esp8266/general.rst:155
+msgid ""
+"ESP8266 uses `axTLS <http://axtls.sourceforge.net/>`_ library, which is "
+"one of the smallest TLS libraries with the compatible licensing. However,"
+" it also has some known issues/limitations:"
+msgstr ""
+
+#: ../../../esp8266/general.rst:159
+msgid ""
+"No support for Diffie-Hellman (DH) key exchange and Elliptic-curve "
+"cryptography (ECC). This means it can't work with sites which force the "
+"use of these features (it works ok with classic RSA certificates)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:162
+msgid ""
+"Half-duplex communication nature. axTLS uses a single buffer for both "
+"sending and receiving, which leads to considerable memory saving and "
+"works well with protocols like HTTP. But there may be problems with "
+"protocols which don't follow classic request-response model."
+msgstr ""
+
+#: ../../../esp8266/general.rst:167
+msgid ""
+"Besides axTLS own limitations, the configuration used for MicroPython is "
+"highly optimized for code size, which leads to additional limitations "
+"(these may be lifted in the future):"
+msgstr ""
+
+#: ../../../esp8266/general.rst:171
+msgid ""
+"Optimized RSA algorithms are not enabled, which may lead to slow SSL "
+"handshakes."
+msgstr ""
+
+#: ../../../esp8266/general.rst:173
+msgid ""
+"Stored sessions are not supported (may allow faster repeated connections "
+"to the same site in some circumstances)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:176
+msgid ""
+"Besides axTLS specific limitations described above, there's another "
+"generic limitation with usage of TLS on the low-memory devices:"
+msgstr ""
+
+#: ../../../esp8266/general.rst:179
+msgid ""
+"The TLS standard specifies the maximum length of the TLS record (unit of "
+"TLS communication, the entire record must be buffered before it can be "
+"processed) as 16KB. That's almost half of the available ESP8266 memory, "
+"and inside a more or less advanced application would be hard to allocate "
+"due to memory fragmentation issues. As a compromise, a smaller buffer is "
+"used, with the idea that the most interesting usage for SSL would be "
+"accessing various REST APIs, which usually require much smaller messages."
+" The buffers size is on the order of 5KB, and is adjusted from time to "
+"time, taking as a reference being able to access https://google.com . The"
+" smaller buffer hower means that some sites can't be accessed using it, "
+"and it's not possible to stream large amounts of data."
+msgstr ""
+
+#: ../../../esp8266/general.rst:191
+msgid ""
+"There are also some not implemented features specifically in "
+"MicroPython's ``ussl`` module based on axTLS:"
+msgstr ""
+
+#: ../../../esp8266/general.rst:194
+msgid ""
+"Certificates are not validated (this may make connections susceptible to "
+"man-in-the-middle attacks)."
+msgstr ""
+
+#: ../../../esp8266/general.rst:196
+msgid ""
+"There is no support for client certificates (scheduled to be fixed in "
+"1.9.4 release)."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:4
+msgid "Quick reference for the ESP8266"
+msgstr ""
+
+msgid ""
+".. image:: esp8266/img/adafruit_products_pinoutstop.jpg\n"
+"   :alt: Adafruit Feather HUZZAH board"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:10
+msgid "The Adafruit Feather HUZZAH board (image attribution: Adafruit)."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:12
+msgid ""
+"Below is a quick reference for ESP8266-based boards.  If it is your first"
+" time working with this board please consider reading the following "
+"sections first:"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:22
+msgid "Installing MicroPython"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:24
+msgid ""
+"See the corresponding section of tutorial: :ref:`intro`. It also includes"
+" a troubleshooting subsection."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:28
+msgid "General board control"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:30
+msgid ""
+"The MicroPython REPL is on UART0 (GPIO1=TX, GPIO3=RX) at baudrate 115200."
+" Tab-completion is useful to find out what methods an object has. Paste "
+"mode (ctrl-E) is useful to paste a large slab of Python code into the "
+"REPL."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:35
+msgid "The :mod:`machine` module::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:37
+msgid ""
+"import machine\n"
+"\n"
+"machine.freq()          # get the current frequency of the CPU\n"
+"machine.freq(160000000) # set the CPU frequency to 160 MHz"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:42
+msgid "The :mod:`esp` module::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:44
+msgid ""
+"import esp\n"
+"\n"
+"esp.osdebug(None)       # turn off vendor O/S debugging messages\n"
+"esp.osdebug(0)          # redirect vendor O/S debugging messages to "
+"UART(0)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:50
+msgid "Networking"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:52
+msgid "The :mod:`network` module::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:54
+msgid ""
+"import network\n"
+"\n"
+"wlan = network.WLAN(network.STA_IF) # create station interface\n"
+"wlan.active(True)       # activate the interface\n"
+"wlan.scan()             # scan for access points\n"
+"wlan.isconnected()      # check if the station is connected to an AP\n"
+"wlan.connect('essid', 'password') # connect to an AP\n"
+"wlan.config('mac')      # get the interface's MAC adddress\n"
+"wlan.ifconfig()         # get the interface's IP/netmask/gw/DNS addresses"
+"\n"
+"\n"
+"ap = network.WLAN(network.AP_IF) # create access-point interface\n"
+"ap.active(True)         # activate the interface\n"
+"ap.config(essid='ESP-AP') # set the ESSID of the access point"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:68
+msgid "A useful function for connecting to your local WiFi network is::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:70
+msgid ""
+"def do_connect():\n"
+"    import network\n"
+"    wlan = network.WLAN(network.STA_IF)\n"
+"    wlan.active(True)\n"
+"    if not wlan.isconnected():\n"
+"        print('connecting to network...')\n"
+"        wlan.connect('essid', 'password')\n"
+"        while not wlan.isconnected():\n"
+"            pass\n"
+"    print('network config:', wlan.ifconfig())"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:81
+msgid ""
+"Once the network is established the :mod:`socket <usocket>` module can be"
+" used to create and use TCP/UDP sockets as usual."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:85
+msgid "Delay and timing"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:87
+msgid "Use the :mod:`time <utime>` module::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:89
+msgid ""
+"import time\n"
+"\n"
+"time.sleep(1)           # sleep for 1 second\n"
+"time.sleep_ms(500)      # sleep for 500 milliseconds\n"
+"time.sleep_us(10)       # sleep for 10 microseconds\n"
+"start = time.ticks_ms() # get millisecond counter\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:98
+msgid "Timers"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:100
+msgid ""
+"Virtual (RTOS-based) timers are supported. Use the :ref:`machine.Timer "
+"<machine.Timer>` class with timer ID of -1::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:103
+msgid ""
+"from machine import Timer\n"
+"\n"
+"tim = Timer(-1)\n"
+"tim.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:print(1))\n"
+"tim.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(2))"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:109
+msgid "The period is in milliseconds."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:112
+msgid "Pins and GPIO"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:114
+msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:116
+msgid ""
+"from machine import Pin\n"
+"\n"
+"p0 = Pin(0, Pin.OUT)    # create output pin on GPIO0\n"
+"p0.on()                 # set pin to \"on\" (high) level\n"
+"p0.off()                # set pin to \"off\" (low) level\n"
+"p0.value(1)             # set pin to on/high\n"
+"\n"
+"p2 = Pin(2, Pin.IN)     # create input pin on GPIO2\n"
+"print(p2.value())       # get value, 0 or 1\n"
+"\n"
+"p4 = Pin(4, Pin.IN, Pin.PULL_UP) # enable internal pull-up resistor\n"
+"p5 = Pin(5, Pin.OUT, value=1) # set pin high on creation"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:129
+msgid ""
+"Available pins are: 0, 1, 2, 3, 4, 5, 12, 13, 14, 15, 16, which "
+"correspond to the actual GPIO pin numbers of ESP8266 chip. Note that many"
+" end-user boards use their own adhoc pin numbering (marked e.g. D0, D1, "
+"...). As MicroPython supports different boards and modules, physical pin "
+"numbering was chosen as the lowest common denominator. For mapping "
+"between board logical pins and physical chip pins, consult your board "
+"documentation."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:136
+msgid ""
+"Note that Pin(1) and Pin(3) are REPL UART TX and RX respectively. Also "
+"note that Pin(16) is a special pin (used for wakeup from deepsleep mode) "
+"and may be not available for use with higher-level classes like "
+"``Neopixel``."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:142
+msgid "PWM (pulse width modulation)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:144
+msgid ""
+"PWM can be enabled on all pins except Pin(16).  There is a single "
+"frequency for all channels, with range between 1 and 1000 (measured in "
+"Hz).  The duty cycle is between 0 and 1023 inclusive."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:148
+msgid "Use the ``machine.PWM`` class::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:150
+msgid ""
+"from machine import Pin, PWM\n"
+"\n"
+"pwm0 = PWM(Pin(0))      # create PWM object from a pin\n"
+"pwm0.freq()             # get current frequency\n"
+"pwm0.freq(1000)         # set frequency\n"
+"pwm0.duty()             # get current duty cycle\n"
+"pwm0.duty(200)          # set duty cycle\n"
+"pwm0.deinit()           # turn off PWM on the pin\n"
+"\n"
+"pwm2 = PWM(Pin(2), freq=500, duty=512) # create and configure in one go"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:162
+msgid "ADC (analog to digital conversion)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:164
+msgid ""
+"ADC is available on a dedicated pin. Note that input voltages on the ADC "
+"pin must be between 0v and 1.0v."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:167
+msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:169
+msgid ""
+"from machine import ADC\n"
+"\n"
+"adc = ADC(0)            # create ADC object on ADC pin\n"
+"adc.read()              # read value, 0-1024"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:175
+msgid "Software SPI bus"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:177
+msgid ""
+"There are two SPI drivers. One is implemented in software (bit-banging) "
+"and works on all pins, and is accessed via the :ref:`machine.SPI "
+"<machine.SPI>` class::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:181
+msgid ""
+"from machine import Pin, SPI\n"
+"\n"
+"# construct an SPI bus on the given pins\n"
+"# polarity is the idle state of SCK\n"
+"# phase=0 means sample on the first edge of SCK, phase=1 means the second"
+"\n"
+"spi = SPI(-1, baudrate=100000, polarity=1, phase=0, sck=Pin(0), "
+"mosi=Pin(2), miso=Pin(4))\n"
+"\n"
+"spi.init(baudrate=200000) # set the baudrate\n"
+"\n"
+"spi.read(10)            # read 10 bytes on MISO\n"
+"spi.read(10, 0xff)      # read 10 bytes while outputing 0xff on MOSI\n"
+"\n"
+"buf = bytearray(50)     # create a buffer\n"
+"spi.readinto(buf)       # read into the given buffer (reads 50 bytes in "
+"this case)\n"
+"spi.readinto(buf, 0xff) # read into the given buffer and output 0xff on "
+"MOSI\n"
+"\n"
+"spi.write(b'12345')     # write 5 bytes on MOSI\n"
+"\n"
+"buf = bytearray(4)      # create a buffer\n"
+"spi.write_readinto(b'1234', buf) # write to MOSI and read from MISO into "
+"the buffer\n"
+"spi.write_readinto(buf, buf) # write buf to MOSI and read MISO back into "
+"buf"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:205
+msgid "Hardware SPI bus"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:207
+msgid ""
+"The hardware SPI is faster (up to 80Mhz), but only works on following "
+"pins: ``MISO`` is GPIO12, ``MOSI`` is GPIO13, and ``SCK`` is GPIO14. It "
+"has the same methods as the bitbanging SPI class above, except for the "
+"pin parameters for the constructor and init (as those are fixed)::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:212
+msgid ""
+"from machine import Pin, SPI\n"
+"\n"
+"hspi = SPI(1, baudrate=80000000, polarity=0, phase=0)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:216
+msgid "(``SPI(0)`` is used for FlashROM and not available to users.)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:219
+msgid "I2C bus"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:221
+msgid ""
+"The I2C driver is implemented in software and works on all pins, and is "
+"accessed via the :ref:`machine.I2C <machine.I2C>` class::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:224
+msgid ""
+"from machine import Pin, I2C\n"
+"\n"
+"# construct an I2C bus\n"
+"i2c = I2C(scl=Pin(5), sda=Pin(4), freq=100000)\n"
+"\n"
+"i2c.readfrom(0x3a, 4)   # read 4 bytes from slave device with address "
+"0x3a\n"
+"i2c.writeto(0x3a, '12') # write '12' to slave device with address 0x3a\n"
+"\n"
+"buf = bytearray(10)     # create a buffer with 10 bytes\n"
+"i2c.writeto(0x3a, buf)  # write the given buffer to the slave"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:236
+msgid "Real time clock (RTC)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:238
+msgid "See :ref:`machine.RTC <machine.RTC>` ::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:240
+msgid ""
+"from machine import RTC\n"
+"\n"
+"rtc = RTC()\n"
+"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
+"time\n"
+"rtc.datetime() # get date and time"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:247 ../../../esp8266/tutorial/powerctrl.rst:28
+msgid "Deep-sleep mode"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:249
+msgid ""
+"Connect GPIO16 to the reset pin (RST on HUZZAH).  Then the following code"
+" can be used to sleep, wake and check the reset cause::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:252
+msgid ""
+"import machine\n"
+"\n"
+"# configure RTC.ALARM0 to be able to wake the device\n"
+"rtc = machine.RTC()\n"
+"rtc.irq(trigger=rtc.ALARM0, wake=machine.DEEPSLEEP)\n"
+"\n"
+"# check if the device woke from a deep sleep\n"
+"if machine.reset_cause() == machine.DEEPSLEEP_RESET:\n"
+"    print('woke from a deep sleep')\n"
+"\n"
+"# set RTC.ALARM0 to fire after 10 seconds (waking the device)\n"
+"rtc.alarm(rtc.ALARM0, 10000)\n"
+"\n"
+"# put the device to sleep\n"
+"machine.deepsleep()"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:269
+msgid "OneWire driver"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:271
+msgid "The OneWire driver is implemented in software and works on all pins::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:273
+msgid ""
+"from machine import Pin\n"
+"import onewire\n"
+"\n"
+"ow = onewire.OneWire(Pin(12)) # create a OneWire bus on GPIO12\n"
+"ow.scan()               # return a list of devices on the bus\n"
+"ow.reset()              # reset the bus\n"
+"ow.readbyte()           # read a byte\n"
+"ow.writebyte(0x12)      # write a byte on the bus\n"
+"ow.write('123')         # write bytes on the bus\n"
+"ow.select_rom(b'12345678') # select a specific device by its ROM code"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:284
+msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:286
+msgid ""
+"import time, ds18x20\n"
+"ds = ds18x20.DS18X20(ow)\n"
+"roms = ds.scan()\n"
+"ds.convert_temp()\n"
+"time.sleep_ms(750)\n"
+"for rom in roms:\n"
+"    print(ds.read_temp(rom))"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:294
+msgid ""
+"Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
+"``convert_temp()`` method must be called each time you want to sample the"
+" temperature."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:299
+msgid "NeoPixel driver"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:301
+msgid "Use the ``neopixel`` module::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:303
+msgid ""
+"from machine import Pin\n"
+"from neopixel import NeoPixel\n"
+"\n"
+"pin = Pin(0, Pin.OUT)   # set GPIO0 to output to drive NeoPixels\n"
+"np = NeoPixel(pin, 8)   # create NeoPixel driver on GPIO0 for 8 pixels\n"
+"np[0] = (255, 255, 255) # set the first pixel to white\n"
+"np.write()              # write data to all pixels\n"
+"r, g, b = np[0]         # get first pixel colour"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:312
+msgid "For low-level driving of a NeoPixel::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:314
+msgid ""
+"import esp\n"
+"esp.neopixel_write(pin, grb_buf, is800khz)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:318
+msgid "APA102 driver"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:320
+msgid "Use the ``apa102`` module::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:322
+msgid ""
+"from machine import Pin\n"
+"from apa102 import APA102\n"
+"\n"
+"clock = Pin(14, Pin.OUT)     # set GPIO14 to output to drive the clock\n"
+"data = Pin(13, Pin.OUT)      # set GPIO13 to output to drive the data\n"
+"apa = APA102(clock, data, 8) # create APA102 driver on the clock and the "
+"data pin for 8 pixels\n"
+"apa[0] = (255, 255, 255, 31) # set the first pixel to white with a "
+"maximum brightness of 31\n"
+"apa.write()                  # write data to all pixels\n"
+"r, g, b, brightness = apa[0] # get first pixel colour"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:332
+msgid "For low-level driving of an APA102::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:334
+msgid ""
+"import esp\n"
+"esp.apa102_write(clock_pin, data_pin, rgbi_buf)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:338
+msgid "DHT driver"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:340
+msgid "The DHT driver is implemented in software and works on all pins::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:342
+msgid ""
+"import dht\n"
+"import machine\n"
+"\n"
+"d = dht.DHT11(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # eg. 23 (°C)\n"
+"d.humidity()    # eg. 41 (% RH)\n"
+"\n"
+"d = dht.DHT22(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # eg. 23.6 (°C)\n"
+"d.humidity()    # eg. 41.3 (% RH)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:356
+msgid "WebREPL (web browser interactive prompt)"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:358
+msgid ""
+"WebREPL (REPL over WebSockets, accessible via a web browser) is an "
+"experimental feature available in ESP8266 port. Download web client from "
+"https://github.com/micropython/webrepl (hosted version available at "
+"http://micropython.org/webrepl), and configure it by executing::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:363 ../../../esp8266/tutorial/repl.rst:51
+msgid "import webrepl_setup"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:365
+msgid ""
+"and following on-screen instructions. After reboot, it will be available "
+"for connection. If you disabled automatic start-up on boot, you may run "
+"configured daemon on demand using::"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:369
+msgid ""
+"import webrepl\n"
+"webrepl.start()"
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:372
+msgid ""
+"The supported way to use WebREPL is by connecting to ESP8266 access "
+"point, but the daemon is also started on STA interface if it is active, "
+"so if your router is set up and works correctly, you may also use WebREPL"
+" while connected to your normal Internet access point (use the ESP8266 AP"
+" connection method if you face any issues)."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:378
+msgid ""
+"Besides terminal/command prompt access, WebREPL also has provision for "
+"file transfer (both upload and download). Web client has buttons for the "
+"corresponding functions, or you can use command-line client "
+"``webrepl_cli.py`` from the repository above."
+msgstr ""
+
+#: ../../../esp8266/quickref.rst:383
+msgid ""
+"See the MicroPython forum for other community-supported alternatives to "
+"transfer files to ESP8266."
+msgstr ""
+
+#: ../../../esp8266/tutorial/adc.rst:2
+msgid "Analog to Digital Conversion"
+msgstr ""
+
+#: ../../../esp8266/tutorial/adc.rst:4
+msgid ""
+"The ESP8266 has a single pin (separate to the GPIO pins) which can be "
+"used to read analog voltages and convert them to a digital value.  You "
+"can construct such an ADC pin object using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/adc.rst:8
+msgid ""
+">>> import machine\n"
+">>> adc = machine.ADC(0)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/adc.rst:11
+msgid "Then read its value with::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/adc.rst:13
+msgid ""
+">>> adc.read()\n"
+"58"
+msgstr ""
+
+#: ../../../esp8266/tutorial/adc.rst:16
+msgid ""
+"The values returned from the ``read()`` function are between 0 (for 0.0 "
+"volts) and 1024 (for 1.0 volts).  Please note that this input can only "
+"tolerate a maximum of 1.0 volts and you must use a voltage divider "
+"circuit to measure larger voltages."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:2
+msgid "Temperature and Humidity"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:4
+msgid ""
+"DHT (Digital Humidity & Temperature) sensors are low cost digital sensors"
+" with capacitive humidity sensors and thermistors to measure the "
+"surrounding air. They feature a chip that handles analog to digital "
+"conversion and provide a 1-wire interface. Newer sensors additionally "
+"provide an I2C interface."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:9
+msgid ""
+"The DHT11 (blue) and DHT22 (white) sensors provide the same 1-wire "
+"interface, however, the DHT22 requires a separate object as it has more "
+"complex calculation. DHT22 have 1 decimal place resolution for both "
+"humidity and temperature readings. DHT11 have whole number for both."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:14
+msgid ""
+"A custom 1-wire protocol, which is different to Dallas 1-wire, is used to"
+" get the measurements from the sensor. The payload consists of a humidity"
+" value, a temperature value and a checksum."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:18
+msgid ""
+"To use the 1-wire interface, construct the objects referring to their "
+"data pin::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:20
+msgid ""
+">>> import dht\n"
+">>> import machine\n"
+">>> d = dht.DHT11(machine.Pin(4))\n"
+"\n"
+">>> import dht\n"
+">>> import machine\n"
+">>> d = dht.DHT22(machine.Pin(4))"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:28
+msgid "Then measure and read their values with::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:30
+msgid ""
+">>> d.measure()\n"
+">>> d.temperature()\n"
+">>> d.humidity()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:34
+msgid ""
+"Values returned from ``temperature()`` are in degrees Celsius and values "
+"returned from ``humidity()`` are a percentage of relative humidity."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:37
+msgid ""
+"The DHT11 can be called no more than once per second and the DHT22 once "
+"every two seconds for most accurate results. Sensor accuracy will degrade"
+" over time. Each sensor supports a different operating range. Refer to "
+"the product datasheets for specifics."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:42
+msgid ""
+"In 1-wire mode, only three of the four pins are used and in I2C mode, all"
+" four pins are used. Older sensors may still have 4 pins even though they"
+" do not support I2C. The 3rd pin is simply not connected."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:46
+msgid "Pin configurations:"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:48
+msgid "Sensor without I2C in 1-wire mode (eg. DHT11, DHT22, AM2301, AM2302):"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:50
+msgid "1=VDD, 2=Data, 3=NC, 4=GND"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:52
+msgid "Sensor with I2C in 1-wire mode (eg. DHT12, AM2320, AM2321, AM2322):"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:54
+msgid "1=VDD, 2=Data, 3=GND, 4=GND"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:56
+msgid "Sensor with I2C in I2C mode (eg. DHT12, AM2320, AM2321, AM2322):"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:58
+msgid "1=VDD, 2=SDA, 3=GND, 4=SCL"
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:60
+msgid "You should use pull-up resistors for the Data, SDA and SCL pins."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:62
+msgid ""
+"To make newer I2C sensors work in backwards compatible 1-wire mode, you "
+"must connect both pins 3 and 4 to GND. This disables the I2C interface."
+msgstr ""
+
+#: ../../../esp8266/tutorial/dht.rst:65
+msgid ""
+"DHT22 sensors are now sold under the name AM2302 and are otherwise "
+"identical."
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:2
+msgid "The internal filesystem"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:4
+msgid ""
+"If your devices has 1Mbyte or more of storage then it will be set up "
+"(upon first boot) to contain a filesystem.  This filesystem uses the FAT "
+"format and is stored in the flash after the MicroPython firmware."
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:9
+msgid "Creating and reading files"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:11
+msgid ""
+"MicroPython on the ESP8266 supports the standard way of accessing files "
+"in Python, using the built-in ``open()`` function."
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:14
+msgid "To create a file try::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:16
+msgid ""
+">>> f = open('data.txt', 'w')\n"
+">>> f.write('some data')\n"
+"9\n"
+">>> f.close()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:21
+msgid ""
+"The \"9\" is the number of bytes that were written with the ``write()`` "
+"method. Then you can read back the contents of this new file using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:24
+msgid ""
+">>> f = open('data.txt')\n"
+">>> f.read()\n"
+"'some data'\n"
+">>> f.close()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:29
+msgid ""
+"Note that the default mode when opening a file is to open it in read-only"
+" mode, and as a text file.  Specify ``'wb'`` as the second argument to "
+"``open()`` to open for writing in binary mode, and ``'rb'`` to open for "
+"reading in binary mode."
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:35
+msgid "Listing file and more"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:37
+msgid ""
+"The os module can be used for further control over the filesystem.  First"
+" import the module::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:40
+msgid ">>> import os"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:42
+msgid "Then try listing the contents of the filesystem::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:44
+msgid ""
+">>> os.listdir()\n"
+"['boot.py', 'port_config.py', 'data.txt']"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:47
+msgid "You can make directories::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:49
+msgid ">>> os.mkdir('dir')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:51
+msgid "And remove entries::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:53
+msgid ">>> os.remove('data.txt')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:56
+msgid "Start up scripts"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:58
+msgid ""
+"There are two files that are treated specially by the ESP8266 when it "
+"starts up: boot.py and main.py.  The boot.py script is executed first (if"
+" it exists) and then once it completes the main.py script is executed.  "
+"You can create these files yourself and populate them with the code that "
+"you want to run when the device starts up."
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:65
+msgid "Accessing the filesystem via WebREPL"
+msgstr ""
+
+#: ../../../esp8266/tutorial/filesystem.rst:67
+msgid ""
+"You can access the filesystem over WebREPL using the web client in a "
+"browser or via the command-line tool. Please refer to Quick Reference and"
+" Tutorial sections for more information about WebREPL."
+msgstr ""
+
+#: ../../../esp8266/tutorial/index.rst:4
+msgid "MicroPython tutorial for ESP8266"
+msgstr ""
+
+#: ../../../esp8266/tutorial/index.rst:6
+msgid ""
+"This tutorial is intended to get you started using MicroPython on the "
+"ESP8266 system-on-a-chip.  If it is your first time it is recommended to "
+"follow the tutorial through in the order below.  Otherwise the sections "
+"are mostly self contained, so feel free to skip to those that interest "
+"you."
+msgstr ""
+
+#: ../../../esp8266/tutorial/index.rst:11
+msgid ""
+"The tutorial does not assume that you know Python, but it also does not "
+"attempt to explain any of the details of the Python language.  Instead it"
+" provides you with commands that are ready to run, and hopes that you "
+"will gain a bit of Python knowledge along the way.  To learn more about "
+"Python itself please refer to `<https://www.python.org>`__."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:4
+msgid "Getting started with MicroPython on the ESP8266"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:6
+msgid ""
+"Using MicroPython is a great way to get the most of your ESP8266 board.  "
+"And vice versa, the ESP8266 chip is a great platform for using "
+"MicroPython.  This tutorial will guide you through setting up "
+"MicroPython, getting a prompt, using WebREPL, connecting to the network "
+"and communicating with the Internet, using the hardware peripherals, and "
+"controlling some external components."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:12
+msgid "Let's get started!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:15
+msgid "Requirements"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:17
+msgid ""
+"The first thing you need is a board with an ESP8266 chip.  The "
+"MicroPython software supports the ESP8266 chip itself and any board "
+"should work.  The main characteristic of a board is how much flash it "
+"has, how the GPIO pins are connected to the outside world, and whether it"
+" includes a built-in USB-serial convertor to make the UART available to "
+"your PC."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:23
+msgid ""
+"The minimum requirement for flash size is 1Mbyte. There is also a special"
+" build for boards with 512KB, but it is highly limited comparing to the "
+"normal build: there is no support for filesystem, and thus features which"
+" depend on it won't work (WebREPL, upip, etc.). As such, 512KB build will"
+" be more interesting for users who build from source and fine-tune "
+"parameters for their particular application."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:30
+msgid ""
+"Names of pins will be given in this tutorial using the chip names (eg "
+"GPIO0) and it should be straightforward to find which pin this "
+"corresponds to on your particular board."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:35
+msgid "Powering the board"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:37
+msgid ""
+"If your board has a USB connector on it then most likely it is powered "
+"through this when connected to your PC.  Otherwise you will need to power"
+" it directly. Please refer to the documentation for your board for "
+"further details."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:42
+msgid "Getting the firmware"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:44
+msgid ""
+"The first thing you need to do is download the most recent MicroPython "
+"firmware .bin file to load onto your ESP8266 device. You can download it "
+"from the `MicroPython downloads page "
+"<http://micropython.org/download#esp8266>`_. From here, you have 3 main "
+"choices"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:49
+msgid "Stable firmware builds for 1024kb modules and above."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:50
+msgid "Daily firmware builds for 1024kb modules and above."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:51
+msgid "Daily firmware builds for 512kb modules."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:53
+msgid ""
+"If you are just starting with MicroPython, the best bet is to go for the "
+"Stable firmware builds. If you are an advanced, experienced MicroPython "
+"ESP8266 user who would like to follow development closely and help with "
+"testing new features, there are daily builds (note: you actually may need"
+" some development experience, e.g. being ready to follow git history to "
+"know what new changes and features were introduced)."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:60
+msgid ""
+"Support for 512kb modules is provided on a feature preview basis. For end"
+" users, it's recommended to use modules with flash of 1024kb or more. As "
+"such, only daily builds for 512kb modules are provided."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:65
+msgid "Deploying the firmware"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:67
+msgid ""
+"Once you have the MicroPython firmware (compiled code), you need to load "
+"it onto your ESP8266 device.  There are two main steps to do this: first "
+"you need to put your device in boot-loader mode, and second you need to "
+"copy across the firmware.  The exact procedure for these steps is highly "
+"dependent on the particular board and you will need to refer to its "
+"documentation for details."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:73
+msgid ""
+"If you have a board that has a USB connector, a USB-serial convertor, and"
+" has the DTR and RTS pins wired in a special way then deploying the "
+"firmware should be easy as all steps can be done automatically.  Boards "
+"that have such features include the Adafruit Feather HUZZAH and NodeMCU "
+"boards."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:78
+msgid ""
+"For best results it is recommended to first erase the entire flash of "
+"your device before putting on new MicroPython firmware."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:81
+msgid ""
+"Currently we only support esptool.py to copy across the firmware.  You "
+"can find this tool here: `<https://github.com/espressif/esptool/>`__, or "
+"install it using pip::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:85
+msgid "pip install esptool"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:87
+msgid ""
+"Versions starting with 1.3 support both Python 2.7 and Python 3.4 (or "
+"newer). An older version (at least 1.2.1 is needed) works fine but will "
+"require Python 2.7."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:91
+msgid ""
+"Any other flashing program should work, so feel free to try them out or "
+"refer to the documentation for your board to see its recommendations."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:94
+msgid "Using esptool.py you can erase the flash with the command::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:96
+msgid "esptool.py --port /dev/ttyUSB0 erase_flash"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:98
+msgid "And then deploy the new firmware using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:100
+msgid ""
+"esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash "
+"--flash_size=detect 0 esp8266-20170108-v1.8.7.bin"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:102
+msgid ""
+"You might need to change the \"port\" setting to something else relevant "
+"for your PC.  You may also need to reduce the baudrate if you get errors "
+"when flashing (eg down to 115200).  The filename of the firmware should "
+"also match the file that you have."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:107
+msgid ""
+"For some boards with a particular FlashROM configuration (e.g. some "
+"variants of a NodeMCU board) you may need to use the following command to"
+" deploy the firmware (note the ``-fm dio`` option)::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:111
+msgid ""
+"esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash "
+"--flash_size=detect -fm dio 0 esp8266-20170108-v1.8.7.bin"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:113
+msgid ""
+"If the above commands run without error then MicroPython should be "
+"installed on your board!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:117
+msgid "Serial prompt"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:119
+msgid ""
+"Once you have the firmware on the device you can access the REPL (Python "
+"prompt) over UART0 (GPIO1=TX, GPIO3=RX), which might be connected to a "
+"USB-serial convertor, depending on your board.  The baudrate is 115200.  "
+"The next part of the tutorial will discuss the prompt in more detail."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:125
+msgid "WiFi"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:127
+msgid ""
+"After a fresh install and boot the device configures itself as a WiFi "
+"access point (AP) that you can connect to.  The ESSID is of the form "
+"MicroPython-xxxxxx where the x's are replaced with part of the MAC "
+"address of your device (so will be the same everytime, and most likely "
+"different for all ESP8266 chips).  The password for the WiFi is "
+"micropythoN (note the upper-case N).  Its IP address will be 192.168.4.1 "
+"once you connect to its network.  WiFi configuration will be discussed in"
+" more detail later in the tutorial."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:136
+msgid "Troubleshooting installation problems"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:138
+msgid ""
+"If you experience problems during flashing or with running firmware "
+"immediately after it, here are troubleshooting recommendations:"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:141
+msgid ""
+"Be aware of and try to exclude hardware problems. There are 2 common "
+"problems: bad power source quality and worn-out/defective FlashROM. "
+"Speaking of power source, not just raw amperage is important, but also "
+"low ripple and noise/EMI in general. If you experience issues with self-"
+"made or wall-wart style power supply, try USB power from a computer. "
+"Unearthed power supplies are also known to cause problems as they source "
+"of increased EMI (electromagnetic interference) - at the very least, and "
+"may lead to electrical devices breakdown. So, you are advised to avoid "
+"using unearthed power connections when working with ESP8266 and other "
+"boards. In regard to FlashROM hardware problems, there are independent "
+"(not related to MicroPython in any way) reports `(e.g.) "
+"<http://internetofhomethings.com/homethings/?p=538>`_ that on some "
+"ESP8266 modules, FlashROM can be programmed as little as 20 times before "
+"programming errors occur. This is *much* less than 100,000 programming "
+"cycles cited for FlashROM chips of a type used with ESP8266 by reputable "
+"vendors, which points to either production rejects, or second-hand worn-"
+"out flash chips to be used on some (apparently cheap) modules/boards. You"
+" may want to use your best judgement about source, price, documentation, "
+"warranty, post-sales support for the modules/boards you purchase."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:160
+msgid ""
+"The flashing instructions above use flashing speed of 460800 baud, which "
+"is good compromise between speed and stability. However, depending on "
+"your module/board, USB-UART convertor, cables, host OS, etc., the above "
+"baud rate may be too high and lead to errors. Try a more common 115200 "
+"baud rate instead in such cases."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:166
+msgid ""
+"If lower baud rate didn't help, you may want to try older version of "
+"esptool.py, which had a different programming algorithm::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:169
+msgid "pip install esptool==1.0.1"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:171
+msgid ""
+"This version doesn't support ``--flash_size=detect`` option, so you will "
+"need to specify FlashROM size explicitly (in megabits). It also requires "
+"Python 2.7, so you may need to use ``pip2`` instead of ``pip`` in the "
+"command above."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:176
+msgid ""
+"The ``--flash_size`` option in the commands above is mandatory. Omitting "
+"it will lead to a corrupted firmware."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:179
+msgid ""
+"To catch incorrect flash content (e.g. from a defective sector on a "
+"chip), add ``--verify`` switch to the commands above."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:182
+msgid ""
+"Additionally, you can check the firmware integrity from a MicroPython "
+"REPL prompt (assuming you were able to flash it and ``--verify`` option "
+"doesn't report errors)::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:186
+msgid ""
+"import esp\n"
+"esp.check_fw()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:189
+msgid ""
+"If the last output value is True, the firmware is OK. Otherwise, it's "
+"corrupted and need to be reflashed correctly."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:192
+msgid ""
+"If you experience any issues with another flashing application (not "
+"esptool.py), try esptool.py, it is a generally accepted flashing "
+"application in the ESP8266 community."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:196
+msgid ""
+"If you still experience problems with even flashing the firmware, please "
+"refer to esptool.py project page, https://github.com/espressif/esptool "
+"for additional documentation and bug tracker where you can report "
+"problems."
+msgstr ""
+
+#: ../../../esp8266/tutorial/intro.rst:200
+msgid ""
+"If you are able to flash firmware, but ``--verify`` option or "
+"``esp.check_fw()`` return errors even after multiple retries, you may "
+"have a defective FlashROM chip, as explained above."
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:2
+msgid "Controlling NeoPixels"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:4
+msgid ""
+"NeoPixels, also known as WS2812 LEDs, are full-colour LEDs that are "
+"connected in serial, are individually addressable, and can have their "
+"red, green and blue components set between 0 and 255.  They require "
+"precise timing to control them and there is a special neopixel module to "
+"do just this."
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:9
+msgid "To create a NeoPixel object do the following::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:11
+msgid ""
+">>> import machine, neopixel\n"
+">>> np = neopixel.NeoPixel(machine.Pin(4), 8)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:14
+msgid ""
+"This configures a NeoPixel strip on GPIO4 with 8 pixels.  You can adjust "
+"the \"4\" (pin number) and the \"8\" (number of pixel) to suit your set "
+"up."
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:17
+msgid "To set the colour of pixels use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:19
+msgid ""
+">>> np[0] = (255, 0, 0) # set to red, full brightness\n"
+">>> np[1] = (0, 128, 0) # set to green, half brightness\n"
+">>> np[2] = (0, 0, 64)  # set to blue, quarter brightness"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:23
+msgid ""
+"For LEDs with more than 3 colours, such as RGBW pixels or RGBY pixels, "
+"the NeoPixel class takes a ``bpp`` parameter. To setup a NeoPixel object "
+"for an RGBW Pixel, do the following::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:27
+msgid ""
+">>> import machine, neopixel\n"
+">>> np = neopixel.NeoPixel(machine.Pin(4), 8, bpp=4)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:30
+msgid ""
+"In a 4-bpp mode, remember to use 4-tuples instead of 3-tuples to set the "
+"colour. For example to set the first three pixels use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:33
+msgid ""
+">>> np[0] = (255, 0, 0, 128) # Orange in an RGBY Setup\n"
+">>> np[1] = (0, 255, 0, 128) # Yellow-green in an RGBY Setup\n"
+">>> np[2] = (0, 0, 255, 128) # Green-blue in an RGBY Setup"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:37
+msgid "Then use the ``write()`` method to output the colours to the LEDs::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:39
+msgid ">>> np.write()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:41
+msgid "The following demo function makes a fancy show on the LEDs::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:43
+msgid ""
+"import time\n"
+"\n"
+"def demo(np):\n"
+"    n = np.n\n"
+"\n"
+"    # cycle\n"
+"    for i in range(4 * n):\n"
+"        for j in range(n):\n"
+"            np[j] = (0, 0, 0)\n"
+"        np[i % n] = (255, 255, 255)\n"
+"        np.write()\n"
+"        time.sleep_ms(25)\n"
+"\n"
+"    # bounce\n"
+"    for i in range(4 * n):\n"
+"        for j in range(n):\n"
+"            np[j] = (0, 0, 128)\n"
+"        if (i // n) % 2 == 0:\n"
+"            np[i % n] = (0, 0, 0)\n"
+"        else:\n"
+"            np[n - 1 - (i % n)] = (0, 0, 0)\n"
+"        np.write()\n"
+"        time.sleep_ms(60)\n"
+"\n"
+"    # fade in/out\n"
+"    for i in range(0, 4 * 256, 8):\n"
+"        for j in range(n):\n"
+"            if (i // 256) % 2 == 0:\n"
+"                val = i & 0xff\n"
+"            else:\n"
+"                val = 255 - (i & 0xff)\n"
+"            np[j] = (val, 0, 0)\n"
+"        np.write()\n"
+"\n"
+"    # clear\n"
+"    for i in range(n):\n"
+"        np[i] = (0, 0, 0)\n"
+"    np.write()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/neopixel.rst:82
+msgid "Execute it using::"
+msgstr ""
+
+#: ../../../<rst_epilog>:84
+msgid ">>> demo(np)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:2
+msgid "Network basics"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:4
+msgid ""
+"The network module is used to configure the WiFi connection.  There are "
+"two WiFi interfaces, one for the station (when the ESP8266 connects to a "
+"router) and one for the access point (for other devices to connect to the"
+" ESP8266).  Create instances of these objects using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:9
+msgid ""
+">>> import network\n"
+">>> sta_if = network.WLAN(network.STA_IF)\n"
+">>> ap_if = network.WLAN(network.AP_IF)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:13
+msgid "You can check if the interfaces are active by::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:15
+msgid ""
+">>> sta_if.active()\n"
+"False\n"
+">>> ap_if.active()\n"
+"True"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:20
+msgid "You can also check the network settings of the interface by::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:22
+msgid ""
+">>> ap_if.ifconfig()\n"
+"('192.168.4.1', '255.255.255.0', '192.168.4.1', '8.8.8.8')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:25
+msgid "The returned values are: IP address, netmask, gateway, DNS."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:28
+msgid "Configuration of the WiFi"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:30
+msgid ""
+"Upon a fresh install the ESP8266 is configured in access point mode, so "
+"the AP_IF interface is active and the STA_IF interface is inactive.  You "
+"can configure the module to connect to your own network using the STA_IF "
+"interface."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:34
+msgid "First activate the station interface::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:36
+msgid ">>> sta_if.active(True)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:38
+msgid "Then connect to your WiFi network::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:40
+msgid ">>> sta_if.connect('<your ESSID>', '<your password>')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:42
+msgid "To check if the connection is established use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:44
+msgid ">>> sta_if.isconnected()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:46
+msgid "Once established you can check the IP address::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:48
+msgid ""
+">>> sta_if.ifconfig()\n"
+"('192.168.0.2', '255.255.255.0', '192.168.0.1', '8.8.8.8')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:51
+msgid "You can then disable the access-point interface if you no longer need it::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:53
+msgid ">>> ap_if.active(False)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:55
+msgid ""
+"Here is a function you can run (or put in your boot.py file) to "
+"automatically connect to your WiFi network::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:58
+msgid ""
+"def do_connect():\n"
+"    import network\n"
+"    sta_if = network.WLAN(network.STA_IF)\n"
+"    if not sta_if.isconnected():\n"
+"        print('connecting to network...')\n"
+"        sta_if.active(True)\n"
+"        sta_if.connect('<essid>', '<password>')\n"
+"        while not sta_if.isconnected():\n"
+"            pass\n"
+"    print('network config:', sta_if.ifconfig())"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:70
+msgid "Sockets"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:72
+msgid ""
+"Once the WiFi is set up the way to access the network is by using "
+"sockets. A socket represents an endpoint on a network device, and when "
+"two sockets are connected together communication can proceed. Internet "
+"protocols are built on top of sockets, such as email (SMTP), the web "
+"(HTTP), telnet, ssh, among many others.  Each of these protocols is "
+"assigned a specific port, which is just an integer.  Given an IP address "
+"and a port number you can connect to a remote device and start talking "
+"with it."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_basics.rst:80
+msgid ""
+"The next part of the tutorial discusses how to use sockets to do some "
+"common and useful network tasks."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:2
+msgid "Network - TCP sockets"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:4
+msgid ""
+"The building block of most of the internet is the TCP socket.  These "
+"sockets provide a reliable stream of bytes between the connected network "
+"devices. This part of the tutorial will show how to use TCP sockets in a "
+"few different cases."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:10
+msgid "Star Wars Asciimation"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:12
+msgid ""
+"The simplest thing to do is to download data from the internet.  In this "
+"case we will use the Star Wars Asciimation service provided by the "
+"blinkenlights.nl website.  It uses the telnet protocol on port 23 to "
+"stream data to anyone that connects.  It's very simple to use because it "
+"doesn't require you to authenticate (give a username or password), you "
+"can just start downloading data straight away."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:19
+msgid "The first thing to do is make sure we have the socket module available::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:21
+msgid ">>> import socket"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:23
+msgid "Then get the IP address of the server::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:25
+msgid ">>> addr_info = socket.getaddrinfo(\"towel.blinkenlights.nl\", 23)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:27
+msgid ""
+"The ``getaddrinfo`` function actually returns a list of addresses, and "
+"each address has more information than we need.  We want to get just the "
+"first valid address, and then just the IP address and port of the server."
+"  To do this use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:31
+msgid ">>> addr = addr_info[0][-1]"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:33
+msgid ""
+"If you type ``addr_info`` and ``addr`` at the prompt you will see exactly"
+" what information they hold."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:36
+msgid "Using the IP address we can make a socket and connect to the server::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:38
+msgid ""
+">>> s = socket.socket()\n"
+">>> s.connect(addr)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:41
+msgid "Now that we are connected we can download and display the data::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:43
+msgid ""
+">>> while True:\n"
+"...     data = s.recv(500)\n"
+"...     print(str(data, 'utf8'), end='')\n"
+"..."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:48
+msgid ""
+"When this loop executes it should start showing the animation (use ctrl-C"
+" to interrupt it)."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:51
+msgid ""
+"You should also be able to run this same code on your PC using normal "
+"Python if you want to try it out there."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:55
+msgid "HTTP GET request"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:57
+msgid ""
+"The next example shows how to download a webpage.  HTTP uses port 80 and "
+"you first need to send a \"GET\" request before you can download "
+"anything.  As part of the request you need to specify the page to "
+"retrieve."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:61
+msgid "Let's define a function that can download and print a URL::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:63
+#, python-format
+msgid ""
+"def http_get(url):\n"
+"    _, _, host, path = url.split('/', 3)\n"
+"    addr = socket.getaddrinfo(host, 80)[0][-1]\n"
+"    s = socket.socket()\n"
+"    s.connect(addr)\n"
+"    s.send(bytes('GET /%s HTTP/1.0\\r\\nHost: %s\\r\\n\\r\\n' % (path, "
+"host), 'utf8'))\n"
+"    while True:\n"
+"        data = s.recv(100)\n"
+"        if data:\n"
+"            print(str(data, 'utf8'), end='')\n"
+"        else:\n"
+"            break\n"
+"    s.close()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:77
+msgid ""
+"Make sure that you import the socket module before running this function."
+"  Then you can try::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:80
+msgid ">>> http_get('http://micropython.org/ks/test.html')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:82
+msgid "This should retrieve the webpage and print the HTML to the console."
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:85
+msgid "Simple HTTP server"
+msgstr ""
+
+#: ../../../esp8266/tutorial/network_tcp.rst:87
+msgid ""
+"The following code creates an simple HTTP server which serves a single "
+"webpage that contains a table with the state of all the GPIO pins::"
+msgstr ""
+
+#: ../../../<rst_epilog>:90
+#, python-format
+msgid ""
+"import machine\n"
+"pins = [machine.Pin(i, machine.Pin.IN) for i in (0, 2, 4, 5, 12, 13, 14, "
+"15)]\n"
+"\n"
+"html = \"\"\"<!DOCTYPE html>\n"
+"<html>\n"
+"    <head> <title>ESP8266 Pins</title> </head>\n"
+"    <body> <h1>ESP8266 Pins</h1>\n"
+"        <table border=\"1\"> <tr><th>Pin</th><th>Value</th></tr> %s "
+"</table>\n"
+"    </body>\n"
+"</html>\n"
+"\"\"\"\n"
+"\n"
+"import socket\n"
+"addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]\n"
+"\n"
+"s = socket.socket()\n"
+"s.bind(addr)\n"
+"s.listen(1)\n"
+"\n"
+"print('listening on', addr)\n"
+"\n"
+"while True:\n"
+"    cl, addr = s.accept()\n"
+"    print('client connected from', addr)\n"
+"    cl_file = cl.makefile('rwb', 0)\n"
+"    while True:\n"
+"        line = cl_file.readline()\n"
+"        if not line or line == b'\\r\\n':\n"
+"            break\n"
+"    rows = ['<tr><td>%s</td><td>%d</td></tr>' % (str(p), p.value()) for p"
+" in pins]\n"
+"    response = html % '\\n'.join(rows)\n"
+"    cl.send(response)\n"
+"    cl.close()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/nextsteps.rst:2
+msgid "Next steps"
+msgstr ""
+
+#: ../../../esp8266/tutorial/nextsteps.rst:4
+msgid ""
+"That brings us to the end of the tutorial!  Hopefully by now you have a "
+"good feel for the capabilities of MicroPython on the ESP8266 and "
+"understand how to control both the WiFi and IO aspects of the chip."
+msgstr ""
+
+#: ../../../esp8266/tutorial/nextsteps.rst:8
+msgid ""
+"There are many features that were not covered in this tutorial.  The best"
+" way to learn about them is to read the full documentation of the "
+"modules, and to experiment!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/nextsteps.rst:12
+msgid "Good luck creating your Internet of Things devices!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/onewire.rst:2
+msgid "Controlling 1-wire devices"
+msgstr ""
+
+#: ../../../esp8266/tutorial/onewire.rst:4
+msgid ""
+"The 1-wire bus is a serial bus that uses just a single wire for "
+"communication (in addition to wires for ground and power).  The DS18B20 "
+"temperature sensor is a very popular 1-wire device, and here we show how "
+"to use the onewire module to read from such a device."
+msgstr ""
+
+#: ../../../esp8266/tutorial/onewire.rst:9
+msgid ""
+"For the following code to work you need to have at least one DS18S20 or "
+"DS18B20 temperature sensor with its data line connected to GPIO12.  You "
+"must also power the sensors and connect a 4.7k Ohm resistor between the "
+"data pin and the power pin.  ::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/onewire.rst:13
+msgid ""
+"import time\n"
+"import machine\n"
+"import onewire, ds18x20\n"
+"\n"
+"# the device is on GPIO12\n"
+"dat = machine.Pin(12)\n"
+"\n"
+"# create the onewire object\n"
+"ds = ds18x20.DS18X20(onewire.OneWire(dat))\n"
+"\n"
+"# scan for devices on the bus\n"
+"roms = ds.scan()\n"
+"print('found devices:', roms)\n"
+"\n"
+"# loop 10 times and print all temperatures\n"
+"for i in range(10):\n"
+"    print('temperatures:', end=' ')\n"
+"    ds.convert_temp()\n"
+"    time.sleep_ms(750)\n"
+"    for rom in roms:\n"
+"        print(ds.read_temp(rom), end=' ')\n"
+"    print()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/onewire.rst:36
+msgid ""
+"Note that you must execute the ``convert_temp()`` function to initiate a "
+"temperature reading, then wait at least 750ms before reading the value."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:2
+msgid "GPIO Pins"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:4
+msgid ""
+"The way to connect your board to the external world, and control other "
+"components, is through the GPIO pins.  Not all pins are available to use,"
+" in most cases only pins 0, 2, 4, 5, 12, 13, 14, 15, and 16 can be used."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:8
+msgid ""
+"The pins are available in the machine module, so make sure you import "
+"that first.  Then you can create a pin using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:11
+msgid ">>> pin = machine.Pin(0)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:13
+msgid ""
+"Here, the \"0\" is the pin that you want to access.  Usually you want to "
+"configure the pin to be input or output, and you do this when "
+"constructing it.  To make an input pin use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:17
+msgid ">>> pin = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:19
+msgid ""
+"You can either use PULL_UP or None for the input pull-mode.  If it's not "
+"specified then it defaults to None, which is no pull resistor. GPIO16 has"
+" no pull-up mode. You can read the value on the pin using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:24
+msgid ""
+">>> pin.value()\n"
+"0"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:27
+msgid ""
+"The pin on your board may return 0 or 1 here, depending on what it's "
+"connected to.  To make an output pin use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:30
+msgid ">>> pin = machine.Pin(0, machine.Pin.OUT)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:32
+msgid "Then set its value using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:34
+msgid ""
+">>> pin.value(0)\n"
+">>> pin.value(1)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:37
+msgid "Or::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:39
+msgid ""
+">>> pin.off()\n"
+">>> pin.on()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:43
+msgid "External interrupts"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:45
+msgid ""
+"All pins except number 16 can be configured to trigger a hard interrupt "
+"if their input changes.  You can set code (a callback function) to be "
+"executed on the trigger."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:49
+msgid ""
+"Let's first define a callback function, which must take a single "
+"argument, being the pin that triggered the function.  We will make the "
+"function just print the pin::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:53
+msgid ""
+">>> def callback(p):\n"
+"...     print('pin change', p)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:56
+msgid "Next we will create two pins and configure them as inputs::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:58
+msgid ""
+">>> from machine import Pin\n"
+">>> p0 = Pin(0, Pin.IN)\n"
+">>> p2 = Pin(2, Pin.IN)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:62
+msgid ""
+"An finally we need to tell the pins when to trigger, and the function to "
+"call when they detect an event::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:65
+msgid ""
+">>> p0.irq(trigger=Pin.IRQ_FALLING, handler=callback)\n"
+">>> p2.irq(trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING, handler=callback)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:68
+msgid ""
+"We set pin 0 to trigger only on a falling edge of the input (when it goes"
+" from high to low), and set pin 2 to trigger on both a rising and falling"
+" edge.  After entering this code you can apply high and low voltages to "
+"pins 0 and 2 to see the interrupt being executed."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pins.rst:73
+msgid ""
+"A hard interrupt will trigger as soon as the event occurs and will "
+"interrupt any running code, including Python code.  As such your callback"
+" functions are limited in what they can do (they cannot allocate memory, "
+"for example) and should be as short and simple as possible."
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:2
+msgid "Power control"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:4
+msgid ""
+"The ESP8266 provides the ability to change the CPU frequency on the fly, "
+"and enter a deep-sleep state.  Both can be used to manage power "
+"consumption."
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:8
+msgid "Changing the CPU frequency"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:10
+msgid ""
+"The machine module has a function to get and set the CPU frequency.  To "
+"get the current frequency use::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:13
+msgid ""
+">>> import machine\n"
+">>> machine.freq()\n"
+"80000000"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:17
+msgid ""
+"By default the CPU runs at 80MHz.  It can be changed to 160MHz if you "
+"need more processing power, at the expense of current consumption::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:20
+msgid ""
+">>> machine.freq(160000000)\n"
+">>> machine.freq()\n"
+"160000000"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:24
+msgid ""
+"You can change to the higher frequency just while your code does the "
+"heavy processing and then change back when it's finished."
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:30
+msgid ""
+"The deep-sleep mode will shut down the ESP8266 and all its peripherals, "
+"including the WiFi (but not including the real-time-clock, which is used "
+"to wake the chip).  This drastically reduces current consumption and is a"
+" good way to make devices that can run for a while on a battery."
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:35
+msgid ""
+"To be able to use the deep-sleep feature you must connect GPIO16 to the "
+"reset pin (RST on the Adafruit Feather HUZZAH board).  Then the following"
+" code can be used to sleep and wake the device::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:39
+msgid ""
+"import machine\n"
+"\n"
+"# configure RTC.ALARM0 to be able to wake the device\n"
+"rtc = machine.RTC()\n"
+"rtc.irq(trigger=rtc.ALARM0, wake=machine.DEEPSLEEP)\n"
+"\n"
+"# set RTC.ALARM0 to fire after 10 seconds (waking the device)\n"
+"rtc.alarm(rtc.ALARM0, 10000)\n"
+"\n"
+"# put the device to sleep\n"
+"machine.deepsleep()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/powerctrl.rst:51
+msgid ""
+"Note that when the chip wakes from a deep-sleep it is completely reset, "
+"including all of the memory.  The boot scripts will run as usual and you "
+"can put code in them to check the reset cause to perhaps do something "
+"different if the device just woke from a deep-sleep.  For example, to "
+"print the reset cause you can use::"
+msgstr ""
+
+#: ../../../<rst_epilog>:57
+msgid ""
+"if machine.reset_cause() == machine.DEEPSLEEP_RESET:\n"
+"    print('woke from a deep sleep')\n"
+"else:\n"
+"    print('power on or hard reset')"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:2
+msgid "Pulse Width Modulation"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:4
+msgid ""
+"Pulse width modulation (PWM) is a way to get an artificial analog output "
+"on a digital pin.  It achieves this by rapidly toggling the pin from low "
+"to high. There are two parameters associated with this: the frequency of "
+"the toggling, and the duty cycle.  The duty cycle is defined to be how "
+"long the pin is high compared with the length of a single period (low "
+"plus high time).  Maximum duty cycle is when the pin is high all of the "
+"time, and minimum is when it is low all of the time."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:12
+msgid ""
+"On the ESP8266 the pins 0, 2, 4, 5, 12, 13, 14 and 15 all support PWM.  "
+"The limitation is that they must all be at the same frequency, and the "
+"frequency must be between 1Hz and 1kHz."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:16
+msgid "To use PWM on a pin you must first create the pin object, for example::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:18
+msgid ""
+">>> import machine\n"
+">>> p12 = machine.Pin(12)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:21
+msgid "Then create the PWM object using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:23
+msgid ">>> pwm12 = machine.PWM(p12)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:25
+msgid "You can set the frequency and duty cycle using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:27
+msgid ""
+">>> pwm12.freq(500)\n"
+">>> pwm12.duty(512)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:30
+#, python-format
+msgid ""
+"Note that the duty cycle is between 0 (all off) and 1023 (all on), with "
+"512 being a 50% duty. Values beyond this min/max will be clipped. If you "
+"print the PWM object then it will tell you its current configuration::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:34
+msgid ""
+">>> pwm12\n"
+"PWM(12, freq=500, duty=512)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:37
+msgid ""
+"You can also call the ``freq()`` and ``duty()`` methods with no arguments"
+" to get their current values."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:40
+msgid "The pin will continue to be in PWM mode until you deinitialise it using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:42
+msgid ">>> pwm12.deinit()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:45
+msgid "Fading an LED"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:47
+msgid ""
+"Let's use the PWM feature to fade an LED.  Assuming your board has an LED"
+" connected to pin 2 (ESP-12 modules do) we can create an LED-PWM object "
+"using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:50
+msgid ">>> led = machine.PWM(machine.Pin(2), freq=1000)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:52
+msgid "Notice that we can set the frequency in the PWM constructor."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:54
+msgid ""
+"For the next part we will use timing and some math, so import these "
+"modules::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:56
+msgid ">>> import time, math"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:58
+msgid "Then create a function to pulse the LED::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:60
+msgid ""
+">>> def pulse(l, t):\n"
+"...     for i in range(20):\n"
+"...         l.duty(int(math.sin(i / 10 * math.pi) * 500 + 500))\n"
+"...         time.sleep_ms(t)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:65
+msgid "You can try this function out using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:67
+msgid ">>> pulse(led, 50)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:69
+msgid "For a nice effect you can pulse many times in a row::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:71
+msgid ""
+">>> for i in range(10):\n"
+"...     pulse(led, 20)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:74
+msgid "Remember you can use ctrl-C to interrupt the code."
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:77
+msgid "Control a hobby servo"
+msgstr ""
+
+#: ../../../esp8266/tutorial/pwm.rst:79
+msgid ""
+"Hobby servo motors can be controlled using PWM.  They require a frequency"
+" of 50Hz and then a duty between about 40 and 115, with 77 being the "
+"centre value. If you connect a servo to the power and ground pins, and "
+"then the signal line to pin 12 (other pins will work just as well), you "
+"can control the motor using::"
+msgstr ""
+
+#: ../../../<rst_epilog>:84
+msgid ""
+">>> servo = machine.PWM(machine.Pin(12), freq=50)\n"
+">>> servo.duty(40)\n"
+">>> servo.duty(115)\n"
+">>> servo.duty(77)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:2
+msgid "Getting a MicroPython REPL prompt"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:4
+msgid ""
+"REPL stands for Read Evaluate Print Loop, and is the name given to the "
+"interactive MicroPython prompt that you can access on the ESP8266.  Using"
+" the REPL is by far the easiest way to test out your code and run "
+"commands."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:8
+msgid ""
+"There are two ways to access the REPL: either via a wired connection "
+"through the UART serial port, or via WiFi."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:12
+msgid "REPL over the serial port"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:14
+msgid ""
+"The REPL is always available on the UART0 serial peripheral, which is "
+"connected to the pins GPIO1 for TX and GPIO3 for RX.  The baudrate of the"
+" REPL is 115200. If your board has a USB-serial convertor on it then you "
+"should be able to access the REPL directly from your PC.  Otherwise you "
+"will need to have a way of communicating with the UART."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:20
+msgid ""
+"To access the prompt over USB-serial you need to use a terminal emulator "
+"program. On Windows TeraTerm is a good choice, on Mac you can use the "
+"built-in screen program, and Linux has picocom and minicom.  Of course, "
+"there are many other terminal programs that will work, so pick your "
+"favourite!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:25
+msgid "For example, on Linux you can try running::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:27
+msgid "picocom /dev/ttyUSB0 -b115200"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:29
+msgid ""
+"Once you have made the connection over the serial port you can test if it"
+" is working by hitting enter a few times.  You should see the Python REPL"
+" prompt, indicated by ``>>>``."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:34
+msgid "WebREPL - a prompt over WiFi"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:36
+msgid ""
+"WebREPL allows you to use the Python prompt over WiFi, connecting through"
+" a browser. The latest versions of Firefox and Chrome are supported."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:39
+msgid ""
+"For your convenience, WebREPL client is hosted at "
+"`<http://micropython.org/webrepl>`__ . Alternatively, you can install it "
+"locally from the the GitHub repository "
+"`<https://github.com/micropython/webrepl>`__ ."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:44
+msgid ""
+"Before connecting to WebREPL, you should set a password and enable it via"
+" a normal serial connection. Initial versions of MicroPython for ESP8266 "
+"came with WebREPL automatically enabled on the boot and with the ability "
+"to set a password via WiFi on the first connection, but as WebREPL was "
+"becoming more widely known and popular, the initial setup has switched to"
+" a wired connection for improved security::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:53
+msgid ""
+"Follow the on-screen instructions and prompts. To make any changes "
+"active, you will need to reboot your device."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:56
+msgid ""
+"To use WebREPL connect your computer to the ESP8266's access point "
+"(MicroPython-xxxxxx, see the previous section about this).  If you have "
+"already reconfigured your ESP8266 to connect to a router then you can "
+"skip this part."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:61
+msgid ""
+"Once you are on the same network as the ESP8266 you click the \"Connect\""
+" button (if you are connecting via a router then you may need to change "
+"the IP address, by default the IP address is correct when connected to "
+"the ESP8266's access point).  If the connection succeeds then you should "
+"see a password prompt."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:66
+msgid ""
+"Once you type the password configured at the setup step above, press "
+"Enter once more and you should get a prompt looking like ``>>>``.  You "
+"can now start typing Python commands!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:71
+msgid "Using the REPL"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:73
+msgid ""
+"Once you have a prompt you can start experimenting!  Anything you type at"
+" the prompt will be executed after you press the Enter key.  MicroPython "
+"will run the code that you enter and print the result (if there is one)."
+"  If there is an error with the text that you enter then an error message"
+" is printed."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:78
+msgid "Try typing the following at the prompt::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:80
+msgid ""
+">>> print('hello esp8266!')\n"
+"hello esp8266!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:83
+msgid ""
+"Note that you shouldn't type the ``>>>`` arrows, they are there to "
+"indicate that you should type the text after it at the prompt.  And then "
+"the line following is what the device should respond with.  In the end, "
+"once you have entered the text ``print(\"hello esp8266!\")`` and pressed "
+"the Enter key, the output on your screen should look exactly like it does"
+" above."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:89
+msgid ""
+"If you already know some python you can now try some basic commands here."
+"   For example::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:92
+msgid ""
+">>> 1 + 2\n"
+"3\n"
+">>> 1 / 2\n"
+"0.5\n"
+">>> 12**34\n"
+"4922235242952026704037113243122008064"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:99
+msgid ""
+"If your board has an LED attached to GPIO2 (the ESP-12 modules do) then "
+"you can turn it on and off using the following code::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:102
+msgid ""
+">>> import machine\n"
+">>> pin = machine.Pin(2, machine.Pin.OUT)\n"
+">>> pin.on()\n"
+">>> pin.off()"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:107
+msgid ""
+"Note that ``on`` method of a Pin might turn the LED off and ``off`` might"
+" turn it on (or vice versa), depending on how the LED is wired on your "
+"board. To resolve this, machine.Signal class is provided."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:112
+msgid "Line editing"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:114
+msgid ""
+"You can edit the current line that you are entering using the left and "
+"right arrow keys to move the cursor, as well as the delete and backspace "
+"keys.  Also, pressing Home or ctrl-A moves the cursor to the start of the"
+" line, and pressing End or ctrl-E moves to the end of the line."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:120
+msgid "Input history"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:122
+msgid ""
+"The REPL remembers a certain number of previous lines of text that you "
+"entered (up to 8 on the ESP8266).  To recall previous lines use the up "
+"and down arrow keys."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:127
+msgid "Tab completion"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:129
+msgid ""
+"Pressing the Tab key will do an auto-completion of the current word that "
+"you are entering.  This can be very useful to find out functions and "
+"methods that a module or object has.  Try it out by typing \"ma\" and "
+"then pressing Tab.  It should complete to \"machine\" (assuming you "
+"imported machine in the above example).  Then type \".\" and press Tab "
+"again to see a list of all the functions that the machine module has."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:137
+msgid "Line continuation and auto-indent"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:139
+msgid ""
+"Certain things that you type will need \"continuing\", that is, will need"
+" more lines of text to make a proper Python statement.  In this case the "
+"prompt will change to ``...`` and the cursor will auto-indent the correct"
+" amount so you can start typing the next line straight away.  Try this by"
+" defining the following function::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:145
+msgid ""
+">>> def toggle(p):\n"
+"...    p.value(not p.value())\n"
+"...\n"
+"...\n"
+"...\n"
+">>>"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:152
+msgid ""
+"In the above, you needed to press the Enter key three times in a row to "
+"finish the compound statement (that's the three lines with just dots on "
+"them).  The other way to finish a compound statement is to press "
+"backspace to get to the start of the line, then press the Enter key.  (If"
+" you did something wrong and want to escape the continuation mode then "
+"press ctrl-C; all lines will be ignored.)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:159
+msgid ""
+"The function you just defined allows you to toggle a pin.  The pin object"
+" you created earlier should still exist (recreate it if it doesn't) and "
+"you can toggle the LED using::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:163
+msgid ">>> toggle(pin)"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:165
+msgid ""
+"Let's now toggle the LED in a loop (if you don't have an LED then you can"
+" just print some text instead of calling toggle, to see the effect)::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:168
+msgid ""
+">>> import time\n"
+">>> while True:\n"
+"...     toggle(pin)\n"
+"...     time.sleep_ms(500)\n"
+"...\n"
+"...\n"
+"...\n"
+">>>"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:177
+msgid ""
+"This will toggle the LED at 1Hz (half a second on, half a second off).  "
+"To stop the toggling press ctrl-C, which will raise a KeyboardInterrupt "
+"exception and break out of the loop."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:181
+msgid ""
+"The time module provides some useful functions for making delays and "
+"doing timing.  Use tab completion to find out what they are and play "
+"around with them!"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:185
+msgid "Paste mode"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:187
+msgid ""
+"Pressing ctrl-E will enter a special paste mode.  This allows you to copy"
+" and paste a chunk of text into the REPL.  If you press ctrl-E you will "
+"see the paste-mode prompt::"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:191
+msgid ""
+"paste mode; Ctrl-C to cancel, Ctrl-D to finish\n"
+"==="
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:194
+msgid ""
+"You can then paste (or type) your text in.  Note that none of the special"
+" keys or commands work in paste mode (eg Tab or backspace), they are just"
+" accepted as-is.  Press ctrl-D to finish entering the text and execute "
+"it."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:199
+msgid "Other control commands"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:201
+msgid "There are four other control commands:"
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:203
+msgid ""
+"Ctrl-A on a blank line will enter raw REPL mode.  This is like a "
+"permanent paste mode, except that characters are not echoed back."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:206
+msgid "Ctrl-B on a blank like goes to normal REPL mode."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:208
+msgid "Ctrl-C cancels any input, or interrupts the currently running code."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:210
+msgid "Ctrl-D on a blank line will do a soft reset."
+msgstr ""
+
+#: ../../../esp8266/tutorial/repl.rst:212
+msgid "Note that ctrl-A and ctrl-D do not work with WebREPL."
+msgstr ""
+

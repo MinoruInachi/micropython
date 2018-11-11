@@ -1,0 +1,109 @@
+{% extends "defindex.html" %}
+{% block body %}
+
+  <h1>MicroPython ドキュメンテーション</h1>
+
+  <p>
+    {{ _('Welcome! This is the documentation for MicroPython') }}
+    v{{ release|e }}{% if last_updated %}, {{ _('last updated') }} {{ last_updated|e }}{% endif %}.
+  </p>
+
+  <p>
+    MicroPython は、さまざまなシステムおよびハードウェアプラットフォームで動作します。ここでは、
+    MicroPython が動作するさまざまなプラットフォーム(
+    <a href="{{ pathto("reference/glossary") }}#term-micropython-port">ポートts</a>
+    とも呼ばれます)に関する特定の情報だけでなく、すべてのシステムに適用される一般的なドキュメンテーションを
+    読むことができます。
+  </p>
+
+  <p><strong>MicroPython の一般的なドキュメンテーション:</strong></p>
+
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("library/index") }}">ライブラリリファレンス</a><br/>
+        <span class="linkdescr">MicroPython のライブラリとモジュール</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("genrst/index") }}">MicroPython の相違点</a><br/>
+        <span class="linkdescr">MicroPython と CPython とで異なっている操作</span>
+      </p>
+    </td>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("reference/index") }}">言語リファレンス</a><br/>
+        <span class="linkdescr">MicroPython 固有の言語機能に関する情報</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("license") }}">ライセンス</a><br/>
+        <span class="linkdescr">MicroPython のライセンス情報</span>
+      </p>
+    </td>
+  </tr></table>
+
+  <p><strong>プラットフォーム固有のリファレンスとチュートリアル:</strong></p>
+
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("pyboard/quickref") }}">pyboard クイック・リファレンス</a><br/>
+        <span class="linkdescr">pyboard のピン配置、利用できるスニペット、チュートリアル</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("esp8266/quickref") }}">ESP8266 クイック・リファレンス</a><br/>
+        <span class="linkdescr">ESP8266 ベースのボードのピン配置、利用できるスニペット、チュートリアル</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("wipy/quickref") }}">WiPy/CC3200 クイック・リファレンス</a><br/>
+        <span class="linkdescr">WiPy/CC3200 のピン配置、利用できるスニペット、チュートリアル</span>
+      </p>
+    </td>
+  </tr></table>
+
+  <p><strong>索引と目次:</strong></p>
+
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("py-modindex") }}">モジュール索引</a><br/>
+        <span class="linkdescr">すべてのモジュールへのクイックアクセス</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("genindex") }}">全体索引</a><br/>
+        <span class="linkdescr">すべての関数、クラス、定数</span>
+      </p>
+    </td>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("reference/glossary") }}">用語集</a><br/>
+        <span class="linkdescr">MicroPython の用語の説明</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="{{ pathto("index") }}">目次</a><br/>
+        <span class="linkdescr">すべての章の一覧</span>
+      </p>
+    </td></tr>
+  </table>
+
+  <p><strong>外部リンク:</strong></p>
+
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+      <a class="biglink" href="http://micropython.org">MicroPython ホームページ</a><br/>
+        <span class="linkdescr">MicroPython 公式サイト</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="http://forum.micropython.org">MicroPython フォーラム</a><br/>
+        <span class="linkdescr">MicroPython に関するすべてのことについて話すコミュニティの場</span>
+      </p>
+    </td>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="https://github.com/micropython">MicroPython の GitHub</a><br/>
+        <span class="linkdescr">GitHub 上のソースコード</span>
+      </p>
+    </td>
+  </tr></table>
+
+{% endblock %}
