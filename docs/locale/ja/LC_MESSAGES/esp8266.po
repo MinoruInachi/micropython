@@ -360,7 +360,7 @@ msgstr ""
 
 #: ../../../esp8266/quickref.rst:4
 msgid "Quick reference for the ESP8266"
-msgstr ""
+msgstr "ESP8266 用クイックリファレンス"
 
 msgid ""
 ".. image:: esp8266/img/adafruit_products_pinoutstop.jpg\n"
@@ -369,7 +369,7 @@ msgstr ""
 
 #: ../../../esp8266/quickref.rst:10
 msgid "The Adafruit Feather HUZZAH board (image attribution: Adafruit)."
-msgstr ""
+msgstr "Adafruit Feather HUZZAH board (画像出所: Adafruit)"
 
 #: ../../../esp8266/quickref.rst:12
 msgid ""
@@ -377,20 +377,25 @@ msgid ""
 " time working with this board please consider reading the following "
 "sections first:"
 msgstr ""
+"以下は、ESP8266 ベースのボードのためのクイックリファレンスです。"
+"このボードを初めて使う場合は、まず次のセクションを読むことを"
+"検討してください。"
 
 #: ../../../esp8266/quickref.rst:22
 msgid "Installing MicroPython"
-msgstr ""
+msgstr "MicroPython のインストール"
 
 #: ../../../esp8266/quickref.rst:24
 msgid ""
 "See the corresponding section of tutorial: :ref:`intro`. It also includes"
 " a troubleshooting subsection."
 msgstr ""
+"チュートリアルの章: :ref:`intro` を参照してください。"
+"そこには、トラブルシューティングについても記載されています。"
 
 #: ../../../esp8266/quickref.rst:28
 msgid "General board control"
-msgstr ""
+msgstr "ボードの一般的な制御"
 
 #: ../../../esp8266/quickref.rst:30
 msgid ""
@@ -399,10 +404,14 @@ msgid ""
 "mode (ctrl-E) is useful to paste a large slab of Python code into the "
 "REPL."
 msgstr ""
+"MicroPython REPL は、ボーレート 115200 の UART0 (GPIO1 = TX、GPIO3 = RX)で"
+"利用できます。タブ補完は、オブジェクトにどのようなメソッドがあるかを"
+"調べるのに便利です。貼り付けモード(ctrl-E)は、大きめの Pythonコードを "
+"REPL に貼り付けるのに便利です。"
 
 #: ../../../esp8266/quickref.rst:35
 msgid "The :mod:`machine` module::"
-msgstr ""
+msgstr ":mod:`machine` モジュール::"
 
 #: ../../../esp8266/quickref.rst:37
 msgid ""
@@ -411,10 +420,14 @@ msgid ""
 "machine.freq()          # get the current frequency of the CPU\n"
 "machine.freq(160000000) # set the CPU frequency to 160 MHz"
 msgstr ""
+"import machine\n"
+"\n"
+"machine.freq()          # CPU の現在の周波数を取得\n"
+"machine.freq(160000000) # CPU の周波数を 160 MHz に設定"
 
 #: ../../../esp8266/quickref.rst:42
 msgid "The :mod:`esp` module::"
-msgstr ""
+msgstr ":mod:`esp` モジュール::"
 
 #: ../../../esp8266/quickref.rst:44
 msgid ""
@@ -424,14 +437,18 @@ msgid ""
 "esp.osdebug(0)          # redirect vendor O/S debugging messages to "
 "UART(0)"
 msgstr ""
+"import esp\n"
+"\n"
+"esp.osdebug(None)       # ベンダ O/S デバッグメッセージをオフにする\n"
+"esp.osdebug(0)          # ベンダ O/S デバッグメッセージを UART(0) にリダイレクト"
 
 #: ../../../esp8266/quickref.rst:50
 msgid "Networking"
-msgstr ""
+msgstr "ネットワーキング"
 
 #: ../../../esp8266/quickref.rst:52
 msgid "The :mod:`network` module::"
-msgstr ""
+msgstr ":mod:`network` モジュール::"
 
 #: ../../../esp8266/quickref.rst:54
 msgid ""
@@ -450,10 +467,24 @@ msgid ""
 "ap.active(True)         # activate the interface\n"
 "ap.config(essid='ESP-AP') # set the ESSID of the access point"
 msgstr ""
+"import network\n"
+"\n"
+"wlan = network.WLAN(network.STA_IF) # ステーションインタフェースを作成\n"
+"wlan.active(True)       # インタフェースをアクティブ化\n"
+"wlan.scan()             # アクセスポイントをスキャン\n"
+"wlan.isconnected()      # oステーションが AP に繋がったかをチェック\n"
+"wlan.connect('essid', 'password') # AP に接続\n"
+"wlan.config('mac')      # インタフェースの MAC アドレスを取得\n"
+"wlan.ifconfig()         # インタフェースの IP/netmask/gw/DNS アドレスを取得"
+"\n"
+"\n"
+"ap = network.WLAN(network.AP_IF) # アクセスポイントインタフェースを作成\n"
+"ap.active(True)         # インタフェースをアクティブ化\n"
+"ap.config(essid='ESP-AP') # アクセスポイントの ESSID を設定"
 
 #: ../../../esp8266/quickref.rst:68
 msgid "A useful function for connecting to your local WiFi network is::"
-msgstr ""
+msgstr "ローカルの WiFi ネットワークに接続するには、次の関数を流用してください::"
 
 #: ../../../esp8266/quickref.rst:70
 msgid ""
@@ -474,14 +505,16 @@ msgid ""
 "Once the network is established the :mod:`socket <usocket>` module can be"
 " used to create and use TCP/UDP sockets as usual."
 msgstr ""
+"ネットワークが確立されると、socket モジュールを使って、通常どおり "
+"TCP/UDP ソケットを作成して使用できます。"
 
 #: ../../../esp8266/quickref.rst:85
 msgid "Delay and timing"
-msgstr ""
+msgstr "遅延とタイミング"
 
 #: ../../../esp8266/quickref.rst:87
 msgid "Use the :mod:`time <utime>` module::"
-msgstr ""
+msgstr ":mod:`time <utime>` モジュールを使います::""
 
 #: ../../../esp8266/quickref.rst:89
 msgid ""
@@ -493,16 +526,25 @@ msgid ""
 "start = time.ticks_ms() # get millisecond counter\n"
 "delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
 msgstr ""
+"import time\n"
+"\n"
+"time.sleep(1)           # 1秒間、一時停止する\n"
+"time.sleep_ms(500)      # 500ミリ秒間、一時停止する\n"
+"time.sleep_us(10)       # 10マイクロ秒間、一時停止する\n"
+"start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
 
 #: ../../../esp8266/quickref.rst:98
 msgid "Timers"
-msgstr ""
+msgstr "タイマー"
 
 #: ../../../esp8266/quickref.rst:100
 msgid ""
 "Virtual (RTOS-based) timers are supported. Use the :ref:`machine.Timer "
 "<machine.Timer>` class with timer ID of -1::"
 msgstr ""
+"仮想(RTOSベース)タイマーがサポートされています。 "
+":ref:`machine.Timer <machine.Timer>` クラスを ID -1 で使ってください。"
 
 #: ../../../esp8266/quickref.rst:103
 msgid ""
@@ -515,15 +557,15 @@ msgstr ""
 
 #: ../../../esp8266/quickref.rst:109
 msgid "The period is in milliseconds."
-msgstr ""
+msgstr "period の単位はミリ秒です。"
 
 #: ../../../esp8266/quickref.rst:112
 msgid "Pins and GPIO"
-msgstr ""
+msgstr "ピンと GPIO"
 
 #: ../../../esp8266/quickref.rst:114
 msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
-msgstr ""
+msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
 
 #: ../../../esp8266/quickref.rst:116
 msgid ""
@@ -540,6 +582,18 @@ msgid ""
 "p4 = Pin(4, Pin.IN, Pin.PULL_UP) # enable internal pull-up resistor\n"
 "p5 = Pin(5, Pin.OUT, value=1) # set pin high on creation"
 msgstr ""
+"from machine import Pin\n"
+"\n"
+"p0 = Pin(0, Pin.OUT)    # GPIO 0 の出力ピンを作成\n"
+"p0.on()                 # ピンを \"on\" (high) レベルに設定\n"
+"p0.off()                # ピンを \"off\" (low) レベルに設定\n"
+"p0.value(1)             # ピンを on/high に設定\n"
+"\n"
+"p2 = Pin(2, Pin.IN)     # GPIO 2 の入力ピンを作成\n"
+"print(p2.value())       # 値 0 または 1 を取得\n"
+"\n"
+"p4 = Pin(4, Pin.IN, Pin.PULL_UP) # 内部プルアップ抵抗を有効化\n"
+"p5 = Pin(5, Pin.OUT, value=1) # 作成時にピンを high に設定"
 
 #: ../../../esp8266/quickref.rst:129
 msgid ""
@@ -551,6 +605,13 @@ msgid ""
 "between board logical pins and physical chip pins, consult your board "
 "documentation."
 msgstr ""
+"使用可能なピンは、ESP8266 チップの実際の GPIO ピン番号に対応する "
+"0, 1, 2, 3, 4, 5, 12, 13, 14, 15, 16 です。多くのエンドユーザ用"
+"ボードは、独自のピン番号(例：D0, D1, ...)を使っています。"
+"MicroPython は様々な ESP8266 ボード/モジュールをサポートするため、"
+"最小の公分母として物理ピン番号を採用します。ボードの論理ピンと"
+"物理ピンとのマッピングについては、各ボードのマニュアルを参照して"
+"ください。"
 
 #: ../../../esp8266/quickref.rst:136
 msgid ""
@@ -559,10 +620,13 @@ msgid ""
 "and may be not available for use with higher-level classes like "
 "``Neopixel``."
 msgstr ""
+"Pin(1) と Pin(3) はそれぞれ REPL の UART で使っている TX と RX です。"
+"また、Pin(16) は特殊なピンであり(ディープスリープモードからのウェイクアップに"
+"使われます)、Neopixel のような高レベルのクラスでは使えません。"
 
 #: ../../../esp8266/quickref.rst:142
 msgid "PWM (pulse width modulation)"
-msgstr ""
+msgstr "PWM (パルス幅変調)"
 
 #: ../../../esp8266/quickref.rst:144
 msgid ""
@@ -570,10 +634,13 @@ msgid ""
 "frequency for all channels, with range between 1 and 1000 (measured in "
 "Hz).  The duty cycle is between 0 and 1023 inclusive."
 msgstr ""
+"Pin(16) を除くすべてのピンで PWM を有効化できます。すべてのチャンネルに"
+"１つの周波数があり、範囲は 1〜1000 (単位は Hz)です。"
+"デューティ比は 0〜1023 です。"
 
 #: ../../../esp8266/quickref.rst:148
 msgid "Use the ``machine.PWM`` class::"
-msgstr ""
+msgstr "``machine.PWM`` を使います::"
 
 #: ../../../esp8266/quickref.rst:150
 msgid ""
@@ -588,32 +655,44 @@ msgid ""
 "\n"
 "pwm2 = PWM(Pin(2), freq=500, duty=512) # create and configure in one go"
 msgstr ""
+"from machine import Pin, PWM\n"
+"\n"
+"pwm0 = PWM(Pin(0))      # ピンから PWM オブジェクトを作成\n"
+"pwm0.freq()             # 現在の周波数を取得\n"
+"pwm0.freq(1000)         # 周波数を設定\n"
+"pwm0.duty()             # 現在のデューティ比を取得\n"
+"pwm0.duty(200)          # デューティ比を設定\n"
+"pwm0.deinit()           # PWM を無効化\n"
+"\n"
+"pwm2 = PWM(Pin(2), freq=500, duty=512) # 作成と設定を一度に実行"
 
 #: ../../../esp8266/quickref.rst:162
 msgid "ADC (analog to digital conversion)"
-msgstr ""
+msgstr "ADC (アナログ/デジタル変換)"
 
 #: ../../../esp8266/quickref.rst:164
 msgid ""
 "ADC is available on a dedicated pin. Note that input voltages on the ADC "
 "pin must be between 0v and 1.0v."
 msgstr ""
+"ADC は専用ピンで利用できます。ADC ピンの入力電圧は 0v と 1.0v の間で"
+"なければならないことに注意してください。"
 
 #: ../../../esp8266/quickref.rst:167
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
-msgstr ""
+msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
 #: ../../../esp8266/quickref.rst:169
 msgid ""
 "from machine import ADC\n"
 "\n"
-"adc = ADC(0)            # create ADC object on ADC pin\n"
-"adc.read()              # read value, 0-1024"
+"adc = ADC(0)            # ADC ピンの ADC オブジェクトを作成\n"
+"adc.read()              # 0-1024 の間の値を読込み"
 msgstr ""
 
 #: ../../../esp8266/quickref.rst:175
 msgid "Software SPI bus"
-msgstr ""
+msgstr "ソフトウェア SPI バス"
 
 #: ../../../esp8266/quickref.rst:177
 msgid ""
@@ -621,6 +700,9 @@ msgid ""
 "and works on all pins, and is accessed via the :ref:`machine.SPI "
 "<machine.SPI>` class::"
 msgstr ""
+"SPI ドライバは２つあります。１つはソフトウェアで実装され(ビットバンギング)、"
+"すべてのピンで動作し、 :ref:`machine.SPI <machine.SPI>` "
+"クラスを介してアクセスします::"
 
 #: ../../../esp8266/quickref.rst:181
 msgid ""
@@ -652,10 +734,33 @@ msgid ""
 "spi.write_readinto(buf, buf) # write buf to MOSI and read MISO back into "
 "buf"
 msgstr ""
+"from machine import Pin, SPI\n"
+"\n"
+"# 与えたピンから SPI バスを構築\n"
+"# 極性 polarity は SCK のアイドル状態\n"
+"# phase=0 は SCK の第１エッジでサンプルを意味、chase=1 は第２を意味"
+"\n"
+"spi = SPI(-1, baudrate=100000, polarity=1, phase=0, sck=Pin(0), "
+"mosi=Pin(2), miso=Pin(4))\n"
+"\n"
+"spi.init(baudrate=200000) # ボーレートを設定\n"
+"\n"
+"spi.read(10)            # MISO で 10 バイト読込み\n"
+"spi.read(10, 0xff)      # 10 バイト読込み、その間 MOSI に 0xff を出力\n"
+"\n"
+"buf = bytearray(50)     # バッファを作成\n"
+"spi.readinto(buf)       # 与えたバッファに読込み(この場合は 50 バイト)\n"
+"spi.readinto(buf, 0xff) # 与えたバッファに読込み、MOSI に 0xff を出力\n"
+"\n"
+"spi.write(b'12345')     # MOSI に 5 バイト書込み\n"
+"\n"
+"buf = bytearray(4)      # バッファを作成\n"
+"spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
+"spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
 #: ../../../esp8266/quickref.rst:205
 msgid "Hardware SPI bus"
-msgstr ""
+msgstr "ハードウェア SPI バス"
 
 #: ../../../esp8266/quickref.rst:207
 msgid ""
@@ -664,6 +769,10 @@ msgid ""
 "has the same methods as the bitbanging SPI class above, except for the "
 "pin parameters for the constructor and init (as those are fixed)::"
 msgstr ""
+"ハードウェア SPI は高速(最大80Mhz)ですが、 ``MISO`` が GPIO12、 ``MOSI`` が "
+"GPIO13、 ``SCK`` が GPIO14 のピンでのみ動作します。上記のビットバンギング SPI "
+"クラスと同じメソッドを持っていますが、コンストラクタと init のピンパラメータは"
+"固定されています。"
 
 #: ../../../esp8266/quickref.rst:212
 msgid ""
@@ -674,17 +783,19 @@ msgstr ""
 
 #: ../../../esp8266/quickref.rst:216
 msgid "(``SPI(0)`` is used for FlashROM and not available to users.)"
-msgstr ""
+msgstr "(``SPI(0)`` は FlashROM 用に使われるため、ユーザは利用できません。)"
 
 #: ../../../esp8266/quickref.rst:219
 msgid "I2C bus"
-msgstr ""
+msgstr "I2C バス"
 
 #: ../../../esp8266/quickref.rst:221
 msgid ""
 "The I2C driver is implemented in software and works on all pins, and is "
 "accessed via the :ref:`machine.I2C <machine.I2C>` class::"
 msgstr ""
+"I2C ドライバはソフトウェアで実装され、すべてのピンで動作し、"
+":ref:`machine.I2C <machine.I2C>` クラスを介してアクセスします::"
 
 #: ../../../esp8266/quickref.rst:224
 msgid ""
@@ -700,14 +811,24 @@ msgid ""
 "buf = bytearray(10)     # create a buffer with 10 bytes\n"
 "i2c.writeto(0x3a, buf)  # write the given buffer to the slave"
 msgstr ""
+"from machine import Pin, I2C\n"
+"\n"
+"# I2C バスを構築\n"
+"i2c = I2C(scl=Pin(5), sda=Pin(4), freq=100000)\n"
+"\n"
+"i2c.readfrom(0x3a, 4)   # アドレス 0x3a のスレーブデバイスから 4 バイト読込み\n"
+"i2c.writeto(0x3a, '12') # アドレス 0x3a のスレーブデバイスに '12' を書込み\n"
+"\n"
+"buf = bytearray(10)     # 10バイトのバッファを作成\n"
+"i2c.writeto(0x3a, buf)  # 与えたバッファをスレーブに書込み"
 
 #: ../../../esp8266/quickref.rst:236
 msgid "Real time clock (RTC)"
-msgstr ""
+msgstr "リアルタイムクロック (RTC)"
 
 #: ../../../esp8266/quickref.rst:238
 msgid "See :ref:`machine.RTC <machine.RTC>` ::"
-msgstr ""
+msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
 #: ../../../esp8266/quickref.rst:240
 msgid ""
@@ -718,16 +839,23 @@ msgid ""
 "time\n"
 "rtc.datetime() # get date and time"
 msgstr ""
+"from machine import RTC\n"
+"\n"
+"rtc = RTC()\n"
+"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
+"rtc.datetime() # 日時を取得"
 
 #: ../../../esp8266/quickref.rst:247 ../../../esp8266/tutorial/powerctrl.rst:28
 msgid "Deep-sleep mode"
-msgstr ""
+msgstr "ディープスリープモード"
 
 #: ../../../esp8266/quickref.rst:249
 msgid ""
 "Connect GPIO16 to the reset pin (RST on HUZZAH).  Then the following code"
 " can be used to sleep, wake and check the reset cause::"
 msgstr ""
+"GPIO 16 をリセットピン(HUZZAH| では RST)に接続してください。そのようにしておくと、"
+"次のコードを使用して、スリープ、スリープ解除、リセット原因のチェックが行えます::"
 
 #: ../../../esp8266/quickref.rst:252
 msgid ""
@@ -747,14 +875,29 @@ msgid ""
 "# put the device to sleep\n"
 "machine.deepsleep()"
 msgstr ""
+"import machine\n"
+"\n"
+"# デバイスを起こすための RTC.ALARM0 を設定\n"
+"rtc = machine.RTC()\n"
+"rtc.irq(trigger=rtc.ALARM0, wake=machine.DEEPSLEEP)\n"
+"\n"
+"# ディープスリープから起こされたかをチェック\n"
+"if machine.reset_cause() == machine.DEEPSLEEP_RESET:\n"
+"    print('woke from a deep sleep')\n"
+"\n"
+"# 10秒後に RTC.ALARM0 を発火して、デバイスを起こすよう設定\n"
+"rtc.alarm(rtc.ALARM0, 10000)\n"
+"\n"
+"# ディープスリープに入る\n"
+"machine.deepsleep()"
 
 #: ../../../esp8266/quickref.rst:269
 msgid "OneWire driver"
-msgstr ""
+msgstr "OneWire ドライバ"
 
 #: ../../../esp8266/quickref.rst:271
 msgid "The OneWire driver is implemented in software and works on all pins::"
-msgstr ""
+msgstr "OneWire ドライバはソフトウェアで実装され、すべてのピンで動作します::"
 
 #: ../../../esp8266/quickref.rst:273
 msgid ""
@@ -769,10 +912,20 @@ msgid ""
 "ow.write('123')         # write bytes on the bus\n"
 "ow.select_rom(b'12345678') # select a specific device by its ROM code"
 msgstr ""
+"from machine import Pin\n"
+"import onewire\n"
+"\n"
+"ow = onewire.OneWire(Pin(12)) # GPIO 12 で OneWire バスを作成\n"
+"ow.scan()               # バス上のデバイスリストをスキャン\n"
+"ow.reset()              # バスをリセット\n"
+"ow.readbyte()           # １バイト読込み\n"
+"ow.writebyte(0x12)      # バスに１バイト書込み\n"
+"ow.write('123')         # バスに複数バイト書込み\n"
+"ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
 #: ../../../esp8266/quickref.rst:284
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
-msgstr ""
+msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバがあります::"
 
 #: ../../../esp8266/quickref.rst:286
 msgid ""
@@ -791,14 +944,17 @@ msgid ""
 "``convert_temp()`` method must be called each time you want to sample the"
 " temperature."
 msgstr ""
+"4.7k のプルアップ抵抗をデータラインに接続してください。"
+"``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
+"必要があることに注意してください。"
 
 #: ../../../esp8266/quickref.rst:299
 msgid "NeoPixel driver"
-msgstr ""
+msgstr "NeoPixel ドライバ"
 
 #: ../../../esp8266/quickref.rst:301
 msgid "Use the ``neopixel`` module::"
-msgstr ""
+msgstr "``neopixel`` モジュールを使います::"
 
 #: ../../../esp8266/quickref.rst:303
 msgid ""
@@ -811,10 +967,18 @@ msgid ""
 "np.write()              # write data to all pixels\n"
 "r, g, b = np[0]         # get first pixel colour"
 msgstr ""
+"from machine import Pin\n"
+"from neopixel import NeoPixel\n"
+"\n"
+"pin = Pin(0, Pin.OUT)   # NeoPixel 駆動のための GPIO 0 を出力に設定\n"
+"np = NeoPixel(pin, 8)   # 8ピクセル用の NeoPixel ドライバを GPIO 0 で作成\n"
+"np[0] = (255, 255, 255) # 第１ピクセルを白に設定\n"
+"np.write()              # 全ピクセルにデータ書込み\n"
+"r, g, b = np[0]         # 第１ピクセルの色を取得"
 
 #: ../../../esp8266/quickref.rst:312
 msgid "For low-level driving of a NeoPixel::"
-msgstr ""
+msgstr "NeoPixel の低レベル駆動もあります::"
 
 #: ../../../esp8266/quickref.rst:314
 msgid ""
@@ -824,11 +988,11 @@ msgstr ""
 
 #: ../../../esp8266/quickref.rst:318
 msgid "APA102 driver"
-msgstr ""
+msgstr "APA102 ドライバ"
 
 #: ../../../esp8266/quickref.rst:320
 msgid "Use the ``apa102`` module::"
-msgstr ""
+msgstr "``apa102`` モジュールを使います::"
 
 #: ../../../esp8266/quickref.rst:322
 msgid ""
@@ -844,10 +1008,19 @@ msgid ""
 "apa.write()                  # write data to all pixels\n"
 "r, g, b, brightness = apa[0] # get first pixel colour"
 msgstr ""
+"from machine import Pin\n"
+"from apa102 import APA102\n"
+"\n"
+"clock = Pin(14, Pin.OUT)     # クロック駆動のための GPIO 14 を出力に設定\n"
+"data = Pin(13, Pin.OUT)      # データ駆動のための GPIO 13 を出力に設定\n"
+"apa = APA102(clock, data, 8) # 8ピクセル用の APA102 ドライバを clock と data ピンで作成\n"
+"apa[0] = (255, 255, 255, 31) # 第１ピクセルを輝度 31 の白に設定\n"
+"apa.write()                  # 全ピクセルにデータ書込み\n"
+"r, g, b, brightness = apa[0] # 第１ピクセルの色を取得"
 
 #: ../../../esp8266/quickref.rst:332
 msgid "For low-level driving of an APA102::"
-msgstr ""
+msgstr "APA102 の低レベル駆動もあります::"
 
 #: ../../../esp8266/quickref.rst:334
 msgid ""
@@ -857,11 +1030,11 @@ msgstr ""
 
 #: ../../../esp8266/quickref.rst:338
 msgid "DHT driver"
-msgstr ""
+msgstr "DHT ドライバ"
 
 #: ../../../esp8266/quickref.rst:340
 msgid "The DHT driver is implemented in software and works on all pins::"
-msgstr ""
+msgstr "DHT ドライバはソフトウェアで実装され、すべてのピンで動作します::"
 
 #: ../../../esp8266/quickref.rst:342
 msgid ""
@@ -878,10 +1051,22 @@ msgid ""
 "d.temperature() # eg. 23.6 (°C)\n"
 "d.humidity()    # eg. 41.3 (% RH)"
 msgstr ""
+"import dht\n"
+"import machine\n"
+"\n"
+"d = dht.DHT11(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # 例: 23 (°C)\n"
+"d.humidity()    # 例: 41 (% RH)\n"
+"\n"
+"d = dht.DHT22(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # 例: 23.6 (°C)\n"
+"d.humidity()    # 例: 41.3 (% RH)"
 
 #: ../../../esp8266/quickref.rst:356
 msgid "WebREPL (web browser interactive prompt)"
-msgstr ""
+msgstr "WebREPL (Web ベースの対話プロンプト)"
 
 #: ../../../esp8266/quickref.rst:358
 msgid ""
@@ -890,6 +1075,11 @@ msgid ""
 "https://github.com/micropython/webrepl (hosted version available at "
 "http://micropython.org/webrepl), and configure it by executing::"
 msgstr ""
+"WebREPL (Web ブラウザ経由でアクセス可能な REPL)は、ESP8266 ポートで"
+"使用可能な実験的な機能です。Web クライアントを "
+"https://github.com/micropython/webrepl "
+"(http://micropython.org/webrepl で入手可能なホストバージョン)"
+"からダウンロードしてきて、次のコマンドを実行して設定してください。"
 
 #: ../../../esp8266/quickref.rst:363 ../../../esp8266/tutorial/repl.rst:51
 msgid "import webrepl_setup"
@@ -901,6 +1091,8 @@ msgid ""
 "for connection. If you disabled automatic start-up on boot, you may run "
 "configured daemon on demand using::"
 msgstr ""
+"画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
+"場合は、次のコマンドを使用してデーモンを実行することができます。"
 
 #: ../../../esp8266/quickref.rst:369
 msgid ""
@@ -916,6 +1108,11 @@ msgid ""
 " while connected to your normal Internet access point (use the ESP8266 AP"
 " connection method if you face any issues)."
 msgstr ""
+"WebREPL を使用するためにサポートされている方法は、ESP8266 アクセスポイントに"
+"接続することですが、デーモンがアクティブな場合は STA インタフェースでも起動できます。"
+"ルータが設定され正しく動作する場合、通常のインターネットアクセスポイントに接続して"
+"いれば WebREPL が使えるでしょう(問題が発生した場合は ESP8266 AP 接続メソッドを"
+"使ってください)。"
 
 #: ../../../esp8266/quickref.rst:378
 msgid ""
@@ -924,12 +1121,18 @@ msgid ""
 "corresponding functions, or you can use command-line client "
 "``webrepl_cli.py`` from the repository above."
 msgstr ""
+"ターミナル/コマンドプロンプトでできることの他に、WebREPL にはファイル転送"
+"(アップロードとダウンロードの両方)の機能も用意しています。Webクライアントには、"
+"対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
+"``webrepl_cli.py`` を使うこともできます。"
 
 #: ../../../esp8266/quickref.rst:383
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to ESP8266."
 msgstr ""
+"ファイルを ESP8266 に転送するための、コミュニティでサポートされている"
+"他の代替方法については、MicroPython フォーラムを参照してください。"
 
 #: ../../../esp8266/tutorial/adc.rst:2
 msgid "Analog to Digital Conversion"
