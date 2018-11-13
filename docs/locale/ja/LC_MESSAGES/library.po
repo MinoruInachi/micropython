@@ -408,14 +408,15 @@ msgstr "``z`` の指数を返します。"
 msgid ""
 "Return the natural logarithm of ``z``.  The branch cut is along the "
 "negative real axis."
-msgstr "``z`` の自然対数を返します。分岐截線は負の実軸を使います。"
+msgstr ""
+"``z`` の自然対数を返します。分岐截線は負の実軸を使います。"
 
 #: ../../../library/cmath.rst:32
 msgid ""
 "Return the base-10 logarithm of ``z``.  The branch cut is along the "
 "negative real axis."
 msgstr ""
-"``z`` の常用対数を返しzます。分岐截線は負の実軸を使います。"
+"``z`` の常用対数を返します。分岐截線は負の実軸を使います。"
 
 #: ../../../library/cmath.rst:36
 msgid "Returns the phase of the number ``z``, in the range (-pi, +pi]."
@@ -782,7 +783,7 @@ msgstr ""
 
 #: ../../../library/gc.rst:14
 msgid "Enable automatic garbage collection."
-msgstr "1自動ガベージコレクションを有効にする。"
+msgstr "自動ガベージコレクションを有効にします。"
 
 #: ../../../library/gc.rst:18
 msgid ""
@@ -923,7 +924,7 @@ msgid ""
 "Modules which implement MicroPython extensions to the Python standard "
 "libraries."
 msgstr ""
-"Python 標準ライブラリへの MicroPython 拡張を実装するモジュール。
+"Python 標準ライブラリへの MicroPython 拡張を実装するモジュール。"
 
 #: ../../../library/index.rst:26
 msgid "Modules specific to a particular `MicroPython port` and thus not portable."
@@ -1011,7 +1012,7 @@ msgstr ""
 "これは、そのようなモジュールがマイクロライブラリであることを示しています。すなわち、"
 "CPython モジュールの機能のサブセットのみを実装しています。異なる名前を付けることによって、"
 "ユーザーは Python レベルのモジュールを作成して、CPythonとの互換性を高める機能を拡張"
-"できます(実際に、これは前述の `micropython-lib` プロジェクトによって行われます)。
+"できます(実際に、これは前述の `micropython-lib` プロジェクトによって行われます)。"
 
 #: ../../../library/index.rst:65
 msgid ""
@@ -3440,7 +3441,7 @@ msgid ""
 "The ``math`` module provides some basic mathematical functions for "
 "working with floating-point numbers."
 msgstr ""
-"``math`` モジュールは、浮動小数点数を扱うための基本的な数学関数を提供します。"
+"``math`` モジュールは浮動小数点数を扱うための基本的な数学関数を提供します。"
 
 #: ../../../library/math.rst:12
 msgid "*Note:* On the pyboard, floating-point numbers have 32-bit precision."
@@ -3450,10 +3451,9 @@ msgstr "*注記:* pyboard では、浮動小数点は 32 ビット精度(単精�
 msgid ""
 "Availability: not available on WiPy. Floating point support required for "
 "this module."
-"可用性: WiPy では利用できません。 このモジュールには浮動小数点数の"
-"サポートが必要です。"
-
 msgstr ""
+"可用性: WiPy では利用できません。このモジュールには浮動小数点数の"
+"サポートが必要です。"
 
 #: ../../../library/math.rst:22
 msgid "Return the inverse cosine of ``x``."
@@ -3485,51 +3485,51 @@ msgstr "``x`` の双曲線逆正接を返します。"
 
 #: ../../../library/math.rst:50
 msgid "Return an integer, being ``x`` rounded towards positive infinity."
-msgstr ""
+msgstr "``x`` の正の無限大方法に丸めた整数値を返します。"
 
 #: ../../../library/math.rst:54
 msgid "Return ``x`` with the sign of ``y``."
-msgstr ""
+msgstr "``x`` を ``y`` の符号で返します。"
 
 #: ../../../library/math.rst:58
 msgid "Return the cosine of ``x``."
-msgstr ""
+msgstr "``x`` の余弦を返します。"
 
 #: ../../../library/math.rst:62
 msgid "Return the hyperbolic cosine of ``x``."
-msgstr ""
+msgstr "``x`` の双曲線余弦を返します。"
 
 #: ../../../library/math.rst:66
 msgid "Return radians ``x`` converted to degrees."
-msgstr ""
+msgstr "ラジアン ``x`` を度に変換して返します。"
 
 #: ../../../library/math.rst:70
 msgid "Return the error function of ``x``."
-msgstr ""
+msgstr "``x`` の誤差関数を返します。"
 
 #: ../../../library/math.rst:74
 msgid "Return the complementary error function of ``x``."
-msgstr ""
+msgstr "``x`` の相補誤差関数を返します。"
 
 #: ../../../library/math.rst:78
 msgid "Return the exponential of ``x``."
-msgstr ""
+msgstr "``x`` の指数を返します。"
 
 #: ../../../library/math.rst:82
 msgid "Return ``exp(x) - 1``."
-msgstr ""
+msgstr "``exp(x) - 1`` を返します。"
 
 #: ../../../library/math.rst:86
 msgid "Return the absolute value of ``x``."
-msgstr ""
+msgstr "``x`` の絶対値を返します。"
 
 #: ../../../library/math.rst:90
 msgid "Return an integer, being ``x`` rounded towards negative infinity."
-msgstr ""
+msgstr "``x`` の負の無限大方向に丸めた整数を返します。"
 
 #: ../../../library/math.rst:94
 msgid "Return the remainder of ``x/y``."
-msgstr ""
+msgstr "``x/y`` の剰余を返します。"
 
 #: ../../../library/math.rst:98
 msgid ""
@@ -3538,80 +3538,85 @@ msgid ""
 "exactly.  If ``x == 0`` then the function returns ``(0.0, 0)``, otherwise"
 " the relation ``0.5 <= abs(m) < 1`` holds."
 msgstr ""
+"浮動小数点数を仮数部と指数部に分解します。返される値は ``x == m * 2**e`` "
+"となる ``(m, e)`` のタプルです。 ``x == 0`` の場合、関数は ``(0.0, 0)`` "
+"を返します。さもなければ ``0.5 <= abs(m) < 1`` の関係が成り立ちます。"
 
 #: ../../../library/math.rst:105
 msgid "Return the gamma function of ``x``."
-msgstr ""
+msgstr "``x`` のガンマ関数を返します。"
 
 #: ../../../library/math.rst:109
 msgid "Return ``True`` if ``x`` is finite."
-msgstr ""
+msgstr "``x`` が有限数であれば ``True`` を返します。"
 
 #: ../../../library/math.rst:113
 msgid "Return ``True`` if ``x`` is infinite."
-msgstr ""
+msgstr "``x`` が無限数であれば ``True`` を返します。"
 
 #: ../../../library/math.rst:117
 msgid "Return ``True`` if ``x`` is not-a-number"
-msgstr ""
+msgstr "``x`` が非数(NaN: Not-a-Number)であれば ``True`` を返します。"
 
 #: ../../../library/math.rst:121
 msgid "Return ``x * (2**exp)``."
-msgstr ""
+msgstr "``x * (2**exp)`` を返します。"
 
 #: ../../../library/math.rst:125
 msgid "Return the natural logarithm of the gamma function of ``x``."
-msgstr ""
+msgstr "``x`` のガンマ関数の自然対数を返します。"
 
 #: ../../../library/math.rst:129
 msgid "Return the natural logarithm of ``x``."
-msgstr ""
+msgstr "``x`` の自然対数を返します。"
 
 #: ../../../library/math.rst:133
 msgid "Return the base-10 logarithm of ``x``."
-msgstr ""
+msgstr "``x`` の常用対数を返します。"
 
 #: ../../../library/math.rst:137
 msgid "Return the base-2 logarithm of ``x``."
-msgstr ""
+msgstr "``x`` の２進対数を返します。"
 
 #: ../../../library/math.rst:141
 msgid ""
 "Return a tuple of two floats, being the fractional and integral parts of "
 "``x``.  Both return values have the same sign as ``x``."
 msgstr ""
+"``x`` の小数部分と整数部分の２つの浮動小数点数のタプルを返します。"
+"両方の戻り値は ``x`` と同じ符号を持ちます。"
 
 #: ../../../library/math.rst:146
 msgid "Returns ``x`` to the power of ``y``."
-msgstr ""
+msgstr "``x`` の ``y`` 乗を返します。"
 
 #: ../../../library/math.rst:150
 msgid "Return degrees ``x`` converted to radians."
-msgstr ""
+msgstr "度 ``x`` をラジアンに変換して返します。"
 
 #: ../../../library/math.rst:154
 msgid "Return the sine of ``x``."
-msgstr ""
+msgstr "``x`` の正弦を返します。"
 
 #: ../../../library/math.rst:158
 msgid "Return the hyperbolic sine of ``x``."
-msgstr ""
+msgstr "``x`` の双曲線正弦を返します。"
 
 #: ../../../library/math.rst:162
 msgid "Return the square root of ``x``."
-msgstr ""
+msgstr "``x`` の平方根を返します。"
 
 #: ../../../library/math.rst:166
 msgid "Return the tangent of ``x``."
-msgstr ""
+msgstr "``x`` の正接を返します。"
 
 #: ../../../library/math.rst:170
 msgid "Return the hyperbolic tangent of ``x``."
-msgstr ""
+msgstr "``x`` の双曲線正接を返します。"
 
 #: ../../../library/math.rst:174
 msgid "Return an integer, being ``x`` rounded towards 0."
-msgstr ""
+msgstr "``x`` の 0 方向に丸めた整数を返します。"
 
 #: ../../../library/micropython.rst:2
 msgid ":mod:`micropython` -- access and control MicroPython internals"
@@ -8412,7 +8417,7 @@ msgstr ""
 
 #: ../../../library/sys.rst:2
 msgid ":mod:`sys` -- system specific functions"
-msgstr ""
+msgstr ":mod:`sys` -- システム固有関数"
 
 #: ../../../library/sys.rst:7
 msgid "|see_cpython_module| :mod:`python:sys`."
@@ -8424,12 +8429,17 @@ msgid ""
 "function raise as `SystemExit` exception. If an argument is given, its "
 "value given as an argument to `SystemExit`."
 msgstr ""
+"与えた終了コードで現在のプログラムを終了します。基本的に、この関数は "
+"`SystemExit` 例外を起こします。引数を与えた場合、その値は `SystemExit` "
+"に引数として与えられます。"
 
 #: ../../../library/sys.rst:20
 msgid ""
 "Print exception with a traceback to a file-like object *file* (or "
 "`sys.stdout` by default)."
 msgstr ""
+"トレースバックを使用して例外をファイルライクなオブジェクト *file* (または"
+"デフォルトの `sys.stdout`)に出力します。"
 
 #: ../../../library/sys.rst:26
 msgid ""
@@ -8440,28 +8450,34 @@ msgid ""
 "positional; further arguments are not supported. CPython-compatible "
 "``traceback`` module can be found in `micropython-lib`."
 msgstr ""
+"これは CPython の ``traceback`` モジュールにある関数の簡略版です。"
+"``traceback.print_exception()`` とは異なり、この関数は例外型、例外値、"
+"トレースバックオブジェクトの代わりに例外値だけをとります。 *file* 引数は位置"
+"パラメータでなければなりません。この他の引数はサポートされていません。"
+"CPython 互換の ``traceback`` モジュールは `micropython-lib` にあります。"
 
 #: ../../../library/sys.rst:38
 msgid "A mutable list of arguments the current program was started with."
-msgstr ""
+msgstr "現在のプログラム開始時の引数の変更可能なリスト。"
 
 #: ../../../library/sys.rst:42
 msgid "The byte order of the system (``\"little\"`` or ``\"big\"``)."
-msgstr ""
+msgstr "システムのバイト順(``\"little\"`` または ``\"big\"``)。"
 
 #: ../../../library/sys.rst:46
 msgid ""
 "Object with information about the current Python implementation. For "
 "MicroPython, it has following attributes:"
 msgstr ""
+"現在の Python 実装に関する情報を持つオブジェクト。MicroPython では次の属性を持ちます:"
 
 #: ../../../library/sys.rst:49
 msgid "*name* - string \"micropython\""
-msgstr ""
+msgstr "*name* - 文字列 \"micropython\""
 
 #: ../../../library/sys.rst:50
 msgid "*version* - tuple (major, minor, micro), e.g. (1, 7, 0)"
-msgstr ""
+msgstr "*version* - タプル (major, minor, micro)。例: (1, 7, 0)"
 
 #: ../../../library/sys.rst:52
 msgid ""
@@ -8469,12 +8485,16 @@ msgid ""
 "Python implementations (note that it still may not exist in the very "
 "minimal ports)."
 msgstr ""
+"このオブジェクトは、MicroPython を他の Python 実装と区別する推奨手段です(しかし、"
+"最小限のポートには存在しないことに注意してください)。"
 
 #: ../../../library/sys.rst:59
 msgid ""
 "CPython mandates more attributes for this object, but the actual useful "
 "bare minimum is implemented in MicroPython."
 msgstr ""
+"CPython ではこのオブジェクトにもっと多くの属性がありますが、MicroPython では実際に"
+"有用となる最低限のものだけを実装しています。"
 
 #: ../../../library/sys.rst:64
 msgid ""
@@ -8483,6 +8503,9 @@ msgid ""
 "it's smaller than platform max value (that is the case for MicroPython "
 "ports without long int support)."
 msgstr ""
+"現在のプラットフォームでネイティブ整数型が保持できる最大値、またはプラットフォームの"
+"最大値より小さい場合は MicroPython 整数型で表現可能な最大値(MicroPython ポートで "
+"long int をサポートしないとした場合)。"
 
 #: ../../../library/sys.rst:69
 msgid ""
@@ -8490,6 +8513,9 @@ msgid ""
 "vs 64-bit, etc.). It's recommended to not compare this attribute to some "
 "value directly, but instead count number of bits in it::"
 msgstr ""
+"この属性は、プラットフォームの「ビット数」(32ビットか64ビットかなど)を検出するのに"
+"便利です。この属性をある値と直接比較するのよりも、その属性のビット数をカウントする"
+"ことをお勧めします。"
 
 #: ../../../library/sys.rst:73
 msgid ""
@@ -8507,16 +8533,31 @@ msgid ""
 "    # (e.g. 31) due to peculiarities described above, so use \"> 16\",\n"
 "    # \"> 32\", \"> 64\" style of comparisons."
 msgstr ""
+"bits = 0\n"
+"v = sys.maxsize\n"
+"while v:\n"
+"    bits += 1\n"
+"    v >>= 1\n"
+"if bits > 32:\n"
+"    # 64ビット(以上)のプラットフォーム\n"
+"    ...\n"
+"else:\n"
+"    # 32ビット(以下)のプラットフォーム\n"
+"    # 32ビットプラットフォームでは、上記の特性によってビットの値が32未満\n"
+"    # (たとえば31)になる可能性があるので、 \"> 16\", \"> 32\", \"> 64\" の\n"
+"    # の比較スタイルを使用してください。"
 
 #: ../../../library/sys.rst:89
 msgid ""
 "Dictionary of loaded modules. On some ports, it may not include builtin "
 "modules."
 msgstr ""
+"読み込まれたモジュールの辞書。一部のポートでは、組込みモジュールが含まれていない"
+"可能性があります。"
 
 #: ../../../library/sys.rst:94
 msgid "A mutable list of directories to search for imported modules."
-msgstr ""
+msgstr "import するモジュールを検索するディレクトリの変更可能なリスト。"
 
 #: ../../../library/sys.rst:98
 msgid ""
@@ -8528,28 +8569,36 @@ msgid ""
 "MicroPython (vs other Python implementation), use `sys.implementation` "
 "instead."
 msgstr ""
+"MicroPython が実行されているプラ​​ットフォーム。OS/RTOS ポートの場合、これは通常 "
+"``\"linux\"`` など OS の識別子となります。ベアメタルポートの場合はボードの識別子"
+"となります。オリジナルの MicroPython リファレンスボードでは ``\"pyboard\"`` "
+"となります。したがって、これはあるボードを別のボードと区別するために使用できます。"
+"あなたのプログラムが MicroPython 上で実行されているのか(それとも他の Python "
+"実装で動いているのか)を確認する必要がある場合は代わりに ``sys.implementation`` "
+"を使ってください。"
 
 #: ../../../library/sys.rst:107
 msgid "Standard error `stream`."
-msgstr ""
+msgstr "標準エラーの `stream` 。"
 
 #: ../../../library/sys.rst:111
 msgid "Standard input `stream`."
-msgstr ""
+msgstr "標準入力の `stream` 。"
 
 #: ../../../library/sys.rst:115
 msgid "Standard output `stream`."
-msgstr ""
+msgstr "標準出力の `stream` 。"
 
 #: ../../../library/sys.rst:119
 msgid "Python language version that this implementation conforms to, as a string."
-msgstr ""
+msgstr "この実装が準拠する Python 言語バージョン。"
 
 #: ../../../library/sys.rst:123
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
+"この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
 #: ../../../library/ubinascii.rst:2
 msgid ":mod:`ubinascii` -- binary/ASCII conversions"

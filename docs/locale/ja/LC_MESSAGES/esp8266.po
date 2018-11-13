@@ -21,17 +21,18 @@ msgstr ""
 
 #: ../../../esp8266/general.rst:4
 msgid "General information about the ESP8266 port"
-msgstr ""
+msgstr "ESP8266 ポートに関する一般的なこと"
 
 #: ../../../esp8266/general.rst:6
 msgid ""
 "ESP8266 is a popular WiFi-enabled System-on-Chip (SoC) by Espressif "
 "Systems."
 msgstr ""
+"ESP8266 は Espressif Systems 社の人気 WiFi 対応システムオンチップ(SoC)です。"
 
 #: ../../../esp8266/general.rst:9
 msgid "Multitude of boards"
-msgstr ""
+msgstr "ボードの多様さ"
 
 #: ../../../esp8266/general.rst:11
 msgid ""
@@ -44,12 +45,21 @@ msgid ""
 "other reference materials for your board handy to look up various aspects"
 " of your board functioning."
 msgstr ""
+"ESP8266 チップを搭載した、さまざまな多数のモジュールとボードがあります。"
+"MicroPython はできるだけ多くのボード/モジュール上で動作する汎用ポートを"
+"提供しようとしますが、制限があるかもしれません。Adafruit Feather HUZZAH "
+"ボードがリファレンスのボードとして使われています(たとえば、テストが"
+"このボードで実行されています)。別のボードを使う場合は、データシート、"
+"回路図、およびボードのその他の参考資料を用意して、ボードのさまざまな"
+"機能を調べるようにしてください。"
 
 #: ../../../esp8266/general.rst:19
 msgid ""
 "To make a generic ESP8266 port and support as many boards as possible, "
 "the following design and implementation decision were made:"
 msgstr ""
+"一般的な ESP8266 ポートを作成し、可能な限り多くのボードをサポートする"
+"には、次の設計と実装の決定が行われました。"
 
 #: ../../../esp8266/general.rst:22
 msgid ""
@@ -60,6 +70,13 @@ msgid ""
 "to share this mapping via MicroPython forum, with the idea to collect "
 "community-maintained reference materials eventually."
 msgstr ""
+"GPIO ピン番号は ESP8266 のチップ番号に基づいており、特定のボードの"
+"「論理的」な番号付けには基づいていません。ボードのピンと実際の "
+"ESP8266 ピンの対応を見つけるには、ボードのマニュアル/ピン図を"
+"用意してください。また、様々なボードのユーザーに、MicroPython "
+"フォーラムを介してこのマッピングを共有することを推奨します。"
+"これは、最終的にコミュニティ管理の参照資料を収集するという"
+"アイデアです。"
 
 #: ../../../esp8266/general.rst:28
 msgid ""
@@ -69,16 +86,24 @@ msgid ""
 "lead to board lock-up). However, any particular board may expose only "
 "subset of pins. Consult your board reference manual."
 msgstr ""
+"MicroPython は、サポートするのに理想的なすべてのピンをサポートして"
+"います(たとえば、SPI フラッシュを接続するために使用されるピンは露出"
+"していません。他用途で使うには有益でないため、ピンで動作させると"
+"ボードの障害につながります)。ただし、特定のボードはピンのサブセット"
+"のみを露出させることがあります。ボードリファレンスマニュアルを"
+"参照してください。"
 
 #: ../../../esp8266/general.rst:33
 msgid ""
 "Some boards may lack external pins/internal connectivity to support "
 "ESP8266 deepsleep mode."
 msgstr ""
+"一部のボードには、ESP8266 ディープスリープモードをサポートするための"
+"外部ピン/内部接続がない場合があります。"
 
 #: ../../../esp8266/general.rst:38
 msgid "Technical specifications and SoC datasheets"
-msgstr ""
+msgstr "技術仕様および SoC データシート"
 
 #: ../../../esp8266/general.rst:40
 msgid ""
@@ -88,22 +113,26 @@ msgid ""
 "reference for the chip technical specifications, capabilities, operating "
 "modes, internal functioning, etc."
 msgstr ""
+"ESP8266 チップのデータシートおよびその他の参考資料は、ベンダーの"
+"サイト http://bbs.espressif.com/viewtopic.php?f=67&t=225 "
+"から入手できます。これらは、チップの技術仕様、機能、動作モード、内部機能などの主要な"
+"リファレンスとなっています。"
 
 #: ../../../esp8266/general.rst:45
 msgid "For your convenience, some of technical specifications are provided below:"
-msgstr ""
+msgstr "便宜上、いくつかの技術仕様を以下に示します。"
 
 #: ../../../esp8266/general.rst:47
 msgid "Architecture: Xtensa lx106"
-msgstr ""
+msgstr "アーキテクチャ：Xtensa lx106"
 
 #: ../../../esp8266/general.rst:48
 msgid "CPU frequency: 80MHz overclockable to 160MHz"
-msgstr ""
+msgstr "CPU 周波数: 80MHz、160MHz にオーバークロック可能"
 
 #: ../../../esp8266/general.rst:49
 msgid "Total RAM available: 96KB (part of it reserved for system)"
-msgstr ""
+msgstr "使用可能なRAMの合計: 96KB (システムの予約分)"
 
 #: ../../../esp8266/general.rst:50
 msgid "BootROM: 64KB"
@@ -111,45 +140,50 @@ msgstr ""
 
 #: ../../../esp8266/general.rst:51
 msgid "Internal FlashROM: None"
-msgstr ""
+msgstr "内蔵フラッシュROM: なし"
 
 #: ../../../esp8266/general.rst:52
 msgid "External FlashROM: code and data, via SPI Flash. Normal sizes 512KB-4MB."
-msgstr ""
+msgstr "外部フラッシュROM: コードとデータ、SPIフラッシュ経由。通常のサイズは 512KB-4MB です。"
 
 #: ../../../esp8266/general.rst:53
 msgid ""
 "GPIO: 16 + 1 (GPIOs are multiplexed with other functions, including "
 "external FlashROM, UART, deep sleep wake-up, etc.)"
 msgstr ""
+"GPIO: 16 + 1 (GPIO は外部フラッシュROM、UART、ディープスリープウェイクアップなど"
+"他の機能と多重化されています)"
 
 #: ../../../esp8266/general.rst:55
 msgid "UART: One RX/TX UART (no hardware handshaking), one TX-only UART."
-msgstr ""
+msgstr "UART: １つのRX/TX UART (ハードウェアハンドシェイクなし)、１つのTX専用 UART。"
 
 #: ../../../esp8266/general.rst:56
 msgid "SPI: 2 SPI interfaces (one used for FlashROM)."
-msgstr ""
+msgstr "SPI: ２つの SPI インタフェース (１つはフラッシュ ROM に使用)。"
 
 #: ../../../esp8266/general.rst:57
 msgid ""
 "I2C: No native external I2C (bitbang implementation available on any "
 "pins)."
 msgstr ""
+"I2C: ネイティブの外部 I2C なし (任意のピンでビットバングの実装が可能)。"
 
 #: ../../../esp8266/general.rst:58
 msgid "I2S: 1."
-msgstr ""
+msgstr "I2S: 1"
 
 #: ../../../esp8266/general.rst:59
 msgid ""
 "Programming: using BootROM bootloader from UART. Due to external FlashROM"
 " and always-available BootROM bootloader, ESP8266 is not brickable."
 msgstr ""
+"プログラミング: UART から BootROM ブートローダーを使用する。外部 FlashROM と"
+"常時使用可能な BootROM ブートローダのため、ESP8266 が文鎮化することはありません。"
 
 #: ../../../esp8266/general.rst:64
 msgid "Scarcity of runtime resources"
-msgstr ""
+msgstr "ランタイムリソースの不足"
 
 #: ../../../esp8266/general.rst:66
 msgid ""
@@ -160,10 +194,15 @@ msgid ""
 "application: please be sure to close open files, sockets, etc. as soon as"
 " possible after use."
 msgstr ""
+"ESP8266 のリソースは非常に控えめです(なによりも、RAMメモリー容量)。したがって、"
+"大きすぎるコンテナオブジェクト(リスト、辞書)とバッファの割り当ては避けてください。"
+"また、リソースを追跡して自動的にクリーンアップするための本格的な OS はありませんので、"
+"それはユーザー/ユーザーアプリケーションのタスクです。使用後できるだけ早くファイル、"
+"ソケットなどを閉じてください。"
 
 #: ../../../esp8266/general.rst:75
 msgid "Boot process"
-msgstr ""
+msgstr "ブートプロセス"
 
 #: ../../../esp8266/general.rst:77
 msgid ""
@@ -176,6 +215,13 @@ msgid ""
 "is available only to advanced users and developers, who can diagnose "
 "themselves any issues arising from modifying the standard process)."
 msgstr ""
+"起動時、MicroPython EPS8266 ポートは内部のフリーズされたモジュールから ``_boot.py`` "
+"スクリプトを実行します。FlashROM にファイルシステムをマウントするか、マウントでき"
+"なければ、モジュールの初回セットアップを実行してファイルシステムを作成します。"
+"ブートプロセスのこの部分は固定されていると見なされ、エンドユーザーのカスタマイズには"
+"使用できません(たとえソースからビルドしても、変更を控えてください; 初期ブートプロセスの"
+"カスタマイズは、上級ユーザーや開発者だけ、標準的なプロセスを変更することによって生じる"
+"問題を自分で診断できる方だけが行うようにしてください)。"
 
 #: ../../../esp8266/general.rst:86
 msgid ""
@@ -191,6 +237,16 @@ msgid ""
 "``webrepl_setup`` module or manual editing to configure WebREPL, but not "
 "both)."
 msgstr ""
+"ファイルシステムがマウントされると、 ``boot.py`` がファイルシステムから実行"
+"されます。このファイルの標準バージョンは、初めてモジュールをセットアップするときに"
+"作成され、WebREPL デーモンを起動するコマンド(デフォルトでは無効、 "
+"``webrepl_setup`` モジュールで設定可能)などがあります。このファイルは"
+"エンドユーザーがカスタマイズできます(たとえば、いくつかのパラメータを設定するか、"
+"モジュールの起動時に実行する必要がある他のサービスを追加します)。しかし、 "
+"``boot.py`` を誤って変更すると、ブートループや障害につながる可能性があり、"
+"モジュールを最初から再フラッシュすることになるかもしれないことに注意してください。"
+"(特に、 ``webrepl_setup`` モジュール使用、WebREPL 設定の手編集のどちらかを"
+"使用することをお勧めしますが、両方を使用することはお勧めしません)。"
 
 #: ../../../esp8266/general.rst:98
 msgid ""
@@ -201,6 +257,12 @@ msgid ""
 "module, but instead it's recommended to keep your application(s) in "
 "separate files, and have just the following in ``main.py``::"
 msgstr ""
+"ブート手順の最終ステップとして、 ``main.py`` がファイルシステムから実行されます"
+"(存在する場合)。このファイルは、ブート時に毎回(REPL に行くのではなく)ユーザー"
+"アプリケーションを起動するためのフックです。小規模なテストアプリケーションでは、"
+"モジュールに ``main.py`` と直に名前を付けてアップロードすることもできますが、"
+"アプリケーションを別々のファイルに保存し、 ``main.py`` で次のようにすることを"
+"お勧めします。"
 
 #: ../../../esp8266/general.rst:105
 msgid ""
@@ -214,14 +276,16 @@ msgid ""
 "as allow to install multiple applications on a board, and switch among "
 "them."
 msgstr ""
+"これにより、アプリケーションの構造を明確に保ち、ボード上に複数の"
+"アプリケーションをインストールし、それらの間で切り替えることができます。"
 
 #: ../../../esp8266/general.rst:113
 msgid "Known Issues"
-msgstr ""
+msgstr "既知の問題"
 
 #: ../../../esp8266/general.rst:116
 msgid "Real-time clock"
-msgstr ""
+msgstr "リアルタイムクロック"
 
 #: ../../../esp8266/general.rst:118
 msgid ""
@@ -230,6 +294,10 @@ msgid ""
 "``utime.time()``, etc. functions, and for wall clock time, synchronize "
 "from the net using included ``ntptime.py`` module."
 msgstr ""
+"ESP8266 の RTC は非常に精度が悪く、ドリフトは毎分秒になる可能性があります。"
+"回避策として、十分な短い間隔を測定する ``utime.time()`` などの機能を"
+"使用できます。また、実時間とするには、含まれている ``ntptime.py`` モジュールを"
+"使用してネットから同期してください。"
 
 #: ../../../esp8266/general.rst:123
 msgid ""
@@ -238,10 +306,14 @@ msgid ""
 "then ``time()`` or ``localtime()`` must be called at least once within 7 "
 "hours. MicroPython will then handle the overflow."
 msgstr ""
+"ESP8266 チップの制限により、内部リアルタイムクロック (RTC) は 7:45h 毎に"
+"オーバフローします。長期の作業で RTC 時間が必要な場合は ``time()`` または "
+"``localtime()`` を7時間以内に少なくとも1回は呼び出す必要があります。"
+"そのようにすると、MicroPython がオーバーフローを処理します。"
 
 #: ../../../esp8266/general.rst:129
 msgid "Sockets and WiFi buffers overflow"
-msgstr ""
+msgstr "ソケットと WiFi バッファのオーバーフロー"
 
 #: ../../../esp8266/general.rst:131
 msgid ""
@@ -254,6 +326,13 @@ msgid ""
 "WiFi stack input queue and lead to a deadlock. The only recovery is by a "
 "hard reset."
 msgstr ""
+"ソケットインスタンスは、明示的に閉じるまでアクティブのままです。これには２つの影響が"
+"あります。まず、RAM を占有するため、ソケットを閉じずにソケットを開いていくアプリケー"
+"ションは、最終的にメモリ不足になる可能性があります。第２に、適切に閉じられていない"
+"ソケットは、ベンダー WiFi スタックの低レベル部分に ``Lmac`` エラーを発生させる"
+"可能性があります。これは、データがソケットで受信され、適時に処理されない場合に"
+"発生します。これは、WiFiスタックの入力キューをオーバーフローさせ、デッドロックを"
+"招く可能性があります。唯一の回復方法は、ハードリセットすることです。"
 
 #: ../../../esp8266/general.rst:139
 msgid ""
@@ -264,6 +343,11 @@ msgid ""
 "application terminates successfully or by an exeption, for example using "
 "try/finally::"
 msgstr ""
+"上記は、例外を含む何らかの理由でアプリケーションが終了して REPL を終了した後にも"
+"発生する可能性があります。データの後続の到着は、上記のエラーメッセージが繰り返し"
+"発行されて失敗を引き起こします。したがって、ソケットは、アプリケーションが正常に"
+"終了するかどうかにかかわらず、どんな場合でも閉じなければなりません。たとえば、"
+"try/finally を使用します。
 
 #: ../../../esp8266/general.rst:145
 msgid ""
@@ -276,7 +360,7 @@ msgstr ""
 
 #: ../../../esp8266/general.rst:153
 msgid "SSL/TLS limitations"
-msgstr ""
+msgstr "SSL/TLS の制限事項"
 
 #: ../../../esp8266/general.rst:155
 msgid ""
@@ -284,6 +368,9 @@ msgid ""
 "one of the smallest TLS libraries with the compatible licensing. However,"
 " it also has some known issues/limitations:"
 msgstr ""
+"ESP8266 は `axTLS <http://axtls.sourceforge.net/>`_ ライブラリを使用します。"
+"これは互換性のあるライセンスを持つ最小の TLS ライブラリの１つです。ただし、既知の"
+"問題や制限事項もあります:"
 
 #: ../../../esp8266/general.rst:159
 msgid ""
@@ -291,6 +378,9 @@ msgid ""
 "cryptography (ECC). This means it can't work with sites which force the "
 "use of these features (it works ok with classic RSA certificates)."
 msgstr ""
+"Diffie-Hellman (DH)鍵交換と楕円曲線暗号(ECC)のサポートはありません。"
+"つまり、これらの機能を使用するサイトでは動作しません(従来のRSA証明書"
+"では正常に動作します)。"
 
 #: ../../../esp8266/general.rst:162
 msgid ""
@@ -299,6 +389,9 @@ msgid ""
 "works well with protocols like HTTP. But there may be problems with "
 "protocols which don't follow classic request-response model."
 msgstr ""
+"半二重通信の性質。axTLSは、送信と受信の両方に単一のバッファを使用するため、"
+"メモリの節約につながり、HTTP などのプロトコルでうまく機能します。しかし、"
+"古典的な要求応答モデルにしたがわないプロトコルには問題があるかもしれません。"
 
 #: ../../../esp8266/general.rst:167
 msgid ""
@@ -306,24 +399,32 @@ msgid ""
 "highly optimized for code size, which leads to additional limitations "
 "(these may be lifted in the future):"
 msgstr ""
+"axTLS 独自の制限の他に、MicroPython で使用される設定はコードサイズに高度に最適化"
+"されているため、さらなる制限があります(これらは将来的に解消される可能性があります)。"
 
 #: ../../../esp8266/general.rst:171
 msgid ""
 "Optimized RSA algorithms are not enabled, which may lead to slow SSL "
 "handshakes."
 msgstr ""
+"最適化された RSA アルゴリズムが有効になっていないため、SSL ハンドシェイクが"
+"遅くなる可能性があります。"
 
 #: ../../../esp8266/general.rst:173
 msgid ""
 "Stored sessions are not supported (may allow faster repeated connections "
 "to the same site in some circumstances)."
 msgstr ""
+"ストアドセッションはサポートされていません(場合によっては、同じサイトへの接続が"
+"高速になる可能性があります)。"
 
 #: ../../../esp8266/general.rst:176
 msgid ""
 "Besides axTLS specific limitations described above, there's another "
 "generic limitation with usage of TLS on the low-memory devices:"
 msgstr ""
+"上記の axTLS 固有の制限の他に、低メモリデバイスでの TLS の使用には別の一般的な"
+"制限があります:"
 
 #: ../../../esp8266/general.rst:179
 msgid ""
@@ -339,24 +440,38 @@ msgid ""
 " smaller buffer hower means that some sites can't be accessed using it, "
 "and it's not possible to stream large amounts of data."
 msgstr ""
+"TLS 標準では、TLS レコードの最大長(TLS通信の単位、レコード全体を処理する前に"
+"バッファリングする必要があります)を 16KB と指定しています。これは利用可能な "
+"ESP8266 メモリのほぼ半分であり、多かれ少なかれ高度なアプリケーションのでは、"
+"メモリの断片化の問題のために割り当てが難しいでしょう。妥協案として、より小さな"
+"バッファが使用されています。SSL の最も興味深い使い方は、通常ははるかに小さい"
+"メッセージを必要とするさまざまな REST API にアクセスするという考え方です。"
+"バッファサイズは 5KB のオーダで、時々調整され、https://google.com にアクセス"
+"できるようになっています。バッファオーバーフローが小さいということは、一部の"
+"サイトにはアクセスできず、大量のデータをストリーミングすることができないという"
+"ことです。"
 
 #: ../../../esp8266/general.rst:191
 msgid ""
 "There are also some not implemented features specifically in "
 "MicroPython's ``ussl`` module based on axTLS:"
 msgstr ""
+"また、AxTLS に ussl 基づくMicroPythonのモジュールに実装されていない"
+"機能もあります。"
 
 #: ../../../esp8266/general.rst:194
 msgid ""
 "Certificates are not validated (this may make connections susceptible to "
 "man-in-the-middle attacks)."
 msgstr ""
+"証明書は検証されません(これにより、中間者攻撃に接続が影響を受ける可能性があります)。"
 
 #: ../../../esp8266/general.rst:196
 msgid ""
 "There is no support for client certificates (scheduled to be fixed in "
 "1.9.4 release)."
 msgstr ""
+"クライアント証明書はサポートされていません(1.9.4リリースで修正予定)。"
 
 #: ../../../esp8266/quickref.rst:4
 msgid "Quick reference for the ESP8266"
@@ -1411,7 +1526,7 @@ msgstr ""
 
 #: ../../../esp8266/tutorial/index.rst:4
 msgid "MicroPython tutorial for ESP8266"
-msgstr ""
+msgstr "ESP8266用 MicroPythonチュートリアル"
 
 #: ../../../esp8266/tutorial/index.rst:6
 msgid ""
@@ -1421,6 +1536,10 @@ msgid ""
 "are mostly self contained, so feel free to skip to those that interest "
 "you."
 msgstr ""
+"このチュートリアルは、MicroPython を ESP8266 システムオンチップ上で使用することを"
+"目的としています。初めての場合は、以下の順番でチュートリアルを読み進めるよう"
+"お勧めします。初めてでない場合、章はほとんど自己完結型であるので、興味のあるところを"
+"読むだけでよいです。"
 
 #: ../../../esp8266/tutorial/index.rst:11
 msgid ""
@@ -1430,6 +1549,10 @@ msgid ""
 "will gain a bit of Python knowledge along the way.  To learn more about "
 "Python itself please refer to `<https://www.python.org>`__."
 msgstr ""
+"このチュートリアルでは Python を知っていることを仮定していませんが、Python 言語の"
+"詳細については説明しません。代わりに、そのまま実行できるコマンドを示していますし、"
+"途中で少しだけ Python 知識が得られるようにしています。Python自体の詳細については、 "
+"`<https://www.python.org>`__ を参照してください。"
 
 #: ../../../esp8266/tutorial/intro.rst:4
 msgid "Getting started with MicroPython on the ESP8266"
