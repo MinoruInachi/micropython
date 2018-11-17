@@ -8657,7 +8657,7 @@ msgstr ""
 
 #: ../../../library/ucollections.rst:2
 msgid ":mod:`ucollections` -- collection and container types"
-msgstr ""
+msgstr ":mod:`ucollections` -- コレクションとコンテナのデータ型"
 
 #: ../../../library/ucollections.rst:7
 msgid "|see_cpython_module| :mod:`python:collections`."
@@ -8668,6 +8668,8 @@ msgid ""
 "This module implements advanced collection and container types to "
 "hold/accumulate various objects."
 msgstr ""
+"このモジュールは、様々なオブジェクトを保持/蓄積する高度なコレクションと"
+"コンテナのデータ型を実装します。"
 
 #: ../../../library/ucollections.rst:17
 msgid ""
@@ -8675,10 +8677,13 @@ msgid ""
 "appends and pops from either side of the deque.  New deques are created "
 "using the following arguments:"
 msgstr ""
+"deques (両端キュー)は、O(1) (処理時間がデータ量に非依存)をサポートするリストの"
+"ようなコンテナであり、両端キューのどちらかの側から追加やポップできます。次の引数を"
+"使用して新しい deques オブジェクトが作成されます。"
 
 #: ../../../library/ucollections.rst:21
 msgid "*iterable* must be the empty tuple, and the new deque is created empty."
-msgstr ""
+msgstr "*iterable* は空のタプルでなければならず、新しい両端キューが空で作成されます。"
 
 #: ../../../library/ucollections.rst:23
 msgid ""
@@ -8686,28 +8691,35 @@ msgid ""
 "length.  Once the deque is full, any new items added will discard items "
 "from the opposite end."
 msgstr ""
+"*maxlen* を指定する必要があり、両端キューはこの最大長にバインドされます。両端キュー"
+"がいっぱいになると、追加された新しいアイテムは反対側のアイテムを破棄します。"
 
 #: ../../../library/ucollections.rst:27
 msgid "The optional *flags* can be 1 to check for overflow when adding items."
-msgstr ""
+msgstr "オプションの flags を 1 にすると、項目を追加するときにオーバーフローをチェックするようになります。"
 
 #: ../../../library/ucollections.rst:29
 msgid ""
 "As well as supporting `bool` and `len`, deque objects have the following "
 "methods:"
 msgstr ""
+"``bool`` や ``len`` をサポートする他に、deque オブジェクトには次のメソッドがあります:"
 
 #: ../../../library/ucollections.rst:34
 msgid ""
 "Add *x* to the right side of the deque. Raises IndexError if overflow "
 "checking is enabled and there is no more room left."
 msgstr ""
+"両端キューの右側に *x* を追加します。オーバーフローチェックが有効で、もう余地が"
+"ない場合には IndexError を発生させます。"
 
 #: ../../../library/ucollections.rst:39
 msgid ""
 "Remove and return an item from the left side of the deque. Raises "
 "IndexError if no items are present."
 msgstr ""
+"両端キューの左側から項目を削除して返します。項目が存在しない場合は IndexError "
+"を発生させます。"
 
 #: ../../../library/ucollections.rst:44
 msgid ""
@@ -8719,6 +8731,12 @@ msgid ""
 "also be a a string with space-separated field named (but this is less "
 "efficient). Example of use::"
 msgstr ""
+"これは特定の名前とフィールドセットを持つ新しい名前付きタプル型を作成するための"
+"ファクトリ関数です。namedtuple はタプルのサブクラスで、数値インデックスだけでなく"
+"シンボル型フィールド名を使った属性アクセス構文でもフィールドにアクセスできます。"
+"Fields は、フィールド名を指定する一連の文字列です。CPython との互換性のために、"
+"スペースで区切られたフィールドを持つ文字列にすることもできます(これはあまり効率的"
+"ではありません)。使用例::"
 
 #: ../../../library/ucollections.rst:52
 msgid ""
@@ -8737,6 +8755,8 @@ msgid ""
 "added. When ordered dict is iterated over, keys/items are returned in the"
 " order they were added::"
 msgstr ""
+"追加されたキーの順番を記憶して保持する ``dect`` 型のサブクラスです。"
+"順序付けされた辞書を反復すると、キー/項目を追加された順番で返します。"
 
 #: ../../../library/ucollections.rst:66
 msgid ""
@@ -8754,7 +8774,7 @@ msgstr ""
 
 #: ../../../library/ucollections.rst:77
 msgid "Output::"
-msgstr ""
+msgstr "出力::"
 
 #: ../../../library/ucollections.rst:79
 msgid ""

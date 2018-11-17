@@ -3192,7 +3192,7 @@ msgstr ""
 
 #: ../../../pyboard/tutorial/servo.rst:2
 msgid "Controlling hobby servo motors"
-msgstr "ホビー用サーボモータの制御"
+msgstr "ホビー用サーボモーターの制御"
 
 #: ../../../pyboard/tutorial/servo.rst:4
 #, python-format
@@ -3238,7 +3238,7 @@ msgid ""
 msgstr ""
 "サーボの電源ピン(VINと表示)は、pyboard の入力電源に直接接続されています。USB から"
 "給電されると、VIN　には 5V の USB 電源ラインによってダイオードを介して給電されます。"
-"USB に接続する場合、pyboard は少なくとも４つの電源を中小サイズのサーボモータに"
+"USB に接続する場合、pyboard は少なくとも４つの電源を中小サイズのサーボモーターに"
 "供給できます。"
 
 #: ../../../pyboard/tutorial/servo.rst:24
@@ -3248,9 +3248,9 @@ msgid ""
 "motors can take.  (Some motors take only up to 4.8V, so check what type "
 "you are using.)"
 msgstr ""
-"バッテリーを使用して pyboard に給電してサーボモータを動かす場合は、6V 以下である"
-"ことを確認してください。これは、ほとんどのサーボモータにかけられる最大電圧が 6V で"
-"あるためです(モーターによっては最大 4.8V であることもあるため、使うモータのタイプを"
+"バッテリーを使用して pyboard に給電してサーボモーターを動かす場合は、6V 以下である"
+"ことを確認してください。これは、ほとんどのサーボモーターにかけられる最大電圧が 6V で"
+"あるためです(モーターによっては最大 4.8V であることもあるため、使うモーターのタイプを"
 "確認してください）。"
 
 #: ../../../pyboard/tutorial/servo.rst:30
@@ -3285,7 +3285,7 @@ msgid ""
 "depending on the motor.  Calling ``angle`` without parameters will return"
 " the current angle::"
 msgstr ""
-"ここでの角度は度で測定され、モータに依存して約 -90 〜 +90 の範囲です。 ``angle`` "
+"ここでの角度は度で測定され、モーターに依存して約 -90 〜 +90 の範囲です。 ``angle`` "
 "をパラメータなしで呼び出すと、現在の角度が返ります::"
 
 #: ../../../pyboard/tutorial/servo.rst:46
@@ -3326,8 +3326,8 @@ msgid ""
 " ::"
 msgstr ""
 "このコマンドからはすぐに戻り、サーボは希望の角度に移動し続け、そこに到達すると停止します。"
-"この機能を速度制御として使用することも、２つ以上のサーボモータを同期させることもできます。"
-"別のサーボモータ(``servo2 = pyb.Servo(2)``)があれば次のようにできます。
+"この機能を速度制御として使用することも、２つ以上のサーボモーターを同期させることもできます。"
+"別のサーボモーター(``servo2 = pyb.Servo(2)``)があれば次のようにできます。
 
 #: ../../../pyboard/tutorial/servo.rst:64
 msgid ">>> servo1.angle(-45, 2000); servo2.angle(60, 2000)"
@@ -3368,8 +3368,8 @@ msgid ""
 "pulses per second."
 msgstr ""
 "これまでは、特定の角度に移動してその角度にとどまる標準的なサーボを使用してきました。"
-"これらのサーボモータは、ロボットのジョイントやパンチルト機構などを作成するのに便利です。"
-"内部的には、モータは現在の角度を測定し、所望の角度からの距離に比例してモータに電力を"
+"これらのサーボモーターは、ロボットのジョイントやパンチルト機構などを作成するのに便利です。"
+"内部的には、モーターは現在の角度を測定し、所望の角度からの距離に比例してモーターに電力を"
 "供給する可変抵抗(ポテンショメータ)を有します。所望の角度は、サーボ信号線上のハイパルス"
 "の幅によって設定されます。1500 マイクロ秒のパルス幅は中心位置（0度）に対応します。"
 "パルスは 50Hz、すなわち毎秒50パルスで送られます。"
@@ -3382,9 +3382,9 @@ msgid ""
 "1500 microseconds corresponds to a stopped motor.  A pulse width smaller "
 "or larger than this means rotate one way or the other, at a given speed."
 msgstr ""
-"時計回りまたは反時計回りに連続的に回転する連続回転サーボモータを得ることもできます。"
+"時計回りまたは反時計回りに連続的に回転する連続回転サーボモーターを得ることもできます。"
 "回転の方向と速度は、信号線のパルス幅によって設定されます。1500マイクロ秒のパルス幅は"
-"停止したモータに対応します。この手段よりも小さいまたは大きいパルス幅は、ある速度で"
+"停止したモーターに対応します。この手段よりも小さいまたは大きいパルス幅は、ある速度で"
 "一方向または他の方向に回転します。"
 
 #: ../../../pyboard/tutorial/servo.rst:94
@@ -3394,7 +3394,7 @@ msgid ""
 "make it easier to understand what is intended, there is another method "
 "called ``speed`` which sets the speed::"
 msgstr ""
-"pyboard では、連続回転モータの Servo オブジェクトは以前と同じです。実際のところ "
+"pyboard では、連続回転モーターの Servo オブジェクトは以前と同じです。実際のところ "
 "``angle`` で速度を設定することができます。しかし、何が意図されているかを理解"
 "しやすくするために、スピードを設定する別のメソッド ``speed`` を用意しています。"
 
@@ -3432,7 +3432,7 @@ msgid ""
 "A servo speed of 100 (or -100) is considered maximum speed, but actually "
 "you can go a bit faster than that, depending on the particular motor."
 msgstr ""
-"100 (または -100)のサーボ速度が最大速度と見なされますが、特定のモータにおいては"
+"100 (または -100)のサーボ速度が最大速度と見なされますが、特定のモーターにおいては"
 "実際にはそれより少し速く進むことができます。"
 
 #: ../../../pyboard/tutorial/servo.rst:116
@@ -3511,7 +3511,7 @@ msgid ""
 "Of course, you would change the above values to suit your particular "
 "servo motor."
 msgstr ""
-"もちろん、上記の値を特定のサーボモータに合わせて変更します。"
+"もちろん、上記の値を特定のサーボモーターに合わせて変更します。"
 
 #: ../../../pyboard/tutorial/switch.rst:4
 msgid "The Switch, callbacks and interrupts"
