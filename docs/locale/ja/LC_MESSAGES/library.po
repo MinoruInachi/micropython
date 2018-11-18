@@ -9298,7 +9298,7 @@ msgstr ""
 
 #: ../../../library/uerrno.rst:2
 msgid ":mod:`uerrno` -- system error codes"
-msgstr ""
+msgstr ":mod:`uerrno` -- システムエラーコード"
 
 #: ../../../library/uerrno.rst:7
 msgid "|see_cpython_module| :mod:`python:errno`."
@@ -9309,6 +9309,8 @@ msgid ""
 "This module provides access to symbolic error codes for `OSError` "
 "exception. A particular inventory of codes depends on `MicroPython port`."
 msgstr ""
+"このモジュールは、OSError 例外のシンボリックエラーコードへのアクセスを提供します。"
+"コードに何があるかは `MicroPython ポート` に依存します。"
 
 #: ../../../library/uerrno.rst:17
 msgid ""
@@ -9317,6 +9319,10 @@ msgid ""
 " port`. Errors are usually accessible as ``exc.args[0]`` where ``exc`` is"
 " an instance of `OSError`. Usage example::"
 msgstr ""
+"ANSI C/POSIX 規格に基づくエラーコードです。すべてのエラーコードは \"E\" で始まります。"
+"前述のように、コードに何があるかは `MicroPython ポート` に依存します。
+"``exc`` が `OSError` のインスタンスであるとすると、エラーには通常 ``exc.args[0]`` "
+"でアクセス可能です。たとえば次のようにアクセスします::"
 
 #: ../../../library/uerrno.rst:22
 msgid ""
@@ -9332,6 +9338,7 @@ msgid ""
 "Dictionary mapping numeric error codes to strings with symbolic error "
 "code (see above)::"
 msgstr ""
+"英数字エラーコードをシンボリックエラーコードの文字列にマッピングする辞書(上記参照)::"
 
 #: ../../../library/uerrno.rst:33
 msgid ""
@@ -9341,7 +9348,7 @@ msgstr ""
 
 #: ../../../library/uhashlib.rst:2
 msgid ":mod:`uhashlib` -- hashing algorithms"
-msgstr ""
+msgstr ":mod:`uhashlib` -- ハッシュ化アルゴリズム"
 
 #: ../../../library/uhashlib.rst:7
 msgid "|see_cpython_module| :mod:`python:hashlib`."
@@ -9353,6 +9360,9 @@ msgid ""
 "inventory of available algorithms depends on a board. Among the "
 "algorithms which may be implemented:"
 msgstr ""
+"このモジュールはバイナリデータハッシュ化アルゴリズムを実装しています。"
+"利用可能なアルゴリズムが何であるかはボードによって異なります。実装される"
+"アルゴリズムの中には以下のものがあります:"
 
 #: ../../../library/uhashlib.rst:13
 msgid ""
@@ -9361,6 +9371,9 @@ msgid ""
 "in the MicroPython core and any board is recommended to provide this, "
 "unless it has particular code size constraints."
 msgstr ""
+"SHA256 - (SHA2 シリーズの)現世代のハッシュ化アルゴリズム。これは、暗号的に安全な"
+"目的に適っています。MicroPython コアに含まれており、特定のコードサイズの制約が"
+"ない限り、どのボードでもこのアルゴリズムの提供を推奨しています。"
 
 #: ../../../library/uhashlib.rst:18
 msgid ""
@@ -9369,6 +9382,9 @@ msgid ""
 "applications, so boards targeting network connectivity and "
 "interoperatiability will try to provide this."
 msgstr ""
+"SHA1 - 前世代のアルゴリズム。新しい用途には推奨されませんが、SHA1 はインターネット"
+"標準や既存のアプリケーションの一部です。そのため、ネットワーク接続と相互運用性を目的"
+"としたボードがこれを提供することはあります。"
 
 #: ../../../library/uhashlib.rst:23
 msgid ""
@@ -9376,38 +9392,50 @@ msgid ""
 "selected boards, targeting interoperatibility with legacy applications, "
 "will offer this."
 msgstr ""
+"MD5 - 暗号で安全とはみなされないレガシーアルゴリズム。従来のアプリケーションとの"
+"相互運用性を目的とした一部のボードのみがこれを提供します。"
 
 #: ../../../library/uhashlib.rst:32
 msgid "Create an SHA256 hasher object and optionally feed ``data`` into it."
 msgstr ""
+"SHA256 ハッシュオブジェクトを作成し、オプションでそのオブジェクトに ``data`` を"
+"フィードします。"
 
 #: ../../../library/uhashlib.rst:36
 msgid "Create an SHA1 hasher object and optionally feed ``data`` into it."
 msgstr ""
+"SHA1 ハッシュオブジェクトを作成し、オプションでそのオブジェクトに ``data`` を"
+"フィードします。"
 
 #: ../../../library/uhashlib.rst:40
 msgid "Create an MD5 hasher object and optionally feed ``data`` into it."
 msgstr ""
+"MD5 ハッシュオブジェクトを作成し、オプションでそのオブジェクトに ``data`` を"
+"フィードします。"
 
 #: ../../../library/uhashlib.rst:47
 msgid "Feed more binary data into hash."
-msgstr ""
+msgstr "ハッシュにバイナリデータを追加でフォードします。"
 
 #: ../../../library/uhashlib.rst:51
 msgid ""
 "Return hash for all data passed through hash, as a bytes object. After "
 "this method is called, more data cannot be fed into the hash any longer."
 msgstr ""
+"ハッシュを介して渡されたすべてのデータのハッシュをバイトオブジェクトとして返します。"
+"このメソッドが呼び出された後は、もうデータをハッシュにフィードできなくなります。"
 
 #: ../../../library/uhashlib.rst:56
 msgid ""
 "This method is NOT implemented. Use ``ubinascii.hexlify(hash.digest())`` "
 "to achieve a similar effect."
 msgstr ""
+"このメソッドは実装されていません。同様の効果を得るには "
+"``ubinascii.hexlify(hash.digest())`` を使ってください。"
 
 #: ../../../library/uheapq.rst:2
 msgid ":mod:`uheapq` -- heap queue algorithm"
-msgstr ""
+msgstr ":mod:`uheapq` -- ヒープキューアルゴリズム"
 
 #: ../../../library/uheapq.rst:7
 msgid "|see_cpython_module| :mod:`python:heapq`."
@@ -9415,31 +9443,34 @@ msgstr ""
 
 #: ../../../library/uheapq.rst:9
 msgid "This module implements the heap queue algorithm."
-msgstr ""
+msgstr "このモジュールは、ヒープキューアルゴリズムを実装します。"
 
 #: ../../../library/uheapq.rst:11
 msgid ""
 "A heap queue is simply a list that has its elements stored in a certain "
 "way."
 msgstr ""
+"ヒープキューは、要素が特定の方法で格納されている単なるリストです。"
 
 #: ../../../library/uheapq.rst:18
 msgid "Push the ``item`` onto the ``heap``."
-msgstr ""
+msgstr "``heap`` に ``item`` をプッシュします。"
 
 #: ../../../library/uheapq.rst:22
 msgid ""
 "Pop the first item from the ``heap``, and return it.  Raises IndexError "
 "if heap is empty."
 msgstr ""
+"``heap`` から最初の要素をポップして返します。ヒープが空の場合には IndexError "
+"を発生させます。"
 
 #: ../../../library/uheapq.rst:27
 msgid "Convert the list ``x`` into a heap.  This is an in-place operation."
-msgstr ""
+msgstr "リスト ``x`` をヒープに変換します。これは、in-place (追加のメモリをほとんど使わずに行う)操作です。"
 
 #: ../../../library/uio.rst:2
 msgid ":mod:`uio` -- input/output streams"
-msgstr ""
+msgstr ":mod:`uio` -- 入出力ストリーム"
 
 #: ../../../library/uio.rst:7
 msgid "|see_cpython_module| :mod:`python:io`."
@@ -9450,16 +9481,20 @@ msgid ""
 "This module contains additional types of `stream` (file-like) objects and"
 " helper functions."
 msgstr ""
+"このモジュールには ``stream`` (ファイルのような)オブジェクトの追加のデータ型と"
+"ヘルパー関数が含まれています。"
 
 #: ../../../library/uio.rst:13
 msgid "Conceptual hierarchy"
-msgstr ""
+msgstr "概念階層"
 
 #: ../../../library/uio.rst:18
 msgid ""
 "Conceptual hierarchy of stream base classes is simplified in MicroPython,"
 " as described in this section."
 msgstr ""
+"この章で説明するように、MicroPythonではストリームベースのクラスの概念的な階層が"
+"単純化されています。"
 
 #: ../../../library/uio.rst:21
 msgid ""
@@ -9468,6 +9503,9 @@ msgid ""
 "classifications) in CPython. In MicroPython, they are somewhat simplified"
 " and made implicit to achieve higher efficiencies and save resources."
 msgstr ""
+"(抽象)基底 stream クラスは、すべての具象クラスの動作の基礎となるものであり、"
+"CPython にある二分法(ペアワイズ分類)に固執しません。MicroPython では、"
+"これらは幾分単純化されていて、効率化とリソース節約のために暗黙的に役立ちます。"
 
 #: ../../../library/uio.rst:26
 msgid ""
@@ -9479,6 +9517,13 @@ msgid ""
 " Note that there still cases where buffering may be useful, so we may "
 "introduce optional buffering support at a later time."
 msgstr ""
+"CPython の重要な二分法は、バッファされていないストリームとバッファされている"
+"ストリームです。MicroPython では、すべてのストリームは現在バッファリング"
+"されていません。これは、すべての現代的な OS、さらには多くの RTOS や"
+"ファイルシステムドライバでさえも、すでにバッファリングが行われているからです。"
+"別のレイヤーにバッファリングを追加することは、生産性を低下させ(\"bufferbloat\" "
+"という問題)、貴重なメモリを消費します。バッファリングが便利な場合もあるので、"
+"後でオプションのバッファリングサポートを導入するかもしれません。"
 
 #: ../../../library/uio.rst:34
 msgid ""
@@ -9499,6 +9544,19 @@ msgid ""
 "be a port-specific class, where such a need is governed by hardware "
 "peculiarities."
 msgstr ""
+"しかし、CPython には別の重要な二分法もあり、それは「バッファされているか」と関連して"
+"います。ストリームが短い読み込み/書き込みを起こすかどうかです。短い読み取りとは、"
+"たとえばストリームから10バイトを要求しても、それより少ないデータを得ることです。短い"
+"書き込みについても同様です。CPython ではバッファリングされていないストリームは"
+"自動的に短い操作になる影響を受けますが、バッファされたストリームは要求したサイズを"
+"保証します。短くない読み込み/書き込みは重要な特性であり、より簡潔で効率的なプログラム"
+"を開発できるので、MicroPython にとっても非常に望ましいものです。したがって、"
+"MicroPython はバッファされたストリームをサポートしていませんが、短くない操作の"
+"ストリームも提供します。短い操作の有無は、各クラスのニーズに応じて異なりますが、"
+"開発者は上記の理由により短くない操作を好むよう強く推奨します。たとえば、"
+"MicroPython のソケットは、短い読み取り/書き込みを避けることが保証されています。"
+"実際、現時点では、コアには短い操作のストリームクラスの例はなく、あるとすれば"
+"ポート固有のクラスとなります。そのような必要性はハードウェアの特性によって管理されます。"
 
 #: ../../../library/uio.rst:51
 msgid ""
@@ -9519,6 +9577,21 @@ msgid ""
 "don't return short data, but raise exceptions)), non-blocking streams may"
 " produce short data to avoid blocking the operation."
 msgstr ""
+"短くない操作の動作は、非ブロックストリームの場合はトリッキーであり、ブロックと"
+"非ブロックの動作は別の CPython での二分法です。この２つの動作は MicroPython "
+"で完全にサポートされています。非ブロックストリームは、データの到着または書き込みを"
+"待つことは決してありません。可能な限りデータの読み込み/書き込みを行うか、"
+"データの欠乏(あるいはデータ書き込み可能)の通知します。明らかに、これは「短くない"
+"操作」のポリシーと矛盾しています。実際、非ブロックバッファ(で短くない操作)"
+"のストリームは、CPython では面倒です。ものによって、そのような組み合わせは禁止"
+"されているか、未定義であり、文書化されていないものもあります。場合によっては"
+"冗長な例外が発生します。MicroPython では、非ブロックストリームが効率的な"
+"非同期操作にとって重要であるため、この特性は「短くない操作」に優先します。"
+"したがって、ストリームをブロックすると、可能な限り短い読み込み/書き込みが回避"
+"されます(ファイルの終わりに達した場合、またはエラーが発生した場合は短い読み込みを"
+"取得する唯一のケースですが、エラーは短いデータを返さず例外を発生させます)。"
+"非ブロックストリームは、動作をブロックしないように短いデータを生成する可能性が"
+"あります。"
 
 #: ../../../library/uio.rst:68
 msgid ""
@@ -9527,6 +9600,10 @@ msgid ""
 "buffered, they aren't in MicroPython. (Indeed, that's one of the cases "
 "for which we may introduce buffering support.)"
 msgstr ""
+"残る二分法は、バイナリとテキストのストリームです。MicroPython はもちろんこれを"
+"サポートしていますが、CPython のテキストストリームが本質的にバッファされている"
+"のに対して MicroPython ではバッファしていません。(実際、これはバッファを"
+"サポートする可能正のある唯一のケースです)。
 
 #: ../../../library/uio.rst:73
 msgid ""
@@ -9534,6 +9611,9 @@ msgid ""
 "classes corresponding to the hierarchy above, and it's not possible to "
 "implement, or subclass, a stream class in pure Python."
 msgstr ""
+"効率を上げるために、MicroPython は上記の階層に対応する抽象基底クラスを提供して"
+"いないことに注意してください。純粋な Python にあるストリームクラスを実装または"
+"サブクラス化することはできません。"
 
 #: ../../../library/uio.rst:82
 msgid ""
@@ -9541,18 +9621,25 @@ msgid ""
 " ports (which provide access to file system) are required to support "
 "*mode* parameter, but support for other arguments vary by port."
 msgstr ""
+"ファイルを開きます。組込みの ``open()`` 関数はこの関数の別名になります。"
+"すべての(ファイルシステムへのアクセスを提供する)ポートは、 *mode* パラメータを"
+"サポートする必要がありますが、他の引数のサポートはポートによって異なります。"
 
 #: ../../../library/uio.rst:91
 msgid ""
 "This is type of a file open in binary mode, e.g. using ``open(name, "
 "\"rb\")``. You should not instantiate this class directly."
 msgstr ""
+"これは ``open(name, \"rb\")`` などでバイナリモードで開くファイルのデータ型です。"
+"このクラスを直接インスタンス化しないでください。"
 
 #: ../../../library/uio.rst:96
 msgid ""
 "This is type of a file open in text mode, e.g. using ``open(name, "
 "\"rt\")``. You should not instantiate this class directly."
 msgstr ""
+"これは ``open(name, \"rt\")`` などでテキストモードで開くファイルのデータ型です。"
+"このクラスを直接インスタンス化しないでください。"
 
 #: ../../../library/uio.rst:102
 msgid ""
@@ -9565,10 +9652,18 @@ msgid ""
 "``read()``, ``write()``, ``seek()``, ``flush()``, ``close()`` are "
 "available on these objects, and additionally, a following method:"
 msgstr ""
+"入出力のためのメモリ内の疑似ファイルオブジェクト。 `StringIO` はテキストモードの "
+"I/O に使用されます(\"t\" 修飾子で開かれた通常のファイルと同様)。 `BytesIO` は"
+"バイナリモードの I/O に使用されます(\"b\" 修飾子で開かれた通常のファイルと同様)。"
+"この疑似ファイルオブジェクトの初期の内容は *string* パラメータで指定できます"
+"(`StringIO` では通常の文字列、 `BytesIO` ではバイト列オブジェクトでなければ"
+"なりません)。このオブジェクトについては、通常のファイルのメソッドのすべて "
+"``read()``, ``write()``, ``seek()``, ``flush()``, ``close()`` が使え、"
+"加えて以下のメソッドが使えます。"
 
 #: ../../../library/uio.rst:114
 msgid "Get the current contents of the underlying buffer which holds data."
-msgstr ""
+msgstr "データを保持するバッファの現在の内容を取得します。"
 
 #: ../../../library/uio.rst:119
 msgid ""
@@ -9579,14 +9674,20 @@ msgid ""
 "are a MicroPython extension and are recommended for usage only in special"
 " cases and in system-level libraries, not for end-user applications."
 msgstr ""
+"*alloc_size* で指定したバイト数を保持するために事前に割り当てられた空の "
+"`StringIO`/`BytesIO` オブジェクトを作成します。つまり、その量のバイトを"
+"書き込んでもバッファの再割り当てにはつながりません。したがって、メモリ不足の状況に"
+"遭遇したり、メモリの断片化につながることはありません。これらのコンストラクターは "
+"MicroPython の拡張であり、エンドユーザーアプリケーションではなく、特別な場合"
+"およびシステムレベルのライブラリーでのみ使用することをお勧めします。"
 
 #: ../../../library/uio.rst:129
 msgid "These constructors are a MicroPython extension."
-msgstr ""
+msgstr "これらのコンストラクタは MicroPython の拡張です。"
 
 #: ../../../library/ujson.rst:2
 msgid ":mod:`ujson` -- JSON encoding and decoding"
-msgstr ""
+msgstr ":mod:`ujson` -- JSON のエンコードとデコード"
 
 #: ../../../library/ujson.rst:7
 msgid "|see_cpython_module| :mod:`python:json`."
@@ -9596,15 +9697,15 @@ msgstr ""
 msgid ""
 "This modules allows to convert between Python objects and the JSON data "
 "format."
-msgstr ""
+msgstr "このモジュールでは、Python オブジェクトと JSON データの間の変換ができます。"
 
 #: ../../../library/ujson.rst:17
 msgid "Serialise *obj* to a JSON string, writing it to the given *stream*."
-msgstr ""
+msgstr "*obj* を JSON 文字列にシリアル化し、指定されたストリームに書き込みます。"
 
 #: ../../../library/ujson.rst:21
 msgid "Return *obj* represented as a JSON string."
-msgstr ""
+msgstr "JSON 文字列で表される *obj* を返します。"
 
 #: ../../../library/ujson.rst:25
 msgid ""
@@ -9612,22 +9713,28 @@ msgid ""
 "deserialising the data to a Python object.  The resulting object is "
 "returned."
 msgstr ""
+"指定した *stream* を解析し、それを JSON 文字列として解釈し、データを Python "
+"オブジェクトにデシリアライズします。結果のオブジェクトが返されます。"
 
 #: ../../../library/ujson.rst:29
 msgid ""
 "Parsing continues until end-of-file is encountered. A :exc:`ValueError` "
 "is raised if the data in *stream* is not correctly formed."
 msgstr ""
+"ファイルの終わりに達するまで解析が続きます。*stream* 内のデータが正しい形式になって"
+"いないと、 :exc:`ValueError` 例外が発生します。"
 
 #: ../../../library/ujson.rst:34
 msgid ""
 "Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if "
 "the string is not correctly formed."
 msgstr ""
+"JSON *str* を解析してオブジェクトを返します。文字列が正しい形式になって"
+"いないと、 :exc:`ValueError` 例外が発生します。"
 
 #: ../../../library/uos.rst:2
 msgid ":mod:`uos` -- basic \"operating system\" services"
-msgstr ""
+msgstr ":mod:`uos` -- 基本的な「オペレーティングシステム」サービス"
 
 #: ../../../library/uos.rst:7
 msgid "|see_cpython_module| :mod:`python:os`."
@@ -9639,10 +9746,12 @@ msgid ""
 " terminal redirection and duplication, and the ``uname`` and ``urandom`` "
 "functions."
 msgstr ""
+"``uos`` モジュールには、ファイルシステムのアクセス、マウント、ターミナルのリダイレクト"
+"と複製、``uname`` と ``urandom`` のための関数があります。"
 
 #: ../../../library/uos.rst:14
 msgid "General functions"
-msgstr ""
+msgstr "一般関数"
 
 #: ../../../library/uos.rst:18
 msgid ""
@@ -9650,44 +9759,48 @@ msgid ""
 "underlying machine and/or its operating system.  The tuple has five "
 "fields in the following order, each of them being a string:"
 msgstr ""
+"基盤のマシンやオペレーティングシステムに関する情報を含むタプル(おそらく名前付き"
+"タプル)を返します。タプルには次の5つのフィールドがあり、それぞれが文字列です。"
 
 #: ../../../library/uos.rst:22
 msgid "``sysname`` -- the name of the underlying system"
-msgstr ""
+msgstr "``sysname`` -- 基盤システムの名前"
 
 #: ../../../library/uos.rst:23
 msgid "``nodename`` -- the network name (can be the same as ``sysname``)"
-msgstr ""
+msgstr "``nodename`` -- ネットワーク名(``sysname`` と同じこともあります)"
 
 #: ../../../library/uos.rst:24
 msgid "``release`` -- the version of the underlying system"
-msgstr ""
+msgstr "``release`` -- 基盤システムのバージョン"
 
 #: ../../../library/uos.rst:25
 msgid "``version`` -- the MicroPython version and build date"
-msgstr ""
+msgstr "``version`` -- MicroPython のバージョンとビルド日付"
 
 #: ../../../library/uos.rst:26
 msgid "``machine`` -- an identifier for the underlying hardware (eg board, CPU)"
-msgstr ""
+msgstr "``machine`` -- 基盤ハードウェアの識別子(ボード、CPUなど)"
 
 #: ../../../library/uos.rst:30
 msgid ""
 "Return a bytes object with *n* random bytes. Whenever possible, it is "
 "generated by the hardware random number generator."
 msgstr ""
+"*n* 個のランダムバイトを持つバイト列オブジェクトを返します。可能な限り、"
+"ハードウェア乱数生成器によって乱数を生成します。"
 
 #: ../../../library/uos.rst:34
 msgid "Filesystem access"
-msgstr ""
+msgstr "ファイルシステムのアクセス"
 
 #: ../../../library/uos.rst:38
 msgid "Change current directory."
-msgstr ""
+msgstr "カレントディレクトリを変更します。"
 
 #: ../../../library/uos.rst:42
 msgid "Get the current directory."
-msgstr ""
+msgstr "カレントディレクトリのパスを返します。"
 
 #: ../../../library/uos.rst:46
 msgid ""
@@ -9696,28 +9809,36 @@ msgid ""
 "lists the current directory, otherwise it lists the directory given by "
 "*dir*."
 msgstr ""
+"この関数はイテレータを返します。イテレータが生成するのは、ディレクトリ内のエントリに"
+"対応するタプルです。引数なしの場合はカレントディレクトリを、それ以外の場合は "
+"*dir* で指定したディレクトリをリストします。
 
 #: ../../../library/uos.rst:50
 msgid "The tuples have the form *(name, type, inode[, size])*:"
-msgstr ""
+msgstr "タプルの形式は *(name, type, inode [, size])* です。"
 
 #: ../../../library/uos.rst:52
 msgid ""
 "*name* is a string (or bytes if *dir* is a bytes object) and is the name "
 "of the entry;"
 msgstr ""
+"*name* は文字列(*dir* バイト列オブジェクトの場合はバイト列)であり、エントリの名前です。
 
 #: ../../../library/uos.rst:54
 msgid ""
 "*type* is an integer that specifies the type of the entry, with 0x4000 "
 "for directories and 0x8000 for regular files;"
 msgstr ""
+"*type* はエントリのタイプを指定する整数で、ディレクトリの場合は 0x4000、"
+"通常のファイルの場合は 0x8000 です。"
 
 #: ../../../library/uos.rst:56
 msgid ""
 "*inode* is an integer corresponding to the inode of the file, and may be "
 "0 for filesystems that don't have such a notion."
 msgstr ""
+"*inode* はファイルのiノードに対応する整数であり、そのような概念を持たないファイル"
+"システムについては 0 になります。"
 
 #: ../../../library/uos.rst:58
 msgid ""
@@ -9726,80 +9847,85 @@ msgid ""
 "or -1 if unknown.  Its meaning is currently undefined for directory "
 "entries."
 msgstr ""
+"一部のプラットフォームでは、エントリのサイズを含む4タプルが返されることがあります。"
+"ファイルエントリの場合、 *size* はファイルのサイズを表す整数で、未知の場合は -1 です。"
+"現在のところ、ディレクトリエントリについては未定義です。"
 
 #: ../../../library/uos.rst:65
 msgid ""
 "With no argument, list the current directory.  Otherwise list the given "
 "directory."
 msgstr ""
+"引数を指定しない場合は、カレントディレクトリ内のエントリを表示します。"
+"それ以外の場合は指定されたディレクトリ内のエントリを表示します。"
 
 #: ../../../library/uos.rst:69
 msgid "Create a new directory."
-msgstr ""
+msgstr "新規にディレクトリを作成します。"
 
 #: ../../../library/uos.rst:73
 msgid "Remove a file."
-msgstr ""
+msgstr "ファイルを削除します。"
 
 #: ../../../library/uos.rst:77
 msgid "Remove a directory."
-msgstr ""
+msgstr "ディレクトリを削除します。"
 
 #: ../../../library/uos.rst:81
 msgid "Rename a file."
-msgstr ""
+msgstr "ファイルの名前を変更します。"
 
 #: ../../../library/uos.rst:85
 msgid "Get the status of a file or directory."
-msgstr ""
+msgstr "ファイルまたはディレクトリのステータスを取得します。"
 
 #: ../../../library/uos.rst:89
 msgid "Get the status of a fileystem."
-msgstr ""
+msgstr "ファイルシステムの状態を取得します。"
 
 #: ../../../library/uos.rst:91
 msgid "Returns a tuple with the filesystem information in the following order:"
-msgstr ""
+msgstr "次の順序でファイルシステム情報を含むタプルを返します。"
 
 #: ../../../library/uos.rst:93
 msgid "``f_bsize`` -- file system block size"
-msgstr ""
+msgstr "``f_bsize`` -- ファイルシステムのブロックサイズ"
 
 #: ../../../library/uos.rst:94
 msgid "``f_frsize`` -- fragment size"
-msgstr ""
+msgstr "``f_frsize`` -- フラグメントサイズ"
 
 #: ../../../library/uos.rst:95
 msgid "``f_blocks`` -- size of fs in f_frsize units"
-msgstr ""
+msgstr "``f_blocks`` -- f_frsize 単位の fs のサイズ"
 
 #: ../../../library/uos.rst:96
 msgid "``f_bfree`` -- number of free blocks"
-msgstr ""
+msgstr "``f_bfree`` -- 空きブロックの数"
 
 #: ../../../library/uos.rst:97
 msgid "``f_bavail`` -- number of free blocks for unpriviliged users"
-msgstr ""
+msgstr "``f_bavail`` -- 権限なしユーザーのための空きブロック数"
 
 #: ../../../library/uos.rst:98
 msgid "``f_files`` -- number of inodes"
-msgstr ""
+msgstr "``f_files`` -- iノード数"
 
 #: ../../../library/uos.rst:99
 msgid "``f_ffree`` -- number of free inodes"
-msgstr ""
+msgstr "``f_ffree`` -- フリーのiノードの数"
 
 #: ../../../library/uos.rst:100
 msgid "``f_favail`` -- number of free inodes for unpriviliged users"
-msgstr ""
+msgstr "``f_favail`` -- 権限なしユーザの空きiノード数"
 
 #: ../../../library/uos.rst:101
 msgid "``f_flag`` -- mount flags"
-msgstr ""
+msgstr "``f_flag`` -- マウントフラグ"
 
 #: ../../../library/uos.rst:102
 msgid "``f_namemax`` -- maximum filename length"
-msgstr ""
+msgstr "``f_namemax`` -- 最大ファイル名の長さ"
 
 #: ../../../library/uos.rst:104
 msgid ""
@@ -9807,14 +9933,16 @@ msgid ""
 "the ``f_flags`` parameter may return ``0`` as they can be unavailable in "
 "a port-specific implementation."
 msgstr ""
+"iノードに関連するパラメータ ``f_files``, ``f_ffree``, ``f_avail``, "
+"``f_flags`` は、ポート固有の実装で使えない場合には 0 になります。"
 
 #: ../../../library/uos.rst:110
 msgid "Sync all filesystems."
-msgstr ""
+msgstr "すべてのファイルシステムを同期します。"
 
 #: ../../../library/uos.rst:113
 msgid "Terminal redirection and duplication"
-msgstr ""
+msgstr "ターミナルのリダイレクトと複製"
 
 #: ../../../library/uos.rst:117
 msgid ""
@@ -9824,6 +9952,11 @@ msgid ""
 "blocking mode and ``readinto()`` should return ``None`` if there is no "
 "data available for reading."
 msgstr ""
+"与えた `strean` オブジェクトに MicroPython 端末(REPL)を複製または"
+"切り替えを行います。 *stream_object* の引数は ``readinto()`` と "
+"``write()`` メソッドを実装しなければなりません。ストリームは非ブロッキング"
+"モードで、 ``readinto()`` は読み込み可能なデータがない場合は ``None`` を"
+"返すようにします。"
 
 #: ../../../library/uos.rst:122
 msgid ""
@@ -9831,6 +9964,8 @@ msgid ""
 "stream, and any input that is available on the stream is passed on to the"
 " terminal input."
 msgstr ""
+"この関数を呼び出した後、すべての端末出力がこのストリーム上で繰り返され、"
+"ストリーム上で利用可能なすべての入力がターミナル入力に渡されます。"
 
 #: ../../../library/uos.rst:125
 msgid ""
@@ -9839,20 +9974,25 @@ msgid ""
 "slot (slot 0 will always be available) and in that case terminal input "
 "and output is duplicated on all the slots that are set."
 msgstr ""
+"*index* パラメータは負でない整数であり、設定されている複製を指定します。"
+"ポートは２つ以上のスロットを実装できます(スロット 0 は常に使用可能です)。"
+"その場合、端末の入出力は設定されているすべてのスロットに複製されます。"
 
 #: ../../../library/uos.rst:130
 msgid ""
 "If ``None`` is passed as the *stream_object* then duplication is "
 "cancelled on the slot given by *index*."
 msgstr ""
+"*stream_object* に ``None`` を渡した場合、 *index* によって指定された"
+"スロットで重複が取り消されます。"
 
 #: ../../../library/uos.rst:133
 msgid "The function returns the previous stream-like object in the given slot."
-msgstr ""
+msgstr "この関数は、指定したスロットの前のストリームオブジェクトを返します。"
 
 #: ../../../library/uos.rst:136
 msgid "Filesystem mounting"
-msgstr ""
+msgstr "ファイルシステムのマウント"
 
 #: ../../../library/uos.rst:138
 msgid ""
@@ -9864,6 +10004,12 @@ msgid ""
 "functionality provide the :func:`mount` and :func:`umount` functions, and"
 " possibly various filesystem implementations represented by VFS classes."
 msgstr ""
+"いくつかのポートは仮想ファイルシステム(VFS)を提供し、この VFS 内に複数の「実」"
+"ファイルシステムをマウントする機能を備えています。ファイルシステムオブジェクトは、"
+"VFS のルート、またはルートに存在するサブディレクトリにマウントできます。これにより、"
+"Python プログラムで見られるファイルシステムの動的で柔軟な設定が可能になります。"
+"この機能を持つポートは ``mount()`` と ``umount()`` 関数、そしておそらく VFS "
+"クラスで表されるさまざまなファイルシステムの実装を提供します。"
 
 #: ../../../library/uos.rst:148
 msgid ""
@@ -9875,20 +10021,28 @@ msgid ""
 "*fsobj* at the root, or ``'/<name>'`` to mount it at a subdirectory under"
 " the root."
 msgstr ""
+"ファイルシステムオブジェクト *fsobj* を *mount_point* 文字列で指定した VFS 内の"
+"場所にマウントします。 *fsobj* には ``mount()`` メソッドを持つ VFS オブジェクト、"
+"またはブロックデバイスを指定できます。ブロックデバイスであればファイルシステムタイプ"
+"が自動的に検出されます(ファイルシステムが認識されない場合は例外が発生します)。 "
+"*mount_point* が ``'/'`` であれば *fsobj* をルートににマウントし、"
+"``'/<name>'`` であればルート配下のサブディレクトリにマウントします。"
 
 #: ../../../library/uos.rst:155
 msgid "If *readonly* is ``True`` then the filesystem is mounted read-only."
-msgstr ""
+msgstr "*readonly* が ``True`` であればファイルシステムが読み取り専用でマウントされています。"
 
 #: ../../../library/uos.rst:157
 msgid ""
 "During the mount process the method ``mount()`` is called on the "
 "filesystem object."
 msgstr ""
+"マウント処理では、ファイルシステムオブジェクトに対してメソッド ``mount()`` "
+"呼出します。"
 
 #: ../../../library/uos.rst:160
 msgid "Will raise ``OSError(EPERM)`` if *mount_point* is already mounted."
-msgstr ""
+msgstr "*mount_point* に既にマウントされていれば ``OSError(EPERM)`` 例外が発生します。"
 
 #: ../../../library/uos.rst:164
 msgid ""
@@ -9896,10 +10050,14 @@ msgid ""
 "location, or a previously-mounted filesystem object.  During the unmount "
 "process the method ``umount()`` is called on the filesystem object."
 msgstr ""
+"ファイルシステムをアンマウントします。 *mount_point* には、マウント場所を指定する"
+"文字列、または以前にマウントされたファイルシステムオブジェクトを指定できます。"
+"アンマウント処理では、ファイルシステムオブジェクトに対してメソッド ``unmount()`` "
+"呼出します。"
 
 #: ../../../library/uos.rst:168
 msgid "Will raise ``OSError(EINVAL)`` if *mount_point* is not found."
-msgstr ""
+msgstr ""*mount_point* が見つからなければ ``OSError(EINVAL)`` 例外が発生します。"
 
 #: ../../../library/uos.rst:172
 msgid ""
@@ -9907,14 +10065,18 @@ msgid ""
 "of the FAT filesystem is provided by *block_dev*. Objects created by this"
 " constructor can be mounted using :func:`mount`."
 msgstr ""
+"FAT ファイルシステムのフォーマットを使うファイルシステムオブジェクトを作成します。"
+"FAT ファイルシステムのストレージは *block_dev* によって提供されます。この"
+"コンストラクタによって作成されたオブジェクトは :func:`mount` を使ってマウント"
+"できます。"
 
 #: ../../../library/uos.rst:178
 msgid "Build a FAT filesystem on *block_dev*."
-msgstr ""
+msgstr "*block_dev* に FAT ファイルシステムを構築します。"
 
 #: ../../../library/uos.rst:181
 msgid "Block devices"
-msgstr ""
+msgstr "ブロックデバイス"
 
 #: ../../../library/uos.rst:183
 msgid ""
@@ -9925,12 +10087,19 @@ msgid ""
 " block device can be used by a particular filesystem driver to store the "
 "data for its filesystem."
 msgstr ""
+"ブロックデバイスは、ブロックプロトコルを実装するオブジェクトです。これは後述する "
+":class:`AbstractBlockDev` クラスのメソッドのセットです。このクラスの具象サブクラス"
+"では通常、フラッシュメモリなどのハードウェアの一部にメモリのような機能へのアクセスが"
+"許可されます。特定のファイルシステムドライバがブロックデバイスを使用して、ファイル"
+"システム用のデータを格納できます。"
 
 #: ../../../library/uos.rst:191
 msgid ""
 "Construct a block device object.  The parameters to the constructor are "
 "dependent on the specific block device."
 msgstr ""
+"ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
+"ブロックデバイスに依存します。"
 
 #: ../../../library/uos.rst:196
 msgid ""
@@ -9939,6 +10108,9 @@ msgid ""
 "is given by the length of *buf*, which will be a multiple of the block "
 "size."
 msgstr ""
+"インデックス *block_num* で指定したブロックから、デバイスから *buf* (バイト列)"
+"にブロックを読み込みます。読み込むブロック数は *buf* の長さで与えられ、ブロック"
+"サイズの倍数になります。"
 
 #: ../../../library/uos.rst:203
 msgid ""
@@ -9947,42 +10119,51 @@ msgid ""
 " given by the length of *buf*, which will be a multiple of the block "
 "size."
 msgstr ""
+"インデックス *block_num* で指定したブロックに *buf* (バイト列)からブロックを"
+"書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
+"なります。"
 
 #: ../../../library/uos.rst:210
 msgid ""
 "Control the block device and query its parameters.  The operation to "
 "perform is given by *op* which is one of the following integers:"
 msgstr ""
+"ブロックデバイスを制御し、そのパラメータを問い合わせます。実行する操作は *op* に"
+"次の整数のうちの１つで指定します。"
 
 #: ../../../library/uos.rst:213
 msgid "1 -- initialise the device (*arg* is unused)"
-msgstr ""
+msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 
 #: ../../../library/uos.rst:214
 msgid "2 -- shutdown the device (*arg* is unused)"
-msgstr ""
+msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
 
 #: ../../../library/uos.rst:215
 msgid "3 -- sync the device (*arg* is unused)"
-msgstr ""
+msgstr "3 -- デバイスを同期します(*arg* は未使用)"
 
 #: ../../../library/uos.rst:216
 msgid ""
 "4 -- get a count of the number of blocks, should return an integer (*arg*"
 " is unused)"
-msgstr ""
+msgstr "4 -- ブロック数のカウントを取得し、整数で返します(*arg* は未使用)"
 
 #: ../../../library/uos.rst:218
 msgid ""
 "5 -- get the number of bytes in a block, should return an integer, or "
 "``None`` in which case the default value of 512 is used (*arg* is unused)"
 msgstr ""
+"5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
+"の 512 が使われます(*arg* は未使用)"
 
 #: ../../../library/uos.rst:222
 msgid ""
 "By way of example, the following class will implement a block device that"
 " stores its data in RAM using a ``bytearray``::"
 msgstr ""
+"一例として、次のクラスは ``bytearray`` を使って RAM にデータを記憶するブロック"
+"デバイスを実装します::"
 
 #: ../../../library/uos.rst:225
 msgid ""
@@ -10005,10 +10186,28 @@ msgid ""
 "        if op == 5: # get block size\n"
 "            return self.block_size"
 msgstr ""
+"class RAMBlockDev:\n"
+"    def __init__(self, block_size, num_blocks):\n"
+"        self.block_size = block_size\n"
+"        self.data = bytearray(block_size * num_blocks)\n"
+"\n"
+"    def readblocks(self, block_num, buf):\n"
+"        for i in range(len(buf)):\n"
+"            buf[i] = self.data[block_num * self.block_size + i]\n"
+"\n"
+"    def writeblocks(self, block_num, buf):\n"
+"        for i in range(len(buf)):\n"
+"            self.data[block_num * self.block_size + i] = buf[i]\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4: # ブロック数を取得\n"
+"            return len(self.data) // self.block_size\n"
+"        if op == 5: # ブロックサイズを取得\n"
+"            return self.block_size"
 
 #: ../../../library/uos.rst:244
 msgid "It can be used as follows::"
-msgstr ""
+msgstr "次のように使えます::"
 
 #: ../../../<rst_epilog>:246
 msgid ""
