@@ -557,17 +557,19 @@ msgstr ""
 
 #: ../../../library/framebuf.rst:2
 msgid ":mod:`framebuf` --- Frame buffer manipulation"
-msgstr ""
+msgstr ":mod:`framebuf` --- フレームバッファの操作"
 
 #: ../../../library/framebuf.rst:7
 msgid ""
 "This module provides a general frame buffer which can be used to create "
 "bitmap images, which can then be sent to a display."
 msgstr ""
+"このモジュールは、一般的なフレームバッファを提供し、ビットマップイメージを作成して"
+"ディスプレイに送ることができます。"
 
 #: ../../../library/framebuf.rst:11
 msgid "class FrameBuffer"
-msgstr ""
+msgstr "クラス FrameBuffer"
 
 #: ../../../library/framebuf.rst:13
 msgid ""
@@ -575,11 +577,13 @@ msgid ""
 "with pixels, lines, rectangles, text and even other FrameBuffer's. It is "
 "useful when generating output for displays."
 msgstr ""
+"FrameBuffer クラスは、ピクセル、ライン、矩形、テキスト、さらには他の FrameBuffer で"
+"描画できるピクセルバッファを提供します。ディスプレイの出力を生成するときに便利です。"
 
 #: ../../../library/framebuf.rst:17 ../../../library/lcd160cr.rst:25
 #: ../../../library/network.rst:15
 msgid "For example::"
-msgstr ""
+msgstr "たとえば次のように使います::"
 
 #: ../../../library/framebuf.rst:19
 msgid ""
@@ -592,6 +596,14 @@ msgid ""
 "fbuf.text('MicroPython!', 0, 0, 0xffff)\n"
 "fbuf.hline(0, 10, 96, 0xffff)"
 msgstr ""
+"import framebuf\n"
+"\n"
+"# FrameBuffer は RGB565 ピクセル毎に２バイトを必要とします\n"
+"fbuf = FrameBuffer(bytearray(10 * 100 * 2), 10, 100, framebuf.RGB565)\n"
+"\n"
+"fbuf.fill(0)\n"
+"fbuf.text('MicroPython!', 0, 0, 0xffff)\n"
+"fbuf.hline(0, 10, 96, 0xffff)"
 
 #: ../../../library/framebuf.rst:29 ../../../library/lcd160cr.rst:38
 #: ../../../library/machine.ADC.rst:16 ../../../library/machine.I2C.rst:34
@@ -618,7 +630,7 @@ msgstr "コンストラクター"
 
 #: ../../../library/framebuf.rst:33
 msgid "Construct a FrameBuffer object.  The parameters are:"
-msgstr ""
+msgstr "FrameBuffer オブジェクトを構築します。パラメータは次のとおりです:"
 
 #: ../../../library/framebuf.rst:35
 msgid ""
@@ -626,14 +638,17 @@ msgid ""
 "to contain every pixel defined by the width, height and format of the "
 "FrameBuffer."
 msgstr ""
+"*buffer* はバッファプロトコルを持つオブジェクトで、FrameBuffer の幅、高さ、"
+"フォーマットで定義されたすべてのピクセルを格納するのに十分な大きさでなければ"
+"なりません。"
 
 #: ../../../library/framebuf.rst:38
 msgid "*width* is the width of the FrameBuffer in pixels"
-msgstr ""
+msgstr "*width* は FrameBuffer の幅(ピクセル単位)です。"
 
 #: ../../../library/framebuf.rst:39
 msgid "*height* is the height of the FrameBuffer in pixels"
-msgstr ""
+msgstr "*height* は FrameBuffer の高さ(ピクセル単位)です。"
 
 #: ../../../library/framebuf.rst:40
 msgid ""
@@ -643,6 +658,11 @@ msgid ""
 "Where a color value c is passed to a method, c is a small integer with an"
 " encoding that is dependent on the format of the FrameBuffer."
 msgstr ""
+"*format* は FrameBuffer で使用されるピクセルのタイプを指定します。指定できる値は"
+"後述する定数にリストされているとおりです。これらは、カラー値をエンコードするために"
+"使用されるビットの数と、これらのビットのバッファ内のレイアウトを設定します。カラー値 "
+"c がメソッドに渡される場合、c は FrameBuffer のフォーマットに依存するエンコーディング"
+"を持つ小さな整数です。"
 
 #: ../../../library/framebuf.rst:46
 msgid ""
@@ -651,6 +671,10 @@ msgid ""
 "when implementing a FrameBuffer within another larger FrameBuffer or "
 "screen. The *buffer* size must accommodate an increased step size."
 msgstr ""
+"*stride* は FrameBuffer 内の水平ラインのピクセル数です。これはデフォルトでは "
+"*width* ですが、別の大きな FrameBuffer や画面内に FrameBuffer を実装する際に"
+"調整が必要な場合があります。 *buffer* のサイズは増えるステップサイズに対応しなければ"
+"なりません。"
 
 #: ../../../library/framebuf.rst:52
 msgid ""
@@ -658,24 +682,29 @@ msgid ""
 "optionally *stride*.  Invalid *buffer* size or dimensions may lead to "
 "unexpected errors."
 msgstr ""
+"コンストラクターでは有効な *buffer*, *width*, *height*, *format* と、オプションの "
+"*stride* を指定する必要があります。 *buffer* のサイズや幅が無効な場合、予期しない"
+"エラーが発生します。"
 
 #: ../../../library/framebuf.rst:57 ../../../library/lcd160cr.rst:212
 msgid "Drawing primitive shapes"
-msgstr ""
+msgstr "基本図形の描画"
 
 #: ../../../library/framebuf.rst:59
 msgid "The following methods draw shapes onto the FrameBuffer."
-msgstr ""
+msgstr "次のメソッドは FrameBuffer に図形を描画します。"
 
 #: ../../../library/framebuf.rst:63
 msgid "Fill the entire FrameBuffer with the specified color."
-msgstr ""
+msgstr "FrameBuffer 全体を指定された色で塗りつぶします。"
 
 #: ../../../library/framebuf.rst:67
 msgid ""
 "If *c* is not given, get the color value of the specified pixel. If *c* "
 "is given, set the specified pixel to the given color."
 msgstr ""
+"*c* を指定しない場合は、指定されたピクセルのカラー値を取得します。"
+"*c* を指定した場合は、指定したピクセルを指定した色に設定します。"
 
 #: ../../../library/framebuf.rst:74
 msgid ""
@@ -684,6 +713,9 @@ msgid ""
 " of coordinates whereas the `hline` and `vline` methods draw horizontal "
 "and vertical lines respectively up to a given length."
 msgstr ""
+"指定した色と1ピクセルの太さを使って、座標のセットから線を描画します。 `line` "
+"メソッドはラインを第2の座標セットへ描画するのに対し、 `hline` と `vline` "
+"メソッドはそれぞれ指定された長さまで水平ラインと垂直ラインを描画します。"
 
 #: ../../../library/framebuf.rst:83
 msgid ""
@@ -691,10 +723,13 @@ msgid ""
 " draws only a 1 pixel outline whereas the `fill_rect` method draws both "
 "the outline and interior."
 msgstr ""
+"指定された場所、サイズ、色で四角形を描画します。 `rect` メソッドはは１ピクセルの"
+"アウトラインを描画するのに対して、 `fill_rect` メソッドは輪郭とその内側の両方を"
+"描きます。"
 
 #: ../../../library/framebuf.rst:88 ../../../library/lcd160cr.rst:172
 msgid "Drawing text"
-msgstr ""
+msgstr "テキストの描画"
 
 #: ../../../library/framebuf.rst:92
 msgid ""
@@ -704,16 +739,21 @@ msgid ""
 "dimensions of 8x8 pixels and there is currently no way to change the "
 "font."
 msgstr ""
+"座標をテキストの左上隅として、FrameBuffer にテキストを書き込みます。テキストの色は"
+"オプションの引数で定義できますが、それ以外の場合はデフォルト値は 1 です。すべての"
+"文字のサイズは8x8ピクセルですが、現在フォントを変更する方法はありません。"
 
 #: ../../../library/framebuf.rst:99
 msgid "Other methods"
-msgstr ""
+msgstr "その他のメソッド"
 
 #: ../../../library/framebuf.rst:103
 msgid ""
 "Shift the contents of the FrameBuffer by the given vector. This may leave"
 " a footprint of the previous colors in the FrameBuffer."
 msgstr ""
+"指定された方向へ FrameBuffer の内容をシフトします。これにより、FrameBuffer に"
+"前の色のフットプリントが残る場合があります。"
 
 #: ../../../library/framebuf.rst:108
 msgid ""
@@ -722,6 +762,9 @@ msgid ""
 "the corresponding color will be considered transparent: all pixels with "
 "that color value will not be drawn."
 msgstr ""
+"現在のフレームバッファの上の指定された座標に、別の FrameBuffer を描画します。 "
+"*key* が指定されている場合、それは色を表す整数でなければならず、対応する色は"
+"透明であるとみなされます。その色の値を持つすべてのピクセルは描画されません。"
 
 #: ../../../library/framebuf.rst:113
 msgid ""
@@ -729,6 +772,8 @@ msgid ""
 "formats, but the resulting colors may be unexpected due to the mismatch "
 "in color formats."
 msgstr ""
+"このメソッドは、異なるフォーマットを使用する FrameBuffer インスタンス間で動作しますが、"
+"カラーフォーマットが一致しない場合の結果の色は予期できません。"
 
 #: ../../../library/framebuf.rst:122
 msgid ""
@@ -739,6 +784,10 @@ msgid ""
 "is reached. Further bytes are rendered at locations starting at the "
 "leftmost edge, 8 pixels lower."
 msgstr ""
+"モノクロ(1ビット)カラーフォーマットこれは、バイトのビットが垂直方向にマップされ、"
+"ビット0が画面の最上部に最も近いマッピングを定義します。したがって、各バイトは"
+"８垂直ピクセルを占有します。後続のバイトは、右端に達するまで連続した水平位置に"
+"現れます。さらに後続のバイトは、最左端から8ピクセル下の位置でレンダリングされます。"
 
 #: ../../../library/framebuf.rst:131
 msgid ""
@@ -748,6 +797,10 @@ msgid ""
 "horizontal locations until the rightmost edge is reached. Further bytes "
 "are rendered on the next row, one pixel lower."
 msgstr ""
+"モノクロ(1ビット)カラーフォーマット。これはバイト内のビットが水平方向にマッピング"
+"されるよう定義します。各バイトは8ビットの水平ピクセルを占め、ビット0が最も左になります。"
+"後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
+"1ピクセル下の次の行にレンダリングされます。"
 
 #: ../../../library/framebuf.rst:140
 msgid ""
@@ -757,22 +810,26 @@ msgid ""
 "horizontal locations until the rightmost edge is reached. Further bytes "
 "are rendered on the next row, one pixel lower."
 msgstr ""
+"モノクロ(1ビット)カラーフォーマット。これはバイト内のビットが水平方向にマッピング"
+"されるよう定義します。各バイトは8ビットの水平ピクセルを占め、ビット7が最も左になります。"
+"後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
+"1ピクセル下の次の行にレンダリングされます。"
 
 #: ../../../library/framebuf.rst:149
 msgid "Red Green Blue (16-bit, 5+6+5) color format"
-msgstr ""
+msgstr "レッドグリーンブルー(16ビット、5+6+5)カラーフォーマット"
 
 #: ../../../library/framebuf.rst:153
 msgid "Grayscale (2-bit) color format"
-msgstr ""
+msgstr "グレースケール(2ビット)カラーフォーマット"
 
 #: ../../../library/framebuf.rst:157
 msgid "Grayscale (4-bit) color format"
-msgstr ""
+msgstr "グレースケール(4ビット)カラーフォーマット"
 
 #: ../../../library/framebuf.rst:161
 msgid "Grayscale (8-bit) color format"
-msgstr ""
+msgstr "グレースケール(8ビット)カラーフォーマット"
 
 #: ../../../library/gc.rst:2
 msgid ":mod:`gc` -- control the garbage collector"
@@ -1610,7 +1667,7 @@ msgstr ""
 
 #: ../../../library/machine.rst:2
 msgid ":mod:`machine` --- functions related to the hardware"
-msgstr ""
+msgstr ":mod:`machine` --- ハードウェア関連の関数"
 
 #: ../../../library/machine.rst:7
 msgid ""
@@ -1621,6 +1678,11 @@ msgid ""
 "lead to malfunction, lockups, crashes of your board, and in extreme "
 "cases, hardware damage."
 msgstr ""
+"``machine`` モジュールは、特定のボード上のハードウェアに関連する固有の関数を含んで"
+"います。このモジュールのほとんどの機能はシステム上のハードウェアブロック(CPU、"
+"タイマー、バスなど)への直接的かつ無制限のアクセスと制御を実現します。誤って使用すると、"
+"誤動作、ロックアップ、ボードのクラッシュ、および極端な場合にはハードウェアの損傷を"
+"招く可能性があります。"
 
 #: ../../../library/machine.rst:16
 msgid ""
@@ -1631,26 +1693,35 @@ msgid ""
 "devices are still thin shims on top of real hardware and real hardware "
 "interrupts). See :ref:`isr_rules`."
 msgstr ""
+":mod:`machine` モジュールの関数とクラスが使うコールバックについての注記: "
+"これらのコールバックはすべて、割り込みコンテキストでの実行とみなされるべきです。"
+"これは ID >= 0 の物理デバイスと、-1 などの負のIDを持つ「仮想」デバイスの両方に"
+"当てはまります(「仮想」デバイスであっても、実際のハードウェアと実際のハードウェア"
+"割り込みのがある上に小さく用意されているものです)。 :ref:`isr_rules` を参照して"
+"ください。"
 
 #: ../../../library/machine.rst:23 ../../../library/pyb.rst:72
 msgid "Reset related functions"
-msgstr ""
+msgstr "リセット関連の関数"
 
 #: ../../../library/machine.rst:27
 msgid ""
 "Resets the device in a manner similar to pushing the external RESET "
 "button."
 msgstr ""
+"外部 RESET ボタンを押すのと同じようにデバイスをリセットします。"
 
 #: ../../../library/machine.rst:32
 msgid ""
 "Get the reset cause. See :ref:`constants <machine_constants>` for the "
 "possible return values."
 msgstr ""
+"リセット原因を取得します。戻り値については :ref:`定数 <machine_constants>` を"
+"参照してください。"
 
 #: ../../../library/machine.rst:35 ../../../library/pyb.rst:97
 msgid "Interrupt related functions"
-msgstr ""
+msgstr "割り込み関連の関数"
 
 #: ../../../library/machine.rst:39
 msgid ""
@@ -1659,6 +1730,9 @@ msgid ""
 "`enable_irq()` function to restore interrupts to their original state, "
 "before `disable_irq()` was called."
 msgstr ""
+"割り込み要求を無効にします。無効にする前の IRQ 状態を返しますが、これは不明瞭な"
+"値とみなす必要があります。この戻り値は `disable_irq()` を呼び出す前の"
+"元の状態に割り込みを復元するために `enable_irq()` 関数に渡す必要があります。"
 
 #: ../../../library/machine.rst:46
 msgid ""
@@ -1666,14 +1740,16 @@ msgid ""
 "that was returned from the most recent call to the `disable_irq()` "
 "function."
 msgstr ""
+"割り込み要求を再度有効にします。 *state* パラメータは `disable_irq()` 関数の"
+"最も最近の呼び出しから返された値である必要があります。"
 
 #: ../../../library/machine.rst:51 ../../../library/pyb.rst:115
 msgid "Power related functions"
-msgstr ""
+msgstr "電力関連の関数"
 
 #: ../../../library/machine.rst:55
 msgid "Returns CPU frequency in hertz."
-msgstr ""
+msgstr "CPU周波数をヘルツ単位で返します。"
 
 #: ../../../library/machine.rst:59
 msgid ""
@@ -1683,6 +1759,9 @@ msgid ""
 "this includes system timer interrupt occurring at regular intervals on "
 "the order of millisecond)."
 msgstr ""
+"短時間または長期間のいずれでも消費電力を抑えるように CPU へのクロック供給を制御します。"
+"ペリフェラルは動作を継続し、割り込みが発生すると直ちに実行を再開します(多くのポートでは、"
+"システムタイマ割り込みがミリ秒単位で定期的に発生します)。"
 
 #: ../../../library/machine.rst:66
 msgid ""
@@ -1690,6 +1769,8 @@ msgid ""
 "resumed from the point where the sleep was requested. For wake up to "
 "actually happen, wake sources should be configured first."
 msgstr ""
+"CPU を停止し、WLAN を除くすべての周辺機器を無効にします。実行は sleep が要求された"
+"時点から再開されます。起床が実際に起きるためには、起床の源を最初に設定する必要があります。"
 
 #: ../../../library/machine.rst:72
 msgid ""
@@ -1699,20 +1780,27 @@ msgid ""
 "`machine.DEEPSLEEP`. For wake up to actually happen, wake sources should "
 "be configured first, like `Pin` change or `RTC` timeout."
 msgstr ""
+"CPU とすべての周辺機器(ネットワークインタフェースがあればそれを含む)を停止します。"
+"実行はリセットと同様にメインスクリプトから再開されます。リセットが "
+"`machine.DEEPSLEEP` から来ていることを知るためのチェック方法は用意されています。"
+"起床が実際に起きるためには、 `Pin` の変化や 'RTC' のタイムアウトなどの"
+"起床の源を最初に設定する必要があります。"
 
 #: ../../../library/machine.rst:79
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
 msgstr ""
+"起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
+"を参照してください。"
 
 #: ../../../library/machine.rst:81
 msgid "Availability: ESP32, WiPy."
-msgstr ""
+msgstr "可用性: ESP32、WiPy。"
 
 #: ../../../library/machine.rst:84 ../../../library/pyb.rst:187
 msgid "Miscellaneous functions"
-msgstr ""
+msgstr "その他の関数"
 
 #: ../../../library/machine.rst:88
 msgid ""
@@ -1722,6 +1810,10 @@ msgid ""
 "expect a short ID). In some MicroPython ports, ID corresponds to the "
 "network MAC address."
 msgstr ""
+"ボード/SoC の一意な識別子を持つバイト列を返します。基盤となるハードウェアが許せば、"
+"この値はボード/SoC の個体ごとに異なります。長さはハードウェアによって異なります"
+"(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
+"MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
 #: ../../../library/machine.rst:95
 msgid ""
@@ -1729,6 +1821,8 @@ msgid ""
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
 " or 1 to time a high pulse."
 msgstr ""
+"指定の *pin* にパルスの持続時間をマイクロ秒単位で返します。 *pulse_level* 引数には、"
+"低パルスの時間計測で 0、高パルスの時間計測で 1 を指定します。"
 
 #: ../../../library/machine.rst:99
 msgid ""
@@ -1738,6 +1832,10 @@ msgid ""
 "*pulse_level*. If the pin is already equal to *pulse_level* then timing "
 "starts straight away."
 msgstr ""
+"ピンの現在の入力値が *pulse_level* と異なる場合、関数は最初にピン入力が "
+"*pulse_level* に等しくなるまで待機し(*)、次にそのピンが *pulse_level* に等しい"
+"時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
+"されます。"
 
 #: ../../../library/machine.rst:104
 msgid ""
@@ -1746,28 +1844,31 @@ msgid ""
 "measurement, marked (**) above. The timeout is the same for both cases "
 "and given by *timeout_us* (which is in microseconds)."
 msgstr ""
+"タイムアウトが発生した場合、上記の(*)の状態を待っていた場合は -2 を返し、上記の"
+"(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
+"(マイクロ秒単位)で指定します。"
 
 #: ../../../library/machine.rst:111
 msgid "Return a 24-bit software generated random number."
-msgstr ""
+msgstr "24ビットのソフトウェア生成乱数を返します。"
 
 #: ../../../library/machine.I2C.rst:67 ../../../library/machine.Pin.rst:180
 #: ../../../library/machine.UART.rst:143 ../../../library/machine.UART.rst:152
 #: ../../../library/machine.rst:113
 msgid "Availability: WiPy."
-msgstr ""
+msgstr "可用性: WiPy。"
 
 #: ../../../library/machine.rst:124
 msgid "IRQ wake values."
-msgstr ""
+msgstr "IRQ ウェイク値。"
 
 #: ../../../library/machine.rst:132
 msgid "Reset causes."
-msgstr ""
+msgstr "リセッチ原因。"
 
 #: ../../../library/machine.rst:138
 msgid "Wake-up reasons."
-msgstr ""
+msgstr "起床理由。"
 
 #: ../../../library/machine.ADC.rst:5 ../../../library/pyb.ADC.rst:5
 msgid "class ADC -- analog to digital conversion"
@@ -9812,7 +9913,7 @@ msgid ""
 msgstr ""
 "この関数はイテレータを返します。イテレータが生成するのは、ディレクトリ内のエントリに"
 "対応するタプルです。引数なしの場合はカレントディレクトリを、それ以外の場合は "
-"*dir* で指定したディレクトリをリストします。
+"*dir* で指定したディレクトリをリストします。"
 
 #: ../../../library/uos.rst:50
 msgid "The tuples have the form *(name, type, inode[, size])*:"
@@ -9823,7 +9924,7 @@ msgid ""
 "*name* is a string (or bytes if *dir* is a bytes object) and is the name "
 "of the entry;"
 msgstr ""
-"*name* は文字列(*dir* バイト列オブジェクトの場合はバイト列)であり、エントリの名前です。
+"*name* は文字列(*dir* バイト列オブジェクトの場合はバイト列)であり、エントリの名前です。"
 
 #: ../../../library/uos.rst:54
 msgid ""
@@ -10222,7 +10323,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:2
 msgid ":mod:`ure` -- simple regular expressions"
-msgstr ""
+msgstr ":mod:`ure` -- 簡素な正規表現"
 
 #: ../../../library/ure.rst:7
 msgid "|see_cpython_module| :mod:`python:re`."
@@ -10234,10 +10335,12 @@ msgid ""
 "syntax supported is a subset of CPython ``re`` module (and actually is a "
 "subset of POSIX extended regular expressions)."
 msgstr ""
+"このモジュールは正規表現操作を実装します。サポートされている正規表現構文は CPython の "
+"``re`` モジュールのサブセットです(実際には POSIX 拡張正規表現のサブセットです)。"
 
 #: ../../../library/ure.rst:13
 msgid "Supported operators are:"
-msgstr ""
+msgstr "サポートされている演算子は次のものです:"
 
 #: ../../../library/ure.rst:16
 msgid "``'.'``"
@@ -10245,7 +10348,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:16
 msgid "Match any character."
-msgstr ""
+msgstr "任意の文字にマッチします。"
 
 #: ../../../library/ure.rst:20
 msgid "``'[...]'``"
@@ -10256,6 +10359,8 @@ msgid ""
 "Match set of characters. Individual characters and ranges are supported, "
 "including negated sets (e.g. ``[^a-c]``)."
 msgstr ""
+"文字セットにマッチします。文字の個別指定と範囲指定をサポートします。文字セットには、"
+"なしセット(``[^a-c]`` など)も含みます。"
 
 #: ../../../library/ure.rst:23
 msgid "``'^'``"
@@ -10263,7 +10368,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:23
 msgid "Match the start of the string."
-msgstr ""
+msgstr "文字列の先頭にマッチします。"
 
 #: ../../../library/ure.rst:26
 msgid "``'$'``"
@@ -10271,7 +10376,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:26
 msgid "Match the end of the string."
-msgstr ""
+msgstr "文字列の最後にマッチします。"
 
 #: ../../../library/ure.rst:29
 msgid "``'?'``"
@@ -10279,7 +10384,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:29
 msgid "Match zero or one of the previous entity."
-msgstr ""
+msgstr "直前のエンティティの0回または1回の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:32
 msgid "``'*'``"
@@ -10287,7 +10392,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:32
 msgid "Match zero or more of the previous entity."
-msgstr ""
+msgstr "直前のエンティティの0回以上の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:35
 msgid "``'+'``"
@@ -10295,7 +10400,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:35
 msgid "Match one or more of the previous entity."
-msgstr ""
+msgstr "直前のエンティティの1回以上の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:37
 msgid "``'??'``"
@@ -10315,7 +10420,7 @@ msgstr ""
 
 #: ../../../library/ure.rst:44
 msgid "Match either the LHS or the RHS of this operator."
-msgstr ""
+msgstr "この演算子の左辺または右辺のどちらかにマッチします。"
 
 #: ../../../library/ure.rst:48
 msgid "``'(...)'``"
@@ -10326,6 +10431,8 @@ msgid ""
 "Grouping. Each group is capturing (a substring it captures can be "
 "accessed with `match.group()` method)."
 msgstr ""
+"グループ化。各グループについてキャプチャを行います(キャプチャした部分文字列は "
+"`match.group()` メソッドでアクセスできます)。"
 
 #: ../../../library/ure.rst:50
 msgid ""
@@ -10333,16 +10440,20 @@ msgid ""
 "assertions (``\\b``, ``\\B``), named groups (``(?P<name>...)``), non-"
 "capturing groups (``(?:...)``), etc."
 msgstr ""
+"**未サポート**: 反復回数(``{m,n}``)、より高度なアサーション(``\\b``, ``\\B``)、"
+"名前付きグループ(``(?P<name>...)``)、非キャプチャグループ(``(?:...)``)など。"
 
 #: ../../../library/ure.rst:60
 msgid "Compile regular expression, return `regex <regex>` object."
-msgstr ""
+msgstr "正規表現をコンパイルし、 ``regex`` オブジェクトを返します。"
 
 #: ../../../library/ure.rst:64
 msgid ""
 "Compile *regex_str* and match against *string*. Match always happens from"
 " starting position in a string."
 msgstr ""
+"*regex_str* をコンパイルし、文字列 *string* とマッチするか照合します。マッチは常に文字列の"
+"先頭位置から行います。"
 
 #: ../../../library/ure.rst:69
 msgid ""
@@ -10350,12 +10461,17 @@ msgid ""
 "will search string for first position which matches regex (which still "
 "may be 0 if regex is anchored)."
 msgstr ""
+"*regex_str* をコンパイルして文字列 *string* を検索します。 `match` とは異なり、"
+"正規表現にマッチする最初の位置の文字列を検索します(正規表現がマッチすれば位置 0 の"
+"文字列になることもあります)。"
 
 #: ../../../library/ure.rst:75
 msgid ""
 "Compile *regex_str* and search for it in *string*, replacing all matches "
 "with *replace*, and returning the new string."
 msgstr ""
+"*regex_str* をコンパイルして文字列 *string* を検索し、マッチしたものすべてを "
+"*replace* で置換した新しい文字列を返します。"
 
 #: ../../../library/ure.rst:78
 msgid ""
@@ -10365,32 +10481,43 @@ msgid ""
 "groups). If *replace* is a function then it must take a single argument "
 "(the match) and should return a replacement string."
 msgstr ""
+"*replace* には文字列または関数を指定できます。文字列である場合、エスケープシーケンス "
+"``\\<number>`` と ``\\g<number>`` が対応するグループに展開するために使われます"
+"(マッチしなかったグループについては空文字列)。 *replace* が関数であれば、その関数は"
+"単一の引数(match オブジェクト)をとらなければならず、置換した文字列を返す必要が"
+"あります。"
 
 #: ../../../library/ure.rst:84
 msgid ""
 "If *count* is specified and non-zero then substitution will stop after "
 "this many substitutions are made.  The *flags* argument is ignored."
 msgstr ""
+"*count* に 0 で無い値が指定された場合、置換はこの指定の数に達したところで終わります。 "
+"*flags* 引数は無視されます。"
 
 #: ../../../library/ure.rst:87
 msgid "Note: availability of this function depends on `MicroPython port`."
-msgstr ""
+msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
 
 #: ../../../library/ure.rst:91
 msgid ""
 "Flag value, display debug information about compiled expression. "
 "(Availability depends on `MicroPython port`.)"
 msgstr ""
+"コンパイルされた正規表現についてのデバッグ情報を表示するフラグ値。"
+"(可用性は `MicroPython ポート` に依存します。)"
 
 #: ../../../library/ure.rst:98
 msgid "Regex objects"
-msgstr ""
+msgstr "regex オブジェクト"
 
 #: ../../../library/ure.rst:100
 msgid ""
 "Compiled regular expression. Instances of this class are created using "
 "`ure.compile()`."
 msgstr ""
+"コンパイルされた正規表現です。このクラスのインスタンスは `ure.compile()` を"
+"使っって作成されます。"
 
 #: ../../../library/ure.rst:107
 msgid ""
@@ -10398,6 +10525,9 @@ msgid ""
 ":meth:`sub`. Using methods is (much) more efficient if the same regex is "
 "applied to multiple strings."
 msgstr ""
+"モジュールレベルの関数 :meth:`match`, :meth:`search`, :meth:`sub` "
+"と同様です。同じ regex が複数の文字列に適用されている場合、このメソッドを使ったほうが"
+"(ずっと)より効率的です。"
 
 #: ../../../library/ure.rst:114
 msgid ""
@@ -10405,30 +10535,38 @@ msgid ""
 "maximum number of splits to perform. Returns list of strings (there may "
 "be up to *max_split+1* elements if it's specified)."
 msgstr ""
+"regex を使って *string* を分割します。 *max_split* を与えた場合、それは実行する"
+"分割の最大数を指定します。文字列のリストを返します(*max_split* を指定した場合は"
+"最大 *max_split+1* の数の文字列を返します)。"
 
 #: ../../../library/ure.rst:119
 msgid "Match objects"
-msgstr ""
+msgstr "match オブジェクト"
 
 #: ../../../library/ure.rst:121
 msgid ""
 "Match objects as returned by `match()` and `search()` methods, and passed"
 " to the replacement function in `sub()`."
 msgstr ""
+"match オブジェクトは `match()` と `search()` メソッドが返し、 `sub()` "
+"の置換関数に渡すものです。"
 
 #: ../../../library/ure.rst:126
 msgid ""
 "Return matching (sub)string. *index* is 0 for entire match, 1 and above "
 "for each capturing group. Only numeric groups are supported."
 msgstr ""
+"マッチした(部分)文字列を返します。 *index* が 0 であればマッチした文字列全体を返し、"
+"1 以上であれば指定のグループにマッチした文字列です。数字によるグループ指定だけが"
+"サポートされます。"
 
 #: ../../../library/ure.rst:131
 msgid "Return a tuple containing all the substrings of the groups of the match."
-msgstr ""
+msgstr "マッチしたグループの部分文字列すべてのタプルを返します。"
 
 #: ../../../library/ure.rst:133 ../../../library/ure.rst:148
 msgid "Note: availability of this method depends on `MicroPython port`."
-msgstr ""
+msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
 
 #: ../../../library/ure.rst:138
 msgid ""
@@ -10436,18 +10574,21 @@ msgid ""
 "substring group that was matched.  *index* defaults to the entire group, "
 "otherwise it will select a group."
 msgstr ""
+"マッチした部分文字列グループの先頭または最後の元文字列中のインデックスを返します。"
+"*index* を指定しなければデフォルトでグループ全体になります。それ以外の場合は"
+"指定したグループになります。"
 
 #: ../../../library/ure.rst:142
 msgid "Note: availability of these methods depends on `MicroPython port`."
-msgstr ""
+msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
 
 #: ../../../library/ure.rst:146
 msgid "Returns the 2-tuple ``(match.start(index), match.end(index))``."
-msgstr ""
+msgstr "2項目のプル ``(match.start(index), match.end(index))`` を返します。"
 
 #: ../../../library/uselect.rst:2
 msgid ":mod:`uselect` -- wait for events on a set of streams"
-msgstr ""
+msgstr ":mod:`uselect` -- 一連のストリームのイベント待機"
 
 #: ../../../library/uselect.rst:7
 msgid "|see_cpython_module| :mod:`python:select`."
@@ -10458,36 +10599,40 @@ msgid ""
 "This module provides functions to efficiently wait for events on multiple"
 " `streams <stream>` (select streams which are ready for operations)."
 msgstr ""
+"このモジュールは、複数の `ストリーム <stream>` (操作の準備ができている select ストリーム)"
+"のイベントを効率的に待機する機能を提供します。"
 
 #: ../../../library/uselect.rst:17
 msgid "Create an instance of the Poll class."
-msgstr ""
+msgstr "Poll クラスのインスタンスを作成します。"
 
 #: ../../../library/uselect.rst:21
 msgid "Wait for activity on a set of objects."
-msgstr ""
+msgstr "一連のオブジェクトに対するアクティビティを待機します。"
 
 #: ../../../library/uselect.rst:23
 msgid ""
 "This function is provided by some MicroPython ports for compatibility and"
 " is not efficient. Usage of :class:`Poll` is recommended instead."
 msgstr ""
+"この関数は、いくつかの MicroPython ポートで互換性のために提供されており、効率的では"
+"ありません。代わりに :class:`Poll` の利用を勧めます。"
 
 #: ../../../library/uselect.rst:29
 msgid "class ``Poll``"
-msgstr ""
+msgstr "クラス ``Poll``"
 
 #: ../../../library/uselect.rst:36
 msgid "Register `stream` *obj* for polling. *eventmask* is logical OR of:"
-msgstr ""
+msgstr "ポーリングのための `ストリーム <stream>` *obj* を登録します。 *eventmask* は以下の論理和です:"
 
 #: ../../../library/uselect.rst:38
 msgid "``uselect.POLLIN``  - data available for reading"
-msgstr ""
+msgstr "``uselect.POLLIN``  - データを読込み可能"
 
 #: ../../../library/uselect.rst:39
 msgid "``uselect.POLLOUT`` - more data can be written"
-msgstr ""
+msgstr "``uselect.POLLOUT`` - データを書込み可能"
 
 #: ../../../library/uselect.rst:41
 msgid ""
@@ -10496,10 +10641,14 @@ msgid ""
 "be returned from `poll()` regardless of whether they are asked for). This"
 " semantics is per POSIX."
 msgstr ""
+"``uselect.POLLHUPPP や ``uselect.POLLERR`` のようなフラグは、"
+"入力イベントマスクとして有効ではないことに注意してください"
+"(これらは要求したかに関わらず `poll()` から返される迷惑なイベントです)。
+"このセマンティクスは POSIX の仕様からきています。"
 
 #: ../../../library/uselect.rst:46
 msgid "*eventmask* defaults to ``uselect.POLLIN | uselect.POLLOUT``."
-msgstr ""
+msgstr "*eventmask* のデフォルトは ``uselect.POLLIN | uselect.POLLOUT`` です。"
 
 #: ../../../library/uselect.rst:48
 msgid ""
@@ -10507,16 +10656,21 @@ msgid ""
 "Successive calls will update *obj*'s eventmask to the value of "
 "*eventmask* (i.e. will behave as `modify()`)."
 msgstr ""
+"同じ *obj* に対してこの関数を複数回呼び出しても大丈夫です。"
+"連続の呼出しは *obj* のイベントマスクを "*eventmask* の値に更新します"
+"(すなわち `modify()` として動作します)。"
 
 #: ../../../library/uselect.rst:54
 msgid "Unregister *obj* from polling."
-msgstr ""
+msgstr "*obj* をポーリングから登録解除します。"
 
 #: ../../../library/uselect.rst:58
 msgid ""
 "Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError` "
 "is raised with error of ENOENT."
 msgstr ""
+"*obj* のイベントマスクを変更します。 *obj* が登録されていない場合は "
+"ENOENT のエラーで `OSError` を発生させます。"
 
 #: ../../../library/uselect.rst:63
 msgid ""
@@ -10524,6 +10678,9 @@ msgid ""
 "an exceptional condition, with optional timeout in milliseconds (if "
 "*timeout* arg is not specified or -1, there is no timeout)."
 msgstr ""
+"登録済のオブジェクトの少なくとも１つが準備完了になるのを、オプションのタイムアウト値"
+"(ミリ秒単位)まで待ちます。 タイムアウト値 *timeout* 引数が指定されていない場合、"
+"または -1 を指定した場合はタイムアウトなしとなります。"
 
 #: ../../../library/uselect.rst:67
 msgid ""
@@ -10538,14 +10695,22 @@ msgid ""
 "invocations of `poll()` may return immediately with these flags set for "
 "this stream again."
 msgstr ""
+"戻り値はタプル (``obj``, ``event``, ...) のリストです。プラットフォームや"
+"バージョンによってはタプルに他の要素もある可能性がありますので、サイズが 2 であると"
+"仮定しないでください。項目 ``event`` はストリームで発生したイベントを表し、 "
+"``uselect.POLL*`` 上で説明した定数の組み合わせです。フラグ ``uselect.POLLHUP`` "
+"と ``uselect.POLLERR`` はいつでも(要求しなくても)返される可能性があるので、"
+"それに応じて振る舞う必要があります(該当ストリームは登録解除されていて、おそらく"
+"クローズしています)。なぜなら `poll()` のそれ以降のすべての呼び出しは、この"
+"ストリームに設定したこれらのフラグで直ちに返されるからです。"
 
 #: ../../../library/uselect.rst:77
 msgid "In case of timeout, an empty list is returned."
-msgstr ""
+msgstr "タイムアウトの場合、空リストが返されます。"
 
 #: ../../../library/uselect.rst:82
 msgid "Tuples returned may contain more than 2 elements as described above."
-msgstr ""
+msgstr "返されるタプルは、上記のように２つ以上の要素を含むことがあります。"
 
 #: ../../../library/uselect.rst:86
 msgid ""
@@ -10553,6 +10718,9 @@ msgid ""
 "`callee-owned tuple`. This function provides an efficient, allocation-"
 "free way to poll on streams."
 msgstr ""
+":meth:`poll.poll` と同様ですが、代わりに「呼出し先所有タプル」をもたらす"
+"イテレータを返します。この関数は、ストリームをポーリングするのにの効率的で、"
+"メモリ割当てのない手段を提供します。"
 
 #: ../../../library/uselect.rst:90
 msgid ""
@@ -10562,14 +10730,18 @@ msgid ""
 "won't be processed until new mask is set with `poll.modify()`. This "
 "behavior is useful for asynchronous I/O schedulers."
 msgstr ""
+"*flags* が 1 の場合、イベントのワンショット動作が採用されます。イベントが発生した"
+"ストリームは、イベントマスクが自動的にリセットされるので(``poll.modify(obj, 0)`` "
+"と同等)、新しいマスクが設定されるまで、そのストリームの新しいイベントは処理されません。"
+"この動作は、非同期 I/O スケジューラに役立ちます。"
 
 #: ../../../library/uselect.rst:99
 msgid "This function is a MicroPython extension."
-msgstr ""
+msgstr "この関数は MicroPython の拡張機能です。"
 
 #: ../../../library/usocket.rst:3
 msgid ":mod:`usocket` -- socket module"
-msgstr ""
+msgstr ":mod:`usocket` -- ソケットモジュール"
 
 #: ../../../library/usocket.rst:8
 msgid "|see_cpython_module| :mod:`python:socket`."
@@ -11027,7 +11199,7 @@ msgstr ""
 
 #: ../../../library/ussl.rst:2
 msgid ":mod:`ussl` -- SSL/TLS module"
-msgstr ""
+msgstr ":mod:`ussl` -- SSL/TLS モジュール"
 
 #: ../../../library/ussl.rst:7
 msgid "|see_cpython_module| :mod:`python:ssl`."
@@ -11040,6 +11212,10 @@ msgid ""
 "authentication facilities for network sockets, both client-side and "
 "server-side."
 msgstr ""
+"このモジュールは Transport Layer Security (以前は “Secure Sockets Layer” と"
+"と呼ばれていて、今でもこの名称で呼ばれることが多々あります)による暗号化と"
+"クライアント側とサーバー側のネットワークソケットのピア認証機能へのアクセスを提供"
+"します。"
 
 #: ../../../library/ussl.rst:18
 msgid ""
@@ -11052,6 +11228,14 @@ msgid ""
 "socket should be created from a normal socket returned from "
 ":meth:`~usocket.socket.accept()` on a non-SSL listening server socket."
 msgstr ""
+"`stream` *sock* (通常は ``SOCK_STREAM`` タイプの usocket.socket インスタンス)を"
+"引数としてとり、SSL コンテキストで基本となるストリームをラップした ssl.SSLSocket "
+"インスタンスを返します。返されるオブジェクトには ``read()``, ``write()`` のような"
+"通常の `stream` インスタンスのインタフェースメソッドをがあります。MicroPython "
+"において、返されたオブジェクトは ``recv()``, ``send()`` のようなソケットインタフェースや"
+"メソッドを公開していません。特に、サーバー側の SSL ソケットは、非 SSL リスニングサーバー"
+"ソケットの :meth:`~usocket.socket.accept()` から返される通常のソケットから作成する"
+"必要があります。"
 
 #: ../../../library/ussl.rst:26
 msgid ""
@@ -11059,6 +11243,8 @@ msgid ""
 "`MicroPython port`, some or all keyword arguments above may be not "
 "supported."
 msgstr ""
+"特定の "`MicroPython ポート` のモジュールの実装によっては、 上記のキーワード"
+"引数の一部またはすべてがサポートされていない可能性があります。"
 
 #: ../../../library/ussl.rst:31
 msgid ""
@@ -11066,18 +11252,21 @@ msgid ""
 "certificates, which makes an SSL connection established prone to man-in-"
 "the-middle attacks."
 msgstr ""
+"``ussl`` モジュールの実装によってはサーバー証明書の検証が行われないため、"
+"中間者攻撃を受けやすい SSL 接続になってしまいます。"
 
 #: ../../../library/ussl.rst:39
 msgid "This exception does NOT exist. Instead its base class, OSError, is used."
 msgstr ""
+"この例外は存在しません。代わりにベースクラスの OSError が使われます。"
 
 #: ../../../library/ussl.rst:48
 msgid "Supported values for *cert_reqs* parameter."
-msgstr ""
+msgstr "*cert_reqs* パラメーターでサポートされる値です。"
 
 #: ../../../library/ustruct.rst:2
 msgid ":mod:`ustruct` -- pack and unpack primitive data types"
-msgstr ""
+msgstr ":mod:`ustruct` -- 基本データ型のパックとアンパック"
 
 #: ../../../library/ustruct.rst:7
 msgid "|see_cpython_module| :mod:`python:struct`."
@@ -11085,7 +11274,7 @@ msgstr ""
 
 #: ../../../library/ustruct.rst:9
 msgid "Supported size/byte order prefixes: ``@``, ``<``, ``>``, ``!``."
-msgstr ""
+msgstr "サポートするサイズ/バイト順プレフィックス: ``@``, ``<``, ``>``, ``!``."
 
 #: ../../../library/ustruct.rst:11
 msgid ""
@@ -11093,16 +11282,21 @@ msgid ""
 "``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (the latter 2 depending "
 "on the floating-point support)."
 msgstr ""
+"サポートする書式コード: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``, "
+"``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (最後の２つは浮動小数点の"
+"サポートに依存)。"
 
 #: ../../../library/ustruct.rst:20
 msgid "Return the number of bytes needed to store the given *fmt*."
-msgstr ""
+msgstr "指定した *fmt* で格納するために必要なバイト数を返します。"
 
 #: ../../../library/ustruct.rst:24
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt*. The"
 " return value is a bytes object encoding the values."
 msgstr ""
+"フォーマット文字列 *fmt* にしたがって、値 *v1*、*v2*、... をパックします。戻り値は、"
+"値をエンコードしたバイト列オブジェクトです。"
 
 #: ../../../library/ustruct.rst:29
 msgid ""
@@ -11110,12 +11304,17 @@ msgid ""
 " a *buffer* starting at *offset*. *offset* may be negative to count from "
 "the end of *buffer*."
 msgstr ""
+"フォーマット文字列 *fmt* にしたがって、値 *v1*、*v2*、... をパックし、バッファ "
+"*buffer* の開始オフセット *offset* に格納します。 *offset* が負の場合は *buffer* "
+"の最後からのオフセットになります。"
 
 #: ../../../library/ustruct.rst:35
 msgid ""
 "Unpack from the *data* according to the format string *fmt*. The return "
 "value is a tuple of the unpacked values."
 msgstr ""
+"フォーマット文字列 *fmt* にしたがって *data* からアンパックします。"
+"戻り値はアンパックした値のタプルです。"
 
 #: ../../../library/ustruct.rst:40
 msgid ""
@@ -11123,10 +11322,13 @@ msgid ""
 "string *fmt*. *offset* may be negative to count from the end of *buffer*."
 " The return value is a tuple of the unpacked values."
 msgstr ""
+"フォーマット文字列 *fmt* にしたがって "*data* の開始オフセット *offset* から"
+"アンパックします。 *offset* が負の場合は *buffer* の最後からのオフセットになります。"
+"戻り値はアンパックした値のタプルです。"
 
 #: ../../../library/utime.rst:2
 msgid ":mod:`utime` -- time related functions"
-msgstr ""
+msgstr ":mod:`utime` -- 時間関連の関数"
 
 #: ../../../library/utime.rst:7
 msgid "|see_cpython_module| :mod:`python:time`."
@@ -11137,6 +11339,7 @@ msgid ""
 "The ``utime`` module provides functions for getting the current time and "
 "date, measuring time intervals, and for delays."
 msgstr ""
+"この ``utime`` モジュールには、現在の日時の取得、時間隔の測定、遅延の機能があります。"
 
 #: ../../../library/utime.rst:12
 msgid ""
@@ -11144,6 +11347,9 @@ msgid ""
 "1970-01-01 00:00:00 UTC. However, embedded ports use epoch of 2000-01-01 "
 "00:00:00 UTC."
 msgstr ""
+"エポックタイム: Unix ポートは、1970年1月1日 00:00:00 UTC の POSIX システム"
+"エポックの標準を使います。ただし、組込み機器へのポートは、2000年1月1日 00:00:00 UTC "
+"のエポックを使います。"
 
 #: ../../../library/utime.rst:16
 msgid ""
@@ -11156,16 +11362,26 @@ msgid ""
 " using ``machine.RTC().datetime(tuple)`` function, and maintained by "
 "following means:"
 msgstr ""
+"**実際のカレンダーの日付/時間の維持**: これにはリアルタイムクロック(RTC: Real "
+"Time Clock)が必要です。基盤 OS (一部の RTOS も含む)を持つシステムでは、RTC "
+"が暗黙的に存在することが前提となっています。実際のカレンダー時間の設定と維持は、"
+"OS/RTOS の責務であり、MicroPython の外部で行われ、日時/時間を照会するために "
+"OS の API を使うだけです。しかし、ベアメタルポートでは、システム時間は "
+"``machine.RTC()`` オブジェクトに依存します。現在のカレンダー時間は "
+"``machine.RTC().datetime(tuple)`` 関数を使って設定し、以下の手段によって維持"
+"されます。"
 
 #: ../../../library/utime.rst:25
 msgid ""
 "By a backup battery (which may be an additional, optional component for a"
 " particular board)."
 msgstr ""
+"バックアップバッテリ(特定のボード用の追加オプションコンポーネントとして用意されている"
+"こともあります)。"
 
 #: ../../../library/utime.rst:27
 msgid "Using networked time protocol (requires setup by a port/user)."
-msgstr ""
+msgstr "NTP (Networked Time Protocol)を利用(ポート/ユーザーによる設定が必須)。
 
 #: ../../../library/utime.rst:28
 msgid ""
@@ -11173,6 +11389,8 @@ msgid ""
 "time across hard resets, though some may require setting it again in such"
 " case)."
 msgstr ""
+"各電源投入時にユーザが手動で設定(多くのボードはハードリセット時に RTC 時間を設定"
+"しますが、再度設定する必要があるボードもあります)。
 
 #: ../../../library/utime.rst:32
 msgid ""
@@ -11180,6 +11398,8 @@ msgid ""
 "functions below which require reference to current absolute time may "
 "behave not as expected."
 msgstr ""
+"実際のカレンダー時間が システム/MicroPython RTC で維持されていない場合、現在の"
+"絶対時間を参照する必要がある関数は、期待どおりに動作しない可能性があります。"
 
 #: ../../../library/utime.rst:41
 msgid ""
@@ -11188,38 +11408,41 @@ msgid ""
 "weekday, yearday) If secs is not provided or None, then the current time "
 "from the RTC is used."
 msgstr ""
+"エポックからの秒数で表される時間を８項目のタプル (year, month, mday, hour, "
+"minute, second, weekday, yearday) に変換します。秒数 *secs* を与えないか "
+"None である場合、RTC の現在時間が使われます。"
 
 #: ../../../library/utime.rst:45
 msgid "year includes the century (for example 2014)."
-msgstr ""
+msgstr "year: 西暦の年(たとえば 2014)"
 
 #: ../../../library/utime.rst:46
 msgid "month   is 1-12"
-msgstr ""
+msgstr "month: 月を表す 1-12"
 
 #: ../../../library/utime.rst:47
 msgid "mday    is 1-31"
-msgstr ""
+msgstr "mday: 日を表す 1-31"
 
 #: ../../../library/utime.rst:48
 msgid "hour    is 0-23"
-msgstr ""
+msgstr "hour: 時を表す 0-23"
 
 #: ../../../library/utime.rst:49
 msgid "minute  is 0-59"
-msgstr ""
+msgstr "minute: 分を表す 0-59"
 
 #: ../../../library/utime.rst:50
 msgid "second  is 0-59"
-msgstr ""
+msgstr "second: 秒を表す 0-59"
 
 #: ../../../library/utime.rst:51
 msgid "weekday is 0-6 for Mon-Sun"
-msgstr ""
+msgstr "weekday: 月曜-日曜を表す 0-6"
 
 #: ../../../library/utime.rst:52
 msgid "yearday is 1-366"
-msgstr ""
+msgstr "yearday: 年内の通算日数を表す 1-366"
 
 #: ../../../library/utime.rst:56
 msgid ""
@@ -11227,6 +11450,8 @@ msgid ""
 "which expresses a time as per localtime. It returns an integer which is "
 "the number of seconds since Jan 1, 2000."
 msgstr ""
+"これは localtime の逆関数です。引数は、ローカルタイムの時間を表現する完全な"
+"８項目のタプルです。この関数は2000年1月1日以降の秒数を整数で返します。"
 
 #: ../../../library/utime.rst:62
 msgid ""
@@ -11235,20 +11460,26 @@ msgid ""
 "Note that other boards may not accept a floating-point argument, for "
 "compatibility with them use `sleep_ms()` and `sleep_us()` functions."
 msgstr ""
+"指定された秒数の間スリープします。ボードによっては秒以下の精度でスリープするために、"
+"浮動小数点数で秒を指定できるものがあります。他のボードでは、"`sleep_ms()` や "
+"`sleep_us()` 関数との整合性のために、浮動小数点の引数を受け付けないことに注意"
+"してください。"
 
 #: ../../../library/utime.rst:69
 msgid "Delay for given number of milliseconds, should be positive or 0."
-msgstr ""
+msgstr "指定のミリ秒間だけ遅延します。ミリ秒の指定は0以上の整数である必要があります。"
 
 #: ../../../library/utime.rst:73
 msgid "Delay for given number of microseconds, should be positive or 0."
-msgstr ""
+msgstr "指定のマイクロ秒間だけ遅延します。マイクロ秒の指定は0以上の整数である必要があります。"
 
 #: ../../../library/utime.rst:77
 msgid ""
 "Returns an increasing millisecond counter with an arbitrary reference "
 "point, that wraps around after some value."
 msgstr ""
+"呼出し時点での稼働時間をミリ秒単位で返します。稼働時間は最大値に達すると"
+"ラップアラウンドします(一周して最低値に戻ります)。"
 
 #: ../../../library/utime.rst:80
 msgid ""
@@ -11264,6 +11495,16 @@ msgid ""
 "available for them are `ticks_diff()` and `ticks_add()` functions "
 "described below."
 msgstr ""
+"ラップアラウンド値は陽に公開されませんが、説明を簡略化するために "
+"*TICKS_MAX* と呼ぶことにします。値の期間は *TICKS_PERIOD = TICKS_MAX + 1* "
+"です。 *TICKS_PERIOD* は2の累乗であることが保証されていますが、"
+"それ以外の場合はポートごとに異なる場合があります。同じ期間の値が "
+"`ticks_ms()`, `ticks_us()`, `ticks_cpu()` 関数のすべてで(簡略化のために)"
+"使われます。したがって、これらの関数は、範囲 [*0* .. *TICKS_MAX* ] 内の値"
+"(合計 *TICKS_PERIOD* の数だけの値)を返します。負でない値だけが使われることに"
+"注意してください。ほとんどの場合、これらの関数によって返された値はを不透明なもの"
+"として扱う必要があります。利用できる操作は後述するように `ticks_diff()` と "
+"`ticks_add()` 関数です。"
 
 #: ../../../library/utime.rst:91
 msgid ""
@@ -11273,10 +11514,13 @@ msgid ""
 " as arguments to `ticks_diff()` or `ticks_add()` will also lead to "
 "invalid results from the latter functions."
 msgstr ""
+"注記: 標準的な数値演算子(+,  -)または関係演算子(<, <=, >, >=)をこれらの値に"
+"直接実行すると無効な結果になります。数値演算を実行し、その結果を引数として "
+"`ticks_diff()` か `ticks_add()` に渡すと無効な結果につながります。"
 
 #: ../../../library/utime.rst:99
 msgid "Just like `ticks_ms()` above, but in microseconds."
-msgstr ""
+msgstr "上記の `ticks_ms()` と同様ですが、マイクロ秒単位となります。"
 
 #: ../../../library/utime.rst:103
 msgid ""
@@ -11290,10 +11534,17 @@ msgid ""
 "intended for very fine benchmarking or very tight real-time loops. Avoid "
 "using it in portable code."
 msgstr ""
+"`ticks_ms()` や `ticks_us()` に似ていますが、システムの可能な限り高い精度でとなります。"
+"これは通常 CPU クロックです。そのため、このような名前が付けられています。しかし、"
+"CPU クロックである必要はなく、代わりにシステム内で使用可能な他のタイミングソース(たとえば、"
+"高分解能タイマー)を使用することもできます。この機能の正確なタイミング単位(精度)は、 "
+"``utime`` モジュールレベルでは指定されていませんが、特定のポートのドキュメントによって、"
+"より具体的な情報が提供される場合があります。この関数は、非常に細かいベンチマークや非常に"
+"タイトなリアルタイムループで使うことを目的としています。ポータブルコードでの使用は避けてください。"
 
 #: ../../../library/utime.rst:112
 msgid "Availability: Not every port implements this function."
-msgstr ""
+msgstr "可用性: すべてのポートがこの機能を実装しているわけではありません。"
 
 #: ../../../library/utime.rst:117
 msgid ""
@@ -11308,10 +11559,18 @@ msgid ""
 "events/tasks. (Note: you must use `ticks_diff()` function to work with "
 "deadlines.)"
 msgstr ""
+"与えた数をティック値からのオフセットとして加算した値を返します。引数の値は正でも負でも"
+"かまいません。この関数は、ティック値のモジュール算術定義(上記の `ticks_ms()` "
+"を参照)にしたがい、与えた *ticks* 値とその前後の *delta* ティックからティック値を"
+"算出します。 *ticks* パラメータには `ticks_ms()`, `ticks_us()`, `ticks_cpu()` "
+"を呼出した直の結果(または `ticks_add()` を前に呼出したの結果)を与えなければ"
+"なりません。ただし *delta* は任意の整数または数値式にすることができます。"
+"`ticks_add()` はイベント/タスクのデッドラインを算出するのに便利です。"
+"(注記: デッドラインを扱うには `ticks_diff()` を使う必要があります。)"
 
 #: ../../../library/utime.rst:127
 msgid "Examples::"
-msgstr ""
+msgstr "サンプルコード::"
 
 #: ../../../library/utime.rst:129
 msgid ""
@@ -11326,6 +11585,16 @@ msgid ""
 "# Find out TICKS_MAX used by this port\n"
 "print(ticks_add(0, -1))"
 msgstr ""
+"# 100ms 前のティック値を調べます\n"
+"print(ticks_add(time.ticks_ms(), -100))\n"
+"\n"
+"# 操作やテストのためのデッドラインを算出します\n"
+"deadline = ticks_add(time.ticks_ms(), 200)\n"
+"while ticks_diff(deadline, time.ticks_ms()) > 0:\n"
+"    do_a_little_of_something()\n"
+"\n"
+"# このポートの TICKS_MAX を調べます\n"
+"print(ticks_add(0, -1))"
 
 #: ../../../library/utime.rst:143
 msgid ""
@@ -11333,6 +11602,8 @@ msgid ""
 "`ticks_us()`, or `ticks_cpu()` functions, as a signed value which may "
 "wrap around."
 msgstr ""
+"`ticks_ms()`, `ticks_us()`, `ticks_cpu()` 関数の戻り値(ラップアラウンド"
+"である可能性のある符号付きの値)の間のティック値の差を計算します。"
 
 #: ../../../library/utime.rst:146
 msgid ""
@@ -11356,6 +11627,22 @@ msgid ""
 "the function will return *-TICKS_PERIOD/2* instead, i.e. result value "
 "will wrap around to the negative range of possible values."
 msgstr ""
+"引数の順序は減算演算子と同じで、 ``ticks_diff(ticks1, ticks2)``  は "
+"``ticks1 - ticks2`` と同じ意味を持ちます。しかし、 `ticks_ms()` などの関数が"
+"返す値はラップアラウンドになるえるので、減算演算子を使うと不正な結果になるかもしれません。"
+"そのため `ticks_diff()` が用意されています。この関数を使えばラップアラウンド値で"
+"あっても正しい結果を生み出すために合同(より具体的には剰余環)算術を実装しています"
+"(２つの値が離れすぎていない限りという条件がつきます: 下記参照)。"
+"この関数は [*-TICKS_PERIOD/2 .. TICKS_PERIOD/2-1*] の範囲(2の補数の"
+"符号付き2進整数の典型的な範囲定義です)の **符号付きの** 値を返します。"
+"結果が負の場合は *ticks1* が *ticks2* より早く発生したことを意味します。"
+"さもなければ、 *ticks1* が *ticks2* の後に発生したことを意味し ます。"
+"これは *ticks1* と *ticks2* が *TICKS_PERIOD/2-1* ティック以下で"
+"互いに離れている場合にのみ維持されます。それが維持されない場合、不正確な"
+"結果が返されます。具体的には、2つのティック値が *TICKS_PERIOD/2-1* "
+"ティック内で離れている場合、その値が関数によって返されます。しかし、リアルタイム"
+"ティックの *TICKS_PERIOD/2* がそれらの間を経過した場合、関数は代わりに "
+"-TICKS_PERIOD/2 を返します。つまり、結果値は可能な値の負の範囲にラップアラウンドします。
 
 #: ../../../library/utime.rst:164
 msgid ""
@@ -11369,18 +11656,29 @@ msgid ""
 "application behavior: don't let your application run any single task for "
 "too long. Run tasks in steps, and do time-keeping inbetween."
 msgstr ""
+"上記の制約の形式的でない理論的根拠: 部屋に閉じ込められていて、普通の１２時間式の時計"
+"以外に時間の経過を調べる手段がないとします。ある時刻をチェックした後、１３時間経過する"
+"まで再度の時刻チェックをしていなかったとします(たとえば、長い眠りに陥っていたなど)。"
+"そこで時刻をチェックすると、1時間しか経過していないように見えるでしょう。この間違いを"
+"避けるためには、定期的に時計をチェックする必要があります。アプリケーションでも同じことを"
+"する必要があります。「長すぎる睡眠」のメタファーは、アプリケーションの振る舞いに直接あて"
+"はまります。アプリケーションが単一のタスクを長時間実行しないようにしてください。"
+"ステップ単位にタスクを実行し、ステップの間で時間を計測するようにしてください。"
 
 #: ../../../library/utime.rst:173
 msgid ""
 "`ticks_diff()` is designed to accommodate various usage patterns, among "
 "them:"
 msgstr ""
+"`ticks_diff()` は、さまざまな使用パターンに対応するように設計されています:"
 
 #: ../../../library/utime.rst:175
 msgid ""
 "Polling with timeout. In this case, the order of events is known, and you"
 " will deal only with positive results of `ticks_diff()`::"
 msgstr ""
+"タイムアウトのポーリング - この場合、イベントの順序は既知であり、次のように "
+"`ticks_diff()` の正の結果のみを処理します::"
 
 #: ../../../library/utime.rst:178
 msgid ""
@@ -11390,12 +11688,19 @@ msgid ""
 "    if time.ticks_diff(time.ticks_us(), start) > 500:\n"
 "        raise TimeoutError"
 msgstr ""
+"# GPIOピンから入力があるのを待つが、最大でも50usまで\n"
+"start = time.ticks_us()\n"
+"while pin.value() == 0:\n"
+"    if time.ticks_diff(time.ticks_us(), start) > 500:\n"
+"        raise TimeoutError"
 
 #: ../../../library/utime.rst:184
 msgid ""
 "Scheduling events. In this case, `ticks_diff()` result may be negative if"
 " an event is overdue::"
 msgstr ""
+"イベントのスケジューリング - この場合、イベントが期限切れになると `ticks_diff()` "
+"の結果が負になります::"
 
 #: ../../../library/utime.rst:187
 msgid ""
@@ -11413,6 +11718,19 @@ msgid ""
 "    print(\"Oops, running late, tell task to run faster!\")\n"
 "    task.run(run_faster=true)"
 msgstr ""
+"# このコードは最適化されていません\n"
+"now = time.ticks_ms()\n"
+"scheduled_time = task.scheduled_time()\n"
+"if ticks_diff(scheduled_time, now) > 0:\n"
+"    print(\"Too early, let's nap\")\n"
+"    sleep_ms(ticks_diff(scheduled_time, now))\n"
+"    task.run()\n"
+"elif ticks_diff(scheduled_time, now) == 0:\n"
+"    print(\"Right at time!\")\n"
+"    task.run()\n"
+"elif ticks_diff(scheduled_time, now) < 0:\n"
+"    print(\"Oops, running late, tell task to run faster!\")\n"
+"    task.run(run_faster=true)"
 
 #: ../../../library/utime.rst:201
 msgid ""
@@ -11421,6 +11739,11 @@ msgid ""
 "will) also overflow. This is known as "
 "https://en.wikipedia.org/wiki/Year_2038_problem ."
 msgstr ""
+"注記: `ticks_diff()` には `time()` の値を渡さないでください。 `time()` の値に"
+"ついては、通常の算術演算を使用する必要があります。ただし、 `time()` もオーバーフロー"
+"する可能性はあります。"
+"これは `2038年問題 <https://ja.wikipedia.org/wiki/2038%E5%B9%B4%E5%95%8F%E9%A1%8C>`_ "
+"として知られています。"
 
 #: ../../../library/utime.rst:208
 msgid ""
@@ -11434,6 +11757,13 @@ msgid ""
 "`ticks_ms()` and `ticks_us()` functions, if you need calendar time, "
 "`localtime()` without an argument is a better choice."
 msgstr ""
+"上記のように基礎となる RTC が設定され、維持されていると仮定して、エポック以降の秒数を"
+"整数で返します。RTC が設定されていない場合、この関数はポート固有の参照ポイントからの"
+"秒数を返します(バッテリバックアップされた RTC のない組込みボードの場合、通常は"
+"電源投入またはリセット以降の値となります）。移植性のある MicroPython アプリケーション"
+"を開発したい場合は、この関数を使用して秒より高い精度の値を提供するべきではありません。"
+"より高い精度が必要なのであれば、 `ticks_ms()` や `ticks_us()` の関数を使ってください。"
+"カレンダー時間が必要な場合は  `localtime()` を引数なしで呼び出すのがよいでしょう。"
 
 #: ../../../library/utime.rst:220
 msgid ""
@@ -11447,6 +11777,13 @@ msgid ""
 "so returns number of seconds since last power-up or from other relative, "
 "hardware-specific point (e.g. reset)."
 msgstr ""
+"CPythonでは、この関数は Unix エポック 1970-01-01 00:00 UTC からの秒数を"
+"浮動小数点として返します。通常はマイクロ秒の精度を持ちます。MicroPython では、"
+"Unix ポートだけが同じエポックを使いし、浮動小数点精度が許せば、秒未満の精度を返します。"
+"組込みハードウェアは、通常、長い時間範囲と1秒未満の精度の両方を表現するための"
+"浮動小数点精度を持たないため、秒精度で整数値を使用します。一部の組込みハードウェアには"
+"バッテリ駆動の RTC がないため、最後の電源投入から、または他の相対的なハードウェア固有の"
+"ポイント(リセットなど)からの秒数が返されます。"
 
 #: ../../../library/uzlib.rst:2
 msgid ":mod:`uzlib` -- zlib decompression"
