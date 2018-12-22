@@ -626,7 +626,7 @@ msgstr ""
 #: ../../../library/pyb.USB_HID.rst:14 ../../../library/pyb.USB_VCP.rst:13
 #: ../../../library/uhashlib.rst:28
 msgid "Constructors"
-msgstr "コンストラクター"
+msgstr "コンストラクタ"
 
 #: ../../../library/framebuf.rst:33
 msgid "Construct a FrameBuffer object.  The parameters are:"
@@ -2186,7 +2186,7 @@ msgstr ""
 
 #: ../../../library/machine.Pin.rst:5 ../../../library/pyb.Pin.rst:5
 msgid "class Pin -- control I/O pins"
-msgstr ""
+msgstr "クラス Pin -- I/O ピンの制御"
 
 #: ../../../library/machine.Pin.rst:7
 msgid ""
@@ -2197,6 +2197,11 @@ msgid ""
 "methods to get and set the digital logic level. For analog control of a "
 "pin, see the :class:`ADC` class."
 msgstr ""
+"ピンオブジェクトは、I/O ピン (GPIO - 汎用入出力)を制御するために使われます。"
+"ピンオブジェクトは、一般に物理ピンに関連付けられていて、出力電圧を駆動したり、"
+"入力電圧を読み取ることができます。ピンクラスには、ピンのモード(IN, OUT など)を"
+"設定するメソッドと、デジタル論理レベルを取得および設定するメソッドがあります。"
+"ピンのアナログ制御については :class:`ADC` クラスを参照してください。"
 
 #: ../../../library/machine.Pin.rst:13
 msgid ""
@@ -2206,10 +2211,13 @@ msgid ""
 "Possibilities for the identifier are an integer, a string or a tuple with"
 " port and pin number."
 msgstr ""
+"ピンオブジェクトは、特定の I/O ピンを明示する識別子を使って構築されます。識別子の形式と"
+"その識別子が示す物理ピンはポートに固有です。識別子の形式としては、整数、文字列、ポートと"
+"ピン番号のタプルなどがあります。"
 
 #: ../../../library/machine.Pin.rst:19 ../../../library/pyb.Pin.rst:226
 msgid "Usage Model::"
-msgstr ""
+msgstr "よくある使用例::"
 
 #: ../../../library/machine.Pin.rst:21
 msgid ""
@@ -2234,6 +2242,26 @@ msgid ""
 "# configure an irq callback\n"
 "p0.irq(lambda p:print(p))"
 msgstr ""
+"from machine import Pin\n"
+"\n"
+"# ピン #0 を出力ピンとして作成\n"
+"p0 = Pin(0, Pin.OUT)\n"
+"\n"
+"# 値をロー、ハイと順に設定\n"
+"p0.value(0)\n"
+"p0.value(1)\n"
+"\n"
+"# ピン #2 をプルアップ抵抗付きの入力ピンとして作成\n"
+"p2 = Pin(2, Pin.IN, Pin.PULL_UP)\n"
+"\n"
+"# ピンの値を読み込んで表示\n"
+"print(p2.value())\n"
+"\n"
+"# ピン #0 を入力モードに再設定\n"
+"p0.mode(p0.IN)\n"
+"\n"
+"# irq コールバックを設定\n"
+"p0.irq(lambda p:print(p))"
 
 #: ../../../library/machine.Pin.rst:47
 msgid ""
@@ -2242,11 +2270,14 @@ msgid ""
 "to initialise the pin.  Any settings that are not specified will remain "
 "in their previous state."
 msgstr ""
+"指定した ``id`` に関連づけられたピンペリフェラル(GPIO ピン)にアクセスします。"
+"追加の引数がコンストラクタに指定された場合は、それらを使ってピンを初期化します。"
+"指定していない場合の設定は、以前の状態のままとなります。"
 
 #: ../../../library/machine.Pin.rst:51 ../../../library/machine.Pin.rst:191
 #: ../../../library/machine.Signal.rst:88
 msgid "The arguments are:"
-msgstr ""
+msgstr "引数は次のとおりです:"
 
 #: ../../../library/machine.Pin.rst:53
 msgid ""
@@ -2254,20 +2285,24 @@ msgid ""
 " types are: int (an internal Pin identifier), str (a Pin name), and tuple"
 " (pair of [port, pin])."
 msgstr ""
+"``id`` は必須であり、任意のオブジェクトを指定できます。可能な値の型には int (内部ピン"
+"識別子)、str (ピン名)、およびタプル([ポート, ピン] のペア)があります。"
 
 #: ../../../library/machine.Pin.rst:57
 msgid "``mode`` specifies the pin mode, which can be one of:"
-msgstr ""
+msgstr "``mode`` はピンモードを指定します。次のいずれかになります:"
 
 #: ../../../library/machine.Pin.rst:59
 msgid ""
 "``Pin.IN`` - Pin is configured for input.  If viewed as an output the pin"
 " is in high-impedance state."
 msgstr ""
+"``Pin.IN`` - ピンは入力用に設定されます。出力として参照すると、ピンはハイインピーダンス"
+"状態です。"
 
 #: ../../../library/machine.Pin.rst:62
 msgid "``Pin.OUT`` - Pin is configured for (normal) output."
-msgstr ""
+msgstr "``Pin.OUT`` - ピンは(通常の)出力用に構成されます。"
 
 #: ../../../library/machine.Pin.rst:64
 msgid ""
@@ -2277,6 +2312,10 @@ msgid ""
 "high-impedance state.  Not all ports implement this mode, or some might "
 "only on certain pins."
 msgstr ""
+"``Pin.OPEN_DRAIN`` - ピンはオープンドレイン出力用に設定されます。オープンドレイン"
+"出力は次のように動作します: 出力値が 0 に設定される場合、ピンはローレベルでアクティブ"
+"になります。出力値が 1 の場合、ピンはハイインピーダンス状態になります。すべてのポートが"
+"このモードを実装しているわけではありません。"
 
 #: ../../../library/machine.Pin.rst:69
 msgid ""
@@ -2286,30 +2325,38 @@ msgid ""
 "lead to undefined, or a hardware-specific, result).  Not all ports "
 "implement this mode."
 msgstr ""
+"``Pin.ALT`` - ピンは、ポート固有の代替機能を実行するように設定されています。このように"
+"設定されたピンの場合、他のどの Pin メソッドは(:meth:`Pin.init` を除いて)適用され"
+"ません(呼び出した結果は未定義またはハードウェア依存となります)。すべてのポートがこのモード"
+"を実装しているわけではありません。"
 
 #: ../../../library/machine.Pin.rst:74
 msgid ""
 "``Pin.ALT_OPEN_DRAIN`` - The Same as ``Pin.ALT``, but the pin is "
 "configured as open-drain.  Not all ports implement this mode."
 msgstr ""
+"``Pin.ALT_OPEN_DRAIN`` - ``Pin.ALT`` と同じですが、ピンはオープンドレインとして"
+"設定されます。すべてのポートがこのモードを実装しているわけではありません。"
 
 #: ../../../library/machine.Pin.rst:77
 msgid ""
 "``pull`` specifies if the pin has a (weak) pull resistor attached, and "
 "can be one of:"
 msgstr ""
+"``pull`` は、ピンに(弱い)プル抵抗を接続するかを指定します。次のいずれかに"
+"なります:"
 
 #: ../../../library/machine.Pin.rst:80
 msgid "``None`` - No pull up or down resistor."
-msgstr ""
+msgstr "``None`` - プルアップ抵抗もプルダウン抵抗もなし。"
 
 #: ../../../library/machine.Pin.rst:81
 msgid "``Pin.PULL_UP`` - Pull up resistor enabled."
-msgstr ""
+msgstr "``Pin.PULL_UP`` - プルアップ抵抗を有効にします。"
 
 #: ../../../library/machine.Pin.rst:82
 msgid "``Pin.PULL_DOWN`` - Pull down resistor enabled."
-msgstr ""
+msgstr "``Pin.PULL_DOWN`` - プルダウン抵抗を有効にします。"
 
 #: ../../../library/machine.Pin.rst:84
 msgid ""
@@ -2317,6 +2364,9 @@ msgid ""
 "specifies initial output pin value if given, otherwise the state of the "
 "pin peripheral remains unchanged."
 msgstr ""
+"``value`` は Pin.OUT および Pin.OPEN_DRAIN モードでのみ有効で、指定されて"
+"いる場合は初期出力ピン値になります。指定のない場合、ピンのペリフェラルの状態は"
+"変更されません。"
 
 #: ../../../library/machine.Pin.rst:88
 msgid ""
@@ -2325,6 +2375,10 @@ msgid ""
 "current driving capabilities are port dependent.  Not all ports implement"
 " this argument."
 msgstr ""
+"``drive`` はピンの出力電力を指定します。この引数には ``Pin.LOW_POWER``, "
+"``Pin.MED_POWER``, ``Pin.HIGH_POWER`` のいずれかを指定します。実際の電流駆動"
+"能力はポートによって異なります。すべてのポートがこの引数を実装しているわけでは"
+"ありません。"
 
 #: ../../../library/machine.Pin.rst:92
 msgid ""
@@ -2335,6 +2389,10 @@ msgid ""
 "supported the this argument is not required.  Not all ports implement "
 "this argument."
 msgstr ""
+"``alt`` はピンの代替機能を指定し、ポートに依存する値を取ります。この引数は "
+"``Pin.ALT`` と ``Pin.ALT_OPEN_DRAIN`` モードでのみ有効です。これは、ピンが"
+"複数の代替機能をサポートしている場合に使われます。ピン代替機能が１つしかない場合、"
+"この引数は必須ではありません。すべてのポートがこの引数を実装しているわけではありません。"
 
 #: ../../../library/machine.Pin.rst:98
 msgid ""
@@ -2348,6 +2406,13 @@ msgid ""
 "or ``Pin.OPEN_DRAIN``, the alternate function will be removed from the "
 "pin."
 msgstr ""
+"上記で指定されたように、Pin クラスは特定のピンに対して代替機能を設定することを可能に"
+"していますが、そのようなピンに対するさらなる操作は指定しません。代替機能モードに設定"
+"されたピンは、通常 GPIO として使われず、代わりに他のハードウェアペリフェラルによって"
+"駆動されます。このようなピンでサポートされている唯一の操作は、コンストラクタまたは "
+":meth:`Pin.init` メソッドを呼び出すことによる再初期化です。代替機能モードに設定"
+"されたピンが ``Pin.IN``, ``Pin.OUT``, ``Pin.OPEN_DRAIN`` で再初期化されると、"
+"代替機能がピンから外されます。"
 
 #: ../../../library/machine.Pin.rst:111
 msgid ""
@@ -2356,16 +2421,21 @@ msgid ""
 "will remain unchanged.  See the constructor documentation for details of "
 "the arguments."
 msgstr ""
+"指定したパラメータを使ってピンを再初期化します。指定された引数だけが設定されます。"
+"残りのピンペリフェラルは変更されません。引数の詳細については、コンストラクタの"
+"説明を参照してください。"
 
 #: ../../../library/machine.Pin.rst:115
 msgid "Returns ``None``."
-msgstr ""
+msgstr "``None`` を返します。"
 
 #: ../../../library/machine.Pin.rst:119
 msgid ""
 "This method allows to set and get the value of the pin, depending on "
 "whether the argument ``x`` is supplied or not."
 msgstr ""
+"このメソッドは、引数 ``x`` を指定したかによって、ピンの値を設定したり取得する"
+"のに使えます。"
 
 #: ../../../library/machine.Pin.rst:122
 msgid ""
@@ -2374,16 +2444,20 @@ msgid ""
 "signals respectively.  The behaviour of this method depends on the mode "
 "of the pin:"
 msgstr ""
+"引数を省略した場合、このメソッドはピンのデジタル論理レベルを取得し、低電圧信号と"
+"高電圧信号に対応してそれぞれ 0 または 1 を返します。このメソッドの動作はピンの"
+"モードによって異なります。"
 
 #: ../../../library/machine.Pin.rst:126
 msgid ""
 "``Pin.IN`` - The method returns the actual input value currently present "
 "on the pin."
 msgstr ""
+"``Pin.IN`` - メソッドはピンの現在の入力値を返します。"
 
 #: ../../../library/machine.Pin.rst:128
 msgid "``Pin.OUT`` - The behaviour and return value of the method is undefined."
-msgstr ""
+msgstr "``Pin.OUT`` - メソッドの動作と戻り値は未定義です。"
 
 #: ../../../library/machine.Pin.rst:129
 msgid ""
@@ -2392,6 +2466,8 @@ msgid ""
 "state '1', the method returns the actual input value currently present on"
 " the pin."
 msgstr ""
+"``Pin.OPEN_DRAIN`` - ピンが状態 '0' の場合、メソッドの動作と戻り値は未定義です。"
+"それ以外の場合、ピンが状態 '1' の場合、メソッドはピンに現在の入力値を返します。"
 
 #: ../../../library/machine.Pin.rst:134
 msgid ""
@@ -2401,6 +2477,10 @@ msgid ""
 "otherwise it is set to state '0'.  The behaviour of this method depends "
 "on the mode of the pin:"
 msgstr ""
+"引数が指定されている場合、このメソッドはピンのデジタル論理レベルを設定します。引数 "
+"``x`` は boolean に変換できるものであれば何でも構いません。変換後が True だと"
+"ピンは状態 '1' に設定され、そうでない場合は状態 '0' に設定されます。このメソッドの"
+"動作はピンのモードによって異なります。"
 
 #: ../../../library/machine.Pin.rst:139
 msgid ""
@@ -2409,20 +2489,25 @@ msgid ""
 "stored value will become active on the pin as soon as it is changed to "
 "``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode."
 msgstr ""
+"``Pin.IN`` - 値はピンの出力バッファに格納されます。ピンの状態は変化せず、ハイ"
+"インピーダンス状態のままです。格納された値は ``Pin.OUT`` または "
+"``Pin.OPEN_DRAIN`` に変更されるとすぐにピンでアクティブになります。"
 
 #: ../../../library/machine.Pin.rst:143
 msgid "``Pin.OUT`` - The output buffer is set to the given value immediately."
-msgstr ""
+msgstr "``Pin.OUT`` - 出力バッファは指定した値ですぐに設定されます。"
 
 #: ../../../library/machine.Pin.rst:144
 msgid ""
 "``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage "
 "state.  Otherwise the pin is set to high-impedance state."
 msgstr ""
+"``Pin.OPEN_DRAIN`` - 値が '0' の場合ピンは低電圧状態に設定されます。それ以外の場合、"
+"ピンはハイインピーダンス状態に設定されます。"
 
 #: ../../../library/machine.Pin.rst:147
 msgid "When setting the value this method returns ``None``."
-msgstr ""
+msgstr "このメソッドは、値を設定する場合に ``None`` を返します。"
 
 #: ../../../library/machine.Pin.rst:151
 msgid ""
@@ -2430,36 +2515,45 @@ msgid ""
 "set and get the value of the pin.  It is equivalent to Pin.value([x]). "
 "See :meth:`Pin.value` for more details."
 msgstr ""
+"Pin オブジェクトは呼び出し可能です。呼び出しメソッドは、ピンの値の設定と取得のための"
+"(速い)ショートカットを提供します。動作は Pin.value([x]) と等価です。詳細は "
+":meth:`Pin.value` を参照してください。"
 
 #: ../../../library/machine.Pin.rst:157
 msgid "Set pin to \"1\" output level."
-msgstr ""
+msgstr "ピンの出力レベルを \"1\" に設定します。"
 
 #: ../../../library/machine.Pin.rst:161
 msgid "Set pin to \"0\" output level."
-msgstr ""
+msgstr "ピンの出力レベルを \"0\" に設定します。"
 
 #: ../../../library/machine.Pin.rst:165
 msgid ""
 "Get or set the pin mode. See the constructor documentation for details of"
 " the ``mode`` argument."
 msgstr ""
+"ピンのモードを取得または設定します。 ``mode`` 引数の詳細についてはコンストラクタ"
+"の説明を参照してください。"
 
 #: ../../../library/machine.Pin.rst:170
 msgid ""
 "Get or set the pin pull state. See the constructor documentation for "
 "details of the ``pull`` argument."
 msgstr ""
+"ピンのプル状態を取得または設定します。 ``pull`` 引数の詳細についてはコンストラクタ"
+"の説明を参照してください。"
 
 #: ../../../library/machine.Pin.rst:175
 msgid ""
 "Get or set the pin drive strength. See the constructor documentation for "
 "details of the ``drive`` argument."
 msgstr ""
+"ピンのドライブ強度を取得または設定します。 ``drive`` 引数の詳細についてはコンスト"
+"ラクタの説明を参照してください。"
 
 #: ../../../library/machine.Pin.rst:178
 msgid "Not all ports implement this method."
-msgstr ""
+msgstr "すべてのポートがこの方法を実装しているわけではありません。"
 
 #: ../../../library/machine.Pin.rst:184
 msgid ""
@@ -2470,6 +2564,11 @@ msgid ""
 "pin mode is ``Pin.OPEN_DRAIN`` then the trigger source is the output "
 "buffer for state '0' and the external pin value for state '1'."
 msgstr ""
+"ピンのトリガーとなるものがアクティブになったときに呼び出されるように割り込みハンドラを"
+"設定します。ピンのモードが ``Pin.IN`` の場合、トリガーとなるのはピンの外部値です。"
+"ピンのモードが ``Pin.OUT`` の場合、トリガーとなるのははピンの出力バッファです。"
+"ピンのモードが ``Pin.OPEN_DRAIN`` の場合、トリガーとなるのは状態 '0' の出力バッファ"
+"と状態 '1' の外部ピン値です。"
 
 #: ../../../library/machine.Pin.rst:193
 msgid ""
@@ -2477,32 +2576,36 @@ msgid ""
 "triggers. The handler must take exactly one argument which is the ``Pin``"
 " instance."
 msgstr ""
+"``handler`` は割り込みがトリガーされたときに呼び出されるオプションの関数です。"
+"ハンドラは引数として ``Pin`` のインスタンス１つを必ず取る必要があります。"
 
 #: ../../../library/machine.Pin.rst:197
 msgid ""
 "``trigger`` configures the event which can generate an interrupt. "
 "Possible values are:"
 msgstr ""
+"``trigger`` は割り込みを生成できるイベントを設定します。"
+"指定可能な値は次のとおりです:"
 
 #: ../../../library/machine.Pin.rst:200
 msgid "``Pin.IRQ_FALLING`` interrupt on falling edge."
-msgstr ""
+msgstr "``Pin.IRQ_FALLING`` は立ち下がりエッジで割り込みを生成します。"
 
 #: ../../../library/machine.Pin.rst:201
 msgid "``Pin.IRQ_RISING`` interrupt on rising edge."
-msgstr ""
+msgstr "``Pin.IRQ_RISING`` は立ち上がりエッジで割り込みを生成します。"
 
 #: ../../../library/machine.Pin.rst:202
 msgid "``Pin.IRQ_LOW_LEVEL`` interrupt on low level."
-msgstr ""
+msgstr "``Pin.IRQ_LOW_LEVEL`` はローレベルで割り込みを生成します。"
 
 #: ../../../library/machine.Pin.rst:203
 msgid "``Pin.IRQ_HIGH_LEVEL`` interrupt on high level."
-msgstr ""
+msgstr "``Pin.IRQ_HIGH_LEVEL`` はハイレベルで割り込みを生成します。"
 
 #: ../../../library/machine.Pin.rst:205
 msgid "These values can be OR'ed together to trigger on multiple events."
-msgstr ""
+msgstr "これらの値を OR 演算して、複数のイベントをトリガーすることができます。"
 
 #: ../../../library/machine.Pin.rst:207
 msgid ""
@@ -2510,6 +2613,8 @@ msgid ""
 " take are port-specific, but higher values always represent higher "
 "priorities."
 msgstr ""
+"``priority`` は割り込みの優先度を設定します。必要な値はポート固有ですが、値が大きい"
+"ほど常に優先順位が高くなります。"
 
 #: ../../../library/machine.Pin.rst:211
 msgid ""
@@ -2518,6 +2623,9 @@ msgid ""
 "``machine.DEEPSLEEP``. These values can also be OR'ed together to make a "
 "pin generate interrupts in more than one power mode."
 msgstr ""
+"``wake`` はこの割り込みがシステムを起床させるパワーモードを選択します。指定できる値は "
+"``machine.IDLE``, ``machine.SLEEP``, ``machine.DEEPSLEEP`` です。これらの値は、"
+"複数の電源モードでピンが割り込みを生成するように OR 結合することもできます。"
 
 #: ../../../library/machine.Pin.rst:216
 msgid ""
@@ -2525,34 +2633,41 @@ msgid ""
 "between the pin change and the handler being called. Hard interrupt "
 "handlers may not allocate memory; see :ref:`isr_rules`."
 msgstr ""
+"``hard`` が True の場合、ハードウェア割り込みが使用されます。これにより、"
+"ピンの変化と呼び出されるハンドラの間の遅延が小さくなります。ハード割り込みハンドラは"
+"メモリを割り当てません。 :ref:`isr_rules` を参照してください。"
 
 #: ../../../library/machine.Pin.rst:220
 msgid "This method returns a callback object."
-msgstr ""
+msgstr "このメソッドはコールバックオブジェクトを返します。"
 
 #: ../../../library/machine.Pin.rst:225
 msgid ""
 "The following constants are used to configure the pin objects.  Note that"
 " not all constants are available on all ports."
 msgstr ""
+"次の定数は、ピンオブジェクトを設定するために使われます。すべてのポートですべての定数を"
+"使えるわけではないことに注意してください。"
 
 #: ../../../library/machine.Pin.rst:234
 msgid "Selects the pin mode."
-msgstr ""
+msgstr "ピンのモードを選択します。"
 
 #: ../../../library/machine.Pin.rst:239
 msgid ""
 "Selects whether there is a pull up/down resistor.  Use the value ``None``"
 " for no pull."
 msgstr ""
+"プルアップ/ダウン抵抗があるかどうかを選択します。プルしないときには ``None`` "
+"を使ってください。"
 
 #: ../../../library/machine.Pin.rst:246
 msgid "Selects the pin drive strength."
-msgstr ""
+msgstr "ピンのドライブ強度を選択します。"
 
 #: ../../../library/machine.Pin.rst:253
 msgid "Selects the IRQ trigger type."
-msgstr ""
+msgstr "IRQ トリガタイプを選択します。"
 
 #: ../../../library/machine.RTC.rst:5 ../../../library/pyb.RTC.rst:5
 msgid "class RTC -- real time clock"
@@ -3722,13 +3837,15 @@ msgstr "``x`` の 0 方向に丸めた整数を返します。"
 
 #: ../../../library/micropython.rst:2
 msgid ":mod:`micropython` -- access and control MicroPython internals"
-msgstr ""
+msgstr ":mod:`micropython` -- MicroPython 内部のアクセスと制御"
 
 #: ../../../library/micropython.rst:12
 msgid ""
 "Used to declare that the expression is a constant so that the compile can"
 " optimise it.  The use of this function should be as follows::"
 msgstr ""
+"コンパイルが最適化できるように、式が定数であることを宣言するために使います。"
+"この関数の使い方は次のとおりです::"
 
 #: ../../../library/micropython.rst:15
 msgid ""
@@ -3745,6 +3862,9 @@ msgid ""
 "constant begins with an underscore then it is hidden, it is not available"
 " as a global variable, and does not take up any memory during execution."
 msgstr ""
+"このように宣言された定数でも、宣言されているモジュールの外部からグローバル変数として"
+"アクセス可能です。一方、定数名がアンダースコアで始まっていれば不可視となり、グローバル"
+"変数として利用でくなくなり、実行中のメモリを消費しません。
 
 #: ../../../library/micropython.rst:25
 msgid ""
@@ -3753,6 +3873,9 @@ msgid ""
 "scripts can be written which run under both CPython and MicroPython, by "
 "following the above pattern."
 msgstr ""
+"この `const` 関数は MicroPython パーサによって直接認識されます。上記のパターンに"
+"したがって CPython と MicroPython の両方で動作するスクリプトを書けるよう、 "
+":mod:`micropython` モジュールの一部として提供しています。"
 
 #: ../../../library/micropython.rst:32
 msgid ""
@@ -3760,22 +3883,28 @@ msgid ""
 "subsequent compilation of scripts, and returns ``None``.  Otherwise it "
 "returns the current optimisation level."
 msgstr ""
+"*level* を指定した場合、この関数はスクリプトの後続のコンパイルの最適化レベルを設定"
+"して、 ``None`` を返します。指定しない場合は、現在の最適化レベルを返します。"
 
 #: ../../../library/micropython.rst:36
 msgid "The optimisation level controls the following compilation features:"
-msgstr ""
+msgstr "最適化レベルは、次のコンパイル特性を制御します。"
 
 #: ../../../library/micropython.rst:38
 msgid ""
 "Assertions: at level 0 assertion statements are enabled and compiled into"
 " the bytecode; at levels 1 and higher assertions are not compiled."
 msgstr ""
+"アサーション: レベル 0 では、アサーションステートメントが有効になり、バイトコードに"
+"コンパイルされます。レベル 1 以上ではアサーションがコンパイルされません。"
 
 #: ../../../library/micropython.rst:40
 msgid ""
 "Built-in ``__debug__`` variable: at level 0 this variable expands to "
 "``True``; at levels 1 and higher it expands to ``False``."
 msgstr ""
+"ビルトイン ``__debug__`` 変数: レベル 0 でこの変数が ``True`` に展開されます。"
+"レベル 1 以上では ``False`` で展開されます。"
 
 #: ../../../library/micropython.rst:42
 msgid ""
@@ -3784,10 +3913,13 @@ msgid ""
 " number they occurred at; at levels 3 and higher line numbers are not "
 "stored."
 msgstr ""
+"ソースコード行番号: レベル 0, 1, 2 では、ソースコードの行番号がバイトコードとともに"
+"格納され、例外が発生した行番号を例外として報告することができます。レベル 3 以上では"
+"行番号が格納されません。"
 
 #: ../../../library/micropython.rst:46
 msgid "The default optimisation level is usually level 0."
-msgstr ""
+msgstr "デフォルトの最適化レベルは通常レベル 0 です。"
 
 #: ../../../library/micropython.rst:50
 msgid ""
@@ -3797,6 +3929,10 @@ msgid ""
 "handler) and therefore give useful traceback information in these "
 "situations."
 msgstr ""
+"緊急例外バッファ用に *size* バイトの RAM を割り当てます(適当なサイズは約 100 "
+"バイトです)。このバッファは(たとえば、割り込みハンドラ内などで)通常の RAM の"
+"割り当てが失敗した場合に例外を作成するために使用されます。したがって、そのような"
+"状況でも有用なトレースバック情報を提供します。"
 
 #: ../../../library/micropython.rst:55
 msgid ""
@@ -3804,12 +3940,17 @@ msgid ""
 "script (eg ``boot.py`` or ``main.py``) and then the emergency exception "
 "buffer will be active for all the code following it."
 msgstr ""
+"この関数を使う良い方法は、メインスクリプト(たとえば ``boot.py`` や ``main.py``)"
+"の先頭に置くことです。そのようにしておけば、それに続くすべてのコードに対して緊急例外"
+"バッファが有効になります。"
 
 #: ../../../library/micropython.rst:61
 msgid ""
 "Print information about currently used memory.  If the *verbose* argument"
 " is given then extra information is printed."
 msgstr ""
+"現在使っているメモリに関する情報を表示します。 *verbose* を指定すると冗長モードとなり、"
+"詳しい情報を表示します。"
 
 #: ../../../library/micropython.rst:64
 msgid ""
@@ -3818,12 +3959,17 @@ msgid ""
 " prints out the entire heap indicating which blocks are used and which "
 "are free."
 msgstr ""
+"表示する情報は実装に依存しますが、現在使っているスタックとヒープのサイズは含みます。"
+"冗長モードではヒープ全体を出力し、どのブロックが使用され、どのブロックが空いて"
+"いるかを示します。"
 
 #: ../../../library/micropython.rst:70
 msgid ""
 "Print information about currently interned strings.  If the *verbose* "
 "argument is given then extra information is printed."
 msgstr ""
+"現在のところのインターンド文字列(内部に蓄えられている文字列)に関する情報を表示します。 "
+"*verbose* を指定すると冗長モードとなり、詳しい情報を表示します。"
 
 #: ../../../library/micropython.rst:73
 msgid ""
@@ -3832,6 +3978,9 @@ msgid ""
 "they use.  In verbose mode it prints out the names of all RAM-interned "
 "strings."
 msgstr ""
+"表示する情報は実装に依存しますが、現在のインターンド文字列の数とそれが使っている "
+"RAM のサイズは含みます。冗長モードでは RAM 上のインターンド文字列すべての名前を"
+"表示します。"
 
 #: ../../../library/micropython.rst:79
 msgid ""
@@ -3839,12 +3988,16 @@ msgid ""
 "used.  The absolute value of this is not particularly useful, rather it "
 "should be used to compute differences in stack usage at different points."
 msgstr ""
+"現在使われているスタックのサイズを表す整数を返します。この値そのものは特に有用では"
+"なく、異なる時点でのスタック使用量の違いを計算するために使用されるべきです。"
 
 #: ../../../library/micropython.rst:86
 msgid ""
 "Lock or unlock the heap.  When locked no memory allocation can occur and "
 "a `MemoryError` will be raised if any heap allocation is attempted."
 msgstr ""
+"ヒープをロックまたはロック解除します。ロックされているとメモリ割り当ては発生せず、"
+"ヒープを割り当てようとした場合は `MemoryError` が発生します。"
 
 #: ../../../library/micropython.rst:89
 msgid ""
@@ -3853,12 +4006,16 @@ msgid ""
 " must be called the same number of times to make the heap available "
 "again."
 msgstr ""
+"これらの関数はネストすることができます。つまり `heap_lock()` は連続して複数回呼び"
+"出すことができ、ロックの深さが増します。その後、ヒープを再度使用可能にするためには "
+"`heap_unlock()` を同じ回数呼び出す必要があります。"
 
 #: ../../../library/micropython.rst:93
 msgid ""
 "If the REPL becomes active with the heap locked then it will be "
 "forcefully unlocked."
 msgstr ""
+"ヒープがロックされた状態で REPL が有効になると、強制的にロックが解除されます。"
 
 #: ../../../library/micropython.rst:98
 msgid ""
@@ -3867,6 +4024,9 @@ msgid ""
 "Ctrl-C. Passing -1 to this function will disable capture of Ctrl-C, and "
 "passing 3 will restore it."
 msgstr ""
+"`KeyboardInterrupt` 例外を発生させる文字を設定します。デフォルトで、スクリプト"
+"実行中は 3 に設定されていて、これは Ctrl-C に該当します。この関数に -1 を渡すと"
+"Ctrl-C のキャプチャが無効になり、3 を渡すと元に戻ります。"
 
 #: ../../../library/micropython.rst:103
 msgid ""
@@ -3874,6 +4034,8 @@ msgid ""
 "incoming stream of characters that is usually used for the REPL, in case "
 "that stream is used for other purposes."
 msgstr ""
+"この関数は、通常は REPL で使っている文字の入力ストリームを他の目的で使う場合、"
+"そのストリームで Ctrl-C がキャプチャーされるのを防ぐために使えます。"
 
 #: ../../../library/micropython.rst:109
 msgid ""
@@ -3883,10 +4045,14 @@ msgid ""
 "the earliest possible time, given that it is also trying to be efficient,"
 " and that the following conditions hold:"
 msgstr ""
+"関数 *func* が「非常にすぐに」実行されるようにスケジュールします。この関数には、"
+"単一の引数として値 *arg* が渡されます。「非常にすぐに」とは、MicroPython ランタイムが"
+"できるだけ早くに関数を実行すること、効率的にもしようとしていること、および次の条件が"
+"満たされるよう最善を尽くすことを意味します。"
 
 #: ../../../library/micropython.rst:115
 msgid "A scheduled function will never preempt another scheduled function."
-msgstr ""
+msgstr "スケジュールされた関数が他のスケジュールされた機能を横取りすることはありません。"
 
 #: ../../../library/micropython.rst:116
 msgid ""
@@ -3894,6 +4060,8 @@ msgid ""
 "that all fundamental Python operations (such as appending to a list) are "
 "guaranteed to be atomic."
 msgstr ""
+"スケジュールされた関数は常に「オペコード間」で実行されます。つまり、すべての基本的な "
+"Python 操作(リストへの追加など)はアトミックであることが保証されています。"
 
 #: ../../../library/micropython.rst:119
 msgid ""
@@ -3903,6 +4071,10 @@ msgid ""
 "exited.  An example of a critical region is a preempting interrupt "
 "handler (an IRQ)."
 msgstr ""
+"使用するポートは、その中でスケジュールされた関数が決して実行されないであろう"
+"「クリティカル範囲」を定義するかもしれません。関数はクリティカル範囲内で"
+"スケジュールされますが、その範囲が終了するまで実行されません。クリティカル"
+"範囲の例としては、割り込み割り込みハンドラ(IRQ)があります。"
 
 #: ../../../library/micropython.rst:125
 msgid ""
@@ -3911,6 +4083,9 @@ msgid ""
 "example the heap may be locked) and scheduling a function to call later "
 "will lift those restrictions."
 msgstr ""
+"この関数の用途は、プリエントしている IRQ からのコールバックをスケジュールすることです。"
+"そのような IRQ は IRQ で実行されるコードに制限を課し(例えばヒープはロックされるかも"
+"しれません)、後で呼び出すために関数をスケジュールすることはそれらの制限を取り除きます。"
 
 #: ../../../library/micropython.rst:130
 msgid ""
@@ -3923,12 +4098,20 @@ msgid ""
 "here :ref:`reference documentation <isr_rules>` under \"Creation of "
 "Python objects\"."
 msgstr ""
+"注記: `schedule()` がプリエントしている IRQ から呼び出された場合、メモリ割り当てが"
+"許可されておらず、 `schedule()` に渡されるコールバックがバウンドメソッドであるときに、"
+"これを直接渡すことは失敗します。これは、バウンドメソッドへの参照を作成するとメモリが"
+"割り当てられるためです。解決策は、クラスコンストラクターでメソッドへの参照を作成し、"
+"その参照を `schedule()` に渡すことです。これについては "
+"「Pythonオブジェクトの作成」の :ref:`参考資料 <isr_rules>` を参照してください 。"
 
 #: ../../../library/micropython.rst:139
 msgid ""
 "There is a finite stack to hold the scheduled functions and `schedule()` "
 "will raise a `RuntimeError` if the stack is full."
 msgstr ""
+"スケジュールされた関数を保持するための有限のスタックがあり、スタックがいっぱいになると "
+"`schedule()` は `RuntimeError` を起こします。"
 
 #: ../../../library/network.rst:3
 msgid ":mod:`network` --- network configuration"
@@ -9779,13 +9962,13 @@ msgstr ""
 "*alloc_size* で指定したバイト数を保持するために事前に割り当てられた空の "
 "`StringIO`/`BytesIO` オブジェクトを作成します。つまり、その量のバイトを"
 "書き込んでもバッファの再割り当てにはつながりません。したがって、メモリ不足の状況に"
-"遭遇したり、メモリの断片化につながることはありません。これらのコンストラクターは "
+"遭遇したり、メモリの断片化につながることはありません。これらのコンストラクタは "
 "MicroPython の拡張であり、エンドユーザーアプリケーションではなく、特別な場合"
 "およびシステムレベルのライブラリーでのみ使用することをお勧めします。"
 
 #: ../../../library/uio.rst:129
 msgid "These constructors are a MicroPython extension."
-msgstr "これらのコンストラクターは MicroPython の拡張です。"
+msgstr "これらのコンストラクタは MicroPython の拡張です。"
 
 #: ../../../library/ujson.rst:2
 msgid ":mod:`ujson` -- JSON encoding and decoding"
@@ -10169,7 +10352,7 @@ msgid ""
 msgstr ""
 "FAT ファイルシステムのフォーマットを使うファイルシステムオブジェクトを作成します。"
 "FAT ファイルシステムのストレージは *block_dev* によって提供されます。この"
-"コンストラクターによって作成されたオブジェクトは :func:`mount` を使ってマウント"
+"コンストラクタによって作成されたオブジェクトは :func:`mount` を使ってマウント"
 "できます。"
 
 #: ../../../library/uos.rst:178
@@ -10200,7 +10383,7 @@ msgid ""
 "Construct a block device object.  The parameters to the constructor are "
 "dependent on the specific block device."
 msgstr ""
-"ブロックデバイスオブジェクトを構築します。コンストラクターへのパラメータは、特定の"
+"ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
 "ブロックデバイスに依存します。"
 
 #: ../../../library/uos.rst:196
