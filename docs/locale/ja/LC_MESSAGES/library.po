@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-03 14:13+0900\n"
-"PO-Revision-Date: 2018-11-18 19:30+0900\n"
+"PO-Revision-Date: 2018-12-23 19:10+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -346,7 +346,7 @@ msgid ""
 "In MicroPython, `byteorder` parameter must be positional (this is "
 "compatible with CPython)."
 msgstr ""
-"MicroPython では、 `byteorder` は位置パラメータでなければなりません(位置"
+"MicroPython では `byteorder` は位置パラメータでなければなりません(位置"
 "パラメータとすることは CPython でも可能です)。"
 
 #: ../../../library/builtins.rst:135
@@ -1005,7 +1005,7 @@ msgstr ""
 "記述することを目指しています。しかし、MicroPython は高度に構成可能であり、"
 "特定のボード/組み込みシステムへの各ポートは、MicroPython ライブラリのサブセット"
 "のみを使用可能にします。正式にサポートされているポートの場合、適用不可能な項目を"
-"除外するか、ポートが提供する機能の個々の説明に \"Availability:\" 節を付けるか"
+"除外するか、ポートが提供する機能の個々の説明に「可用性:」節を付けるか"
 "しています。"
 
 #: ../../../library/index.rst:36
@@ -1069,7 +1069,7 @@ msgstr ""
 "接頭辞 \"u\" がついています。たとえば ``json`` の代わりに ``ujson`` となっています。"
 "これは、そのようなモジュールがマイクロライブラリであることを示しています。すなわち、"
 "CPython モジュールの機能のサブセットのみを実装しています。異なる名前を付けることによって、"
-"ユーザーは Python レベルのモジュールを作成して、CPythonとの互換性を高める機能を拡張"
+"ユーザーは Python レベルのモジュールを作成して、CPython との互換性を高める機能を拡張"
 "できます(実際に、これは前述の `micropython-lib` プロジェクトによって行われます)。"
 
 #: ../../../library/index.rst:65
@@ -1864,7 +1864,7 @@ msgstr "IRQ ウェイク値。"
 
 #: ../../../library/machine.rst:132
 msgid "Reset causes."
-msgstr "リセッチ原因。"
+msgstr "リセット原因。"
 
 #: ../../../library/machine.rst:138
 msgid "Wake-up reasons."
@@ -3864,7 +3864,7 @@ msgid ""
 msgstr ""
 "このように宣言された定数でも、宣言されているモジュールの外部からグローバル変数として"
 "アクセス可能です。一方、定数名がアンダースコアで始まっていれば不可視となり、グローバル"
-"変数として利用でくなくなり、実行中のメモリを消費しません。
+"変数として利用でくなくなり、実行中のメモリを消費しません。"
 
 #: ../../../library/micropython.rst:25
 msgid ""
@@ -8859,7 +8859,7 @@ msgstr ""
 "となります。オリジナルの MicroPython リファレンスボードでは ``\"pyboard\"`` "
 "となります。したがって、これはあるボードを別のボードと区別するために使用できます。"
 "あなたのプログラムが MicroPython 上で実行されているのか(それとも他の Python "
-"実装で動いているのか)を確認する必要がある場合は代わりに ``sys.implementation`` "
+"実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
 #: ../../../library/sys.rst:107
@@ -9605,7 +9605,7 @@ msgid ""
 " an instance of `OSError`. Usage example::"
 msgstr ""
 "ANSI C/POSIX 規格に基づくエラーコードです。すべてのエラーコードは \"E\" で始まります。"
-"前述のように、コードに何があるかは `MicroPython ポート` に依存します。
+"前述のように、コードに何があるかは `MicroPython ポート` に依存します。"
 "``exc`` が `OSError` のインスタンスであるとすると、エラーには通常 ``exc.args[0]`` "
 "でアクセス可能です。たとえば次のようにアクセスします::"
 
@@ -9888,7 +9888,7 @@ msgstr ""
 "残る二分法は、バイナリとテキストのストリームです。MicroPython はもちろんこれを"
 "サポートしていますが、CPython のテキストストリームが本質的にバッファされている"
 "のに対して MicroPython ではバッファしていません。(実際、これはバッファを"
-"サポートする可能正のある唯一のケースです)。
+"サポートする可能正のある唯一のケースです)。"
 
 #: ../../../library/uio.rst:73
 msgid ""
@@ -10522,11 +10522,11 @@ msgstr ""
 "``re`` モジュールのサブセットです(実際には POSIX 拡張正規表現のサブセットです)。"
 
 #: ../../../library/ure.rst:13
-msgid "Supported operators are:"
-msgstr "サポートされている演算子は次のものです:"
+msgid "Supported operators and special sequences are:"
+msgstr "サポートされている演算子と特殊シーケンスは次のものです:"
 
 #: ../../../library/ure.rst:16
-msgid "``'.'``"
+msgid "``.``"
 msgstr ""
 
 #: ../../../library/ure.rst:16
@@ -10534,7 +10534,7 @@ msgid "Match any character."
 msgstr "任意の文字にマッチします。"
 
 #: ../../../library/ure.rst:20
-msgid "``'[...]'``"
+msgid "``[...]``"
 msgstr ""
 
 #: ../../../library/ure.rst:19
@@ -10546,7 +10546,7 @@ msgstr ""
 "なしセット(``[^a-c]`` など)も含みます。"
 
 #: ../../../library/ure.rst:23
-msgid "``'^'``"
+msgid "``^``"
 msgstr ""
 
 #: ../../../library/ure.rst:23
@@ -10554,7 +10554,7 @@ msgid "Match the start of the string."
 msgstr "文字列の先頭にマッチします。"
 
 #: ../../../library/ure.rst:26
-msgid "``'$'``"
+msgid "``$``"
 msgstr ""
 
 #: ../../../library/ure.rst:26
@@ -10562,54 +10562,73 @@ msgid "Match the end of the string."
 msgstr "文字列の最後にマッチします。"
 
 #: ../../../library/ure.rst:29
-msgid "``'?'``"
+msgid "``?``"
 msgstr ""
 
 #: ../../../library/ure.rst:29
-msgid "Match zero or one of the previous entity."
-msgstr "直前のエンティティの0回または1回の繰り返しにマッチします。"
+msgid "Match zero or one of the previous sub-pattern."
+msgstr "直前のサブパターンの0回または1回の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:32
-msgid "``'*'``"
+msgid "``*``"
 msgstr ""
 
 #: ../../../library/ure.rst:32
-msgid "Match zero or more of the previous entity."
-msgstr "直前のエンティティの0回以上の繰り返しにマッチします。"
+msgid "Match zero or more of the previous sub-pattern."
+msgstr "直前のサブパターンの0回以上の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:35
-msgid "``'+'``"
+msgid "``+``"
 msgstr ""
 
 #: ../../../library/ure.rst:35
-msgid "Match one or more of the previous entity."
-msgstr "直前のエンティティの1回以上の繰り返しにマッチします。"
+msgid "Match one or more of the previous sub-pattern."
+msgstr "直前のサブパターンの1回以上の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:37
-msgid "``'??'``"
-msgstr ""
+#msgid "``??``"
+#msgstr ""
 
-#: ../../../library/ure.rst:39
-msgid "``'*?'``"
-msgstr ""
+#: ../../../library/ure.rst:38
+msgid "Non-greedy version of ``?``, match zero or one, with the preference for zero."
+msgstr "``?`` の非貧欲版で、直前のサブパターンの0回または1回の繰り返しにマッチしますが、0回が優先されます。"
 
 #: ../../../library/ure.rst:41
-msgid "``'+?'``"
+msgid "``*?``"
 msgstr ""
 
-#: ../../../library/ure.rst:44
-msgid "``'|'``"
+#: ../../../library/ure.rst:42
+msgid "Non-greedy version of ``*``, match zero or more, with the preference for the shortest match."
+msgstr ""
+"``*`` の非貧欲版で、直前のサブパターンの0回以上の繰り返しにマッチしますが、"
+"最短の繰り替えしが優先されます。"
+
+#: ../../../library/ure.rst:45
+msgid "``+?``"
 msgstr ""
 
-#: ../../../library/ure.rst:44
-msgid "Match either the LHS or the RHS of this operator."
-msgstr "この演算子の左辺または右辺のどちらかにマッチします。"
+#: ../../../library/ure.rst:46
+msgid "Non-greedy version of ``+``, match one or more, with the preference for the shortest match."
+msgstr ""
+"``+`` の非貧欲版で、直前のサブパターンの1回以上の繰り返しにマッチしますが、"
+"最短の繰り替えしが優先されます。"
 
-#: ../../../library/ure.rst:48
-msgid "``'(...)'``"
+#: ../../../library/ure.rst:49
+msgid "``|``"
 msgstr ""
 
-#: ../../../library/ure.rst:47
+#: ../../../library/ure.rst:50
+msgid ""
+"Match either the left-hand side or the right-hand side sub-patterns of "
+"this operator."
+msgstr ""
+"この演算子の左辺または右辺のどちらかのサブパターンにマッチします。"
+
+#: ../../../library/ure.rst:53
+msgid "``(...)``"
+msgstr ""
+
+#: ../../../library/ure.rst:54
 msgid ""
 "Grouping. Each group is capturing (a substring it captures can be "
 "accessed with `match.group()` method)."
@@ -10617,20 +10636,146 @@ msgstr ""
 "グループ化。各グループについてキャプチャを行います(キャプチャした部分文字列は "
 "`match.group()` メソッドでアクセスできます)。"
 
-#: ../../../library/ure.rst:50
-msgid ""
-"**NOT SUPPORTED**: Counted repetitions (``{m,n}``), more advanced "
-"assertions (``\\b``, ``\\B``), named groups (``(?P<name>...)``), non-"
-"capturing groups (``(?:...)``), etc."
+#: ../../../library/ure.rst:57
+msgid "``\\d``"
 msgstr ""
-"**未サポート**: 反復回数(``{m,n}``)、より高度なアサーション(``\\b``, ``\\B``)、"
-"名前付きグループ(``(?P<name>...)``)、非キャプチャグループ(``(?:...)``)など。"
+
+#: ../../../library/ure.rst:58
+msgid "Matches digit. Equivalent to ``[0-9]``."
+msgstr "数字にマッチします。 ``[0-9]`` と同じです。"
 
 #: ../../../library/ure.rst:60
-msgid "Compile regular expression, return `regex <regex>` object."
-msgstr "正規表現をコンパイルし、 ``regex`` オブジェクトを返します。"
+msgid "``\\D``"
+msgstr ""
+
+#: ../../../library/ure.rst:61
+msgid "Matches non-digit. Equivalent to ``[^0-9]``."
+msgstr "数字以外とマッチします。 ``[^0-9]`` と同じです。"
+
+#: ../../../library/ure.rst:63
+msgid "``\\s``"
+msgstr ""
 
 #: ../../../library/ure.rst:64
+msgid "Matches whitespace. Equivalent to ``[ \\t-\\r]``."
+msgstr "空白にマッチします。 ``[ \\t-\\r]`` と同じです。"
+
+#: ../../../library/ure.rst:66
+msgid "``\\S``"
+msgstr ""
+
+#: ../../../library/ure.rst:67
+msgid "Matches non-whitespace. Equivalent to ``[^ \\t-\\r]``."
+msgstr "空白以外にマッチします。 ``[^ \\t-\\r]`` と同じです。"
+
+#: ../../../library/ure.rst:69
+msgid "``\\w``"
+msgstr ""
+
+#: ../../../library/ure.rst:70
+msgid ""
+"Matches \"word characters\" (ASCII only). Equivalent to ``[A-Za-z0-9_]``."
+msgstr ""
+"単語文字(ASCII のみ)にマッチします。 ``[A-Za-z0-9_]`` と同じです。"
+
+#: ../../../library/ure.rst:72
+msgid "``\\W``"
+msgstr ""
+
+#: ../../../library/ure.rst:73
+msgid ""
+"Matches non \"word characters\" (ASCII only). Equivalent to ``[^A-Za-z0-9_]``."
+msgstr ""
+"単語文字(ASCII のみ)以外にマッチします。 ``[^A-Za-z0-9_]`` と同じです。"
+
+#: ../../../library/ure.rst:75
+msgid "``\\``"
+msgstr ""
+
+#: ../../../library/ure.rst:76
+msgid ""
+"Escape character. Any other character following the backslash, except for "
+"those listed above, is taken literally. For example, ``\\*`` is equivalent "
+"to literal ``*`` (not treated as the ``*`` operator). Note that ``\\r``, "
+"``\\n``, etc. are not handled specially, and will be equivalent to literal "
+"letters ``r``, ``n``, etc. Due to this, it's not recommended to use raw "
+"Python strings (``r\"\"``) for regular expressions. For example, "
+"``r\"\\r\\n\"`` when used as the regular expression is equivalent to "
+"``\"rn\"``. To match CR character followed by LF, use ``\"\\r\\n\"``."
+msgstr ""
+"エスケープ文字です。上にあげたもの以外、バックスラッシュの後に続く文字はすべて"
+"文字通りに解釈されます。たとえば ``\\*`` はリテラル ``*`` と同等です(``*`` "
+"演算子として扱われません)。なお ``\\r``, ``\\n`` などは特別に処理されず、"
+"リテラル文字 ``r``, ``n`` などと等価になります。このため、正規表現に Python "
+"のraw文字列(``r\"\"``)を使うことはお勧めしません。たとえば r\"\\r\\n\" を"
+"正規表現として使った場合は  ``\"rn\"`` と同じになります。CR LF にマッチ"
+"させるには ``\"\\r\\n\"`` を使ってください。"
+
+#: ../../../library/ure.rst:86
+msgid "**NOT SUPPORTED**:"
+msgstr "**未サポート**:"
+
+#: ../../../library/ure.rst:88
+msgid "counted repetitions (``{m,n}``)"
+msgstr "反復回数 (``{m,n}``)"
+
+#: ../../../library/ure.rst:89
+msgid "named groups (``(?P<name>...)``)"
+msgstr "名前付きグループ (``(?P<name>...)``)"
+
+#: ../../../library/ure.rst:90
+msgid "non-capturing groups (``(?:...)``)"
+msgstr "非キャプチャグループ (``(?:...)``)"
+
+#: ../../../library/ure.rst:91
+msgid "more advanced assertions (``\\b``, ``\\B``)"
+msgstr "より高度なアサーション (``\\b``, ``\\B``)"
+
+#: ../../../library/ure.rst:92
+msgid ""
+"special character escapes like ``\\r``, ``\\n`` - use Python's own escaping "
+"instead"
+msgstr ""
+"``\\r``, ``\\n`` などの特殊文字エスケープ - 代わりに Python 自体のエスケープを"
+"使ってください。"
+
+#: ../../../library/ure.rst:94
+msgid "etc."
+msgstr "などなど"
+
+#: ../../../library/ure.rst:96
+msgid "Example::"
+msgstr "サンプルコード::"
+
+#: ../../../library/ure.rst:98
+msgid ""
+"import ure\n"
+"\n"
+"# As ure doesn't support escapes itself, use of r\"\" strings is not\n"
+"# recommended.\n"
+"regex = ure.compile(\"[\\r\\n]\")\n"
+"\n"
+"regex.split(\"line1\\rline2\\nline3\\r\\n\")\n"
+"\n"
+"# Result:\n"
+"# ['line1', 'line2', 'line3', '', '']"
+msgstr ""
+"import ure\n"
+"\n"
+"# ure はエスケープ自体をサポートしていないので、r\"\" 文字列の利用は\n"
+"# お勧めしません。\n"
+"regex = ure.compile(\"[\\r\\n]\")\n"
+"\n"
+"regex.split(\"line1\\rline2\\nline3\\r\\n\")\n"
+"\n"
+"# Result:\n"
+"# ['line1', 'line2', 'line3', '', '']"
+
+#: ../../../library/ure.rst:114
+msgid "Compile regular expression, return `regex <regex>` object."
+msgstr "正規表現をコンパイルし、 `regex <regex>` オブジェクトを返します。"
+
+#: ../../../library/ure.rst:118
 msgid ""
 "Compile *regex_str* and match against *string*. Match always happens from"
 " starting position in a string."
@@ -10638,7 +10783,7 @@ msgstr ""
 "*regex_str* をコンパイルし、文字列 *string* とマッチするか照合します。マッチは常に文字列の"
 "先頭位置から行います。"
 
-#: ../../../library/ure.rst:69
+#: ../../../library/ure.rst:123
 msgid ""
 "Compile *regex_str* and search it in a *string*. Unlike `match`, this "
 "will search string for first position which matches regex (which still "
@@ -10648,7 +10793,7 @@ msgstr ""
 "正規表現にマッチする最初の位置の文字列を検索します(正規表現がマッチすれば位置 0 の"
 "文字列になることもあります)。"
 
-#: ../../../library/ure.rst:75
+#: ../../../library/ure.rst:129
 msgid ""
 "Compile *regex_str* and search for it in *string*, replacing all matches "
 "with *replace*, and returning the new string."
@@ -10656,7 +10801,7 @@ msgstr ""
 "*regex_str* をコンパイルして文字列 *string* を検索し、マッチしたものすべてを "
 "*replace* で置換した新しい文字列を返します。"
 
-#: ../../../library/ure.rst:78
+#: ../../../library/ure.rst:132
 msgid ""
 "*replace* can be a string or a function.  If it is a string then escape "
 "sequences of the form ``\\<number>`` and ``\\g<number>`` can be used to "
@@ -10670,7 +10815,7 @@ msgstr ""
 "単一の引数(match オブジェクト)をとらなければならず、置換した文字列を返す必要が"
 "あります。"
 
-#: ../../../library/ure.rst:84
+#: ../../../library/ure.rst:138
 msgid ""
 "If *count* is specified and non-zero then substitution will stop after "
 "this many substitutions are made.  The *flags* argument is ignored."
@@ -10678,11 +10823,11 @@ msgstr ""
 "*count* に 0 で無い値が指定された場合、置換はこの指定の数に達したところで終わります。 "
 "*flags* 引数は無視されます。"
 
-#: ../../../library/ure.rst:87
+#: ../../../library/ure.rst:141
 msgid "Note: availability of this function depends on `MicroPython port`."
 msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
 
-#: ../../../library/ure.rst:91
+#: ../../../library/ure.rst:145
 msgid ""
 "Flag value, display debug information about compiled expression. "
 "(Availability depends on `MicroPython port`.)"
@@ -10690,11 +10835,11 @@ msgstr ""
 "コンパイルされた正規表現についてのデバッグ情報を表示するフラグ値。"
 "(可用性は `MicroPython ポート` に依存します。)"
 
-#: ../../../library/ure.rst:98
+#: ../../../library/ure.rst:151
 msgid "Regex objects"
 msgstr "regex オブジェクト"
 
-#: ../../../library/ure.rst:100
+#: ../../../library/ure.rst:154
 msgid ""
 "Compiled regular expression. Instances of this class are created using "
 "`ure.compile()`."
@@ -10702,7 +10847,7 @@ msgstr ""
 "コンパイルされた正規表現です。このクラスのインスタンスは `ure.compile()` を"
 "使っって作成されます。"
 
-#: ../../../library/ure.rst:107
+#: ../../../library/ure.rst:161
 msgid ""
 "Similar to the module-level functions :meth:`match`, :meth:`search` and "
 ":meth:`sub`. Using methods is (much) more efficient if the same regex is "
@@ -10712,7 +10857,7 @@ msgstr ""
 "と同様です。同じ regex が複数の文字列に適用されている場合、このメソッドを使ったほうが"
 "(ずっと)より効率的です。"
 
-#: ../../../library/ure.rst:114
+#: ../../../library/ure.rst:168
 msgid ""
 "Split a *string* using regex. If *max_split* is given, it specifies "
 "maximum number of splits to perform. Returns list of strings (there may "
@@ -10722,11 +10867,11 @@ msgstr ""
 "分割の最大数を指定します。文字列のリストを返します(*max_split* を指定した場合は"
 "最大 *max_split+1* の数の文字列を返します)。"
 
-#: ../../../library/ure.rst:119
+#: ../../../library/ure.rst:172
 msgid "Match objects"
 msgstr "match オブジェクト"
 
-#: ../../../library/ure.rst:121
+#: ../../../library/ure.rst:175
 msgid ""
 "Match objects as returned by `match()` and `search()` methods, and passed"
 " to the replacement function in `sub()`."
@@ -10734,7 +10879,7 @@ msgstr ""
 "match オブジェクトは `match()` と `search()` メソッドが返し、 `sub()` "
 "の置換関数に渡すものです。"
 
-#: ../../../library/ure.rst:126
+#: ../../../library/ure.rst:180
 msgid ""
 "Return matching (sub)string. *index* is 0 for entire match, 1 and above "
 "for each capturing group. Only numeric groups are supported."
@@ -10743,15 +10888,15 @@ msgstr ""
 "1 以上であれば指定のグループにマッチした文字列です。数字によるグループ指定だけが"
 "サポートされます。"
 
-#: ../../../library/ure.rst:131
+#: ../../../library/ure.rst:185
 msgid "Return a tuple containing all the substrings of the groups of the match."
 msgstr "マッチしたグループの部分文字列すべてのタプルを返します。"
 
-#: ../../../library/ure.rst:133 ../../../library/ure.rst:148
+#: ../../../library/ure.rst:187 ../../../library/ure.rst:202
 msgid "Note: availability of this method depends on `MicroPython port`."
 msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
 
-#: ../../../library/ure.rst:138
+#: ../../../library/ure.rst:192
 msgid ""
 "Return the index in the original string of the start or end of the "
 "substring group that was matched.  *index* defaults to the entire group, "
@@ -10761,13 +10906,13 @@ msgstr ""
 "*index* を指定しなければデフォルトでグループ全体になります。それ以外の場合は"
 "指定したグループになります。"
 
-#: ../../../library/ure.rst:142
+#: ../../../library/ure.rst:196
 msgid "Note: availability of these methods depends on `MicroPython port`."
 msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
 
-#: ../../../library/ure.rst:146
+#: ../../../library/ure.rst:200
 msgid "Returns the 2-tuple ``(match.start(index), match.end(index))``."
-msgstr "2項目のプル ``(match.start(index), match.end(index))`` を返します。"
+msgstr "2項目のタプル ``(match.start(index), match.end(index))`` を返します。"
 
 #: ../../../library/uselect.rst:2
 msgid ":mod:`uselect` -- wait for events on a set of streams"
@@ -10826,7 +10971,7 @@ msgid ""
 msgstr ""
 "``uselect.POLLHUPPP や ``uselect.POLLERR`` のようなフラグは、"
 "入力イベントマスクとして有効ではないことに注意してください"
-"(これらは要求したかに関わらず `poll()` から返される迷惑なイベントです)。
+"(これらは要求したかに関わらず `poll()` から返される迷惑なイベントです)。"
 "このセマンティクスは POSIX の仕様からきています。"
 
 #: ../../../library/uselect.rst:46
@@ -11426,7 +11571,7 @@ msgid ""
 "`MicroPython port`, some or all keyword arguments above may be not "
 "supported."
 msgstr ""
-"特定の "`MicroPython ポート` のモジュールの実装によっては、 上記のキーワード"
+"特定の `MicroPython ポート` のモジュールの実装によっては、 上記のキーワード"
 "引数の一部またはすべてがサポートされていない可能性があります。"
 
 #: ../../../library/ussl.rst:31
@@ -11564,7 +11709,7 @@ msgstr ""
 
 #: ../../../library/utime.rst:27
 msgid "Using networked time protocol (requires setup by a port/user)."
-msgstr "NTP (Networked Time Protocol)を利用(ポート/ユーザーによる設定が必須)。
+msgstr "NTP (Networked Time Protocol)を利用(ポート/ユーザーによる設定が必須)。"
 
 #: ../../../library/utime.rst:28
 msgid ""
@@ -11573,7 +11718,7 @@ msgid ""
 " case)."
 msgstr ""
 "各電源投入時にユーザが手動で設定(多くのボードはハードリセット時に RTC 時間を設定"
-"しますが、再度設定する必要があるボードもあります)。
+"しますが、再度設定する必要があるボードもあります)。"
 
 #: ../../../library/utime.rst:32
 msgid ""
@@ -11644,7 +11789,7 @@ msgid ""
 "compatibility with them use `sleep_ms()` and `sleep_us()` functions."
 msgstr ""
 "指定された秒数の間スリープします。ボードによっては秒以下の精度でスリープするために、"
-"浮動小数点数で秒を指定できるものがあります。他のボードでは、"`sleep_ms()` や "
+"浮動小数点数で秒を指定できるものがあります。他のボードでは、`sleep_ms()` や "
 "`sleep_us()` 関数との整合性のために、浮動小数点の引数を受け付けないことに注意"
 "してください。"
 
@@ -11825,7 +11970,7 @@ msgstr ""
 "結果が返されます。具体的には、2つのティック値が *TICKS_PERIOD/2-1* "
 "ティック内で離れている場合、その値が関数によって返されます。しかし、リアルタイム"
 "ティックの *TICKS_PERIOD/2* がそれらの間を経過した場合、関数は代わりに "
-"-TICKS_PERIOD/2 を返します。つまり、結果値は可能な値の負の範囲にラップアラウンドします。
+"-TICKS_PERIOD/2 を返します。つまり、結果値は可能な値の負の範囲にラップアラウンドします。"
 
 #: ../../../library/utime.rst:164
 msgid ""
