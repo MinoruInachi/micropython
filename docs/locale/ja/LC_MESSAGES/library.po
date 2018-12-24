@@ -10586,8 +10586,8 @@ msgid "Match one or more of the previous sub-pattern."
 msgstr "直前のサブパターンの1回以上の繰り返しにマッチします。"
 
 #: ../../../library/ure.rst:37
-#msgid "``??``"
-#msgstr ""
+msgid "``??``"
+msgstr ""
 
 #: ../../../library/ure.rst:38
 msgid "Non-greedy version of ``?``, match zero or one, with the preference for zero."
@@ -11077,7 +11077,7 @@ msgstr ""
 
 #: ../../../library/usocket.rst:10
 msgid "This module provides access to the BSD socket interface."
-msgstr ""
+msgstr "このモジュールは BSD ソケットインタフェースへのアクセスを提供します。"
 
 #: ../../../library/usocket.rst:15
 msgid ""
@@ -11087,10 +11087,15 @@ msgid ""
 " still supported by MicroPython (but is a no-op), so where compatibility "
 "with CPython matters, be sure to use it."
 msgstr ""
+"効率性と一貫性のために、MicroPython のソケットオブジェクトは `stream` (ファイルライク)"
+"インタフェースを直接実装します。CPythonでは `makefile()` メソッドを使ってソケットを"
+"ファイルライクなオブジェクトに変換する必要があります。この方法は MicroPython でも"
+"サポートされています(ただし何もしません)ので、CPython との互換性が重要な場合は必ず使って"
+"ください。"
 
 #: ../../../library/usocket.rst:22
 msgid "Socket address format(s)"
-msgstr ""
+msgstr "ソケットアドレスフォーマット"
 
 #: ../../../library/usocket.rst:24
 msgid ""
@@ -11098,6 +11103,9 @@ msgid ""
 "data type returned by `getaddrinfo` function, which must be used to "
 "resolve textual address (including numeric addresses)::"
 msgstr ""
+"``usocket`` モジュールのネイティブなソケットアドレスフォーマットは `getaddrinfo` "
+"関数によって返される不透明なデータ型です。`getaddrinfo` は、テキストアドレス"
+"(数値アドレスを含む)を解決するために使う必要があります。"
 
 #: ../../../library/usocket.rst:28
 msgid ""
@@ -11107,12 +11115,19 @@ msgid ""
 "# Now you can use that address\n"
 "sock.connect(addr)"
 msgstr ""
+"sockaddr = usocket.getaddrinfo('www.micropython.org', 80)[0][-1]\n"
+"# 数値アドレスでも getaddrinfo() を使う必要があります\n"
+"sockaddr = usocket.getaddrinfo('127.0.0.1', 80)[0][-1]\n"
+"# これでアドレスを使えるようになります\n"
+"sock.connect(addr)"
 
 #: ../../../library/usocket.rst:34
 msgid ""
 "Using `getaddrinfo` is the most efficient (both in terms of memory and "
 "processing power) and portable way to work with addresses."
 msgstr ""
+"`getaddrinfo` を使うことは(メモリと処理能力の両方の点で)最も効率的で、アドレスを"
+"扱うための移植性のある手段です。"
 
 #: ../../../library/usocket.rst:37
 msgid ""
@@ -11125,24 +11140,32 @@ msgid ""
 "format, and require to use `getaddrinfo` function to resolve domain "
 "names."
 msgstr ""
+"ただし ``socket`` モジュール(ここで説明しているネイティブ MicroPython の "
+"``usocket`` との違いに注意)は後述するように、タプルを使ってアドレスを指定する "
+"CPython 互換の手段を提供します。 ``socket`` モジュールは組み込み済であるか、"
+"(`MicroPython Unix port` の場合のように) `micropython-lib` からインストール"
+"が必要で、ポートによってはタプルフォーマットの数値アドレスのみしか受け付けられず、"
+"ドメイン名を解決するために `getaddrinfo` 関数を使う必要があります。"
 
 #: ../../../library/usocket.rst:45
 msgid "Summing up:"
-msgstr ""
+msgstr "まとめると:"
 
 #: ../../../library/usocket.rst:47
 msgid "Always use `getaddrinfo` when writing portable applications."
-msgstr ""
+msgstr "移植性のあるアプリケーションを書くには `getaddrinfo` を必ず使ってください。"
 
 #: ../../../library/usocket.rst:48
 msgid ""
 "Tuple addresses described below can be used as a shortcut for quick hacks"
 " and interactive use, if your port supports them."
 msgstr ""
+"後述するタプルアドレスは、それがサポートされているなら、クイックハックや対話的な利用の"
+"ためのショートカットとして使えます。"
 
 #: ../../../library/usocket.rst:51
 msgid "Tuple address format for ``socket`` module:"
-msgstr ""
+msgstr "``socket`` モジュールのタプルアドレスフォーマット"
 
 #: ../../../library/usocket.rst:53
 msgid ""
@@ -11152,6 +11175,10 @@ msgid ""
 "accepted as *ipv4_address*, they should be resolved first using "
 "`usocket.getaddrinfo()`."
 msgstr ""
+"IPv4: *(ipv4_address, port)* -- *ipv4_address* はドット表記の数値の IPv4 "
+"アドレスを持つ文字列で、たとえば ``\"8.8.8.8\"`` などです。 *port* は 1〜65535 "
+"の範囲の整数のポート番号です。ドメイン名は *ipv4_address* として受け入れられないので、"
+"`usocket.getaddrinfo()` を使って事前に解決しておくよう注意してください。"
 
 #: ../../../library/usocket.rst:58
 msgid ""
@@ -11164,6 +11191,13 @@ msgid ""
 "`usocket.getaddrinfo()`. Availability of IPv6 support depends on a "
 "`MicroPython port`."
 msgstr ""
+"IPv6: *(ipv6_address, port, flowinfo, scopeid)* -- *ipv6_address* はコロン"
+"表記の数値の IPv6 アドレスを持ち文字列で、たとえば ``\"2001:db8::1["`` などです。 "
+"*port* は 1〜65535 の範囲の整数のポート番号です。 *flowinfo* は 0 にする必要が"
+"あります。 *scopeid* はリンクローカルアドレスのインターフェイススコープ ID です。"
+"ドメイン名は *ipv6_address* として受け入れられないので、 `usocket.getaddrinfo()` "
+"を使って事前に解決しておくよう注意してください。IPv6 サポートの可用性は "
+"`MicroPython port` に依存します。"
 
 #: ../../../library/usocket.rst:71
 msgid ""
@@ -11173,6 +11207,10 @@ msgid ""
 "``IPPROTO_*`` constants). Instead, *type* argument will select needed "
 "protocol automatically::"
 msgstr ""
+"指定したアドレスファミリ、ソケットタイプ、プロトコル番号を使って新しいソケットを"
+"作成します。ほとんどの場合 *proto* を指定する必要はありません(MicroPython の"
+"一部のポートでは ``IPPROTO_*`` 定数が省略されている場合があるため、指定はお勧め"
+"しません)。代わりに *type* 引数が必要なプロトコルを自動的に選択します。"
 
 #: ../../../library/usocket.rst:77
 msgid ""
@@ -11181,6 +11219,10 @@ msgid ""
 "# Create DGRAM UDP socket\n"
 "socket(AF_INET, SOCK_DGRAM)"
 msgstr ""
+"# STREAM TCP ソケットを作成\n"
+"socket(AF_INET, SOCK_STREAM)\n"
+"# DGRAM UDP ソケットを作成\n"
+"socket(AF_INET, SOCK_DGRAM)"
 
 #: ../../../library/usocket.rst:84
 msgid ""
@@ -11192,10 +11234,15 @@ msgid ""
 "combinations of addresses can be returned (requiring filtering on the "
 "user side)."
 msgstr ""
+"host/port 引数を、そのサービスに接続されたソケットを作成するために必要となるすべての"
+"引数を含む一連の５項目のタプルに変換します。引数 *af*, *type*, *proto* (これらは "
+"Psocket()` 関数の場合と同じ意味を持つ)を使って、返されるアドレスの種類をフィルタ処理"
+"できます。パラメータが指定されていないかゼロの場合、アドレスのすべての組み合わせを返す"
+"ことができます(利用者側でのフィルタリングが必要です)。"
 
 #: ../../../library/usocket.rst:91
 msgid "The resulting list of 5-tuples has the following structure::"
-msgstr ""
+msgstr "結果として得られる５項目のタプルは次のの構造を持ちます::"
 
 #: ../../../library/usocket.rst:93
 msgid "(family, type, proto, canonname, sockaddr)"
@@ -11203,7 +11250,7 @@ msgstr ""
 
 #: ../../../library/usocket.rst:95
 msgid "The following example shows how to connect to a given url::"
-msgstr ""
+msgstr "次の例は特定の URL に接続する方法を示しています::"
 
 #: ../../../library/usocket.rst:97
 msgid ""
@@ -11212,10 +11259,14 @@ msgid ""
 "# SOCK_STREAM will be returned, which may be not true\n"
 "s.connect(usocket.getaddrinfo('www.micropython.org', 80)[0][-1])"
 msgstr ""
+"s = usocket.socket()\n"
+"# これは \"type\" が指定されていない場合、SOCK_STREAM のアドレスが返される\n"
+"# ことを前提としています。これは正しくない可能性があります\n"
+"s.connect(usocket.getaddrinfo('www.micropython.org', 80)[0][-1])"
 
 #: ../../../library/usocket.rst:102
 msgid "Recommended use of filtering params::"
-msgstr ""
+msgstr "フィルタリングパラメータの推奨の使用法は次のとおりです::"
 
 #: ../../../library/usocket.rst:104
 msgid ""
@@ -11225,6 +11276,10 @@ msgid ""
 "s.connect(usocket.getaddrinfo('www.micropython.org', 80, 0, "
 "SOCK_STREAM)[0][-1])"
 msgstr ""
+"s = usocket.socket()\n"
+"# ストリーム操作のために接続できるアドレスを返すことが保証されています。\n"
+"s.connect(usocket.getaddrinfo('www.micropython.org', 80, 0, "
+"SOCK_STREAM)[0][-1])"
 
 #: ../../../library/usocket.rst:112
 msgid ""
@@ -11238,12 +11293,21 @@ msgid ""
 "``e.args[0]`` property from an exception object). The use of negative "
 "values is a provisional detail which may change in the future."
 msgstr ""
+"この関数でエラーが発生した場合、CPython は ``socket.gaierror`` 例外(`OSError` "
+"のサブクラス)を発生させます。MicroPython には ``socket.gaierror`` がなく、 "
+"OSError を直接発生させます。 `getaddrinfo()` のエラー番号は別の名前空間を形成し"
+"ていて、 :mod:`uerrno` モジュールのエラー番号と一致しない場合があることに注意して"
+"ください。 `getaddrinfo()` のエラーは負の数で表され、正の数である標準のシステムエラーと"
+"区別できます(エラー番号には例外オブジェクトの ``e.args[0]`` プロパティを使って"
+"アクセスできます)。負の値の使用は暫定的な処置であり、将来変更される可能性があります。"
 
 #: ../../../library/usocket.rst:124
 msgid ""
 "Convert a binary network address *bin_addr* of the given address family "
 "*af* to a textual representation::"
 msgstr ""
+"指定したアドレスファミリ *af* のバイナリ形式ネットワークアドレス *bin_addr* "
+"をテキスト表現に変換します。"
 
 #: ../../../library/usocket.rst:127
 msgid ""
@@ -11256,6 +11320,8 @@ msgid ""
 "Convert a textual network address *txt_addr* of the given address family "
 "*af* to a binary representation::"
 msgstr ""
+"指定したアドレスファミリ *af* のテキスト形式のネットワークアドレス *txt_addr* "
+"をバイナリ表現に変換します。"
 
 #: ../../../library/usocket.rst:135
 msgid ""
@@ -11268,10 +11334,11 @@ msgid ""
 "Address family types. Availability depends on a particular `MicroPython "
 "port`."
 msgstr ""
+"アドレスファミリタイプ。可用性は特定の `MicroPython port` に依存します。"
 
 #: ../../../library/usocket.rst:149
 msgid "Socket types."
-msgstr ""
+msgstr "ソケットタイプ。"
 
 #: ../../../library/usocket.rst:154
 msgid ""
@@ -11281,30 +11348,39 @@ msgid ""
 "selects `IPPROTO_TCP`, and `SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only "
 "real use of these constants is as an argument to `setsockopt()`."
 msgstr ""
+"IP プロトコル番号。可用性は特定の `MicroPython port` に依存します。"
+"`usocket.socket()` の呼び出しに指定する必要がないことに注意してください。"
+"なぜなら `SOCK_STREAM` では　`IPPROTO_TCP` 、 `SOCK_DGRAM` では `IPPROTO_UDP` "
+"のソケットタイプが自動的に選択されるからです。したがって、これらの定数の唯一の実際に"
+"使うのは `setsockopt()` の引数としてです。"
 
 #: ../../../library/usocket.rst:162
 msgid ""
 "Socket option levels (an argument to `setsockopt()`). The exact inventory"
 " depends on a `MicroPython port`."
 msgstr ""
+"ソケットオプションレベル(`setsockopt()` の引数)。何があるかは `MicroPython port` "
+"に依存します。"
 
 #: ../../../library/usocket.rst:167
 msgid ""
 "Socket options (an argument to `setsockopt()`). The exact inventory "
 "depends on a `MicroPython port`."
 msgstr ""
+"ソケットオプション(`setsockopt()` の引数)。何があるかは `MicroPython port` "
+"に依存します。"
 
 #: ../../../library/usocket.rst:170
 msgid "Constants specific to WiPy:"
-msgstr ""
+msgstr "WiPy に固有の定数:"
 
 #: ../../../library/usocket.rst:174
 msgid "Special protocol value to create SSL-compatible socket."
-msgstr ""
+msgstr "SSL 互換ソケットを作成するための特別なプロトコル値。"
 
 #: ../../../library/usocket.rst:177
 msgid "class socket"
-msgstr ""
+msgstr "クラス socket"
 
 #: ../../../library/usocket.rst:184
 msgid ""
