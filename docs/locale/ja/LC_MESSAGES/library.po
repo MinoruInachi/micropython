@@ -4115,7 +4115,7 @@ msgstr ""
 
 #: ../../../library/network.rst:3
 msgid ":mod:`network` --- network configuration"
-msgstr ""
+msgstr ":mod:`network` --- ネットワーク設定"
 
 #: ../../../library/network.rst:8
 msgid ""
@@ -11388,6 +11388,9 @@ msgid ""
 "future operations on the socket object will fail. The remote end will "
 "receive EOF indication if supported by protocol."
 msgstr ""
+"ソケットを閉じられたものとしてマークし、すべてのリソースを解放します。これを呼び出すと、"
+"このソケットオブジェクトに対する操作はすべて失敗します。プロトコルでサポートされている場合、"
+"リモート側の端点は EOF 通知を受け取ります。"
 
 #: ../../../library/usocket.rst:188
 msgid ""
@@ -11395,10 +11398,12 @@ msgid ""
 "is recommended to `close()` them explicitly as soon you finished working "
 "with them."
 msgstr ""
+"ソケットはガベージコレクション時に自動的にクローズされますが、作業を終えたらすぐに "
+"close() を明示的に呼び出すことを勧めます。"
 
 #: ../../../library/usocket.rst:193
 msgid "Bind the socket to *address*. The socket must not already be bound."
-msgstr ""
+msgstr "ソケットをアドレス *address* にバインドします。バインド済みのソケットを再バインドする事はできません。"
 
 #: ../../../library/usocket.rst:197
 msgid ""
@@ -11408,6 +11413,10 @@ msgid ""
 "refusing new connections. If not specified, a default reasonable value is"
 " chosen."
 msgstr ""
+"サーバーが接続を受け付けるようにします。バックログ *backlog* が指定されている場合、"
+"少なくとも 0 以上でなければなりません(それより低い場合 0 に設定されます)。"
+"バックログは、システムが新しい接続を拒否するまでに許可する未受付の接続の数を指定します。"
+"指定しない場合、デフォルトの妥当な値が選択されます。"
 
 #: ../../../library/usocket.rst:204
 msgid ""
@@ -11417,10 +11426,14 @@ msgid ""
 " and address is the address bound to the socket on the other end of the "
 "connection."
 msgstr ""
+"接続を受け入れます。ソケットはアドレスにバインド済みで、接続を待機(listen)している"
+"必要があります。戻り値は (conn, address) のペアです。conn は接続を通じてデータの"
+"送受信を行うための新しいソケットオブジェクト、address は接続先でソケットにバインド"
+"しているアドレスです。"
 
 #: ../../../library/usocket.rst:211
 msgid "Connect to a remote socket at *address*."
-msgstr ""
+msgstr "アドレス *address* でリモートソケットに接続します。"
 
 #: ../../../library/usocket.rst:215
 msgid ""
@@ -11428,6 +11441,9 @@ msgid ""
 " Returns number of bytes sent, which may be smaller than the length of "
 "data (\"short write\")."
 msgstr ""
+"ソケットにデータを送信します。ソケットはリモートソケットに接続済みでなければなりません。"
+"戻り値として、送信したバイト数を返します。これはデータの長さより短い場合があります"
+"(「短い書き込み」")。"
 
 #: ../../../library/usocket.rst:221
 msgid ""
@@ -11435,6 +11451,9 @@ msgid ""
 "socket. Unlike `send()`, this method will try to send all of data, by "
 "sending data chunk by chunk consecutively."
 msgstr ""
+"ソケットにすべてのデータを送信します。ソケットはリモートソケットに接続済みでなければ"
+"なりません。 `send()` と異なり、このメソッドはデータをチャンク単位で連続して送信する"
+"ことによって、すべてのデータを送信しようとします。"
 
 #: ../../../library/usocket.rst:225
 msgid ""
@@ -11443,6 +11462,9 @@ msgid ""
 "which has the same \"no short writes\" policy for blocking sockets, and "
 "will return number of bytes sent on non-blocking sockets."
 msgstr ""
+"非ブロッキングソケットでのこのメソッドの動作は未定義です。このため MicroPython では、"
+"代わりに `write()` の利用を勧めます。これは、ブロッキングソケットと同じ「短い書き込み禁止」"
+"ポリシーを持ち、非ブロッキングソケットで送信されたバイト数を返します。"
 
 #: ../../../library/usocket.rst:232
 msgid ""
@@ -11450,12 +11472,16 @@ msgid ""
 "representing the data received. The maximum amount of data to be received"
 " at once is specified by bufsize."
 msgstr ""
+"ソケットからデータを受信します。戻り値は受信したデータを表すバイト列オブジェクトです。"
+"一度に受信するデータの最大量は *bufsize* で指定します。"
 
 #: ../../../library/usocket.rst:237
 msgid ""
 "Send data to the socket. The socket should not be connected to a remote "
 "socket, since the destination socket is specified by *address*."
 msgstr ""
+"ソケットにデータを送信します。このメソッドでは接続先を *address* で指定するので、"
+"ソケットがリモートソケットに接続済みではいけません。"
 
 #: ../../../library/usocket.rst:242
 msgid ""
@@ -11463,6 +11489,9 @@ msgid ""
 "address)* where *bytes* is a bytes object representing the data received "
 "and *address* is the address of the socket sending the data."
 msgstr ""
+"ソケットからデータを受信します。戻り値は *(bytes, address)* のペアです。 "
+"*bytes* は受信データを表すバイト列オブジェクトで、 *address* はデータを送信する"
+"ソケットのアドレスです。"
 
 #: ../../../library/usocket.rst:248
 msgid ""
@@ -11470,10 +11499,13 @@ msgid ""
 "are defined in the socket module (SO_* etc.). The *value* can be an "
 "integer or a bytes-like object representing a buffer."
 msgstr ""
+"指定されたソケットオプションの値を設定します。必要なシンボリック定数は、socket "
+"モジュール(SO_* など)で定義されています。 *value* は整数、None、またはバッファを表す"
+"バイト列ライクなオブジェクトのいずれかです。"
 
 #: ../../../library/usocket.rst:254
 msgid "**Note**: Not every port supports this method, see below."
-msgstr ""
+msgstr "**注記注**: すべてのポートがこのメソッドをサポートしているわけではありません。下記を参照してください。"
 
 #: ../../../library/usocket.rst:256
 msgid ""
@@ -11484,6 +11516,11 @@ msgid ""
 "has completed. If zero is given, the socket is put in non-blocking mode. "
 "If None is given, the socket is put in blocking mode."
 msgstr ""
+"ブロッキングソケットの操作のタイムアウト値を指定します。 *value* 引数には負でない"
+"浮動小数点数値で表した秒数を指定するか、None を指定します。ゼロ以外の値を指定した場合、"
+"ソケット操作が完了する前にタイムアウト期間が経過した場合、 `OSError` 例外が発生します。"
+"ゼロを指定した場合、ソケットは非ブロッキングモードになります。None を指定した場合、"
+"ソケットはブロックモードになります。"
 
 #: ../../../library/usocket.rst:262
 msgid ""
@@ -11492,6 +11529,11 @@ msgid ""
 "multiple objects at the same time (and not just on sockets, but on "
 "generic `stream` objects which support polling). Example::"
 msgstr ""
+"すべての `MicroPython ポート <MicroPython port>` がこのメソッドをサポートして"
+"いるわけではありません。よりポータブルで汎用的な解決策は `uselect.poll` オブジェクト"
+"を使うことです。これにより、複数のオブジェクトを同時に待機することができます(ソケット"
+"だけでなく、ポーリングをサポートする汎用の `stream` オブジェクトも対象になります)。"
+"たとえば次のように使います::"
 
 #: ../../../library/usocket.rst:267
 msgid ""
@@ -11506,6 +11548,16 @@ msgid ""
 "if not res:\n"
 "    # s is still not ready for input, i.e. operation timed out"
 msgstr ""
+"# settimeout を使う場合:\n"
+"s.settimeout(1.0)  # タイムアウトを秒数で指定\n"
+"s.read(10)  # タイムアウトが発生する可能性あり\n"
+"\n"
+"# 代わりの使用例:\n"
+"poller = uselect.poll()\n"
+"poller.register(s, uselect.POLLIN)\n"
+"res = poller.poll(1000)  # タイムアウトをミリ秒で指定\n"
+"if not res:\n"
+"    # s から入力されなくなったということは、操作がタイムアウトしている"
 
 #: ../../../library/usocket.rst:281
 msgid ""
@@ -11514,24 +11566,30 @@ msgid ""
 " If you use ``except OSError:`` to catch the exception, your code will "
 "work both in MicroPython and CPython."
 msgstr ""
+"CPython はタイムアウトの場合に ``socket.timeout`` 例外を発生させます。この例外は "
+"`OSError` のサブクラスです。MicroPython は代わりに OSError を直接発生させます。"
+"例外を捕らえるのに ``except OSError:`` を使えば、コードは MicroPython と "
+"CPython の両方で動作します。
 
 #: ../../../library/usocket.rst:288
 msgid ""
 "Set blocking or non-blocking mode of the socket: if flag is false, the "
 "socket is set to non-blocking, else to blocking mode."
 msgstr ""
+"ソケットをブロッキングモード、または非ブロッキングモードに設定します。flag が False "
+"の場合にはソケットは非ブロッキングモードになり、True の場合にはブロッキングモードになります。"
 
 #: ../../../library/usocket.rst:291
 msgid "This method is a shorthand for certain `settimeout()` calls:"
-msgstr ""
+msgstr "このメソッドは、次の settimeout() 呼び出しの省略形です:"
 
 #: ../../../library/usocket.rst:293
 msgid "``sock.setblocking(True)`` is equivalent to ``sock.settimeout(None)``"
-msgstr ""
+msgstr "``sock.setblocking(True)`` は ``sock.settimeout(None)`` と等価です"
 
 #: ../../../library/usocket.rst:294
 msgid "``sock.setblocking(False)`` is equivalent to ``sock.settimeout(0)``"
-msgstr ""
+msgstr "``sock.setblocking(False)`` は ``sock.settimeout(0.0)`` と等価です"
 
 #: ../../../library/usocket.rst:298
 msgid ""
@@ -11540,18 +11598,25 @@ msgid ""
 "binary modes only ('rb', 'wb', and 'rwb'). CPython's arguments: "
 "*encoding*, *errors* and *newline* are not supported."
 msgstr ""
+"ソケットに関連したファイルオブジェクトを返します。戻り値の正確な型は makefile（）"
+"に指定した引数によります。サポートはバイナリモード('rb', 'wb', 'rwb')のみに限定"
+"されています。CPython の引数: "*encoding*, *errors* and *newline* はサポート"
+"されていません。"
 
 #: ../../../library/usocket.rst:305
 msgid ""
 "As MicroPython doesn't support buffered streams, values of *buffering* "
 "parameter is ignored and treated as if it was 0 (unbuffered)."
 msgstr ""
+"MicroPython はバッファ付きストリームをサポートしていないため、 *buffering* "
+"パラメータの値は無視され、0 (バッファなし)のように扱われます。"
 
 #: ../../../library/usocket.rst:311
 msgid ""
 "Closing the file object returned by makefile() WILL close the original "
 "socket as well."
 msgstr ""
+"makefile() から返されたファイルオブジェクトを閉じると、元のソケットも閉じられます。"
 
 #: ../../../library/usocket.rst:316
 msgid ""
@@ -11562,6 +11627,12 @@ msgid ""
 "be not possible with non-blocking socket though, and then less data will "
 "be returned."
 msgstr ""
+"ソケットから size バイトまで読み込みます。戻り値はバイト列オブジェクトです。 *size* "
+"が与えられていない場合、EOF までソケットから利用可能なすべてのデータを読み込みます。"
+"そのため、 *size* を指定しないメソッド呼出しはソケットが閉じられるまで戻りません。"
+"この関数は要求された量のデータを読み込もうとします(「短い読み込み」ではありません)。"
+"ただし、これはノンブロッキングソケットでは不可能なことがあり、そのような場合は返される"
+"データが少なくなります。"
 
 #: ../../../library/usocket.rst:324
 msgid ""
@@ -11569,14 +11640,17 @@ msgid ""
 "that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as "
 "`read()`, this method follows \"no short reads\" policy."
 msgstr ""
+"バイト列を *buf* に読み込みます。 *nbytes* が指定されている場合は、最大でそのバイト数"
+"だけ読み込みます。 *nbytes* が指定されない場合は、最大で *len(buf)* バイトを読み込み"
+"ます。 `read()` と同様に、このメソッドは「短い読み込みなし」ポリシーにしたがいます。"
 
 #: ../../../library/usocket.rst:328
 msgid "Return value: number of bytes read and stored into *buf*."
-msgstr ""
+msgstr "戻り値: *buf* に読み込んで格納されたバイト数。"
 
 #: ../../../library/usocket.rst:334
 msgid "Return value: the line read."
-msgstr ""
+msgstr "戻り値: 読み込んだ行。"
 
 #: ../../../library/usocket.rst:338
 msgid ""
@@ -11585,14 +11659,17 @@ msgid ""
 " a non-blocking socket though, and returned value will be less than the "
 "length of *buf*."
 msgstr ""
+"ソケットにバイト列のバッファを書き込みます。この関数は、すべてのデータをソケットに"
+"書き込もうとします(「短い書き込み」なし)。ただし、これはノンブロッキングソケットでは"
+"不可能なことがあり、そのような場合は戻り値が *buf* の長さより短くなります。"
 
 #: ../../../library/usocket.rst:343
 msgid "Return value: number of bytes written."
-msgstr ""
+msgstr "戻り値: 書き込んだバイト数"
 
 #: ../../../library/usocket.rst:347
 msgid "MicroPython does NOT have this exception."
-msgstr ""
+msgstr "MicroPython にはこの例外がありません。"
 
 #: ../../../library/usocket.rst:352
 msgid ""
@@ -11600,6 +11677,8 @@ msgid ""
 "deprecated, and is an alias of `OSError`. In MicroPython, use `OSError` "
 "directly."
 msgstr ""
+"CPython には ``socket.error`` がありますが廃止予定であり、 `OSError` の別名と"
+"なっています。MicroPython では `OSError` を直接使ってください。"
 
 #: ../../../library/ussl.rst:2
 msgid ":mod:`ussl` -- SSL/TLS module"
