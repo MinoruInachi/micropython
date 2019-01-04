@@ -4126,6 +4126,12 @@ msgid ""
 "Network services provided by configured interfaces are then available for"
 " use via the :mod:`usocket` module."
 msgstr ""
+"このモジュールはネットワークドライバとルーティングの設定を提供します。このモジュールを"
+"使うには、ネットワーク機能を備えるようビルドした MicroPython をインストールする必要が"
+"あります。特定のハードウェア用のネットワークドライバは、このモジュール内で利用可能であり、"
+"ハードウェアネットワークインタフェースを設定するために使われます。設定したインタフェース"
+"によって提供されたネットワークサービスは :mod:`usocket` モジュールを介して利用可能に"
+"なります。"
 
 #: ../../../library/network.rst:17
 msgid ""
@@ -4150,10 +4156,30 @@ msgid ""
 "data = s.recv(1000)\n"
 "s.close()"
 msgstr ""
+"# 特定のネットワークインタフェースの接続と IP 設定の表示\n"
+"# 特定のドライバの例は以降を参照\n"
+"import network\n"
+"import utime\n"
+"nic = network.Driver(...)\n"
+"if not nic.isconnected():\n"
+"    nic.connect()\n"
+"    print(\"Waiting for connection...\")\n"
+"    while not nic.isconnected():\n"
+"        utime.sleep(1)\n"
+"print(nic.ifconfig())\n"
+"\n"
+"# これで通常どおり usocket を使えるようになる\n"
+"import usocket as socket\n"
+"addr = socket.getaddrinfo('micropython.org', 80)[0][-1]\n"
+"s = socket.socket()\n"
+"s.connect(addr)\n"
+"s.send(b'GET / HTTP/1.1\\r\\nHost: micropython.org\\r\\n\\r\\n')\n"
+"data = s.recv(1000)\n"
+"s.close()"
 
 #: ../../../library/network.rst:39
 msgid "Common network adapter interface"
-msgstr ""
+msgstr "共通のネットワークアダプターインタフェース"
 
 #: ../../../library/network.rst:41
 msgid ""
@@ -4163,6 +4189,11 @@ msgid ""
 "provide ``AbstractNIC`` class, but any actual NIC class, as described in "
 "the following sections, implements methods as described here."
 msgstr ""
+"この章では、さまざまなハードウェアの `MicroPython ポート <MicroPython port>` "
+"で実装されているすべてのネットワークインタフェースクラスの(暗黙の)抽象基底クラスに"
+"ついて説明します。つまり、MicroPython は実際には ``AbstractNIC`` クラスを提供"
+"しませんが、以降の章で説明するように、実際の NIC クラスはすべて、ここで説明する"
+"メソッドを実装します。"
 
 #: ../../../library/network.rst:49
 msgid ""
@@ -4170,6 +4201,9 @@ msgid ""
 "dependent. If there are more than one interface of the same type, the "
 "first parameter should be `id`."
 msgstr ""
+"ネットワークインタフェースオブジェクトをインスタンス化します。パラメータはネットワーク"
+"インタフェースに依存します。同じタイプのインタフェースが複数ある場合は、最初のパラメータを "
+"id にします。"
 
 #: ../../../library/network.rst:55
 msgid ""
@@ -4178,6 +4212,10 @@ msgid ""
 " is provided. Most other methods require an active interface (behavior of"
 " calling them on inactive interface is undefined)."
 msgstr ""
+"ブール型の引数が渡された場合、ネットワークインタフェースを有効化(\"up\")または"
+"無効化(\"down\")します。引数が与えられていなければ現在の状態を問い合わせます。"
+"他のほとんどのメソッドは有効化したインターフェースを必要とします(無効化した"
+"インターフェースでそれらを呼び出す動作は未定義です)。"
 
 #: ../../../library/network.rst:63
 msgid ""
@@ -4193,18 +4231,27 @@ msgid ""
 "types, there are different sets of predefined/recommended parameters, "
 "among them:"
 msgstr ""
+"インターフェイスをネットワークに接続します。このメソッドはオプションであり、"
+"「常に接続されている」とは限らないインタフェースに対してのみ利用可能です。"
+"パラメータが指定されていない場合は、デフォルトの(または唯一の)サービスに接続します。"
+"単一のパラメータが与えられた場合、それは接続するサービスのプライマリ識別子です。"
+"これはサービスにアクセスするために必要な鍵(パスワード)を伴うことがあります。"
+"ネットワーク媒体の種類や特定の装置に応じて、さらに任意のキーワードのみのパラメータが"
+"あり得ます。パラメータは、次の目的で使用できます: a) 代替サービス識別タイプを"
+"指定; b) 追加の接続パラメータを提供。さまざまな媒体タイプのそれぞれに、定義済み/推奨"
+"パラメータのセットがあります:"
 
 #: ../../../library/network.rst:75
 msgid "WiFi: *bssid* keyword to connect to a specific BSSID (MAC address)"
-msgstr ""
+msgstr "WiFi: *bssid* - 特定の BSSID (MAC アドレス)に接続するためのキーワード"
 
 #: ../../../library/network.rst:79
 msgid "Disconnect from network."
-msgstr ""
+msgstr "ネットワークから切断します。"
 
 #: ../../../library/network.rst:83
 msgid "Returns ``True`` if connected to network, otherwise returns ``False``."
-msgstr ""
+msgstr "ネットワークに接続されていれば  ``True`` を返し、そうでなければ ``False`` を返します。"
 
 #: ../../../library/network.rst:87
 msgid ""
@@ -4213,12 +4260,17 @@ msgid ""
 "there are different variants of predefined/ recommended tuple formats, "
 "among them:"
 msgstr ""
+"利用可能なネットワークサービス/接続をスキャンします。戻り値は、検出されたサービスパラメータを"
+"持つタプルのリストです。さまざまなネットワーク媒体に対して、定義済み/推奨のタプル形式には"
+"さまざまな種類があります:"
 
 #: ../../../library/network.rst:92
 msgid ""
 "WiFi: (ssid, bssid, channel, RSSI, authmode, hidden). There may be "
 "further fields, specific to a particular device."
 msgstr ""
+"WiFi: (ssid, bssid, channel, RSSI, authmode, hidden)。特定のデバイスに"
+"固有のさらなる項目もあり得ます。"
 
 #: ../../../library/network.rst:95
 msgid ""
@@ -4228,6 +4280,10 @@ msgid ""
 "other parameters. Where possible, parameter names should match those in "
 "connect()."
 msgstr ""
+"この関数は、追加のキーワード引数を受け取ることができ、スキャン結果をフィルタリングしたり"
+"(たとえば、特定のサービスのスキャン、特定のチャンネルのスキャン、特定のセットのサービスの"
+"スキャンなど)、スキャン期間やその他のパラメータに影響を与えたりできます。可能であれば、"
+"パラメータ名は connect() のものと一致させるべきです。"
 
 #: ../../../library/network.rst:103
 msgid ""
@@ -4236,22 +4292,29 @@ msgid ""
 "*param* should be a string naming the particular status parameter to "
 "retrieve."
 msgstr ""
+"インターフェースの動的な状況情報を照会します。引数なしで呼び出された場合、戻り値は"
+"ネットワークリンクステータスを表します。そうでなければ *param* は取得する特定の"
+"ステータスパラメータを命名する文字列であるべきです。"
 
 #: ../../../library/network.rst:108
 msgid ""
 "The return types and values are dependent on the network "
 "medium/technology.  Some of the parameters that may be supported are:"
 msgstr ""
+"戻り値の型と値は、ネットワークの媒体/テクノロジによって異なります。サポートされている"
+"可能性のあるパラメータは次のとおりです。"
 
 #: ../../../library/network.rst:111
 msgid "WiFi STA: use ``'rssi'`` to retrieve the RSSI of the AP signal"
-msgstr ""
+msgstr "WiFi STA: AP 信号の RSSI を取得するには ``'rssi'`` 使います"
 
 #: ../../../library/network.rst:112
 msgid ""
 "WiFi AP: use ``'stations'`` to retrieve a list of all the STAs connected "
 "to the AP.  The list contains tuples of the form (MAC, RSSI)."
 msgstr ""
+"WiFi AP: AP に接続されているすべてのSTAのリストを取得するには ``'stations'`` "
+"を使います。このリストには (MAC, RSSI) の形式のタプルが含まれています。"
 
 #: ../../../library/network.WLAN.rst:96 ../../../library/network.rst:118
 msgid ""
@@ -4260,6 +4323,10 @@ msgid ""
 "returns a 4-tuple with the above information. To set the above values, "
 "pass a 4-tuple with the required information.  For example::"
 msgstr ""
+"IP レベルのネットワークインターフェースパラメータ(IPアドレス、サブネットマスク、"
+"ゲートウェイ、DNSサーバー)を取得/設定します。引数なしで呼び出されると、このメソッドは"
+"上記の情報を含む4タプルを返します。上記の値を設定するには、必要な情報を含む4項目の"
+"タプルを渡します。例えば次のように設定します:"
 
 #: ../../../library/network.WIZNET5K.rst:67
 #: ../../../library/network.WLAN.rst:101 ../../../library/network.rst:123
@@ -4276,6 +4343,12 @@ msgid ""
 " a parameter name should be quoted as a string, and only one parameter "
 "can be queried at a time::"
 msgstr ""
+"一般的なネットワークインターフェースパラメータを取得または設定します。これらのメソッドは、"
+"(`ifconfig()` で扱われるように)標準の IP 設定以外の追加のパラメータを扱うことを"
+"可能にします 。これらには、ネットワーク固有およびハードウェア固有のパラメータが含まれています。"
+"パラメータを設定するには、キーワード引数の構文を使用する必要があり、複数のパラメータを"
+"一度に設定できます。問合せを実行する場合、パラメータ名は文字列として引用符で囲みます。"
+"一度に問合せできるパラメータは1つだけです。"
 
 #: ../../../library/network.WLAN.rst:113 ../../../library/network.rst:136
 msgid ""
@@ -4285,38 +4358,47 @@ msgid ""
 "print(ap.config('essid'))\n"
 "print(ap.config('channel'))"
 msgstr ""
+"# WiFi アクセスポイント名(正式には ESSID と呼ばれている)と WiFi チャンネルを設定\n"
+"ap.config(essid='My AP', channel=11)\n"
+"# 一つずつパラメータを問合せ\n"
+"print(ap.config('essid'))\n"
+"print(ap.config('channel'))"
 
 #: ../../../library/network.rst:143
 msgid "Specific network class implementations"
-msgstr ""
+msgstr "特定のネットワーククラスの処理系"
 
 #: ../../../library/network.rst:145
 msgid ""
 "The following concrete classes implement the AbstractNIC interface and "
 "provide a way to control networking interfaces of various kinds."
 msgstr ""
+"以下の具象クラスは AbstractNIC インターフェースを実装し、さまざまな種類の"
+"ネットワークインターフェースを制御する方法を提供します。"
 
 #: ../../../library/network.rst:157
 msgid "Network functions"
-msgstr ""
+msgstr "ネットワーク関数"
 
 #: ../../../library/network.rst:159
 msgid "The following are functions available in the network module."
-msgstr ""
+msgstr "以下はネットワークモジュールで利用可能な関数です。"
 
 #: ../../../library/network.rst:163
 msgid "Get or set the PHY mode."
-msgstr ""
+msgstr "PHY モードを取得または設定します。"
 
 #: ../../../library/network.rst:165
 msgid ""
 "If the *mode* parameter is provided, sets the mode to its value. If the "
 "function is called without parameters, returns the current mode."
 msgstr ""
+"*mode* パラメータを与えた場合、その値にモードを設定します。関数がパラメータなしで"
+"呼び出された場合は、現在のモードを返します。"
 
 #: ../../../library/network.rst:171
 msgid "The possible modes are defined as constants:"
-msgstr ""
+msgstr "指定可能なモードは定数として定義されています:"
 
 #: ../../../library/network.rst:169
 msgid "``MODE_11B`` -- IEEE 802.11b,"
@@ -4332,15 +4414,15 @@ msgstr ""
 
 #: ../../../library/network.rst:173
 msgid "Availability: ESP8266."
-msgstr ""
+msgstr "可用性: ESP8266。"
 
 #: ../../../library/network.CC3K.rst:5
 msgid "class CC3K -- control CC3000 WiFi modules"
-msgstr ""
+msgstr "クラス CC3K -- CC3000 WiFi モジュールの制御"
 
 #: ../../../library/network.CC3K.rst:7
 msgid "This class provides a driver for CC3000 WiFi modules.  Example usage::"
-msgstr ""
+msgstr "このクラスは CC3000 WiFi モジュール用のドライバを提供します。たとえば次のように使います::"
 
 #: ../../../library/network.CC3K.rst:9
 msgid ""
@@ -4355,78 +4437,96 @@ msgid ""
 "# now use socket as usual\n"
 "..."
 msgstr ""
+"import network\n"
+"nic = network.CC3K(pyb.SPI(2), pyb.Pin.board.Y5, pyb.Pin.board.Y4, "
+"pyb.Pin.board.Y3)\n"
+"nic.connect('your-ssid', 'your-password')\n"
+"while not nic.isconnected():\n"
+"    pyb.delay(50)\n"
+"print(nic.ifconfig())\n"
+"\n"
+"# これで通常どおりソケットを使えるようになる\n"
+"..."
 
 #: ../../../library/network.CC3K.rst:19
 msgid ""
 "For this example to work the CC3000 module must have the following "
 "connections:"
 msgstr ""
+"この例が機能するためには CC3000 モジュールを次のように配線することが必要になります。"
 
 #: ../../../library/network.CC3K.rst:21
 msgid "MOSI connected to Y8"
-msgstr ""
+msgstr "MOSI を Y8 に配線"
 
 #: ../../../library/network.CC3K.rst:22
 msgid "MISO connected to Y7"
-msgstr ""
+msgstr "MISO を Y7 に配線"
 
 #: ../../../library/network.CC3K.rst:23
 msgid "CLK connected to Y6"
-msgstr ""
+msgstr "CLK を Y6 に配線"
 
 #: ../../../library/network.CC3K.rst:24
 msgid "CS connected to Y5"
-msgstr ""
+msgstr "CS を Y5 に配線"
 
 #: ../../../library/network.CC3K.rst:25
 msgid "VBEN connected to Y4"
-msgstr ""
+msgstr "VBEN を Y4 に配線"
 
 #: ../../../library/network.CC3K.rst:26
 msgid "IRQ connected to Y3"
-msgstr ""
+msgstr "IRQ を Y3 に配線"
 
 #: ../../../library/network.CC3K.rst:28
 msgid ""
 "It is possible to use other SPI busses and other pins for CS, VBEN and "
 "IRQ."
-msgstr ""
+msgstr "他の SPI バスを使うことや、CS, VBEN, IRQ に他のピンを使うことも可能です。"
 
 #: ../../../library/network.CC3K.rst:35
 msgid ""
 "Create a CC3K driver object, initialise the CC3000 module using the given"
 " SPI bus and pins, and return the CC3K object."
 msgstr ""
+"CC3K ドライバオブジェクトを作成し、指定した SPI バスとピンを使って CC3000 モジュール"
+"を初期化し、CC3K オブジェクトを返します。"
 
 #: ../../../library/network.CC3K.rst:38
 #: ../../../library/network.WIZNET5K.rst:39
 #: ../../../library/network.WLANWiPy.rst:50
 msgid "Arguments are:"
-msgstr ""
+msgstr "引数は次のとおりです:"
 
 #: ../../../library/network.CC3K.rst:40
 msgid ""
 "*spi* is an :ref:`SPI object <pyb.SPI>` which is the SPI bus that the "
 "CC3000 is connected to (the MOSI, MISO and CLK pins)."
 msgstr ""
+"*spi* は CC3000 が接続されている SPI バス(MOSI, MISO, CLK ピン)の "
+":ref:`SPI オブジェクト <pyb.SPI>` です。"
 
 #: ../../../library/network.CC3K.rst:42
 msgid ""
 "*pin_cs* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "CC3000 CS pin."
 msgstr ""
+"*pin_cs* は CC3000 CS ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
 #: ../../../library/network.CC3K.rst:43
 msgid ""
 "*pin_en* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "CC3000 VBEN pin."
 msgstr ""
+"*pin_en* は CC3000 VBEN ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
 #: ../../../library/network.CC3K.rst:44
 msgid ""
 "*pin_irq* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "CC3000 IRQ pin."
 msgstr ""
+"*pin_irq* は CC3000 IRQ ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
 #: ../../../library/network.CC3K.rst:46
 #: ../../../library/network.WIZNET5K.rst:46
@@ -4434,6 +4534,8 @@ msgid ""
 "All of these objects will be initialised by the driver, so there is no "
 "need to initialise them yourself.  For example, you can use::"
 msgstr ""
+"これらのオブジェクトはすべてドライバによって初期化されるので、自分で初期化する必要は"
+"ありません。たとえば次のようにします。"
 
 #: ../../../library/network.CC3K.rst:49
 msgid ""
@@ -4447,41 +4549,48 @@ msgid ""
 "Connect to a WiFi access point using the given SSID, and other security "
 "parameters."
 msgstr ""
+"指定した SSID と他のセキュリティパラメータを使用して WiFi アクセスポイントに接続します。"
 
 #: ../../../library/network.CC3K.rst:61
 #: ../../../library/network.WLANWiPy.rst:92
 msgid "Disconnect from the WiFi access point."
-msgstr ""
+msgstr "WiFi アクセスポイントから切断します。"
 
 #: ../../../library/network.CC3K.rst:65
 msgid ""
 "Returns True if connected to a WiFi access point and has a valid IP "
 "address, False otherwise."
 msgstr ""
+"WiFi アクセスポイントに接続されていて有効なIPアドレスを持っていれば True を、"
+"そうでなければ False を返します。"
 
 #: ../../../library/network.CC3K.rst:70
 msgid ""
 "Returns a 7-tuple with (ip, subnet mask, gateway, DNS server, DHCP "
 "server, MAC address, SSID)."
 msgstr ""
+"７項目のタプル (ip, subnet mask, gateway, DNS server, DHCP "
+"server, MAC address, SSID) を返します。
 
 #: ../../../library/network.CC3K.rst:75
 msgid "Return the version of the patch program (firmware) on the CC3000."
-msgstr ""
+msgstr "CC3000 のパッチプログラム(ファームウェア)のバージョンを返します。"
 
 #: ../../../library/network.CC3K.rst:79
 msgid ""
 "Upload the current firmware to the CC3000.  You must pass 'pgm' as the "
 "first argument in order for the upload to proceed."
 msgstr ""
+"現在のファームウェアを CC3000 にアップロードします。アップロードを続行するには、"
+"最初の引数として 'pgm' を渡す必要があります。"
 
 #: ../../../library/network.CC3K.rst:89
 msgid "security type to use"
-msgstr ""
+msgstr "使用するセキュリティの種類"
 
 #: ../../../library/network.WIZNET5K.rst:5
 msgid "class WIZNET5K -- control WIZnet5x00 Ethernet modules"
-msgstr ""
+msgstr "クラス WIZNET5K -- WIZnet5x00 イーサネットモジュールの制御"
 
 #: ../../../library/network.WIZNET5K.rst:7
 msgid ""
@@ -4490,6 +4599,9 @@ msgid ""
 "by the firmware is selected at compile-time via the MICROPY_PY_WIZNET5K "
 "option."
 msgstr ""
+"このクラスを使用すると、W5200 および W5500 チップセットに基づいた WIZnet5x00 "
+"イーサネットアダプタを制御できます。ファームウェアでサポートされている特定の"
+"チップセットは、コンパイル時の MICROPY_PY_WIZNET5K オプションで選択されます。"
 
 #: ../../../library/network.WIZNET5K.rst:14
 msgid ""
@@ -4500,60 +4612,73 @@ msgid ""
 "# now use socket as usual\n"
 "..."
 msgstr ""
+"import network\n"
+"nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)\n"
+"print(nic.ifconfig())\n"
+"\n"
+"# これで通常どおりソケットを使えるようになる\n"
+"..."
 
 #: ../../../library/network.WIZNET5K.rst:21
 msgid ""
 "For this example to work the WIZnet5x00 module must have the following "
 "connections:"
 msgstr ""
+"この例が機能するためには WIZnet5x00 モジュールを次のように配線することが必要になります。"
 
 #: ../../../library/network.WIZNET5K.rst:23
 msgid "MOSI connected to X8"
-msgstr ""
+msgstr "MOSI を X8 に配線"
 
 #: ../../../library/network.WIZNET5K.rst:24
 msgid "MISO connected to X7"
-msgstr ""
+msgstr "MISO を X7 に配線"
 
 #: ../../../library/network.WIZNET5K.rst:25
 msgid "SCLK connected to X6"
-msgstr ""
+msgstr "SCLK を X7 に配線"
 
 #: ../../../library/network.WIZNET5K.rst:26
 msgid "nSS connected to X5"
-msgstr ""
+msgstr "nSS を X5 に配線"
 
 #: ../../../library/network.WIZNET5K.rst:27
 msgid "nRESET connected to X4"
-msgstr ""
+msgstr "nRESET を X4 に配線"
 
 #: ../../../library/network.WIZNET5K.rst:29
 msgid "It is possible to use other SPI busses and other pins for nSS and nRESET."
-msgstr ""
+msgstr "他の SPI バスを使うことや、nSS, nRESET に他のピンを使うことも可能です。"
 
 #: ../../../library/network.WIZNET5K.rst:36
 msgid ""
 "Create a WIZNET5K driver object, initialise the WIZnet5x00 module using "
 "the given SPI bus and pins, and return the WIZNET5K object."
 msgstr ""
+"WIZNET5K ドライバオブジェクトを作成し、指定した SPI バスとピンを使って WIZnet5x00 "
+"モジュールを初期化し、WIZNET5K オブジェクトを返します。"
 
 #: ../../../library/network.WIZNET5K.rst:41
 msgid ""
 "*spi* is an :ref:`SPI object <pyb.SPI>` which is the SPI bus that the "
 "WIZnet5x00 is connected to (the MOSI, MISO and SCLK pins)."
 msgstr ""
+"*spi* は WIZnet5x00 が接続されている SPI バス(MOSI, MISO, CLK ピン)の "
+":ref:`SPI オブジェクト <pyb.SPI>` です。"
 
 #: ../../../library/network.WIZNET5K.rst:43
 msgid ""
 "*pin_cs* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "WIZnet5x00 nSS pin."
 msgstr ""
+"*pin_cs* は WIZnet5x00 nSS ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
 #: ../../../library/network.WIZNET5K.rst:44
 msgid ""
 "*pin_rst* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "WIZnet5x00 nRESET pin."
 msgstr ""
+"*pin_rst* は WIZnet5x00 nRESET ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
 #: ../../../library/network.WIZNET5K.rst:49
 msgid "nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)"
@@ -4564,34 +4689,39 @@ msgid ""
 "Returns ``True`` if the physical Ethernet link is connected and up. "
 "Returns ``False`` otherwise."
 msgstr ""
+"物理イーサネットリンクが接続されて有効化していれば ``True`` を、"
+"そうでなければ ``False`` を返します。"
 
 #: ../../../library/network.WIZNET5K.rst:61
 msgid "Get/set IP address, subnet mask, gateway and DNS."
-msgstr ""
+msgstr "IP アドレス、サブネットマスク、ゲートウェイ、DNS を取得/設定します。"
 
 #: ../../../library/network.WIZNET5K.rst:63
 msgid ""
 "When called with no arguments, this method returns a 4-tuple with the "
 "above information."
 msgstr ""
+"引数なしで呼び出されると、このメソッドは上記の情報を含む４項目のタプルを返します。"
 
 #: ../../../library/network.WIZNET5K.rst:65
 msgid ""
 "To set the above values, pass a 4-tuple with the required information.  "
 "For example::"
 msgstr ""
+"上記の値を設定するには、必要な情報を含む４項目のタプルを渡します。たとえば"
+"次のようにします::"
 
 #: ../../../library/network.WIZNET5K.rst:71
 msgid "Dump the WIZnet5x00 registers.  Useful for debugging."
-msgstr ""
+msgstr "WIZnet5x00 のレジスタをダンプします。デバッグ用です。"
 
 #: ../../../library/network.WLAN.rst:5
 msgid "class WLAN -- control built-in WiFi interfaces"
-msgstr ""
+msgstr "クラス WLAN -- 組込み WiFi インタフェースの制御"
 
 #: ../../../library/network.WLAN.rst:7
 msgid "This class provides a driver for WiFi network processors.  Example usage::"
-msgstr ""
+msgstr "このクラスは WiFi ネットワークプロセッサー用のドライバを提供します。たとえば次のように使います::"
 
 #: ../../../library/network.WLAN.rst:9
 msgid ""
@@ -4602,6 +4732,12 @@ msgid ""
 "nic.connect('your-ssid', 'your-password')\n"
 "# now use sockets as usual"
 msgstr ""
+"import network\n"
+"# ステーションインタフェースを有効にし、WiFi アクセスポイントに接続\n"
+"nic = network.WLAN(network.STA_IF)\n"
+"nic.active(True)\n"
+"nic.connect('your-ssid', 'your-password')\n"
+"# これで通常どおりソケットを使えるようになる"
 
 #: ../../../library/network.WLAN.rst:20
 msgid ""
@@ -4611,6 +4747,12 @@ msgid ""
 " connect). Availability of the methods below depends on interface type. "
 "For example, only STA interface may `WLAN.connect()` to an access point."
 msgstr ""
+"WLAN ネットワークインタフェースオブジェクトを作成します。サポートされているインタフェース"
+"は ``network.STA_IF`` (ステーション、別名クライアント、上流のWiFiアクセスポイントに"
+"接続します)と ``network.AP_IF`` (アクセスポイント、他の WiFi クライアントが接続できる"
+"ようにする)です。以下のメソッドを利用できるかどうかは、インターフェイスの種類によって"
+"異なります。たとえば、STA インタフェースのみが `WLAN.connect()` でアクセスポイントに"
+"接続できます。"
 
 #: ../../../library/network.WLAN.rst:31
 msgid ""
@@ -4618,6 +4760,9 @@ msgid ""
 "argument is passed. Otherwise, query current state if no argument is "
 "provided. Most other methods require active interface."
 msgstr ""
+"ブール型の引数が渡された場合、ネットワークインタフェースを有効化(\"up\")または"
+"無効化(\"down\")します。引数が与えられていなければ現在の状態を問い合わせます。"
+"他のほとんどのメソッドは有効化したインターフェースを必要とします。"
 
 #: ../../../library/network.WLAN.rst:37
 msgid ""
@@ -4626,20 +4771,25 @@ msgid ""
 "point with that MAC address (the *ssid* must also be specified in this "
 "case)."
 msgstr ""
+"指定されたパスワードを使用して、指定されたワイヤレスネットワークに接続します。 "
+"*bssid* が与えられると、接続はそのMACアドレスのアクセスポイントに制限されます"
+"(この場合でも *ssid* は指定する必要があります)。"
 
 #: ../../../library/network.WLAN.rst:44
 msgid "Disconnect from the currently connected wireless network."
-msgstr ""
+msgstr "現在接続している無線ネットワークから切断します。"
 
 #: ../../../library/network.WLAN.rst:48
 msgid "Scan for the available wireless networks."
-msgstr ""
+msgstr "利用可能な無線ネットワークをスキャンします。"
 
 #: ../../../library/network.WLAN.rst:50
 msgid ""
 "Scanning is only possible on STA interface. Returns list of tuples with "
 "the information about WiFi access points:"
 msgstr ""
+"スキャンは STA インターフェイスでのみ可能です。戻り値は WiFi アクセスポイントに"
+"関する情報を含むタプルのリストです。"
 
 #: ../../../library/network.WLAN.rst:53
 msgid "(ssid, bssid, channel, RSSI, authmode, hidden)"
@@ -4651,10 +4801,13 @@ msgid ""
 "as bytes object. You can use `ubinascii.hexlify()` to convert it to ASCII"
 " form."
 msgstr ""
+"*bssid* はアクセスポイントのハードウェアアドレスで、バイナリ形式です。これはバイト列"
+"オブジェクトとして返されます。 `ubinascii.hexlify()` を使えば ASCII 形式に変換"
+"できます。"
 
 #: ../../../library/network.WLAN.rst:58
 msgid "There are five values for authmode:"
-msgstr ""
+msgstr "authmode には5つの値があります:"
 
 #: ../../../library/network.WLAN.rst:60
 msgid "0 -- open"
@@ -4678,49 +4831,51 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:66
 msgid "and two for hidden:"
-msgstr ""
+msgstr "hidden には２つの値があります:"
 
 #: ../../../library/network.WLAN.rst:68
 msgid "0 -- visible"
-msgstr ""
+msgstr "0 -- 可視""
 
 #: ../../../library/network.WLAN.rst:69
 msgid "1 -- hidden"
-msgstr ""
+msgstr "1 -- 不可視"
 
 #: ../../../library/network.WLAN.rst:73
 msgid "Return the current status of the wireless connection."
-msgstr ""
+msgstr "無線接続の現在のステータスを返します。"
 
 #: ../../../library/network.WLAN.rst:75
 msgid ""
 "When called with no argument the return value describes the network link "
 "status. The possible statuses are defined as constants:"
 msgstr ""
+"引数なしで呼び出された場合、戻り値はネットワークリンクステータスを表します。"
+"戻されるステータスは定数として定義されています:"
 
 #: ../../../library/network.WLAN.rst:78
 msgid "``STAT_IDLE`` -- no connection and no activity,"
-msgstr ""
+msgstr "``STAT_IDLE`` -- 無接続、無アクティビティ"
 
 #: ../../../library/network.WLAN.rst:79
 msgid "``STAT_CONNECTING`` -- connecting in progress,"
-msgstr ""
+msgstr "``STAT_CONNECTING`` -- 接続中"
 
 #: ../../../library/network.WLAN.rst:80
 msgid "``STAT_WRONG_PASSWORD`` -- failed due to incorrect password,"
-msgstr ""
+msgstr "``STAT_WRONG_PASSWORD`` -- パスワード不正により失敗"
 
 #: ../../../library/network.WLAN.rst:81
 msgid "``STAT_NO_AP_FOUND`` -- failed because no access point replied,"
-msgstr ""
+msgstr "``STAT_NO_AP_FOUND`` -- アクセスポイントが応答しないため失敗"
 
 #: ../../../library/network.WLAN.rst:82
 msgid "``STAT_CONNECT_FAIL`` -- failed due to other problems,"
-msgstr ""
+msgstr "``STAT_CONNECT_FAIL`` -- その他の問題により失敗"
 
 #: ../../../library/network.WLAN.rst:83
 msgid "``STAT_GOT_IP`` -- connection successful."
-msgstr ""
+msgstr "``STAT_GOT_IP`` -- 接続成功"
 
 #: ../../../library/network.WLAN.rst:85
 msgid ""
@@ -4728,6 +4883,9 @@ msgid ""
 "status parameter to retrieve.  Supported parameters in WiFI STA mode are:"
 " ``'rssi'``."
 msgstr ""
+"１つの引数 *param* を指定して呼び出された場合、 *param* は取得するステータス"
+"パラメータの名前を表す文字列にする必要があります。WiFi STA モードでサポートされている"
+"パラメータは ``'rssi'`` です。"
 
 #: ../../../library/network.WLAN.rst:90
 msgid ""
@@ -4735,6 +4893,9 @@ msgid ""
 " and has a valid IP address.  In AP mode returns ``True`` when a station "
 "is connected. Returns ``False`` otherwise."
 msgstr ""
+"STA モードの場合、WiFi アクセスポイントに接続されていて有効なIPアドレスを持っていれば "
+"``True`` を返します。AP モードの場合、ステーションが接続されていれば ``True`` を"
+"返します。これら以外では ``False`` を返します。"
 
 #: ../../../library/network.WLAN.rst:106
 msgid ""
@@ -4746,6 +4907,12 @@ msgid ""
 "querying, parameters name should be quoted as a string, and only one "
 "parameter can be queries at time::"
 msgstr ""
+"一般的なネットワークインターフェースパラメータを取得または設定します。これらのメソッドは、"
+"(`WLAN.ifconfig()` で扱われるように)標準の IP 設定以外の追加のパラメータを扱うことを"
+"可能にします 。これらには、ネットワーク固有およびハードウェア固有のパラメータが含まれています。"
+"パラメータを設定するには、キーワード引数の構文を使用する必要があり、複数のパラメータを"
+"一度に設定できます。問合せを実行する場合、パラメータ名は文字列として引用符で囲みます。"
+"一度に問合せできるパラメータは1つだけです。"
 
 #: ../../../library/network.WLAN.rst:119
 msgid ""
@@ -4753,14 +4920,17 @@ msgid ""
 "parameter depends on network technology type, driver, and `MicroPython "
 "port`)."
 msgstr ""
+"以下は一般的にサポートされているパラメータです(特定のパラメータが使用可能かどうかは、"
+"ネットワーク技術の種類、ドライバ、 `MicroPython ポート <MicroPython port>` "
+"によって異なります)。"
 
 #: ../../../library/network.WLAN.rst:123
 msgid "Parameter"
-msgstr ""
+msgstr "パラメータ"
 
 #: ../../../library/network.WLAN.rst:123
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: ../../../library/network.WLAN.rst:125
 msgid "mac"
@@ -4768,7 +4938,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:125
 msgid "MAC address (bytes)"
-msgstr ""
+msgstr "MAC アドレス(バイト列)"
 
 #: ../../../library/network.WLAN.rst:126
 msgid "essid"
@@ -4776,7 +4946,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:126
 msgid "WiFi access point name (string)"
-msgstr ""
+msgstr "WiFi アクセスポイント名(文字列)"
 
 #: ../../../library/network.WLAN.rst:127
 msgid "channel"
@@ -4784,7 +4954,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:127
 msgid "WiFi channel (integer)"
-msgstr ""
+msgstr "WiFi チャンネル(整数)"
 
 #: ../../../library/network.WLAN.rst:128
 msgid "hidden"
@@ -4792,7 +4962,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:128
 msgid "Whether ESSID is hidden (boolean)"
-msgstr ""
+msgstr "ESSID が非表示かどうか(ブール型)"
 
 #: ../../../library/network.WLAN.rst:129
 msgid "authmode"
@@ -4800,7 +4970,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:129
 msgid "Authentication mode supported (enumeration, see module constants)"
-msgstr ""
+msgstr "サポートされている認証モード(列挙値、モジュール定数を参照)"
 
 #: ../../../library/network.WLAN.rst:130
 msgid "password"
@@ -4808,7 +4978,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:130
 msgid "Access password (string)"
-msgstr ""
+msgstr "アクセスパスワード(文字列)"
 
 #: ../../../library/network.WLAN.rst:131
 msgid "dhcp_hostname"
@@ -4816,7 +4986,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:131
 msgid "The DHCP hostname to use"
-msgstr ""
+msgstr "使用する DHCP ホスト名"
 
 #: ../../../library/network.WLANWiPy.rst:5
 msgid "class WLANWiPy -- WiPy specific WiFi control"
