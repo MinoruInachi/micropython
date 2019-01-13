@@ -1955,7 +1955,7 @@ msgstr ""
 
 #: ../../../library/machine.I2C.rst:5 ../../../library/pyb.I2C.rst:5
 msgid "class I2C -- a two-wire serial protocol"
-msgstr ""
+msgstr "クラス I2C -- ２線式シリアルプロトコル"
 
 #: ../../../library/machine.I2C.rst:7 ../../../library/pyb.I2C.rst:7
 msgid ""
@@ -1963,23 +1963,27 @@ msgid ""
 "physical level it consists of 2 wires: SCL and SDA, the clock and data "
 "lines respectively."
 msgstr ""
+"I2C は、デバイス間通信のための２線式プロトコルです。物理レベルでは、クロックライン"
+"である SCL とデータラインである SDA の2本のワイヤで構成されています。"
 
 #: ../../../library/machine.I2C.rst:10 ../../../library/pyb.I2C.rst:10
 msgid ""
 "I2C objects are created attached to a specific bus.  They can be "
 "initialised when created, or initialised later on."
 msgstr ""
+"I2C オブジェクトは特定のバスに接続して作成されます。作成時に初期化することも、"
+"後で初期化することもできます。"
 
 #: ../../../library/machine.I2C.rst:13
 msgid "Printing the I2C object gives you information about its configuration."
-msgstr ""
+msgstr "I2Cオブジェクトを print() で表示すると、その設定に関する情報が得られます。"
 
 #: ../../../library/machine.I2C.rst:15 ../../../library/machine.RTC.rst:10
 #: ../../../library/machine.SD.rst:20 ../../../library/machine.WDT.rst:12
 #: ../../../library/network.WIZNET5K.rst:12 ../../../library/pyb.DAC.rst:12
 #: ../../../library/pyb.RTC.rst:10 ../../../library/pyb.Servo.rst:12
 msgid "Example usage::"
-msgstr ""
+msgstr "使用例::"
 
 #: ../../../library/machine.I2C.rst:17
 msgid ""
@@ -2006,10 +2010,25 @@ msgid ""
 "i2c.writeto_mem(42, 2, b'\\x10') # write 1 byte to memory of slave 42\n"
 "                                #   starting at address 2 in the slave"
 msgstr ""
+"from machine import I2C\n"
+"\n"
+"i2c = I2C(freq=400000)          # ポートに依存して 400kHz の周波数でI2Cペリフェラルを\n"
+"                                # 作成します。使用するペリフェラルやピンを選択するために\n"
+"                                # 追加のパラメータが必要になる場合があります\n"
+"\n"
+"i2c.scan()                      # スレーブをスキャンし、7ビットアドレスのリストを返します\n"
+"\n"
+"i2c.writeto(42, b'123')         # 7ビットアドレス 42 のスレーブに３バイトを書き込みます\n"
+"i2c.readfrom(42, 4)             # 7ビットアドレス 42 のスレーブから４バイトを読み込みます\n"
+"\n"
+"i2c.readfrom_mem(42, 8, 3)      # スレーブ 42 のメモリから、スレーブのメモリアドレス 8 で\n"
+"                                #   始まる３バイトを読み込みます\n"
+"i2c.writeto_mem(42, 2, b'\\x10') # スレーブ 42 のメモリの、スレーブのメモリアドレス 2 で\n"
+"                                #   始まるところに２バイトを書き込みます"
 
 #: ../../../library/machine.I2C.rst:38
 msgid "Construct and return a new I2C object using the following parameters:"
-msgstr ""
+msgstr "以下のパラメータを使用して、新しい I2C オブジェクトを構築して返します。"
 
 #: ../../../library/machine.I2C.rst:40
 msgid ""
@@ -12440,7 +12459,7 @@ msgstr ""
 
 #: ../../../library/uzlib.rst:2
 msgid ":mod:`uzlib` -- zlib decompression"
-msgstr ""
+msgstr ":mod:`uzlib` -- zlib 展開"
 
 #: ../../../library/uzlib.rst:7
 msgid "|see_cpython_module| :mod:`python:zlib`."
@@ -12452,6 +12471,9 @@ msgid ""
 "algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ (commonly used in "
 "zlib library and gzip archiver). Compression is not yet implemented."
 msgstr ""
+"このモジュールは `DEFLATE アルゴリズム <https://ja.wikipedia.org/wiki/Deflate>`_ "
+"(一般に zlib ライブラリや gzip で使われている)で圧縮されたバイナリデータを展開することを"
+"可能にします。圧縮はまだ実装されていません。"
 
 #: ../../../library/uzlib.rst:19
 msgid ""
@@ -12462,6 +12484,11 @@ msgid ""
 "assumed to be raw DEFLATE stream. *bufsize* parameter is for "
 "compatibility with CPython and is ignored."
 msgstr ""
+"展開した *data* をバイト列で返します。 *wbits* は圧縮中に使用される DEFLATE 辞書"
+"ウィンドウのサイズです(8-15、辞書サイズはその値の2のべき乗です)。さらに、値が正の場合、 "
+"*data* は zlib ストリーム(zlib ヘッダー付き)であると見なされます。値が負の場合は"
+"生の DEFLATE ストリームであるとみなされます。 *bufsize* パラメータは CPython との"
+"互換性のためのものであり、無視されます。"
 
 #: ../../../library/uzlib.rst:28
 msgid ""
@@ -12471,12 +12498,19 @@ msgid ""
 "described in :func:`decompress`, *wbits* may take values 24..31 (16 + "
 "8..15), meaning that input stream has gzip header."
 msgstr ""
+"圧縮されたデータの透過的な展開を別の *stream* でできるようにする `stream` ラッパーを"
+"作成します。これにより、利用可能なヒープサイズよりも大きいデータで圧縮ストリームを処理"
+"できます。 :func:`decompress` で説明されている値に加えて、 *wbits* は値 24..31 "
+"(16 + 8..15) を取ることができ、これは入力ストリームが gzip ヘッダを持っていることを"
+"意味します。"
 
 #: ../../../library/uzlib.rst:37
 msgid ""
 "This class is MicroPython extension. It's included on provisional basis "
 "and may be changed considerably or removed in later versions."
 msgstr ""
+"この関数は MicroPython の拡張です。これは暫定的に入れられているもので、かなり変更"
+"される可能性がありますし、後のバージョンでは削除されるかもしれません。"
 
 #: ../../../library/wipy.rst:3
 msgid ":mod:`wipy` -- WiPy specific features"
