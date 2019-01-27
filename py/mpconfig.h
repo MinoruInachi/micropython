@@ -464,6 +464,11 @@
 #define MICROPY_READER_VFS (0)
 #endif
 
+// Whether any readers have been defined
+#ifndef MICROPY_HAS_FILE_READER
+#define MICROPY_HAS_FILE_READER (MICROPY_READER_POSIX || MICROPY_READER_VFS)
+#endif
+
 // Hook for the VM at the start of the opcode loop (can contain variable
 // definitions usable by the other hook functions)
 #ifndef MICROPY_VM_HOOK_INIT
@@ -874,6 +879,11 @@ typedef double mp_float_t;
 // match CPython and ranges are equal if they yield the same sequence of items.
 #ifndef MICROPY_PY_BUILTINS_RANGE_BINOP
 #define MICROPY_PY_BUILTINS_RANGE_BINOP (0)
+#endif
+
+// Support for callling next() with second argument
+#ifndef MICROPY_PY_BUILTINS_NEXT2
+#define MICROPY_PY_BUILTINS_NEXT2 (0)
 #endif
 
 // Whether to support rounding of integers (incl bignum); eg round(123,-1)=120
