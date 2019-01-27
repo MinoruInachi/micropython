@@ -2197,42 +2197,47 @@ msgid ""
 "particular port/board, and specifying *scl* and *sda* may or may not be "
 "required or allowed in this case."
 msgstr ""
+"*id* は特定の I2C ペリフェラルを識別します。デフォルト値の -1 は I2C のソフトウェア"
+"実装を選択し、(ほとんどの場合) SCL と SDA の任意のピンで動作できます。 "
+"*id* が -1 の場合は *scl* と *sda* を指定する必要があります。 *id* に許可されている"
+"その他の値は特定のポート/ボードによって異なります。この場合、 *scl* と *sda* の指定は"
+"必須ではなく、許可もされていないこともあります。"
 
 #: ../../../library/machine.I2C.rst:47
 msgid "*scl* should be a pin object specifying the pin to use for SCL."
-msgstr ""
+msgstr "*scl* は SCL に使用するピンを指定するピンオブジェクトでなければなりません。"
 
 #: ../../../library/machine.I2C.rst:48
 msgid "*sda* should be a pin object specifying the pin to use for SDA."
-msgstr ""
+msgstr "*sda* は SDA に使用するピンを指定するピンオブジェクトです。"
 
 #: ../../../library/machine.I2C.rst:49
 msgid "*freq* should be an integer which sets the maximum frequency for SCL."
-msgstr ""
+msgstr "*freq* は SCL の最大周波数を設定する整数です。"
 
 #: ../../../library/machine.I2C.rst:53
 msgid "General Methods"
-msgstr ""
+msgstr "一般的なメソッド"
 
 #: ../../../library/machine.I2C.rst:57
 msgid "Initialise the I2C bus with the given arguments:"
-msgstr ""
+msgstr "与えた引数で I2C バスを初期化します。"
 
 #: ../../../library/machine.I2C.rst:59
 msgid "*scl* is a pin object for the SCL line"
-msgstr ""
+msgstr "*scl* は SCL ラインのピンオブジェクトです"
 
 #: ../../../library/machine.I2C.rst:60
 msgid "*sda* is a pin object for the SDA line"
-msgstr ""
+msgstr "*sda* は SDA ラインのピンオブジェクトです"
 
 #: ../../../library/machine.I2C.rst:61
 msgid "*freq* is the SCL clock rate"
-msgstr ""
+msgstr "*freq* は SCL のクロックレートです"
 
 #: ../../../library/machine.I2C.rst:65 ../../../library/pyb.I2C.rst:85
 msgid "Turn off the I2C bus."
-msgstr ""
+msgstr "I2C バスをオフにします。"
 
 #: ../../../library/machine.I2C.rst:71
 msgid ""
@@ -2240,10 +2245,13 @@ msgid ""
 "of those that respond.  A device responds if it pulls the SDA line low "
 "after its address (including a write bit) is sent on the bus."
 msgstr ""
+"0x08 から 0x77 までのすべてのI2Cアドレスをスキャンし、応答したもののリストを返します。"
+"デバイスは、アドレス(書き込みビットを含む)がバスに送信された後に SDA ラインをローに"
+"引き下げると応答します。"
 
 #: ../../../library/machine.I2C.rst:76
 msgid "Primitive I2C operations"
-msgstr ""
+msgstr "プリミティブ I2C 操作"
 
 #: ../../../library/machine.I2C.rst:78
 msgid ""
@@ -2252,22 +2260,27 @@ msgid ""
 "you need more control over the bus, otherwise the standard methods (see "
 "below) can be used."
 msgstr ""
+"以下のメソッドは、プリミティブな I2C マスターのバス操作を実装しており、任意の I2C "
+"トランザクションを作成するために組み合わせることができます。標準的なメソッド(下記参照)"
+"では足りない制御する必要があるなら、これらのメソッドを使います。"
 
 #: ../../../library/machine.I2C.rst:82
 msgid "These methods are available on software I2C only."
-msgstr ""
+msgstr "これらのメソッドはソフトウェア I2C でのみ利用できます。"
 
 #: ../../../library/machine.I2C.rst:86
 msgid ""
 "Generate a START condition on the bus (SDA transitions to low while SCL "
 "is high)."
 msgstr ""
+"バス上で START 条件を生成します(SCL がハイの間に SDA がローに遷移します)。"
 
 #: ../../../library/machine.I2C.rst:90
 msgid ""
 "Generate a STOP condition on the bus (SDA transitions to high while SCL "
 "is high)."
 msgstr ""
+"バス上で STOP 条件を生成します(SCL がハイの間に SDA がハイに遷移します)。"
 
 #: ../../../library/machine.I2C.rst:94
 msgid ""
@@ -2278,6 +2291,10 @@ msgid ""
 "(and in this case the slave assumes more bytes are going to be read in a "
 "later call)."
 msgstr ""
+"バスからバイト列を読み込んで *buf* に格納します。読み取るバイト数は *buf* の長さ分です。"
+"ACK は最後のバイトを除くすべてを受信した後にバス上に送信されます。最後のバイトが受信"
+"した後、 *nack* が true の場合は NACK が送信され、それ以外の場合は ACK が送信されます"
+"(この場合、スレーブは後の呼び出しでさらにバイトが読み取られると想定します)。"
 
 #: ../../../library/machine.I2C.rst:102
 msgid ""
@@ -2285,16 +2302,21 @@ msgid ""
 "after each byte and stops transmitting the remaining bytes if a NACK is "
 "received.  The function returns the number of ACKs that were received."
 msgstr ""
+"*buf* からバスにバイト列を書き込みます。各バイトの後に ACK が受信されたことを確認し、"
+"NACK が受信された場合は残りのバイト列の送信を停止します。この関数は受信した ACK "
+"の数を返します。"
 
 #: ../../../library/machine.I2C.rst:107
 msgid "Standard bus operations"
-msgstr ""
+msgstr "標準バスオペレーション"
 
 #: ../../../library/machine.I2C.rst:109
 msgid ""
 "The following methods implement the standard I2C master read and write "
 "operations that target a given slave device."
 msgstr ""
+"以下のメソッドは、特定のスレーブデバイスをターゲットとする標準の I2C マスター読取り/書込み"
+"操作を実装しています。"
 
 #: ../../../library/machine.I2C.rst:114
 msgid ""
@@ -2302,6 +2324,9 @@ msgid ""
 "a STOP condition is generated at the end of the transfer. Returns a "
 "`bytes` object with the data read."
 msgstr ""
+"*addr* で指定されたスレーブから *nbytes* 分を読み取ります。 *stop* が True の場合、"
+"転送終了時に STOP 条件が生成されます。読み込んだデータを持つ `bytes` オブジェクトを"
+"返します。"
 
 #: ../../../library/machine.I2C.rst:120
 msgid ""
@@ -2309,11 +2334,13 @@ msgid ""
 "read will be the length of *buf*. If *stop* is true then a STOP condition"
 " is generated at the end of the transfer."
 msgstr ""
+"*addr* で指定されたスレーブから *buf* に読み込みます。読み取られるバイト数は *buf* "
+"の長さ分になります。 *stop* が True の場合、転送終了時にSTOP条件が生成されます。"
 
 #: ../../../library/machine.I2C.rst:124 ../../../library/machine.I2C.rst:157
 #: ../../../library/machine.I2C.rst:166
 msgid "The method returns ``None``."
-msgstr ""
+msgstr "このメソッドは ``None`` を返します。"
 
 #: ../../../library/machine.I2C.rst:128
 msgid ""
@@ -2323,10 +2350,14 @@ msgid ""
 " at the end of the transfer, even if a NACK is received. The function "
 "returns the number of ACKs that were received."
 msgstr ""
+"*buf* から *addr* で指定されたスレーブにバイト列を書き込みます。 *buf* からの"
+"バイト列の書き込みに続いて NACK を受信した場合、残りのバイトは送信されません。"
+"もし *stop* が True であれば、たとえ NACK が受信されたとしても、転送の終わりに "
+"STOP 条件が生成されます。この関数は受信した ACK の数を返します。"
 
 #: ../../../library/machine.I2C.rst:135
 msgid "Memory operations"
-msgstr ""
+msgstr "メモリ操作"
 
 #: ../../../library/machine.I2C.rst:137
 msgid ""
@@ -2336,6 +2367,9 @@ msgid ""
 "address.  The following methods are convenience functions to communicate "
 "with such devices."
 msgstr ""
+"一部の I2C デバイスは、読み書き可能なメモリデバイス(またはレジスタセット)として機能します。"
+"この場合、I2C トランザクションに関連付けられた２つのアドレスがあります。スレーブアドレスと"
+"メモリアドレスです。以下のメソッドは、そのようなデバイスと通信するための便利な機能です。"
 
 #: ../../../library/machine.I2C.rst:144
 msgid ""
@@ -2343,6 +2377,9 @@ msgid ""
 " address specified by *memaddr*. The argument *addrsize* specifies the "
 "address size in bits. Returns a `bytes` object with the data read."
 msgstr ""
+"*addr* で指定したスレーブより、 *memaddr* で指定したメモリアドレスから *nbytes* 分を読み込みます。"
+"引数 *addrsize* はアドレスサイズをビット数で指定します。この関数は読み込んだデータを持つバイト列"
+"オブジェクトを返します。"
 
 #: ../../../library/machine.I2C.rst:151
 msgid ""
@@ -2352,6 +2389,9 @@ msgid ""
 "bits (on ESP8266 this argument is not recognised and the address size is "
 "always 8 bits)."
 msgstr ""
+"*addr* で指定したスレーブより、 *memaddr* で指定したメモリアドレスから *buf* に読み込みます。"
+"読み取られるバイト数は *buf* の長さです。引数 *addrsize* はアドレスサイズをビット数で指定します"
+"(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
 
 #: ../../../library/machine.I2C.rst:161
 msgid ""
@@ -2360,6 +2400,9 @@ msgid ""
 "address size in bits (on ESP8266 this argument is not recognised and the "
 "address size is always 8 bits)."
 msgstr ""
+"*addr* で指定したスレーブに、 *memaddr* で指定したメモリアドレスへ *buf* を書き込みます。"
+"引数 *addrsize* はアドレスサイズをビット数で指定します"
+"(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
 
 #: ../../../library/machine.Pin.rst:5 ../../../library/pyb.Pin.rst:5
 msgid "class Pin -- control I/O pins"
