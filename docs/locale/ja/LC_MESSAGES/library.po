@@ -458,15 +458,17 @@ msgid ""
 "and ESP32 modules.  Some functions are only available on one or the other "
 "of these ports."
 msgstr ""
+"``esp`` モジュールは、ESP8266 と ESP32 の両方のモジュールに関連する固有の機能を提供します。"
+"一部の機能はこれらのポートのどちらか一方でしか使えません。"
 
 #: ../../../library/esp.rst:17 ../../../library/esp.rst:47
 #: ../../../library/esp.rst:67
 msgid "**Note**: ESP8266 only"
-msgstr ""
+msgstr "**注記**: ESP8266 のみ"
 
 #: ../../../library/esp.rst:19
 msgid "Get or set the sleep type."
-msgstr ""
+msgstr "スリープのタイプを取得/設定します。"
 
 #: ../../../library/esp.rst:21
 msgid ""
@@ -474,36 +476,39 @@ msgid ""
 "value. If the function is called without parameters, returns the current "
 "sleep type."
 msgstr ""
+"**sleep_type** にパラメータが与えた場合、スリープのタイプをその値にを設定します。"
+"この関数がパラメータなしで呼び出された場合は、現在のスリープのタイプを返します。"
 
 #: ../../../library/esp.rst:25
 msgid "The possible sleep types are defined as constants:"
-msgstr ""
+msgstr "指定可能なスリープのタイプは定数として定義されています:"
 
 #: ../../../library/esp.rst:27
 msgid "``SLEEP_NONE`` -- all functions enabled,"
-msgstr ""
+msgstr "``SLEEP_NONE`` -- すべての機能が有効"
 
 #: ../../../library/esp.rst:28
 msgid "``SLEEP_MODEM`` -- modem sleep, shuts down the WiFi Modem circuit."
-msgstr ""
+msgstr "``SLEEP_MODEM`` -- モデムのスリープ、WiFi モデム回線をシャットダウン"
 
 #: ../../../library/esp.rst:29
 msgid ""
 "``SLEEP_LIGHT`` -- light sleep, shuts down the WiFi Modem circuit and "
 "suspends the processor periodically."
 msgstr ""
+"``SLEEP_LIGHT`` -- 軽量スリープ、WiFi モデム回路をシャットダウンし、プロセッサを定期的に停止"
 
 #: ../../../library/esp.rst:32
 msgid "The system enters the set sleep mode automatically when possible."
-msgstr ""
+msgstr "可能であれば、システムは自動的に設定されたスリープモードに入ります。"
 
 #: ../../../library/esp.rst:36
 msgid "**Note**: ESP8266 only - use `machine.deepsleep()` on ESP32"
-msgstr ""
+msgstr "**注記**: ESP8266 のみ - ESP32 では `machine.deepsleep()` を使用"
 
 #: ../../../library/esp.rst:38
 msgid "Enter deep sleep."
-msgstr ""
+msgstr "ディープスリープに入ります。"
 
 #: ../../../library/esp.rst:40
 msgid ""
@@ -512,6 +517,9 @@ msgid ""
 "connected to the reset pin. Otherwise the module will sleep until "
 "manually reset."
 msgstr ""
+"RTC クロック回路を除いてモジュール全体がパワーダウンします。RTC クロック回路は、"
+"ピン16がリセットピンに接続されている場合、指定時間後にモジュールを再起動するのに使えます。"
+"それ以外の場合、モジュールは手動でリセットされるまでスリープします。"
 
 #: ../../../library/esp.rst:49
 msgid "Read the device ID of the flash memory."
@@ -1849,28 +1857,62 @@ msgstr ""
 
 #: ../../../library/machine.rst:66
 msgid ""
-"Stops the CPU and disables all peripherals except for WLAN. Execution is "
-"resumed from the point where the sleep was requested. For wake up to "
-"actually happen, wake sources should be configured first."
+"This function is deprecated, use `lightsleep()` instead with no arguments."
 msgstr ""
-"CPU を停止し、WLAN を除くすべての周辺機器を無効にします。実行は sleep が要求された"
-"時点から再開されます。起床が実際に起きるためには、起床の源を最初に設定する必要があります。"
+"この関数は廃止予定です。代わりに `lightsleep()` を引数なしで使ってください。"
 
-#: ../../../library/machine.rst:72
+#: ../../../library/machine.rst:71
+msgid "Stops execution in an attempt to enter a low power state."
+msgstr "実行を停止して、低電力状態に入ります。"
+
+#: ../../../library/machine.rst:73
 msgid ""
-"Stops the CPU and all peripherals (including networking interfaces, if "
-"any). Execution is resumed from the main script, just as with a reset. "
-"The reset cause can be checked to know that we are coming from "
-"`machine.DEEPSLEEP`. For wake up to actually happen, wake sources should "
-"be configured first, like `Pin` change or `RTC` timeout."
+"If *time_ms* is specified then this will be the maximum time in milliseconds that "
+"the sleep will last for.  Otherwise the sleep can last indefinitely."
 msgstr ""
-"CPU とすべての周辺機器(ネットワークインタフェースがあればそれを含む)を停止します。"
-"実行はリセットと同様にメインスクリプトから再開されます。リセットが "
-"`machine.DEEPSLEEP` から来ていることを知るためのチェック方法は用意されています。"
-"起床が実際に起きるためには、 `Pin` の変化や 'RTC' のタイムアウトなどの"
-"起床の源を最初に設定する必要があります。"
+"*time_ms* が指定されている場合、これはスリープが続く最大ミリ秒単位の時間になります。"
+"指定しなければスリープが無期限に続くようになります。"
 
-#: ../../../library/machine.rst:79
+#: ../../../library/machine.rst:76
+msgid ""
+"With or without a timout, execution may resume at any time if there are events "
+"that require processing.  Such events, or wake sources, should be configured before "
+"sleeping, like `Pin` change or `RTC` timeout."
+msgstr ""
+"タイムアウトがあってもなくても、処理が必要なイベントがあれば実行はいつでも再開できます。"
+"そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
+"スリープ前に設定する必要があります。"
+
+#: ../../../library/machine.rst:80
+msgid ""
+"The precise behaviour and power-saving capabilities of lightsleep and deepsleep is "
+"highly dependent on the underlying hardware, but the general properties are:"
+msgstr ""
+"ライトスリープ(lightsleep)とディープスリープ(deepsleep)の正確な動作と省電力機能は、"
+"基盤となるハードウェアに大きく依存しますが、一般的な特性は次のとおりです。"
+
+#: ../../../library/machine.rst:83
+msgid ""
+"A lightsleep has full RAM and state retention.  Upon wake execution is resumed "
+"from the point where the sleep was requested, with all subsystems operational."
+msgstr ""
+"ライトスリープには RAM と状態の完全な保持があります。スリープ解除が要求された時点から実行が"
+"再開され、すべてのサブシステムが動作可能になります。"
+
+#: ../../../library/machine.rst:86
+msgid ""
+"A deepsleep may not retain RAM or any other state of the system (for example "
+"peripherals or network interfaces).  Upon wake execution is resumed from the main "
+"script, similar to a hard or power-on reset. The `reset_cause()` function will "
+"return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake "
+"from other resets."
+msgstr ""
+"ディープスリープは RAM やシステムの他の状態(周辺機器やネットワークインタフェースなど)を"
+"保持しません。ハードリセットやパワーオンリセットと同様に、ウェイクアップ時にメインスクリプト"
+"から実行が再開されます。 `reset_cause()` 関数は `machine.DEEPSLEEP` を返します。"
+"これは他のリセットとディープスリープからの起床を区別するのに使えます。"
+
+#: ../../../library/machine.rst:94
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -1878,15 +1920,15 @@ msgstr ""
 "起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
 "を参照してください。"
 
-#: ../../../library/machine.rst:81
+#: ../../../library/machine.rst:96
 msgid "Availability: ESP32, WiPy."
 msgstr "可用性: ESP32、WiPy。"
 
-#: ../../../library/machine.rst:84 ../../../library/pyb.rst:187
+#: ../../../library/machine.rst:98 ../../../library/pyb.rst:187
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../../library/machine.rst:88
+#: ../../../library/machine.rst:103
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -1899,7 +1941,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../../library/machine.rst:95
+#: ../../../library/machine.rst:110
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -1908,7 +1950,7 @@ msgstr ""
 "指定の *pin* にパルスの持続時間をマイクロ秒単位で返します。 *pulse_level* 引数には、"
 "低パルスの時間計測で 0、高パルスの時間計測で 1 を指定します。"
 
-#: ../../../library/machine.rst:99
+#: ../../../library/machine.rst:114
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -1921,7 +1963,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../../library/machine.rst:104
+#: ../../../library/machine.rst:119
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -1932,25 +1974,25 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../../library/machine.rst:111
+#: ../../../library/machine.rst:126
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
 #: ../../../library/machine.I2C.rst:67 ../../../library/machine.Pin.rst:180
 #: ../../../library/machine.UART.rst:143 ../../../library/machine.UART.rst:152
-#: ../../../library/machine.rst:113
+#: ../../../library/machine.rst:128
 msgid "Availability: WiPy."
 msgstr "可用性: WiPy。"
 
-#: ../../../library/machine.rst:124
+#: ../../../library/machine.rst:139
 msgid "IRQ wake values."
 msgstr "IRQ ウェイク値。"
 
-#: ../../../library/machine.rst:132
+#: ../../../library/machine.rst:147
 msgid "Reset causes."
 msgstr "リセット原因。"
 
-#: ../../../library/machine.rst:138
+#: ../../../library/machine.rst:153
 msgid "Wake-up reasons."
 msgstr "起床理由。"
 
