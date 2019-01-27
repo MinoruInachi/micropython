@@ -523,15 +523,15 @@ msgstr ""
 
 #: ../../../library/esp.rst:49
 msgid "Read the device ID of the flash memory."
-msgstr ""
+msgstr "フラッシュメモリのデバイスIDを取得します。"
 
 #: ../../../library/esp.rst:53
 msgid "Read the total size of the flash memory."
-msgstr ""
+msgstr "フラッシュメモリの合計サイズを取得します。"
 
 #: ../../../library/esp.rst:57
 msgid "Read the memory offset at which the user flash space begins."
-msgstr ""
+msgstr "ユーザフラッシュスペースが始まるメモリオフセットを取得します。"
 
 #: ../../../library/esp.rst:69
 msgid ""
@@ -542,6 +542,11 @@ msgid ""
 " the lower 1MByte of flash (which is memory mapped), and this function "
 "controls the location."
 msgstr ""
+"ネイティブコードがコンパイルされた後に実行のために配置される場所を設定します。"
+"``@micropython.native``, ``@micropython.viper``, ``@micropython.asm_xtensa`` "
+"デコレータが関数に適用されると、ネイティブコードが生成されます。ESP8266は iRAM または"
+"(メモリマップされている)フラッシュの下位 1MB のいずれかからコードを実行する必要があり、"
+"この関数はその位置を制御します。"
 
 #: ../../../library/esp.rst:76
 msgid ""
@@ -552,6 +557,10 @@ msgid ""
 "functions.  The advantage of using this iRAM1 region is that it does not "
 "get worn out by writing to it."
 msgstr ""
+"*start* と *length* がどちらも ``None`` であった場合、ネイティブコード位置は iRAM1 "
+"領域の最後にあるメモリの未使用部分に設定されます。この未使用部分のサイズはファームウェア"
+"によって異なり、通常は非常に小さく(約500バイト)、非常に小さな関数を格納するのに使います。"
+"この iRAM1 領域を使用する利点は書き込んでも(フラッシュのように)寿命を消耗しないことです。"
 
 #: ../../../library/esp.rst:83
 msgid ""
@@ -564,6 +573,12 @@ msgid ""
 "be sure to use a region of flash that is not otherwise used, for example "
 "by the firmware or the filesystem."
 msgstr ""
+"*start* と *length* のどちらも ``None`` でない場合はどｒちらも整数でなければならず、"
+" *start* はネイティブコードを格納するフラッシュの先頭からのバイトオフセットを指定する"
+"必要があります。 *length* はネイティブコードを格納するために最初から何バイトのフラッシュを"
+"使用できるかを指定します。 *start* と *length* は、セクタサイズの倍数(4096バイト)に"
+"してください。フラッシュする前にフラッシュは自動的に消去されるので、他(たとえば"
+"ファームウェアやファイルシステム)では使用されないフラッシュの領域を使うようにしてください。"
 
 #: ../../../library/esp.rst:92
 msgid ""
@@ -573,6 +588,10 @@ msgid ""
 "particular, native code needs to be recompiled and rewritten to flash on "
 "each boot (including wake from deepsleep)."
 msgstr ""
+"フラッシュを使用してネイティブコードを格納する場合、 *start+length* は1MB以下で"
+"なければなりません。繰り返し消去(および書き込み)を行うとフラッシュは寿命を消耗して"
+"いくので、この機能は控えめに使ってください。特に、ネイティブコードは起動ごとに"
+"再コンパイルしてフラッシュに書き換える必要があります(スリープ解除からの起動の場合も含みます)。"
 
 #: ../../../library/esp.rst:98
 msgid ""
@@ -581,22 +600,27 @@ msgid ""
 "will lead to `MemoryError` exception being raised during compilation of "
 "that function."
 msgstr ""
+"上記のどちらの場合も、iRAM1 またはフラッシュを使って指定領域に空きがなくなった後、"
+"関数にネイティブデコレータを使うとその関数のコンパイル中に `MemoryError` 例外が発生します。"
 
 #: ../../../library/esp32.rst:2
 msgid ":mod:`esp32` --- functionality specific to the ESP32"
-msgstr ""
+msgstr ":mod:`esp32` --- EDS32 に固有の機能"
 
 #: ../../../library/esp32.rst:7
 msgid ""
 "The ``esp32`` module contains functions and classes specifically aimed "
 "at controlling ESP32 modules."
 msgstr ""
+"``esp32`` モジュールは、ESP32 モジュールに固有の制御を目的とした関数とクラスが含まれています。"
 
 #: ../../../library/esp32.rst:16
 msgid ""
 "Configure whether or not a touch will wake the device from sleep. *wake* "
 "should be a boolean value."
 msgstr ""
+"タッチでデバイスをスリープから復帰させるかどうかを設定します。 *wake* はブール型で"
+"なければなりません。"
 
 #: ../../../library/esp32.rst:21
 msgid ""
@@ -604,6 +628,9 @@ msgid ""
 "a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or "
 "``esp32.WAKEUP_ANY_HIGH``."
 msgstr ""
+"EXT0 がデバイスをスリープから復帰させる方法を設定します。 *pin* には ``None`` "
+"あるいは有効な Pin オブジェクトを指定します。 *level* には ``esp32.WAKEUP_ALL_LOW`` "
+"または ``esp32.WAKEUP_ANY_HIGH`` を指定する必要があります。"
 
 #: ../../../library/esp32.rst:27
 msgid ""
@@ -611,41 +638,46 @@ msgid ""
 "or a tuple/list of valid Pin objects.  *level* should be "
 "``esp32.WAKEUP_ALL_LOW`` or ``esp32.WAKEUP_ANY_HIGH``."
 msgstr ""
+"EXT1 がデバイスをスリープから復帰させる方法を設定します。  *pin* には ``None`` "
+"あるいは有効な Pin オブジェクトのタプル/リストを指定します。 *level* には "
+"``esp32.WAKEUP_ALL_LOW`` または ``esp32.WAKEUP_ANY_HIGH`` を指定する必要があります。"
 
 #: ../../../library/esp32.rst:33
 msgid ""
 "Read the raw value of the internal temperature sensor, returning an "
 "integer."
 msgstr ""
+"内部温度センサーの素の値を読み、整数を返します。"
 
 #: ../../../library/esp32.rst:37
 msgid ""
 "Read the raw value of the internal Hall sensor, returning an integer."
 msgstr ""
+"内部ホールセンサーの素の値を読み、整数を返します。"
 
 #: ../../../library/esp32.rst:41
 msgid "The Ultra-Low-Power co-processor"
-msgstr ""
+msgstr "超低消費電力コプロセッサ"
 
 #: ../../../library/esp32.rst:45
 msgid "This class provides access to the Ultra-Low-Power co-processor."
-msgstr ""
+msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
 #: ../../../library/esp32.rst:49
 msgid "Set the wake-up period."
-msgstr ""
+msgstr "起床期間を設定します。"
 
 #: ../../../library/esp32.rst:53
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
-msgstr ""
+msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
 #: ../../../library/esp32.rst:57
 msgid "Start the ULP running at the given *entry_point*."
-msgstr ""
+msgstr "与えた *entry_point* で ULP を起動します。"
 
 #: ../../../library/esp32.rst:66
 msgid "Selects the wake level for pins."
-msgstr ""
+msgstr "ピンの起床レベル。"
 
 #: ../../../library/framebuf.rst:2
 msgid ":mod:`framebuf` --- Frame buffer manipulation"
@@ -2623,7 +2655,7 @@ msgid ""
 "on the mode of the pin:"
 msgstr ""
 "引数が指定されている場合、このメソッドはピンのデジタル論理レベルを設定します。引数 "
-"``x`` は boolean に変換できるものであれば何でも構いません。変換後が True だと"
+"``x`` はブール型に変換できるものであれば何でも構いません。変換後が True だと"
 "ピンは状態 '1' に設定され、そうでない場合は状態 '0' に設定されます。このメソッドの"
 "動作はピンのモードによって異なります。"
 
