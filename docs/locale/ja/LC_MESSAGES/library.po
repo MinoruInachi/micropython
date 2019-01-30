@@ -560,7 +560,7 @@ msgstr ""
 "*start* と *length* がどちらも ``None`` であった場合、ネイティブコード位置は iRAM1 "
 "領域の最後にあるメモリの未使用部分に設定されます。この未使用部分のサイズはファームウェア"
 "によって異なり、通常は非常に小さく(約500バイト)、非常に小さな関数を格納するのに使います。"
-"この iRAM1 領域を使用する利点は書き込んでも(フラッシュのように)寿命を消耗しないことです。"
+"この iRAM1 領域を使用する利点は書き込んでもメモリの寿命が縮まないことです。"
 
 #: ../../../library/esp.rst:83
 msgid ""
@@ -589,7 +589,7 @@ msgid ""
 "each boot (including wake from deepsleep)."
 msgstr ""
 "フラッシュを使用してネイティブコードを格納する場合、 *start+length* は1MB以下で"
-"なければなりません。繰り返し消去(および書き込み)を行うとフラッシュは寿命を消耗して"
+"なければなりません。繰り返し消去(および書き込み)を行うとフラッシュは寿命を縮めて"
 "いくので、この機能は控えめに使ってください。特に、ネイティブコードは起動ごとに"
 "再コンパイルしてフラッシュに書き換える必要があります(スリープ解除からの起動の場合も含みます)。"
 
@@ -2030,12 +2030,12 @@ msgstr "起床理由。"
 
 #: ../../../library/machine.ADC.rst:5 ../../../library/pyb.ADC.rst:5
 msgid "class ADC -- analog to digital conversion"
-msgstr ""
+msgstr "class ADC -- アナログ-デジタル変換"
 
 #: ../../../library/machine.ADC.rst:7 ../../../library/pyb.ADC.rst:7
 #: ../../../library/pyb.Switch.rst:9
 msgid "Usage::"
-msgstr ""
+msgstr "使用方法:"
 
 #: ../../../library/machine.ADC.rst:9
 msgid ""
@@ -2045,6 +2045,11 @@ msgid ""
 "apin = adc.channel(pin='GP3')   # create an analog pin on GP3\n"
 "val = apin()                    # read an analog value"
 msgstr ""
+"import machine\n"
+"\n"
+"adc = machine.ADC()             # ADC オブジェクトを作成\n"
+"apin = adc.channel(pin='GP3')   # GP3 のアナログピンを作成\n"
+"val = apin()                    # アナログ値の読込み"
 
 #: ../../../library/machine.ADC.rst:20
 msgid ""
@@ -2053,6 +2058,10 @@ msgid ""
 "alternate functions table. "
 "<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_"
 msgstr ""
+"与えたピンに関連した ADC オブジェクトを作成します。これにより、そのピンのアナログ値を"
+"読み取ることができます。詳細については `ピン配置と代替機能の表 "
+"<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_ "
+"を確認してください。"
 
 #: ../../../library/machine.ADC.rst:27
 msgid ""
@@ -2061,6 +2070,9 @@ msgid ""
 "1.8 V is the maximum. If these pins are used in digital mode, then the "
 "maximum allowed input is 3.6V."
 msgstr ""
+"ADC ピンの入力範囲は 0-1.4V です(耐えられる絶対最大値は 1.8V です)。GP2, GP3, "
+"GP4, GP5 が ADC ブロックに再マッピングされている場合、1.8V が最大です。これらの"
+"ピンがデジタルモードで使用されている場合、最大許容入力は 3.6V です。"
 
 #: ../../../library/machine.ADC.rst:37
 msgid ""
@@ -2068,6 +2080,8 @@ msgid ""
 "be selected. Alternatively, only the pin can be passed and the correct "
 "channel will be selected. Examples::"
 msgstr ""
+"アナログピンを作成します。チャンネルIDのみが指定されている場合は、正しいピンが選択"
+"されます。代わりに、ピンだけを渡しても正しいチャンネルが選択されます。例::"
 
 #: ../../../library/machine.ADC.rst:41
 msgid ""
@@ -2076,40 +2090,46 @@ msgid ""
 "apin = adc.channel(pin='GP3')\n"
 "apin = adc.channel(id=1, pin='GP3')"
 msgstr ""
+"# 以下はすべて同等で、GP3 の ADC チャンネル1を有効にします\n"
+"apin = adc.channel(1)\n"
+"apin = adc.channel(pin='GP3')\n"
+"apin = adc.channel(id=1, pin='GP3')"
 
 #: ../../../library/machine.ADC.rst:48
 msgid "Enable the ADC block."
-msgstr ""
+msgstr "ADC ブロックを有効にします。"
 
 #: ../../../library/machine.ADC.rst:52
 msgid "Disable the ADC block."
-msgstr ""
+msgstr "ADC ブロックを無効にします。"
 
 #: ../../../library/machine.ADC.rst:55
 msgid "class ADCChannel --- read analog values from internal or external sources"
-msgstr ""
+msgstr "class ADCChannel --- 内部または外部のソースからアナログ値の読込み"
 
 #: ../../../library/machine.ADC.rst:57
 msgid ""
 "ADC channels can be connected to internal points of the MCU or to GPIO "
 "pins. ADC channels are created using the ADC.channel method."
 msgstr ""
+"ADC チャンネルは MCU の内部ポイントまたは GPIO ピンに接続できます。"
+"ADC チャンネルは ADC.channel メソッドを使って作成されます。"
 
 #: ../../../library/machine.ADC.rst:62
 msgid "Fast method to read the channel value."
-msgstr ""
+msgstr "チャネル値を読み取るための高速メソッド。"
 
 #: ../../../library/machine.ADC.rst:66
 msgid "Read the channel value."
-msgstr ""
+msgstr "チャンネル値を読みます。"
 
 #: ../../../library/machine.ADC.rst:70
 msgid "Re-init (and effectively enable) the ADC channel."
-msgstr ""
+msgstr "ADC チャネルを再初期化(そして効果的に有効化)します。"
 
 #: ../../../library/machine.ADC.rst:74
 msgid "Disable the ADC channel."
-msgstr ""
+msgstr "ADC チャネルを無効化します。"
 
 #: ../../../library/machine.I2C.rst:5 ../../../library/pyb.I2C.rst:5
 msgid "class I2C -- a two-wire serial protocol"
@@ -2891,11 +2911,11 @@ msgstr "IRQ トリガタイプを選択します。"
 
 #: ../../../library/machine.RTC.rst:5 ../../../library/pyb.RTC.rst:5
 msgid "class RTC -- real time clock"
-msgstr ""
+msgstr "class RTC -- リアルタイムクロック"
 
 #: ../../../library/machine.RTC.rst:7 ../../../library/pyb.RTC.rst:7
 msgid "The RTC is and independent clock that keeps track of the date and time."
-msgstr ""
+msgstr "RTCは、日時の経過を追う自律クロックです。"
 
 #: ../../../library/machine.RTC.rst:12
 msgid ""
@@ -2906,11 +2926,11 @@ msgstr ""
 
 #: ../../../library/machine.RTC.rst:22
 msgid "Create an RTC object. See init for parameters of initialization."
-msgstr ""
+msgstr "RTC オブジェクトを作成します。初期化パラメータについてはinitを参照してください。"
 
 #: ../../../library/machine.RTC.rst:29
 msgid "Initialise the RTC. Datetime is a tuple of the form:"
-msgstr ""
+msgstr "RTC を初期化します。datetime は次の形式のタプルです。"
 
 #: ../../../library/machine.RTC.rst:31
 msgid ""
@@ -2920,11 +2940,11 @@ msgstr ""
 
 #: ../../../library/machine.RTC.rst:35
 msgid "Get get the current datetime tuple."
-msgstr ""
+msgstr "現在の日時タプルを取得します。"
 
 #: ../../../library/machine.RTC.rst:39
 msgid "Resets the RTC to the time of January 1, 2015 and starts running it again."
-msgstr ""
+msgstr "RTC を2015年1月1日の時刻にリセットして、実行を再開します。"
 
 #: ../../../library/machine.RTC.rst:43
 msgid ""
@@ -2933,44 +2953,48 @@ msgid ""
 " If the time passed is in milliseconds, repeat can be set to ``True`` to "
 "make the alarm periodic."
 msgstr ""
+"RTC アラームを設定します。time にはアラームをプログラムする、現在時刻からの経過"
+"ミリ秒数、あるいは日時タプルのどちらかを指定します。time の指定がミリ秒の場合、"
+"repeat に True を設定すると、アラームを定期的に行うようになります。"
 
 #: ../../../library/machine.RTC.rst:49
 msgid "Get the number of milliseconds left before the alarm expires."
-msgstr ""
+msgstr "アラームが期限切れになるまでの残りミリ秒数を取得します。"
 
 #: ../../../library/machine.RTC.rst:53
 msgid "Cancel a running alarm."
-msgstr ""
+msgstr "作動中のアラームをキャンセルします。"
 
 #: ../../../library/machine.RTC.rst:57
 msgid "Create an irq object triggered by a real time clock alarm."
-msgstr ""
+msgstr "リアルタイムクロックのアラームによってトリガーされる irq オブジェクトを作成します。"
 
 #: ../../../library/machine.RTC.rst:59
 msgid "``trigger`` must be ``RTC.ALARM0``"
-msgstr ""
+msgstr "``trigger`` は ``RTC.ALARM0`` でなければなりません "
 
 #: ../../../library/machine.RTC.rst:60
 msgid "``handler`` is the function to be called when the callback is triggered."
-msgstr ""
+msgstr "``handler`` はコールバックがトリガーされたときに呼び出される関数です。"
 
 #: ../../../library/machine.RTC.rst:61
 msgid ""
 "``wake`` specifies the sleep mode from where this interrupt can wake up "
 "the system."
 msgstr ""
+"``wake`` は、この割り込みがシステムを起床できるスリープモードを指定します。"
 
 #: ../../../library/machine.RTC.rst:69
 msgid "irq trigger source"
-msgstr ""
+msgstr "irq トリガーソース"
 
 #: ../../../library/machine.SD.rst:5
 msgid "class SD -- secure digital memory card"
-msgstr ""
+msgstr "class SD -- セキュアデジタルメモリーカード"
 
 #: ../../../library/machine.SD.rst:9
 msgid "This is a non-standard class and is only available on the cc3200 port."
-msgstr ""
+msgstr "これは非標準クラスであり、cc3200 ポートでのみ利用可能です。"
 
 #: ../../../library/machine.SD.rst:12
 msgid ""
@@ -2983,6 +3007,11 @@ msgid ""
 "for more info regarding the pins which can be remapped to be used with a "
 "SD card."
 msgstr ""
+"SD カードクラスを使用すると、WiPy のメモリカードモジュールを設定、有効化して、"
+"ファイルシステムの一部として ``/sd`` に自動的にマウントできます。SD カードソケットを "
+"WiPy に配線するために使うピンの組み合わせはいくつかあり、コンストラクタで指定できます。"
+"SD カード用に再マッピングできるピンに関して詳しくは、ピン配置と代替機能の表を確認"
+"してください。"
 
 #: ../../../library/machine.SD.rst:22
 msgid ""
@@ -2994,24 +3023,33 @@ msgid ""
 "os.mount(sd, '/sd')\n"
 "# do normal file operations"
 msgstr ""
+"from machine import SD\n"
+"import os\n"
+"# clk cmd ピンと dat0 ピンはそれぞれの代替機能と\m"
+"# 一緒に渡す必要があります\n"
+"sd = machine.SD(pins=('GP10', 'GP11', 'GP15'))\n"
+"os.mount(sd, '/sd')\n"
+"# 通常のファイル操作を実行"
 
 #: ../../../library/machine.SD.rst:35
 msgid "Create a SD card object. See ``init()`` for parameters if initialization."
-msgstr ""
+msgstr "SD カードオブジェクトを作成します。初期化の場合のパラメータは ``init()`` を参照してください。"
 
 #: ../../../library/machine.SD.rst:42
 msgid ""
 "Enable the SD card. In order to initialize the card, give it a 3-tuple: "
 "``(clk_pin, cmd_pin, dat0_pin)``."
 msgstr ""
+"SDカードを有効にします。カードを初期化するためには "
+"``(clk_pin, cmd_pin, dat0_pin)`` の３項目のタプルを与えます。"
 
 #: ../../../library/machine.SD.rst:47
 msgid "Disable the SD card."
-msgstr ""
+msgstr "SD カードを無効にします。"
 
 #: ../../../library/machine.SPI.rst:5
 msgid "class SPI -- a Serial Peripheral Interface bus protocol (master side)"
-msgstr ""
+msgstr "class SPI -- シリアルペリフェラルインタフェース バスプロトコル(マスタ側)"
 
 #: ../../../library/machine.SPI.rst:7
 msgid ""
@@ -3022,6 +3060,11 @@ msgid ""
 "which communication takes place. Management of an SS signal should happen"
 " in user code (via machine.Pin class)."
 msgstr ""
+"SPI はマスタによって駆動される同期シリアルプロトコルです。物理レベルにおいて、バスは "
+"SCK、MOSI、MISO 3本の線で構成されています。複数のデバイスが同じバスを共有できます。"
+"各デバイスには、通信を行うバス上の特定のデバイスを選択するための個別の4番目の信号 SS "
+"(Slave Select)が必要です。SSシグナルの管理はユーザーコードで(machine.Pin クラス"
+"経由で)行う必要があります。"
 
 #: ../../../library/machine.SPI.rst:19
 msgid ""
@@ -3030,6 +3073,10 @@ msgid ""
 "used to select hardware SPI block #0, #1, etc. Value -1 can be used for "
 "bitbanging (software) implementation of SPI (if supported by a port)."
 msgstr ""
+"与えたバス ``id`` で SPI オブジェクトを構築します。 ``id`` の値は特定のポートとその"
+"ハードウェアに依存します。値 0, 1 などは一般的に、ハードウェア SPI ブロック #0, #1 "
+"などを選択するために使われます。値 -1 は(ポートでサポートされている場合) SPI "
+"のビットバンギング(ソフトウェア)実装を選択するのに使えます。"
 
 #: ../../../library/machine.SPI.rst:24
 msgid ""
@@ -3038,34 +3085,42 @@ msgid ""
 " if any).  If extra arguments are given, the bus is initialised. See "
 "``init`` for parameters of initialisation."
 msgstr ""
+"追加のパラメータを指定しないと、SPI オブジェクトは作成されますが初期化されません"
+"(そのような場合、バスが過去に初期化されたことがあれば、その定が引き継がれます)。"
+"追加のパラメータが与えられると、バスは初期化されます。追加のパラメータについては "
+"``init`` を参照してください。"
 
 #: ../../../library/machine.SPI.rst:34 ../../../library/pyb.SPI.rst:56
 msgid "Initialise the SPI bus with the given parameters:"
-msgstr ""
+msgstr "与えたパラメータで SPI バスを初期化します。"
 
 #: ../../../library/machine.SPI.rst:36
 msgid "``baudrate`` is the SCK clock rate."
-msgstr ""
+msgstr "``baudrate`` は SCK のクロックレートです。"
 
 #: ../../../library/machine.SPI.rst:37 ../../../library/pyb.SPI.rst:62
 msgid "``polarity`` can be 0 or 1, and is the level the idle clock line sits at."
-msgstr ""
+msgstr "``polarity`` は 0 か 1 であり、アイドリング状態のときのクロックのレベルを指定します。"
 
 #: ../../../library/machine.SPI.rst:38 ../../../library/pyb.SPI.rst:63
 msgid ""
 "``phase`` can be 0 or 1 to sample data on the first or second clock edge "
 "respectively."
 msgstr ""
+"``phase`` は 0 か 1 であり、それぞれ、１番目または２番目のクロックエッジでのデータ"
+"読取りを指定します。"
 
 #: ../../../library/machine.SPI.rst:40
 msgid ""
 "``bits`` is the width in bits of each transfer. Only 8 is guaranteed to "
 "be supported by all hardware."
 msgstr ""
+"``bits`` は各転送のビット幅です。すべてのハードウェアでサポートされることが保証"
+"されているのは 8 だけです。"
 
 #: ../../../library/machine.SPI.rst:41 ../../../library/pyb.SPI.rst:66
 msgid "``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``."
-msgstr ""
+msgstr "``firstbit`` は SPI.MSB か SPI.LSB です。"
 
 #: ../../../library/machine.SPI.rst:42
 msgid ""
@@ -3076,12 +3131,19 @@ msgid ""
 " Arbitrary pin assignments are possible only for a bitbanging SPI driver "
 "(``id`` = -1)."
 msgstr ""
+"``sck``, ``mosi``, ``miso`` はバス信号に使用するピン(machine.Pin)オブジェクトです。"
+"ほとんどのハードウェア SPI ブロック(コンストラクタのパラメータ id で指定)では、"
+"ピンが固定されていて変更できません。場合によっては、ハードウェアブロックが、"
+"１つのハードウェアSPIブロックに対して２～３の代替ピンセットを許しています。"
+"任意のピン割り当ては、ビットバンギング SPI ドライバ(``id`` = -1)に対してのみ可能です。"
 
 #: ../../../library/machine.SPI.rst:47
 msgid ""
 "``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and "
 "instead allows to specify them as a tuple of ``pins`` parameter."
 msgstr ""
+"``pins`` - WiPy ポートには ``sck``, ``mosi``, ``miso`` 引数がありません。"
+"その代わり ``pins`` パラメータでタプルとしてそれらを指定できます。"
 
 #: ../../../library/machine.SPI.rst:50
 msgid ""
@@ -3089,10 +3151,13 @@ msgid ""
 "the requested baudrate. This is dependant on the platform hardware. The "
 "actual rate may be determined by printing the SPI object."
 msgstr ""
+"ハードウェア SPI の場合、実際のクロック周波数は要求されたボーレートより低いかも"
+"しれません。これはプラットフォームのハードウェアに依存します。実際のレートは SPI "
+"オブジェクトを ``print`` 関数で表示することにより判ります。"
 
 #: ../../../library/machine.SPI.rst:56 ../../../library/pyb.SPI.rst:52
 msgid "Turn off the SPI bus."
-msgstr ""
+msgstr "SPI バスをオフにします。"
 
 #: ../../../library/machine.SPI.rst:60
 msgid ""
@@ -3100,24 +3165,28 @@ msgid ""
 " the single byte given by ``write``. Returns a ``bytes`` object with the "
 "data that was read."
 msgstr ""
+"``write`` で指定した１バイトを連続で書き込みながら、 ``nbytes`` で指定したバイト数"
+"を読み込みます。読み込んだデータを持つ ``bytes`` オブジェクトを返します。"
 
 #: ../../../library/machine.SPI.rst:66
 msgid ""
 "Read into the buffer specified by ``buf`` while continuously writing the "
 "single byte given by ``write``. Returns ``None``."
 msgstr ""
+"``write`` で指定した１バイトを連続で書き込みながら、 ``buf`` に指定したバッファに"
+"読み込みます。 ``None`` を返します。
 
 #: ../../../library/machine.SPI.rst:70
 msgid "Note: on WiPy this function returns the number of bytes read."
-msgstr ""
+msgstr "注記: WiPy では読み込んだバイト数を返します。"
 
 #: ../../../library/machine.SPI.rst:74
 msgid "Write the bytes contained in ``buf``. Returns ``None``."
-msgstr ""
+msgstr "``buf`` に含まれるバイト列を書き込みます。 ``None`` を返します。"
 
 #: ../../../library/machine.SPI.rst:77 ../../../library/machine.SPI.rst:86
 msgid "Note: on WiPy this function returns the number of bytes written."
-msgstr ""
+msgstr "注記: WiPy では書き込んだバイト数を返します。"
 
 #: ../../../library/machine.SPI.rst:81
 msgid ""
@@ -3125,22 +3194,25 @@ msgid ""
 "buffers can be the same or different, but both buffers must have the same"
 " length. Returns ``None``."
 msgstr ""
+"``read_buf`` に読込みながら ``write_buf`` のバイト列を書き込みます。両バッファは"
+"同じでも異なっていてもかまいませんが、同じ長さでなければなりません。 ``None`` "
+"を返します。"
 
 #: ../../../library/machine.SPI.rst:93
 msgid "for initialising the SPI bus to master; this is only used for the WiPy"
-msgstr ""
+msgstr "SPI バスをマスタに初期化するためのものです。これは WiPy のみで使います。"
 
 #: ../../../library/machine.SPI.rst:97
 msgid "set the first bit to be the most significant bit"
-msgstr ""
+msgstr "最初のビットを最上位ビットに設定します"
 
 #: ../../../library/machine.SPI.rst:101
 msgid "set the first bit to be the least significant bit"
-msgstr ""
+msgstr "最初のビットを最下位ビットに設定します"
 
 #: ../../../library/machine.Signal.rst:5
 msgid "class Signal -- control and sense external I/O devices"
-msgstr ""
+msgstr "class Signal -- 外部 I/O デバイスの制御と検知"
 
 #: ../../../library/machine.Signal.rst:7
 msgid ""
@@ -3157,6 +3229,16 @@ msgid ""
 "them, and capture hardware configuration differences in few lines in the "
 "config file of your app."
 msgstr ""
+"Signal クラスは `Pin` クラスを単純に拡張したものです。Pin の場合は 0 と 1 の"
+"「絶対」の状態のみですが、Signal は反転(負論理: active-low)しているかどうかに"
+"かかわらず、「アサート」(オン)または 「デアサート」(オフ)状態にできます。"
+"つまり、Pin の機能に論理反転サポートを追加しています。これは単純な追加に思える"
+"かもしれませんが、それはまさに MicroPython の主な目標の1つである、さまざまな"
+"ボード間で移植性のある方法で幅広いシンプルなデジタルデバイスをサポートするために"
+"必要なものです。正論理(active-high)または負論理(active-low)の LED のどちらか、"
+"通常開( normally open)または通常閉(normally close)のリレーのどちらを使って"
+"いるかに関係なく、それぞれに対応した単一の見栄えの良いアプリケーションを開発し、"
+"ハードウェア構成の違いをアプリの設定ファイルのわずか数行で把握できます。"
 
 #: ../../../library/machine.Signal.rst:21
 msgid ""
@@ -3185,10 +3267,33 @@ msgid ""
 "led1.on()\n"
 "led2.on()"
 msgstr ""
+"from machine import Pin, Signal\n"
+"\n"
+"# # ピン0に正論理のLEDがあるものとする\n"
+"led1_pin = Pin(0, Pin.OUT)\n"
+"# ピン1に負論理のLEDがあるものとする\n"
+"led2_pin = Pin(1, Pin.OUT)\n"
+"\n"
+"# Pin クラスを使って両方とも点灯するには、\n"
+"# それらを異なる値に設定する必要がある。\n"
+"led1_pin.value(1)\n"
+"led2_pin.value(0)\n"
+"\n"
+"# Signal クラスは正論理/負論理の違いを抽象化できる\n"
+"led1 = Signal(led1_pin, invert=False)\n"
+"led2 = Signal(led2_pin, invert=True)\n"
+"\n"
+"# それらを点灯するのは同じようにできる\n"
+"led1.value(1)\n"
+"led2.value(1)\n"
+"\n"
+"# さらに見栄えを良くできる:\n"
+"led1.on()\n"
+"led2.on()"
 
 #: ../../../library/machine.Signal.rst:46
 msgid "Following is the guide when Signal vs Pin should be used:"
-msgstr ""
+msgstr "Signal と Pin のどちらを使うかの指針は次のとおりです:"
 
 #: ../../../library/machine.Signal.rst:48
 msgid ""
@@ -3199,12 +3304,19 @@ msgid ""
 "etc. etc. Summing up, if you have a real physical device/sensor requiring"
 " GPIO access, you likely should use a Signal."
 msgstr ""
+"Signal の利用: LED、マルチセグメントディスプレイ、リレー、ブザーなどの"
+"単純なオン/オフ(ソフトウェアPWMを含む)でデバイス、または通常開または通常閉のボタン、"
+"リードスイッチ、湿気/火気検知器などなどの単純なバイナリセンサーを制御したい場合。"
+"要約すると、GPIO アクセスを必要とする実際の物理デバイス/センサーがある場合は、"
+"おそらく Signal を使うべきでしょう。"
 
 #: ../../../library/machine.Signal.rst:55
 msgid ""
 "Use Pin: If you implement a higher-level protocol or bus to communicate "
 "with more complex devices."
 msgstr ""
+"Pin の利用: より複雑な機器と通信するために、より高いレベルのプロトコルやバスを"
+"実装する場合。"
 
 #: ../../../library/machine.Signal.rst:58
 msgid ""
@@ -3217,6 +3329,13 @@ msgid ""
 "implemented for each support board, while Signal is a high-level object "
 "which comes for free once Pin is implemented."
 msgstr ""
+"Pin と Signal を分けたのは、上記のユースケースと MicroPython のアーキテクチャーが"
+"理由となっています。Pin は、オーバーヘッドが最も低いため、ビットバンギングプロトコル"
+"では重要になります。Signal は Pin の上に追加の柔軟性を追加しますが、わずかな"
+"オーバーヘッドがあります(Python で正論理と負論理のデバイスの違いを手動で実装した場合"
+"よりははるかに小さいですが)。また、Pin はサポートボードごとに実装する必要がある"
+"低レベルのオブジェクトですが、Signal は Pin を実装してしまえば使える高レベルの"
+"オブジェクトです。"
 
 #: ../../../library/machine.Signal.rst:67
 msgid ""
@@ -3227,16 +3346,23 @@ msgid ""
 " for them simply because their LEDs or relays are wired in a slightly "
 "different way."
 msgstr ""
+"疑問がある場合は Signal を試してみてください！　繰り返しになりますが、負論理や"
+"正論理の信号のようなような望まない違いを処理する必要性から開発者を保護し、他の"
+"ユーザーがアプリケーションを共有して楽しむことができるようにします。LED やリレーが"
+"わずかに異なる方法で配線されていて動かなかったというようなイライラが起きなくなる"
+"でしょう。"
 
 #: ../../../library/machine.Signal.rst:80
 msgid "Create a Signal object. There're two ways to create it:"
-msgstr ""
+msgstr "Signalオブジェクトを作成します。作成する方法は2つあります。"
 
 #: ../../../library/machine.Signal.rst:82
 msgid ""
 "By wrapping existing Pin object - universal method which works for any "
 "board."
 msgstr ""
+"既存の Pin オブジェクトをラップして構築します - どのボードにも使えるユニバーサルな"
+"方法です。"
 
 #: ../../../library/machine.Signal.rst:84
 msgid ""
@@ -3244,32 +3370,40 @@ msgid ""
 "skipping the need to create intermediate Pin object. Available on many, "
 "but not all boards."
 msgstr ""
+"必要な Pin パラメータを Signal コンストラクタに直接渡して構築します。"
+"中間の Pin オブジェクトを作成する必要がありません。多くのボードで使えますが、"
+"すべてのボードで使えるわけではありません。"
 
 #: ../../../library/machine.Signal.rst:90
 msgid "``pin_obj`` is existing Pin object."
-msgstr ""
+msgstr "``pin_obj`` は既存の Pin オブジェクトです。"
 
 #: ../../../library/machine.Signal.rst:92
 msgid ""
 "``pin_arguments`` are the same arguments as can be passed to Pin "
 "constructor."
 msgstr ""
+"``pin_arguments`` は Pin のコンストラクタに渡すものと同じ引数です。"
 
 #: ../../../library/machine.Signal.rst:94
 msgid "``invert`` - if True, the signal will be inverted (active low)."
-msgstr ""
+msgstr "``invert`` - True の場合、信号が反転されます(負論理)。"
 
 #: ../../../library/machine.Signal.rst:101
 msgid ""
 "This method allows to set and get the value of the signal, depending on "
 "whether the argument ``x`` is supplied or not."
 msgstr ""
+"このメソッドは引数 ``x`` を与えているかどうかにより、シグナルの値を設定または取得"
+"します。"
 
 #: ../../../library/machine.Signal.rst:104
 msgid ""
 "If the argument is omitted then this method gets the signal level, 1 "
 "meaning signal is asserted (active) and 0 - signal inactive."
 msgstr ""
+"引数を省略した場合、この信号レベルを取得します。1 は信号がアサート状態(アクティブ)"
+"であり、0 は信号が非アクティブであることを意味します。"
 
 #: ../../../library/machine.Signal.rst:107
 msgid ""
@@ -3277,6 +3411,9 @@ msgid ""
 "argument ``x`` can be anything that converts to a boolean. If it converts"
 " to ``True``, the signal is active, otherwise it is inactive."
 msgstr ""
+"引数を与えた場合、このメソッドは信号レベルを設定します。引数 ``x`` はブール型に変換"
+"できるものなら何でも構いません。変換後の値が ``True`` であれば、信号はアクティブとなり、"
+" ``False`` であれば非アクティブとなります。"
 
 #: ../../../library/machine.Signal.rst:111
 msgid ""
@@ -3286,18 +3423,22 @@ msgid ""
 "inactive - to logical 0. For inverted/active-low signal, active status "
 "corresponds to logical 0, while inactive - to logical 1."
 msgstr ""
+"信号がアクティブであることとその下にあるピンの実際のロジックレベルとの対応は、信号が"
+"反転している(負論理)かどうかによって異なります。反転していない信号の場合、アクティブ"
+"状態は論理 1、非アクティブ状態は論理 0 に対応します。反転/負論理の信号の場合、"
+"アクティブ状態は論理 0、非アクティブ状態は論理 1 に対応します。"
 
 #: ../../../library/machine.Signal.rst:119
 msgid "Activate signal."
-msgstr ""
+msgstr "信号を有効にします。"
 
 #: ../../../library/machine.Signal.rst:123
 msgid "Deactivate signal."
-msgstr ""
+msgstr "信号を無効にします。"
 
 #: ../../../library/machine.Timer.rst:5
 msgid "class Timer -- control hardware timers"
-msgstr ""
+msgstr "class Timer -- ハードウェアタイマーの制御"
 
 #: ../../../library/machine.Timer.rst:7
 #: ../../../library/machine.TimerWiPy.rst:14
@@ -3310,6 +3451,11 @@ msgid ""
 "more non-standard behavior (which thus won't be portable to other "
 "boards)."
 msgstr ""
+"ハードウェアタイマーは、一定周期とイベントのタイミングで処理します。タイマーは"
+"おそらく MCU や SoC で最も柔軟で様々な種類のあるハードウェアであり、モデルごとに"
+"大きく異なります。MicroPython の Timer クラスは、指定した周期で(または少し"
+"経過後に1回だけ)コールバックを実行するベースライン操作を定義します。特定のボードが"
+"より標準的でない動作を定義できます(したがって他のボードへの移植性はありません)。"
 
 #: ../../../library/machine.Timer.rst:14
 #: ../../../library/machine.TimerWiPy.rst:21
@@ -3317,6 +3463,8 @@ msgid ""
 "See discussion of :ref:`important constraints <machine_callbacks>` on "
 "Timer callbacks."
 msgstr ""
+"Timer のコールバックに関する :ref:`重要な制約 <machine_callbacks>` "
+"の議論を見てください。"
 
 #: ../../../library/machine.Timer.rst:19
 #: ../../../library/machine.TimerWiPy.rst:26
@@ -3326,12 +3474,17 @@ msgid ""
 ":func:`micropython.alloc_emergency_exception_buf` for how to get around "
 "this limitation."
 msgstr ""
+"irq ハンドラ(割り込み)内でメモリを割り当てることはできず、そのためにハンドラ内で"
+"発生した例外には多くの情報を持ちません。この制限を回避する方法については "
+":func:`micropython.alloc_emergency_exception_buf` を参照してください。"
 
 #: ../../../library/machine.Timer.rst:24
 msgid ""
 "If you are using a WiPy board please refer to :ref:`machine.TimerWiPy "
 "<machine.TimerWiPy>` instead of this class."
 msgstr ""
+"WiPy ボードを使用している場合、このクラスの代わりに "
+":ref:`machine.TimerWiPy <machine.TimerWiPy>` を参照してください。"
 
 #: ../../../library/machine.Timer.rst:32
 #: ../../../library/machine.TimerWiPy.rst:36
@@ -3339,11 +3492,13 @@ msgid ""
 "Construct a new timer object of the given id. Id of -1 constructs a "
 "virtual timer (if supported by a board)."
 msgstr ""
+"指定した id の新しいタイマーオブジェクトを構築します。id が -1 の場合は、"
+"(ボードでサポートしていれば)仮想タイマーを構築します。"
 
 #: ../../../library/machine.Timer.rst:40
 #: ../../../library/machine.TimerWiPy.rst:44
 msgid "Initialise the timer. Example::"
-msgstr ""
+msgstr "タイマーを初期化します。たとえば次のように使います::"
 
 #: ../../../library/machine.Timer.rst:42
 msgid ""
@@ -3352,30 +3507,35 @@ msgid ""
 "tim.init(mode=Timer.ONE_SHOT, period=1000)   # one shot firing after "
 "1000ms"
 msgstr ""
+"tim.init(period=100)                         # 100ms 周期で定期的に\n"
+"tim.init(mode=Timer.ONE_SHOT, period=1000)   # 1000ms 後に一度だけ"
 
 #: ../../../library/machine.Timer.rst:45
 #: ../../../library/machine.TimerWiPy.rst:49 ../../../library/pyb.Timer.rst:73
 #: ../../../library/pyb.Timer.rst:138
 msgid "Keyword arguments:"
-msgstr ""
+msgstr "キーワード引数:"
 
 #: ../../../library/machine.Timer.rst:47
 #: ../../../library/machine.TimerWiPy.rst:51 ../../../library/pyb.Pin.rst:105
 #: ../../../library/pyb.Timer.rst:90 ../../../library/pyb.Timer.rst:140
 msgid "``mode`` can be one of:"
-msgstr ""
+msgstr "``mode`` は次のいずれかになります。"
 
 #: ../../../library/machine.Timer.rst:49
 msgid ""
 "``Timer.ONE_SHOT`` - The timer runs once until the configured period of "
 "the channel expires."
 msgstr ""
+"``Timer.ONE_SHOT`` - タイマーは、設定したチャネルの周期が経過した後に1回だけ"
+"実行します。"
 
 #: ../../../library/machine.Timer.rst:51
 msgid ""
 "``Timer.PERIODIC`` - The timer runs periodically at the configured "
 "frequency of the channel."
 msgstr ""
+"``Timer.PERIODIC`` - タイマーは、チャネルの設定した周期で定期的に実行します。"
 
 #: ../../../library/machine.Timer.rst:56
 #: ../../../library/machine.TimerWiPy.rst:65
@@ -3383,11 +3543,12 @@ msgid ""
 "Deinitialises the timer. Stops the timer, and disables the timer "
 "peripheral."
 msgstr ""
+"タイマーを初期化解除します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
 
 #: ../../../library/machine.Timer.rst:64
 #: ../../../library/machine.TimerWiPy.rst:159
 msgid "Timer operating mode."
-msgstr ""
+msgstr "タイマー操作モード。"
 
 #: ../../../library/machine.TimerWiPy.rst:5
 msgid "class TimerWiPy -- control hardware timers"
@@ -3829,7 +3990,7 @@ msgstr ""
 
 #: ../../../library/machine.WDT.rst:5
 msgid "class WDT -- watchdog timer"
-msgstr ""
+msgstr "class WDT -- ウォッチドッグタイマー"
 
 #: ../../../library/machine.WDT.rst:7
 msgid ""
@@ -3839,6 +4000,10 @@ msgid ""
 " the watchdog periodically to prevent it from expiring and resetting the "
 "system."
 msgstr ""
+"アプリケーションがクラッシュして回復不可能な状態になった場合、WDT を使ってシステムを"
+"再起動します。一度起動すると、停止したり再設定したりはできません。有効にした後、"
+"アプリケーションはウォッチドッグが期限切れになりシステムがリセットされるのを防ぐために、"
+"定期的にウォッチドッグに「フィード」する必要があります。"
 
 #: ../../../library/machine.WDT.rst:14
 msgid ""
@@ -3846,10 +4011,13 @@ msgid ""
 "wdt = WDT(timeout=2000)  # enable it with a timeout of 2s\n"
 "wdt.feed()"
 msgstr ""
+"from machine import WDT\n"
+"wdt = WDT(timeout=2000)  # タイムアウト 2s で有効化\n"
+"wdt.feed()"
 
 #: ../../../library/machine.WDT.rst:18
 msgid "Availability of this class: pyboard, WiPy."
-msgstr ""
+msgstr "このクラスの可用性: pyboard, WiPy"
 
 #: ../../../library/machine.WDT.rst:25
 msgid ""
@@ -3857,6 +4025,9 @@ msgid ""
 "and the minimum value that is accepted is 1 second. Once it is running "
 "the timeout cannot be changed and the WDT cannot be stopped either."
 msgstr ""
+"WDT オブジェクトを作成して起動します。タイムアウトは秒単位で指定する必要があり、"
+"受け入れられる最小値は1秒です。一度実行するとタイムアウトを変更することはできず、"
+"WDT の停止もできません。"
 
 #: ../../../library/machine.WDT.rst:34
 msgid ""
@@ -3864,6 +4035,9 @@ msgid ""
 "should place this call in a sensible place ensuring that the WDT is only "
 "fed after verifying that everything is functioning correctly."
 msgstr ""
+"システムがリセットされないようにWDTをフィードします。アプリケーションは、この"
+"呼出しを適切な場所に配置して、すべてが正しく機能していることを確認した後に WDT "
+"にのみフィードが供給されるようにする必要があります。"
 
 #: ../../../library/math.rst:2
 msgid ":mod:`math` -- mathematical functions"
