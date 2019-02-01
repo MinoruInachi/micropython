@@ -83,7 +83,7 @@ msgstr ""
 
 #: ../../../library/btree.rst:2
 msgid ":mod:`btree` -- simple BTree database"
-msgstr ""
+msgstr ":mod:`btree` -- 単純な BTree データベース"
 
 #: ../../../library/btree.rst:7
 msgid ""
@@ -97,17 +97,25 @@ msgid ""
 "and values must be `bytes` objects (so, if you want to store objects of "
 "other types, you need to serialize them to `bytes` first)."
 msgstr ""
+"``btree`` モジュールは、外部記憶装置(ディスクファイル、または一般的な場合はランダム"
+"アクセスストリーム)を使用して単純な キー/値 (Key-Value)データベースを実装します。"
+"キーはデータベースにソートして格納され、キー値による効率的な検索に加えて、データベース"
+"は効率的な順序付き範囲スキャン(特定の範囲内のキーを持つ値の検索)もサポートします。"
+"アプリケーションインタフェース側では、BTreeデータベースは標準の辞書型(`dict`)と"
+"同じように機能します。辞書型との大きな違いは、キーと値の両方がバイト列(`bytes`)"
+"オブジェクトでなければならないことです(したがって、他の型のオブジェクトを格納する"
+"場合はバイト列にシリアル化しておく必要があります)。"
 
 #: ../../../library/btree.rst:17
 msgid "The module is based on the well-known BerkelyDB library, version 1.xx."
-msgstr ""
+msgstr "このモジュールは、有名な BerkelyDB ライブラリ、バージョン 1.xx をベースにしています。"
 
 #: ../../../library/btree.rst:19 ../../../library/machine.Signal.rst:19
 #: ../../../library/pyb.ADC.rst:164 ../../../library/pyb.I2C.rst:13
 #: ../../../library/pyb.Switch.rst:18 ../../../library/pyb.rst:51
 #: ../../../library/pyb.rst:64
 msgid "Example::"
-msgstr ""
+msgstr "サンプルコード:"
 
 #: ../../../library/btree.rst:21
 msgid ""
@@ -165,6 +173,59 @@ msgid ""
 "# Don't forget to close the underlying stream!\n"
 "f.close()"
 msgstr ""
+"import btree\n"
+"\n"
+"# まず、データベースを保持するストリームをオープンする必要があります。\n"
+"# これは通常ファイルですが、uio.BytesIO、raw フラッシュパーティション\n"
+"# などを使用してインメモリデータベースにすることもできます。多くの場合、\n"
+"# データベースファイルが存在しない場合には作成し、存在する場合はその\n"
+"# ファイルを開くようにしたいでしょう。以下の慣用句を使えばそのようにできます。\n"
+"# \"a+b\" アクセスモードでデータベースをオープンしないでください。\n"
+"try:\n"
+"    f = open(\"mydb\", \"r+b\")\n"
+"except OSError:\n"
+"    f = open(\"mydb\", \"w+b\")\n"
+"\n"
+"# ここでデータベース自体をオープンします\n"
+"db = btree.open(f)\n"
+"\n"
+"# 追加するキーは内部的にデータベースに格納されます\n"
+"db[b\"3\"] = b\"three\"\n"
+"db[b\"1\"] = b\"one\"\n"
+"db[b\"2\"] = b\"two\"\n"
+"\n"
+"# 明示的にフラッシュした(またはデータベースを閉じた)場合を除き、変更は\n"
+"# すべてメモリーにキャッシュされると想定します。各「トランザクション」の\n"
+"# 終わりにデータベースをフラッシュするようにしてください。\n"
+"db.flush()\n"
+"\n"
+"# b'two' を表示します\n"
+"print(db[b\"2\"])\n"
+"\n"
+"# データベース内のソートされたキーを b"2" からデータベースの最後まで\n"
+"# 繰り返し、値のみを返します。values() メソッドに渡す引数がキー値である\n"
+"# ことに注意してください。\n"
+"# 以下が表示されます:\n"
+"#   b'two'\n"
+"#   b'three'\n"
+"for word in db.values(b\"2\"):\n"
+"    print(word)\n"
+"\n"
+"del db[b\"2\"]\n"
+"\n"
+"# もう True ではないので、False が表示されます\n"
+"print(b\"2\" in db)\n"
+"\n"
+"# 以下が表示されます:\n"
+"#  b\"1\"\n"
+"#  b\"3\"\n"
+"for key in db:\n"
+"    print(key)\n"
+"\n"
+"db.close()\n"
+"\n"
+"# 基になるストリームのクローズを忘れないでください！\n"
+"f.close()"
 
 #: ../../../library/btree.rst:77 ../../../library/cmath.rst:16
 #: ../../../library/esp.rst:13 ../../../library/esp32.rst:12
@@ -186,10 +247,14 @@ msgid ""
 "advanced parameters of the database operation (most users will not need "
 "them):"
 msgstr ""
+"ランダムアクセスストリームからデータベースをオープンします(ファイルのオープンに"
+"似ています)。他のすべてのパラメータはオプション、キーワード指定のみであり、"
+"データベース操作の高度なパラメータを調整できます(ほとんどのユーザには必要ないで"
+"しょう):"
 
 #: ../../../library/btree.rst:85
 msgid "*flags* - Currently unused."
-msgstr ""
+msgstr "*flags* - 現在未使用です。"
 
 #: ../../../library/btree.rst:86
 msgid ""
@@ -197,6 +262,9 @@ msgid ""
 "512-65536. If 0, a port-specific default will be used, optimized for "
 "port's memory usage and/or performance."
 msgstr ""
+"*pagesize* - BTree のノードに使用されるページサイズ。許容範囲は 512 から 65536 です。"
+"0 の場合はポート固有のデフォルト値が適用され、ポートのメモリ使用量やパフォーマンスに"
+"合わせて最適化されます。"
 
 #: ../../../library/btree.rst:89
 msgid ""
@@ -209,18 +277,30 @@ msgid ""
 "allocated if needed (e.g., if a database contains big keys and/or "
 "values). Allocated cache buffers aren't reclaimed."
 msgstr ""
+"*cachesize* - 推奨されるメモリキャッシュサイズ(バイト単位)。より大きな値を使うのに"
+"十分なメモリを備えたボードでは、パフォーマンスが向上する可能性があります。キャッシュ"
+"のポリシーは次のとおりです。キャッシュ全体は一度に割り当てられません。代わりに、"
+"データベース内の新しいページにアクセスすると、 *cachesize* で指定された値に達するまで、"
+"そのページ用のメモリバッファが割り当てられます。その後、これらのバッファーは LRU "
+"(Least Recently Used)ポリシーを使用して管理されます。必要に応じて、さらに多くの"
+"バッファを割り当てることができます(たとえば、データベースに大きなキーや値が含まれている"
+"場合など)。割り当てられたキャッシュバッファは再利用されません。"
 
 #: ../../../library/btree.rst:97
 msgid ""
 "*minkeypage* - Minimum number of keys to store per page. Default value of"
 " 0 equivalent to 2."
 msgstr ""
+"*minkeypage* - 1 ページに格納するキーの最小数。デフォルト値は 0 ですが、2 を指定"
+"したのと同等です。"
 
 #: ../../../library/btree.rst:100
 msgid ""
 "Returns a BTree object, which implements a dictionary protocol (set of "
 "methods), and some additional methods described below."
 msgstr ""
+"戻り値は BTree オブジェクトです。これは辞書のプロトコル(一連のメソッド)と、"
+"以下で説明する追加のメソッドを実装しています。"
 
 #: ../../../library/btree.rst:104 ../../../library/machine.ADC.rst:33
 #: ../../../library/machine.Pin.rst:107 ../../../library/machine.RTC.rst:25
@@ -255,20 +335,27 @@ msgid ""
 " it should be closed separately (which is also mandatory to make sure "
 "that data flushed from buffer to the underlying storage)."
 msgstr ""
+"データベースをクローズします。書き込まれていないデータがまだキャッシュに残っている"
+"可能性があるため、処理の最後にデータベースをクローズすることが必須です。これは"
+"データベースがオープンされた元のストリームを閉じないことに注意してください、それは"
+"別々にクローズするべきです(それもまたデータがバッファから基となるストレージに"
+"フラッシュされることを確実にするために必須です)。"
 
 #: ../../../library/btree.rst:116
 msgid "Flush any data in cache to the underlying stream."
-msgstr ""
+msgstr "キャッシュ内のデータを基となるストリームにフラッシュします。"
 
 #: ../../../library/btree.rst:124
 msgid "Standard dictionary methods."
-msgstr ""
+msgstr "標準の辞書メソッドです。"
 
 #: ../../../library/btree.rst:128
 msgid ""
 "A BTree object can be iterated over directly (similar to a dictionary) to"
 " get access to all keys in order."
 msgstr ""
+"BTree オブジェクトは、(辞書のように)直接繰り返し処理して、すべてのキーに"
+"順番にアクセスできます。"
 
 #: ../../../library/btree.rst:135
 msgid ""
@@ -284,6 +371,16 @@ msgid ""
 "iterate in descending key direction by passing *flags* of `btree.DESC`. "
 "The flags values can be ORed together."
 msgstr ""
+"これらのメソッドは標準的な辞書のメソッドと似ていますが、データベース全体ではなく、"
+"主要なサブ範囲にわたって反復するためのオプションのパラメータを取ることもできます。"
+"3つのメソッドすべてについて、 *start_key* 引数と *end_key* 引数がキー値である"
+"ことに注意してください。たとえば、 `values()` メソッドは与えられたキー範囲に"
+"対応する値を反復します。 *start_key* に値がない場合は「最初のキーから」、 "
+"*end_key* がない 場合、または値が None の場合は「データベースの終わりまで」を"
+"意味します。デフォルトでの範囲は、 *start_key* を含みますが、 *end_key* は"
+"外されます。 *flags* に `btree.INCL` を渡すことで繰り返しに *end_key* を"
+"含められます。 *flags* に `btree.DESC` を渡すことで降順のキー方向に反復"
+"できます。 flags の値はビットOR(|)演算を使って複数指定できます。"
 
 #: ../../../library/btree.rst:149 ../../../library/cmath.rst:55
 #: ../../../library/esp32.rst:61 ../../../library/framebuf.rst:118
@@ -307,12 +404,16 @@ msgid ""
 "A flag for `keys()`, `values()`, `items()` methods to specify that "
 "scanning should be inclusive of the end key."
 msgstr ""
+"`keys()`, `values()`, `items()` メソッドに指定するフラグであり、"
+"反復対象として終了キーを含めます。"
 
 #: ../../../library/btree.rst:158
 msgid ""
 "A flag for `keys()`, `values()`, `items()` methods to specify that "
 "scanning should be in descending direction of keys."
 msgstr ""
+"`keys()`, `values()`, `items()` メソッドに指定するフラグであり、"
+"キーの反復方向を降順にします。"
 
 #: ../../../library/builtins.rst:2
 msgid "Builtin functions and exceptions"
@@ -2014,7 +2115,7 @@ msgstr "24ビットのソフトウェア生成乱数を返します。"
 #: ../../../library/machine.UART.rst:143 ../../../library/machine.UART.rst:152
 #: ../../../library/machine.rst:128
 msgid "Availability: WiPy."
-msgstr "可用性: WiPy。"
+msgstr "可用性: WiPy"
 
 #: ../../../library/machine.rst:139
 msgid "IRQ wake values."
@@ -3757,7 +3858,7 @@ msgstr ""
 
 #: ../../../library/machine.UART.rst:5 ../../../library/pyb.UART.rst:5
 msgid "class UART -- duplex serial communication bus"
-msgstr ""
+msgstr "class UART -- 二重シリアル通信バス"
 
 #: ../../../library/machine.UART.rst:7 ../../../library/pyb.UART.rst:7
 msgid ""
@@ -3766,10 +3867,13 @@ msgid ""
 "unit of communication is a character (not to be confused with a string "
 "character) which can be 8 or 9 bits wide."
 msgstr ""
+"UART は標準の UART/USART 二重シリアル通信プロトコルを実装しています。"
+"物理レベルでは RX と TX の２線で構成されています。通信の単位は 8 または 9 ビット幅"
+"の文字です(string 型の文字と混同しないでください)。"
 
 #: ../../../library/machine.UART.rst:12 ../../../library/pyb.UART.rst:12
 msgid "UART objects can be created and initialised using::"
-msgstr ""
+msgstr "UART オブジェクトは以下をように作成、初期化できます::"
 
 #: ../../../library/machine.UART.rst:14
 msgid ""
@@ -3778,10 +3882,14 @@ msgid ""
 "uart = UART(1, 9600)                         # init with given baudrate\n"
 "uart.init(9600, bits=8, parity=None, stop=1) # init with given parameters"
 msgstr ""
+"from machine import UART\n"
+"\n"
+"uart = UART(1, 9600)                         # 与えたボーレートで初期化\n"
+"uart.init(9600, bits=8, parity=None, stop=1) # 与えたパラメータで初期化"
 
 #: ../../../library/machine.UART.rst:19
 msgid "Supported parameters differ on a board:"
-msgstr ""
+msgstr "サポートされているパラメータはボードによって異なります:"
 
 #: ../../../library/machine.UART.rst:21
 msgid ""
@@ -3789,16 +3897,21 @@ msgid ""
 "only 8 and 9 bits are supported.  With parity enabled, only 7 and 8 bits "
 "are supported."
 msgstr ""
+"pyboard: bits は 7, 8, 9 にすることができます。stop は 1 または 2 にすることが"
+"できます。 *parity=None* の場合、bitsは 8 と 9 のみがサポートされます。parity "
+"を有効にすると 7 と 8 のビット幅のみがサポートされます。"
 
 #: ../../../library/machine.UART.rst:25
 msgid "WiPy/CC3200: Bits can be 5, 6, 7, 8. Stop can be 1 or 2."
-msgstr ""
+msgstr "WiPy/CC3200: ビット幅は 5, 6, 7, 8 です。stop は 1 または 2 です。"
 
 #: ../../../library/machine.UART.rst:27 ../../../library/pyb.UART.rst:24
 msgid ""
 "A UART object acts like a `stream` object and reading and writing is done"
 " using the standard stream methods::"
 msgstr ""
+"UART オブジェクトはストリームオブジェクトのように機能し、読み書きは標準のストリーム"
+"メソッドを使って行われます。"
 
 #: ../../../library/machine.UART.rst:30 ../../../library/pyb.UART.rst:27
 msgid ""
@@ -3808,54 +3921,59 @@ msgid ""
 "uart.readinto(buf)  # read and store into the given buffer\n"
 "uart.write('abc')   # write the 3 characters"
 msgstr ""
+"uart.read(10)       # 10文字を読み込んで、バイト列オブジェクトを返す\n"
+"uart.read()         # 可能な限り文字を読み込む\n"
+"uart.readline()     # 1行を読み込む\n"
+"uart.readinto(buf)  # 読み込んで、与えたバッファに格納\n"
+"uart.write('abc')   # 3文字を書き込む"
 
 #: ../../../library/machine.UART.rst:41
 msgid "Construct a UART object of the given id."
-msgstr ""
+msgstr "指定した id の UART オブジェクトを構築します。"
 
 #: ../../../library/machine.UART.rst:48 ../../../library/pyb.UART.rst:74
 msgid "Initialise the UART bus with the given parameters:"
-msgstr ""
+msgstr "与えたパラメータで UART バスを初期化します。"
 
 #: ../../../library/machine.UART.rst:50
 msgid "*baudrate* is the clock rate."
-msgstr ""
+msgstr "*baudrate* はクロックレートです。"
 
 #: ../../../library/machine.UART.rst:51
 msgid "*bits* is the number of bits per character, 7, 8 or 9."
-msgstr ""
+msgstr "*bits* は１文字あたりのビット数で、7, 8, 9 を指定できます。"
 
 #: ../../../library/machine.UART.rst:52
 msgid "*parity* is the parity, ``None``, 0 (even) or 1 (odd)."
-msgstr ""
+msgstr "*parity* はパリティビットで、 ``None``, 0 (偶数)または 1 (奇数)を指定できます。"
 
 #: ../../../library/machine.UART.rst:53
 msgid "*stop* is the number of stop bits, 1 or 2."
-msgstr ""
+msgstr "*stop* はストップビットの数で、1 または 2 を指定できます。"
 
 #: ../../../library/machine.UART.rst:55
 msgid "Additional keyword-only parameters that may be supported by a port are:"
-msgstr ""
+msgstr "ポートでサポートされている可能性がある追加のキーワード指定のみのパラメータは次のとおりです:"
 
 #: ../../../library/machine.UART.rst:57
 msgid "*tx* specifies the TX pin to use."
-msgstr ""
+msgstr "*tx* は TX に使うピンを指定します。"
 
 #: ../../../library/machine.UART.rst:58
 msgid "*rx* specifies the RX pin to use."
-msgstr ""
+msgstr "*rx* は RX に使うピンを指定します。"
 
 #: ../../../library/machine.UART.rst:59
 msgid "*txbuf* specifies the length in characters of the TX buffer."
-msgstr ""
+msgstr "*txbuf* は TX バッファの文字長を指定します。"
 
 #: ../../../library/machine.UART.rst:60
 msgid "*rxbuf* specifies the length in characters of the RX buffer."
-msgstr ""
+msgstr "*rxbuf* は RX バッファの文字長を指定します。"
 
 #: ../../../library/machine.UART.rst:62
 msgid "On the WiPy only the following keyword-only parameter is supported:"
-msgstr ""
+msgstr "WiPy では、次のキーワード指定のみのパラメータがサポートされています。"
 
 #: ../../../library/machine.UART.rst:64
 msgid ""
@@ -3866,10 +3984,15 @@ msgid ""
 "the default set of TX and RX pins is taken, and hardware flow control "
 "will be disabled. If *pins* is ``None``, no pin assignment will be made."
 msgstr ""
+"pins は TX, RX, RTS, CTS ピンを(この順序で)示す4または2項目のリストです。限られた"
+"機能で UART を動作させたい場合は、どのピンも None にできます。RTS ピンが与えられて"
+"いる場合は RX ピンも与えられなければなりません。同じことが CTS にも当てはまります。"
+"ピンが指定されていない場合は、デフォルトの TX ピンと RX ピンが使われ、ハードウェア"
+"フロー制御は無効になります。pins が None の場合、ピンの割り当ては行われません。"
 
 #: ../../../library/machine.UART.rst:72 ../../../library/pyb.UART.rst:98
 msgid "Turn off the UART bus."
-msgstr ""
+msgstr "UART バスをオフにします。"
 
 #: ../../../library/machine.UART.rst:76
 msgid ""
@@ -3878,10 +4001,13 @@ msgid ""
 "and a positive number if there are characters.  The method may return 1 "
 "even if there is more than one character available for reading."
 msgstr ""
+"ブロックなしで読み込める文字数を整数で返します。読み込める文字がない場合は 0 を返し、"
+"文字がある場合は正の数を返します。読み込める文字が複数ある場合でも、このメソッドは "
+"1 を返すことがあります。"
 
 #: ../../../library/machine.UART.rst:81
 msgid "For more sophisticated querying of available characters use select.poll::"
-msgstr ""
+msgstr "読み込める文字のより洗練された問い合わせには select.poll を使ってください::"
 
 #: ../../../library/machine.UART.rst:83
 msgid ""
@@ -3895,98 +4021,114 @@ msgid ""
 "Read characters.  If ``nbytes`` is specified then read at most that many "
 "bytes, otherwise read as much data as possible."
 msgstr ""
+"文字を読み込みます。 ``nbytes`` を指定した場合は、最大でそのバイト数を読み込みます。 "
+"``nbytes`` を指定しなかった場合は、できるだけ多くのデータを読み込みます。"
 
 #: ../../../library/machine.UART.rst:92 ../../../library/pyb.UART.rst:116
 msgid ""
 "Return value: a bytes object containing the bytes read in.  Returns "
 "``None`` on timeout."
 msgstr ""
+"戻り値: 読み込んだバイト列を含む bytes オブジェクト。タイムアウト時は "
+"``None`` を返します。"
 
 #: ../../../library/machine.UART.rst:97 ../../../library/pyb.UART.rst:127
 msgid ""
 "Read bytes into the ``buf``.  If ``nbytes`` is specified then read at "
 "most that many bytes.  Otherwise, read at most ``len(buf)`` bytes."
 msgstr ""
+"``buf`` にバイトを読み込みます。 ``nbytes`` が指定されている場合は、最大でその"
+"バイト数を読み取ります。nbytes を指定しなかった場合は、最大で ``len(buf)`` "
+"バイト数を読み込みます。"
 
 #: ../../../library/machine.UART.rst:100 ../../../library/pyb.UART.rst:130
 msgid ""
 "Return value: number of bytes read and stored into ``buf`` or ``None`` on"
 " timeout."
 msgstr ""
+"戻り値: 読み込んで ``buf`` に格納したバイト数。タイムアウト時は ``None`` を返します。"
 
 #: ../../../library/machine.UART.rst:105 ../../../library/usocket.rst:332
 msgid "Read a line, ending in a newline character."
-msgstr ""
+msgstr "改行文字で終わる行を読みます。"
 
 #: ../../../library/machine.UART.rst:107
 msgid "Return value: the line read or ``None`` on timeout."
-msgstr ""
+msgstr "戻り値: 読み込まれた行。タイムアウト時は ``None`` を返します。"
 
 #: ../../../library/machine.UART.rst:111
 msgid "Write the buffer of bytes to the bus."
-msgstr ""
+msgstr "バッファのバイト列をバスに書き込みます。"
 
 #: ../../../library/machine.UART.rst:113
 msgid "Return value: number of bytes written or ``None`` on timeout."
-msgstr ""
+msgstr "戻り値: 書き込まれたバイト数。タイムアウト時は ``None`` を返します。"
 
 #: ../../../library/machine.UART.rst:117
 msgid ""
 "Send a break condition on the bus. This drives the bus low for a duration"
 " longer than required for a normal transmission of a character."
 msgstr ""
+"バスにブレーク信号を送信します。これは通常の文字伝送に必要とされるよりも長い期間に"
+"わたってバスをローで駆動します。"
 
 #: ../../../library/machine.UART.rst:122
 msgid "Create a callback to be triggered when data is received on the UART."
-msgstr ""
+msgstr "データが UART で受信されたときにトリガーされるコールバックを作成します。"
 
 #: ../../../library/machine.UART.rst:124
 msgid "*trigger* can only be ``UART.RX_ANY``"
-msgstr ""
+msgstr "*trigger* には ``UART.RX_ANY`` だけを指定できます。"
 
 #: ../../../library/machine.UART.rst:125
 msgid ""
 "*priority* level of the interrupt. Can take values in the range 1-7. "
 "Higher values represent higher priorities."
 msgstr ""
+"*priority* は割り込みの優先順位です。1-7 の範囲の値を取ることができます。"
+"値が大きいほど優先順位が高くなります。"
 
 #: ../../../library/machine.UART.rst:127
 msgid "*handler* an optional function to be called when new characters arrive."
-msgstr ""
+msgstr "*hanfler* は新しい文字が到着したときに呼び出されるオプションの関数です。"
 
 #: ../../../library/machine.UART.rst:128
 msgid "*wake* can only be ``machine.IDLE``."
-msgstr ""
+msgstr "*wake* には ``machine.IDLE`` だけを指定できます。"
 
 #: ../../../library/machine.UART.rst:132
 msgid ""
 "The handler will be called whenever any of the following two conditions "
 "are met:"
 msgstr ""
+"このハンドラは、次の2つの条件のいずれかが満たされると必ず呼び出されます:"
 
 #: ../../../library/machine.UART.rst:134
 msgid "8 new characters have been received."
-msgstr ""
+msgstr "新規に８文字を受信した。"
 
 #: ../../../library/machine.UART.rst:135
 msgid ""
 "At least 1 new character is waiting in the Rx buffer and the Rx line has "
 "been silent for the duration of 1 complete frame."
 msgstr ""
+"少なくとも新規の１文字が Rx バッファーで待機していて、Rx の線が1つの完全なフレームの間、"
+"何も受信していない。"
 
 #: ../../../library/machine.UART.rst:138
 msgid ""
 "This means that when the handler function is called there will be between"
 " 1 to 8 characters waiting."
 msgstr ""
+"つまり、ハンドラ関数が呼び出されると、1 から 8 文字の間の待機があります。"
 
 #: ../../../library/machine.UART.rst:141
 msgid "Returns an irq object."
-msgstr ""
+msgstr "irq オブジェクトを返します。"
 
 #: ../../../library/machine.UART.rst:150
 msgid "IRQ trigger sources"
-msgstr ""
+msgstr "IRQ トリガーソース"
 
 #: ../../../library/machine.WDT.rst:5
 msgid "class WDT -- watchdog timer"
@@ -5602,27 +5744,30 @@ msgstr ""
 
 #: ../../../library/pyb.rst:2
 msgid ":mod:`pyb` --- functions related to the board"
-msgstr ""
+msgstr ":mod:`pyb` --- pyboard 関連の関数"
 
 #: ../../../library/pyb.rst:7
 msgid "The ``pyb`` module contains specific functions related to the board."
 msgstr ""
+"``pyb`` は puboard に固有の関数を提供します(訳注: 元々は pyboard 用ですが、"
+"似たアーキテクチャ、特に ST32 系の MCU を載せたボードではサポートされて"
+"いることが多いです)。"
 
 #: ../../../library/pyb.rst:10
 msgid "Time related functions"
-msgstr ""
+msgstr "時間関連の関数"
 
 #: ../../../library/pyb.rst:14
 msgid "Delay for the given number of milliseconds."
-msgstr ""
+msgstr "与えたミリ秒数だけ遅延します。"
 
 #: ../../../library/pyb.rst:18
 msgid "Delay for the given number of microseconds."
-msgstr ""
+msgstr "与えたマイクロ秒数だけ遅延します。"
 
 #: ../../../library/pyb.rst:22
 msgid "Returns the number of milliseconds since the board was last reset."
-msgstr ""
+msgstr "ボードが最後にリセットされてからのミリ秒数を返します。"
 
 #: ../../../library/pyb.rst:24
 msgid ""
@@ -5630,6 +5775,8 @@ msgid ""
 "after 2^30 milliseconds (about 12.4 days) this will start to return "
 "negative numbers."
 msgstr ""
+"結果は常に MicroPython の smallint (31ビットの符号付き数値)なので、"
+"2^30 ミリ秒(約12.4日)が経過すると、負の数が返され始めます。"
 
 #: ../../../library/pyb.rst:28
 msgid ""
@@ -5637,10 +5784,13 @@ msgid ""
 " this function will pause for the duration of the \"sleeping\" state. "
 "This will affect the outcome of :meth:`pyb.elapsed_millis()`."
 msgstr ""
+"`pyb.stop()` が発行された場合、この機能をサポートするハードウェアカウンタが"
+"「睡眠」状態の継続のために一時停止します。これは `pyb.elapsed_millis()` の"
+"結果に影響します。"
 
 #: ../../../library/pyb.rst:34
 msgid "Returns the number of microseconds since the board was last reset."
-msgstr ""
+msgstr "ボードが最後にリセットされてからのマイクロ秒数を返します。"
 
 #: ../../../library/pyb.rst:36
 msgid ""
@@ -5648,6 +5798,8 @@ msgid ""
 "after 2^30 microseconds (about 17.8 minutes) this will start to return "
 "negative numbers."
 msgstr ""
+"結果は常に MicroPython の smallint (31ビットの符号付き数値)なので、"
+"2^30マイクロ秒(約17.8分)後に負の数が返され始めます。"
 
 #: ../../../library/pyb.rst:40
 msgid ""
@@ -5655,10 +5807,13 @@ msgid ""
 " this function will pause for the duration of the \"sleeping\" state. "
 "This will affect the outcome of :meth:`pyb.elapsed_micros()`."
 msgstr ""
+"`pyb.stop()` が発行された場合、この機能をサポートするハードウェアカウンタが"
+"「睡眠」状態の継続のために一時停止します。これは `pyb.elapsed_millis()` の"
+"結果に影響します。"
 
 #: ../../../library/pyb.rst:46
 msgid "Returns the number of milliseconds which have elapsed since ``start``."
-msgstr ""
+msgstr "``start`` から経過したミリ秒数を返します。"
 
 #: ../../../library/pyb.rst:48
 msgid ""
@@ -5666,6 +5821,8 @@ msgid ""
 "number. This means it can be used to measure periods up to about 12.4 "
 "days."
 msgstr ""
+"この関数はカウンタラップを処理し、常に正の数を返します。これは、"
+"最大約12.4日の期間を測定するために使用できることを意味します。"
 
 #: ../../../library/pyb.rst:53
 msgid ""
@@ -5673,10 +5830,13 @@ msgid ""
 "while pyb.elapsed_millis(start) < 1000:\n"
 "    # Perform some operation"
 msgstr ""
+"start = pyb.millis()\n"
+"while pyb.elapsed_millis(start) < 1000:\n"
+"    # 何等かの操作の実行"
 
 #: ../../../library/pyb.rst:59
 msgid "Returns the number of microseconds which have elapsed since ``start``."
-msgstr ""
+msgstr "``start`` から経過したマイクロ秒数を返します。"
 
 #: ../../../library/pyb.rst:61
 msgid ""
@@ -5684,6 +5844,8 @@ msgid ""
 "number. This means it can be used to measure periods up to about 17.8 "
 "minutes."
 msgstr ""
+"この関数はカウンタラップを処理し、常に正の数を返します。これは、"
+"最大約17.8分の期間を測定するために使用できることを意味します。"
 
 #: ../../../library/pyb.rst:66
 msgid ""
@@ -5692,28 +5854,37 @@ msgid ""
 "    # Perform some operation\n"
 "    pass"
 msgstr ""
+"start = pyb.micros()\n"
+"while pyb.elapsed_micros(start) < 1000:\n"
+"    # 何等かの操作の実行\n"
+"    pass"
 
 #: ../../../library/pyb.rst:76
 msgid ""
 "Resets the pyboard in a manner similar to pushing the external RESET "
 "button."
 msgstr ""
+"外部 RESET ボタンを押すのと同じように、pyboard をリセットします。"
 
 #: ../../../library/pyb.rst:81
 msgid "Activate the bootloader without BOOT\\* pins."
-msgstr ""
+msgstr "BOOT\\* ピンなしでブートローダを起動します。"
 
 #: ../../../library/pyb.rst:85
 msgid ""
 "Enable or disable hard-fault debugging.  A hard-fault is when there is a "
 "fatal error in the underlying system, like an invalid memory access."
 msgstr ""
+"ハードフォルト(hard-fault)デバッグを有効または無効にします。ハードフォルトとは、"
+"無効なメモリアクセスのように、基盤となるシステムに致命的なエラーがある場合のことです。"
 
 #: ../../../library/pyb.rst:88
 msgid ""
 "If the *value* argument is ``False`` then the board will automatically "
 "reset if there is a hard fault."
 msgstr ""
+"*value* 引数が ``False`` の場合、ハードフォルトがあると、ボードは自動的にリセット"
+"されます。"
 
 #: ../../../library/pyb.rst:91
 msgid ""
@@ -5721,10 +5892,12 @@ msgid ""
 "print the registers and the stack trace, and then cycle the LEDs "
 "indefinitely."
 msgstr ""
+"*value* 引数が ``True`` の場合、ボードにハードフォルトがあると、レジスタと"
+"スタックトレースを表示してから、LED を無期限に点滅させます。"
 
 #: ../../../library/pyb.rst:94
 msgid "The default value is disabled, i.e. to automatically reset."
-msgstr ""
+msgstr "デフォルト値は無効、つまり自動的にリセットされます。"
 
 #: ../../../library/pyb.rst:101
 msgid ""
@@ -5733,6 +5906,9 @@ msgid ""
 "value can be passed to enable_irq to restore the IRQ to its original "
 "state."
 msgstr ""
+"割り込み要求を禁止します。前のIRQの状態の無効/有効に対応してそれぞれ "
+"``False``/``True`` を返します。この戻り値をenable_irqに渡して IRQ を元の状態に"
+"戻せます。"
 
 #: ../../../library/pyb.rst:108
 msgid ""
@@ -5741,6 +5917,10 @@ msgid ""
 "  The most common use of this function is to pass it the value returned "
 "by ``disable_irq`` to exit a critical section."
 msgstr ""
+"割り込み要求を有効にします。 ``state`` が ``True`` の場合(デフォルト値)、"
+"その後の IRQ が有効になります。 ``state`` が ``False`` の場合、その後の IRQ が"
+"無効になります。この関数の最も一般的な使い方は、クリティカルセクションを終了するために "
+"``disable_irq`` が返した値を渡すことです。"
 
 #: ../../../library/pyb.rst:119
 msgid ""
@@ -9635,7 +9815,7 @@ msgstr ""
 
 #: ../../../library/ucryptolib.rst:2
 msgid ":mod:`ucryptolib` -- cryptographic ciphers"
-msgstr ""
+msgstr ":mod:`ucryptolib` -- 暗号化アルゴリズム"
 
 #: ../../../library/ucryptolib.rst:14
 msgid ""
@@ -9644,34 +9824,39 @@ msgid ""
 "decryption. Running decrypt() operation after encrypt() or vice versa is "
 "not supported."
 msgstr ""
+"暗号化/復号化に適した暗号オブジェクトを初期化します。注記: 初期化後、暗号オブジェクト"
+"は暗号化または復号化のどちらかにしか使えません。 encrypt() 後の decrypt() 、"
+"またはその逆の操作の実行はサポートされていません。"
 
 #: ../../../library/ucryptolib.rst:19
 msgid "Parameters are:"
-msgstr ""
+msgstr "パラメータは以下のとおりです:"
 
 #: ../../../library/ucryptolib.rst:21
 msgid "*key* is an encryption/decryption key (bytes-like)."
-msgstr ""
+msgstr "*key* は暗号化/復号化キーです(バイト列ライク)。"
 
 #: ../../../library/ucryptolib.rst:22
 msgid "*mode* is:"
-msgstr ""
+msgstr "*mode* は以下のいずれかです:"
 
 #: ../../../library/ucryptolib.rst:24
 msgid ""
 "``1`` (or ``ucryptolib.MODE_ECB`` if it exists) for Electronic Code Book "
 "(ECB)."
 msgstr ""
+"``1`` (または定義されていれば ``ucryptolib.MODE_ECB``) Electronic Code Book (ECB)"
 
 #: ../../../library/ucryptolib.rst:25
 msgid ""
 "``2`` (or ``ucryptolib.MODE_CBC`` if it exists) for Cipher Block Chaining"
 " (CBC)"
 msgstr ""
+"``2`` (または定義されていれば ``ucryptolib.MODE_CBC``) Cipher Block Chaining (CBC)
 
 #: ../../../library/ucryptolib.rst:27
 msgid "*IV* is an initialization vector for CBC mode."
-msgstr ""
+msgstr "*IV* は CBC モード用の初期化ベクトルです。"
 
 #: ../../../library/ucryptolib.rst:31
 msgid ""
@@ -9680,10 +9865,14 @@ msgid ""
 "buffer *out_buf*. *in_buf* and *out_buf* can also refer to the same "
 "mutable buffer, in which case data is encrypted in-place."
 msgstr ""
+"*in_buf* を暗号化します。 *out_buf* が与えられない場合、結果は新しく割り当てられた "
+"`bytes` オブジェクトとして返されます。そうでなければ、結果は可変バッファ *out_buf* "
+"に書き込まれます。 *in_buf* と *out_buf* は同じ可変バッファを参照することもできます。"
+"その場合、データはその場で暗号化されます。"
 
 #: ../../../library/ucryptolib.rst:38
 msgid "Like `encrypt()`, but for decryption."
-msgstr ""
+msgstr "`encrypt()` に似ていますが、複合化するメソッドです。"
 
 #: ../../../library/uctypes.rst:2
 msgid ":mod:`uctypes` -- access binary data in a structured way"
