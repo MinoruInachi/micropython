@@ -5750,7 +5750,7 @@ msgstr ":mod:`pyb` --- pyboard 関連の関数"
 msgid "The ``pyb`` module contains specific functions related to the board."
 msgstr ""
 "``pyb`` は puboard に固有の関数を提供します(訳注: 元々は pyboard 用ですが、"
-"似たアーキテクチャ、特に ST32 系の MCU を載せたボードではサポートされて"
+"似たアーキテクチャ、特に STM32 系の MCU を載せたボードではサポートされて"
 "いることが多いです)。"
 
 #: ../../../library/pyb.rst:10
@@ -5927,22 +5927,24 @@ msgid ""
 "If given no arguments, returns a tuple of clock frequencies: (sysclk, "
 "hclk, pclk1, pclk2). These correspond to:"
 msgstr ""
+"引数を与えなかった場合、クロック周波数のタプル (sysclk, hclk, pclk1, pclk2) を返しま。"
+"これらは以下に対応します。"
 
 #: ../../../library/pyb.rst:123
 msgid "sysclk: frequency of the CPU"
-msgstr ""
+msgstr "sysclk：CPUの周波数"
 
 #: ../../../library/pyb.rst:124
 msgid "hclk: frequency of the AHB bus, core memory and DMA"
-msgstr ""
+msgstr "hclk: AHB バス、コアメモリ、DMA の周波数"
 
 #: ../../../library/pyb.rst:125
 msgid "pclk1: frequency of the APB1 bus"
-msgstr ""
+msgstr "pclk1: APB1バスの周波数"
 
 #: ../../../library/pyb.rst:126
 msgid "pclk2: frequency of the APB2 bus"
-msgstr ""
+msgstr "pclk2: APB2バスの周波数"
 
 #: ../../../library/pyb.rst:128
 msgid ""
@@ -5952,18 +5954,26 @@ msgid ""
 "Note that not all values are supported and the largest supported "
 "frequency not greater than the given value will be selected."
 msgstr ""
+"引数を与えと、関数は CPU の周波数を設定し、追加の引数が与えられるとバスを設定します。"
+"周波数は Hz で与えます。たとえば freq(120000000) は sysclk (CPU 周波数) を 120 MHz "
+"に設定します。すべての値がサポートされているわけではなく、指定された値以下の最大の"
+"サポート周波数が選択されます。"
 
 #: ../../../library/pyb.rst:134
 msgid ""
 "Supported sysclk frequencies are (in MHz): 8, 16, 24, 30, 32, 36, 40, 42,"
 " 48, 54, 56, 60, 64, 72, 84, 96, 108, 120, 144, 168."
 msgstr ""
+"サポートしている sysclk 周波数(MHz) は 8, 16, 24, 30, 32, 36, 40, 42,"
+" 48, 54, 56, 60, 64, 72, 84, 96, 108, 120, 144, 168 です。"
 
 #: ../../../library/pyb.rst:137
 msgid ""
 "The maximum frequency of hclk is 168MHz, of pclk1 is 42MHz, and of pclk2 "
 "is 84MHz.  Be sure not to set frequencies above these values."
 msgstr ""
+"hclk の最大周波数は 168MHz、pclk1 の最大周波数は 42MHz、pclk2 のは最大周波数は "
+"84MHzです。周波数をこれらの値より上に設定しないでください。"
 
 #: ../../../library/pyb.rst:140
 msgid ""
@@ -5973,6 +5983,10 @@ msgid ""
 "and pclk2 are: 1, 2, 4, 8.  A prescaler will be chosen to best match the "
 "requested frequency."
 msgstr ""
+"hclk, pclk1, pclk2 の周波数は、プリスケーラ(分周器)を使用して sysclk の周波数から"
+"導き出されます。hclk でサポートされている プリスケーラは 1, 2, 4, 8, 16, 64, "
+"128, 256, 512 です。pclk1 と pclk2 でサポートされているプリスケーラは 1, 2, 4, 8 "
+"です。プリスケーラは要求された周波数に最もよく合うように選択されます。"
 
 #: ../../../library/pyb.rst:145
 msgid ""
@@ -5981,6 +5995,9 @@ msgid ""
 "frequencies use the HSE to drive the PLL (phase locked loop), and then "
 "use the output of the PLL."
 msgstr ""
+"8MHz の sysclk 周波数は HSE (外部水晶)を直接使用し、16MHz は HSI (内部発振器)を"
+"直接使用します。より高い周波数では、HSE を使って PLL (位相同期ループ)を駆動して、"
+"PLL の出力を使います。"
 
 #: ../../../library/pyb.rst:150
 msgid ""
@@ -5989,10 +6006,13 @@ msgid ""
 "boot.py, before the USB peripheral is started.  Also note that sysclk "
 "frequencies below 36MHz do not allow the USB to function correctly."
 msgstr ""
+"USB が有効になっている間に周波数を変更すると、USB の信頼性が低下する可能性があります。"
+"USB 周辺機器を起動する前に、boot.py で周波数を変更するのが最善です。また、sysclk の"
+"周波数が 36MHz より低いと、USB は正しく機能しません。"
 
 #: ../../../library/pyb.rst:157
 msgid "Wait for an internal or external interrupt."
-msgstr ""
+msgstr "内部または外部割り込みを待ちます。"
 
 #: ../../../library/pyb.rst:159
 msgid ""
@@ -6002,10 +6022,13 @@ msgid ""
 "once every millisecond (1000Hz) so this function will block for at most "
 "1ms."
 msgstr ""
+"これは、(MCU の内部または外部にかかわらず)割り込みが発生するまで MCU の消費電力を"
+"削減する ``wfi`` 命令を実行し、その時点で実行は継続します。システムティックの"
+"割り込みは1ミリ秒(1000Hz)に１回発生するため、この関数は最大 1ms ブロックします。"
 
 #: ../../../library/pyb.rst:167
 msgid "Put the pyboard in a \"sleeping\" state."
-msgstr ""
+msgstr "pyboard を「スリープ」状態にします。"
 
 #: ../../../library/pyb.rst:169
 msgid ""
@@ -6013,14 +6036,17 @@ msgid ""
 "sleep state requires an external interrupt or a real-time-clock event. "
 "Upon waking execution continues where it left off."
 msgstr ""
+"これにより、消費電力が 500 µA 未満になります。このスリープ状態から復帰するには、"
+"外部割り込みまたはリアルタイムクロックイベントが必要です。目が覚めると実行は中断した"
+"所から再開されます。"
 
 #: ../../../library/pyb.rst:173 ../../../library/pyb.rst:184
 msgid "See :meth:`rtc.wakeup` to configure a real-time-clock wakeup event."
-msgstr ""
+msgstr "リアルタイムクロックのウェイクアップイベントを設定する方法については :meth:`rtc.wakeup` を参照してください。"
 
 #: ../../../library/pyb.rst:177
 msgid "Put the pyboard into a \"deep sleep\" state."
-msgstr ""
+msgstr "pyboard を「ディープスリープ」状態にします。"
 
 #: ../../../library/pyb.rst:179
 msgid ""
@@ -6029,28 +6055,33 @@ msgid ""
 " X1 (PA0=WKUP) or X18 (PC13=TAMP1). Upon waking the system undergoes a "
 "hard reset."
 msgstr ""
+"これにより、消費電力が 50 µA 未満になります。このスリープ状態から復帰するには、"
+"リアルタイムクロックイベント、または X1 (PA0=WKUP)か X18 (PC13=TAMP1) での"
+"外部割り込みが必要です。起動するとシステムはハードリセットされます。"
 
 #: ../../../library/pyb.rst:191
 msgid "Return True if USB is connected as a serial device, False otherwise."
-msgstr ""
+msgstr "USB がシリアルデバイスとして接続されていれば True を、そうでなければ False を返します。"
 
 #: ../../../library/pyb.rst:193
 msgid "This function is deprecated.  Use pyb.USB_VCP().isconnected() instead."
-msgstr ""
+msgstr "この関数は非推奨です。代わりに pyb.USB_VCP().isconnected() を使ってください。"
 
 #: ../../../library/pyb.rst:197
 msgid ""
 "Takes a 4-tuple (or list) and sends it to the USB host (the PC) to signal"
 " a HID mouse-motion event."
 msgstr ""
+"4項目のタプル(またはリスト)を取り、それを USB ホスト(PC)に送信して HID "
+"マウスモーションイベントを通知します。"
 
 #: ../../../library/pyb.rst:200
 msgid "This function is deprecated.  Use :meth:`pyb.USB_HID.send()` instead."
-msgstr ""
+msgstr "この関数は非推奨です。代わりに :meth:`pyb.USB_HID.send()` を使ってください。"
 
 #: ../../../library/pyb.rst:204
 msgid "Print out lots of information about the board."
-msgstr ""
+msgstr "ボードについてのたくさんの情報を表示します。"
 
 #: ../../../library/pyb.rst:208
 msgid ""
@@ -6058,16 +6089,20 @@ msgid ""
 " this function is not called then the default file main.py will be "
 "executed."
 msgstr ""
+"boot.py が完了した後に実行するメインスクリプトのファイル名を設定します。"
+"この関数が呼び出されないと、デフォルトのファイル main.py が実行されます。"
 
 #: ../../../library/pyb.rst:211
 msgid "It only makes sense to call this function from within boot.py."
-msgstr ""
+msgstr "boot.py の中からこの関数を呼び出すことだけが理にかなっています。"
 
 #: ../../../library/pyb.rst:215
 msgid ""
 "This function is deprecated. Mounting and unmounting devices should be "
 "performed by :meth:`uos.mount` and :meth:`uos.umount` instead."
 msgstr ""
+"この関数は非推奨です。デバイスのマウントとマウント解除には、代わりに "
+":meth:`uos.mount` と :meth:`uos.umount` を使ってください。"
 
 #: ../../../library/pyb.rst:218
 msgid ""
@@ -6076,6 +6111,10 @@ msgid ""
 "following is also deprecated. See :class:`uos.AbstractBlockDev` for the "
 "correct way to create a block device.)"
 msgstr ""
+"ブロックデバイスをマウントしてファイルシステムの一部として利用できるようにします。 "
+"``device`` はブロックプロトコルを提供するオブジェクトでなければなりません。"
+"(以下も非推奨です。ブロックデバイスを作成する正しい方法については "
+":class:`uos.AbstractBlockDev` を参照してください。）"
 
 #: ../../../library/pyb.rst:223
 msgid "``readblocks(self, blocknum, buf)``"
@@ -6083,7 +6122,7 @@ msgstr ""
 
 #: ../../../library/pyb.rst:224
 msgid "``writeblocks(self, blocknum, buf)`` (optional)"
-msgstr ""
+msgstr "``writeblocks(self, blocknum, buf)`` (オプション)"
 
 #: ../../../library/pyb.rst:225
 msgid "``count(self)``"
@@ -6091,7 +6130,7 @@ msgstr ""
 
 #: ../../../library/pyb.rst:226
 msgid "``sync(self)`` (optional)"
-msgstr ""
+msgstr "``sync(self)`` (オプション)"
 
 #: ../../../library/pyb.rst:228
 msgid ""
@@ -6101,50 +6140,62 @@ msgid ""
 "``writeblocks`` is not defined then the device is mounted read-only. The "
 "return value of these two functions is ignored."
 msgstr ""
+"``readblocks`` と ``writeblocks`` は ``buf`` とブロックデバイスの間でデータを"
+"コピーするもので、デバイスのブロック番号 ``blocknum`` から始まります。 ``buf`` は"
+" 512 の倍数の長さを持つ bytearray です。 ``writeblocks`` が定義されていなければ、"
+"デバイスは読み取り専用でマウントされます。これら2つの関数の戻り値は無視されます。"
 
 #: ../../../library/pyb.rst:234
 msgid ""
 "``count`` should return the number of blocks available on the device. "
 "``sync``, if implemented, should sync the data on the device."
 msgstr ""
+"``count`` はデバイスで利用可能なブロック数を返します。"
+"``sync``  が実装されている場合、この関数はデバイス上のデータを同期します。"
 
 #: ../../../library/pyb.rst:237
 msgid ""
 "The parameter ``mountpoint`` is the location in the root of the "
 "filesystem to mount the device.  It must begin with a forward-slash."
 msgstr ""
+"パラメータ ``mountpoint`` は、デバイスをマウントするためのファイルシステムの"
+"ルート内の場所です。それはスラッシュ記号で始まらなければなりません。"
 
 #: ../../../library/pyb.rst:240
 msgid ""
 "If ``readonly`` is ``True``, then the device is mounted read-only, "
 "otherwise it is mounted read-write."
 msgstr ""
+"``readonly`` が ``True`` であれば、デバイスは読み取り専用でマウントされ、"
+"それ以外の場合は、読み書きができるようマウントされます。"
 
 #: ../../../library/pyb.rst:243
 msgid ""
 "If ``mkfs`` is ``True``, then a new filesystem is created if one does not"
 " already exist."
 msgstr ""
+"``mkfs`` が ``True`` である場合、ファイルシステムが存在しない場合は、新しい"
+"ファイルシステムが作成されます。"
 
 #: ../../../library/pyb.rst:248
 msgid "Get or set the UART object where the REPL is repeated on."
-msgstr ""
+msgstr "REPL が繰り返される UART オブジェクトを取得または設定します。"
 
 #: ../../../library/pyb.rst:252
 msgid "Return a 30-bit hardware generated random number."
-msgstr ""
+msgstr "30ビットのハードウェア生成乱数を返します。"
 
 #: ../../../library/pyb.rst:256
 msgid "Sync all file systems."
-msgstr ""
+msgstr "すべてのファイルシステムを同期します。"
 
 #: ../../../library/pyb.rst:260
 msgid "Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU."
-msgstr ""
+msgstr "MCU の一意な ID である12バイト(96ビット)の文字列を返します。"
 
 #: ../../../library/pyb.rst:264
 msgid "If called with no arguments, return the current USB mode as a string."
-msgstr ""
+msgstr "引数なしで呼び出された場合は、現在の USB モードを文字列として返します。"
 
 #: ../../../library/pyb.rst:266
 msgid ""
@@ -6152,38 +6203,43 @@ msgid ""
 "only be done when called from ``boot.py`` before :meth:`pyb.main()` has "
 "been called.  The following values of ``modestr`` are understood:"
 msgstr ""
+"``modestr`` を指定して呼び出した場合、USB モードの設定を試みます。これは ``boot.py`` "
+"で　``pyb.main()`` を呼び出す前にのみ実行できます。 ``modestr`` の値には次のものがあります。"
 
 #: ../../../library/pyb.rst:271
 msgid "``None``: disables USB"
-msgstr ""
+msgstr "``None``: USB を無効化"
 
 #: ../../../library/pyb.rst:272
 msgid "``'VCP'``: enable with VCP (Virtual COM Port) interface"
-msgstr ""
+msgstr "``'VCP'``: VCP (仮想 COM ポート)インタフェースを有効化"
 
 #: ../../../library/pyb.rst:273
 msgid "``'MSC'``: enable with MSC (mass storage device class) interface"
-msgstr ""
+msgstr "``'MSC'``: MSC (マスストレージデバイスクラス)インタフェースを有効化"
 
 #: ../../../library/pyb.rst:274
 msgid "``'VCP+MSC'``: enable with VCP and MSC"
-msgstr ""
+msgstr "``'VCP+MSC'``: VCP と MSC を有効化"
 
 #: ../../../library/pyb.rst:275
 msgid "``'VCP+HID'``: enable with VCP and HID (human interface device)"
-msgstr ""
+msgstr "``'VCP+HID'``: VCP と HID (ヒューマンインタフェースデバイス)を有効化"
 
 #: ../../../library/pyb.rst:277
 msgid ""
 "For backwards compatibility, ``'CDC'`` is understood to mean ``'VCP'`` "
 "(and similarly for ``'CDC+MSC'`` and ``'CDC+HID'``)."
 msgstr ""
+"後方互換性のために、 ``'CDC'`` は ``'VCP'`` を意味すると解釈されます"
+"``'CDC+MSC'`` と ``'CDC+HID'`` も同様です)。"
 
 #: ../../../library/pyb.rst:280
 msgid ""
 "The ``vid`` and ``pid`` parameters allow you to specify the VID (vendor "
 "id) and PID (product id)."
 msgstr ""
+"``vid`` と ``pid`` パラメータは、VID (ベンダID)と PID (プロダクトID)を指定します。"
 
 #: ../../../library/pyb.rst:283
 msgid ""
@@ -6194,6 +6250,10 @@ msgid ""
 "``pyb.hid_keyboard`` constant, which is an appropriate tuple for a USB "
 "keyboard."
 msgstr ""
+"HID モードを有効にする場合は、 ``hid`` キーワードパラメータを渡して HID の詳細を指定"
+"することもできます。それは (subclass, protocol, max packet length, polling interval, "
+"report descriptor) のタプルを引数に取ります。デフォルトでは USB マウスに適切な値を"
+"設定します。USB キーボードに適したタプルである ``pyb.hid_keyboard`` 定数もあります。"
 
 #: ../../../library/pyb.ADC.rst:9
 msgid ""
