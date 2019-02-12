@@ -6506,11 +6506,11 @@ msgstr ""
 
 #: ../../../library/pyb.Accel.rst:5
 msgid "class Accel -- accelerometer control"
-msgstr ""
+msgstr "クラス Accel - 加速度センサー制御"
 
 #: ../../../library/pyb.Accel.rst:7
 msgid "Accel is an object that controls the accelerometer.  Example usage::"
-msgstr ""
+msgstr "Accelは加速度センサーを制御するオブジェクトです。たとえば次のように使います::"
 
 #: ../../../library/pyb.Accel.rst:9
 msgid ""
@@ -6521,15 +6521,15 @@ msgstr ""
 
 #: ../../../library/pyb.Accel.rst:13
 msgid "Raw values are between -32 and 31."
-msgstr ""
+msgstr "生の値は -32 と 31 の間になります。"
 
 #: ../../../library/pyb.Accel.rst:21
 msgid "Create and return an accelerometer object."
-msgstr ""
+msgstr "加速度センサーオブジェクトを作成して返します。"
 
 #: ../../../library/pyb.Accel.rst:28
 msgid "Get a 3-tuple of filtered x, y and z values."
-msgstr ""
+msgstr "フィルター処理された x、y、z 軸の値を3項目のタプルで返します。"
 
 #: ../../../library/pyb.Accel.rst:30
 msgid ""
@@ -6539,26 +6539,30 @@ msgid ""
 "therefore 4 times the size of what they would be from the raw x(), y() "
 "and z() calls."
 msgstr ""
+"実装に関する注記: このメソッドは現在のところ、呼び出し時のサンプルと一緒に、"
+"この関数の前3回の呼び出しからサンプリングされた4つのサンプルの合計を取るように"
+"実装されています。したがって、戻り値は、生の x(), y(), z() 呼出しの4倍程度の"
+"値となります。"
 
 #: ../../../library/pyb.Accel.rst:37
 msgid "Get the tilt register."
-msgstr ""
+msgstr "傾斜レジスタを取得します。"
 
 #: ../../../library/pyb.Accel.rst:41
 msgid "Get the x-axis value."
-msgstr ""
+msgstr "x 軸の値を取得します。"
 
 #: ../../../library/pyb.Accel.rst:45
 msgid "Get the y-axis value."
-msgstr ""
+msgstr "y 軸の値を取得します。"
 
 #: ../../../library/pyb.Accel.rst:49
 msgid "Get the z-axis value."
-msgstr ""
+msgstr "z 軸の値を取得します。"
 
 #: ../../../library/pyb.Accel.rst:52
 msgid "Hardware Note"
-msgstr ""
+msgstr "ハードウェアに関する注記"
 
 #: ../../../library/pyb.Accel.rst:54
 msgid ""
@@ -6568,6 +6572,10 @@ msgid ""
 "therefore cannot be used concurrently, are UART 1 and Timer 4 channels 1 "
 "and 2."
 msgstr ""
+"加速度センサーはプロセッサと通信するためにI2Cバス1を使用します。"
+"その結果、読み取りが行われているとき、ピン X9 と X10 は(I2C 以外で)使わないように"
+"すべきです。これらのピンを使うデバイス(つまり加速度センサーと同時に使えないデバイス)は、"
+"UART 1 とタイマ 4 のチャネル 1 と 2 です。"
 
 #: ../../../library/pyb.CAN.rst:5
 msgid "class CAN -- controller area network communication bus"
@@ -9936,7 +9944,7 @@ msgstr "`encrypt()` に似ていますが、複合化するメソッドです。
 
 #: ../../../library/uctypes.rst:2
 msgid ":mod:`uctypes` -- access binary data in a structured way"
-msgstr ""
+msgstr ":mod:`uctypes` -- 構造化手法でのバイナリデータアクセス"
 
 #: ../../../library/uctypes.rst:7
 msgid ""
@@ -9947,6 +9955,11 @@ msgid ""
 " power as the C language allows, and then access it using familiar dot-"
 "syntax to reference sub-fields."
 msgstr ""
+"このモジュールは MicroPython 用の「外部データインターフェース」を実装しています。"
+"その背後にある考え方は CPython の ``ctypes`` モジュールと似ていますが、実際の API は"
+"異なり、サイズを小さくするために合理化、最適化されています。このモジュールの基本的な"
+"考え方は、C言語でできることとほぼ同じくデータ構造のレイアウトを定義し、よく知られた"
+"ドット構文を使ってサブフィールドにアクセスできるようにすることです。"
 
 #: ../../../library/uctypes.rst:16
 msgid ""
@@ -9954,20 +9967,25 @@ msgid ""
 "machine (including I/O and control registers). Uncareful usage of it may "
 "lead to crashes, data loss, and even hardware malfunction."
 msgstr ""
+"``uctypes`` モジュールはマシンの任意のメモリアドレス(I/O と制御レジスタを含む)への"
+"アクセスを許可します。それを不当に使用すると、クラッシュ、データの損失、さらには"
+"ハードウェアの誤動作につながる可能性があります。"
 
 #: ../../../library/uctypes.rst:23
 msgid "Module :mod:`ustruct`"
-msgstr ""
+msgstr "モジュール :mod:`ustruct`"
 
 #: ../../../library/uctypes.rst:23
 msgid ""
 "Standard Python way to access binary data structures (doesn't scale well "
 "to large and complex structures)."
 msgstr ""
+"バイナリデータ構造にアクセスするための標準的な Python の手法(大規模で複雑な構造には"
+"適していません)。"
 
 #: ../../../library/uctypes.rst:26
 msgid "Usage examples::"
-msgstr ""
+msgstr "使用例::"
 
 #: ../../../library/uctypes.rst:28
 msgid ""
@@ -10034,10 +10052,65 @@ msgid ""
 "WWDG.WWDG_CR.WDGA = 1\n"
 "print(\"Current counter:\", WWDG.WWDG_CR.T)"
 msgstr ""
+"import uctypes\n"
+"\n"
+"# 例１: ELF ファイルヘッダのサブセット\n"
+"# https://wikipedia.org/wiki/Executable_and_Linkable_Format#File_header\n"
+"ELF_HEADER = {\n"
+"    \"EI_MAG\": (0x0 | uctypes.ARRAY, 4 | uctypes.UINT8),\n"
+"    \"EI_DATA\": 0x5 | uctypes.UINT8,\n"
+"    \"e_machine\": 0x12 | uctypes.UINT16,\n"
+"}\n"
+"\n"
+"# \"f\" はバイナリモードでオープンした ELF ファイル\n"
+"buf = f.read(uctypes.sizeof(ELF_HEADER, uctypes.LITTLE_ENDIAN))\n"
+"header = uctypes.struct(uctypes.addressof(buf), ELF_HEADER, uctypes.LITTLE_ENDIAN)\n"
+"assert header.EI_MAG == b\"\\x7fELF\"\n"
+"assert header.EI_DATA == 1, \"Oops, wrong endianness. Could retry with uctypes.BIG_ENDIAN.\"\n"
+"print(\"machine:\", hex(header.e_machine))\n"
+"\n"
+"\n"
+"# 例２: ポインターのあるインメモリデータ構造\n"
+"COORD = {\n"
+"    \"x\": 0 | uctypes.FLOAT32,\n"
+"    \"y\": 4 | uctypes.FLOAT32,\n"
+"}\n"
+"\n"
+"STRUCT1 = {\n"
+"    \"data1\": 0 | uctypes.UINT8,\n"
+"    \"data2\": 4 | uctypes.UINT32,\n"
+"    \"ptr\": (8 | uctypes.PTR, COORD),\n"
+"}\n"
+"\n"
+"# \"addr\" に型 STRUCT1 の構造体のアドレスがあるとします\n"
+"# uctypes.NATIVE はオプション(デフォルトで使用)\n"
+"struct1 = uctypes.struct(addr, STRUCT1, uctypes.NATIVE)\n"
+"print(\"x:\", struct1.ptr[0].x)\n"
+"\n"
+"\n"
+"# 例３: CPU レジスタのアクセス。STM32F4xx WWDG ブロックのサブセット\n"
+"WWDG_LAYOUT = {\n"
+"    \"WWDG_CR\": (0, {\n"
+"        # BFUINT32 here means size of the WWDG_CR register\n"
+"        \"WDGA\": 7 << uctypes.BF_POS | 1 << uctypes.BF_LEN | uctypes.BFUINT32,\n"
+"        \"T\": 0 << uctypes.BF_POS | 7 << uctypes.BF_LEN | uctypes.BFUINT32,\n"
+"    }),\n"
+"    \"WWDG_CFR\": (4, {\n"
+"        \"EWI\": 9 << uctypes.BF_POS | 1 << uctypes.BF_LEN | uctypes.BFUINT32,\n"
+"        \"WDGTB\": 7 << uctypes.BF_POS | 2 << uctypes.BF_LEN | uctypes.BFUINT32,\n"
+"        \"W\": 0 << uctypes.BF_POS | 7 << uctypes.BF_LEN | uctypes.BFUINT32,\n"
+"    }),\n"
+"}\n"
+"\n"
+"WWDG = uctypes.struct(0x40002c00, WWDG_LAYOUT)\n"
+"\n"
+"WWDG.WWDG_CFR.WDGTB = 0b10\n"
+"WWDG.WWDG_CR.WDGA = 1\n"
+"print(\"Current counter:\", WWDG.WWDG_CR.T)"
 
 #: ../../../library/uctypes.rst:85
 msgid "Defining structure layout"
-msgstr ""
+msgstr "構造体レイアウトの定義"
 
 #: ../../../library/uctypes.rst:87
 msgid ""
@@ -10045,6 +10118,9 @@ msgid ""
 "which encodes field names as keys and other properties required to access"
 " them as associated values::"
 msgstr ""
+"構造体のレイアウトは「デスクリプター」として定義します。デスクリプターは Python "
+"の辞書であり、フィールド名をキー、フィールドにアクセスするためのプロパティを値として"
+"エンコードします。"
 
 #: ../../../library/uctypes.rst:91
 msgid ""
@@ -10060,28 +10136,32 @@ msgid ""
 "Currently, ``uctypes`` requires explicit specification of offsets for "
 "each field. Offset are given in bytes from the structure start."
 msgstr ""
+"現在のところ ``uctypes`` は、各フィールドに対してオフセットの明示的な指定が"
+"必要です。オフセットは構造体の先頭からのバイト数で与えられます。"
 
 #: ../../../library/uctypes.rst:100
 msgid "Following are encoding examples for various field types:"
-msgstr ""
+msgstr "以下は、さまざまなフィールドタイプのエンコード例です:"
 
 #: ../../../library/uctypes.rst:102
 msgid "Scalar types::"
-msgstr ""
+msgstr "スカラー型::"
 
 #: ../../../library/uctypes.rst:104
 msgid "\"field_name\": offset | uctypes.UINT32"
-msgstr ""
+msgstr "\"フィールド名\": オフセット | uctypes.UINT32"
 
 #: ../../../library/uctypes.rst:106
 msgid ""
 "in other words, the value is a scalar type identifier ORed with a field "
 "offset (in bytes) from the start of the structure."
 msgstr ""
+"つまり、値は、構造体の先頭からのフィールドオフセット(バイト単位)とスカラ型識別子の"
+"ビット論理和です。"
 
 #: ../../../library/uctypes.rst:109
 msgid "Recursive structures::"
-msgstr ""
+msgstr "再帰構造::"
 
 #: ../../../library/uctypes.rst:111
 msgid ""
@@ -10100,10 +10180,14 @@ msgid ""
 "but by referring to a structure descriptor dictionary (defined earlier) "
 "by name."
 msgstr ""
+"つまり、value は２項目のタプルで、１番目の項目はオフセット、２番目の項目は構造体"
+"デスクリプター辞書です(注: 再帰記述子のオフセットは、定義している構造体に対する"
+"相対位置です)。もちろん、再帰構造はリテラル辞書だけではなく、(以前に定義した)構造体"
+"デスクリプター辞書を名前で参照することによっても指定できます。"
 
 #: ../../../library/uctypes.rst:122
 msgid "Arrays of primitive types::"
-msgstr ""
+msgstr "プリミティブ型の配列::"
 
 #: ../../../library/uctypes.rst:124
 msgid "\"arr\": (offset | uctypes.ARRAY, size | uctypes.UINT8),"
@@ -10115,10 +10199,12 @@ msgid ""
 "offset, and second is scalar element type ORed number of elements in the "
 "array."
 msgstr ""
+"つまり、value は２項目のタプルで、１番目の項目は ARRAY フラグとオフセットの"
+"ビット論理和で、２番目の項目はスカラー型と配列要素数のビット論理和です。"
 
 #: ../../../library/uctypes.rst:130
 msgid "Arrays of aggregate types::"
-msgstr ""
+msgstr "集約タイプの配列::"
 
 #: ../../../library/uctypes.rst:132
 msgid "\"arr2\": (offset | uctypes.ARRAY, size, {\"b\": 0 | uctypes.UINT8}),"
@@ -10130,10 +10216,12 @@ msgid ""
 "offset, second is a number of elements in the array, and third is a "
 "descriptor of element type."
 msgstr ""
+"つまり、valueは３項目のタプルで、１番目の項目は ARRAY フラグと offset のビット論理和、"
+"２番目の項目は配列内の要素数、３番目の項目は要素型のデスクリプターです。"
 
 #: ../../../library/uctypes.rst:138
 msgid "Pointer to a primitive type::"
-msgstr ""
+msgstr "プリミティブ型へのポインタ::"
 
 #: ../../../library/uctypes.rst:140
 msgid "\"ptr\": (offset | uctypes.PTR, uctypes.UINT8),"
@@ -10144,10 +10232,12 @@ msgid ""
 "i.e. value is a 2-tuple, first element of which is PTR flag ORed with "
 "offset, and second is a scalar element type."
 msgstr ""
+"すなわち、valueは2項目のタプルで、１番目の項目はオフセットとPTRフラグのビット論理和、"
+"２番目の項目はスカラー要素型です。"
 
 #: ../../../library/uctypes.rst:145
 msgid "Pointer to an aggregate type::"
-msgstr ""
+msgstr "集約型へのポインタ::"
 
 #: ../../../library/uctypes.rst:147
 msgid "\"ptr2\": (offset | uctypes.PTR, {\"b\": 0 | uctypes.UINT8}),"
@@ -10158,10 +10248,12 @@ msgid ""
 "i.e. value is a 2-tuple, first element of which is PTR flag ORed with "
 "offset, second is a descriptor of type pointed to."
 msgstr ""
+"すなわち、valueは2項目のタプルで、１番目の項目はオフセットとOTRフラグのビット論理和、"
+"２番目の項目はポインタが指す型のデスクリプターです。"
 
 #: ../../../library/uctypes.rst:152
 msgid "Bitfields::"
-msgstr ""
+msgstr "ビットフィールド::"
 
 #: ../../../library/uctypes.rst:154
 msgid ""
@@ -10181,6 +10273,13 @@ msgid ""
 "a number of bits a scalar needs to be shifted right to extract the "
 "bitfield)."
 msgstr ""
+"すなわち、value は３つのビット論理和で、１つ目は与えたビットフィールドを含む"
+"スカラ値の型(typenameはスカラ型に似ていますが、 ``BF`` 接頭辞が付きます)、"
+"２つ目はビットフィールドを含むスカラ値のためのオフセット、３つ目はビット位置と"
+"ビット長をそれぞれ BF_POS と BF_LEN でシフトされたスカラー値です。ビット"
+"フィールド位置は、スカラーの最下位ビット（位置0）からカウントされ、フィールドの"
+"右端のビット数です(つまり、スカラーからビットフィールドを抽出するために右に"
+"シフトするのに必要なビット数です)。"
 
 #: ../../../library/uctypes.rst:165
 msgid ""
@@ -10192,6 +10291,11 @@ msgid ""
 "*bitsize* is 8, then effectively it will access least-significant byte of"
 " UINT16."
 msgstr ""
+"上記の例では、最初に UINT16 値がオフセット 0 で抽出され(この詳細は、特定の"
+"アクセスサイズとアライメントが必要なハードウェアレジスタにアクセスするときに重要です)、"
+"次にこの UINT16 の最右ビットが *lsbit* ビットであるビットフィールド長さはビット"
+"サイズのビットとして抽出されます。たとえば、 *lsbit* が 0 で *bitsize* が 8 "
+"の場合、事実上 UINT16 の最下位バイトにアクセスします。"
 
 #: ../../../library/uctypes.rst:173
 msgid ""
@@ -10202,10 +10306,15 @@ msgid ""
 "numbering in their native ABI, but ``uctypes`` always uses the normalized"
 " numbering described above."
 msgstr ""
+"ビットフィールド演算は、ターゲットバイトのエンディアンとは無関係です。特に上の例では、"
+"リトルエンディアン構造とビッグエンディアン構造の両方で、UINT16 の最下位バイトに"
+"アクセスします。しかし、それは 0 と番号付けされている最下位ビットに依存します。"
+"いくつかのターゲットはそれらのネイティブ ABI で異なる番号付けを使用するかも"
+"しれませんが、 ``uctypes`` は常に上記の正規化された番号付けを使用します。"
 
 #: ../../../library/uctypes.rst:181
 msgid "Module contents"
-msgstr ""
+msgstr "モジュールの内容"
 
 #: ../../../library/uctypes.rst:185
 msgid ""
@@ -10213,6 +10322,9 @@ msgid ""
 "address in memory, descriptor (encoded as a dictionary), and layout type "
 "(see below)."
 msgstr ""
+"メモリ内の構造体アドレス、デスクリプター(辞書としてエンコードされている)、"
+"レイアウトタイプ(下記参照)に基づいて「外部データ構造」オブジェクトを"
+"インスタンス化します。"
 
 #: ../../../library/uctypes.rst:190
 msgid ""
@@ -10220,16 +10332,21 @@ msgid ""
 "every field occupies exactly as many bytes as defined in the descriptor, "
 "i.e. the alignment is 1)."
 msgstr ""
+"リトルエンディアンのパック構造のレイアウトタイプ。(パックとは、すべてのフィールドが"
+"デスクリプターで定義されているのとまったく同じバイト数を占めることを意味します。"
+"つまり、アライメントは1です)。"
 
 #: ../../../library/uctypes.rst:196
 msgid "Layout type for a big-endian packed structure."
-msgstr ""
+msgstr "ビッグエンディアンのパック構造のレイアウトタイプ。"
 
 #: ../../../library/uctypes.rst:200
 msgid ""
 "Layout type for a native structure - with data endianness and alignment "
 "conforming to the ABI of the system on which MicroPython runs."
 msgstr ""
+"ネイティブ構造体のレイアウトタイプ - MicroPython が実行されているシステムの ABI "
+"に準拠したデータのエンディアンとアライメントを持ちます。"
 
 #: ../../../library/uctypes.rst:205
 msgid ""
@@ -10237,6 +10354,8 @@ msgid ""
 "either a structure class or a specific instantiated structure object (or "
 "its aggregate field)."
 msgstr ""
+"データ構造のサイズをバイト数で返します。struct 引数は、構造体クラスまたは特定の"
+"インスタンス化された構造物(またはその集合体フィールド)のいずれかです。"
 
 #: ../../../library/uctypes.rst:211
 msgid ""
@@ -10244,6 +10363,9 @@ msgid ""
 " object supporting buffer protocol (and address of this buffer is what "
 "actually returned)."
 msgstr ""
+"オブジェクトのアドレスを返します。引数は、bytes, bytearray, バッファプロトコルを"
+"サポートする他のオブジェクトである必要があります(このバッファのアドレスは実際に"
+"返されるものです)。"
 
 #: ../../../library/uctypes.rst:217
 msgid ""
@@ -10252,6 +10374,10 @@ msgid ""
 "object, so if memory contents change later, created object retains "
 "original value."
 msgstr ""
+"指定されたアドレスとサイズのメモリをバイトオブジェクトとしてキャプチャします。"
+"bytes オブジェクトは不変なので、メモリは実際には複製されて bytes オブジェクトに"
+"コピーされます。したがって、メモリの内容が後で変更されても、作成されたオブジェクトは"
+"元の値を保持します。"
 
 #: ../../../library/uctypes.rst:224
 msgid ""
@@ -10260,22 +10386,29 @@ msgid ""
 "both written too, and you will access current value at the given memory "
 "address."
 msgstr ""
+"与えたアドレスとサイズのメモリを bytearray オブジェクトとしてキャプチャします。"
+"上記の bytes_at() 関数とは異なり、メモリは参照によって取得されるため、両方とも"
+"書き込むことができ、指定されたメモリアドレスで現在の値にアクセスします。"
 
 #: ../../../library/uctypes.rst:238
 msgid ""
 "Integer types for structure descriptors. Constants for 8, 16, 32, and 64 "
 "bit types are provided, both signed and unsigned."
 msgstr ""
+"構造体デスクリプターの整数型 符号付きと符号なしの両方の 8, 16, 32, 64 ビット型の"
+"定数が提供されています。"
 
 #: ../../../library/uctypes.rst:244
 msgid "Floating-point types for structure descriptors."
-msgstr ""
+msgstr "構造体デスクリプターの浮動小数点型"
 
 #: ../../../library/uctypes.rst:248
 msgid ""
 "``VOID`` is an alias for ``UINT8``, and is provided to conviniently "
 "define C's void pointers: ``(uctypes.PTR, uctypes.VOID)``."
 msgstr ""
+"``VOID`` これは ``UINT8`` の別名であり、C の void ポインターのために定義"
+"されています: ``(uctypes.PTR, uctypes.VOID)``"
 
 #: ../../../library/uctypes.rst:254
 msgid ""
@@ -10283,10 +10416,12 @@ msgid ""
 "constant for structures, it's implicit: an aggregate type without ``PTR``"
 " or ``ARRAY`` flags is a structure."
 msgstr ""
+"ポインタと配列の型定数。構造体のための明示的な定数がないことに注意してください、"
+"それは暗黙のうちに：PTR またはARRAYフラグのない集約型は構造体です。"
 
 #: ../../../library/uctypes.rst:259
 msgid "Structure descriptors and instantiating structure objects"
-msgstr ""
+msgstr "構造体デスクリプターと構造化オブジェクトのインスタンス化"
 
 #: ../../../library/uctypes.rst:261
 msgid ""
@@ -10295,18 +10430,25 @@ msgid ""
 " :class:`uctypes.struct()` constructor. Memory address usually comes from"
 " following sources:"
 msgstr ""
+"構造体デスクリプター辞書とそのレイアウトタイプが与えられた場合、 "
+":class:`uctypes.struct()` コンストラクタを使用して特定のメモリインスタンスに"
+"特定の構造体インスタンスをインスタンス化できます。メモリアドレスは通常、以下の"
+"ソースから取得されます。"
 
 #: ../../../library/uctypes.rst:266
 msgid ""
 "Predefined address, when accessing hardware registers on a baremetal "
 "system. Lookup these addresses in datasheet for a particular MCU/SoC."
 msgstr ""
+"ベアメタルシステムのハードウェアレジスタにアクセスするときの定義済みアドレス。"
+"特定の MCU/SoC のデータシートでこれらのアドレスを検索してください。"
 
 #: ../../../library/uctypes.rst:268
 msgid ""
 "As a return value from a call to some FFI (Foreign Function Interface) "
 "function."
 msgstr ""
+"FFI (外部関数インタフェース)関数への呼び出しからの戻り値として。"
 
 #: ../../../library/uctypes.rst:270
 msgid ""
@@ -10314,10 +10456,12 @@ msgid ""
 "function, or alternatively, to access some data for I/O (for example, "
 "data read from a file or network socket)."
 msgstr ""
+"`uctypes.addressof()` から、FFI 関数に引数を渡したいとき、または I/O 用の"
+"データ(ファイルやネットワークソケットから読み込んだデータなど)にアクセスしたいとき。"
 
 #: ../../../library/uctypes.rst:275
 msgid "Structure objects"
-msgstr ""
+msgstr "構造体オブジェクト"
 
 #: ../../../library/uctypes.rst:277
 msgid ""
@@ -10327,12 +10471,18 @@ msgid ""
 "corresponding to the value contained in a field. A scalar field can also "
 "be assigned to."
 msgstr ""
+"構造体オブジェクトは標準のドット表記法 ``my_struct.substruct1.field1`` を"
+"使って個々のフィールドにアクセスすることを可能にします。フィールドがスカラー型の場合、"
+"それを取得すると、フィールドに含まれる値に対応するプリミティブ値(Python の整数または"
+"浮動小数点数）が生成されます。スカラーフィールドも割り当てることができます。"
 
 #: ../../../library/uctypes.rst:283
 msgid ""
 "If a field is an array, its individual elements can be accessed with the "
 "standard subscript operator ``[]`` - both read and assigned to."
 msgstr ""
+"フィールドが配列の場合、その個々の要素は標準の添字演算子 ``[]`` を使って読み取りと"
+"代入の両方でアクセスできます。"
 
 #: ../../../library/uctypes.rst:286
 msgid ""
@@ -10341,6 +10491,9 @@ msgid ""
 "Subscripting a pointer with other integer values but 0 are also "
 "supported, with the same semantics as in C."
 msgstr ""
+"フィールドがポインターの場合は、``[0]`` 構文を使ってポインターの指す先を参照できます"
+"(C の ``*`` 演算子に対応しますが、C で ``[0]`` とすることと同様です)。C と同じ"
+"セマンティクスで 0 以外の整数値でポインタを添字にすることもサポートされています。"
 
 #: ../../../library/uctypes.rst:291
 msgid ""
@@ -10348,18 +10501,24 @@ msgid ""
 "except for pointer dereference, when you need to use ``[0]`` operator "
 "instead of ``*``."
 msgstr ""
+"まとめると、構造体フィールドへのアクセスは一般に C の構文にしたがいますが、"
+"ポインタの指す先の参照には ``*`` の代わりに ``[0]`` を使う必要があります。"
 
 #: ../../../library/uctypes.rst:296
 msgid "Limitations"
-msgstr ""
+msgstr "制限事項"
 
 #: ../../../library/uctypes.rst:298
 msgid ""
-"1. Accessing non-scalar fields leads to allocation of intermediate "
+"Accessing non-scalar fields leads to allocation of intermediate "
 "objects to represent them. This means that special care should be taken "
 "to layout a structure which needs to be accessed when memory allocation "
 "is disabled (e.g. from an interrupt). The recommendations are:"
 msgstr ""
+"非スカラーフィールドにアクセスすると、それらを表す中間オブジェクトが割り当て"
+"られます。これは、(たとえば割り込みハンドラの処理など)メモリ割り付けが無効になって"
+"いるときにアクセスする必要がある構造をレイアウトするのに特別な注意を払うべきである"
+"ことを意味します。推奨事項は次のとおりです:"
 
 #: ../../../library/uctypes.rst:303
 msgid ""
@@ -10371,6 +10530,14 @@ msgid ""
 "multiple bitfields, you would need to cache references to a particular "
 "register: ``reg_a = mcu_registers.peripheral_a.reg_a``."
 msgstr ""
+"入れ子構造にアクセスしないでください。たとえば、 "
+"``mcu_registers.peripheral_a.register1`` とする代わりに、各ペリフェラルに"
+"対して別々のレイアウト記述子を定義して、 ``peripheral_a.register1`` "
+"としてアクセスします。あるいは単に特定の周辺機器を "
+"``peripheral_a = mcu_registers.peripheral_a`` でキャッシュします。"
+"レジスタが複数のビットフィールドで構成されている場合は、特定のレジスタへの参照を "
+"``reg_a = mcu_registers.peripheral_a.reg_a`` としてキャッシュする必要が"
+"あります。"
 
 #: ../../../library/uctypes.rst:310
 msgid ""
@@ -10379,10 +10546,14 @@ msgid ""
 "alternative is to cache intermediate values, e.g. ``register0 = "
 "peripheral_a.register[0]``."
 msgstr ""
+"配列のような他の非スカラデータを避けます。たとえば、 "
+"``peripheral_a.register[0]`` の代わりに ``peripheral_a.register0``　を"
+"使います。繰り返しになりますが、代替手段は中間値を "
+"``register0 = peripheral_a.register[0]`` のようにしてキャッシュすることです。"
 
 #: ../../../library/uctypes.rst:315
 msgid ""
-"2. Range of offsets supported by the ``uctypes`` module is limited. The "
+"Range of offsets supported by the ``uctypes`` module is limited. The "
 "exact range supported is considered an implementation detail, and the "
 "general suggestion is to split structure definitions to cover from a few "
 "kilobytes to a few dozen of kilobytes maximum. In most cases, this is a "
@@ -10393,6 +10564,14 @@ msgid ""
 " accessing native data structure with multi-megabyte array in the middle,"
 " though that would be a very synthetic case)."
 msgstr ""
+"``uctypes`` モジュールでサポートされているオフセットの範囲は限られています。"
+"サポートされている正確な範囲は実装の詳細と見なされます。一般的な提案は、構造定義を"
+"分割して最大で数キロバイトから数十キロバイトまでになるようにすることです。ほとんどの場合、"
+"これはとにかく自然な状況です。たとえば、(32ビットアドレス空間に広がる) MCU のすべての"
+"レジスタを1つの構造体で定義するのは意味がなく、むしろペリフェラルブロックごとに定義する"
+"べきです。極端な場合には、構造をいくつかの部分に人為的に分割する必要があるかもしれません"
+"(たとえば、数メガバイトの配列を中央に持つネイティブデータ構造にアクセスする場合などは、"
+"人為的な分割せざろうえないケースです)。"
 
 #: ../../../library/uerrno.rst:2
 msgid ":mod:`uerrno` -- system error codes"

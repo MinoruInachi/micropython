@@ -296,30 +296,30 @@ Limitations
 -----------
 
 1. Accessing non-scalar fields leads to allocation of intermediate objects
-to represent them. This means that special care should be taken to
-layout a structure which needs to be accessed when memory allocation
-is disabled (e.g. from an interrupt). The recommendations are:
+   to represent them. This means that special care should be taken to
+   layout a structure which needs to be accessed when memory allocation
+   is disabled (e.g. from an interrupt). The recommendations are:
 
-* Avoid accessing nested structures. For example, instead of
-  ``mcu_registers.peripheral_a.register1``, define separate layout
-  descriptors for each peripheral, to be accessed as
-  ``peripheral_a.register1``. Or just cache a particular peripheral:
-  ``peripheral_a = mcu_registers.peripheral_a``. If a register
-  consists of multiple bitfields, you would need to cache references
-  to a particular register: ``reg_a = mcu_registers.peripheral_a.reg_a``.
-* Avoid other non-scalar data, like arrays. For example, instead of
-  ``peripheral_a.register[0]`` use ``peripheral_a.register0``. Again,
-  an alternative is to cache intermediate values, e.g.
-  ``register0 = peripheral_a.register[0]``.
+ * Avoid accessing nested structures. For example, instead of
+   ``mcu_registers.peripheral_a.register1``, define separate layout
+   descriptors for each peripheral, to be accessed as
+   ``peripheral_a.register1``. Or just cache a particular peripheral:
+   ``peripheral_a = mcu_registers.peripheral_a``. If a register
+   consists of multiple bitfields, you would need to cache references
+   to a particular register: ``reg_a = mcu_registers.peripheral_a.reg_a``.
+ * Avoid other non-scalar data, like arrays. For example, instead of
+   ``peripheral_a.register[0]`` use ``peripheral_a.register0``. Again,
+   an alternative is to cache intermediate values, e.g.
+   ``register0 = peripheral_a.register[0]``.
 
 2. Range of offsets supported by the ``uctypes`` module is limited.
-The exact range supported is considered an implementation detail,
-and the general suggestion is to split structure definitions to
-cover from a few kilobytes to a few dozen of kilobytes maximum.
-In most cases, this is a natural situation anyway, e.g. it doesn't make
-sense to define all registers of an MCU (spread over 32-bit address
-space) in one structure, but rather a peripheral block by peripheral
-block. In some extreme cases, you may need to split a structure in
-several parts artificially (e.g. if accessing native data structure
-with multi-megabyte array in the middle, though that would be a very
-synthetic case).
+   The exact range supported is considered an implementation detail,
+   and the general suggestion is to split structure definitions to
+   cover from a few kilobytes to a few dozen of kilobytes maximum.
+   In most cases, this is a natural situation anyway, e.g. it doesn't make
+   sense to define all registers of an MCU (spread over 32-bit address
+   space) in one structure, but rather a peripheral block by peripheral
+   block. In some extreme cases, you may need to split a structure in
+   several parts artificially (e.g. if accessing native data structure
+   with multi-megabyte array in the middle, though that would be a very
+   synthetic case).
