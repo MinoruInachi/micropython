@@ -1470,7 +1470,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:4
 msgid "MicroPython on Microcontrollers"
-msgstr ""
+msgstr "マイクロコントローラ上の MicroPython"
 
 #: ../../../reference/constrained.rst:6
 msgid ""
@@ -1483,10 +1483,18 @@ msgid ""
 "methods presented are generic: in some cases it will be necessary to "
 "obtain detailed information from platform specific documentation."
 msgstr ""
+"MicroPython はマイクロコントローラ上で動作するように設計されています。"
+"マイクロコントローラにはハードウェアの制限があり、従来のコンピュータに慣れている"
+"プログラマにはなじみがないかもしれません。特に RAM および不揮発性の「ディスク」"
+"(フラッシュメモリ)ストレージの容量に制限があります。このチュートリアルでは、"
+"限られたリソースを最大限に活用する方法を紹介します。MicroPython はさまざまな"
+"アーキテクチャに基づいたコントローラ上で動作するため、ここで紹介する方法は一般的な"
+"ものです。場合によっては、プラットフォーム固有のドキュメントから詳細な情報を"
+"入手する必要があります。"
 
 #: ../../../reference/constrained.rst:16
 msgid "Flash Memory"
-msgstr ""
+msgstr "フラッシュメモリ"
 
 #: ../../../reference/constrained.rst:18
 msgid ""
@@ -1501,6 +1509,14 @@ msgid ""
 " incorporating user modules into a firmware build which is then flashed "
 "to the device."
 msgstr ""
+"pyboard 上での限られた容量に対処する簡単な方法は、マイクロ SD カードを取り付ける"
+"ことです。動作環境によっては、デバイスに SD カードスロットがないとか、コストや電力消費"
+"の理由により、この対処は実用的ではありません。したがって、内蔵フラッシュを使用する"
+"必要があります。MicroPython サブシステムを含むファームウェアは、オンボードのフラッシュに"
+"保存されています。残りの容量は使用可能です。フラッシュメモリの物理的アーキテクチャと"
+"関連した理由から、この容量の一部はファイルシステムとしてアクセスできない場合があります。"
+"そのような場合でも、ユーザモジュールをファームウェアビルドに組み込んで、デバイスに"
+"フラッシュするようにすれば、この空きを利用できます。"
 
 #: ../../../reference/constrained.rst:28
 msgid ""
@@ -1510,6 +1526,10 @@ msgid ""
 "stored with the firmware. In either case the module may be accessed with "
 "an import statement:"
 msgstr ""
+"これを実現する２つの手段があります。凍結モジュールと凍結バイトコードです。凍結"
+"モジュールは Python ソースコードをファームウェアと一緒に保存します。凍結バイト"
+"コードはクロスコンパイラを使用してソースをバイトコードに変換し、変換後のバイトコードを"
+"ファームウェアに保存します。どちらの場合でも、モジュールには import 文でアクセスできます:"
 
 #: ../../../reference/constrained.rst:36
 msgid "import mymodule"
@@ -1521,40 +1541,51 @@ msgid ""
 "dependent; instructions for building the firmware can be found in the "
 "README files in the relevant part of the source tree."
 msgstr ""
+"凍結したモジュールとバイトコードを生成するための手順はプラットフォームに依存します。"
+"ファームウェアを構築するための手順は関連するソースツリー中の README ファイルに"
+"あります。"
 
 #: ../../../reference/constrained.rst:41
 msgid "In general terms the steps are as follows:"
-msgstr ""
+msgstr "一般的な手順は次のとおりです:"
 
 #: ../../../reference/constrained.rst:43
 msgid ""
 "Clone the MicroPython `repository "
 "<https://github.com/micropython/micropython>`_."
 msgstr ""
+"MicroPython の `リポジトリ <https://github.com/micropython/micropython>`_ "
+"をクローンします。"
 
 #: ../../../reference/constrained.rst:44
 msgid "Acquire the (platform specific) toolchain to build the firmware."
-msgstr ""
+msgstr "ファームウェアをビルドするための(プラットフォーム固有の)ツールチェーンを"
+"入手します。"
 
 #: ../../../reference/constrained.rst:45
 msgid "Build the cross compiler."
-msgstr ""
+msgstr "クロスコンパイラをビルドします。"
 
 #: ../../../reference/constrained.rst:46
 msgid ""
 "Place the modules to be frozen in a specified directory (dependent on "
 "whether the module is to be frozen as source or as bytecode)."
 msgstr ""
+"凍結するモジュールを指定したディレクトリに配置します(モジュールをソース"
+"として固定するかバイトコードとして固定するかによって異なります)。"
 
 #: ../../../reference/constrained.rst:48
 msgid ""
 "Build the firmware. A specific command may be required to build frozen "
 "code of either type - see the platform documentation."
 msgstr ""
+"ファームウェアをビルドします。どちらかのタイプの凍結コードをビルドするには、"
+"特定のコマンドが必要な場合があります - プラットフォームのドキュメントを"
+"参照してください。"
 
 #: ../../../reference/constrained.rst:50
 msgid "Flash the firmware to the device."
-msgstr ""
+msgstr "ファームウェアをデバイスにフラッシュします。"
 
 #: ../../../reference/constrained.rst:53
 msgid "RAM"
@@ -1568,10 +1599,14 @@ msgid ""
 "repeated creation and destruction of objects. The reason for this is "
 "covered in the section covering the `heap`_."
 msgstr ""
+"RAM の使用量を減らすときには、コンパイルと実行という2つの段階を考慮する必要があります。"
+"メモリ消費量に加えて、ヒープフラグメンテーションとして知られている問題もあります。"
+"一般的には、オブジェクトの作成と消去の繰り返しを最小限に抑えることが最善です。その理由"
+"については、ヒープについての章で説明します。"
 
 #: ../../../reference/constrained.rst:62
 msgid "Compilation Phase"
-msgstr ""
+msgstr "コンパイルフェーズ"
 
 #: ../../../reference/constrained.rst:64
 msgid ""
@@ -1580,6 +1615,10 @@ msgid ""
 "bytecode is stored in RAM. The compiler itself requires RAM, but this "
 "becomes available for use when the compilation has completed."
 msgstr ""
+"モジュールがインポートされると、MicroPython はコードをバイトコードに"
+"コンパイルし、それが MicroPython 仮想マシン(VM)によって実行されます。"
+"バイトコードは RAM に保存されます。コンパイラ自体も RAM を必要としますが、"
+"コンパイルが完了した後は解放されます。"
 
 #: ../../../reference/constrained.rst:69
 msgid ""
@@ -1587,6 +1626,9 @@ msgid ""
 " where there is insufficient RAM to run the compiler. In this case the "
 "import statement will produce a memory exception."
 msgstr ""
+"多数のモジュールがすでにインポートされている場合、コンパイラを実行するのに十分な "
+"RAM がないという状況が発生する可能性があります。この場合、import 文はメモリ例外を"
+"発生します。"
 
 #: ../../../reference/constrained.rst:73
 msgid ""
@@ -1597,6 +1639,12 @@ msgid ""
 "the application after all modules have been imported. This maximises the "
 "RAM available to the compiler."
 msgstr ""
+"モジュールのインポート時にグローバルオブジェクトをインスタンス化する場合、インポート時に "
+"RAM を消費します。この消費した RAM は、その後のインポートでも解放されないので、"
+"コンパイラで利用することはできません。一般に、インポート時に実行されるコードを避ける"
+"ことが最善です。より良い方法は、すべてのモジュールがインポートされた後にアプリケーションに"
+"よって実行される初期化コードを持つことです。これにより、コンパイラが利用できる RAM が"
+"最大化されます。"
 
 #: ../../../reference/constrained.rst:80
 msgid ""
@@ -1609,22 +1657,30 @@ msgid ""
 "saves even more RAM as the bytecode is run directly from flash rather "
 "than being stored in RAM."
 msgstr ""
+"RAM がまだすべてのモジュールをコンパイルするのに不十分であるならば、１つの解決策は"
+"モジュールをプリコンパイルすることです。MicroPython は Python モジュールを"
+"バイトコードにコンパイルすることができるクロスコンパイラを持っています(mpy-cross "
+"ディレクトリの README を見てください)。結果のバイトコードファイルの拡張子は .mpy "
+"です。通常の方法でファイルシステムにコピーしインポートすることができます。"
+"あるいは、モジュールの一部または全部を凍結バイトコードとして実装することもできます。"
+"ほとんどのプラットフォームでは、バイトコードが RAM に格納されるのではなくフラッシュ"
+"から直接実行されるため、RAM がさらに節約されます。"
 
 #: ../../../reference/constrained.rst:89
 msgid "Execution Phase"
-msgstr ""
+msgstr "実行フェーズ"
 
 #: ../../../reference/constrained.rst:91
 msgid "There are a number of coding techniques for reducing RAM usage."
-msgstr ""
+msgstr "RAM の使用量を減らすためのコーディング手法は数多くあります。"
 
 #: ../../../reference/constrained.rst:93
 msgid "**Constants**"
-msgstr ""
+msgstr "**定数**"
 
 #: ../../../reference/constrained.rst:95
 msgid "MicroPython provides a ``const`` keyword which may be used as follows:"
-msgstr ""
+msgstr "MicroPythonには const キーワードがあり、次のように使えます:"
 
 #: ../../../reference/constrained.rst:104
 msgid ""
@@ -1647,6 +1703,13 @@ msgid ""
 "``_COLS``: this symbol is not visible outside the module so will not "
 "occupy RAM."
 msgstr ""
+"定数を変数に代入する両方の場合において、コンパイラはそのリテラル値で置換を行うので、"
+"定数の名前を検索する処理が避けられます。これによりバイトコード、ひいては RAM を"
+"節約できます。ただし、 ``ROWS`` 値については少なくとも２つの機械語が必要となります。"
+"それは、グローバル辞書のキーと値です。別のモジュールがそれをインポートまたは使う"
+"可能性があるため、辞書内に格納しておくことは必要となります。この RAM は ``_COLS`` "
+"のように名前の前にアンダースコアを付けることで節約できます。このシンボルはモジュールの"
+"外側には表示されないので、RAMを占有することはありません。"
 
 #: ../../../reference/constrained.rst:114
 msgid ""
@@ -1654,10 +1717,13 @@ msgid ""
 "evaluates to an integer e.g. ``0x100`` or ``1 << 8``. It can even include"
 " other const symbols that have already been defined, e.g. ``1 << BIT``."
 msgstr ""
+"``const()`` の引数には、``0x100`` や ``1 << 8`` など、コンパイル時に整数に"
+"評価できるものであれば何でも指定できます。 ``1 << BIT`` など、定義済の const "
+"シンボルを含めることもできます。"
 
 #: ../../../reference/constrained.rst:118
 msgid "**Constant data structures**"
-msgstr ""
+msgstr "**定数データ構造**"
 
 #: ../../../reference/constrained.rst:120
 msgid ""
@@ -1669,6 +1735,12 @@ msgid ""
 " than being copied to RAM. The `ustruct` module can assist in converting "
 "between `bytes` types and other Python built-in types."
 msgstr ""
+"かなりの量の定数データが​​あり、プラットフォームがフラッシュからの実行をサポートしている"
+"場合、RAM　は次のように節約できます。データは Python モジュールに配置し、バイトコード"
+"として凍結されるべきです。データは `bytes` オブジェクトとして定義してください。"
+"コンパイラは、 `bytes` オブジェクトが不変であることを「認識」しているので、 `bytes` "
+"オブジェクトを RAM にコピーするのではなく、フラッシュメモリに残したままにします。 "
+"`bytes` 型と他の Python 組み込み型との間の変換には `ustruct` モジュールが役立ちます。"
 
 #: ../../../reference/constrained.rst:128
 msgid ""
@@ -1676,6 +1748,9 @@ msgid ""
 " strings, floats, bytes, integers and complex numbers are immutable. "
 "Accordingly these will be frozen into flash. Thus, in the line"
 msgstr ""
+"凍結バイトコードの内容を考慮すると、Python の文字列、浮動小数点数、バイト列、整数、"
+"複素数は不変であることに注意してください。つまり、これらはフラッシュに凍結されます。"
+"次のような行がある場合、"
 
 #: ../../../reference/constrained.rst:135
 msgid "mystring = \"The quick brown fox\""
@@ -1688,6 +1763,9 @@ msgid ""
 "``mystring``. The reference occupies a single machine word. In principle "
 "a long integer could be used to store constant data:"
 msgstr ""
+"実際の文字列 \"The quick brown fox\" はフラッシュに存在します。実行時に、"
+"文字列への参照が変数 ``mystring`` に割り当てられます。参照は単一の機械語に"
+"なります。原理上は長整数を使って定数データを格納できます。"
 
 #: ../../../reference/constrained.rst:144
 msgid "bar = 0xDEADBEEF0000DEADBEEF"
@@ -1699,6 +1777,8 @@ msgid ""
 " integer is assigned to the variable ``bar``. That reference occupies a "
 "single machine word."
 msgstr ""
+"文字列の例のように、実行時に、任意の大きい整数への参照が変数 ``bar`` に割り当て"
+"られます。その参照は単一の機械語になります。"
 
 #: ../../../reference/constrained.rst:149
 msgid ""
@@ -1706,6 +1786,9 @@ msgid ""
 "purpose of storing constant data with minimal RAM use. With the current "
 "compiler this is ineffective (the code works, but RAM is not saved)."
 msgstr ""
+"定数データの格納につかう RAM 容量を最小限に抑える目的で、整数のタプルが使える"
+"のではないかと予想されるかもしれません。現在のコンパイラではこれは無効です"
+"(コードは機能しますが、RAM は節約されません)。"
 
 #: ../../../reference/constrained.rst:156
 msgid "foo = (1, 2, 3, 4, 5, 6, 100000)"
@@ -1716,10 +1799,11 @@ msgid ""
 "At runtime the tuple will be located in RAM. This may be subject to "
 "future improvement."
 msgstr ""
+"実行時にタプルは RAM に配置されます。これは将来改善されるかもしれません。"
 
 #: ../../../reference/constrained.rst:160
 msgid "**Needless object creation**"
-msgstr ""
+msgstr "**不要なオブジェクト作成**"
 
 #: ../../../reference/constrained.rst:162
 msgid ""
@@ -1727,16 +1811,20 @@ msgid ""
 " and destroyed. This can reduce the usability of RAM through "
 "fragmentation. The following sections discuss instances of this."
 msgstr ""
+"無意識のうちにオブジェクトが作成され消去される可能性のある状況は数多くあります。"
+"これによりフラグメンテーションが発生して、RAM 可用性は低下することがありえます。"
+"以降の章では、この事例について説明します。"
 
 #: ../../../reference/constrained.rst:166
 msgid "**String concatenation**"
-msgstr ""
+msgstr "**文字列の結合**"
 
 #: ../../../reference/constrained.rst:168
 msgid ""
 "Consider the following code fragments which aim to produce constant "
 "strings:"
 msgstr ""
+"定数文字列を生成することを目的とした次のコードフラグメントを検討してください:"
 
 #: ../../../reference/constrained.rst:177
 msgid ""
@@ -1754,6 +1842,9 @@ msgid ""
 "producing the third. The others perform the concatenation at compile time"
 " which is more efficient, reducing fragmentation."
 msgstr ""
+"それぞれが同じ結果を生成しますが、１番目のものは実行時に２つの文字列オブジェクトを"
+"不必要に作成し、結果を生成する前に連結用に RAM を追加で割り当てます。他のものは"
+"コンパイル時に連結を実行します。これはより効率的で、フラグメンテーションを減らします。"
 
 #: ../../../reference/constrained.rst:183
 msgid ""
@@ -1762,12 +1853,16 @@ msgid ""
 "Rather than creating a large string object, create a substring and feed "
 "it to the stream before dealing with the next."
 msgstr ""
+"ファイルのようなストリームに送る前に文字列を動的に作成しなければならない場合、"
+"これを少しずつ行うようにすれば RAM を節約できます。大きな文字列オブジェクトを"
+"作成するのではなく、部分文字列を作成して送りってから、次の部分文字列を扱うようにします。"
 
 #: ../../../reference/constrained.rst:188
 msgid ""
 "The best way to create dynamic strings is by means of the string "
 "``format()`` method:"
 msgstr ""
+"動的文字列を作成する最良の方法は、文字列の ``format()`` メソッドを使うことです:"
 
 #: ../../../reference/constrained.rst:194
 msgid "var = \"Temperature {:5.2f} Pressure {:06d}\\n\".format(temp, press)"
@@ -1775,7 +1870,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:195
 msgid "**Buffers**"
-msgstr ""
+msgstr "**バッファ**"
 
 #: ../../../reference/constrained.rst:197
 msgid ""
@@ -1783,6 +1878,9 @@ msgid ""
 " using pre-allocated buffers avoids the creation of needless objects. "
 "Consider these two loops:"
 msgstr ""
+"UART, I2C, SPI インタフェースなどのデバイスにアクセスするときに、事前に割り当てた"
+"バッファを使うようにすると、不要なオブジェクトが作成されなくなります。次の２つのループに"
+"ついて考えてみましょう:"
 
 #: ../../../reference/constrained.rst:211
 msgid ""
@@ -1795,6 +1893,14 @@ msgid ""
 "    spi.readinto(buf)\n"
 "    # process data in buf"
 msgstr ""
+"while True:\n"
+"    var = spi.read(100)\n"
+"    # データを処理\n"
+"\n"
+"buf = bytearray(100)\n"
+"while True:\n"
+"    spi.readinto(buf)\n"
+"    # buf でデータを処理"
 
 #: ../../../reference/constrained.rst:212
 msgid ""
@@ -1802,16 +1908,21 @@ msgid ""
 "allocated buffer; this is both faster and more efficient in terms of "
 "memory fragmentation."
 msgstr ""
+"１つ目のループでは各パスで毎回バッファを作成するのに対して、２つ目のループは"
+"事前に割り当てられたバッファを再利用します。これにより、より高速になりますし、"
+"メモリのフラグメンテーションという点でも効率的です。"
 
 #: ../../../reference/constrained.rst:215
 msgid "**Bytes are smaller than ints**"
-msgstr ""
+msgstr "**バイトは整数より小さい**"
 
 #: ../../../reference/constrained.rst:217
 msgid ""
 "On most platforms an integer consumes four bytes. Consider the two calls "
 "to the function ``foo()``:"
 msgstr ""
+"ほとんどのプラットフォームで、整数は4バイトを消費します。次の関数 ``foo()`` への"
+"２つの呼び出しについて考えてみましょう:"
 
 #: ../../../reference/constrained.rst:227
 msgid ""
@@ -1829,10 +1940,13 @@ msgid ""
 " If the module were frozen as bytecode, the `bytes` object would reside "
 "in flash."
 msgstr ""
+"１つ目の呼び出しでは、整数のタプルが RAM に作成されます。２つ目は最小量の RAM を"
+"消費する bytes オブジェクトを効率的に作成します。モジュールがバイトコードとして"
+"凍結されている場合、bytes オブジェクトはフラッシュ内に置かれます。"
 
 #: ../../../reference/constrained.rst:232
 msgid "**Strings Versus Bytes**"
-msgstr ""
+msgstr "**文字列とバイト列**"
 
 #: ../../../reference/constrained.rst:234
 msgid ""
@@ -1845,6 +1959,12 @@ msgid ""
 ":meth:`str.strip()`) apply also to `bytes` instances so the process of "
 "eliminating Unicode can be painless."
 msgstr ""
+"Python3 は Unicode サポートを導入しました。これは文字列とバイトの配列の間の区別を"
+"もたらしました。MicroPython は文字列内のすべての文字が ASCII である(つまり < 126 "
+"の値を持つ)限り、Unicode 文字列が追加のスペースを取らないことを保証します。8 ビット"
+"全域の値が必要であれば、追加のスペースが不要になるように `bytes` や `bytearray` "
+"オブジェクトが使えます。ほとんどの文字列メソッド(たとえば `str.strip()`) は "
+"`bytes` インスタンスにも適用されるため、Unicode を排除する処理は簡単です。"
 
 #: ../../../reference/constrained.rst:246
 msgid ""
@@ -1861,6 +1981,12 @@ msgid ""
 "allocation to produce the result. In the second line below a new bytes "
 "object is allocated. This would also occur if ``foo`` were a string."
 msgstr ""
+"文字列とバイトを変換する必要がある場合は、 ":meth:`str.encode` と "
+":meth:`bytes.decode` メソッドを使えます。文字列とバイト列の両方が不変であることに"
+"注意してください。そのようなオブジェクトを入力として受け取り、別のオブジェクトを"
+"生成する演算は、結果を生成するために少なくとも1つのRAM割り当てを意味します。次の"
+"コードの２行目には、新しい bytes オブジェクトが割り当てられています。foo が"
+"文字列の場合も同様です。"
 
 #: ../../../reference/constrained.rst:258
 msgid ""
@@ -1870,7 +1996,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:259
 msgid "**Runtime compiler execution**"
-msgstr ""
+msgstr "**ランタイムコンパイラの実行**"
 
 #: ../../../reference/constrained.rst:261
 msgid ""
@@ -1879,10 +2005,14 @@ msgid ""
 "library from `micropython-lib` employs `exec`. It may be more RAM "
 "efficient to use the `ujson` library for object serialisation."
 msgstr ""
+"Python で `eval` や `exec` を呼び出して、実行時にコンパイラを機能させることは、"
+"かなりの量の RAM が必要となります。 `micropython-lib` の ``pickle`` "
+"ライブラリは `exec` を利用していることに注意してください。オブジェクトのシリアル化"
+"については `ujson` ライブラリを使うと、RAM の効率が上がる可能性があります 。"
 
 #: ../../../reference/constrained.rst:266
 msgid "**Storing strings in flash**"
-msgstr ""
+msgstr "**文字列をフラッシュに保存する**"
 
 #: ../../../reference/constrained.rst:268
 msgid ""
@@ -1893,10 +2023,15 @@ msgid ""
 "procedure will work even if the modules have not been fully debugged, so "
 "long as they can be imported and run."
 msgstr ""
+"Python の文字列は不変なので、読み取り専用メモリに格納できる可能性があります。"
+"コンパイラは、Python コードで定義された文字列をフラッシュに配置できます。"
+"凍結モジュールと同様に、ファームウェアを構築するには、PC 上にソースツリーのコピーと"
+"ツールチェーンを用意する必要があります。モジュールをインポートして実行できる限り、"
+"モジュールが完全にデバッグされていなくても、この手順を実行できます。"
 
 #: ../../../reference/constrained.rst:274
 msgid "After importing the modules, execute:"
-msgstr ""
+msgstr "モジュールをインポートした後に次を実行してください:"
 
 #: ../../../reference/constrained.rst:279
 #: ../../../reference/constrained.rst:290
@@ -1913,14 +2048,19 @@ msgid ""
 "firmware. The outcome can be checked by importing the modules and again "
 "issuing:"
 msgstr ""
+"次に、すべての Q(xxx) 行をテキストエディタにコピーして貼り付けます。明らかに無効な"
+"行をチェックして削除します。ports/stm32 (または使用中のアーキテクチャに相当する"
+"ディレクトリ)にあるファイル qstrdefsport.h を開きます。修正した行をコピーして"
+"ファイルの末尾に貼り付けます。ファイルを保存し、ファームウェアを再構築してフラッシュ"
+"します。結果はモジュールをインポートして再度発行することで確認できます:"
 
 #: ../../../reference/constrained.rst:291
 msgid "The Q(xxx) lines should be gone."
-msgstr ""
+msgstr "Q(xxx) 行は消えます。"
 
 #: ../../../reference/constrained.rst:296
 msgid "The Heap"
-msgstr ""
+msgstr "ヒープ"
 
 #: ../../../reference/constrained.rst:298
 msgid ""
@@ -1932,12 +2072,19 @@ msgid ""
 "runs automatically, however it can be invoked directly by issuing "
 "`gc.collect()`."
 msgstr ""
+"実行中のプログラムがオブジェクトをインスタンス化すると、必要な RAM がヒープと呼ばれる"
+"固定サイズのプールから割り当てられます。オブジェクトがスコープ外になると(つまり、"
+"コードにアクセスできなくなると)、この不要オブジェクトは「ガベージ」というものになります。"
+"「ガベージコレクション」(Garbage Collection: GC)と呼ばれるプロセスがそのメモリを"
+"回収し、空きヒープに戻します。このプロセスは自動的に実行されますが、 `gc.collect()` "
+"によって直接呼び出すこともできます。"
 
 #: ../../../reference/constrained.rst:305
 msgid ""
 "The discourse on this is somewhat involved. For a 'quick fix' issue the "
 "following periodically:"
 msgstr ""
+"これについての説明は多少複雑です。「迅速な修正」のために、定期的に以下を発行してください:"
 
 #: ../../../reference/constrained.rst:312
 #: ../../../reference/constrained.rst:413
@@ -1948,7 +2095,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:314
 msgid "Fragmentation"
-msgstr ""
+msgstr "フラグメンテーション"
 
 #: ../../../reference/constrained.rst:316
 msgid ""
@@ -1961,6 +2108,13 @@ msgid ""
 "RAM available, there is insufficient contiguous space to allocate a "
 "particular object, and the program fails with a memory error."
 msgstr ""
+"プログラムがオブジェクト foo を作成し、次にオブジェクト ``bar`` を作成したとします。"
+"その後 ``foo`` がスコープ外になり、 ``bar`` が残ります。 ``foo`` によって使用された "
+"RAM は、GCによって回収されます。ただし  ``bar`` が、より高いアドレスに割り当てられて"
+"いる場合、 ``foo`` から再利用される RAM は、それより大きくないオブジェクトにのみ使用"
+"されます。複雑なプログラムや長時間実行されているプログラムでは、ヒープが断片化する可能性が"
+"あります。使用可能な RAM がかなりあるにもかかわらず、特定のオブジェクトを割り当てるための"
+"隣接スペースが不足し、プログラムがメモリーエラーで失敗します。"
 
 #: ../../../reference/constrained.rst:325
 msgid ""
@@ -1970,10 +2124,14 @@ msgid ""
 " Further improvements may be made by monitoring the state of the heap and"
 " by controlling GC; these are outlined below."
 msgstr ""
+"先に概説した技法はこれを最小にすることを目的としています。大きな永続バッファや他の"
+"オブジェクトが必要な場合は、フラグメンテーションが発生する前にプログラム実行のプロセスの"
+"早い段階でこれらをインスタンス化するのが最善です。ヒープの状態を監視し、GC を制御"
+"することで、さらに改善することができます。これらの概要は以下の通りです。"
 
 #: ../../../reference/constrained.rst:332
 msgid "Reporting"
-msgstr ""
+msgstr "レポート機能"
 
 #: ../../../reference/constrained.rst:334
 msgid ""
@@ -1982,6 +2140,10 @@ msgid ""
 "`micropython` modules. The following example may be pasted at the REPL "
 "(``ctrl e`` to enter paste mode, ``ctrl d`` to run it)."
 msgstr ""
+"メモリ割り当てと GC 制御のレポートを行う多くのライブラリ関数が用意されています。"
+"これらの関数は `gc` と `micropython` モジュールにあります。次の例は REPL に"
+"貼り付けることができます(``Ctrl-e`` で貼り付けモードに入り、 ``Ctrl-d`` "
+"で実行します)。"
 
 #: ../../../reference/constrained.rst:357
 msgid ""
@@ -2009,29 +2171,30 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:358
 msgid "Methods employed above:"
-msgstr ""
+msgstr "上記で採用したメソッド:"
 
 #: ../../../reference/constrained.rst:360
 msgid "`gc.collect()` Force a garbage collection. See footnote."
-msgstr ""
+msgstr "`gc.collect()` ガベージコレクションを強制します。脚注を参照してください。"
 
 #: ../../../reference/constrained.rst:361
 msgid "`micropython.mem_info()` Print a summary of RAM utilisation."
-msgstr ""
+msgstr "`micropython.mem_info()` RAM 使用率の要約を表示します。"
 
 #: ../../../reference/constrained.rst:362
 msgid "`gc.mem_free()` Return the free heap size in bytes."
-msgstr ""
+msgstr "`gc.mem_free()` 空きヒープサイズをバイト数で返します。"
 
 #: ../../../reference/constrained.rst:363
 msgid "`gc.mem_alloc()` Return the number of bytes currently allocated."
-msgstr ""
+msgstr "`gc.mem_alloc()` 現在割り当てられているバイト数を返します。"
 
 #: ../../../reference/constrained.rst:364
 msgid ""
 "``micropython.mem_info(1)`` Print a table of heap utilisation (detailed "
 "below)."
 msgstr ""
+"``micropython.mem_info(1)`` ヒープ使用率の表を表示します(詳細は後述)。"
 
 #: ../../../reference/constrained.rst:366
 msgid ""
@@ -2042,20 +2205,27 @@ msgid ""
 "garbage because it is out of scope and cannot be referenced. The final "
 "`gc.collect()` recovers that memory."
 msgstr ""
+"生成される数値はプラットフォームによって異なりますが、関数の宣言ではコンパイラに"
+"よって出力されるバイトコードの形成に少量の RAM が使われていることがわかります"
+"(コンパイラによって使用された RAM は再利用されています)。この関数を実行すると "
+"10KiB 以上が使われますが、戻り時に a はスコープ外となり、ガベージとなります。"
+"最後は gc.collect() そのメモリが回収されます。"
 
 #: ../../../reference/constrained.rst:373
 msgid ""
 "The final output produced by ``micropython.mem_info(1)`` will vary in "
 "detail but may be interpreted as follows:"
 msgstr ""
+"``micropython.mem_info(1)`` によって生成される最終的な出力は、詳細は異なって"
+"いるかもしれませんが、次のように解釈される場合があります。"
 
 #: ../../../reference/constrained.rst:377
 msgid "Symbol"
-msgstr ""
+msgstr "シンボル"
 
 #: ../../../reference/constrained.rst:377
 msgid "Meaning"
-msgstr ""
+msgstr "意味"
 
 #: ../../../reference/constrained.rst:379
 msgid "."
@@ -2063,7 +2233,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:379
 msgid "free block"
-msgstr ""
+msgstr "フリーブロック"
 
 #: ../../../reference/constrained.rst:380
 msgid "h"
@@ -2071,7 +2241,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:380
 msgid "head block"
-msgstr ""
+msgstr "ヘッドブロック"
 
 #: ../../../reference/constrained.rst:381
 msgid "="
@@ -2079,7 +2249,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:381
 msgid "tail block"
-msgstr ""
+msgstr "テイルブロック"
 
 #: ../../../reference/constrained.rst:382
 msgid "m"
@@ -2087,7 +2257,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:382
 msgid "marked head block"
-msgstr ""
+msgstr "マーク付きヘッドブロック"
 
 #: ../../../reference/constrained.rst:383
 msgid "T"
@@ -2095,7 +2265,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:383
 msgid "tuple"
-msgstr ""
+msgstr "タプル"
 
 #: ../../../reference/constrained.rst:384
 msgid "L"
@@ -2103,7 +2273,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:384
 msgid "list"
-msgstr ""
+msgstr "リスト"
 
 #: ../../../reference/constrained.rst:385
 msgid "D"
@@ -2111,7 +2281,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:385
 msgid "dict"
-msgstr ""
+msgstr "辞書"
 
 #: ../../../reference/constrained.rst:386
 msgid "F"
@@ -2119,7 +2289,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:386
 msgid "float"
-msgstr ""
+msgstr "浮動小数点"
 
 #: ../../../reference/constrained.rst:387
 msgid "B"
@@ -2127,7 +2297,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:387
 msgid "byte code"
-msgstr ""
+msgstr "バイトコード"
 
 #: ../../../reference/constrained.rst:388
 msgid "M"
@@ -2135,17 +2305,19 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:388
 msgid "module"
-msgstr ""
+msgstr "モジュール"
 
 #: ../../../reference/constrained.rst:391
 msgid ""
 "Each letter represents a single block of memory, a block being 16 bytes. "
 "So each line of the heap dump represents 0x400 bytes or 1KiB of RAM."
 msgstr ""
+"各文字は1ブロックのメモリを表し、1ブロックは16バイトです。したがって、"
+"ヒープダンプの各行は 0x400 バイトまたは 1KB の RAM を表します。"
 
 #: ../../../reference/constrained.rst:395
 msgid "Control of Garbage Collection"
-msgstr ""
+msgstr "ガベージコレクションの制御"
 
 #: ../../../reference/constrained.rst:397
 msgid ""
@@ -2156,6 +2328,11 @@ msgid ""
 "explicit call can minimise that delay while ensuring it occurs at points "
 "in the program when it is acceptable."
 msgstr ""
+"GC は `gc.collect()` の実行によっていつでも要求できます。第一にフラグメンテーション"
+"解消のために、第二にパフォーマンスのために、間隔を置いてこれを実行することが有利です。"
+"GCには数ミリ秒かかることがありますが、実行する作業がほとんどない場合は速くなります"
+"(pyboardでは約1ms)。明示的な呼び出しは、プログラム内の適切な時点で確実に発生する"
+"ようにしながら、GC による遅延を最小限に抑えることができます。"
 
 #: ../../../reference/constrained.rst:403
 msgid ""
@@ -2165,6 +2342,10 @@ msgid ""
 "GC will be triggered if the amount of free RAM falls below a threshold. "
 "This threshold can be adapted as execution progresses:"
 msgstr ""
+"自動 GC は次の状況で引き起こされます。割り当ての試みが失敗すると、GC が実行され、"
+"割り当てが再試行されます。これが失敗した場合にのみ、例外が発生します。次に、空き "
+"RAM の量がしきい値を下回ると、自動 GC がトリガーされます。実行が進むにつれて、"
+"このしきい値を調整することができます。"
 
 #: ../../../reference/constrained.rst:414
 #, python-format
@@ -2172,6 +2353,7 @@ msgid ""
 "This will provoke a GC when more than 25% of the currently free heap "
 "becomes occupied."
 msgstr ""
+"これは、現在の空きヒープの25％以上が占有されるようになると、GCを引き起こします。"
 
 #: ../../../reference/constrained.rst:417
 msgid ""
@@ -2181,10 +2363,15 @@ msgid ""
 "subsequent modules are imported. If modules do instantiate data on import"
 " then `gc.collect()` issued after the import will ameliorate the problem."
 msgstr ""
+"一般的にモジュールはコンストラクタや他の初期化関数を使って実行時にデータオブジェクトを"
+"インスタンス化するべきです。このようにする理由は、モジュールのインポート時にこれが"
+"発生すると、後続のモジュールのインポート時にコンパイラのRAMが不足する可能性があるため"
+"です。モジュールがインポート時にデータをインスタンス化する場合は、インポート後に "
+"`gc.collect()` を実行すると、問題が改善します。"
 
 #: ../../../reference/constrained.rst:424
 msgid "String Operations"
-msgstr ""
+msgstr "文字列操作"
 
 #: ../../../reference/constrained.rst:426
 msgid ""
@@ -2196,6 +2383,12 @@ msgid ""
 "instance will be located in RAM, but as described above, in modules "
 "frozen as bytecode it will be located in flash."
 msgstr ""
+"MicroPython は文字列を効率的に処理します。これを理解することは、マイクロコントローラ"
+"上で動作するようにアプリケーションを設計するのに役立ちます。モジュールがコンパイル"
+"されると、複数回出現する文字列は１回だけ格納されます。これは文字列の入れ替えとして"
+"知られています。MicroPython では内部文字列として知られていqstrます。通常インポート"
+"されたモジュールでは、その単一のインスタンスは RAM に配置されますが、前述のように、"
+"バイトコードとして凍結されたモジュールではフラッシュに配置されます。"
 
 #: ../../../reference/constrained.rst:433
 msgid ""
@@ -2204,10 +2397,13 @@ msgid ""
 "integers may hence be small both in terms of performance and RAM usage - "
 "a fact which may come as a surprise to C programmers."
 msgstr ""
+"文字列比較も、文字ごとではなくハッシュを使用して効率的に実行されます。したがって、"
+"整数ではなく文字列を使用することによるペナルティは、パフォーマンスと RAM の使用量の"
+"両方の点で小さい場合があります。これは、C プログラマにとっては驚くべきことです。"
 
 #: ../../../reference/constrained.rst:439
 msgid "Postscript"
-msgstr ""
+msgstr "あとがき"
 
 #: ../../../reference/constrained.rst:441
 msgid ""
@@ -2215,6 +2411,9 @@ msgid ""
 " A reference occupies a single machine word so these processes are "
 "efficient in RAM usage and speed."
 msgstr ""
+"MicroPython は、参照によってオブジェクトの受け渡しと(デフォルトで)コピーを行います。"
+"参照は単一のマシンワードを占有するため、これらのプロセスは RAM の使用と速度の点で"
+"効率的です。"
 
 #: ../../../reference/constrained.rst:445
 msgid ""
@@ -2223,10 +2422,13 @@ msgid ""
 "efficiently and in performing conversions. See the `array`, `ustruct` and"
 " `uctypes` modules."
 msgstr ""
+"サイズがバイトでも１機械語でもない変数が必要な場合は、これらを効率的に格納して変換を"
+"実行するのを助けることができる標準ライブラリがあります。"
+"`array`, `ustruct`, `uctypes` モジュールを参照してください。"
 
 #: ../../../reference/constrained.rst:451
 msgid "Footnote: gc.collect() return value"
-msgstr ""
+msgstr "脚注: gc.collect（）の戻り値"
 
 #: ../../../reference/constrained.rst:453
 msgid ""
@@ -2236,6 +2438,9 @@ msgid ""
 "were turned into frees). For efficiency reasons bare metal ports do not "
 "return this value."
 msgstr ""
+"Unix および Windows プラットフォームでは、この `gc.collect()` メソッドは、"
+"コレクション内で回収された個別のメモリ領域の数(より正確には、空きになったヘッドの数)"
+"を表す整数を返します。効率上の理由から、ベアメタルポートはこの値を返しません。"
 
 #: ../../../reference/glossary.rst:2
 msgid "Glossary"
@@ -4212,8 +4417,8 @@ msgstr ""
 
 #: ../../../reference/repl.rst:175
 msgid ""
-"PYB: sync filesystems\n"
-"PYB: soft reboot\n"
+"MPY: sync filesystems\n"
+"MPY: soft reboot\n"
 "MicroPython v1.5-51-g6f70283-dirty on 2015-10-30; PYBv1.0 with "
 "STM32F405RG\n"
 "Type \"help()\" for more information.\n"
