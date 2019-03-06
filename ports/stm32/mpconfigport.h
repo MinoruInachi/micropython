@@ -169,7 +169,7 @@
 
 // fatfs configuration used in ffconf.h
 #define MICROPY_FATFS_ENABLE_LFN       (1)
-#define MICROPY_FATFS_LFN_CODE_PAGE    (437) /* 1=SFN/ANSI 437=LFN/U.S.(OEM) */
+#define MICROPY_FATFS_LFN_CODE_PAGE    437 /* 1=SFN/ANSI 437=LFN/U.S.(OEM) */
 #define MICROPY_FATFS_USE_LABEL        (1)
 #define MICROPY_FATFS_RPATH            (2)
 #define MICROPY_FATFS_MULTI_PARTITION  (1)
@@ -356,6 +356,11 @@ static inline mp_uint_t disable_irq(void) {
 
 #define MICROPY_THREAD_YIELD()
 #endif
+
+// The LwIP interface must run at a raised IRQ priority
+#define MICROPY_PY_LWIP_ENTER   uint32_t irq_state = raise_irq_pri(IRQ_PRI_PENDSV);
+#define MICROPY_PY_LWIP_REENTER irq_state = raise_irq_pri(IRQ_PRI_PENDSV);
+#define MICROPY_PY_LWIP_EXIT    restore_irq_pri(irq_state);
 
 // We need an implementation of the log2 function which is not a macro
 #define MP_NEED_LOG2 (1)

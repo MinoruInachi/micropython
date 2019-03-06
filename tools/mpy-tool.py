@@ -63,6 +63,30 @@ class Config:
     MICROPY_LONGINT_IMPL_MPZ = 2
 config = Config()
 
+class QStrType:
+    def __init__(self, str):
+        self.str = str
+        self.qstr_esc = qstrutil.qstr_escape(self.str)
+        self.qstr_id = 'MP_QSTR_' + self.qstr_esc
+
+# Initialise global list of qstrs with static qstrs
+global_qstrs = [None] # MP_QSTR_NULL should never be referenced
+for n in qstrutil.static_qstr_list:
+    global_qstrs.append(QStrType(n))
+
+class QStrWindow:
+    def __init__(self, size_log2):
+        self.window = []
+        self.size = 1 << size_log2
+
+    def push(self, val):
+        self.window = [val] + self.window[:self.size - 1]
+
+    def access(self, idx):
+        val = self.window[idx]
+        self.window = [val] + self.window[:idx] + self.window[idx + 1:]
+        return val
+
 MP_OPCODE_BYTE = 0
 MP_OPCODE_QSTR = 1
 MP_OPCODE_VAR_UINT = 2
@@ -105,7 +129,7 @@ def make_opcode_format():
     OC4(O, O, U, U), # 0x38-0x3b
     OC4(U, O, B, O), # 0x3c-0x3f
     OC4(O, B, B, O), # 0x40-0x43
-    OC4(B, B, O, B), # 0x44-0x47
+    OC4(O, U, O, B), # 0x44-0x47
     OC4(U, U, U, U), # 0x48-0x4b
     OC4(U, U, U, U), # 0x4c-0x4f
     OC4(V, V, U, V), # 0x50-0x53
@@ -161,7 +185,7 @@ def make_opcode_format():
     ))
 
 # this function mirrors that in py/bc.c
-def mp_opcode_format(bytecode, ip, opcode_format=make_opcode_format()):
+def mp_opcode_format(bytecode, ip, count_var_uint, opcode_format=make_opcode_format()):
     opcode = bytecode[ip]
     ip_start = ip
     f = (opcode_format[opcode >> 2] >> (2 * (opcode & 3))) & 3
@@ -181,9 +205,10 @@ def mp_opcode_format(bytecode, ip, opcode_format=make_opcode_format()):
         )
         ip += 1
         if f == MP_OPCODE_VAR_UINT:
-            while bytecode[ip] & 0x80 != 0:
+            if count_var_uint:
+                while bytecode[ip] & 0x80 != 0:
+                    ip += 1
                 ip += 1
-            ip += 1
         elif f == MP_OPCODE_OFFSET:
             ip += 2
         ip += extra_byte
@@ -275,7 +300,7 @@ class RawCode:
         print()
         ip = self.ip
         while ip < len(self.bytecode):
-            f, sz = mp_opcode_format(self.bytecode, ip)
+            f, sz = mp_opcode_format(self.bytecode, ip, True)
             if f == 1:
                 qst = self._unpack_qstr(ip + 1).qstr_id
                 extra = '' if sz == 3 else ' 0x%02x,' % self.bytecode[ip + 3]
@@ -380,22 +405,45 @@ class RawCode:
         print('    },')
         print('};')
 
-def read_uint(f):
+class BytecodeBuffer:
+    def __init__(self, size):
+        self.buf = bytearray(size)
+        self.idx = 0
+
+    def is_full(self):
+        return self.idx == len(self.buf)
+
+    def append(self, b):
+        self.buf[self.idx] = b
+        self.idx += 1
+
+def read_byte(f, out=None):
+    b = bytes_cons(f.read(1))[0]
+    if out is not None:
+        out.append(b)
+    return b
+
+def read_uint(f, out=None):
     i = 0
     while True:
-        b = bytes_cons(f.read(1))[0]
+        b = read_byte(f, out)
         i = (i << 7) | (b & 0x7f)
         if b & 0x80 == 0:
             break
     return i
 
-global_qstrs = []
-qstr_type = namedtuple('qstr', ('str', 'qstr_esc', 'qstr_id'))
-def read_qstr(f):
+def read_qstr(f, qstr_win):
     ln = read_uint(f)
+    if ln == 0:
+        # static qstr
+        return bytes_cons(f.read(1))[0]
+    if ln & 1:
+        # qstr in table
+        return qstr_win.access(ln >> 1)
+    ln >>= 1
     data = str_cons(f.read(ln), 'utf8')
-    qstr_esc = qstrutil.qstr_escape(data)
-    global_qstrs.append(qstr_type(data, qstr_esc, 'MP_QSTR_' + qstr_esc))
+    global_qstrs.append(QStrType(data))
+    qstr_win.push(len(global_qstrs) - 1)
     return len(global_qstrs) - 1
 
 def read_obj(f):
@@ -417,31 +465,56 @@ def read_obj(f):
         else:
             assert 0
 
-def read_qstr_and_pack(f, bytecode, ip):
-    qst = read_qstr(f)
-    bytecode[ip] = qst & 0xff
-    bytecode[ip + 1] = qst >> 8
+def read_prelude(f, bytecode):
+    n_state = read_uint(f, bytecode)
+    n_exc_stack = read_uint(f, bytecode)
+    scope_flags = read_byte(f, bytecode)
+    n_pos_args = read_byte(f, bytecode)
+    n_kwonly_args = read_byte(f, bytecode)
+    n_def_pos_args = read_byte(f, bytecode)
+    l1 = bytecode.idx
+    code_info_size = read_uint(f, bytecode)
+    l2 = bytecode.idx
+    for _ in range(code_info_size - (l2 - l1)):
+        read_byte(f, bytecode)
+    while read_byte(f, bytecode) != 255:
+        pass
+    return l2, (n_state, n_exc_stack, scope_flags, n_pos_args, n_kwonly_args, n_def_pos_args, code_info_size)
 
-def read_bytecode_qstrs(file, bytecode, ip):
-    while ip < len(bytecode):
-        f, sz = mp_opcode_format(bytecode, ip)
-        if f == 1:
-            read_qstr_and_pack(file, bytecode, ip + 1)
-        ip += sz
+def read_qstr_and_pack(f, bytecode, qstr_win):
+    qst = read_qstr(f, qstr_win)
+    bytecode.append(qst & 0xff)
+    bytecode.append(qst >> 8)
 
-def read_raw_code(f):
+def read_bytecode(file, bytecode, qstr_win):
+    QSTR_LAST_STATIC = len(qstrutil.static_qstr_list)
+    while not bytecode.is_full():
+        op = read_byte(file, bytecode)
+        f, sz = mp_opcode_format(bytecode.buf, bytecode.idx - 1, False)
+        sz -= 1
+        if f == MP_OPCODE_QSTR:
+            read_qstr_and_pack(file, bytecode, qstr_win)
+            sz -= 2
+        elif f == MP_OPCODE_VAR_UINT:
+            while read_byte(file, bytecode) & 0x80:
+                pass
+        for _ in range(sz):
+            read_byte(file, bytecode)
+
+def read_raw_code(f, qstr_win):
     bc_len = read_uint(f)
-    bytecode = bytearray(f.read(bc_len))
-    ip, ip2, prelude = extract_prelude(bytecode)
-    read_qstr_and_pack(f, bytecode, ip2) # simple_name
-    read_qstr_and_pack(f, bytecode, ip2 + 2) # source_file
-    read_bytecode_qstrs(f, bytecode, ip)
+    bytecode = BytecodeBuffer(bc_len)
+    name_idx, prelude = read_prelude(f, bytecode)
+    read_bytecode(f, bytecode, qstr_win)
+    bytecode.idx = name_idx # rewind to where qstrs are in prelude
+    read_qstr_and_pack(f, bytecode, qstr_win) # simple_name
+    read_qstr_and_pack(f, bytecode, qstr_win) # source_file
     n_obj = read_uint(f)
     n_raw_code = read_uint(f)
-    qstrs = [read_qstr(f) for _ in range(prelude[3] + prelude[4])]
+    qstrs = [read_qstr(f, qstr_win) for _ in range(prelude[3] + prelude[4])]
     objs = [read_obj(f) for _ in range(n_obj)]
-    raw_codes = [read_raw_code(f) for _ in range(n_raw_code)]
-    return RawCode(bytecode, qstrs, objs, raw_codes)
+    raw_codes = [read_raw_code(f, qstr_win) for _ in range(n_raw_code)]
+    return RawCode(bytecode.buf, qstrs, objs, raw_codes)
 
 def read_mpy(filename):
     with open(filename, 'rb') as f:
@@ -450,11 +523,13 @@ def read_mpy(filename):
             raise Exception('not a valid .mpy file')
         if header[1] != config.MPY_VERSION:
             raise Exception('incompatible .mpy version')
-        feature_flags = header[2]
-        config.MICROPY_OPT_CACHE_MAP_LOOKUP_IN_BYTECODE = (feature_flags & 1) != 0
-        config.MICROPY_PY_BUILTINS_STR_UNICODE = (feature_flags & 2) != 0
+        feature_byte = header[2]
+        qw_size = read_uint(f)
+        config.MICROPY_OPT_CACHE_MAP_LOOKUP_IN_BYTECODE = (feature_byte & 1) != 0
+        config.MICROPY_PY_BUILTINS_STR_UNICODE = (feature_byte & 2) != 0
         config.mp_small_int_bits = header[3]
-        return read_raw_code(f)
+        qstr_win = QStrWindow(qw_size)
+        return read_raw_code(f, qstr_win)
 
 def dump_mpy(raw_codes):
     for rc in raw_codes:
@@ -465,7 +540,7 @@ def freeze_mpy(base_qstrs, raw_codes):
     new = {}
     for q in global_qstrs:
         # don't add duplicates
-        if q.qstr_esc in base_qstrs or q.qstr_esc in new:
+        if q is None or q.qstr_esc in base_qstrs or q.qstr_esc in new:
             continue
         new[q.qstr_esc] = (len(new), q.qstr_esc, q.str)
     new = sorted(new.values(), key=lambda x: x[0])

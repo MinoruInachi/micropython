@@ -738,7 +738,6 @@ void mp_emit_bc_setup_block(emit_t *emit, mp_uint_t label, int kind) {
 }
 
 void mp_emit_bc_with_cleanup(emit_t *emit, mp_uint_t label) {
-    mp_emit_bc_pop_block(emit);
     mp_emit_bc_load_const_tok(emit, MP_TOKEN_KW_NONE);
     mp_emit_bc_label_assign(emit, label);
     emit_bc_pre(emit, 2); // ensure we have enough stack space to call the __exit__ method
@@ -765,14 +764,10 @@ void mp_emit_bc_for_iter_end(emit_t *emit) {
     emit_bc_pre(emit, -MP_OBJ_ITER_BUF_NSLOTS);
 }
 
-void mp_emit_bc_pop_block(emit_t *emit) {
+void mp_emit_bc_pop_except_jump(emit_t *emit, mp_uint_t label, bool within_exc_handler) {
+    (void)within_exc_handler;
     emit_bc_pre(emit, 0);
-    emit_write_bytecode_byte(emit, MP_BC_POP_BLOCK);
-}
-
-void mp_emit_bc_pop_except(emit_t *emit) {
-    emit_bc_pre(emit, 0);
-    emit_write_bytecode_byte(emit, MP_BC_POP_EXCEPT);
+    emit_write_bytecode_byte_unsigned_label(emit, MP_BC_POP_EXCEPT_JUMP, label);
 }
 
 void mp_emit_bc_unary_op(emit_t *emit, mp_unary_op_t op) {
@@ -959,8 +954,7 @@ const emit_method_table_t emit_bc_method_table = {
     mp_emit_bc_get_iter,
     mp_emit_bc_for_iter,
     mp_emit_bc_for_iter_end,
-    mp_emit_bc_pop_block,
-    mp_emit_bc_pop_except,
+    mp_emit_bc_pop_except_jump,
     mp_emit_bc_unary_op,
     mp_emit_bc_binary_op,
     mp_emit_bc_build,

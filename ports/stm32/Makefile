@@ -52,6 +52,7 @@ INC += -I$(CMSIS_DIR)/
 INC += -I$(TOP)/$(HAL_DIR)/Inc
 INC += -I$(USBDEV_DIR)/core/inc -I$(USBDEV_DIR)/class/inc
 #INC += -I$(USBHOST_DIR)
+INC += -Ilwip_inc
 
 # Basic Cortex-M flags
 CFLAGS_CORTEX_M = -mthumb
@@ -107,9 +108,10 @@ endif
 SRC_LIB = $(addprefix lib/,\
 	libc/string0.c \
 	oofatfs/ff.c \
-	oofatfs/option/unicode.c \
+	oofatfs/ffunicode.c \
 	mp-readline/readline.c \
 	netutils/netutils.c \
+	netutils/trace.c \
 	timeutils/timeutils.c \
 	utils/pyexec.c \
 	utils/interrupt_char.c \
@@ -198,7 +200,6 @@ endif
 endif
 
 EXTMOD_SRC_C = $(addprefix extmod/,\
-	modlwip.c \
 	modonewire.c \
         )
 
@@ -240,6 +241,7 @@ SRC_C = \
 	can.c \
 	usb.c \
 	wdt.c \
+	eth.c \
 	gccollect.c \
 	help.c \
 	machine_i2c.c \
@@ -251,6 +253,7 @@ SRC_C = \
 	moduos.c \
 	modutime.c \
 	modusocket.c \
+	network_lan.c \
 	modnetwork.c \
 	extint.c \
 	usrsw.c \
@@ -380,47 +383,6 @@ SRC_MOD += $(addprefix $(CC3000_DIR)/src/,\
 	)
 endif
 
-LWIP_DIR = lib/lwip/src
-INC += -I$(TOP)/$(LWIP_DIR)/include -Ilwip_inc
-$(BUILD)/$(LWIP_DIR)/core/ipv4/dhcp.o: CFLAGS += -Wno-address
-SRC_MOD += $(addprefix $(LWIP_DIR)/,\
-	core/def.c \
-	core/dns.c \
-	core/inet_chksum.c \
-	core/init.c \
-	core/ip.c \
-	core/mem.c \
-	core/memp.c \
-	core/netif.c \
-	core/pbuf.c \
-	core/raw.c \
-	core/stats.c \
-	core/sys.c \
-	core/tcp.c \
-	core/tcp_in.c \
-	core/tcp_out.c \
-	core/timeouts.c \
-	core/udp.c \
-	core/ipv4/autoip.c \
-	core/ipv4/dhcp.c \
-	core/ipv4/etharp.c \
-	core/ipv4/icmp.c \
-	core/ipv4/igmp.c \
-	core/ipv4/ip4_addr.c \
-	core/ipv4/ip4.c \
-	core/ipv4/ip4_frag.c \
-	core/ipv6/dhcp6.c \
-	core/ipv6/ethip6.c \
-	core/ipv6/icmp6.c \
-	core/ipv6/inet6.c \
-	core/ipv6/ip6_addr.c \
-	core/ipv6/ip6.c \
-	core/ipv6/ip6_frag.c \
-	core/ipv6/mld6.c \
-	core/ipv6/nd6.c \
-	netif/ethernet.c \
-	)
-
 OBJ =
 OBJ += $(PY_O)
 OBJ += $(addprefix $(BUILD)/, $(SRC_LIB:.c=.o))
@@ -487,6 +449,8 @@ TEXT0_ADDR ?= 0x08000000
 ifeq ($(TEXT1_ADDR),)
 # No TEXT1_ADDR given so put all firmware at TEXT0_ADDR location
 
+TEXT0_SECTIONS ?= .isr_vector .text .data
+
 deploy-stlink: $(BUILD)/firmware.dfu
 	$(ECHO) "Writing $(BUILD)/firmware.bin to the board via ST-LINK"
 	$(Q)$(STFLASH) write $(BUILD)/firmware.bin $(TEXT0_ADDR)
@@ -497,11 +461,14 @@ deploy-openocd: $(BUILD)/firmware.dfu
 
 $(BUILD)/firmware.dfu: $(BUILD)/firmware.elf
 	$(ECHO) "Create $@"
-	$(Q)$(OBJCOPY) -O binary -j .isr_vector -j .text -j .data $^ $(BUILD)/firmware.bin
+	$(Q)$(OBJCOPY) -O binary $(addprefix -j ,$(TEXT0_SECTIONS)) $^ $(BUILD)/firmware.bin
 	$(Q)$(PYTHON) $(DFU) -b $(TEXT0_ADDR):$(BUILD)/firmware.bin $@
 
 else
 # TEXT0_ADDR and TEXT1_ADDR are specified so split firmware between these locations
+
+TEXT0_SECTIONS ?= .isr_vector
+TEXT1_SECTIONS ?= .text .data
 
 deploy-stlink: $(BUILD)/firmware.dfu
 	$(ECHO) "Writing $(BUILD)/firmware0.bin to the board via ST-LINK"
@@ -515,8 +482,8 @@ deploy-openocd: $(BUILD)/firmware.dfu
 
 $(BUILD)/firmware.dfu: $(BUILD)/firmware.elf
 	$(ECHO) "GEN $@"
-	$(Q)$(OBJCOPY) -O binary -j .isr_vector $^ $(BUILD)/firmware0.bin
-	$(Q)$(OBJCOPY) -O binary -j .text -j .data $^ $(BUILD)/firmware1.bin
+	$(Q)$(OBJCOPY) -O binary $(addprefix -j ,$(TEXT0_SECTIONS)) $^ $(BUILD)/firmware0.bin
+	$(Q)$(OBJCOPY) -O binary $(addprefix -j ,$(TEXT1_SECTIONS)) $^ $(BUILD)/firmware1.bin
 	$(Q)$(PYTHON) $(DFU) -b $(TEXT0_ADDR):$(BUILD)/firmware0.bin -b $(TEXT1_ADDR):$(BUILD)/firmware1.bin $@
 
 endif

@@ -329,13 +329,16 @@ STATIC void OTG_CMD_WKUP_Handler(PCD_HandleTypeDef *pcd_handle) {
     /* Reset SLEEPDEEP bit of Cortex System Control Register */
     SCB->SCR &= (uint32_t)~((uint32_t)(SCB_SCR_SLEEPDEEP_Msk | SCB_SCR_SLEEPONEXIT_Msk));
 
-    /* Configures system clock after wake-up from STOP: enable HSE, PLL and select
-    PLL as system clock source (HSE and PLL are disabled in STOP mode) */
+    /* Configures system clock after wake-up from STOP: enable HSE/HSI, PLL and select
+    PLL as system clock source (HSE/HSI and PLL are disabled in STOP mode) */
 
-    __HAL_RCC_HSE_CONFIG(MICROPY_HW_CLK_HSE_STATE);
+    __HAL_RCC_HSE_CONFIG(MICROPY_HW_RCC_HSE_STATE);
+    #if MICROPY_HW_CLK_USE_HSI
+    __HAL_RCC_HSI_ENABLE();
+    #endif
 
-    /* Wait till HSE is ready */
-    while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) == RESET)
+    /* Wait till HSE/HSI is ready */
+    while(__HAL_RCC_GET_FLAG(MICROPY_HW_RCC_FLAG_HSxRDY) == RESET)
     {}
 
     /* Enable the main PLL. */
@@ -509,8 +512,18 @@ void RTC_WKUP_IRQHandler(void) {
 
 void RTC_IRQHandler(void) {
     IRQ_ENTER(RTC_IRQn);
-    RTC->ISR &= ~RTC_ISR_WUTF; // clear wakeup interrupt flag
-    Handle_EXTI_Irq(EXTI_RTC_WAKEUP); // clear EXTI flag and execute optional callback
+    if (RTC->ISR & RTC_ISR_WUTF) {
+        RTC->ISR &= ~RTC_ISR_WUTF; // clear wakeup interrupt flag
+        Handle_EXTI_Irq(EXTI_RTC_WAKEUP); // clear EXTI flag and execute optional callback
+    }
+    if (RTC->ISR & RTC_ISR_ALRAF) {
+        RTC->ISR &= ~RTC_ISR_ALRAF; // clear Alarm A flag
+        Handle_EXTI_Irq(EXTI_RTC_ALARM); // clear EXTI flag and execute optional callback
+    }
+    if (RTC->ISR & RTC_ISR_TSF) {
+        RTC->ISR &= ~RTC_ISR_TSF; // clear timestamp flag
+        Handle_EXTI_Irq(EXTI_RTC_TIMESTAMP); // clear EXTI flag and execute optional callback
+    }
     IRQ_EXIT(RTC_IRQn);
 }
 
