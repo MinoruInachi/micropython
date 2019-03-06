@@ -11224,18 +11224,19 @@ msgstr "ターミナルのリダイレクトと複製"
 #: ../../../library/uos.rst:117
 msgid ""
 "Duplicate or switch the MicroPython terminal (the REPL) on the given "
-"`stream`-like object. The *stream_object* argument must implement the "
+"`stream`-like object. The *stream_object* argument must be a native "
+"stream object, or derive from ``uio.IOBase`` and implement the "
 "``readinto()`` and ``write()`` methods.  The stream should be in non-"
 "blocking mode and ``readinto()`` should return ``None`` if there is no "
 "data available for reading."
 msgstr ""
 "与えた `strean` オブジェクトに MicroPython 端末(REPL)を複製または"
-"切り替えを行います。 *stream_object* の引数は ``readinto()`` と "
-"``write()`` メソッドを実装しなければなりません。ストリームは非ブロッキング"
-"モードで、 ``readinto()`` は読み込み可能なデータがない場合は ``None`` を"
-"返すようにします。"
+"切り替えを行います。 *stream_object* の引数はネイティブストリームオブジェクトか、"
+"``uio.IOBase`` から派生して ``readinto()`` と ``write()`` メソッドを実装した"
+"ものでなければなりません。ストリームは非ブロッキングモードで、 ``readinto()`` "
+"は読み込み可能なデータがない場合は ``None`` を返すようにします。"
 
-#: ../../../library/uos.rst:122
+#: ../../../library/uos.rst:123
 msgid ""
 "After calling this function all terminal output is repeated on this "
 "stream, and any input that is available on the stream is passed on to the"
@@ -11244,7 +11245,7 @@ msgstr ""
 "この関数を呼び出した後、すべての端末出力がこのストリーム上で繰り返され、"
 "ストリーム上で利用可能なすべての入力がターミナル入力に渡されます。"
 
-#: ../../../library/uos.rst:125
+#: ../../../library/uos.rst:126
 msgid ""
 "The *index* parameter should be a non-negative integer and specifies "
 "which duplication slot is set.  A given port may implement more than one "
@@ -11255,7 +11256,7 @@ msgstr ""
 "ポートは２つ以上のスロットを実装できます(スロット 0 は常に使用可能です)。"
 "その場合、端末の入出力は設定されているすべてのスロットに複製されます。"
 
-#: ../../../library/uos.rst:130
+#: ../../../library/uos.rst:131
 msgid ""
 "If ``None`` is passed as the *stream_object* then duplication is "
 "cancelled on the slot given by *index*."
@@ -11263,15 +11264,15 @@ msgstr ""
 "*stream_object* に ``None`` を渡した場合、 *index* によって指定された"
 "スロットで重複が取り消されます。"
 
-#: ../../../library/uos.rst:133
+#: ../../../library/uos.rst:134
 msgid "The function returns the previous stream-like object in the given slot."
 msgstr "この関数は、指定したスロットの前のストリームオブジェクトを返します。"
 
-#: ../../../library/uos.rst:136
+#: ../../../library/uos.rst:137
 msgid "Filesystem mounting"
 msgstr "ファイルシステムのマウント"
 
-#: ../../../library/uos.rst:138
+#: ../../../library/uos.rst:139
 msgid ""
 "Some ports provide a Virtual Filesystem (VFS) and the ability to mount "
 "multiple \"real\" filesystems within this VFS.  Filesystem objects can be"
@@ -11288,7 +11289,7 @@ msgstr ""
 "この機能を持つポートは ``mount()`` と ``umount()`` 関数、そしておそらく VFS "
 "クラスで表されるさまざまなファイルシステムの実装を提供します。"
 
-#: ../../../library/uos.rst:148
+#: ../../../library/uos.rst:149
 msgid ""
 "Mount the filesystem object *fsobj* at the location in the VFS given by "
 "the *mount_point* string.  *fsobj* can be a a VFS object that has a "
@@ -11305,11 +11306,11 @@ msgstr ""
 "*mount_point* が ``'/'`` であれば *fsobj* をルートににマウントし、"
 "``'/<name>'`` であればルート配下のサブディレクトリにマウントします。"
 
-#: ../../../library/uos.rst:155
+#: ../../../library/uos.rst:156
 msgid "If *readonly* is ``True`` then the filesystem is mounted read-only."
 msgstr "*readonly* が ``True`` であればファイルシステムが読み取り専用でマウントされています。"
 
-#: ../../../library/uos.rst:157
+#: ../../../library/uos.rst:158
 msgid ""
 "During the mount process the method ``mount()`` is called on the "
 "filesystem object."
@@ -11317,11 +11318,11 @@ msgstr ""
 "マウント処理では、ファイルシステムオブジェクトに対してメソッド ``mount()`` "
 "呼出します。"
 
-#: ../../../library/uos.rst:160
+#: ../../../library/uos.rst:161
 msgid "Will raise ``OSError(EPERM)`` if *mount_point* is already mounted."
 msgstr "*mount_point* に既にマウントされていれば ``OSError(EPERM)`` 例外が発生します。"
 
-#: ../../../library/uos.rst:164
+#: ../../../library/uos.rst:165
 msgid ""
 "Unmount a filesystem. *mount_point* can be a string naming the mount "
 "location, or a previously-mounted filesystem object.  During the unmount "
@@ -11332,11 +11333,11 @@ msgstr ""
 "アンマウント処理では、ファイルシステムオブジェクトに対してメソッド ``unmount()`` "
 "呼出します。"
 
-#: ../../../library/uos.rst:168
+#: ../../../library/uos.rst:169
 msgid "Will raise ``OSError(EINVAL)`` if *mount_point* is not found."
 msgstr ""*mount_point* が見つからなければ ``OSError(EINVAL)`` 例外が発生します。"
 
-#: ../../../library/uos.rst:172
+#: ../../../library/uos.rst:173
 msgid ""
 "Create a filesystem object that uses the FAT filesystem format.  Storage "
 "of the FAT filesystem is provided by *block_dev*. Objects created by this"
@@ -11347,15 +11348,15 @@ msgstr ""
 "コンストラクタによって作成されたオブジェクトは :func:`mount` を使ってマウント"
 "できます。"
 
-#: ../../../library/uos.rst:178
+#: ../../../library/uos.rst:179
 msgid "Build a FAT filesystem on *block_dev*."
 msgstr "*block_dev* に FAT ファイルシステムを構築します。"
 
-#: ../../../library/uos.rst:181
+#: ../../../library/uos.rst:182
 msgid "Block devices"
 msgstr "ブロックデバイス"
 
-#: ../../../library/uos.rst:183
+#: ../../../library/uos.rst:184
 msgid ""
 "A block device is an object which implements the block protocol, which is"
 " a set of methods described below by the :class:`AbstractBlockDev` class."
@@ -11370,7 +11371,7 @@ msgstr ""
 "許可されます。特定のファイルシステムドライバがブロックデバイスを使用して、ファイル"
 "システム用のデータを格納できます。"
 
-#: ../../../library/uos.rst:191
+#: ../../../library/uos.rst:192
 msgid ""
 "Construct a block device object.  The parameters to the constructor are "
 "dependent on the specific block device."
@@ -11378,7 +11379,7 @@ msgstr ""
 "ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
 "ブロックデバイスに依存します。"
 
-#: ../../../library/uos.rst:196
+#: ../../../library/uos.rst:197
 msgid ""
 "Starting at the block given by the index *block_num*, read blocks from "
 "the device into *buf* (an array of bytes). The number of blocks to read "
@@ -11389,7 +11390,7 @@ msgstr ""
 "にブロックを読み込みます。読み込むブロック数は *buf* の長さで与えられ、ブロック"
 "サイズの倍数になります。"
 
-#: ../../../library/uos.rst:203
+#: ../../../library/uos.rst:204
 msgid ""
 "Starting at the block given by the index *block_num*, write blocks from "
 "*buf* (an array of bytes) to the device. The number of blocks to write is"
@@ -11400,7 +11401,7 @@ msgstr ""
 "書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
 "なります。"
 
-#: ../../../library/uos.rst:210
+#: ../../../library/uos.rst:211
 msgid ""
 "Control the block device and query its parameters.  The operation to "
 "perform is given by *op* which is one of the following integers:"
@@ -11408,7 +11409,7 @@ msgstr ""
 "ブロックデバイスを制御し、そのパラメータを問い合わせます。実行する操作は *op* に"
 "次の整数のうちの１つで指定します。"
 
-#: ../../../library/uos.rst:213
+#: ../../../library/uos.rst:214
 msgid "1 -- initialise the device (*arg* is unused)"
 msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 
@@ -11416,17 +11417,17 @@ msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 msgid "2 -- shutdown the device (*arg* is unused)"
 msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
 
-#: ../../../library/uos.rst:215
+#: ../../../library/uos.rst:216
 msgid "3 -- sync the device (*arg* is unused)"
 msgstr "3 -- デバイスを同期します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:216
+#: ../../../library/uos.rst:217
 msgid ""
 "4 -- get a count of the number of blocks, should return an integer (*arg*"
 " is unused)"
 msgstr "4 -- ブロック数のカウントを取得し、整数で返します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:218
+#: ../../../library/uos.rst:219
 msgid ""
 "5 -- get the number of bytes in a block, should return an integer, or "
 "``None`` in which case the default value of 512 is used (*arg* is unused)"
@@ -11434,7 +11435,7 @@ msgstr ""
 "5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
 "の 512 が使われます(*arg* は未使用)"
 
-#: ../../../library/uos.rst:222
+#: ../../../library/uos.rst:223
 msgid ""
 "By way of example, the following class will implement a block device that"
 " stores its data in RAM using a ``bytearray``::"
@@ -11442,7 +11443,7 @@ msgstr ""
 "一例として、次のクラスは ``bytearray`` を使って RAM にデータを記憶するブロック"
 "デバイスを実装します::"
 
-#: ../../../library/uos.rst:225
+#: ../../../library/uos.rst:226
 msgid ""
 "class RAMBlockDev:\n"
 "    def __init__(self, block_size, num_blocks):\n"
@@ -11482,7 +11483,7 @@ msgstr ""
 "        if op == 5: # ブロックサイズを取得\n"
 "            return self.block_size"
 
-#: ../../../library/uos.rst:244
+#: ../../../library/uos.rst:245
 msgid "It can be used as follows::"
 msgstr "次のように使えます::"
 
