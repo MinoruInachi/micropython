@@ -35,6 +35,7 @@
 #include "py/compile.h"
 #include "py/runtime.h"
 #include "py/asmbase.h"
+#include "py/persistentcode.h"
 
 #if MICROPY_ENABLE_COMPILER
 
@@ -78,7 +79,25 @@ typedef enum {
 
 #endif
 
-#if MICROPY_EMIT_NATIVE
+#if MICROPY_EMIT_NATIVE && MICROPY_DYNAMIC_COMPILER
+
+#define NATIVE_EMITTER(f) emit_native_table[mp_dynamic_compiler.native_arch]->emit_##f
+#define NATIVE_EMITTER_TABLE emit_native_table[mp_dynamic_compiler.native_arch]
+
+STATIC const emit_method_table_t *emit_native_table[] = {
+    NULL,
+    &emit_native_x86_method_table,
+    &emit_native_x64_method_table,
+    &emit_native_arm_method_table,
+    &emit_native_thumb_method_table,
+    &emit_native_thumb_method_table,
+    &emit_native_thumb_method_table,
+    &emit_native_thumb_method_table,
+    &emit_native_thumb_method_table,
+    &emit_native_xtensa_method_table,
+};
+
+#elif MICROPY_EMIT_NATIVE
 // define a macro to access external native emitter
 #if MICROPY_EMIT_X64
 #define NATIVE_EMITTER(f) emit_native_x64_##f
@@ -93,9 +112,28 @@ typedef enum {
 #else
 #error "unknown native emitter"
 #endif
+#define NATIVE_EMITTER_TABLE &NATIVE_EMITTER(method_table)
 #endif
 
-#if MICROPY_EMIT_INLINE_ASM
+#if MICROPY_EMIT_INLINE_ASM && MICROPY_DYNAMIC_COMPILER
+
+#define ASM_EMITTER(f) emit_asm_table[mp_dynamic_compiler.native_arch]->asm_##f
+#define ASM_EMITTER_TABLE emit_asm_table[mp_dynamic_compiler.native_arch]
+
+STATIC const emit_inline_asm_method_table_t *emit_asm_table[] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &emit_inline_thumb_method_table,
+    &emit_inline_thumb_method_table,
+    &emit_inline_thumb_method_table,
+    &emit_inline_thumb_method_table,
+    &emit_inline_thumb_method_table,
+    &emit_inline_xtensa_method_table,
+};
+
+#elif MICROPY_EMIT_INLINE_ASM
 // define macros for inline assembler
 #if MICROPY_EMIT_INLINE_THUMB
 #define ASM_DECORATOR_QSTR MP_QSTR_asm_thumb
@@ -106,6 +144,7 @@ typedef enum {
 #else
 #error "unknown asm emitter"
 #endif
+#define ASM_EMITTER_TABLE &ASM_EMITTER(method_table)
 #endif
 
 #define EMIT_INLINE_ASM(fun) (comp->emit_inline_asm_method_table->fun(comp->emit_inline_asm))
@@ -799,12 +838,31 @@ STATIC bool compile_built_in_decorator(compiler_t *comp, int name_len, mp_parse_
         *emit_options = MP_EMIT_OPT_VIPER;
 #endif
     #if MICROPY_EMIT_INLINE_ASM
+    #if MICROPY_DYNAMIC_COMPILER
+    } else if (attr == MP_QSTR_asm_thumb) {
+        *emit_options = MP_EMIT_OPT_ASM;
+    } else if (attr == MP_QSTR_asm_xtensa) {
+        *emit_options = MP_EMIT_OPT_ASM;
+    #else
     } else if (attr == ASM_DECORATOR_QSTR) {
         *emit_options = MP_EMIT_OPT_ASM;
+    #endif
     #endif
     } else {
         compile_syntax_error(comp, name_nodes[1], "invalid micropython decorator");
     }
+
+    #if MICROPY_DYNAMIC_COMPILER
+    if (*emit_options == MP_EMIT_OPT_NATIVE_PYTHON || *emit_options == MP_EMIT_OPT_VIPER) {
+        if (emit_native_table[mp_dynamic_compiler.native_arch] == NULL) {
+            compile_syntax_error(comp, name_nodes[1], "invalid arch");
+        }
+    } else if (*emit_options == MP_EMIT_OPT_ASM) {
+        if (emit_asm_table[mp_dynamic_compiler.native_arch] == NULL) {
+            compile_syntax_error(comp, name_nodes[1], "invalid arch");
+        }
+    }
+    #endif
 
     return true;
 }
@@ -2693,9 +2751,6 @@ STATIC mp_obj_t get_const_object(mp_parse_node_struct_t *pns) {
 }
 
 STATIC void compile_const_object(compiler_t *comp, mp_parse_node_struct_t *pns) {
-    #if MICROPY_EMIT_NATIVE
-    comp->scope_cur->scope_flags |= MP_SCOPE_FLAG_HASCONSTS;
-    #endif
     EMIT_ARG(load_const_obj, get_const_object(pns));
 }
 
@@ -2730,9 +2785,6 @@ STATIC void compile_node(compiler_t *comp, mp_parse_node_t pn) {
             } else {
                 EMIT_ARG(load_const_obj, mp_obj_new_int_from_ll(arg));
             }
-            #if MICROPY_EMIT_NATIVE
-            comp->scope_cur->scope_flags |= MP_SCOPE_FLAG_HASCONSTS;
-            #endif
         }
         #else
         EMIT_ARG(load_const_small_int, arg);
@@ -2751,9 +2803,6 @@ STATIC void compile_node(compiler_t *comp, mp_parse_node_t pn) {
                     const byte *data = qstr_data(arg, &len);
                     EMIT_ARG(load_const_obj, mp_obj_new_bytes(data, len));
                 }
-                #if MICROPY_EMIT_NATIVE
-                comp->scope_cur->scope_flags |= MP_SCOPE_FLAG_HASCONSTS;
-                #endif
                 break;
             case MP_PARSE_NODE_TOKEN: default:
                 if (arg == MP_TOKEN_NEWLINE) {
@@ -3275,7 +3324,11 @@ STATIC void compile_scope_inline_asm(compiler_t *comp, scope_t *scope, pass_kind
             void *f = mp_asm_base_get_code((mp_asm_base_t*)comp->emit_inline_asm);
             mp_emit_glue_assign_native(comp->scope_cur->raw_code, MP_CODE_NATIVE_ASM,
                 f, mp_asm_base_get_code_size((mp_asm_base_t*)comp->emit_inline_asm),
-                NULL, comp->scope_cur->num_pos_args, 0, type_sig);
+                NULL,
+                #if MICROPY_PERSISTENT_CODE_SAVE
+                0, 0, 0, 0, NULL,
+                #endif
+                comp->scope_cur->num_pos_args, 0, type_sig);
         }
     }
 
@@ -3450,13 +3503,18 @@ mp_raw_code_t *mp_compile_to_raw_code(mp_parse_tree_t *parse_tree, qstr source_f
                 comp->emit_inline_asm = ASM_EMITTER(new)(max_num_labels);
             }
             comp->emit = NULL;
-            comp->emit_inline_asm_method_table = &ASM_EMITTER(method_table);
+            comp->emit_inline_asm_method_table = ASM_EMITTER_TABLE;
             compile_scope_inline_asm(comp, s, MP_PASS_CODE_SIZE);
             #if MICROPY_EMIT_INLINE_XTENSA
             // Xtensa requires an extra pass to compute size of l32r const table
             // TODO this can be improved by calculating it during SCOPE pass
             // but that requires some other structural changes to the asm emitters
-            compile_scope_inline_asm(comp, s, MP_PASS_CODE_SIZE);
+            #if MICROPY_DYNAMIC_COMPILER
+            if (mp_dynamic_compiler.native_arch == MP_NATIVE_ARCH_XTENSA)
+            #endif
+            {
+                compile_scope_inline_asm(comp, s, MP_PASS_CODE_SIZE);
+            }
             #endif
             if (comp->compile_error == MP_OBJ_NULL) {
                 compile_scope_inline_asm(comp, s, MP_PASS_EMIT);
@@ -3475,7 +3533,7 @@ mp_raw_code_t *mp_compile_to_raw_code(mp_parse_tree_t *parse_tree, qstr source_f
                     if (emit_native == NULL) {
                         emit_native = NATIVE_EMITTER(new)(&comp->compile_error, &comp->next_label, max_num_labels);
                     }
-                    comp->emit_method_table = &NATIVE_EMITTER(method_table);
+                    comp->emit_method_table = NATIVE_EMITTER_TABLE;
                     comp->emit = emit_native;
                     break;
 #endif // MICROPY_EMIT_NATIVE

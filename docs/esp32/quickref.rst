@@ -161,6 +161,9 @@ Notes:
 
 * Pins 34-39 are input only, and also do not have internal pull-up resistors
 
+* The pull value of some pins can be set to ``Pin.PULL_HOLD`` to reduce power
+  consumption during deepsleep.
+
 PWM (pulse width modulation)
 ----------------------------
 
@@ -337,6 +340,15 @@ Notes:
 * Calling ``deepsleep()`` without an argument will put the device to sleep
   indefinitely
 * A software reset does not change the reset cause
+* There may be some leakage current flowing through enabled internal pullups.
+  To further reduce power consumption it is possible to disable the internal pullups::
+
+    p1 = Pin(4, Pin.IN, Pin.PULL_HOLD)
+    
+  After leaving deepsleep it may be necessary to un-hold the pin explicitly (e.g. if
+  it is an output pin) via::
+    
+    p1 = Pin(4, Pin.OUT, None)
 
 OneWire driver
 --------------
