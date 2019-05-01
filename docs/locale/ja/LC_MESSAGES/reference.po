@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-01-26 10:39+0900\n"
+"PO-Revision-Date: 2019-05-01 19:32+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -4481,11 +4481,11 @@ msgstr ""
 msgid "Maximising MicroPython Speed"
 msgstr "MicroPython 性能の最大化"
 
-#: ../../../reference/speed_python.rst:4
+#: ../../../reference/speed_python.rst:6
 msgid "contents::"
 msgstr "目次::"
 
-#: ../../../reference/speed_python.rst:6
+#: ../../../reference/speed_python.rst:8
 msgid ""
 "This tutorial describes ways of improving the performance of MicroPython "
 "code. Optimisations involving other languages are covered elsewhere, "
@@ -4496,50 +4496,50 @@ msgstr ""
 "他の言語も使った最適化としては、C言語で書かれたモジュールと MicroPython インライン"
 "アセンブラを扱っています。"
 
-#: ../../../reference/speed_python.rst:10
+#: ../../../reference/speed_python.rst:12
 msgid ""
 "The process of developing high performance code comprises the following "
 "stages which should be performed in the order listed."
 msgstr ""
 "高性能なコードを開発するプロセスは、次の段階を順番に実施します。"
 
-#: ../../../reference/speed_python.rst:13
+#: ../../../reference/speed_python.rst:15
 msgid "Design for speed."
 msgstr "性能のための設計"
 
-#: ../../../reference/speed_python.rst:14
+#: ../../../reference/speed_python.rst:16
 msgid "Code and debug."
 msgstr "コーディングとデバッグ"
 
-#: ../../../reference/speed_python.rst:16
+#: ../../../reference/speed_python.rst:18
 msgid "Optimisation steps:"
 msgstr "最適化の段階:"
 
-#: ../../../reference/speed_python.rst:18
+#: ../../../reference/speed_python.rst:20
 msgid "Identify the slowest section of code."
 msgstr "コードの最も遅い部分を特定。"
 
-#: ../../../reference/speed_python.rst:19
+#: ../../../reference/speed_python.rst:21
 msgid "Improve the efficiency of the Python code."
 msgstr "Python コードの効率を向上。"
 
-#: ../../../reference/speed_python.rst:20
+#: ../../../reference/speed_python.rst:22
 msgid "Use the native code emitter."
 msgstr "ネイティブコードエミッターを使用。"
 
-#: ../../../reference/speed_python.rst:21
+#: ../../../reference/speed_python.rst:23
 msgid "Use the viper code emitter."
 msgstr "バイパーコードエミッタを使用。"
 
-#: ../../../reference/speed_python.rst:22
+#: ../../../reference/speed_python.rst:24
 msgid "Use hardware-specific optimisations."
 msgstr "ハードウェア固有の最適化を使用。"
 
-#: ../../../reference/speed_python.rst:25
+#: ../../../reference/speed_python.rst:27
 msgid "Designing for speed"
 msgstr "性能のための設計"
 
-#: ../../../reference/speed_python.rst:27
+#: ../../../reference/speed_python.rst:29
 msgid ""
 "Performance issues should be considered at the outset. This involves "
 "taking a view on the sections of code which are most performance critical"
@@ -4553,11 +4553,11 @@ msgstr ""
 "コードがテストされたときに始まります。設計が最初から正しい場合、最適化は簡単で"
 "実際には不要な場合があります。"
 
-#: ../../../reference/speed_python.rst:34
+#: ../../../reference/speed_python.rst:36
 msgid "Algorithms"
 msgstr "アルゴリズム"
 
-#: ../../../reference/speed_python.rst:36
+#: ../../../reference/speed_python.rst:38
 msgid ""
 "The most important aspect of designing any routine for performance is "
 "ensuring that the best algorithm is employed. This is a topic for "
@@ -4570,11 +4570,11 @@ msgstr ""
 "ですが、効率がよく知られているアルゴリズムを採用することで、パフォーマンスが大幅に向上"
 "することがあります。"
 
-#: ../../../reference/speed_python.rst:42
+#: ../../../reference/speed_python.rst:44
 msgid "RAM Allocation"
 msgstr "RAM の割り当て"
 
-#: ../../../reference/speed_python.rst:44
+#: ../../../reference/speed_python.rst:46
 msgid ""
 "To design efficient MicroPython code it is necessary to have an "
 "understanding of the way the interpreter allocates RAM. When an object is"
@@ -4590,7 +4590,7 @@ msgstr ""
 "られます。これにはかなりの時間がかかります。さらに場合によっては、ガベージコレクション"
 "として知られるプロセスを起動します。"
 
-#: ../../../reference/speed_python.rst:51
+#: ../../../reference/speed_python.rst:53
 msgid ""
 "Consequently the performance of a function or method can be improved if "
 "an object is created once only and not permitted to grow in size. This "
@@ -4603,7 +4603,7 @@ msgstr ""
 "その使用期間中存続することを意味します。通常、クラスコンストラクタ内でインスタンス化"
 "され、さまざまなメソッドで使用されます。"
 
-#: ../../../reference/speed_python.rst:56
+#: ../../../reference/speed_python.rst:58
 msgid ""
 "This is covered in further detail :ref:`Controlling garbage collection "
 "<controlling_gc>` below."
@@ -4611,11 +4611,11 @@ msgstr ""
 "これについては、後述の :ref:`ガベージコレクションの制御 <controlling_gc>` "
 "でさらに詳しく説明します。"
 
-#: ../../../reference/speed_python.rst:59
+#: ../../../reference/speed_python.rst:61
 msgid "Buffers"
 msgstr "バッファ"
 
-#: ../../../reference/speed_python.rst:61
+#: ../../../reference/speed_python.rst:63
 msgid ""
 "An example of the above is the common case where a buffer is required, "
 "such as one used for communication with a device. A typical driver will "
@@ -4625,7 +4625,7 @@ msgstr ""
 "先に、デバイスとの通信にバッファを必要とする一般的な例がありました。典型的なドライバは、"
 "コンストラクタ内にバッファを作成し、それを繰り返し呼び出される I/O メソッドで使います。"
 
-#: ../../../reference/speed_python.rst:65
+#: ../../../reference/speed_python.rst:67
 msgid ""
 "The MicroPython libraries typically provide support for pre-allocated "
 "buffers. For example, objects which support stream interface (e.g., file "
@@ -4638,11 +4638,11 @@ msgstr ""
 "読み取りデータ用に新しいバッファを割り当てる ``read()`` メソッドを提供し、"
 "既存のバッファにデータを読み取る ``readinto()`` メソッドも提供します。"
 
-#: ../../../reference/speed_python.rst:71
+#: ../../../reference/speed_python.rst:73
 msgid "Floating Point"
 msgstr "浮動小数点"
 
-#: ../../../reference/speed_python.rst:73
+#: ../../../reference/speed_python.rst:75
 msgid ""
 "Some MicroPython ports allocate floating point numbers on heap. Some "
 "other ports may lack dedicated floating-point coprocessor, and perform "
@@ -4660,11 +4660,11 @@ msgstr ""
 "ADC の読み値を整数値として１回の配列で取得し、その後で信号処理のためにそれらを"
 "浮動小数点数に変換します。"
 
-#: ../../../reference/speed_python.rst:82
+#: ../../../reference/speed_python.rst:84
 msgid "Arrays"
 msgstr "配列"
 
-#: ../../../reference/speed_python.rst:84
+#: ../../../reference/speed_python.rst:86
 msgid ""
 "Consider the use of the various types of array classes as an alternative "
 "to lists. The `array` module supports various element types with 8-bit "
@@ -4680,7 +4680,7 @@ msgstr ""
 "メモリ割り当てを避けるために、これらは事前に割り当てられ、引数またはバインドされた"
 "オブジェクトとして渡されるべきです。"
 
-#: ../../../reference/speed_python.rst:90
+#: ../../../reference/speed_python.rst:92
 msgid ""
 "When passing slices of objects such as `bytearray` instances, Python "
 "creates a copy which involves allocation of the size proportional to the "
@@ -4693,7 +4693,7 @@ msgstr ""
 "オブジェクトを使用して軽減できます。 `memoryview` それ自体はヒープ上に割り当て"
 "られますが、それが指すスライスのサイズに関係なく、小さい固定サイズのオブジェクトです。"
 
-#: ../../../reference/speed_python.rst:102
+#: ../../../reference/speed_python.rst:104
 msgid ""
 "ba = bytearray(10000)  # big array\n"
 "func(ba[30:2000])      # a copy is passed, ~2K new allocation\n"
@@ -4705,7 +4705,7 @@ msgstr ""
 "mv = memoryview(ba)    # 小さなオブジェクトが割り当てられます\n"
 "func(mv[30:2000])      # メモリのポインターが渡されます"
 
-#: ../../../reference/speed_python.rst:103
+#: ../../../reference/speed_python.rst:105
 msgid ""
 "A `memoryview` can only be applied to objects supporting the buffer "
 "protocol - this includes arrays but not lists. Small caveat is that while"
@@ -4725,7 +4725,7 @@ msgstr ""
 "こうすることで、長命の memoryview を作成して、10K が GC からブロックされたままになる"
 "ようなことがなくなります。"
 
-#: ../../../reference/speed_python.rst:111
+#: ../../../reference/speed_python.rst:113
 msgid ""
 "Nonetheless, `memoryview` is indispensable for advanced preallocated "
 "buffer management. ``readinto()`` method discussed above puts data at the"
@@ -4738,11 +4738,11 @@ msgstr ""
 "バッファ全体を埋めます。既存のバッファの途中にデータを配置する必要がある場合はどうしますか？ "
 "バッファの必要なセクションにメモリビューを作成してそれを ``readinto()`` に渡すだけです。"
 
-#: ../../../reference/speed_python.rst:118
+#: ../../../reference/speed_python.rst:120
 msgid "Identifying the slowest section of code"
 msgstr "コードの最も遅い部分を特定する"
 
-#: ../../../reference/speed_python.rst:120
+#: ../../../reference/speed_python.rst:122
 msgid ""
 "This is a process known as profiling and is covered in textbooks and (for"
 " standard Python) supported by various software tools. For the type of "
@@ -4758,7 +4758,7 @@ msgstr ""
 "賢明に使うことで特定できます。コードの実行時間は、ms, us, または CPU サイクルで"
 "測定できます。"
 
-#: ../../../reference/speed_python.rst:127
+#: ../../../reference/speed_python.rst:129
 msgid ""
 "The following enables any function or method to be timed by adding an "
 "``@timed_function`` decorator:"
@@ -4766,7 +4766,7 @@ msgstr ""
 "以下を ``@timed_function`` デコレータとして任意の関数またはメソッドに追加する"
 "ことで、実行時間の計測が可能になります。"
 
-#: ../../../reference/speed_python.rst:141
+#: ../../../reference/speed_python.rst:143
 msgid ""
 "def timed_function(f, *args, **kwargs):\n"
 "    myname = str(f).split(' ')[1]\n"
@@ -4779,15 +4779,15 @@ msgid ""
 "    return new_func"
 msgstr ""
 
-#: ../../../reference/speed_python.rst:143
+#: ../../../reference/speed_python.rst:145
 msgid "MicroPython code improvements"
 msgstr "MicroPython コードの改良"
 
-#: ../../../reference/speed_python.rst:146
+#: ../../../reference/speed_python.rst:148
 msgid "The const() declaration"
 msgstr "const() 宣言"
 
-#: ../../../reference/speed_python.rst:148
+#: ../../../reference/speed_python.rst:150
 msgid ""
 "MicroPython provides a ``const()`` declaration. This works in a similar "
 "way to ``#define`` in C in that when the code is compiled to bytecode the"
@@ -4801,11 +4801,11 @@ msgstr ""
 "置換します。これにより、実行時の辞書検索が回避されます。 `const()` の引数はコンパイル時に、"
 "整数値に評価されるものであれば何でもありです(``0x100`` や ``1 << 8`` など)。"
 
-#: ../../../reference/speed_python.rst:157
+#: ../../../reference/speed_python.rst:159
 msgid "Caching object references"
 msgstr "オブジェクト参照のキャッシュ"
 
-#: ../../../reference/speed_python.rst:159
+#: ../../../reference/speed_python.rst:161
 msgid ""
 "Where a function or method repeatedly accesses objects performance is "
 "improved by caching the object in a local variable:"
@@ -4813,7 +4813,7 @@ msgstr ""
 "関数またはメソッドが繰り返しオブジェクトにアクセスする場合、オブジェクトをローカル"
 "変数にキャッシュすることでパフォーマンスが向上します。"
 
-#: ../../../reference/speed_python.rst:171
+#: ../../../reference/speed_python.rst:173
 msgid ""
 "class foo(object):\n"
 "    def __init__(self):\n"
@@ -4831,7 +4831,7 @@ msgstr ""
 "        fb = obj_display.framebuffer\n"
 "        # ２つのオブジェクト用いた反復処理"
 
-#: ../../../reference/speed_python.rst:172
+#: ../../../reference/speed_python.rst:174
 msgid ""
 "This avoids the need repeatedly to look up ``self.ba`` and "
 "``obj_display.framebuffer`` in the body of the method ``bar()``."
@@ -4839,11 +4839,11 @@ msgstr ""
 "これは ``bar()`` メソッド本体で ``self.ba`` と ``obj_display.framebuffer`` "
 "を繰り返し探す必要性を回避します。"
 
-#: ../../../reference/speed_python.rst:178
+#: ../../../reference/speed_python.rst:180
 msgid "Controlling garbage collection"
 msgstr "ガベージコレクションを制御する"
 
-#: ../../../reference/speed_python.rst:180
+#: ../../../reference/speed_python.rst:182
 msgid ""
 "When memory allocation is required, MicroPython attempts to locate an "
 "adequately sized block on the heap. This may fail, usually because the "
@@ -4859,7 +4859,7 @@ msgstr ""
 "使っているメモリを回収し、割り当てが再試行されます。このプロセスには数ミリ秒"
 "かかることがあります。"
 
-#: ../../../reference/speed_python.rst:187
+#: ../../../reference/speed_python.rst:189
 msgid ""
 "There may be benefits in pre-empting this by periodically issuing "
 "`gc.collect()`. Firstly doing a collection before it is actually required"
@@ -4879,11 +4879,11 @@ msgstr ""
 "ヒープ内の断片化を減らすことができます。重大な断片化は、回復不可能な割り当ての"
 "失敗につながる可能性があります。"
 
-#: ../../../reference/speed_python.rst:196
+#: ../../../reference/speed_python.rst:198
 msgid "The Native code emitter"
 msgstr "ネイティブコードエミッター"
 
-#: ../../../reference/speed_python.rst:198
+#: ../../../reference/speed_python.rst:200
 msgid ""
 "This causes the MicroPython compiler to emit native CPU opcodes rather "
 "than bytecode. It covers the bulk of the MicroPython functionality, so "
@@ -4894,7 +4894,7 @@ msgstr ""
 "発行します。MicroPython の機能の大部分をカバーしているので、ほとんどの機能は調整を"
 "必要としません(ただし下記参照)。これは関数デコレータによって呼び出されます。"
 
-#: ../../../reference/speed_python.rst:208
+#: ../../../reference/speed_python.rst:210
 msgid ""
 "@micropython.native\n"
 "def foo(self, arg):\n"
@@ -4906,27 +4906,27 @@ msgstr ""
 "    buf = self.linebuf # オブジェクトをキャッシュ\n"
 "    # コード"
 
-#: ../../../reference/speed_python.rst:209
+#: ../../../reference/speed_python.rst:211
 msgid ""
 "There are certain limitations in the current implementation of the native"
 " code emitter."
 msgstr ""
 "ネイティブコードエミッターの現在の実装には一定の制限があります。"
 
-#: ../../../reference/speed_python.rst:211
+#: ../../../reference/speed_python.rst:213
 msgid "Context managers are not supported (the ``with`` statement)."
 msgstr ""
 "コンテキストマネージャはサポートされていません(``with`` ステートメント)。
 
-#: ../../../reference/speed_python.rst:212
+#: ../../../reference/speed_python.rst:214
 msgid "Generators are not supported."
 msgstr "ジェネレータはサポートされていません。"
 
-#: ../../../reference/speed_python.rst:213
+#: ../../../reference/speed_python.rst:215
 msgid "If ``raise`` is used an argument must be supplied."
 msgstr "``raise`` を使う場合は、引数を指定する必要があります。"
 
-#: ../../../reference/speed_python.rst:215
+#: ../../../reference/speed_python.rst:217
 msgid ""
 "The trade-off for the improved performance (roughly twices as fast as "
 "bytecode) is an increase in compiled code size."
@@ -4934,11 +4934,11 @@ msgstr ""
 "パフォーマンスの向上(バイトコードの約2倍の速さ)とのトレードオフは、"
 "コンパイルされたコードサイズの増加です。"
 
-#: ../../../reference/speed_python.rst:219
+#: ../../../reference/speed_python.rst:221
 msgid "The Viper code emitter"
 msgstr "バイパーコードエミッター"
 
-#: ../../../reference/speed_python.rst:221
+#: ../../../reference/speed_python.rst:223
 msgid ""
 "The optimisations discussed above involve standards-compliant Python "
 "code. The Viper code emitter is not fully compliant. It supports special "
@@ -4951,7 +4951,7 @@ msgstr ""
 "バイパーネイティブデータ型をサポートします。整数処理が不適合となっていて、"
 "機械語を使っているため、32ビットハードウェア上での算術演算は 2**32 の範囲となります。"
 
-#: ../../../reference/speed_python.rst:226
+#: ../../../reference/speed_python.rst:228
 msgid ""
 "Like the Native emitter Viper produces machine instructions but further "
 "optimisations are performed, substantially increasing performance "
@@ -4962,7 +4962,7 @@ msgstr ""
 "特に整数演算とビット操作のパフォーマンスが大幅に向上します。これはデコレータを使って"
 "呼び出されます。"
 
-#: ../../../reference/speed_python.rst:235
+#: ../../../reference/speed_python.rst:237
 msgid ""
 "@micropython.viper\n"
 "def foo(self, arg: int) -> int:\n"
@@ -4972,7 +4972,7 @@ msgstr ""
 "def foo(self, arg: int) -> int:\n"
 "    # コード"
 
-#: ../../../reference/speed_python.rst:236
+#: ../../../reference/speed_python.rst:238
 msgid ""
 "As the above fragment illustrates it is beneficial to use Python type "
 "hints to assist the Viper optimiser. Type hints provide information on "
@@ -4994,46 +4994,46 @@ msgstr ""
 "型ヒントとして使うために提供しています。そのような関数が ``0xffffffff`` を返す場合、"
 "Python は結果を -1 ではなく、2**32 -1 として解釈します。"
 
-#: ../../../reference/speed_python.rst:244
+#: ../../../reference/speed_python.rst:246
 msgid ""
 "In addition to the restrictions imposed by the native emitter the "
 "following constraints apply:"
 msgstr ""
 "バイパーでは、ネイティブエミッターの制限に加えて以下の制限が適用されます:"
 
-#: ../../../reference/speed_python.rst:246
+#: ../../../reference/speed_python.rst:248
 msgid "Functions may have up to four arguments."
 msgstr "関数は持てる引数は最大４つまでです。"
 
-#: ../../../reference/speed_python.rst:247
+#: ../../../reference/speed_python.rst:249
 msgid "Default argument values are not permitted."
 msgstr "デフォルトの引数値は許可されていません。"
 
-#: ../../../reference/speed_python.rst:248
+#: ../../../reference/speed_python.rst:250
 msgid "Floating point may be used but is not optimised."
 msgstr "浮動小数点は使えますが、最適化されません。"
 
-#: ../../../reference/speed_python.rst:250
+#: ../../../reference/speed_python.rst:252
 msgid "Viper provides pointer types to assist the optimiser. These comprise"
 msgstr "バイパーは最適化を支援するためのポインタ型を提供します。次のものがあります。"
 
-#: ../../../reference/speed_python.rst:252
+#: ../../../reference/speed_python.rst:254
 msgid "``ptr`` Pointer to an object."
 msgstr "``ptr`` オブジェクトのポインター"
 
-#: ../../../reference/speed_python.rst:253
+#: ../../../reference/speed_python.rst:255
 msgid "``ptr8`` Points to a byte."
 msgstr "``ptr8`` バイトを指すポインター"
 
-#: ../../../reference/speed_python.rst:254
+#: ../../../reference/speed_python.rst:256
 msgid "``ptr16`` Points to a 16 bit half-word."
 msgstr "``ptr16`` 16ビット、半ワードを指すポインター"
 
-#: ../../../reference/speed_python.rst:255
+#: ../../../reference/speed_python.rst:257
 msgid "``ptr32`` Points to a 32 bit machine word."
 msgstr "``ptr32`` 32ビットマシンワードを指すポインター"
 
-#: ../../../reference/speed_python.rst:257
+#: ../../../reference/speed_python.rst:259
 msgid ""
 "The concept of a pointer may be unfamiliar to Python programmers. It has "
 "similarities to a Python `memoryview` object in that it provides direct "
@@ -5055,11 +5055,11 @@ msgstr ""
 "ことです。ポインターを使用したプログラミングは危険です。境界チェックは実行されず、"
 "コンパイラはバッファオーバーランエラーを防ぐために何もしません。"
 
-#: ../../../reference/speed_python.rst:266
+#: ../../../reference/speed_python.rst:268
 msgid "Typical usage is to cache variables:"
 msgstr "典型的な使い方は変数をキャッシュすることです:"
 
-#: ../../../reference/speed_python.rst:276
+#: ../../../reference/speed_python.rst:278
 msgid ""
 "@micropython.viper\n"
 "def foo(self, arg: int) -> int:\n"
@@ -5076,7 +5076,7 @@ msgstr ""
 "        bar = buf[x] # ポインターでデータ項目にアクセス\n"
 "        # 以下省略"
 
-#: ../../../reference/speed_python.rst:277
+#: ../../../reference/speed_python.rst:279
 msgid ""
 "In this instance the compiler \"knows\" that ``buf`` is the address of an"
 " array of bytes; it can emit code to rapidly compute the address of "
@@ -5091,7 +5091,7 @@ msgstr ""
 "数マイクロ秒かかることがあるため、これらはクリティカルなタイミングループではなく関数の"
 "開始時に実行する必要があります。キャストの規則は次のとおりです:"
 
-#: ../../../reference/speed_python.rst:283
+#: ../../../reference/speed_python.rst:285
 msgid ""
 "Casting operators are currently: ``int``, ``bool``, ``uint``, ``ptr``, "
 "``ptr8``, ``ptr16`` and ``ptr32``."
@@ -5099,17 +5099,17 @@ msgstr ""
 "キャスト演算子には現在のところ ``int``, ``bool``, ``uint``, ``ptr``, ``ptr8``, "
 "``ptr16``, ``ptr32`` があります。"
 
-#: ../../../reference/speed_python.rst:284
+#: ../../../reference/speed_python.rst:286
 msgid "The result of a cast will be a native Viper variable."
 msgstr ""
 "キャストの結果は、ネイティブのバイパー変数になります。"
 
-#: ../../../reference/speed_python.rst:285
+#: ../../../reference/speed_python.rst:287
 msgid "Arguments to a cast can be a Python object or a native Viper variable."
 msgstr ""
 "キャストの引数には、Python オブジェクトまたはネイティブのバイパー変数を指定できます。"
 
-#: ../../../reference/speed_python.rst:286
+#: ../../../reference/speed_python.rst:288
 msgid ""
 "If argument is a native Viper variable, then cast is a no-op (i.e. costs "
 "nothing at runtime) that just changes the type (e.g. from ``uint`` to "
@@ -5119,7 +5119,7 @@ msgstr ""
 "キャストは何もしない(実行時にコストはかからない)ので、このポインターでストア/ロードできるように"
 "なります。"
 
-#: ../../../reference/speed_python.rst:289
+#: ../../../reference/speed_python.rst:291
 msgid ""
 "If the argument is a Python object and the cast is ``int`` or ``uint``, "
 "then the Python object must be of integral type and the value of that "
@@ -5128,7 +5128,7 @@ msgstr ""
 "引数が Python オブジェクトであり、キャストが ``int`` または ``uint`` である場合、"
 "Python オブジェクトは整数型でなければならず、その整数オブジェクトの値が返されます。"
 
-#: ../../../reference/speed_python.rst:291
+#: ../../../reference/speed_python.rst:293
 msgid ""
 "The argument to a bool cast must be integral type (boolean or integer); "
 "when used as a return type the viper function will return True or False "
@@ -5137,7 +5137,7 @@ msgstr ""
 "bool キャストへの引数は整数型(ブール値または整数)でなければなりません。"
 "戻り値の型として使われた場合、バイパー関数は True または False オブジェクトを返します。"
 
-#: ../../../reference/speed_python.rst:293
+#: ../../../reference/speed_python.rst:295
 msgid ""
 "If the argument is a Python object and the cast is ``ptr``, ``ptr``, "
 "``ptr16`` or ``ptr32``, then the Python object must either have the "
@@ -5150,14 +5150,14 @@ msgstr ""
 "(バッファの先頭へのポインタを返す場合)、整数型のものでなければなりません(この場合、"
 "その整数オブジェクトの値が返されます)。"
 
-#: ../../../reference/speed_python.rst:298
+#: ../../../reference/speed_python.rst:300
 msgid ""
 "The following example illustrates the use of a ``ptr16`` cast to toggle "
 "pin X1 ``n`` times:"
 msgstr ""
 "次はピン X1 を ``n`` 回切り替えるために ``ptr16`` キャストを使った例を示しています。
 
-#: ../../../reference/speed_python.rst:308
+#: ../../../reference/speed_python.rst:310
 msgid ""
 "BIT0 = const(1)\n"
 "@micropython.viper\n"
@@ -5167,7 +5167,7 @@ msgid ""
 "        odr[0] ^= BIT0"
 msgstr ""
 
-#: ../../../reference/speed_python.rst:309
+#: ../../../reference/speed_python.rst:311
 msgid ""
 "A detailed technical description of the three code emitters may be found "
 "on Kickstarter here `Note 1 "
@@ -5182,11 +5182,11 @@ msgstr ""
 "`Note 2 <https://www.kickstarter.com/projects/214379695/micro-python-python-for-microcontrollers/posts/665145>`_ "
 "にあります。"
 
-#: ../../../reference/speed_python.rst:314
+#: ../../../reference/speed_python.rst:316
 msgid "Accessing hardware directly"
 msgstr "ハードウェアに直接アクセスする"
 
-#: ../../../reference/speed_python.rst:318
+#: ../../../reference/speed_python.rst:320
 msgid ""
 "Code examples in this section are given for the Pyboard. The techniques "
 "described however may be applied to other MicroPython ports too."
@@ -5194,7 +5194,7 @@ msgstr ""
 "この章のコード例は pyboard 用です。ただし、ここで説明した手法は他の MicroPython "
 "ポートにも適用できます。"
 
-#: ../../../reference/speed_python.rst:321
+#: ../../../reference/speed_python.rst:323
 msgid ""
 "This comes into the category of more advanced programming and involves "
 "some knowledge of the target MCU. Consider the example of toggling an "
@@ -5204,11 +5204,11 @@ msgstr ""
 "pyboard で出力ピンを切り替える例を考えてみましょう。標準的なアプローチは、次のように"
 "書くことです。"
 
-#: ../../../reference/speed_python.rst:328
+#: ../../../reference/speed_python.rst:330
 msgid "mypin.value(mypin.value() ^ 1) # mypin was instantiated as an output pin"
 msgstr "mypin.value(mypin.value() ^ 1) # mypin は出力ピンとしてインスタンス化したもの"
 
-#: ../../../reference/speed_python.rst:329
+#: ../../../reference/speed_python.rst:331
 msgid ""
 "This involves the overhead of two calls to the :class:`~machine.Pin` "
 "instance's :meth:`~machine.Pin.value()` method. This overhead can be "
