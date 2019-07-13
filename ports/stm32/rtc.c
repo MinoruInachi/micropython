@@ -73,6 +73,17 @@ STATIC bool rtc_use_lse = false;
 STATIC uint32_t rtc_startup_tick;
 STATIC bool rtc_need_init_finalise = false;
 
+#if defined(STM32L0)
+#define BDCR CSR
+#define RCC_BDCR_RTCEN RCC_CSR_RTCEN
+#define RCC_BDCR_RTCSEL RCC_CSR_RTCSEL
+#define RCC_BDCR_RTCSEL_0 RCC_CSR_RTCSEL_0
+#define RCC_BDCR_RTCSEL_1 RCC_CSR_RTCSEL_1
+#define RCC_BDCR_LSEON RCC_CSR_LSEON
+#define RCC_BDCR_LSERDY RCC_CSR_LSERDY
+#define RCC_BDCR_LSEBYP RCC_CSR_LSEBYP
+#endif
+
 void rtc_init_start(bool force_init) {
     RTCHandle.Instance = RTC;
 
@@ -287,7 +298,7 @@ STATIC HAL_StatusTypeDef PYB_RTC_Init(RTC_HandleTypeDef *hrtc) {
         // Exit Initialization mode
         hrtc->Instance->ISR &= (uint32_t)~RTC_ISR_INIT;
 
-        #if defined(STM32L4) || defined(STM32H7)
+        #if defined(STM32L0) || defined(STM32L4) || defined(STM32H7)
         hrtc->Instance->OR &= (uint32_t)~RTC_OR_ALARMOUTTYPE;
         hrtc->Instance->OR |= (uint32_t)(hrtc->Init.OutPutType);
         #elif defined(STM32F7)
@@ -342,18 +353,24 @@ STATIC void PYB_RTC_MspInit_Kick(RTC_HandleTypeDef *hrtc, bool rtc_use_lse, bool
     rtc_need_init_finalise = true;
 }
 
-#define PYB_LSE_TIMEOUT_VALUE 1000  // ST docs spec 2000 ms LSE startup, seems to be too pessimistic
-#define PYB_LSI_TIMEOUT_VALUE 500   // this is way too pessimistic, typ. < 1ms
-#define PYB_BYP_TIMEOUT_VALUE 150
+#ifndef MICROPY_HW_RTC_LSE_TIMEOUT_MS
+#define MICROPY_HW_RTC_LSE_TIMEOUT_MS 1000  // ST docs spec 2000 ms LSE startup, seems to be too pessimistic
+#endif
+#ifndef MICROPY_HW_RTC_LSI_TIMEOUT_MS
+#define MICROPY_HW_RTC_LSI_TIMEOUT_MS 500   // this is way too pessimistic, typ. < 1ms
+#endif
+#ifndef MICROPY_HW_RTC_BYP_TIMEOUT_MS
+#define MICROPY_HW_RTC_BYP_TIMEOUT_MS 150
+#endif
 
 STATIC HAL_StatusTypeDef PYB_RTC_MspInit_Finalise(RTC_HandleTypeDef *hrtc) {
     // we already had a kick so now wait for the corresponding ready state...
     if (rtc_use_lse) {
         // we now have to wait for LSE ready or timeout
-        uint32_t timeout = PYB_LSE_TIMEOUT_VALUE;
+        uint32_t timeout = MICROPY_HW_RTC_LSE_TIMEOUT_MS;
         #if MICROPY_HW_RTC_USE_BYPASS
         if (RCC->BDCR & RCC_BDCR_LSEBYP) {
-            timeout = PYB_BYP_TIMEOUT_VALUE;
+            timeout = MICROPY_HW_RTC_BYP_TIMEOUT_MS;
         }
         #endif
         uint32_t tickstart = rtc_startup_tick;
@@ -366,7 +383,7 @@ STATIC HAL_StatusTypeDef PYB_RTC_MspInit_Finalise(RTC_HandleTypeDef *hrtc) {
         // we now have to wait for LSI ready or timeout
         uint32_t tickstart = rtc_startup_tick;
         while (__HAL_RCC_GET_FLAG(RCC_FLAG_LSIRDY) == RESET) {
-            if ((HAL_GetTick() - tickstart ) > PYB_LSI_TIMEOUT_VALUE) {
+            if ((HAL_GetTick() - tickstart ) > MICROPY_HW_RTC_LSI_TIMEOUT_MS) {
                 return HAL_TIMEOUT;
             }
         }
@@ -533,7 +550,7 @@ mp_obj_t pyb_rtc_datetime(size_t n_args, const mp_obj_t *args) {
 }
 MP_DEFINE_CONST_FUN_OBJ_VAR_BETWEEN(pyb_rtc_datetime_obj, 1, 2, pyb_rtc_datetime);
 
-#if defined(STM32F0)
+#if defined(STM32F0) || defined(STM32L0)
 #define RTC_WKUP_IRQn RTC_IRQn
 #endif
 

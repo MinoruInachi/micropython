@@ -39,12 +39,17 @@
 
 #if MICROPY_PY_LWIP
 #include "lwip/init.h"
+#include "lwip/apps/mdns.h"
+#include "drivers/cyw43/cyw43.h"
 #endif
 
+#include "mpu.h"
 #include "systick.h"
 #include "pendsv.h"
+#include "powerctrl.h"
 #include "pybthread.h"
 #include "gccollect.h"
+#include "factoryreset.h"
 #include "modmachine.h"
 #include "i2c.h"
 #include "spi.h"
@@ -65,8 +70,6 @@
 #include "dac.h"
 #include "can.h"
 #include "modnetwork.h"
-
-void SystemClock_Config(void);
 
 #if MICROPY_PY_THREAD
 STATIC pyb_thread_t pyb_thread_main;
@@ -148,42 +151,6 @@ STATIC mp_obj_t pyb_main(size_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_a
 MP_DEFINE_CONST_FUN_OBJ_KW(pyb_main_obj, 1, pyb_main);
 
 #if MICROPY_HW_ENABLE_STORAGE
-static const char fresh_boot_py[] =
-"# boot.py -- run on boot-up\r\n"
-"# can run arbitrary Python, but best to keep it minimal\r\n"
-"\r\n"
-"import machine\r\n"
-"import pyb\r\n"
-"#pyb.main('main.py') # main script to run after this one\r\n"
-#if MICROPY_HW_ENABLE_USB
-"#pyb.usb_mode('VCP+MSC') # act as a serial and a storage device\r\n"
-"#pyb.usb_mode('VCP+HID') # act as a serial device and a mouse\r\n"
-#endif
-;
-
-static const char fresh_main_py[] =
-"# main.py -- put your code here!\r\n"
-;
-
-static const char fresh_pybcdc_inf[] =
-#include "genhdr/pybcdc_inf.h"
-;
-
-static const char fresh_readme_txt[] =
-"This is a MicroPython board\r\n"
-"\r\n"
-"You can get started right away by writing your Python code in 'main.py'.\r\n"
-"\r\n"
-"For a serial prompt:\r\n"
-" - Windows: you need to go to 'Device manager', right click on the unknown device,\r\n"
-"   then update the driver software, using the 'pybcdc.inf' file found on this drive.\r\n"
-"   Then use a terminal program like Hyperterminal or putty.\r\n"
-" - Mac OS X: use the command: screen /dev/tty.usbmodem*\r\n"
-" - Linux: use the command: screen /dev/ttyACM0\r\n"
-"\r\n"
-"Please visit http://micropython.org/help/ for further help.\r\n"
-;
-
 // avoid inlining to avoid stack usage within main()
 MP_NOINLINE STATIC bool init_flash_fs(uint reset_mode) {
     // init the vfs object
@@ -213,23 +180,8 @@ MP_NOINLINE STATIC bool init_flash_fs(uint reset_mode) {
         // set label
         f_setlabel(&vfs_fat->fatfs, MICROPY_HW_FLASH_FS_LABEL);
 
-        // create empty main.py
-        FIL fp;
-        f_open(&vfs_fat->fatfs, &fp, "/main.py", FA_WRITE | FA_CREATE_ALWAYS);
-        UINT n;
-        f_write(&fp, fresh_main_py, sizeof(fresh_main_py) - 1 /* don't count null terminator */, &n);
-        // TODO check we could write n bytes
-        f_close(&fp);
-
-        // create .inf driver file
-        f_open(&vfs_fat->fatfs, &fp, "/pybcdc.inf", FA_WRITE | FA_CREATE_ALWAYS);
-        f_write(&fp, fresh_pybcdc_inf, sizeof(fresh_pybcdc_inf) - 1 /* don't count null terminator */, &n);
-        f_close(&fp);
-
-        // create readme file
-        f_open(&vfs_fat->fatfs, &fp, "/README.txt", FA_WRITE | FA_CREATE_ALWAYS);
-        f_write(&fp, fresh_readme_txt, sizeof(fresh_readme_txt) - 1 /* don't count null terminator */, &n);
-        f_close(&fp);
+        // populate the filesystem with factory files
+        factory_reset_make_files(&vfs_fat->fatfs);
 
         // keep LED on for at least 200ms
         systick_wait_at_least(start_tick, 200);
@@ -257,28 +209,6 @@ MP_NOINLINE STATIC bool init_flash_fs(uint reset_mode) {
     // The current directory is used as the boot up directory.
     // It is set to the internal flash filesystem by default.
     MP_STATE_PORT(vfs_cur) = vfs;
-
-    // Make sure we have a /flash/boot.py.  Create it if needed.
-    FILINFO fno;
-    res = f_stat(&vfs_fat->fatfs, "/boot.py", &fno);
-    if (res != FR_OK) {
-        // doesn't exist, create fresh file
-
-        // LED on to indicate creation of boot.py
-        led_state(PYB_LED_GREEN, 1);
-        uint32_t start_tick = HAL_GetTick();
-
-        FIL fp;
-        f_open(&vfs_fat->fatfs, &fp, "/boot.py", FA_WRITE | FA_CREATE_ALWAYS);
-        UINT n;
-        f_write(&fp, fresh_boot_py, sizeof(fresh_boot_py) - 1 /* don't count null terminator */, &n);
-        // TODO check we could write n bytes
-        f_close(&fp);
-
-        // keep LED on for at least 200ms
-        systick_wait_at_least(start_tick, 200);
-        led_state(PYB_LED_GREEN, 0);
-    }
 
     return true;
 }
@@ -438,6 +368,17 @@ STATIC uint update_reset_mode(uint reset_mode) {
 #endif
 
 void stm32_main(uint32_t reset_mode) {
+    #if !defined(STM32F0) && defined(MICROPY_HW_VTOR)
+    // Change IRQ vector table if configured differently
+    SCB->VTOR = MICROPY_HW_VTOR;
+    #endif
+
+    // Enable 8-byte stack alignment for IRQ handlers, in accord with EABI
+    SCB->CCR |= SCB_CCR_STKALIGN_Msk;
+
+    // Check if bootloader should be entered instead of main application
+    powerctrl_check_enter_bootloader();
+
     // Enable caches and prefetch buffers
 
     #if defined(STM32F4)
@@ -474,6 +415,8 @@ void stm32_main(uint32_t reset_mode) {
     #endif
 
     #endif
+
+    mpu_init();
 
     #if __CORTEX_M >= 0x03
     // Set the priority grouping
@@ -550,7 +493,21 @@ void stm32_main(uint32_t reset_mode) {
     // because the system timeout list (next_timeout) is only ever reset by BSS clearing.
     // So for now we only init the lwIP stack once on power-up.
     lwip_init();
+    #if LWIP_MDNS_RESPONDER
+    mdns_resp_init();
+    #endif
     systick_enable_dispatch(SYSTICK_DISPATCH_LWIP, mod_network_lwip_poll_wrapper);
+    #endif
+
+    #if MICROPY_PY_NETWORK_CYW43
+    {
+        cyw43_init(&cyw43_state);
+        uint8_t buf[8];
+        memcpy(&buf[0], "PYBD", 4);
+        mp_hal_get_mac_ascii(MP_HAL_MAC_WLAN0, 8, 4, (char*)&buf[4]);
+        cyw43_wifi_ap_set_ssid(&cyw43_state, 8, buf);
+        cyw43_wifi_ap_set_password(&cyw43_state, 8, (const uint8_t*)"pybd0123");
+    }
     #endif
 
     #if defined(MICROPY_HW_UART_REPL)
@@ -592,7 +549,7 @@ soft_reset:
     // to recover from limit hit.  (Limit is measured in bytes.)
     // Note: stack control relies on main thread being initialised above
     mp_stack_set_top(&_estack);
-    mp_stack_set_limit((char*)&_estack - (char*)&_heap_end - 1024);
+    mp_stack_set_limit((char*)&_estack - (char*)&_sstack - 1024);
 
     // GC init
     gc_init(MICROPY_HEAP_START, MICROPY_HEAP_END);
@@ -630,10 +587,6 @@ soft_reset:
 
     #if MICROPY_HW_ENABLE_USB
     pyb_usb_init0();
-
-    // Activate USB_VCP(0) on dupterm slot 1 for the REPL
-    MP_STATE_VM(dupterm_objs[1]) = MP_OBJ_FROM_PTR(&pyb_usb_vcp_obj);
-    usb_vcp_attach_to_repl(&pyb_usb_vcp_obj, true);
     #endif
 
     // Initialise the local flash filesystem.
@@ -705,7 +658,7 @@ soft_reset:
     #if MICROPY_HW_ENABLE_USB
     // init USB device to default setting if it was not already configured
     if (!(pyb_usb_flags & PYB_USB_FLAG_USB_MODE_CALLED)) {
-        pyb_usb_dev_init(USBD_VID, USBD_PID_CDC_MSC, USBD_MODE_CDC_MSC, NULL);
+        pyb_usb_dev_init(pyb_usb_dev_detect(), USBD_VID, USBD_PID_CDC_MSC, USBD_MODE_CDC_MSC, 0, NULL, NULL);
     }
     #endif
 

@@ -31,6 +31,7 @@
 #include "py/runtime.h"
 #include "py/gc.h"
 #include "py/mphal.h"
+#include "pendsv.h"
 #include "pin.h"
 #include "extint.h"
 #include "irq.h"
@@ -83,11 +84,12 @@
 
 // TODO Add python method to change callback object.
 
+#if defined(STM32F4) || defined(STM32L4)
+// These MCUs have bitband support so define macros to atomically set/clear bits in IMR/EMR and SWIER
 #define EXTI_OFFSET (EXTI_BASE - PERIPH_BASE)
-
-// Macro used to set/clear the bit corresponding to the line in the IMR/EMR
-// register in an atomic fashion by using bitband addressing.
 #define EXTI_MODE_BB(mode, line) (*(__IO uint32_t *)(PERIPH_BB_BASE + ((EXTI_OFFSET + (mode)) * 32) + ((line) * 4)))
+#define EXTI_SWIER_BB(line) (*(__IO uint32_t *)(PERIPH_BB_BASE + ((EXTI_OFFSET + offsetof(EXTI_TypeDef, SWIER)) * 32) + ((line) * 4)))
+#endif
 
 #if defined(STM32L4)
 // The L4 MCU supports 40 Events/IRQs lines of the type configurable and direct.
@@ -115,8 +117,6 @@
 #define EXTI_FTSR EXTI->FTSR
 #endif
 
-#define EXTI_SWIER_BB(line) (*(__IO uint32_t *)(PERIPH_BB_BASE + ((EXTI_OFFSET + offsetof(EXTI_TypeDef, SWIER)) * 32) + ((line) * 4)))
-
 typedef struct {
     mp_obj_base_t base;
     mp_int_t line;
@@ -139,12 +139,16 @@ STATIC mp_obj_t pyb_extint_callback_arg[EXTI_NUM_VECTORS];
 #endif
 
 STATIC const uint8_t nvic_irq_channel[EXTI_NUM_VECTORS] = {
-    #if defined(STM32F0)
+    #if defined(STM32F0) || defined(STM32L0)
     EXTI0_1_IRQn,  EXTI0_1_IRQn,  EXTI2_3_IRQn,  EXTI2_3_IRQn,
     EXTI4_15_IRQn, EXTI4_15_IRQn, EXTI4_15_IRQn, EXTI4_15_IRQn,
     EXTI4_15_IRQn, EXTI4_15_IRQn, EXTI4_15_IRQn, EXTI4_15_IRQn,
     EXTI4_15_IRQn, EXTI4_15_IRQn, EXTI4_15_IRQn, EXTI4_15_IRQn,
+    #if defined(STM32L0)
+    PVD_IRQn,
+    #else
     PVD_VDDIO2_IRQn,
+    #endif
     RTC_IRQn,
     0, // internal USB wakeup event
     RTC_IRQn,
@@ -297,12 +301,59 @@ void extint_register_pin(const pin_obj_t *pin, uint32_t mode, bool hard_irq, mp_
     }
 }
 
+void extint_set(const pin_obj_t *pin, uint32_t mode) {
+    uint32_t line = pin->pin;
+
+    mp_obj_t *cb = &MP_STATE_PORT(pyb_extint_callback)[line];
+
+    extint_disable(line);
+
+    *cb = MP_OBJ_SENTINEL;
+
+    pyb_extint_mode[line] = (mode & 0x00010000) ? // GPIO_MODE_IT == 0x00010000
+        EXTI_Mode_Interrupt : EXTI_Mode_Event;
+
+    {
+        // Configure and enable the callback
+
+        pyb_extint_hard_irq[line] = 1;
+        pyb_extint_callback_arg[line] = MP_OBJ_FROM_PTR(pin);
+
+        // Route the GPIO to EXTI
+        __HAL_RCC_SYSCFG_CLK_ENABLE();
+        SYSCFG->EXTICR[line >> 2] =
+            (SYSCFG->EXTICR[line >> 2] & ~(0x0f << (4 * (line & 0x03))))
+            | ((uint32_t)(GPIO_GET_INDEX(pin->gpio)) << (4 * (line & 0x03)));
+
+        // Enable or disable the rising detector
+        if ((mode & GPIO_MODE_IT_RISING) == GPIO_MODE_IT_RISING) {
+            EXTI_RTSR |= 1 << line;
+        } else {
+            EXTI_RTSR &= ~(1 << line);
+        }
+
+        // Enable or disable the falling detector
+        if ((mode & GPIO_MODE_IT_FALLING) == GPIO_MODE_IT_FALLING) {
+            EXTI_FTSR |= 1 << line;
+        } else {
+            EXTI_FTSR &= ~(1 << line);
+        }
+
+        // Configure the NVIC
+        NVIC_SetPriority(IRQn_NONNEG(nvic_irq_channel[line]), IRQ_PRI_EXTINT);
+        HAL_NVIC_EnableIRQ(nvic_irq_channel[line]);
+
+        // Enable the interrupt
+        extint_enable(line);
+    }
+}
+
 void extint_enable(uint line) {
     if (line >= EXTI_NUM_VECTORS) {
         return;
     }
-    #if defined(STM32F0) || defined(STM32F7) || defined(STM32H7)
-    // The Cortex-M7 doesn't have bitband support.
+    #if !defined(EXTI_MODE_BB)
+    // This MCU doesn't have bitband support.
     mp_uint_t irq_state = disable_irq();
     if (pyb_extint_mode[line] == EXTI_Mode_Interrupt) {
         #if defined(STM32H7)
@@ -331,8 +382,8 @@ void extint_disable(uint line) {
         return;
     }
 
-    #if defined(STM32F0) || defined(STM32F7) || defined(STM32H7)
-    // The Cortex-M7 doesn't have bitband support.
+    #if !defined(EXTI_MODE_BB)
+    // This MCU doesn't have bitband support.
     mp_uint_t irq_state = disable_irq();
     #if defined(STM32H7)
     EXTI_D1->IMR1 &= ~(1 << line);
@@ -369,8 +420,8 @@ void extint_trigger_mode(uint line, uint32_t mode) {
     if (line >= EXTI_NUM_VECTORS) {
         return;
     }
-    #if defined(STM32F0) || defined(STM32F7) || defined(STM32H7)
-    // The Cortex-M7 doesn't have bitband support.
+    #if !defined(EXTI_MODE_BB)
+    // This MCU doesn't have bitband support.
     mp_uint_t irq_state = disable_irq();
     // Enable or disable the rising detector
     if ((mode & GPIO_MODE_IT_RISING) == GPIO_MODE_IT_RISING) {
@@ -552,6 +603,9 @@ const mp_obj_type_t extint_type = {
 
 void extint_init0(void) {
     for (int i = 0; i < PYB_EXTI_NUM_VECTORS; i++) {
+        if (MP_STATE_PORT(pyb_extint_callback)[i] == MP_OBJ_SENTINEL) {
+            continue;
+        }
         MP_STATE_PORT(pyb_extint_callback)[i] = mp_const_none;
         pyb_extint_mode[i] = EXTI_Mode_Interrupt;
    }
@@ -563,6 +617,15 @@ void Handle_EXTI_Irq(uint32_t line) {
         __HAL_GPIO_EXTI_CLEAR_FLAG(1 << line);
         if (line < EXTI_NUM_VECTORS) {
             mp_obj_t *cb = &MP_STATE_PORT(pyb_extint_callback)[line];
+            #if MICROPY_PY_NETWORK_CYW43 && defined(pyb_pin_WL_HOST_WAKE)
+            if (pyb_extint_callback_arg[line] == MP_OBJ_FROM_PTR(pyb_pin_WL_HOST_WAKE)) {
+                extern void (*cyw43_poll)(void);
+                if (cyw43_poll) {
+                    pendsv_schedule_dispatch(PENDSV_DISPATCH_CYW43, cyw43_poll);
+                }
+                return;
+            }
+            #endif
             if (*cb != mp_const_none) {
                 // If it's a soft IRQ handler then just schedule callback for later
                 if (!pyb_extint_hard_irq[line]) {

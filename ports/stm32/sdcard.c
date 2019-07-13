@@ -304,6 +304,10 @@ bool sdcard_power_on(void) {
         return true;
     }
 
+    #ifdef MICROPY_BOARD_SDCARD_POWER
+    MICROPY_BOARD_SDCARD_POWER
+    #endif
+
     HAL_StatusTypeDef status = HAL_ERROR;
     switch (pyb_sdmmc_flags) {
         #if MICROPY_HW_ENABLE_SDCARD
@@ -370,10 +374,12 @@ STATIC void sdmmc_irq_handler(void) {
         #if MICROPY_HW_ENABLE_SDCARD
         case PYB_SDMMC_FLAG_ACTIVE | PYB_SDMMC_FLAG_SD:
             HAL_SD_IRQHandler(&sdmmc_handle.sd);
+            break;
         #endif
         #if MICROPY_HW_ENABLE_MMCARD
         case PYB_SDMMC_FLAG_ACTIVE | PYB_SDMMC_FLAG_MMC:
             HAL_MMC_IRQHandler(&sdmmc_handle.mmc);
+            break;
         #endif
     }
 }

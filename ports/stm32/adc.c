@@ -110,7 +110,6 @@
 #define ADC_CAL1                ((uint16_t*)(0x1FF1E820))
 #define ADC_CAL2                ((uint16_t*)(0x1FF1E840))
 #define ADC_CAL_BITS            (16)
-#define ADC_CHANNEL_VBAT        ADC_CHANNEL_VBAT_DIV4
 
 #elif defined(STM32L4)
 
@@ -131,21 +130,24 @@
 #if defined(STM32F091xC)
 #define VBAT_DIV (2)
 #elif defined(STM32F405xx) || defined(STM32F415xx) || \
-    defined(STM32F407xx) || defined(STM32F417xx) || \
-    defined(STM32F401xC) || defined(STM32F401xE) || \
-    defined(STM32F411xE)
+      defined(STM32F407xx) || defined(STM32F417xx) || \
+      defined(STM32F401xC) || defined(STM32F401xE)
 #define VBAT_DIV (2)
-#elif defined(STM32F427xx) || defined(STM32F429xx) || \
+#elif defined(STM32F411xE) || defined(STM32F413xx) || \
+      defined(STM32F427xx) || defined(STM32F429xx) || \
       defined(STM32F437xx) || defined(STM32F439xx) || \
-      defined(STM32F446xx) || defined(STM32F413xx) || \
-      defined(STM32F722xx) || defined(STM32F723xx) || \
+      defined(STM32F446xx)
+#define VBAT_DIV (4)
+#elif defined(STM32F722xx) || defined(STM32F723xx) || \
       defined(STM32F732xx) || defined(STM32F733xx) || \
       defined(STM32F746xx) || defined(STM32F765xx) || \
       defined(STM32F767xx) || defined(STM32F769xx)
 #define VBAT_DIV (4)
 #elif defined(STM32H743xx)
 #define VBAT_DIV (4)
-#elif defined(STM32L432xx) || defined(STM32L475xx) || \
+#elif defined(STM32L432xx) || \
+      defined(STM32L451xx) || defined(STM32L452xx) || \
+      defined(STM32L462xx) || defined(STM32L475xx) || \
       defined(STM32L476xx) || defined(STM32L496xx)
 #define VBAT_DIV (3)
 #else
@@ -246,7 +248,6 @@ STATIC void adcx_init_periph(ADC_HandleTypeDef *adch, uint32_t resolution) {
     adch->Init.DMAContinuousRequests = DISABLE;
     #elif defined(STM32H7)
     adch->Init.ClockPrescaler        = ADC_CLOCK_SYNC_PCLK_DIV4;
-    adch->Init.BoostMode             = ENABLE;
     adch->Init.ScanConvMode          = DISABLE;
     adch->Init.LowPowerAutoWait      = DISABLE;
     adch->Init.Overrun               = ADC_OVR_DATA_OVERWRITTEN;
