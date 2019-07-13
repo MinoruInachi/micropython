@@ -40,6 +40,8 @@
 
 #if defined(STM32F4)
 #define UART_RXNE_IS_SET(uart) ((uart)->SR & USART_SR_RXNE)
+#elif defined(STM32H7)
+#define UART_RXNE_IS_SET(uart) ((uart)->ISR & USART_ISR_RXNE_RXFNE)
 #else
 #define UART_RXNE_IS_SET(uart) ((uart)->ISR & USART_ISR_RXNE)
 #endif
@@ -73,6 +75,11 @@
 #define USART_CR1_IE_ALL (USART_CR1_IE_BASE | USART_CR1_RXFFIE | USART_CR1_TXFEIE | USART_CR1_EOBIE | USART_CR1_RTOIE | USART_CR1_CMIE)
 #define USART_CR2_IE_ALL (USART_CR2_IE_BASE)
 #define USART_CR3_IE_ALL (USART_CR3_IE_BASE | USART_CR3_RXFTIE | USART_CR3_TCBGTIE | USART_CR3_TXFTIE | USART_CR3_WUFIE)
+
+#elif defined(STM32L0)
+#define USART_CR1_IE_ALL (USART_CR1_IE_BASE | USART_CR1_EOBIE | USART_CR1_RTOIE | USART_CR1_CMIE)
+#define USART_CR2_IE_ALL (USART_CR2_IE_BASE)
+#define USART_CR3_IE_ALL (USART_CR3_IE_BASE | USART_CR3_WUFIE)
 
 #elif defined(STM32L4)
 #define USART_CR1_IE_ALL (USART_CR1_IE_BASE | USART_CR1_EOBIE | USART_CR1_RTOIE | USART_CR1_CMIE)
@@ -152,6 +159,14 @@ bool uart_exists(int uart_id) {
 
         #if defined(MICROPY_HW_UART8_TX) && defined(MICROPY_HW_UART8_RX)
         case PYB_UART_8: return true;
+        #endif
+
+        #if defined(MICROPY_HW_UART9_TX) && defined(MICROPY_HW_UART9_RX)
+        case PYB_UART_9: return true;
+        #endif
+
+        #if defined(MICROPY_HW_UART10_TX) && defined(MICROPY_HW_UART10_RX)
+        case PYB_UART_10: return true;
         #endif
 
         default: return false;
@@ -318,6 +333,28 @@ bool uart_init(pyb_uart_obj_t *uart_obj,
             break;
         #endif
 
+        #if defined(MICROPY_HW_UART9_TX) && defined(MICROPY_HW_UART9_RX)
+        case PYB_UART_9:
+            uart_unit = 9;
+            UARTx = UART9;
+            irqn = UART9_IRQn;
+            __HAL_RCC_UART9_CLK_ENABLE();
+            pins[0] = MICROPY_HW_UART9_TX;
+            pins[1] = MICROPY_HW_UART9_RX;
+            break;
+        #endif
+
+        #if defined(MICROPY_HW_UART10_TX) && defined(MICROPY_HW_UART10_RX)
+        case PYB_UART_10:
+            uart_unit = 10;
+            UARTx = UART10;
+            irqn = UART10_IRQn;
+            __HAL_RCC_UART10_CLK_ENABLE();
+            pins[0] = MICROPY_HW_UART10_TX;
+            pins[1] = MICROPY_HW_UART10_RX;
+            break;
+        #endif
+
         default:
             // UART does not exist or is not configured for this board
             return false;
@@ -475,6 +512,20 @@ void uart_deinit(pyb_uart_obj_t *self) {
         __HAL_RCC_USART8_RELEASE_RESET();
         __HAL_RCC_USART8_CLK_DISABLE();
     #endif
+    #if defined(UART9)
+    } else if (self->uart_id == 9) {
+        HAL_NVIC_DisableIRQ(UART9_IRQn);
+        __HAL_RCC_UART9_FORCE_RESET();
+        __HAL_RCC_UART9_RELEASE_RESET();
+        __HAL_RCC_UART9_CLK_DISABLE();
+    #endif
+    #if defined(UART10)
+    } else if (self->uart_id == 10) {
+        HAL_NVIC_DisableIRQ(UART10_IRQn);
+        __HAL_RCC_UART10_FORCE_RESET();
+        __HAL_RCC_UART10_RELEASE_RESET();
+        __HAL_RCC_UART10_CLK_DISABLE();
+    #endif
     }
 }
 
@@ -538,6 +589,12 @@ uint32_t uart_get_baudrate(pyb_uart_obj_t *self) {
         #if defined(USART6)
         || self->uart_id == 6
         #endif
+        #if defined(UART9)
+        || self->uart_id == 9
+        #endif
+        #if defined(UART10)
+        || self->uart_id == 10
+        #endif
         ) {
         uart_clk = HAL_RCC_GetPCLK2Freq();
     } else {
@@ -596,7 +653,7 @@ int uart_rx_char(pyb_uart_obj_t *self) {
         return data;
     } else {
         // no buffering
-        #if defined(STM32F0) || defined(STM32F7) || defined(STM32L4) || defined(STM32H7)
+        #if defined(STM32F0) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4) || defined(STM32H7)
         int data = self->uartx->RDR & self->char_mask;
         self->uartx->ICR = USART_ICR_ORECF; // clear ORE if it was set
         return data;
@@ -722,7 +779,7 @@ void uart_irq_handler(mp_uint_t uart_id) {
             uint16_t next_head = (self->read_buf_head + 1) % self->read_buf_len;
             if (next_head != self->read_buf_tail) {
                 // only read data if room in buf
-                #if defined(STM32F0) || defined(STM32F7) || defined(STM32L4) || defined(STM32H7)
+                #if defined(STM32F0) || defined(STM32F7) || defined(STM32L0) || defined(STM32L4) || defined(STM32H7)
                 int data = self->uartx->RDR; // clears UART_FLAG_RXNE
                 self->uartx->ICR = USART_ICR_ORECF; // clear ORE if it was set
                 #else
@@ -745,6 +802,16 @@ void uart_irq_handler(mp_uint_t uart_id) {
             }
         }
     }
+    // If RXNE is clear but ORE set then clear the ORE flag (it's tied to RXNE IRQ)
+    #if defined(STM32F4)
+    else if (self->uartx->SR & USART_SR_ORE) {
+        (void)self->uartx->DR;
+    }
+    #else
+    else if (self->uartx->ISR & USART_ISR_ORE) {
+        self->uartx->ICR = USART_ICR_ORECF;
+    }
+    #endif
 
     // Set user IRQ flags
     self->mp_irq_flags = 0;
