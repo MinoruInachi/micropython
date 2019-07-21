@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-01-26 10:02+0900\n"
+"PO-Revision-Date: 2019-07-21 22:31+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1292,6 +1292,133 @@ msgstr ""
 "``read()`` 関数から返される値は、0 (0.0ボルト)と 1024 (1.0ボルト)の間です。"
 "この入力は最大 1.0 ボルトしか許容できないため、これより大きな電圧を測定するには"
 "分圧器回路を使用する必要があります。"
+
+#: ../../esp8266/tutorial/apa102.rst:2
+msgid "Controlling APA102 LEDs"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:4
+msgid ""
+"APA102 LEDs, also known as DotStar LEDs, are individually addressable "
+"full-colour RGB LEDs, generally in a string formation. They differ from "
+"NeoPixels in that they require two pins to control - both a Clock and "
+"Data pin. They can operate at a much higher data and PWM frequencies than"
+" NeoPixels and are more suitable for persistence-of-vision effects."
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:10
+msgid "To create an APA102 object do the following::"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:12
+msgid ""
+">>> import machine, apa102\n"
+">>> strip = apa102.APA102(machine.Pin(5), machine.Pin(4), 60)"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:15
+msgid ""
+"This configures an 60 pixel APA102 strip with clock on GPIO5 and data on "
+"GPIO4. You can adjust the pin numbers and the number of pixels to suit "
+"your needs."
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:18
+msgid ""
+"The RGB colour data, as well as a brightness level, is sent to the APA102"
+" in a certain order.  Usually this is ``(Red, Green, Blue, Brightness)``."
+" If you are using one of the newer APA102C LEDs the green and blue are "
+"swapped, so the order is ``(Red, Blue, Green, Brightness)``. The APA102 "
+"has more of a square lens while the APA102C has more of a round one. If "
+"you are using a APA102C strip and would prefer to provide colours in RGB "
+"order instead of RBG, you can customise the tuple colour order like so::"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:26
+msgid ">>> strip.ORDER = (0, 2, 1, 3)"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:28 ../../esp8266/tutorial/neopixel.rst:17
+msgid "To set the colour of pixels use::"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:30
+msgid ""
+">>> strip[0] = (255, 255, 255, 31) # set to white, full brightness\n"
+">>> strip[1] = (255, 0, 0, 31) # set to red, full brightness\n"
+">>> strip[2] = (0, 255, 0, 15) # set to green, half brightness\n"
+">>> strip[3] = (0, 0, 255, 7)  # set to blue, quarter brightness"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:35
+msgid "Use the ``write()`` method to output the colours to the LEDs::"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:37
+msgid ">>> strip.write()"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:39
+msgid "Demonstration::"
+msgstr ""
+
+#: ../../esp8266/tutorial/apa102.rst:41
+msgid ""
+"import time\n"
+"import machine, apa102\n"
+"\n"
+"# 1M strip with 60 LEDs\n"
+"strip = apa102.APA102(machine.Pin(5), machine.Pin(4), 60)\n"
+"\n"
+"brightness = 1  # 0 is off, 1 is dim, 31 is max\n"
+"\n"
+"# Helper for converting 0-255 offset to a colour tuple\n"
+"def wheel(offset, brightness):\n"
+"    # The colours are a transition r - g - b - back to r\n"
+"    offset = 255 - offset\n"
+"    if offset < 85:\n"
+"        return (255 - offset * 3, 0, offset * 3, brightness)\n"
+"    if offset < 170:\n"
+"        offset -= 85\n"
+"        return (0, offset * 3, 255 - offset * 3, brightness)\n"
+"    offset -= 170\n"
+"    return (offset * 3, 255 - offset * 3, 0, brightness)\n"
+"\n"
+"# Demo 1: RGB RGB RGB\n"
+"red = 0xff0000\n"
+"green = red >> 8\n"
+"blue = red >> 16\n"
+"for i in range(strip.n):\n"
+"    colour = red >> (i % 3) * 8\n"
+"    strip[i] = ((colour & red) >> 16, (colour & green) >> 8, (colour & "
+"blue), brightness)\n"
+"strip.write()\n"
+"\n"
+"# Demo 2: Show all colours of the rainbow\n"
+"for i in range(strip.n):\n"
+"    strip[i] = wheel((i * 256 // strip.n) % 255, brightness)\n"
+"strip.write()\n"
+"\n"
+"# Demo 3: Fade all pixels together through rainbow colours, offset each "
+"pixel\n"
+"for r in range(5):\n"
+"    for n in range(256):\n"
+"        for i in range(strip.n):\n"
+"            strip[i] = wheel(((i * 256 // strip.n) + n) & 255, "
+"brightness)\n"
+"        strip.write()\n"
+"    time.sleep_ms(25)\n"
+"\n"
+"# Demo 4: Same colour, different brightness levels\n"
+"for b in range(31,-1,-1):\n"
+"    strip[0] = (255, 153, 0, b)\n"
+"    strip.write()\n"
+"    time.sleep_ms(250)\n"
+"\n"
+"# End: Turn off all the LEDs\n"
+"strip.fill((0, 0, 0, 0))\n"
+"strip.write()"
+msgstr ""
 
 #: ../../../esp8266/tutorial/dht.rst:2
 msgid "Temperature and Humidity"

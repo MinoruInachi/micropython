@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-05-01 19:16+0900\n"
+"PO-Revision-Date: 2019-07-13 22:52+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -709,40 +709,55 @@ msgid "I2C bus"
 msgstr "I2C バス"
 
 #: ../../../pyboard/quickref.rst:202
-msgid "See :ref:`pyb.I2C <pyb.I2C>`. ::"
-msgstr ":ref:`pyb.I2C <pyb.I2C>` を参照::"
+msgid ""
+"Hardware I2C is available on the X and Y halves of the pyboard "
+"via ``I2C('X')`` and ``I2C('Y')``.  Alternatively pass in the "
+"integer identifier of the peripheral, eg ``I2C(1)``.  Software "
+"I2C is also available by explicitly specifying the ``scl`` and "
+"``sda`` pins instead of the bus name.  For more details see "
+":ref:`machine.I2C <machine.I2C>`. ::"
+msgstr ""
+
 
 #: ../../../pyboard/quickref.rst:204
 msgid ""
-"from pyb import I2C\n"
+"from machine import I2C\n"
 "\n"
-"i2c = I2C(1, I2C.MASTER, baudrate=100000)\n"
-"i2c.scan() # returns list of slave addresses\n"
-"i2c.send('hello', 0x42) # send 5 bytes to slave with address 0x42\n"
-"i2c.recv(5, 0x42) # receive 5 bytes from slave\n"
-"i2c.mem_read(2, 0x42, 0x10) # read 2 bytes from slave 0x42, slave memory "
-"0x10\n"
-"i2c.mem_write('xy', 0x42, 0x10) # write 2 bytes to slave 0x42, slave "
-"memory 0x10"
+"i2c = I2C('X', freq=400000)                 # create hardware I2c object\n"
+"i2c = I2C(scl='X1', sda='X2', freq=100000)  # create software I2C object\n"
+"\n"
+"i2c.scan()                          # returns list of slave addresses\n"
+"i2c.writeto(0x42, 'hello')          # write 5 bytes to slave with address 0x42\n"
+"i2c.readfrom(0x42, 5)               # read 5 bytes from slave\n"
+"\n"
+"i2c.readfrom_mem(0x42, 0x10, 2)     # read 2 bytes from slave 0x42, slave memory 0x10\n"
+"i2c.writeto_mem(0x42, 0x10, 'xy')   # write 2 bytes to slave 0x42, slave memory 0x10"
 msgstr ""
-"from pyb import I2C\n"
+"from machine import I2C\n"
 "\n"
-"i2c = I2C(1, I2C.MASTER, baudrate=100000)\n"
-"i2c.scan() # スレーブアドレスのリストを返します\n"
-"i2c.send('hello', 0x42) # アドレス 0x42 でスレーブに 5 バイトを送信します\n"
-"i2c.recv(5, 0x42) # スレーブから 5 バイトを受信します\n"
-"i2c.mem_read(2, 0x42, 0x10) # スレーブ 0x42、スレーブメモリ 0x10 から 2 バイト読み込みます\n"
-"i2c.mem_write('xy', 0x42, 0x10) # スレーブ 0x42、スレーブメモリ 0x10 へ 2 バイト書き込みます"
+"i2c = I2C('X', freq=400000)                 # ハードウェア I2C オブジエクトを作成\n"
+"i2c = I2C(scl='X1', sda='X2', freq=100000)  # ソフトウェア I2C オブジエクトを作成\n"
+"\n"
+"i2c.scan()                          # スレーブアドレスのリストを返します\n"
+"i2c.writeto(0x42, 'hello')          # アドレス 0x42 のスレーブに 5 バイト送信します\n"
+"i2c.readfrom(0x42, 5)               # スレーブから 5 バイト受信します\n"
+"\n"
+"i2c.readfrom_mem(0x42, 0x10, 2)     # スレーブ 0x42 のスレーブメモリ 0x10 から２バイト読み込みます\n"
+"i2c.writeto_mem(0x42, 0x10, 'xy')   # スレーブ 0x42 のスレーブメモリ 0x10 へ２バイト書き込みます"
 
-#: ../../../pyboard/quickref.rst:214
+#: ../../../pyboard/quickref.rst:220
+msgid "Note: for legacy I2C support see :ref:`pyb.I2C <pyb.I2C>`."
+msgstr "注記: 古い I2C サポートについては :ref:`pyb.I2C <pyb.I2C>` を参照::"
+
+#: ../../../pyboard/quickref.rst:223
 msgid "CAN bus (controller area network)"
 msgstr "CAN バス (Controller Area Network)"
 
-#: ../../../pyboard/quickref.rst:216
+#: ../../../pyboard/quickref.rst:225
 msgid "See :ref:`pyb.CAN <pyb.CAN>`. ::"
 msgstr ":ref:`pyb.CAN <pyb.CAN>` を参照::"
 
-#: ../../../pyboard/quickref.rst:218
+#: ../../../pyboard/quickref.rst:227
 msgid ""
 "from pyb import CAN\n"
 "\n"
@@ -758,7 +773,7 @@ msgstr ""
 "can.send('message!', 123)   # id 123 でメッセージを送信\n"
 "can.recv(0)                 # FIFO 0 でメッセージを受信"
 
-#: ../../../pyboard/quickref.rst:226
+#: ../../../pyboard/quickref.rst:235
 msgid "Internal accelerometer"
 msgstr "ボード上の加速度センサー"
 

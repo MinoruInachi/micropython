@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-01-26 10:33+0900\n"
+"PO-Revision-Date: 2019-07-21 22:35+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2476,11 +2476,37 @@ msgstr ""
 "もし *stop* が True であれば、たとえ NACK が受信されたとしても、転送の終わりに "
 "STOP 条件が生成されます。この関数は受信した ACK の数を返します。"
 
-#: ../../../library/machine.I2C.rst:135
+#: ../../../library/machine.I2C.rst:136
+msgid ""
+"Write the bytes contained in *vector* to the slave specified by *addr*. "
+"*vector* should be a tuple or list of objects with the buffer protocol. "
+"The *addr* is sent once and then the bytes from each object in *vector* "
+"are written out sequentially.  The objects in *vector* may be zero bytes "
+"in length in which case they don't contribute to the output."
+msgstr ""
+"*vector* に指定したバイト列を *addr* に指定したスレーブに書き込みます。"
+"*vector* はバッファプロトコルを持つオブジェクトのタプルかリストであるべきです。"
+"*addr* が1回送信され、その後 *vector* 内の各オブジェクトからのバイトを順次書き込みます。"
+"*vector* 内のオブジェクトは長さが0バイトであるかもしれませんが、その場合には出力しません。"
+
+#: ../../../library/machine.I2C.rst:142
+msgid ""
+"If a NACK is received following the write of a byte from one of the "
+"objects in *vector* then the remaining bytes, and any remaining objects, "
+"are not sent.  If *stop* is true then a STOP condition is generated at "
+"the end of the transfer, even if a NACK is received.  The function "
+"returns the number of ACKs that were received."
+msgstr ""
+"*vector* 内のオブジェクトの１つから、あるバイトの書き込みの後に NACK が受信された場合、"
+"残りのバイトおよび残りのオブジェクトは送信されません。 *stop* が真の場合、たとえ NACK "
+"が受信されても、転送の終わりに STOP 条件が生成されます。この関数は受信した ACK の数を"
+"返します。"
+
+#: ../../../library/machine.I2C.rst:149
 msgid "Memory operations"
 msgstr "メモリ操作"
 
-#: ../../../library/machine.I2C.rst:137
+#: ../../../library/machine.I2C.rst:151
 msgid ""
 "Some I2C devices act as a memory device (or set of registers) that can be"
 " read from and written to.  In this case there are two addresses "
@@ -2492,7 +2518,7 @@ msgstr ""
 "この場合、I2C トランザクションに関連付けられた２つのアドレスがあります。スレーブアドレスと"
 "メモリアドレスです。以下のメソッドは、そのようなデバイスと通信するための便利な機能です。"
 
-#: ../../../library/machine.I2C.rst:144
+#: ../../../library/machine.I2C.rst:158
 msgid ""
 "Read *nbytes* from the slave specified by *addr* starting from the memory"
 " address specified by *memaddr*. The argument *addrsize* specifies the "
@@ -2502,7 +2528,7 @@ msgstr ""
 "引数 *addrsize* はアドレスサイズをビット数で指定します。この関数は読み込んだデータを持つバイト列"
 "オブジェクトを返します。"
 
-#: ../../../library/machine.I2C.rst:151
+#: ../../../library/machine.I2C.rst:165
 msgid ""
 "Read into *buf* from the slave specified by *addr* starting from the "
 "memory address specified by *memaddr*.  The number of bytes read is the "
@@ -2514,7 +2540,7 @@ msgstr ""
 "読み取られるバイト数は *buf* の長さです。引数 *addrsize* はアドレスサイズをビット数で指定します"
 "(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
 
-#: ../../../library/machine.I2C.rst:161
+#: ../../../library/machine.I2C.rst:175
 msgid ""
 "Write *buf* to the slave specified by *addr* starting from the memory "
 "address specified by *memaddr*. The argument *addrsize* specifies the "
@@ -3090,8 +3116,8 @@ msgid "irq trigger source"
 msgstr "irq トリガーソース"
 
 #: ../../../library/machine.SD.rst:5
-msgid "class SD -- secure digital memory card"
-msgstr "class SD -- セキュアデジタルメモリーカード"
+msgid "class SD -- secure digital memory card (cc3200 port only)"
+msgstr "class SD -- セキュアデジタルメモリーカード(cc3200 ポートのみ)"
 
 #: ../../../library/machine.SD.rst:9
 msgid "This is a non-standard class and is only available on the cc3200 port."
@@ -3147,6 +3173,319 @@ msgstr ""
 #: ../../../library/machine.SD.rst:47
 msgid "Disable the SD card."
 msgstr "SD カードを無効にします。"
+
+#: ../../library/machine.SDCard.rst:5
+msgid "class SDCard -- secure digital memory card"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:7
+msgid ""
+"SD cards are one of the most common small form factor removable storage "
+"media. SD cards come in a variety of sizes and phsyical form factors. MMC"
+" cards are similar removable storage devices while eMMC devices are "
+"electically similar storage devices designed to be embedded into other "
+"systems. All three form share a common protocol for communication with "
+"their host system and high-level support looks the same for them all. As "
+"such in MicroPython they are implemented in a single class called "
+":class:`machine.SDCard` ."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:15
+msgid ""
+"Both SD and MMC interfaces support being accessed with a variety of bus "
+"widths. When being accessed with a 1-bit wide interface they can be "
+"accessed using the SPI protocol. Different MicroPython hardware platforms"
+" support different widths and pin configurations but for most platforms "
+"there is a standard configuation for any given hardware. In general "
+"constructing an `SDCard`` object with without passing any parameters will"
+" initialise the interface to the default card slot for the current "
+"hardware. The arguments listed below represent the common arguments that "
+"might need to be set in order to use either a non-stanard slot or a non-"
+"standard pin assignment. The exact subset of arguments suported will vary"
+" from platform to platform."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:28
+msgid ""
+"This class provides access to SD or MMC storage cards using either a "
+"dedicated SD/MMC interface hardware or through an SPI channel. The class "
+"implements the block protocol defined by :class:`uos.AbstractBlockDev`. "
+"This allows the mounting of an SD card to be as simple as::"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:33
+msgid "uos.mount(machine.SDCard(), \"/sd\")"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:35
+msgid "The constrcutor takes the following paramters:"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:37
+msgid ""
+"*slot* selects which of the available interfaces to use. Leaving this "
+"unset will select the default interface."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:40
+msgid "*width* selects the bus width for the SD/MMC interface."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:42
+msgid "*cd* can be used to specify a card-detect pin."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:44
+msgid "*wp* can be used to specify a write-protect pin."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:46
+msgid "*sck* can be used to specify an SPI clock pin."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:48
+msgid "*miso* can be used to specify an SPI miso pin."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:50
+msgid "*mosi* can be used to specify an SPI mosi pin."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:52
+msgid "*cs* can be used to specify an SPI chip select pin."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:55
+msgid "Implementation-specific details"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:57
+msgid ""
+"Different implementations of the ``SDCard`` class on different hardware "
+"support varying subsets of the options above."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:61
+msgid "PyBoard"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:63
+msgid ""
+"The standard PyBoard has just one slot. No arguments are necessary or "
+"supported."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:66
+msgid "ESP32"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:68
+msgid ""
+"The ESP32 provides two channels of SD/MMC hardware and also supports "
+"access to SD Cards through either of the two SPI ports that are generally"
+" available to the user. As a result the *slot* argument can take a value "
+"between 0 and 3, inclusive. Slots 0 and 1 use the built-in SD/MMC "
+"hardware while slots 2 and 3 use the SPI ports. Slot 0 supports 1, 4 or "
+"8-bit wide access while slot 1 supports 1 or 4-bit access; the SPI slots "
+"only support 1-bit access."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:76
+msgid ""
+"Slot 0 is used to communicate with on-board flash memory on most ESP32 "
+"modules and so will be unavailable to the user."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:80
+msgid ""
+"Most ESP32 modules that provide an SD card slot using the dedicated "
+"hardware only wire up 1 data pin, so the default value for *width* is 1."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:84
+msgid ""
+"The pins used by the dedicated SD/MMC hardware are fixed. The pins used "
+"by the SPI hardware can be reassigned."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:87
+msgid ""
+"If any of the SPI signals are remapped then all of the SPI signals will "
+"pass through a GPIO multiplexer unit which can limit the performance of "
+"high frequency signals. Since the normal operating speed for SD cards is "
+"40MHz this can cause problems on some cards."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:93
+msgid "The default (and preferred) pin assignment are as follows:"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:96
+msgid "Slot"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:96 ../../library/pyb.CAN.rst:256
+msgid "0"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:96 ../../library/pyb.CAN.rst:177
+#: ../../library/pyb.CAN.rst:258
+msgid "1"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:96 ../../library/machine.SDCard.rst:105
+#: ../../library/pyb.CAN.rst:173 ../../library/pyb.CAN.rst:175
+#: ../../library/pyb.CAN.rst:260
+msgid "2"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:96
+msgid "3"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:98
+msgid "Signal"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:98
+msgid "Pin"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:100
+msgid "sck"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:100
+msgid "6"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:100
+msgid "14"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:100 ../../library/machine.SDCard.rst:112
+msgid "18"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:101
+msgid "cmd"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:101
+msgid "11"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:101 ../../library/machine.SDCard.rst:102
+msgid "15"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:102
+msgid "cs"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:102 ../../library/machine.SDCard.rst:111
+msgid "5"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:103
+msgid "miso"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:103
+msgid "19"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:107
+msgid "12"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:104
+msgid "mosi"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:104
+msgid "23"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:108
+msgid "13"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:105
+msgid "D0"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:105
+msgid "7"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:106
+msgid "D1"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:106
+msgid "8"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:106 ../../library/pyb.CAN.rst:171
+msgid "4"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:107
+msgid "D2"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:107
+msgid "9"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:108
+msgid "D3"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:108
+msgid "10"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:109
+msgid "D4"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:109
+msgid "16"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:110
+msgid "D5"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:110
+msgid "17"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:111
+msgid "D6"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:112
+msgid "D7"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:116
+msgid "cc3200"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:118
+msgid ""
+"You can set the pins used for SPI access by passing a tuple as the *pins*"
+" argument."
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:121
+msgid ""
+"*Note:* The current cc3200 SD card implementation names the this class "
+":class:`machine.SD` rather than :class:`machine.SDCard` ."
+msgstr ""
 
 #: ../../../library/machine.SPI.rst:5
 msgid "class SPI -- a Serial Peripheral Interface bus protocol (master side)"
@@ -9918,15 +10257,25 @@ msgstr ""
 #: ../../../library/ucryptolib.rst:25
 msgid ""
 "``2`` (or ``ucryptolib.MODE_CBC`` if it exists) for Cipher Block Chaining"
-" (CBC)"
+" (CBC)."
 msgstr ""
-"``2`` (または定義されていれば ``ucryptolib.MODE_CBC``) Cipher Block Chaining (CBC)
+"``2`` (または定義されていれば ``ucryptolib.MODE_CBC``) Cipher Block Chaining (CBC)"
+
+#: ../../../library/ucryptolib.rst:26
+msgid ""
+"``6`` (or ``ucryptolib.MODE_CTR`` if it exists) for Counter mode (CTR)."
+msgstr ""
+"``6`` (または定義されていれば  ``ucryptolib.MODE_CTR``) Counter mode (CTR)"
 
 #: ../../../library/ucryptolib.rst:27
 msgid "*IV* is an initialization vector for CBC mode."
 msgstr "*IV* は CBC モード用の初期化ベクトルです。"
 
-#: ../../../library/ucryptolib.rst:31
+#: ../../../library/ucryptolib.rst:29
+msgid "For Counter mode, *IV* is the initial value for the counter."
+msgstr "Counter mode で *IV* はカウンターの初期値です。"
+
+#: ../../../library/ucryptolib.rst:33
 msgid ""
 "Encrypt *in_buf*. If no *out_buf* is given result is returned as a newly "
 "allocated `bytes` object. Otherwise, result is written into mutable "
@@ -9938,7 +10287,7 @@ msgstr ""
 "に書き込まれます。 *in_buf* と *out_buf* は同じ可変バッファを参照することもできます。"
 "その場合、データはその場で暗号化されます。"
 
-#: ../../../library/ucryptolib.rst:38
+#: ../../../library/ucryptolib.rst:40
 msgid "Like `encrypt()`, but for decryption."
 msgstr "`encrypt()` に似ていますが、複合化するメソッドです。"
 
