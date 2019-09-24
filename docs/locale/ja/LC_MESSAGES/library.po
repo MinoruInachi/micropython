@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-07-21 22:35+0900\n"
+"PO-Revision-Date: 2019-09-24 23:00+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3176,7 +3176,7 @@ msgstr "SD カードを無効にします。"
 
 #: ../../library/machine.SDCard.rst:5
 msgid "class SDCard -- secure digital memory card"
-msgstr ""
+msgstr "class SDCard -- SD メモリカード"
 
 #: ../../library/machine.SDCard.rst:7
 msgid ""
@@ -3189,6 +3189,13 @@ msgid ""
 "such in MicroPython they are implemented in a single class called "
 ":class:`machine.SDCard` ."
 msgstr ""
+"SD カードは、リムーバブルストレージメディアの最も一般的な小型フォームファクターの１つです。"
+"SD カードにはさまざまなサイズと物理的なフォームファクターがあります。"
+"MMC カードは SD カードと同様のリムバーブルストレージデバイスであり、eMMC デバイスは "
+"電気的には MMC カードと同様のストレージデバイスですが、他のシステムに組み込むように"
+"設計されています。３つの形式はすべて、ホストシステムとの通信に共通のプロトコルを使っていて、"
+"高レベルのサポートはすべて同じです。このプロトコルの MicroPython でのサポートは、 "
+":class:`machine.SDCard` という単一のクラスに実装しています。"
 
 #: ../../library/machine.SDCard.rst:15
 msgid ""
@@ -3204,6 +3211,15 @@ msgid ""
 "standard pin assignment. The exact subset of arguments suported will vary"
 " from platform to platform."
 msgstr ""
+"SD と MMC の双方のインターフェイスは、さまざまなバス幅でのアクセスをサポートしています。"
+"1ビット幅のインターフェイスでアクセスする場合、SPI プロトコルを使用してアクセスできます。"
+"MicroPython ハードウェアプラットフォームにより、さまざまな幅とピン構成を"
+"サポートしていますが、ほとんどのプラットフォームでは、ハードウェアに適した標準構成が"
+"あります。一般に、パラメータを渡さずに `SDCard` オブジェクトを構築すると、"
+"使っているハードウェアのデフォルトのカードスロットのインターフェイスが初期化されます。"
+"以下にリストされている引数は、非標準スロットまたは非標準のピン割り当てのいずれかを"
+"使うのに設定が必要な共通の引数を表しています。サポートする引数の厳密なサブセットは、"
+"プラットフォームごとに異なります。"
 
 #: ../../library/machine.SDCard.rst:28
 msgid ""
@@ -3212,6 +3228,10 @@ msgid ""
 "implements the block protocol defined by :class:`uos.AbstractBlockDev`. "
 "This allows the mounting of an SD card to be as simple as::"
 msgstr ""
+"このクラスは、専用の SD/MMC インターフェイスハードウェアか、SPI チャネルを介しての、"
+"SD または MMC ストレージカードへのアクセスを提供します。このクラスは "
+":class:`uos.AbstractBlockDev` で定義されたブロックプロトコルを実装しています。"
+"これにより、SD カードのマウントが次のように簡単になります。"
 
 #: ../../library/machine.SDCard.rst:33
 msgid "uos.mount(machine.SDCard(), \"/sd\")"
@@ -3219,51 +3239,55 @@ msgstr ""
 
 #: ../../library/machine.SDCard.rst:35
 msgid "The constrcutor takes the following paramters:"
-msgstr ""
+msgstr "このコンストラクタは次のパラメーターを取ります。"
 
 #: ../../library/machine.SDCard.rst:37
 msgid ""
 "*slot* selects which of the available interfaces to use. Leaving this "
 "unset will select the default interface."
 msgstr ""
+"*slot* は、使用可能なインターフェースのどれを使用するかを選択します。"
+"この指定を省略すると、デフォルトのインターフェースが選択されます。"
 
 #: ../../library/machine.SDCard.rst:40
 msgid "*width* selects the bus width for the SD/MMC interface."
-msgstr ""
+msgstr "*width* は、SD/MMCインターフェイスのバス幅を選択します。"
 
 #: ../../library/machine.SDCard.rst:42
 msgid "*cd* can be used to specify a card-detect pin."
-msgstr ""
+msgstr "*cd* でカード検出ピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:44
 msgid "*wp* can be used to specify a write-protect pin."
-msgstr ""
+msgstr "*wp* で書き込み保護ピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:46
 msgid "*sck* can be used to specify an SPI clock pin."
-msgstr ""
+msgstr "*sck* で SPI クロックピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:48
 msgid "*miso* can be used to specify an SPI miso pin."
-msgstr ""
+msgstr "*miso* で SPI miso ピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:50
 msgid "*mosi* can be used to specify an SPI mosi pin."
-msgstr ""
+msgstr "*miso* で SPI mosi ピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:52
 msgid "*cs* can be used to specify an SPI chip select pin."
-msgstr ""
+msgstr "*cs* で SPI チップ選択ピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:55
 msgid "Implementation-specific details"
-msgstr ""
+msgstr "ハードウェア固有の詳細"
 
 #: ../../library/machine.SDCard.rst:57
 msgid ""
 "Different implementations of the ``SDCard`` class on different hardware "
 "support varying subsets of the options above."
 msgstr ""
+"異なるハードウェア上の ``SDCard`` クラスの実装は、上記のオプションの"
+"さまざまなサブセットをサポートします。"
 
 #: ../../library/machine.SDCard.rst:61
 msgid "PyBoard"
@@ -3274,6 +3298,7 @@ msgid ""
 "The standard PyBoard has just one slot. No arguments are necessary or "
 "supported."
 msgstr ""
+"標準の PyBoard にはスロットが1つしかありません。引数は不要またはサポートされていません。"
 
 #: ../../library/machine.SDCard.rst:66
 msgid "ESP32"
@@ -3289,24 +3314,36 @@ msgid ""
 "8-bit wide access while slot 1 supports 1 or 4-bit access; the SPI slots "
 "only support 1-bit access."
 msgstr ""
+"ESP32 は SD/MMC ハードウェアの2つのチャネルを提供し、ユーザーが通常利用できる2つの "
+"SPI ポートのいずれかを介したSDカードへのアクセスもサポートします。結果として、 "
+"*slot* 引数は 0 から 3 までの値を取ることができます。スロット 0 と 1 は組み込みの "
+"SD/MMCハードウェアを使い、スロット 2 と 3 は SPI ポートを使います。スロット 0 は "
+"1, 4, 8ビット幅のアクセスをサポートし、スロット1 は 1 または 4ビットアクセスを"
+"サポートします。SPIスロットは1ビットアクセスのみをサポートします。"
 
 #: ../../library/machine.SDCard.rst:76
 msgid ""
 "Slot 0 is used to communicate with on-board flash memory on most ESP32 "
 "modules and so will be unavailable to the user."
 msgstr ""
+"スロット 0 は、ほとんどの ESP32 モジュールではオンボードのフラッシュメモリとの通信に"
+"使っているため、ユーザーは使用できません。"
 
 #: ../../library/machine.SDCard.rst:80
 msgid ""
 "Most ESP32 modules that provide an SD card slot using the dedicated "
 "hardware only wire up 1 data pin, so the default value for *width* is 1."
 msgstr ""
+"専用ハードウェアを使って SD カードスロットを提供するほとんどの ESP32 モジュールは、"
+"1データピンのみを配線しているため *width* のデフォルト値は1です。"
 
 #: ../../library/machine.SDCard.rst:84
 msgid ""
 "The pins used by the dedicated SD/MMC hardware are fixed. The pins used "
 "by the SPI hardware can be reassigned."
 msgstr ""
+"専用の SD/MMC ハードウェアで使われているピンは固定されています。SPI ハードウェアで"
+"使うピンは再割り当てできます。"
 
 #: ../../library/machine.SDCard.rst:87
 msgid ""
@@ -3315,14 +3352,18 @@ msgid ""
 "high frequency signals. Since the normal operating speed for SD cards is "
 "40MHz this can cause problems on some cards."
 msgstr ""
+"SPI 信号のいずれかが再マッピングされると、すべての SPI 信号が GPIO マルチプレクサ"
+"ユニットを通過するため、高周波信号のパフォーマンスが制限される可能性があります。"
+"SDカードの通常の動作速度は 40MHz であるため、一部のカードで問題が発生する"
+"場合があります。"
 
 #: ../../library/machine.SDCard.rst:93
 msgid "The default (and preferred) pin assignment are as follows:"
-msgstr ""
+msgstr "デフォルト(および推奨)のピン割り当ては次のとおりです。"
 
 #: ../../library/machine.SDCard.rst:96
 msgid "Slot"
-msgstr ""
+msgstr "スロット"
 
 #: ../../library/machine.SDCard.rst:96 ../../library/pyb.CAN.rst:256
 msgid "0"
@@ -3349,7 +3390,7 @@ msgstr ""
 
 #: ../../library/machine.SDCard.rst:98
 msgid "Pin"
-msgstr ""
+msgstr "ピン"
 
 #: ../../library/machine.SDCard.rst:100
 msgid "sck"
@@ -3480,12 +3521,15 @@ msgid ""
 "You can set the pins used for SPI access by passing a tuple as the *pins*"
 " argument."
 msgstr ""
+"*pins* 引数にタプルを渡すことにより、SPI アクセスに使うピンを指定できます。"
 
 #: ../../library/machine.SDCard.rst:121
 msgid ""
 "*Note:* The current cc3200 SD card implementation names the this class "
 ":class:`machine.SD` rather than :class:`machine.SDCard` ."
 msgstr ""
+"*注記:* 現在の cc3200 SDカードの実装では :class:`machine.SDCard` ではなく、"
+":class:`machine.SD` のほうを使います。"
 
 #: ../../../library/machine.SPI.rst:5
 msgid "class SPI -- a Serial Peripheral Interface bus protocol (master side)"
