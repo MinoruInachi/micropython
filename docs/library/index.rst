@@ -75,6 +75,7 @@ it will fallback to loading the built-in ``ujson`` module.
 
    builtins.rst
    array.rst
+   bluetooth.rst
    cmath.rst
    gc.rst
    math.rst
@@ -136,6 +137,7 @@ The following libraries and classes are specific to the WiPy.
   :maxdepth: 2
 
   wipy.rst
+  machine.ADCWiPy.rst
   machine.TimerWiPy.rst
 
 
