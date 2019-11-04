@@ -48,6 +48,7 @@
 #endif
 
 #include "mpu.h"
+#include "rfcore.h"
 #include "systick.h"
 #include "pendsv.h"
 #include "powerctrl.h"
@@ -55,6 +56,7 @@
 #include "gccollect.h"
 #include "factoryreset.h"
 #include "modmachine.h"
+#include "softtimer.h"
 #include "i2c.h"
 #include "spi.h"
 #include "uart.h"
@@ -161,7 +163,7 @@ MP_DEFINE_CONST_FUN_OBJ_KW(pyb_main_obj, 1, pyb_main);
 MP_NOINLINE STATIC bool init_flash_fs(uint reset_mode) {
     // init the vfs object
     fs_user_mount_t *vfs_fat = &fs_user_mount_flash;
-    vfs_fat->flags = 0;
+    vfs_fat->blockdev.flags = 0;
     pyb_flash_init_vfs(vfs_fat);
 
     // try to mount the flash
@@ -230,7 +232,7 @@ STATIC bool init_sdcard_fs(void) {
         if (vfs == NULL || vfs_fat == NULL) {
             break;
         }
-        vfs_fat->flags = FSUSER_FREE_OBJ;
+        vfs_fat->blockdev.flags = MP_BLOCKDEV_FLAG_FREE_OBJ;
         sdcard_init_vfs(vfs_fat, part_num);
 
         // try to mount the partition
@@ -465,6 +467,9 @@ void stm32_main(uint32_t reset_mode) {
     #endif
 
     // basic sub-system init
+    #if defined(STM32WB)
+    rfcore_init();
+    #endif
     #if MICROPY_HW_SDRAM_SIZE
     sdram_init();
     #if MICROPY_HW_SDRAM_STARTUP_TEST
@@ -743,6 +748,7 @@ soft_reset_exit:
     #if MICROPY_PY_NETWORK
     mod_network_deinit();
     #endif
+    soft_timer_deinit();
     timer_deinit();
     uart_deinit_all();
     #if MICROPY_HW_ENABLE_CAN

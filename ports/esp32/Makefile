@@ -32,11 +32,12 @@ MICROPY_SSL_AXTLS = 0
 MICROPY_FATFS = 1
 MICROPY_PY_BTREE = 1
 
-#FROZEN_DIR = scripts
-FROZEN_MPY_DIR = modules
+FROZEN_MANIFEST ?= boards/manifest.py
 
 # include py core make definitions
 include $(TOP)/py/py.mk
+
+GIT_SUBMODULES = lib/berkeley-db-1.xx
 
 PORT ?= /dev/ttyUSB0
 BAUD ?= 460800

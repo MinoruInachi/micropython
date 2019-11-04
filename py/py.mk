@@ -46,6 +46,7 @@ PY_CORE_O_BASENAME = $(addprefix py/,\
 	nlrx86.o \
 	nlrx64.o \
 	nlrthumb.o \
+	nlrpowerpc.o \
 	nlrxtensa.o \
 	nlrsetjmp.o \
 	malloc.o \
@@ -184,12 +185,14 @@ PY_EXTMOD_O_BASENAME = \
 	extmod/modwebrepl.o \
 	extmod/modframebuf.o \
 	extmod/vfs.o \
+	extmod/vfs_blockdev.o \
 	extmod/vfs_reader.o \
 	extmod/vfs_posix.o \
 	extmod/vfs_posix_file.o \
 	extmod/vfs_fat.o \
 	extmod/vfs_fat_diskio.o \
 	extmod/vfs_fat_file.o \
+	extmod/vfs_lfs.o \
 	extmod/utime_mphal.o \
 	extmod/uos_dupterm.o \
 	lib/embed/abort_.o \
@@ -201,6 +204,11 @@ PY_EXTMOD_O = $(addprefix $(BUILD)/, $(PY_EXTMOD_O_BASENAME))
 
 # this is a convenience variable for ports that want core, extmod and frozen code
 PY_O = $(PY_CORE_O) $(PY_EXTMOD_O)
+
+# object file for frozen code specified via a manifest
+ifneq ($(FROZEN_MANIFEST),)
+PY_O += $(BUILD)/$(BUILD)/frozen_content.o
+endif
 
 # object file for frozen files
 ifneq ($(FROZEN_DIR),)

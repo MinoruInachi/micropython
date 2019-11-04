@@ -87,21 +87,22 @@ STATIC int ble_hs_err_to_errno(int err) {
     }
 }
 
+// Note: modbluetooth UUIDs store their data in LE.
 STATIC ble_uuid_t* create_nimble_uuid(const mp_obj_bluetooth_uuid_t *uuid) {
     if (uuid->type == MP_BLUETOOTH_UUID_TYPE_16) {
         ble_uuid16_t *result = m_new(ble_uuid16_t, 1);
         result->u.type = BLE_UUID_TYPE_16;
-        result->value = uuid->uuid._16;
+        result->value = (uuid->data[1] << 8) | uuid->data[0];
         return (ble_uuid_t*)result;
     } else if (uuid->type == MP_BLUETOOTH_UUID_TYPE_32) {
         ble_uuid32_t *result = m_new(ble_uuid32_t, 1);
         result->u.type = BLE_UUID_TYPE_32;
-        result->value = uuid->uuid._32;
+        result->value = (uuid->data[1] << 24) | (uuid->data[1] << 16) | (uuid->data[1] << 8) | uuid->data[0];
         return (ble_uuid_t*)result;
     } else if (uuid->type == MP_BLUETOOTH_UUID_TYPE_128) {
         ble_uuid128_t *result = m_new(ble_uuid128_t, 1);
         result->u.type = BLE_UUID_TYPE_128;
-        memcpy(result->value, uuid->uuid._128, 16);
+        memcpy(result->value, uuid->data, 16);
         return (ble_uuid_t*)result;
     } else {
         return NULL;
@@ -115,15 +116,19 @@ STATIC mp_obj_bluetooth_uuid_t create_mp_uuid(const ble_uuid_any_t *uuid) {
     switch (uuid->u.type) {
         case BLE_UUID_TYPE_16:
             result.type = MP_BLUETOOTH_UUID_TYPE_16;
-            result.uuid._16 = uuid->u16.value;
+            result.data[0] = uuid->u16.value & 0xff;
+            result.data[1] = (uuid->u16.value << 8) & 0xff;
             break;
         case BLE_UUID_TYPE_32:
             result.type = MP_BLUETOOTH_UUID_TYPE_32;
-            result.uuid._32 = uuid->u32.value;
+            result.data[0] = uuid->u32.value & 0xff;
+            result.data[1] = (uuid->u32.value << 8) & 0xff;
+            result.data[2] = (uuid->u32.value << 16) & 0xff;
+            result.data[3] = (uuid->u32.value << 24) & 0xff;
             break;
         case BLE_UUID_TYPE_128:
             result.type = MP_BLUETOOTH_UUID_TYPE_128;
-            memcpy(result.uuid._128, uuid->u128.value, 16);
+            memcpy(result.data, uuid->u128.value, 16);
             break;
         default:
             assert(false);
@@ -131,7 +136,7 @@ STATIC mp_obj_bluetooth_uuid_t create_mp_uuid(const ble_uuid_any_t *uuid) {
     return result;
 }
 
-// modbluetooth (and the layers above it) work in BE addresses, Nimble works in LE.
+// modbluetooth (and the layers above it) work in BE for addresses, Nimble works in LE.
 STATIC void reverse_addr_byte_order(uint8_t *addr_out, const uint8_t *addr_in) {
     for (int i = 0; i < 6; ++i) {
         addr_out[i] = addr_in[5-i];
@@ -149,9 +154,14 @@ STATIC ble_addr_t create_nimble_addr(uint8_t addr_type, const uint8_t *addr) {
 #endif // MICROPY_PY_BLUETOOTH_ENABLE_CENTRAL_MODE
 
 typedef struct {
+    // Pointer to heap-allocated data.
     uint8_t *data;
+    // Allocated size of data.
     size_t data_alloc;
+    // Current bytes in use.
     size_t data_len;
+    // Whether new writes append or replace existing data (default false).
+    bool append;
 } gatts_db_entry_t;
 
 volatile int mp_bluetooth_nimble_ble_state = MP_BLUETOOTH_NIMBLE_BLE_STATE_OFF;
@@ -201,6 +211,7 @@ STATIC void create_gatts_db_entry(uint16_t handle) {
     entry->data = m_new(uint8_t, MP_BLUETOOTH_MAX_ATTR_SIZE);
     entry->data_alloc = MP_BLUETOOTH_MAX_ATTR_SIZE;
     entry->data_len = 0;
+    entry->append = false;
     elem->value = MP_OBJ_FROM_PTR(entry);
 }
 
@@ -346,14 +357,14 @@ int mp_bluetooth_gap_advertise_start(bool connectable, int32_t interval_us, cons
 
     mp_bluetooth_gap_advertise_stop();
 
-    if ((adv_data != NULL) && (adv_data_len > 0)) {
+    if (adv_data) {
         ret = ble_gap_adv_set_data(adv_data, adv_data_len);
         if (ret != 0) {
             return ble_hs_err_to_errno(ret);
         }
     }
 
-    if ((sr_data != NULL) && (sr_data_len > 0)) {
+    if (sr_data) {
         ret = ble_gap_adv_rsp_set_data(sr_data, sr_data_len);
         if (ret != 0) {
             return ble_hs_err_to_errno(ret);
@@ -384,6 +395,7 @@ int mp_bluetooth_gap_advertise_start(bool connectable, int32_t interval_us, cons
     if (ret == 0) {
         return 0;
     }
+    DEBUG_EVENT_printf("ble_gap_adv_start: %d\n", ret);
 
     return ble_hs_err_to_errno(ret);
 }
@@ -424,8 +436,13 @@ static int characteristic_access_cb(uint16_t conn_handle, uint16_t value_handle,
                 return BLE_ATT_ERR_ATTR_NOT_FOUND;
             }
             entry = MP_OBJ_TO_PTR(elem->value);
-            entry->data_len = MIN(MP_BLUETOOTH_MAX_ATTR_SIZE, OS_MBUF_PKTLEN(ctxt->om));
-            os_mbuf_copydata(ctxt->om, 0, entry->data_len, entry->data);
+
+            size_t offset = 0;
+            if (entry->append) {
+                offset = entry->data_len;
+            }
+            entry->data_len = MIN(entry->data_alloc, OS_MBUF_PKTLEN(ctxt->om) + offset);
+            os_mbuf_copydata(ctxt->om, 0, entry->data_len - offset, entry->data + offset);
 
             mp_bluetooth_gatts_on_write(conn_handle, value_handle);
 
@@ -434,7 +451,7 @@ static int characteristic_access_cb(uint16_t conn_handle, uint16_t value_handle,
     return BLE_ATT_ERR_UNLIKELY;
 }
 
-int mp_bluetooth_gatts_register_service_begin(bool reset) {
+int mp_bluetooth_gatts_register_service_begin(bool append) {
     int ret = ble_gatts_reset();
     if (ret != 0) {
         return ble_hs_err_to_errno(ret);
@@ -446,7 +463,13 @@ int mp_bluetooth_gatts_register_service_begin(bool reset) {
     // By default, just register the default gap service.
     ble_svc_gap_init();
 
-    MP_STATE_PORT(bluetooth_nimble_root_pointers)->n_services = 0;
+    if (!append) {
+        // Unref any previous service definitions.
+        for (int i = 0; i < MP_STATE_PORT(bluetooth_nimble_root_pointers)->n_services; ++i) {
+            MP_STATE_PORT(bluetooth_nimble_root_pointers)->services[i] = NULL;
+        }
+        MP_STATE_PORT(bluetooth_nimble_root_pointers)->n_services = 0;
+    }
 
     return 0;
 }
@@ -456,11 +479,6 @@ int mp_bluetooth_gatts_register_service_end() {
     if (ret != 0) {
         return ble_hs_err_to_errno(ret);
     }
-
-    for (int i = 0; i < MP_STATE_PORT(bluetooth_nimble_root_pointers)->n_services; ++i) {
-        MP_STATE_PORT(bluetooth_nimble_root_pointers)->services[i] = NULL;
-    }
-    MP_STATE_PORT(bluetooth_nimble_root_pointers)->n_services = 0;
 
     return 0;
 }
@@ -540,6 +558,9 @@ int mp_bluetooth_gatts_read(uint16_t value_handle, uint8_t **value, size_t *valu
     gatts_db_entry_t *entry = MP_OBJ_TO_PTR(elem->value);
     *value = entry->data;
     *value_len = entry->data_len;
+    if (entry->append) {
+        entry->data_len = 0;
+    }
     return 0;
 }
 
@@ -580,10 +601,23 @@ int mp_bluetooth_gatts_indicate(uint16_t conn_handle, uint16_t value_handle) {
     return ble_hs_err_to_errno(ble_gattc_indicate(conn_handle, value_handle));
 }
 
+int mp_bluetooth_gatts_set_buffer(uint16_t value_handle, size_t len, bool append) {
+    mp_map_elem_t *elem = mp_map_lookup(MP_STATE_PORT(bluetooth_nimble_root_pointers)->gatts_db, MP_OBJ_NEW_SMALL_INT(value_handle), MP_MAP_LOOKUP);
+    if (!elem) {
+        return MP_EINVAL;
+    }
+    gatts_db_entry_t *entry = MP_OBJ_TO_PTR(elem->value);
+    entry->data = m_renew(uint8_t, entry->data, entry->data_alloc, len);
+    entry->data_alloc = len;
+    entry->data_len = 0;
+    entry->append = append;
+    return 0;
+}
+
 #if MICROPY_PY_BLUETOOTH_ENABLE_CENTRAL_MODE
 
 STATIC int gap_scan_cb(struct ble_gap_event *event, void *arg) {
-    DEBUG_EVENT_printf("gap_scan_cb: event=%d type=%d\n", event->type, event->disc ? event->disc.event_type : -1);
+    DEBUG_EVENT_printf("gap_scan_cb: event=%d type=%d\n", event->type, event->type == BLE_GAP_EVENT_DISC ? event->disc.event_type : -1);
 
     if (event->type == BLE_GAP_EVENT_DISC_COMPLETE) {
         mp_bluetooth_gap_on_scan_complete();

@@ -26,11 +26,14 @@ MICROPY_FATFS ?= 1
 MICROPY_PY_BTREE ?= 1
 BTREE_DEFS_EXTRA = -DDEFPSIZE=1024 -DMINCACHE=3
 
-FROZEN_DIR ?= scripts
-FROZEN_MPY_DIR ?= modules
+FROZEN_MANIFEST ?= boards/manifest.py
+FROZEN_DIR ?=
+FROZEN_MPY_DIR ?=
 
 # include py core make definitions
 include $(TOP)/py/py.mk
+
+GIT_SUBMODULES = lib/axtls lib/berkeley-db-1.xx
 
 FWBIN = $(BUILD)/firmware-combined.bin
 PORT ?= /dev/ttyACM0
@@ -177,14 +180,23 @@ CONFVARS_FILE = $(BUILD)/confvars
 
 ifeq ($(wildcard $(CONFVARS_FILE)),)
 $(shell $(MKDIR) -p $(BUILD))
-$(shell echo $(FROZEN_DIR) $(UART_OS) > $(CONFVARS_FILE))
-else ifneq ($(shell cat $(CONFVARS_FILE)), $(FROZEN_DIR) $(UART_OS))
-$(shell echo $(FROZEN_DIR) $(UART_OS) > $(CONFVARS_FILE))
+$(shell echo $(FROZEN_MANIFEST) $(UART_OS) > $(CONFVARS_FILE))
+else ifneq ($(shell cat $(CONFVARS_FILE)), $(FROZEN_MANIFEST) $(UART_OS))
+$(shell echo $(FROZEN_MANIFEST) $(UART_OS) > $(CONFVARS_FILE))
 endif
 
 $(BUILD)/uart.o: $(CONFVARS_FILE)
 
 FROZEN_EXTRA_DEPS = $(CONFVARS_FILE)
+
+ifneq ($(FROZEN_MANIFEST)$(FROZEN_MPY_DIR),)
+CFLAGS += -DMICROPY_MODULE_FROZEN_MPY
+CFLAGS += -DMICROPY_QSTR_EXTRA_POOL=mp_qstr_frozen_const_pool
+endif
+
+ifneq ($(FROZEN_MANIFEST)$(FROZEN_DIR),)
+CFLAGS += -DMICROPY_MODULE_FROZEN_STR
+endif
 
 .PHONY: deploy
 

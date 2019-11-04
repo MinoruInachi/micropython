@@ -18,11 +18,13 @@ include $(BOARD_DIR)/mpconfigboard.mk
 QSTR_DEFS = qstrdefsport.h $(BUILD)/pins_qstr.h $(BUILD)/modstm_qstr.h
 QSTR_GLOBAL_DEPENDENCIES = mpconfigboard_common.h $(BOARD_DIR)/mpconfigboard.h
 
-# directory containing scripts to be frozen as bytecode
-FROZEN_MPY_DIR ?= modules
+# File containing description of content to be frozen into firmware.
+FROZEN_MANIFEST ?= boards/manifest.py
 
 # include py core make definitions
 include $(TOP)/py/py.mk
+
+GIT_SUBMODULES = lib/lwip lib/mbedtls lib/mynewt-nimble lib/stm32lib
 
 MCU_SERIES_UPPER = $(shell echo $(MCU_SERIES) | tr '[:lower:]' '[:upper:]')
 CMSIS_MCU_LOWER = $(shell echo $(CMSIS_MCU) | tr '[:upper:]' '[:lower:]')
@@ -62,13 +64,18 @@ INC += -Ilwip_inc
 CFLAGS_CORTEX_M = -mthumb
 
 # Select hardware floating-point support
+SUPPORTS_HARDWARE_FP_SINGLE = 0
+SUPPORTS_HARDWARE_FP_DOUBLE = 0
 ifeq ($(CMSIS_MCU),$(filter $(CMSIS_MCU),STM32F765xx STM32F767xx STM32F769xx STM32H743xx))
 CFLAGS_CORTEX_M += -mfpu=fpv5-d16 -mfloat-abi=hard
+SUPPORTS_HARDWARE_FP_SINGLE = 1
+SUPPORTS_HARDWARE_FP_DOUBLE = 1
 else
 ifeq ($(MCU_SERIES),$(filter $(MCU_SERIES),f0 l0))
 CFLAGS_CORTEX_M += -msoft-float
 else
 CFLAGS_CORTEX_M += -mfpu=fpv4-sp-d16 -mfloat-abi=hard
+SUPPORTS_HARDWARE_FP_SINGLE = 1
 endif
 endif
 
@@ -178,7 +185,7 @@ SRC_LIBM = $(addprefix lib/libm_dbl/,\
 	tgamma.c \
 	trunc.c \
 	)
-ifeq ($(MCU_SERIES),$(filter $(MCU_SERIES),f7 h7))
+ifeq ($(SUPPORTS_HARDWARE_FP_DOUBLE),1)
 SRC_LIBM += lib/libm_dbl/thumb_vfp_sqrt.c
 else
 SRC_LIBM += lib/libm_dbl/sqrt.c
@@ -211,10 +218,10 @@ SRC_LIBM = $(addprefix lib/libm/,\
 	wf_lgamma.c \
 	wf_tgamma.c \
 	)
-ifeq ($(MCU_SERIES),$(filter $(MCU_SERIES),f0 l0))
-SRC_LIBM += lib/libm/ef_sqrt.c
-else
+ifeq ($(SUPPORTS_HARDWARE_FP_SINGLE),1)
 SRC_LIBM += lib/libm/thumb_vfp_sqrtf.c
+else
+SRC_LIBM += lib/libm/ef_sqrt.c
 endif
 endif
 
@@ -242,8 +249,10 @@ SRC_C = \
 	irq.c \
 	pendsv.c \
 	systick.c  \
+	softtimer.c  \
 	powerctrl.c \
 	powerctrlboot.c \
+	rfcore.c \
 	pybthread.c \
 	factoryreset.c \
 	timer.c \
@@ -270,6 +279,7 @@ SRC_C = \
 	machine_adc.c \
 	machine_i2c.c \
 	machine_spi.c \
+	machine_timer.c \
 	machine_uart.c \
 	modmachine.c \
 	modpyb.c \
@@ -483,13 +493,13 @@ $(TOP)/lib/stm32lib/README.md:
 	$(ECHO) "stm32lib submodule not found, fetching it now..."
 	(cd $(TOP) && git submodule update --init lib/stm32lib)
 
-ifneq ($(FROZEN_DIR),)
+ifneq ($(FROZEN_MANIFEST)$(FROZEN_DIR),)
 # To use frozen source modules, put your .py files in a subdirectory (eg scripts/)
 # and then invoke make with FROZEN_DIR=scripts (be sure to build from scratch).
 CFLAGS += -DMICROPY_MODULE_FROZEN_STR
 endif
 
-ifneq ($(FROZEN_MPY_DIR),)
+ifneq ($(FROZEN_MANIFEST)$(FROZEN_MPY_DIR),)
 # To use frozen bytecode, put your .py files in a subdirectory (eg frozen/) and
 # then invoke make with FROZEN_MPY_DIR=frozen (be sure to build from scratch).
 CFLAGS += -DMICROPY_QSTR_EXTRA_POOL=mp_qstr_frozen_const_pool
