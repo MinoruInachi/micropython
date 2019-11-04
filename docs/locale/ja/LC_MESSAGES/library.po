@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-09-24 23:00+0900\n"
+"PO-Revision-Date: 2019-11-04 13:27+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -38,15 +38,15 @@ msgstr ""
 "このモジュールは初期の実験段階にあり、API はまだ完全には決まっていないため、"
 "このドキュメントではまだ説明しません。"
 
-#: ../../../library/array.rst:2
-msgid ":mod:`array` -- arrays of numeric data"
-msgstr ":mod:`array` -- 数値データの配列"
+#: ../../../library/uarray.rst:2
+msgid ":mod:`uarray` -- arrays of numeric data"
+msgstr ":mod:`uarray` -- 数値データの配列"
 
-#: ../../../library/array.rst:7
-msgid "|see_cpython_module| :mod:`python:array`."
+#: ../../../library/uarray.rst:7
+msgid "|see_cpython_module| :mod:`python:uarray`."
 msgstr ""
 
-#: ../../../library/array.rst:9
+#: ../../../library/uarray.rst:9
 msgid ""
 "Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``, "
 "``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the "
@@ -55,13 +55,13 @@ msgstr ""
 "サポートする書式コード: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``, "
 "``L``, ``q``, ``Q``, ``f``, ``d`` (最後の２つは浮動小数点サポートに依存します)。"
 
-#: ../../../library/array.rst:14 ../../../library/machine.rst:141
+#: ../../../library/uarray.rst:14 ../../../library/machine.rst:141
 #: ../../../library/pyb.rst:291 ../../../library/ucollections.rst:13
 #: ../../../library/ucryptolib.rst:8 ../../../library/uio.rst:87
 msgid "Classes"
 msgstr "クラス"
 
-#: ../../../library/array.rst:18
+#: ../../../library/uarray.rst:18
 msgid ""
 "Create array with elements of given type. Initial contents of the array "
 "are given by *iterable*. If it is not provided, an empty array is "
@@ -70,11 +70,11 @@ msgstr ""
 "与えたデータ型の要素を持つ配列を作成します。配列の初期値は *iterable* に与えます。"
 "これを与えない場合は空の配列が作成されます。"
 
-#: ../../../library/array.rst:24
+#: ../../../library/uarray.rst:24
 msgid "Append new element *val* to the end of array, growing it."
 msgstr "配列の最後に新しい要素 *val* を追加します。"
 
-#: ../../../library/array.rst:28
+#: ../../../library/uarray.rst:28
 msgid ""
 "Append new elements as contained in *iterable* to the end of array, "
 "growing it."
@@ -1327,26 +1327,53 @@ msgid ""
 msgstr "MicroPython 処理系に固有の機能は、以下のライブラリで利用できます。"
 
 #: ../../../library/index.rst:119
+msgid "Port-specific libraries"
+msgstr "ポート固有のライブラリ"
+
+#: ../../../library/index.rst:122
+msgid ""
+"In some cases the following port/board-specific libraries have "
+"functions or classes similar to those in the :mod:`machine` library.  "
+"Where this occurs, the entry in the port specific library exposes "
+"hardware functionality unique to that platform."
+msgstr ""
+"以降のポート/ボード固有のライブラリには、 :mod:`machine` ライブラリ内にあるものと"
+"同様の関数やクラスが用意されていることがあります。そのような場合、ポート固有の"
+"ライブラリの方では、そのプラットフォームに固有のハードウェア機能が使えるように"
+"なっています。"
+
+#: ../../../library/index.rst:122
+msgid ""
+"To write portable code use functions and classes from the :mod:`machine` "
+"module. To access platform-specific hardware use the appropriate library, "
+"e.g. :mod:`pyb` in the case of the Pyboard."
+msgstr ""
+"移植可能なコードを作成するには、 :mod:`machine` モジュールの関数やクラスを"
+"使ってください。プラットフォーム固有のハードウェアにアクセスするには、適切な"
+"ポート固有ライブラリを使ってください。たとえば Pyboard の場合は :mod:`pyb` "
+"を使います。"
+
+#: ../../../library/index.rst:132
 msgid "Libraries specific to the pyboard"
 msgstr "pyboard 固有のライブラリ"
 
-#: ../../../library/index.rst:121
+#: ../../../library/index.rst:135
 msgid "The following libraries are specific to the pyboard."
 msgstr "以下のライブラリは pyboard に固有のものです。"
 
-#: ../../../library/index.rst:131
+#: ../../../library/index.rst:144
 msgid "Libraries specific to the WiPy"
 msgstr "WiPy 固有のライブラリ"
 
-#: ../../../library/index.rst:133
+#: ../../../library/index.rst:147
 msgid "The following libraries and classes are specific to the WiPy."
 msgstr "以下のライブラリとクラスは WiPy に固有のものです。"
 
-#: ../../../library/index.rst:143
+#: ../../../library/index.rst:157
 msgid "Libraries specific to the ESP8266 and ESP32"
 msgstr "ESP8266 と ESP32 に固有のライブラリ"
 
-#: ../../../library/index.rst:145
+#: ../../../library/index.rst:160
 msgid "The following libraries are specific to the ESP8266 and ESP32."
 msgstr "以下のライブラリは ESP8266 と ESP32 に固有のものです。"
 
@@ -5145,7 +5172,7 @@ msgid ""
 "connect to. It may be accompanied by a key (password) required to access "
 "said service. There can be further arbitrary keyword-only parameters, "
 "depending on the networking medium type and/or particular device. "
-"Parameters can be used to: a) specify alternative service identifer "
+"Parameters can be used to: a) specify alternative service identifier "
 "types; b) provide additional connection parameters. For various medium "
 "types, there are different sets of predefined/recommended parameters, "
 "among them:"
@@ -11050,7 +11077,7 @@ msgid ""
 "SHA1 - A previous generation algorithm. Not recommended for new usages, "
 "but SHA1 is a part of number of Internet standards and existing "
 "applications, so boards targeting network connectivity and "
-"interoperatiability will try to provide this."
+"interoperability will try to provide this."
 msgstr ""
 "SHA1 - 前世代のアルゴリズム。新しい用途には推奨されませんが、SHA1 はインターネット"
 "標準や既存のアプリケーションの一部です。そのため、ネットワーク接続と相互運用性を目的"
@@ -11059,7 +11086,7 @@ msgstr ""
 #: ../../../library/uhashlib.rst:23
 msgid ""
 "MD5 - A legacy algorithm, not considered cryptographically secure. Only "
-"selected boards, targeting interoperatibility with legacy applications, "
+"selected boards, targeting interoperability with legacy applications, "
 "will offer this."
 msgstr ""
 "MD5 - 暗号で安全とはみなされないレガシーアルゴリズム。従来のアプリケーションとの"
@@ -11574,7 +11601,7 @@ msgid "``f_bfree`` -- number of free blocks"
 msgstr "``f_bfree`` -- 空きブロックの数"
 
 #: ../../../library/uos.rst:97
-msgid "``f_bavail`` -- number of free blocks for unpriviliged users"
+msgid "``f_bavail`` -- number of free blocks for unprivileged users"
 msgstr "``f_bavail`` -- 権限なしユーザーのための空きブロック数"
 
 #: ../../../library/uos.rst:98
@@ -11586,7 +11613,7 @@ msgid "``f_ffree`` -- number of free inodes"
 msgstr "``f_ffree`` -- フリーのiノードの数"
 
 #: ../../../library/uos.rst:100
-msgid "``f_favail`` -- number of free inodes for unpriviliged users"
+msgid "``f_favail`` -- number of free inodes for unprivileged users"
 msgstr "``f_favail`` -- 権限なしユーザの空きiノード数"
 
 #: ../../../library/uos.rst:101
@@ -11764,7 +11791,18 @@ msgstr ""
 "許可されます。特定のファイルシステムドライバがブロックデバイスを使用して、ファイル"
 "システム用のデータを格納できます。"
 
-#: ../../../library/uos.rst:192
+#: ../../../library/uos.rst:190
+msgid ""
+"There are two compatible signatures for the ``readblocks`` and "
+"``writeblocks`` methods (see below), in order to support a variety "
+"of use cases.  A given block device may implement one form or "
+"the other, or both at the same time."
+msgstr ""
+"さまざまなユースケースをサポートするために、 ``readblocks`` や ``writeblocks`` "
+"メソッドには２つの互換性のあるシグネチャがあります（以下を参照）。"
+"ブロックデバイスはより、どちらか一方、または両方を実装しています。"
+
+#: ../../../library/uos.rst:196
 msgid ""
 "Construct a block device object.  The parameters to the constructor are "
 "dependent on the specific block device."
@@ -11772,29 +11810,72 @@ msgstr ""
 "ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
 "ブロックデバイスに依存します。"
 
-#: ../../../library/uos.rst:197
+#: ../../../library/uos.rst:202
 msgid ""
+"The first form reads aligned, multiples of blocks. "
 "Starting at the block given by the index *block_num*, read blocks from "
 "the device into *buf* (an array of bytes). The number of blocks to read "
 "is given by the length of *buf*, which will be a multiple of the block "
 "size."
 msgstr ""
-"インデックス *block_num* で指定したブロックから、デバイスから *buf* (バイト列)"
-"にブロックを読み込みます。読み込むブロック数は *buf* の長さで与えられ、ブロック"
-"サイズの倍数になります。"
+"最初の形式は、整列した複数のブロックを読み取ります。インデックス *block_num* で"
+"指定したブロックを開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
+"読み込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数になります。"
 
-#: ../../../library/uos.rst:204
+#: ../../../library/uos.rst:208
 msgid ""
+"The second form allows reading at arbitrary locations within a block, "
+"and arbitrary lengths. Starting at block index *block_num*, and byte "
+"offset within that block of *offset*, read bytes from the device into "
+"*buf* (an array of bytes). The number of bytes to read is given by "
+"the length of *buf*."
+msgstr ""
+"２番目の形式では、ブロック内の任意の場所、任意の長さで読み取ることができます。"
+"ブロックインデックス *block_num* とブロック内のバイトオフセット *offset* "
+"を開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
+"読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
+
+#: ../../../library/uos.rst:217
+msgid ""
+"The first form writes aligned, multiples of blocks, and requires that the "
+"blocks that are written to be first erased (if necessary) by this method. "
 "Starting at the block given by the index *block_num*, write blocks from "
 "*buf* (an array of bytes) to the device. The number of blocks to write is"
 " given by the length of *buf*, which will be a multiple of the block "
 "size."
 msgstr ""
+"最初の形式は、整列した複数のブロックを書き込みます。"
+"書き込む前には、対象のブロックが（必要に応じて）消去されます。"
 "インデックス *block_num* で指定したブロックに *buf* (バイト列)からブロックを"
 "書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
 "なります。"
 
-#: ../../../library/uos.rst:211
+#: ../../../library/uos.rst:224
+msgid ""
+"The second form allows writing at arbitrary locations within a block, "
+"and arbitrary lengths.  Only the bytes being written should be changed, "
+"and the caller of this method must ensure that the relevant blocks are "
+"erased via a prior ``ioctl`` call. "
+"Starting at block index *block_num*, and byte offset within that block "
+"of *offset*, write bytes from *buf* (an array of bytes) to the device. "
+"The number of bytes to write is given by the length of *buf*."
+msgstr ""
+"２番目の形式では、ブロック内の任意の場所に、任意の長さで書き込むことができます。"
+"書き込むバイトのみを変更する必要があり、このメソッドの呼び出し元は、関連する"
+"ブロックが事前の ``ioctl`` 呼び出しによって消去されることを保証する必要があります。"
+"ブロックインデックス *block_num* とそのブロック内のバイトオフセット *offset* "
+"を開始点として、 *buf* （バイト配列）からデバイスに書き込みます。"
+"書き込むバイト数は *buf* の長さで指定されます。"
+
+#: ../../../library/uos.rst:232
+msgid ""
+"Note that implementations must never implicitly erase blocks if the offset "
+"argument is specified, even if it is zero."
+msgstr ""
+"offset 引数が指定されている場合、たとえゼロであっても、実装がブロックを暗黙的に"
+"消去してはならないことに注意してください。"
+
+#: ../../../library/uos.rst:237
 msgid ""
 "Control the block device and query its parameters.  The operation to "
 "perform is given by *op* which is one of the following integers:"
@@ -11802,25 +11883,25 @@ msgstr ""
 "ブロックデバイスを制御し、そのパラメータを問い合わせます。実行する操作は *op* に"
 "次の整数のうちの１つで指定します。"
 
-#: ../../../library/uos.rst:214
+#: ../../../library/uos.rst:240
 msgid "1 -- initialise the device (*arg* is unused)"
 msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:214
+#: ../../../library/uos.rst:241
 msgid "2 -- shutdown the device (*arg* is unused)"
 msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
 
-#: ../../../library/uos.rst:216
+#: ../../../library/uos.rst:242
 msgid "3 -- sync the device (*arg* is unused)"
 msgstr "3 -- デバイスを同期します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:217
+#: ../../../library/uos.rst:243
 msgid ""
 "4 -- get a count of the number of blocks, should return an integer (*arg*"
 " is unused)"
 msgstr "4 -- ブロック数のカウントを取得し、整数で返します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:219
+#: ../../../library/uos.rst:245
 msgid ""
 "5 -- get the number of bytes in a block, should return an integer, or "
 "``None`` in which case the default value of 512 is used (*arg* is unused)"
@@ -11828,7 +11909,13 @@ msgstr ""
 "5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
 "の 512 が使われます(*arg* は未使用)"
 
-#: ../../../library/uos.rst:223
+#: ../../../library/uos.rst:248
+msgid ""
+"6 -- erase a block, *arg* is the block number to erase"
+msgstr ""
+"6 -- ブロックを消去します。 *arg* は消去するブロック数です"
+
+#: ../../../library/uos.rst:250
 msgid ""
 "By way of example, the following class will implement a block device that"
 " stores its data in RAM using a ``bytearray``::"
@@ -11836,7 +11923,7 @@ msgstr ""
 "一例として、次のクラスは ``bytearray`` を使って RAM にデータを記憶するブロック"
 "デバイスを実装します::"
 
-#: ../../../library/uos.rst:226
+#: ../../../library/uos.rst:253
 msgid ""
 "class RAMBlockDev:\n"
 "    def __init__(self, block_size, num_blocks):\n"
@@ -11876,11 +11963,11 @@ msgstr ""
 "        if op == 5: # ブロックサイズを取得\n"
 "            return self.block_size"
 
-#: ../../../library/uos.rst:245
+#: ../../../library/uos.rst:272
 msgid "It can be used as follows::"
 msgstr "次のように使えます::"
 
-#: ../../../<rst_epilog>:246
+#: ../../../<rst_epilog>:274
 msgid ""
 "import uos\n"
 "\n"
@@ -11888,6 +11975,45 @@ msgid ""
 "uos.VfsFat.mkfs(bdev)\n"
 "vfs = uos.VfsFat(bdev)\n"
 "uos.mount(vfs, '/ramdisk')"
+msgstr ""
+
+#: ../../../<rst_epilog>:281
+msgid ""
+"An example of a block device that supports both signatures and behaviours "
+"of the :meth:`readblocks` and :meth:`writeblocks` methods is::"
+msgstr ""
+"メソッド :meth:`readblocks` と :meth:`writeblocks` のシグネチャと振舞いの両方を"
+"サポートするブロックデバイスの使用例は次のとおりです::"
+
+#: ../../../<rst_epilog>:284
+msgid ""
+"class RAMBlockDev:\n"
+"    def __init__(self, block_size, num_blocks):\n"
+"        self.block_size = block_size\n"
+"        self.data = bytearray(block_size * num_blocks)\n"
+"\n"
+"    def readblocks(self, block, buf, offset=0):\n"
+"        addr = block_num * self.block_size + offset\n"
+"        for i in range(len(buf)):\n"
+"            buf[i] = self.data[addr + i]\n"
+"\n"
+"    def writeblocks(self, block_num, buf, offset=None):\n"
+"        if offset is None:\n"
+"            # do erase, then write\n"
+"            for i in range(len(buf) // self.block_size):\n"
+"                self.ioctl(6, block_num + i)\n"
+"            offset = 0\n"
+"        addr = block_num * self.block_size + offset\n"
+"        for i in range(len(buf)):\n"
+"            self.data[addr + i] = buf[i]\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4: # block count\n"
+"            return len(self.data) // self.block_size\n"
+"        if op == 5: # block size\n"
+"            return self.block_size\n"
+"        if op == 6: # block erase\n"
+"            return 0\n"
 msgstr ""
 
 #: ../../../library/ure.rst:2

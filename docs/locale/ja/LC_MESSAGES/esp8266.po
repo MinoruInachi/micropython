@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-07-21 22:31+0900\n"
+"PO-Revision-Date: 2019-11-04 11:44+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -339,7 +339,7 @@ msgid ""
 "the REPL for any reason including an exception. Subsequent arrival of "
 "data provokes the failure with the above error message repeatedly issued."
 " So, sockets should be closed in any case, regardless whether an "
-"application terminates successfully or by an exeption, for example using "
+"application terminates successfully or by an exception, for example using "
 "try/finally::"
 msgstr ""
 "上記は、例外を含む何らかの理由でアプリケーションが終了して REPL を終了した後にも"
@@ -836,7 +836,7 @@ msgid ""
 "spi.init(baudrate=200000) # set the baudrate\n"
 "\n"
 "spi.read(10)            # read 10 bytes on MISO\n"
-"spi.read(10, 0xff)      # read 10 bytes while outputing 0xff on MOSI\n"
+"spi.read(10, 0xff)      # read 10 bytes while outputting 0xff on MOSI\n"
 "\n"
 "buf = bytearray(50)     # create a buffer\n"
 "spi.readinto(buf)       # read into the given buffer (reads 50 bytes in "
@@ -956,18 +956,29 @@ msgid ""
 "rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
 "time\n"
 "rtc.datetime() # get date and time"
+"\n"
+"# synchronize with ntp\n"
+"# need to be connected to wifi\n"
+"import ntptime\n"
+"ntptime.settime() # set the rtc datetime from the remote server\n"
+"rtc.datetime()    # get the date and time in UTC\n"
 msgstr ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
 "rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
 "rtc.datetime() # 日時を取得"
+"\n"
+"# ntp で時刻同期するには wifi への接続が必要\n"
+"import ntptime\n"
+"ntptime.settime() # リモートサーバからの日時を rtc に設定\n"
+"rtc.datetime()    # 日時を UTC で取得\n"
 
-#: ../../../esp8266/quickref.rst:247 ../../../esp8266/tutorial/powerctrl.rst:28
+#: ../../../esp8266/quickref.rst:252 ../../../esp8266/tutorial/powerctrl.rst:28
 msgid "Deep-sleep mode"
 msgstr "ディープスリープモード"
 
-#: ../../../esp8266/quickref.rst:249
+#: ../../../esp8266/quickref.rst:255
 msgid ""
 "Connect GPIO16 to the reset pin (RST on HUZZAH).  Then the following code"
 " can be used to sleep, wake and check the reset cause::"
@@ -975,7 +986,7 @@ msgstr ""
 "GPIO16 をリセットピン(HUZZAH| では RST)に接続してください。そのようにしておくと、"
 "次のコードで、スリープ、起床、リセット原因のチェックが行えます::"
 
-#: ../../../esp8266/quickref.rst:252
+#: ../../../esp8266/quickref.rst:258
 msgid ""
 "import machine\n"
 "\n"
@@ -1009,15 +1020,15 @@ msgstr ""
 "# ディープスリープに入る\n"
 "machine.deepsleep()"
 
-#: ../../../esp8266/quickref.rst:269
+#: ../../../esp8266/quickref.rst:275
 msgid "OneWire driver"
 msgstr "OneWire ドライバ"
 
-#: ../../../esp8266/quickref.rst:271
+#: ../../../esp8266/quickref.rst:277
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../../esp8266/quickref.rst:273
+#: ../../../esp8266/quickref.rst:280
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -1041,11 +1052,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../../esp8266/quickref.rst:284
+#: ../../../esp8266/quickref.rst:290
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバがあります::"
 
-#: ../../../esp8266/quickref.rst:286
+#: ../../../esp8266/quickref.rst:292
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -1056,7 +1067,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:294
+#: ../../../esp8266/quickref.rst:300
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -1066,15 +1077,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../../esp8266/quickref.rst:299
+#: ../../../esp8266/quickref.rst:305
 msgid "NeoPixel driver"
 msgstr "NeoPixel ドライバ"
 
-#: ../../../esp8266/quickref.rst:301
+#: ../../../esp8266/quickref.rst:307
 msgid "Use the ``neopixel`` module::"
 msgstr "``neopixel`` モジュールを使います::"
 
-#: ../../../esp8266/quickref.rst:303
+#: ../../../esp8266/quickref.rst:309
 msgid ""
 "from machine import Pin\n"
 "from neopixel import NeoPixel\n"
@@ -1094,25 +1105,25 @@ msgstr ""
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../../esp8266/quickref.rst:312
+#: ../../../esp8266/quickref.rst:318
 msgid "For low-level driving of a NeoPixel::"
 msgstr "NeoPixel の低レベル駆動もあります::"
 
-#: ../../../esp8266/quickref.rst:314
+#: ../../../esp8266/quickref.rst:320
 msgid ""
 "import esp\n"
 "esp.neopixel_write(pin, grb_buf, is800khz)"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:318
+#: ../../../esp8266/quickref.rst:324
 msgid "APA102 driver"
 msgstr "APA102 ドライバ"
 
-#: ../../../esp8266/quickref.rst:320
+#: ../../../esp8266/quickref.rst:326
 msgid "Use the ``apa102`` module::"
 msgstr "``apa102`` モジュールを使います::"
 
-#: ../../../esp8266/quickref.rst:322
+#: ../../../esp8266/quickref.rst:328
 msgid ""
 "from machine import Pin\n"
 "from apa102 import APA102\n"
@@ -1136,25 +1147,25 @@ msgstr ""
 "apa.write()                  # 全ピクセルにデータ書込み\n"
 "r, g, b, brightness = apa[0] # 第１ピクセルの色を取得"
 
-#: ../../../esp8266/quickref.rst:332
+#: ../../../esp8266/quickref.rst:338
 msgid "For low-level driving of an APA102::"
 msgstr "APA102 の低レベル駆動もあります::"
 
-#: ../../../esp8266/quickref.rst:334
+#: ../../../esp8266/quickref.rst:340
 msgid ""
 "import esp\n"
 "esp.apa102_write(clock_pin, data_pin, rgbi_buf)"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:338
+#: ../../../esp8266/quickref.rst:344
 msgid "DHT driver"
 msgstr "DHT ドライバ"
 
-#: ../../../esp8266/quickref.rst:340
+#: ../../../esp8266/quickref.rst:346
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../../esp8266/quickref.rst:342
+#: ../../../esp8266/quickref.rst:348
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -1182,11 +1193,11 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../../esp8266/quickref.rst:356
+#: ../../../esp8266/quickref.rst:362
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../../esp8266/quickref.rst:358
+#: ../../../esp8266/quickref.rst:364
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP8266 port. Download web client from "
@@ -1199,11 +1210,11 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../../esp8266/quickref.rst:363 ../../../esp8266/tutorial/repl.rst:51
+#: ../../../esp8266/quickref.rst:369 ../../../esp8266/tutorial/repl.rst:51
 msgid "import webrepl_setup"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:365
+#: ../../../esp8266/quickref.rst:371
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -1212,13 +1223,13 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../../esp8266/quickref.rst:369
+#: ../../../esp8266/quickref.rst:375
 msgid ""
 "import webrepl\n"
 "webrepl.start()"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:372
+#: ../../../esp8266/quickref.rst:378
 msgid ""
 "The supported way to use WebREPL is by connecting to ESP8266 access "
 "point, but the daemon is also started on STA interface if it is active, "
@@ -1232,7 +1243,7 @@ msgstr ""
 "いれば WebREPL が使えるでしょう(問題が発生した場合は ESP8266 AP 接続メソッドを"
 "使ってください)。"
 
-#: ../../../esp8266/quickref.rst:378
+#: ../../../esp8266/quickref.rst:384
 msgid ""
 "Besides terminal/command prompt access, WebREPL also has provision for "
 "file transfer (both upload and download). Web client has buttons for the "
@@ -1244,7 +1255,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../../esp8266/quickref.rst:383
+#: ../../../esp8266/quickref.rst:389
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to ESP8266."
@@ -2658,9 +2669,9 @@ msgid "Let's define a function that can download and print a URL::"
 msgstr "URL からダウンロードして表示する関数を定義しましょう::"
 
 #: ../../../esp8266/tutorial/network_tcp.rst:63
-#, python-format
 msgid ""
 "def http_get(url):\n"
+"    import socket\n"
 "    _, _, host, path = url.split('/', 3)\n"
 "    addr = socket.getaddrinfo(host, 80)[0][-1]\n"
 "    s = socket.socket()\n"
@@ -2676,12 +2687,10 @@ msgid ""
 "    s.close()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:77
+#: ../../../esp8266/tutorial/network_tcp.rst:78
 msgid ""
-"Make sure that you import the socket module before running this function."
-"  Then you can try::"
+"Then you can try::"
 msgstr ""
-"この関数を実行する前に、socket モジュールを import しておいてください。関数の実行は"
 "次を試してください::"
 
 #: ../../../esp8266/tutorial/network_tcp.rst:80
