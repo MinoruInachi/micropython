@@ -382,20 +382,20 @@ msgstr ""
 "含められます。 *flags* に `btree.DESC` を渡すことで降順のキー方向に反復"
 "できます。 flags の値はビットOR(|)演算を使って複数指定できます。"
 
-#: ../../../library/btree.rst:149 ../../../library/cmath.rst:55
-#: ../../../library/esp32.rst:61 ../../../library/framebuf.rst:118
-#: ../../../library/lcd160cr.rst:380 ../../../library/machine.Pin.rst:223
-#: ../../../library/machine.RTC.rst:65 ../../../library/machine.SPI.rst:89
-#: ../../../library/machine.Timer.rst:59
-#: ../../../library/machine.TimerWiPy.rst:154
-#: ../../../library/machine.UART.rst:146 ../../../library/machine.rst:118
-#: ../../../library/math.rst:177 ../../../library/network.CC3K.rst:83
-#: ../../../library/network.WLANWiPy.rst:145 ../../../library/pyb.CAN.rst:278
-#: ../../../library/pyb.ExtInt.rst:102 ../../../library/pyb.I2C.rst:157
-#: ../../../library/pyb.Pin.rst:181 ../../../library/pyb.SPI.rst:112
-#: ../../../library/pyb.UART.rst:163 ../../../library/sys.rst:34
-#: ../../../library/uerrno.rst:13 ../../../library/usocket.rst:139
-#: ../../../library/ussl.rst:42
+#: ../../library/btree.rst:149 ../../library/cmath.rst:55
+#: ../../library/esp32.rst:73 ../../library/esp32.rst:106
+#: ../../library/framebuf.rst:118 ../../library/lcd160cr.rst:380
+#: ../../library/machine.Pin.rst:223 ../../library/machine.RTC.rst:65
+#: ../../library/machine.SPI.rst:89 ../../library/machine.Timer.rst:59
+#: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:146
+#: ../../library/machine.rst:133 ../../library/math.rst:177
+#: ../../library/network.CC3K.rst:83 ../../library/network.WLANWiPy.rst:145
+#: ../../library/pyb.CAN.rst:278 ../../library/pyb.ExtInt.rst:102
+#: ../../library/pyb.I2C.rst:157 ../../library/pyb.Pin.rst:181
+#: ../../library/pyb.SPI.rst:112 ../../library/pyb.UART.rst:163
+#: ../../library/pyb.USB_VCP.rst:114 ../../library/sys.rst:47
+#: ../../library/ubluetooth.rst:333 ../../library/uerrno.rst:13
+#: ../../library/usocket.rst:139 ../../library/ussl.rst:42
 msgid "Constants"
 msgstr "定数"
 
@@ -3208,9 +3208,9 @@ msgstr "class SDCard -- SD メモリカード"
 #: ../../library/machine.SDCard.rst:7
 msgid ""
 "SD cards are one of the most common small form factor removable storage "
-"media. SD cards come in a variety of sizes and phsyical form factors. MMC"
+"media. SD cards come in a variety of sizes and physical form factors. MMC"
 " cards are similar removable storage devices while eMMC devices are "
-"electically similar storage devices designed to be embedded into other "
+"electrically similar storage devices designed to be embedded into other "
 "systems. All three form share a common protocol for communication with "
 "their host system and high-level support looks the same for them all. As "
 "such in MicroPython they are implemented in a single class called "
@@ -3230,19 +3230,19 @@ msgid ""
 "widths. When being accessed with a 1-bit wide interface they can be "
 "accessed using the SPI protocol. Different MicroPython hardware platforms"
 " support different widths and pin configurations but for most platforms "
-"there is a standard configuation for any given hardware. In general "
-"constructing an `SDCard`` object with without passing any parameters will"
+"there is a standard configuration for any given hardware. In general "
+"constructing an ``SDCard`` object with without passing any parameters will"
 " initialise the interface to the default card slot for the current "
 "hardware. The arguments listed below represent the common arguments that "
-"might need to be set in order to use either a non-stanard slot or a non-"
-"standard pin assignment. The exact subset of arguments suported will vary"
+"might need to be set in order to use either a non-standard slot or a non-"
+"standard pin assignment. The exact subset of arguments supported will vary"
 " from platform to platform."
 msgstr ""
 "SD と MMC の双方のインターフェイスは、さまざまなバス幅でのアクセスをサポートしています。"
 "1ビット幅のインターフェイスでアクセスする場合、SPI プロトコルを使用してアクセスできます。"
 "MicroPython ハードウェアプラットフォームにより、さまざまな幅とピン構成を"
 "サポートしていますが、ほとんどのプラットフォームでは、ハードウェアに適した標準構成が"
-"あります。一般に、パラメータを渡さずに `SDCard` オブジェクトを構築すると、"
+"あります。一般に、パラメータを渡さずに ``SDCard`` オブジェクトを構築すると、"
 "使っているハードウェアのデフォルトのカードスロットのインターフェイスが初期化されます。"
 "以下にリストされている引数は、非標準スロットまたは非標準のピン割り当てのいずれかを"
 "使うのに設定が必要な共通の引数を表しています。サポートする引数の厳密なサブセットは、"
@@ -3265,7 +3265,7 @@ msgid "uos.mount(machine.SDCard(), \"/sd\")"
 msgstr ""
 
 #: ../../library/machine.SDCard.rst:35
-msgid "The constrcutor takes the following paramters:"
+msgid "The constructor takes the following parameters:"
 msgstr "このコンストラクタは次のパラメーターを取ります。"
 
 #: ../../library/machine.SDCard.rst:37
@@ -10161,6 +10161,539 @@ msgstr ""
 "`RFC 3548 <https://tools.ietf.org/html/rfc3548.html>`_ "
 "のように、バイナリデータをbase64形式でエンコードします。コード化されたデータの"
 "後ろに改行文字を付けて、バイト列として返します。"
+
+#: ../../library/ubluetooth.rst:2
+msgid ":mod:`ubluetooth` --- low-level Bluetooth"
+msgstr ":mod:`ubluetooth` --- 低レベル Bluetooth"
+
+#: ../../library/ubluetooth.rst:7
+msgid ""
+"This module provides an interface to a Bluetooth controller on a board. "
+"Currently this supports Bluetooth Low Energy (BLE) in Central, "
+"Peripheral, Broadcaster, and Observer roles, and a device may operate in "
+"multiple roles concurrently."
+msgstr ""
+"このモジュールは、ボード上の Bluetooth コントローラーへのインターフェースを提供します。"
+"現在、これは、セントラル、プリフェラル、ブロードキャスター、オブザーバーのロールで "
+"Bluetooth Low Energy（BLE）をサポートしており、デバイスは複数のロールで同時に"
+"動作できます。"
+
+#: ../../library/ubluetooth.rst:12
+msgid ""
+"This API is intended to match the low-level Bluetooth protocol and "
+"provide building-blocks for higher-level abstractions such as specific "
+"device types."
+msgstr ""
+"このAPIは、低レベルの Bluetooth プロトコルに相当するもので、特定のデバイスタイプ"
+"などの高レベルの抽象化のビルディングブロックを提供します。"
+
+#: ../../library/ubluetooth.rst:16
+msgid "class BLE"
+msgstr "クラス BLE"
+
+#: ../../library/ubluetooth.rst:19 ../../library/ubluetooth.rst:320
+msgid "Constructor"
+msgstr "コンストラクタ"
+
+#: ../../library/ubluetooth.rst:23
+msgid "Returns the singleton BLE object."
+msgstr "シンゲルトンの BLE オブジェクトを返します。"
+
+#: ../../library/ubluetooth.rst:26
+msgid "Configuration"
+msgstr "設定"
+
+#: ../../library/ubluetooth.rst:30
+msgid ""
+"Optionally changes the active state of the BLE radio, and returns the "
+"current state."
+msgstr ""
+"オプションでBLE無線のアクティブ状態を変更し、現在の状態を返します。"
+
+#: ../../library/ubluetooth.rst:33
+msgid ""
+"The radio must be made active before using any other methods on this "
+"class."
+msgstr ""
+"このクラスの他のメソッドを使用する前には、BLE無線をアクティブにする必要があります。"
+
+#: ../../library/ubluetooth.rst:37
+msgid "Queries a configuration value by *name*. Currently supported values are:"
+msgstr ""
+"*name* に指定した名前の設定値を照会します。現在サポートされている値は次のとおりです。"
+
+#: ../../library/ubluetooth.rst:39
+msgid ""
+"``'mac'``: Returns the device MAC address. If a device has a fixed "
+"address (e.g. PYBD) then it will be returned. Otherwise (e.g. ESP32) a "
+"random address will be generated when the BLE interface is made active."
+msgstr ""
+"``'mac'``: デバイスの MAC アドレスを返します。（PYBDなど）デバイスに固定アドレスが"
+"ある場合には、その固定アドレスを返します。それ以外の場合（ESP32など）には、BLE"
+"インターフェイスがアクティブになったときにランダムアドレスが生成されます。"
+
+#: ../../library/ubluetooth.rst:44
+msgid "Event Handling"
+msgstr "イベント処理"
+
+#: ../../library/ubluetooth.rst:48
+msgid ""
+"Registers a callback for events from the BLE stack. The *handler* takes "
+"two arguments, ``event`` (which will be one of the codes below) and "
+"``data`` (which is an event-specific tuple of values)."
+msgstr ""
+"BLE スタックからのイベントのコールバックを登録します。 *handler* に指定する"
+"コールバックは二つの引数 ``event`` （後述するイベントコードのいずれか）と "
+"``data`` (イベント固有の値のタプル）をとります。
+
+#: ../../library/ubluetooth.rst:52
+msgid ""
+"The optional *trigger* parameter allows you to set a mask of events that "
+"your program is interested in. The default is all events."
+msgstr ""
+"オプションの *trigger* パラメーターを指定すると、プログラムが対象とするイベントの"
+"マスクを設定できます。デフォルトはすべてのイベントです。"
+
+#: ../../library/ubluetooth.rst:55
+msgid "An event handler showing all possible events::"
+msgstr "すべてのイベントを処理するイベントハンドラーの例を示します:"
+
+#: ../../library/ubluetooth.rst:57
+msgid ""
+"def bt_irq(event, data):\n"
+"    if event == _IRQ_CENTRAL_CONNECT:\n"
+"        # A central has connected to this peripheral.\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_CENTRAL_DISCONNECT:\n"
+"        # A central has disconnected from this peripheral.\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_GATTS_WRITE:\n"
+"        # A central has written to this characteristic or descriptor.\n"
+"        conn_handle, attr_handle = data\n"
+"    elif event == _IRQ_GATTS_READ_REQUEST:\n"
+"        # A central has issued a read. Note: this is a hard IRQ.\n"
+"        # Return None to deny the read.\n"
+"        # Note: This event is not supported on ESP32.\n"
+"        conn_handle, attr_handle = data\n"
+"    elif event == _IRQ_SCAN_RESULT:\n"
+"        # A single scan result.\n"
+"        addr_type, addr, connectable, rssi, adv_data = data\n"
+"    elif event == _IRQ_SCAN_COMPLETE:\n"
+"        # Scan duration finished or manually stopped.\n"
+"        pass\n"
+"    elif event == _IRQ_PERIPHERAL_CONNECT:\n"
+"        # A successful gap_connect().\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_PERIPHERAL_DISCONNECT:\n"
+"        # Connected peripheral has disconnected.\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_GATTC_SERVICE_RESULT:\n"
+"        # Called for each service found by gattc_discover_services().\n"
+"        conn_handle, start_handle, end_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:\n"
+"        # Called for each characteristic found by "
+"gattc_discover_services().\n"
+"        conn_handle, def_handle, value_handle, properties, uuid = data\n"
+"    elif event == _IRQ_GATTC_DESCRIPTOR_RESULT:\n"
+"        # Called for each descriptor found by "
+"gattc_discover_descriptors().\n"
+"        conn_handle, dsc_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_READ_RESULT:\n"
+"        # A gattc_read() has completed.\n"
+"        conn_handle, value_handle, char_data = data\n"
+"    elif event == _IRQ_GATTC_WRITE_STATUS:\n"
+"        # A gattc_write() has completed.\n"
+"        conn_handle, value_handle, status = data\n"
+"    elif event == _IRQ_GATTC_NOTIFY:\n"
+"        # A peripheral has sent a notify request.\n"
+"        conn_handle, value_handle, notify_data = data\n"
+"    elif event == _IRQ_GATTC_INDICATE:\n"
+"        # A peripheral has sent an indicate request.\n"
+"        conn_handle, value_handle, notify_data = data"
+msgstr ""
+"def bt_irq(event, data):\n"
+"    if event == _IRQ_CENTRAL_CONNECT:\n"
+"        # A central has connected to this peripheral.\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_CENTRAL_DISCONNECT:\n"
+"        # A central has disconnected from this peripheral.\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_GATTS_WRITE:\n"
+"        # A central has written to this characteristic or descriptor.\n"
+"        conn_handle, attr_handle = data\n"
+"    elif event == _IRQ_GATTS_READ_REQUEST:\n"
+"        # A central has issued a read. Note: this is a hard IRQ.\n"
+"        # Return None to deny the read.\n"
+"        # Note: This event is not supported on ESP32.\n"
+"        conn_handle, attr_handle = data\n"
+"    elif event == _IRQ_SCAN_RESULT:\n"
+"        # A single scan result.\n"
+"        addr_type, addr, connectable, rssi, adv_data = data\n"
+"    elif event == _IRQ_SCAN_COMPLETE:\n"
+"        # Scan duration finished or manually stopped.\n"
+"        pass\n"
+"    elif event == _IRQ_PERIPHERAL_CONNECT:\n"
+"        # A successful gap_connect().\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_PERIPHERAL_DISCONNECT:\n"
+"        # Connected peripheral has disconnected.\n"
+"        conn_handle, addr_type, addr = data\n"
+"    elif event == _IRQ_GATTC_SERVICE_RESULT:\n"
+"        # Called for each service found by gattc_discover_services().\n"
+"        conn_handle, start_handle, end_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:\n"
+"        # Called for each characteristic found by "
+"gattc_discover_services().\n"
+"        conn_handle, def_handle, value_handle, properties, uuid = data\n"
+"    elif event == _IRQ_GATTC_DESCRIPTOR_RESULT:\n"
+"        # Called for each descriptor found by "
+"gattc_discover_descriptors().\n"
+"        conn_handle, dsc_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_READ_RESULT:\n"
+"        # A gattc_read() has completed.\n"
+"        conn_handle, value_handle, char_data = data\n"
+"    elif event == _IRQ_GATTC_WRITE_STATUS:\n"
+"        # A gattc_write() has completed.\n"
+"        conn_handle, value_handle, status = data\n"
+"    elif event == _IRQ_GATTC_NOTIFY:\n"
+"        # A peripheral has sent a notify request.\n"
+"        conn_handle, value_handle, notify_data = data\n"
+"    elif event == _IRQ_GATTC_INDICATE:\n"
+"        # A peripheral has sent an indicate request.\n"
+"        conn_handle, value_handle, notify_data = data"
+
+#: ../../library/ubluetooth.rst:106
+msgid "The event codes are::"
+msgstr "イベントコードには次のものがあります::"
+
+#: ../../library/ubluetooth.rst:108
+msgid ""
+"from micropython import const\n"
+"_IRQ_CENTRAL_CONNECT                 = const(1 << 0)\n"
+"_IRQ_CENTRAL_DISCONNECT              = const(1 << 1)\n"
+"_IRQ_GATTS_WRITE                     = const(1 << 2)\n"
+"_IRQ_GATTS_READ_REQUEST              = const(1 << 3)\n"
+"_IRQ_SCAN_RESULT                     = const(1 << 4)\n"
+"_IRQ_SCAN_COMPLETE                   = const(1 << 5)\n"
+"_IRQ_PERIPHERAL_CONNECT              = const(1 << 6)\n"
+"_IRQ_PERIPHERAL_DISCONNECT           = const(1 << 7)\n"
+"_IRQ_GATTC_SERVICE_RESULT            = const(1 << 8)\n"
+"_IRQ_GATTC_CHARACTERISTIC_RESULT     = const(1 << 9)\n"
+"_IRQ_GATTC_DESCRIPTOR_RESULT         = const(1 << 10)\n"
+"_IRQ_GATTC_READ_RESULT               = const(1 << 11)\n"
+"_IRQ_GATTC_WRITE_STATUS              = const(1 << 12)\n"
+"_IRQ_GATTC_NOTIFY                    = const(1 << 13)\n"
+"_IRQ_GATTC_INDICATE                  = const(1 << 14)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:125
+msgid ""
+"In order to save space in the firmware, these constants are not included "
+"on the :mod:`ubluetooth` module. Add the ones that you need from the list"
+" above to your program."
+msgstr ""
+"ファームウェアのスペースを節約するために、これらの定数は ubluetooth モジュールには"
+"含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
+
+#: ../../library/ubluetooth.rst:131
+msgid "Broadcaster Role (Advertiser)"
+msgstr "ブロードキャスターロール（アドバタイザー）"
+
+#: ../../library/ubluetooth.rst:135
+msgid ""
+"Starts advertising at the specified interval (in **micro**\\ seconds). "
+"This interval will be rounded down to the nearest 625us. To stop "
+"advertising, set *interval_us* to ``None``."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:139
+msgid ""
+"*adv_data* and *resp_data* can be any type that implements the buffer "
+"protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
+" in all broadcasts, and *resp_data* is send in reply to an active scan."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:143
+msgid ""
+"Note: if *adv_data* (or *resp_data*) is ``None``, then the data passed to"
+" the previous call to ``gap_advertise`` will be re-used. This allows a "
+"broadcaster to resume advertising with just "
+"``gap_advertise(interval_us)``. To clear the advertising payload pass an "
+"empty ``bytes``, i.e. ``b''``."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:150
+msgid "Observer Role (Scanner)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:154
+msgid ""
+"Run a scan operation lasting for the specified duration (in **milli**\\ "
+"seconds)."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:156
+msgid "To scan indefinitely, set *duration_ms* to ``0``."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:158
+msgid "To stop scanning, set *duration_ms* to ``None``."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:160
+msgid ""
+"Use *interval_us* and *window_us* to optionally configure the duty cycle."
+" The scanner will run for *window_us* **micro**\\ seconds every "
+"*interval_us* **micro**\\ seconds for a total of *duration_ms* "
+"**milli**\\ seconds. The default interval and window are 1.28 seconds and"
+" 11.25 milliseconds respectively (background scanning)."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:166
+msgid "For each scan result, the ``_IRQ_SCAN_RESULT`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:168
+msgid ""
+"When scanning is stopped (either due to the duration finishing or when "
+"explicitly stopped), the ``_IRQ_SCAN_COMPLETE`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:173
+msgid "Peripheral Role (GATT Server)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:175
+msgid ""
+"A BLE peripheral has a set of registered services. Each service may "
+"contain characteristics, which each have a value. Characteristics can "
+"also contain descriptors, which themselves have values."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:179
+msgid ""
+"These values are stored locally, and are accessed by their \"value "
+"handle\" which is generated during service registration. They can also be"
+" read from or written to by a remote central device. Additionally, a "
+"peripheral can \"notify\" a characteristic to a connected central via a "
+"connection handle."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:184
+msgid ""
+"Characteristics and descriptors have a default maximum size of 20 bytes. "
+"Anything written to them by a central will be truncated to this length. "
+"However, any local write will increase the maximum size, so if you want "
+"to allow larger writes from a central to a given characteristic, use "
+":meth:`gatts_write<BLE.gatts_write>` after registration. e.g. "
+"``gatts_write(char_handle, bytes(100))``."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:193
+msgid ""
+"Configures the peripheral with the specified services, replacing any "
+"existing services."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:196
+msgid ""
+"*services_definition* is a list of **services**, where each **service** "
+"is a two-element tuple containing a UUID and a list of "
+"**characteristics**."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:199
+msgid ""
+"Each **characteristic** is a two-or-three-element tuple containing a "
+"UUID, a **flags** value, and optionally a list of *descriptors*."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:202
+msgid ""
+"Each **descriptor** is a two-element tuple containing a UUID and a "
+"**flags** value."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:205
+msgid ""
+"The **flags** are a bitwise-OR combination of the "
+":data:`ubluetooth.FLAGS_READ`, :data:`bluetooth.FLAGS_WRITE` and "
+":data:`ubluetooth.FLAGS_NOTIFY` values defined below."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:209
+msgid ""
+"The return value is a list (one element per service) of tuples (each "
+"element is a value handle). Characteristics and descriptor handles are "
+"flattened into the same tuple, in the order that they are defined."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:213
+msgid ""
+"The following example registers two services (Heart Rate, and Nordic "
+"UART)::"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:215
+msgid ""
+"HR_UUID = bluetooth.UUID(0x180D)\n"
+"HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
+"bluetooth.FLAG_NOTIFY,)\n"
+"HR_SERVICE = (HR_UUID, (HR_CHAR,),)\n"
+"UART_UUID = bluetooth.UUID('6E400001-B5A3-F393-E0A9-E50E24DCCA9E')\n"
+"UART_TX = (bluetooth.UUID('6E400003-B5A3-F393-E0A9-E50E24DCCA9E'), "
+"bluetooth.FLAG_READ | bluetooth.FLAG_NOTIFY,)\n"
+"UART_RX = (bluetooth.UUID('6E400002-B5A3-F393-E0A9-E50E24DCCA9E'), "
+"bluetooth.FLAG_WRITE,)\n"
+"UART_SERVICE = (UART_UUID, (UART_TX, UART_RX,),)\n"
+"SERVICES = (HR_SERVICE, UART_SERVICE,)\n"
+"( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:225
+msgid ""
+"The three value handles (``hr``, ``tx``, ``rx``) can be used with "
+":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
+"<BLE.gatts_write>`, and :meth:`gatts_notify <BLE.gatts_notify>`."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:229
+msgid "**Note:** Advertising must be stopped before registering services."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:233
+msgid ""
+"Reads the local value for this handle (which has either been written by "
+":meth:`gatts_write <BLE.gatts_write>` or by a remote central)."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:238
+msgid "Writes the local value for this handle, which can be read by a central."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:242
+msgid ""
+"Notifies a connected central that this value has changed and that it "
+"should issue a read of the current value from this peripheral."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:245
+msgid ""
+"If *data* is specified, then the that value is sent to the central as "
+"part of the notification, avoiding the need for a separate read request. "
+"Note that this will not update the local value stored."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:251
+msgid ""
+"Sets the internal buffer size for a value in bytes. This will limit the "
+"largest possible write that can be received. The default is 20."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:254
+msgid ""
+"Setting *append* to ``True`` will make all remote writes append to, "
+"rather than replace, the current value. At most *len* bytes can be "
+"buffered in this way. When you use :meth:`gatts_read <BLE.gatts_read>`, "
+"the value will be cleared after reading. This feature is useful when "
+"implementing something like the Nordic UART Service."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:262
+msgid "Central Role (GATT Client)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:266
+msgid "Connect to a peripheral."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:268
+msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:272
+msgid "Disconnect the specified connection handle."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:274
+msgid "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:276
+msgid ""
+"Returns ``False`` if the connection handle wasn't connected, and ``True``"
+" otherwise."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:281
+msgid "Query a connected peripheral for its services."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:283
+msgid ""
+"For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
+" be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:288
+msgid "Query a connected peripheral for characteristics in the specified range."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:290
+msgid ""
+"For each characteristic discovered, the "
+"``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:295
+msgid "Query a connected peripheral for descriptors in the specified range."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:297
+msgid ""
+"For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
+"event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:302
+msgid ""
+"Issue a remote read to a connected peripheral for the specified "
+"characteristic or descriptor handle."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:305
+msgid "On success, the ``_IRQ_GATTC_READ_RESULT`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:309
+msgid ""
+"Issue a remote write to a connected peripheral for the specified "
+"characteristic or descriptor handle."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:312
+msgid "On success, the ``_IRQ_GATTC_WRITE_STATUS`` event will be raised."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:316
+msgid "class UUID"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:324
+msgid "Creates a UUID instance with the specified **value**."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:326
+msgid "The **value** can be either:"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:328
+msgid "A 16-bit integer. e.g. ``0x2908``."
+msgstr ""
+
+#: ../../library/ubluetooth.rst:329
+msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
+msgstr ""
 
 #: ../../../library/ucollections.rst:2
 msgid ":mod:`ucollections` -- collection and container types"
