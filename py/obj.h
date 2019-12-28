@@ -178,7 +178,7 @@ static inline bool mp_obj_is_small_int(mp_const_obj_t o)
 static inline bool mp_obj_is_qstr(mp_const_obj_t o)
     { return ((((uint64_t)(o)) & 0xffff000000000000) == 0x0002000000000000); }
 #define MP_OBJ_QSTR_VALUE(o) ((((uint32_t)(o)) >> 1) & 0xffffffff)
-#define MP_OBJ_NEW_QSTR(qst) ((mp_obj_t)((((mp_uint_t)(qst)) << 1) | 0x0002000000000001))
+#define MP_OBJ_NEW_QSTR(qst) ((mp_obj_t)(((uint64_t)(((uint32_t)(qst)) << 1)) | 0x0002000000000001))
 
 #if MICROPY_PY_BUILTINS_FLOAT
 
@@ -241,6 +241,15 @@ typedef union _mp_rom_obj_t { uint64_t u64; struct { const void *lo, *hi; } u32;
 #endif
 
 // Macros to create objects that are stored in ROM.
+
+#ifndef MP_ROM_NONE
+#define MP_ROM_NONE MP_ROM_PTR(&mp_const_none_obj)
+#endif
+
+#ifndef MP_ROM_FALSE
+#define MP_ROM_FALSE MP_ROM_PTR(&mp_const_false_obj)
+#define MP_ROM_TRUE MP_ROM_PTR(&mp_const_true_obj)
+#endif
 
 #ifndef MP_ROM_INT
 typedef mp_const_obj_t mp_rom_obj_t;
