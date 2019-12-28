@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-11-04 17:26+0900\n"
+"PO-Revision-Date: 2019-12-28 19:48+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2385,8 +2385,8 @@ msgid ""
 msgstr ""
 "MicroPython は文字列を効率的に処理します。これを理解することは、マイクロコントローラ"
 "上で動作するようにアプリケーションを設計するのに役立ちます。モジュールがコンパイル"
-"されると、複数回出現する文字列は１回だけ格納されます。これは文字列の入れ替えとして"
-"知られています。MicroPython では内部文字列として知られていqstrます。通常インポート"
+"されると、複数回出現する文字列は１回だけ格納されます。これを文字列の隔離化といいます。"
+"MicroPython では隔離化された文字列を ``qstr`` と呼びます。通常インポート"
 "されたモジュールでは、その単一のインスタンスは RAM に配置されますが、前述のように、"
 "バイトコードとして凍結されたモジュールではフラッシュに配置されます。"
 
@@ -2441,6 +2441,473 @@ msgstr ""
 "Unix および Windows プラットフォームでは、この `gc.collect()` メソッドは、"
 "コレクション内で回収された個別のメモリ領域の数(より正確には、空きになったヘッドの数)"
 "を表す整数を返します。効率上の理由から、ベアメタルポートはこの値を返しません。"
+
+#: ../../reference/filesystem.rst:4
+msgid "Working with filesystems"
+msgstr ""
+
+#: ../../reference/filesystem.rst:8
+msgid ""
+"This tutorial describes how MicroPython provides an on-device filesystem,"
+" allowing standard Python file I/O methods to be used with persistent "
+"storage."
+msgstr ""
+
+#: ../../reference/filesystem.rst:11
+msgid ""
+"MicroPython automatically creates a default configuration and auto-"
+"detects the primary filesystem, so this tutorial will be mostly useful if"
+" you want to modify the partitioning, filesystem type, or use custom "
+"block devices."
+msgstr ""
+
+#: ../../reference/filesystem.rst:15
+msgid ""
+"The filesystem is typically backed by internal flash memory on the "
+"device, but can also use external flash, RAM, or a custom block device."
+msgstr ""
+
+#: ../../reference/filesystem.rst:18
+msgid ""
+"On some ports (e.g. STM32), the filesystem may also be available over USB"
+" MSC to a host PC. :ref:`pyboard_py` also provides a way for the host PC "
+"to access to the filesystem on all ports."
+msgstr ""
+
+#: ../../reference/filesystem.rst:22
+msgid ""
+"Note: This is mainly for use on bare-metal ports like STM32 and ESP32. On"
+" ports with an operating system (e.g. the Unix port) the filesystem is "
+"provided by the host OS."
+msgstr ""
+
+#: ../../reference/filesystem.rst:27
+msgid "VFS"
+msgstr ""
+
+#: ../../reference/filesystem.rst:29
+msgid ""
+"MicroPython implements a Unix-like Virtual File System (VFS) layer. All "
+"mounted filesystems are combined into a single virtual filesystem, "
+"starting at the root ``/``. Filesystems are mounted into directories in "
+"this structure, and at startup the working directory is changed to where "
+"the primary filesystem is mounted."
+msgstr ""
+
+#: ../../reference/filesystem.rst:35
+msgid ""
+"On STM32 / Pyboard, the internal flash is mounted at ``/flash``, and "
+"optionally the SDCard at ``/sd``. On ESP8266/ESP32, the primary "
+"filesystem is mounted at ``/``."
+msgstr ""
+
+#: ../../reference/filesystem.rst:40
+msgid "Block devices"
+msgstr ""
+
+#: ../../reference/filesystem.rst:42
+msgid ""
+"A block device is an instance of a class that implements the "
+":class:`uos.AbstractBlockDev` protocol."
+msgstr ""
+
+#: ../../reference/filesystem.rst:46
+msgid "Built-in block devices"
+msgstr ""
+
+#: ../../reference/filesystem.rst:48
+msgid "Ports provide built-in block devices to access their primary flash."
+msgstr ""
+
+#: ../../reference/filesystem.rst:50
+msgid ""
+"On power-on, MicroPython will attempt to detect the filesystem on the "
+"default flash and configure and mount it automatically. If no filesystem "
+"is found, MicroPython will attempt to create a FAT filesystem spanning "
+"the entire flash. Ports can also provide a mechanism to \"factory reset\""
+" the primary flash, usually by some combination of button presses at "
+"power on."
+msgstr ""
+
+#: ../../reference/filesystem.rst:57
+msgid "STM32 / Pyboard"
+msgstr ""
+
+#: ../../reference/filesystem.rst:59
+msgid ""
+"The :ref:`pyb.Flash <pyb.Flash>` class provides access to the internal "
+"flash. On some boards which have larger external flash (e.g. Pyboard D), "
+"it will use that instead. The ``start`` kwarg should always be specified,"
+" i.e. ``pyb.Flash(start=0)``."
+msgstr ""
+
+#: ../../reference/filesystem.rst:64
+msgid ""
+"Note: For backwards compatibility, when constructed with no arguments "
+"(i.e. ``pyb.Flash()``), it only implements the simple block interface and"
+" reflects the virtual device presented to USB MSC (i.e. it includes a "
+"virtual partition table at the start)."
+msgstr ""
+
+#: ../../reference/filesystem.rst:70 ../../reference/filesystem.rst:181
+msgid "ESP8266"
+msgstr ""
+
+#: ../../reference/filesystem.rst:72
+msgid ""
+"The internal flash is exposed as a block device object which is created "
+"in the ``flashbdev`` module on start up. This object is by default added "
+"as a global variable so it can usually be accessed simply as ``bdev``. "
+"This implements the extended interface."
+msgstr ""
+
+#: ../../reference/filesystem.rst:78 ../../reference/filesystem.rst:182
+msgid "ESP32"
+msgstr ""
+
+#: ../../reference/filesystem.rst:80
+msgid ""
+"The :class:`esp32.Partition` class implements a block device for "
+"partitions defined for the board. Like ESP8266, there is a global "
+"variable ``bdev`` which points to the default partition. This implements "
+"the extended interface."
+msgstr ""
+
+#: ../../reference/filesystem.rst:85
+msgid "Custom block devices"
+msgstr ""
+
+#: ../../reference/filesystem.rst:87
+msgid ""
+"The following class implements a simple block device that stores its data"
+" in RAM using a ``bytearray``::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:90
+msgid ""
+"class RAMBlockDev:\n"
+"    def __init__(self, block_size, num_blocks):\n"
+"        self.block_size = block_size\n"
+"        self.data = bytearray(block_size * num_blocks)\n"
+"\n"
+"    def readblocks(self, block_num, buf):\n"
+"        for i in range(len(buf)):\n"
+"            buf[i] = self.data[block_num * self.block_size + i]\n"
+"\n"
+"    def writeblocks(self, block_num, buf):\n"
+"        for i in range(len(buf)):\n"
+"            self.data[block_num * self.block_size + i] = buf[i]\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4: # get number of blocks\n"
+"            return len(self.data) // self.block_size\n"
+"        if op == 5: # get block size\n"
+"            return self.block_size"
+msgstr ""
+"class RAMBlockDev:\n"
+"    def __init__(self, block_size, num_blocks):\n"
+"        self.block_size = block_size\n"
+"        self.data = bytearray(block_size * num_blocks)\n"
+"\n"
+"    def readblocks(self, block_num, buf):\n"
+"        for i in range(len(buf)):\n"
+"            buf[i] = self.data[block_num * self.block_size + i]\n"
+"\n"
+"    def writeblocks(self, block_num, buf):\n"
+"        for i in range(len(buf)):\n"
+"            self.data[block_num * self.block_size + i] = buf[i]\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4: # ブロック数を取得\n"
+"            return len(self.data) // self.block_size\n"
+"        if op == 5: # ブロックサイズを取得\n"
+"            return self.block_size"
+
+#: ../../reference/filesystem.rst:109
+msgid "It can be used as follows::"
+msgstr "次のように使えます::"
+
+#: ../../reference/filesystem.rst:111
+msgid ""
+"import os\n"
+"\n"
+"bdev = RAMBlockDev(512, 50)\n"
+"os.VfsFat.mkfs(bdev)\n"
+"os.mount(bdev, '/ramdisk')"
+msgstr ""
+
+#: ../../reference/filesystem.rst:117
+msgid ""
+"An example of a block device that supports both the simple and extended "
+"interface (i.e. both signatures and behaviours of the "
+":meth:`uos.AbstractBlockDev.readblocks` and "
+":meth:`uos.AbstractBlockDev.writeblocks` methods) is::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:122
+msgid ""
+"class RAMBlockDev:\n"
+"    def __init__(self, block_size, num_blocks):\n"
+"        self.block_size = block_size\n"
+"        self.data = bytearray(block_size * num_blocks)\n"
+"\n"
+"    def readblocks(self, block_num, buf, offset=0):\n"
+"        addr = block_num * self.block_size + offset\n"
+"        for i in range(len(buf)):\n"
+"            buf[i] = self.data[addr + i]\n"
+"\n"
+"    def writeblocks(self, block_num, buf, offset=None):\n"
+"        if offset is None:\n"
+"            # do erase, then write\n"
+"            for i in range(len(buf) // self.block_size):\n"
+"                self.ioctl(6, block_num + i)\n"
+"            offset = 0\n"
+"        addr = block_num * self.block_size + offset\n"
+"        for i in range(len(buf)):\n"
+"            self.data[addr + i] = buf[i]\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4: # block count\n"
+"            return len(self.data) // self.block_size\n"
+"        if op == 5: # block size\n"
+"            return self.block_size\n"
+"        if op == 6: # block erase\n"
+"            return 0"
+msgstr ""
+
+#: ../../reference/filesystem.rst:150
+msgid ""
+"As it supports the extended interface, it can be used with "
+":class:`littlefs <uos.VfsLfs2>`::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:153
+msgid ""
+"import os\n"
+"\n"
+"bdev = RAMBlockDev(512, 50)\n"
+"os.VfsLfs2.mkfs(bdev)\n"
+"os.mount(bdev, '/ramdisk')"
+msgstr ""
+
+#: ../../reference/filesystem.rst:159
+msgid ""
+"Once mounted, the filesystem (regardless of its type) can be used as it "
+"normally would be used from Python code, for example::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:162
+msgid ""
+"with open('/ramdisk/hello.txt', 'w') as f:\n"
+"    f.write('Hello world')\n"
+"print(open('/ramdisk/hello.txt').read())"
+msgstr ""
+
+#: ../../reference/filesystem.rst:167
+msgid "Filesystems"
+msgstr ""
+
+#: ../../reference/filesystem.rst:169
+msgid ""
+"MicroPython ports can provide implementations of :class:`FAT "
+"<uos.VfsFat>`, :class:`littlefs v1 <uos.VfsLfs1>` and :class:`littlefs v2"
+" <uos.VfsLfs2>`."
+msgstr ""
+
+#: ../../reference/filesystem.rst:172
+msgid ""
+"The following table shows which filesystems are included in the firmware "
+"by default for given port/board combinations, however they can be "
+"optionally enabled in a custom firmware build."
+msgstr ""
+
+#: ../../reference/filesystem.rst:177
+msgid "Board"
+msgstr ""
+
+#: ../../reference/filesystem.rst:177 ../../reference/filesystem.rst:186
+msgid "FAT"
+msgstr ""
+
+#: ../../reference/filesystem.rst:177
+msgid "littlefs v1"
+msgstr ""
+
+#: ../../reference/filesystem.rst:177
+msgid "littlefs v2"
+msgstr ""
+
+#: ../../reference/filesystem.rst:179
+msgid "pyboard 1.0, 1.1, D"
+msgstr ""
+
+#: ../../reference/filesystem.rst:179 ../../reference/filesystem.rst:180
+#: ../../reference/filesystem.rst:181 ../../reference/filesystem.rst:182
+msgid "Yes"
+msgstr ""
+
+#: ../../reference/filesystem.rst:179 ../../reference/filesystem.rst:180
+#: ../../reference/filesystem.rst:181 ../../reference/filesystem.rst:182
+msgid "No"
+msgstr ""
+
+#: ../../reference/filesystem.rst:180
+msgid "Other STM32"
+msgstr ""
+
+#: ../../reference/filesystem.rst:188
+msgid ""
+"The main advantage of the FAT filesystem is that it can be accessed over "
+"USB MSC on supported boards (e.g. STM32) without any additional drivers "
+"required on the host PC."
+msgstr ""
+
+#: ../../reference/filesystem.rst:192
+msgid ""
+"However, FAT is not tolerant to power failure during writes and this can "
+"lead to filesystem corruption. For applications that do not require USB "
+"MSC, it is recommended to use littlefs instead."
+msgstr ""
+
+#: ../../reference/filesystem.rst:196
+msgid "To format the entire flash using FAT::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:198
+msgid ""
+"# ESP8266 and ESP32\n"
+"import os\n"
+"os.umount('/')\n"
+"os.VfsFat.mkfs(bdev)\n"
+"os.mount(bdev, '/')\n"
+"\n"
+"# STM32\n"
+"import os, pyb\n"
+"os.umount('/flash')\n"
+"os.VfsFat.mkfs(pyb.Flash(start=0))\n"
+"os.mount(pyb.Flash(start=0), '/flash')\n"
+"os.chdir('/flash')"
+msgstr ""
+
+#: ../../reference/filesystem.rst:212
+msgid "Littlefs"
+msgstr ""
+
+#: ../../reference/filesystem.rst:214
+msgid ""
+"Littlefs_ is a filesystem designed for flash-based devices, and is much "
+"more resistant to filesystem corruption."
+msgstr ""
+
+#: ../../reference/filesystem.rst:217
+msgid ""
+"There are reports of littlefs v1 and v2 failing in certain situations, "
+"for details see `littlefs issue 347`_  and `littlefs issue 295`_."
+msgstr ""
+
+#: ../../reference/filesystem.rst:221
+msgid ""
+"Note: It can be still be accessed over USB MSC using the `littlefs FUSE "
+"driver`_. Note that you must use the ``-b=4096`` option to override the "
+"block size."
+msgstr ""
+
+#: ../../reference/filesystem.rst:230
+msgid "To format the entire flash using littlefs v2::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:232
+msgid ""
+"# ESP8266 and ESP32\n"
+"import os\n"
+"os.umount('/')\n"
+"os.VfsLfs2.mkfs(bdev)\n"
+"os.mount(bdev, '/')\n"
+"\n"
+"# STM32\n"
+"import os, pyb\n"
+"os.umount('/flash')\n"
+"os.VfsLfs2.mkfs(pyb.Flash(start=0))\n"
+"os.mount(pyb.Flash(start=0), '/flash')\n"
+"os.chdir('/flash')"
+msgstr ""
+
+#: ../../reference/filesystem.rst:246
+msgid "Hybrid (STM32)"
+msgstr ""
+
+#: ../../reference/filesystem.rst:248
+msgid ""
+"By using the ``start`` and ``len`` kwargs to :class:`pyb.Flash`, you can "
+"create block devices spanning a subset of the flash device."
+msgstr ""
+
+#: ../../reference/filesystem.rst:251
+msgid ""
+"For example, to configure the first 256kiB as FAT (and available over USB"
+" MSC), and the remainder as littlefs::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:254
+msgid ""
+"import os, pyb\n"
+"os.umount('/flash')\n"
+"p1 = pyb.Flash(start=0, len=256*1024)\n"
+"p2 = pyb.Flash(start=256*1024)\n"
+"os.VfsFat.mkfs(p1)\n"
+"os.VfsLfs2.mkfs(p2)\n"
+"os.mount(p1, '/flash')\n"
+"os.mount(p2, '/data')\n"
+"os.chdir('/flash')"
+msgstr ""
+
+#: ../../reference/filesystem.rst:264
+msgid ""
+"This might be useful to make your Python files, configuration and other "
+"rarely-modified content available over USB MSC, but allowing for "
+"frequently changing application data to reside on littlefs with better "
+"resilience to power failure, etc."
+msgstr ""
+
+#: ../../reference/filesystem.rst:269
+msgid ""
+"The partition at offset ``0`` will be mounted automatically (and the "
+"filesystem type automatically detected), but you can add::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:272
+msgid ""
+"import os, pyb\n"
+"p2 = pyb.Flash(start=256*1024)\n"
+"os.mount(p2, '/data')"
+msgstr ""
+
+#: ../../reference/filesystem.rst:276
+msgid "to ``boot.py`` to mount the data partition."
+msgstr ""
+
+#: ../../reference/filesystem.rst:279
+msgid "Hybrid (ESP32)"
+msgstr ""
+
+#: ../../reference/filesystem.rst:281
+msgid ""
+"On ESP32, if you build custom firmware, you can modify ``partitions.csv``"
+" to define an arbitrary partition layout."
+msgstr ""
+
+#: ../../reference/filesystem.rst:284
+msgid ""
+"At boot, the partition named \"vfs\" will be mounted at ``/`` by default,"
+" but any additional partitions can be mounted in your ``boot.py`` using::"
+msgstr ""
+
+#: ../../reference/filesystem.rst:287
+msgid ""
+"import esp32, os\n"
+"p = esp32.Partition.find(esp32.Partition.TYPE_DATA, label='foo')\n"
+"os.mount(p, '/foo')"
+msgstr ""
 
 #: ../../../reference/glossary.rst:2
 msgid "Glossary"
@@ -2693,7 +3160,7 @@ msgstr ""
 
 #: ../../../reference/glossary.rst:101
 msgid "interned string"
-msgstr "隔離文字列"
+msgstr "隔離化文字列"
 
 #: ../../../reference/glossary.rst:102
 msgid ""
@@ -2704,7 +3171,7 @@ msgid ""
 "de-duplicated in memory. String interning is almost always invisible to "
 "the user."
 msgstr ""
-"MicroPython が文字列の処理効率を向上させるために使う最適化。隔離された文字列は、"
+"MicroPython が文字列の処理効率を向上させるために使う最適化。隔離化文字列は、"
 "アドレスではなくその（一意の）識別子で参照するため、識別子だけで高速に比較できます。"
 "また、同じ文字列をメモリ内で重複排除できることも意味します。文字列の隔離については、"
 "ユーザが意識することはほとんどありません。"
@@ -2840,7 +3307,7 @@ msgid ""
 "code instead of bytecode for that function, which will likely be "
 "faster but use more RAM."
 msgstr ""
-通常、「ネイティブコード」、つまりターゲットマイクロコントローラーのマシンコード"
+"通常、「ネイティブコード」、つまりターゲットマイクロコントローラーのマシンコード"
 "（ARM Thumb, Xtensa, x86/x64 など）を指します。 ``@native`` デコレータを"
 "MacroPython 関数に適用すると、バイトコードを生成する代わりにネイティブコードを"
 "生成するようになり、おそらく高速にはなりますが、RAM をより多く使ってしまいます。"
@@ -3863,6 +4330,399 @@ msgid ""
 " is reset with ``ctrl D``."
 msgstr ""
 "これはタイマーが明示的に無効にされるか、ボードが ``ctrl D`` でリセットされるまで続きます。"
+
+#: ../../reference/mpyfiles.rst:4
+msgid "MicroPython .mpy files"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:6
+msgid ""
+"MicroPython defines the concept of an .mpy file which is a binary "
+"container file format that holds precompiled code, and which can be "
+"imported like a normal .py module.  The file ``foo.mpy`` can be imported "
+"via ``import foo``, as long as ``foo.mpy`` can be found in the usual way "
+"by the import machinery. Usually, each directory listed in ``sys.path`` "
+"is searched in order.  When searching a particular directory ``foo.py`` "
+"is looked for first and if that is not found then ``foo.mpy`` is looked "
+"for, then the search continues in the next directory if neither is found."
+"  As such, ``foo.py`` will take precedence over ``foo.mpy``."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:16
+msgid ""
+"These .mpy files can contain bytecode which is usually generated from "
+"Python source files (.py files) via the ``mpy-cross`` program.  For some "
+"architectures an .mpy file can also contain native machine code, which "
+"can be generated in a variety of ways, most notably from C source code."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:22
+msgid "Versioning and compatibility of .mpy files"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:24
+msgid ""
+"A given .mpy file may or may not be compatible with a given MicroPython "
+"system. Compatibility is based on the following:"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:27
+msgid ""
+"Version of the .mpy file: the version of the file must match the version "
+"supported by the system loading it."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:30
+msgid ""
+"Bytecode features used in the .mpy file: there are two bytecode features "
+"which must match between the file and the system: unicode support and "
+"inline caching of map lookups in the bytecode."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:34
+msgid ""
+"Small integer bits: the .mpy file will require a minimum number of bits "
+"in a small integer and the system loading it must support at least this "
+"many bits."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:38
+msgid ""
+"Qstr compression window size: the .mpy file will require a minimum window"
+" size for qstr decompression and the system loading it must have a window"
+" greater or equal to this size."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:42
+msgid ""
+"Native architecture: if the .mpy file contains native machine code then "
+"it will specify the architecture of that machine code and the system "
+"loading it must support execution of that architecture's code."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:46
+msgid ""
+"If a MicroPython system supports importing .mpy files then the "
+"``sys.implementation.mpy`` field will exist and return an integer which "
+"encodes the version (lower 8 bits), features and native architecture."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:50
+msgid ""
+"Trying to import an .mpy file that fails one of the first four tests will"
+" raise ``ValueError('incompatible .mpy file')``.  Trying to import an "
+".mpy file that fails the native architecture test (if it contains native "
+"machine code) will raise ``ValueError('incompatible .mpy arch')``."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:55
+msgid "If importing an .mpy file fails then try the following:"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:57
+msgid ""
+"Determine the .mpy version and flags supported by your MicroPython system"
+" by executing::"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:60
+msgid ""
+"import sys\n"
+"sys_mpy = sys.implementation.mpy\n"
+"arch = [None, 'x86', 'x64',\n"
+"    'armv6', 'armv6m', 'armv7m', 'armv7em', 'armv7emsp', 'armv7emdp',\n"
+"    'xtensa', 'xtensawin'][sys_mpy >> 10]\n"
+"print('mpy version:', sys_mpy & 0xff)\n"
+"print('mpy flags:', end='')\n"
+"if arch:\n"
+"    print(' -march=' + arch, end='')\n"
+"if sys_mpy & 0x100:\n"
+"    print(' -mcache-lookup-bc', end='')\n"
+"if not sys_mpy & 0x200:\n"
+"    print(' -mno-unicode', end='')\n"
+"print()"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:75
+msgid ""
+"Check the validity of the .mpy file by inspecting the first two bytes of "
+"the file.  The first byte should be an uppercase 'M' and the second byte "
+"will be the version number, which should match the system version from "
+"above. If it doesn't match then rebuild the .mpy file."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:80
+msgid ""
+"Check if the system .mpy version matches the version emitted by ``mpy-"
+"cross`` that was used to build the .mpy file, found by ``mpy-cross "
+"--version``. If it doesn't match then recompile ``mpy-cross`` from the "
+"Git repository checked out at the tag (or hash) reported by ``mpy-cross "
+"--version``."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:85
+msgid ""
+"Make sure you are using the correct ``mpy-cross`` flags, found by the "
+"code above, or by inspecting the ``MPY_CROSS_FLAGS`` Makefile variable "
+"for the port that you are using."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:89
+msgid ""
+"The following table shows the correspondence between MicroPython release "
+"and .mpy version."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:93
+msgid "MicroPython release"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:93
+msgid ".mpy version"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:95
+msgid "v1.12 and up"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:95
+msgid "5"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:96
+msgid "v1.11"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:96
+msgid "4"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:97
+msgid "v1.9.3 - v1.10"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:97
+msgid "3"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:98
+msgid "v1.9 - v1.9.2"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:98
+msgid "2"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:99
+msgid "v1.5.1 - v1.8.7"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:99
+msgid "0"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:102
+msgid ""
+"For completeness, the next table shows the Git commit of the main "
+"MicroPython repository at which the .mpy version was changed."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:106
+msgid ".mpy version change"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:106
+msgid "Git commit"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:108
+msgid "4 to 5"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:108
+msgid "5716c5cf65e9b2cb46c2906f40302401bdd27517"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:109
+msgid "3 to 4"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:109
+msgid "9a5f92ea72754c01cc03e5efcdfe94021120531e"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:110
+msgid "2 to 3"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:110
+msgid "ff93fd4f50321c6190e1659b19e64fef3045a484"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:111
+msgid "1 to 2"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:111
+msgid "dd11af209d226b7d18d5148b239662e30ed60bad"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:112
+msgid "0 to 1"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:112
+msgid "6a11048af1d01c78bdacddadd1b72dc7ba7c6478"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:113
+msgid "initial version 0"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:113
+msgid "d8c834c95d506db979ec871417de90b7951edc30"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:117
+msgid "Binary encoding of .mpy files"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:119
+msgid ""
+"MicroPython .mpy files are a binary container format with code objects "
+"stored internally in a nested hierarchy.  To keep files small while still"
+" providing a large range of possible values it uses the concept of a "
+"variably-encoded-unsigned-integer (vuint) in many places.  Similar to "
+"utf-8 encoding, this encoding stores 7 bits per byte with the 8th bit "
+"(MSB) set if one or more bytes follow.  The bits of the unsigned integer "
+"are stored in the vuint in LSB form."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:127
+msgid "The top-level of an .mpy file consists of two parts:"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:129
+msgid "The header."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:131
+msgid ""
+"The raw-code for the outer scope of the module. This outer scope is "
+"executed when the .mpy file is imported."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:135
+msgid "The header"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:137
+msgid "The .mpy header is:"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:156
+msgid "size"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:156
+msgid "field"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:142 ../../reference/mpyfiles.rst:143
+#: ../../reference/mpyfiles.rst:144 ../../reference/mpyfiles.rst:145
+msgid "byte"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:142
+msgid "value 0x4d (ASCII 'M')"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:143
+msgid ".mpy version number"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:144
+msgid "feature flags"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:145
+msgid "number of bits in a small int"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:146 ../../reference/mpyfiles.rst:158
+#: ../../reference/mpyfiles.rst:160 ../../reference/mpyfiles.rst:161
+msgid "vuint"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:146
+msgid "size of qstr window"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:150
+msgid "Raw code elements"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:152
+msgid ""
+"A raw-code element contains code, either bytecode or native machine code."
+"  Its contents are:"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:158
+msgid "type and size"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:159 ../../reference/mpyfiles.rst:162
+#: ../../reference/mpyfiles.rst:163
+msgid "..."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:159
+msgid "code (bytecode or machine code)"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:160
+msgid "number of constant objects"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:161
+msgid "number of sub-raw-code elements"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:162
+msgid "constant objects"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:163
+msgid "sub-raw-code elements"
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:166
+msgid ""
+"The first vuint in a raw-code element encodes the type of code stored in "
+"this element (the two least-significant bits), and the decompressed "
+"length of the code (the amount of RAM to allocate for it)."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:170
+msgid ""
+"Following the vuint comes the code itself.  In the case of bytecode it "
+"also contains compressed qstr values."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:173
+msgid ""
+"Following the code comes a vuint counting the number of constant objects,"
+" and another vuint counting the number of sub-raw-code elements."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:176
+msgid "The constant objects are then stored next."
+msgstr ""
+
+#: ../../reference/mpyfiles.rst:178
+msgid "Finally any sub-raw-code elements are stored, recursively."
+msgstr ""
 
 #: ../../../reference/packages.rst:2
 msgid "Distribution packages, package management, and deploying applications"

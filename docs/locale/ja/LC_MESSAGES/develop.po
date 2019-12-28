@@ -11,18 +11,18 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-01 11:03+0900\n"
-"PO-Revision-Date: 2019-05-02 09:30+0900\n"
+"PO-Revision-Date: 2019-12-28 17:30+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: ../../develop/cmodules.rst:2
+#: ../../develop/cmodules.rst:4
 msgid "MicroPython external C modules"
 msgstr "MicroPython 外部 C モジュール"
 
-#: ../../develop/cmodules.rst:4
+#: ../../develop/cmodules.rst:6
 msgid ""
 "When developing modules for use with MicroPython you may find you run "
 "into limitations with the Python environment, often due to an inability "
@@ -32,7 +32,7 @@ msgstr ""
 "ことがあります。これは多くの場合、特定のハードウェアリソースにアクセスできないとか、"
 "Python の実行速度の遅さによるものです。"
 
-#: ../../develop/cmodules.rst:8
+#: ../../develop/cmodules.rst:10
 msgid ""
 "If your limitations can't be resolved with suggestions in "
 ":ref:`speed_python`, writing some or all of your module in C is a viable "
@@ -41,7 +41,7 @@ msgstr ""
 ":ref:`MicroPython 性能の最大化 <speed_python>` に提示しているもので解決できない場合、"
 "モジュールの一部または全部を C 言語で書くのが現実的な解です。"
 
-#: ../../develop/cmodules.rst:11
+#: ../../develop/cmodules.rst:13
 msgid ""
 "If your module is designed to access or work with commonly available "
 "hardware or libraries please consider implementing it inside the "
@@ -56,7 +56,7 @@ msgstr ""
 "た独自のシステムをターゲットにしている場合は、メインの MicroPython リポジトリの外部に"
 "保持するほうが合理的です。"
 
-#: ../../develop/cmodules.rst:17
+#: ../../develop/cmodules.rst:19
 msgid ""
 "This chapter describes how to compile such external modules into the "
 "MicroPython executable or firmware image."
@@ -65,18 +65,29 @@ msgstr ""
 "ウェアイメージにコンパイルする方法について説明します。"
 
 #: ../../develop/cmodules.rst:22
+msgid ""
+"An alternative approach is to use :ref:`natmod` which allows writing "
+"custom C code that is placed in a .mpy file, which can be imported "
+"dynamically in to a running MicroPython system without the need to "
+"recompile the main firmware."
+msgstr ""
+":ref:`natmod` を使って、カスタム C コード を .mpy ファイル中に置くこともできます。"
+"この .mpy ファイルは、メインのファームウェアを再コンパイルすることなく、利用中の "
+"MicroPython システムに動的にインポートできます。"
+
+#: ../../develop/cmodules.rst:28
 msgid "Structure of an external C module"
 msgstr "外部 C モジュールの構造"
 
-#: ../../develop/cmodules.rst:24
+#: ../../develop/cmodules.rst:30
 msgid "A MicroPython user C module is a directory with the following files:"
 msgstr "MicroPython のユーザー C モジュールは、次のファイルを含むディレクトリーです:"
 
-#: ../../develop/cmodules.rst:26
+#: ../../develop/cmodules.rst:32
 msgid "``*.c`` and/or ``*.h`` source code files for your module."
 msgstr "モジュールのソースコードファイルである ``*.c`` や ``*.h``。"
 
-#: ../../develop/cmodules.rst:28
+#: ../../develop/cmodules.rst:34
 msgid ""
 "These will typically include the low level functionality being "
 "implemented and the MicroPython binding functions to expose the functions"
@@ -85,7 +96,7 @@ msgstr ""
 "これらのファイルには通常、C言語レベルでの機能実装と、それを MicroPython の"
 "公開関数/モジュールにバインディングするものから成っています。"
 
-#: ../../develop/cmodules.rst:31
+#: ../../develop/cmodules.rst:37
 msgid ""
 "Currently the best reference for writing these functions/modules is to "
 "find similar modules within the MicroPython tree and use them as "
@@ -94,11 +105,11 @@ msgstr ""
 "現在のところ、このような関数/モジュールを書くための最良の参考資料は MicroPython "
 "のソースツリー内で似たモジュールを見つけて、それらを例として使うことです。"
 
-#: ../../develop/cmodules.rst:34
+#: ../../develop/cmodules.rst:40
 msgid "``micropython.mk`` contains the Makefile fragment for this module."
 msgstr "``micropython.mk`` はモジュール用の Makefile の一部を含みます。"
 
-#: ../../develop/cmodules.rst:36
+#: ../../develop/cmodules.rst:42
 msgid ""
 "``$(USERMOD_DIR)`` is available in ``micropython.mk`` as the path to your"
 " module directory. As it's redefined for each c module, is should be "
@@ -109,7 +120,7 @@ msgstr ""
 "これは各 C モジュールに対して再定義されるので、``micropython.mk`` の中でローカルの make 変数に"
 "展開しておくべきです。たとえば ``EXAMPLE_MOD_DIR := $(USERMOD_DIR)`` とします。"
 
-#: ../../develop/cmodules.rst:41
+#: ../../develop/cmodules.rst:47
 msgid ""
 "Your ``micropython.mk`` must add your modules C files relative to your "
 "expanded copy of ``$(USERMOD_DIR)`` to ``SRC_USERMOD``, eg ``SRC_USERMOD "
@@ -119,7 +130,7 @@ msgstr ""
 "これは ``$(USERMOD_DIR)`` の展開コピーのディレクトリ中に置かれているものとして設定します。"
 "たとえば ``SRC_USERMOD += $(EXAMPLE_MOD_DIR)/example.c`` のようにします。"
 
-#: ../../develop/cmodules.rst:45
+#: ../../develop/cmodules.rst:51
 msgid ""
 "If you have custom ``CFLAGS`` settings or include folders to define, "
 "these should be added to ``CFLAGS_USERMOD``."
@@ -127,15 +138,15 @@ msgstr ""
 "カスタムの ``CFLAGS`` 設定またはインクルードファイルのフォルダ定義がある場合には、 "
 "``CFLAGS_USERMOD`` に追加します。"
 
-#: ../../develop/cmodules.rst:48
+#: ../../develop/cmodules.rst:54
 msgid "See below for full usage example."
 msgstr "完全な使用例については下記を参照してください。"
 
-#: ../../develop/cmodules.rst:52
+#: ../../develop/cmodules.rst:58
 msgid "Basic Example"
 msgstr "基本的な例"
 
-#: ../../develop/cmodules.rst:54
+#: ../../develop/cmodules.rst:60
 msgid ""
 "This simple module named ``example`` provides a single function "
 "``example.add_ints(a, b)`` which adds the two integer args together and "
@@ -144,22 +155,22 @@ msgstr ""
 "ここでとりあげる単純な名前のモジュール ``example`` は、2つの整数引数を加算して"
 "結果を返す単一の関数 ``example.add_ints(a, b)`` を提供します。"
 
-#: ../../develop/cmodules.rst:58 ../../develop/cmodules.rst:143
+#: ../../develop/cmodules.rst:64 ../../develop/cmodules.rst:149
 msgid "Directory::"
 msgstr "ディレクトリ構成::"
 
-#: ../../develop/cmodules.rst:60
+#: ../../develop/cmodules.rst:66
 msgid ""
 "example/\n"
 "├── example.c\n"
 "└── micropython.mk"
 msgstr ""
 
-#: ../../develop/cmodules.rst:65
+#: ../../develop/cmodules.rst:71
 msgid "``example.c``"
 msgstr ""
 
-#: ../../develop/cmodules.rst:67
+#: ../../develop/cmodules.rst:73
 msgid ""
 "// Include required definitions first.\n"
 "#include \"py/obj.h\"\n"
@@ -245,11 +256,11 @@ msgstr ""
 "MP_REGISTER_MODULE(MP_QSTR_example, example_user_cmodule, "
 "MODULE_EXAMPLE_ENABLED);"
 
-#: ../../develop/cmodules.rst:107
+#: ../../develop/cmodules.rst:113
 msgid "``micropython.mk``"
 msgstr ""
 
-#: ../../develop/cmodules.rst:109
+#: ../../develop/cmodules.rst:115
 msgid ""
 "EXAMPLE_MOD_DIR := $(USERMOD_DIR)\n"
 "\n"
@@ -269,7 +280,7 @@ msgstr ""
 "# この例では実際には必要ない\n"
 "CFLAGS_USERMOD += -I$(EXAMPLE_MOD_DIR)"
 
-#: ../../develop/cmodules.rst:120
+#: ../../develop/cmodules.rst:126
 msgid ""
 "Finally you will need to define ``MODULE_EXAMPLE_ENABLED`` to 1. This can"
 " be done by adding ``CFLAGS_EXTRA=-DMODULE_EXAMPLE_ENABLED=1`` to the "
@@ -280,11 +291,11 @@ msgstr ""
 "``CFLAGS_EXTRA=-DMODULE_EXAMPLE_ENABLED=1`` を ``make`` コマンドに追加するか、 "
 "``mpconfigport.h`` か ``mpconfigboard.h`` を編集して次のものを追加します。"
 
-#: ../../develop/cmodules.rst:125
+#: ../../develop/cmodules.rst:131
 msgid "#define MODULE_EXAMPLE_ENABLED (1)"
 msgstr ""
 
-#: ../../develop/cmodules.rst:129
+#: ../../develop/cmodules.rst:135
 msgid ""
 "Note that the exact method depends on the port as they have different "
 "structures. If not done correctly it will compile but importing will fail"
@@ -293,11 +304,11 @@ msgstr ""
 "ポートによって異なる構造になっているので、正しい方法はポートに依存することに注意してください。"
 "適切に行われなかった場合、コンパイルはされたとしてもモジュールのインポートはできないでしょう。"
 
-#: ../../develop/cmodules.rst:135
+#: ../../develop/cmodules.rst:141
 msgid "Compiling the cmodule into MicroPython"
 msgstr "C モジュールを MicroPython にコンパイルする"
 
-#: ../../develop/cmodules.rst:137
+#: ../../develop/cmodules.rst:143
 msgid ""
 "To build such a module, compile MicroPython (see `getting started "
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_) with"
@@ -311,7 +322,7 @@ msgstr ""
 "(`getting started <https://github.com/micropython/micropython/wiki/Getting-Started>`_ を参照)。"
 "たとえば次のような構成の場合:"
 
-#: ../../develop/cmodules.rst:145
+#: ../../develop/cmodules.rst:151
 msgid ""
 "my_project/\n"
 "├── modules/\n"
@@ -324,22 +335,22 @@ msgid ""
 "      ..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:155
+#: ../../develop/cmodules.rst:161
 msgid "Building for stm32 port:"
 msgstr "stm32 ポート用のビルド:"
 
-#: ../../develop/cmodules.rst:157
+#: ../../develop/cmodules.rst:163
 msgid ""
 "cd my_project/micropython/ports/stm32\n"
 "make USER_C_MODULES=../../../modules "
 "CFLAGS_EXTRA=-DMODULE_EXAMPLE_ENABLED=1 all"
 msgstr ""
 
-#: ../../develop/cmodules.rst:164
+#: ../../develop/cmodules.rst:170 ../../develop/natmod.rst:179
 msgid "Module usage in MicroPython"
 msgstr "MicroPython でのモジュールの使い方"
 
-#: ../../develop/cmodules.rst:166
+#: ../../develop/cmodules.rst:172
 msgid ""
 "Once built into your copy of MicroPython, the module implemented in "
 "``example.c`` above can now be accessed in Python just like any other "
@@ -349,7 +360,7 @@ msgstr ""
 "他の組み込みモジュールと同じように Python でアクセスできるようになります。"
 "たとえば次のように使います。"
 
-#: ../../develop/cmodules.rst:170
+#: ../../develop/cmodules.rst:176
 msgid ""
 "import example\n"
 "print(example.add_ints(1, 3))\n"
@@ -374,3 +385,733 @@ msgstr ""
 "`getting started guide <https://github.com/micropython/micropython/wiki/Getting-Started>`_ "
 "を参照してください。"
 
+#: ../../develop/natmod.rst:4
+msgid "Native machine code in .mpy files"
+msgstr "ネイティブマシンコードの .mpy ファイルへの埋込み"
+
+#: ../../develop/natmod.rst:6
+msgid ""
+"This section describes how to build and work with .mpy files that contain"
+" native machine code from a language other than Python.  This allows you "
+"to write code in a language like C, compile and link it into a .mpy file,"
+" and then import this file like a normal Python module.  This can be used"
+" for implementing functionality which is performance critical, or for "
+"including an existing library written in another language."
+msgstr ""
+"この章では、Python 以外の言語で作成したネイティブマシンコードを埋め込んだ .mpy "
+"ファイルをビルドして操作する方法について説明します。これにより、C などの言語で"
+"コードを記述し、コンパイルして.mpyファイルにリンクし、このファイルを通常の Python "
+"モジュールのようにインポートできます。これにより、パフォーマンスが重要な機能を実装したり、"
+"別の言語で記述された既存のライブラリを使えるようになります。"
+
+#: ../../develop/natmod.rst:13
+msgid ""
+"One of the main advantages of using native .mpy files is that native "
+"machine code can be imported by a script dynamically, without the need to"
+" rebuild the main MicroPython firmware.  This is in contrast to "
+":ref:`cmodules` which also allows defining custom modules in C but they "
+"must be compiled into the main firmware image."
+msgstr ""
+"ネイティブ .mpy ファイルを使用する主な利点の1つは、メインの MicroPython ファーム"
+"ウェアを再構築する必要なく、ネイティブマシンコードをスクリプトによって動的に"
+"インポートできることです。 :ref:`cmodules` でも C 言語でカスタムモジュールを"
+"定義できますが、メインファームウェアのイメージにコンパイルする必要があります。"
+
+#: ../../develop/natmod.rst:18
+msgid ""
+"The focus here is on using C to build native modules, but in principle "
+"any language which can be compiled to stand-alone machine code can be put"
+" into a .mpy file."
+msgstr ""
+"ここでは C 言語を使用してネイティブモジュールを構築する方法について説明しますが、"
+"原則的にはスタンドアロンマシンコードにコンパイルできる言語であればなんでも .mpy "
+"ファイルに埋め込めます。"
+
+#: ../../develop/natmod.rst:22
+msgid ""
+"A native .mpy module is built using the ``mpy_ld.py`` tool, which is "
+"found in the ``tools/`` directory of the project.  This tool takes a set "
+"of object files (.o files) and links them together to create a native "
+".mpy files."
+msgstr ""
+"ネイティブ .mpy モジュールは、プロジェクトの ``tools/`` ディレクトリにある "
+"mpy_ld.py ツール を使ってビルドできます。このツールは、オブジェクトファイル"
+"(.oファイル)の１組を取得・リンクして、ネイティブ .mpy ファイルを作成します。"
+
+#: ../../develop/natmod.rst:27
+msgid "Supported features and limitations"
+msgstr "サポートされている機能と制限"
+
+#: ../../develop/natmod.rst:29
+msgid ""
+"A .mpy file can contain MicroPython bytecode and/or native machine code."
+"  If it contains native machine code then the .mpy file has a specific "
+"architecture associated with it.  Current supported architectures are "
+"(these are the valid options for the ``ARCH`` variable, see below):"
+msgstr ""
+".mpy ファイルには、MicroPython バイトコードやネイティブマシンコードを含められます。"
+"ネイティブマシンコードが含まれている場合、 .mpy ファイルには特定のアーキテクチャが"
+"関連付けられています。現在サポートされているアーキテクチャは次のとおりです(これらは "
+"後述する ARCH 変数の有効なオプションです)。"
+
+#: ../../develop/natmod.rst:34
+msgid "``x86`` (32 bit)"
+msgstr "``x86`` (32 ビット)"
+
+#: ../../develop/natmod.rst:35
+msgid "``x64`` (64 bit x86)"
+msgstr "``x64`` (64 ビット x86)"
+
+#: ../../develop/natmod.rst:36
+msgid "``armv7m`` (ARM Thumb 2, eg Cortex-M3)"
+msgstr "``armv7m`` (ARM Thumb 2, Cortex-M3 など)"
+
+#: ../../develop/natmod.rst:37
+msgid ""
+"``armv7emsp`` (ARM Thumb 2, single precision float, eg Cortex-M4F, "
+"Cortex-M7)"
+msgstr ""
+"``armv7emsp`` (ARM Thumb 2, 単精度浮動小数点, Cortex-M4F, Cortex-M7 など)"
+
+#: ../../develop/natmod.rst:38
+msgid "``armv7emdp`` (ARM Thumb 2, double precision float, eg Cortex-M7)"
+msgstr "``armv7emdp`` (ARM Thumb 2, 倍精度浮動小数点, Cortex-M7 など)"
+
+#: ../../develop/natmod.rst:39
+msgid "``xtensa`` (non-windowed, eg ESP8266)"
+msgstr "``xtensa`` (ウィンドウなし, ESP8266 など)"
+
+#: ../../develop/natmod.rst:40
+msgid "``xtensawin`` (windowed with window size 8, eg ESP32)"
+msgstr "``xtensawin`` (ウィンドウサイズ 8, ESP32 など)"
+
+#: ../../develop/natmod.rst:42
+msgid ""
+"When compiling and linking the native .mpy file the architecture must be "
+"chosen and the corresponding file can only be imported on that "
+"architecture.  For more details about .mpy files see :ref:`mpy_files`."
+msgstr ""
+"ネイティブ .mpy ファイルをコンパイル・リンクする場合、アーキテクチャの選択が必要です。"
+"該当ファイルはそのアーキテクチャにのみインポートできます。 .mpy ファイルの詳細に"
+"ついては :ref:`mpy_files` ファイルを参照してください。"
+
+#: ../../develop/natmod.rst:46
+msgid ""
+"Native code must be compiled as position independent code (PIC) and use a"
+" global offset table (GOT), although the details of this varies from "
+"architecture to architecture.  When importing .mpy files with native code"
+" the import machinery is able to do some basic relocation of the native "
+"code.  This includes relocating text, rodata and BSS sections."
+msgstr ""
+"ネイティブコードは位置非依存コード(PIC)としてコンパイルし、グローバルオフセットテーブル"
+"(GOT)を使う必要がありますが、この詳細はアーキテクチャによって異なります。ネイティブコード"
+"で .mpy ファイルをインポートする場合、インポート機構はネイティブコードの基本的な再配置を"
+"行えます。これには、text, rodata, BSS セクションの再配置も含まれます。"
+
+#: ../../develop/natmod.rst:52
+msgid "Supported features of the linker and dynamic loader are:"
+msgstr "リンカーとダイナミックローダーがサポートされている機能は次のとおりです:"
+
+#: ../../develop/natmod.rst:54
+msgid "executable code (text)"
+msgstr "実行可能コード (text)"
+
+#: ../../develop/natmod.rst:55
+msgid ""
+"read-only data (rodata), including strings and constant data (arrays, "
+"structs, etc)"
+msgstr ""
+"文字列および定数データ(配列、構造体など)を含む読み取り専用データ (rodata)"
+
+#: ../../develop/natmod.rst:56
+msgid "zeroed data (BSS)"
+msgstr "ゼロに初期化されるデータ (BSS)"
+
+#: ../../develop/natmod.rst:57
+msgid "pointers in text to text, rodata and BSS"
+msgstr "text 中の text, rodata, BSS へのポインター"
+
+#: ../../develop/natmod.rst:58
+msgid "pointers in rodata to text, rodata and BSS"
+msgstr "rodata 中の text, rodata, BSS へのポインター"
+
+#: ../../develop/natmod.rst:60
+msgid "The known limitations are:"
+msgstr "既知の制限は次のとおりです。"
+
+#: ../../develop/natmod.rst:62
+msgid ""
+"data sections are not supported; workaround: use BSS data and initialise "
+"the data values explicitly"
+msgstr ""
+"data セクションはサポートしていません。回避策: BSSデータを使い、データ値を明示的に"
+"初期化してください"
+
+#: ../../develop/natmod.rst:65
+msgid ""
+"static BSS variables are not supported; workaround: use global BSS "
+"variables"
+msgstr ""
+"静的 BSS 変数はサポートしていません。回避策: グローバル BSS 変数を使ってください"
+
+#: ../../develop/natmod.rst:67
+msgid ""
+"So, if your C code has writable data, make sure the data is defined "
+"globally, without an initialiser, and only written to within functions."
+msgstr ""
+"このため、C コードに書き込み可能なデータがある場合、データが初期化子なしで"
+"グローバルに定義され、関数内でのみ書き込まれていることを確認してください。"
+
+#: ../../develop/natmod.rst:71
+msgid "Defining a native module"
+msgstr "ネイティブモジュールの定義"
+
+#: ../../develop/natmod.rst:73
+msgid ""
+"A native .mpy module is defined by a set of files that are used to build "
+"the .mpy. The filesystem layout consists of two main parts, the source "
+"files and the Makefile:"
+msgstr ""
+"ネイティブ .mpy モジュールは、.mpy のビルドに使う1組のファイルで定義します。"
+"ファイルシステムのレイアウトは、ソースファイルと Makefile の2つの主要部分で"
+"構成します。"
+
+#: ../../develop/natmod.rst:76
+msgid ""
+"In the simplest case only a single C source file is required, which "
+"contains all the code that will be compiled into the .mpy module.  This C"
+" source code must include the ``py/dynruntime.h`` file to access the "
+"MicroPython dynamic API, and must at least define a function called "
+"``mpy_init``.  This function will be the entry point of the module, "
+"called when the module is imported."
+msgstr ""
+"最も単純なケースでは、単一の C ソースファイルのみが必要です。これには、.mpy "
+"モジュールにコンパイルされるすべてのコードを含みます。この C ソースコードには "
+"MicroPython 動的 API にアクセスするための py/dynruntime.h ファイルを"
+"インクルードし、少なくとも ``mpy_init`` という関数を定義する必要があります。"
+"この関数は、モジュールのエントリポイントであり、モジュールがインポートされる"
+"ときに呼び出されます。"
+
+#: ../../develop/natmod.rst:82
+msgid ""
+"The module can be split into multiple C source files if desired.  Parts "
+"of the module can also be implemented in Python.  All source files should"
+" be listed in the Makefile, by adding them to the ``SRC`` variable (see "
+"below).  This includes both C source files as well as any Python files "
+"which will be included in the resulting .mpy file."
+msgstr ""
+"必要に応じて、モジュールを複数の C ソースファイルに分割できます。モジュールの一部は "
+"Python でも実装できます。すべてのソースファイルは Makefile 中の SRC 変数に指定"
+"する必要があります(後述)。これには C ソースファイルと、結果の .mpy ファイルに含まれる "
+"Python ファイルの両方を含めます。"
+
+#: ../../develop/natmod.rst:88
+msgid ""
+"The ``Makefile`` contains the build configuration for the module and list"
+" the source files used to build the .mpy module.  It should define "
+"``MPY_DIR`` as the location of the MicroPython repository (to find header"
+" files, the relevant Makefile fragment, and the ``mpy_ld.py`` tool), "
+"``MOD`` as the name of the module, ``SRC`` as the list of source files, "
+"optionally specify the machine architecture via ``ARCH``, and then "
+"include ``py/dynruntime.mk``."
+msgstr ""
+"``Makefile`` はモジュールのビルド設定および .mpy モジュールをビルドするのに使う"
+"ソースファイルの指定を含めます。変数 ``MPY_DIR`` には MicroPython リポジトリ
+"(ヘッダファイル、関連する Makefile 断片、 ``mpy_ld.py`` ツールが存在)の場所を"
+"指定します。変数 ``MOD`` にはモジュールの名前を指定します。変数 ``SRC`` には"
+"ソースファイルの一覧を指定します。オプションでマシンアーキテクチャを指定するには変数 "
+"``ARCH`` を使います。さらに ``py/dynruntime.mk`` のインクルードも必要です。
+
+#: ../../develop/natmod.rst:96
+msgid "Minimal example"
+msgstr "最小限の例"
+
+#: ../../develop/natmod.rst:98
+msgid ""
+"This section provides a fully working example of a simple module named "
+"``factorial``. This module provides a single function "
+"``factorial.factorial(x)`` which computes the factorial of the input and "
+"returns the result."
+msgstr ""
+"この章では ``factorial`` という簡単なモジュールの完全に機能する例を示します。"
+"このモジュールは入力の階乗を計算して結果を返す単一の関数 ``factorial.factorial(x)`` "
+"を提供します。"
+
+#: ../../develop/natmod.rst:102
+msgid "Directory layout::"
+msgstr "ディレクトリのレイアウト"
+
+#: ../../develop/natmod.rst:104
+msgid ""
+"factorial/\n"
+"├── factorial.c\n"
+"└── Makefile"
+msgstr ""
+
+#: ../../develop/natmod.rst:108
+msgid "The file ``factorial.c`` contains:"
+msgstr "ファイル ``factorial.c`` の内容は以下のとおりです:"
+
+#: ../../develop/natmod.rst:110
+msgid ""
+"// Include the header file to get access to the MicroPython API\n"
+"#include \"py/dynruntime.h\"\n"
+"\n"
+"// Helper function to compute factorial\n"
+"STATIC mp_int_t factorial_helper(mp_int_t x) {\n"
+"    if (x == 0) {\n"
+"        return 1;\n"
+"    }\n"
+"    return x * factorial_helper(x - 1);\n"
+"}\n"
+"\n"
+"// This is the function which will be called from Python, as factorial(x)"
+"\n"
+"STATIC mp_obj_t factorial(mp_obj_t x_obj) {\n"
+"    // Extract the integer from the MicroPython input object\n"
+"    mp_int_t x = mp_obj_get_int(x_obj);\n"
+"    // Calculate the factorial\n"
+"    mp_int_t result = factorial_helper(x);\n"
+"    // Convert the result to a MicroPython integer object and return it\n"
+"    return mp_obj_new_int(result);\n"
+"}\n"
+"// Define a Python reference to the function above\n"
+"STATIC MP_DEFINE_CONST_FUN_OBJ_1(factorial_obj, factorial);\n"
+"\n"
+"// This is the entry point and is called when the module is imported\n"
+"mp_obj_t mpy_init(mp_obj_fun_bc_t *self, size_t n_args, size_t n_kw, "
+"mp_obj_t *args) {\n"
+"    // This must be first, it sets up the globals dict and other things\n"
+"    MP_DYNRUNTIME_INIT_ENTRY\n"
+"\n"
+"    // Make the function available in the module's namespace\n"
+"    mp_store_global(MP_QSTR_factorial, MP_OBJ_FROM_PTR(&factorial_obj));\n"
+"\n"
+"    // This must be last, it restores the globals dict\n"
+"    MP_DYNRUNTIME_INIT_EXIT\n"
+"}"
+msgstr ""
+"// MicroPython API にアクセスするためのヘッダファイルをインクルード\n"
+"#include \"py/dynruntime.h\"\n"
+"\n"
+"// 階乗を計算するヘルパー関数\n"
+"STATIC mp_int_t factorial_helper(mp_int_t x) {\n"
+"    if (x == 0) {\n"
+"        return 1;\n"
+"    }\n"
+"    return x * factorial_helper(x - 1);\n"
+"}\n"
+"\n"
+"// Python から factorial(x) として呼び出される関数"
+"\n"
+"STATIC mp_obj_t factorial(mp_obj_t x_obj) {\n"
+"    // MicroPython 入力オブジェクトから整数を抽出\n"
+"    mp_int_t x = mp_obj_get_int(x_obj);\n"
+"    // 階乗を計算\n"
+"    mp_int_t result = factorial_helper(x);\n"
+"    // 計算結果を MicroPython 整数オブジェクトに変換して戻す\n"
+"    return mp_obj_new_int(result);\n"
+"}\n"
+"// 上の関数の Python 参照を定義\n"
+"STATIC MP_DEFINE_CONST_FUN_OBJ_1(factorial_obj, factorial);\n"
+"\n"
+"// これはエントリポイントであり、モジュールをインポートしたときに呼び出される\n"
+"mp_obj_t mpy_init(mp_obj_fun_bc_t *self, size_t n_args, size_t n_kw, "
+"mp_obj_t *args) {\n"
+"    // これが最初になければならず、グローバル辞書などをセットアップする\n"
+"    MP_DYNRUNTIME_INIT_ENTRY\n"
+"\n"
+"    // モジュールの名前空間で関数を利用できるようにする\n"
+"    mp_store_global(MP_QSTR_factorial, MP_OBJ_FROM_PTR(&factorial_obj));\n"
+"\n"
+"    // これが最後になければならず、グローバル辞書をリストアする\n"
+"    MP_DYNRUNTIME_INIT_EXIT\n"
+"}"
+
+#: ../../develop/natmod.rst:147
+msgid "The file ``Makefile`` contains:"
+msgstr "ファイル ``Makefile`` の内容は以下のとおりです:"
+
+#: ../../develop/natmod.rst:149
+msgid ""
+"# Location of top-level MicroPython directory\n"
+"MPY_DIR = ../../..\n"
+"\n"
+"# Name of module\n"
+"MOD = features0\n"
+"\n"
+"# Source files (.c or .py)\n"
+"SRC = features0.c\n"
+"\n"
+"# Architecture to build for (x86, x64, armv7m, xtensa, xtensawin)\n"
+"ARCH = x64\n"
+"\n"
+"# Include to get the rules for compiling and linking the module\n"
+"include $(MPY_DIR)/py/dynruntime.mk"
+msgstr ""
+"# 最上位の MicroPython ディレクトリの場所\n"
+"MPY_DIR = ../../..\n"
+"\n"
+"# モジュールの名前\n"
+"MOD = features0\n"
+"\n"
+"# ソースファイル(.c や .py)\n"
+"SRC = features0.c\n"
+"\n"
+"# ビルド対象のアーキテクチャ(x86, x64, armv7m, xtensa, xtensawin)\n"
+"ARCH = x64\n"
+"\n"
+"# このインクルードにより、モジュールをコンパイル・リンクするルールを取得\n"
+"include $(MPY_DIR)/py/dynruntime.mk"
+
+#: ../../develop/natmod.rst:167
+msgid "Compiling the module"
+msgstr "モジュールのコンパイル"
+
+#: ../../develop/natmod.rst:169
+msgid ""
+"Be sure to select the correct ``ARCH`` for the target you are going to "
+"run on. Then build with::"
+msgstr ""
+"実行するターゲットに対して適切な ``ARCH`` を選択してください。ビルドは次のように行います::"
+
+#: ../../develop/natmod.rst:172
+msgid "$ make"
+msgstr ""
+
+#: ../../develop/natmod.rst:174
+msgid ""
+"Without modifying the Makefile you can specify the target architecture "
+"via::"
+msgstr ""
+"Makefile を変更しなくても、次のようにしてターゲットのアーキテクチャを指定できます::"
+
+#: ../../develop/natmod.rst:176
+msgid "$ make ARCH=armv7m"
+msgstr ""
+
+#: ../../develop/natmod.rst:181
+msgid ""
+"Once the module is built there should be a file called ``factorial.mpy``."
+"  Copy this so it is accessible on the filesystem of your MicroPython "
+"system and can be found in the import path.  The module con now be "
+"accessed in Python just like any other module, for example::"
+msgstr ""
+"モジュールをビルドすると ``factorial.mpy`` というファイルが作成されます。"
+"これをコピーして MicroPython システムのファイルシステムでアクセスできるようにし、"
+"インポートパスで見つけられるようにします。これで作成したモジュールを、他のモジュールと"
+"同じように Python でアクセスできるようになります。例えば次のように使います::"
+
+#: ../../develop/natmod.rst:186
+msgid ""
+"import factorial\n"
+"print(factorial.factorial(10))\n"
+"# should display 3628800"
+msgstr ""
+"import factorial\n"
+"print(factorial.factorial(10))\n"
+"# 3628800 が表示されるはず"
+
+#: ../../develop/natmod.rst:191
+msgid "Further examples"
+msgstr "さらなる例"
+
+#: ../../develop/natmod.rst:193
+msgid ""
+"See ``examples/natmod/`` for further examples which show many of the "
+"available features of native .mpy modules.  Such features include:"
+msgstr ""
+"ネイティブ .mpy モジュールで利用可能な機能の多くを示すさらなる例については "
+"``examples/natmod/`` を参照してください。以下の例があります:"
+
+#: ../../develop/natmod.rst:196
+msgid "using multiple C source files"
+msgstr "複数の C ソースファイルの利用"
+
+#: ../../develop/natmod.rst:197
+msgid "including Python code alongside C code"
+msgstr "C コード と Python コードを一緒に含める"
+
+#: ../../develop/natmod.rst:198
+msgid "rodata and BSS data"
+msgstr "rodata と BSS データ"
+
+#: ../../develop/natmod.rst:199
+msgid "memory allocation"
+msgstr "メモリー割り当て"
+
+#: ../../develop/natmod.rst:200
+msgid "use of floating point"
+msgstr "浮動小数点の利用"
+
+#: ../../develop/natmod.rst:201
+msgid "exception handling"
+msgstr "例外処理"
+
+#: ../../develop/natmod.rst:202
+msgid "including external C libraries"
+msgstr "外部 C ライブラリの取り込み"
+
+#: ../../develop/qstr.rst:2
+msgid "MicroPython string interning"
+msgstr "MicroPython 文字列の隔離化"
+
+#: ../../develop/qstr.rst:4
+msgid ""
+"MicroPython uses `string interning`_ to save both RAM and ROM.  This "
+"avoids having to store duplicate copies of the same string.  Primarily, "
+"this applies to identifiers in your code, as something like a function or"
+" variable name is very likely to appear in multiple places in the code.  "
+"In MicroPython an interned string is called a QSTR (uniQue STRing)."
+msgstr ""
+"MicroPython は `文字列の隔離化`_ を使って RAM と ROM の両方に保存します。"
+"これにより、同じ文字列の重複コピーを保存する必要がなくなります。関数または変数名の"
+"ようなものがコードの複数の場所に現れる可能性が非常に高いため、これは主にコードの"
+"識別子に適用されます。MicroPython では、インターンされた文字列は QSTR "
+"(uniQue STRing)と呼ばれます。"
+
+#: ../../develop/qstr.rst:10
+msgid ""
+"A QSTR value (with type ``qstr``) is a index into a linked list of QSTR "
+"pools. QSTRs store their length and a hash of their contents for fast "
+"comparison during the de-duplication process.  All bytecode operations "
+"that work with strings use a QSTR argument."
+msgstr ""
+"QSTR 値(``qstr`` 型)は、QSTR プールのリンクリストへのインデックスです。QSTRは"
+"重複排除プロセス中の高速比較のために、長さとコンテンツのハッシュを保存します。"
+"文字列を操作するすべてのバイトコード操作は、QSTR 引数を使います。"
+
+#: ../../develop/qstr.rst:16
+msgid "Compile-time QSTR generation"
+msgstr "コンパイル時の QSTR 生成"
+
+#: ../../develop/qstr.rst:18
+msgid ""
+"In the MicroPython C code, any strings that should be interned in the "
+"final firmware are written as ``MP_QSTR_Foo``.  At compile time this will"
+" evaluate to a ``qstr`` value that points to the index of ``\"Foo\"`` in "
+"the QSTR pool."
+msgstr ""
+"MicroPython の C ソースコードでは、ビルド後のファームウェアに隔離する必要のある"
+"文字列はすべて ``MP_QSTR_Foo`` として書いてあります。これはコンパイル時に、"
+"QSTR プール内の ``\"Foo\"`` を指すインデックスである ``qstr`` 値に評価されます。"
+
+#: ../../develop/qstr.rst:22
+msgid ""
+"A multi-step process in the ``Makefile`` makes this work.  In summary "
+"this process has three parts:"
+msgstr ""
+"``Makefile`` 中の多段階の処理がこの機能を実現しています。"
+"この処理は大きく次の3つの段階があります:"
+
+#: ../../develop/qstr.rst:25
+msgid "Find all ``MP_QSTR_Foo`` tokens in the code."
+msgstr ""
+"ソースコード中のすべての ``MP_QSTR_Foo`` トークンを検出"
+
+#: ../../develop/qstr.rst:27
+msgid ""
+"Generate a static QSTR pool containing all the string data (including "
+"lengths and hashes)."
+msgstr ""
+"すべての文字列データ(長さとハッシュを含む)を持つ静的な QSTR プールを生成"
+
+#: ../../develop/qstr.rst:30
+msgid ""
+"Replace all ``MP_QSTR_Foo`` (via the preprocessor) with their "
+"corresponding index."
+msgstr ""
+"``MP_QSTR_Foo`` すべてを(プリプロセッサを使って)対応するインデックスに置換"
+
+#: ../../develop/qstr.rst:33
+msgid "``MP_QSTR_Foo`` tokens are searched for in two sources:"
+msgstr "``MP_QSTR_Foo`` トークンは次の2つのソースコードから検索されます:"
+
+#: ../../develop/qstr.rst:35
+msgid ""
+"All files referenced in ``$(SRC_QSTR)``.  This is all C code (i.e. "
+"``py``, ``extmod``, ``ports/stm32``) but not including third-party code "
+"such as ``lib``."
+msgstr ""
+"``$(SRC_QSTR)`` で参照されるすべてのソースファイル。"
+"これは、すべてのCコード(すなわち ``py``, ``extmod``, ``ports/stm32`` など)"
+"ですが、 ``lib`` のようなサードパーティのコードは含みません。"
+
+#: ../../develop/qstr.rst:39
+msgid ""
+"Additional ``$(QSTR_GLOBAL_DEPENDENCIES)`` (which includes "
+"``mpconfig*.h``)."
+msgstr ""
+"``$(QSTR_GLOBAL_DEPENDENCIES)`` で追加されるもの(``mpconfig*.h`` を含む）。"
+
+#: ../../develop/qstr.rst:41
+msgid ""
+"*Note:* ``frozen_mpy.c`` (generated by mpy-tool.py) has its own QSTR "
+"generation and pool."
+msgstr ""
+"*注記:* (mpy-tool.py によって生成される) ``frozen_mpy.c`` には独自の QSTR "
+"生成とプールがあります。"
+
+#: ../../develop/qstr.rst:44
+msgid ""
+"Some additional strings that can't be expressed using the ``MP_QSTR_Foo``"
+" syntax (e.g. they contain non-alphanumeric characters) are explicitly "
+"provided in ``qstrdefs.h`` and ``qstrdefsport.h`` via the "
+"``$(QSTR_DEFS)`` variable."
+msgstr ""
+"``MP_QSTR_Foo`` 構文を使って表現できない追加の文字列(たとえば、英数字以外の文字を"
+"含んだもの)は、 ``$(QSTR_DEFS)`` に指定する ``qstrdefs.h`` と ``qstrdefsport.h`` "
+"で明示的に与えます。"
+
+#: ../../develop/qstr.rst:48
+msgid "Processing happens in the following stages:"
+msgstr "処理は次の段階を踏みます:"
+
+#: ../../develop/qstr.rst:50
+msgid ""
+"``qstr.i.last`` is the concatenation of putting every single input file "
+"through the C pre-processor.  This means that any conditionally disabled "
+"code will be removed, and macros expanded.  This means we don't add "
+"strings to the pool that won't be used in the final firmware.  Because at"
+" this stage (thanks to the ``NO_QSTR`` macro added by "
+"``QSTR_GEN_EXTRA_CFLAGS``) there is no definition for ``MP_QSTR_Foo`` it "
+"passes through this stage unaffected.  This file also includes comments "
+"from the preprocessor that include line number information.  Note that "
+"this step only uses files that have changed, which means that "
+"``qstr.i.last`` will only contain data from files that have changed since"
+" the last compile."
+msgstr ""
+"``qstr.i.last`` は、C プリプロセッサをとおした各入力ファイルを結合したものです。"
+"これは、条件付きで無効化されたコードが削除され、マクロが展開されていることを意味します。"
+"これは、ビルドしたファームウェアで使われていない文字列をプールに追加しないことを意味します。"
+"この段階では(``QSTR_GEN_EXTRA_CFLAGS`` によって追加された  ``NO_QSTR`` マクロのおかげで)  "
+"``MP_QSTR_Foo`` のための定義がないため、何の作用もなくこの段階を通過します。"
+"このファイルには、行番号情報を含むプリプロセッサからのコメントも含まれます。"
+"この段階では、変更されたファイルのみを使うことに注意してください。つまり ``qstr.i.last`` には"
+"直前のコンパイル以降に変更されたファイルのデータのみが含まれます。"
+
+#: ../../develop/qstr.rst:60
+msgid ""
+"``qstr.split`` is an empty file created after running ``makeqstrdefs.py "
+"split`` on qstr.i.last. It's just used as a dependency to indicate that "
+"the step ran. This script outputs one file per input C file,  "
+"``genhdr/qstr/...file.c.qstr``, which contains only the matched QSTRs. "
+"Each QSTR is printed as ``Q(Foo)``. This step is necessary to combine the"
+" existing files with the new data generated from the incremental update "
+"in ``qstr.i.last``."
+msgstr ""
+"``qstr.split`` は qstr.i.last に対して ``makeqstrdefs.py split`` を実行して"
+"作成される空のファイルです。このファイルは、この段階が実行されたことを示すための依存関係"
+"としてのみ使われます。このスクリプトは、元の入力 C ソースファイルごとに１つのファイルを出力します。"
+"出力ファイルは ``genhdr/qstr/...file.c.qstr`` のようなファイル名であり、ファイルの中身は"
+"抽出した QSTR のみとなります。各 QSTR は ``Q(Foo)`` の形式で出力されます。"
+"この段階は、``qstr.i.last`` にある増分更新から生成された新しいデータを既存ファイルにマージ"
+"するために必要です。"
+
+#: ../../develop/qstr.rst:67
+msgid ""
+"``qstrdefs.collected.h`` is the output of concatenating ``genhdr/qstr/*``"
+" using ``makeqstrdefs.py cat``.  This is now the full set of "
+"``MP_QSTR_Foo``'s found in the code, now formatted as ``Q(Foo)``, one-"
+"per-line, with duplicates. This file is only updated if the set of qstrs "
+"has changed.  A hash of the QSTR data is written to another file "
+"(``qstrdefs.collected.h.hash``) which allows it to track changes across "
+"builds."
+msgstr ""
+"``qstrdefs.collected.h`` は、 ``makeqstrdefs.py cat`` を使って ``genhdr/qstr/*`` "
+"を全て結合した出力です。これは、ソースコード内に見つかった ``MP_QSTR_Foo`` の完全なセットです。"
+"フォーマットは ``Q(Foo)`` のまま、1行に1つずつ、重複ありとなっています。"
+"このファイルは、qstr のセットが変更された場合にのみ更新されます。QSTR データのハッシュは"
+"別のファイル(``qstrdefs.collected.h.hash``)に書き込まれ、ビルド全体の変更を追跡できます。"
+
+#: ../../develop/qstr.rst:74
+msgid ""
+"``qstrdefs.preprocessed.h`` adds in the QSTRs from qstrdefs*.  It "
+"concatenates ``qstrdefs.collected.h`` with ``qstrdefs*.h``, then it "
+"transforms each line from ``Q(Foo)`` to ``\"Q(Foo)\"`` so they pass "
+"through the preprocessor unchanged.  Then the preprocessor is used to "
+"deal with any conditional compilation in ``qstrdefs*.h``.  Then the "
+"transformation is undone back to ``Q(Foo)``, and saved as "
+"``qstrdefs.preprocessed.h``."
+msgstr ""
+"``qstrdefs.preprocessed.h`` は qstrdefs* から QSTR を追加します。"
+"これは ``qstrdefs.collected.h`` を ``qstrdefs*.h`` と結合し、"
+"各行を ``Q(Foo)`` から ``"\Q(Foo)\"`` に変換し、プリプロセッサを変更せずにとおしたものです。"
+"プリプロセッサを使って、``qstrdefs*.h`` の条件付きコンパイルを処理します。"
+"その後、変換を元の ``Q(Foo)`` に戻し、``qstrdefs.preprocessed.h`` として保存します。"
+
+#: ../../develop/qstr.rst:81
+msgid ""
+"``qstrdefs.generated.h`` is the output of ``makeqstrdata.py``.  For each "
+"``Q(Foo)`` in qstrdefs.preprocessed.h (plus some extra hard-coded ones), "
+"it outputs ``QDEF(MP_QSTR_Foo, (const byte*)\"hash\" \"Foo\")``."
+msgstr ""
+"``qstrdefs.generated.h`` は ``makeqstrdata.py`` の出力です。"
+"``qstrdefs.preprocessed.h`` (と、追加でハードコーディングされたもの)中の "
+"``Q(Foo)`` それぞれについて ``QDEF(MP_QSTR_Foo, (const byte*)\"hash\" \"Foo\")`` "
+"を出力します。"
+
+#: ../../develop/qstr.rst:85
+msgid "Then in the main compile, two things happen with ``qstrdefs.generated.h``:"
+msgstr ""
+"次に、メインのコンパイルで、 ``qstrdefs.generated.h`` について次の2つのことが起きます:"
+
+#: ../../develop/qstr.rst:87
+msgid ""
+"In qstr.h, each QDEF becomes an entry in an enum, which makes "
+"``MP_QSTR_Foo`` available to code and equal to the index of that string "
+"in the QSTR table."
+msgstr ""
+"``qstr.h`` では、各 QDEF は列挙型のエントリになり、ソースコード中で ``MP_QSTR_Foo`` を"
+"使えるようになります。これは QSTR テーブル内の文字列のインデックスと同等です。"
+
+#: ../../develop/qstr.rst:90
+msgid ""
+"In qstr.c, the actual QSTR data table is generated as elements of the "
+"``mp_qstr_const_pool->qstrs``."
+msgstr ""
+"``qstr.c`` では、実際の QSTR データテーブルが ``mp_qstr_const_pool->qstrs`` の"
+"要素として生成されます。"
+
+#: ../../develop/qstr.rst:96
+msgid "Run-time QSTR generation"
+msgstr "実行時のQSTR生成"
+
+#: ../../develop/qstr.rst:98
+msgid ""
+"Additional QSTR pools can be created at runtime so that strings can be "
+"added to them. For example, the code::"
+msgstr ""
+"追加の QSTR プールを実行時に作成して、文字列を追加できます。たとえば、次のコードがあるものとします:"
+
+#: ../../develop/qstr.rst:101
+msgid "foo[x] = 3"
+msgstr ""
+
+#: ../../develop/qstr.rst:103
+msgid ""
+"Will need to create a QSTR for the value of ``x`` so it can be used by "
+"the \"load attr\" bytecode."
+msgstr ""
+"``x`` の値の QSTR を作成して、 \"load attr\" バイトコードで使えるようにする必要があります。"
+
+#: ../../develop/qstr.rst:106
+msgid ""
+"Also, when compiling Python code, identifiers and literals need to have "
+"QSTRs created.  Note: only literals shorter than 10 characters become "
+"QSTRs.  This is because a regular string on the heap always takes up a "
+"minimum of 16 bytes (one GC block), whereas QSTRs allow them to be packed"
+" more efficiently into the pool."
+msgstr ""
+"また、Python コードをコンパイルするときは、識別子とリテラルの QSTR を作成する必要があります。"
+"注記: 10文字より短いリテラルのみが QSTR になります。これは、ヒープ上の通常の文字列が常に"
+"最小16バイト(1 GCブロック)を占有するのに対し、QSTRを使った場合はより効率的にプールに"
+"パックできるためです。"
+
+#: ../../develop/qstr.rst:111
+msgid ""
+"QSTR pools (and the underlying \"chunks\" that store the string data) are"
+" allocated on-demand on the heap with a minimum size."
+msgstr ""
+"QSTRプール(および文字列データを格納する基盤となる「チャンク」)は、"
+"最小サイズでオンデマンドでヒープに割り当てられます。"
