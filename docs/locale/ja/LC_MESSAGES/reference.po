@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2019-12-28 19:48+0900\n"
+"PO-Revision-Date: 2020-01-02 20:06+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -4333,7 +4333,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:4
 msgid "MicroPython .mpy files"
-msgstr ""
+msgstr "MicroPython .mpy ファイル"
 
 #: ../../reference/mpyfiles.rst:6
 msgid ""
@@ -4347,6 +4347,14 @@ msgid ""
 "for, then the search continues in the next directory if neither is found."
 "  As such, ``foo.py`` will take precedence over ``foo.mpy``."
 msgstr ""
+"MicroPython は .mpy ファイルのコンセプトを定義します。これはプリコンパイルされた"
+"コードを保持するバイナリコンテナファイル形式であり、通常の .py モジュールのように"
+"インポートできます。ファイル ``foo.mpy`` は、``foo.mpy`` をインポート機構が"
+"通常の方法で見つけることができる限り ``import foo`` でインポートできます。"
+"通常 ``sys.path`` にリストされている各ディレクトリが順番に検索されます。"
+"特定のディレクトリを検索で ``foo.py`` が最初に検索され、それが見つからなければ "
+"``foo.mpy`` が検索されます。どちらも見つからない場合は次のディレクトリで検索が"
+"続行されます。そのため ``foo.py`` は ``foo.mpy`` に優先します。"
 
 #: ../../reference/mpyfiles.rst:16
 msgid ""
@@ -4355,22 +4363,30 @@ msgid ""
 "architectures an .mpy file can also contain native machine code, which "
 "can be generated in a variety of ways, most notably from C source code."
 msgstr ""
+"これらの .mpy ファイルには、通常 ``mpy-cross`` プログラムで Python ソースファイル"
+"(.py ファイル)から生成されるバイトコードを含めることができます。一部のアーキテクチャでは "
+".mpy ファイルにネイティブマシンコードを含めることもできます。ネイティブコードはマシンコード"
+"はさまざまな方法で生成できますが、C 言語ソースコードから生成することが特に多いです。"
 
 #: ../../reference/mpyfiles.rst:22
 msgid "Versioning and compatibility of .mpy files"
-msgstr ""
+msgstr ".mpy ファイルのバージョンと互換性"
 
 #: ../../reference/mpyfiles.rst:24
 msgid ""
 "A given .mpy file may or may not be compatible with a given MicroPython "
 "system. Compatibility is based on the following:"
 msgstr ""
+"利用しようとする .mpy ファイルは、特定の MicroPython システムと互換性がある場合と"
+"互換性がない場合があります。互換性は以下に基づいています:"
 
 #: ../../reference/mpyfiles.rst:27
 msgid ""
 "Version of the .mpy file: the version of the file must match the version "
 "supported by the system loading it."
 msgstr ""
+".mpy ファイルのバージョン: ファイルのバージョンは、それをロードするシステムで"
+"サポートされているバージョンと一致する必要があります。"
 
 #: ../../reference/mpyfiles.rst:30
 msgid ""
@@ -4378,6 +4394,9 @@ msgid ""
 "which must match between the file and the system: unicode support and "
 "inline caching of map lookups in the bytecode."
 msgstr ""
+".mpy ファイルで使用されるバイトコード機能: ファイルとシステムの間で一致する必要が"
+"ある２つのバイトコード機能があります。ユニコードサポートとバイトコードでのマップ"
+"検索のインラインキャッシュです。"
 
 #: ../../reference/mpyfiles.rst:34
 msgid ""
@@ -4385,6 +4404,8 @@ msgid ""
 "in a small integer and the system loading it must support at least this "
 "many bits."
 msgstr ""
+"スモール整数ビット: .mpy ファイルにはスモール整数の最小ビット数の要求があり、"
+".mpy をロードするシステムは少なくともこの数のビットをサポートする必要があります。"
 
 #: ../../reference/mpyfiles.rst:38
 msgid ""
@@ -4392,6 +4413,8 @@ msgid ""
 " size for qstr decompression and the system loading it must have a window"
 " greater or equal to this size."
 msgstr ""
+"qstr 圧縮ウィンドウサイズ: .mpy ファイルには qstr 解凍のための最小ウィンドウサイズの"
+"要求があり、.mpy をロードするシステムにはこのサイズ以上のウィンドウが必要です。"
 
 #: ../../reference/mpyfiles.rst:42
 msgid ""
@@ -4399,6 +4422,9 @@ msgid ""
 "it will specify the architecture of that machine code and the system "
 "loading it must support execution of that architecture's code."
 msgstr ""
+"ネイティブアーキテクチャ: .mpyファイルにネイティブマシンコードが含まれている場合、"
+"そのマシンコードのアーキテクチャの指定があり、.mpy をロードするシステムはその"
+"アーキテクチャのコードの実行をサポートする必要があります。"
 
 #: ../../reference/mpyfiles.rst:46
 msgid ""
@@ -4406,6 +4432,9 @@ msgid ""
 "``sys.implementation.mpy`` field will exist and return an integer which "
 "encodes the version (lower 8 bits), features and native architecture."
 msgstr ""
+"MicroPython システムが .mpy ファイルのインポートをサポートしている場合には、 "
+"``sys.implementation.mpy`` フィールドが存在し、バージョン(下位8ビット)、"
+"機能、ネイティブアーキテクチャをエンコードした整数を返します。"
 
 #: ../../reference/mpyfiles.rst:50
 msgid ""
@@ -4414,16 +4443,23 @@ msgid ""
 ".mpy file that fails the native architecture test (if it contains native "
 "machine code) will raise ``ValueError('incompatible .mpy arch')``."
 msgstr ""
+"最初の４つのテストの１つに失敗した .mpy ファイルをインポートしようとすると "
+"``ValueError('incompatible .mpy file')`` が発生します。"
+"(ネイティブマシンコードが含まれている場合)ネイティブアーキテクチャのテストに失敗した "
+".mpy　ファイルをインポートしようとすると ``ValueError('incompatible .mpy arch')`` "
+"が発生します。"
 
 #: ../../reference/mpyfiles.rst:55
 msgid "If importing an .mpy file fails then try the following:"
-msgstr ""
+msgstr ".mpy ファイルのインポートに失敗した場合は、次を試してください:"
 
 #: ../../reference/mpyfiles.rst:57
 msgid ""
 "Determine the .mpy version and flags supported by your MicroPython system"
 " by executing::"
 msgstr ""
+"以下を実行して、MicroPython システムでサポートされている .mpy バージョンとフラグを"
+"確認します::"
 
 #: ../../reference/mpyfiles.rst:60
 msgid ""
@@ -4450,6 +4486,10 @@ msgid ""
 "will be the version number, which should match the system version from "
 "above. If it doesn't match then rebuild the .mpy file."
 msgstr ""
+"ファイルの先頭２バイトを調べて、.mpy ファイルの妥当性を確認します。"
+"先頭バイトは大文字の 'M' で、2バイト目はバージョン番号です。"
+"このバージョン番号は、上記のシステムバージョンと一致する必要があります。"
+"一致しない場合は .mpy ファイルを再作成してください。"
 
 #: ../../reference/mpyfiles.rst:80
 msgid ""
@@ -4459,6 +4499,11 @@ msgid ""
 "Git repository checked out at the tag (or hash) reported by ``mpy-cross "
 "--version``."
 msgstr ""
+".mpy ファイルを作成するのに使った ``mpy-cross`` の出した .mpy バーションが"
+"システムの .mpy バージョンと一致するかを確認します。 ``mpy-cross`` の出す"
+"バージョンは ``mpy-cross --version`` でわかります。"
+"一致しない場合は ``mpy-cross --version`` によって報告されたタグ(またはハッシュ)で"
+"チェックアウトした Git リポジトリにある ``mpy-cross`` で再コンパイルします。"
 
 #: ../../reference/mpyfiles.rst:85
 msgid ""
@@ -4466,24 +4511,28 @@ msgid ""
 "code above, or by inspecting the ``MPY_CROSS_FLAGS`` Makefile variable "
 "for the port that you are using."
 msgstr ""
+"``mpy-cross`` フラグが正しいかを確認します。"
+"フラグは上記のコードで見つけるか、使っているポートの "
+"``MPY_CROSS_FLAGS`` Makefile 変数を調べてください。"
 
 #: ../../reference/mpyfiles.rst:89
 msgid ""
 "The following table shows the correspondence between MicroPython release "
 "and .mpy version."
 msgstr ""
+"次の表は、MicroPythonリリースと.mpyバージョンの対応を示しています。"
 
 #: ../../reference/mpyfiles.rst:93
 msgid "MicroPython release"
-msgstr ""
+msgstr "MicroPython リリース"
 
 #: ../../reference/mpyfiles.rst:93
 msgid ".mpy version"
-msgstr ""
+msgstr ".mpy バージョン"
 
 #: ../../reference/mpyfiles.rst:95
 msgid "v1.12 and up"
-msgstr ""
+msgstr "v1.12 以上"
 
 #: ../../reference/mpyfiles.rst:95
 msgid "5"
@@ -4526,18 +4575,20 @@ msgid ""
 "For completeness, the next table shows the Git commit of the main "
 "MicroPython repository at which the .mpy version was changed."
 msgstr ""
+"完全を期すため、次の表は .mpy バージョンが変更されたメイン MicroPython "
+"リポジトリの Git コミットを示しています。"
 
 #: ../../reference/mpyfiles.rst:106
 msgid ".mpy version change"
-msgstr ""
+msgstr ".mpy バージョン変更"
 
 #: ../../reference/mpyfiles.rst:106
 msgid "Git commit"
-msgstr ""
+msgstr "Git コミット"
 
 #: ../../reference/mpyfiles.rst:108
 msgid "4 to 5"
-msgstr ""
+msgstr "4 から 5"
 
 #: ../../reference/mpyfiles.rst:108
 msgid "5716c5cf65e9b2cb46c2906f40302401bdd27517"
@@ -4545,7 +4596,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:109
 msgid "3 to 4"
-msgstr ""
+msgstr "3 から 4"
 
 #: ../../reference/mpyfiles.rst:109
 msgid "9a5f92ea72754c01cc03e5efcdfe94021120531e"
@@ -4553,7 +4604,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:110
 msgid "2 to 3"
-msgstr ""
+msgstr "2 から 3"
 
 #: ../../reference/mpyfiles.rst:110
 msgid "ff93fd4f50321c6190e1659b19e64fef3045a484"
@@ -4561,7 +4612,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:111
 msgid "1 to 2"
-msgstr ""
+msgstr "1 から 2"
 
 #: ../../reference/mpyfiles.rst:111
 msgid "dd11af209d226b7d18d5148b239662e30ed60bad"
@@ -4569,7 +4620,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:112
 msgid "0 to 1"
-msgstr ""
+msgstr "0 から 1"
 
 #: ../../reference/mpyfiles.rst:112
 msgid "6a11048af1d01c78bdacddadd1b72dc7ba7c6478"
@@ -4577,7 +4628,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:113
 msgid "initial version 0"
-msgstr ""
+msgstr "初期バージョン 0"
 
 #: ../../reference/mpyfiles.rst:113
 msgid "d8c834c95d506db979ec871417de90b7951edc30"
@@ -4585,7 +4636,7 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:117
 msgid "Binary encoding of .mpy files"
-msgstr ""
+msgstr ".mpy ファイルのバイナリエンコーディング"
 
 #: ../../reference/mpyfiles.rst:119
 msgid ""
@@ -4597,57 +4648,65 @@ msgid ""
 "(MSB) set if one or more bytes follow.  The bits of the unsigned integer "
 "are stored in the vuint in LSB form."
 msgstr ""
+"MicroPython .mpy ファイルは、ネストされた階層内にコードオブジェクトを格納した"
+"バイナリコンテナー形式です。大きな範囲の値を提供しながらもファイルを小さく保つために、"
+"多くの場所で可変エンコード符号なし整数(variably-encoded-unsigned-integer: "
+"vuint)の概念を使用します。utf-8 エンコーディングと同様に、このエンコーディングは"
+"1バイトあたり7ビットを格納し、1つ以上のバイトが続く場合は8ビット目(MSB)が設定されます。"
+"符号なし整数のビットは、LSB 形式で vuint に格納されます。"
 
 #: ../../reference/mpyfiles.rst:127
 msgid "The top-level of an .mpy file consists of two parts:"
-msgstr ""
+msgstr ".mpyファイルのトップレベルは2つの部分で構成されています:"
 
 #: ../../reference/mpyfiles.rst:129
 msgid "The header."
-msgstr ""
+msgstr "ヘッダー"
 
 #: ../../reference/mpyfiles.rst:131
 msgid ""
 "The raw-code for the outer scope of the module. This outer scope is "
 "executed when the .mpy file is imported."
 msgstr ""
+"モジュールの外部スコープの raw コード。この外部スコープは .mpy ファイルがインポート"
+"されるときに実行されます。"
 
 #: ../../reference/mpyfiles.rst:135
 msgid "The header"
-msgstr ""
+msgstr "ヘッダー"
 
 #: ../../reference/mpyfiles.rst:137
 msgid "The .mpy header is:"
-msgstr ""
+msgstr ".mpy のヘッダーは次のとおりです:"
 
 #: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:156
 msgid "size"
-msgstr ""
+msgstr "サイズ"
 
 #: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:156
 msgid "field"
-msgstr ""
+msgstr "フォールド"
 
 #: ../../reference/mpyfiles.rst:142 ../../reference/mpyfiles.rst:143
 #: ../../reference/mpyfiles.rst:144 ../../reference/mpyfiles.rst:145
 msgid "byte"
-msgstr ""
+msgstr "バイト"
 
 #: ../../reference/mpyfiles.rst:142
 msgid "value 0x4d (ASCII 'M')"
-msgstr ""
+msgstr "値 0x4d (ASCII の "M')"
 
 #: ../../reference/mpyfiles.rst:143
 msgid ".mpy version number"
-msgstr ""
+msgstr ".mpy バージョン番号"
 
 #: ../../reference/mpyfiles.rst:144
 msgid "feature flags"
-msgstr ""
+msgstr "機能フラグ"
 
 #: ../../reference/mpyfiles.rst:145
 msgid "number of bits in a small int"
-msgstr ""
+msgstr "スモール整数のビット数"
 
 #: ../../reference/mpyfiles.rst:146 ../../reference/mpyfiles.rst:158
 #: ../../reference/mpyfiles.rst:160 ../../reference/mpyfiles.rst:161
@@ -4656,21 +4715,23 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:146
 msgid "size of qstr window"
-msgstr ""
+msgstr "qstr ウィンドウのサイズ"
 
 #: ../../reference/mpyfiles.rst:150
 msgid "Raw code elements"
-msgstr ""
+msgstr "raw コードの要素"
 
 #: ../../reference/mpyfiles.rst:152
 msgid ""
 "A raw-code element contains code, either bytecode or native machine code."
 "  Its contents are:"
 msgstr ""
+"raw コードの要素には、バイトコードまたはネイティブマシンコードのコードが含まれます。"
+"その内容は次のとおりです:"
 
 #: ../../reference/mpyfiles.rst:158
 msgid "type and size"
-msgstr ""
+msgstr "タイプとサイズ"
 
 #: ../../reference/mpyfiles.rst:159 ../../reference/mpyfiles.rst:162
 #: ../../reference/mpyfiles.rst:163
@@ -4679,23 +4740,23 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:159
 msgid "code (bytecode or machine code)"
-msgstr ""
+msgstr "コード(バイトコードまたはマシンコード)"
 
 #: ../../reference/mpyfiles.rst:160
 msgid "number of constant objects"
-msgstr ""
+msgstr "定数オブジェクトの数"
 
 #: ../../reference/mpyfiles.rst:161
 msgid "number of sub-raw-code elements"
-msgstr ""
+msgstr "副 raw コード要素の数"
 
 #: ../../reference/mpyfiles.rst:162
 msgid "constant objects"
-msgstr ""
+msgstr "定数オブジェクト"
 
 #: ../../reference/mpyfiles.rst:163
 msgid "sub-raw-code elements"
-msgstr ""
+msgstr "副 raw コード要素"
 
 #: ../../reference/mpyfiles.rst:166
 msgid ""
@@ -4703,26 +4764,32 @@ msgid ""
 "this element (the two least-significant bits), and the decompressed "
 "length of the code (the amount of RAM to allocate for it)."
 msgstr ""
+"raw コード要素の最初の vuint は、この要素に格納されているコードのタイプ"
+"(最下位2ビット)と、圧縮解除されたコードの長さ(割り当てられるRAMの量)を"
+"エンコードしています。"
 
 #: ../../reference/mpyfiles.rst:170
 msgid ""
 "Following the vuint comes the code itself.  In the case of bytecode it "
 "also contains compressed qstr values."
 msgstr ""
+"vuint に続いてコード自体が続きます。バイトコードの場合、圧縮された qstr 値も含まれます。"
 
 #: ../../reference/mpyfiles.rst:173
 msgid ""
 "Following the code comes a vuint counting the number of constant objects,"
 " and another vuint counting the number of sub-raw-code elements."
 msgstr ""
+"コードに続いて、定数オブジェクトの数を数える vuint と、副 raw コード要素数の "
+"vuint が続きます。"
 
 #: ../../reference/mpyfiles.rst:176
 msgid "The constant objects are then stored next."
-msgstr ""
+msgstr "定数オブジェクトは次に保存されます。"
 
 #: ../../reference/mpyfiles.rst:178
 msgid "Finally any sub-raw-code elements are stored, recursively."
-msgstr ""
+msgstr "最後に 副 raw コード要素が再帰的に保存されます。"
 
 #: ../../../reference/packages.rst:2
 msgid "Distribution packages, package management, and deploying applications"
