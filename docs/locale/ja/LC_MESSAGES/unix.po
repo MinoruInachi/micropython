@@ -1,0 +1,179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-2019, Damien P. George, Paul Sokolovsky, and
+# contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.12\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-15 19:21+0900\n"
+"PO-Revision-Date: 2020-02-15 21:00+0900\n"
+"Last-Translator: Minoru Inachi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: ../../unix/quickref.rst:4
+msgid "Quick reference for the UNIX and Windows ports"
+msgstr "UNIX および Windows ポートのクイックリファレンス"
+
+#: ../../unix/quickref.rst:7
+msgid "Command line options"
+msgstr "コマンドラインオプション"
+
+#: ../../unix/quickref.rst:9
+msgid "Usage::"
+msgstr ""
+
+#: ../../unix/quickref.rst:11
+msgid ""
+"micropython [ -h ] [ -i ] [ -O<level> ] [ -v ] [ -X <option> ] [ -c "
+"<command> | -m <module> | <script> ] [ <args> ]"
+msgstr ""
+
+#: ../../unix/quickref.rst:14
+msgid "Invocation options:"
+msgstr "起動オプション"
+
+#: ../../unix/quickref.rst:18
+msgid ""
+"Runs the code in ``<command>``. The code can be one or more Python "
+"statements."
+msgstr ""
+``<command>`` のコードを実行します。コードは1つ以上の Python ステートメントです。"
+
+#: ../../unix/quickref.rst:22
+msgid "Runs the module ``<module>``. The module must be in ``sys.path``."
+msgstr ""
+"モジュール ``<module>`` を実行します。モジュールは ``sys.path`` が示すパスに"
+"存在している必要があります。"
+
+#: ../../unix/quickref.rst:26
+msgid ""
+"Runs the file ``<script>``. The script must be a valid MicroPython source"
+" code file."
+msgstr ""
+"ファイル ``<script>`` を実行します。スクリプトは有効な MicroPython "
+"ソースコードファイルである必要があります。"
+
+#: ../../unix/quickref.rst:29
+msgid ""
+"If none of the 3 options above are given, then MicroPython is run in an "
+"interactive REPL mode."
+msgstr ""
+"上記の３つのオプションのいずれも指定されていない場合、MicroPython は対話型 REPL "
+"モードで実行されます。"
+
+#: ../../unix/quickref.rst:35
+msgid ""
+"Any additional arguments after the module or script will be passed to "
+"``sys.argv`` (not supported with the :option:`-c` option)."
+msgstr ""
+"モジュール/スクリプトの後の追加の引数は ``sys.argv`` に渡されます(オプション "
+":option:`-c` ではサポートされていません)。"
+
+#: ../../unix/quickref.rst:39
+msgid "General options:"
+msgstr "一般オプション"
+
+#: ../../unix/quickref.rst:43
+msgid "Prints a help message containing the command line usage and exits."
+msgstr "コマンドラインの使用法を含むヘルプメッセージを出力して終了します。"
+
+#: ../../unix/quickref.rst:47
+msgid ""
+"Enables inspection. When this flag is set, MicroPython will enter the "
+"interactive REPL mode after the command, module or script has finished. "
+"This can be useful for debugging the state after an unhandled exception. "
+"Also see the :envvar:`MICROPYINSPECT` environment variable."
+msgstr ""
+"検査を有効にします。このフラグを設定すると、コマンド、モジュール、スクリプトが終了した"
+"後、MicroPython が対話型　REPL　モードに入ります。これは、未処理の例外の後の状態を"
+"デバッグするのに役立ちます。環境変数 :envvar:`MICROPYINSPECT` も参照してください。"
+
+#: ../../unix/quickref.rst:54
+msgid ""
+"Sets the optimization level. The ``O`` can be followed by a number or can"
+" be repeated multiple times to indicate the level. E.g. ``-O3`` is the "
+"same as ``-OOO``."
+msgstr ""
+"最適化レベルを設定します。の ``O`` の後に数字を付けるか、 ``O`` を複数回繰り返す"
+"ことによりレベルを示すことができます。たとえば ``-O3`` と ``-OOO`` は同じです。"
+
+#: ../../unix/quickref.rst:60
+msgid ""
+"Increases the verbosity level. This option can be given multiple times. "
+"This option only has an effect if ``MICROPY_DEBUG_PRINTERS`` was enabled "
+"when MicroPython itself was compiled."
+msgstr ""
+"冗長レベルを上げます。このオプションは複数回指定できます。このオプションは "
+"MicroPython 本体をコンパイルしたときに ``MICROPY_DEBUG_PRINTERS`` を"
+"有効にした場合にのみ有効です。"
+
+#: ../../unix/quickref.rst:66
+msgid ""
+"Specifies additional implementation-specific options. Possible options "
+"are:"
+msgstr ""
+"追加の処理系固有のオプションを指定します。可能なオプションは次のとおりです:"
+
+#: ../../unix/quickref.rst:68
+msgid ""
+"``-X compile-only`` compiles the command, module or script but does not "
+"run it."
+msgstr ""
+"``-X compile-only`` はコマンド、モジュール、スクリプトをコンパイルしますが、実行しません。"
+
+#: ../../unix/quickref.rst:70
+msgid ""
+"``-X emit={bytecode,native,viper}`` sets the default code emitter. Native"
+" emitters may not be available depending on the settings when MicroPython"
+" itself was compiled."
+msgstr ""
+"``-X emit={bytecode,native,viper}`` はデフォルトのコードエミッタを設定します。"
+"MicroPython 本体がコンパイルされたときの設定によっては、ネイティブエミッターが"
+"利用できない場合があります。"
+
+#: ../../unix/quickref.rst:73
+msgid ""
+"``-X heapsize=<n>[w][K|M]`` sets the heap size for the garbage collector."
+" The suffix ``w`` means words instead of bytes. ``K`` means x1024 and "
+"``M`` means x1024x1024."
+msgstr ""
+"``-X heapsize=<n>[w][K|M]`` はガベージコレクターのヒープサイズを設定します。"
+"接尾辞 ``w`` はバイトではなくワードを意味します。 ``K`` は x1024、 ``M`` は "
+"x1024x1024 を意味します。"
+
+#: ../../unix/quickref.rst:80
+msgid "Environment variables"
+msgstr "環境変数"
+
+#: ../../unix/quickref.rst:84
+msgid ""
+"Overrides the default search path for MicroPython libraries. "
+"``MICROPYPATH`` should be set to a colon (semicolon for Windows port) "
+"separated list of directories. If ``MICROPYPATH`` is not defined, the "
+"search path will be ``~/.micropython/lib:/usr/lib/micropython`` "
+"(``~/.micropython/lib`` for Windows port) or the value of the "
+"``MICROPY_PY_SYS_PATH_DEFAULT`` option if it was set when MicroPython "
+"itself was compiled."
+msgstr ""
+"MicroPython ライブラリのデフォルトの検索パスをオーバーライドします。 "
+"``MICROPYPATH`` にはディレクトリのリストをコロン(Windows ポートではセミコロン)"
+"で区切って設定する必要があります。 ``MICROPYPATH`` が定義されていない場合、"
+"検索パスは ``~/.micropython/lib:/usr/lib/micropython`` (Windows ポートでは "
+"(``~/.micropython/lib``)、または MicroPython 本体のコンパイル時に "
+"``MICROPY_PY_SYS_PATH_DEFAULT`` オプションに設定した値になります。"
+
+#: ../../unix/quickref.rst:93
+msgid ""
+"Enables inspection. If ``MICROPYINSPECT`` is set to a non-empty string, "
+"it has the same effect as setting the :option:`-i` command line option."
+msgstr ""
+"検査を有効にします。 ``MICROPYINSPECT`` が空でない文字列に設定されている場合、 "
+":option:`-i` コマンドラインオプションの設定と同じ効果があります。"
