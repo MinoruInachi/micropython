@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-01-14 20:48+0900\n"
+"PO-Revision-Date: 2020-02-16 06:33+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1230,12 +1230,12 @@ msgstr ""
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
-"with bit 0 being the leftmost. Subsequent bytes appear at successive "
+"with bit 7 being the leftmost. Subsequent bytes appear at successive "
 "horizontal locations until the rightmost edge is reached. Further bytes "
 "are rendered on the next row, one pixel lower."
 msgstr ""
 "モノクロ(1ビット)カラーフォーマット。これはバイト内のビットが水平方向にマッピング"
-"されるよう定義します。各バイトは8ビットの水平ピクセルを占め、ビット0が最も左になります。"
+"されるよう定義します。各バイトは8ビットの水平ピクセルを占め、ビット7が最も左になります。"
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
@@ -1243,12 +1243,12 @@ msgstr ""
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
-"with bit 7 being the leftmost. Subsequent bytes appear at successive "
+"with bit 0 being the leftmost. Subsequent bytes appear at successive "
 "horizontal locations until the rightmost edge is reached. Further bytes "
 "are rendered on the next row, one pixel lower."
 msgstr ""
 "モノクロ(1ビット)カラーフォーマット。これはバイト内のビットが水平方向にマッピング"
-"されるよう定義します。各バイトは8ビットの水平ピクセルを占め、ビット7が最も左になります。"
+"されるよう定義します。各バイトは8ビットの水平ピクセルを占め、ビット0が最も左になります。"
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
@@ -2382,88 +2382,55 @@ msgstr "起床理由。"
 msgid "class ADC -- analog to digital conversion"
 msgstr "class ADC -- アナログ-デジタル変換"
 
-#: ../../../library/machine.ADC.rst:7 ../../../library/pyb.ADC.rst:7
-#: ../../../library/pyb.Switch.rst:9
-msgid "Usage::"
-msgstr "使用方法:"
+#: ../../library/machine.ADC.rst:7
+msgid ""
+"The ADC class provides an interface to analog-to-digital convertors, and "
+"represents a single endpoint that can sample a continuous voltage and "
+"convert it to a discretised value."
+msgstr ""
+"ADC クラスはアナログ-デジタルコンバーターへのインターフェイスを提供します。"
+"これは、電圧変動をサンプリングして離散値に変換する単一のエンドポイントを表します。"
 
-#: ../../../library/machine.ADC.rst:9
+#: ../../library/machine.ADC.rst:11 ../../library/machine.I2C.rst:15
+#: ../../library/machine.RTC.rst:10 ../../library/machine.SD.rst:20
+#: ../../library/machine.WDT.rst:12 ../../library/network.WIZNET5K.rst:12
+#: ../../library/pyb.DAC.rst:12 ../../library/pyb.RTC.rst:10
+#: ../../library/pyb.Servo.rst:12
+msgid "Usage::"
+msgstr "使用例:"
+
+#: ../../../library/machine.ADC.rst:13
 msgid ""
 "import machine\n"
 "\n"
-"adc = machine.ADC()             # create an ADC object\n"
-"apin = adc.channel(pin='GP3')   # create an analog pin on GP3\n"
-"val = apin()                    # read an analog value"
+"adc = machine.ADC(pin)   # create an ADC object acting on a pin\n"
+"val = adc.read_u16()     # read a raw analog value in the range 0-65535"
 msgstr ""
 "import machine\n"
 "\n"
-"adc = machine.ADC()             # ADC オブジェクトを作成\n"
-"apin = adc.channel(pin='GP3')   # GP3 のアナログピンを作成\n"
-"val = apin()                    # アナログ値の読込み"
+"adc = machine.ADC(pin)   # 指定のピンの ADC オブジェクトを作成\n"
+"val = adc.read_u16()     # 生のアナログ値を 0-65535 の範囲で読み込み"
 
 #: ../../../library/machine.ADC.rst:20
 msgid ""
-"Create an ADC object associated with the given pin. This allows you to "
-"then read analog values on that pin. For more info check the `pinout and "
-"alternate functions table. "
-"<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_"
+"Access the ADC associated with a source identified by *id*.  This *id* "
+"may be an integer (usually specifying a channel number), a :ref:`Pin "
+"<machine.Pin>` object, or other value supported by the underlying "
+"machine."
 msgstr ""
-"与えたピンに関連した ADC オブジェクトを作成します。これにより、そのピンのアナログ値を"
-"読み取ることができます。詳細については `ピン配置と代替機能の表 "
-"<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_ "
-"を確認してください。"
+"*id* が示すソースにソースに関連付けられた ADC にアクセスします。"
+"この *id* は、整数(通常はチャネル番号を指定)、 :ref:`Pin <machine.Pin>` "
+"オブジェクト、基盤の基礎のハードウェアがサポートする他の値です。"
 
-#: ../../../library/machine.ADC.rst:27
+#: ../../library/machine.ADC.rst:33
 msgid ""
-"ADC pin input range is 0-1.4V (being 1.8V the absolute maximum that it "
-"can withstand). When GP2, GP3, GP4 or GP5 are remapped to the ADC block, "
-"1.8 V is the maximum. If these pins are used in digital mode, then the "
-"maximum allowed input is 3.6V."
+"Take an analog reading and return an integer in the range 0-65535. The "
+"return value represents the raw reading taken by the ADC, scaled such "
+"that the minimum value is 0 and the maximum value is 65535."
 msgstr ""
-"ADC ピンの入力範囲は 0-1.4V です(耐えられる絶対最大値は 1.8V です)。GP2, GP3, "
-"GP4, GP5 が ADC ブロックに再マッピングされている場合、1.8V が最大です。これらの"
-"ピンがデジタルモードで使用されている場合、最大許容入力は 3.6V です。"
-
-#: ../../../library/machine.ADC.rst:37
-msgid ""
-"Create an analog pin. If only channel ID is given, the correct pin will "
-"be selected. Alternatively, only the pin can be passed and the correct "
-"channel will be selected. Examples::"
-msgstr ""
-"アナログピンを作成します。チャンネルIDのみが指定されている場合は、正しいピンが選択"
-"されます。代わりに、ピンだけを渡しても正しいチャンネルが選択されます。例::"
-
-#: ../../../library/machine.ADC.rst:41
-msgid ""
-"# all of these are equivalent and enable ADC channel 1 on GP3\n"
-"apin = adc.channel(1)\n"
-"apin = adc.channel(pin='GP3')\n"
-"apin = adc.channel(id=1, pin='GP3')"
-msgstr ""
-"# 以下はすべて同等で、GP3 の ADC チャンネル1を有効にします\n"
-"apin = adc.channel(1)\n"
-"apin = adc.channel(pin='GP3')\n"
-"apin = adc.channel(id=1, pin='GP3')"
-
-#: ../../../library/machine.ADC.rst:48
-msgid "Enable the ADC block."
-msgstr "ADC ブロックを有効にします。"
-
-#: ../../../library/machine.ADC.rst:52
-msgid "Disable the ADC block."
-msgstr "ADC ブロックを無効にします。"
-
-#: ../../../library/machine.ADC.rst:55
-msgid "class ADCChannel --- read analog values from internal or external sources"
-msgstr "class ADCChannel --- 内部または外部のソースからアナログ値の読込み"
-
-#: ../../../library/machine.ADC.rst:57
-msgid ""
-"ADC channels can be connected to internal points of the MCU or to GPIO "
-"pins. ADC channels are created using the ADC.channel method."
-msgstr ""
-"ADC チャンネルは MCU の内部ポイントまたは GPIO ピンに接続できます。"
-"ADC チャンネルは ADC.channel メソッドを使って作成されます。"
+"アナログ値の読込み行い、0-65535 の範囲の整数を返します。"
+"戻り値は、ADC によって取得された生の読み取り値を表し、"
+"最小値が 0、最大値が 65535 になるようにスケーリングされます。"
 
 #: ../../../library/machine.ADC.rst:62
 msgid "Fast method to read the channel value."
@@ -12803,24 +12770,44 @@ msgstr "ブロックデバイス"
 
 #: ../../../library/uos.rst:221
 msgid ""
-"A block device is an object which implements the block protocol, which is"
-" a set of methods described below by the :class:`AbstractBlockDev` class."
-"  A concrete implementation of this class will usually allow access to "
-"the memory-like functionality a piece of hardware (like flash memory).  A"
-" block device can be used by a particular filesystem driver to store the "
-"data for its filesystem."
+"A block device is an object which implements the block protocol. This "
+"enables a device to support MicroPython filesystems. The physical "
+"hardware is represented by a user defined class. The "
+":class:`AbstractBlockDev` class is a template for the design of such a "
+"class: MicroPython does not actually provide that class, but an actual "
+"block device class must implement the methods described below."
 msgstr ""
-"ブロックデバイスは、ブロックプロトコルを実装するオブジェクトです。これは後述する "
-":class:`AbstractBlockDev` クラスのメソッドのセットです。このクラスの具象サブクラス"
-"では通常、フラッシュメモリなどのハードウェアの一部にメモリのような機能へのアクセスが"
-"許可されます。特定のファイルシステムドライバがブロックデバイスを使用して、ファイル"
-"システム用のデータを格納できます。"
+"ブロックデバイスは、ブロックプロトコルを実装するオブジェクトです。"
+"これによりデバイスが MicroPython ファイルシステムをサポートできるようになります。"
+"物理ハードウェアはユーザー定義のクラスによって表されます。 "
+":class:`AbstractBlockDev` クラスはそのようなクラスを定義するためのテンプレートです。"
+"MicroPython が提供していないブロックデバイスクラスを自作する場合は後述のメソッドを"
+"実装する必要があります。"
 
-#: ../../library/uos.rst:230
+#: ../../library/uos.rst:227
+msgid ""
+"A concrete implementation of this class will usually allow access to the "
+"memory-like functionality of a piece of hardware (like flash memory). A "
+"block device can be formatted to any supported filesystem and mounted "
+"using ``uos`` methods."
+msgstr ""
+"このクラスの具象サブクラスでは通常(フラッシュメモリのような)ハードウェアの一部に"
+"メモリのような機能へのアクセスが許可されます。ブロックデバイスはサポートされている"
+"ファイルシステムでフォーマットでき、 ``uos`` のメソッドを使ってマウントできます。"
+
+#: ../../library/uos.rst:232
+msgid ""
+"See :ref:`filesystem` for example implementations of block devices using "
+"the two variants of the block protocol described below."
+msgstr ""
+"後述する２種類のブロックプロトコルを使ったブロックデバイスの実装例については "
+":ref:`filesystem` を参照してください。"
+
+#: ../../library/uos.rst:238
 msgid "Simple and extended interface"
 msgstr "シンプルインタフェースと拡張インタフェース"
 
-#: ../../../library/uos.rst:232
+#: ../../../library/uos.rst:240
 msgid ""
 "There are two compatible signatures for the ``readblocks`` and "
 "``writeblocks`` methods (see below), in order to support a variety of use"
@@ -12833,7 +12820,7 @@ msgstr ""
 "与えられたブロックデバイスは、どちらか一方、または両方を実装しています。"
 "２番目の形式(offset 引数のあるもの)は「拡張インタフェース」といいます。"
 
-#: ../../library/uos.rst:237
+#: ../../library/uos.rst:245
 msgid ""
 "Some filesystems (such as littlefs) that require more control over write "
 "operations, for example writing to sub-block regions without erasing, may"
@@ -12843,7 +12830,7 @@ msgstr ""
 "たとえば、消去せずにサブブロック領域に書き込む場合、ブロックデバイスが拡張インターフェイスを"
 "サポートしている必要がある場合があります。"
 
-#: ../../../library/uos.rst:243
+#: ../../../library/uos.rst:251
 msgid ""
 "Construct a block device object.  The parameters to the constructor are "
 "dependent on the specific block device."
@@ -12851,7 +12838,7 @@ msgstr ""
 "ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
 "ブロックデバイスに依存します。"
 
-#: ../../../library/uos.rst:249
+#: ../../../library/uos.rst:257
 msgid ""
 "The first form reads aligned, multiples of blocks. "
 "Starting at the block given by the index *block_num*, read blocks from "
@@ -12863,7 +12850,7 @@ msgstr ""
 "指定したブロックを開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数になります。"
 
-#: ../../../library/uos.rst:255
+#: ../../../library/uos.rst:263
 msgid ""
 "The second form allows reading at arbitrary locations within a block, "
 "and arbitrary lengths. Starting at block index *block_num*, and byte "
@@ -12876,7 +12863,7 @@ msgstr ""
 "を開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
 
-#: ../../../library/uos.rst:264
+#: ../../../library/uos.rst:272
 msgid ""
 "The first form writes aligned, multiples of blocks, and requires that the "
 "blocks that are written to be first erased (if necessary) by this method. "
@@ -12891,7 +12878,7 @@ msgstr ""
 "書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
 "なります。"
 
-#: ../../../library/uos.rst:271
+#: ../../../library/uos.rst:279
 msgid ""
 "The second form allows writing at arbitrary locations within a block, "
 "and arbitrary lengths.  Only the bytes being written should be changed, "
@@ -12908,7 +12895,7 @@ msgstr ""
 "を開始点として、 *buf* （バイト配列）からデバイスに書き込みます。"
 "書き込むバイト数は *buf* の長さで指定されます。"
 
-#: ../../../library/uos.rst:279
+#: ../../../library/uos.rst:287
 msgid ""
 "Note that implementations must never implicitly erase blocks if the offset "
 "argument is specified, even if it is zero."
@@ -12916,33 +12903,33 @@ msgstr ""
 "offset 引数が指定されている場合、たとえゼロであっても、実装がブロックを暗黙的に"
 "消去してはならないことに注意してください。"
 
-#: ../../../library/uos.rst:284
+#: ../../../library/uos.rst:292
 msgid ""
 "Control the block device and query its parameters.  The operation to "
 "perform is given by *op* which is one of the following integers:"
 msgstr ""
-"ブロックデバイスを制御し、そのパラメータを問い合わせます。実行する操作は *op* に"
+"ブロックデバイスの制御とパラメータ問い合わせをおこないます。実行する操作は *op* に"
 "次の整数のうちの１つで指定します。"
 
-#: ../../../library/uos.rst:287
+#: ../../../library/uos.rst:295
 msgid "1 -- initialise the device (*arg* is unused)"
 msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:288
+#: ../../../library/uos.rst:296
 msgid "2 -- shutdown the device (*arg* is unused)"
 msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
 
-#: ../../../library/uos.rst:289
+#: ../../../library/uos.rst:297
 msgid "3 -- sync the device (*arg* is unused)"
 msgstr "3 -- デバイスを同期します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:290
+#: ../../../library/uos.rst:298
 msgid ""
 "4 -- get a count of the number of blocks, should return an integer (*arg*"
 " is unused)"
-msgstr "4 -- ブロック数のカウントを取得し、整数で返します(*arg* は未使用)"
+msgstr "4 -- ブロック数を取得し、整数で返します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:292
+#: ../../../library/uos.rst:300
 msgid ""
 "5 -- get the number of bytes in a block, should return an integer, or "
 "``None`` in which case the default value of 512 is used (*arg* is unused)"
@@ -12950,17 +12937,36 @@ msgstr ""
 "5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
 "の 512 が使われます(*arg* は未使用)"
 
-#: ../../../library/uos.rst:295
+#: ../../../library/uos.rst:303
 msgid ""
 "6 -- erase a block, *arg* is the block number to erase"
 msgstr ""
 "6 -- ブロックを消去します。 *arg* は消去するブロック数です"
 
-#: ../../library/uos.rst:297
+#: ../../library/uos.rst:305
 msgid ""
-"See :ref:`filesystem` for example implementations of block devices using "
-"both protocols."
+"As a minimum ``ioctl(4, ...)`` must be intercepted; for littlefs "
+"``ioctl(6, ...)`` must also be intercepted. The need for others is "
+"hardware dependent."
 msgstr ""
+"少なくとも ``ioctl(4, ...)`` は受け付けられる必要があります。"
+"littlefs については ``ioctl(6, ...)`` も受け付けられる必要があります。"
+"その他の操作が受け付けられるかはハードウェアに依存します。"
+
+#: ../../library/uos.rst:309
+msgid ""
+"Unless otherwise stated ``ioctl(op, arg)`` can return ``None``. "
+"Consequently an implementation can ignore unused values of ``op``. Where "
+"``op`` is intercepted, the return value for operations 4 and 5 are as "
+"detailed above. Other operations should return 0 on success and non-zero "
+"for failure, with the value returned being an ``OSError`` errno code."
+msgstr ""
+"特に記載のない限り ``ioctl(op, arg)`` は ``None`` を返します。"
+"したがって処理系は ``op`` の未使用値を無視できます。"
+"``op`` が受け付けられる場合、操作 4 と 5 の戻り値は上記のとおりです。"
+"受け付けられる他の操作の戻り値は、成功した場合は 0 を返し、"
+"失敗した場合はゼロ以外を返します。失敗した場合の戻り値は ``OSError`` "
+"の errno コードです。"
 
 #: ../../../library/ure.rst:2
 msgid ":mod:`ure` -- simple regular expressions"
