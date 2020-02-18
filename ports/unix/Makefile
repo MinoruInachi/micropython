@@ -221,24 +221,6 @@ test_gcov: test_full
 	gcov -o $(BUILD)/py $(TOP)/py/*.c
 	gcov -o $(BUILD)/extmod $(TOP)/extmod/*.c
 
-# Maintain historical targets from pre-variant configurations.
-fast:
-	$(MAKE) VARIANT=fast
-
-minimal:
-	$(MAKE) VARIANT=minimal
-
-nanbox:
-	$(MAKE) VARIANT=nanbox
-
-freedos:
-	$(MAKE) VARIANT=freedos
-
-coverage:
-	$(MAKE) VARIANT=coverage
-coverage_test:
-	$(MAKE) VARIANT=coverage test_gcov
-
 # Value of configure's --host= option (required for cross-compilation).
 # Deduce it from CROSS_COMPILE by default, but can be overridden.
 ifneq ($(CROSS_COMPILE),)
@@ -266,3 +248,12 @@ axtls: $(TOP)/lib/axtls/README
 $(TOP)/lib/axtls/README:
 	@echo "You cloned without --recursive, fetching submodules for you."
 	(cd $(TOP); git submodule update --init --recursive)
+
+PREFIX = /usr/local
+BINDIR = $(DESTDIR)$(PREFIX)/bin
+
+install: $(PROG)
+	install -D $(PROG) $(BINDIR)/$(PROG)
+
+uninstall:
+	-rm $(BINDIR)/$(PROG)
