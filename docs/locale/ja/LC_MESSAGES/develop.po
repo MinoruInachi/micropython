@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-01 11:03+0900\n"
-"PO-Revision-Date: 2020-01-13 16:34+0900\n"
+"PO-Revision-Date: 2020-02-18 23:34+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -562,11 +562,43 @@ msgstr ""
 "このため、C コードに書き込み可能なデータがある場合、データが初期化子なしで"
 "グローバルに定義され、関数内でのみ書き込まれていることを確認してください。"
 
-#: ../../develop/natmod.rst:71
+#: ../../develop/natmod.rst:70
+msgid ""
+"Linker limitation: the native module is not linked against the symbol "
+"table of the full MicroPython firmware.  Rather, it is linked against an "
+"explicit table of exported symbols found in ``mp_fun_table`` (in "
+"``py/nativeglue.h``), that is fixed at firmware build time.  It is thus "
+"not possible to simply call some arbitrary HAL/OS/RTOS/system function, "
+"for example."
+msgstr ""
+"リンカーの制限: ネイティブモジュールは、MicroPython ファームウェア全体の"
+"シンボルテーブルに対してリンクされていません。むしろ ``mp_fun_table`` "
+"(``py/nativeglue.h`` 内)にある明示的にエクスポートされたシンボルテーブルに"
+"対してリンクされており、これはファームウェアのビルド時に決まってしまいます。"
+"したがって、たとえば任意の HAL/OS/RTOS/システムの関数を単純に呼び出すことはできません。"
+
+#: ../../develop/natmod.rst:76
+msgid ""
+"New symbols can be added to the end of the table and the firmware "
+"rebuilt. The symbols also need to be added to ``tools/mpy_ld.py``'s "
+"``fun_table`` dict in the same location.  This allows ``mpy_ld.py`` to be"
+" able to pick the new symbols up and provide relocations for them when "
+"the mpy is imported.  Finally, if the symbol is a function, a macro or "
+"stub should be added to ``py/dynruntime.h`` to make it easy to call the "
+"function."
+msgstr ""
+"新しいシンボルをテーブルの最後に追加して、ファームウェアを再ビルドできます。"
+"シンボルは、同じ場所にある ``tools/mpy_ld.py`` の ``fun_table`` 辞書にも"
+"追加する必要があります。これにより mpy がインポートされたときに ``mpy_ld.py`` "
+"が新しいシンボルを見つけ出して、再配置できるようになります。"
+"シンボルが関数の場合には、マクロまたはスタブを ``py/dynruntime.h``　に追加して、"
+"関数を簡単に呼び出せるようにする必要があります。"
+
+#: ../../develop/natmod.rst:84
 msgid "Defining a native module"
 msgstr "ネイティブモジュールの定義"
 
-#: ../../develop/natmod.rst:73
+#: ../../develop/natmod.rst:86
 msgid ""
 "A native .mpy module is defined by a set of files that are used to build "
 "the .mpy. The filesystem layout consists of two main parts, the source "
@@ -576,7 +608,7 @@ msgstr ""
 "ファイルシステムのレイアウトは、ソースファイルと Makefile の2つの主要部分で"
 "構成します。"
 
-#: ../../develop/natmod.rst:76
+#: ../../develop/natmod.rst:89
 msgid ""
 "In the simplest case only a single C source file is required, which "
 "contains all the code that will be compiled into the .mpy module.  This C"
@@ -592,7 +624,7 @@ msgstr ""
 "この関数は、モジュールのエントリポイントであり、モジュールがインポートされる"
 "ときに呼び出されます。"
 
-#: ../../develop/natmod.rst:82
+#: ../../develop/natmod.rst:95
 msgid ""
 "The module can be split into multiple C source files if desired.  Parts "
 "of the module can also be implemented in Python.  All source files should"
@@ -605,7 +637,7 @@ msgstr ""
 "する必要があります(後述)。これには C ソースファイルと、結果の .mpy ファイルに含まれる "
 "Python ファイルの両方を含めます。"
 
-#: ../../develop/natmod.rst:88
+#: ../../develop/natmod.rst:101
 msgid ""
 "The ``Makefile`` contains the build configuration for the module and list"
 " the source files used to build the .mpy module.  It should define "
@@ -622,11 +654,11 @@ msgstr ""
 "ソースファイルの一覧を指定します。オプションでマシンアーキテクチャを指定するには変数 "
 "``ARCH`` を使います。さらに ``py/dynruntime.mk`` のインクルードも必要です。
 
-#: ../../develop/natmod.rst:96
+#: ../../develop/natmod.rst:109
 msgid "Minimal example"
 msgstr "最小限の例"
 
-#: ../../develop/natmod.rst:98
+#: ../../develop/natmod.rst:111
 msgid ""
 "This section provides a fully working example of a simple module named "
 "``factorial``. This module provides a single function "
@@ -637,22 +669,22 @@ msgstr ""
 "このモジュールは入力の階乗を計算して結果を返す単一の関数 ``factorial.factorial(x)`` "
 "を提供します。"
 
-#: ../../develop/natmod.rst:102
+#: ../../develop/natmod.rst:115
 msgid "Directory layout::"
 msgstr "ディレクトリのレイアウト"
 
-#: ../../develop/natmod.rst:104
+#: ../../develop/natmod.rst:117
 msgid ""
 "factorial/\n"
 "├── factorial.c\n"
 "└── Makefile"
 msgstr ""
 
-#: ../../develop/natmod.rst:108
+#: ../../develop/natmod.rst:121
 msgid "The file ``factorial.c`` contains:"
 msgstr "ファイル ``factorial.c`` の内容は以下のとおりです:"
 
-#: ../../develop/natmod.rst:110
+#: ../../develop/natmod.rst:123
 msgid ""
 "// Include the header file to get access to the MicroPython API\n"
 "#include \"py/dynruntime.h\"\n"
@@ -728,11 +760,11 @@ msgstr ""
 "    MP_DYNRUNTIME_INIT_EXIT\n"
 "}"
 
-#: ../../develop/natmod.rst:147
+#: ../../develop/natmod.rst:160
 msgid "The file ``Makefile`` contains:"
 msgstr "ファイル ``Makefile`` の内容は以下のとおりです:"
 
-#: ../../develop/natmod.rst:149
+#: ../../develop/natmod.rst:162
 msgid ""
 "# Location of top-level MicroPython directory\n"
 "MPY_DIR = ../../..\n"
@@ -764,33 +796,33 @@ msgstr ""
 "# このインクルードにより、モジュールをコンパイル・リンクするルールを取得\n"
 "include $(MPY_DIR)/py/dynruntime.mk"
 
-#: ../../develop/natmod.rst:167
+#: ../../develop/natmod.rst:180
 msgid "Compiling the module"
 msgstr "モジュールのコンパイル"
 
-#: ../../develop/natmod.rst:169
+#: ../../develop/natmod.rst:182
 msgid ""
 "Be sure to select the correct ``ARCH`` for the target you are going to "
 "run on. Then build with::"
 msgstr ""
 "実行するターゲットに対して適切な ``ARCH`` を選択してください。ビルドは次のように行います::"
 
-#: ../../develop/natmod.rst:172
+#: ../../develop/natmod.rst:185
 msgid "$ make"
 msgstr ""
 
-#: ../../develop/natmod.rst:174
+#: ../../develop/natmod.rst:187
 msgid ""
 "Without modifying the Makefile you can specify the target architecture "
 "via::"
 msgstr ""
 "Makefile を変更しなくても、次のようにしてターゲットのアーキテクチャを指定できます::"
 
-#: ../../develop/natmod.rst:176
+#: ../../develop/natmod.rst:189
 msgid "$ make ARCH=armv7m"
 msgstr ""
 
-#: ../../develop/natmod.rst:181
+#: ../../develop/natmod.rst:194
 msgid ""
 "Once the module is built there should be a file called ``factorial.mpy``."
 "  Copy this so it is accessible on the filesystem of your MicroPython "
@@ -802,7 +834,7 @@ msgstr ""
 "インポートパスで見つけられるようにします。これで作成したモジュールを、他のモジュールと"
 "同じように Python でアクセスできるようになります。例えば次のように使います::"
 
-#: ../../develop/natmod.rst:186
+#: ../../develop/natmod.rst:199
 msgid ""
 "import factorial\n"
 "print(factorial.factorial(10))\n"
@@ -812,11 +844,11 @@ msgstr ""
 "print(factorial.factorial(10))\n"
 "# 3628800 が表示されるはず"
 
-#: ../../develop/natmod.rst:191
+#: ../../develop/natmod.rst:204
 msgid "Further examples"
 msgstr "さらなる例"
 
-#: ../../develop/natmod.rst:193
+#: ../../develop/natmod.rst:206
 msgid ""
 "See ``examples/natmod/`` for further examples which show many of the "
 "available features of native .mpy modules.  Such features include:"
@@ -824,31 +856,31 @@ msgstr ""
 "ネイティブ .mpy モジュールで利用可能な機能の多くを示すさらなる例については "
 "``examples/natmod/`` を参照してください。以下の例があります:"
 
-#: ../../develop/natmod.rst:196
+#: ../../develop/natmod.rst:209
 msgid "using multiple C source files"
 msgstr "複数の C ソースファイルの利用"
 
-#: ../../develop/natmod.rst:197
+#: ../../develop/natmod.rst:210
 msgid "including Python code alongside C code"
 msgstr "C コード と Python コードを一緒に含める"
 
-#: ../../develop/natmod.rst:198
+#: ../../develop/natmod.rst:211
 msgid "rodata and BSS data"
 msgstr "rodata と BSS データ"
 
-#: ../../develop/natmod.rst:199
+#: ../../develop/natmod.rst:212
 msgid "memory allocation"
 msgstr "メモリー割り当て"
 
-#: ../../develop/natmod.rst:200
+#: ../../develop/natmod.rst:213
 msgid "use of floating point"
 msgstr "浮動小数点の利用"
 
-#: ../../develop/natmod.rst:201
+#: ../../develop/natmod.rst:214
 msgid "exception handling"
 msgstr "例外処理"
 
-#: ../../develop/natmod.rst:202
+#: ../../develop/natmod.rst:215
 msgid "including external C libraries"
 msgstr "外部 C ライブラリの取り込み"
 
