@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-02-18 23:37+0900\n"
+"PO-Revision-Date: 2020-02-23 23:39+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -6924,22 +6924,38 @@ msgid ""
 "val = adc.read_core_vref()          # read MCU VREF\n"
 "val = adc.read_vref()               # read MCU supply voltage"
 msgstr ""
+"import pyb\n"
+"\n"
+"adc = pyb.ADC(pin)                  # ピンからアナログオブジェクトを作成\n"
+"val = adc.read()                    # アナログ値の読み取り\n"
+"\n"
+"adc = pyb.ADCAll(resolution)        # ADCAll オブジェクトを作成\n"
+"adc = pyb.ADCAll(resolution, mask)  # 指定のアナログチャンネルの ADCAll オブジェクトを作成\n"
+"val = adc.read_channel(channel)     # 指定のチャンネルの読み取り\n"
+"val = adc.read_core_temp()          # MCU 温度の読み取り\n"
+"val = adc.read_core_vbat()          # MCU VBAT の読み取り\n"
+"val = adc.read_core_vref()          # MCU VREF の読み取り\n"
+"val = adc.read_vref()               # MCU 供給電圧の読み取り"
 
 #: ../../../library/pyb.ADC.rst:28
 msgid ""
 "Create an ADC object associated with the given pin. This allows you to "
 "then read analog values on that pin."
 msgstr ""
+"指定したピンに関連付けた ADC オブジェクトを作成します。これにより、指定のピンの"
+"アナログ値を読み取れます。"
 
 #: ../../../library/pyb.ADC.rst:36
 msgid ""
 "Read the value on the analog pin and return it.  The returned value will "
 "be between 0 and 4095."
 msgstr ""
+"アナログピンの値を読み取って返します。返される値は 0-4095 の間です。"
 
 #: ../../../library/pyb.ADC.rst:41
 msgid "Read analog values into ``buf`` at a rate set by the ``timer`` object."
 msgstr ""
+"``timer`` オブジェクトで指定のレートで ``buf`` にアナログ値を読み込みます。"
 
 #: ../../../library/pyb.ADC.rst:43
 msgid ""
@@ -6948,6 +6964,10 @@ msgid ""
 "size is 16 bits or greater.  If ``buf`` has only 8-bit elements (eg a "
 "bytearray) then the sample resolution will be reduced to 8 bits."
 msgstr ""
+"``buf`` には、たとえば ``bytearray`` や ``array.array`` にできます。 "
+"``buf`` の項目のサイズが 16 ビット以上であれば、ADC 値は 12 ビットの分解能を持ち、"
+"値を ``buf`` に直接格納されます。 ``buf`` の項目の幅が 8 ビットしかない場合
+"(バイト配列など)、サンプリングの解像度は 8 ビットに減少します。"
 
 #: ../../../library/pyb.ADC.rst:48
 msgid ""
@@ -6955,6 +6975,9 @@ msgid ""
 "timer triggers.  The timer must already be initialised and running at the"
 " desired sampling frequency."
 msgstr ""
+"``timer`` は Timer オブジェクトである必要があります。タイマーがトリガーされるたびに"
+"サンプルが読み込まれます。タイマーは予め初期化しておき、目的のサンプリング周波数で"
+"実行されている必要があります。"
 
 #: ../../../library/pyb.ADC.rst:52
 msgid ""
@@ -6962,10 +6985,14 @@ msgid ""
 "integer which specifies the frequency (in Hz) to sample at.  In this case"
 " Timer(6) will be automatically configured to run at the given frequency."
 msgstr ""
+"この関数の以前の動作をサポートするため、 ``timer`` にはサンプリング周波数(Hz)を整数値で"
+"指定することもできます。この場合、指定の周波数で動作するよう ``Timer(6)`` が自動的に"
+"構成されます。"
 
 #: ../../../library/pyb.ADC.rst:56
 msgid "Example using a Timer object (preferred way)::"
 msgstr ""
+"Timer オブジェクトを使った例(推奨する方法):"
 
 #: ../../../library/pyb.ADC.rst:58
 msgid ""
@@ -6975,10 +7002,15 @@ msgid ""
 "\n"
 "adc.read_timed(buf, tim)            # sample 100 values, taking 10s"
 msgstr ""
+"adc = pyb.ADC(pyb.Pin.board.X19)    # ピン X19 の ADC を作成\n"
+"tim = pyb.Timer(6, freq=10)         # 10Hz で動作するタイマーを作成\n"
+"buf = bytearray(100)                # 採取データを格納するバッファを作成\n"
+"adc.read_timed(buf, tim)            # 10秒かけて 100 の値を採取"
 
 #: ../../../library/pyb.ADC.rst:63
 msgid "Example using an integer for the frequency::"
 msgstr ""
+"周波数に整数値を使った例:"
 
 #: ../../../library/pyb.ADC.rst:65
 msgid ""
@@ -6991,6 +7023,12 @@ msgid ""
 "for val in buf:                     # loop over all values\n"
 "    print(val)                      # print the value out"
 msgstr ""
+"adc = pyb.ADC(pyb.Pin.board.X19)    # ピン X19 の ADC を作成\n"
+"buf = bytearray(100)                # 100バイトのバッファを作成\n"
+"adc.read_timed(buf, 10)             # 10Hz でアナログ値を buf に読込み\n"
+"                                    #   これは完了するまでに10秒かかります\n"
+"for val in buf:                     # すべての値を巡回し\n"
+"    print(val)                      # 値を印字"
 
 #: ../../../library/pyb.ADC.rst:72
 msgid ""
@@ -6998,12 +7036,16 @@ msgid ""
 "behaviour: it does not return to the calling program until the buffer is "
 "full."
 msgstr ""
+"この関数はヒープメモリを割り当てません。"
+"ブロッキングがあり、バッファがいっぱいになるまで、呼び出し元プログラムに戻りません。"
 
 #: ../../../library/pyb.ADC.rst:77
 msgid ""
 "This is a static method. It can be used to extract relative timing or "
 "phase data from multiple ADC's."
 msgstr ""
+"これは静的メソッドです。複数の ADC から相対的なタイミングで抽出したり、"
+"位相データを抽出するために使われます。"
 
 #: ../../../library/pyb.ADC.rst:80
 msgid ""
@@ -7011,6 +7053,8 @@ msgid ""
 "the *timer* object. Each time the timer triggers a sample is rapidly read"
 " from each ADC in turn."
 msgstr ""
+"*timer* オブジェクトで指定したレートで、複数の ADC からアナログ値をバッファに読み込みます。"
+"タイマーがトリガーするたびに、順番に各 ADC からサンプルが迅速に読み取ります。"
 
 #: ../../../library/pyb.ADC.rst:84
 msgid ""
@@ -7018,6 +7062,9 @@ msgid ""
 "associated buffer. All buffers must be of the same type and length and "
 "the number of buffers must equal the number of ADC's."
 msgstr ""
+"ADC および バッファのインスタンスはタプルで渡し、各 ADC には関連するバッファーがあります。"
+"すべてのバッファは同じタイプと長さでなければならず、バッファの数は ADC の数と等しく"
+"なければなりません。"
 
 #: ../../../library/pyb.ADC.rst:88
 msgid ""
@@ -7027,16 +7074,22 @@ msgid ""
 "elements (eg a ``bytearray``) then the sample resolution will be reduced "
 "to 8 bits."
 msgstr ""
+"バッファは、たとえば ``bytearray`` や ``array.array`` にできます。 "
+"``buf`` の項目のサイズが 16 ビット以上であれば、ADC 値は 12 ビットの分解能を持ち、"
+"値を ``buf`` に直接格納されます。 ``buf`` の項目の幅が 8 ビットしかない場合
+"(バイト配列など)、サンプリングの解像度は 8 ビットに減少します。"
 
 #: ../../../library/pyb.ADC.rst:93
 msgid ""
 "*timer* must be a Timer object. The timer must already be initialised and"
 " running at the desired sampling frequency."
 msgstr ""
+"``timer`` は Timer オブジェクトである必要があります。"
+"タイマーは予め初期化しておき、目的のサンプリング周波数で実行されている必要があります。"
 
 #: ../../../library/pyb.ADC.rst:96
 msgid "Example reading 3 ADC's::"
-msgstr ""
+msgstr "3つの ADC を読み取る例::"
 
 #: ../../../library/pyb.ADC.rst:98
 msgid ""
@@ -7052,6 +7105,17 @@ msgid ""
 "for n in range(len(rx0)):\n"
 "    print(rx0[n], rx1[n], rx2[n])"
 msgstr ""
+"adc0 = pyb.ADC(pyb.Pin.board.X1)    # ADC の作成\n"
+"adc1 = pyb.ADC(pyb.Pin.board.X2)\n"
+"adc2 = pyb.ADC(pyb.Pin.board.X3)\n"
+"tim = pyb.Timer(8, freq=100)        # タイマーの作成\n"
+"rx0 = array.array('H', (0 for i in range(100))) # 16ビット幅の\n"
+"rx1 = array.array('H', (0 for i in range(100))) # 100 項目のバッファを作成\n"
+"rx2 = array.array('H', (0 for i in range(100)))\n"
+"# アナログ値を 100Hz でバッファに読込み(1秒かかる)\n"
+"pyb.ADC.read_timed_multi((adc0, adc1, adc2), (rx0, rx1, rx2), tim)\n"
+"for n in range(len(rx0)):\n"
+"    print(rx0[n], rx1[n], rx2[n])"
 
 #: ../../../library/pyb.ADC.rst:110
 msgid ""
@@ -7059,6 +7123,8 @@ msgid ""
 "behaviour: it does not return to the calling program until the buffers "
 "are full."
 msgstr ""
+"この関数はヒープメモリを割り当てません。"
+"ブロッキングがあり、バッファがいっぱいになるまで、呼び出し元プログラムに戻りません。"
 
 #: ../../../library/pyb.ADC.rst:113
 msgid ""
@@ -7068,6 +7134,10 @@ msgid ""
 " indicating a loss of precision in the sample interval. In extreme cases "
 "samples may be missed."
 msgstr ""
+"すべての採取が正しいタイミングで取得された場合、関数は ``True`` を返します。"
+"サンプリングレートが高い場合、データセットの取得にかかる時間がタイマー期間を"
+"超える可能性があります。この場合、関数は ``False`` を返し、サンプリングの"
+"精度が失われたことを示します。極端な場合、データ採取が欠落することもあります。"
 
 #: ../../../library/pyb.ADC.rst:119
 msgid ""
@@ -7078,10 +7148,16 @@ msgid ""
 "high sample rates disabling interrupts for the duration can reduce the "
 "risk of sporadic data loss."
 msgstr ""
+"最大レートはデータ幅や読み取られる ADC の数などの要因によって異なります。"
+"テストでは、2つの ADC がオーバーランなしで 210kHz のタイマーレートで"
+"サンプリングされました。採取データは 215kHz で欠落しました。"
+"3つの ADC の制限は約 140kHz で、4つのADCの場合は約 110kHz です。"
+"高いサンプルレートでは、その期間中の割り込みを無効にすると、散発的なデータ損失の"
+"リスクを減らすことができます。"
 
 #: ../../../library/pyb.ADC.rst:127
 msgid "The ADCAll Object"
-msgstr ""
+msgstr "ADCALL オブジェクト"
 
 #: ../../../library/pyb.ADC.rst:129
 msgid ""
@@ -7097,6 +7173,14 @@ msgid ""
 "the other hand a pyboard woken up after a long standby period will show "
 "correct ambient temperature within limits mentioned above."
 msgstr ""
+"これをインスタンス化すると、マスクされたすべての ADC ピンがアナログ入力に変更されます。"
+"前処理された MCU 温度、VREF、VBAT データは、それぞれ ADC チャネル 16, 17, 18 で"
+"アクセスできます。適切なスケーリングは、使用される基準電圧（通常3.3V）に従って処理されます。"
+"チップ上の温度センサーは工場で較正されており、ダイ温度を摂氏 +/- 1度の精度で読み取る"
+"ことができます。これはかなり正確に聞こえますが、MCU の内部温度が測定されることを忘れないで"
+"ください。処理負荷とアクティブな I/O サブシステムによっては、ダイ温度が周囲温度よりも"
+"数十度高くなることがあります。その一方で、長い待機期間から起床した直後の pyboard は、"
+"上記の制限内で正しい周囲温度を示します。"
 
 #: ../../../library/pyb.ADC.rst:138
 msgid ""
@@ -7106,6 +7190,9 @@ msgid ""
 " as a reference. All results are floating point numbers giving direct "
 "voltage values."
 msgstr ""
+"``ADCAll`` の ``read_core_vbat()``, ``read_vref()``, ``read_core_vref()`` "
+"メソッドは、それぞれバックアップバッテリー電圧、基準電圧、実際の供給電圧を用いた基準電圧"
+"(公称 1.21V)を読み出します。戻り値はどのメソッドも電圧値を示す浮動小数点数です。"
 
 #: ../../../library/pyb.ADC.rst:142
 msgid ""
@@ -7116,6 +7203,11 @@ msgid ""
 "loads to the backup battery, the voltage divider is only active during "
 "ADC conversion."
 msgstr ""
+"``read_core_vbat()`` はバックアップバッテリーの電圧を返します。"
+"この電圧も実際の供給電圧に応じて調整されます。アナログ入力の過負荷を避けるため、"
+"バッテリー電圧は分圧器を介して計測し、分圧器の値に応じてスケーリングします。"
+"バックアップバッテリーへの過度の負荷を防ぐため、分圧器は ADC 変換中のみアクティブに"
+"なります。"
 
 #: ../../../library/pyb.ADC.rst:147
 msgid ""
@@ -7128,18 +7220,26 @@ msgid ""
 "speed and programming mode it is possible to run the pyboard down to 2 V "
 "and still get useful ADC conversion."
 msgstr ""
+"``read_vref()`` は内部基準電圧を計測し、内部基準電圧の工場校正値を使ってバックスケール"
+"することにより求めます。ほとんどの場合、読み取り値は 3.3V に近くなります。pyboard が"
+"バッテリーで動作している場合、供給電圧が 3.3V 未満の値に低下する場合があります。"
+"動作条件が満たされている限り、pyboard は引き続き正常に動作します。MCU クロック、"
+"フラッシュアクセス速度、プログラミングモードを適切に設定することにより、pyboard を 2V "
+"まで落として実行しても、有用なADC変換を得ることができます。"
 
 #: ../../../library/pyb.ADC.rst:154
 msgid ""
 "It is very important to make sure analog input voltages never exceed "
 "actual supply voltage."
 msgstr ""
+"アナログ入力電圧が実際の供給電圧を超えないようにすることは非常に重要です。"
 
 #: ../../../library/pyb.ADC.rst:156
 msgid ""
 "Other analog input channels (0..15) will return unscaled integer values "
 "according to the selected precision."
 msgstr ""
+"他のアナログ入力チャンネル (0..15) は、指定の精度で、スケーリングしない整数値を返します。"
 
 #: ../../../library/pyb.ADC.rst:159
 msgid ""
@@ -7150,12 +7250,18 @@ msgid ""
 "internal channels (16..18) are required, the mask value should be "
 "0x70000."
 msgstr ""
+"アナログ入力(チャンネル 0..15)の不要な有効化を回避するために、第２パラメーターを指定できます。"
+"このパラメーターは、アナログ入力を望むチャンネルに対応するビットセットを持つバイナリパターンです。"
+"デフォルト値は 0xffffffff で、これはすべてのアナログ入力が有効であることを意味します。"
+"内部チャネル (16..18) のみが必要な場合、マスク値は 0x70000 でなければなりません。"
 
 #: ../../../<rst_epilog>:166
 msgid ""
 "adcall = pyb.ADCAll(12, 0x70000) # 12 bit resolution, internal channels\n"
 "temp = adcall.read_core_temp()"
 msgstr ""
+"adcall = pyb.ADCAll(12, 0x70000) # 12 ビットの分解能で、内部チャンネルのみ"
+"temp = adcall.read_core_temp()"
 
 #: ../../../library/pyb.Accel.rst:5
 msgid "class Accel -- accelerometer control"
