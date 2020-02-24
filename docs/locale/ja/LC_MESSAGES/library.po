@@ -7797,7 +7797,7 @@ msgstr ""
 #: ../../../library/pyb.CAN.rst:241 ../../../library/pyb.I2C.rst:149
 #: ../../../library/pyb.SPI.rst:97
 msgid "Return value: ``None``."
-msgstr ""
+msgstr "戻り値: ``None`` 。"
 
 #: ../../../library/pyb.CAN.rst:245
 msgid ""
@@ -8586,19 +8586,19 @@ msgstr ""
 
 #: ../../../library/pyb.LED.rst:5
 msgid "class LED -- LED object"
-msgstr ""
+msgstr "クラス LED -- LED オブジェクト"
 
 #: ../../../library/pyb.LED.rst:7
 msgid "The LED object controls an individual LED (Light Emitting Diode)."
-msgstr ""
+msgstr "LED オブジェクトはオンボードの各 LED (発光ダイオード)を制御します。"
 
 #: ../../../library/pyb.LED.rst:15
 msgid "Create an LED object associated with the given LED:"
-msgstr ""
+msgstr "指定の LED に対応した LED オブジェクトを作成します:"
 
 #: ../../../library/pyb.LED.rst:17
 msgid "``id`` is the LED number, 1-4."
-msgstr ""
+msgstr "``id`` は LED の番号で、1-4 のいずれかの値を指定します。"
 
 #: ../../../library/pyb.LED.rst:25
 msgid ""
@@ -8606,6 +8606,9 @@ msgid ""
 "(full on). If no argument is given, return the LED intensity. If an "
 "argument is given, set the LED intensity and return ``None``."
 msgstr ""
+"LED の輝度を取得または設定します。輝度の範囲は 0 (オフ)〜255 (最大オン)です。"
+"引数が指定されていない場合、LEDの輝度を返します。引数が指定されている場合は "
+"LED の輝度を設定して ``None`` を返します。"
 
 #: ../../../library/pyb.LED.rst:29
 msgid ""
@@ -8615,14 +8618,18 @@ msgid ""
 " of the relevant LED is set to a value between 1 and 254.  Otherwise the "
 "timers are free for general purpose use."
 msgstr ""
+"*注記:* LED(3) と LED(4) のみが滑らかに変化する輝度を持つことができ、タイマー PWM "
+"を使って実装します。LED (3) は Timer(2) を使い、LED(4) は Timer(3) を使います。"
+"これらのタイマーは、関連する LED の輝度が 1-254 の値に設定されている場合にのみ、PWM "
+"用に構成されます。それ以外の場合、タイマーは汎用目的で使用できます。"
 
 #: ../../../library/pyb.LED.rst:37
 msgid "Turn the LED off."
-msgstr ""
+msgstr "LED をオフにします。"
 
 #: ../../../library/pyb.LED.rst:41
 msgid "Turn the LED on, to maximum intensity."
-msgstr ""
+msgstr "LED をオンにし、最大輝度にします。"
 
 #: ../../../library/pyb.LED.rst:45
 msgid ""
@@ -8630,6 +8637,8 @@ msgid ""
 "non-zero intensity then it is considered \"on\" and toggle will turn it "
 "off."
 msgstr ""
+"LEDのオン(最大輝度)とオフを切り替えます。LED の輝度がゼロ以外の場合は「オン」と"
+"見なされ、このメソッドの呼び出しによりオフに切り替わります。"
 
 #: ../../../library/pyb.Pin.rst:7
 msgid ""
