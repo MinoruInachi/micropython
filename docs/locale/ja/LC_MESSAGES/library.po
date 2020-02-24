@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-02-23 23:39+0900\n"
+"PO-Revision-Date: 2020-02-24 12:50+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2380,7 +2380,7 @@ msgstr "起床理由。"
 
 #: ../../../library/machine.ADC.rst:5 ../../../library/pyb.ADC.rst:5
 msgid "class ADC -- analog to digital conversion"
-msgstr "class ADC -- アナログ-デジタル変換"
+msgstr "クラス ADC -- アナログ-デジタル変換"
 
 #: ../../library/machine.ADC.rst:7
 msgid ""
@@ -3254,7 +3254,7 @@ msgstr "IRQ トリガタイプを選択します。"
 
 #: ../../../library/machine.RTC.rst:5 ../../../library/pyb.RTC.rst:5
 msgid "class RTC -- real time clock"
-msgstr "class RTC -- リアルタイムクロック"
+msgstr "クラス RTC -- リアルタイムクロック"
 
 #: ../../../library/machine.RTC.rst:7 ../../../library/pyb.RTC.rst:7
 msgid "The RTC is and independent clock that keeps track of the date and time."
@@ -3333,7 +3333,7 @@ msgstr "irq トリガーソース"
 
 #: ../../../library/machine.SD.rst:5
 msgid "class SD -- secure digital memory card (cc3200 port only)"
-msgstr "class SD -- セキュアデジタルメモリーカード(cc3200 ポートのみ)"
+msgstr "クラス SD -- セキュアデジタルメモリーカード(cc3200 ポートのみ)"
 
 #: ../../../library/machine.SD.rst:9
 msgid "This is a non-standard class and is only available on the cc3200 port."
@@ -3392,7 +3392,7 @@ msgstr "SD カードを無効にします。"
 
 #: ../../library/machine.SDCard.rst:5
 msgid "class SDCard -- secure digital memory card"
-msgstr "class SDCard -- SD メモリカード"
+msgstr "クラス SDCard -- SD メモリカード"
 
 #: ../../library/machine.SDCard.rst:7
 msgid ""
@@ -3749,7 +3749,7 @@ msgstr ""
 
 #: ../../../library/machine.SPI.rst:5
 msgid "class SPI -- a Serial Peripheral Interface bus protocol (master side)"
-msgstr "class SPI -- シリアルペリフェラルインタフェース バスプロトコル(マスタ側)"
+msgstr "クラス SPI -- シリアルペリフェラルインタフェース バスプロトコル(マスタ側)"
 
 #: ../../../library/machine.SPI.rst:7
 msgid ""
@@ -3912,7 +3912,7 @@ msgstr "最初のビットを最下位ビットに設定します"
 
 #: ../../../library/machine.Signal.rst:5
 msgid "class Signal -- control and sense external I/O devices"
-msgstr "class Signal -- 外部 I/O デバイスの制御と検知"
+msgstr "クラス Signal -- 外部 I/O デバイスの制御と検知"
 
 #: ../../../library/machine.Signal.rst:7
 msgid ""
@@ -4138,7 +4138,7 @@ msgstr "信号を無効にします。"
 
 #: ../../../library/machine.Timer.rst:5
 msgid "class Timer -- control hardware timers"
-msgstr "class Timer -- ハードウェアタイマーの制御"
+msgstr "クラス Timer -- ハードウェアタイマーの制御"
 
 #: ../../../library/machine.Timer.rst:7
 #: ../../../library/machine.TimerWiPy.rst:14
@@ -4457,7 +4457,7 @@ msgstr ""
 
 #: ../../../library/machine.UART.rst:5 ../../../library/pyb.UART.rst:5
 msgid "class UART -- duplex serial communication bus"
-msgstr "class UART -- 二重シリアル通信バス"
+msgstr "クラス UART -- 二重シリアル通信バス"
 
 #: ../../../library/machine.UART.rst:7 ../../../library/pyb.UART.rst:7
 msgid ""
@@ -4755,7 +4755,7 @@ msgstr "IRQ トリガーソース"
 
 #: ../../../library/machine.WDT.rst:5
 msgid "class WDT -- watchdog timer"
-msgstr "class WDT -- ウォッチドッグタイマー"
+msgstr "クラス WDT -- ウォッチドッグタイマー"
 
 #: ../../../library/machine.WDT.rst:7
 msgid ""
@@ -8199,14 +8199,22 @@ msgid ""
 "\n"
 "i2c.deinit()                         # turn off the peripheral"
 msgstr ""
+"from pyb import I2C\n"
+"\n"
+"i2c = I2C(1)                         # バス 1 に作成\n"
+"i2c = I2C(1, I2C.MASTER)             # マスターとして作成・初期化\n"
+"i2c.init(I2C.MASTER, baudrate=20000) # マスターとして初期化\n"
+"i2c.init(I2C.SLAVE, addr=0x42)       # 指定したアドレスでスレーブとして初期化"
+"\n"
+"i2c.deinit()                         # ペリフェラルをオフ"
 
 #: ../../../library/pyb.I2C.rst:23
 msgid "Printing the i2c object gives you information about its configuration."
-msgstr ""
+msgstr "i2c オブジェクトを印字すると、その構成に関する情報が得られます。"
 
 #: ../../../library/pyb.I2C.rst:25
 msgid "The basic methods are send and recv::"
-msgstr ""
+msgstr "基本的なメソッドは send と recv です::"
 
 #: ../../../library/pyb.I2C.rst:27
 msgid ""
@@ -8214,28 +8222,33 @@ msgid ""
 "i2c.send(0x42)       # send a single byte, given by the number\n"
 "data = i2c.recv(3)   # receive 3 bytes"
 msgstr ""
+"i2c.send('abc')      # 3 バイト送信\n"
+"i2c.send(0x42)       # 数値で指定の 1 バイトを送信\n"
+"data = i2c.recv(3)   # 3 バイト受信"
 
 #: ../../../library/pyb.I2C.rst:31
 msgid "To receive inplace, first create a bytearray::"
-msgstr ""
+msgstr "指定場所に受信するには、まず bytearray を作成します::""
 
 #: ../../../library/pyb.I2C.rst:33
 msgid ""
 "data = bytearray(3)  # create a buffer\n"
 "i2c.recv(data)       # receive 3 bytes, writing them into data"
 msgstr ""
+"data = bytearray(3)  # バッファを作成\n"
+"i2c.recv(data)       # 3 バイト受信し、それを data に書き込む"
 
 #: ../../../library/pyb.I2C.rst:36
 msgid "You can specify a timeout (in ms)::"
-msgstr ""
+msgstr "タイムアウト時間を指定できます(ms 単位)::"
 
 #: ../../../library/pyb.I2C.rst:38
 msgid "i2c.send(b'123', timeout=2000)   # timeout after 2 seconds"
-msgstr ""
+msgstr "i2c.send(b'123', timeout=2000)   # 2秒後にタイムアウト"
 
 #: ../../../library/pyb.I2C.rst:40
 msgid "A master must specify the recipient's address::"
-msgstr ""
+msgstr "マスターは受信側のアドレスを指定する必要があります::"
 
 #: ../../../library/pyb.I2C.rst:42
 msgid ""
@@ -8243,10 +8256,13 @@ msgid ""
 "i2c.send('123', 0x42)        # send 3 bytes to slave with address 0x42\n"
 "i2c.send(b'456', addr=0x42)  # keyword for address"
 msgstr ""
+"i2c.init(I2C.MASTER)\n"
+"i2c.send('123', 0x42)        # スレーブアドレス 0x42 に 3 バイト送信\n"
+"i2c.send(b'456', addr=0x42)  # アドレスをキーワード引数で指定"
 
 #: ../../../library/pyb.I2C.rst:46
 msgid "Master also has other methods::"
-msgstr ""
+msgstr "マスターには他にもメソッドがあります::"
 
 #: ../../../library/pyb.I2C.rst:48
 msgid ""
@@ -8260,6 +8276,13 @@ msgid ""
 "                                            # starting at address 2 in "
 "the slave, timeout after 1 second"
 msgstr ""
+"i2c.is_ready(0x42)           # スレーブ 0x42 の準備ができているか確認\n"
+"i2c.scan()                   # バスのスレーブをスキャンし、\n"
+"                             #   有効なアドレスのリストを戻す\n"
+"i2c.mem_read(3, 0x42, 2)     # スレーブ 0x42 のメモリから、スレーブ上の\n"
+"                             #   アドレス 2 で始まる 3 バイトを読み込む\n"
+"i2c.mem_write('abc', 0x42, 2, timeout=1000) # 'abc' (3 バイト)をスレーブ 0x42 のメモリの、\n"
+"                             #   スレーブ上のアドレス 2 から書き込む。1 秒後にタイムアウト"
 
 #: ../../../library/pyb.I2C.rst:61
 msgid ""
@@ -8269,52 +8292,59 @@ msgid ""
 " if any).  If extra arguments are given, the bus is initialised. See "
 "``init`` for parameters of initialisation."
 msgstr ""
+"指定したバスで I2C オブジェクトを作成します。 ``bus`` は 1 または 2、 "
+"'X' または 'Y' を指定できます。追加のパラメーター無しだと、I2C オブジェクトは"
+"作成されますが、初期化されません(以前にバスが初期化さえていれば、その設定を引継ぎます)。"
+"追加の引数を指定すると、バスが初期化されます。初期化のパラメータは ``init`` "
+"を参照してください。"
 
 #: ../../../library/pyb.I2C.rst:67
 msgid "The physical pins of the I2C busses on Pyboards V1.0 and V1.1 are:"
-msgstr ""
+msgstr "Pyboards V1.0 および V1.1 の I2C バスの物理ピンは次のとおりです。"
 
 #: ../../../library/pyb.I2C.rst:69 ../../../library/pyb.I2C.rst:74
 msgid "``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``"
-msgstr ""
+msgstr "``I2C(1)`` は X 位置にあります: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``"
 
 #: ../../../library/pyb.I2C.rst:70
 msgid "``I2C(2)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PB10, PB11)``"
-msgstr ""
+msgstr "``I2C(2)`` は Y 位置にあります: ``(SCL, SDA) = (Y9, Y10) = (PB10, PB11)``"
 
 #: ../../../library/pyb.I2C.rst:72
 msgid "On the Pyboard Lite:"
-msgstr ""
+msgstr "Pyboard Lite の場合:"
 
 #: ../../../library/pyb.I2C.rst:75
 msgid "``I2C(3)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PA8, PB8)``"
-msgstr ""
+msgstr "``I2C(3)`` は Y 位置にあります: ``(SCL, SDA) = (Y9, Y10) = (PA8, PB8)``"
 
 #: ../../../library/pyb.I2C.rst:77
 msgid ""
 "Calling the constructor with 'X' or 'Y' enables portability between "
 "Pyboard types."
 msgstr ""
+"'X' または 'Y' でコンストラクターを呼び出すと、Pyboard タイプ間の移植性が"
+"高まります。
 
 #: ../../../library/pyb.I2C.rst:89
 msgid "Initialise the I2C bus with the given parameters:"
-msgstr ""
+msgstr "指定のパラメータで I2C バスを初期化します:"
 
 #: ../../../library/pyb.I2C.rst:91
 msgid "``mode`` must be either ``I2C.MASTER`` or ``I2C.SLAVE``"
-msgstr ""
+msgstr "``mode`` は ``I2C.MASTER`` か ``I2C.SLAVE`` のいずれかでなければなりません"
 
 #: ../../../library/pyb.I2C.rst:92
 msgid "``addr`` is the 7-bit address (only sensible for a slave)"
-msgstr ""
+msgstr "``addr`` は 7 ビットアドレスです(スレーブ時のみ有効)"
 
 #: ../../../library/pyb.I2C.rst:93
 msgid "``baudrate`` is the SCL clock rate (only sensible for a master)"
-msgstr ""
+msgstr "``baudrate`` は SCL クロックレートです(マスター時のみ有効)"
 
 #: ../../../library/pyb.I2C.rst:94
 msgid "``gencall`` is whether to support general call mode"
-msgstr ""
+msgstr "``gencall`` は汎用呼出しモードをサポートするかどうかを指定します"
 
 #: ../../../library/pyb.I2C.rst:95
 msgid ""
@@ -8322,108 +8352,118 @@ msgid ""
 "that DMA transfers have more precise timing but currently do not handle "
 "bus errors properly)"
 msgstr ""
+"``dma`` は I2C 転送に DMA の使用を許可するかどうかを指定します(DMA 転送のタイミングは"
+"より正確ですが、現在のところバスエラーを適切に処理しないことに注意してください)"
 
 #: ../../../library/pyb.I2C.rst:101
 msgid ""
 "Check if an I2C device responds to the given address.  Only valid when in"
 " master mode."
 msgstr ""
+"I2C デバイスが指定のアドレスに応答するかどうかを確認します。"
+"マスターモードの場合のみ有効です。"
 
 #: ../../../library/pyb.I2C.rst:105
 msgid "Read from the memory of an I2C device:"
-msgstr ""
+msgstr "I2C デバイスのメモリから読み取ります:"
 
 #: ../../../library/pyb.I2C.rst:107
 msgid ""
 "``data`` can be an integer (number of bytes to read) or a buffer to read "
 "into"
-msgstr ""
+msgstr "``data`` には整数(読み取るバイト数)または読み込むバッファを指定します"
 
 #: ../../../library/pyb.I2C.rst:108 ../../../library/pyb.I2C.rst:121
 msgid "``addr`` is the I2C device address"
-msgstr ""
+msgstr "``addr`` は I2C デバイスアドレスです"
 
 #: ../../../library/pyb.I2C.rst:109 ../../../library/pyb.I2C.rst:122
 msgid "``memaddr`` is the memory location within the I2C device"
-msgstr ""
+msgstr "``memaddr`` は I2C デバイス中のメモリ位置です"
 
 #: ../../../library/pyb.I2C.rst:110
 msgid "``timeout`` is the timeout in milliseconds to wait for the read"
-msgstr ""
+msgstr "``timeout`` は読み取りを待つタイムアウト時間をミリ秒単位で指定します"
 
 #: ../../../library/pyb.I2C.rst:111 ../../../library/pyb.I2C.rst:124
 msgid "``addr_size`` selects width of memaddr: 8 or 16 bits"
-msgstr ""
+msgstr "``addr_size`` は memaddr の幅であり、8 または 16 を指定します"
 
 #: ../../../library/pyb.I2C.rst:113
 msgid "Returns the read data. This is only valid in master mode."
-msgstr ""
+msgstr "読み取ったデータを返します。これはマスターモードでのみ有効です。"
 
 #: ../../../library/pyb.I2C.rst:118
 msgid "Write to the memory of an I2C device:"
-msgstr ""
+msgstr "I2C デバイスのメモリに書き込みます:"
 
 #: ../../../library/pyb.I2C.rst:120
 msgid "``data`` can be an integer or a buffer to write from"
-msgstr ""
+msgstr "``data`` には整数または書き込み元のバッファを指定します"
 
 #: ../../../library/pyb.I2C.rst:123
 msgid "``timeout`` is the timeout in milliseconds to wait for the write"
-msgstr ""
+msgstr "``timeout`` は書き込み待つタイムアウト時間をミリ秒単位で指定します"
 
 #: ../../../library/pyb.I2C.rst:126
 msgid "Returns ``None``. This is only valid in master mode."
-msgstr ""
+msgstr "``None`` を返します。これはマスターモードでのみ有効です。"
 
 #: ../../../library/pyb.I2C.rst:133
 msgid ""
 "``recv`` can be an integer, which is the number of bytes to receive, or a"
 " mutable buffer, which will be filled with received bytes"
 msgstr ""
+"``recv`` には受信するバイト数を示す整数、または受信したバイト列を格納する書き込み可能"
+"バッファを指定できます"
 
 #: ../../../library/pyb.I2C.rst:135
 msgid "``addr`` is the address to receive from (only required in master mode)"
-msgstr ""
+msgstr "``addr`` は受信元のアドレスです(マスターモードでのみ必要)"
 
 #: ../../../library/pyb.I2C.rst:136
 msgid "``timeout`` is the timeout in milliseconds to wait for the receive"
-msgstr ""
+msgstr "``timeout`` は受信を待つタイムアウト時間をミリ秒単位で指定します"
 
 #: ../../../library/pyb.I2C.rst:138 ../../../library/pyb.SPI.rst:87
 msgid ""
 "Return value: if ``recv`` is an integer then a new buffer of the bytes "
 "received, otherwise the same buffer that was passed in to ``recv``."
 msgstr ""
+"戻り値: パラメータ ``recv`` が整数であれば、受信したバイト数を格納した新しい"
+"バッファを返します。さもなければ ``recv`` に渡したのと同じバッファを返します。"
 
 #: ../../../library/pyb.I2C.rst:143 ../../../library/pyb.SPI.rst:92
 msgid "Send data on the bus:"
-msgstr ""
+msgstr "バスにデータを送信します:"
 
 #: ../../../library/pyb.I2C.rst:145
 msgid "``send`` is the data to send (an integer to send, or a buffer object)"
-msgstr ""
+msgstr "``send`` は送信するデータです(送信する整数値、またはバッファオブジェクト)"
 
 #: ../../../library/pyb.I2C.rst:146
 msgid "``addr`` is the address to send to (only required in master mode)"
-msgstr ""
+msgstr "``addr`` は送信先のアドレスです(マスターモードでのみ必要)"
 
 #: ../../../library/pyb.I2C.rst:147
 msgid "``timeout`` is the timeout in milliseconds to wait for the send"
-msgstr ""
+msgstr "``timeout`` は送信を待つタイムアウト時間をミリ秒単位で指定します"
 
 #: ../../../library/pyb.I2C.rst:153
 msgid ""
 "Scan all I2C addresses from 0x01 to 0x7f and return a list of those that "
 "respond. Only valid when in master mode."
 msgstr ""
+"0x01 から 0x7f までのすべてのI2Cアドレスをスキャンし、応答するアドレスのリストを"
+"返します。マスターモードの場合のみ有効です。"
 
 #: ../../../library/pyb.I2C.rst:161
 msgid "for initialising the bus to master mode"
-msgstr ""
+msgstr "バスをマスターモードに初期化するためのもの"
 
 #: ../../../library/pyb.I2C.rst:165
 msgid "for initialising the bus to slave mode"
-msgstr ""
+msgstr "バスをスレーブーモードに初期化するためのもの"
 
 #: ../../../library/pyb.LCD.rst:5
 msgid "class LCD -- LCD control for the LCD touch-sensor pyskin"
