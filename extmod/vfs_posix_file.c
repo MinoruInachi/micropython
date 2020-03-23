@@ -29,7 +29,7 @@
 #include "py/stream.h"
 #include "extmod/vfs_posix.h"
 
-#if MICROPY_VFS_POSIX
+#if MICROPY_VFS_POSIX || MICROPY_VFS_POSIX_FILE
 
 #include <fcntl.h>
 
@@ -45,7 +45,7 @@ typedef struct _mp_obj_vfs_posix_file_t {
 #ifdef MICROPY_CPYTHON_COMPAT
 STATIC void check_fd_is_open(const mp_obj_vfs_posix_file_t *o) {
     if (o->fd < 0) {
-        mp_raise_msg(&mp_type_ValueError, "I/O operation on closed file");
+        mp_raise_ValueError("I/O operation on closed file");
     }
 }
 #else
@@ -157,7 +157,9 @@ STATIC mp_uint_t vfs_posix_file_write(mp_obj_t o_in, const void *buf, mp_uint_t 
         return size;
     }
     #endif
+    MP_THREAD_GIL_EXIT();
     mp_int_t r = write(o->fd, buf, size);
+    MP_THREAD_GIL_ENTER();
     while (r == -1 && errno == EINTR) {
         if (MP_STATE_VM(mp_pending_exception) != MP_OBJ_NULL) {
             mp_obj_t obj = MP_STATE_VM(mp_pending_exception);
@@ -184,6 +186,13 @@ STATIC mp_uint_t vfs_posix_file_ioctl(mp_obj_t o_in, mp_uint_t request, uintptr_
             int ret = fsync(o->fd);
             MP_THREAD_GIL_ENTER();
             if (ret == -1) {
+                if (errno == EINVAL
+                    && (o->fd == STDIN_FILENO || o->fd == STDOUT_FILENO || o->fd == STDERR_FILENO)) {
+                    // fsync(stdin/stdout/stderr) may fail with EINVAL, but don't propagate that
+                    // error out.  Because data is not buffered by us, and stdin/out/err.flush()
+                    // should just be a no-op.
+                    return 0;
+                }
                 *errcode = errno;
                 return MP_STREAM_ERROR;
             }
@@ -208,6 +217,8 @@ STATIC mp_uint_t vfs_posix_file_ioctl(mp_obj_t o_in, mp_uint_t request, uintptr_
             o->fd = -1;
             #endif
             return 0;
+        case MP_STREAM_GET_FILENO:
+            return o->fd;
         default:
             *errcode = EINVAL;
             return MP_STREAM_ERROR;
@@ -272,4 +283,4 @@ const mp_obj_vfs_posix_file_t mp_sys_stdin_obj = {{&mp_type_textio}, STDIN_FILEN
 const mp_obj_vfs_posix_file_t mp_sys_stdout_obj = {{&mp_type_textio}, STDOUT_FILENO};
 const mp_obj_vfs_posix_file_t mp_sys_stderr_obj = {{&mp_type_textio}, STDERR_FILENO};
 
-#endif // MICROPY_VFS_POSIX
+#endif // MICROPY_VFS_POSIX || MICROPY_VFS_POSIX_FILE

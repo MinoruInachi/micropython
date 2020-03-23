@@ -33,6 +33,7 @@
 #include "storage.h"
 #include "i2cslave.h"
 #include "mboot.h"
+#include "dfu.h"
 
 // Using polling is about 10% faster than not using it (and using IRQ instead)
 // This DFU code with polling runs in about 70% of the time of the ST bootloader
@@ -415,7 +416,7 @@ void mp_hal_pin_config_speed(uint32_t port_pin, uint32_t speed) {
 #define LED3 MICROPY_HW_LED4
 #endif
 
-void led_init(void) {
+MP_WEAK void led_init(void) {
     mp_hal_pin_output(LED0);
     mp_hal_pin_output(LED1);
     #ifdef LED2
@@ -426,7 +427,7 @@ void led_init(void) {
     #endif
 }
 
-void led_state(int led, int val) {
+MP_WEAK void led_state(int led, int val) {
     if (led == 1) {
         led = LED0;
     }
@@ -525,6 +526,13 @@ static const flash_layout_t flash_layout[] = {
 
 #endif
 
+static inline bool flash_is_valid_addr(uint32_t addr) {
+    uint8_t last = MP_ARRAY_SIZE(flash_layout) - 1;
+    uint32_t end_of_flash = flash_layout[last].base_address +
+        flash_layout[last].sector_count * flash_layout[last].sector_size;
+    return flash_layout[0].base_address <= addr && addr < end_of_flash;
+}
+
 static uint32_t flash_get_sector_index(uint32_t addr, uint32_t *sector_size) {
     if (addr >= flash_layout[0].base_address) {
         uint32_t sector_index = 0;
@@ -574,6 +582,8 @@ static int flash_page_erase(uint32_t addr, uint32_t *next_addr) {
     uint32_t sector = flash_get_sector_index(addr, &sector_size);
     if (sector == 0) {
         // Don't allow to erase the sector with this bootloader in it
+        dfu_context.status = DFU_STATUS_ERROR_ADDRESS;
+        dfu_context.error = MBOOT_ERROR_STR_OVERWRITE_BOOTLOADER_IDX;
         return -1;
     }
 
@@ -618,6 +628,8 @@ static int flash_page_erase(uint32_t addr, uint32_t *next_addr) {
 static int flash_write(uint32_t addr, const uint8_t *src8, size_t len) {
     if (addr >= flash_layout[0].base_address && addr < flash_layout[0].base_address + flash_layout[0].sector_size) {
         // Don't allow to write the sector with this bootloader in it
+        dfu_context.status = DFU_STATUS_ERROR_ADDRESS;
+        dfu_context.error = MBOOT_ERROR_STR_OVERWRITE_BOOTLOADER_IDX;
         return -1;
     }
 
@@ -731,7 +743,13 @@ int do_write(uint32_t addr, const uint8_t *src8, size_t len) {
     }
     #endif
 
-    return flash_write(addr, src8, len);
+    if (flash_is_valid_addr(addr)) {
+        return flash_write(addr, src8, len);
+    }
+
+    dfu_context.status = DFU_STATUS_ERROR_ADDRESS;
+    dfu_context.error = MBOOT_ERROR_STR_INVALID_ADDRESS_IDX;
+    return -1;
 }
 
 /******************************************************************************/
@@ -905,113 +923,82 @@ uint8_t i2c_slave_process_tx_byte(void) {
 /******************************************************************************/
 // DFU
 
-#define DFU_XFER_SIZE (2048)
-
-enum {
-    DFU_DNLOAD = 1,
-    DFU_UPLOAD = 2,
-    DFU_GETSTATUS = 3,
-    DFU_CLRSTATUS = 4,
-    DFU_ABORT = 6,
-};
-
-enum {
-    DFU_STATUS_IDLE = 2,
-    DFU_STATUS_BUSY = 4,
-    DFU_STATUS_DNLOAD_IDLE = 5,
-    DFU_STATUS_MANIFEST = 7,
-    DFU_STATUS_UPLOAD_IDLE = 9,
-    DFU_STATUS_ERROR = 0xa,
-};
-
-enum {
-    DFU_CMD_NONE = 0,
-    DFU_CMD_EXIT = 1,
-    DFU_CMD_UPLOAD = 7,
-    DFU_CMD_DNLOAD = 8,
-};
-
-typedef struct _dfu_state_t {
-    int status;
-    int cmd;
-    uint16_t wBlockNum;
-    uint16_t wLength;
-    uint32_t addr;
-    uint8_t buf[DFU_XFER_SIZE] __attribute__((aligned(4)));
-} dfu_state_t;
-
-static dfu_state_t dfu_state SECTION_NOZERO_BSS;
-
 static void dfu_init(void) {
-    dfu_state.status = DFU_STATUS_IDLE;
-    dfu_state.cmd = DFU_CMD_NONE;
-    dfu_state.addr = 0x08000000;
+    dfu_context.state = DFU_STATE_IDLE;
+    dfu_context.cmd = DFU_CMD_NONE;
+    dfu_context.status = DFU_STATUS_OK;
+    dfu_context.error = 0;
+    dfu_context.addr = 0x08000000;
 }
 
 static int dfu_process_dnload(void) {
     int ret = -1;
-    if (dfu_state.wBlockNum == 0) {
+    if (dfu_context.wBlockNum == 0) {
         // download control commands
-        if (dfu_state.wLength >= 1 && dfu_state.buf[0] == 0x41) {
-            if (dfu_state.wLength == 1) {
+        if (dfu_context.wLength >= 1 && dfu_context.buf[0] == 0x41) {
+            if (dfu_context.wLength == 1) {
                 // mass erase
                 ret = do_mass_erase();
-            } else if (dfu_state.wLength == 5) {
+            } else if (dfu_context.wLength == 5) {
                 // erase page
                 uint32_t next_addr;
-                ret = do_page_erase(get_le32(&dfu_state.buf[1]), &next_addr);
+                ret = do_page_erase(get_le32(&dfu_context.buf[1]), &next_addr);
             }
-        } else if (dfu_state.wLength >= 1 && dfu_state.buf[0] == 0x21) {
-            if (dfu_state.wLength == 5) {
+        } else if (dfu_context.wLength >= 1 && dfu_context.buf[0] == 0x21) {
+            if (dfu_context.wLength == 5) {
                 // set address
-                dfu_state.addr = get_le32(&dfu_state.buf[1]);
+                dfu_context.addr = get_le32(&dfu_context.buf[1]);
                 ret = 0;
             }
         }
-    } else if (dfu_state.wBlockNum > 1) {
+    } else if (dfu_context.wBlockNum > 1) {
         // write data to memory
-        uint32_t addr = (dfu_state.wBlockNum - 2) * DFU_XFER_SIZE + dfu_state.addr;
-        ret = do_write(addr, dfu_state.buf, dfu_state.wLength);
+        uint32_t addr = (dfu_context.wBlockNum - 2) * DFU_XFER_SIZE + dfu_context.addr;
+        ret = do_write(addr, dfu_context.buf, dfu_context.wLength);
     }
     if (ret == 0) {
-        return DFU_STATUS_DNLOAD_IDLE;
+        return DFU_STATE_DNLOAD_IDLE;
     } else {
-        return DFU_STATUS_ERROR;
+        return DFU_STATE_ERROR;
     }
 }
 
 static void dfu_handle_rx(int cmd, int arg, int len, const void *buf) {
     if (cmd == DFU_CLRSTATUS) {
         // clear status
-        dfu_state.status = DFU_STATUS_IDLE;
-        dfu_state.cmd = DFU_CMD_NONE;
+        dfu_context.state = DFU_STATE_IDLE;
+        dfu_context.cmd = DFU_CMD_NONE;
+        dfu_context.status = DFU_STATUS_OK;
+        dfu_context.error = 0;
     } else if (cmd == DFU_ABORT) {
         // clear status
-        dfu_state.status = DFU_STATUS_IDLE;
-        dfu_state.cmd = DFU_CMD_NONE;
+        dfu_context.state = DFU_STATE_IDLE;
+        dfu_context.cmd = DFU_CMD_NONE;
+        dfu_context.status = DFU_STATUS_OK;
+        dfu_context.error = 0;
     } else if (cmd == DFU_DNLOAD) {
         if (len == 0) {
             // exit DFU
-            dfu_state.cmd = DFU_CMD_EXIT;
+            dfu_context.cmd = DFU_CMD_EXIT;
         } else {
             // download
-            dfu_state.cmd = DFU_CMD_DNLOAD;
-            dfu_state.wBlockNum = arg;
-            dfu_state.wLength = len;
-            memcpy(dfu_state.buf, buf, len);
+            dfu_context.cmd = DFU_CMD_DNLOAD;
+            dfu_context.wBlockNum = arg;
+            dfu_context.wLength = len;
+            memcpy(dfu_context.buf, buf, len);
         }
     }
 }
 
 static void dfu_process(void) {
-    if (dfu_state.status == DFU_STATUS_MANIFEST) {
+    if (dfu_context.state == DFU_STATE_MANIFEST) {
         do_reset();
     }
 
-    if (dfu_state.status == DFU_STATUS_BUSY) {
-        if (dfu_state.cmd == DFU_CMD_DNLOAD) {
-            dfu_state.cmd = DFU_CMD_NONE;
-            dfu_state.status = dfu_process_dnload();
+    if (dfu_context.state == DFU_STATE_BUSY) {
+        if (dfu_context.cmd == DFU_CMD_DNLOAD) {
+            dfu_context.cmd = DFU_CMD_NONE;
+            dfu_context.state = dfu_process_dnload();
         }
     }
 }
@@ -1019,32 +1006,34 @@ static void dfu_process(void) {
 static int dfu_handle_tx(int cmd, int arg, int len, uint8_t *buf, int max_len) {
     if (cmd == DFU_UPLOAD) {
         if (arg >= 2) {
-            dfu_state.cmd = DFU_CMD_UPLOAD;
-            uint32_t addr = (arg - 2) * max_len + dfu_state.addr;
+            dfu_context.cmd = DFU_CMD_UPLOAD;
+            uint32_t addr = (arg - 2) * max_len + dfu_context.addr;
             do_read(addr, len, buf);
             return len;
         }
     } else if (cmd == DFU_GETSTATUS && len == 6) {
         // execute command and get status
-        switch (dfu_state.cmd) {
+        switch (dfu_context.cmd) {
             case DFU_CMD_NONE:
                 break;
             case DFU_CMD_EXIT:
-                dfu_state.status = DFU_STATUS_MANIFEST;
+                dfu_context.state = DFU_STATE_MANIFEST;
                 break;
             case DFU_CMD_UPLOAD:
-                dfu_state.status = DFU_STATUS_UPLOAD_IDLE;
+                dfu_context.state = DFU_STATE_UPLOAD_IDLE;
                 break;
             case DFU_CMD_DNLOAD:
-                dfu_state.status = DFU_STATUS_BUSY;
+                dfu_context.state = DFU_STATE_BUSY;
                 break;
+            default:
+                dfu_context.state = DFU_STATE_BUSY;
         }
-        buf[0] = 0;
-        buf[1] = dfu_state.cmd; // TODO is this correct?
-        buf[2] = 0;
-        buf[3] = 0;
-        buf[4] = dfu_state.status;
-        buf[5] = 0;
+        buf[0] = dfu_context.status; // bStatus
+        buf[1] = 0; // bwPollTimeout (ms)
+        buf[2] = 0; // bwPollTimeout (ms)
+        buf[3] = 0; // bwPollTimeout (ms)
+        buf[4] = dfu_context.state; // bState
+        buf[5] = dfu_context.error; // iString
         return 6;
     }
     return -1;
@@ -1186,6 +1175,14 @@ static uint8_t *pyb_usbdd_StrDescriptor(USBD_HandleTypeDef *pdev, uint8_t idx, u
 
         case USBD_IDX_CONFIG_STR:
             USBD_GetString((uint8_t*)FLASH_LAYOUT_STR, str_desc, length);
+            return str_desc;
+
+        case MBOOT_ERROR_STR_OVERWRITE_BOOTLOADER_IDX:
+            USBD_GetString((uint8_t*)MBOOT_ERROR_STR_OVERWRITE_BOOTLOADER, str_desc, length);
+            return str_desc;
+
+        case MBOOT_ERROR_STR_INVALID_ADDRESS_IDX:
+            USBD_GetString((uint8_t*)MBOOT_ERROR_STR_INVALID_ADDRESS, str_desc, length);
             return str_desc;
 
         default:
