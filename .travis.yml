@@ -66,6 +66,7 @@ jobs:
 
     # qemu-arm port
     - stage: test
+      dist: bionic # needed for more recent version of qemu-system-arm with mps2-an385 target
       env: NAME="qemu-arm port build and tests"
       install:
         - sudo apt-get install gcc-arm-none-eabi
@@ -212,7 +213,10 @@ jobs:
         - make ${MAKEOPTS} -C ports/unix submodules
         - make ${MAKEOPTS} -C ports/unix deplibs
         - make ${MAKEOPTS} -C ports/unix
-        - make ${MAKEOPTS} -C ports/unix test
+        # OSX has poor time resolution and the following tests do not have the correct output
+        - (cd tests && ./run-tests --exclude 'uasyncio_(basic|heaplock|lock|wait_task)')
+      after_failure:
+        - (cd tests && for exp in *.exp; do testbase=$(basename $exp .exp); echo -e "\nFAILURE $testbase"; diff -u $testbase.exp $testbase.out; done)
 
     # windows port via mingw
     - stage: test
