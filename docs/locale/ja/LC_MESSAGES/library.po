@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-03-28 17:15+0900\n"
+"PO-Revision-Date: 2020-04-04 18:16+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -353,12 +353,14 @@ msgstr "`Server` オブジェクトを返します。"
 #: ../../library/uasyncio.rst:179
 msgid ""
 "This represents a TCP stream connection.  To minimise code this class "
-"implements both a reader and a writer."
+"implements both a reader and a writer, and both ``StreamReader`` and "
+"``StreamWriter`` alias to this class."
 msgstr ""
 "これは TCP ストリーム接続を表します。コードを最小限に抑えるために、"
-"このクラスには読み取りと書き込みの両方を実装しています。"
+"このクラスには読み取りと書き込みの両方を実装しています。
+"StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
 
-#: ../../library/uasyncio.rst:184
+#: ../../library/uasyncio.rst:185
 msgid ""
 "Get extra information about the stream, given by *v*.  The valid values "
 "for *v* are: ``peername``."
@@ -366,23 +368,23 @@ msgstr ""
 "*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
 "``peername`` です。"
 
-#: ../../library/uasyncio.rst:189
+#: ../../library/uasyncio.rst:190
 msgid "Close the stream."
 msgstr "ストリームをクローズします。"
 
-#: ../../library/uasyncio.rst:193
+#: ../../library/uasyncio.rst:194
 msgid "Wait for the stream to close."
 msgstr "ストリームがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:199
+#: ../../library/uasyncio.rst:200
 msgid "Read up to *n* bytes and return them."
 msgstr "最大 *n* バイトを読み取って返します。"
 
-#: ../../library/uasyncio.rst:205
+#: ../../library/uasyncio.rst:206
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/uasyncio.rst:211
+#: ../../library/uasyncio.rst:212
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -392,35 +394,35 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/uasyncio.rst:217
+#: ../../library/uasyncio.rst:218
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/uasyncio.rst:223
+#: ../../library/uasyncio.rst:224
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
 msgstr ""
 これは、から返されるサーバークラスを表しますstart_server。ステートメントで使用して、終了時にサーバーを閉じることができます。async with
 
-#: ../../library/uasyncio.rst:228
+#: ../../library/uasyncio.rst:229
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/uasyncio.rst:232
+#: ../../library/uasyncio.rst:233
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:237
+#: ../../library/uasyncio.rst:238
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/uasyncio.rst:241
+#: ../../library/uasyncio.rst:242
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 タスクのスケジュールと実行に使用されるイベントループを返します。を参照してくださいLoop。
 
-#: ../../library/uasyncio.rst:245
+#: ../../library/uasyncio.rst:246
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -428,15 +430,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/uasyncio.rst:250
+#: ../../library/uasyncio.rst:251
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:254
-msgid "Run the event loop forever."
-msgstr "イベントループを永久に実行します。"
+#: ../../library/uasyncio.rst:255
+msgid "Run the event loop until `stop()` is called."
+msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/uasyncio.rst:258
+#: ../../library/uasyncio.rst:259
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -444,9 +446,42 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:263
+#: ../../library/uasyncio.rst:264
+msgid "Stop the event loop."
+msgstr "イベントループを停止します。"
+
+#: ../../library/uasyncio.rst:268
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
+
+#: ../../library/uasyncio.rst:272
+msgid ""
+"Set the exception handler to call when a Task raises an exception that is"
+" not caught.  The *handler* should accept two arguments: ``(loop, "
+"context)``."
+msgstr ""
+"捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
+"*handler* は２つの引数 ``(loop, context)`` をとります。"
+
+#: ../../library/uasyncio.rst:277
+msgid ""
+"Get the current exception handler.  Returns the handler, or ``None`` if "
+"no custom handler is set."
+msgstr ""
+"現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
+
+#: ../../library/uasyncio.rst:282
+msgid "The default exception handler that is called."
+msgstr "デフォルトの例外ハンドラ。"
+
+#: ../../library/uasyncio.rst:286
+msgid ""
+"Call the current exception handler.  The argument *context* is passed "
+"through and is a dictionary containing keys: ``'message'``, "
+"``'exception'``, ``'future'``."
+msgstr ""
+"現在の例外ハンドラを呼び出します。引数 *context* が渡されます。これはキー "
+"``'message'``, ``'exception'``, ``'future'`` を持つ辞書です。"
 
 #: ../../../library/btree.rst:2
 msgid ":mod:`btree` -- simple BTree database"
