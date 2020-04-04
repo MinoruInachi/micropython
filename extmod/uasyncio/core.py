@@ -23,6 +23,10 @@ class TimeoutError(Exception):
     pass
 
 
+# Used when calling Loop.call_exception_handler
+_exc_context = {"message": "Task exception wasn't retrieved", "exception": None, "future": None}
+
+
 ################################################################################
 # Sleep functions
 
@@ -199,8 +203,9 @@ def run_until_complete(main_task=None):
                 t.waiting = None  # Free waiting queue head
             # Print out exception for detached tasks
             if not waiting and not isinstance(er, excs_stop):
-                print("task raised exception:", t.coro)
-                sys.print_exception(er)
+                _exc_context["exception"] = er
+                _exc_context["future"] = t
+                Loop.call_exception_handler(_exc_context)
             # Indicate task is done
             t.coro = None
 
@@ -214,21 +219,53 @@ def run(coro):
 # Event loop wrapper
 
 
+async def _stopper():
+    pass
+
+
+_stop_task = None
+
+
 class Loop:
-    def create_task(self, coro):
+    _exc_handler = None
+
+    def create_task(coro):
         return create_task(coro)
 
-    def run_forever(self):
-        run_until_complete()
+    def run_forever():
+        global _stop_task
+        _stop_task = Task(_stopper(), globals())
+        run_until_complete(_stop_task)
         # TODO should keep running until .stop() is called, even if there're no tasks left
 
-    def run_until_complete(self, aw):
+    def run_until_complete(aw):
         return run_until_complete(_promote_to_task(aw))
 
-    def close(self):
+    def stop():
+        global _stop_task
+        if _stop_task is not None:
+            _task_queue.push_head(_stop_task)
+            # If stop() is called again, do nothing
+            _stop_task = None
+
+    def close():
         pass
+
+    def set_exception_handler(handler):
+        Loop._exc_handler = handler
+
+    def get_exception_handler():
+        return Loop._exc_handler
+
+    def default_exception_handler(loop, context):
+        print(context["message"])
+        print("future:", context["future"], "coro=", context["future"].coro)
+        sys.print_exception(context["exception"])
+
+    def call_exception_handler(context):
+        (Loop._exc_handler or Loop.default_exception_handler)(Loop, context)
 
 
 # The runq_len and waitq_len arguments are for legacy uasyncio compatibility
 def get_event_loop(runq_len=0, waitq_len=0):
-    return Loop()
+    return Loop

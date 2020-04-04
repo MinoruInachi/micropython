@@ -177,7 +177,8 @@ TCP stream connections
 .. class:: Stream()
     
     This represents a TCP stream connection.  To minimise code this class implements
-    both a reader and a writer.
+    both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
+    this class.
 
 .. method:: Stream.get_extra_info(v)
 
@@ -251,13 +252,36 @@ Event Loop
 
 .. method:: Loop.run_forever()
 
-    Run the event loop forever.
+    Run the event loop until `stop()` is called.
 
 .. method:: Loop.run_until_complete(awaitable)
 
     Run the given *awaitable* until it completes.  If *awaitable* is not a task
     then it will be promoted to one.
 
+.. method:: Loop.stop()
+
+    Stop the event loop.
+
 .. method:: Loop.close()
 
     Close the event loop.
+
+.. method:: Loop.set_exception_handler(handler)
+
+    Set the exception handler to call when a Task raises an exception that is not
+    caught.  The *handler* should accept two arguments: ``(loop, context)``.
+
+.. method:: Loop.get_exception_handler()
+
+    Get the current exception handler.  Returns the handler, or ``None`` if no
+    custom handler is set.
+
+.. method:: Loop.default_exception_handler(context)
+
+    The default exception handler that is called.
+
+.. method:: Loop.call_exception_handler(context)
+
+    Call the current exception handler.  The argument *context* is passed through and
+    is a dictionary containing keys: ``'message'``, ``'exception'``, ``'future'``.
