@@ -54,8 +54,8 @@ SDKCONFIG_COMBINED = $(BUILD)/sdkconfig.combined
 SDKCONFIG_H = $(BUILD)/sdkconfig.h
 
 # The git hash of the currently supported ESP IDF version.
-# These correspond to v3.3.1 and v4.0.
-ESPIDF_SUPHASH_V3 := 143d26aa49df524e10fb8e41a71d12e731b9b71d
+# These correspond to v3.3.2 and v4.0.
+ESPIDF_SUPHASH_V3 := 9e70825d1e1cbf7988cf36981774300066580ea7
 ESPIDF_SUPHASH_V4 := 463a9d8b7f9af8205222b80707f9bdbba7c530e1
 
 define print_supported_git_hash
@@ -382,6 +382,9 @@ OBJ_MP += $(addprefix $(BUILD)/, $(EXTMOD_SRC_C:.c=.o))
 OBJ_MP += $(addprefix $(BUILD)/, $(LIB_SRC_C:.c=.o))
 OBJ_MP += $(addprefix $(BUILD)/, $(DRIVERS_SRC_C:.c=.o))
 
+# Only enable this for the MicroPython source: ignore warnings from esp-idf.
+$(OBJ_MP): CFLAGS += -Wdouble-promotion -Wfloat-conversion
+
 # List of sources for qstr extraction
 SRC_QSTR += $(SRC_C) $(EXTMOD_SRC_C) $(LIB_SRC_C) $(DRIVERS_SRC_C)
 # Append any auto-generated sources that are needed by sources listed in SRC_QSTR
@@ -590,6 +593,7 @@ ESPIDF_BT_NIMBLE_O = $(patsubst %.c,%.o,\
 	$(wildcard $(ESPCOMP)/nimble/nimble/nimble/src/*.c) \
 	$(wildcard $(ESPCOMP)/nimble/nimble/porting/nimble/src/*.c) \
 	$(wildcard $(ESPCOMP)/nimble/nimble/porting/npl/freertos/src/*.c) \
+	$(wildcard $(ESPCOMP)/nimble/port/src/*.c) \
 	)
 endif
 endif

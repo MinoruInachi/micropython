@@ -226,7 +226,7 @@ STATIC mp_uint_t uctypes_struct_size(mp_obj_t desc_in, int layout_type, mp_uint_
             // but scalar structure field is lowered into native Python int, so all
             // type info is lost. So, we cannot say if it's scalar type description,
             // or such lowered scalar.
-            mp_raise_TypeError(MP_ERROR_TEXT("Cannot unambiguously get sizeof scalar"));
+            mp_raise_TypeError(MP_ERROR_TEXT("can't unambiguously get sizeof scalar"));
         }
         syntax_error();
     }
@@ -360,9 +360,9 @@ STATIC mp_obj_t get_aligned(uint val_type, void *p, mp_int_t index) {
             return mp_obj_new_int_from_ll(((int64_t *)p)[index]);
         #if MICROPY_PY_BUILTINS_FLOAT
         case FLOAT32:
-            return mp_obj_new_float((mp_float_t)((float *)p)[index]);
+            return mp_obj_new_float_from_f(((float *)p)[index]);
         case FLOAT64:
-            return mp_obj_new_float((mp_float_t)((double *)p)[index]);
+            return mp_obj_new_float_from_d(((double *)p)[index]);
         #endif
         default:
             assert(0);
@@ -373,11 +373,10 @@ STATIC mp_obj_t get_aligned(uint val_type, void *p, mp_int_t index) {
 STATIC void set_aligned(uint val_type, void *p, mp_int_t index, mp_obj_t val) {
     #if MICROPY_PY_BUILTINS_FLOAT
     if (val_type == FLOAT32 || val_type == FLOAT64) {
-        mp_float_t v = mp_obj_get_float(val);
         if (val_type == FLOAT32) {
-            ((float *)p)[index] = v;
+            ((float *)p)[index] = mp_obj_get_float_to_f(val);
         } else {
-            ((double *)p)[index] = v;
+            ((double *)p)[index] = mp_obj_get_float_to_d(val);
         }
         return;
     }
@@ -557,7 +556,7 @@ STATIC mp_obj_t uctypes_struct_subscr(mp_obj_t self_in, mp_obj_t index_in, mp_ob
     } else {
         // load / store
         if (!mp_obj_is_type(self->desc, &mp_type_tuple)) {
-            mp_raise_TypeError(MP_ERROR_TEXT("struct: cannot index"));
+            mp_raise_TypeError(MP_ERROR_TEXT("struct: can't index"));
         }
 
         mp_obj_tuple_t *t = MP_OBJ_TO_PTR(self->desc);
