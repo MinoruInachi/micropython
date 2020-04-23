@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-04-19 20:22+0900\n"
+"PO-Revision-Date: 2020-04-23 22:34+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1180,24 +1180,78 @@ msgid ""
 msgstr ""
 "内部ホールセンサーの素の値を読み、整数を返します。"
 
-#: ../../library/esp32.rst:42
+#: ../../library/esp32.rst:43
+msgid ""
+"Returns information about the ESP-IDF heap memory regions. One of them "
+"contains the MicroPython heap and the others are used by ESP-IDF, e.g., "
+"for network buffers and other data. This data is useful to get a sense of"
+" how much memory is available to ESP-IDF and the networking stack in "
+"particular. It may shed some light on situations where ESP-IDF operations"
+" fail due to allocation failures. The information returned is *not* "
+"useful to troubleshoot Python allocation failures, use "
+"`micropython.mem_info()` instead."
+msgstr ""
+"ESP-IDF ヒープメモリ領域の情報を返します。"
+"MicroPython はヒープメモリ領域の１つを使っており、他は ESP-IDF が"
+"ネットワークバッファなどのデータ領域として使っています。"
+"この情報は特に ESP-IDF とネットワークスタックで利用可能なメモリ量を"
+"把握するのに役立ちます。また、アロケーションの失敗により ESP-IDF の"
+"操作が失敗した場合の状況を知ることができるかもしれません。"
+"返される情報は Python のアロケーション失敗のトラブルシューティングには"
+"役に立ちませんので、代わりに `micropython.mem_info()` を使ってください。"
+
+#: ../../library/esp32.rst:51
+msgid ""
+"The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` "
+"values but the two most useful ones are predefined as `esp32.HEAP_DATA` "
+"for data heap regions and `esp32.HEAP_EXEC` for executable regions as "
+"used by the native code emitter."
+msgstr ""
+"capabilities パラメータは ESP-IDF の MALLOC_CAP_XXX の値に相当しますが、"
+"最も有用な２つの値は esp32 モジュールに予め定義されています。 "
+"`esp32.HEAP_DATA` はデータヒープ領域用であり、
+"`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
+
+#: ../../library/esp32.rst:55
+msgid ""
+"The return value is a list of 4-tuples, where each 4-tuple corresponds to"
+" one heap and contains: the total bytes, the free bytes, the largest free"
+" block, and the minimum free seen over time."
+msgstr ""
+"戻り値は４項目タプルのリストで、４項目タプルのそれぞれが１つのヒープに対応しています。"
+"タプルの各項目は、合計バイト数、空きバイト数、最大空きブロック数、"
+"時間経過にともなう最小空きブロック数を意味します。"
+
+#: ../../library/esp32.rst:59
+msgid "Example after booting::"
+msgstr "ブート後の例::"
+
+#: ../../library/esp32.rst:61
+msgid ""
+">>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)\n"
+"[(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512,"
+" 35108),\n"
+" (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]"
+msgstr ""
+
+#: ../../library/esp32.rst:66
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:44
+#: ../../library/esp32.rst:68
 msgid "This class gives access to the partitions in the device's flash memory."
 msgstr "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:48
+#: ../../library/esp32.rst:72
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
 "``BOOT`` or ``RUNNING``."
 msgstr ""
-"パーティションを表すオブジェクトを作成します。 *id* は取得するパーティションのラベルである文字列、"
-"または定数 BOOT または RUNNING のいずれかです。"
+"パーティションを表すオブジェクトを作成します。 *id* は取得するパーティションの"
+"ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。"
 
-#: ../../library/esp32.rst:53
+#: ../../library/esp32.rst:77
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects."
@@ -1205,11 +1259,11 @@ msgstr ""
 "*type*, *subtype*, *label* で指定したパーティションを見つけます。"
 "Partition オブジェクトのリストを返します(空の場合もあります)。"
 
-#: ../../library/esp32.rst:58
+#: ../../library/esp32.rst:82
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:66
+#: ../../library/esp32.rst:90
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`uos.AbstractBlockDev`."
@@ -1217,30 +1271,34 @@ msgstr ""
 "これらのメソッドは :class:`uos.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:72
+#: ../../library/esp32.rst:96
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:76
+#: ../../library/esp32.rst:100
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object."
 msgstr ""
 "このパーティションの次の更新パーティションを取得し、新しいパーティションオブジェクトを返します。"
 
-#: ../../library/esp32.rst:84
+#: ../../library/esp32.rst:108
 msgid "Used in the `Partition` constructor to fetch various partitions."
 msgstr "さまざまなパーティションを取得するために `Partition` コンストラクターで使います。"
 
-#: ../../library/esp32.rst:89
+#: ../../library/esp32.rst:113
 msgid "Used in `Partition.find` to specify the partition type."
 msgstr "`Partition.find` でパーティションタイプを指定するために使います。"
 
-#: ../../library/esp32.rst:95
+#: ../../library/esp32.rst:118
+msgid "Used in `idf_heap_info`."
+msgstr "`idf_heap_info` で使います。"
+
+#: ../../library/esp32.rst:123
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:97
+#: ../../library/esp32.rst:125
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -1252,7 +1310,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:102
+#: ../../library/esp32.rst:130
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -1272,7 +1330,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), start=0) # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:110
+#: ../../library/esp32.rst:138
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -1284,7 +1342,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:116
+#: ../../library/esp32.rst:144
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (0-32,768) number. There are "
@@ -1294,7 +1352,7 @@ msgstr ""
 "数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
 "分周器を使えます。"
 
-#: ../../library/esp32.rst:120
+#: ../../library/esp32.rst:148
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -1305,7 +1363,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:125
+#: ../../library/esp32.rst:153
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -1315,7 +1373,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:129
+#: ../../library/esp32.rst:157
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses and carrier transmit. RMT should be considered a"
@@ -1325,7 +1383,7 @@ msgstr ""
 "キャリア送信です。RMT はベータ機能と見なすべきであり、インターフェースは将来変更する可能性が"
 "あります。"
 
-#: ../../library/esp32.rst:136
+#: ../../library/esp32.rst:164
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -1338,7 +1396,7 @@ msgstr ""
 "バインドするピンを設定します。 *clock_div* はソースクロック(80MHz)を分割する"
 "8ビットのクロック分周器であり、RMTチャネルの分解能を指定できます。"
 
-#: ../../library/esp32.rst:144
+#: ../../library/esp32.rst:172
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -1346,7 +1404,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:149
+#: ../../library/esp32.rst:177
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -1354,11 +1412,11 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:154
+#: ../../library/esp32.rst:182
 msgid "Returns True if `RMT.write_pulses` has completed."
 msgstr "`RMT.write_pulses` が完了している場合に True を返します。"
 
-#: ../../library/esp32.rst:156
+#: ../../library/esp32.rst:184
 msgid ""
 "If *timeout* (defined in ticks of ``source_freq / clock_div``) is "
 "specified the method will wait for *timeout* or until `RMT.write_pulses` "
@@ -1368,11 +1426,11 @@ msgstr ""
 "このメソッドはタイムアウトか `RMT.write_pulses` の完了まで待ち、チャンネルがまだ"
 "送信を継続していれば ``False`` を返します。"
 
-#: ../../library/esp32.rst:161
+#: ../../library/esp32.rst:189
 msgid "Avoid using ``wait_done()`` if looping is enabled."
 msgstr "ループが有効になっている場合は  ``wait_done()`` を使わないでください。"
 
-#: ../../library/esp32.rst:165
+#: ../../library/esp32.rst:193
 msgid ""
 "Configure looping on the channel, allowing a stream of pulses to be "
 "indefinitely repeated. *enable_loop* is bool, set to True to enable "
@@ -1381,7 +1439,7 @@ msgstr ""
 "パルスのストリームを無期限に繰り返すチャネルのループを設定します。 "
 "*enable_loop* は bool であり、True はループを有効に設定します。"
 
-#: ../../library/esp32.rst:170
+#: ../../library/esp32.rst:198
 msgid ""
 "Begin sending *pulses*, a list or tuple defining the stream of pulses. "
 "The length of each pulse is defined by a number to be multiplied by the "
@@ -1392,27 +1450,27 @@ msgstr ""
 "各パルスの長さは、チャネルの分機能 ``(1 / (source_freq / clock_div))`` を乗算した値"
 "によって定義されます。 *start* はストリームが 0 で始まるか 1 で始まるかを定義します。"
 
-#: ../../../library/esp32.rst:177
+#: ../../../library/esp32.rst:205
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサ"
 
-#: ../../../library/esp32.rst:181
+#: ../../../library/esp32.rst:209
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
-#: ../../../library/esp32.rst:185
+#: ../../../library/esp32.rst:213
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../../library/esp32.rst:189
+#: ../../../library/esp32.rst:217
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../../library/esp32.rst:193
+#: ../../../library/esp32.rst:221
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../../library/esp32.rst:202
+#: ../../../library/esp32.rst:230
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
