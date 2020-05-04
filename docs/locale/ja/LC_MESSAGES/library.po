@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-04-23 22:34+0900\n"
+"PO-Revision-Date: 2020-05-04 12:20+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1239,10 +1239,14 @@ msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
 #: ../../library/esp32.rst:68
-msgid "This class gives access to the partitions in the device's flash memory."
-msgstr "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
+msgid ""
+"This class gives access to the partitions in the device's flash memory "
+"and includes methods to enable over-the-air (OTA) updates."
+msgstr ""
+"このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
+"加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:72
+#: ../../library/esp32.rst:73
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -1251,19 +1255,22 @@ msgstr ""
 "パーティションを表すオブジェクトを作成します。 *id* は取得するパーティションの"
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。"
 
-#: ../../library/esp32.rst:77
+#: ../../library/esp32.rst:78
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
-"(possibly empty) list of Partition objects."
+"(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
+"matches any subtype and ``label=None`` matches any label."
 msgstr ""
 "*type*, *subtype*, *label* で指定したパーティションを見つけます。"
-"Partition オブジェクトのリストを返します(空の場合もあります)。"
+"戻り値は Partition オブジェクトのリストです(空の場合もあります)。"
+"注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
+"は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:82
+#: ../../library/esp32.rst:84
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:90
+#: ../../library/esp32.rst:92
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`uos.AbstractBlockDev`."
@@ -1271,34 +1278,74 @@ msgstr ""
 "これらのメソッドは :class:`uos.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:96
+#: ../../library/esp32.rst:98
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:100
+#: ../../library/esp32.rst:102
 msgid ""
 "Gets the next update partition after this one, and returns a new "
-"Partition object."
+"Partition object. Typical usage is "
+"``Partition(Partition.RUNNING).get_next_update()`` which returns the next"
+" partition to update given the current running one."
 msgstr ""
-"このパーティションの次の更新パーティションを取得し、新しいパーティションオブジェクトを返します。"
+"このパーティションの次の更新パーティションを取得し、新しいパーティションオブジェクトを"
+"返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
+"これは現在更新中のパーティションの次のパーティションを返します。"
 
 #: ../../library/esp32.rst:108
-msgid "Used in the `Partition` constructor to fetch various partitions."
-msgstr "さまざまなパーティションを取得するために `Partition` コンストラクターで使います。"
+msgid ""
+"Signals that the current boot is considered successful. Calling "
+"``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
+" partition to avoid an automatic rollback at the next boot. This uses the"
+" ESP-IDF \"app rollback\" feature with "
+"\"CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE\" and  an ``OSError(-261)`` is "
+"raised if called on firmware that doesn't have the feature enabled. It is"
+" OK to call ``mark_app_valid_cancel_rollback`` on every boot and it is "
+"not necessary when booting firmare that was loaded using esptool."
+msgstr ""
+"現在のブートが成功したことを示します。"
+"次のブート時の自動ロールバックを避けるために、新しいパーティションの最初のブート時に "
+"``mark_app_valid_cancel_rollback`` を呼び出す必要があります。"
+"これは ESP-IDF の \"app rollback\" 機能を "
+"\"CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE\" 指定で使っているので、"
+"この機能が有効になっていないファームウェアで呼び出すと "OSError(-261)" が"
+"発生します。 ``mark_app_valid_cancel_rollback`` はブートのたびに"
+"呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
+"場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:113
-msgid "Used in `Partition.find` to specify the partition type."
-msgstr "`Partition.find` でパーティションタイプを指定するために使います。"
+#: ../../library/esp32.rst:123
+msgid ""
+"Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
+" is the partition that will be booted at the next reset and ``RUNNING`` "
+"is the currently running partition."
+msgstr ""
+"`Partition` コンストラクタで取得するパーティションを指定するために使います: "
+"``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
+"は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:118
+#: ../../library/esp32.rst:130
+msgid ""
+"Used in `Partition.find` to specify the partition type."
+"Used in `Partition.find` to specify the partition type: ``APP`` is for "
+"bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
+"``ota_1``), and ``DATA`` is for other partitions, e.g. ``nvs``, "
+"``otadata``, ``phy_init``, ``vfs``."
+msgstr ""
+"`Partition.find` でパーティションタイプを指定するために使います: "
+"``APP`` はブート可能なファームウェアパーティション(通常は ``factory``, "
+"``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
+"パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
+
+#: ../../library/esp32.rst:137
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:123
+#: ../../library/esp32.rst:142
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:125
+#: ../../library/esp32.rst:144
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -1310,7 +1357,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:130
+#: ../../library/esp32.rst:149
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -1330,7 +1377,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), start=0) # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:138
+#: ../../library/esp32.rst:157
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -1342,7 +1389,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:144
+#: ../../library/esp32.rst:163
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (0-32,768) number. There are "
@@ -1352,7 +1399,7 @@ msgstr ""
 "数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
 "分周器を使えます。"
 
-#: ../../library/esp32.rst:148
+#: ../../library/esp32.rst:167
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -1363,7 +1410,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:153
+#: ../../library/esp32.rst:172
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -1373,7 +1420,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:157
+#: ../../library/esp32.rst:176
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses and carrier transmit. RMT should be considered a"
@@ -1383,7 +1430,7 @@ msgstr ""
 "キャリア送信です。RMT はベータ機能と見なすべきであり、インターフェースは将来変更する可能性が"
 "あります。"
 
-#: ../../library/esp32.rst:164
+#: ../../library/esp32.rst:183
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -1396,7 +1443,7 @@ msgstr ""
 "バインドするピンを設定します。 *clock_div* はソースクロック(80MHz)を分割する"
 "8ビットのクロック分周器であり、RMTチャネルの分解能を指定できます。"
 
-#: ../../library/esp32.rst:172
+#: ../../library/esp32.rst:191
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -1404,7 +1451,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:177
+#: ../../library/esp32.rst:196
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -1412,11 +1459,11 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:182
+#: ../../library/esp32.rst:201
 msgid "Returns True if `RMT.write_pulses` has completed."
 msgstr "`RMT.write_pulses` が完了している場合に True を返します。"
 
-#: ../../library/esp32.rst:184
+#: ../../library/esp32.rst:203
 msgid ""
 "If *timeout* (defined in ticks of ``source_freq / clock_div``) is "
 "specified the method will wait for *timeout* or until `RMT.write_pulses` "
@@ -1426,11 +1473,11 @@ msgstr ""
 "このメソッドはタイムアウトか `RMT.write_pulses` の完了まで待ち、チャンネルがまだ"
 "送信を継続していれば ``False`` を返します。"
 
-#: ../../library/esp32.rst:189
+#: ../../library/esp32.rst:208
 msgid "Avoid using ``wait_done()`` if looping is enabled."
 msgstr "ループが有効になっている場合は  ``wait_done()`` を使わないでください。"
 
-#: ../../library/esp32.rst:193
+#: ../../library/esp32.rst:212
 msgid ""
 "Configure looping on the channel, allowing a stream of pulses to be "
 "indefinitely repeated. *enable_loop* is bool, set to True to enable "
@@ -1439,7 +1486,7 @@ msgstr ""
 "パルスのストリームを無期限に繰り返すチャネルのループを設定します。 "
 "*enable_loop* は bool であり、True はループを有効に設定します。"
 
-#: ../../library/esp32.rst:198
+#: ../../library/esp32.rst:217
 msgid ""
 "Begin sending *pulses*, a list or tuple defining the stream of pulses. "
 "The length of each pulse is defined by a number to be multiplied by the "
@@ -1450,27 +1497,27 @@ msgstr ""
 "各パルスの長さは、チャネルの分機能 ``(1 / (source_freq / clock_div))`` を乗算した値"
 "によって定義されます。 *start* はストリームが 0 で始まるか 1 で始まるかを定義します。"
 
-#: ../../../library/esp32.rst:205
+#: ../../../library/esp32.rst:224
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサ"
 
-#: ../../../library/esp32.rst:209
+#: ../../../library/esp32.rst:228
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
-#: ../../../library/esp32.rst:213
+#: ../../../library/esp32.rst:232
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../../library/esp32.rst:217
+#: ../../../library/esp32.rst:236
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../../library/esp32.rst:221
+#: ../../../library/esp32.rst:240
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../../library/esp32.rst:230
+#: ../../../library/esp32.rst:249
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
@@ -1919,7 +1966,7 @@ msgid ""
 "filter out non-applicable items, or mark individual descriptions with "
 "\"Availability:\" clauses describing which ports provide a given feature."
 msgstr ""
-"モジュールとその内容の可能性に関する注意: このドキュメンテーションは、"
+"モジュールとその内容の可用性に関する注記: このドキュメンテーションは、"
 "MicroPython プロジェクトで実装されているすべてのモジュールと関数/クラスについて"
 "記述することを目指しています。しかし、MicroPython は高度に構成可能であり、"
 "特定のボード/組み込みシステムへの各ポートは、MicroPython ライブラリのサブセット"
@@ -3696,17 +3743,19 @@ msgstr ""
 msgid ""
 "``hard`` if true a hardware interrupt is used. This reduces the delay "
 "between the pin change and the handler being called. Hard interrupt "
-"handlers may not allocate memory; see :ref:`isr_rules`."
+"handlers may not allocate memory; see :ref:`isr_rules`. Not all ports "
+"support this argument."
 msgstr ""
 "``hard`` が True の場合、ハードウェア割り込みが使用されます。これにより、"
 "ピンの変化と呼び出されるハンドラの間の遅延が小さくなります。ハード割り込みハンドラは"
 "メモリを割り当てません。 :ref:`isr_rules` を参照してください。"
+"ポートによってはこの引数がサポートされていないこともあります。"
 
-#: ../../../library/machine.Pin.rst:220
+#: ../../../library/machine.Pin.rst:221
 msgid "This method returns a callback object."
 msgstr "このメソッドはコールバックオブジェクトを返します。"
 
-#: ../../../library/machine.Pin.rst:225
+#: ../../../library/machine.Pin.rst:226
 msgid ""
 "The following constants are used to configure the pin objects.  Note that"
 " not all constants are available on all ports."
@@ -3714,11 +3763,11 @@ msgstr ""
 "次の定数は、ピンオブジェクトを設定するために使われます。すべてのポートですべての定数を"
 "使えるわけではないことに注意してください。"
 
-#: ../../../library/machine.Pin.rst:234
+#: ../../../library/machine.Pin.rst:235
 msgid "Selects the pin mode."
 msgstr "ピンのモードを選択します。"
 
-#: ../../../library/machine.Pin.rst:239
+#: ../../../library/machine.Pin.rst:240
 msgid ""
 "Selects whether there is a pull up/down resistor.  Use the value ``None``"
 " for no pull."
@@ -3726,11 +3775,11 @@ msgstr ""
 "プルアップ/ダウン抵抗があるかどうかを選択します。プルしないときには ``None`` "
 "を使ってください。"
 
-#: ../../../library/machine.Pin.rst:246
+#: ../../../library/machine.Pin.rst:247
 msgid "Selects the pin drive strength."
 msgstr "ピンのドライブ強度を選択します。"
 
-#: ../../../library/machine.Pin.rst:253
+#: ../../../library/machine.Pin.rst:254
 msgid "Selects the IRQ trigger type."
 msgstr "IRQ トリガタイプを選択します。"
 
@@ -5263,20 +5312,27 @@ msgstr ""
 "wdt.feed()"
 
 #: ../../../library/machine.WDT.rst:18
-msgid "Availability of this class: pyboard, WiPy."
-msgstr "このクラスの可用性: pyboard, WiPy"
+msgid "Availability of this class: pyboard, WiPy, esp8266, esp32."
+msgstr "このクラスがの可用性: pyboard, WiPy, esp8266, esp32"
 
 #: ../../../library/machine.WDT.rst:25
 msgid ""
-"Create a WDT object and start it. The timeout must be given in seconds "
-"and the minimum value that is accepted is 1 second. Once it is running "
-"the timeout cannot be changed and the WDT cannot be stopped either."
+"Create a WDT object and start it. The timeout must be given in "
+"milliseconds. Once it is running the timeout cannot be changed and the "
+"WDT cannot be stopped either."
 msgstr ""
-"WDT オブジェクトを作成して起動します。タイムアウトは秒単位で指定する必要があり、"
-"受け入れられる最小値は1秒です。一度実行するとタイムアウトを変更することはできず、"
-"WDT の停止もできません。"
+"WDT オブジェクトを作成して起動します。タイムアウトはミリ秒単位で指定します。"
+"一度実行するとタイムアウトを変更することはできず、WDT の停止もできません。"
 
-#: ../../../library/machine.WDT.rst:34
+#: ../../library/machine.WDT.rst:28
+msgid ""
+"Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a "
+"timeout cannot be specified, it is determined by the underlying system."
+msgstr ""
+"注記: esp32 ではタイムアウトの最小値が 1 秒になっています。"
+"esp8266 ではタイムアウト値が指定できす、基盤システムによって決定されます。"
+
+#: ../../../library/machine.WDT.rst:36
 msgid ""
 "Feed the WDT to prevent it from resetting the system. The application "
 "should place this call in a sensible place ensuring that the WDT is only "
@@ -11154,13 +11210,17 @@ msgstr "現在サポートされている値は次のとおりです:"
 msgid ""
 "``'mac'``: Returns the device MAC address. If a device has a fixed "
 "address (e.g. PYBD) then it will be returned. Otherwise (e.g. ESP32) a "
-"random address will be generated when the BLE interface is made active."
+"random address will be generated when the BLE interface is made active. "
+"Note: on some ports, accessing this value requires that the interface is "
+"active (so that the MAC address can be queried from the controller)."
 msgstr ""
-"``'mac'``: デバイスの MAC アドレスを返します。（PYBDなど）デバイスに固定アドレスが"
-"ある場合には、その固定アドレスを返します。それ以外の場合（ESP32など）には、BLE"
+"``'mac'``: デバイスの MAC アドレスを返します。(PYBDなど)デバイスに固定アドレスが"
+"ある場合には、その固定アドレスを返します。それ以外(ESP32など)では、BLE "
 "インターフェイスがアクティブになったときにランダムアドレスが生成されます。"
+"注記: ポートによっては、この値にアクセスするのに、(コントローラから MAC "
+"アドレスを取得できるように)インタフェースをアクティブにして"おく必要があります。
 
-#: ../../library/ubluetooth.rst:52
+#: ../../library/ubluetooth.rst:54
 msgid ""
 "``'rxbuf'``: Get/set the size in bytes of the internal buffer used to "
 "store incoming events.  This buffer is global to the entire BLE driver "
@@ -11176,11 +11236,11 @@ msgstr ""
 "セントラル(Central)なロール(Role)がより大きなキャラクタリスティック値を受信"
 "できるようになります。"
 
-#: ../../library/ubluetooth.rst:60
+#: ../../library/ubluetooth.rst:62
 msgid "Event Handling"
 msgstr "イベント処理"
 
-#: ../../library/ubluetooth.rst:64
+#: ../../library/ubluetooth.rst:66
 msgid ""
 "Registers a callback for events from the BLE stack. The *handler* takes "
 "two arguments, ``event`` (which will be one of the codes below) and "
@@ -11190,7 +11250,7 @@ msgstr ""
 "コールバックは二つの引数 ``event`` （後述するイベントコードのいずれか）と "
 "``data`` (イベント固有の値のタプル）をとります。
 
-#: ../../library/ubluetooth.rst:68
+#: ../../library/ubluetooth.rst:70
 msgid ""
 "The optional *trigger* parameter allows you to set a mask of events that "
 "your program is interested in. The default is all events."
@@ -11198,7 +11258,7 @@ msgstr ""
 "オプションの *trigger* パラメーターを指定すると、プログラムが対象とするイベントの"
 "マスクを設定できます。デフォルトはすべてのイベントです。"
 
-#: ../../library/ubluetooth.rst:71
+#: ../../library/ubluetooth.rst:73
 msgid ""
 "Note: the ``addr``, ``adv_data``, ``char_data``, ``notify_data``, and "
 "``uuid`` entries in the tuples are references to data managed by the "
@@ -11214,11 +11274,11 @@ msgstr ""
 "使う場合、まず ``bytes(addr)`` または ``bluetooth.UUID(uuid)`` などを使って"
 "これらのデータをコピーする必要があります。"
 
-#: ../../library/ubluetooth.rst:78
+#: ../../library/ubluetooth.rst:80
 msgid "An event handler showing all possible events::"
 msgstr "すべてのイベントを処理するイベントハンドラーの例を示します:"
 
-#: ../../library/ubluetooth.rst:80
+#: ../../library/ubluetooth.rst:82
 msgid ""
 "def bt_irq(event, data):\n"
 "    if event == _IRQ_CENTRAL_CONNECT:\n"
@@ -11322,7 +11382,7 @@ msgstr ""
 "        # A peripheral has sent an indicate request.\n"
 "        conn_handle, value_handle, notify_data = data"
 
-#: ../../library/ubluetooth.rst:129
+#: ../../library/ubluetooth.rst:131
 msgid "The event codes are::"
 msgstr "イベントコードには次のものがあります::"
 
@@ -11346,7 +11406,7 @@ msgid ""
 "_IRQ_GATTC_INDICATE                  = const(1 << 14)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:148
+#: ../../library/ubluetooth.rst:150
 msgid ""
 "In order to save space in the firmware, these constants are not included "
 "on the :mod:`ubluetooth` module. Add the ones that you need from the list"
@@ -11355,11 +11415,11 @@ msgstr ""
 "ファームウェアのスペースを節約するために、これらの定数は :mod:`ubluetooth` "
 "モジュールには含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
 
-#: ../../library/ubluetooth.rst:154
+#: ../../library/ubluetooth.rst:156
 msgid "Broadcaster Role (Advertiser)"
 msgstr "ブロードキャスターロール(アドバタイザー)"
 
-#: ../../library/ubluetooth.rst:158
+#: ../../library/ubluetooth.rst:160
 msgid ""
 "Starts advertising at the specified interval (in **micro**\\ seconds). "
 "This interval will be rounded down to the nearest 625us. To stop "
@@ -11369,7 +11429,7 @@ msgstr ""
 "この間隔は、625us に最も近いところで切り捨てられます。アドバタイジングを"
 "停止するには *interval_us* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:162
+#: ../../library/ubluetooth.rst:164
 msgid ""
 "*adv_data* and *resp_data* can be any type that implements the buffer "
 "protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
@@ -11379,7 +11439,7 @@ msgstr ""
 "(``bytes``, ``bytearray``, ``str`` など)。 *adv_data* はすべての"
 "ブロードキャストに含まれ、 *resp_data* はアクティブスキャンへの返信として送信されます。"
 
-#: ../../library/ubluetooth.rst:166
+#: ../../library/ubluetooth.rst:168
 msgid ""
 "Note: if *adv_data* (or *resp_data*) is ``None``, then the data passed to"
 " the previous call to ``gap_advertise`` will be re-used. This allows a "
@@ -11393,26 +11453,26 @@ msgstr ""
 "アドバタイジングを再開できます。アドバタイジングペイロードをクリアするには、"
 "空の ``bytes`` 、すなわち ``b''`` を渡します。"
 
-#: ../../library/ubluetooth.rst:173
+#: ../../library/ubluetooth.rst:175
 msgid "Observer Role (Scanner)"
 msgstr "オブザーバーロール(スキャナー)"
 
-#: ../../library/ubluetooth.rst:177
+#: ../../library/ubluetooth.rst:179
 msgid ""
 "Run a scan operation lasting for the specified duration (in **milli**\\ "
 "seconds)."
 msgstr ""
 "指定された期間(**ミリ** 秒単位)持続するスキャン操作を実行します。"
 
-#: ../../library/ubluetooth.rst:179
+#: ../../library/ubluetooth.rst:181
 msgid "To scan indefinitely, set *duration_ms* to ``0``."
 msgstr "無期限にスキャンするには *duration_ms* を ``0`` に設定します。"
 
-#: ../../library/ubluetooth.rst:181
+#: ../../library/ubluetooth.rst:183
 msgid "To stop scanning, set *duration_ms* to ``None``."
 msgstr "スキャンを停止するには *duration_ms* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:183
+#: ../../library/ubluetooth.rst:185
 msgid ""
 "Use *interval_us* and *window_us* to optionally configure the duty cycle."
 " The scanner will run for *window_us* **micro**\\ seconds every "
@@ -11426,7 +11486,7 @@ msgstr ""
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
 "(バックグラウンドスキャン)。"
 
-#: ../../library/ubluetooth.rst:189
+#: ../../library/ubluetooth.rst:191
 msgid ""
 "For each scan result the ``_IRQ_SCAN_RESULT`` event will be raised, with "
 "event data ``(addr_type, addr, adv_type, rssi, adv_data)``.  ``adv_type``"
@@ -11436,27 +11496,27 @@ msgstr ""
 "イベントデータは ``(addr_type, addr, adv_type, rssi, adv_data)`` です。"
 "``adv_type`` の値は次の Bluetooth 仕様に対応しています:"
 
-#: ../../library/ubluetooth.rst:193
+#: ../../library/ubluetooth.rst:195
 msgid "0x00 - ADV_IND - connectable and scannable undirected advertising"
 msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:194
+#: ../../library/ubluetooth.rst:196
 msgid "0x01 - ADV_DIRECT_IND - connectable directed advertising"
 msgstr "0x01 - ADV_DIRECT_IND - 接続可能な有向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:195
+#: ../../library/ubluetooth.rst:197
 msgid "0x02 - ADV_SCAN_IND - scannable undirected advertising"
 msgstr "0x02 - ADV_SCAN_IND - スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:196
+#: ../../library/ubluetooth.rst:198
 msgid "0x03 - ADV_NONCONN_IND - non-connectable undirected advertising"
 msgstr ""0x03 - ADV_NONCONN_IND - 接続不可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:197
+#: ../../library/ubluetooth.rst:199
 msgid "0x04 - SCAN_RSP - scan response"
 msgstr "0x04 - SCAN_RSP - スキャン応答"
 
-#: ../../library/ubluetooth.rst:199
+#: ../../library/ubluetooth.rst:201
 msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
 "explicitly stopped), the ``_IRQ_SCAN_COMPLETE`` event will be raised."
@@ -11464,11 +11524,11 @@ msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
 "``_IRQ_SCAN_COMPLETE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:204
+#: ../../library/ubluetooth.rst:206
 msgid "Peripheral Role (GATT Server)"
 msgstr "ペリフェラルロール(GATT サーバー)"
 
-#: ../../library/ubluetooth.rst:206
+#: ../../library/ubluetooth.rst:208
 msgid ""
 "A BLE peripheral has a set of registered services. Each service may "
 "contain characteristics, which each have a value. Characteristics can "
@@ -11479,7 +11539,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/ubluetooth.rst:210
+#: ../../library/ubluetooth.rst:212
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -11492,7 +11552,7 @@ msgstr ""
 "さらに、プリフェラルは接続ハンドルを介して接続されたセントラルにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/ubluetooth.rst:215
+#: ../../library/ubluetooth.rst:217
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a central will be truncated to this length. "
@@ -11508,14 +11568,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/ubluetooth.rst:224
+#: ../../library/ubluetooth.rst:226
 msgid ""
 "Configures the peripheral with the specified services, replacing any "
 "existing services."
 msgstr ""
 "指定したサービスでプリフェラルを構成し、既存のサービスを置換します。"
 
-#: ../../library/ubluetooth.rst:227
+#: ../../library/ubluetooth.rst:228
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -11524,7 +11584,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:230
+#: ../../library/ubluetooth.rst:232
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -11532,14 +11592,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:233
+#: ../../library/ubluetooth.rst:235
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:236
+#: ../../library/ubluetooth.rst:238
 msgid ""
 "The **flags** are a bitwise-OR combination of the "
 ":data:`ubluetooth.FLAG_READ`, :data:`ubluetooth.FLAG_WRITE` and "
@@ -11549,7 +11609,7 @@ msgstr ""
 ":data:`ubluetooth.FLAG_WRITE`, :data:`ubluetooth.FLAG_NOTIFY` "
 "のビット論理和の組み合わせです。"
 
-#: ../../library/ubluetooth.rst:240
+#: ../../library/ubluetooth.rst:242
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -11559,7 +11619,7 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/ubluetooth.rst:244
+#: ../../library/ubluetooth.rst:246
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
@@ -11582,7 +11642,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:256
+#: ../../library/ubluetooth.rst:258
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -11593,12 +11653,12 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>` "
 "で使えます。"
 
-#: ../../library/ubluetooth.rst:260
+#: ../../library/ubluetooth.rst:262
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記注:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/ubluetooth.rst:264
+#: ../../library/ubluetooth.rst:266
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote central)."
@@ -11606,12 +11666,12 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートセントラルで書き込まれたもの)を読み取ります。"
 
-#: ../../library/ubluetooth.rst:269
+#: ../../library/ubluetooth.rst:271
 msgid "Writes the local value for this handle, which can be read by a central."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、セントラルによって読み取ることができます。"
 
-#: ../../library/ubluetooth.rst:273
+#: ../../library/ubluetooth.rst:275
 msgid ""
 "Notifies a connected central that this value has changed and that it "
 "should issue a read of the current value from this peripheral."
@@ -11619,7 +11679,7 @@ msgstr ""
 "接続されているセントラルに、この値が変更されたこと、およびこのペリフェラルから"
 "現在の値の読み取りを発行する必要があることを通知します。"
 
-#: ../../library/ubluetooth.rst:276
+#: ../../library/ubluetooth.rst:278
 msgid ""
 "If *data* is specified, then the that value is sent to the central as "
 "part of the notification, avoiding the need for a separate read request. "
@@ -11629,7 +11689,7 @@ msgstr ""
 "これにより個別読み出し要求の必要性を回避します。"
 "これは保存されているローカル値が更新されないことに注意してください。"
 
-#: ../../library/ubluetooth.rst:282
+#: ../../library/ubluetooth.rst:284
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -11637,7 +11697,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/ubluetooth.rst:285
+#: ../../library/ubluetooth.rst:287
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -11651,49 +11711,49 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/ubluetooth.rst:293
+#: ../../library/ubluetooth.rst:295
 msgid "Central Role (GATT Client)"
 msgstr "セントラルロール(GATT クライアント)"
 
-#: ../../library/ubluetooth.rst:288
+#: ../../library/ubluetooth.rst:290
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
-#: ../../library/ubluetooth.rst:299
+#: ../../library/ubluetooth.rst:301
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:303
+#: ../../library/ubluetooth.rst:305
 msgid "Disconnect the specified connection handle."
 msgstr "指定した接続ハンドルを切断します。"
 
-#: ../../library/ubluetooth.rst:305
+#: ../../library/ubluetooth.rst:307
 msgid "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:307
+#: ../../library/ubluetooth.rst:309
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
 msgstr ""
 "接続ハンドルが接続されていなければ ``False`` が返り、さもなければ ``True`` が返ります。"
 
-#: ../../library/ubluetooth.rst:312
+#: ../../library/ubluetooth.rst:314
 msgid "Query a connected peripheral for its services."
 msgstr "サービスについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:314
+#: ../../library/ubluetooth.rst:316
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
 " be raised."
 msgstr ""
 "検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:319
+#: ../../library/ubluetooth.rst:321
 msgid "Query a connected peripheral for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:321
+#: ../../library/ubluetooth.rst:323
 msgid ""
 "For each characteristic discovered, the "
 "``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised."
@@ -11701,11 +11761,11 @@ msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:326
+#: ../../library/ubluetooth.rst:328
 msgid "Query a connected peripheral for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:328
+#: ../../library/ubluetooth.rst:330
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "event will be raised."
@@ -11713,7 +11773,7 @@ msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:333
+#: ../../library/ubluetooth.rst:335
 msgid ""
 "Issue a remote read to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11721,11 +11781,11 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート読み込みを発行します。"
 
-#: ../../library/ubluetooth.rst:336
+#: ../../library/ubluetooth.rst:338
 msgid "On success, the ``_IRQ_GATTC_READ_RESULT`` event will be raised."
 msgstr "成功すると ``_IRQ_GATTC_READ_RESULT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:340
+#: ../../library/ubluetooth.rst:342
 msgid ""
 "Issue a remote write to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11733,14 +11793,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート書き込みを発行します。"
 
-#: ../../library/ubluetooth.rst:343
+#: ../../library/ubluetooth.rst:345
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/ubluetooth.rst:346
+#: ../../library/ubluetooth.rst:348
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote peripheral but no confirmation will be returned, and no "
@@ -11749,7 +11809,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートペリフェラルに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/ubluetooth.rst:349
+#: ../../library/ubluetooth.rst:351
 msgid ""
 "``mode=1`` is a write-with-response: the remote peripheral is requested "
 "to send a response/acknowledgement that it received the data."
@@ -11757,7 +11817,7 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートプリフェラルはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/ubluetooth.rst:353
+#: ../../library/ubluetooth.rst:355
 msgid ""
 "If a response is received from the remote peripheral the "
 "``_IRQ_GATTC_WRITE_STATUS`` event will be raised."
@@ -11765,23 +11825,23 @@ msgstr ""
 "リモートペリフェラルから応答を受信すると ``_IRQ_GATTC_WRITE_STATUS`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:358
+#: ../../library/ubluetooth.rst:360
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/ubluetooth.rst:366
+#: ../../library/ubluetooth.rst:368
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/ubluetooth.rst:368
+#: ../../library/ubluetooth.rst:370
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/ubluetooth.rst:370
+#: ../../library/ubluetooth.rst:372
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/ubluetooth.rst:371
+#: ../../library/ubluetooth.rst:373
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
