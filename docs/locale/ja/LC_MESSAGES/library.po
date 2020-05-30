@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-05-04 12:20+0900\n"
+"PO-Revision-Date: 2020-05-31 01:42+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -4024,11 +4024,18 @@ msgstr "*miso* で SPI mosi ピンを指定できます。"
 msgid "*cs* can be used to specify an SPI chip select pin."
 msgstr "*cs* で SPI チップ選択ピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:55
+#: ../../library/machine.SDCard.rst:54
+msgid ""
+"*freq* selects the SD/MMC interface frequency in Hz (only supported on "
+"the ESP32)."
+msgstr ""
+"*freq* は SD/MMC インタフェースの周波数を Hz で指定します(ESP32 でのみサポート)。"
+
+#: ../../library/machine.SDCard.rst:57
 msgid "Implementation-specific details"
 msgstr "ハードウェア固有の詳細"
 
-#: ../../library/machine.SDCard.rst:57
+#: ../../library/machine.SDCard.rst:59
 msgid ""
 "Different implementations of the ``SDCard`` class on different hardware "
 "support varying subsets of the options above."
@@ -4036,22 +4043,22 @@ msgstr ""
 "異なるハードウェア上の ``SDCard`` クラスの実装は、上記のオプションの"
 "さまざまなサブセットをサポートします。"
 
-#: ../../library/machine.SDCard.rst:61
+#: ../../library/machine.SDCard.rst:63
 msgid "PyBoard"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:63
+#: ../../library/machine.SDCard.rst:65
 msgid ""
 "The standard PyBoard has just one slot. No arguments are necessary or "
 "supported."
 msgstr ""
 "標準の PyBoard にはスロットが1つしかありません。引数は不要またはサポートされていません。"
 
-#: ../../library/machine.SDCard.rst:66
+#: ../../library/machine.SDCard.rst:68
 msgid "ESP32"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:68
+#: ../../library/machine.SDCard.rst:70
 msgid ""
 "The ESP32 provides two channels of SD/MMC hardware and also supports "
 "access to SD Cards through either of the two SPI ports that are generally"
@@ -4068,7 +4075,7 @@ msgstr ""
 "1, 4, 8ビット幅のアクセスをサポートし、スロット1 は 1 または 4ビットアクセスを"
 "サポートします。SPIスロットは1ビットアクセスのみをサポートします。"
 
-#: ../../library/machine.SDCard.rst:76
+#: ../../library/machine.SDCard.rst:78
 msgid ""
 "Slot 0 is used to communicate with on-board flash memory on most ESP32 "
 "modules and so will be unavailable to the user."
@@ -4076,7 +4083,7 @@ msgstr ""
 "スロット 0 は、ほとんどの ESP32 モジュールではオンボードのフラッシュメモリとの通信に"
 "使っているため、ユーザーは使用できません。"
 
-#: ../../library/machine.SDCard.rst:80
+#: ../../library/machine.SDCard.rst:82
 msgid ""
 "Most ESP32 modules that provide an SD card slot using the dedicated "
 "hardware only wire up 1 data pin, so the default value for *width* is 1."
@@ -4084,7 +4091,7 @@ msgstr ""
 "専用ハードウェアを使って SD カードスロットを提供するほとんどの ESP32 モジュールは、"
 "1データピンのみを配線しているため *width* のデフォルト値は1です。"
 
-#: ../../library/machine.SDCard.rst:84
+#: ../../library/machine.SDCard.rst:86
 msgid ""
 "The pins used by the dedicated SD/MMC hardware are fixed. The pins used "
 "by the SPI hardware can be reassigned."
@@ -4092,7 +4099,7 @@ msgstr ""
 "専用の SD/MMC ハードウェアで使われているピンは固定されています。SPI ハードウェアで"
 "使うピンは再割り当てできます。"
 
-#: ../../library/machine.SDCard.rst:87
+#: ../../library/machine.SDCard.rst:89
 msgid ""
 "If any of the SPI signals are remapped then all of the SPI signals will "
 "pass through a GPIO multiplexer unit which can limit the performance of "
@@ -4104,173 +4111,173 @@ msgstr ""
 "SDカードの通常の動作速度は 40MHz であるため、一部のカードで問題が発生する"
 "場合があります。"
 
-#: ../../library/machine.SDCard.rst:93
+#: ../../library/machine.SDCard.rst:95
 msgid "The default (and preferred) pin assignment are as follows:"
 msgstr "デフォルト(および推奨)のピン割り当ては次のとおりです。"
 
-#: ../../library/machine.SDCard.rst:96
+#: ../../library/machine.SDCard.rst:98
 msgid "Slot"
 msgstr "スロット"
 
-#: ../../library/machine.SDCard.rst:96 ../../library/pyb.CAN.rst:256
+#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:256
 msgid "0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:96 ../../library/pyb.CAN.rst:177
+#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:177
 #: ../../library/pyb.CAN.rst:258
 msgid "1"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:96 ../../library/machine.SDCard.rst:105
+#: ../../library/machine.SDCard.rst:98 ../../library/machine.SDCard.rst:105
 #: ../../library/pyb.CAN.rst:173 ../../library/pyb.CAN.rst:175
 #: ../../library/pyb.CAN.rst:260
 msgid "2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:96
+#: ../../library/machine.SDCard.rst:98
 msgid "3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98
+#: ../../library/machine.SDCard.rst:100
 msgid "Signal"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98
+#: ../../library/machine.SDCard.rst:100
 msgid "Pin"
 msgstr "ピン"
 
-#: ../../library/machine.SDCard.rst:100
+#: ../../library/machine.SDCard.rst:102
 msgid "sck"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:100
+#: ../../library/machine.SDCard.rst:102
 msgid "6"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:100
+#: ../../library/machine.SDCard.rst:102
 msgid "14"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:100 ../../library/machine.SDCard.rst:112
+#: ../../library/machine.SDCard.rst:102 ../../library/machine.SDCard.rst:114
 msgid "18"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:101
+#: ../../library/machine.SDCard.rst:103
 msgid "cmd"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:101
+#: ../../library/machine.SDCard.rst:103
 msgid "11"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:101 ../../library/machine.SDCard.rst:102
+#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:104
 msgid "15"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:102
+#: ../../library/machine.SDCard.rst:104
 msgid "cs"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:102 ../../library/machine.SDCard.rst:111
+#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:113
 msgid "5"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:103
+#: ../../library/machine.SDCard.rst:105
 msgid "miso"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:103
+#: ../../library/machine.SDCard.rst:105
 msgid "19"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:107
+#: ../../library/machine.SDCard.rst:105 ../../library/machine.SDCard.rst:109
 msgid "12"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:104
+#: ../../library/machine.SDCard.rst:106
 msgid "mosi"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:104
+#: ../../library/machine.SDCard.rst:106
 msgid "23"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:108
+#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:110
 msgid "13"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:105
+#: ../../library/machine.SDCard.rst:107
 msgid "D0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:105
+#: ../../library/machine.SDCard.rst:107
 msgid "7"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:106
+#: ../../library/machine.SDCard.rst:108
 msgid "D1"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:106
+#: ../../library/machine.SDCard.rst:108
 msgid "8"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:106 ../../library/pyb.CAN.rst:171
+#: ../../library/machine.SDCard.rst:108 ../../library/pyb.CAN.rst:171
 msgid "4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:107
+#: ../../library/machine.SDCard.rst:109
 msgid "D2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:107
+#: ../../library/machine.SDCard.rst:109
 msgid "9"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:108
+#: ../../library/machine.SDCard.rst:110
 msgid "D3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:108
+#: ../../library/machine.SDCard.rst:110
 msgid "10"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:109
+#: ../../library/machine.SDCard.rst:111
 msgid "D4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:109
+#: ../../library/machine.SDCard.rst:111
 msgid "16"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:110
+#: ../../library/machine.SDCard.rst:112
 msgid "D5"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:110
+#: ../../library/machine.SDCard.rst:112
 msgid "17"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:111
+#: ../../library/machine.SDCard.rst:113
 msgid "D6"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:112
+#: ../../library/machine.SDCard.rst:113
 msgid "D7"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:116
+#: ../../library/machine.SDCard.rst:118
 msgid "cc3200"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:118
+#: ../../library/machine.SDCard.rst:120
 msgid ""
 "You can set the pins used for SPI access by passing a tuple as the *pins*"
 " argument."
 msgstr ""
 "*pins* 引数にタプルを渡すことにより、SPI アクセスに使うピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:121
+#: ../../library/machine.SDCard.rst:123
 msgid ""
 "*Note:* The current cc3200 SD card implementation names the this class "
 ":class:`machine.SD` rather than :class:`machine.SDCard` ."
@@ -11222,6 +11229,16 @@ msgstr ""
 
 #: ../../library/ubluetooth.rst:54
 msgid ""
+"``'gap_name'``: Get/set the GAP device name used by service 0x1800, "
+"characteristic 0x2a00.  This can be set at any time and changed multiple "
+"times."
+msgstr ""
+"``'gap_name'``: サービス 0x1800、キャラクタリスティック(Characteristic) "
+"0x2a00 で利用する GAP デバイス名を取得/設定します。これはいつでも設定でき、"
+"何度も変更できます。"
+
+#: ../../library/ubluetooth.rst:58
+msgid ""
 "``'rxbuf'``: Get/set the size in bytes of the internal buffer used to "
 "store incoming events.  This buffer is global to the entire BLE driver "
 "and so handles incoming data for all events, including all "
@@ -11236,11 +11253,11 @@ msgstr ""
 "セントラル(Central)なロール(Role)がより大きなキャラクタリスティック値を受信"
 "できるようになります。"
 
-#: ../../library/ubluetooth.rst:62
+#: ../../library/ubluetooth.rst:66
 msgid "Event Handling"
 msgstr "イベント処理"
 
-#: ../../library/ubluetooth.rst:66
+#: ../../library/ubluetooth.rst:70
 msgid ""
 "Registers a callback for events from the BLE stack. The *handler* takes "
 "two arguments, ``event`` (which will be one of the codes below) and "
@@ -11250,7 +11267,7 @@ msgstr ""
 "コールバックは二つの引数 ``event`` （後述するイベントコードのいずれか）と "
 "``data`` (イベント固有の値のタプル）をとります。
 
-#: ../../library/ubluetooth.rst:70
+#: ../../library/ubluetooth.rst:74
 msgid ""
 "The optional *trigger* parameter allows you to set a mask of events that "
 "your program is interested in. The default is all events."
@@ -11258,7 +11275,7 @@ msgstr ""
 "オプションの *trigger* パラメーターを指定すると、プログラムが対象とするイベントの"
 "マスクを設定できます。デフォルトはすべてのイベントです。"
 
-#: ../../library/ubluetooth.rst:73
+#: ../../library/ubluetooth.rst:77
 msgid ""
 "Note: the ``addr``, ``adv_data``, ``char_data``, ``notify_data``, and "
 "``uuid`` entries in the tuples are references to data managed by the "
@@ -11274,11 +11291,11 @@ msgstr ""
 "使う場合、まず ``bytes(addr)`` または ``bluetooth.UUID(uuid)`` などを使って"
 "これらのデータをコピーする必要があります。"
 
-#: ../../library/ubluetooth.rst:80
+#: ../../library/ubluetooth.rst:84
 msgid "An event handler showing all possible events::"
 msgstr "すべてのイベントを処理するイベントハンドラーの例を示します:"
 
-#: ../../library/ubluetooth.rst:82
+#: ../../library/ubluetooth.rst:86
 msgid ""
 "def bt_irq(event, data):\n"
 "    if event == _IRQ_CENTRAL_CONNECT:\n"
@@ -11382,11 +11399,11 @@ msgstr ""
 "        # A peripheral has sent an indicate request.\n"
 "        conn_handle, value_handle, notify_data = data"
 
-#: ../../library/ubluetooth.rst:131
+#: ../../library/ubluetooth.rst:135
 msgid "The event codes are::"
 msgstr "イベントコードには次のものがあります::"
 
-#: ../../library/ubluetooth.rst:131
+#: ../../library/ubluetooth.rst:137
 msgid ""
 "from micropython import const\n"
 "_IRQ_CENTRAL_CONNECT                 = const(1 << 0)\n"
@@ -11406,7 +11423,7 @@ msgid ""
 "_IRQ_GATTC_INDICATE                  = const(1 << 14)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:150
+#: ../../library/ubluetooth.rst:154
 msgid ""
 "In order to save space in the firmware, these constants are not included "
 "on the :mod:`ubluetooth` module. Add the ones that you need from the list"
@@ -11415,11 +11432,11 @@ msgstr ""
 "ファームウェアのスペースを節約するために、これらの定数は :mod:`ubluetooth` "
 "モジュールには含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
 
-#: ../../library/ubluetooth.rst:156
+#: ../../library/ubluetooth.rst:160
 msgid "Broadcaster Role (Advertiser)"
 msgstr "ブロードキャスターロール(アドバタイザー)"
 
-#: ../../library/ubluetooth.rst:160
+#: ../../library/ubluetooth.rst:164
 msgid ""
 "Starts advertising at the specified interval (in **micro**\\ seconds). "
 "This interval will be rounded down to the nearest 625us. To stop "
@@ -11429,7 +11446,7 @@ msgstr ""
 "この間隔は、625us に最も近いところで切り捨てられます。アドバタイジングを"
 "停止するには *interval_us* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:164
+#: ../../library/ubluetooth.rst:168
 msgid ""
 "*adv_data* and *resp_data* can be any type that implements the buffer "
 "protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
@@ -11439,7 +11456,7 @@ msgstr ""
 "(``bytes``, ``bytearray``, ``str`` など)。 *adv_data* はすべての"
 "ブロードキャストに含まれ、 *resp_data* はアクティブスキャンへの返信として送信されます。"
 
-#: ../../library/ubluetooth.rst:168
+#: ../../library/ubluetooth.rst:172
 msgid ""
 "Note: if *adv_data* (or *resp_data*) is ``None``, then the data passed to"
 " the previous call to ``gap_advertise`` will be re-used. This allows a "
@@ -11453,26 +11470,26 @@ msgstr ""
 "アドバタイジングを再開できます。アドバタイジングペイロードをクリアするには、"
 "空の ``bytes`` 、すなわち ``b''`` を渡します。"
 
-#: ../../library/ubluetooth.rst:175
+#: ../../library/ubluetooth.rst:179
 msgid "Observer Role (Scanner)"
 msgstr "オブザーバーロール(スキャナー)"
 
-#: ../../library/ubluetooth.rst:179
+#: ../../library/ubluetooth.rst:183
 msgid ""
 "Run a scan operation lasting for the specified duration (in **milli**\\ "
 "seconds)."
 msgstr ""
 "指定された期間(**ミリ** 秒単位)持続するスキャン操作を実行します。"
 
-#: ../../library/ubluetooth.rst:181
+#: ../../library/ubluetooth.rst:185
 msgid "To scan indefinitely, set *duration_ms* to ``0``."
 msgstr "無期限にスキャンするには *duration_ms* を ``0`` に設定します。"
 
-#: ../../library/ubluetooth.rst:183
+#: ../../library/ubluetooth.rst:187
 msgid "To stop scanning, set *duration_ms* to ``None``."
 msgstr "スキャンを停止するには *duration_ms* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:185
+#: ../../library/ubluetooth.rst:189
 msgid ""
 "Use *interval_us* and *window_us* to optionally configure the duty cycle."
 " The scanner will run for *window_us* **micro**\\ seconds every "
@@ -11486,7 +11503,7 @@ msgstr ""
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
 "(バックグラウンドスキャン)。"
 
-#: ../../library/ubluetooth.rst:191
+#: ../../library/ubluetooth.rst:195
 msgid ""
 "For each scan result the ``_IRQ_SCAN_RESULT`` event will be raised, with "
 "event data ``(addr_type, addr, adv_type, rssi, adv_data)``.  ``adv_type``"
@@ -11496,27 +11513,27 @@ msgstr ""
 "イベントデータは ``(addr_type, addr, adv_type, rssi, adv_data)`` です。"
 "``adv_type`` の値は次の Bluetooth 仕様に対応しています:"
 
-#: ../../library/ubluetooth.rst:195
+#: ../../library/ubluetooth.rst:199
 msgid "0x00 - ADV_IND - connectable and scannable undirected advertising"
 msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:196
+#: ../../library/ubluetooth.rst:200
 msgid "0x01 - ADV_DIRECT_IND - connectable directed advertising"
 msgstr "0x01 - ADV_DIRECT_IND - 接続可能な有向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:197
+#: ../../library/ubluetooth.rst:201
 msgid "0x02 - ADV_SCAN_IND - scannable undirected advertising"
 msgstr "0x02 - ADV_SCAN_IND - スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:198
+#: ../../library/ubluetooth.rst:202
 msgid "0x03 - ADV_NONCONN_IND - non-connectable undirected advertising"
 msgstr ""0x03 - ADV_NONCONN_IND - 接続不可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:199
+#: ../../library/ubluetooth.rst:203
 msgid "0x04 - SCAN_RSP - scan response"
 msgstr "0x04 - SCAN_RSP - スキャン応答"
 
-#: ../../library/ubluetooth.rst:201
+#: ../../library/ubluetooth.rst:205
 msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
 "explicitly stopped), the ``_IRQ_SCAN_COMPLETE`` event will be raised."
@@ -11524,11 +11541,11 @@ msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
 "``_IRQ_SCAN_COMPLETE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:206
+#: ../../library/ubluetooth.rst:210
 msgid "Peripheral Role (GATT Server)"
 msgstr "ペリフェラルロール(GATT サーバー)"
 
-#: ../../library/ubluetooth.rst:208
+#: ../../library/ubluetooth.rst:212
 msgid ""
 "A BLE peripheral has a set of registered services. Each service may "
 "contain characteristics, which each have a value. Characteristics can "
@@ -11539,7 +11556,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/ubluetooth.rst:212
+#: ../../library/ubluetooth.rst:216
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -11552,7 +11569,7 @@ msgstr ""
 "さらに、プリフェラルは接続ハンドルを介して接続されたセントラルにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/ubluetooth.rst:217
+#: ../../library/ubluetooth.rst:221
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a central will be truncated to this length. "
@@ -11568,14 +11585,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/ubluetooth.rst:226
+#: ../../library/ubluetooth.rst:230
 msgid ""
 "Configures the peripheral with the specified services, replacing any "
 "existing services."
 msgstr ""
 "指定したサービスでプリフェラルを構成し、既存のサービスを置換します。"
 
-#: ../../library/ubluetooth.rst:228
+#: ../../library/ubluetooth.rst:232
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -11584,7 +11601,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:232
+#: ../../library/ubluetooth.rst:236
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -11592,14 +11609,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:235
+#: ../../library/ubluetooth.rst:239
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:238
+#: ../../library/ubluetooth.rst:242
 msgid ""
 "The **flags** are a bitwise-OR combination of the "
 ":data:`ubluetooth.FLAG_READ`, :data:`ubluetooth.FLAG_WRITE` and "
@@ -11609,7 +11626,7 @@ msgstr ""
 ":data:`ubluetooth.FLAG_WRITE`, :data:`ubluetooth.FLAG_NOTIFY` "
 "のビット論理和の組み合わせです。"
 
-#: ../../library/ubluetooth.rst:242
+#: ../../library/ubluetooth.rst:246
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -11619,14 +11636,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/ubluetooth.rst:246
+#: ../../library/ubluetooth.rst:250
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/ubluetooth.rst:246
+#: ../../library/ubluetooth.rst:252
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -11642,7 +11659,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:258
+#: ../../library/ubluetooth.rst:262
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -11653,12 +11670,12 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>` "
 "で使えます。"
 
-#: ../../library/ubluetooth.rst:262
+#: ../../library/ubluetooth.rst:266
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記注:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/ubluetooth.rst:266
+#: ../../library/ubluetooth.rst:270
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote central)."
@@ -11666,12 +11683,12 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートセントラルで書き込まれたもの)を読み取ります。"
 
-#: ../../library/ubluetooth.rst:271
+#: ../../library/ubluetooth.rst:275
 msgid "Writes the local value for this handle, which can be read by a central."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、セントラルによって読み取ることができます。"
 
-#: ../../library/ubluetooth.rst:275
+#: ../../library/ubluetooth.rst:279
 msgid ""
 "Notifies a connected central that this value has changed and that it "
 "should issue a read of the current value from this peripheral."
@@ -11679,7 +11696,7 @@ msgstr ""
 "接続されているセントラルに、この値が変更されたこと、およびこのペリフェラルから"
 "現在の値の読み取りを発行する必要があることを通知します。"
 
-#: ../../library/ubluetooth.rst:278
+#: ../../library/ubluetooth.rst:282
 msgid ""
 "If *data* is specified, then the that value is sent to the central as "
 "part of the notification, avoiding the need for a separate read request. "
@@ -11689,7 +11706,7 @@ msgstr ""
 "これにより個別読み出し要求の必要性を回避します。"
 "これは保存されているローカル値が更新されないことに注意してください。"
 
-#: ../../library/ubluetooth.rst:284
+#: ../../library/ubluetooth.rst:288
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -11697,7 +11714,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/ubluetooth.rst:287
+#: ../../library/ubluetooth.rst:291
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -11711,49 +11728,49 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/ubluetooth.rst:295
+#: ../../library/ubluetooth.rst:299
 msgid "Central Role (GATT Client)"
 msgstr "セントラルロール(GATT クライアント)"
 
-#: ../../library/ubluetooth.rst:290
+#: ../../library/ubluetooth.rst:303
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
-#: ../../library/ubluetooth.rst:301
+#: ../../library/ubluetooth.rst:305
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:305
+#: ../../library/ubluetooth.rst:309
 msgid "Disconnect the specified connection handle."
 msgstr "指定した接続ハンドルを切断します。"
 
-#: ../../library/ubluetooth.rst:307
+#: ../../library/ubluetooth.rst:311
 msgid "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:309
+#: ../../library/ubluetooth.rst:313
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
 msgstr ""
 "接続ハンドルが接続されていなければ ``False`` が返り、さもなければ ``True`` が返ります。"
 
-#: ../../library/ubluetooth.rst:314
+#: ../../library/ubluetooth.rst:318
 msgid "Query a connected peripheral for its services."
 msgstr "サービスについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:316
+#: ../../library/ubluetooth.rst:320
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
 " be raised."
 msgstr ""
 "検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:321
+#: ../../library/ubluetooth.rst:325
 msgid "Query a connected peripheral for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:323
+#: ../../library/ubluetooth.rst:327
 msgid ""
 "For each characteristic discovered, the "
 "``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised."
@@ -11761,11 +11778,11 @@ msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:328
+#: ../../library/ubluetooth.rst:332
 msgid "Query a connected peripheral for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:330
+#: ../../library/ubluetooth.rst:334
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "event will be raised."
@@ -11773,7 +11790,7 @@ msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:335
+#: ../../library/ubluetooth.rst:339
 msgid ""
 "Issue a remote read to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11781,11 +11798,11 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート読み込みを発行します。"
 
-#: ../../library/ubluetooth.rst:338
+#: ../../library/ubluetooth.rst:342
 msgid "On success, the ``_IRQ_GATTC_READ_RESULT`` event will be raised."
 msgstr "成功すると ``_IRQ_GATTC_READ_RESULT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:342
+#: ../../library/ubluetooth.rst:346
 msgid ""
 "Issue a remote write to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11793,14 +11810,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート書き込みを発行します。"
 
-#: ../../library/ubluetooth.rst:345
+#: ../../library/ubluetooth.rst:349
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/ubluetooth.rst:348
+#: ../../library/ubluetooth.rst:352
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote peripheral but no confirmation will be returned, and no "
@@ -11809,7 +11826,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートペリフェラルに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/ubluetooth.rst:351
+#: ../../library/ubluetooth.rst:355
 msgid ""
 "``mode=1`` is a write-with-response: the remote peripheral is requested "
 "to send a response/acknowledgement that it received the data."
@@ -11817,7 +11834,7 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートプリフェラルはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/ubluetooth.rst:355
+#: ../../library/ubluetooth.rst:359
 msgid ""
 "If a response is received from the remote peripheral the "
 "``_IRQ_GATTC_WRITE_STATUS`` event will be raised."
@@ -11825,23 +11842,23 @@ msgstr ""
 "リモートペリフェラルから応答を受信すると ``_IRQ_GATTC_WRITE_STATUS`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:360
+#: ../../library/ubluetooth.rst:364
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/ubluetooth.rst:368
+#: ../../library/ubluetooth.rst:372
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/ubluetooth.rst:370
+#: ../../library/ubluetooth.rst:374
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/ubluetooth.rst:372
+#: ../../library/ubluetooth.rst:376
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/ubluetooth.rst:373
+#: ../../library/ubluetooth.rst:377
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
