@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2019 Jim Mussared
+ * Copyright (c) 2020 Philipp Ebensberger
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,34 +24,10 @@
  * THE SOFTWARE.
  */
 
-#include "py/runtime.h"
-#include "py/mperrno.h"
-#include "py/mphal.h"
+#include "pin.h"
 
-#if MICROPY_PY_BLUETOOTH && MICROPY_BLUETOOTH_NIMBLE
+static pin_af_obj_t GPIO_AD_B0_05_af[] = {
+    PIN_AF(GPIO1_IO05, PIN_AF_MODE_ALT5, GPIO1, 0x10B0U),
+};
 
-#include "esp_nimble_hci.h"
-#include "nimble/nimble_port.h"
-#include "nimble/nimble_port_freertos.h"
-
-STATIC void ble_host_task(void *param) {
-    nimble_port_run(); // This function will return only when nimble_port_stop() is executed.
-    nimble_port_freertos_deinit();
-}
-
-void mp_bluetooth_nimble_port_preinit(void) {
-    esp_nimble_hci_and_controller_init();
-}
-
-void mp_bluetooth_nimble_port_postinit(void) {
-}
-
-void mp_bluetooth_nimble_port_deinit(void) {
-    nimble_port_stop();
-}
-
-void mp_bluetooth_nimble_port_start(void) {
-    nimble_port_freertos_init(ble_host_task);
-}
-
-#endif
+pin_obj_t GPIO_AD_B0_05 = PIN(GPIO_AD_B0_05, GPIO1, 5, GPIO_AD_B0_05_af);
