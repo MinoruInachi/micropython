@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-05-31 01:42+0900\n"
+"PO-Revision-Date: 2020-06-17 01:02+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -176,7 +176,7 @@ msgstr "これはコルーチンです。"
 msgid "Sleep for *t* milliseconds."
 msgstr "*t* ミリ秒間スリープします。"
 
-#: ../../library/uasyncio.rst:59
+#: ../../library/uasyncio.rst:59 ../../library/uasyncio.rst:81
 msgid "This is a coroutine, and a MicroPython extension."
 msgstr "これはコルーチンであり、MicroPython 拡張機能です。"
 
@@ -206,6 +206,10 @@ msgid "Returns the return value of *awaitable*."
 msgstr "*awaitable* の戻り値を返します。"
 
 #: ../../library/uasyncio.rst:79
+msgid "Similar to `wait_for` but *timeout* is an integer in milliseconds."
+msgstr "`wait_for` と同様ですが、 *timeout* にはミリ秒単位の整数で指定します。"
+
+#: ../../library/uasyncio.rst:85
 msgid ""
 "Run all *awaitables* concurrently.  Any *awaitables* that are not tasks "
 "are promoted to tasks."
@@ -213,15 +217,15 @@ msgstr ""
 "すべての *awaitables* を同時に実行します。タスクではないすべての *awaitables* は"
 "タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:82
+#: ../../library/uasyncio.rst:88
 msgid "Returns a list of return values of all *awaitables*."
 msgstr "すべての *awaitables* の戻り値のリストを返します。"
 
-#: ../../library/uasyncio.rst:87
+#: ../../library/uasyncio.rst:93
 msgid "class Task"
 msgstr "クラス Task"
 
-#: ../../library/uasyncio.rst:91
+#: ../../library/uasyncio.rst:97
 msgid ""
 "This object wraps a coroutine into a running task.  Tasks can be waited "
 "on using ``await task``, which will wait for the task to complete and "
@@ -231,7 +235,7 @@ msgstr ""
 "タスクは ``await task`` を使って実行終了を待機できます。 "
 "``await task`` はタスクの戻り値を返します。"
 
-#: ../../library/uasyncio.rst:95
+#: ../../library/uasyncio.rst:101
 msgid ""
 "Tasks should not be created directly, rather use `create_task` to create "
 "them."
@@ -239,7 +243,7 @@ msgstr ""
 "タスクのオブジェクトは直接作成するのではなく、 `create_task` を使って"
 "作成してください。"
 
-#: ../../library/uasyncio.rst:99
+#: ../../library/uasyncio.rst:105
 msgid ""
 "Cancel the task by injecting a ``CancelledError`` into it.  The task may "
 "or may not ignore this exception."
@@ -247,62 +251,62 @@ msgstr ""
 "タスクに ``CancelledError`` 例外を発生させることにより、タスクをキャンセルします。"
 "タスクはこの例外を無視する場合としない場合があります。"
 
-#: ../../library/uasyncio.rst:103
+#: ../../library/uasyncio.rst:109
 msgid "class Event"
 msgstr "クラス Event"
 
-#: ../../library/uasyncio.rst:107
+#: ../../library/uasyncio.rst:113
 msgid ""
 "Create a new event which can be used to synchronise tasks.  Events start "
 "in the cleared state."
 msgstr ""
 "タスクの同期に使う新しいイベントを作成します。イベントはクリアされた状態で開始します。"
 
-#: ../../library/uasyncio.rst:112
+#: ../../library/uasyncio.rst:118
 msgid "Returns ``True`` if the event is set, ``False`` otherwise."
 msgstr ""
 "イベントが設定されていれば ``True`` を返し、さもなければ ``False`` を返します。"
 
-#: ../../library/uasyncio.rst:116
+#: ../../library/uasyncio.rst:122
 msgid "Set the event.  Any tasks waiting on the event will be scheduled to run."
 msgstr ""
 "イベントを設定します。イベントを待機しているタスクはすべて実行するようにスケジュールされます。"
 
-#: ../../library/uasyncio.rst:120
+#: ../../library/uasyncio.rst:126
 msgid "Clear the event."
 msgstr "イベントをクリアします。"
 
-#: ../../library/uasyncio.rst:124
+#: ../../library/uasyncio.rst:130
 msgid ""
 "Wait for the event to be set.  If the event is already set then it "
 "returns immediately."
 msgstr ""
 "イベントが設定されるのを待ちます。イベントがすでに設定されている場合は、すぐに戻ります。"
 
-#: ../../library/uasyncio.rst:130
+#: ../../library/uasyncio.rst:136
 msgid "class Lock"
 msgstr "クラス Lock"
 
-#: ../../library/uasyncio.rst:134
+#: ../../library/uasyncio.rst:140
 msgid ""
 "Create a new lock which can be used to coordinate tasks.  Locks start in "
 "the unlocked state."
 msgstr ""
 "タスクの調整に使用できる新しいロックを作成します。ロックは解除状態から始まります。"
 
-#: ../../library/uasyncio.rst:137
+#: ../../library/uasyncio.rst:143
 msgid ""
 "In addition to the methods below, locks can be used in an ``async with`` "
 "statement."
 msgstr ""
 "以下のメソッドに加えて、 ``async with`` ステートメントでロックを使用できます。"
 
-#: ../../library/uasyncio.rst:141
+#: ../../library/uasyncio.rst:147
 msgid "Returns ``True`` if the lock is locked, otherwise ``False``."
 msgstr ""
 "ロックされていれば ``True`` を返し、さもなければ ``False`` を返します。"
 
-#: ../../library/uasyncio.rst:145
+#: ../../library/uasyncio.rst:151
 msgid ""
 "Wait for the lock to be in the unlocked state and then lock it in an "
 "atomic way.  Only one task can acquire the lock at any one time."
@@ -310,7 +314,7 @@ msgstr ""
 "ロックが解除状態になるのを待ってから、アトミックな手段でロックします。"
 "一度に1つのタスクのみがロックを取得できます。"
 
-#: ../../library/uasyncio.rst:152
+#: ../../library/uasyncio.rst:158
 msgid ""
 "Release the lock.  If any tasks are waiting on the lock then the next one"
 " in the queue is scheduled to run and the lock remains locked.  "
@@ -320,11 +324,11 @@ msgstr ""
 "実行されるようスケジュールされ、ロックされたままになります。待機中のタスクが無い場合は、"
 "ロックが解除されます。"
 
-#: ../../library/uasyncio.rst:157
+#: ../../library/uasyncio.rst:163
 msgid "TCP stream connections"
 msgstr "TCP ストリーム接続"
 
-#: ../../library/uasyncio.rst:161
+#: ../../library/uasyncio.rst:167
 msgid ""
 "Open a TCP connection to the given *host* and *port*.  The *host* address"
 " will be resolved using `socket.getaddrinfo`, which is currently a "
@@ -334,7 +338,7 @@ msgstr ""
 "*host* のアドレスは `socket.getaddrinfo` を使って解決されます。"
 "この解決は現在のところブロッキング呼出しです。"
 
-#: ../../library/uasyncio.rst:164
+#: ../../library/uasyncio.rst:170
 msgid ""
 "Returns a pair of streams: a reader and a writer stream. Will raise a "
 "socket-specific ``OSError`` if the host could not be resolved or if the "
@@ -344,7 +348,7 @@ msgstr ""
 "ホストを解決できなかった場合、または接続を確立できなかった場合は、
 "ソケット特有の ``OSError`` 例外を発生します。"
 
-#: ../../library/uasyncio.rst:172
+#: ../../library/uasyncio.rst:178
 msgid ""
 "Start a TCP server on the given *host* and *port*.  The *callback* will "
 "be called with incoming, accepted connections, and be passed 2 arguments:"
@@ -354,11 +358,11 @@ msgstr ""
 "コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
 "(読み取りストリームと書き込みストリーム)で呼び出されます。"
 
-#: ../../library/uasyncio.rst:176
+#: ../../library/uasyncio.rst:182
 msgid "Returns a `Server` object."
 msgstr "`Server` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:182
+#: ../../library/uasyncio.rst:188
 msgid ""
 "This represents a TCP stream connection.  To minimise code this class "
 "implements both a reader and a writer, and both ``StreamReader`` and "
@@ -368,7 +372,7 @@ msgstr ""
 "このクラスには読み取りと書き込みの両方を実装しています。
 "StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
 
-#: ../../library/uasyncio.rst:188
+#: ../../library/uasyncio.rst:194
 msgid ""
 "Get extra information about the stream, given by *v*.  The valid values "
 "for *v* are: ``peername``."
@@ -376,23 +380,23 @@ msgstr ""
 "*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
 "``peername`` です。"
 
-#: ../../library/uasyncio.rst:193
+#: ../../library/uasyncio.rst:199
 msgid "Close the stream."
 msgstr "ストリームをクローズします。"
 
-#: ../../library/uasyncio.rst:194
+#: ../../library/uasyncio.rst:200
 msgid "Wait for the stream to close."
 msgstr "ストリームがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:203
+#: ../../library/uasyncio.rst:209
 msgid "Read up to *n* bytes and return them."
 msgstr "最大 *n* バイトを読み取って返します。"
 
-#: ../../library/uasyncio.rst:209
+#: ../../library/uasyncio.rst:215
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/uasyncio.rst:215
+#: ../../library/uasyncio.rst:221
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -402,11 +406,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/uasyncio.rst:221
+#: ../../library/uasyncio.rst:227
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/uasyncio.rst:227
+#: ../../library/uasyncio.rst:233
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -414,28 +418,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/uasyncio.rst:232
+#: ../../library/uasyncio.rst:238
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/uasyncio.rst:236
+#: ../../library/uasyncio.rst:242
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:241
+#: ../../library/uasyncio.rst:247
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/uasyncio.rst:245
+#: ../../library/uasyncio.rst:251
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/uasyncio.rst:249
+#: ../../library/uasyncio.rst:255
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/uasyncio.rst:251
+#: ../../library/uasyncio.rst:257
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -443,7 +447,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/uasyncio.rst:256
+#: ../../library/uasyncio.rst:262
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -451,15 +455,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/uasyncio.rst:261
+#: ../../library/uasyncio.rst:267
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:265
+#: ../../library/uasyncio.rst:271
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/uasyncio.rst:269
+#: ../../library/uasyncio.rst:275
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -467,15 +471,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:274
+#: ../../library/uasyncio.rst:280
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/uasyncio.rst:278
+#: ../../library/uasyncio.rst:284
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/uasyncio.rst:282
+#: ../../library/uasyncio.rst:288
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -484,18 +488,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/uasyncio.rst:287
+#: ../../library/uasyncio.rst:293
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/uasyncio.rst:292
+#: ../../library/uasyncio.rst:298
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/uasyncio.rst:296
+#: ../../library/uasyncio.rst:302
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "
@@ -1951,9 +1955,11 @@ msgstr ""
 "Python 標準ライブラリへの MicroPython 拡張を実装するモジュール。"
 
 #: ../../../library/index.rst:26
-msgid "Modules specific to a particular `MicroPython port` and thus not portable."
+msgid ""
+"Modules specific to a particular :term:`MicroPython port` and thus not "
+"portable."
 msgstr ""
-"特定の `MicroPython ポート` に固有のモジュールで、移植性がありません。"
+"特定の :term:`MicroPython ポート` に固有のモジュールで、移植性がありません。"
 
 #: ../../../library/index.rst:28
 msgid ""
@@ -1982,13 +1988,13 @@ msgid ""
 "particular system. The best place to find general information of the "
 "availability/non-availability of a particular feature is the \"General "
 "Information\" section which contains information pertaining to a specific"
-" `MicroPython port`."
+" :term:`MicroPython port`."
 msgstr ""
 "これを念頭に置いて、特定のシステム上の MicroPython の特定のビルドでは、"
 "このドキュメントで説明されているモジュールの一部の機能/クラス(またはモジュール全体)が"
 "使えない可能性があります。特定の機能の可用性/非可用性に関する一般的な情報を"
-"見つける最良の場所は、特定の `MicroPython ポート` に関連する情報を含む「一般情報」"
-"の章です。"
+"見つける最良の場所は、特定の :term:`MicroPython ポート <MicroPython port>` "
+"に関連する情報を含む「一般情報」の章です。"
 
 #: ../../../library/index.rst:43
 msgid ""
@@ -5736,10 +5742,10 @@ msgstr ""
 #: ../../library/micropython.rst:102
 msgid ""
 "Note: `heap_locked()` is not enabled on most ports by default, requires "
-"`MICROPY_PY_MICROPYTHON_HEAP_LOCKED`."
+"``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``."
 msgstr ""
 "注記: `heap_locked()` はほとんどのポートで有効になっていません。"
-"有効にするにはビルド時に `MICROPY_PY_MICROPYTHON_HEAP_LOCKED` "
+"有効にするにはビルド時に ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED`` "
 "の設定が必要となります。"
 
 #: ../../../library/micropython.rst:107
@@ -5909,12 +5915,13 @@ msgstr "共通のネットワークアダプターインタフェース"
 #: ../../../library/network.rst:41
 msgid ""
 "This section describes an (implied) abstract base class for all network "
-"interface classes implemented by `MicroPython ports <MicroPython port>` "
-"for different hardware. This means that MicroPython does not actually "
-"provide ``AbstractNIC`` class, but any actual NIC class, as described in "
-"the following sections, implements methods as described here."
+"interface classes implemented by :term:`MicroPython ports <MicroPython "
+"port>` for different hardware. This means that MicroPython does not "
+"actually provide ``AbstractNIC`` class, but any actual NIC class, as "
+"described in the following sections, implements methods as described "
+"here."
 msgstr ""
-"この章では、さまざまなハードウェアの `MicroPython ポート <MicroPython port>` "
+"この章では、さまざまなハードウェアの :term:`MicroPython ポート <MicroPython port>` "
 "で実装されているすべてのネットワークインタフェースクラスの(暗黙の)抽象基底クラスに"
 "ついて説明します。つまり、MicroPython は実際には ``AbstractNIC`` クラスを提供"
 "しませんが、以降の章で説明するように、実際の NIC クラスはすべて、ここで説明する"
@@ -6642,11 +6649,11 @@ msgstr ""
 #: ../../../library/network.WLAN.rst:119
 msgid ""
 "Following are commonly supported parameters (availability of a specific "
-"parameter depends on network technology type, driver, and `MicroPython "
-"port`)."
+"parameter depends on network technology type, driver, and "
+":term:`MicroPython port`)."
 msgstr ""
 "以下は一般的にサポートされているパラメータです(特定のパラメータが使用可能かどうかは、"
-"ネットワーク技術の種類、ドライバ、 `MicroPython ポート <MicroPython port>` "
+"ネットワーク技術の種類、ドライバ、 :term:`MicroPython ポート <MicroPython port>` "
 "によって異なります)。"
 
 #: ../../../library/network.WLAN.rst:123
@@ -11269,14 +11276,6 @@ msgstr ""
 
 #: ../../library/ubluetooth.rst:74
 msgid ""
-"The optional *trigger* parameter allows you to set a mask of events that "
-"your program is interested in. The default is all events."
-msgstr ""
-"オプションの *trigger* パラメーターを指定すると、プログラムが対象とするイベントの"
-"マスクを設定できます。デフォルトはすべてのイベントです。"
-
-#: ../../library/ubluetooth.rst:77
-msgid ""
 "Note: the ``addr``, ``adv_data``, ``char_data``, ``notify_data``, and "
 "``uuid`` entries in the tuples are references to data managed by the "
 ":mod:`ubluetooth` module (i.e. the same instance will be re-used across "
@@ -11291,11 +11290,11 @@ msgstr ""
 "使う場合、まず ``bytes(addr)`` または ``bluetooth.UUID(uuid)`` などを使って"
 "これらのデータをコピーする必要があります。"
 
-#: ../../library/ubluetooth.rst:84
+#: ../../library/ubluetooth.rst:81
 msgid "An event handler showing all possible events::"
 msgstr "すべてのイベントを処理するイベントハンドラーの例を示します:"
 
-#: ../../library/ubluetooth.rst:86
+#: ../../library/ubluetooth.rst:83
 msgid ""
 "def bt_irq(event, data):\n"
 "    if event == _IRQ_CENTRAL_CONNECT:\n"
@@ -11315,7 +11314,7 @@ msgid ""
 "    elif event == _IRQ_SCAN_RESULT:\n"
 "        # A single scan result.\n"
 "        addr_type, addr, adv_type, rssi, adv_data = data\n"
-"    elif event == _IRQ_SCAN_COMPLETE:\n"
+"    elif event == _IRQ_SCAN_DONE:\n"
 "        # Scan duration finished or manually stopped.\n"
 "        pass\n"
 "    elif event == _IRQ_PERIPHERAL_CONNECT:\n"
@@ -11327,19 +11326,45 @@ msgid ""
 "    elif event == _IRQ_GATTC_SERVICE_RESULT:\n"
 "        # Called for each service found by gattc_discover_services().\n"
 "        conn_handle, start_handle, end_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_SERVICE_DONE:\n"
+"        # Called once service discovery is complete.\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, status = data\n"
 "    elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:\n"
 "        # Called for each characteristic found by "
 "gattc_discover_services().\n"
 "        conn_handle, def_handle, value_handle, properties, uuid = data\n"
+"    elif event == _IRQ_GATTC_CHARACTERISTIC_DONE:\n"
+"        # Called once service discovery is complete.\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, status = data\n"
 "    elif event == _IRQ_GATTC_DESCRIPTOR_RESULT:\n"
 "        # Called for each descriptor found by "
 "gattc_discover_descriptors().\n"
 "        conn_handle, dsc_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_DESCRIPTOR_DONE:\n"
+"        # Called once service discovery is complete.\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, status = data\n"
 "    elif event == _IRQ_GATTC_READ_RESULT:\n"
 "        # A gattc_read() has completed.\n"
 "        conn_handle, value_handle, char_data = data\n"
-"    elif event == _IRQ_GATTC_WRITE_STATUS:\n"
+"    elif event == _IRQ_GATTC_READ_DONE:\n"
+"        # A gattc_read() has completed.\n"
+"        # Note: The value_handle will be zero on btstack (but present on "
+"NimBLE).\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, value_handle, status = data\n"
+"    elif event == _IRQ_GATTC_WRITE_DONE:\n"
 "        # A gattc_write() has completed.\n"
+"        # Note: The value_handle will be zero on btstack (but present on "
+"NimBLE).\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
 "        conn_handle, value_handle, status = data\n"
 "    elif event == _IRQ_GATTC_NOTIFY:\n"
 "        # A peripheral has sent a notify request.\n"
@@ -11366,7 +11391,7 @@ msgstr ""
 "    elif event == _IRQ_SCAN_RESULT:\n"
 "        # A single scan result.\n"
 "        addr_type, addr, adv_type, rssi, adv_data = data\n"
-"    elif event == _IRQ_SCAN_COMPLETE:\n"
+"    elif event == _IRQ_SCAN_DONE:\n"
 "        # Scan duration finished or manually stopped.\n"
 "        pass\n"
 "    elif event == _IRQ_PERIPHERAL_CONNECT:\n"
@@ -11378,19 +11403,45 @@ msgstr ""
 "    elif event == _IRQ_GATTC_SERVICE_RESULT:\n"
 "        # Called for each service found by gattc_discover_services().\n"
 "        conn_handle, start_handle, end_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_SERVICE_DONE:\n"
+"        # Called once service discovery is complete.\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, status = data\n"
 "    elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:\n"
 "        # Called for each characteristic found by "
 "gattc_discover_services().\n"
 "        conn_handle, def_handle, value_handle, properties, uuid = data\n"
+"    elif event == _IRQ_GATTC_CHARACTERISTIC_DONE:\n"
+"        # Called once service discovery is complete.\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, status = data\n"
 "    elif event == _IRQ_GATTC_DESCRIPTOR_RESULT:\n"
 "        # Called for each descriptor found by "
 "gattc_discover_descriptors().\n"
 "        conn_handle, dsc_handle, uuid = data\n"
+"    elif event == _IRQ_GATTC_DESCRIPTOR_DONE:\n"
+"        # Called once service discovery is complete.\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, status = data\n"
 "    elif event == _IRQ_GATTC_READ_RESULT:\n"
 "        # A gattc_read() has completed.\n"
 "        conn_handle, value_handle, char_data = data\n"
-"    elif event == _IRQ_GATTC_WRITE_STATUS:\n"
+"    elif event == _IRQ_GATTC_READ_DONE:\n"
+"        # A gattc_read() has completed.\n"
+"        # Note: The value_handle will be zero on btstack (but present on "
+"NimBLE).\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
+"        conn_handle, value_handle, status = data\n"
+"    elif event == _IRQ_GATTC_WRITE_DONE:\n"
 "        # A gattc_write() has completed.\n"
+"        # Note: The value_handle will be zero on btstack (but present on "
+"NimBLE).\n"
+"        # Note: Status will be zero on success, implementation-specific "
+"value otherwise.\n"
 "        conn_handle, value_handle, status = data\n"
 "    elif event == _IRQ_GATTC_NOTIFY:\n"
 "        # A peripheral has sent a notify request.\n"
@@ -11399,31 +11450,35 @@ msgstr ""
 "        # A peripheral has sent an indicate request.\n"
 "        conn_handle, value_handle, notify_data = data"
 
-#: ../../library/ubluetooth.rst:135
+#: ../../library/ubluetooth.rst:151
 msgid "The event codes are::"
 msgstr "イベントコードには次のものがあります::"
 
-#: ../../library/ubluetooth.rst:137
+#: ../../library/ubluetooth.rst:153
 msgid ""
 "from micropython import const\n"
-"_IRQ_CENTRAL_CONNECT                 = const(1 << 0)\n"
-"_IRQ_CENTRAL_DISCONNECT              = const(1 << 1)\n"
-"_IRQ_GATTS_WRITE                     = const(1 << 2)\n"
-"_IRQ_GATTS_READ_REQUEST              = const(1 << 3)\n"
-"_IRQ_SCAN_RESULT                     = const(1 << 4)\n"
-"_IRQ_SCAN_COMPLETE                   = const(1 << 5)\n"
-"_IRQ_PERIPHERAL_CONNECT              = const(1 << 6)\n"
-"_IRQ_PERIPHERAL_DISCONNECT           = const(1 << 7)\n"
-"_IRQ_GATTC_SERVICE_RESULT            = const(1 << 8)\n"
-"_IRQ_GATTC_CHARACTERISTIC_RESULT     = const(1 << 9)\n"
-"_IRQ_GATTC_DESCRIPTOR_RESULT         = const(1 << 10)\n"
-"_IRQ_GATTC_READ_RESULT               = const(1 << 11)\n"
-"_IRQ_GATTC_WRITE_STATUS              = const(1 << 12)\n"
-"_IRQ_GATTC_NOTIFY                    = const(1 << 13)\n"
-"_IRQ_GATTC_INDICATE                  = const(1 << 14)"
+"_IRQ_CENTRAL_CONNECT = const(1)\n"
+"_IRQ_CENTRAL_DISCONNECT = const(2)\n"
+"_IRQ_GATTS_WRITE = const(3)\n"
+"_IRQ_GATTS_READ_REQUEST = const(4)\n"
+"_IRQ_SCAN_RESULT = const(5)\n"
+"_IRQ_SCAN_DONE = const(6)\n"
+"_IRQ_PERIPHERAL_CONNECT = const(7)\n"
+"_IRQ_PERIPHERAL_DISCONNECT = const(8)\n"
+"_IRQ_GATTC_SERVICE_RESULT = const(9)\n"
+"_IRQ_GATTC_SERVICE_DONE = const(10)\n"
+"_IRQ_GATTC_CHARACTERISTIC_RESULT = const(11)\n"
+"_IRQ_GATTC_CHARACTERISTIC_DONE = const(12)\n"
+"_IRQ_GATTC_DESCRIPTOR_RESULT = const(13)\n"
+"_IRQ_GATTC_DESCRIPTOR_DONE = const(14)\n"
+"_IRQ_GATTC_READ_RESULT = const(15)\n"
+"_IRQ_GATTC_READ_DONE = const(16)\n"
+"_IRQ_GATTC_WRITE_DONE = const(17)\n"
+"_IRQ_GATTC_NOTIFY = const(18)\n"
+"_IRQ_GATTC_INDICATE = const(19)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:154
+#: ../../library/ubluetooth.rst:174
 msgid ""
 "In order to save space in the firmware, these constants are not included "
 "on the :mod:`ubluetooth` module. Add the ones that you need from the list"
@@ -11432,11 +11487,11 @@ msgstr ""
 "ファームウェアのスペースを節約するために、これらの定数は :mod:`ubluetooth` "
 "モジュールには含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
 
-#: ../../library/ubluetooth.rst:160
+#: ../../library/ubluetooth.rst:180
 msgid "Broadcaster Role (Advertiser)"
 msgstr "ブロードキャスターロール(アドバタイザー)"
 
-#: ../../library/ubluetooth.rst:164
+#: ../../library/ubluetooth.rst:184
 msgid ""
 "Starts advertising at the specified interval (in **micro**\\ seconds). "
 "This interval will be rounded down to the nearest 625us. To stop "
@@ -11446,7 +11501,7 @@ msgstr ""
 "この間隔は、625us に最も近いところで切り捨てられます。アドバタイジングを"
 "停止するには *interval_us* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:168
+#: ../../library/ubluetooth.rst:188
 msgid ""
 "*adv_data* and *resp_data* can be any type that implements the buffer "
 "protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
@@ -11456,7 +11511,7 @@ msgstr ""
 "(``bytes``, ``bytearray``, ``str`` など)。 *adv_data* はすべての"
 "ブロードキャストに含まれ、 *resp_data* はアクティブスキャンへの返信として送信されます。"
 
-#: ../../library/ubluetooth.rst:172
+#: ../../library/ubluetooth.rst:192
 msgid ""
 "Note: if *adv_data* (or *resp_data*) is ``None``, then the data passed to"
 " the previous call to ``gap_advertise`` will be re-used. This allows a "
@@ -11470,26 +11525,26 @@ msgstr ""
 "アドバタイジングを再開できます。アドバタイジングペイロードをクリアするには、"
 "空の ``bytes`` 、すなわち ``b''`` を渡します。"
 
-#: ../../library/ubluetooth.rst:179
+#: ../../library/ubluetooth.rst:199
 msgid "Observer Role (Scanner)"
 msgstr "オブザーバーロール(スキャナー)"
 
-#: ../../library/ubluetooth.rst:183
+#: ../../library/ubluetooth.rst:203
 msgid ""
 "Run a scan operation lasting for the specified duration (in **milli**\\ "
 "seconds)."
 msgstr ""
 "指定された期間(**ミリ** 秒単位)持続するスキャン操作を実行します。"
 
-#: ../../library/ubluetooth.rst:185
+#: ../../library/ubluetooth.rst:205
 msgid "To scan indefinitely, set *duration_ms* to ``0``."
 msgstr "無期限にスキャンするには *duration_ms* を ``0`` に設定します。"
 
-#: ../../library/ubluetooth.rst:187
+#: ../../library/ubluetooth.rst:207
 msgid "To stop scanning, set *duration_ms* to ``None``."
 msgstr "スキャンを停止するには *duration_ms* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:189
+#: ../../library/ubluetooth.rst:209
 msgid ""
 "Use *interval_us* and *window_us* to optionally configure the duty cycle."
 " The scanner will run for *window_us* **micro**\\ seconds every "
@@ -11503,7 +11558,7 @@ msgstr ""
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
 "(バックグラウンドスキャン)。"
 
-#: ../../library/ubluetooth.rst:195
+#: ../../library/ubluetooth.rst:215
 msgid ""
 "For each scan result the ``_IRQ_SCAN_RESULT`` event will be raised, with "
 "event data ``(addr_type, addr, adv_type, rssi, adv_data)``.  ``adv_type``"
@@ -11513,7 +11568,7 @@ msgstr ""
 "イベントデータは ``(addr_type, addr, adv_type, rssi, adv_data)`` です。"
 "``adv_type`` の値は次の Bluetooth 仕様に対応しています:"
 
-#: ../../library/ubluetooth.rst:199
+#: ../../library/ubluetooth.rst:219
 msgid "0x00 - ADV_IND - connectable and scannable undirected advertising"
 msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジング"
 
@@ -11521,31 +11576,31 @@ msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジン
 msgid "0x01 - ADV_DIRECT_IND - connectable directed advertising"
 msgstr "0x01 - ADV_DIRECT_IND - 接続可能な有向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:201
+#: ../../library/ubluetooth.rst:221
 msgid "0x02 - ADV_SCAN_IND - scannable undirected advertising"
 msgstr "0x02 - ADV_SCAN_IND - スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:202
+#: ../../library/ubluetooth.rst:222
 msgid "0x03 - ADV_NONCONN_IND - non-connectable undirected advertising"
 msgstr ""0x03 - ADV_NONCONN_IND - 接続不可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:203
+#: ../../library/ubluetooth.rst:223
 msgid "0x04 - SCAN_RSP - scan response"
 msgstr "0x04 - SCAN_RSP - スキャン応答"
 
-#: ../../library/ubluetooth.rst:205
+#: ../../library/ubluetooth.rst:225
 msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
-"explicitly stopped), the ``_IRQ_SCAN_COMPLETE`` event will be raised."
+"explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised."
 msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
-"``_IRQ_SCAN_COMPLETE`` イベントが発生します。"
+"``_IRQ_SCAN_DONE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:210
+#: ../../library/ubluetooth.rst:230
 msgid "Peripheral Role (GATT Server)"
 msgstr "ペリフェラルロール(GATT サーバー)"
 
-#: ../../library/ubluetooth.rst:212
+#: ../../library/ubluetooth.rst:232
 msgid ""
 "A BLE peripheral has a set of registered services. Each service may "
 "contain characteristics, which each have a value. Characteristics can "
@@ -11556,7 +11611,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/ubluetooth.rst:216
+#: ../../library/ubluetooth.rst:236
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -11569,7 +11624,7 @@ msgstr ""
 "さらに、プリフェラルは接続ハンドルを介して接続されたセントラルにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/ubluetooth.rst:221
+#: ../../library/ubluetooth.rst:241
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a central will be truncated to this length. "
@@ -11585,14 +11640,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/ubluetooth.rst:230
+#: ../../library/ubluetooth.rst:250
 msgid ""
 "Configures the peripheral with the specified services, replacing any "
 "existing services."
 msgstr ""
 "指定したサービスでプリフェラルを構成し、既存のサービスを置換します。"
 
-#: ../../library/ubluetooth.rst:232
+#: ../../library/ubluetooth.rst:252
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -11601,7 +11656,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:236
+#: ../../library/ubluetooth.rst:256
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -11609,14 +11664,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:239
+#: ../../library/ubluetooth.rst:259
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:242
+#: ../../library/ubluetooth.rst:262
 msgid ""
 "The **flags** are a bitwise-OR combination of the "
 ":data:`ubluetooth.FLAG_READ`, :data:`ubluetooth.FLAG_WRITE` and "
@@ -11626,7 +11681,7 @@ msgstr ""
 ":data:`ubluetooth.FLAG_WRITE`, :data:`ubluetooth.FLAG_NOTIFY` "
 "のビット論理和の組み合わせです。"
 
-#: ../../library/ubluetooth.rst:246
+#: ../../library/ubluetooth.rst:266
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -11636,14 +11691,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/ubluetooth.rst:250
+#: ../../library/ubluetooth.rst:270
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/ubluetooth.rst:252
+#: ../../library/ubluetooth.rst:272
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -11659,7 +11714,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:262
+#: ../../library/ubluetooth.rst:282
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -11670,12 +11725,12 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>` "
 "で使えます。"
 
-#: ../../library/ubluetooth.rst:266
+#: ../../library/ubluetooth.rst:286
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記注:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/ubluetooth.rst:270
+#: ../../library/ubluetooth.rst:290
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote central)."
@@ -11683,12 +11738,12 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートセントラルで書き込まれたもの)を読み取ります。"
 
-#: ../../library/ubluetooth.rst:275
+#: ../../library/ubluetooth.rst:295
 msgid "Writes the local value for this handle, which can be read by a central."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、セントラルによって読み取ることができます。"
 
-#: ../../library/ubluetooth.rst:279
+#: ../../library/ubluetooth.rst:299
 msgid ""
 "Notifies a connected central that this value has changed and that it "
 "should issue a read of the current value from this peripheral."
@@ -11696,7 +11751,7 @@ msgstr ""
 "接続されているセントラルに、この値が変更されたこと、およびこのペリフェラルから"
 "現在の値の読み取りを発行する必要があることを通知します。"
 
-#: ../../library/ubluetooth.rst:282
+#: ../../library/ubluetooth.rst:302
 msgid ""
 "If *data* is specified, then the that value is sent to the central as "
 "part of the notification, avoiding the need for a separate read request. "
@@ -11706,7 +11761,7 @@ msgstr ""
 "これにより個別読み出し要求の必要性を回避します。"
 "これは保存されているローカル値が更新されないことに注意してください。"
 
-#: ../../library/ubluetooth.rst:288
+#: ../../library/ubluetooth.rst:308
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -11714,7 +11769,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/ubluetooth.rst:291
+#: ../../library/ubluetooth.rst:311
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -11728,69 +11783,91 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/ubluetooth.rst:299
+#: ../../library/ubluetooth.rst:319
 msgid "Central Role (GATT Client)"
 msgstr "セントラルロール(GATT クライアント)"
 
-#: ../../library/ubluetooth.rst:303
+#: ../../library/ubluetooth.rst:323
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
-#: ../../library/ubluetooth.rst:305
+#: ../../library/ubluetooth.rst:325
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:309
+#: ../../library/ubluetooth.rst:329
 msgid "Disconnect the specified connection handle."
 msgstr "指定した接続ハンドルを切断します。"
 
-#: ../../library/ubluetooth.rst:311
+#: ../../library/ubluetooth.rst:331
 msgid "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:313
+#: ../../library/ubluetooth.rst:333
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
 msgstr ""
 "接続ハンドルが接続されていなければ ``False`` が返り、さもなければ ``True`` が返ります。"
 
-#: ../../library/ubluetooth.rst:318
+#: ../../library/ubluetooth.rst:338
 msgid "Query a connected peripheral for its services."
 msgstr "サービスについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:320
+#: ../../library/ubluetooth.rst:340
+msgid "Optionally specify a service *uuid* to query for that service only."
+msgstr "オプションで照会するサービスの *uuid* を指定できます。"
+
+#: ../../library/ubluetooth.rst:342
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
-" be raised."
+" be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion."
 msgstr ""
-"検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生します。"
+"検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生し、"
+"検索が完了すると ``_IRQ_GATTC_SERVICE_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:325
+#: ../../library/ubluetooth.rst:347
 msgid "Query a connected peripheral for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:327
+#: ../../library/ubluetooth.rst:349
+msgid ""
+"Optionally specify a characteristic *uuid* to query for that "
+"characteristic only."
+msgstr ""
+"オプションで照会するキャラクタリスティックの *uuid* を指定できます。"
+
+#: ../../library/ubluetooth.rst:352
+msgid ""
+"You can use ``start_handle=1``, ``end_handle=0xffff`` to search for a "
+"characteristic in any service."
+msgstr ""
+"任意のサービスのキャラクタリスティックを検索するには "
+"``start_handle=1``, ``end_handle=0xffff`` とします。"
+
+#: ../../library/ubluetooth.rst:355
 msgid ""
 "For each characteristic discovered, the "
-"``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised."
+"``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised, followed by "
+"``_IRQ_GATTC_CHARACTERISTIC_DONE`` on completion."
 msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
-"イベントが発生します。"
+"イベントが発生し、検索が完了すると ``_IRQ_GATTC_CHARACTERISTIC_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:332
+#: ../../library/ubluetooth.rst:360
 msgid "Query a connected peripheral for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:334
+#: ../../library/ubluetooth.rst:362
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
-"event will be raised."
+"event will be raised, followed by ``_IRQ_GATTC_DESCRIPTOR_DONE`` on "
+"completion."
 msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
-"イベントが発生します。"
+"イベントが発生し、検索が完了すると ``_IRQ_GATTC_DESCRIPTOR_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:339
+#: ../../library/ubluetooth.rst:367
 msgid ""
 "Issue a remote read to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11798,11 +11875,15 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート読み込みを発行します。"
 
-#: ../../library/ubluetooth.rst:342
-msgid "On success, the ``_IRQ_GATTC_READ_RESULT`` event will be raised."
-msgstr "成功すると ``_IRQ_GATTC_READ_RESULT`` イベントが発生します。"
+#: ../../library/ubluetooth.rst:370
+msgid ""
+"When a value is available, the ``_IRQ_GATTC_READ_RESULT`` event will be "
+"raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised."
+msgstr ""
+"値は有効であれば ``_IRQ_GATTC_READ_RESULT`` イベントが発生し、"
+"加えて ``_IRQ_GATTC_READ_DONE`` が発生します。"
 
-#: ../../library/ubluetooth.rst:346
+#: ../../library/ubluetooth.rst:375
 msgid ""
 "Issue a remote write to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11810,14 +11891,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート書き込みを発行します。"
 
-#: ../../library/ubluetooth.rst:349
+#: ../../library/ubluetooth.rst:378
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/ubluetooth.rst:352
+#: ../../library/ubluetooth.rst:381
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote peripheral but no confirmation will be returned, and no "
@@ -11826,7 +11907,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートペリフェラルに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/ubluetooth.rst:355
+#: ../../library/ubluetooth.rst:384
 msgid ""
 "``mode=1`` is a write-with-response: the remote peripheral is requested "
 "to send a response/acknowledgement that it received the data."
@@ -11834,31 +11915,31 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートプリフェラルはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/ubluetooth.rst:359
+#: ../../library/ubluetooth.rst:388
 msgid ""
 "If a response is received from the remote peripheral the "
-"``_IRQ_GATTC_WRITE_STATUS`` event will be raised."
+"``_IRQ_GATTC_WRITE_DONE`` event will be raised."
 msgstr ""
-"リモートペリフェラルから応答を受信すると ``_IRQ_GATTC_WRITE_STATUS`` "
+"リモートペリフェラルから応答を受信すると ``_IRQ_GATTC_WRITE_DONE`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:364
+#: ../../library/ubluetooth.rst:393
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/ubluetooth.rst:372
+#: ../../library/ubluetooth.rst:401
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/ubluetooth.rst:374
+#: ../../library/ubluetooth.rst:403
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/ubluetooth.rst:376
+#: ../../library/ubluetooth.rst:405
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/ubluetooth.rst:377
+#: ../../library/ubluetooth.rst:406
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
@@ -12704,22 +12785,24 @@ msgstr ""
 #: ../../../library/uerrno.rst:9
 msgid ""
 "This module provides access to symbolic error codes for `OSError` "
-"exception. A particular inventory of codes depends on `MicroPython port`."
+"exception. A particular inventory of codes depends on :term:`MicroPython "
+"port`."
 msgstr ""
 "このモジュールは `OSError` 例外のシンボリックエラーコードへのアクセスを提供します。"
-"コードに何があるかは `MicroPython ポート` に依存します。"
+"コードに何があるかは :term:`MicroPython ポート` に依存します。"
 
 #: ../../../library/uerrno.rst:17
 msgid ""
 "Error codes, based on ANSI C/POSIX standard. All error codes start with "
-"\"E\". As mentioned above, inventory of the codes depends on `MicroPython"
-" port`. Errors are usually accessible as ``exc.args[0]`` where ``exc`` is"
-" an instance of `OSError`. Usage example::"
+"\"E\". As mentioned above, inventory of the codes depends on "
+":term:`MicroPython port`. Errors are usually accessible as "
+"``exc.args[0]`` where ``exc`` is an instance of `OSError`. Usage "
+"example::"
 msgstr ""
 "ANSI C/POSIX 規格に基づくエラーコードです。すべてのエラーコードは \"E\" で始まります。"
-"前述のように、コードに何があるかは `MicroPython ポート` に依存します。"
-"``exc`` が `OSError` のインスタンスであるとすると、エラーには通常 ``exc.args[0]`` "
-"でアクセス可能です。たとえば次のようにアクセスします::"
+"前述のように、コードに何があるかは :term:`MicroPython ポート <MicroPython port>` "
+"に依存します。 ``exc`` が `OSError` のインスタンスであるとすると、エラーには通常 "
+"``exc.args[0]`` でアクセス可能です。たとえば次のようにアクセスします::"
 
 #: ../../../library/uerrno.rst:22
 msgid ""
@@ -14052,16 +14135,18 @@ msgstr ""
 "*flags* 引数は無視されます。"
 
 #: ../../../library/ure.rst:141
-msgid "Note: availability of this function depends on `MicroPython port`."
-msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
+msgid "Note: availability of this function depends on :term:`MicroPython port`."
+msgstr ""
+"注記: この関数の可用性は :term:`MicroPython ポート <MicroPython port>` "
+"に依存します。"
 
 #: ../../../library/ure.rst:145
 msgid ""
 "Flag value, display debug information about compiled expression. "
-"(Availability depends on `MicroPython port`.)"
+"(Availability depends on :term:`MicroPython port`.)"
 msgstr ""
 "コンパイルされた正規表現についてのデバッグ情報を表示するフラグ値。"
-"(可用性は `MicroPython ポート` に依存します。)"
+"(可用性は :term:`MicroPython ポート <MicroPython port>` に依存します。)"
 
 #: ../../../library/ure.rst:151
 msgid "Regex objects"
@@ -14121,8 +14206,8 @@ msgid "Return a tuple containing all the substrings of the groups of the match."
 msgstr "マッチしたグループの部分文字列すべてのタプルを返します。"
 
 #: ../../../library/ure.rst:187 ../../../library/ure.rst:202
-msgid "Note: availability of this method depends on `MicroPython port`."
-msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
+msgid "Note: availability of this method depends on :term:`MicroPython port`."
+msgstr "注記: この関数の可用性は :term:`MicroPython ポート <MicroPython port>` に依存します。"
 
 #: ../../../library/ure.rst:192
 msgid ""
@@ -14135,8 +14220,10 @@ msgstr ""
 "指定したグループになります。"
 
 #: ../../../library/ure.rst:196
-msgid "Note: availability of these methods depends on `MicroPython port`."
-msgstr "注記: この関数の可用性は `MicroPython ポート` に依存します。"
+msgid "Note: availability of these methods depends on :term:`MicroPython port`."
+msgstr ""
+"注記: この関数の可用性は :term:`MicroPython ポート <MicroPython port>` "
+"に依存します。"
 
 #: ../../../library/ure.rst:200
 msgid "Returns the 2-tuple ``(match.start(index), match.end(index))``."
@@ -14362,18 +14449,20 @@ msgid ""
 "However, ``socket`` module (note the difference with native MicroPython "
 "``usocket`` module described here) provides CPython-compatible way to "
 "specify addresses using tuples, as described below. Note that depending "
-"on a `MicroPython port`, ``socket`` module can be builtin or need to be "
-"installed from `micropython-lib` (as in the case of `MicroPython Unix "
-"port`), and some ports still accept only numeric addresses in the tuple "
-"format, and require to use `getaddrinfo` function to resolve domain "
-"names."
+"on a :term:`MicroPython port`, ``socket`` module can be builtin or need "
+"to be installed from `micropython-lib` (as in the case of "
+":term:`MicroPython Unix port`), and some ports still accept only numeric "
+"addresses in the tuple format, and require to use `getaddrinfo` function "
+"to resolve domain names."
 msgstr ""
 "ただし ``socket`` モジュール(ここで説明しているネイティブ MicroPython の "
 "``usocket`` との違いに注意)は後述するように、タプルを使ってアドレスを指定する "
-"CPython 互換の手段を提供します。 ``socket`` モジュールは組み込み済であるか、"
-"(`MicroPython Unix port` の場合のように) `micropython-lib` からインストール"
-"が必要で、ポートによってはタプルフォーマットの数値アドレスのみしか受け付けられず、"
-"ドメイン名を解決するために `getaddrinfo` 関数を使う必要があります。"
+"CPython 互換の手段を提供します。 :term:`MicroPython ポート <MicroPython port>` "
+"により、 ``socket`` モジュールは組込み済なこともありますし、"
+"(:term:`MicroPython Unix port` の場合のように) `micropython-lib` から"
+"インストールが必要なこともあります。ポートによってはタプルフォーマットの数値アドレス"
+"のみしか受け付けられないこともありますし、ドメイン名を解決するために `getaddrinfo` "
+"関数を使うことが必要なこともあります。"
 
 #: ../../../library/usocket.rst:45
 msgid "Summing up:"
@@ -14417,7 +14506,7 @@ msgid ""
 "identifier for link-local addresses. Note the domain names are not "
 "accepted as *ipv6_address*, they should be resolved first using "
 "`usocket.getaddrinfo()`. Availability of IPv6 support depends on a "
-"`MicroPython port`."
+":term:`MicroPython port`."
 msgstr ""
 "IPv6: *(ipv6_address, port, flowinfo, scopeid)* -- *ipv6_address* はコロン"
 "表記の数値の IPv6 アドレスを持ち文字列で、たとえば ``\"2001:db8::1["`` などです。 "
@@ -14425,7 +14514,7 @@ msgstr ""
 "あります。 *scopeid* はリンクローカルアドレスのインターフェイススコープ ID です。"
 "ドメイン名は *ipv6_address* として受け入れられないので、 `usocket.getaddrinfo()` "
 "を使って事前に解決しておくよう注意してください。IPv6 サポートの可用性は "
-"`MicroPython port` に依存します。"
+":term:`MicroPython ポート <MicroPython port>` に依存します。"
 
 #: ../../../library/usocket.rst:71
 msgid ""
@@ -14559,10 +14648,11 @@ msgstr ""
 
 #: ../../../library/usocket.rst:144
 msgid ""
-"Address family types. Availability depends on a particular `MicroPython "
-"port`."
+"Address family types. Availability depends on a particular "
+":term:`MicroPython port`."
 msgstr ""
-"アドレスファミリタイプ。可用性は特定の `MicroPython port` に依存します。"
+"アドレスファミリタイプ。可用性は特定の :term:`MicroPython ポート <MicroPython port>` "
+"に依存します。"
 
 #: ../../../library/usocket.rst:149
 msgid "Socket types."
@@ -14570,14 +14660,15 @@ msgstr "ソケットタイプ。"
 
 #: ../../../library/usocket.rst:154
 msgid ""
-"IP protocol numbers. Availability depends on a particular `MicroPython "
-"port`. Note that you don't need to specify these in a call to "
-"`usocket.socket()`, because `SOCK_STREAM` socket type automatically "
-"selects `IPPROTO_TCP`, and `SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only "
-"real use of these constants is as an argument to `setsockopt()`."
+"IP protocol numbers. Availability depends on a particular "
+":term:`MicroPython port`. Note that you don't need to specify these in a "
+"call to `usocket.socket()`, because `SOCK_STREAM` socket type "
+"automatically selects `IPPROTO_TCP`, and `SOCK_DGRAM` - `IPPROTO_UDP`. "
+"Thus, the only real use of these constants is as an argument to "
+"`setsockopt()`."
 msgstr ""
-"IP プロトコル番号。可用性は特定の `MicroPython port` に依存します。"
-"`usocket.socket()` の呼び出しに指定する必要がないことに注意してください。"
+"IP プロトコル番号。可用性は特定の :term:`MicroPython ポート <MicroPython port>` "
+"に依存します。 `usocket.socket()` の呼び出しに指定する必要がないことに注意してください。"
 "なぜなら `SOCK_STREAM` では　`IPPROTO_TCP` 、 `SOCK_DGRAM` では `IPPROTO_UDP` "
 "のソケットタイプが自動的に選択されるからです。したがって、これらの定数の唯一の実際に"
 "使うのは `setsockopt()` の引数としてです。"
@@ -14585,18 +14676,18 @@ msgstr ""
 #: ../../../library/usocket.rst:162
 msgid ""
 "Socket option levels (an argument to `setsockopt()`). The exact inventory"
-" depends on a `MicroPython port`."
+" depends on a :term:`MicroPython port`."
 msgstr ""
-"ソケットオプションレベル(`setsockopt()` の引数)。何があるかは `MicroPython port` "
-"に依存します。"
+"ソケットオプションレベル(`setsockopt()` の引数)。何があるかは "
+":term:`MicroPython ポート <MicroPython port>` に依存します。"
 
 #: ../../../library/usocket.rst:167
 msgid ""
 "Socket options (an argument to `setsockopt()`). The exact inventory "
-"depends on a `MicroPython port`."
+"depends on a :term:`MicroPython port`."
 msgstr ""
-"ソケットオプション(`setsockopt()` の引数)。何があるかは `MicroPython port` "
-"に依存します。"
+"ソケットオプション(`setsockopt()` の引数)。何があるかは "
+":term:`MicroPython ポート <MicroPython port>` に依存します。"
 
 #: ../../../library/usocket.rst:170
 msgid "Constants specific to WiPy:"
@@ -14752,12 +14843,12 @@ msgstr ""
 
 #: ../../../library/usocket.rst:262
 msgid ""
-"Not every `MicroPython port` supports this method. A more portable and "
-"generic solution is to use `uselect.poll` object. This allows to wait on "
-"multiple objects at the same time (and not just on sockets, but on "
+"Not every :term:`MicroPython port` supports this method. A more portable "
+"and generic solution is to use `uselect.poll` object. This allows to wait"
+" on multiple objects at the same time (and not just on sockets, but on "
 "generic `stream` objects which support polling). Example::"
 msgstr ""
-"すべての `MicroPython ポート <MicroPython port>` がこのメソッドをサポートして"
+"すべての :term:`MicroPython ポート <MicroPython port>` がこのメソッドをサポートして"
 "いるわけではありません。よりポータブルで汎用的な解決策は `uselect.poll` オブジェクト"
 "を使うことです。これにより、複数のオブジェクトを同時に待機することができます(ソケット"
 "だけでなく、ポーリングをサポートする汎用の `stream` オブジェクトも対象になります)。"
@@ -14955,11 +15046,12 @@ msgstr ""
 #: ../../../library/ussl.rst:26
 msgid ""
 "Depending on the underlying module implementation in a particular "
-"`MicroPython port`, some or all keyword arguments above may be not "
+":term:`MicroPython port`, some or all keyword arguments above may be not "
 "supported."
 msgstr ""
-"特定の `MicroPython ポート` のモジュールの実装によっては、 上記のキーワード"
-"引数の一部またはすべてがサポートされていない可能性があります。"
+"特定の :term:`MicroPython ポート <MicroPython port>` のモジュールの"
+"実装によっては、 上記のキーワード引数の一部またはすべてがサポートされていない"
+"可能性があります。"
 
 #: ../../../library/ussl.rst:31
 msgid ""

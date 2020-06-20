@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-04-11 12:54+0900\n"
+"PO-Revision-Date: 2020-06-15 00:57+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3565,17 +3565,31 @@ msgstr ""
 "作成されていないかぎりエラーレポートを生成できません。次のコードが割り込みを使用する"
 "プログラムに含まれていると、デバッグが簡単になります。"
 
-#: ../../../reference/isr_rules.rst:45
+#: ../../../reference/isr_rules.rst:41
 msgid ""
 "import micropython\n"
 "micropython.alloc_emergency_exception_buf(100)"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:47
+#: ../../reference/isr_rules.rst:46
+msgid ""
+"The emergency exception buffer can only hold one exception stack trace. "
+"This means that if a second exception is thrown during the handling of an"
+" exception while the heap is locked, that second exception's stack trace "
+"will replace the original one - even if the second exception is cleanly "
+"handled. This can lead to confusing exception messages if the buffer is "
+"later printed."
+msgstr ""
+"この緊急例外バッファには１つの例外スタックトレースしか保持できません。"
+"つまり、ヒープがロックされている間に２つ目の例外が発生した場合、その２つ目の例外の"
+"スタックトレースが元のものに置き換わることになります。"
+"このせいで、バッファを後で表示した場合に、例外メッセージが混乱させてしまうかもしれません。"
+
+#: ../../../reference/isr_rules.rst:52
 msgid "Simplicity"
 msgstr "簡素性"
 
-#: ../../../reference/isr_rules.rst:49
+#: ../../../reference/isr_rules.rst:54
 msgid ""
 "For a variety of reasons it is important to keep ISR code as short and "
 "simple as possible. It should do only what has to be done immediately "
@@ -3596,11 +3610,11 @@ msgstr ""
 "できるだけ迅速にメインループに制御を戻す必要があります。これは特定の MicroPython "
 "の問題ではありませんので、 :ref:`以降 <ISR>` で詳しく説明します。"
 
-#: ../../../reference/isr_rules.rst:57
+#: ../../../reference/isr_rules.rst:62
 msgid "Communication between an ISR and the main program"
 msgstr "ISR とメインプログラムとの間の通信"
 
-#: ../../../reference/isr_rules.rst:59
+#: ../../../reference/isr_rules.rst:64
 msgid ""
 "Normally an ISR needs to communicate with the main program. The simplest "
 "means of doing this is via one or more shared data objects, either "
@@ -3617,11 +3631,11 @@ msgstr ""
 "オブジェクトが、さまざまなデータ型を格納できる配列(array モジュールから)とともに"
 "よく使われます。"
 
-#: ../../../reference/isr_rules.rst:65
+#: ../../../reference/isr_rules.rst:70
 msgid "The use of object methods as callbacks"
 msgstr "コールバックとしてのオブジェクトメソッドの使用"
 
-#: ../../../reference/isr_rules.rst:67
+#: ../../../reference/isr_rules.rst:72
 msgid ""
 "MicroPython supports this powerful technique which enables an ISR to "
 "share instance variables with the underlying code. It also enables a "
@@ -3632,7 +3646,7 @@ msgstr ""
 "サポートしています。また、デバイスドライバを実装するクラスが複数のデバイスインスタンスを"
 "サポートできるようにします。次の例では２つの LED を異なる速度で点滅させます。"
 
-#: ../../../reference/isr_rules.rst:84
+#: ../../../reference/isr_rules.rst:89
 msgid ""
 "import pyb, micropython\n"
 "micropython.alloc_emergency_exception_buf(100)\n"
@@ -3647,7 +3661,7 @@ msgid ""
 "green = Foo(pyb.Timer(2, freq=0.8), pyb.LED(2))"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:85
+#: ../../../reference/isr_rules.rst:90
 msgid ""
 "In this example the ``red`` instance associates timer 4 with LED 1: when "
 "a timer 4 interrupt occurs ``red.cb()`` is called causing LED 1 to change"
@@ -3675,11 +3689,11 @@ msgstr ""
 "はカウンターをインクリメントできます。 ``red`` と ``green`` インスタンスは、"
 "各 LED が状態を変化させた回数を個別にカウントしていきます。"
 
-#: ../../../reference/isr_rules.rst:95
+#: ../../../reference/isr_rules.rst:100
 msgid "Creation of Python objects"
 msgstr "Python オブジェクトの作成"
 
-#: ../../../reference/isr_rules.rst:97
+#: ../../../reference/isr_rules.rst:102
 msgid ""
 "ISR's cannot create instances of Python objects. This is because "
 "MicroPython needs to allocate memory for the object from a store of free "
@@ -3696,7 +3710,7 @@ msgstr ""
 "発生する可能性があります。インタープリタがヒープの整合性を維持するために ISR "
 "コード内でのメモリ割り当てを許可しません。"
 
-#: ../../../reference/isr_rules.rst:103
+#: ../../../reference/isr_rules.rst:108
 msgid ""
 "A consequence of this is that ISR's can't use floating point arithmetic; "
 "this is because floats are Python objects. Similarly an ISR can't append "
@@ -3709,7 +3723,7 @@ msgstr ""
 "どのコード構成がメモリ割り当てを試み、エラーメッセージを出すのかを正確に判断するのは"
 "難しいかもしれません: これが ISR コードを短く簡潔に保つようにするもう一つの理由です。"
 
-#: ../../../reference/isr_rules.rst:107
+#: ../../../reference/isr_rules.rst:112
 msgid ""
 "One way to avoid this issue is for the ISR to use pre-allocated buffers. "
 "For example a class constructor creates a ``bytearray`` instance and a "
@@ -3723,7 +3737,7 @@ msgstr ""
 "メモリ割り当ては、ISR 内ではなく、オブジェクトがインスタンス化されたときにメイン"
 "プログラムコードで行うようにします。"
 
-#: ../../../reference/isr_rules.rst:111
+#: ../../../reference/isr_rules.rst:116
 msgid ""
 "The MicroPython library I/O methods usually provide an option to use a "
 "pre-allocated buffer. For example ``pyb.i2c.recv()`` can accept a mutable"
@@ -3733,14 +3747,14 @@ msgstr ""
 "するオプションを提供します。たとえば ``pyb.i2c.recv()`` は、第１引数として可変"
 "バッファを受け入れることができます。これは ISR 内で使えます。"
 
-#: ../../../reference/isr_rules.rst:114
+#: ../../../reference/isr_rules.rst:119
 msgid ""
 "A means of creating an object without employing a class or globals is as "
 "follows:"
 msgstr ""
 "クラスやグローバルを使わずにオブジェクトを作成する方法は次のとおりです。"
 
-#: ../../../reference/isr_rules.rst:123
+#: ../../../reference/isr_rules.rst:128
 msgid ""
 "def set_volume(t, buf=bytearray(3)):\n"
 "    buf[0] = 0xa5\n"
@@ -3749,7 +3763,7 @@ msgid ""
 "    return buf"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:124
+#: ../../../reference/isr_rules.rst:129
 msgid ""
 "The compiler instantiates the default ``buf`` argument when the function "
 "is loaded for the first time (usually when the module it's in is "
@@ -3758,7 +3772,7 @@ msgstr ""
 "コンパイラは、関数が最初にロードされたとき(普通は関数が定義されているモジュールが "
 "import されたとき)、デフォルトの ``buf`` 引数をインスタンス化します。"
 
-#: ../../../reference/isr_rules.rst:127
+#: ../../../reference/isr_rules.rst:132
 msgid ""
 "An instance of object creation occurs when a reference to a bound method "
 "is created. This means that an ISR cannot pass a bound method to a "
@@ -3770,7 +3784,7 @@ msgstr ""
 "意味します。1つの解決策は、クラスコンストラクターでバインドされたメソッドへの参照を"
 "作成し、その参照をISRに渡すことです。たとえば次のようにします:"
 
-#: ../../../reference/isr_rules.rst:149
+#: ../../../reference/isr_rules.rst:154
 msgid ""
 "class Foo():\n"
 "    def __init__(self):\n"
@@ -3804,7 +3818,7 @@ msgstr ""
 "        # self.bar を渡す割り当て発生\n"
 "        micropython.schedule(self.bar_ref, 0)"
 
-#: ../../../reference/isr_rules.rst:150
+#: ../../../reference/isr_rules.rst:155
 msgid ""
 "Other techniques are to define and instantiate the method in the "
 "constructor or to pass :meth:`Foo.bar` with the argument *self*."
@@ -3812,11 +3826,11 @@ msgstr ""
 "他の手法は、コンストラクター内でメソッドを定義してインスタンス化するか、 "
 ":meth:`Foo.bar` を引数 *self* と渡すかです。"
 
-#: ../../../reference/isr_rules.rst:154
+#: ../../../reference/isr_rules.rst:159
 msgid "Use of Python objects"
 msgstr "Python オブジェクトの使用について"
 
-#: ../../../reference/isr_rules.rst:156
+#: ../../../reference/isr_rules.rst:161
 msgid ""
 "A further restriction on objects arises because of the way Python works. "
 "When an ``import`` statement is executed the Python code is compiled to "
@@ -3837,7 +3851,7 @@ msgstr ""
 "集合、リスト、辞書などの Python オブジェクトは、割り込みが発生した瞬間に内部整合性が"
 "欠落することがあります。"
 
-#: ../../../reference/isr_rules.rst:163
+#: ../../../reference/isr_rules.rst:168
 msgid ""
 "A typical outcome is as follows. On rare occasions the ISR will run at "
 "the precise moment in time when the object is partially updated. When the"
@@ -3852,7 +3866,7 @@ msgstr ""
 "発生しないため、診断が難しい場合があります。この問題を回避する方法は、後の "
 ":ref:`クリティカルセクション <Critical>` で説明します。"
 
-#: ../../../reference/isr_rules.rst:168
+#: ../../../reference/isr_rules.rst:173
 msgid ""
 "It is important to be clear about what constitutes the modification of an"
 " object. An alteration to a built-in type such as a dictionary is "
@@ -3870,7 +3884,7 @@ msgstr ""
 "整数、array、bytearray をインスタンス化することがあります。メインループと ISR "
 "の両方がこれらの内容を変更することは有効です。"
 
-#: ../../../reference/isr_rules.rst:174
+#: ../../../reference/isr_rules.rst:179
 msgid ""
 "MicroPython supports integers of arbitrary precision. Values between "
 "2**30 -1 and -2**30 will be stored in a single machine word. Larger "
@@ -3884,11 +3898,11 @@ msgstr ""
 "したがって、長い整数への変更はアトミックとはみなされません。変数の値が変わると"
 "メモリ割り当てが試みられる可能性があるため、ISR での長い整数の使用は安全ではありません。"
 
-#: ../../../reference/isr_rules.rst:180
+#: ../../../reference/isr_rules.rst:185
 msgid "Overcoming the float limitation"
 msgstr "浮動小数点の制限を克服する"
 
-#: ../../../reference/isr_rules.rst:182
+#: ../../../reference/isr_rules.rst:187
 msgid ""
 "In general it is best to avoid using floats in ISR code: hardware devices"
 " normally handle integers and conversion to floats is normally done in "
@@ -3906,11 +3920,11 @@ msgstr ""
 "これは、プロセッサが浮動小数点値を機械語に格納するためです。浮動小数点数の配列を使用して "
 "ISR とメインプログラムコード間で値を共有できます。"
 
-#: ../../../reference/isr_rules.rst:189
+#: ../../../reference/isr_rules.rst:194
 msgid "Using micropython.schedule"
 msgstr "micropython.schedule の利用"
 
-#: ../../../reference/isr_rules.rst:191
+#: ../../../reference/isr_rules.rst:196
 msgid ""
 "This function enables an ISR to schedule a callback for execution \"very "
 "soon\". The callback is queued for execution which will take place at a "
@@ -3925,7 +3939,7 @@ msgstr ""
 "コールバックは、メインプログラムが Python オブジェクトの更新を完了した時点で実行"
 "されることも保証されているため、コールバックは部分的に更新されたオブジェクトに遭遇しません。"
 
-#: ../../../reference/isr_rules.rst:196
+#: ../../../reference/isr_rules.rst:201
 msgid ""
 "Typical usage is to handle sensor hardware. The ISR acquires data from "
 "the hardware and enables it to issue a further interrupt. It then "
@@ -3935,7 +3949,7 @@ msgstr ""
 "データを取得し、さらに割り込みを発行することができます。その後、データを"
 "処理するコールバックをスケジュールします。"
 
-#: ../../../reference/isr_rules.rst:199
+#: ../../../reference/isr_rules.rst:204
 msgid ""
 "Scheduled callbacks should comply with the principles of interrupt "
 "handler design outlined below. This is to avoid problems resulting from "
@@ -3946,7 +3960,7 @@ msgstr ""
 "したがう必要があります。これは、I/O アクティビティおよびメインプログラムループを"
 "先取りするコードで発生する可能性のある共有データの変更に起因する問題を回避するためです。"
 
-#: ../../../reference/isr_rules.rst:203
+#: ../../../reference/isr_rules.rst:208
 msgid ""
 "Execution time needs to be considered in relation to the frequency with "
 "which interrupts can occur. If an interrupt occurs while the previous "
@@ -3961,7 +3975,7 @@ msgstr ""
 "割り込みの繰り返し率は、制約のないキューの増加と最終的な失敗のリスクを持ち "
 "``RuntimeError`` ます。"
 
-#: ../../../reference/isr_rules.rst:208
+#: ../../../reference/isr_rules.rst:213
 msgid ""
 "If the callback to be passed to `schedule()` is a bound method, consider "
 "the note in \"Creation of Python objects\"."
@@ -3969,11 +3983,11 @@ msgstr ""
 "`schedule()` に渡されるコールバックが結合メソッド(bound method)の場合は、"
 "「Pythonオブジェクトの作成」の注意を考慮してください。"
 
-#: ../../../reference/isr_rules.rst:212
+#: ../../../reference/isr_rules.rst:217
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../../reference/isr_rules.rst:214
+#: ../../../reference/isr_rules.rst:219
 msgid ""
 "If an ISR raises an exception it will not propagate to the main loop. The"
 " interrupt will be disabled unless the exception is handled by the ISR "
@@ -3982,11 +3996,11 @@ msgstr ""
 "ISR が例外を発生させると、メインループには伝播しません。例外が ISR コードによって"
 "処理されない限り、割り込みは無効になります。"
 
-#: ../../../reference/isr_rules.rst:218
+#: ../../../reference/isr_rules.rst:223
 msgid "General issues"
 msgstr "一般的な問題"
 
-#: ../../../reference/isr_rules.rst:220
+#: ../../../reference/isr_rules.rst:225
 msgid ""
 "This is merely a brief introduction to the subject of real time "
 "programming. Beginners should note that design errors in real time "
@@ -4002,11 +4016,11 @@ msgstr ""
 "初期設計の権利を取得し、問題が発生する前に予測することが重要です。割り込みハンドラと"
 "メインプログラムは、次の問題を認識して設計する必要があります。"
 
-#: ../../../reference/isr_rules.rst:229
+#: ../../../reference/isr_rules.rst:234
 msgid "Interrupt handler design"
 msgstr "割り込みハンドラの設計"
 
-#: ../../../reference/isr_rules.rst:231
+#: ../../../reference/isr_rules.rst:236
 msgid ""
 "As mentioned above, ISR's should be designed to be as simple as possible."
 " They should always return in a short, predictable period of time. This "
@@ -4024,7 +4038,7 @@ msgstr ""
 "診断するのが難しい原因となり得る。ISR 実行時間の意味を理解するためには、割り込み"
 "優先順位の基本的な把握が必要です。"
 
-#: ../../../reference/isr_rules.rst:237
+#: ../../../reference/isr_rules.rst:242
 msgid ""
 "Interrupts are organised according to a priority scheme. ISR code may "
 "itself be interrupted by a higher priority interrupt. This has "
@@ -4048,7 +4062,7 @@ msgstr ""
 "です。2番目の割り込みは最初の割り込みの終了時に処理されます。しかし、着信割り込みの"
 "レートがISRのサービス能力を一貫して超えている場合、結果は幸いなことではありません。"
 
-#: ../../../reference/isr_rules.rst:245
+#: ../../../reference/isr_rules.rst:250
 msgid ""
 "Consequently looping constructs should be avoided or minimised. I/O to "
 "devices other than to the interrupting device should normally be avoided:"
@@ -4072,7 +4086,7 @@ msgstr ""
 "そのようなアクセスに要する時間を計算または測定し、アプリケーションへの影響を評価する"
 "必要があります。"
 
-#: ../../../reference/isr_rules.rst:253
+#: ../../../reference/isr_rules.rst:258
 msgid ""
 "There is usually a need to share data between the ISR and the main loop. "
 "This may be done either through global variables or via class or instance"
@@ -4090,7 +4104,7 @@ msgstr ""
 "一部にアクセスしたときに割り込みが発生する場合を考慮する必要があります。これは矛盾を"
 "引き起こす可能性があります。"
 
-#: ../../../reference/isr_rules.rst:259
+#: ../../../reference/isr_rules.rst:264
 msgid ""
 "Consider the following design. An ISR stores incoming data in a "
 "bytearray, then adds the number of bytes received to an integer "
@@ -4109,7 +4123,7 @@ msgstr ""
 "バッファに入れ、受信した番号を更新しますが、メインプログラムは既に番号を読み取って"
 "いるため、最初に受信したデータを処理します。新しく到着したバイトは失われます。"
 
-#: ../../../reference/isr_rules.rst:266
+#: ../../../reference/isr_rules.rst:271
 msgid ""
 "There are various ways of avoiding this hazard, the simplest being to use"
 " a circular buffer. If it is not possible to use a structure with "
@@ -4119,11 +4133,11 @@ msgstr ""
 "ことです。固有のスレッド安全性を持つ構造体を使用することができない場合は、他の方法を"
 "以下で説明します。"
 
-#: ../../../reference/isr_rules.rst:270
+#: ../../../reference/isr_rules.rst:275
 msgid "Reentrancy"
 msgstr "リエントラント性"
 
-#: ../../../reference/isr_rules.rst:272
+#: ../../../reference/isr_rules.rst:277
 msgid ""
 "A potential hazard may occur if a function or method is shared between "
 "the main program and one or more ISR's or between multiple ISR's. The "
@@ -4138,11 +4152,11 @@ msgstr ""
 "関数はリエントラントになるように設計する必要があります。これがどのように行われるかは、"
 "このチュートリアルの範囲を超えた高度なトピックです。"
 
-#: ../../../reference/isr_rules.rst:280
+#: ../../../reference/isr_rules.rst:285
 msgid "Critical sections"
 msgstr "クリティカルセクション"
 
-#: ../../../reference/isr_rules.rst:282
+#: ../../../reference/isr_rules.rst:287
 msgid ""
 "An example of a critical section of code is one which accesses more than "
 "one variable which can be affected by an ISR. If the interrupt happens to"
@@ -4163,7 +4177,7 @@ msgstr ""
 "１つの方法は、セクションの開始前に ``pyb.disable_irq()`` を発行し、最後に "
 "``pyb.enable_irq()`` を発行することです。このアプローチの例を次に示します:"
 
-#: ../../../reference/isr_rules.rst:322
+#: ../../../reference/isr_rules.rst:327
 msgid ""
 "import pyb, micropython, array\n"
 "micropython.alloc_emergency_exception_buf(100)\n"
@@ -4198,7 +4212,7 @@ msgid ""
 "tim4.callback(None)"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:323
+#: ../../../reference/isr_rules.rst:328
 msgid ""
 "A critical section can comprise a single line of code and a single "
 "variable. Consider the following code fragment."
@@ -4206,7 +4220,7 @@ msgstr ""
 "クリティカルセクションは、1行のコードと1つの変数で構成できます。"
 "以下のコード断片を考えてみましょう。"
 
-#: ../../../reference/isr_rules.rst:334
+#: ../../../reference/isr_rules.rst:339
 msgid ""
 "count = 0\n"
 "def cb(): # An interrupt callback\n"
@@ -4217,7 +4231,7 @@ msgid ""
 "        count += 1"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:335
+#: ../../../reference/isr_rules.rst:340
 msgid ""
 "This example illustrates a subtle source of bugs. The line ``count += 1``"
 " in the main loop carries a specific race condition hazard known as a "
@@ -4236,7 +4250,7 @@ msgstr ""
 "よってその変更が上書きされます。実際のシステムでは、これはまれな、予期しない障害に"
 "つながる可能性があります。"
 
-#: ../../../reference/isr_rules.rst:341
+#: ../../../reference/isr_rules.rst:346
 msgid ""
 "As mentioned above, care should be taken if an instance of a Python built"
 " in type is modified in the main code and that instance is accessed in an"
@@ -4249,7 +4263,7 @@ msgstr ""
 "ISR の実行時にインスタンスが有効な状態にあることを確認するためのクリティカルセクション"
 "とみなす必要があります。"
 
-#: ../../../reference/isr_rules.rst:345
+#: ../../../reference/isr_rules.rst:350
 msgid ""
 "Particular care needs to be taken if a dataset is shared between "
 "different ISR's. The hazard here is that the higher priority interrupt "
@@ -4264,7 +4278,7 @@ msgstr ""
 "オブジェクトを使用することがあることに注意する以外にも、この紹介の範囲を超えた"
 "高度なトピックです。"
 
-#: ../../../reference/isr_rules.rst:350
+#: ../../../reference/isr_rules.rst:355
 msgid ""
 "Disabling interrupts for the duration of a critical section is the usual "
 "and simplest way to proceed, but it disables all interrupts rather than "
@@ -4284,7 +4298,7 @@ msgstr ""
 "遅すぎとなる可能性があります。ISR と同様に、メインコードのクリティカルセクションは、"
 "短く、予測可能な期間を持つようにする必要があります。"
 
-#: ../../../reference/isr_rules.rst:357
+#: ../../../reference/isr_rules.rst:362
 msgid ""
 "An approach to dealing with critical sections which radically reduces the"
 " time for which interrupts are disabled is to use an object termed a "
@@ -4309,11 +4323,11 @@ msgstr ""
 "mutex コードは割り込みを無効にしますが、８つのマシン語命令の間のみ有効です。
 "このアプローチの利点は、他の割り込みにはほとんど影響がないことです。"
 
-#: ../../../reference/isr_rules.rst:367
+#: ../../../reference/isr_rules.rst:372
 msgid "Interrupts and the REPL"
 msgstr "割り込みと REPL"
 
-#: ../../../reference/isr_rules.rst:369
+#: ../../../reference/isr_rules.rst:374
 msgid ""
 "Interrupt handlers, such as those associated with timers, can continue to"
 " run after a program terminates.  This may produce unexpected results "
@@ -4325,7 +4339,7 @@ msgstr ""
 "予想される場合に、予期しない結果が生じることがあります。"
 "次は pyboardの場合 の例です:"
 
-#: ../../../reference/isr_rules.rst:380
+#: ../../../reference/isr_rules.rst:385
 msgid ""
 "def bar():\n"
 "    foo = pyb.Timer(2, freq=4, callback=lambda t: print('.', end=''))\n"
@@ -4333,7 +4347,7 @@ msgid ""
 "bar()"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:381
+#: ../../../reference/isr_rules.rst:386
 msgid ""
 "This continues to run until the timer is explicitly disabled or the board"
 " is reset with ``ctrl D``."
@@ -4830,9 +4844,9 @@ msgstr ""
 
 #: ../../../reference/packages.rst:17
 msgid ""
-"`upip` package manager can be used to install a distribution package on a"
-" `MicroPython port` with networking capabilities (for example, on the "
-"Unix port)."
+":term:`upip` package manager can be used to install a distribution "
+"package on a :term:`MicroPython port` with networking capabilities (for "
+"example, on the Unix port)."
 msgstr ""
 
 #: ../../../reference/packages.rst:20
@@ -4887,21 +4901,22 @@ msgid ""
 "Besides the small compression dictionary size, MicroPython distribution "
 "packages also have other optimizations, like removing any files from the "
 "archive which aren't used by the installation process. In particular, "
-"`upip` package manager doesn't execute ``setup.py`` during installation "
-"(see below), and thus that file is not included in the archive."
+":term:`upip` package manager doesn't execute ``setup.py`` during "
+"installation (see below), and thus that file is not included in the "
+"archive."
 msgstr ""
 
 #: ../../../reference/packages.rst:57
 msgid ""
 "At the same time, these optimizations make MicroPython distribution "
-"packages not compatible with `CPython`'s package manager, ``pip``. This "
-"isn't considered a big problem, because:"
+"packages not compatible with :term:`CPython`'s package manager, ``pip``. "
+"This isn't considered a big problem, because:"
 msgstr ""
 
 #: ../../../reference/packages.rst:61
 msgid ""
-"Packages can be installed with `upip`, and then can be used with CPython "
-"(if they are compatible with it)."
+"Packages can be installed with :term:`upip`, and then can be used with "
+"CPython (if they are compatible with it)."
 msgstr ""
 
 #: ../../../reference/packages.rst:63
@@ -4925,16 +4940,16 @@ msgstr ""
 #: ../../../reference/packages.rst:75
 msgid ""
 "MicroPython distribution packages are intended to be installed using the "
-"`upip` package manager. `upip` is a Python application which is usually "
-"distributed (as frozen bytecode) with network-enabled `MicroPython ports "
-"<MicroPython port>`. At the very least, `upip` is available in the "
-"`MicroPython Unix port`."
+":term:`upip` package manager. :term:`upip` is a Python application which "
+"is usually distributed (as frozen bytecode) with network-enabled "
+":term:`MicroPython ports <MicroPython port>`. At the very least, "
+":term:`upip` is available in the :term:`MicroPython Unix port`."
 msgstr ""
 
 #: ../../../reference/packages.rst:81
 msgid ""
-"On any `MicroPython port` providing `upip`, it can be accessed as "
-"following::"
+"On any :term:`MicroPython port` providing :term:`upip`, it can be "
+"accessed as following::"
 msgstr ""
 
 #: ../../../reference/packages.rst:84
@@ -5002,14 +5017,16 @@ msgstr ""
 
 #: ../../../reference/packages.rst:126
 msgid ""
-"For `MicroPython ports <MicroPython port>` without native networking "
-"capabilities, the recommend process is \"cross-installing\" them into a "
-"\"directory image\" using the `MicroPython Unix port`, and then "
-"transferring this image to a device by suitable means."
+"For :term:`MicroPython ports <MicroPython port>` without native "
+"networking capabilities, the recommend process is \"cross-installing\" "
+"them into a \"directory image\" using the :term:`MicroPython Unix port`, "
+"and then transferring this image to a device by suitable means."
 msgstr ""
 
 #: ../../../reference/packages.rst:131
-msgid "Installing to a directory image involves using ``-p`` switch to `upip`::"
+msgid ""
+"Installing to a directory image involves using ``-p`` switch to "
+":term:`upip`::"
 msgstr ""
 
 #: ../../../reference/packages.rst:133
@@ -5018,12 +5035,12 @@ msgstr ""
 
 #: ../../../reference/packages.rst:135
 msgid ""
-"After this command, the package content (and contents of every dependency "
-"packages) will be available in the ``install_dir/`` subdirectory. You "
+"After this command, the package content (and contents of every dependency"
+" packages) will be available in the ``install_dir/`` subdirectory. You "
 "would need to transfer contents of this directory (without the "
 "``install_dir/`` prefix) to the device, at the suitable location, where "
 "it can be found by the Python ``import`` statement (see discussion of the"
-" `upip` installation path above)."
+" :term:`upip` installation path above)."
 msgstr ""
 
 #: ../../../reference/packages.rst:144
@@ -5032,14 +5049,14 @@ msgstr ""
 
 #: ../../../reference/packages.rst:146
 msgid ""
-"For the low-memory `MicroPython ports <MicroPython port>`, the process "
-"described in the previous section does not provide the most efficient "
-"resource usage,because the packages are installed in the source form, so "
-"need to be compiled to the bytecome on each import. This compilation "
-"requires RAM, and the resulting bytecode is also stored in RAM, reducing "
-"its amount available for storing application data. Moreover, the process "
-"above requires presence of the filesystem on a device, and the most "
-"resource-constrained devices may not even have it."
+"For the low-memory :term:`MicroPython ports <MicroPython port>`, the "
+"process described in the previous section does not provide the most "
+"efficient resource usage,because the packages are installed in the source"
+" form, so need to be compiled to the bytecome on each import. This "
+"compilation requires RAM, and the resulting bytecode is also stored in "
+"RAM, reducing its amount available for storing application data. "
+"Moreover, the process above requires presence of the filesystem on a "
+"device, and the most resource-constrained devices may not even have it."
 msgstr ""
 
 #: ../../../reference/packages.rst:155
@@ -5063,7 +5080,7 @@ msgstr ""
 #: ../../../reference/packages.rst:162
 msgid ""
 "Using frozen bytecode requires building the executable (firmware) for a "
-"given `MicroPython port` from the C source code. Consequently, the "
+"given :term:`MicroPython port` from the C source code. Consequently, the "
 "process is:"
 msgstr ""
 
@@ -5078,8 +5095,8 @@ msgstr ""
 
 #: ../../../reference/packages.rst:171
 msgid ""
-"Build `MicroPython Unix port` and make sure it is in your PATH and you "
-"can execute ``micropython``."
+"Build :term:`MicroPython Unix port` and make sure it is in your PATH and "
+"you can execute ``micropython``."
 msgstr ""
 
 #: ../../../reference/packages.rst:173
@@ -5258,9 +5275,9 @@ msgstr ""
 
 #: ../../../reference/packages.rst:284
 msgid ""
-"You can develop and debug using the `MicroPython Unix port` as usual. "
-"When time comes to make a distribution package out of it, just use "
-"overridden \"sdist\" command from sdist_upip.py module as described in "
+"You can develop and debug using the :term:`MicroPython Unix port` as "
+"usual. When time comes to make a distribution package out of it, just use"
+" overridden \"sdist\" command from sdist_upip.py module as described in "
 "the previous section."
 msgstr ""
 
@@ -5414,7 +5431,7 @@ msgstr ""
 #: ../../reference/pyboard.py.rst:70
 msgid ""
 "Similarly, the ``PYBOARD_BAUDRATE`` environment variable can be used to "
-"set the default for the `--baudrate` option."
+"set the default for the ``--baudrate`` option."
 msgstr ""
 
 #: ../../reference/pyboard.py.rst:74
