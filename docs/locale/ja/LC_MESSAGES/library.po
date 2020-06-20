@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-06-17 01:02+0900\n"
+"PO-Revision-Date: 2020-06-21 00:02+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1368,6 +1368,12 @@ msgid ""
 "\n"
 "r = esp32.RMT(0, pin=Pin(18), clock_div=8)\n"
 "r  # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8)\n"
+"\n"
+"# To use carrier frequency\n"
+"r = esp32.RMT(0, pin=Pin(18), clock_div=8, carrier_freq=38000)\n"
+"r  # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8, "
+"carrier_freq=38000, carrier_duty_percent=50)\n"
+"\n"
 "# The channel resolution is 100ns (1/(source_freq/clock_div)).\n"
 "r.write_pulses((1, 20, 2, 40), start=0)  # Send 0 for 100ns, 1 for "
 "2000ns, 0 for 200ns, 1 for 4000ns"
@@ -1377,11 +1383,17 @@ msgstr ""
 "\n"
 "r = esp32.RMT(0, pin=Pin(18), clock_div=8)\n"
 "r  # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8)\n"
+"\n"
+"# キャリア周波数を指定する場合\n"
+"r = esp32.RMT(0, pin=Pin(18), clock_div=8, carrier_freq=38000)\n"
+"r  # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8, "
+"carrier_freq=38000, carrier_duty_percent=50)\n"
+"\n"
 "# チャンネルの分解能は 100ns (1/(source_freq/clock_div)).\n"
 "r.write_pulses((1, 20, 2, 40), start=0) # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:157
+#: ../../library/esp32.rst:162
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -1393,7 +1405,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:163
+#: ../../library/esp32.rst:168
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (0-32,768) number. There are "
@@ -1403,7 +1415,16 @@ msgstr ""
 "数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
 "分周器を使えます。"
 
-#: ../../library/esp32.rst:167
+#: ../../library/esp32.rst:172
+msgid ""
+"To enable the carrier frequency feature of the esp32 hardware, specify "
+"the ``carrier_freq`` as something like 38000, a typical IR carrier "
+"frequency."
+msgstr ""
+"esp32 ハードウェアのキャリア周波数の機能を有効にするには、 ``carrier_freq`` を"
+"典型的な IR キャリア周波数である 38000 などとします。"
+
+#: ../../library/esp32.rst:175
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -1414,7 +1435,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:172
+#: ../../library/esp32.rst:180
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -1424,30 +1445,34 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:176
+#: ../../library/esp32.rst:184
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
-"notably receiving pulses and carrier transmit. RMT should be considered a"
-" *beta feature* and the interface may change in the future."
+"notably receiving pulses. RMT should be considered a *beta feature* and "
+"the interface may change in the future."
 msgstr ""
-"現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスと"
-"キャリア送信です。RMT はベータ機能と見なすべきであり、インターフェースは将来変更する可能性が"
-"あります。"
+"現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
+"RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:183
+#: ../../library/esp32.rst:191
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
 "*pin*, also required, configures which Pin is bound to the RMT channel. "
 "*clock_div* is an 8-bit clock divider that divides the source clock "
-"(80MHz) to the RMT channel allowing the resolution to be specified."
+"(80MHz) to the RMT channel allowing the resolution to be specified. "
+"*carrier_freq* is used to enable the carrier feature and specify its "
+"frequency, default value is ``0`` (not enabled).  To enable, specify a "
+"positive integer.  *carrier_duty_percent* defaults to 50."
 msgstr ""
 "このクラスは、8つのRMTチャネルの1つへのアクセスを提供します。 *channel* は必須であり、"
 "どの RMT チャネル(0-7)を使うのかを識別します。 *pin* も必須であり、RMTチャネルに"
 "バインドするピンを設定します。 *clock_div* はソースクロック(80MHz)を分割する"
-"8ビットのクロック分周器であり、RMTチャネルの分解能を指定できます。"
+"8ビットのクロック分周器であり、RMTチャネルの分解能を指定できます。 "
+"*carrier_freq* はキャリア機能を有効にし、その周波数を指定するために使います。" 
+"有効にするには正の整数を指定してください。 *carrier_duty_percent* のデフォルト値は50です。"
 
-#: ../../library/esp32.rst:191
+#: ../../library/esp32.rst:202
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -1455,7 +1480,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:196
+#: ../../library/esp32.rst:207
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -1463,11 +1488,11 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:201
+#: ../../library/esp32.rst:212
 msgid "Returns True if `RMT.write_pulses` has completed."
 msgstr "`RMT.write_pulses` が完了している場合に True を返します。"
 
-#: ../../library/esp32.rst:203
+#: ../../library/esp32.rst:214
 msgid ""
 "If *timeout* (defined in ticks of ``source_freq / clock_div``) is "
 "specified the method will wait for *timeout* or until `RMT.write_pulses` "
@@ -1477,11 +1502,11 @@ msgstr ""
 "このメソッドはタイムアウトか `RMT.write_pulses` の完了まで待ち、チャンネルがまだ"
 "送信を継続していれば ``False`` を返します。"
 
-#: ../../library/esp32.rst:208
+#: ../../library/esp32.rst:219
 msgid "Avoid using ``wait_done()`` if looping is enabled."
 msgstr "ループが有効になっている場合は  ``wait_done()`` を使わないでください。"
 
-#: ../../library/esp32.rst:212
+#: ../../library/esp32.rst:223
 msgid ""
 "Configure looping on the channel, allowing a stream of pulses to be "
 "indefinitely repeated. *enable_loop* is bool, set to True to enable "
@@ -1490,7 +1515,7 @@ msgstr ""
 "パルスのストリームを無期限に繰り返すチャネルのループを設定します。 "
 "*enable_loop* は bool であり、True はループを有効に設定します。"
 
-#: ../../library/esp32.rst:217
+#: ../../library/esp32.rst:228
 msgid ""
 "Begin sending *pulses*, a list or tuple defining the stream of pulses. "
 "The length of each pulse is defined by a number to be multiplied by the "
@@ -1501,27 +1526,27 @@ msgstr ""
 "各パルスの長さは、チャネルの分機能 ``(1 / (source_freq / clock_div))`` を乗算した値"
 "によって定義されます。 *start* はストリームが 0 で始まるか 1 で始まるかを定義します。"
 
-#: ../../../library/esp32.rst:224
+#: ../../../library/esp32.rst:235
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサ"
 
-#: ../../../library/esp32.rst:228
+#: ../../../library/esp32.rst:239
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
-#: ../../../library/esp32.rst:232
+#: ../../../library/esp32.rst:243
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../../library/esp32.rst:236
+#: ../../../library/esp32.rst:247
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../../library/esp32.rst:240
+#: ../../../library/esp32.rst:251
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../../library/esp32.rst:249
+#: ../../../library/esp32.rst:260
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
