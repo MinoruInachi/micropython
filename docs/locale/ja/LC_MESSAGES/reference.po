@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-06-15 00:57+0900\n"
+"PO-Revision-Date: 2020-06-21 20:28+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2444,7 +2444,7 @@ msgstr ""
 
 #: ../../reference/filesystem.rst:4
 msgid "Working with filesystems"
-msgstr ""
+msgstr "ファイルシステムの利用"
 
 #: ../../reference/filesystem.rst:8
 msgid ""
@@ -2452,6 +2452,9 @@ msgid ""
 " allowing standard Python file I/O methods to be used with persistent "
 "storage."
 msgstr ""
+"このチュートリアルでは、MicroPython がデバイスでファイルシステムを提供し、"
+"永続ストレージで Python の標準的なファイル I/O メソッドを使えるようにする"
+"方法を説明します。"
 
 #: ../../reference/filesystem.rst:11
 msgid ""
@@ -2460,12 +2463,18 @@ msgid ""
 " you want to modify the partitioning, filesystem type, or use custom "
 "block devices."
 msgstr ""
+"MicroPython はデフォルトの構成を自動的に作成し、プライマリファイルシステムを"
+"自動で検出します。ですから、このチュートリアルはパーティショニングやファイル"
+"システムの種別を変更したい場合やカスタムブロックデバイスを使いたい場合に役立つ"
+"でしょう。"
 
 #: ../../reference/filesystem.rst:15
 msgid ""
 "The filesystem is typically backed by internal flash memory on the "
 "device, but can also use external flash, RAM, or a custom block device."
 msgstr ""
+"ファイルシステムは通常、デバイスの内蔵フラッシュメモリ上に存在しますが、"
+"外部フラッシュ、RAM、カスタムブロックデバイスでも使えます。"
 
 #: ../../reference/filesystem.rst:18
 msgid ""
@@ -2473,6 +2482,9 @@ msgid ""
 " MSC to a host PC. :ref:`pyboard_py` also provides a way for the host PC "
 "to access to the filesystem on all ports."
 msgstr ""
+"いくつかのポート(STM32 など)では、USB MSC を介してホスト PC にファイルシステムを"
+"マウントできます。 :ref:`pyboard_py` ツールは、ホスト PC がすべてのポートの"
+"ファイルシステムにアクセスする方法を提供します。"
 
 #: ../../reference/filesystem.rst:22
 msgid ""
@@ -2480,6 +2492,9 @@ msgid ""
 " ports with an operating system (e.g. the Unix port) the filesystem is "
 "provided by the host OS."
 msgstr ""
+"注記: このチュートリアルで扱うファイルシステムは、主に STM32 や ESP32 のような"
+"ベアメタルポートで使うためのものです。オペレーティングシステムがあるポート"
+"(Unix ポートなど)では、ホストOSがファイルシステムを提供します。"
 
 #: ../../reference/filesystem.rst:27
 msgid "VFS"
@@ -2493,6 +2508,10 @@ msgid ""
 "this structure, and at startup the working directory is changed to where "
 "the primary filesystem is mounted."
 msgstr ""
+"MicroPython は Unix ライクな仮想ファイルシステム(VFS)レイヤーを実装しています。"
+"マウントしたファイルシステムはすべて、ルート ``/`` 配下の１つの仮想ファイルシステム"
+"にまとめられます。ファイルシステムはこの構造のディレクトリにマウントされ、起動時には"
+"プライマリファイルシステムがマウントされた場所に作業ディレクトリが変更されます。"
 
 #: ../../reference/filesystem.rst:35
 msgid ""
@@ -2500,24 +2519,30 @@ msgid ""
 "optionally the SDCard at ``/sd``. On ESP8266/ESP32, the primary "
 "filesystem is mounted at ``/``."
 msgstr ""
+"STM32 / Pyboard では、内蔵フラッシュは ``/flash`` に、SD カードは ``/sd`` "
+"にマウントされます。ESP8266/ESP32 では、プライマリファイルシステムは ``/`` に"
+"マウントされます。"
 
 #: ../../reference/filesystem.rst:40
 msgid "Block devices"
-msgstr ""
+msgstr "ブロックデバイス"
 
 #: ../../reference/filesystem.rst:42
 msgid ""
 "A block device is an instance of a class that implements the "
 ":class:`uos.AbstractBlockDev` protocol."
 msgstr ""
+"ブロックデバイスは :class:`uos.AbstractBlockDev` プロトコルを実装した"
+"クラスのインスタンスです。"
 
 #: ../../reference/filesystem.rst:46
 msgid "Built-in block devices"
-msgstr ""
+msgstr "組込みブロックデバイス"
 
 #: ../../reference/filesystem.rst:48
 msgid "Ports provide built-in block devices to access their primary flash."
 msgstr ""
+"ポートは、プライマリフラッシュにアクセスするための組込みブロックデバイスを提供します。"
 
 #: ../../reference/filesystem.rst:50
 msgid ""
@@ -2528,6 +2553,10 @@ msgid ""
 " the primary flash, usually by some combination of button presses at "
 "power on."
 msgstr ""
+"電源投入時、MicroPython はデフォルトのフラッシュ上のファイルシステムを検出し、"
+"自動的に構成してマウントしようとします。ファイルシステムが見つからない場合、"
+"MicroPython はフラッシュ全体の FAT ファイルシステムを作成しようとします。"
+"ポートはプライマリフラッシュを「工場出荷時にリセット」するための機構も提供できます。"
 
 #: ../../reference/filesystem.rst:57
 msgid "STM32 / Pyboard"
@@ -2540,6 +2569,10 @@ msgid ""
 "it will use that instead. The ``start`` kwarg should always be specified,"
 " i.e. ``pyb.Flash(start=0)``."
 msgstr ""
+":ref:`pyb.Flash <pyb.Flash>` クラスは内部フラッシュへのアクセスを提供します。"
+"大きな外部フラッシュを持つボード(Pyboard D など)でも、このクラスを使うことがあります。"
+"キーワード引数 ``start`` は常に指定する必要があります。つまり ``pyb.Flash(start=0)`` "
+"のように呼び出してオブジェクトを作成します。"
 
 #: ../../reference/filesystem.rst:64
 msgid ""
@@ -2548,6 +2581,10 @@ msgid ""
 " reflects the virtual device presented to USB MSC (i.e. it includes a "
 "virtual partition table at the start)."
 msgstr ""
+"注記: 下位互換性のために、引数なしで構築された場合(つまり ``pyb.Flash()`` のように"
+"呼び出してオブジェクトを作成した場合)、シンプルなブロックインターフェースのみを実現し、"
+"USB MSC に提示した仮想デバイスを反映します(すなわち、開始時に仮想パーティション"
+"テーブルを含みます)。"
 
 #: ../../reference/filesystem.rst:70
 msgid "ESP8266"
@@ -2560,6 +2597,10 @@ msgid ""
 "as a global variable so it can usually be accessed simply as ``bdev``. "
 "This implements the extended interface."
 msgstr ""
+"内蔵フラッシュは、起動時に ``flashbdev`` モジュールで作成されるブロックデバイス"
+"オブジェクトとして公開されます。このオブジェクトはデフォルトでグローバル変数として"
+"追加されているので、通常は単純に ``bdev`` としてアクセスできます。これは"
+"拡張インターフェースを実装しています。"
 
 #: ../../reference/filesystem.rst:78 ../../reference/filesystem.rst:182
 msgid "ESP32"
@@ -2572,16 +2613,21 @@ msgid ""
 "variable ``bdev`` which points to the default partition. This implements "
 "the extended interface."
 msgstr ""
+":class:`esp32.Partition` クラスは、このボード用に定義したパーティションの"
+"ブロックデバイスを実装しています。ESP8266と同様に、デフォルトのパーティションを"
+"指すグローバル変数 ``bdev`` があります。これは拡張インターフェースを実装しています。"
 
 #: ../../reference/filesystem.rst:85
 msgid "Custom block devices"
-msgstr ""
+msgstr "カスタムブロックデバイス"
 
 #: ../../reference/filesystem.rst:87
 msgid ""
 "The following class implements a simple block device that stores its data"
 " in RAM using a ``bytearray``::"
 msgstr ""
+"次のクラスは ``bytearray`` を使って RAM にデータを格納するシンプルな"
+"ブロックデバイスを実装しています::"
 
 #: ../../reference/filesystem.rst:90
 msgid ""
@@ -2643,6 +2689,10 @@ msgid ""
 ":meth:`uos.AbstractBlockDev.readblocks` and "
 ":meth:`uos.AbstractBlockDev.writeblocks` methods) is::"
 msgstr ""
+"次に示すのは、シンプルインタフェースと拡張インタフェースの両方(つまり、 "
+":meth:`uos.AbstractBlockDev.readblocks` と "
+":meth:`uos.AbstractBlockDev.writeblocks` メソッドのシグネチャと振舞いの両方)を"
+"サポートするブロックデバイスの例です::"
 
 #: ../../reference/filesystem.rst:122
 msgid ""
@@ -2674,12 +2724,41 @@ msgid ""
 "        if op == 6: # block erase\n"
 "            return 0"
 msgstr ""
+"class RAMBlockDev:\n"
+"    def __init__(self, block_size, num_blocks):\n"
+"        self.block_size = block_size\n"
+"        self.data = bytearray(block_size * num_blocks)\n"
+"\n"
+"    def readblocks(self, block_num, buf, offset=0):\n"
+"        addr = block_num * self.block_size + offset\n"
+"        for i in range(len(buf)):\n"
+"            buf[i] = self.data[addr + i]\n"
+"\n"
+"    def writeblocks(self, block_num, buf, offset=None):\n"
+"        if offset is None:\n"
+"            # 消去してから書き込み\n"
+"            for i in range(len(buf) // self.block_size):\n"
+"                self.ioctl(6, block_num + i)\n"
+"            offset = 0\n"
+"        addr = block_num * self.block_size + offset\n"
+"        for i in range(len(buf)):\n"
+"            self.data[addr + i] = buf[i]\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4: # ブロック数\n"
+"            return len(self.data) // self.block_size\n"
+"        if op == 5: # ブロックサイズ\n"
+"            return self.block_size\n"
+"        if op == 6: # ブロック消去\n"
+"            return 0"
 
 #: ../../reference/filesystem.rst:150
 msgid ""
 "As it supports the extended interface, it can be used with "
 ":class:`littlefs <uos.VfsLfs2>`::"
 msgstr ""
+"拡張インタフェースをサポートすると、 :class:`littlefs <uos.VfsLfs2>` "
+"で使えます。"
 
 #: ../../reference/filesystem.rst:153
 msgid ""
@@ -2695,6 +2774,8 @@ msgid ""
 "Once mounted, the filesystem (regardless of its type) can be used as it "
 "normally would be used from Python code, for example::"
 msgstr ""
+"マウントすると、ファイルシステムは(種別に関係なく) Python コードから通常通りに使える"
+"ようになります。たとえば次のように使えます::"
 
 #: ../../reference/filesystem.rst:162
 msgid ""
@@ -2705,7 +2786,7 @@ msgstr ""
 
 #: ../../reference/filesystem.rst:167
 msgid "Filesystems"
-msgstr ""
+msgstr "ファイルシステム"
 
 #: ../../reference/filesystem.rst:169
 msgid ""
@@ -2713,6 +2794,9 @@ msgid ""
 "<uos.VfsFat>`, :class:`littlefs v1 <uos.VfsLfs1>` and :class:`littlefs v2"
 " <uos.VfsLfs2>`."
 msgstr ""
+"MicroPython のポートは :class:`FAT <uos.VfsFat>`, "
+":class:`littlefs v1 <uos.VfsLfs1>`, "
+":class:`littlefs v2 <uos.VfsLfs2>` の実装を提供できます。"
 
 #: ../../reference/filesystem.rst:172
 msgid ""
@@ -2720,10 +2804,13 @@ msgid ""
 "by default for given port/board combinations, however they can be "
 "optionally enabled in a custom firmware build."
 msgstr ""
+"以下の表は、ポート/ボードのファームウェアにデフォルトで含まれるファイルシステムを"
+"示しています。無効なファイルシステムについても、カスタムファームウェアを"
+"ビルドすることで有効にできます。"
 
 #: ../../reference/filesystem.rst:177
 msgid "Board"
-msgstr ""
+msgstr "ボード"
 
 #: ../../reference/filesystem.rst:177 ../../reference/filesystem.rst:186
 msgid "FAT"
@@ -2744,16 +2831,16 @@ msgstr ""
 #: ../../reference/filesystem.rst:179 ../../reference/filesystem.rst:180
 #: ../../reference/filesystem.rst:181 ../../reference/filesystem.rst:182
 msgid "Yes"
-msgstr ""
+msgstr "有効"
 
 #: ../../reference/filesystem.rst:179 ../../reference/filesystem.rst:180
 #: ../../reference/filesystem.rst:181 ../../reference/filesystem.rst:182
 msgid "No"
-msgstr ""
+msgstr "無効"
 
 #: ../../reference/filesystem.rst:180
 msgid "Other STM32"
-msgstr ""
+msgstr "その他の STM32"
 
 #: ../../reference/filesystem.rst:181
 msgid "ESP8266 (1M)"
@@ -2769,6 +2856,8 @@ msgid ""
 "USB MSC on supported boards (e.g. STM32) without any additional drivers "
 "required on the host PC."
 msgstr ""
+"FAT ファイルシステムの主な利点は、ホスト PC 上で追加ドライバを必要とせずに、"
+"サポートしているボード(STM32など)に USB MSC を介してアクセスできることです。"
 
 #: ../../reference/filesystem.rst:193
 msgid ""
@@ -2776,10 +2865,14 @@ msgid ""
 "lead to filesystem corruption. For applications that do not require USB "
 "MSC, it is recommended to use littlefs instead."
 msgstr ""
+"しかし、FAT は書き込み中の電源断には耐性がなく、ファイルシステムの破損につながる"
+"可能性があります。USB MSC を必要としないアプリケーションでは、代わりに littlefs "
+"の利用をお勧めします。"
 
 #: ../../reference/filesystem.rst:197
 msgid "To format the entire flash using FAT::"
 msgstr ""
+"FAT を使用してフラッシュ全体をフォーマットするには次のようにします::"
 
 #: ../../reference/filesystem.rst:199
 msgid ""
@@ -2796,22 +2889,39 @@ msgid ""
 "os.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 msgstr ""
+"# ESP8266 や ESP32\n"
+"import os\n"
+"os.umount('/')\n"
+"os.VfsFat.mkfs(bdev)\n"
+"os.mount(bdev, '/')\n"
+"\n"
+"# STM32\n"
+"import os, pyb\n"
+"os.umount('/flash')\n"
+"os.VfsFat.mkfs(pyb.Flash(start=0))\n"
+"os.mount(pyb.Flash(start=0), '/flash')\n"
+"os.chdir('/flash')"
 
 #: ../../reference/filesystem.rst:213
 msgid "Littlefs"
-msgstr ""
+msgstr "littlefs"
 
 #: ../../reference/filesystem.rst:215
 msgid ""
 "Littlefs_ is a filesystem designed for flash-based devices, and is much "
 "more resistant to filesystem corruption."
 msgstr ""
+"littlefs_ はフラッシュベースのデバイス向けに設計されたファイルシステムで、"
+"ファイルシステムの破損に非常に強くなっています。"
 
 #: ../../reference/filesystem.rst:218
 msgid ""
 "There are reports of littlefs v1 and v2 failing in certain situations, "
 "for details see `littlefs issue 347`_  and `littlefs issue 295`_."
 msgstr ""
+"littlefs v1 と v2 では特定の状況で失敗するという報告があります。"
+"詳しくは `littlefs issue 347`_  と `littlefs issue 295`_ "
+"を参照してください。"
 
 #: ../../reference/filesystem.rst:223
 msgid ""
@@ -2819,10 +2929,13 @@ msgid ""
 "driver`_. Note that you must use the ``-b=4096`` option to override the "
 "block size."
 msgstr ""
+"注記: `littlefs FUSE driver`_ を使えば USB MSC 経由でアクセスすることができます。"
+"ブロックサイズを上書きするには ``-b=4096`` オプションを使用しなければならないことに"
+"注意してください。"
 
 #: ../../reference/filesystem.rst:231
 msgid "To format the entire flash using littlefs v2::"
-msgstr ""
+msgstr "littlefs v2 を使用してフラッシュ全体をフォーマットするには次のようにします::"
 
 #: ../../reference/filesystem.rst:233
 msgid ""
@@ -2839,22 +2952,38 @@ msgid ""
 "os.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 msgstr ""
+"# ESP8266 や ESP32\n"
+"import os\n"
+"os.umount('/')\n"
+"os.VfsLfs2.mkfs(bdev)\n"
+"os.mount(bdev, '/')\n"
+"\n"
+"# STM32\n"
+"import os, pyb\n"
+"os.umount('/flash')\n"
+"os.VfsLfs2.mkfs(pyb.Flash(start=0))\n"
+"os.mount(pyb.Flash(start=0), '/flash')\n"
+"os.chdir('/flash')"
 
 #: ../../reference/filesystem.rst:247
 msgid "Hybrid (STM32)"
-msgstr ""
+msgstr "ハイブリッド (STM32)"
 
 #: ../../reference/filesystem.rst:249
 msgid ""
 "By using the ``start`` and ``len`` kwargs to :class:`pyb.Flash`, you can "
 "create block devices spanning a subset of the flash device."
 msgstr ""
+"``pyb.Flash`` のキーワード引数 ``start`` と ``len`` を使えば、"
+"フラッシュデバイスを分割して複数のブロックデバイスを作成できます。"
 
 #: ../../reference/filesystem.rst:252
 msgid ""
 "For example, to configure the first 256kiB as FAT (and available over USB"
 " MSC), and the remainder as littlefs::"
 msgstr ""
+"たとえば次のようにすると、最初の 256kiB を FAT (USB MSCで利用可能)として設定し、"
+"残りを littlefs として設定できます::"
 
 #: ../../reference/filesystem.rst:255
 msgid ""
@@ -2876,12 +3005,17 @@ msgid ""
 "frequently changing application data to reside on littlefs with better "
 "resilience to power failure, etc."
 msgstr ""
+"このようにすると、Python ファイル、設定、その他のほとんど変更されないコンテンツを "
+"USB MSC 経由で利用できる一方で、頻繁に変更されるアプリケーションのデータを"
+"停電などへの耐性を持った littlefs 上に置けるようになります。"
 
 #: ../../reference/filesystem.rst:270
 msgid ""
 "The partition at offset ``0`` will be mounted automatically (and the "
 "filesystem type automatically detected), but you can add::"
 msgstr ""
+"オフセット 0 のパーティションは自動的にマウントされますが(ファイルシステムの種別は"
+"自動で検出されます)、次のようにしてマウントを追加することもできます::"
 
 #: ../../reference/filesystem.rst:273
 msgid ""
@@ -2892,23 +3026,27 @@ msgstr ""
 
 #: ../../reference/filesystem.rst:277
 msgid "to ``boot.py`` to mount the data partition."
-msgstr ""
+msgstr "このようなパーティションのマウントの記述は ``boot.py`` に書くとよいでしょう。"
 
 #: ../../reference/filesystem.rst:280
 msgid "Hybrid (ESP32)"
-msgstr ""
+msgstr "ハイブリッド (ESP32)"
 
 #: ../../reference/filesystem.rst:282
 msgid ""
 "On ESP32, if you build custom firmware, you can modify ``partitions.csv``"
 " to define an arbitrary partition layout."
 msgstr ""
+"ESP32 では、カスタムファームウェアを作成するときに、 ``partitions.csv`` を変更して"
+"任意のパーティションレイアウトを定義できます。"
 
 #: ../../reference/filesystem.rst:285
 msgid ""
 "At boot, the partition named \"vfs\" will be mounted at ``/`` by default,"
 " but any additional partitions can be mounted in your ``boot.py`` using::"
 msgstr ""
+"ブート時、デフォルトでは \"vfs\" という名前のパーティションが ``/`` にマウント"
+"されますが、追加のパーティションは ``boot.py`` で以下のようにしてマウントできます::"
 
 #: ../../reference/filesystem.rst:288
 msgid ""
