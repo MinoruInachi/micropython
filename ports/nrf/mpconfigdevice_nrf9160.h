@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 "Eric Poulsen" <eric@zyxod.com>
+ * Copyright (c) 2020 Glenn Ruben Bakke
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#ifndef MICROPY_INCLUDED_ESP32_MODNETWORK_H
-#define MICROPY_INCLUDED_ESP32_MODNETWORK_H
 
-enum { PHY_LAN8720, PHY_TLK110, PHY_IP101 };
+// Board overridable build configuration.
 
-MP_DECLARE_CONST_FUN_OBJ_KW(get_lan_obj);
-MP_DECLARE_CONST_FUN_OBJ_1(ppp_make_new_obj);
-MP_DECLARE_CONST_FUN_OBJ_VAR_BETWEEN(esp_ifconfig_obj);
-MP_DECLARE_CONST_FUN_OBJ_KW(esp_config_obj);
+#ifndef MICROPY_MBFS
+#define MICROPY_MBFS                       (1)
+#endif
 
-void usocket_events_deinit(void);
+#ifndef MICROPY_VFS
+#define MICROPY_VFS                        (0)
+#endif
 
+// Board overridable feature configuration.
+
+#ifndef MICROPY_PY_ARRAY_SLICE_ASSIGN
+#define MICROPY_PY_ARRAY_SLICE_ASSIGN      (1)
+#endif
+
+#ifndef MICROPY_PY_SYS_STDFILES
+#define MICROPY_PY_SYS_STDFILES            (1)
+#endif
+
+#ifndef MICROPY_PY_UBINASCII
+#define MICROPY_PY_UBINASCII               (1)
 #endif
