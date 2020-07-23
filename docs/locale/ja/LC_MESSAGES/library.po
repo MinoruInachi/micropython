@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-06-21 00:02+0900\n"
+"PO-Revision-Date: 2020-07-23 22:08+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1489,31 +1489,37 @@ msgstr ""
 "であることに注意してください。"
 
 #: ../../library/esp32.rst:212
-msgid "Returns True if `RMT.write_pulses` has completed."
-msgstr "`RMT.write_pulses` が完了している場合に True を返します。"
+msgid ""
+"Returns ``True`` if the channel is currently transmitting a stream of "
+"pulses started with a call to `RMT.write_pulses`."
+msgstr ""
+"`RMT.write_pulses` を呼び出して開始したパルスのストリームをチャネルが転送中であれば "
+"``True`` を返します。"
 
-#: ../../library/esp32.rst:214
+#: ../../library/esp32.rst:215
 msgid ""
 "If *timeout* (defined in ticks of ``source_freq / clock_div``) is "
-"specified the method will wait for *timeout* or until `RMT.write_pulses` "
-"is complete, returning ``False`` if the channel continues to transmit."
+"specified the method will wait for *timeout* or until transmission is "
+"complete, returning ``False`` if the channel continues to transmit. If "
+"looping is enabled with `RMT.loop` and a stream has started, then this "
+"method will always (wait and) return ``False``."
 msgstr ""
 "タイムアウト(``source_freq / clock_div`` のティックで定義)が指定されている場合、"
-"このメソッドはタイムアウトか `RMT.write_pulses` の完了まで待ち、チャンネルがまだ"
-"送信を継続していれば ``False`` を返します。"
-
-#: ../../library/esp32.rst:219
-msgid "Avoid using ``wait_done()`` if looping is enabled."
-msgstr "ループが有効になっている場合は  ``wait_done()`` を使わないでください。"
+"このメソッドはタイムアウトになるか転送が完了するまで待機し、チャンネルがまだ"
+"転送中であれば ``False`` を返します。 `RMT.loop` でループが有効になっていて、"
+"ストリームを開始している場合、このメソッドは常に(待機して) ``False`` を返します。"
 
 #: ../../library/esp32.rst:223
 msgid ""
-"Configure looping on the channel, allowing a stream of pulses to be "
-"indefinitely repeated. *enable_loop* is bool, set to True to enable "
-"looping."
+"Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
+"to enable looping on the *next* call to `RMT.write_pulses`. If called "
+"with ``False`` while a looping stream is currently being transmitted then"
+" the current set of pulses will be completed before transmission stops."
 msgstr ""
-"パルスのストリームを無期限に繰り返すチャネルのループを設定します。 "
-"*enable_loop* は bool であり、True はループを有効に設定します。"
+"チャネルのループを設定します。 *enable_loop* は bool 型で、 ``True`` にすると、 "
+"`RMT.write_pulses` の *次の* 呼び出しでループを有効にします。"
+"ループ中のストリームの転送中に ``False`` で呼び出された場合、転送が停止する前に"
+"パルスの現在のセットを完了します。"
 
 #: ../../library/esp32.rst:228
 msgid ""
@@ -1526,27 +1532,47 @@ msgstr ""
 "各パルスの長さは、チャネルの分機能 ``(1 / (source_freq / clock_div))`` を乗算した値"
 "によって定義されます。 *start* はストリームが 0 で始まるか 1 で始まるかを定義します。"
 
-#: ../../../library/esp32.rst:235
+#: ../../library/esp32.rst:235
+msgid ""
+"If transmission of a stream is currently in progress then this method "
+"will block until transmission of that stream has ended before beginning "
+"sending *pulses*."
+msgstr ""
+"ストリームが転送中である場合、このメソッドは、 *パルス* の転送を開始する前に、その"
+"ストリームの転送が終了するまでブロックします。"
+
+#: ../../library/esp32.rst:239
+msgid ""
+"If looping is enabled with `RMT.loop`, the stream of pulses will be "
+"repeated indefinitely. Further calls to `RMT.write_pulses` will end the "
+"previous stream - blocking until the last set of pulses has been "
+"transmitted - before starting the next stream."
+msgstr ""
+"`RMT.loop` でループが有効になっている場合、パルスのストリームは無限に繰り返されます。"
+"そこに `RMT.write_pulses` を呼び出すと、前のストリームを終了させてから(最後の"
+"パルスが転送されるまでブロックします)、次のストリームを開始します。"
+
+#: ../../../library/esp32.rst:246
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサ"
 
-#: ../../../library/esp32.rst:239
+#: ../../../library/esp32.rst:250
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
-#: ../../../library/esp32.rst:243
+#: ../../../library/esp32.rst:253
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../../library/esp32.rst:247
+#: ../../../library/esp32.rst:258
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../../library/esp32.rst:251
+#: ../../../library/esp32.rst:262
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../../library/esp32.rst:260
+#: ../../../library/esp32.rst:271
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
@@ -11250,13 +11276,17 @@ msgid ""
 "``'mac'``: Returns the device MAC address. If a device has a fixed "
 "address (e.g. PYBD) then it will be returned. Otherwise (e.g. ESP32) a "
 "random address will be generated when the BLE interface is made active. "
-"Note: on some ports, accessing this value requires that the interface is "
-"active (so that the MAC address can be queried from the controller)."
 msgstr ""
 "``'mac'``: デバイスの MAC アドレスを返します。(PYBDなど)デバイスに固定アドレスが"
 "ある場合には、その固定アドレスを返します。それ以外(ESP32など)では、BLE "
 "インターフェイスがアクティブになったときにランダムアドレスが生成されます。"
-"注記: ポートによっては、この値にアクセスするのに、(コントローラから MAC "
+
+#: ../../library/ubluetooth.rst:52
+msgid ""
+"**Note:** on some ports, accessing this value requires that the interface"
+" is active (so that the MAC address can be queried from the controller)."
+msgstr ""
+"**注記:** ポートによっては、この値にアクセスするのに、(コントローラから MAC "
 "アドレスを取得できるように)インタフェースをアクティブにして"おく必要があります。
 
 #: ../../library/ubluetooth.rst:54
@@ -11301,25 +11331,25 @@ msgstr ""
 
 #: ../../library/ubluetooth.rst:74
 msgid ""
-"Note: the ``addr``, ``adv_data``, ``char_data``, ``notify_data``, and "
-"``uuid`` entries in the tuples are references to data managed by the "
+"**Note:** the ``addr``, ``adv_data``, ``char_data``, ``notify_data``, and"
+" ``uuid`` entries in the tuples are references to data managed by the "
 ":mod:`ubluetooth` module (i.e. the same instance will be re-used across "
 "multiple calls to the event handler). If your program wants to use this "
 "data outside of the handler, then it must copy them first, e.g. by using "
 "``bytes(addr)`` or ``bluetooth.UUID(uuid)``."
 msgstr ""
-"注記: タプルの ``addr``, ``adv_data``, ``char_data``, ``notify_data``, "
+"**注記**: タプルの ``addr``, ``adv_data``, ``char_data``, ``notify_data``, "
 "``uuid`` 項目は、 :mod:`ubluetooth` "
 "モジュールによって管理されるデータへの参照です(つまり、複数のイベントハンドラー"
 "呼び出しで同じインスタンスが再利用されます)。プログラムがハンドラの外部でこのデータを"
 "使う場合、まず ``bytes(addr)`` または ``bluetooth.UUID(uuid)`` などを使って"
 "これらのデータをコピーする必要があります。"
 
-#: ../../library/ubluetooth.rst:81
+#: ../../library/ubluetooth.rst:82
 msgid "An event handler showing all possible events::"
 msgstr "すべてのイベントを処理するイベントハンドラーの例を示します:"
 
-#: ../../library/ubluetooth.rst:83
+#: ../../library/ubluetooth.rst:84
 msgid ""
 "def bt_irq(event, data):\n"
 "    if event == _IRQ_CENTRAL_CONNECT:\n"
@@ -11397,6 +11427,11 @@ msgid ""
 "    elif event == _IRQ_GATTC_INDICATE:\n"
 "        # A peripheral has sent an indicate request.\n"
 "        conn_handle, value_handle, notify_data = data"
+"    elif event == _IRQ_GATTS_INDICATE_DONE:\n"
+"        # A central has acknowledged the indication.\n"
+"        # Note: Status will be zero on successful acknowledgment, "
+"implementation-specific value otherwise.\n"
+"        conn_handle, value_handle, status = data"
 msgstr ""
 "def bt_irq(event, data):\n"
 "    if event == _IRQ_CENTRAL_CONNECT:\n"
@@ -11474,12 +11509,17 @@ msgstr ""
 "    elif event == _IRQ_GATTC_INDICATE:\n"
 "        # A peripheral has sent an indicate request.\n"
 "        conn_handle, value_handle, notify_data = data"
+"    elif event == _IRQ_GATTS_INDICATE_DONE:\n"
+"        # A central has acknowledged the indication.\n"
+"        # Note: Status will be zero on successful acknowledgment, "
+"implementation-specific value otherwise.\n"
+"        conn_handle, value_handle, status = data"
 
-#: ../../library/ubluetooth.rst:151
+#: ../../library/ubluetooth.rst:156
 msgid "The event codes are::"
 msgstr "イベントコードには次のものがあります::"
 
-#: ../../library/ubluetooth.rst:153
+#: ../../library/ubluetooth.rst:158
 msgid ""
 "from micropython import const\n"
 "_IRQ_CENTRAL_CONNECT = const(1)\n"
@@ -11501,9 +11541,10 @@ msgid ""
 "_IRQ_GATTC_WRITE_DONE = const(17)\n"
 "_IRQ_GATTC_NOTIFY = const(18)\n"
 "_IRQ_GATTC_INDICATE = const(19)"
+"_IRQ_GATTS_INDICATE_DONE = const(20)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:174
+#: ../../library/ubluetooth.rst:180
 msgid ""
 "In order to save space in the firmware, these constants are not included "
 "on the :mod:`ubluetooth` module. Add the ones that you need from the list"
@@ -11512,11 +11553,11 @@ msgstr ""
 "ファームウェアのスペースを節約するために、これらの定数は :mod:`ubluetooth` "
 "モジュールには含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
 
-#: ../../library/ubluetooth.rst:180
+#: ../../library/ubluetooth.rst:186
 msgid "Broadcaster Role (Advertiser)"
 msgstr "ブロードキャスターロール(アドバタイザー)"
 
-#: ../../library/ubluetooth.rst:184
+#: ../../library/ubluetooth.rst:190
 msgid ""
 "Starts advertising at the specified interval (in **micro**\\ seconds). "
 "This interval will be rounded down to the nearest 625us. To stop "
@@ -11526,7 +11567,7 @@ msgstr ""
 "この間隔は、625us に最も近いところで切り捨てられます。アドバタイジングを"
 "停止するには *interval_us* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:188
+#: ../../library/ubluetooth.rst:194
 msgid ""
 "*adv_data* and *resp_data* can be any type that implements the buffer "
 "protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
@@ -11536,40 +11577,40 @@ msgstr ""
 "(``bytes``, ``bytearray``, ``str`` など)。 *adv_data* はすべての"
 "ブロードキャストに含まれ、 *resp_data* はアクティブスキャンへの返信として送信されます。"
 
-#: ../../library/ubluetooth.rst:192
+#: ../../library/ubluetooth.rst:198
 msgid ""
-"Note: if *adv_data* (or *resp_data*) is ``None``, then the data passed to"
-" the previous call to ``gap_advertise`` will be re-used. This allows a "
-"broadcaster to resume advertising with just "
+"**Note:** if *adv_data* (or *resp_data*) is ``None``, then the data "
+"passed to the previous call to ``gap_advertise`` will be re-used. This "
+"allows a broadcaster to resume advertising with just "
 "``gap_advertise(interval_us)``. To clear the advertising payload pass an "
 "empty ``bytes``, i.e. ``b''``."
 msgstr ""
-"注記: *adv_data* (または *resp_data*)が ``None`` の場合、前の "
+"**注記**: *adv_data* (または *resp_data*)が ``None`` の場合、前の "
 "``gap_advertise`` 呼び出しに渡されたデータが再利用されます。これにより "
 "``gap_advertise(interval_us)`` だけで、ブロードキャスターは"
 "アドバタイジングを再開できます。アドバタイジングペイロードをクリアするには、"
 "空の ``bytes`` 、すなわち ``b''`` を渡します。"
 
-#: ../../library/ubluetooth.rst:199
+#: ../../library/ubluetooth.rst:205
 msgid "Observer Role (Scanner)"
 msgstr "オブザーバーロール(スキャナー)"
 
-#: ../../library/ubluetooth.rst:203
+#: ../../library/ubluetooth.rst:209
 msgid ""
 "Run a scan operation lasting for the specified duration (in **milli**\\ "
 "seconds)."
 msgstr ""
 "指定された期間(**ミリ** 秒単位)持続するスキャン操作を実行します。"
 
-#: ../../library/ubluetooth.rst:205
+#: ../../library/ubluetooth.rst:211
 msgid "To scan indefinitely, set *duration_ms* to ``0``."
 msgstr "無期限にスキャンするには *duration_ms* を ``0`` に設定します。"
 
-#: ../../library/ubluetooth.rst:207
+#: ../../library/ubluetooth.rst:213
 msgid "To stop scanning, set *duration_ms* to ``None``."
 msgstr "スキャンを停止するには *duration_ms* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:209
+#: ../../library/ubluetooth.rst:215
 msgid ""
 "Use *interval_us* and *window_us* to optionally configure the duty cycle."
 " The scanner will run for *window_us* **micro**\\ seconds every "
@@ -11583,7 +11624,7 @@ msgstr ""
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
 "(バックグラウンドスキャン)。"
 
-#: ../../library/ubluetooth.rst:215
+#: ../../library/ubluetooth.rst:221
 msgid ""
 "For each scan result the ``_IRQ_SCAN_RESULT`` event will be raised, with "
 "event data ``(addr_type, addr, adv_type, rssi, adv_data)``.  ``adv_type``"
@@ -11593,27 +11634,27 @@ msgstr ""
 "イベントデータは ``(addr_type, addr, adv_type, rssi, adv_data)`` です。"
 "``adv_type`` の値は次の Bluetooth 仕様に対応しています:"
 
-#: ../../library/ubluetooth.rst:219
+#: ../../library/ubluetooth.rst:225
 msgid "0x00 - ADV_IND - connectable and scannable undirected advertising"
 msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:200
+#: ../../library/ubluetooth.rst:226
 msgid "0x01 - ADV_DIRECT_IND - connectable directed advertising"
 msgstr "0x01 - ADV_DIRECT_IND - 接続可能な有向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:221
+#: ../../library/ubluetooth.rst:227
 msgid "0x02 - ADV_SCAN_IND - scannable undirected advertising"
 msgstr "0x02 - ADV_SCAN_IND - スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:222
+#: ../../library/ubluetooth.rst:228
 msgid "0x03 - ADV_NONCONN_IND - non-connectable undirected advertising"
 msgstr ""0x03 - ADV_NONCONN_IND - 接続不可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:223
+#: ../../library/ubluetooth.rst:229
 msgid "0x04 - SCAN_RSP - scan response"
 msgstr "0x04 - SCAN_RSP - スキャン応答"
 
-#: ../../library/ubluetooth.rst:225
+#: ../../library/ubluetooth.rst:231
 msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
 "explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised."
@@ -11621,11 +11662,11 @@ msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
 "``_IRQ_SCAN_DONE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:230
+#: ../../library/ubluetooth.rst:236
 msgid "Peripheral Role (GATT Server)"
 msgstr "ペリフェラルロール(GATT サーバー)"
 
-#: ../../library/ubluetooth.rst:232
+#: ../../library/ubluetooth.rst:238
 msgid ""
 "A BLE peripheral has a set of registered services. Each service may "
 "contain characteristics, which each have a value. Characteristics can "
@@ -11636,7 +11677,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/ubluetooth.rst:236
+#: ../../library/ubluetooth.rst:242
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -11649,7 +11690,7 @@ msgstr ""
 "さらに、プリフェラルは接続ハンドルを介して接続されたセントラルにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/ubluetooth.rst:241
+#: ../../library/ubluetooth.rst:247
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a central will be truncated to this length. "
@@ -11665,14 +11706,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/ubluetooth.rst:250
+#: ../../library/ubluetooth.rst:256
 msgid ""
 "Configures the peripheral with the specified services, replacing any "
 "existing services."
 msgstr ""
 "指定したサービスでプリフェラルを構成し、既存のサービスを置換します。"
 
-#: ../../library/ubluetooth.rst:252
+#: ../../library/ubluetooth.rst:258
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -11681,7 +11722,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:256
+#: ../../library/ubluetooth.rst:262
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -11689,14 +11730,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:259
+#: ../../library/ubluetooth.rst:265
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:262
+#: ../../library/ubluetooth.rst:268
 msgid ""
 "The **flags** are a bitwise-OR combination of the "
 ":data:`ubluetooth.FLAG_READ`, :data:`ubluetooth.FLAG_WRITE` and "
@@ -11706,7 +11747,7 @@ msgstr ""
 ":data:`ubluetooth.FLAG_WRITE`, :data:`ubluetooth.FLAG_NOTIFY` "
 "のビット論理和の組み合わせです。"
 
-#: ../../library/ubluetooth.rst:266
+#: ../../library/ubluetooth.rst:272
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -11716,14 +11757,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/ubluetooth.rst:270
+#: ../../library/ubluetooth.rst:276
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/ubluetooth.rst:272
+#: ../../library/ubluetooth.rst:278
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -11739,23 +11780,24 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:282
+#: ../../library/ubluetooth.rst:288
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
-"<BLE.gatts_write>`, and :meth:`gatts_notify <BLE.gatts_notify>`."
+"<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>`, and "
+":meth:`gatts_indicate <BLE.gatts_indicate>`."
 msgstr ""
 "３項目のハンドル (``hr``, ``tx``, ``rx``) は "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
-"<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>` "
-"で使えます。"
+"<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>`, "
+":meth:`gatts_indicate <BLE.gatts_indicate>` で使えます。"
 
-#: ../../library/ubluetooth.rst:286
+#: ../../library/ubluetooth.rst:292
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記注:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/ubluetooth.rst:290
+#: ../../library/ubluetooth.rst:296
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote central)."
@@ -11763,12 +11805,12 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートセントラルで書き込まれたもの)を読み取ります。"
 
-#: ../../library/ubluetooth.rst:295
+#: ../../library/ubluetooth.rst:301
 msgid "Writes the local value for this handle, which can be read by a central."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、セントラルによって読み取ることができます。"
 
-#: ../../library/ubluetooth.rst:299
+#: ../../library/ubluetooth.rst:305
 msgid ""
 "Notifies a connected central that this value has changed and that it "
 "should issue a read of the current value from this peripheral."
@@ -11776,17 +11818,49 @@ msgstr ""
 "接続されているセントラルに、この値が変更されたこと、およびこのペリフェラルから"
 "現在の値の読み取りを発行する必要があることを通知します。"
 
-#: ../../library/ubluetooth.rst:302
-msgid ""
-"If *data* is specified, then the that value is sent to the central as "
-"part of the notification, avoiding the need for a separate read request. "
-"Note that this will not update the local value stored."
-msgstr ""
-"*data* が指定されている場合、その値は通知の一部としてセントラルに送られます。"
-"これにより個別読み出し要求の必要性を回避します。"
-"これは保存されているローカル値が更新されないことに注意してください。"
+#: ../../library/ubluetooth.rst:305
+msgid "Sends a notification request to a connected central."
+msgstr "接続されているセントラルにノーティフィケーション要求を送信します。"
 
-#: ../../library/ubluetooth.rst:308
+#: ../../library/ubluetooth.rst:307
+msgid ""
+"If *data* is specified, then that value is sent to the central as part of"
+" the notification. The local value will not be modified."
+msgstr ""
+"*data* を指定すると、その値が通知の一部としてセントラルに送信されます。"
+"ローカル値は変更されません。"
+
+#: ../../library/ubluetooth.rst:310
+msgid ""
+"Otherwise, if *data* is not specified, then the current local value (as "
+"set with :meth:`gatts_write <BLE.gatts_write>`) will be sent."
+msgstr ""
+"*data* を指定しない場合、現在のローカル値(:meth:`gatts_write <BLE.gatts_write>` "
+"で設定された値)が送信されます。"
+
+#: ../../library/ubluetooth.rst:315
+msgid "Sends an indication request to a connected central."
+msgstr "接続されているセントラルにインディケーション要求を送信します。"
+
+#: ../../library/ubluetooth.rst:317
+msgid ""
+"**Note:** This does not currently support sending a custom value, it will"
+" always send the current local value (as set with :meth:`gatts_write "
+"<BLE.gatts_write>`)."
+msgstr ""
+"**注記:** このメソッドは現在のところカスタム値の送信をサポートしておらず、"
+"常に現在のローカル値(:meth:`gatts_write <BLE.gatts_write>` で設定したもの)"
+"を送信します。"
+
+#: ../../library/ubluetooth.rst:321
+msgid ""
+"On acknowledgment (or failure, e.g. timeout), the "
+"``_IRQ_GATTS_INDICATE_DONE`` event will be raised."
+msgstr ""
+"acknowledgment (あるいはタイムアウトなどの失敗)があった場合、 "
+"``_IRQ_GATTS_INDICATE_DONE`` イベントが発生します。"
+
+#: ../../library/ubluetooth.rst:326
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -11794,7 +11868,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/ubluetooth.rst:311
+#: ../../library/ubluetooth.rst:329
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -11808,42 +11882,42 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/ubluetooth.rst:319
+#: ../../library/ubluetooth.rst:337
 msgid "Central Role (GATT Client)"
 msgstr "セントラルロール(GATT クライアント)"
 
-#: ../../library/ubluetooth.rst:323
+#: ../../library/ubluetooth.rst:341
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
-#: ../../library/ubluetooth.rst:325
+#: ../../library/ubluetooth.rst:343
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:329
+#: ../../library/ubluetooth.rst:347
 msgid "Disconnect the specified connection handle."
 msgstr "指定した接続ハンドルを切断します。"
 
-#: ../../library/ubluetooth.rst:331
+#: ../../library/ubluetooth.rst:349
 msgid "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:333
+#: ../../library/ubluetooth.rst:351
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
 msgstr ""
 "接続ハンドルが接続されていなければ ``False`` が返り、さもなければ ``True`` が返ります。"
 
-#: ../../library/ubluetooth.rst:338
+#: ../../library/ubluetooth.rst:356
 msgid "Query a connected peripheral for its services."
 msgstr "サービスについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:340
+#: ../../library/ubluetooth.rst:358
 msgid "Optionally specify a service *uuid* to query for that service only."
 msgstr "オプションで照会するサービスの *uuid* を指定できます。"
 
-#: ../../library/ubluetooth.rst:342
+#: ../../library/ubluetooth.rst:360
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
 " be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion."
@@ -11851,18 +11925,18 @@ msgstr ""
 "検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生し、"
 "検索が完了すると ``_IRQ_GATTC_SERVICE_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:347
+#: ../../library/ubluetooth.rst:365
 msgid "Query a connected peripheral for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:349
+#: ../../library/ubluetooth.rst:367
 msgid ""
 "Optionally specify a characteristic *uuid* to query for that "
 "characteristic only."
 msgstr ""
 "オプションで照会するキャラクタリスティックの *uuid* を指定できます。"
 
-#: ../../library/ubluetooth.rst:352
+#: ../../library/ubluetooth.rst:370
 msgid ""
 "You can use ``start_handle=1``, ``end_handle=0xffff`` to search for a "
 "characteristic in any service."
@@ -11870,7 +11944,7 @@ msgstr ""
 "任意のサービスのキャラクタリスティックを検索するには "
 "``start_handle=1``, ``end_handle=0xffff`` とします。"
 
-#: ../../library/ubluetooth.rst:355
+#: ../../library/ubluetooth.rst:373
 msgid ""
 "For each characteristic discovered, the "
 "``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised, followed by "
@@ -11879,11 +11953,11 @@ msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_CHARACTERISTIC_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:360
+#: ../../library/ubluetooth.rst:378
 msgid "Query a connected peripheral for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:362
+#: ../../library/ubluetooth.rst:380
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "event will be raised, followed by ``_IRQ_GATTC_DESCRIPTOR_DONE`` on "
@@ -11892,7 +11966,7 @@ msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_DESCRIPTOR_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:367
+#: ../../library/ubluetooth.rst:385
 msgid ""
 "Issue a remote read to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11900,7 +11974,7 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート読み込みを発行します。"
 
-#: ../../library/ubluetooth.rst:370
+#: ../../library/ubluetooth.rst:388
 msgid ""
 "When a value is available, the ``_IRQ_GATTC_READ_RESULT`` event will be "
 "raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised."
@@ -11908,7 +11982,7 @@ msgstr ""
 "値は有効であれば ``_IRQ_GATTC_READ_RESULT`` イベントが発生し、"
 "加えて ``_IRQ_GATTC_READ_DONE`` が発生します。"
 
-#: ../../library/ubluetooth.rst:375
+#: ../../library/ubluetooth.rst:393
 msgid ""
 "Issue a remote write to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11916,14 +11990,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート書き込みを発行します。"
 
-#: ../../library/ubluetooth.rst:378
+#: ../../library/ubluetooth.rst:396
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/ubluetooth.rst:381
+#: ../../library/ubluetooth.rst:399
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote peripheral but no confirmation will be returned, and no "
@@ -11932,7 +12006,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートペリフェラルに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/ubluetooth.rst:384
+#: ../../library/ubluetooth.rst:402
 msgid ""
 "``mode=1`` is a write-with-response: the remote peripheral is requested "
 "to send a response/acknowledgement that it received the data."
@@ -11940,7 +12014,7 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートプリフェラルはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/ubluetooth.rst:388
+#: ../../library/ubluetooth.rst:406
 msgid ""
 "If a response is received from the remote peripheral the "
 "``_IRQ_GATTC_WRITE_DONE`` event will be raised."
@@ -11948,23 +12022,23 @@ msgstr ""
 "リモートペリフェラルから応答を受信すると ``_IRQ_GATTC_WRITE_DONE`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:393
+#: ../../library/ubluetooth.rst:411
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/ubluetooth.rst:401
+#: ../../library/ubluetooth.rst:419
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/ubluetooth.rst:403
+#: ../../library/ubluetooth.rst:421
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/ubluetooth.rst:405
+#: ../../library/ubluetooth.rst:423
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/ubluetooth.rst:406
+#: ../../library/ubluetooth.rst:424
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
