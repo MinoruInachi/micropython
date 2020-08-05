@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.10\n"
+"Project-Id-Version: MicroPython 1.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-06-21 20:28+0900\n"
+"PO-Revision-Date: 2020-08-05 09:12+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -6503,7 +6503,7 @@ msgstr ""
 
 #: ../../../reference/speed_python.rst:248
 msgid "Functions may have up to four arguments."
-msgstr "関数は持てる引数は最大４つまでです。"
+msgstr "関数が持てる引数は最大４つまでです。"
 
 #: ../../../reference/speed_python.rst:249
 msgid "Default argument values are not permitted."
@@ -6641,23 +6641,30 @@ msgstr ""
 msgid ""
 "If the argument is a Python object and the cast is ``ptr``, ``ptr``, "
 "``ptr16`` or ``ptr32``, then the Python object must either have the "
-"buffer protocol with read-write capabilities (in which case a pointer to "
-"the start of the buffer is returned) or it must be of integral type (in "
-"which case the value of that integral object is returned)."
+"buffer protocol (in which case a pointer to the start of the buffer is "
+"returned) or it must be of integral type (in which case the value of that"
+" integral object is returned)."
 msgstr ""
-"引数が Python オブジェクトであり、キャストが ``ptr``, ``ptr16``, PPptr32`` の"
-"場合、Python オブジェクトは読み書き機能を持つバッファプロトコルを有しているか"
-"(バッファの先頭へのポインタを返す場合)、整数型のものでなければなりません(この場合、"
-"その整数オブジェクトの値が返されます)。"
+"引数が Python オブジェクトであり、キャストが ``ptr``, ``ptr16``, ``ptr32`` の"
+"場合、Python オブジェクトはバッファプロトコルを有しているか(バッファの先頭への"
+"ポインタを返す場合)、整数型のものでなければなりません(この場合、その整数オブジェクトの"
+"値が返されます)。"
 
-#: ../../../reference/speed_python.rst:300
+#: ../../reference/speed_python.rst:300
+msgid ""
+"Writing to a pointer which points to a read-only object will lead to "
+"undefined behaviour."
+msgstr ""
+"読取り専用オブジェクトを指すポインターへの書込みは、未定義の動作になります。"
+
+#: ../../../reference/speed_python.rst:302
 msgid ""
 "The following example illustrates the use of a ``ptr16`` cast to toggle "
 "pin X1 ``n`` times:"
 msgstr ""
 "次はピン X1 を ``n`` 回切り替えるために ``ptr16`` キャストを使った例を示しています。
 
-#: ../../../reference/speed_python.rst:310
+#: ../../../reference/speed_python.rst:304
 msgid ""
 "BIT0 = const(1)\n"
 "@micropython.viper\n"
@@ -6667,7 +6674,7 @@ msgid ""
 "        odr[0] ^= BIT0"
 msgstr ""
 
-#: ../../../reference/speed_python.rst:311
+#: ../../../reference/speed_python.rst:313
 msgid ""
 "A detailed technical description of the three code emitters may be found "
 "on Kickstarter here `Note 1 "
@@ -6682,11 +6689,11 @@ msgstr ""
 "`Note 2 <https://www.kickstarter.com/projects/214379695/micro-python-python-for-microcontrollers/posts/665145>`_ "
 "にあります。"
 
-#: ../../../reference/speed_python.rst:316
+#: ../../../reference/speed_python.rst:318
 msgid "Accessing hardware directly"
 msgstr "ハードウェアに直接アクセスする"
 
-#: ../../../reference/speed_python.rst:320
+#: ../../../reference/speed_python.rst:322
 msgid ""
 "Code examples in this section are given for the Pyboard. The techniques "
 "described however may be applied to other MicroPython ports too."
@@ -6694,7 +6701,7 @@ msgstr ""
 "この章のコード例は pyboard 用です。ただし、ここで説明した手法は他の MicroPython "
 "ポートにも適用できます。"
 
-#: ../../../reference/speed_python.rst:323
+#: ../../../reference/speed_python.rst:325
 msgid ""
 "This comes into the category of more advanced programming and involves "
 "some knowledge of the target MCU. Consider the example of toggling an "
@@ -6704,11 +6711,11 @@ msgstr ""
 "pyboard で出力ピンを切り替える例を考えてみましょう。標準的なアプローチは、次のように"
 "書くことです。"
 
-#: ../../../reference/speed_python.rst:330
+#: ../../../reference/speed_python.rst:332
 msgid "mypin.value(mypin.value() ^ 1) # mypin was instantiated as an output pin"
 msgstr "mypin.value(mypin.value() ^ 1) # mypin は出力ピンとしてインスタンス化したもの"
 
-#: ../../../reference/speed_python.rst:331
+#: ../../../reference/speed_python.rst:333
 msgid ""
 "This involves the overhead of two calls to the :class:`~machine.Pin` "
 "instance's :meth:`~machine.Pin.value()` method. This overhead can be "
