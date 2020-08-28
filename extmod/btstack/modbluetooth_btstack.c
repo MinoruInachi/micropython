@@ -889,20 +889,21 @@ int mp_bluetooth_gap_disconnect(uint16_t conn_handle) {
 #if MICROPY_PY_BLUETOOTH_ENABLE_CENTRAL_MODE
 STATIC btstack_timer_source_t scan_duration_timeout;
 
-STATIC void hci_initialization_timeout_handler(btstack_timer_source_t *ds) {
+STATIC void scan_duration_timeout_handler(btstack_timer_source_t *ds) {
     (void)ds;
     mp_bluetooth_gap_scan_stop();
 }
 
-int mp_bluetooth_gap_scan_start(int32_t duration_ms, int32_t interval_us, int32_t window_us) {
+int mp_bluetooth_gap_scan_start(int32_t duration_ms, int32_t interval_us, int32_t window_us, bool active_scan) {
     DEBUG_EVENT_printf("mp_bluetooth_gap_scan_start\n");
 
-    btstack_run_loop_set_timer(&scan_duration_timeout, duration_ms);
-    btstack_run_loop_set_timer_handler(&scan_duration_timeout, hci_initialization_timeout_handler);
-    btstack_run_loop_add_timer(&scan_duration_timeout);
+    if (duration_ms > 0) {
+        btstack_run_loop_set_timer(&scan_duration_timeout, duration_ms);
+        btstack_run_loop_set_timer_handler(&scan_duration_timeout, scan_duration_timeout_handler);
+        btstack_run_loop_add_timer(&scan_duration_timeout);
+    }
 
-    // 0 = passive scan (we don't handle scan response).
-    gap_set_scan_parameters(0, interval_us / 625, window_us / 625);
+    gap_set_scan_parameters(active_scan ? 1 : 0, interval_us / 625, window_us / 625);
     gap_start_scan();
 
     return 0;
