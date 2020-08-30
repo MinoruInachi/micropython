@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.10\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-07-26 00:07+0900\n"
+"PO-Revision-Date: 2020-08-29 11:50+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -11670,13 +11670,20 @@ msgstr "0x04 - SCAN_RSP - スキャン応答"
 
 #: ../../library/ubluetooth.rst:231
 msgid ""
+"``active`` can be set ``True`` if you want to receive scan responses in "
+"the results."
+msgstr ""
+"スキャンの応答を結果として受け取りたい場合は、 ``active`` を ``True`` にします。"
+
+#: ../../library/ubluetooth.rst:233
+msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
 "explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised."
 msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
 "``_IRQ_SCAN_DONE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:236
+#: ../../library/ubluetooth.rst:238
 msgid "Peripheral Role (GATT Server)"
 msgstr "ペリフェラルロール(GATT サーバー)"
 
@@ -11691,7 +11698,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/ubluetooth.rst:242
+#: ../../library/ubluetooth.rst:244
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -11704,7 +11711,7 @@ msgstr ""
 "さらに、プリフェラルは接続ハンドルを介して接続されたセントラルにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/ubluetooth.rst:247
+#: ../../library/ubluetooth.rst:249
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a central will be truncated to this length. "
@@ -11720,14 +11727,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/ubluetooth.rst:256
+#: ../../library/ubluetooth.rst:258
 msgid ""
 "Configures the peripheral with the specified services, replacing any "
 "existing services."
 msgstr ""
 "指定したサービスでプリフェラルを構成し、既存のサービスを置換します。"
 
-#: ../../library/ubluetooth.rst:258
+#: ../../library/ubluetooth.rst:260
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -11736,7 +11743,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:262
+#: ../../library/ubluetooth.rst:264
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -11744,14 +11751,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:265
+#: ../../library/ubluetooth.rst:267
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:268
+#: ../../library/ubluetooth.rst:270
 msgid ""
 "The **flags** are a bitwise-OR combination of the "
 ":data:`ubluetooth.FLAG_READ`, :data:`ubluetooth.FLAG_WRITE` and "
@@ -11761,7 +11768,7 @@ msgstr ""
 ":data:`ubluetooth.FLAG_WRITE`, :data:`ubluetooth.FLAG_NOTIFY` "
 "のビット論理和の組み合わせです。"
 
-#: ../../library/ubluetooth.rst:272
+#: ../../library/ubluetooth.rst:274
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -11771,14 +11778,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/ubluetooth.rst:276
+#: ../../library/ubluetooth.rst:278
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/ubluetooth.rst:278
+#: ../../library/ubluetooth.rst:280
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -11794,7 +11801,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:288
+#: ../../library/ubluetooth.rst:290
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -11806,12 +11813,12 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>`, "
 ":meth:`gatts_indicate <BLE.gatts_indicate>` で使えます。"
 
-#: ../../library/ubluetooth.rst:292
+#: ../../library/ubluetooth.rst:294
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
-"**注記注:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
+"**注記:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/ubluetooth.rst:296
+#: ../../library/ubluetooth.rst:298
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote central)."
@@ -11819,24 +11826,16 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートセントラルで書き込まれたもの)を読み取ります。"
 
-#: ../../library/ubluetooth.rst:301
+#: ../../library/ubluetooth.rst:303
 msgid "Writes the local value for this handle, which can be read by a central."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、セントラルによって読み取ることができます。"
 
-#: ../../library/ubluetooth.rst:305
-msgid ""
-"Notifies a connected central that this value has changed and that it "
-"should issue a read of the current value from this peripheral."
-msgstr ""
-"接続されているセントラルに、この値が変更されたこと、およびこのペリフェラルから"
-"現在の値の読み取りを発行する必要があることを通知します。"
-
-#: ../../library/ubluetooth.rst:305
+#: ../../library/ubluetooth.rst:307
 msgid "Sends a notification request to a connected central."
 msgstr "接続されているセントラルにノーティフィケーション要求を送信します。"
 
-#: ../../library/ubluetooth.rst:307
+#: ../../library/ubluetooth.rst:309
 msgid ""
 "If *data* is specified, then that value is sent to the central as part of"
 " the notification. The local value will not be modified."
@@ -11844,7 +11843,7 @@ msgstr ""
 "*data* を指定すると、その値が通知の一部としてセントラルに送信されます。"
 "ローカル値は変更されません。"
 
-#: ../../library/ubluetooth.rst:310
+#: ../../library/ubluetooth.rst:312
 msgid ""
 "Otherwise, if *data* is not specified, then the current local value (as "
 "set with :meth:`gatts_write <BLE.gatts_write>`) will be sent."
@@ -11852,11 +11851,11 @@ msgstr ""
 "*data* を指定しない場合、現在のローカル値(:meth:`gatts_write <BLE.gatts_write>` "
 "で設定された値)が送信されます。"
 
-#: ../../library/ubluetooth.rst:315
+#: ../../library/ubluetooth.rst:317
 msgid "Sends an indication request to a connected central."
 msgstr "接続されているセントラルにインディケーション要求を送信します。"
 
-#: ../../library/ubluetooth.rst:317
+#: ../../library/ubluetooth.rst:319
 msgid ""
 "**Note:** This does not currently support sending a custom value, it will"
 " always send the current local value (as set with :meth:`gatts_write "
@@ -11866,7 +11865,7 @@ msgstr ""
 "常に現在のローカル値(:meth:`gatts_write <BLE.gatts_write>` で設定したもの)"
 "を送信します。"
 
-#: ../../library/ubluetooth.rst:321
+#: ../../library/ubluetooth.rst:323
 msgid ""
 "On acknowledgment (or failure, e.g. timeout), the "
 "``_IRQ_GATTS_INDICATE_DONE`` event will be raised."
@@ -11874,7 +11873,7 @@ msgstr ""
 "acknowledgment (あるいはタイムアウトなどの失敗)があった場合、 "
 "``_IRQ_GATTS_INDICATE_DONE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:326
+#: ../../library/ubluetooth.rst:328
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -11882,7 +11881,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/ubluetooth.rst:329
+#: ../../library/ubluetooth.rst:331
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -11896,42 +11895,42 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/ubluetooth.rst:337
+#: ../../library/ubluetooth.rst:339
 msgid "Central Role (GATT Client)"
 msgstr "セントラルロール(GATT クライアント)"
 
-#: ../../library/ubluetooth.rst:341
+#: ../../library/ubluetooth.rst:343
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
-#: ../../library/ubluetooth.rst:343
+#: ../../library/ubluetooth.rst:345
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:347
+#: ../../library/ubluetooth.rst:349
 msgid "Disconnect the specified connection handle."
 msgstr "指定した接続ハンドルを切断します。"
 
-#: ../../library/ubluetooth.rst:349
+#: ../../library/ubluetooth.rst:351
 msgid "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` event will be raised."
 msgstr "成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:351
+#: ../../library/ubluetooth.rst:353
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
 msgstr ""
 "接続ハンドルが接続されていなければ ``False`` が返り、さもなければ ``True`` が返ります。"
 
-#: ../../library/ubluetooth.rst:356
+#: ../../library/ubluetooth.rst:358
 msgid "Query a connected peripheral for its services."
 msgstr "サービスについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:358
+#: ../../library/ubluetooth.rst:360
 msgid "Optionally specify a service *uuid* to query for that service only."
 msgstr "オプションで照会するサービスの *uuid* を指定できます。"
 
-#: ../../library/ubluetooth.rst:360
+#: ../../library/ubluetooth.rst:362
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
 " be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion."
@@ -11939,18 +11938,18 @@ msgstr ""
 "検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生し、"
 "検索が完了すると ``_IRQ_GATTC_SERVICE_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:365
+#: ../../library/ubluetooth.rst:367
 msgid "Query a connected peripheral for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:367
+#: ../../library/ubluetooth.rst:369
 msgid ""
 "Optionally specify a characteristic *uuid* to query for that "
 "characteristic only."
 msgstr ""
 "オプションで照会するキャラクタリスティックの *uuid* を指定できます。"
 
-#: ../../library/ubluetooth.rst:370
+#: ../../library/ubluetooth.rst:372
 msgid ""
 "You can use ``start_handle=1``, ``end_handle=0xffff`` to search for a "
 "characteristic in any service."
@@ -11958,7 +11957,7 @@ msgstr ""
 "任意のサービスのキャラクタリスティックを検索するには "
 "``start_handle=1``, ``end_handle=0xffff`` とします。"
 
-#: ../../library/ubluetooth.rst:373
+#: ../../library/ubluetooth.rst:375
 msgid ""
 "For each characteristic discovered, the "
 "``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised, followed by "
@@ -11967,11 +11966,11 @@ msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_CHARACTERISTIC_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:378
+#: ../../library/ubluetooth.rst:380
 msgid "Query a connected peripheral for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたペリフェラルを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:380
+#: ../../library/ubluetooth.rst:382
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "event will be raised, followed by ``_IRQ_GATTC_DESCRIPTOR_DONE`` on "
@@ -11980,7 +11979,7 @@ msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_DESCRIPTOR_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:385
+#: ../../library/ubluetooth.rst:387
 msgid ""
 "Issue a remote read to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -11988,7 +11987,7 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート読み込みを発行します。"
 
-#: ../../library/ubluetooth.rst:388
+#: ../../library/ubluetooth.rst:390
 msgid ""
 "When a value is available, the ``_IRQ_GATTC_READ_RESULT`` event will be "
 "raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised."
@@ -11996,7 +11995,7 @@ msgstr ""
 "値は有効であれば ``_IRQ_GATTC_READ_RESULT`` イベントが発生し、"
 "加えて ``_IRQ_GATTC_READ_DONE`` が発生します。"
 
-#: ../../library/ubluetooth.rst:393
+#: ../../library/ubluetooth.rst:395
 msgid ""
 "Issue a remote write to a connected peripheral for the specified "
 "characteristic or descriptor handle."
@@ -12004,14 +12003,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたペリフェラルに"
 "リモート書き込みを発行します。"
 
-#: ../../library/ubluetooth.rst:396
+#: ../../library/ubluetooth.rst:398
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/ubluetooth.rst:399
+#: ../../library/ubluetooth.rst:401
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote peripheral but no confirmation will be returned, and no "
@@ -12020,7 +12019,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートペリフェラルに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/ubluetooth.rst:402
+#: ../../library/ubluetooth.rst:404
 msgid ""
 "``mode=1`` is a write-with-response: the remote peripheral is requested "
 "to send a response/acknowledgement that it received the data."
@@ -12028,7 +12027,7 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートプリフェラルはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/ubluetooth.rst:406
+#: ../../library/ubluetooth.rst:408
 msgid ""
 "If a response is received from the remote peripheral the "
 "``_IRQ_GATTC_WRITE_DONE`` event will be raised."
@@ -12036,23 +12035,23 @@ msgstr ""
 "リモートペリフェラルから応答を受信すると ``_IRQ_GATTC_WRITE_DONE`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:411
+#: ../../library/ubluetooth.rst:413
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/ubluetooth.rst:419
+#: ../../library/ubluetooth.rst:421
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/ubluetooth.rst:421
+#: ../../library/ubluetooth.rst:423
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/ubluetooth.rst:423
+#: ../../library/ubluetooth.rst:425
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/ubluetooth.rst:424
+#: ../../library/ubluetooth.rst:426
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
@@ -13682,7 +13681,7 @@ msgstr ""
 "をサポートしている必要があります。このコンストラクタによって作成されたオブジェクトは "
 ":func:`mount` を使ってマウントできます。"
 
-#: ../../library/uos.rst:188 ../../library/uos.rst:204
+#: ../../library/uos.rst:188 ../../library/uos.rst:212
 msgid "See :ref:`filesystem` for more information."
 msgstr "詳しくは :ref:`filesystem` を参照してください。"
 
@@ -13712,11 +13711,30 @@ msgstr ""
 "をサポートしている必要があります。このコンストラクタによって作成されたオブジェクトは "
 ":func:`mount` を使ってマウントできます。"
 
-#: ../../library/uos.rst:208
+#: ../../library/uos.rst:204
+msgid ""
+"The *mtime* argument enables modification timestamps for files, stored "
+"using littlefs attributes.  This option can be disabled or enabled "
+"differently each mount time and timestamps will only be added or updated "
+"if *mtime* is enabled, otherwise the timestamps will remain untouched.  "
+"Littlefs v2 filesystems without timestamps will work without reformatting"
+" and timestamps will be added transparently to existing files once they "
+"are opened for writing.  When *mtime* is enabled `uos.stat` on files "
+"without timestamps will return 0 for the timestamp."
+msgstr ""
+"*mtime* 引数はファイルの更新タイムスタンプを有効にします。このオプションはマウント毎に"
+"有効/無効にでき、 *mtime* が有効な場合にのみタイムスタンプが追加/更新されます。 "
+"*mtime* が無効であれば、タイムスタンプが追加/更新されないままとなります。"
+"タイムスタンプのない Littlefs v2 ファイルシステムは、再フォーマットしなくても動作し、"
+"既存のファイルをオープンして書き込みを行うと、タイムスタンプは透過的に追加されます。 "
+"*mtime* が有効になっている場合、タイムスタンプのないファイルに対して `uos.stat` を"
+"行った際のタイムスタンプの値は 0 になります。"
+
+#: ../../library/uos.rst:216
 msgid "Build a Lfs2 filesystem on *block_dev*."
 msgstr "*block_dev* に Lfs2 ファイルシステムを構築します。"
 
-#: ../../library/uos.rst:210
+#: ../../library/uos.rst:218
 msgid ""
 "There are reports of littlefs v2 failing in certain situations, for "
 "details see `littlefs issue 295`_."
@@ -13724,11 +13742,11 @@ msgstr ""
 "特定の状況で littlefs v2 が失敗するという報告があります。詳細については "
 "`littlefs issue 295`_ を参照してください。"
 
-#: ../../../library/uos.rst:219
+#: ../../../library/uos.rst:227
 msgid "Block devices"
 msgstr "ブロックデバイス"
 
-#: ../../../library/uos.rst:221
+#: ../../../library/uos.rst:229
 msgid ""
 "A block device is an object which implements the block protocol. This "
 "enables a device to support MicroPython filesystems. The physical "
@@ -13744,7 +13762,7 @@ msgstr ""
 "MicroPython が提供していないブロックデバイスクラスを自作する場合は後述のメソッドを"
 "実装する必要があります。"
 
-#: ../../library/uos.rst:227
+#: ../../library/uos.rst:235
 msgid ""
 "A concrete implementation of this class will usually allow access to the "
 "memory-like functionality of a piece of hardware (like flash memory). A "
@@ -13755,7 +13773,7 @@ msgstr ""
 "メモリのような機能へのアクセスが許可されます。ブロックデバイスはサポートされている"
 "ファイルシステムでフォーマットでき、 ``uos`` のメソッドを使ってマウントできます。"
 
-#: ../../library/uos.rst:232
+#: ../../library/uos.rst:240
 msgid ""
 "See :ref:`filesystem` for example implementations of block devices using "
 "the two variants of the block protocol described below."
@@ -13763,11 +13781,11 @@ msgstr ""
 "後述する２種類のブロックプロトコルを使ったブロックデバイスの実装例については "
 ":ref:`filesystem` を参照してください。"
 
-#: ../../library/uos.rst:238
+#: ../../library/uos.rst:246
 msgid "Simple and extended interface"
 msgstr "シンプルインタフェースと拡張インタフェース"
 
-#: ../../../library/uos.rst:240
+#: ../../../library/uos.rst:248
 msgid ""
 "There are two compatible signatures for the ``readblocks`` and "
 "``writeblocks`` methods (see below), in order to support a variety of use"
@@ -13780,7 +13798,7 @@ msgstr ""
 "与えられたブロックデバイスは、どちらか一方、または両方を実装しています。"
 "２番目の形式(offset 引数のあるもの)は「拡張インタフェース」といいます。"
 
-#: ../../library/uos.rst:245
+#: ../../library/uos.rst:253
 msgid ""
 "Some filesystems (such as littlefs) that require more control over write "
 "operations, for example writing to sub-block regions without erasing, may"
@@ -13790,7 +13808,7 @@ msgstr ""
 "たとえば、消去せずにサブブロック領域に書き込む場合、ブロックデバイスが拡張インターフェイスを"
 "サポートしている必要がある場合があります。"
 
-#: ../../../library/uos.rst:251
+#: ../../../library/uos.rst:259
 msgid ""
 "Construct a block device object.  The parameters to the constructor are "
 "dependent on the specific block device."
@@ -13798,7 +13816,7 @@ msgstr ""
 "ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
 "ブロックデバイスに依存します。"
 
-#: ../../../library/uos.rst:257
+#: ../../../library/uos.rst:265
 msgid ""
 "The first form reads aligned, multiples of blocks. "
 "Starting at the block given by the index *block_num*, read blocks from "
@@ -13810,7 +13828,7 @@ msgstr ""
 "指定したブロックを開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数になります。"
 
-#: ../../../library/uos.rst:263
+#: ../../../library/uos.rst:271
 msgid ""
 "The second form allows reading at arbitrary locations within a block, "
 "and arbitrary lengths. Starting at block index *block_num*, and byte "
@@ -13823,7 +13841,7 @@ msgstr ""
 "を開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
 
-#: ../../../library/uos.rst:272
+#: ../../../library/uos.rst:280
 msgid ""
 "The first form writes aligned, multiples of blocks, and requires that the "
 "blocks that are written to be first erased (if necessary) by this method. "
@@ -13838,7 +13856,7 @@ msgstr ""
 "書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
 "なります。"
 
-#: ../../../library/uos.rst:279
+#: ../../../library/uos.rst:287
 msgid ""
 "The second form allows writing at arbitrary locations within a block, "
 "and arbitrary lengths.  Only the bytes being written should be changed, "
@@ -13855,7 +13873,7 @@ msgstr ""
 "を開始点として、 *buf* （バイト配列）からデバイスに書き込みます。"
 "書き込むバイト数は *buf* の長さで指定されます。"
 
-#: ../../../library/uos.rst:287
+#: ../../../library/uos.rst:295
 msgid ""
 "Note that implementations must never implicitly erase blocks if the offset "
 "argument is specified, even if it is zero."
@@ -13863,7 +13881,7 @@ msgstr ""
 "offset 引数が指定されている場合、たとえゼロであっても、実装がブロックを暗黙的に"
 "消去してはならないことに注意してください。"
 
-#: ../../../library/uos.rst:292
+#: ../../../library/uos.rst:300
 msgid ""
 "Control the block device and query its parameters.  The operation to "
 "perform is given by *op* which is one of the following integers:"
@@ -13871,25 +13889,25 @@ msgstr ""
 "ブロックデバイスの制御とパラメータ問い合わせをおこないます。実行する操作は *op* に"
 "次の整数のうちの１つで指定します。"
 
-#: ../../../library/uos.rst:295
+#: ../../../library/uos.rst:303
 msgid "1 -- initialise the device (*arg* is unused)"
 msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:296
+#: ../../../library/uos.rst:304
 msgid "2 -- shutdown the device (*arg* is unused)"
 msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
 
-#: ../../../library/uos.rst:297
+#: ../../../library/uos.rst:305
 msgid "3 -- sync the device (*arg* is unused)"
 msgstr "3 -- デバイスを同期します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:298
+#: ../../../library/uos.rst:306
 msgid ""
 "4 -- get a count of the number of blocks, should return an integer (*arg*"
 " is unused)"
 msgstr "4 -- ブロック数を取得し、整数で返します(*arg* は未使用)"
 
-#: ../../../library/uos.rst:300
+#: ../../../library/uos.rst:308
 msgid ""
 "5 -- get the number of bytes in a block, should return an integer, or "
 "``None`` in which case the default value of 512 is used (*arg* is unused)"
@@ -13897,13 +13915,13 @@ msgstr ""
 "5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
 "の 512 が使われます(*arg* は未使用)"
 
-#: ../../../library/uos.rst:303
+#: ../../../library/uos.rst:311
 msgid ""
 "6 -- erase a block, *arg* is the block number to erase"
 msgstr ""
 "6 -- ブロックを消去します。 *arg* は消去するブロック数です"
 
-#: ../../library/uos.rst:305
+#: ../../library/uos.rst:313
 msgid ""
 "As a minimum ``ioctl(4, ...)`` must be intercepted; for littlefs "
 "``ioctl(6, ...)`` must also be intercepted. The need for others is "
@@ -13913,7 +13931,7 @@ msgstr ""
 "littlefs については ``ioctl(6, ...)`` も受け付けられる必要があります。"
 "その他の操作が受け付けられるかはハードウェアに依存します。"
 
-#: ../../library/uos.rst:309
+#: ../../library/uos.rst:317
 msgid ""
 "Unless otherwise stated ``ioctl(op, arg)`` can return ``None``. "
 "Consequently an implementation can ignore unused values of ``op``. Where "
