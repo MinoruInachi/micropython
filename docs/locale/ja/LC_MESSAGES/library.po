@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-10-05 20:28+0900\n"
+"PO-Revision-Date: 2020-11-08 12:37+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2841,9 +2841,9 @@ msgstr ""
 
 #: ../../../library/machine.rst:82
 msgid ""
-"With or without a timout, execution may resume at any time if there are events "
-"that require processing.  Such events, or wake sources, should be configured before "
-"sleeping, like `Pin` change or `RTC` timeout."
+"With or without a timeout, execution may resume at any time if there are "
+"events that require processing.  Such events, or wake sources, should be "
+"configured before sleeping, like `Pin` change or `RTC` timeout."
 msgstr ""
 "タイムアウトがあってもなくても、処理が必要なイベントがあれば実行はいつでも再開できます。"
 "そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
@@ -4668,7 +4668,7 @@ msgstr ""
 
 #: ../../../library/machine.Signal.rst:58
 msgid ""
-"The split between Pin and Signal come from the usecases above and the "
+"The split between Pin and Signal come from the use cases above and the "
 "architecture of MicroPython: Pin offers the lowest overhead, which may be"
 " important when bit-banging protocols. But Signal adds additional "
 "flexibility on top of Pin, at the cost of minor overhead (much smaller "
@@ -4843,12 +4843,16 @@ msgstr ""
 "指定した id の新しいタイマーオブジェクトを構築します。id が -1 の場合は、"
 "(ボードでサポートしていれば)仮想タイマーを構築します。"
 
-#: ../../../library/machine.Timer.rst:40
+#: ../../library/machine.Timer.rst:35
+msgid "See ``init`` for parameters of initialisation."
+msgstr "初期化パラメータについては ``init`` を参照してください。"
+
+#: ../../../library/machine.Timer.rst:42
 #: ../../../library/machine.TimerWiPy.rst:44
 msgid "Initialise the timer. Example::"
 msgstr "タイマーを初期化します。たとえば次のように使います::"
 
-#: ../../../library/machine.Timer.rst:42
+#: ../../../library/machine.Timer.rst:44
 msgid ""
 "tim.init(period=100)                         # periodic with 100ms period"
 "\n"
@@ -4858,19 +4862,19 @@ msgstr ""
 "tim.init(period=100)                         # 100ms 周期で定期的に\n"
 "tim.init(mode=Timer.ONE_SHOT, period=1000)   # 1000ms 後に一度だけ"
 
-#: ../../../library/machine.Timer.rst:45
+#: ../../../library/machine.Timer.rst:47
 #: ../../../library/machine.TimerWiPy.rst:49 ../../../library/pyb.Timer.rst:73
 #: ../../../library/pyb.Timer.rst:138
 msgid "Keyword arguments:"
 msgstr "キーワード引数:"
 
-#: ../../../library/machine.Timer.rst:47
+#: ../../../library/machine.Timer.rst:49
 #: ../../../library/machine.TimerWiPy.rst:51 ../../../library/pyb.Pin.rst:105
 #: ../../../library/pyb.Timer.rst:90 ../../../library/pyb.Timer.rst:140
 msgid "``mode`` can be one of:"
 msgstr "``mode`` は次のいずれかになります。"
 
-#: ../../../library/machine.Timer.rst:49
+#: ../../../library/machine.Timer.rst:51
 msgid ""
 "``Timer.ONE_SHOT`` - The timer runs once until the configured period of "
 "the channel expires."
@@ -4878,14 +4882,14 @@ msgstr ""
 "``Timer.ONE_SHOT`` - タイマーは、設定したチャネルの周期が経過した後に1回だけ"
 "実行します。"
 
-#: ../../../library/machine.Timer.rst:51
+#: ../../../library/machine.Timer.rst:53
 msgid ""
 "``Timer.PERIODIC`` - The timer runs periodically at the configured "
 "frequency of the channel."
 msgstr ""
 "``Timer.PERIODIC`` - タイマーは、チャネルの設定した周期で定期的に実行します。"
 
-#: ../../../library/machine.Timer.rst:56
+#: ../../../library/machine.Timer.rst:58
 #: ../../../library/machine.TimerWiPy.rst:65
 msgid ""
 "Deinitialises the timer. Stops the timer, and disables the timer "
@@ -4893,7 +4897,7 @@ msgid ""
 msgstr ""
 "タイマーを初期化解除します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
 
-#: ../../../library/machine.Timer.rst:64
+#: ../../../library/machine.Timer.rst:66
 #: ../../../library/machine.TimerWiPy.rst:159
 msgid "Timer operating mode."
 msgstr "タイマー操作モード。"
