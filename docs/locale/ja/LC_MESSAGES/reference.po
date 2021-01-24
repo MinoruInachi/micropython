@@ -5944,17 +5944,18 @@ msgstr ""
 "次のように使えます。"
 
 #: ../../../reference/repl.rst:200
-msgid "Raw mode"
-msgstr "raw モード"
+msgid "Raw mode and raw-paste mode"
+msgstr "raw モードと raw ペーストモード"
 
 #: ../../../reference/repl.rst:202
 msgid ""
-"Raw mode is not something that a person would normally use. It is "
-"intended for programmatic use. It essentially behaves like paste mode "
-"with echo turned off."
+"Raw mode (also called raw REPL) is not something that a person would "
+"normally use. It is intended for programmatic use and essentially behaves"
+" like paste mode with echo turned off, and with optional flow control."
 msgstr ""
-"raw モードは、人が通常使うものではありません。これは、プログラムで使うよう意図"
-"されています。本質的には、エコーが無効になったペーストモードのように動作します。"
+"raw モード(raw REPL ともいいます)は、人が通常使うものではありません。"
+"これはプログラムで使うよう意図されていて、本質的にはエコーが無効になった"
+"ペーストモードのように動作します。オプションでフロー制御もできます。"
 
 #: ../../../reference/repl.rst:205
 msgid ""
@@ -5969,13 +5970,222 @@ msgstr ""
 "実行されます。任意の出力(またはエラー)が戻ってきます。Ctrl-B を入力すると、raw "
 "モードを終了して、通常の(フレンドリーな) REPL に戻ります。"
 
-#: ../../../reference/repl.rst:210
+#: ../../reference/repl.rst:211
 msgid ""
-"The ``tools/pyboard.py`` program uses the raw REPL to execute python "
-"files on the MicroPython board."
+"Raw-paste mode is an additional mode within the raw REPL that includes "
+"flow control, and which compiles code as it receives it. This makes it "
+"more robust for high-speed transfer of code into the device, and it also "
+"uses less RAM when receiving because it does not need to store a verbatim"
+" copy of the code before compiling (unlike standard raw mode)."
+msgstr ""
+"raw ペーストモードは、フロー制御を含む raw REPL 内の追加モードで、コードを受信すると"
+"同時にコンパイルします。これにより、デバイスへのコードの高速転送がより堅牢になり、"
+"(標準の raw モードとは異なり)コンパイル前のコードの冗長なコピーを保存しなくてもよいため、"
+"受信時の RAM の使用量も少なくなります。"
+
+#: ../../reference/repl.rst:217
+msgid "Raw-paste mode uses the following protocol:"
+msgstr ""
+"raw ペーストモードでは、以下のプロトコルを使用します。"
+
+#: ../../reference/repl.rst:219
+msgid "Enter raw REPL as usual via ctrl-A."
+msgstr "ctrl-A で通常の raw REPL に入ります。"
+
+#: ../../reference/repl.rst:221
+msgid "Write 3 bytes: ``b\"\\x05A\\x01\"`` (ie ctrl-E then \"A\" then ctrl-A)."
+msgstr "次の3バイトを書き込みます: ``b\"\\x05A\\x01\"`` (ctrl-E、"A "、ctrl-A)。"
+
+#: ../../reference/repl.rst:223
+msgid "Read 2 bytes to determine if the device entered raw-paste mode:"
+msgstr "2バイト読み込んで、デバイスが raw ペースト モードになったかどうかを確認します:"
+
+#: ../../reference/repl.rst:225
+msgid ""
+"If the result is ``b\"R\\x00\"`` then the device understands the command "
+"but doesn't support raw paste."
+msgstr ""
+"結果が ``b\"R\\x00\"`` の場合、デバイスはコマンドを理解していますが、"
+"raw ペーストをサポートしていません。"
+
+#: ../../reference/repl.rst:228
+msgid ""
+"If the result is ``b\"R\\x01\"`` then the device does support raw paste "
+"and has entered this mode."
+msgstr ""
+"結果が ``b\"R\\x01\"`` の場合、デバイスは raw ペーストをサポートしていて、"
+"このモードに入っています。"
+
+#: ../../reference/repl.rst:231
+msgid ""
+"Otherwise the result should be ``b\"ra\"`` and the device doesn't support"
+" raw paste and the string ``b\"w REPL; CTRL-B to exit\\r\\n>\"`` should "
+"be read and discarded."
+msgstr ""
+"上記のいずれでもなければ結果は　``b\"ra\"`` となるはずで、デバイスは raw ペーストを"
+"サポートしていません。この場合は、後続のバイト列 "
+"``b\"w REPL; CTRL-B to exit\\r\\n>\"`` を読み取って破棄してください。"
+
+#: ../../reference/repl.rst:235
+msgid ""
+"If the device is in raw-paste mode then continue, otherwise fallback to "
+"standard raw mode."
+msgstr ""
+"デバイスが raw ペーストモードになったら続行し、そうでない場合は標準の raw モードに"
+"フォールバックします。"
+
+#: ../../reference/repl.rst:238
+msgid ""
+"Read 2 bytes, this is the flow control window-size-increment (in bytes) "
+"stored as a 16-bit unsigned little endian integer.  The initial value for"
+" the remaining-window-size variable should be set to this number."
+msgstr ""
+"2バイト読み込みます。これは16ビット符号なしリトルエンディアン整数のフロー制御 "
+"window-size-increment (バイト単位)です。remaining-window-size 変数の"
+"ための初期値はこの数に設定されるべきです。"
+
+#: ../../reference/repl.rst:242
+msgid "Write out the code to the device:"
+msgstr "デバイスにコードを書き出します。"
+
+#: ../../reference/repl.rst:244
+msgid ""
+"While there are bytes to send, write up to the remaining-window-size "
+"worth of bytes, and decrease the remaining-window-size by the number of "
+"bytes written."
+msgstr ""
+"送信するバイトがある間に remaining-window-size のバイト数分まで書き込んで、"
+"書き込んだバイト数分だけ remaining-window-size を減少させます。"
+
+#: ../../reference/repl.rst:248
+msgid ""
+"If the remaining-window-size is 0, or there is a byte waiting to read, "
+"read 1 byte.  If this byte is ``b\"\\x01\"`` then increase the remaining-"
+"window-size by the window-size-increment from step 5.  If this byte is "
+"``b\"\\x04\"`` then the device wants to end the data reception, and "
+"``b\"\\x04\"`` should be written to the device and no more code sent "
+"after that.  (Note: if there is a byte waiting to be read from the device"
+" then it does not need to be read and acted upon immediately, the device "
+"will continue to consume incoming bytes as long as reamining-window-size "
+"is greater than 0.)"
+msgstr ""
+"remaining-window-size が0の場合、または読み込み待ちのバイトがある場合は、"
+"1バイト読み込みます。もし、このバイトが ``b\"\\x01\"`` であれば、ステップ5での"
+"window-size-increment だけ remaining-window-size を増加させます。もし、"
+"このバイトが ``b\"\\x04\"`` であれば、デバイスはデータ受信を終了したいので、 "
+"``b\"\\x04\"`` をデバイスに書き込み、それ以降はコードを送信しないようにして下さい。"
+"(注記: デバイスから読み出されるのを待っているバイトがある場合でも、すぐに読み込んで"
+"対処する必要はありません。reamining-window-size が0より大きい限り、"
+"デバイスは受信バイトを消費し続けます。)"
+
+#: ../../reference/repl.rst:257
+msgid ""
+"When all code has been written to the device, write ``b\"\\x04\"`` to "
+"indicate end-of-data."
+msgstr ""
+"すべてのコードがデバイスに書き込まれたら、データの終了を示すために ``b\"\\x04\"`` "
+"を書き込みます。"
+
+#: ../../reference/repl.rst:260
+msgid ""
+"Read from the device until ``b\"\\x04\"`` is received.  At this point the"
+" device has received and compiled all of the code that was sent and is "
+"executing it."
+msgstr ""
+"``b\"\\x04\"`` が受信されるまでデバイスから読み出します。この時点でデバイスは、"
+"送信されたコードを全て受信してコンパイルし、実行しています。"
+
+#: ../../reference/repl.rst:263
+msgid ""
+"The device outputs any characters produced by the executing code.  When "
+"(if) the code finishes ``b\"\\x04\"`` will be output, followed by any "
+"exception that was uncaught, followed again by ``b\"\\x04\"``.  It then "
+"goes back to the standard raw REPL and outputs ``b\">\"``."
+msgstr ""
+"デバイスは、実行中のコードによって生成された文字を出力します。"
+"コードが終了すると ``b\"\\x04\"`` が出力され、続いて捕えられない例外が出力され、"
+"再び ``b\"\\x04\"`` が出力されます。その後、標準の raw REPLに戻り "
+"``b\">\"`` を出力します。
+
+#: ../../reference/repl.rst:268
+msgid ""
+"For example, starting at a new line at the normal (friendly) REPL, if you"
+" write::"
+msgstr ""
+"たとえば、通常の(対話的な) REPL で書き始めるとすると、次のようになります::"
+
+#: ../../reference/repl.rst:270
+msgid "b\"\\x01\\x05A\\x01print(123)\\x04\""
+msgstr ""
+
+#: ../../reference/repl.rst:272
+msgid "Then the device will respond with something like::"
+msgstr "こうすると、デバイスは次のような反応をします::"
+
+#: ../../reference/repl.rst:274
+msgid ""
+"b\"\\r\\nraw REPL; CTRL-B to "
+"exit\\r\\n>R\\x01\\x80\\x00\\x01\\x04123\\r\\n\\x04\\x04>\""
+msgstr ""
+
+#: ../../reference/repl.rst:276
+msgid "Broken down over time this looks like::"
+msgstr "デバイスとの入出力を詳しく書くと次のようになります::"
+
+#: ../../reference/repl.rst:278
+msgid ""
+"# Step 1: enter raw REPL\n"
+"write: b\"\\x01\"\n"
+"read: b\"\\r\\nraw REPL; CTRL-B to exit\\r\\n>\"\n"
+"\n"
+"# Step 2-5: enter raw-paste mode\n"
+"write: b\"\\x05A\\x01\"\n"
+"read: b\"R\\x01\\x80\\x00\\x01\"\n"
+"\n"
+"# Step 6-8: write out code\n"
+"write: b\"print(123)\\x04\"\n"
+"read: b\"\\x04\"\n"
+"\n"
+"# Step 9: code executes and result is read\n"
+"read: b\"123\\r\\n\\x04\\x04>\""
+msgstr ""
+"# ステップ1: raw REPL に入る\n"
+"write: b\"\\x01\"\n"
+"read: b\"\\r\\nraw REPL; CTRL-B to exit\\r\\n>\"\n"
+"\n"
+"# ステップ2-5: raw ペーストモードに入る\n"
+"write: b\"\\x05A\\x01\"\n"
+"read: b\"R\\x01\\x80\\x00\\x01\"\n"
+"\n"
+"# ステップ6-8: コードを書き出す\n"
+"write: b\"print(123)\\x04\"\n"
+"read: b\"\\x04\"\n"
+"\n"
+"# ステップ9: コードを実行した結果を読み込む\n"
+"read: b\"123\\r\\n\\x04\\x04>\""
+
+#: ../../reference/repl.rst:293
+msgid ""
+"In this case the flow control window-size-increment is 128 and there are "
+"two windows worth of data immediately available at the start, one from "
+"the initial window-size-increment value and one from the explicit "
+"``b\"\\x01\"`` value that is sent.  So this means up to 256 bytes can be "
+"written to begin with before waiting or checking for more incoming flow-"
+"control characters."
+msgstr ""
+"この場合、フロー制御の window-size-increment は 128 であり、"
+"開始時にすぐに利用可能な2つのウィンドウに相当するデータがあり、"
+"1つは初期 window-size-increment 値から、もう1つは送信された明示的な "
+"``b\"\\x01\"`` 値からです。つまり、フロー制御文字の着信を待ったり"
+"チェックしたりする前に、最大256バイトまで書き込めるということです。"
+
+#: ../../reference/repl.rst:299
+msgid ""
+"The ``tools/pyboard.py`` program uses the raw REPL, including raw-paste "
+"mode, to execute Python code on a MicroPython-enabled board."
 msgstr ""
 "``tools/pyboard.py`` プログラムは MicroPython ボード上の python ファイルを"
-"実行するために、raw REPL を使っています。"
+"実行するために、raw REPL と raw ペーストモードを使っています。"
 
 #: ../../../reference/speed_python.rst:2
 msgid "Maximising MicroPython speed"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2020-11-08 12:37+0900\n"
+"PO-Revision-Date: 2021-01-24 09:30+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -529,9 +529,9 @@ msgstr ""
 "キーはデータベースにソートして格納され、キー値による効率的な検索に加えて、データベース"
 "は効率的な順序付き範囲スキャン(特定の範囲内のキーを持つ値の検索)もサポートします。"
 "アプリケーションインタフェース側では、BTreeデータベースは標準の辞書型(`dict`)と"
-"同じように機能します。辞書型との大きな違いは、キーと値の両方がバイト列(`bytes`)"
-"オブジェクトでなければならないことです(したがって、他の型のオブジェクトを格納する"
-"場合はバイト列にシリアル化しておく必要があります)。"
+"同じように機能します。辞書型との大きな違いは、キーと値の両方が bytes 型オブジェクト"
+"でなければならないことです(したがって、他の型のオブジェクトを格納する"
+"場合は bytes 型オブジェクトにシリアル化しておく必要があります)。"
 
 #: ../../../library/btree.rst:17
 msgid "The module is based on the well-known BerkelyDB library, version 1.xx."
@@ -812,16 +812,16 @@ msgstr ""
 #: ../../library/esp32.rst:118 ../../library/esp32.rst:266
 #: ../../library/framebuf.rst:118 ../../library/lcd160cr.rst:380
 #: ../../library/machine.Pin.rst:224 ../../library/machine.RTC.rst:65
-#: ../../library/machine.SPI.rst:103 ../../library/machine.Timer.rst:59
+#: ../../library/machine.SPI.rst:103 ../../library/machine.Timer.rst:61
 #: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:152
 #: ../../library/machine.rst:139 ../../library/math.rst:177
 #: ../../library/network.CC3K.rst:83 ../../library/network.WLANWiPy.rst:145
-#: ../../library/pyb.CAN.rst:278 ../../library/pyb.ExtInt.rst:102
+#: ../../library/pyb.CAN.rst:283 ../../library/pyb.ExtInt.rst:102
 #: ../../library/pyb.I2C.rst:157 ../../library/pyb.Pin.rst:181
 #: ../../library/pyb.SPI.rst:113 ../../library/pyb.UART.rst:178
-#: ../../library/pyb.USB_VCP.rst:114 ../../library/ubluetooth.rst:514
-#: ../../library/uerrno.rst:13 ../../library/usocket.rst:139
-#: ../../library/ussl.rst:42 ../../library/usys.rst:47
+#: ../../library/pyb.USB_VCP.rst:114 ../../library/uerrno.rst:13
+#: ../../library/usocket.rst:139 ../../library/ussl.rst:42
+#: ../../library/usys.rst:47
 msgid "Constants"
 msgstr "定数"
 
@@ -3239,10 +3239,11 @@ msgid ""
 "(and in this case the slave assumes more bytes are going to be read in a "
 "later call)."
 msgstr ""
-"バスからバイト列を読み込んで *buf* に格納します。読み取るバイト数は *buf* の長さ分です。"
-"ACK は最後のバイトを除くすべてを受信した後にバス上に送信されます。最後のバイトが受信"
-"した後、 *nack* が true の場合は NACK が送信され、それ以外の場合は ACK が送信されます"
-"(この場合、スレーブは後の呼び出しでさらにバイトが読み取られると想定します)。"
+"バスから bytes 型オブジェクトを読み込んで *buf* に格納します。読み取るバイト数は "
+"*buf* の長さ分です。ACK は最後のバイトを除くすべてを受信した後にバス上に送信されます。"
+"最後のバイトが受信した後、 *nack* が true の場合は NACK が送信され、それ以外の場合は "
+"ACK が送信されます(この場合、スレーブは後の呼び出しでさらに bytes 型オブジェクトが"
+"読み取られると想定します)。"
 
 #: ../../../library/machine.I2C.rst:122
 msgid ""
@@ -3250,9 +3251,9 @@ msgid ""
 "after each byte and stops transmitting the remaining bytes if a NACK is "
 "received.  The function returns the number of ACKs that were received."
 msgstr ""
-"*buf* からバスにバイト列を書き込みます。各バイトの後に ACK が受信されたことを確認し、"
-"NACK が受信された場合は残りのバイト列の送信を停止します。この関数は受信した ACK "
-"の数を返します。"
+"*buf* からバスに bytes 型オブジェクトを書き込みます。各バイトの後に ACK が受信された"
+"ことを確認し、NACK が受信された場合は残りのバイト列の送信を停止します。"
+"この関数は受信した ACK の数を返します。"
 
 #: ../../../library/machine.I2C.rst:127
 msgid "Standard bus operations"
@@ -3273,7 +3274,7 @@ msgid ""
 "`bytes` object with the data read."
 msgstr ""
 "*addr* で指定されたスレーブから *nbytes* 分を読み取ります。 *stop* が True の場合、"
-"転送終了時に STOP 条件が生成されます。読み込んだデータを持つ `bytes` オブジェクトを"
+"転送終了時に STOP 条件が生成されます。読み込んだデータを持つ `bytes` 型オブジェクトを"
 "返します。"
 
 #: ../../../library/machine.I2C.rst:140
@@ -3298,10 +3299,11 @@ msgid ""
 " at the end of the transfer, even if a NACK is received. The function "
 "returns the number of ACKs that were received."
 msgstr ""
-"*buf* から *addr* で指定されたスレーブにバイト列を書き込みます。 *buf* からの"
-"バイト列の書き込みに続いて NACK を受信した場合、残りのバイトは送信されません。"
-"もし *stop* が True であれば、たとえ NACK が受信されたとしても、転送の終わりに "
-"STOP 条件が生成されます。この関数は受信した ACK の数を返します。"
+"*buf* から *addr* で指定されたスレーブに bytes 型オブジェクトを書き込みます。 "
+"*buf* からの bytes 型オブジェクトの書き込みに続いて NACK を受信した場合、"
+"残りのバイトは送信されません。もし *stop* が True であれば、たとえ NACK "
+"が受信されたとしても、転送の終わりに STOP 条件が生成されます。この関数は受信した "
+"ACK の数を返します。"
 
 #: ../../../library/machine.I2C.rst:156
 msgid ""
@@ -3311,10 +3313,11 @@ msgid ""
 "are written out sequentially.  The objects in *vector* may be zero bytes "
 "in length in which case they don't contribute to the output."
 msgstr ""
-"*vector* に指定したバイト列を *addr* に指定したスレーブに書き込みます。"
+"*vector* に指定した bytes 型オブジェクトを *addr* に指定したスレーブに書き込みます。"
 "*vector* はバッファプロトコルを持つオブジェクトのタプルかリストであるべきです。"
-"*addr* が1回送信され、その後 *vector* 内の各オブジェクトからのバイトを順次書き込みます。"
-"*vector* 内のオブジェクトは長さが0バイトであるかもしれませんが、その場合には出力しません。"
+"*addr* が1回送信され、その後 *vector* 内の各オブジェクトからの bytes 型オブジェクトを"
+"順次書き込みます。 *vector* 内のオブジェクトは長さが0バイトであるかもしれませんが、"
+"その場合には出力しません。"
 
 #: ../../../library/machine.I2C.rst:162
 msgid ""
@@ -3353,7 +3356,7 @@ msgid ""
 msgstr ""
 "*addr* で指定したスレーブより、 *memaddr* で指定したメモリアドレスから "
 "*nbytes* 分を読み込みます。引数 *addrsize* はアドレスサイズをビット数で指定します。"
-"この関数は読み込んだデータを持つバイト列(`bytes`)オブジェクトを返します。"
+"この関数は読み込んだデータを持つ bytes 型オブジェクトを返します。"
 
 #: ../../../library/machine.I2C.rst:185
 msgid ""
@@ -4201,18 +4204,18 @@ msgstr "デフォルト(および推奨)のピン割り当ては次のとおり�
 msgid "Slot"
 msgstr "スロット"
 
-#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:256
+#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:261
 msgid "0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:177
-#: ../../library/pyb.CAN.rst:258
+#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:182
+#: ../../library/pyb.CAN.rst:263
 msgid "1"
 msgstr ""
 
 #: ../../library/machine.SDCard.rst:98 ../../library/machine.SDCard.rst:105
-#: ../../library/pyb.CAN.rst:173 ../../library/pyb.CAN.rst:175
-#: ../../library/pyb.CAN.rst:260
+#: ../../library/pyb.CAN.rst:178 ../../library/pyb.CAN.rst:180
+#: ../../library/pyb.CAN.rst:265
 msgid "2"
 msgstr ""
 
@@ -4304,7 +4307,7 @@ msgstr ""
 msgid "8"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:108 ../../library/pyb.CAN.rst:171
+#: ../../library/machine.SDCard.rst:108 ../../library/pyb.CAN.rst:176
 msgid "4"
 msgstr ""
 
@@ -4514,7 +4517,7 @@ msgid ""
 "data that was read."
 msgstr ""
 "``write`` で指定した１バイトを連続で書き込みながら、 ``nbytes`` で指定したバイト数"
-"を読み込みます。読み込んだデータを持つ ``bytes`` オブジェクトを返します。"
+"を読み込みます。読み込んだデータを持つ ``bytes`` 型オブジェクトを返します。"
 
 #: ../../library/machine.SPI.rst:80
 msgid ""
@@ -4530,7 +4533,7 @@ msgstr "注記: WiPy では読み込んだバイト数を返します。"
 
 #: ../../../library/machine.SPI.rst:88
 msgid "Write the bytes contained in ``buf``. Returns ``None``."
-msgstr "``buf`` に含まれるバイト列を書き込みます。 ``None`` を返します。"
+msgstr "``buf`` に含まれる bytes 型オブジェクトを書き込みます。 ``None`` を返します。"
 
 #: ../../library/machine.SPI.rst:91 ../../library/machine.SPI.rst:100
 msgid "Note: on WiPy this function returns the number of bytes written."
@@ -4542,8 +4545,8 @@ msgid ""
 "buffers can be the same or different, but both buffers must have the same"
 " length. Returns ``None``."
 msgstr ""
-"``read_buf`` に読込みながら ``write_buf`` のバイト列を書き込みます。両バッファは"
-"同じでも異なっていてもかまいませんが、同じ長さでなければなりません。 ``None`` "
+"``read_buf`` に読込みながら ``write_buf`` の bytes 型オブジェクトを書き込みます。"
+"両バッファは同じでも異なっていてもかまいませんが、同じ長さでなければなりません。 ``None`` "
 "を返します。"
 
 #: ../../library/machine.SPI.rst:107
@@ -5172,7 +5175,7 @@ msgid ""
 "uart.readinto(buf)  # read and store into the given buffer\n"
 "uart.write('abc')   # write the 3 characters"
 msgstr ""
-"uart.read(10)       # 10文字を読み込んで、バイト列オブジェクトを返す\n"
+"uart.read(10)       # 10文字を読み込んで、bytes 型オブジェクトを返す\n"
 "uart.read()         # 可能な限り文字を読み込む\n"
 "uart.readline()     # 1行を読み込む\n"
 "uart.readinto(buf)  # 読み込んで、与えたバッファに格納\n"
@@ -5295,7 +5298,7 @@ msgid ""
 "Return value: a bytes object containing the bytes read in.  Returns "
 "``None`` on timeout."
 msgstr ""
-"戻り値: 読み込んだバイト列を含む bytes オブジェクト。タイムアウト時は "
+"戻り値: 読み込んだバイト列を含む bytes 型オブジェクト。タイムアウト時は "
 "``None`` を返します。"
 
 #: ../../../library/machine.UART.rst:101
@@ -5333,7 +5336,7 @@ msgstr "戻り値: 読み込まれた行。タイムアウト時は ``None`` を
 
 #: ../../../library/machine.UART.rst:117
 msgid "Write the buffer of bytes to the bus."
-msgstr "バッファのバイト列をバスに書き込みます。"
+msgstr "バッファの bytes 型オブジェクトをバスに書き込みます。"
 
 #: ../../../library/machine.UART.rst:119
 msgid "Return value: number of bytes written or ``None`` on timeout."
@@ -5946,10 +5949,10 @@ msgstr ""
 
 #: ../../../library/micropython.rst:148
 msgid ""
-"There is a finite stack to hold the scheduled functions and `schedule()` "
-"will raise a `RuntimeError` if the stack is full."
+"There is a finite queue to hold the scheduled functions and `schedule()` "
+"will raise a `RuntimeError` if the queue is full."
 msgstr ""
-"スケジュールされた関数を保持するための有限のスタックがあり、スタックがいっぱいになると "
+"スケジュールされた関数を保持するための有限のキューがあり、キューがいっぱいになると "
 "`schedule()` は `RuntimeError` を起こします。"
 
 #: ../../../library/network.rst:3
@@ -6641,9 +6644,9 @@ msgid ""
 "as bytes object. You can use `ubinascii.hexlify()` to convert it to ASCII"
 " form."
 msgstr ""
-"*bssid* はアクセスポイントのハードウェアアドレスで、バイナリ形式です。これはバイト列"
-"オブジェクトとして返されます。 `ubinascii.hexlify()` を使えば ASCII 形式に変換"
-"できます。"
+"*bssid* はアクセスポイントのハードウェアアドレスで、バイナリ形式です。これは "
+"bytes 型オブジェクトとして返されます。 `ubinascii.hexlify()` を使えば "
+"ASCII 形式に変換できます。"
 
 #: ../../../library/network.WLAN.rst:58
 msgid "There are five values for authmode:"
@@ -6778,7 +6781,7 @@ msgstr ""
 
 #: ../../../library/network.WLAN.rst:125
 msgid "MAC address (bytes)"
-msgstr "MAC アドレス(バイト列)"
+msgstr "MAC アドレス(bytes 型オブジェクト)"
 
 #: ../../../library/network.WLAN.rst:126
 msgid "essid"
@@ -8130,14 +8133,29 @@ msgid ""
 "state"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:71
+#: ../../library/pyb.CAN.rst:70
+msgid ""
+"*baudrate* if a baudrate other than 0 is provided, this function will try"
+" to automatically calculate a CAN bit-timing (overriding *prescaler*, "
+"*bs1* and *bs2*) that satisfies both the baudrate and the desired "
+"*sample_point*."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:73
+msgid ""
+"*sample_point* given in a percentage of the bit time, the *sample_point* "
+"specifies the position of the last bit sample with respect to the whole "
+"bit time. The default *sample_point* is 75%."
+msgstr ""
+
+#: ../../../library/pyb.CAN.rst:76
 msgid ""
 "The time quanta tq is the basic unit of time for the CAN bus.  tq is the "
 "CAN prescaler value divided by PCLK1 (the frequency of internal "
 "peripheral bus 1); see :meth:`pyb.freq()` to determine PCLK1."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:75
+#: ../../../library/pyb.CAN.rst:79
 msgid ""
 "A single bit is made up of the synchronisation segment, which is always 1"
 " tq. Then follows bit segment 1, then bit segment 2.  The sample point is"
@@ -8146,28 +8164,28 @@ msgid ""
 "+ BS2 multiplied by the time quanta tq."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:81
+#: ../../../library/pyb.CAN.rst:86
 msgid ""
 "For example, with PCLK1=42MHz, prescaler=100, sjw=1, bs1=6, bs2=8, the "
 "value of tq is 2.38 microseconds.  The bittime is 35.7 microseconds, and "
 "the baudrate is 28kHz."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:85
+#: ../../../library/pyb.CAN.rst:90
 msgid "See page 680 of the STM32F405 datasheet for more details."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:89
+#: ../../../library/pyb.CAN.rst:94
 msgid "Turn off the CAN bus."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:93
+#: ../../../library/pyb.CAN.rst:98
 msgid ""
 "Force a software restart of the CAN controller without resetting its "
 "configuration."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:96
+#: ../../../library/pyb.CAN.rst:101
 msgid ""
 "If the controller enters the bus-off state then it will no longer "
 "participate in bus activity.  If the controller is not configured to "
@@ -8176,7 +8194,7 @@ msgid ""
 "protocol to leave the bus-off state and go into the error active state."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:104
+#: ../../../library/pyb.CAN.rst:109
 msgid "Return the state of the controller.  The return value can be one of:"
 msgstr ""
 
@@ -8184,31 +8202,31 @@ msgstr ""
 msgid "``CAN.STOPPED`` -- the controller is completely off and reset;"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:107
+#: ../../../library/pyb.CAN.rst:112
 msgid ""
 "``CAN.ERROR_ACTIVE`` -- the controller is on and in the Error Active "
 "state (both TEC and REC are less than 96);"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:109
+#: ../../../library/pyb.CAN.rst:114
 msgid ""
 "``CAN.ERROR_WARNING`` -- the controller is on and in the Error Warning "
 "state (at least one of TEC or REC is 96 or greater);"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:111
+#: ../../../library/pyb.CAN.rst:116
 msgid ""
 "``CAN.ERROR_PASSIVE`` -- the controller is on and in the Error Passive "
 "state (at least one of TEC or REC is 128 or greater);"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:113
+#: ../../../library/pyb.CAN.rst:118
 msgid ""
 "``CAN.BUS_OFF`` -- the controller is on but not participating in bus "
 "activity (TEC overflowed beyond 255)."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:118
+#: ../../../library/pyb.CAN.rst:123
 msgid ""
 "Get information about the controller's error states and TX and RX "
 "buffers. If *list* is provided then it should be a list object with at "
@@ -8217,101 +8235,101 @@ msgid ""
 "value of the method is the populated list."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:124
+#: ../../../library/pyb.CAN.rst:129
 msgid "The values in the list are:"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:126
+#: ../../../library/pyb.CAN.rst:131
 msgid "TEC value"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:127
+#: ../../../library/pyb.CAN.rst:132
 msgid "REC value"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:128
+#: ../../../library/pyb.CAN.rst:133
 msgid ""
 "number of times the controller enterted the Error Warning state (wrapped "
 "around to 0 after 65535)"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:130
+#: ../../../library/pyb.CAN.rst:135
 msgid ""
 "number of times the controller enterted the Error Passive state (wrapped "
 "around to 0 after 65535)"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:132
+#: ../../../library/pyb.CAN.rst:137
 msgid ""
 "number of times the controller enterted the Bus Off state (wrapped around"
 " to 0 after 65535)"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:134
+#: ../../../library/pyb.CAN.rst:139
 msgid "number of pending TX messages"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:135
+#: ../../../library/pyb.CAN.rst:140
 msgid "number of pending RX messages on fifo 0"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:136
+#: ../../../library/pyb.CAN.rst:141
 msgid "number of pending RX messages on fifo 1"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:140
+#: ../../../library/pyb.CAN.rst:145
 msgid "Configure a filter bank:"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:142
+#: ../../../library/pyb.CAN.rst:147
 msgid "*bank* is the filter bank that is to be configured."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:143
+#: ../../../library/pyb.CAN.rst:148
 msgid "*mode* is the mode the filter should operate in."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:144
+#: ../../../library/pyb.CAN.rst:149
 msgid ""
 "*fifo* is which fifo (0 or 1) a message should be stored in, if it is "
 "accepted by this filter."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:145
+#: ../../../library/pyb.CAN.rst:150
 msgid ""
 "*params* is an array of values the defines the filter. The contents of "
 "the array depends on the *mode* argument."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:148 ../../../library/pyb.CAN.rst:169
+#: ../../../library/pyb.CAN.rst:153 ../../../library/pyb.CAN.rst:174
 msgid "*mode*"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:148
+#: ../../../library/pyb.CAN.rst:153
 msgid "contents of *params* array"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:150 ../../../library/pyb.CAN.rst:171
+#: ../../../library/pyb.CAN.rst:155 ../../../library/pyb.CAN.rst:176
 msgid "CAN.LIST16"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:150
+#: ../../../library/pyb.CAN.rst:155
 msgid "Four 16 bit ids that will be accepted"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:152 ../../../library/pyb.CAN.rst:173
+#: ../../../library/pyb.CAN.rst:157 ../../../library/pyb.CAN.rst:178
 msgid "CAN.LIST32"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:152
+#: ../../../library/pyb.CAN.rst:157
 msgid "Two 32 bit ids that will be accepted"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:154 ../../../library/pyb.CAN.rst:175
+#: ../../../library/pyb.CAN.rst:159 ../../../library/pyb.CAN.rst:180
 msgid "CAN.MASK16"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:157
+#: ../../../library/pyb.CAN.rst:162
 msgid "Two 16 bit id/mask pairs. E.g. (1, 3, 4, 4)"
 msgstr ""
 
@@ -8331,15 +8349,15 @@ msgstr ""
 msgid "that have bit 2 = 1."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:160 ../../../library/pyb.CAN.rst:177
+#: ../../../library/pyb.CAN.rst:165 ../../../library/pyb.CAN.rst:182
 msgid "CAN.MASK32"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:160
+#: ../../../library/pyb.CAN.rst:165
 msgid "As with CAN.MASK16 but with only one 32 bit id/mask pair."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:163
+#: ../../../library/pyb.CAN.rst:168
 msgid ""
 "*rtr* is an array of booleans that states if a filter should accept a "
 "remote transmission request message.  If this argument is not given then "
@@ -8347,16 +8365,16 @@ msgid ""
 "depends on the *mode* argument."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:169
+#: ../../../library/pyb.CAN.rst:174
 msgid "length of *rtr* array"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:171
+#: ../../../library/pyb.CAN.rst:176
 msgid "4"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:173 ../../../library/pyb.CAN.rst:175
-#: ../../../library/pyb.CAN.rst:260
+#: ../../../library/pyb.CAN.rst:178 ../../../library/pyb.CAN.rst:180
+#: ../../../library/pyb.CAN.rst:266
 msgid "2"
 msgstr ""
 
@@ -8364,41 +8382,41 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:182
+#: ../../../library/pyb.CAN.rst:187
 msgid "Clear and disables a filter bank:"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:184
+#: ../../../library/pyb.CAN.rst:189
 msgid "*bank* is the filter bank that is to be cleared."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:188
+#: ../../../library/pyb.CAN.rst:193
 msgid "Return ``True`` if any message waiting on the FIFO, else ``False``."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:192 ../../../library/pyb.I2C.rst:131
+#: ../../../library/pyb.CAN.rst:197 ../../../library/pyb.I2C.rst:131
 #: ../../../library/pyb.SPI.rst:81 ../../../library/pyb.USB_HID.rst:26
 #: ../../../library/pyb.USB_VCP.rst:87
 msgid "Receive data on the bus:"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:194
+#: ../../../library/pyb.CAN.rst:199
 msgid "*fifo* is an integer, which is the FIFO to receive on"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:195
+#: ../../../library/pyb.CAN.rst:200
 msgid "*list* is an optional list object to be used as the return value"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:196
+#: ../../../library/pyb.CAN.rst:201
 msgid "*timeout* is the timeout in milliseconds to wait for the receive."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:198
+#: ../../../library/pyb.CAN.rst:203
 msgid "Return value: A tuple containing four values."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:200
+#: ../../../library/pyb.CAN.rst:205
 msgid "The id of the message."
 msgstr ""
 
@@ -8406,22 +8424,22 @@ msgstr ""
 msgid "A boolean that indicates if the message is an RTR message."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:202
+#: ../../../library/pyb.CAN.rst:207
 msgid "The FMI (Filter Match Index) value."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:203
+#: ../../../library/pyb.CAN.rst:208
 msgid "An array containing the data."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:205
+#: ../../../library/pyb.CAN.rst:210
 msgid ""
 "If *list* is ``None`` then a new tuple will be allocated, as well as a "
 "new bytes object to contain the data (as the fourth element in the "
 "tuple)."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:208
+#: ../../../library/pyb.CAN.rst:213
 msgid ""
 "If *list* is not ``None`` then it should be a list object with a least "
 "four elements.  The fourth element should be a memoryview object which is"
@@ -8434,7 +8452,7 @@ msgid ""
 "data without using the heap. For example::"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:218
+#: ../../../library/pyb.CAN.rst:223
 msgid ""
 "buf = bytearray(8)\n"
 "lst = [0, 0, 0, memoryview(buf)]\n"
@@ -8442,23 +8460,23 @@ msgid ""
 "can.recv(0, lst)"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:225
+#: ../../../library/pyb.CAN.rst:230
 msgid "Send a message on the bus:"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:227
+#: ../../../library/pyb.CAN.rst:232
 msgid "*data* is the data to send (an integer to send, or a buffer object)."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:228
+#: ../../../library/pyb.CAN.rst:233
 msgid "*id* is the id of the message to be sent."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:229
+#: ../../../library/pyb.CAN.rst:234
 msgid "*timeout* is the timeout in milliseconds to wait for the send."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:230
+#: ../../../library/pyb.CAN.rst:235
 msgid ""
 "*rtr* is a boolean that specifies if the message shall be sent as a "
 "remote transmission request.  If *rtr* is True then only the length of "
@@ -8466,7 +8484,7 @@ msgid ""
 "*data* are unused."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:235
+#: ../../../library/pyb.CAN.rst:240
 msgid ""
 "If timeout is 0 the message is placed in a buffer in one of three "
 "hardware buffers and the method returns immediately. If all three buffers"
@@ -8475,56 +8493,56 @@ msgid ""
 "within the specified time an exception is thrown."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:241 ../../../library/pyb.I2C.rst:149
+#: ../../../library/pyb.CAN.rst:245 ../../../library/pyb.I2C.rst:149
 #: ../../../library/pyb.SPI.rst:97
 msgid "Return value: ``None``."
 msgstr "戻り値: ``None`` 。"
 
-#: ../../../library/pyb.CAN.rst:245
+#: ../../../library/pyb.CAN.rst:250
 msgid ""
 "Register a function to be called when a message is accepted into a empty "
 "fifo:"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:247
+#: ../../../library/pyb.CAN.rst:252
 msgid "*fifo* is the receiving fifo."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:248
+#: ../../../library/pyb.CAN.rst:253
 msgid "*fun* is the function to be called when the fifo becomes non empty."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:250
+#: ../../../library/pyb.CAN.rst:255
 msgid ""
 "The callback function takes two arguments the first is the can object it "
 "self the second is a integer that indicates the reason for the callback."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:254
+#: ../../../library/pyb.CAN.rst:259
 msgid "Reason"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:256
+#: ../../../library/pyb.CAN.rst:261
 msgid "0"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:256
+#: ../../../library/pyb.CAN.rst:261
 msgid "A message has been accepted into a empty FIFO."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:258
+#: ../../../library/pyb.CAN.rst:263
 msgid "The FIFO is full"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:260
+#: ../../../library/pyb.CAN.rst:265
 msgid "A message has been lost due to a full FIFO"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:263
+#: ../../../library/pyb.CAN.rst:268
 msgid "Example use of rxcallback::"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:265
+#: ../../../library/pyb.CAN.rst:270
 msgid ""
 "def cb0(bus, reason):\n"
 "  print('cb0')\n"
@@ -8539,15 +8557,15 @@ msgid ""
 "can.rxcallback(0, cb0)"
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:285
+#: ../../../library/pyb.CAN.rst:290
 msgid "The mode of the CAN bus used in :meth:`~CAN.init()`."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:293
+#: ../../../library/pyb.CAN.rst:298
 msgid "Possible states of the CAN controller returned from :meth:`~CAN.state()`."
 msgstr ""
 
-#: ../../../library/pyb.CAN.rst:300
+#: ../../../library/pyb.CAN.rst:305
 msgid "The operation mode of a filter used in :meth:`~CAN.setfilter()`."
 msgstr ""
 
@@ -9095,8 +9113,8 @@ msgid ""
 "``recv`` can be an integer, which is the number of bytes to receive, or a"
 " mutable buffer, which will be filled with received bytes"
 msgstr ""
-"``recv`` には受信するバイト数を示す整数、または受信したバイト列を格納する書き込み可能"
-"バッファを指定できます"
+"``recv`` には受信するバイト数を示す整数、または受信した bytes 型オブジェクトを"
+"格納する書き込み可能バッファを指定できます"
 
 #: ../../../library/pyb.I2C.rst:135
 msgid "``addr`` is the address to receive from (only required in master mode)"
@@ -11256,22 +11274,25 @@ msgstr ""
 "間の変換(両方向)を実装します。"
 
 #: ../../../library/ubinascii.rst:17
-msgid "Convert binary data to hexadecimal representation. Returns bytes string."
-msgstr "バイナリデータを16進表現に変換します。バイト列を返します。"
-
-#: ../../../library/ubinascii.rst:22
 msgid ""
-"If additional argument, *sep* is supplied, it is used as a separator "
+"Convert the bytes in the *data* object to a hexadecimal representation. "
+"Returns a bytes object."
+msgstr ""
+"*data* の bytes 型オブジェクトを16進表現に変換します。bytes 型オブジェクトを返します。"
+
+#: ../../../library/ubinascii.rst:20
+msgid ""
+"If the additional argument *sep* is supplied it is used as a separator "
 "between hexadecimal values."
 msgstr ""
 "追加の引数 *sep* が指定された場合、それは16進値の間のセパレータとして使われます。"
 
-#: ../../../library/ubinascii.rst:27
+#: ../../../library/ubinascii.rst:25
 msgid ""
 "Convert hexadecimal data to binary representation. Returns bytes string. "
 "(i.e. inverse of hexlify)"
 msgstr ""
-"16進データをバイナリ表現に変換します。バイト列を返します。(すなわち、hexlify の逆)"
+"16進データをバイナリ表現に変換します。bytes 型オブジェクトを返します。(すなわち、hexlify の逆)"
 
 #: ../../../library/ubinascii.rst:32
 msgid ""
@@ -11292,7 +11313,7 @@ msgid ""
 msgstr ""
 "`RFC 3548 <https://tools.ietf.org/html/rfc3548.html>`_ "
 "のように、バイナリデータをbase64形式でエンコードします。コード化されたデータの"
-"後ろに改行文字を付けて、バイト列として返します。"
+"後ろに改行文字を付けて、bytes 型オブジェクトとして返します。"
 
 #: ../../library/ubluetooth.rst:1
 msgid ":mod:`ubluetooth` --- low-level Bluetooth"
@@ -11303,15 +11324,18 @@ msgid ""
 "This module provides an interface to a Bluetooth controller on a board. "
 "Currently this supports Bluetooth Low Energy (BLE) in Central, "
 "Peripheral, Broadcaster, and Observer roles, as well as GATT Server and "
-"Client. A device may operate in multiple roles concurrently."
+"Client and L2CAP connection-oriented-channels. A device may operate in "
+"multiple roles concurrently. Pairing (and bonding) is supported on some "
+"ports."
 msgstr ""
 "このモジュールは、ボード上の Bluetooth コントローラーへのインターフェースを提供します。"
 "現在、このモジュールは Bluetooth Low Energy（BLE）をサポートしています。"
 "セントラル(Central)、ペリフェラル(Peripheral)、ブロードキャスター(Broadcaster)、"
-"オブザーバー(Observer)のロールがありますし、GATT サーバーとクライアントのロールもあります。"
-"デバイスは複数のロールで同時に動作できます。"
+"オブザーバー(Observer)のロールがありますし、GATT サーバー/クライアントと "
+"L2CAP connection-oriented-channel のロールもあります。デバイスは複数のロールで"
+"同時に動作できます。ペアリング(とボンディング)をサポートするポートもあります。"
 
-#: ../../library/ubluetooth.rst:12
+#: ../../library/ubluetooth.rst:13
 msgid ""
 "This API is intended to match the low-level Bluetooth protocol and "
 "provide building-blocks for higher-level abstractions such as specific "
@@ -11320,7 +11344,7 @@ msgstr ""
 "このAPIは、低レベルの Bluetooth プロトコルに相当するもので、特定のデバイスタイプ"
 "などの高レベルの抽象化のビルディングブロックを提供します。"
 
-#: ../../library/ubluetooth.rst:15
+#: ../../library/ubluetooth.rst:16
 msgid ""
 "This module is still under development and its classes, functions, "
 "methods and constants are subject to change."
@@ -11328,7 +11352,7 @@ msgstr ""
 "このモジュールはまだ開発中であり、そのクラス、関数、メソッド、定数は変更される"
 "可能性があります。"
 
-#: ../../library/ubluetooth.rst:19
+#: ../../library/ubluetooth.rst:20
 msgid "class BLE"
 msgstr "クラス BLE"
 
@@ -11336,29 +11360,29 @@ msgstr "クラス BLE"
 msgid "Constructor"
 msgstr "コンストラクタ"
 
-#: ../../library/ubluetooth.rst:26
+#: ../../library/ubluetooth.rst:27
 msgid "Returns the singleton BLE object."
 msgstr "シンゲルトンの BLE オブジェクトを返します。"
 
-#: ../../library/ubluetooth.rst:29
+#: ../../library/ubluetooth.rst:30
 msgid "Configuration"
 msgstr "設定"
 
-#: ../../library/ubluetooth.rst:33
+#: ../../library/ubluetooth.rst:34
 msgid ""
 "Optionally changes the active state of the BLE radio, and returns the "
 "current state."
 msgstr ""
 "オプションでBLE無線のアクティブ状態を変更し、現在の状態を返します。"
 
-#: ../../library/ubluetooth.rst:36
+#: ../../library/ubluetooth.rst:37
 msgid ""
 "The radio must be made active before using any other methods on this "
 "class."
 msgstr ""
 "このクラスの他のメソッドを使用する前には、BLE無線をアクティブにする必要があります。"
 
-#: ../../library/ubluetooth.rst:41
+#: ../../library/ubluetooth.rst:42
 msgid ""
 "Get or set configuration values of the BLE interface.  To get a value the"
 " parameter name should be quoted as a string, and just one parameter is "
@@ -11369,7 +11393,7 @@ msgstr ""
 "文字列として一度に１つだけ指定します。値を設定する場合には、キーワード構文を使って、"
 "一度に1つ以上のパラメーターを設定できます。"
 
-#: ../../library/ubluetooth.rst:46
+#: ../../library/ubluetooth.rst:47
 msgid "Currently supported values are:"
 msgstr "現在サポートされている値は次のとおりです:"
 
@@ -11381,37 +11405,37 @@ msgstr ""
 "``'mac'``: 現在利用中のアドレス。これは現在のアドレスモードに依存します。"
 "戻り値は ``(addr_type, addr)`` のタプルです。"
 
-#: ../../library/ubluetooth.rst:51
+#: ../../library/ubluetooth.rst:52
 msgid "See :meth:`gatts_write <BLE.gap_scan>` for details about address type."
 msgstr ""
 "アドレスタイプ ``addr_type`` について詳しくは :meth:`gatts_write <BLE.gap_scan>` "
 "を参照してください。"
 
-#: ../../library/ubluetooth.rst:53
+#: ../../library/ubluetooth.rst:54
 msgid "This may only be queried while the interface is currently active."
-msgstr ""
+msgstr "これはインターフェイスがアクティブなときにのみ取得できます。"
 
-#: ../../library/ubluetooth.rst:55
+#: ../../library/ubluetooth.rst:56
 msgid "``'addr_mode'``: Sets the address mode. Values can be:"
 msgstr "``'addr_mode'``: アドレスモードを設定します。設定できる値には次のものがあります:"
 
-#: ../../library/ubluetooth.rst:57
+#: ../../library/ubluetooth.rst:58
 msgid "0x00 - PUBLIC - Use the controller's public address."
 msgstr "0x00 - PUBLIC - デバイス固有の物理アドレスを使います。"
 
-#: ../../library/ubluetooth.rst:58
+#: ../../library/ubluetooth.rst:59
 msgid "0x01 - RANDOM - Use a generated static address."
 msgstr "0x01 - RANDOM - 電源投入のたびに生成される乱数アドレスを使います。"
 
-#: ../../library/ubluetooth.rst:59
+#: ../../library/ubluetooth.rst:60
 msgid "0x02 - RPA - Use resolvable private addresses."
 msgstr "0x02 - RPA - Resolvable Private Addresses を使います。"
 
-#: ../../library/ubluetooth.rst:60
+#: ../../library/ubluetooth.rst:61
 msgid "0x03 - NRPA - Use non-resolvable private addresses."
 msgstr "0x03 - NRPA - Non-Resolvable Private Addresses を使います。"
 
-#: ../../library/ubluetooth.rst:62
+#: ../../library/ubluetooth.rst:63
 msgid ""
 "By default the interface mode will use a PUBLIC address if available, "
 "otherwise it will use a RANDOM address."
@@ -11419,7 +11443,7 @@ msgstr ""
 "既定のアドレスモードは、デバイスが固有の物理アドレスを持っている場合 PUBLIC "
 "になり、持っていない場合は RANDOM になります。"
 
-#: ../../library/ubluetooth.rst:65
+#: ../../library/ubluetooth.rst:66
 msgid ""
 "``'gap_name'``: Get/set the GAP device name used by service 0x1800, "
 "characteristic 0x2a00.  This can be set at any time and changed multiple "
@@ -11429,7 +11453,7 @@ msgstr ""
 "0x2a00 で利用する GAP デバイス名を取得/設定します。これはいつでも設定でき、"
 "何度も変更できます。"
 
-#: ../../library/ubluetooth.rst:69
+#: ../../library/ubluetooth.rst:70
 msgid ""
 "``'rxbuf'``: Get/set the size in bytes of the internal buffer used to "
 "store incoming events.  This buffer is global to the entire BLE driver "
@@ -11444,27 +11468,65 @@ msgstr ""
 "します。これを増やすと、バーストな受信データ(スキャン結果など)の処理が改善され、"
 "より大きなキャラクタリスティック値を受信できるようになります。"
 
-#: ../../library/ubluetooth.rst:75
+#: ../../library/ubluetooth.rst:76
 msgid ""
-"``'mtu'``: Get/set the MTU that will be used during an MTU exchange. The "
-"resulting MTU will be the minimum of this and the remote device's MTU. "
-"MTU exchange will not happen automatically (unless the remote device "
-"initiates it), and must be manually initiated with "
+"``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. "
+"The resulting MTU will be the minimum of this and the remote device's "
+"MTU. ATT MTU exchange will not happen automatically (unless the remote "
+"device initiates it), and must be manually initiated with "
 ":meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`. Use the "
 "``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection."
 msgstr ""
-"``'mtu'``: MTU 交換で使われる MTU を取得/設定します。"
+"``'mtu'``: ATT MTU 交換で使われる MTU を取得/設定します。"
 "結果として得られる MTU は、この MTU とリモートデバイスの MTU の最小値になります。"
-"MTU 交換は(リモートデバイスが開始しない限り)自動的には行われず、 "
+"ATT MTU 交換は(リモートデバイスが開始しない限り)自動的には行われず、 "
 ":meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>` を使って手動で開始する"
 "必要があります。指定された接続の MTU を発見するには ``_IRQ_MTU_EXCHANGED`` "
 "イベントを使います。"
 
 #: ../../library/ubluetooth.rst:83
+msgid ""
+"``'bond'``: Sets whether bonding will be enabled during pairing. When "
+"enabled, pairing requests will set the \"bond\" flag and the keys will be"
+" stored by both devices."
+msgstr ""
+"``'bond'``: ペアリング中にボンディングを有効にするかどうかを設定します。"
+"有効にすると、ペアリング要求は \"bond\" フラグを設定し、鍵が両方のデバイスに保存されます。"
+
+#: ../../library/ubluetooth.rst:87
+msgid "``'mitm'``: Sets whether MITM-protection is required for pairing."
+msgstr "``'mitm'``: ペアリングに MITM-protection が必要かどうかを設定します。"
+
+#: ../../library/ubluetooth.rst:89
+msgid "``'io'``: Sets the I/O capabilities of this device."
+msgstr "``'io'``: このデバイスの I/O 機能を設定します。
+
+#: ../../library/ubluetooth.rst:91
+msgid "Available options are::"
+msgstr "設定できるオプションは次のとおりです::"
+
+#: ../../library/ubluetooth.rst:93
+msgid ""
+"_IO_CAPABILITY_DISPLAY_ONLY = const(0)\n"
+"_IO_CAPABILITY_DISPLAY_YESNO = const(1)\n"
+"_IO_CAPABILITY_KEYBOARD_ONLY = const(2)\n"
+"_IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)\n"
+"_IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:99
+msgid ""
+"``'le_secure'``: Sets whether \"LE Secure\" pairing is required. Default "
+"is false (i.e. allow \"Legacy Pairing\")."
+msgstr ""
+"``'le_secure'``: \"LE Secure\" ペアリングが必要かどうかを設定します。"
+"既定値は false です(すなわち \"Legacy Pairing\" になります)。"
+
+#: ../../library/ubluetooth.rst:103
 msgid "Event Handling"
 msgstr "イベント処理"
 
-#: ../../library/ubluetooth.rst:87
+#: ../../library/ubluetooth.rst:107
 msgid ""
 "Registers a callback for events from the BLE stack. The *handler* takes "
 "two arguments, ``event`` (which will be one of the codes below) and "
@@ -11474,7 +11536,7 @@ msgstr ""
 "コールバックは二つの引数 ``event`` （後述するイベントコードのいずれか）と "
 "``data`` (イベント固有の値のタプル）をとります。
 
-#: ../../library/ubluetooth.rst:91
+#: ../../library/ubluetooth.rst:111
 msgid ""
 "**Note:** As an optimisation to prevent unnecessary allocations, the "
 "``addr``, ``adv_data``, ``char_data``, ``notify_data``, and ``uuid`` "
@@ -11495,7 +11557,7 @@ msgstr ""
 "``bytes(addr)`` または ``bluetooth.UUID(uuid)``  を使って"
 "これらのデータをコピーする必要があります::"
 
-#: ../../library/ubluetooth.rst:100
+#: ../../library/ubluetooth.rst:120
 msgid ""
 "connected_addr = bytes(addr)  # equivalently: adv_data, char_data, or "
 "notify_data\n"
@@ -11504,7 +11566,7 @@ msgstr ""
 "connected_addr = bytes(addr)  # adv_data, char_data, notify_data も同様\n"
 "matched_uuid = bluetooth.UUID(uuid)"
 
-#: ../../library/ubluetooth.rst:103
+#: ../../library/ubluetooth.rst:123
 msgid ""
 "For example, the IRQ handler for a scan result might inspect the "
 "``adv_data`` to decide if it's the correct device, and only then copy the"
@@ -11516,11 +11578,11 @@ msgstr ""
 "コピーすることができます。また、IRQ ハンドラの中からデータを出力するには "
 "``print(bytes(addr))`` とすることが必要になります。"
 
-#: ../../library/ubluetooth.rst:108
+#: ../../library/ubluetooth.rst:128
 msgid "An event handler showing all possible events::"
 msgstr "すべてのイベントを処理するイベントハンドラーの例を示します:"
 
-#: ../../library/ubluetooth.rst:110
+#: ../../library/ubluetooth.rst:130
 msgid ""
 "def bt_irq(event, data):\n"
 "    if event == _IRQ_CENTRAL_CONNECT:\n"
@@ -11533,9 +11595,11 @@ msgid ""
 "        # A client has written to this characteristic or descriptor.\n"
 "        conn_handle, attr_handle = data\n"
 "    elif event == _IRQ_GATTS_READ_REQUEST:\n"
-"        # A client has issued a read. Note: this is a hard IRQ.\n"
-"        # Return None to deny the read.\n"
-"        # Note: This event is not supported on ESP32.\n"
+"        # A client has issued a read. Note: this is only supported on "
+"STM32.\n"
+"        # Return a non-zero integer to deny the read (see below), or zero"
+" (or None)\n"
+"        # to accept the read.\n"
 "        conn_handle, attr_handle = data\n"
 "    elif event == _IRQ_SCAN_RESULT:\n"
 "        # A single scan result.\n"
@@ -11602,103 +11666,67 @@ msgid ""
 "        # A client has acknowledged the indication.\n"
 "        # Note: Status will be zero on successful acknowledgment, "
 "implementation-specific value otherwise.\n"
-"        conn_handle, value_handle, status = data"
+"        conn_handle, value_handle, status = data\n"
 "    elif event == _IRQ_MTU_EXCHANGED:\n"
-"        # MTU exchange complete (either initiated by us or the remote "
-"device).\n"
-"        conn_handle, mtu = data"
+"        # ATT MTU exchange complete (either initiated by us or the remote"
+" device).\n"
+"        conn_handle, mtu = data\n"
+"    elif event == _IRQ_L2CAP_ACCEPT:\n"
+"        # A new channel has been accepted.\n"
+"        # Return a non-zero integer to reject the connection, or zero (or"
+" None) to accept.\n"
+"        conn_handle, cid, psm, our_mtu, peer_mtu = data\n"
+"    elif event == _IRQ_L2CAP_CONNECT:\n"
+"        # A new channel is now connected (either as a result of "
+"connecting or accepting).\n"
+"        conn_handle, cid, psm, our_mtu, peer_mtu = data\n"
+"    elif event == _IRQ_L2CAP_DISCONNECT:\n"
+"        # Existing channel has disconnected (status is zero), or a "
+"connection attempt failed (non-zero status).\n"
+"        conn_handle, cid, psm, status = data\n"
+"    elif event == _IRQ_L2CAP_RECV:\n"
+"        # New data is available on the channel. Use l2cap_recvinto to "
+"read.\n"
+"        conn_handle, cid = data\n"
+"    elif event == _IRQ_L2CAP_SEND_READY:\n"
+"        # A previous l2cap_send that returned False has now completed and"
+" the channel is ready to send again.\n"
+"        # If status is non-zero, then the transmit buffer overflowed and "
+"the application should re-send the data.\n"
+"        conn_handle, cid, status = data\n"
+"    elif event == _IRQ_CONNECTION_UPDATE:\n"
+"        # The remote device has updated connection parameters.\n"
+"        conn_handle, conn_interval, conn_latency, supervision_timeout, "
+"status = data\n"
+"    elif event == _IRQ_ENCRYPTION_UPDATE:\n"
+"        # The encryption state has changed (likely as a result of pairing"
+" or bonding).\n"
+"        conn_handle, encrypted, authenticated, bonded, key_size = data\n"
+"    elif event == _IRQ_GET_SECRET:\n"
+"        # Return a stored secret.\n"
+"        # If key is None, return the index'th value of this sec_type.\n"
+"        # Otherwise return the corresponding value for this sec_type and "
+"key.\n"
+"        sec_type, index, key = data\n"
+"        return value\n"
+"    elif event == _IRQ_SET_SECRET:\n"
+"        # Save a secret to the store for this sec_type and key.\n"
+"        sec_type, key, value = data\n"
+"        return True\n"
+"    elif event == _IRQ_PASSKEY_ACTION:\n"
+"        # Respond to a passkey request during pairing.\n"
+"        # See gap_passkey() for details.\n"
+"        # action will be an action that is compatible with the configured"
+" \"io\" config.\n"
+"        # passkey will be non-zero if action is \"numeric comparison\".\n"
+"        conn_handle, action, passkey = data"
 msgstr ""
-"def bt_irq(event, data):\n"
-"    if event == _IRQ_CENTRAL_CONNECT:\n"
-"        # A central has connected to this peripheral.\n"
-"        conn_handle, addr_type, addr = data\n"
-"    elif event == _IRQ_CENTRAL_DISCONNECT:\n"
-"        # A central has disconnected from this peripheral.\n"
-"        conn_handle, addr_type, addr = data\n"
-"    elif event == _IRQ_GATTS_WRITE:\n"
-"        # A client has written to this characteristic or descriptor.\n"
-"        conn_handle, attr_handle = data\n"
-"    elif event == _IRQ_GATTS_READ_REQUEST:\n"
-"        # A client has issued a read. Note: this is a hard IRQ.\n"
-"        # Return None to deny the read.\n"
-"        # Note: This event is not supported on ESP32.\n"
-"        conn_handle, attr_handle = data\n"
-"    elif event == _IRQ_SCAN_RESULT:\n"
-"        # A single scan result.\n"
-"        addr_type, addr, adv_type, rssi, adv_data = data\n"
-"    elif event == _IRQ_SCAN_DONE:\n"
-"        # Scan duration finished or manually stopped.\n"
-"        pass\n"
-"    elif event == _IRQ_PERIPHERAL_CONNECT:\n"
-"        # A successful gap_connect().\n"
-"        conn_handle, addr_type, addr = data\n"
-"    elif event == _IRQ_PERIPHERAL_DISCONNECT:\n"
-"        # Connected peripheral has disconnected.\n"
-"        conn_handle, addr_type, addr = data\n"
-"    elif event == _IRQ_GATTC_SERVICE_RESULT:\n"
-"        # Called for each service found by gattc_discover_services().\n"
-"        conn_handle, start_handle, end_handle, uuid = data\n"
-"    elif event == _IRQ_GATTC_SERVICE_DONE:\n"
-"        # Called once service discovery is complete.\n"
-"        # Note: Status will be zero on success, implementation-specific "
-"value otherwise.\n"
-"        conn_handle, status = data\n"
-"    elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:\n"
-"        # Called for each characteristic found by "
-"gattc_discover_services().\n"
-"        conn_handle, def_handle, value_handle, properties, uuid = data\n"
-"    elif event == _IRQ_GATTC_CHARACTERISTIC_DONE:\n"
-"        # Called once service discovery is complete.\n"
-"        # Note: Status will be zero on success, implementation-specific "
-"value otherwise.\n"
-"        conn_handle, status = data\n"
-"    elif event == _IRQ_GATTC_DESCRIPTOR_RESULT:\n"
-"        # Called for each descriptor found by "
-"gattc_discover_descriptors().\n"
-"        conn_handle, dsc_handle, uuid = data\n"
-"    elif event == _IRQ_GATTC_DESCRIPTOR_DONE:\n"
-"        # Called once service discovery is complete.\n"
-"        # Note: Status will be zero on success, implementation-specific "
-"value otherwise.\n"
-"        conn_handle, status = data\n"
-"    elif event == _IRQ_GATTC_READ_RESULT:\n"
-"        # A gattc_read() has completed.\n"
-"        conn_handle, value_handle, char_data = data\n"
-"    elif event == _IRQ_GATTC_READ_DONE:\n"
-"        # A gattc_read() has completed.\n"
-"        # Note: The value_handle will be zero on btstack (but present on "
-"NimBLE).\n"
-"        # Note: Status will be zero on success, implementation-specific "
-"value otherwise.\n"
-"        conn_handle, value_handle, status = data\n"
-"    elif event == _IRQ_GATTC_WRITE_DONE:\n"
-"        # A gattc_write() has completed.\n"
-"        # Note: The value_handle will be zero on btstack (but present on "
-"NimBLE).\n"
-"        # Note: Status will be zero on success, implementation-specific "
-"value otherwise.\n"
-"        conn_handle, value_handle, status = data\n"
-"    elif event == _IRQ_GATTC_NOTIFY:\n"
-"        # A server has sent a notify request.\n"
-"        conn_handle, value_handle, notify_data = data\n"
-"    elif event == _IRQ_GATTC_INDICATE:\n"
-"        # A server has sent an indicate request.\n"
-"        conn_handle, value_handle, notify_data = data\n"
-"    elif event == _IRQ_GATTS_INDICATE_DONE:\n"
-"        # A client has acknowledged the indication.\n"
-"        # Note: Status will be zero on successful acknowledgment, "
-"implementation-specific value otherwise.\n"
-"        conn_handle, value_handle, status = data"
-"    elif event == _IRQ_MTU_EXCHANGED:\n"
-"        # MTU exchange complete (either initiated by us or the remote "
-"device).\n"
-"        conn_handle, mtu = data"
 
-#: ../../library/ubluetooth.rst:185
+#: ../../library/ubluetooth.rst:245
 msgid "The event codes are::"
 msgstr "イベントコードには次のものがあります::"
 
-#: ../../library/ubluetooth.rst:187
+#: ../../library/ubluetooth.rst:247
 msgid ""
 "from micropython import const\n"
 "_IRQ_CENTRAL_CONNECT = const(1)\n"
@@ -11719,12 +11747,50 @@ msgid ""
 "_IRQ_GATTC_READ_DONE = const(16)\n"
 "_IRQ_GATTC_WRITE_DONE = const(17)\n"
 "_IRQ_GATTC_NOTIFY = const(18)\n"
-"_IRQ_GATTC_INDICATE = const(19)"
-"_IRQ_GATTS_INDICATE_DONE = const(20)"
-"_IRQ_MTU_EXCHANGED = const(21)"
+"_IRQ_GATTC_INDICATE = const(19)\n"
+"_IRQ_GATTS_INDICATE_DONE = const(20)\n"
+"_IRQ_MTU_EXCHANGED = const(21)\n"
+"_IRQ_L2CAP_ACCEPT = const(22)\n"
+"_IRQ_L2CAP_CONNECT = const(23)\n"
+"_IRQ_L2CAP_DISCONNECT = const(24)\n"
+"_IRQ_L2CAP_RECV = const(25)\n"
+"_IRQ_L2CAP_SEND_READY = const(26)\n"
+"_IRQ_CONNECTION_UPDATE = const(27)\n"
+"_IRQ_ENCRYPTION_UPDATE = const(28)\n"
+"_IRQ_GET_SECRET = const(29)\n"
+"_IRQ_SET_SECRET = const(30)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:210
+#: ../../library/ubluetooth.rst:279
+msgid ""
+"For the ``_IRQ_GATTS_READ_REQUEST`` event, the available return codes "
+"are::"
+msgstr ""
+"``_IRQ_GATTS_READ_REQUEST`` イベントで使えるリターンコードは次のとおりです::"
+
+#: ../../library/ubluetooth.rst:281
+msgid ""
+"_GATTS_NO_ERROR = const(0x00)\n"
+"_GATTS_ERROR_READ_NOT_PERMITTED = const(0x02)\n"
+"_GATTS_ERROR_WRITE_NOT_PERMITTED = const(0x03)\n"
+"_GATTS_ERROR_INSUFFICIENT_AUTHENTICATION = const(0x05)\n"
+"_GATTS_ERROR_INSUFFICIENT_AUTHORIZATION = const(0x08)\n"
+"_GATTS_ERROR_INSUFFICIENT_ENCRYPTION = const(0x0f)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:288
+msgid "For the ``_IRQ_PASSKEY_ACTION`` event, the available actions are::"
+msgstr "``_IRQ_PASSKEY_ACTION`` イベントで使えるアクションは次のとおりです::"
+
+#: ../../library/ubluetooth.rst:290
+msgid ""
+"_PASSKEY_ACTION_NONE = const(0)\n"
+"_PASSKEY_ACTION_INPUT = const(2)\n"
+"_PASSKEY_ACTION_DISPLAY = const(3)\n"
+"_PASSKEY_ACTION_NUMERIC_COMPARISON = const(4)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:295
 msgid ""
 "In order to save space in the firmware, these constants are not included "
 "on the :mod:`ubluetooth` module. Add the ones that you need from the list"
@@ -11733,11 +11799,11 @@ msgstr ""
 "ファームウェアのスペースを節約するために、これらの定数は :mod:`ubluetooth` "
 "モジュールには含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
 
-#: ../../library/ubluetooth.rst:216
+#: ../../library/ubluetooth.rst:301
 msgid "Broadcaster Role (Advertiser)"
 msgstr "ブロードキャスターロール(アドバタイザー)"
 
-#: ../../library/ubluetooth.rst:220
+#: ../../library/ubluetooth.rst:305
 msgid ""
 "Starts advertising at the specified interval (in **micro**\\ seconds). "
 "This interval will be rounded down to the nearest 625us. To stop "
@@ -11747,7 +11813,7 @@ msgstr ""
 "この間隔は、625us に最も近いところで切り捨てられます。アドバタイジングを"
 "停止するには *interval_us* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:224
+#: ../../library/ubluetooth.rst:309
 msgid ""
 "*adv_data* and *resp_data* can be any type that implements the buffer "
 "protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
@@ -11757,7 +11823,7 @@ msgstr ""
 "(``bytes``, ``bytearray``, ``str`` など)。 *adv_data* はすべての"
 "ブロードキャストに含まれ、 *resp_data* はアクティブスキャンへの返信として送信されます。"
 
-#: ../../library/ubluetooth.rst:228
+#: ../../library/ubluetooth.rst:313
 msgid ""
 "**Note:** if *adv_data* (or *resp_data*) is ``None``, then the data "
 "passed to the previous call to ``gap_advertise`` will be re-used. This "
@@ -11771,26 +11837,26 @@ msgstr ""
 "アドバタイジングを再開できます。アドバタイジングペイロードをクリアするには、"
 "空の ``bytes`` 、すなわち ``b''`` を渡します。"
 
-#: ../../library/ubluetooth.rst:235
+#: ../../library/ubluetooth.rst:320
 msgid "Observer Role (Scanner)"
 msgstr "オブザーバーロール(スキャナー)"
 
-#: ../../library/ubluetooth.rst:239
+#: ../../library/ubluetooth.rst:324
 msgid ""
 "Run a scan operation lasting for the specified duration (in **milli**\\ "
 "seconds)."
 msgstr ""
 "指定された期間(**ミリ** 秒単位)持続するスキャン操作を実行します。"
 
-#: ../../library/ubluetooth.rst:241
+#: ../../library/ubluetooth.rst:326
 msgid "To scan indefinitely, set *duration_ms* to ``0``."
 msgstr "無期限にスキャンするには *duration_ms* を ``0`` に設定します。"
 
-#: ../../library/ubluetooth.rst:243
+#: ../../library/ubluetooth.rst:328
 msgid "To stop scanning, set *duration_ms* to ``None``."
 msgstr "スキャンを停止するには *duration_ms* を ``None`` に設定します。"
 
-#: ../../library/ubluetooth.rst:245
+#: ../../library/ubluetooth.rst:330
 msgid ""
 "Use *interval_us* and *window_us* to optionally configure the duty cycle."
 " The scanner will run for *window_us* **micro**\\ seconds every "
@@ -11804,7 +11870,7 @@ msgstr ""
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
 "(バックグラウンドスキャン)。"
 
-#: ../../library/ubluetooth.rst:251
+#: ../../library/ubluetooth.rst:336
 msgid ""
 "For each scan result the ``_IRQ_SCAN_RESULT`` event will be raised, with "
 "event data ``(addr_type, addr, adv_type, rssi, adv_data)``."
@@ -11812,15 +11878,15 @@ msgstr ""
 "スキャン結果ごとに、``_IRQ_SCAN_RESULT`` イベントが発生します。"
 "イベントデータは ``(addr_type, addr, adv_type, rssi, adv_data)`` です。"
 
-#: ../../library/ubluetooth.rst:256
+#: ../../library/ubluetooth.rst:341
 msgid "``addr_type`` values indicate public or random addresses:"
 msgstr "``addr_type`` の値は"
 
-#: ../../library/ubluetooth.rst:255
+#: ../../library/ubluetooth.rst:340
 msgid "0x00 - PUBLIC"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:256
+#: ../../library/ubluetooth.rst:341
 msgid ""
 "0x01 - RANDOM (either static, RPA, or NRPA, the type is encoded in the "
 "address itself)"
@@ -11828,38 +11894,38 @@ msgstr ""
 "0x01 - RANDOM (RANDOM, RPA, NRPA のいずれか。どれであるかはアドレス自体にエンコード"
 "されています)"
 
-#: ../../library/ubluetooth.rst:258
+#: ../../library/ubluetooth.rst:343
 msgid "``adv_type`` values correspond to the Bluetooth Specification:"
 msgstr ""``adv_type`` の値は次の Bluetooth 仕様に対応しています:"
 
-#: ../../library/ubluetooth.rst:260
+#: ../../library/ubluetooth.rst:345
 msgid "0x00 - ADV_IND - connectable and scannable undirected advertising"
 msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:261
+#: ../../library/ubluetooth.rst:346
 msgid "0x01 - ADV_DIRECT_IND - connectable directed advertising"
 msgstr "0x01 - ADV_DIRECT_IND - 接続可能な有向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:263
+#: ../../library/ubluetooth.rst:347
 msgid "0x02 - ADV_SCAN_IND - scannable undirected advertising"
 msgstr "0x02 - ADV_SCAN_IND - スキャン可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:263
+#: ../../library/ubluetooth.rst:348
 msgid "0x03 - ADV_NONCONN_IND - non-connectable undirected advertising"
 msgstr "0x03 - ADV_NONCONN_IND - 接続不可能な無向アドバタイジング"
 
-#: ../../library/ubluetooth.rst:264
+#: ../../library/ubluetooth.rst:349
 msgid "0x04 - SCAN_RSP - scan response"
 msgstr "0x04 - SCAN_RSP - スキャン応答"
 
-#: ../../library/ubluetooth.rst:266
+#: ../../library/ubluetooth.rst:351
 msgid ""
 "``active`` can be set ``True`` if you want to receive scan responses in "
 "the results."
 msgstr ""
 "スキャンの応答を結果として受け取りたい場合は、 ``active`` を ``True`` にします。"
 
-#: ../../library/ubluetooth.rst:268
+#: ../../library/ubluetooth.rst:353
 msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
 "explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised."
@@ -11867,11 +11933,11 @@ msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
 "``_IRQ_SCAN_DONE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:273
+#: ../../library/ubluetooth.rst:358
 msgid "Central Role"
 msgstr "セントラルロール"
 
-#: ../../library/ubluetooth.rst:275
+#: ../../library/ubluetooth.rst:360
 msgid ""
 "A central device can connect to peripherals that it has discovered using "
 "the observer role (see :meth:`gap_scan<BLE.gap_scan>`) or with a known "
@@ -11880,25 +11946,25 @@ msgstr ""
 "セントラルデバイスは、オブザーバーロール(:meth:`gap_scan<BLE.gap_scan>` を参照)"
 "を使うか、既知のアドレスで検出したペリフェラルに接続できます。"
 
-#: ../../library/ubluetooth.rst:279
+#: ../../library/ubluetooth.rst:364
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
-#: ../../library/ubluetooth.rst:281
+#: ../../library/ubluetooth.rst:366
 msgid "See :meth:`gap_scan <BLE.gap_scan>` for details about address types."
 msgstr ""
 "アドレスタイプの詳細については :meth:`gap_scan <BLE.gap_scan>` "
 "を参照してください。"
 
-#: ../../library/ubluetooth.rst:283
+#: ../../library/ubluetooth.rst:368
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "接続に成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:287
+#: ../../library/ubluetooth.rst:372
 msgid "Peripheral Role"
 msgstr "ペリフェラルロール"
 
-#: ../../library/ubluetooth.rst:289
+#: ../../library/ubluetooth.rst:374
 msgid ""
 "A peripheral device is expected to send connectable advertisements (see "
 ":meth:`gap_advertise<BLE.gap_advertise>`). It will usually be acting as a"
@@ -11911,18 +11977,18 @@ msgstr ""
 "用いて最初に登録されたサービスとキャラクタリスティックを持つ GATT サーバとして"
 "動作します。"
 
-#: ../../library/ubluetooth.rst:294
+#: ../../library/ubluetooth.rst:379
 msgid ""
 "When a central connects, the ``_IRQ_CENTRAL_CONNECT`` event will be "
 "raised."
 msgstr ""
 "セントラルが接続すると ``_IRQ_CENTRAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:298
+#: ../../library/ubluetooth.rst:383
 msgid "Central & Peripheral Roles"
 msgstr "セントラル＆ペリフェラルロール"
 
-#: ../../library/ubluetooth.rst:302
+#: ../../library/ubluetooth.rst:387
 msgid ""
 "Disconnect the specified connection handle. This can either be a central "
 "that has connected to this device (if acting as a peripheral) or a "
@@ -11933,7 +11999,7 @@ msgstr ""
 "接続したセントラル、または(セントラルとして動作している)このデバイスに以前に接続されていた"
 "ペリフェラルのいずれかになります。"
 
-#: ../../library/ubluetooth.rst:307
+#: ../../library/ubluetooth.rst:392
 msgid ""
 "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` or "
 "``_IRQ_CENTRAL_DISCONNECT`` event will be raised."
@@ -11941,7 +12007,7 @@ msgstr ""
 "切断に成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` または "
 "``_IRQ_CENTRAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:310
+#: ../../library/ubluetooth.rst:395
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
@@ -11949,11 +12015,11 @@ msgstr ""
 "接続ハンドルが接続されていない場合は ``False`` を、そうでない場合は ``True`` "
 "を返します。"
 
-#: ../../library/ubluetooth.rst:315
+#: ../../library/ubluetooth.rst:400
 msgid "GATT Server"
 msgstr "GATT サーバー"
 
-#: ../../library/ubluetooth.rst:317
+#: ../../library/ubluetooth.rst:402
 msgid ""
 "A GATT server has a set of registered services. Each service may contain "
 "characteristics, which each have a value. Characteristics can also "
@@ -11964,7 +12030,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/ubluetooth.rst:321
+#: ../../library/ubluetooth.rst:406
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -11977,7 +12043,7 @@ msgstr ""
 "さらに、プリフェラルは接続ハンドルを介して接続されたクライアントにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/ubluetooth.rst:326
+#: ../../library/ubluetooth.rst:411
 msgid ""
 "A device in either central or peripheral roles may function as a GATT "
 "server, however in most cases it will be more common for a peripheral "
@@ -11986,7 +12052,7 @@ msgstr ""
 "セントラルまたはペリフェラルのいずれかのロールを持つデバイスが GATT サーバとして"
 "機能することもありますが、ほとんどの場合、ペリフェラルがサーバとして機能するのが一般的です。"
 
-#: ../../library/ubluetooth.rst:330
+#: ../../library/ubluetooth.rst:415
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a client will be truncated to this length. "
@@ -12002,14 +12068,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/ubluetooth.rst:339
+#: ../../library/ubluetooth.rst:424
 msgid ""
 "Configures the server with the specified services, replacing any existing"
 " services."
 msgstr ""
 "指定したサービスでサーバーを構成し、既存のサービスを置換します。"
 
-#: ../../library/ubluetooth.rst:342
+#: ../../library/ubluetooth.rst:427
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -12018,7 +12084,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:345
+#: ../../library/ubluetooth.rst:430
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -12026,24 +12092,24 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:348
+#: ../../library/ubluetooth.rst:433
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/ubluetooth.rst:351
+#: ../../library/ubluetooth.rst:436
 msgid ""
-"The **flags** are a bitwise-OR combination of the "
-":data:`ubluetooth.FLAG_READ`, :data:`ubluetooth.FLAG_WRITE` and "
-":data:`ubluetooth.FLAG_NOTIFY` values defined below."
+"The **flags** are a bitwise-OR combination of the flags defined below. "
+"These set both the behaviour of the characteristic (or descriptor) as "
+"well as the security and privacy requirements."
 msgstr ""
-"**フラグ** は、後述する値 :data:`ubluetooth.FLAG_READ`, "
-":data:`ubluetooth.FLAG_WRITE`, :data:`ubluetooth.FLAG_NOTIFY` "
-"のビット論理和の組み合わせです。"
+"**フラグ** は、後述するフラグのビット論理和の組み合わせです。"
+これらは、キャラクタリスティック(またはディスクリプタ)の振舞いおよびセキュリティと"
+"プライバシーの要件の両方を設定します。"
 
-#: ../../library/ubluetooth.rst:355
+#: ../../library/ubluetooth.rst:440
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -12053,14 +12119,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/ubluetooth.rst:359
+#: ../../library/ubluetooth.rst:444
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/ubluetooth.rst:361
+#: ../../library/ubluetooth.rst:446
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -12076,7 +12142,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/ubluetooth.rst:371
+#: ../../library/ubluetooth.rst:456
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -12088,12 +12154,43 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>`, "
 ":meth:`gatts_indicate <BLE.gatts_indicate>` で使えます。"
 
-#: ../../library/ubluetooth.rst:375
+#: ../../library/ubluetooth.rst:460
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/ubluetooth.rst:379
+#: ../../library/ubluetooth.rst:462
+msgid "Available flags for characteristics and descriptors are::"
+msgstr "キャラクタリスティックとディスクリプタで使えるフラグは次のとおりです::"
+
+#: ../../library/ubluetooth.rst:464
+msgid ""
+"from micropython import const\n"
+"_FLAG_BROADCAST = const(0x0001)\n"
+"_FLAG_READ = const(0x0002)\n"
+"_FLAG_WRITE_NO_RESPONSE = const(0x0004)\n"
+"_FLAG_WRITE = const(0x0008)\n"
+"_FLAG_NOTIFY = const(0x0010)\n"
+"_FLAG_INDICATE = const(0x0020)\n"
+"_FLAG_AUTHENTICATED_SIGNED_WRITE = const(0x0040)\n"
+"\n"
+"_FLAG_AUX_WRITE = const(0x0100)\n"
+"_FLAG_READ_ENCRYPTED = const(0x0200)\n"
+"_FLAG_READ_AUTHENTICATED = const(0x0400)\n"
+"_FLAG_READ_AUTHORIZED = const(0x0800)\n"
+"_FLAG_WRITE_ENCRYPTED = const(0x1000)\n"
+"_FLAG_WRITE_AUTHENTICATED = const(0x2000)\n"
+"_FLAG_WRITE_AUTHORIZED = const(0x4000)"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:481
+msgid ""
+"As for the IRQs above, any required constants should be added to your "
+"Python code."
+msgstr ""
+"先述の IRQ と同様に、必要な定数を Python コードに追加してください。"
+
+#: ../../library/ubluetooth.rst:485
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote client)."
@@ -12101,16 +12198,16 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートクライアントで書き込まれたもの)を読み取ります。"
 
-#: ../../library/ubluetooth.rst:384
+#: ../../library/ubluetooth.rst:490
 msgid "Writes the local value for this handle, which can be read by a client."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、クライアントによって読み取ることができます。"
 
-#: ../../library/ubluetooth.rst:388
+#: ../../library/ubluetooth.rst:494
 msgid "Sends a notification request to a connected client."
 msgstr "接続されているクライアントにノーティフィケーション要求を送信します。"
 
-#: ../../library/ubluetooth.rst:390
+#: ../../library/ubluetooth.rst:496
 msgid ""
 "If *data* is not ``None``, then that value is sent to the client as part "
 "of the notification. The local value will not be modified."
@@ -12118,7 +12215,7 @@ msgstr ""
 "*data* が ``None`` でなければ、その値が通知の一部としてクライアントに送信されます。"
 "ローカル値は変更されません。"
 
-#: ../../library/ubluetooth.rst:393
+#: ../../library/ubluetooth.rst:499
 msgid ""
 "Otherwise, if *data* is ``None``, then the current local value (as set "
 "with :meth:`gatts_write <BLE.gatts_write>`) will be sent."
@@ -12126,11 +12223,11 @@ msgstr ""
 "*data* が ``None`` でなければ、現在のローカル値("
 ":meth:`gatts_write <BLE.gatts_write>` で設定された値)が送信されます。"
 
-#: ../../library/ubluetooth.rst:398
+#: ../../library/ubluetooth.rst:504
 msgid "Sends an indication request to a connected client."
 msgstr "接続されているクライアントにインディケーション要求を送信します。"
 
-#: ../../library/ubluetooth.rst:400
+#: ../../library/ubluetooth.rst:506
 msgid ""
 "**Note:** This does not currently support sending a custom value, it will"
 " always send the current local value (as set with :meth:`gatts_write "
@@ -12140,7 +12237,7 @@ msgstr ""
 "常に現在のローカル値(:meth:`gatts_write <BLE.gatts_write>` で設定したもの)"
 "を送信します。"
 
-#: ../../library/ubluetooth.rst:404
+#: ../../library/ubluetooth.rst:510
 msgid ""
 "On acknowledgment (or failure, e.g. timeout), the "
 "``_IRQ_GATTS_INDICATE_DONE`` event will be raised."
@@ -12148,7 +12245,7 @@ msgstr ""
 "acknowledgment (あるいはタイムアウトなどの失敗)があった場合、 "
 "``_IRQ_GATTS_INDICATE_DONE`` イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:409
+#: ../../library/ubluetooth.rst:515
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -12156,7 +12253,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/ubluetooth.rst:412
+#: ../../library/ubluetooth.rst:518
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -12170,11 +12267,11 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/ubluetooth.rst:419
+#: ../../library/ubluetooth.rst:525
 msgid "GATT Client"
 msgstr "GATT クライアント"
 
-#: ../../library/ubluetooth.rst:421
+#: ../../library/ubluetooth.rst:527
 msgid ""
 "A GATT client can discover and read/write characteristics on a remote "
 "GATT server."
@@ -12182,7 +12279,7 @@ msgstr ""
 "GATT クライアントは、リモートの GATT サーバ上のキャラクタリスティックを発見し、"
 "読み書きすることができます。"
 
-#: ../../library/ubluetooth.rst:423
+#: ../../library/ubluetooth.rst:529
 msgid ""
 "It is more common for a central role device to act as the GATT client, "
 "however it's also possible for a peripheral to act as a client in order "
@@ -12193,15 +12290,15 @@ msgstr ""
 "接続したセントラルについての情報を発見するためにペリフェラルがクライアントとして"
 "動作することも可能です(デバイス情報サービスからデバイス名を読み取るなど)。
 
-#: ../../library/ubluetooth.rst:430
+#: ../../library/ubluetooth.rst:536
 msgid "Query a connected server for its services."
 msgstr "サービスについて接続されたサーバーを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:432
+#: ../../library/ubluetooth.rst:538
 msgid "Optionally specify a service *uuid* to query for that service only."
 msgstr "オプションで照会するサービスの *uuid* を指定できます。"
 
-#: ../../library/ubluetooth.rst:434
+#: ../../library/ubluetooth.rst:540
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
 " be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion."
@@ -12209,18 +12306,18 @@ msgstr ""
 "検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生し、"
 "検索が完了すると ``_IRQ_GATTC_SERVICE_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:439
+#: ../../library/ubluetooth.rst:545
 msgid "Query a connected server for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたサーバーを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:441
+#: ../../library/ubluetooth.rst:547
 msgid ""
 "Optionally specify a characteristic *uuid* to query for that "
 "characteristic only."
 msgstr ""
 "オプションで照会するキャラクタリスティックの *uuid* を指定できます。"
 
-#: ../../library/ubluetooth.rst:444
+#: ../../library/ubluetooth.rst:550
 msgid ""
 "You can use ``start_handle=1``, ``end_handle=0xffff`` to search for a "
 "characteristic in any service."
@@ -12228,7 +12325,7 @@ msgstr ""
 "任意のサービスのキャラクタリスティックを検索するには "
 "``start_handle=1``, ``end_handle=0xffff`` とします。"
 
-#: ../../library/ubluetooth.rst:447
+#: ../../library/ubluetooth.rst:553
 msgid ""
 "For each characteristic discovered, the "
 "``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised, followed by "
@@ -12237,11 +12334,11 @@ msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_CHARACTERISTIC_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:452
+#: ../../library/ubluetooth.rst:558
 msgid "Query a connected server for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたサーバーを問い合わせます。"
 
-#: ../../library/ubluetooth.rst:454
+#: ../../library/ubluetooth.rst:560
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "event will be raised, followed by ``_IRQ_GATTC_DESCRIPTOR_DONE`` on "
@@ -12250,7 +12347,7 @@ msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_DESCRIPTOR_DONE`` になります。"
 
-#: ../../library/ubluetooth.rst:459
+#: ../../library/ubluetooth.rst:565
 msgid ""
 "Issue a remote read to a connected server for the specified "
 "characteristic or descriptor handle."
@@ -12258,7 +12355,7 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたサーバーに"
 "リモート読み込みを発行します。"
 
-#: ../../library/ubluetooth.rst:462
+#: ../../library/ubluetooth.rst:568
 msgid ""
 "When a value is available, the ``_IRQ_GATTC_READ_RESULT`` event will be "
 "raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised."
@@ -12266,7 +12363,7 @@ msgstr ""
 "値は有効であれば ``_IRQ_GATTC_READ_RESULT`` イベントが発生し、"
 "加えて ``_IRQ_GATTC_READ_DONE`` が発生します。"
 
-#: ../../library/ubluetooth.rst:467
+#: ../../library/ubluetooth.rst:573
 msgid ""
 "Issue a remote write to a connected server for the specified "
 "characteristic or descriptor handle."
@@ -12274,14 +12371,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたサーバーに"
 "リモート書き込みを発行します。"
 
-#: ../../library/ubluetooth.rst:470
+#: ../../library/ubluetooth.rst:576
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/ubluetooth.rst:473
+#: ../../library/ubluetooth.rst:579
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote server but no confirmation will be returned, and no event "
@@ -12290,7 +12387,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートサーバーに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/ubluetooth.rst:476
+#: ../../library/ubluetooth.rst:582
 msgid ""
 "``mode=1`` is a write-with-response: the remote server is requested to "
 "send a response/acknowledgement that it received the data."
@@ -12298,7 +12395,7 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートサーバーはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/ubluetooth.rst:480
+#: ../../library/ubluetooth.rst:586
 msgid ""
 "If a response is received from the remote server the "
 "``_IRQ_GATTC_WRITE_DONE`` event will be raised."
@@ -12306,7 +12403,7 @@ msgstr ""
 "リモートサーバーから応答を受信すると ``_IRQ_GATTC_WRITE_DONE`` "
 "イベントが発生します。"
 
-#: ../../library/ubluetooth.rst:485
+#: ../../library/ubluetooth.rst:591
 msgid ""
 "Initiate MTU exchange with a connected server, using the preferred MTU "
 "set using ``BLE.config(mtu=value)``."
@@ -12314,14 +12411,14 @@ msgstr ""
 "``BLE.config(mtu=value)`` で設定した優先 MTU を使って、接続されているサーバとの "
 "MTU 交換を開始します。"
 
-#: ../../library/ubluetooth.rst:488
+#: ../../library/ubluetooth.rst:594
 msgid ""
 "The ``_IRQ_MTU_EXCHANGED`` event will be raised when MTU exchange "
 "completes."
 msgstr ""
 "MTU 交換が完了すると ``_IRQ_MTU_EXCHANGED`` イベントは発生します。"
 
-#: ../../library/ubluetooth.rst:491
+#: ../../library/ubluetooth.rst:597
 msgid ""
 "**Note:** MTU exchange is typically initiated by the central. When using "
 "the BlueKitchen stack in the central role, it does not support a remote "
@@ -12331,23 +12428,294 @@ msgstr ""
 "セントラルロールで BlueKitchen スタックを使う場合、リモートペリフェラルが MTU 交換を"
 "開始することはサポートしていません。NimBLE は両方のロールに対応しています。"
 
-#: ../../library/ubluetooth.rst:497
+#: ../../library/ubluetooth.rst:603
+msgid "L2CAP connection-oriented-channels"
+msgstr ""
+
+#: ../../library/ubluetooth.rst:605
+msgid ""
+"This feature allows for socket-like data exchange between two BLE "
+"devices. Once the devices are connected via GAP, either device can listen"
+" for the other to connect on a numeric PSM (Protocol/Service "
+"Multiplexer)."
+msgstr ""
+"この機能により、2つの BLE デバイス間でソケットのようなデータ交換が可能になります。"
+"デバイスが GAP を介して接続されると、どちらかのデバイスは他方のデバイスが "
+"PSM (Protocol/Service Multiplexer)番号でリスン(listen)できます。"
+
+#: ../../library/ubluetooth.rst:609
+msgid ""
+"**Note:** This is currently only supported when using the NimBLE stack on"
+" STM32 and Unix (not ESP32). Only one L2CAP channel may be active at a "
+"given time (i.e. you cannot connect while listening)."
+msgstr ""
+"**注記:** これは現在、STM32 および Unix で NimBLE スタックを使用している場合にのみ"
+"サポートされています(ESP32 ではサポートしていません)。一度に1つの L2CAP チャネルのみが"
+"アクティブになることがあります(つまりリスン中は接続できません)。"
+
+#: ../../library/ubluetooth.rst:613
+msgid ""
+"Active L2CAP channels are identified by the connection handle that they "
+"were established on and a CID (channel ID)."
+msgstr ""
+"アクティブな L2CAP チャネルは、確立された接続ハンドルと CID (チャネル ID)によって"
+"識別されます。"
+
+#: ../../library/ubluetooth.rst:616
+msgid ""
+"Connection-oriented channels have built-in credit-based flow control. "
+"Unlike ATT, where devices negotiate a shared MTU, both the listening and "
+"connecting devices each set an independent MTU which limits the maximum "
+"amount of outstanding data that the remote device can send before it is "
+"fully consumed in :meth:`l2cap_recvinto <BLE.l2cap_recvinto>`."
+msgstr ""
+"接続指向のチャネルには、クレジットベースのフロー制御が組み込まれています。"
+"デバイスが共有 MTU をネゴシエートする ATT とは異なり、リスン中のデバイスと"
+"接続中のデバイスの両方がそれぞれ独立した MTU を設定し、リモートデバイスが "
+":meth:`l2cap_recvinto <BLE.l2cap_recvinto>` で完全に消費される前に"
+"送信できる未処理データの最大量を制限します。"
+
+#: ../../library/ubluetooth.rst:624
+msgid ""
+"Start listening for incoming L2CAP channel requests on the specified "
+"*psm* with the local MTU set to *mtu*."
+msgstr ""
+"指定の *psm* と *mtu* に指定のローカル MTU で、L2CAP チャネル要求の着信のための"
+"リスンを開始します。"
+
+#: ../../library/ubluetooth.rst:627
+msgid ""
+"When a remote device initiates a connection, the ``_IRQ_L2CAP_ACCEPT`` "
+"event will be raised, which gives the listening server a chance to reject"
+" the incoming connection (by returning a non-zero integer)."
+msgstr ""
+"リモートデバイスが接続を開始すると ``_IRQ_L2CAP_ACCEPT`` イベントが発生し、"
+"リスン中のサーバに着信接続を(0 以外の整数を返すことで)拒否する機会が与えられます。"
+
+#: ../../library/ubluetooth.rst:631
+msgid ""
+"Once the connection is accepted, the ``_IRQ_L2CAP_CONNECT`` event will be"
+" raised, allowing the server to obtain the channel id (CID) and the local"
+" and remote MTU."
+msgstr ""
+"接続が受け入れられると ``_IRQ_L2CAP_CONNECT`` イベントが発生し、"
+"サーバがチャネル ID (CID) とローカルおよびリモートの MTU を取得できるようになります。"
+
+#: ../../library/ubluetooth.rst:635
+msgid "**Note:** It is not currently possible to stop listening."
+msgstr "**注意:** 現在のところリスンを停止することはできません。"
+
+#: ../../library/ubluetooth.rst:639
+msgid ""
+"Connect to a listening peer on the specified *psm* with local MTU set to "
+"*mtu*."
+msgstr ""
+"*mtu* に設定したローカル MTU で、指定した *psm* 上のリスニングピアに接続します。"
+
+#: ../../library/ubluetooth.rst:641
+msgid ""
+"On successful connection, the the ``_IRQ_L2CAP_CONNECT`` event will be "
+"raised, allowing the client to obtain the CID and the local and remote "
+"(peer) MTU."
+msgstr ""
+"接続に成功すると ``_IRQ_L2CAP_CONNECT`` イベントが発生し、"
+"クライアントは CID とローカルおよびリモートの(ピア) MTU を取得できるようになります。"
+
+#: ../../library/ubluetooth.rst:644
+msgid ""
+"An unsuccessful connection will raise the ``_IRQ_L2CAP_DISCONNECT`` event"
+" with a non-zero status."
+msgstr ""
+"接続に失敗すると ``_IRQ_L2CAP_DISCONNECT`` イベントが発生し、ステータスは 0 以外になります。"
+
+#: ../../library/ubluetooth.rst:649
+msgid ""
+"Disconnect an active L2CAP channel with the specified *conn_handle* and "
+"*cid*."
+msgstr ""
+"指定した *conn_handle* と *cid* を持つアクティブな L2CAP チャネルを切断します。"
+
+#: ../../library/ubluetooth.rst:654
+msgid ""
+"Send the specified *buf* (which must support the buffer protocol) on the "
+"L2CAP channel identified by *conn_handle* and *cid*."
+msgstr ""
+"*conn_handle* と *cid* で識別される L2CAP チャネル上で、"
+"指定した *buf* (バッファプロトコルをサポートしている必要あり)を送信します。"
+
+#: ../../library/ubluetooth.rst:657
+msgid ""
+"The specified buffer cannot be larger than the remote (peer) MTU, and no "
+"more than twice the size of the local MTU."
+msgstr ""
+"指定されたバッファは、リモート(ピア) MTU よりも大きく、ローカル MTU の "
+"2倍以下のサイズにすることはできません。"
+
+#: ../../library/ubluetooth.rst:660
+msgid ""
+"This will return ``False`` if the channel is now \"stalled\", which means"
+" that :meth:`l2cap_send <BLE.l2cap_send>` must not be called again until "
+"the ``_IRQ_L2CAP_SEND_READY`` event is received (which will happen when "
+"the remote device grants more credits, typically after it has received "
+"and processed the data)."
+msgstr ""
+"これはチャネルが「ストール」している場合に ``False`` を返します。"
+"この状態では ``_IRQ_L2CAP_SEND_READY`` イベントを受信するまで"
+"(リモートデバイスがより多くのクレジットを付与したとき、通常はデータを"
+"受信して処理した後に発生します)、 :meth:`l2cap_send <BLE.l2cap_send>` "
+"を再度呼び出してはなりません。"
+
+#: ../../library/ubluetooth.rst:668
+msgid ""
+"Receive data from the specified *conn_handle* and *cid* into the provided"
+" *buf* (which must support the buffer protocol, e.g. bytearray or "
+"memoryview)."
+msgstr ""
+"指定した *conn_handle* および *cid* から、指定した *buf* (bytearray や "
+"memoryview などのバッファプロトコルをサポートしている必要があり)にデータを受信します。"
+
+#: ../../library/ubluetooth.rst:672
+msgid "Returns the number of bytes read from the channel."
+msgstr "チャネルから読み込んだバイト数を返します。"
+
+#: ../../library/ubluetooth.rst:674
+msgid "If *buf* is None, then returns the number of bytes available."
+msgstr "*buf* が None の場合、利用可能なバイト数を返します。"
+
+#: ../../library/ubluetooth.rst:676
+msgid ""
+"**Note:** After receiving the ``_IRQ_L2CAP_RECV`` event, the application "
+"should continue calling :meth:`l2cap_recvinto <BLE.l2cap_recvinto>` until"
+" no more bytes are available in the receive buffer (typically up to the "
+"size of the remote (peer) MTU)."
+msgstr ""
+"**注記:** ``_IRQ_L2CAP_RECV`` イベントを受信した後、アプリケーションは受信バッファに"
+"バイト列がなくなるまで(通常はリモート(ピア)の MTU のサイズになるまで)、 "
+":meth:`l2cap_recvinto <BLE.l2cap_recvinto>` を呼び出し続ける必要があります。"
+
+#: ../../library/ubluetooth.rst:681
+msgid ""
+"Until the receive buffer is empty, the remote device will not be granted "
+"more channel credits and will be unable to send any more data."
+msgstr ""
+"受信バッファが空になるまで、リモートデバイスはそれ以上のチャネルクレジットを付与されず、"
+"それ以上のデータを送信できなくなります。"
+
+#: ../../library/ubluetooth.rst:686
+msgid "Pairing and bonding"
+msgstr "ペアリングとボンディング"
+
+#: ../../library/ubluetooth.rst:688
+msgid ""
+"Pairing allows a connection to be encrypted and authenticated via "
+"exchange of secrets (with optional MITM protection via passkey "
+"authentication)."
+msgstr ""
+"ペアリングは、シークレット(パスキー認証によるオプションのMITM保護付き)を交換することで、"
+"暗号化した接続と認証が可能になります。"
+
+#: ../../library/ubluetooth.rst:691
+msgid ""
+"Bonding is the process of storing those secrets into non-volatile "
+"storage. When bonded, a device is able to resolve a resolvable private "
+"address (RPA) from another device based on the stored identity resolving "
+"key (IRK). To support bonding, an application must implement the "
+"``_IRQ_GET_SECRET`` and ``_IRQ_SET_SECRET`` events."
+msgstr ""
+"ボンディングは、これらのシークレットを不揮発性のストレージに格納するプロセスです。"
+"ボンディングされると、デバイスは、格納された ID 解決キー(IRK)に基づいて"
+"別のデバイスから解決可能なプライベートアドレス(RPA)を解決できます。"
+"ボンディングをサポートするには、アプリケーションは ``_IRQ_GET_SECRET`` イベントと "
+"``_IRQ_SET_SECRET`` イベントを実装する必要があります。"
+
+#: ../../library/ubluetooth.rst:697
+msgid ""
+"**Note:** This is currently only supported when using the NimBLE stack on"
+" STM32 and Unix (not ESP32)."
+msgstr ""
+"**注記:** これは現在のところ、STM32 および Unix で NimBLE スタックを使う場合に"
+"のみサポートされています(ESP32 は未サポートです)。"
+
+#: ../../library/ubluetooth.rst:702
+msgid "Initiate pairing with the remote device."
+msgstr "リモートデバイスとのペアリングを開始します。"
+
+#: ../../library/ubluetooth.rst:704
+msgid ""
+"Before calling this, ensure that the ``io``, ``mitm``, ``le_secure``, and"
+" ``bond`` configuration options are set (via :meth:`config<BLE.config>`)."
+msgstr ""
+"これを呼び出す前に ``io``, ``mitm``, ``le_secure``, ``bond`` 構成オプションが"
+"(:meth:`config<BLE.config>` で)設定していることを確認してください。"
+
+#: ../../library/ubluetooth.rst:707
+msgid ""
+"On successful pairing, the ``_IRQ_ENCRYPTION_UPDATE`` event will be "
+"raised."
+msgstr ""
+"ペアリングに成功すると ``_IRQ_ENCRYPTION_UPDATE`` イベントが発生します。"
+
+#: ../../library/ubluetooth.rst:711
+msgid ""
+"Respond to a ``_IRQ_PASSKEY_ACTION`` event for the specified "
+"*conn_handle* and *action*."
+msgstr ""
+"指定した *conn_handle* と *action* の ``_IRQ_PASSKEY_ACTION`` "
+"イベントに応答します。"
+
+#: ../../library/ubluetooth.rst:714
+msgid ""
+"The *passkey* is a numeric value and will depend on on the *action* "
+"(which will depend on what I/O capability has been set):"
+msgstr ""
+"*passkey* は数値であり、 *action* に依存します(どのような I/O が設定されているか"
+"に依存します)。"
+
+#: ../../library/ubluetooth.rst:717
+msgid ""
+"When the *action* is ``_PASSKEY_ACTION_INPUT``, then the application "
+"should prompt the user to enter the passkey that is shown on the remote "
+"device."
+msgstr ""
+"*action* が ``_PASSKEY_ACTION_INPUT`` の場合、アプリケーションはリモートデバイスに"
+"表示されているパスキーを入力するようユーザに促します。"
+
+#: ../../library/ubluetooth.rst:719
+msgid ""
+"When the *action* is ``_PASSKEY_ACTION_DISPLAY``, then the application "
+"should generate a random 6-digit passkey and show it to the user."
+msgstr ""
+"*action* が ``_PASSKEY_ACTION_DISPLAY`` の場合、アプリケーションはランダムな"
+"6桁のパ スキーを生成してユーザーに示します。"
+
+#: ../../library/ubluetooth.rst:721
+msgid ""
+"When the *action* is ``_PASSKEY_ACTION_NUMERIC_COMPARISON``, then the "
+"application should show the passkey that was provided in the "
+"``_IRQ_PASSKEY_ACTION`` event and then respond with either ``0`` (cancel "
+"pairing), or ``1`` (accept pairing)."
+msgstr ""
+"*action* が ``_PASSKEY_ACTION_NUMERIC_COMPARISON`` の場合、アプリケーションは "
+"``_IRQ_PASSKEY_ACTION`` イベントで提供されたパスキーを表示し、 ``0`` (ペアリングの"
+"キャンセル)または ``1`` (ペアリングの受け入れ)のいずれかで応答すべきです。"
+
+#: ../../library/ubluetooth.rst:727
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/ubluetooth.rst:505
+#: ../../library/ubluetooth.rst:735
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/ubluetooth.rst:507
+#: ../../library/ubluetooth.rst:737
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/ubluetooth.rst:509
+#: ../../library/ubluetooth.rst:739
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/ubluetooth.rst:510
+#: ../../library/ubluetooth.rst:740
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
@@ -12543,7 +12911,7 @@ msgid ""
 "mutable buffer, in which case data is encrypted in-place."
 msgstr ""
 "*in_buf* を暗号化します。 *out_buf* が与えられない場合、結果は新しく割り当てられた "
-"`bytes` オブジェクトとして返されます。そうでなければ、結果は可変バッファ *out_buf* "
+"`bytes` 型オブジェクトとして返されます。そうでなければ、結果は可変バッファ *out_buf* "
 "に書き込まれます。 *in_buf* と *out_buf* は同じ可変バッファを参照することもできます。"
 "その場合、データはその場で暗号化されます。"
 
@@ -12984,7 +13352,7 @@ msgid ""
 "original value."
 msgstr ""
 "指定されたアドレスとサイズのメモリをバイトオブジェクトとしてキャプチャします。"
-"bytes オブジェクトは不変なので、メモリは実際には複製されて bytes オブジェクトに"
+"bytes 型オブジェクトは不変なので、メモリは実際には複製されて bytes 型オブジェクトに"
 "コピーされます。したがって、メモリの内容が後で変更されても、作成されたオブジェクトは"
 "元の値を保持します。"
 
@@ -13310,7 +13678,7 @@ msgid ""
 "Return hash for all data passed through hash, as a bytes object. After "
 "this method is called, more data cannot be fed into the hash any longer."
 msgstr ""
-"ハッシュを介して渡されたすべてのデータのハッシュをバイトオブジェクトとして返します。"
+"ハッシュを介して渡されたすべてのデータのハッシュを bytes 型オブジェクトとして返します。"
 "このメソッドが呼び出された後は、もうデータをハッシュにフィードできなくなります。"
 
 #: ../../../library/uhashlib.rst:56
@@ -13675,7 +14043,7 @@ msgid ""
 "Return a bytes object with *n* random bytes. Whenever possible, it is "
 "generated by the hardware random number generator."
 msgstr ""
-"*n* 個のランダムバイトを持つバイト列オブジェクトを返します。可能な限り、"
+"*n* 個のランダムバイトを持つ bytes 型オブジェクトを返します。可能な限り、"
 "ハードウェア乱数生成器によって乱数を生成します。"
 
 #: ../../../library/uos.rst:34
@@ -13710,7 +14078,8 @@ msgid ""
 "*name* is a string (or bytes if *dir* is a bytes object) and is the name "
 "of the entry;"
 msgstr ""
-"*name* は文字列(*dir* バイト列オブジェクトの場合はバイト列)であり、エントリの名前です。"
+"*name* は文字列(*dir* が bytes 型オブジェクトの場合は bytes 型オブジェクト)であり、"
+"エントリの名前です。"
 
 #: ../../../library/uos.rst:54
 msgid ""
@@ -14121,7 +14490,7 @@ msgid ""
 "size."
 msgstr ""
 "最初の形式は、整列した複数のブロックを読み取ります。インデックス *block_num* で"
-"指定したブロックを開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
+"指定したブロックを開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数になります。"
 
 #: ../../../library/uos.rst:271
@@ -14134,7 +14503,7 @@ msgid ""
 msgstr ""
 "２番目の形式では、ブロック内の任意の場所、任意の長さで読み取ることができます。"
 "ブロックインデックス *block_num* とブロック内のバイトオフセット *offset* "
-"を開始点として、デバイスから *buf* (バイト列)にブロックを読み込みます。"
+"を開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
 
 #: ../../../library/uos.rst:280
@@ -14148,7 +14517,7 @@ msgid ""
 msgstr ""
 "最初の形式は、整列した複数のブロックを書き込みます。"
 "書き込む前には、対象のブロックが（必要に応じて）消去されます。"
-"インデックス *block_num* で指定したブロックに *buf* (バイト列)からブロックを"
+"インデックス *block_num* で指定したブロックに *buf* (バイトの配列)からブロックを"
 "書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
 "なります。"
 
@@ -15386,9 +15755,10 @@ msgid ""
 "that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as "
 "`read()`, this method follows \"no short reads\" policy."
 msgstr ""
-"バイト列を *buf* に読み込みます。 *nbytes* が指定されている場合は、最大でそのバイト数"
-"だけ読み込みます。 *nbytes* が指定されない場合は、最大で *len(buf)* バイトを読み込み"
-"ます。 `read()` と同様に、このメソッドは「短い読み込みなし」ポリシーにしたがいます。"
+"bytes 型オブジェクトを *buf* に読み込みます。 *nbytes* が指定されている場合は、"
+"最大でそのバイト数だけ読み込みます。 *nbytes* が指定されない場合は、最大で "
+"*len(buf)* バイトを読み込みます。 `read()` と同様に、このメソッドは"
+"「短い読み込みなし」ポリシーにしたがいます。"
 
 #: ../../../library/usocket.rst:328
 msgid "Return value: number of bytes read and stored into *buf*."
@@ -15409,9 +15779,10 @@ msgid ""
 " a non-blocking socket though, and returned value will be less than the "
 "length of *buf*."
 msgstr ""
-"ソケットにバイト列のバッファを書き込みます。この関数は、すべてのデータをソケットに"
-"書き込もうとします(「短い書き込み」なし)。ただし、これはノンブロッキングソケットでは"
-"不可能なことがあり、そのような場合は戻り値が *buf* の長さより短くなります。"
+"ソケットに bytes 型オブジェクトのバッファを書き込みます。この関数は、"
+"すべてのデータをソケットに書き込もうとします(「短い書き込み」なし)。ただし、"
+"これはノンブロッキングソケットでは不可能なことがあり、そのような場合は戻り値が "
+"*buf* の長さより短くなります。"
 
 #: ../../../library/usocket.rst:343
 msgid "Return value: number of bytes written."
@@ -16070,11 +16441,11 @@ msgid ""
 "assumed to be raw DEFLATE stream. *bufsize* parameter is for "
 "compatibility with CPython and is ignored."
 msgstr ""
-"展開した *data* をバイト列で返します。 *wbits* は圧縮中に使用される DEFLATE 辞書"
-"ウィンドウのサイズです(8-15、辞書サイズはその値の2のべき乗です)。さらに、値が正の場合、 "
-"*data* は zlib ストリーム(zlib ヘッダー付き)であると見なされます。値が負の場合は"
-"生の DEFLATE ストリームであるとみなされます。 *bufsize* パラメータは CPython との"
-"互換性のためのものであり、無視されます。"
+"展開した *data* をbytes 型オブジェクトで返します。 *wbits* は圧縮中に使用される "
+"DEFLATE 辞書ウィンドウのサイズです(8-15、辞書サイズはその値の2のべき乗です)。"
+"さらに、値が正の場合、 *data* は zlib ストリーム(zlib ヘッダー付き)であると"
+"見なされます。値が負の場合は生の DEFLATE ストリームであるとみなされます。 "
+"*bufsize* パラメータは CPython との互換性のためのものであり、無視されます。"
 
 #: ../../../library/uzlib.rst:28
 msgid ""
