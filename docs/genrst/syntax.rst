@@ -2,7 +2,32 @@
 
 Syntax
 ======
-Generated Wed 06 Mar 2019 15:05:45 UTC
+Generated Sun 31 Jan 2021 14:55:11 UTC
+
+Operators
+---------
+
+.. _cpydiff_syntax_assign_expr:
+
+MicroPython allows using := to assign to the variable of a comprehension, CPython raises a SyntaxError.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code size and doesn't check this case.
+
+**Workaround:** Do not rely on this behaviour if writing CPython compatible code.
+
+Sample code::
+
+    print([i := -1 for i in range(4)])
+
++-------------------------------------------------------------------------------------------+----------------------+
+| CPy output:                                                                               | uPy output:          |
++-------------------------------------------------------------------------------------------+----------------------+
+| ::                                                                                        | ::                   |
+|                                                                                           |                      |
+|       File "<stdin>", line 7                                                              |     [-1, -1, -1, -1] |
+|     SyntaxError: assignment expression cannot rebind comprehension iteration variable 'i' |                      |
++-------------------------------------------------------------------------------------------+----------------------+
 
 Spaces
 ------
@@ -15,17 +40,17 @@ uPy requires spaces between literal numbers and keywords, CPy doesn't
 Sample code::
 
     try:
-        print(eval('1and 0'))
+        print(eval("1and 0"))
     except SyntaxError:
-        print('Should have worked')
+        print("Should have worked")
     try:
-        print(eval('1or 0'))
+        print(eval("1or 0"))
     except SyntaxError:
-        print('Should have worked')
+        print("Should have worked")
     try:
-        print(eval('1if 1else 0'))
+        print(eval("1if 1else 0"))
     except SyntaxError:
-        print('Should have worked')
+        print("Should have worked")
 
 +-------------+------------------------+
 | CPy output: | uPy output:            |

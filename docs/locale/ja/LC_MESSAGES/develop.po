@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-01 11:03+0900\n"
-"PO-Revision-Date: 2020-11-08 12:29+0900\n"
+"PO-Revision-Date: 2021-01-31 12:25+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -345,23 +345,1639 @@ msgid ""
 "# should display 4"
 msgstr ""
 
+#: ../../develop/compiler.rst:4
+msgid "The Compiler"
+msgstr ""
+
+#: ../../develop/compiler.rst:6
+msgid "The compilation process in MicroPython involves the following steps:"
+msgstr ""
+
+#: ../../develop/compiler.rst:8
+msgid ""
+"The lexer converts the stream of text that makes up a MicroPython program"
+" into tokens."
+msgstr ""
+
+#: ../../develop/compiler.rst:9
+msgid "The parser then converts the tokens into an abstract syntax (parse tree)."
+msgstr ""
+
+#: ../../develop/compiler.rst:10
+msgid "Then bytecode or native code is emitted based on the parse tree."
+msgstr ""
+
+#: ../../develop/compiler.rst:12
+msgid ""
+"For purposes of this discussion we are going to add a simple language "
+"feature ``add1`` that can be use in Python as:"
+msgstr ""
+
+#: ../../develop/compiler.rst:15
+msgid ""
+">>> add1 3\n"
+"4\n"
+">>>"
+msgstr ""
+
+#: ../../develop/compiler.rst:21
+msgid "The ``add1`` statement takes an integer as argument and adds ``1`` to it."
+msgstr ""
+
+#: ../../develop/compiler.rst:24
+msgid "Adding a grammar rule"
+msgstr ""
+
+#: ../../develop/compiler.rst:26
+msgid ""
+"MicroPython's grammar is based on the `CPython grammar "
+"<https://docs.python.org/3.5/reference/grammar.html>`_ and is defined in "
+"`py/grammar.h "
+"<https://github.com/micropython/micropython/blob/master/py/grammar.h>`_. "
+"This grammar is what is used to parse MicroPython source files."
+msgstr ""
+
+#: ../../develop/compiler.rst:30
+msgid ""
+"There are two macros you need to know to define a grammar rule: "
+"``DEF_RULE`` and ``DEF_RULE_NC``. ``DEF_RULE`` allows you to define a "
+"rule with an associated compile function, while ``DEF_RULE_NC`` has no "
+"compile (NC) function for it."
+msgstr ""
+
+#: ../../develop/compiler.rst:34
+msgid ""
+"A simple grammar definition with a compile function for our new ``add1`` "
+"statement looks like the following:"
+msgstr ""
+
+#: ../../develop/compiler.rst:37
+msgid "DEF_RULE(add1_stmt, c(add1_stmt), and(2), tok(KW_ADD1), rule(testlist))"
+msgstr ""
+
+#: ../../develop/compiler.rst:41
+msgid ""
+"The second argument ``c(add1_stmt)`` is the corresponding compile "
+"function that should be implemented in ``py/compile.c`` to turn this rule"
+" into executable code."
+msgstr ""
+
+#: ../../develop/compiler.rst:44
+msgid ""
+"The third required argument can be ``or`` or ``and``. This specifies the "
+"number of nodes associated with a statement. For example, in this case, "
+"our ``add1`` statement is similar to ADD1 in assembly language. It takes "
+"one numeric argument. Therefore, the ``add1_stmt`` has two nodes "
+"associated with it. One node is for the statement itself, i.e the literal"
+" ``add1`` corresponding to ``KW_ADD1``, and the other for its argument, a"
+" ``testlist`` rule which is the top-level expression rule."
+msgstr ""
+
+#: ../../develop/compiler.rst:51
+msgid ""
+"The ``add1`` rule here is just an example and not part of the standard "
+"MicroPython grammar."
+msgstr ""
+
+#: ../../develop/compiler.rst:54
+msgid ""
+"The fourth argument in this example is the token associated with the "
+"rule, ``KW_ADD1``. This token should be defined in the lexer by editing "
+"``py/lexer.h``."
+msgstr ""
+
+#: ../../develop/compiler.rst:57
+msgid ""
+"Defining the same rule without a compile function is achieved by using "
+"the ``DEF_RULE_NC`` macro and omitting the compile function argument:"
+msgstr ""
+
+#: ../../develop/compiler.rst:60
+msgid "DEF_RULE_NC(add1_stmt, and(2), tok(KW_ADD1), rule(testlist))"
+msgstr ""
+
+#: ../../develop/compiler.rst:64
+msgid ""
+"The remaining arguments take on the same meaning. A rule without a "
+"compile function must be handled explicitly by all rules that may have "
+"this rule as a node. Such NC-rules are usually used to express sub-parts "
+"of a complicated grammar structure that cannot be expressed in a single "
+"rule."
+msgstr ""
+
+#: ../../develop/compiler.rst:70
+msgid ""
+"The macros ``DEF_RULE`` and ``DEF_RULE_NC`` take other arguments. For an "
+"in-depth understanding of supported parameters, see `py/grammar.h "
+"<https://github.com/micropython/micropython/blob/master/py/grammar.h>`_."
+msgstr ""
+
+#: ../../develop/compiler.rst:74
+msgid "Adding a lexical token"
+msgstr ""
+
+#: ../../develop/compiler.rst:76
+msgid ""
+"Every rule defined in the grammar should have a token associated with it "
+"that is defined in ``py/lexer.h``. Add this token by editing the "
+"``_mp_token_kind_t`` enum:"
+msgstr ""
+
+#: ../../develop/compiler.rst:79
+msgid ""
+"typedef enum _mp_token_kind_t {\n"
+"    ...\n"
+"    MP_TOKEN_KW_OR,\n"
+"    MP_TOKEN_KW_PASS,\n"
+"    MP_TOKEN_KW_RAISE,\n"
+"    MP_TOKEN_KW_RETURN,\n"
+"    MP_TOKEN_KW_TRY,\n"
+"    MP_TOKEN_KW_WHILE,\n"
+"    MP_TOKEN_KW_WITH,\n"
+"    MP_TOKEN_KW_YIELD,\n"
+"    MP_TOKEN_KW_ADD1,\n"
+"    ...\n"
+"} mp_token_kind_t;"
+msgstr ""
+
+#: ../../develop/compiler.rst:96
+msgid "Then also edit ``py/lexer.c`` to add the new keyword literal text:"
+msgstr ""
+
+#: ../../develop/compiler.rst:98
+msgid ""
+"STATIC const char *const tok_kw[] = {\n"
+"    ...\n"
+"    \"or\",\n"
+"    \"pass\",\n"
+"    \"raise\",\n"
+"    \"return\",\n"
+"    \"try\",\n"
+"    \"while\",\n"
+"    \"with\",\n"
+"    \"yield\",\n"
+"    \"add1\",\n"
+"    ...\n"
+"};"
+msgstr ""
+
+#: ../../develop/compiler.rst:115
+msgid ""
+"Notice the keyword is named depending on what you want it to be. For "
+"consistency, maintain the naming standard accordingly."
+msgstr ""
+
+#: ../../develop/compiler.rst:119
+msgid ""
+"The order of these keywords in ``py/lexer.c`` must match the order of "
+"tokens in the enum defined in ``py/lexer.h``."
+msgstr ""
+
+#: ../../develop/compiler.rst:123
+msgid "Parsing"
+msgstr ""
+
+#: ../../develop/compiler.rst:125
+msgid ""
+"In the parsing stage the parser takes the tokens produced by the lexer "
+"and converts them to an abstract syntax tree (AST) or *parse tree*. The "
+"implementation for the parser is defined in `py/parse.c "
+"<https://github.com/micropython/micropython/blob/master/py/parse.c>`_."
+msgstr ""
+
+#: ../../develop/compiler.rst:128
+msgid ""
+"The parser also maintains a table of constants for use in different "
+"aspects of parsing, similar to what a `symbol table "
+"<https://steemit.com/programming/@drifter1/writing-a-simple-compiler-on-"
+"my-own-symbol-table-basic-structure>`_ does."
+msgstr ""
+
+#: ../../develop/compiler.rst:132
+msgid ""
+"Several optimizations like `constant folding "
+"<http://compileroptimizations.com/category/constant_folding.htm>`_ on "
+"integers for most operations e.g. logical, binary, unary, etc, and "
+"optimizing enhancements on parenthesis around expressions are performed "
+"during this phase, along with some optimizations on strings."
+msgstr ""
+
+#: ../../develop/compiler.rst:136
+msgid ""
+"It's worth noting that *docstrings* are discarded and not accessible to "
+"the compiler. Even optimizations like `string interning "
+"<https://en.wikipedia.org/wiki/String_interning>`_ are not applied to "
+"*docstrings*."
+msgstr ""
+
+#: ../../develop/compiler.rst:141
+msgid "Compiler passes"
+msgstr ""
+
+#: ../../develop/compiler.rst:143
+msgid ""
+"Like many compilers, MicroPython compiles all code to MicroPython "
+"bytecode or native code. The functionality that achieves this is "
+"implemented in `py/compile.c "
+"<https://github.com/micropython/micropython/blob/master/py/compile.c>`_. "
+"The most relevant method you should know about is this:"
+msgstr ""
+
+#: ../../develop/compiler.rst:147
+msgid ""
+"mp_obj_t mp_compile(mp_parse_tree_t *parse_tree, qstr source_file, bool "
+"is_repl) {\n"
+"    // Compile the input parse_tree to a raw-code structure.\n"
+"    mp_raw_code_t *rc = mp_compile_to_raw_code(parse_tree, source_file, "
+"is_repl);\n"
+"    // Create and return a function object that executes the outer "
+"module.\n"
+"    return mp_make_function_from_raw_code(rc, MP_OBJ_NULL, MP_OBJ_NULL);\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:156
+msgid ""
+"The compiler compiles the code in four passes: scope, stack size, code "
+"size and emit. Each pass runs the same C code over the same AST data "
+"structure, with different things being computed each time based on the "
+"results of the previous pass."
+msgstr ""
+
+#: ../../develop/compiler.rst:161
+msgid "First pass"
+msgstr ""
+
+#: ../../develop/compiler.rst:163
+msgid ""
+"In the first pass, the compiler learns about the known identifiers "
+"(variables) and their scope, being global, local, closed over, etc. In "
+"the same pass the emitter (bytecode or native code) also computes the "
+"number of labels needed for the emitted code."
+msgstr ""
+
+#: ../../develop/compiler.rst:168
+msgid ""
+"// Compile pass 1.\n"
+"comp->emit = emit_bc;\n"
+"comp->emit_method_table = &emit_bc_method_table;\n"
+"\n"
+"uint max_num_labels = 0;\n"
+"for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
+"MP_OBJ_NULL; s = s->next) {\n"
+"    if (s->emit_options == MP_EMIT_OPT_ASM) {\n"
+"        compile_scope_inline_asm(comp, s, MP_PASS_SCOPE);\n"
+"    } else {\n"
+"        compile_scope(comp, s, MP_PASS_SCOPE);\n"
+"\n"
+"        // Check if any implicitly declared variables should be closed "
+"over.\n"
+"        for (size_t i = 0; i < s->id_info_len; ++i) {\n"
+"            id_info_t *id = &s->id_info[i];\n"
+"            if (id->kind == ID_INFO_KIND_GLOBAL_IMPLICIT) {\n"
+"                scope_check_to_close_over(s, id);\n"
+"            }\n"
+"        }\n"
+"    }\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:193
+msgid "Second and third passes"
+msgstr ""
+
+#: ../../develop/compiler.rst:195
+msgid ""
+"The second and third passes involve computing the Python stack size and "
+"code size for the bytecode or native code. After the third pass the code "
+"size cannot change, otherwise jump labels will be incorrect."
+msgstr ""
+
+#: ../../develop/compiler.rst:199
+msgid ""
+"for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
+"MP_OBJ_NULL; s = s->next) {\n"
+"    ...\n"
+"\n"
+"    // Pass 2: Compute the Python stack size.\n"
+"    compile_scope(comp, s, MP_PASS_STACK_SIZE);\n"
+"\n"
+"    // Pass 3: Compute the code size.\n"
+"    if (comp->compile_error == MP_OBJ_NULL) {\n"
+"        compile_scope(comp, s, MP_PASS_CODE_SIZE);\n"
+"    }\n"
+"\n"
+"    ...\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:215
+msgid ""
+"Just before pass two there is a selection for the type of code to be "
+"emitted, which can either be native or bytecode."
+msgstr ""
+
+#: ../../develop/compiler.rst:218
+msgid ""
+"// Choose the emitter type.\n"
+"switch (s->emit_options) {\n"
+"    case MP_EMIT_OPT_NATIVE_PYTHON:\n"
+"    case MP_EMIT_OPT_VIPER:\n"
+"        if (emit_native == NULL) {\n"
+"            emit_native = NATIVE_EMITTER(new)(&comp->compile_error, "
+"&comp->next_label, max_num_labels);\n"
+"        }\n"
+"        comp->emit_method_table = NATIVE_EMITTER_TABLE;\n"
+"        comp->emit = emit_native;\n"
+"        break;\n"
+"\n"
+"    default:\n"
+"        comp->emit = emit_bc;\n"
+"        comp->emit_method_table = &emit_bc_method_table;\n"
+"        break;\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:237
+msgid ""
+"The bytecode option is the default but something unique to note for the "
+"native code option is that there is another option via ``VIPER``. See the"
+" :ref:`Emitting native code <emitting_native_code>` section for more "
+"details on viper annotations."
+msgstr ""
+
+#: ../../develop/compiler.rst:242
+msgid ""
+"There is also support for *inline assembly code*, where assembly "
+"instructions are written as Python function calls but are emitted "
+"directly as the corresponding machine code. This assembler has only three"
+" passes (scope, code size, emit) and uses a different implementation, not"
+" the ``compile_scope`` function. See the `inline assembler tutorial "
+"<https://docs.micropython.org/en/latest/pyboard/tutorial/assembler.html"
+"#pyboard-tutorial-assembler>`_ for more details."
+msgstr ""
+
+#: ../../develop/compiler.rst:250
+msgid "Fourth pass"
+msgstr ""
+
+#: ../../develop/compiler.rst:252
+msgid ""
+"The fourth pass emits the final code that can be executed, either "
+"bytecode in the virtual machine, or native code directly by the CPU."
+msgstr ""
+
+#: ../../develop/compiler.rst:255
+msgid ""
+"for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
+"MP_OBJ_NULL; s = s->next) {\n"
+"    ...\n"
+"\n"
+"    // Pass 4: Emit the compiled bytecode or native code.\n"
+"    if (comp->compile_error == MP_OBJ_NULL) {\n"
+"        compile_scope(comp, s, MP_PASS_EMIT);\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:267
+msgid "Emitting bytecode"
+msgstr ""
+
+#: ../../develop/compiler.rst:269
+msgid ""
+"Statements in Python code usually correspond to emitted bytecode, for "
+"example ``a + b`` generates \"push a\" then \"push b\" then \"binary op "
+"add\". Some statements do not emit anything but instead affect other "
+"things like the scope of variables, for example ``global a``."
+msgstr ""
+
+#: ../../develop/compiler.rst:274
+msgid ""
+"The implementation of a function that emits bytecode looks similar to "
+"this:"
+msgstr ""
+
+#: ../../develop/compiler.rst:276
+msgid ""
+"void mp_emit_bc_unary_op(emit_t *emit, mp_unary_op_t op) {\n"
+"    emit_write_bytecode_byte(emit, 0, MP_BC_UNARY_OP_MULTI + op);\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:282
+msgid ""
+"We use the unary operator expressions for an example here but the "
+"implementation details are similar for other statements/expressions. The "
+"method ``emit_write_bytecode_byte()`` is a wrapper around the main "
+"function ``emit_get_cur_to_write_bytecode()`` that all functions must "
+"call to emit bytecode."
+msgstr ""
+
+#: ../../develop/compiler.rst:290
+msgid "Emitting native code"
+msgstr ""
+
+#: ../../develop/compiler.rst:292
+msgid ""
+"Similar to how bytecode is generated, there should be a corresponding "
+"function in ``py/emitnative.c`` for each code statement:"
+msgstr ""
+
+#: ../../develop/compiler.rst:295
+msgid ""
+"STATIC void emit_native_unary_op(emit_t *emit, mp_unary_op_t op) {\n"
+"     vtype_kind_t vtype;\n"
+"     emit_pre_pop_reg(emit, &vtype, REG_ARG_2);\n"
+"     if (vtype == VTYPE_PYOBJ) {\n"
+"         emit_call_with_imm_arg(emit, MP_F_UNARY_OP, op, REG_ARG_1);\n"
+"         emit_post_push_reg(emit, VTYPE_PYOBJ, REG_RET);\n"
+"     } else {\n"
+"         adjust_stack(emit, 1);\n"
+"         EMIT_NATIVE_VIPER_TYPE_ERROR(emit,\n"
+"             MP_ERROR_TEXT(\"unary op %q not implemented\"), "
+"mp_unary_op_method_name[op]);\n"
+"     }\n"
+"}"
+msgstr ""
+
+#: ../../develop/compiler.rst:310
+msgid ""
+"The difference here is that we have to handle *viper typing*. Viper "
+"annotations allow us to handle more than one type of variable. By default"
+" all variables are Python objects, but with viper a variable can also be "
+"declared as a machine-typed variable like a native integer or pointer. "
+"Viper can be thought of as a superset of Python, where normal Python "
+"objects are handled as usual, while native machine variables are handled "
+"in an optimised way by using direct machine instructions for the "
+"operations. Viper typing may break Python equivalence because, for "
+"example, integers become native integers and can overflow (unlike Python "
+"integers which extend automatically to arbitrary precision)."
+msgstr ""
+
+#: ../../develop/extendingmicropython.rst:4
+msgid "Extending MicroPython in C"
+msgstr ""
+
+#: ../../develop/extendingmicropython.rst:6
+msgid ""
+"This chapter describes options for implementing additional functionality "
+"in C, but from code written outside of the main MicroPython repository. "
+"The first approach is useful for building your own custom firmware with "
+"some project-specific additional modules or functions that can be "
+"accessed from Python. The second approach is for building modules that "
+"can be loaded at runtime."
+msgstr ""
+
+#: ../../develop/extendingmicropython.rst:11
+msgid ""
+"Please see the :ref:`library section <internals_library>` for more "
+"information on building core modules that live in the main MicroPython "
+"repository."
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:4
+msgid "Getting Started"
+msgstr "スタートアップガイド"
+
+#: ../../develop/gettingstarted.rst:6
+msgid ""
+"This guide covers a step-by-step process on setting up version control, "
+"obtaining and building a copy of the source code for a port, building the"
+" documentation, running tests, and a description of the directory "
+"structure of the MicroPython code base."
+msgstr ""
+"このガイドでは、バージョン管理の設定、ポートのためのソースコードのコピー取得とビルド、"
+"ドキュメントのビルド、テストの実行、MicroPython コードベースのディレクトリ構造について"
+"順を追って説明します。"
+
+#: ../../develop/gettingstarted.rst:11
+msgid "Source control with git"
+msgstr "git によるソース管理"
+
+#: ../../develop/gettingstarted.rst:13
+msgid ""
+"MicroPython is hosted on `GitHub "
+"<https://github.com/micropython/micropython>`_ and uses `Git <https"
+"://git-scm.com>`_ for source control. The workflow is such that code is "
+"pulled and pushed to and from the main repository. Install the respective"
+" version of Git for your operating system to follow through the rest of "
+"the steps."
+msgstr ""
+"MicroPython は `GitHub "
+"<https://github.com/micropython/micropython>`_ でホストされており、"
+"ソース管理に `Git <https://git-scm.com>`_ を使っています。ワークフローは、"
+"コードをメインリポジトリから pull したり、メインリポジトリに push するような"
+"ことです。お使いのオペレーティングシステムに対応したバージョンの Git をインストール"
+"して、残りの手順を実行してください。"
+
+#: ../../develop/gettingstarted.rst:19
+msgid ""
+"For a reference on the installation instructions, please refer to the "
+"`Git installation instructions <https://git-scm.com/book/en/v2/Getting-"
+"Started-Installing-Git>`_. Learn about the basic git commands in this "
+"`Git Handbook <https://guides.github.com/introduction/git-handbook/>`_ or"
+" any other sources on the internet."
+msgstr ""
+"Git のインストール手順については "
+"`使い始める - Gitのインストール <https://git-scm.com/book/ja/v2/"
+"%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-"
+"Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB>`_ "
+"を参考にしてください。基本的なGitコマンドについては、この Git ハンドブックや"
+"他のインターネット上の情報から学べます。"
+
+#: ../../develop/gettingstarted.rst:25
+msgid "Get the code"
+msgstr "コードの取得"
+
+#: ../../develop/gettingstarted.rst:27
+msgid ""
+"It is recommended that you maintain a fork of the MicroPython repository "
+"for your development purposes. The process of obtaining the source code "
+"includes the following:"
+msgstr ""
+"開発するには MicroPython のリポジトリのフォークを自身で管理することをお勧めします。"
+"ソースコードを入手する手順は以下の通りです。"
+
+#: ../../develop/gettingstarted.rst:30
+msgid "Fork the repository https://github.com/micropython/micropython"
+msgstr "リポジトリ https://github.com/micropython/micropython をフォークします"
+
+#: ../../develop/gettingstarted.rst:31
+msgid ""
+"You will now have a fork at <https://github.com/<your-user-"
+"name>/micropython>."
+msgstr ""
+"自身のフォーク <https://github.com/<your-user-name>/micropython> "
+"ができあがります。"
+
+#: ../../develop/gettingstarted.rst:32
+msgid "Clone the forked repository using the following command:"
+msgstr "次のコマンドでフォークしたリポジトリをクローンします:"
+
+#: ../../develop/gettingstarted.rst:34
+msgid "$ git clone https://github.com/<your-user-name>/micropython"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:38
+msgid ""
+"Then, `configure the remote repositories <https://git-scm.com/book/en/v2"
+"/Git-Basics-Working-with-Remotes>`_ to be able to collaborate on the "
+"MicroPython project."
+msgstr ""
+"次に MicroPython プロジェクトで共同作業ができるように "
+`リモートリポジトリを設定 "
+"<https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E5%9F%BA%E6%9C%AC-"
+"%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%81%A7%E3%81%AE%E4%BD%9C%E6%A5%AD>`_ "
+"します。"
+
+#: ../../develop/gettingstarted.rst:41
+msgid "Configure remote upstream:"
+msgstr "リモートアップストリームを設定します:"
+
+#: ../../develop/gettingstarted.rst:43
+msgid ""
+"$ cd micropython\n"
+"$ git remote add upstream https://github.com/micropython/micropython"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:48
+msgid ""
+"It is common to configure ``upstream`` and ``origin`` on a forked "
+"repository to assist with sharing code changes. You can maintain your own"
+" mapping but it is recommended that ``origin`` maps to your fork and "
+"``upstream`` to the main MicroPython repository."
+msgstr ""
+"フォークしたリポジトリ上で ``upstream`` と ``origin`` を設定するのは、"
+"コードの変更を共有するためによくあることです。独自のマッピングを維持することもできますが、 "
+"``origin`` はあなたのフォークに、 ``upstream`` はメインの MicroPython リポジトリ"
+"にマッピングすることをお勧めします。"
+
+#: ../../develop/gettingstarted.rst:53
+msgid "After the above configuration, your setup should be similar to this:"
+msgstr "上記の設定を行うと、以下のようになります:"
+
+#: ../../develop/gettingstarted.rst:55
+msgid ""
+"$ git remote -v\n"
+"origin       https://github.com/<your-user-name>/micropython (fetch)\n"
+"origin       https://github.com/<your-user-name>/micropython (push)\n"
+"upstream     https://github.com/micropython/micropython (fetch)\n"
+"upstream     https://github.com/micropython/micropython (push)"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:63
+msgid ""
+"You should now have a copy of the source code. By default, you are "
+"pointing to the master branch. To prepare for further development, it is "
+"recommended to work on a development branch."
+msgstr ""
+"これでソースコードのコピーができたはずです。デフォルトでは、マスターブランチを"
+"指しています。さらなる開発に備えるために、開発ブランチで作業することをお勧めします。"
+
+#: ../../develop/gettingstarted.rst:67
+msgid "$ git checkout -b dev-branch"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:71
+msgid ""
+"You can give it any name. You will have to compile MicroPython whenever "
+"you change to a different branch."
+msgstr ""
+"開発ブランチにはどんな名前をつけても構いません。"
+"別のブランチに変更するときには MicroPython をコンパイルすることになるでしょう。"
+
+#: ../../develop/gettingstarted.rst:75
+msgid "Compile and build the code"
+msgstr "コードのコンパイルとビルド"
+
+#: ../../develop/gettingstarted.rst:77
+msgid ""
+"When compiling MicroPython, you compile a specific :term:`port`, usually "
+"targeting a specific :ref:`board <glossary>`. Start by installing the "
+"required dependencies. Then build the MicroPython cross-compiler before "
+"you can successfully compile and build. This applies specifically when "
+"using Linux to compile. The Windows instructions are provided in a later "
+"section."
+msgstr ""
+"MicroPython をコンパイルするときは、特定の :term:`port` 、通常は特定の "
+":ref:`board <glossary>` をターゲットにしてコンパイルします。"
+"まずは必要な依存関係をインストールすることから始めます。その後 "
+MicroPython のクロスコンパイラをビルドしてからコンパイルとビルドを行います。"
+"この手順は Linux を使ってコンパイルする場合のものです。Windows の場合の手順は"
+"後のセクションで説明します。"
+
+#: ../../develop/gettingstarted.rst:86
+msgid "Required dependencies"
+msgstr "必要な依存パッケージ"
+
+#: ../../develop/gettingstarted.rst:88
+msgid "Install the required dependencies for Linux:"
+msgstr "Linux に必要な依存パッケージをインストールします:"
+
+#: ../../develop/gettingstarted.rst:90
+msgid "$ sudo apt-get install build-essential libffi-dev git pkg-config"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:94
+msgid "For the stm32 port, the ARM cross-compiler is required:"
+msgstr "stm32 ポートの場合は ARMクロスコンパイラが必要です:"
+
+#: ../../develop/gettingstarted.rst:96
+msgid ""
+"$ sudo apt-get install arm-none-eabi-gcc arm-none-eabi-binutils arm-none-"
+"eabi-newlib"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:100
+msgid ""
+"See the `ARM GCC toolchain <https://developer.arm.com/tools-and-software"
+"/open-source-software/developer-tools/gnu-toolchain/gnu-rm>`_ for the "
+"latest details."
+msgstr ""
+"最新の詳細は `ARM GCC ツールチェーン <https://developer.arm.com/tools-and-software"
+"/open-source-software/developer-tools/gnu-toolchain/gnu-rm>`_ を"
+"参照してください。"
+
+#: ../../develop/gettingstarted.rst:104
+msgid ""
+"Python is also required. Python 2 is supported for now, but we recommend "
+"using Python 3. Check that you have Python available on your system:"
+msgstr ""
+"Python も必要です。今のところ Python 2 でも大丈夫ですが、Python 3 の利用を"
+"お勧めします。お使いのシステムで Python が利用可能であることを確認してください:"
+
+#: ../../develop/gettingstarted.rst:107
+msgid ""
+"$ python3\n"
+"Python 3.5.0 (default, Jul 17 2020, 14:04:10)\n"
+"[GCC 5.4.0 20160609] on linux\n"
+"Type \"help\", \"copyright\", \"credits\" or \"license\" for more "
+"information.\n"
+">>>"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:115
+msgid ""
+"All supported ports have different dependency requirements, see their "
+"respective `readme files "
+"<https://github.com/micropython/micropython/tree/master/ports>`_."
+msgstr ""
+"サポートしているすべてのポートには異なる依存関係がありますので、それぞれの `readme ファイル "
+"<https://github.com/micropython/micropython/tree/master/ports>`_ "
+を参照してください。"
+
+#: ../../develop/gettingstarted.rst:119
+msgid "Building the MicroPython cross-compiler"
+msgstr "MicroPython クロスコンパイラのビルド"
+
+#: ../../develop/gettingstarted.rst:121
+msgid ""
+"Almost all ports require building ``mpy-cross`` first to perform pre-"
+"compilation of Python code that will be included in the port firmware:"
+msgstr ""
+"ほとんどすべてのポートは最初に mpy-cross をビルドする必要があります。"
+"こえは、ポートのファームウェアに含まれる Python コードをプリコンパイルするためのものです:"
+
+#: ../../develop/gettingstarted.rst:124
+msgid ""
+"$ cd mpy-cross\n"
+"$ make"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:130
+msgid ""
+"Note that, ``mpy-cross`` must be built for the host architecture and not "
+"the target architecture."
+msgstr ""
+"``mpy-cross`` はターゲットアーキテクチャではなくホストアーキテクチャ用にビルド"
+"しなければならないことに注意してください。"
+
+#: ../../develop/gettingstarted.rst:133
+msgid "If it built successfully, you should see a message similar to this:"
+msgstr "ビルドに成功した場合、次のようなメッセージが表示されるはずです:"
+
+#: ../../develop/gettingstarted.rst:135
+msgid ""
+"LINK mpy-cross\n"
+"   text         data     bss     dec     hex filename\n"
+" 279328          776     880  280984   44998 mpy-cross"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:143
+msgid ""
+"Use ``make -C mpy-cross`` to build the cross-compiler in one statement "
+"without moving to the ``mpy-cross`` directory otherwise, you will need to"
+" do ``cd ..`` for the next steps."
+msgstr ""
+"``mpy-cross`` ディレクトリに移動しなくても ``make -C mpy-cross`` を使えば"
+"1つのステートメントでクロスコンパイラをビルドできます。``mpy-cross`` ディレクトリに"
+"移動してからビルドした場合は ``cd ..`` することになります。"
+
+#: ../../develop/gettingstarted.rst:148
+msgid "Building the Unix port of MicroPython"
+msgstr "MicroPython の Unix ポートのビルド"
+
+#: ../../develop/gettingstarted.rst:150
+msgid ""
+"The Unix port is a version of MicroPython that runs on Linux, macOS, and "
+"other Unix-like operating systems. It's extremely useful for developing "
+"MicroPython as it avoids having to deploy your code to a device to test "
+"it. In many ways, it works a lot like CPython's python binary."
+msgstr ""
+"Unix ポートは、Linux や macOS などの Unix ライクなOSで動作するバージョンの "
+"MicroPython です。コードを実行するのにデバイスにデプロイする必要がないので、"
+"MicroPython を開発するのに非常に便利です。多くの点で CPython の python バイナリと"
+"似ています。"
+
+#: ../../develop/gettingstarted.rst:154
+msgid ""
+"To build for the Unix port, make sure all Linux related dependencies are "
+"installed as detailed in the required dependencies section. See the "
+":ref:`required_dependencies` to make sure that all dependencies are "
+"installed for this port. Also, make sure you have a working environment "
+"for ``gcc`` and ``GNU make``. Ubuntu 20.04 has been used for the example "
+"below but other unixes ought to work with little modification:"
+msgstr ""
+"Unixポート用にビルドするには、Linux 関連の依存パッケージがすべてインストールされていることを"
+"確認してください。必要な依存パッケージを参照して、このポート用にすべての依存パッケージが"
+"インストールされていることを確認してください。また、gcc と GNU make の動作環境が"
+"あることを確認してください。次の例では、Ubuntu 20.04 を使用していますが、他の Unix "
+"も少しの変更で動作するはずです:"
+
+#: ../../develop/gettingstarted.rst:160
+msgid ""
+"$ gcc --version\n"
+"gcc (Ubuntu 9.3.0-10ubuntu2) 9.3.0\n"
+"Copyright (C) 2019 Free Software Foundation, Inc.\n"
+"This is free software; see the source for copying conditions.  There is "
+"NO\n"
+"warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR "
+"PURPOSE.then build:"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:168
+msgid ""
+"$ cd ports/unix\n"
+"$ make submodules\n"
+"$ make"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:174
+msgid "If MicroPython built correctly, you should see the following:"
+msgstr "MicroPython が正しくビルドされれば、次のように表示されるはずです:"
+
+#: ../../develop/gettingstarted.rst:176
+msgid ""
+"LINK micropython\n"
+"   text         data     bss     dec     hex filename\n"
+" 412033         5680    2496  420209   66971 micropython"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:182
+msgid "Now run it:"
+msgstr "それでは実行してみましょう:"
+
+#: ../../develop/gettingstarted.rst:184
+msgid ""
+"$ ./micropython\n"
+"MicroPython v1.13-38-gc67012d-dirty on 2020-09-13; linux version\n"
+"Use Ctrl-D to exit, Ctrl-E for paste mode\n"
+">>> print(\"hello world\")\n"
+"hello world\n"
+">>>"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:194
+msgid "Building the Windows port"
+msgstr "Windows ポートのビルド"
+
+#: ../../develop/gettingstarted.rst:196
+msgid ""
+"The Windows port includes a Visual Studio project file "
+"micropython.vcxproj that you can use to build micropython.exe. It can be "
+"opened in Visual Studio or built from the command line using msbuild. "
+"Alternatively, it can be built using mingw, either in Windows with "
+"Cygwin, or on Linux. See `windows port documentation "
+"<https://github.com/micropython/micropython/tree/master/ports/windows>`_ "
+"for more information."
+msgstr ""
+"Windows ポートには Visual Studio のプロジェクトファイル micropython.vcxproj が"
+"含まれており、これを使って micropython.exe をビルドすることができます。"
+"このファイルは Visual Studio で開くことも、msbuild を使ってコマンドラインから"
+"ビルドすることもできます。Cygwin を使った Windows でもLinuxでも、mingw を使って"
+"ビルドできます。詳細については `windows ポートのドキュメント "
+"<https://github.com/micropython/micropython/tree/master/ports/windows>`_ "
+"を参照してください。"
+
+#: ../../develop/gettingstarted.rst:202
+msgid "Building the STM32 port"
+msgstr "STM32 ポートのビルド"
+
+#: ../../develop/gettingstarted.rst:204
+msgid ""
+"Like the Unix port, you need to install some required dependencies as "
+"detailed in the :ref:`required_dependencies` section, then build:"
+msgstr ""
+"Unix ポートと同様、 :ref:`required_dependencies` のセクションで説明"
+"されているように、必要な依存関係をインストールしてからビルドする必要があります:"
+
+#: ../../develop/gettingstarted.rst:207
+msgid ""
+"$ cd ports/stm32\n"
+"$ make submodules\n"
+"$ make"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:213
+msgid ""
+"Please refer to the `stm32 documentation "
+"<https://github.com/micropython/micropython/tree/master/ports/stm32>`_ "
+"for more details on flashing the firmware."
+msgstr ""
+"ファームウェアのフラッシュの詳細については `stm32 のドキュメント "
+"<https://github.com/micropython/micropython/tree/master/ports/stm32>`_ "
+"を参照してください。"
+
+#: ../../develop/gettingstarted.rst:217
+msgid ""
+"See the :ref:`required_dependencies` to make sure that all dependencies "
+"are installed for this port. The cross-compiler is needed. ``arm-none-"
+"eabi-gcc`` should also be in the $PATH or specified manually via "
+"CROSS_COMPILE, either by setting the environment variable or in the "
+"``make`` command line arguments."
+msgstr ""
+このポートのためにすべての依存パッケージがインストールされていることを確認するには "
+":ref:`required_dependencies` を参照してください。 ``arm-one-eabi-gcc`` は "
+"$PATH にあるか、環境変数の設定または ``make`` コマンドラインの引数で "
+"CROSS_COMPILE に手動で指定する必要があります。"
+
+#: ../../develop/gettingstarted.rst:221
+msgid "You can also specify which board to use:"
+msgstr "使用するボードを指定することもできます:"
+
+#: ../../develop/gettingstarted.rst:223
+msgid ""
+"$ cd ports/stm32\n"
+"$ make submodules\n"
+"$ make BOARD=<board>"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:229
+msgid ""
+"See `ports/stm32/boards "
+"<https://github.com/micropython/micropython/tree/master/ports/stm32/boards>`_"
+" for the available boards. e.g. \"PYBV11\" or \"NUCLEO_WB55\"."
+msgstr ""
+"利用可能なボードについては `ports/stm32/boards "
+"<https://github.com/micropython/micropython/tree/master/ports/stm32/boards>`_"
+"を参照してください。"
+
+#: ../../develop/gettingstarted.rst:233
+msgid "Building the documentation"
+msgstr "ドキュメントのビルド"
+
+#: ../../develop/gettingstarted.rst:235
+msgid ""
+"MicroPython documentation is created using ``Sphinx``. If you have "
+"already installed Python, then install ``Sphinx`` using ``pip``. It is "
+"recommended that you use a virtual environment:"
+msgstr ""
+"MicroPython のドキュメントは ``Sphinx`` を使って作成しています。"
+"すでに Python をインストールしている場合は ``pip`` を使ってSphinxを"
+"インストールしてください。仮想環境を利用することをお勧めします:"
+
+#: ../../develop/gettingstarted.rst:239
+msgid ""
+"$ python3 -m venv env\n"
+"$ source env/bin/activate\n"
+"$ pip install sphinx"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:245
+msgid "Navigate to the ``docs`` directory:"
+msgstr "``docs`` ディレクトリに移動します:"
+
+#: ../../develop/gettingstarted.rst:247
+msgid "$ cd docs"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:251
+msgid "Build the docs:"
+msgstr "docs をビルドします:"
+
+#: ../../develop/gettingstarted.rst:253
+msgid "$ make html"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:257
+msgid ""
+"Open ``docs/build/html/index.html`` in your browser to view the docs "
+"locally. Refer to the documentation on `importing your documentation "
+"<https://docs.readthedocs.io/en/stable/intro/import-guide.html>`_ to use "
+"Read the Docs."
+msgstr ""
+"ブラウザで docs/build/html/index.html を開いて、ローカルでドキュメントを表示します。"
+"Read the Docs を利用するには、 `ドキュメントのインポート "
+"<https://docs.readthedocs.io/en/stable/intro/import-guide.html>`_ "
+"に関するドキュメントを参照してください。"
+
+#: ../../develop/gettingstarted.rst:262
+msgid "Running the tests"
+msgstr "テストの実行"
+
+#: ../../develop/gettingstarted.rst:264
+msgid "To run all tests in the test suite on the Unix port use:"
+msgstr "テストスイート内のすべてのテストを Unix ポートで実行するには次のようにします:"
+
+#: ../../develop/gettingstarted.rst:266
+msgid ""
+"$ cd ports/unix\n"
+"$ make test"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:271
+msgid "To run a selection of tests on a board/device connected over USB use:"
+msgstr "USB で接続されたボードやデバイスでテストを実行するには次のようにします:"
+
+#: ../../develop/gettingstarted.rst:273
+msgid ""
+"$ cd tests\n"
+"$ ./run-tests --target minimal --device /dev/ttyACM0"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:278
+msgid "See also :ref:`writingtests`."
+msgstr ":ref:`writingtests` も参照してください。"
+
+#: ../../develop/gettingstarted.rst:281
+msgid "Folder structure"
+msgstr "フォルダ構造"
+
+#: ../../develop/gettingstarted.rst:283
+msgid ""
+"There are a couple of directories to take note of in terms of where "
+"certain implementation details are. The following is a break down of the "
+"top-level folders in the source code."
+msgstr ""
+"特定の実装の詳細がどこにあるかという点で注意すべきディレクトリがいくつかあります。"
+"以下はソースコードのトップレベルのフォルダの内訳です。"
+
+#: ../../develop/gettingstarted.rst:286
+msgid "py"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:288
+msgid "Contains the compiler, runtime, and core library implementation."
+msgstr "コンパイラ、ランタイム、コアライブラリの実装が含まれています。"
+
+#: ../../develop/gettingstarted.rst:290
+msgid "mpy-cross"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:292
+msgid ""
+"Has the MicroPython cross-compiler which pre-compiles the Python scripts "
+"to bytecode."
+msgstr ""
+"Python スクリプトをバイトコードにプリコンパイルする MicroPython クロスコンパイラが"
+"あります。"
+
+#: ../../develop/gettingstarted.rst:294
+msgid "ports"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:296
+msgid "Code for all the versions of MicroPython for the supported ports."
+msgstr "サポートされているポートの MicroPython のすべてのバージョンのコード。"
+
+#: ../../develop/gettingstarted.rst:298
+msgid "lib"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:300
+msgid ""
+"Low-level C libraries used by any port which are mostly 3rd-party "
+"libraries."
+msgstr ""
+"どのポートでも使用される低レベルの C ライブラリで、ほとんどがサードパーティ製の"
+"ライブラリです。"
+
+#: ../../develop/gettingstarted.rst:302
+msgid "drivers"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:304
+msgid ""
+"Has drivers for specific hardware and intended to work across multiple "
+"ports."
+msgstr ""
+"特定のハードウェア用のドライバがあり、複数のポートで動作することを目的としています。"
+
+#: ../../develop/gettingstarted.rst:306
+msgid "extmod"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:308
+msgid "Contains a C implementation of more non-core modules."
+msgstr ""
+"より多くの非コアモジュールの C 実装が含まれています。"
+
+#: ../../develop/gettingstarted.rst:310
+msgid "docs"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:312
+msgid "Has the standard documentation found at https://docs.micropython.org/."
+msgstr "https://docs.micropython.org/ にある標準ドキュメントがあります。"
+
+#: ../../develop/gettingstarted.rst:314
+msgid "tests"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:316
+msgid "An implementation of the test suite."
+msgstr "テストスイートの実装です。"
+
+#: ../../develop/gettingstarted.rst:318
+msgid "tools"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:320
+msgid ""
+"Contains helper tools including the ``upip`` and the ``pyboard.py`` "
+"module."
+msgstr ""
+"``upip` や ``pyboard.py`` モジュールを含むヘルパーツールが含まれています。"
+
+#: ../../develop/gettingstarted.rst:322
+msgid "examples"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:324
+msgid ""
+"Example code for building MicroPython as a library as well as native "
+"modules."
+msgstr ""
+"MicroPython のライブラリやネイティブモジュールとしてビルドするためのコード例です。"
+
 #: ../../develop/index.rst:2
-msgid "Developing and building MicroPython"
-msgstr "MicroPython の開発とビルド"
+msgid "MicroPython Internals"
+msgstr "MicroPython の内部"
 
 #: ../../develop/index.rst:4
 msgid ""
-"This chapter describes some options for extending MicroPython in C. Note "
-"that it doesn't aim to be a complete guide for developing with "
-"MicroPython. See the `getting started guide "
-"<https://github.com/micropython/micropython/wiki/Getting-Started>`_ for "
-"further information."
+"This chapter covers a tour of MicroPython from the perspective of a "
+"developer, contributing to MicroPython. It acts as a comprehensive "
+"resource on the implementation details of MicroPython for both novice and"
+" expert contributors."
 msgstr ""
-"この章では C言語で MicroPython を拡張するためのいくつかのオプションについて説明します。"
-"MicroPythonで開発するための完全なガイドになることを目的としていないことに注意してください。"
-"詳細については "
-"`getting started guide <https://github.com/micropython/micropython/wiki/Getting-Started>`_ "
-"を参照してください。"
+"この章では、MicroPython に貢献している開発者の視点から MicroPython を紹介します。"
+"この章では、初心者から上級者向きまで、MicroPythonの実装の詳細について包括的な情報を"
+"提供しています。"
+
+#: ../../develop/index.rst:8
+msgid ""
+"Development around MicroPython usually involves modifying the core "
+"runtime, porting or maintaining a new library. This guide describes at "
+"great depth, the implementation details of MicroPython including a "
+"getting started guide, compiler internals, porting MicroPython to a new "
+"platform and implementing a core MicroPython library."
+msgstr ""
+"MicroPython に関する開発では、通常、コアランタイムの変更、移植、新しいライブラリの"
+"メンテナンスを行います。このガイドでは、スタートアップガイド、コンパイラ内部、新しい"
+"プラットフォームへの移植、MicroPython のコアライブラリの実装など、MicroPython の"
+"実装の詳細について詳しく説明します。"
+
+#: ../../develop/library.rst:4
+msgid "Implementing a Module"
+msgstr ""
+
+#: ../../develop/library.rst:6
+msgid ""
+"This chapter details how to implement a core module in MicroPython. "
+"MicroPython modules can be one of the following:"
+msgstr ""
+
+#: ../../develop/library.rst:9
+msgid ""
+"Built-in module: A general module that is be part of the MicroPython "
+"repository."
+msgstr ""
+
+#: ../../develop/library.rst:10
+msgid ""
+"User module: A module that is useful for your specific project that you "
+"maintain in your own repository or private codebase."
+msgstr ""
+
+#: ../../develop/library.rst:12
+msgid ""
+"Dynamic module: A module that can be deployed and imported at runtime to "
+"your device."
+msgstr ""
+
+#: ../../develop/library.rst:14
+msgid ""
+"A module in MicroPython can be implemented in one of the following "
+"locations:"
+msgstr ""
+
+#: ../../develop/library.rst:16
+msgid "py/: A core library that mirrors core CPython functionality."
+msgstr ""
+
+#: ../../develop/library.rst:17
+msgid ""
+"extmod/: A CPython or MicroPython-specific module that is shared across "
+"multiple ports."
+msgstr ""
+
+#: ../../develop/library.rst:18
+msgid "ports/<port>/: A port-specific module."
+msgstr ""
+
+#: ../../develop/library.rst:21
+msgid ""
+"This chapter describes modules implemented in ``py/`` or core modules. "
+"See :ref:`extendingmicropython` for details on implementing an external "
+"module. For details on port-specific modules, see "
+":ref:`porting_to_a_board`."
+msgstr ""
+
+#: ../../develop/library.rst:26
+msgid "Implementing a core module"
+msgstr ""
+
+#: ../../develop/library.rst:28
+msgid ""
+"Like CPython, MicroPython has core builtin modules that can be accessed "
+"through import statements. An example is the ``gc`` module discussed in "
+":ref:`memorymanagement`."
+msgstr ""
+
+#: ../../develop/library.rst:31
+msgid ""
+">>> import gc\n"
+">>> gc.enable()\n"
+">>>"
+msgstr ""
+
+#: ../../develop/library.rst:37
+msgid ""
+"MicroPython has several other builtin standard/core modules like ``io``, "
+"``uarray`` etc. Adding a new core module involves several modifications."
+msgstr ""
+
+#: ../../develop/library.rst:40
+msgid ""
+"First, create the ``C`` file in the ``py/`` directory. In this example we"
+" are adding a hypothetical new module ``subsystem`` in the file "
+"``modsubsystem.c``:"
+msgstr ""
+
+#: ../../develop/library.rst:43
+msgid ""
+"#include \"py/builtin.h\"\n"
+"#include \"py/runtime.h\"\n"
+"\n"
+"#if MICROPY_PY_SUBSYSTEM\n"
+"\n"
+"// info()\n"
+"STATIC mp_obj_t py_subsystem_info(void) {\n"
+"    return MP_OBJ_NEW_SMALL_INT(42);\n"
+"}\n"
+"MP_DEFINE_CONST_FUN_OBJ_0(subsystem_info_obj, py_subsystem_info);\n"
+"\n"
+"STATIC const mp_rom_map_elem_t mp_module_subsystem_globals_table[] = {\n"
+"    { MP_ROM_QSTR(MP_QSTR___name__), MP_ROM_QSTR(MP_QSTR_subsystem) },\n"
+"    { MP_ROM_QSTR(MP_QSTR_info), MP_ROM_PTR(&subsystem_info_obj) },\n"
+"};\n"
+"STATIC MP_DEFINE_CONST_DICT(mp_module_subsystem_globals, "
+"mp_module_subsystem_globals_table);\n"
+"\n"
+"const mp_obj_module_t mp_module_subsystem = {\n"
+"    .base = { &mp_type_module },\n"
+"    .globals = (mp_obj_dict_t *)&mp_module_subsystem_globals,\n"
+"};\n"
+"\n"
+"MP_REGISTER_MODULE(MP_QSTR_subsystem, mp_module_subsystem, "
+"MICROPY_PY_SUBSYSTEM);\n"
+"\n"
+"#endif"
+msgstr ""
+
+#: ../../develop/library.rst:71
+msgid ""
+"The implementation includes a definition of all functions related to the "
+"module and adds the functions to the module's global table in "
+"``mp_module_subsystem_globals_table``. It also creates the module object "
+"with ``mp_module_subsystem``.  The module is then registered with the "
+"wider system via the ``MP_REGISTER_MODULE`` macro."
+msgstr ""
+
+#: ../../develop/library.rst:76
+msgid ""
+"After building and running the modified MicroPython, the module should "
+"now be importable:"
+msgstr ""
+
+#: ../../develop/library.rst:78
+msgid ""
+">>> import subsystem\n"
+">>> subsystem.info()\n"
+"42\n"
+">>>"
+msgstr ""
+
+#: ../../develop/library.rst:85
+msgid ""
+"Our ``info()`` function currently returns just a single number but can be"
+" extended to do anything.  Similarly, more functions can be added to this"
+" new module."
+msgstr ""
+
+#: ../../develop/maps.rst:4
+msgid "Maps and Dictionaries"
+msgstr ""
+
+#: ../../develop/maps.rst:6
+msgid ""
+"MicroPython dictionaries and maps use techniques called open addressing "
+"and linear probing. This chapter details both of these methods."
+msgstr ""
+
+#: ../../develop/maps.rst:10
+msgid "Open addressing"
+msgstr ""
+
+#: ../../develop/maps.rst:12
+msgid ""
+"`Open addressing <https://en.wikipedia.org/wiki/Open_addressing>`_ is "
+"used to resolve collisions. Collisions are very common occurrences and "
+"happen when two items happen to hash to the same slot or location. For "
+"example, given a hash setup as this:"
+msgstr ""
+
+#: ../../develop/maps.rst:17
+msgid ".. image:: develop/img/collision.png"
+msgstr ""
+
+#: ../../develop/maps.rst:18
+msgid ""
+"If there is a request to fill slot ``0`` with ``70``, since the slot "
+"``0`` is not empty, open addressing finds the next available slot in the "
+"dictionary to service this request. This sequential search for an "
+"alternate location is called *probing*. There are several sequence "
+"probing algorithms but MicroPython uses linear probing that is described "
+"in the next section."
+msgstr ""
+
+#: ../../develop/maps.rst:24
+msgid "Linear probing"
+msgstr ""
+
+#: ../../develop/maps.rst:26
+msgid ""
+"Linear probing is one of the methods for finding an available address or "
+"slot in a dictionary. In MicroPython, it is used with open addressing. To"
+" service the request described above, unlike other probing algorithms, "
+"linear probing assumes a fixed interval of ``1`` between probes. The "
+"request will therefore be serviced by placing the item in the next free "
+"slot which is slot ``4`` in our example:"
+msgstr ""
+
+#: ../../develop/maps.rst:32
+msgid ".. image:: develop/img/linprob.png"
+msgstr ""
+
+#: ../../develop/maps.rst:33
+msgid ""
+"The same methods i.e open addressing and linear probing are used to "
+"search for an item in a dictionary. Assume we want to search for the data"
+" item ``33``. The computed hash value will be 2. Looking at slot 2 "
+"reveals ``33``, at this point, we return ``True``. Searching for ``70`` "
+"is quite different as there was a collision at the time of insertion. "
+"Therefore computing the hash value is ``0`` which is currently holding "
+"``44``. Instead of simply returning ``False``, we perform a sequential "
+"search starting at point ``1`` until the item ``70`` is found or we "
+"encounter a free slot. This is the general way of performing look-ups in "
+"hashes:"
+msgstr ""
+
+#: ../../develop/maps.rst:41
+#, python-format
+msgid ""
+"// not yet found, keep searching in this table\n"
+"pos = (pos + 1) % set->alloc;\n"
+"\n"
+"if (pos == start_pos) {\n"
+"    // search got back to starting position, so index is not in table\n"
+"    if (lookup_kind & MP_MAP_LOOKUP_ADD_IF_NOT_FOUND) {\n"
+"        if (avail_slot != NULL) {\n"
+"            // there was an available slot, so use that\n"
+"            set->used++;\n"
+"            *avail_slot = index;\n"
+"            return index;\n"
+"        } else {\n"
+"            // not enough room in table, rehash it\n"
+"            mp_set_rehash(set);\n"
+"            // restart the search for the new element\n"
+"            start_pos = pos = hash % set->alloc;\n"
+"        }\n"
+"    }\n"
+"} else {\n"
+"     return MP_OBJ_NULL;\n"
+"}"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:4
+msgid "Memory Management"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:6
+msgid ""
+"Unlike programming languages such as C/C++, MicroPython hides memory "
+"management details from the developer by supporting automatic memory "
+"management. Automatic memory management is a technique used by operating "
+"systems or applications to automatically manage the allocation and "
+"deallocation of memory. This eliminates challenges such as forgetting to "
+"free the memory allocated to an object. Automatic memory management also "
+"avoids the critical issue of using memory that is already released. "
+"Automatic memory management takes many forms, one of them being garbage "
+"collection (GC)."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:14
+msgid "The garbage collector usually has two responsibilities;"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:16
+msgid "Allocate new objects in available memory."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:17
+msgid "Free unused memory."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:19
+msgid ""
+"There are many GC algorithms but MicroPython uses the `Mark and Sweep "
+"<https://en.wikipedia.org/wiki/Tracing_garbage_collection#Basic_algorithm>`_"
+" policy for managing memory. This algorithm has a mark phase that "
+"traverses the heap marking all live objects while the sweep phase goes "
+"through the heap reclaiming all unmarked objects."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:24
+msgid ""
+"Garbage collection functionality in MicroPython is available through the "
+"``gc`` built-in module:"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:27
+msgid ""
+">>> x = 5\n"
+">>> x\n"
+"5\n"
+">>> import gc\n"
+">>> gc.enable()\n"
+">>> gc.mem_alloc()\n"
+"1312\n"
+">>> gc.mem_free()\n"
+"2071392\n"
+">>> gc.collect()\n"
+"19\n"
+">>> gc.disable()\n"
+">>>"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:43
+msgid ""
+"Even when ``gc.disable()`` is invoked, collection can be triggered with "
+"``gc.collect()``."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:46
+msgid "The object model"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:48
+msgid ""
+"All MicroPython objects are referred to by the ``mp_obj_t`` data type. "
+"This is usually word-sized (i.e. the same size as a pointer on the target"
+" architecture), and can be typically 32-bit (STM32, nRF, ESP32, Unix x86)"
+" or 64-bit (Unix x64). It can also be greater than a word-size for "
+"certain object representations, for example ``OBJ_REPR_D`` has a 64-bit "
+"sized ``mp_obj_t`` on a 32-bit architecture."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:54
+msgid ""
+"An ``mp_obj_t`` represents a MicroPython object, for example an integer, "
+"float, type, dict or class instance. Some objects, like booleans and "
+"small integers, have their value stored directly in the ``mp_obj_t`` "
+"value and do not require additional memory. Other objects have their "
+"value store elsewhere in memory (for example on the garbage-collected "
+"heap) and their ``mp_obj_t`` contains a pointer to that memory. A portion"
+" of ``mp_obj_t`` is the tag which tells what type of object it is."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:60
+msgid ""
+"See ``py/mpconfig.h`` for the specific details of the available "
+"representations."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:62
+msgid "**Pointer tagging**"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:64
+msgid ""
+"Because pointers are word-aligned, when they are stored in an "
+"``mp_obj_t`` the lower bits of this object handle will be zero.  For "
+"example on a 32-bit architecture the lower 2 bits will be zero:"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:68 ../../develop/memorymgt.rst:88
+msgid "``********|********|********|******00``"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:70
+msgid ""
+"These bits are reserved for purposes of storing a tag. The tag stores "
+"extra information as opposed to introducing a new field to store that "
+"information in the object, which may be inefficient.  In MicroPython the "
+"tag tells if we are dealing with a small integer, interned (small) string"
+" or a concrete object, and different semantics apply to each of these."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:75
+msgid "For small integers the mapping is this:"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:77
+msgid "``********|********|********|*******1``"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:79
+msgid ""
+"Where the asterisks hold the actual integer value.  For an interned "
+"string or an immediate object (e.g. ``True``) the layout of the "
+"``mp_obj_t`` value is, respectively:"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:82
+msgid "``********|********|********|*****010``"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:84
+msgid "``********|********|********|*****110``"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:86
+msgid "While a concrete object that is none of the above takes the form:"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:90
+msgid "The stars here correspond to the address of the concrete object in memory."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:93
+msgid "Allocation of objects"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:95
+msgid ""
+"The value of a small integer is stored directly in the ``mp_obj_t`` and "
+"will be allocated in-place, not on the heap or elsewhere.  As such, "
+"creation of small integers does not affect the heap.  Similarly for "
+"interned strings that already have their textual data stored elsewhere, "
+"and immediate values like ``None``, ``False`` and ``True``."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:101
+msgid ""
+"Everything else which is a concrete object is allocated on the heap and "
+"its object structure is such that a field is reserved in the object "
+"header to store the type of the object."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:104
+msgid ""
+"+++++++++++\n"
+"+         +\n"
+"+ type    + object header\n"
+"+         +\n"
+"+++++++++++\n"
+"+         + object items\n"
+"+         +\n"
+"+         +\n"
+"+++++++++++"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:116
+msgid ""
+"The heap's smallest unit of allocation is a block, which is four machine "
+"words in size (16 bytes on a 32-bit machine, 32 bytes on a 64-bit "
+"machine). Another structure also allocated on the heap tracks the "
+"allocation of objects in each block. This structure is called a *bitmap*."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:122
+msgid ".. image:: develop/img/bitmap.png"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:123
+msgid ""
+"The bitmap tracks whether a block is \"free\" or \"in use\" and use two "
+"bits to track this state for each block."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:126
+msgid ""
+"The mark-sweep garbage collector manages the objects allocated on the "
+"heap, and also utilises the bitmap to mark objects that are still in use."
+" See `py/gc.c "
+"<https://github.com/micropython/micropython/blob/master/py/gc.c>`_ for "
+"the full implementation of these details."
+msgstr ""
+
+#: ../../develop/memorymgt.rst:131
+msgid "**Allocation: heap layout**"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:133
+msgid ""
+"The heap is arranged such that it consists of blocks in pools. A block "
+"can have different properties:"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:136
+msgid "*ATB(allocation table byte):* If set, then the block is a normal block"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:137
+msgid "*FREE:* Free block"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:138
+msgid "*HEAD:* Head of a chain of blocks"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:139
+msgid "*TAIL:* In the tail of a chain of blocks"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:140
+msgid "*MARK :* Marked head block"
+msgstr ""
+
+#: ../../develop/memorymgt.rst:141
+msgid "*FTB(finaliser table byte):* If set, then the block has a finaliser"
+msgstr ""
 
 #: ../../develop/natmod.rst:4
 msgid "Native machine code in .mpy files"
@@ -841,7 +2457,7 @@ msgstr ""
 msgid ""
 "Once the module is built there should be a file called ``factorial.mpy``."
 "  Copy this so it is accessible on the filesystem of your MicroPython "
-"system and can be found in the import path.  The module con now be "
+"system and can be found in the import path.  The module can now be "
 "accessed in Python just like any other module, for example::"
 msgstr ""
 "モジュールをビルドすると ``factorial.mpy`` というファイルが作成されます。"
@@ -899,11 +2515,596 @@ msgstr "例外処理"
 msgid "including external C libraries"
 msgstr "外部 C ライブラリの取り込み"
 
-#: ../../develop/qstr.rst:2
+#: ../../develop/optimizations.rst:4
+msgid "Optimizations"
+msgstr ""
+
+#: ../../develop/optimizations.rst:6
+msgid ""
+"MicroPython uses several optimizations to save RAM but also ensure the "
+"efficient execution of programs. This chapter discusses some of these "
+"optimizations."
+msgstr ""
+
+#: ../../develop/optimizations.rst:10
+msgid ""
+":ref:`qstr` and :ref:`maps` details other optimizations on strings and "
+"dictionaries."
+msgstr ""
+
+#: ../../develop/optimizations.rst:14
+msgid "Frozen bytecode"
+msgstr ""
+
+#: ../../develop/optimizations.rst:16
+msgid ""
+"When MicroPython loads Python code from the filesystem, it first has to "
+"parse the file into a temporary in-memory representation, and then "
+"generate bytecode for execution, both of which are stored in the heap (in"
+" RAM). This can lead to significant amounts of memory being used. The "
+"MicroPython cross compiler can be used to generate a ``.mpy`` file, "
+"containing the pre-compiled bytecode for a Python module. This will still"
+" be loaded into RAM, but it avoids the additional overhead of the parsing"
+" stage."
+msgstr ""
+
+#: ../../develop/optimizations.rst:23
+msgid ""
+"As a further optimisation, the pre-compiled bytecode from a ``.mpy`` file"
+" can be \"frozen\" into the firmware image as part of the main firmware "
+"compilation process, which means that the bytecode will be executed from "
+"ROM. This can lead to a significant memory saving, and reduce heap "
+"fragmentation."
+msgstr ""
+
+#: ../../develop/optimizations.rst:29
+msgid "Variables"
+msgstr ""
+
+#: ../../develop/optimizations.rst:31
+msgid ""
+"MicroPython processes local and global variables differently. Global "
+"variables are stored and looked up from a global dictionary that is "
+"allocated on the heap (note that each module has its own separate dict, "
+"so separate namespace). Local variables on the other hand are are stored "
+"on the Python value stack, which may live on the C stack or on the heap."
+"  They are accessed directly by their offset within the Python stack, "
+"which is more efficient than a global lookup in a dict."
+msgstr ""
+
+#: ../../develop/optimizations.rst:38
+msgid ""
+"The length of global variable names also affects how much RAM is used as "
+"identifiers are stored in RAM. The shorter the identifier, the less "
+"memory is used."
+msgstr ""
+
+#: ../../develop/optimizations.rst:41
+msgid ""
+"The other aspect is that ``const`` variables that start with an "
+"underscore are treated as proper constants and are not allocated or added"
+" in a dictionary, hence saving some memory. These variables use "
+"``const()`` from the MicroPython library. Therefore:"
+msgstr ""
+
+#: ../../develop/optimizations.rst:45
+msgid ""
+"from micropython import const\n"
+"\n"
+"X = const(1)\n"
+"_Y = const(2)\n"
+"foo(X, _Y)"
+msgstr ""
+
+#: ../../develop/optimizations.rst:53
+msgid "Compiles to:"
+msgstr ""
+
+#: ../../develop/optimizations.rst:55
+msgid ""
+"X = 1\n"
+"foo(1, 2)"
+msgstr ""
+
+#: ../../develop/optimizations.rst:61
+msgid "Allocation of memory"
+msgstr ""
+
+#: ../../develop/optimizations.rst:63
+msgid ""
+"Most of the common MicroPython constructs are not allocated on the heap. "
+"However the following are:"
+msgstr ""
+
+#: ../../develop/optimizations.rst:66
+msgid "Dynamic data structures like lists, mappings, etc;"
+msgstr ""
+
+#: ../../develop/optimizations.rst:67
+msgid "Functions, classes and object instances;"
+msgstr ""
+
+#: ../../develop/optimizations.rst:68
+msgid "imports; and"
+msgstr ""
+
+#: ../../develop/optimizations.rst:69
+msgid ""
+"First-time assignment of global variables (to create the slot in the "
+"global dict)."
+msgstr ""
+
+#: ../../develop/optimizations.rst:71
+msgid ""
+"For a detailed discussion on a more user-centric perspective on "
+"optimization, see `Maximising MicroPython speed "
+"<https://docs.micropython.org/en/latest/reference/speed_python.html>`_"
+msgstr ""
+
+#: ../../develop/porting.rst:4
+msgid "Porting MicroPython"
+msgstr ""
+
+#: ../../develop/porting.rst:6
+msgid ""
+"The MicroPython project contains several ports to different "
+"microcontroller families and architectures. The project repository has a "
+"`ports <https://github.com/micropython/micropython/tree/master/ports>`_ "
+"directory containing a subdirectory for each supported port."
+msgstr ""
+
+#: ../../develop/porting.rst:10
+msgid ""
+"A port will typically contain definitions for multiple \"boards\", each "
+"of which is a specific piece of hardware that that port can run on, e.g. "
+"a development kit or device."
+msgstr ""
+
+#: ../../develop/porting.rst:13
+msgid ""
+"The `minimal port "
+"<https://github.com/micropython/micropython/tree/master/ports/minimal>`_ "
+"is available as a simplified reference implementation of a MicroPython "
+"port.  It can run on both the host system and an STM32F4xx MCU."
+msgstr ""
+
+#: ../../develop/porting.rst:17
+msgid "In general, starting a port requires:"
+msgstr ""
+
+#: ../../develop/porting.rst:19
+msgid "Setting up the toolchain (configuring Makefiles, etc)."
+msgstr ""
+
+#: ../../develop/porting.rst:20
+msgid "Implementing boot configuration and CPU initialization."
+msgstr ""
+
+#: ../../develop/porting.rst:21
+msgid ""
+"Initialising basic drivers required for development and debugging (e.g. "
+"GPIO, UART)."
+msgstr ""
+
+#: ../../develop/porting.rst:22
+msgid "Performing the board-specific configurations."
+msgstr ""
+
+#: ../../develop/porting.rst:23
+msgid "Implementing the port-specific modules."
+msgstr ""
+
+#: ../../develop/porting.rst:26
+msgid "Minimal MicroPython firmware"
+msgstr ""
+
+#: ../../develop/porting.rst:28
+msgid ""
+"The best way to start porting MicroPython to a new board is by "
+"integrating a minimal MicroPython interpreter.  For this walkthrough, "
+"create a subdirectory for the new port in the ``ports`` directory:"
+msgstr ""
+
+#: ../../develop/porting.rst:32
+msgid ""
+"$ cd ports\n"
+"$ mkdir example_port"
+msgstr ""
+
+#: ../../develop/porting.rst:37
+msgid ""
+"The basic MicroPython firmware is implemented in the main port file, e.g "
+"``main.c``:"
+msgstr ""
+
+#: ../../develop/porting.rst:39
+msgid ""
+"#include \"py/compile.h\"\n"
+"#include \"py/gc.h\"\n"
+"#include \"py/mperrno.h\"\n"
+"#include \"py/stackctrl.h\"\n"
+"#include \"lib/utils/gchelper.h\"\n"
+"#include \"lib/utils/pyexec.h\"\n"
+"\n"
+"// Allocate memory for the MicroPython GC heap.\n"
+"static char heap[4096];\n"
+"\n"
+"int main(int argc, char **argv) {\n"
+"    // Initialise the MicroPython runtime.\n"
+"    mp_stack_ctrl_init();\n"
+"    gc_init(heap, heap + sizeof(heap));\n"
+"    mp_init();\n"
+"    mp_obj_list_init(MP_OBJ_TO_PTR(mp_sys_path), 0);\n"
+"    mp_obj_list_init(MP_OBJ_TO_PTR(mp_sys_argv), 0);\n"
+"\n"
+"    // Start a normal REPL; will exit when ctrl-D is entered on a blank "
+"line.\n"
+"    pyexec_friendly_repl();\n"
+"\n"
+"    // Deinitialise the runtime.\n"
+"    gc_sweep_all();\n"
+"    mp_deinit();\n"
+"    return 0;\n"
+"}\n"
+"\n"
+"// Handle uncaught exceptions (should never be reached in a correct C "
+"implementation).\n"
+"void nlr_jump_fail(void *val) {\n"
+"    for (;;) {\n"
+"    }\n"
+"}\n"
+"\n"
+"// Do a garbage collection cycle.\n"
+"void gc_collect(void) {\n"
+"    gc_collect_start();\n"
+"    gc_helper_collect_regs_and_stack();\n"
+"    gc_collect_end();\n"
+"}\n"
+"\n"
+"// There is no filesystem so stat'ing returns nothing.\n"
+"mp_import_stat_t mp_import_stat(const char *path) {\n"
+"    return MP_IMPORT_STAT_NO_EXIST;\n"
+"}\n"
+"\n"
+"// There is no filesystem so opening a file raises an exception.\n"
+"mp_lexer_t *mp_lexer_new_from_file(const char *filename) {\n"
+"    mp_raise_OSError(MP_ENOENT);\n"
+"}"
+msgstr ""
+
+#: ../../develop/porting.rst:91
+msgid "We also need a Makefile at this point for the port:"
+msgstr ""
+
+#: ../../develop/porting.rst:93
+msgid ""
+"# Include the core environment definitions; this will set $(TOP).\n"
+"include ../../py/mkenv.mk\n"
+"\n"
+"# Include py core make definitions.\n"
+"include $(TOP)/py/py.mk\n"
+"\n"
+"# Set CFLAGS and libraries.\n"
+"CFLAGS = -I. -I$(BUILD) -I$(TOP)\n"
+"LIBS = -lm\n"
+"\n"
+"# Define the required source files.\n"
+"SRC_C = \\\n"
+"    main.c \\\n"
+"    mphalport.c \\\n"
+"    lib/mp-readline/readline.c \\\n"
+"    lib/utils/gchelper_generic.c \\\n"
+"    lib/utils/pyexec.c \\\n"
+"    lib/utils/stdout_helpers.c \\\n"
+"\n"
+"# Define the required object files.\n"
+"OBJ = $(PY_CORE_O) $(addprefix $(BUILD)/, $(SRC_C:.c=.o))\n"
+"\n"
+"# Define the top-level target, the main firmware.\n"
+"all: $(BUILD)/firmware.elf\n"
+"\n"
+"# Define how to build the firmware.\n"
+"$(BUILD)/firmware.elf: $(OBJ)\n"
+"    $(ECHO) \"LINK $@\"\n"
+"    $(Q)$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)\n"
+"    $(Q)$(SIZE) $@\n"
+"\n"
+"# Include remaining core make rules.\n"
+"include $(TOP)/py/mkrules.mk"
+msgstr ""
+
+#: ../../develop/porting.rst:129
+msgid "Remember to use proper tabs to indent the Makefile."
+msgstr ""
+
+#: ../../develop/porting.rst:132
+msgid "MicroPython Configurations"
+msgstr ""
+
+#: ../../develop/porting.rst:134
+msgid ""
+"After integrating the minimal code above, the next step is to create the "
+"MicroPython configuration files for the port. The compile-time "
+"configurations are specified in ``mpconfigport.h`` and additional "
+"hardware-abstraction functions, such as time keeping, in ``mphalport.h``."
+msgstr ""
+
+#: ../../develop/porting.rst:139
+msgid "The following is an example of an ``mpconfigport.h`` file:"
+msgstr ""
+
+#: ../../develop/porting.rst:141
+msgid ""
+"#include <stdint.h>\n"
+"\n"
+"// Python internal features.\n"
+"#define MICROPY_ENABLE_GC                       (1)\n"
+"#define MICROPY_HELPER_REPL                     (1)\n"
+"#define MICROPY_ERROR_REPORTING                 "
+"(MICROPY_ERROR_REPORTING_TERSE)\n"
+"#define MICROPY_FLOAT_IMPL                      "
+"(MICROPY_FLOAT_IMPL_FLOAT)\n"
+"\n"
+"// Fine control over Python builtins, classes, modules, etc.\n"
+"#define MICROPY_PY_ASYNC_AWAIT                  (0)\n"
+"#define MICROPY_PY_BUILTINS_SET                 (0)\n"
+"#define MICROPY_PY_ATTRTUPLE                    (0)\n"
+"#define MICROPY_PY_COLLECTIONS                  (0)\n"
+"#define MICROPY_PY_MATH                         (0)\n"
+"#define MICROPY_PY_IO                           (0)\n"
+"#define MICROPY_PY_STRUCT                       (0)\n"
+"\n"
+"// Type definitions for the specific machine.\n"
+"\n"
+"typedef intptr_t mp_int_t; // must be pointer size\n"
+"typedef uintptr_t mp_uint_t; // must be pointer size\n"
+"typedef long mp_off_t;\n"
+"\n"
+"// We need to provide a declaration/definition of alloca().\n"
+"#include <alloca.h>\n"
+"\n"
+"// Define the port's name and hardware.\n"
+"#define MICROPY_HW_BOARD_NAME \"example-board\"\n"
+"#define MICROPY_HW_MCU_NAME   \"unknown-cpu\"\n"
+"\n"
+"#define MP_STATE_PORT MP_STATE_VM\n"
+"\n"
+"#define MICROPY_PORT_ROOT_POINTERS \\\n"
+"    const char *readline_hist[8];"
+msgstr ""
+
+#: ../../develop/porting.rst:178
+msgid ""
+"This configuration file contains machine-specific configurations "
+"including aspects like if different MicroPython features should be "
+"enabled e.g. ``#define MICROPY_ENABLE_GC (1)``. Making this Setting "
+"``(0)`` disables the feature."
+msgstr ""
+
+#: ../../develop/porting.rst:182
+msgid ""
+"Other configurations include type definitions, root pointers, board name,"
+" microcontroller name etc."
+msgstr ""
+
+#: ../../develop/porting.rst:185
+msgid "Similarly, an minimal example ``mphalport.h`` file looks like this:"
+msgstr ""
+
+#: ../../develop/porting.rst:187
+msgid "static inline void mp_hal_set_interrupt_char(char c) {}"
+msgstr ""
+
+#: ../../develop/porting.rst:192
+msgid "Support for standard input/output"
+msgstr ""
+
+#: ../../develop/porting.rst:194
+msgid ""
+"MicroPython requires at least a way to output characters, and to have a "
+"REPL it also requires a way to input characters. Functions for this can "
+"be implemented in the file ``mphalport.c``, for example:"
+msgstr ""
+
+#: ../../develop/porting.rst:198
+msgid ""
+"#include <unistd.h>\n"
+"#include \"py/mpconfig.h\"\n"
+"\n"
+"// Receive single character, blocking until one is available.\n"
+"int mp_hal_stdin_rx_chr(void) {\n"
+"    unsigned char c = 0;\n"
+"    int r = read(STDIN_FILENO, &c, 1);\n"
+"    (void)r;\n"
+"    return c;\n"
+"}\n"
+"\n"
+"// Send the string of given length.\n"
+"void mp_hal_stdout_tx_strn(const char *str, mp_uint_t len) {\n"
+"    int r = write(STDOUT_FILENO, str, len);\n"
+"    (void)r;\n"
+"}"
+msgstr ""
+
+#: ../../develop/porting.rst:217
+msgid ""
+"These input and output functions have to be modified depending on the "
+"specific board API. This example uses the standard input/output stream."
+msgstr ""
+
+#: ../../develop/porting.rst:221
+msgid "Building and running"
+msgstr ""
+
+#: ../../develop/porting.rst:223
+msgid "At this stage the directory of the new port should contain::"
+msgstr ""
+
+#: ../../develop/porting.rst:225
+msgid ""
+"ports/example_port/\n"
+"├── main.c\n"
+"├── Makefile\n"
+"├── mpconfigport.h\n"
+"├── mphalport.c\n"
+"└── mphalport.h"
+msgstr ""
+
+#: ../../develop/porting.rst:232
+msgid ""
+"The port can now be built by running ``make`` (or otherwise, depending on"
+" your system)."
+msgstr ""
+
+#: ../../develop/porting.rst:234
+msgid ""
+"If you are using the default compiler settings in the Makefile given "
+"above then this will create an executable called ``build/firmware.elf`` "
+"which can be executed directly. To get a functional REPL you may need to "
+"first configure the terminal to raw mode:"
+msgstr ""
+
+#: ../../develop/porting.rst:238
+msgid ""
+"$ stty raw opost -echo\n"
+"$ ./build/firmware.elf"
+msgstr ""
+
+#: ../../develop/porting.rst:243
+msgid "That should give a MicroPython REPL.  You can then run commands like:"
+msgstr ""
+
+#: ../../develop/porting.rst:245
+msgid ""
+"MicroPython v1.13 on 2021-01-01; example-board with unknown-cpu\n"
+">>> import usys\n"
+">>> usys.implementation\n"
+"('micropython', (1, 13, 0))\n"
+">>>"
+msgstr ""
+
+#: ../../develop/porting.rst:253
+msgid "Use Ctrl-D to exit, and then run ``reset`` to reset the terminal."
+msgstr ""
+
+#: ../../develop/porting.rst:256
+msgid "Adding a module to the port"
+msgstr ""
+
+#: ../../develop/porting.rst:258
+msgid ""
+"To add a custom module like ``myport``, first add the module definition "
+"in a file ``modmyport.c``:"
+msgstr ""
+
+#: ../../develop/porting.rst:261
+msgid ""
+"#include \"py/runtime.h\"\n"
+"\n"
+"STATIC mp_obj_t myport_info(void) {\n"
+"    mp_printf(&mp_plat_print, \"info about my port\\n\");\n"
+"    return mp_const_none;\n"
+"}\n"
+"STATIC MP_DEFINE_CONST_FUN_OBJ_0(myport_info_obj, myport_info);\n"
+"\n"
+"STATIC const mp_rom_map_elem_t myport_module_globals_table[] = {\n"
+"    { MP_OBJ_NEW_QSTR(MP_QSTR___name__), MP_OBJ_NEW_QSTR(MP_QSTR_myport) "
+"},\n"
+"    { MP_ROM_QSTR(MP_QSTR_info), MP_ROM_PTR(&myport_info_obj) },\n"
+"};\n"
+"STATIC MP_DEFINE_CONST_DICT(myport_module_globals, "
+"myport_module_globals_table);\n"
+"\n"
+"const mp_obj_module_t myport_module = {\n"
+"    .base = { &mp_type_module },\n"
+"    .globals = (mp_obj_dict_t *)&myport_module_globals,\n"
+"};\n"
+"\n"
+"MP_REGISTER_MODULE(MP_QSTR_myport, myport_module, 1);"
+msgstr ""
+
+#: ../../develop/porting.rst:284
+msgid ""
+"Note: the \"1\" as the third argument in ``MP_REGISTER_MODULE`` enables "
+"this new module unconditionally. To allow it to be conditionally enabled,"
+" replace the \"1\" by ``MICROPY_PY_MYPORT`` and then add ``#define "
+"MICROPY_PY_MYPORT (1)`` in ``mpconfigport.h`` accordingly."
+msgstr ""
+
+#: ../../develop/porting.rst:289
+msgid ""
+"You will also need to edit the Makefile to add ``modmyport.c`` to the "
+"``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
+"qstrs are searched for in this new file), like this:"
+msgstr ""
+
+#: ../../develop/porting.rst:293
+msgid ""
+"SRC_C = \\\n"
+"    main.c \\\n"
+"    modmyport.c \\\n"
+"    mphalport.c \\\n"
+"    ...\n"
+"\n"
+"SRC_QSTR += modport.c"
+msgstr ""
+
+#: ../../develop/porting.rst:303
+msgid ""
+"If all went correctly then, after rebuilding, you should be able to "
+"import the new module:"
+msgstr ""
+
+#: ../../develop/porting.rst:305
+msgid ""
+">>> import myport\n"
+">>> myport.info()\n"
+"info about my port\n"
+">>>"
+msgstr ""
+
+#: ../../develop/publiccapi.rst:4
+msgid "The public C API"
+msgstr ""
+
+#: ../../develop/publiccapi.rst:6
+msgid ""
+"The public C-API comprises functions defined in all C header files in the"
+" ``py/`` directory. Most of the important core runtime C APIs are exposed"
+" in ``runtime.h`` and ``obj.h``."
+msgstr ""
+
+#: ../../develop/publiccapi.rst:10
+msgid "The following is an example of public API functions from ``obj.h``:"
+msgstr ""
+
+#: ../../develop/publiccapi.rst:12
+msgid ""
+"mp_obj_t mp_obj_new_list(size_t n, mp_obj_t *items);\n"
+"mp_obj_t mp_obj_list_append(mp_obj_t self_in, mp_obj_t arg);\n"
+"mp_obj_t mp_obj_list_remove(mp_obj_t self_in, mp_obj_t value);\n"
+"void mp_obj_list_get(mp_obj_t self_in, size_t *len, mp_obj_t **items);"
+msgstr ""
+
+#: ../../develop/publiccapi.rst:19
+msgid ""
+"At its core, any functions and macros in header files make up the public "
+"API and can be used to access very low-level details of MicroPython. "
+"Static inline functions in header files are fine too, such functions will"
+" be inlined in the code when used."
+msgstr ""
+
+#: ../../develop/publiccapi.rst:24
+msgid ""
+"Header files in the ``ports`` directory are only exposed to the "
+"functionality specific to a given port."
+msgstr ""
+
+#: ../../develop/qstr.rst:4
 msgid "MicroPython string interning"
 msgstr "MicroPython 文字列の隔離化"
 
-#: ../../develop/qstr.rst:4
+#: ../../develop/qstr.rst:6
 msgid ""
 "MicroPython uses `string interning`_ to save both RAM and ROM.  This "
 "avoids having to store duplicate copies of the same string.  Primarily, "
@@ -917,7 +3118,7 @@ msgstr ""
 "識別子に適用されます。MicroPython では、インターンされた文字列は QSTR "
 "(uniQue STRing)と呼ばれます。"
 
-#: ../../develop/qstr.rst:10
+#: ../../develop/qstr.rst:12
 msgid ""
 "A QSTR value (with type ``qstr``) is a index into a linked list of QSTR "
 "pools. QSTRs store their length and a hash of their contents for fast "
@@ -928,11 +3129,11 @@ msgstr ""
 "重複排除プロセス中の高速比較のために、長さとコンテンツのハッシュを保存します。"
 "文字列を操作するすべてのバイトコード操作は、QSTR 引数を使います。"
 
-#: ../../develop/qstr.rst:16
+#: ../../develop/qstr.rst:18
 msgid "Compile-time QSTR generation"
 msgstr "コンパイル時の QSTR 生成"
 
-#: ../../develop/qstr.rst:18
+#: ../../develop/qstr.rst:20
 msgid ""
 "In the MicroPython C code, any strings that should be interned in the "
 "final firmware are written as ``MP_QSTR_Foo``.  At compile time this will"
@@ -943,7 +3144,7 @@ msgstr ""
 "文字列はすべて ``MP_QSTR_Foo`` として書いてあります。これはコンパイル時に、"
 "QSTR プール内の ``\"Foo\"`` を指すインデックスである ``qstr`` 値に評価されます。"
 
-#: ../../develop/qstr.rst:22
+#: ../../develop/qstr.rst:24
 msgid ""
 "A multi-step process in the ``Makefile`` makes this work.  In summary "
 "this process has three parts:"
@@ -951,30 +3152,30 @@ msgstr ""
 "``Makefile`` 中の多段階の処理がこの機能を実現しています。"
 "この処理は大きく次の3つの段階があります:"
 
-#: ../../develop/qstr.rst:25
+#: ../../develop/qstr.rst:27
 msgid "Find all ``MP_QSTR_Foo`` tokens in the code."
 msgstr ""
 "ソースコード中のすべての ``MP_QSTR_Foo`` トークンを検出"
 
-#: ../../develop/qstr.rst:27
+#: ../../develop/qstr.rst:29
 msgid ""
 "Generate a static QSTR pool containing all the string data (including "
 "lengths and hashes)."
 msgstr ""
 "すべての文字列データ(長さとハッシュを含む)を持つ静的な QSTR プールを生成"
 
-#: ../../develop/qstr.rst:30
+#: ../../develop/qstr.rst:32
 msgid ""
 "Replace all ``MP_QSTR_Foo`` (via the preprocessor) with their "
 "corresponding index."
 msgstr ""
 "``MP_QSTR_Foo`` すべてを(プリプロセッサを使って)対応するインデックスに置換"
 
-#: ../../develop/qstr.rst:33
+#: ../../develop/qstr.rst:35
 msgid "``MP_QSTR_Foo`` tokens are searched for in two sources:"
 msgstr "``MP_QSTR_Foo`` トークンは次の2つのソースコードから検索されます:"
 
-#: ../../develop/qstr.rst:35
+#: ../../develop/qstr.rst:37
 msgid ""
 "All files referenced in ``$(SRC_QSTR)``.  This is all C code (i.e. "
 "``py``, ``extmod``, ``ports/stm32``) but not including third-party code "
@@ -984,14 +3185,14 @@ msgstr ""
 "これは、すべてのCコード(すなわち ``py``, ``extmod``, ``ports/stm32`` など)"
 "ですが、 ``lib`` のようなサードパーティのコードは含みません。"
 
-#: ../../develop/qstr.rst:39
+#: ../../develop/qstr.rst:41
 msgid ""
 "Additional ``$(QSTR_GLOBAL_DEPENDENCIES)`` (which includes "
 "``mpconfig*.h``)."
 msgstr ""
 "``$(QSTR_GLOBAL_DEPENDENCIES)`` で追加されるもの(``mpconfig*.h`` を含む）。"
 
-#: ../../develop/qstr.rst:41
+#: ../../develop/qstr.rst:43
 msgid ""
 "*Note:* ``frozen_mpy.c`` (generated by mpy-tool.py) has its own QSTR "
 "generation and pool."
@@ -999,7 +3200,7 @@ msgstr ""
 "*注記:* (mpy-tool.py によって生成される) ``frozen_mpy.c`` には独自の QSTR "
 "生成とプールがあります。"
 
-#: ../../develop/qstr.rst:44
+#: ../../develop/qstr.rst:46
 msgid ""
 "Some additional strings that can't be expressed using the ``MP_QSTR_Foo``"
 " syntax (e.g. they contain non-alphanumeric characters) are explicitly "
@@ -1010,11 +3211,11 @@ msgstr ""
 "含んだもの)は、 ``$(QSTR_DEFS)`` に指定する ``qstrdefs.h`` と ``qstrdefsport.h`` "
 "で明示的に与えます。"
 
-#: ../../develop/qstr.rst:48
+#: ../../develop/qstr.rst:50
 msgid "Processing happens in the following stages:"
 msgstr "処理は次の段階を踏みます:"
 
-#: ../../develop/qstr.rst:50
+#: ../../develop/qstr.rst:52
 msgid ""
 "``qstr.i.last`` is the concatenation of putting every single input file "
 "through the C pre-processor.  This means that any conditionally disabled "
@@ -1037,7 +3238,7 @@ msgstr ""
 "この段階では、変更されたファイルのみを使うことに注意してください。つまり ``qstr.i.last`` には"
 "直前のコンパイル以降に変更されたファイルのデータのみが含まれます。"
 
-#: ../../develop/qstr.rst:60
+#: ../../develop/qstr.rst:63
 msgid ""
 "``qstr.split`` is an empty file created after running ``makeqstrdefs.py "
 "split`` on qstr.i.last. It's just used as a dependency to indicate that "
@@ -1055,7 +3256,7 @@ msgstr ""
 "この段階は、``qstr.i.last`` にある増分更新から生成された新しいデータを既存ファイルにマージ"
 "するために必要です。"
 
-#: ../../develop/qstr.rst:67
+#: ../../develop/qstr.rst:70
 msgid ""
 "``qstrdefs.collected.h`` is the output of concatenating ``genhdr/qstr/*``"
 " using ``makeqstrdefs.py cat``.  This is now the full set of "
@@ -1065,14 +3266,23 @@ msgid ""
 "(``qstrdefs.collected.h.hash``) which allows it to track changes across "
 "builds."
 msgstr ""
-"``qstrdefs.collected.h`` は、 ``makeqstrdefs.py cat`` を使って ``genhdr/qstr/*`` "
-"を全て結合した出力です。これは、ソースコード内に見つかった ``MP_QSTR_Foo`` の完全なセットです。"
-"フォーマットは ``Q(Foo)`` のまま、1行に1つずつ、重複ありとなっています。"
-"このファイルは、qstr のセットが変更された場合にのみ更新されます。QSTR データのハッシュは"
-"別のファイル(``qstrdefs.collected.h.hash``)に書き込まれ、ビルド全体の変更を追跡できます。"
+"``qstrdefs.collected.h`` は、 ``makeqstrdefs.py cat`` を使って "
+"``genhdr/qstr/*`` を全て結合した出力です。これは、ソースコード内に見つかった "
+"``MP_QSTR_Foo`` の完全なセットです。フォーマットは ``Q(Foo)`` のまま、"
+"1行に1つずつ、重複ありとなっています。このファイルは、qstr のセットが変更された"
+"場合にのみ更新されます。QSTR データのハッシュは別のファイル"
+"(``qstrdefs.collected.h.hash``)に書き込まれ、ビルド全体の変更を追跡できます。"
 
-#: ../../develop/qstr.rst:74
+#: ../../develop/qstr.rst:77
 msgid ""
+"Generate an enumeration, each entry of which maps a  ``MP_QSTR_Foo`` to "
+"it's corresponding index. It concatenates ``qstrdefs.collected.h`` with "
+"``qstrdefs*.h``, then it transforms each line from ``Q(Foo)`` to "
+"``\"Q(Foo)\"`` so they pass through the preprocessor unchanged.  Then the"
+" preprocessor is used to deal with any conditional compilation in "
+"``qstrdefs*.h``.  Then the transformation is undone back to ``Q(Foo)``, "
+"and saved as ``qstrdefs.preprocessed.h``."
+
 "``qstrdefs.preprocessed.h`` adds in the QSTRs from qstrdefs*.  It "
 "concatenates ``qstrdefs.collected.h`` with ``qstrdefs*.h``, then it "
 "transforms each line from ``Q(Foo)`` to ``\"Q(Foo)\"`` so they pass "
@@ -1081,13 +3291,14 @@ msgid ""
 "transformation is undone back to ``Q(Foo)``, and saved as "
 "``qstrdefs.preprocessed.h``."
 msgstr ""
-"``qstrdefs.preprocessed.h`` は qstrdefs* から QSTR を追加します。"
+"``MP_QSTR_Foo`` をその該当するインデックスにマップした列挙子を生成します。"
 "これは ``qstrdefs.collected.h`` を ``qstrdefs*.h`` と結合し、"
-"各行を ``Q(Foo)`` から ``"\Q(Foo)\"`` に変換し、プリプロセッサを変更せずにとおしたものです。"
-"プリプロセッサを使って、``qstrdefs*.h`` の条件付きコンパイルを処理します。"
-"その後、変換を元の ``Q(Foo)`` に戻し、``qstrdefs.preprocessed.h`` として保存します。"
+"各行を ``Q(Foo)`` から ``"\Q(Foo)\"`` に変換し、プリプロセッサを変更せずに"
+"とおしたものです。プリプロセッサを使って、``qstrdefs*.h`` の条件付きコンパイルを"
+"処理します。その後、変換を元の ``Q(Foo)`` に戻し、``qstrdefs.preprocessed.h`` "
+"として保存します。"
 
-#: ../../develop/qstr.rst:81
+#: ../../develop/qstr.rst:84
 msgid ""
 "``qstrdefs.generated.h`` is the output of ``makeqstrdata.py``.  For each "
 "``Q(Foo)`` in qstrdefs.preprocessed.h (plus some extra hard-coded ones), "
@@ -1098,12 +3309,12 @@ msgstr ""
 "``Q(Foo)`` それぞれについて ``QDEF(MP_QSTR_Foo, (const byte*)\"hash\" \"Foo\")`` "
 "を出力します。"
 
-#: ../../develop/qstr.rst:85
+#: ../../develop/qstr.rst:88
 msgid "Then in the main compile, two things happen with ``qstrdefs.generated.h``:"
 msgstr ""
 "次に、メインのコンパイルで、 ``qstrdefs.generated.h`` について次の2つのことが起きます:"
 
-#: ../../develop/qstr.rst:87
+#: ../../develop/qstr.rst:90
 msgid ""
 "In qstr.h, each QDEF becomes an entry in an enum, which makes "
 "``MP_QSTR_Foo`` available to code and equal to the index of that string "
@@ -1112,7 +3323,7 @@ msgstr ""
 "``qstr.h`` では、各 QDEF は列挙型のエントリになり、ソースコード中で ``MP_QSTR_Foo`` を"
 "使えるようになります。これは QSTR テーブル内の文字列のインデックスと同等です。"
 
-#: ../../develop/qstr.rst:90
+#: ../../develop/qstr.rst:93
 msgid ""
 "In qstr.c, the actual QSTR data table is generated as elements of the "
 "``mp_qstr_const_pool->qstrs``."
@@ -1120,29 +3331,29 @@ msgstr ""
 "``qstr.c`` では、実際の QSTR データテーブルが ``mp_qstr_const_pool->qstrs`` の"
 "要素として生成されます。"
 
-#: ../../develop/qstr.rst:96
+#: ../../develop/qstr.rst:99
 msgid "Run-time QSTR generation"
 msgstr "実行時のQSTR生成"
 
-#: ../../develop/qstr.rst:98
+#: ../../develop/qstr.rst:101
 msgid ""
 "Additional QSTR pools can be created at runtime so that strings can be "
 "added to them. For example, the code::"
 msgstr ""
 "追加の QSTR プールを実行時に作成して、文字列を追加できます。たとえば、次のコードがあるものとします:"
 
-#: ../../develop/qstr.rst:101
+#: ../../develop/qstr.rst:104
 msgid "foo[x] = 3"
 msgstr ""
 
-#: ../../develop/qstr.rst:103
+#: ../../develop/qstr.rst:106
 msgid ""
 "Will need to create a QSTR for the value of ``x`` so it can be used by "
 "the \"load attr\" bytecode."
 msgstr ""
 "``x`` の値の QSTR を作成して、 \"load attr\" バイトコードで使えるようにする必要があります。"
 
-#: ../../develop/qstr.rst:106
+#: ../../develop/qstr.rst:109
 msgid ""
 "Also, when compiling Python code, identifiers and literals need to have "
 "QSTRs created.  Note: only literals shorter than 10 characters become "
@@ -1155,10 +3366,115 @@ msgstr ""
 "最小16バイト(1 GCブロック)を占有するのに対し、QSTRを使った場合はより効率的にプールに"
 "パックできるためです。"
 
-#: ../../develop/qstr.rst:111
+#: ../../develop/qstr.rst:114
 msgid ""
 "QSTR pools (and the underlying \"chunks\" that store the string data) are"
 " allocated on-demand on the heap with a minimum size."
 msgstr ""
 "QSTRプール(および文字列データを格納する基盤となる「チャンク」)は、"
 "最小サイズでオンデマンドでヒープに割り当てられます。"
+
+#: ../../develop/writingtests.rst:4
+msgid "Writing tests"
+msgstr ""
+
+#: ../../develop/writingtests.rst:6
+msgid ""
+"Tests in MicroPython are located at the path ``tests/``. The following is"
+" a listing of key directories and the run-tests runner script:"
+msgstr ""
+
+#: ../../develop/writingtests.rst:9
+msgid ""
+".\n"
+" ├── basics\n"
+" ├── extmod\n"
+" ├── float\n"
+" ├── micropython\n"
+" ├── run-tests\n"
+" ..."
+msgstr ""
+
+#: ../../develop/writingtests.rst:19
+msgid ""
+"There are subfolders maintained to categorize the tests. Add a test by "
+"creating a new file in one of the existing folders or in a new folder. "
+"It's also possible to make custom tests outside this tests folder, which "
+"would be recommended for a custom port."
+msgstr ""
+
+#: ../../develop/writingtests.rst:23
+msgid ""
+"For example, add the following code in a file ``print.py`` in the "
+"``tests/unix/`` subdirectory:"
+msgstr ""
+
+#: ../../develop/writingtests.rst:25
+msgid ""
+"def print_one():\n"
+"    print(1)\n"
+"\n"
+"print_one()"
+msgstr ""
+
+#: ../../develop/writingtests.rst:32
+msgid "If you run your tests, this test should appear in the test output:"
+msgstr ""
+
+#: ../../develop/writingtests.rst:34
+msgid ""
+"$ cd ports/unix\n"
+"$ make tests\n"
+"skip  unix/extra_coverage.py\n"
+"pass  unix/ffi_callback.py\n"
+"pass  unix/ffi_float.py\n"
+"pass  unix/ffi_float2.py\n"
+"pass  unix/print.py\n"
+"pass  unix/time.py\n"
+"pass  unix/time2.py"
+msgstr ""
+
+#: ../../develop/writingtests.rst:46
+msgid ""
+"Tests are run by comparing the output from the test target against the "
+"output from CPython. So any test should use print statements to indicate "
+"test results."
+msgstr ""
+
+#: ../../develop/writingtests.rst:49
+msgid ""
+"For tests that can't be compared to CPython (i.e. micropython-specific "
+"functionality), you can provide a ``.py.exp`` file which will be used as "
+"the truth for comparison."
+msgstr ""
+
+#: ../../develop/writingtests.rst:52
+msgid ""
+"The other way to run tests, which is useful when running on targets other"
+" than the Unix port, is:"
+msgstr ""
+
+#: ../../develop/writingtests.rst:54
+msgid ""
+"$ cd tests\n"
+"$ ./run-tests"
+msgstr ""
+
+#: ../../develop/writingtests.rst:59
+msgid "Then to run on a board:"
+msgstr ""
+
+#: ../../develop/writingtests.rst:61
+msgid "$ ./run-tests --target minimal --device /dev/ttyACM0"
+msgstr ""
+
+#: ../../develop/writingtests.rst:65
+msgid "And to run only a certain set of tests (eg a directory):"
+msgstr ""
+
+#: ../../develop/writingtests.rst:67
+msgid ""
+"$ ./run-tests -d basics\n"
+"$ ./run-tests float/builtin*.py"
+msgstr ""
+
