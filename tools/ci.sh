@@ -30,9 +30,20 @@ function ci_code_formatting_run {
 }
 
 ########################################################################################
+# commit formatting
+
+function ci_commit_formatting_run {
+    git remote add upstream https://github.com/micropython/micropython.git
+    git fetch --depth=100 upstream  master
+    # For a PR, upstream/master..HEAD ends with a merge commit into master, exlude that one.
+    tools/verifygitlog.py -v upstream/master..HEAD --no-merges
+}
+
+########################################################################################
 # code size
 
 function ci_code_size_setup {
+    sudo apt-get update
     sudo apt-get install gcc-multilib
     gcc --version
     ci_gcc_arm_setup
@@ -42,7 +53,7 @@ function ci_code_size_build {
     # starts off at either the ref/pull/N/merge FETCH_HEAD, or the current branch HEAD
     git checkout -b pull_request # save the current location
     git remote add upstream https://github.com/micropython/micropython.git
-    git fetch --depth=100 upstream
+    git fetch --depth=100 upstream master
     # build reference, save to size0
     # ignore any errors with this build, in case master is failing
     git checkout `git merge-base --fork-point upstream/master pull_request`
@@ -173,6 +184,20 @@ function ci_qemu_arm_build {
     make ${MAKEOPTS} -C ports/qemu-arm CFLAGS_EXTRA=-DMP_ENDIANNESS_BIG=1
     make ${MAKEOPTS} -C ports/qemu-arm clean
     make ${MAKEOPTS} -C ports/qemu-arm -f Makefile.test test
+}
+
+########################################################################################
+# ports/rp2
+
+function ci_rp2_setup {
+    ci_gcc_arm_setup
+}
+
+function ci_rp2_build {
+    make ${MAKEOPTS} -C mpy-cross
+    git submodule update --init lib/pico-sdk
+    git -C lib/pico-sdk submodule update --init lib/tinyusb
+    make ${MAKEOPTS} -C ports/rp2
 }
 
 ########################################################################################
