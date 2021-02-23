@@ -165,6 +165,7 @@
 #define MICROPY_PY_UCRYPTOLIB       (MICROPY_PY_USSL)
 #ifndef MICROPY_PY_UBINASCII
 #define MICROPY_PY_UBINASCII        (1)
+#define MICROPY_PY_UBINASCII_CRC32  (1)
 #endif
 #ifndef MICROPY_PY_UOS
 #define MICROPY_PY_UOS              (1)
@@ -375,7 +376,7 @@ struct _mp_bluetooth_btstack_root_pointers_t;
     struct _pyb_uart_obj_t *pyb_stdio_uart; \
     \
     /* pointers to all UART objects (if they have been created) */ \
-    struct _pyb_uart_obj_t *pyb_uart_obj_all[MICROPY_HW_MAX_UART]; \
+    struct _pyb_uart_obj_t *pyb_uart_obj_all[MICROPY_HW_MAX_UART + MICROPY_HW_MAX_LPUART]; \
     \
     /* pointers to all CAN objects (if they have been created) */ \
     struct _pyb_can_obj_t *pyb_can_obj_all[MICROPY_HW_MAX_CAN]; \
