@@ -53,6 +53,30 @@ A MicroPython user C module is a directory with the following files:
   for header files), these should be added to ``CFLAGS_USERMOD`` for C code
   and to ``CXXFLAGS_USERMOD`` for C++ code.
 
+* ``micropython.cmake`` contains the CMake configuration for this module.
+
+  In ``micropython.cmake``, you may use ``${CMAKE_CURRENT_LIST_DIR}`` as the path to
+  the current module.
+
+  Your ``micropython.cmake`` should define an ``INTERFACE`` library and associate
+  your source files, compile definitions and include directories with it.
+  The library should then be linked to the ``usermod`` target.
+
+  .. code-block:: cmake
+
+      add_library(usermod_cexample INTERFACE)
+
+      target_sources(usermod_cexample INTERFACE
+          ${CMAKE_CURRENT_LIST_DIR}/examplemodule.c
+      )
+
+      target_include_directories(usermod_cexample INTERFACE
+          ${CMAKE_CURRENT_LIST_DIR}
+      )
+
+      target_link_libraries(usermod INTERFACE usermod_cexample)
+
+
   See below for full usage example.
 
 
@@ -70,9 +94,11 @@ and has a source file and a Makefile fragment with content as descibed above::
        └──usercmodule/
           └──cexample/
              ├── examplemodule.c
-             └── micropython.mk
+             ├── micropython.mk
+             └── micropython.cmake
 
-Refer to the comments in these 2 files for additional explanation.
+
+Refer to the comments in these files for additional explanation.
 Next to the ``cexample`` module there's also ``cppexample`` which
 works in the same way but shows one way of mixing C and C++ code
 in MicroPython.
@@ -97,10 +123,13 @@ applying 2 modifications:
       ├── modules/
       │   └──example1/
       │       ├──example1.c
-      │       └──micropython.mk
+      │       ├──micropython.mk
+      │       └──micropython.cmake
       │   └──example2/
       │       ├──example2.c
-      │       └──micropython.mk
+      │       ├──micropython.mk
+      │       └──micropython.cmake
+      │   └──micropython.cmake
       └── micropython/
           ├──ports/
          ... ├──stm32/
@@ -109,17 +138,34 @@ applying 2 modifications:
 
   with ``USER_C_MODULES`` set to the ``my_project/modules`` directory.
 
-- all modules found in this directory will be compiled, but only those
-  which are explicitly enabled will be availabe for importing. Enabling a
-  module is done by setting the preprocessor define from its module
-  registration to 1. For example if the source code defines the module with
+  A top level ``micropython.cmake`` - found directly in the ``my_project/modules``
+  directory - should ``include`` all of your modules.
+
+  .. code-block:: cmake
+
+      include(${CMAKE_CURRENT_LIST_DIR}/example1/micropython.cmake)
+      include(${CMAKE_CURRENT_LIST_DIR}/example2/micropython.cmake)
+
+
+- all modules found in this directory (or added via ``include`` in the top-level
+  ``micropython.cmake`` when using CMake) will be compiled, but only those which are
+  enabled will be available for importing.  If a module is to always be enabled,
+  which is usually the case for custom modules and custom builds, then it is
+  enough to supply "1" as the third parameter to the registration macro, like:
+
+  .. code-block:: c
+
+      MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, 1);
+
+  Alternatively, to make the module disabled by default but selectable through
+  a preprocessor configuration option, use:
 
   .. code-block:: c
 
       MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, MODULE_CEXAMPLE_ENABLED);
 
 
-  then ``MODULE_CEXAMPLE_ENABLED`` has to be set to 1 to make the module available.
+  Then ``MODULE_CEXAMPLE_ENABLED`` has to be set to 1 to make the module available.
   This can be done by adding ``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` to
   the ``make`` command, or editing ``mpconfigport.h`` or ``mpconfigboard.h``
   to add
@@ -139,7 +185,7 @@ directory can be built for the unix port:
 .. code-block:: bash
 
     cd micropython/ports/unix
-    make USER_C_MODULES=../../examples/usercmodule CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1 all
+    make USER_C_MODULES=../../examples/usercmodule all
 
 The build output will show the modules found::
 
@@ -149,14 +195,32 @@ The build output will show the modules found::
     ...
 
 
+For a CMake-based port such as rp2, this will look a little different:
+
+.. code-block:: bash
+
+    cd micropython/ports/rp2
+    make USER_C_MODULES=../../examples/usercmodule all
+
+
+The CMake build output lists the modules by name::
+
+    ...
+    Including User C Module(s) from ../../examples/usercmodule/micropython.cmake
+    Found User C Module(s): usermod_cexample, usermod_cppexample
+    ...
+
+
+The top-level ``micropython.cmake`` can be used to control which modules are enabled.
+
+
 Or for your own project with a directory structure as shown above,
 including both modules and building the stm32 port for example:
 
 .. code-block:: bash
 
     cd my_project/micropython/ports/stm32
-    make USER_C_MODULES=../../../modules \
-      CFLAGS_EXTRA="-DMODULE_EXAMPLE1_ENABLED=1 -DMODULE_EXAMPLE2_ENABLED=1" all
+    make USER_C_MODULES=../../../modules all
 
 
 Module usage in MicroPython
