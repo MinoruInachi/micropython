@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2014-2020, Damien P. George, Paul Sokolovsky, and
+# Copyright (C) 2014-2021, Damien P. George, Paul Sokolovsky, and
 # contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.13\n"
+"Project-Id-Version: MicroPython 1.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-01 11:03+0900\n"
-"PO-Revision-Date: 2021-02-02 14:47+0900\n"
+"PO-Revision-Date: 2021-04-03 11:04+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -143,14 +143,51 @@ msgstr ""
 "``CXXFLAGS_USERMOD`` に追加します。"
 
 #: ../../develop/cmodules.rst:56
+msgid "``micropython.cmake`` contains the CMake configuration for this module."
+msgstr "``micropython.cmake`` にはこのモジュールのための CMake 設定を記載します。"
+
+#: ../../develop/cmodules.rst:58
+msgid ""
+"In ``micropython.cmake``, you may use ``${CMAKE_CURRENT_LIST_DIR}`` as "
+"the path to the current module."
+msgstr ""
+"``micropython.cmake`` に現在のモジュールへのパスを設定するには "
+"``${CMAKE_CURRENT_LIST_DIR}`` を使います。"
+
+#: ../../develop/cmodules.rst:61
+msgid ""
+"Your ``micropython.cmake`` should define an ``INTERFACE`` library and "
+"associate your source files, compile definitions and include directories "
+"with it. The library should then be linked to the ``usermod`` target."
+msgstr ""
+"``micropython.cmake`` は ``INTERFACE`` ライブラリを定義して、ソースファイル、"
+"コンパイル定義、インクルードディレクトリをそれに関連付ける必要があります。"
+"こうすることにより、ライブラリが ``usermod`` ターゲットにリンクされます。"
+
+#: ../../develop/cmodules.rst:65
+msgid ""
+"add_library(usermod_cexample INTERFACE)\n"
+"\n"
+"target_sources(usermod_cexample INTERFACE\n"
+"    ${CMAKE_CURRENT_LIST_DIR}/examplemodule.c\n"
+")\n"
+"\n"
+"target_include_directories(usermod_cexample INTERFACE\n"
+"    ${CMAKE_CURRENT_LIST_DIR}\n"
+")\n"
+"\n"
+"target_link_libraries(usermod INTERFACE usermod_cexample)"
+msgstr ""
+
+#: ../../develop/cmodules.rst:80
 msgid "See below for full usage example."
 msgstr "完全な使用例については下記を参照してください。"
 
-#: ../../develop/cmodules.rst:60
+#: ../../develop/cmodules.rst:84
 msgid "Basic example"
 msgstr "基本的な例"
 
-#: ../../develop/cmodules.rst:62
+#: ../../develop/cmodules.rst:86
 msgid ""
 "This simple module named ``cexample`` provides a single function "
 "``cexample.add_ints(a, b)`` which adds the two integer args together and "
@@ -166,31 +203,32 @@ msgstr ""
 "<https://github.com/micropython/micropython/tree/master/examples/usercmodule/cexample>`_ "
 "にもあります。"
 
-#: ../../develop/cmodules.rst:68
+#: ../../develop/cmodules.rst:92
 msgid ""
 "micropython/\n"
 "└──examples/\n"
 "   └──usercmodule/\n"
 "      └──cexample/\n"
 "         ├── examplemodule.c\n"
-"         └── micropython.mk"
+"         ├── micropython.mk\n"
+"         └── micropython.cmake"
 msgstr ""
 
-#: ../../develop/cmodules.rst:75
+#: ../../develop/cmodules.rst:101
 msgid ""
-"Refer to the comments in these 2 files for additional explanation. Next "
-"to the ``cexample`` module there's also ``cppexample`` which works in the"
-" same way but shows one way of mixing C and C++ code in MicroPython."
+"Refer to the comments in these files for additional explanation. Next to "
+"the ``cexample`` module there's also ``cppexample`` which works in the "
+"same way but shows one way of mixing C and C++ code in MicroPython."
 msgstr ""
-"より詳しい説明は、この2つのファイルのコメントを参照してください。 "
+"より詳しい説明は、これらのファイルのコメントを参照してください。 "
 "``cexample`` モジュールの次には、同じように動作する ``cppexample`` もあり、
 "MicroPython で C と C++ コードを混ぜる方法の一つを示しています。"
 
-#: ../../develop/cmodules.rst:82
+#: ../../develop/cmodules.rst:108
 msgid "Compiling the cmodule into MicroPython"
 msgstr "cmodule を MicroPython に組み込む方法"
 
-#: ../../develop/cmodules.rst:84
+#: ../../develop/cmodules.rst:110
 msgid ""
 "To build such a module, compile MicroPython (see `getting started "
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_), "
@@ -201,7 +239,7 @@ msgstr ""
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_ "
 "を参照):"
 
-#: ../../develop/cmodules.rst:88
+#: ../../develop/cmodules.rst:114
 msgid ""
 "an extra ``make`` flag named ``USER_C_MODULES`` set to the directory "
 "containing all modules you want included (not to the module itself). For "
@@ -218,63 +256,95 @@ msgstr ""
 "では、カスタムコードをメインのソースツリーに入れないほうがよいでしょう。"
 "よくあるプロジェクトのディレクトリ構造は次のようになります::"
 
-#: ../../develop/cmodules.rst:96
+#: ../../develop/cmodules.rst:122
 msgid ""
 "my_project/\n"
 "├── modules/\n"
 "│   └──example1/\n"
 "│       ├──example1.c\n"
-"│       └──micropython.mk\n"
+"│       ├──micropython.mk\n"
+"│       └──micropython.cmake\n"
 "│   └──example2/\n"
 "│       ├──example2.c\n"
-"│       └──micropython.mk\n"
+"│       ├──micropython.mk\n"
+"│       └──micropython.cmake\n"
 "└── micropython/\n"
 "    ├──ports/\n"
 "   ... ├──stm32/\n"
 "      ..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:110
+#: ../../develop/cmodules.rst:139
 msgid "with ``USER_C_MODULES`` set to the ``my_project/modules`` directory."
 msgstr ""
 "この場合、 ``USER_C_MODULES`` には ``my_project/modules`` ディレクトリを"
 "設定します。"
 
-#: ../../develop/cmodules.rst:112
+#: ../../develop/cmodules.rst:141
 msgid ""
-"all modules found in this directory will be compiled, but only those "
-"which are explicitly enabled will be availabe for importing. Enabling a "
-"module is done by setting the preprocessor define from its module "
-"registration to 1. For example if the source code defines the module with"
+"A top level ``micropython.cmake`` - found directly in the "
+"``my_project/modules`` directory - should ``include`` all of your "
+"modules."
 msgstr ""
-"このディレクトリにあるすべてのモジュールがコンパイルされますが、明示的に有効にしている"
-"モジュールだけがインポートに利用できます。モジュールを有効にするには、モジュールの登録"
-"時に指定するプリプロセッサ定義を 1 に設定します。たとえば、ソースコードでモジュールを次の"
-"ように定義しているとします。"
+"トップレベルの ``micropython.cmake`` (``my_project/modules`` にあるもの)"
+"では、すべてのモジュールを取り込みます(``include``)。"
 
-#: ../../develop/cmodules.rst:117
+#: ../../develop/cmodules.rst:144
+msgid ""
+"include(${CMAKE_CURRENT_LIST_DIR}/example1/micropython.cmake)\n"
+"include(${CMAKE_CURRENT_LIST_DIR}/example2/micropython.cmake)"
+msgstr ""
+
+#: ../../develop/cmodules.rst:150
+msgid ""
+"all modules found in this directory (or added via ``include`` in the top-"
+"level ``micropython.cmake`` when using CMake) will be compiled, but only "
+"those which are enabled will be available for importing.  If a module is "
+"to always be enabled, which is usually the case for custom modules and "
+"custom builds, then it is enough to supply \"1\" as the third parameter "
+"to the registration macro, like:"
+msgstr ""
+"このディレクトリにあるすべてのモジュール(CMakeを使う場合にはトップレベルの "
+"``micropython.cmake`` に ``include`` で追加したモジュール)がコンパイルされますが、"
+"有効にしてあるモジュールだけがインポートできるようになります。カスタムモジュールや"
+"カスタムビルドのように、モジュールを常に有効にしたい場合は、次のように登録マクロの"
+"3番目のパラメータに \"1\" を指定するだけです。"
+
+#: ../../develop/cmodules.rst:156
+msgid "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, 1);"
+msgstr ""
+
+#: ../../develop/cmodules.rst:160
+msgid ""
+"Alternatively, to make the module disabled by default but selectable "
+"through a preprocessor configuration option, use:"
+msgstr ""
+"デフォルトではモジュールを無効にして、プリプロセッサの設定オプションで選択できるように"
+"するには次のようにします:"
+
+#: ../../develop/cmodules.rst:163
 msgid ""
 "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, "
 "MODULE_CEXAMPLE_ENABLED);"
 msgstr ""
 
-#: ../../develop/cmodules.rst:122
+#: ../../develop/cmodules.rst:168
 msgid ""
-"then ``MODULE_CEXAMPLE_ENABLED`` has to be set to 1 to make the module "
+"Then ``MODULE_CEXAMPLE_ENABLED`` has to be set to 1 to make the module "
 "available. This can be done by adding "
 "``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` to the ``make`` command, or "
 "editing ``mpconfigport.h`` or ``mpconfigboard.h`` to add"
 msgstr ""
-この場合、モジュールを利用できるようにするには ``MODULE_CEXAMPLE_ENABLED`` を 1 "
+"この場合、モジュールを利用できるようにするには ``MODULE_CEXAMPLE_ENABLED`` を 1 "
 "に設定しなければなりません。これは ``make`` コマンドに "
 "``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` を追加するか、 "
 "``mpconfigport.h`` か ``mpconfigboard.h`` を編集して以下を追加します。"
 
-#: ../../develop/cmodules.rst:127
+#: ../../develop/cmodules.rst:173
 msgid "#define MODULE_CEXAMPLE_ENABLED (1)"
 msgstr ""
 
-#: ../../develop/cmodules.rst:132
+#: ../../develop/cmodules.rst:178
 msgid ""
 "Note that the exact method depends on the port as they have different "
 "structures. If not done correctly it will compile but importing will fail"
@@ -283,7 +353,7 @@ msgstr ""
 "ポートによって異なる構造になっているので、正しい方法はポートに依存することに注意してください。"
 "適切に行われなかった場合、コンパイルはされたとしてもモジュールのインポートはできないでしょう。"
 
-#: ../../develop/cmodules.rst:136
+#: ../../develop/cmodules.rst:182
 msgid ""
 "To sum up, here's how the ``cexample`` module from the "
 "``examples/usercmodule`` directory can be built for the unix port:"
@@ -291,18 +361,17 @@ msgstr ""
 まとめるとして ``examples/usercmodule`` ディレクトリにある ``cexample`` "
 "モジュールを unix ポート用にビルドする方法を以下に示します:"
 
-#: ../../develop/cmodules.rst:139
+#: ../../develop/cmodules.rst:185
 msgid ""
 "cd micropython/ports/unix\n"
-"make USER_C_MODULES=../../examples/usercmodule "
-"CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1 all"
+"make USER_C_MODULES=../../examples/usercmodule all"
 msgstr ""
 
-#: ../../develop/cmodules.rst:144
+#: ../../develop/cmodules.rst:190
 msgid "The build output will show the modules found::"
 msgstr "ビルド中、次のようにモジュールを見つけた旨を示すメッセージが出力されるでしょう::"
 
-#: ../../develop/cmodules.rst:146
+#: ../../develop/cmodules.rst:192
 msgid ""
 "...\n"
 "Including User C Module from ../../examples/usercmodule/cexample\n"
@@ -310,7 +379,36 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:152
+#: ../../develop/cmodules.rst:198
+msgid "For a CMake-based port such as rp2, this will look a little different:"
+msgstr "rp2 のような CMake ベースのポートでは、少々違ったやり方になります:""
+
+#: ../../develop/cmodules.rst:200
+msgid ""
+"cd micropython/ports/rp2\n"
+"make USER_C_MODULES=../../examples/usercmodule all"
+msgstr ""
+
+#: ../../develop/cmodules.rst:206
+msgid "The CMake build output lists the modules by name::"
+msgstr "CMake はリストされているモジュールをビルドします::"
+
+#: ../../develop/cmodules.rst:208
+msgid ""
+"...\n"
+"Including User C Module(s) from "
+"../../examples/usercmodule/micropython.cmake\n"
+"Found User C Module(s): usermod_cexample, usermod_cppexample\n"
+"..."
+msgstr ""
+
+#: ../../develop/cmodules.rst:214
+msgid ""
+"The top-level ``micropython.cmake`` can be used to control which modules "
+"are enabled."
+msgstr "トップレベルの ``micropython.cmake`` では有効化するモジュールを指定できます。"
+
+#: ../../develop/cmodules.rst:217
 msgid ""
 "Or for your own project with a directory structure as shown above, "
 "including both modules and building the stm32 port for example:"
@@ -318,19 +416,17 @@ msgstr ""
 "また、上記のようなディレクトリ構造を持つ独自のプロジェクトで、たとえばモジュールと"
 "stm32 ポートのビルドを行うには次のようにします:"
 
-#: ../../develop/cmodules.rst:155
+#: ../../develop/cmodules.rst:220
 msgid ""
 "cd my_project/micropython/ports/stm32\n"
-"make USER_C_MODULES=../../../modules \\\n"
-"  CFLAGS_EXTRA=\"-DMODULE_EXAMPLE1_ENABLED=1 "
-"-DMODULE_EXAMPLE2_ENABLED=1\" all"
+"make USER_C_MODULES=../../../modules all"
 msgstr ""
 
-#: ../../develop/cmodules.rst:163 ../../develop/natmod.rst:201
+#: ../../develop/cmodules.rst:227 ../../develop/natmod.rst:201
 msgid "Module usage in MicroPython"
 msgstr "MicroPython でのモジュールの使い方"
 
-#: ../../develop/cmodules.rst:165
+#: ../../develop/cmodules.rst:229
 msgid ""
 "Once built into your copy of MicroPython, the module can now be accessed "
 "in Python just like any other builtin module, e.g."
@@ -338,7 +434,7 @@ msgstr ""
 "MicroPython 自前でビルドすると、他の組み込みモジュールと同じように Python で"
 "アクセスできるようになります。たとえば次のように使います。"
 
-#: ../../develop/cmodules.rst:168
+#: ../../develop/cmodules.rst:232
 msgid ""
 "import cexample\n"
 "print(cexample.add_ints(1, 3))\n"
@@ -896,10 +992,24 @@ msgstr ""
 "他のインターネット上の情報から学べます。"
 
 #: ../../develop/gettingstarted.rst:25
+msgid ""
+"A .git-blame-ignore-revs file is included which avoids the output of git "
+"blame getting cluttered by commits which are only for formatting code but"
+" have no functional changes. See `git blame documentation <https://git-"
+"scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revltrevgt>`_"
+" on how to use this."
+msgstr ""
+".git-blame-ignore-revs ファイルをインクルードすることで、コードのフォーマットのみで"
+"機能的な変更を伴わないコミットで git blame の出力が乱雑になるのを防ぐことができます。"
+"このファイルの使い方については `git blame documentation <https://git-"
+"scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revltrevgt>`_ "
+"を参照してください。"
+
+#: ../../develop/gettingstarted.rst:30
 msgid "Get the code"
 msgstr "コードの取得"
 
-#: ../../develop/gettingstarted.rst:27
+#: ../../develop/gettingstarted.rst:32
 msgid ""
 "It is recommended that you maintain a fork of the MicroPython repository "
 "for your development purposes. The process of obtaining the source code "
@@ -908,11 +1018,11 @@ msgstr ""
 "開発するには MicroPython のリポジトリのフォークを自身で管理することをお勧めします。"
 "ソースコードを入手する手順は以下の通りです。"
 
-#: ../../develop/gettingstarted.rst:30
+#: ../../develop/gettingstarted.rst:35
 msgid "Fork the repository https://github.com/micropython/micropython"
 msgstr "リポジトリ https://github.com/micropython/micropython をフォークします"
 
-#: ../../develop/gettingstarted.rst:31
+#: ../../develop/gettingstarted.rst:36
 msgid ""
 "You will now have a fork at <https://github.com/<your-user-"
 "name>/micropython>."
@@ -920,15 +1030,15 @@ msgstr ""
 "自身のフォーク <https://github.com/<your-user-name>/micropython> "
 "ができあがります。"
 
-#: ../../develop/gettingstarted.rst:32
+#: ../../develop/gettingstarted.rst:37
 msgid "Clone the forked repository using the following command:"
 msgstr "次のコマンドでフォークしたリポジトリをクローンします:"
 
-#: ../../develop/gettingstarted.rst:34
+#: ../../develop/gettingstarted.rst:39
 msgid "$ git clone https://github.com/<your-user-name>/micropython"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:38
+#: ../../develop/gettingstarted.rst:43
 msgid ""
 "Then, `configure the remote repositories <https://git-scm.com/book/en/v2"
 "/Git-Basics-Working-with-Remotes>`_ to be able to collaborate on the "
@@ -940,17 +1050,17 @@ msgstr ""
 "%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%81%A7%E3%81%AE%E4%BD%9C%E6%A5%AD>`_ "
 "します。"
 
-#: ../../develop/gettingstarted.rst:41
+#: ../../develop/gettingstarted.rst:46
 msgid "Configure remote upstream:"
 msgstr "リモートアップストリームを設定します:"
 
-#: ../../develop/gettingstarted.rst:43
+#: ../../develop/gettingstarted.rst:48
 msgid ""
 "$ cd micropython\n"
 "$ git remote add upstream https://github.com/micropython/micropython"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:48
+#: ../../develop/gettingstarted.rst:53
 msgid ""
 "It is common to configure ``upstream`` and ``origin`` on a forked "
 "repository to assist with sharing code changes. You can maintain your own"
@@ -962,11 +1072,11 @@ msgstr ""
 "``origin`` はあなたのフォークに、 ``upstream`` はメインの MicroPython リポジトリ"
 "にマッピングすることをお勧めします。"
 
-#: ../../develop/gettingstarted.rst:53
+#: ../../develop/gettingstarted.rst:58
 msgid "After the above configuration, your setup should be similar to this:"
 msgstr "上記の設定を行うと、以下のようになります:"
 
-#: ../../develop/gettingstarted.rst:55
+#: ../../develop/gettingstarted.rst:60
 msgid ""
 "$ git remote -v\n"
 "origin       https://github.com/<your-user-name>/micropython (fetch)\n"
@@ -975,7 +1085,7 @@ msgid ""
 "upstream     https://github.com/micropython/micropython (push)"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:63
+#: ../../develop/gettingstarted.rst:68
 msgid ""
 "You should now have a copy of the source code. By default, you are "
 "pointing to the master branch. To prepare for further development, it is "
@@ -984,11 +1094,11 @@ msgstr ""
 "これでソースコードのコピーができたはずです。デフォルトでは、マスターブランチを"
 "指しています。さらなる開発に備えるために、開発ブランチで作業することをお勧めします。"
 
-#: ../../develop/gettingstarted.rst:67
+#: ../../develop/gettingstarted.rst:72
 msgid "$ git checkout -b dev-branch"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:71
+#: ../../develop/gettingstarted.rst:76
 msgid ""
 "You can give it any name. You will have to compile MicroPython whenever "
 "you change to a different branch."
@@ -996,11 +1106,11 @@ msgstr ""
 "開発ブランチにはどんな名前をつけても構いません。"
 "別のブランチに変更するときには MicroPython をコンパイルすることになるでしょう。"
 
-#: ../../develop/gettingstarted.rst:75
+#: ../../develop/gettingstarted.rst:80
 msgid "Compile and build the code"
 msgstr "コードのコンパイルとビルド"
 
-#: ../../develop/gettingstarted.rst:77
+#: ../../develop/gettingstarted.rst:82
 msgid ""
 "When compiling MicroPython, you compile a specific :term:`port`, usually "
 "targeting a specific :ref:`board <glossary>`. Start by installing the "
@@ -1016,7 +1126,7 @@ MicroPython のクロスコンパイラをビルドしてからコンパイル�
 "この手順は Linux を使ってコンパイルする場合のものです。Windows の場合の手順は"
 "後のセクションで説明します。"
 
-#: ../../develop/gettingstarted.rst:86
+#: ../../develop/gettingstarted.rst:91
 msgid "Required dependencies"
 msgstr "必要な依存パッケージ"
 
@@ -1024,21 +1134,21 @@ msgstr "必要な依存パッケージ"
 msgid "Install the required dependencies for Linux:"
 msgstr "Linux に必要な依存パッケージをインストールします:"
 
-#: ../../develop/gettingstarted.rst:90
+#: ../../develop/gettingstarted.rst:95
 msgid "$ sudo apt-get install build-essential libffi-dev git pkg-config"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:94
+#: ../../develop/gettingstarted.rst:99
 msgid "For the stm32 port, the ARM cross-compiler is required:"
 msgstr "stm32 ポートの場合は ARMクロスコンパイラが必要です:"
 
-#: ../../develop/gettingstarted.rst:96
+#: ../../develop/gettingstarted.rst:101
 msgid ""
 "$ sudo apt-get install arm-none-eabi-gcc arm-none-eabi-binutils arm-none-"
 "eabi-newlib"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:100
+#: ../../develop/gettingstarted.rst:105
 msgid ""
 "See the `ARM GCC toolchain <https://developer.arm.com/tools-and-software"
 "/open-source-software/developer-tools/gnu-toolchain/gnu-rm>`_ for the "
@@ -1048,7 +1158,7 @@ msgstr ""
 "/open-source-software/developer-tools/gnu-toolchain/gnu-rm>`_ を"
 "参照してください。"
 
-#: ../../develop/gettingstarted.rst:104
+#: ../../develop/gettingstarted.rst:109
 msgid ""
 "Python is also required. Python 2 is supported for now, but we recommend "
 "using Python 3. Check that you have Python available on your system:"
@@ -1056,7 +1166,7 @@ msgstr ""
 "Python も必要です。今のところ Python 2 でも大丈夫ですが、Python 3 の利用を"
 "お勧めします。お使いのシステムで Python が利用可能であることを確認してください:"
 
-#: ../../develop/gettingstarted.rst:107
+#: ../../develop/gettingstarted.rst:112
 msgid ""
 "$ python3\n"
 "Python 3.5.0 (default, Jul 17 2020, 14:04:10)\n"
@@ -1066,7 +1176,7 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:115
+#: ../../develop/gettingstarted.rst:120
 msgid ""
 "All supported ports have different dependency requirements, see their "
 "respective `readme files "
@@ -1076,11 +1186,11 @@ msgstr ""
 "<https://github.com/micropython/micropython/tree/master/ports>`_ "
 を参照してください。"
 
-#: ../../develop/gettingstarted.rst:119
+#: ../../develop/gettingstarted.rst:124
 msgid "Building the MicroPython cross-compiler"
 msgstr "MicroPython クロスコンパイラのビルド"
 
-#: ../../develop/gettingstarted.rst:121
+#: ../../develop/gettingstarted.rst:126
 msgid ""
 "Almost all ports require building ``mpy-cross`` first to perform pre-"
 "compilation of Python code that will be included in the port firmware:"
@@ -1088,13 +1198,13 @@ msgstr ""
 "ほとんどすべてのポートは最初に mpy-cross をビルドする必要があります。"
 "こえは、ポートのファームウェアに含まれる Python コードをプリコンパイルするためのものです:"
 
-#: ../../develop/gettingstarted.rst:124
+#: ../../develop/gettingstarted.rst:129
 msgid ""
 "$ cd mpy-cross\n"
 "$ make"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:130
+#: ../../develop/gettingstarted.rst:135
 msgid ""
 "Note that, ``mpy-cross`` must be built for the host architecture and not "
 "the target architecture."
@@ -1102,18 +1212,18 @@ msgstr ""
 "``mpy-cross`` はターゲットアーキテクチャではなくホストアーキテクチャ用にビルド"
 "しなければならないことに注意してください。"
 
-#: ../../develop/gettingstarted.rst:133
+#: ../../develop/gettingstarted.rst:138
 msgid "If it built successfully, you should see a message similar to this:"
 msgstr "ビルドに成功した場合、次のようなメッセージが表示されるはずです:"
 
-#: ../../develop/gettingstarted.rst:135
+#: ../../develop/gettingstarted.rst:140
 msgid ""
 "LINK mpy-cross\n"
 "   text         data     bss     dec     hex filename\n"
 " 279328          776     880  280984   44998 mpy-cross"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:143
+#: ../../develop/gettingstarted.rst:148
 msgid ""
 "Use ``make -C mpy-cross`` to build the cross-compiler in one statement "
 "without moving to the ``mpy-cross`` directory otherwise, you will need to"
@@ -1123,11 +1233,11 @@ msgstr ""
 "1つのステートメントでクロスコンパイラをビルドできます。``mpy-cross`` ディレクトリに"
 "移動してからビルドした場合は ``cd ..`` することになります。"
 
-#: ../../develop/gettingstarted.rst:148
+#: ../../develop/gettingstarted.rst:153
 msgid "Building the Unix port of MicroPython"
 msgstr "MicroPython の Unix ポートのビルド"
 
-#: ../../develop/gettingstarted.rst:150
+#: ../../develop/gettingstarted.rst:155
 msgid ""
 "The Unix port is a version of MicroPython that runs on Linux, macOS, and "
 "other Unix-like operating systems. It's extremely useful for developing "
@@ -1139,7 +1249,7 @@ msgstr ""
 "MicroPython を開発するのに非常に便利です。多くの点で CPython の python バイナリと"
 "似ています。"
 
-#: ../../develop/gettingstarted.rst:154
+#: ../../develop/gettingstarted.rst:159
 msgid ""
 "To build for the Unix port, make sure all Linux related dependencies are "
 "installed as detailed in the required dependencies section. See the "
@@ -1154,7 +1264,7 @@ msgstr ""
 "あることを確認してください。次の例では、Ubuntu 20.04 を使用していますが、他の Unix "
 "も少しの変更で動作するはずです:"
 
-#: ../../develop/gettingstarted.rst:160
+#: ../../develop/gettingstarted.rst:166
 msgid ""
 "$ gcc --version\n"
 "gcc (Ubuntu 9.3.0-10ubuntu2) 9.3.0\n"
@@ -1165,29 +1275,29 @@ msgid ""
 "PURPOSE.then build:"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:168
+#: ../../develop/gettingstarted.rst:173
 msgid ""
 "$ cd ports/unix\n"
 "$ make submodules\n"
 "$ make"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:174
+#: ../../develop/gettingstarted.rst:179
 msgid "If MicroPython built correctly, you should see the following:"
 msgstr "MicroPython が正しくビルドされれば、次のように表示されるはずです:"
 
-#: ../../develop/gettingstarted.rst:176
+#: ../../develop/gettingstarted.rst:181
 msgid ""
 "LINK micropython\n"
 "   text         data     bss     dec     hex filename\n"
 " 412033         5680    2496  420209   66971 micropython"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:182
+#: ../../develop/gettingstarted.rst:187
 msgid "Now run it:"
 msgstr "それでは実行してみましょう:"
 
-#: ../../develop/gettingstarted.rst:184
+#: ../../develop/gettingstarted.rst:189
 msgid ""
 "$ ./micropython\n"
 "MicroPython v1.13-38-gc67012d-dirty on 2020-09-13; linux version\n"
@@ -1197,11 +1307,11 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:194
+#: ../../develop/gettingstarted.rst:199
 msgid "Building the Windows port"
 msgstr "Windows ポートのビルド"
 
-#: ../../develop/gettingstarted.rst:196
+#: ../../develop/gettingstarted.rst:201
 msgid ""
 "The Windows port includes a Visual Studio project file "
 "micropython.vcxproj that you can use to build micropython.exe. It can be "
@@ -1219,11 +1329,11 @@ msgstr ""
 "<https://github.com/micropython/micropython/tree/master/ports/windows>`_ "
 "を参照してください。"
 
-#: ../../develop/gettingstarted.rst:202
+#: ../../develop/gettingstarted.rst:207
 msgid "Building the STM32 port"
 msgstr "STM32 ポートのビルド"
 
-#: ../../develop/gettingstarted.rst:204
+#: ../../develop/gettingstarted.rst:209
 msgid ""
 "Like the Unix port, you need to install some required dependencies as "
 "detailed in the :ref:`required_dependencies` section, then build:"
@@ -1231,14 +1341,14 @@ msgstr ""
 "Unix ポートと同様、 :ref:`required_dependencies` のセクションで説明"
 "されているように、必要な依存関係をインストールしてからビルドする必要があります:"
 
-#: ../../develop/gettingstarted.rst:207
+#: ../../develop/gettingstarted.rst:212
 msgid ""
 "$ cd ports/stm32\n"
 "$ make submodules\n"
 "$ make"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:213
+#: ../../develop/gettingstarted.rst:218
 msgid ""
 "Please refer to the `stm32 documentation "
 "<https://github.com/micropython/micropython/tree/master/ports/stm32>`_ "
@@ -1248,7 +1358,7 @@ msgstr ""
 "<https://github.com/micropython/micropython/tree/master/ports/stm32>`_ "
 "を参照してください。"
 
-#: ../../develop/gettingstarted.rst:217
+#: ../../develop/gettingstarted.rst:222
 msgid ""
 "See the :ref:`required_dependencies` to make sure that all dependencies "
 "are installed for this port. The cross-compiler is needed. ``arm-none-"
@@ -1261,18 +1371,18 @@ msgstr ""
 "$PATH にあるか、環境変数の設定または ``make`` コマンドラインの引数で "
 "CROSS_COMPILE に手動で指定する必要があります。"
 
-#: ../../develop/gettingstarted.rst:221
+#: ../../develop/gettingstarted.rst:226
 msgid "You can also specify which board to use:"
 msgstr "使用するボードを指定することもできます:"
 
-#: ../../develop/gettingstarted.rst:223
+#: ../../develop/gettingstarted.rst:228
 msgid ""
 "$ cd ports/stm32\n"
 "$ make submodules\n"
 "$ make BOARD=<board>"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:229
+#: ../../develop/gettingstarted.rst:234
 msgid ""
 "See `ports/stm32/boards "
 "<https://github.com/micropython/micropython/tree/master/ports/stm32/boards>`_"
@@ -1282,11 +1392,11 @@ msgstr ""
 "<https://github.com/micropython/micropython/tree/master/ports/stm32/boards>`_ "
 "を参照してください。 \"PYBV11\" や \"NUCLEO_WB55\" などがあります。"
 
-#: ../../develop/gettingstarted.rst:233
+#: ../../develop/gettingstarted.rst:238
 msgid "Building the documentation"
 msgstr "ドキュメントのビルド"
 
-#: ../../develop/gettingstarted.rst:235
+#: ../../develop/gettingstarted.rst:240
 msgid ""
 "MicroPython documentation is created using ``Sphinx``. If you have "
 "already installed Python, then install ``Sphinx`` using ``pip``. It is "
@@ -1296,30 +1406,30 @@ msgstr ""
 "すでに Python をインストールしている場合は ``pip`` を使ってSphinxを"
 "インストールしてください。仮想環境を利用することをお勧めします:"
 
-#: ../../develop/gettingstarted.rst:239
+#: ../../develop/gettingstarted.rst:244
 msgid ""
 "$ python3 -m venv env\n"
 "$ source env/bin/activate\n"
 "$ pip install sphinx"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:245
+#: ../../develop/gettingstarted.rst:250
 msgid "Navigate to the ``docs`` directory:"
 msgstr "``docs`` ディレクトリに移動します:"
 
-#: ../../develop/gettingstarted.rst:247
+#: ../../develop/gettingstarted.rst:252
 msgid "$ cd docs"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:251
+#: ../../develop/gettingstarted.rst:256
 msgid "Build the docs:"
 msgstr "docs をビルドします:"
 
-#: ../../develop/gettingstarted.rst:253
+#: ../../develop/gettingstarted.rst:258
 msgid "$ make html"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:257
+#: ../../develop/gettingstarted.rst:262
 msgid ""
 "Open ``docs/build/html/index.html`` in your browser to view the docs "
 "locally. Refer to the documentation on `importing your documentation "
@@ -1331,39 +1441,39 @@ msgstr ""
 "<https://docs.readthedocs.io/en/stable/intro/import-guide.html>`_ "
 "に関するドキュメントを参照してください。"
 
-#: ../../develop/gettingstarted.rst:262
+#: ../../develop/gettingstarted.rst:267
 msgid "Running the tests"
 msgstr "テストの実行"
 
-#: ../../develop/gettingstarted.rst:264
+#: ../../develop/gettingstarted.rst:269
 msgid "To run all tests in the test suite on the Unix port use:"
 msgstr "テストスイート内のすべてのテストを Unix ポートで実行するには次のようにします:"
 
-#: ../../develop/gettingstarted.rst:266
+#: ../../develop/gettingstarted.rst:271
 msgid ""
 "$ cd ports/unix\n"
 "$ make test"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:271
+#: ../../develop/gettingstarted.rst:276
 msgid "To run a selection of tests on a board/device connected over USB use:"
 msgstr "USB で接続されたボードやデバイスでテストを実行するには次のようにします:"
 
-#: ../../develop/gettingstarted.rst:273
+#: ../../develop/gettingstarted.rst:278
 msgid ""
 "$ cd tests\n"
 "$ ./run-tests.py --target minimal --device /dev/ttyACM0"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:278
+#: ../../develop/gettingstarted.rst:283
 msgid "See also :ref:`writingtests`."
 msgstr ":ref:`writingtests` も参照してください。"
 
-#: ../../develop/gettingstarted.rst:281
+#: ../../develop/gettingstarted.rst:286
 msgid "Folder structure"
 msgstr "フォルダ構造"
 
-#: ../../develop/gettingstarted.rst:283
+#: ../../develop/gettingstarted.rst:288
 msgid ""
 "There are a couple of directories to take note of in terms of where "
 "certain implementation details are. The following is a break down of the "
@@ -1372,7 +1482,7 @@ msgstr ""
 "特定の実装の詳細がどこにあるかという点で注意すべきディレクトリがいくつかあります。"
 "以下はソースコードのトップレベルのフォルダの内訳です。"
 
-#: ../../develop/gettingstarted.rst:286
+#: ../../develop/gettingstarted.rst:291
 msgid "py"
 msgstr ""
 
@@ -1380,11 +1490,11 @@ msgstr ""
 msgid "Contains the compiler, runtime, and core library implementation."
 msgstr "コンパイラ、ランタイム、コアライブラリの実装が含まれています。"
 
-#: ../../develop/gettingstarted.rst:290
+#: ../../develop/gettingstarted.rst:295
 msgid "mpy-cross"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:292
+#: ../../develop/gettingstarted.rst:297
 msgid ""
 "Has the MicroPython cross-compiler which pre-compiles the Python scripts "
 "to bytecode."
@@ -1392,19 +1502,19 @@ msgstr ""
 "Python スクリプトをバイトコードにプリコンパイルする MicroPython クロスコンパイラが"
 "あります。"
 
-#: ../../develop/gettingstarted.rst:294
+#: ../../develop/gettingstarted.rst:299
 msgid "ports"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:296
+#: ../../develop/gettingstarted.rst:231
 msgid "Code for all the versions of MicroPython for the supported ports."
 msgstr "サポートされているポートの MicroPython のすべてのバージョンのコード。"
 
-#: ../../develop/gettingstarted.rst:298
+#: ../../develop/gettingstarted.rst:233
 msgid "lib"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:300
+#: ../../develop/gettingstarted.rst:305
 msgid ""
 "Low-level C libraries used by any port which are mostly 3rd-party "
 "libraries."
@@ -1412,58 +1522,58 @@ msgstr ""
 "どのポートでも使用される低レベルの C ライブラリで、ほとんどがサードパーティ製の"
 "ライブラリです。"
 
-#: ../../develop/gettingstarted.rst:302
+#: ../../develop/gettingstarted.rst:307
 msgid "drivers"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:304
+#: ../../develop/gettingstarted.rst:309
 msgid ""
 "Has drivers for specific hardware and intended to work across multiple "
 "ports."
 msgstr ""
 "特定のハードウェア用のドライバがあり、複数のポートで動作することを目的としています。"
 
-#: ../../develop/gettingstarted.rst:306
+#: ../../develop/gettingstarted.rst:311
 msgid "extmod"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:308
+#: ../../develop/gettingstarted.rst:313
 msgid "Contains a C implementation of more non-core modules."
 msgstr ""
 "より多くの非コアモジュールの C 実装が含まれています。"
 
-#: ../../develop/gettingstarted.rst:310
+#: ../../develop/gettingstarted.rst:315
 msgid "docs"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:312
+#: ../../develop/gettingstarted.rst:317
 msgid "Has the standard documentation found at https://docs.micropython.org/."
 msgstr "https://docs.micropython.org/ にある標準ドキュメントがあります。"
 
-#: ../../develop/gettingstarted.rst:314
+#: ../../develop/gettingstarted.rst:319
 msgid "tests"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:316
+#: ../../develop/gettingstarted.rst:324
 msgid "An implementation of the test suite."
 msgstr "テストスイートの実装です。"
 
-#: ../../develop/gettingstarted.rst:318
+#: ../../develop/gettingstarted.rst:323
 msgid "tools"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:320
+#: ../../develop/gettingstarted.rst:325
 msgid ""
 "Contains helper tools including the ``upip`` and the ``pyboard.py`` "
 "module."
 msgstr ""
 "``upip` や ``pyboard.py`` モジュールを含むヘルパーツールが含まれています。"
 
-#: ../../develop/gettingstarted.rst:322
+#: ../../develop/gettingstarted.rst:327
 msgid "examples"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:324
+#: ../../develop/gettingstarted.rst:329
 msgid ""
 "Example code for building MicroPython as a library as well as native "
 "modules."
