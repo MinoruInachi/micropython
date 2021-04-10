@@ -148,9 +148,9 @@ target_sources(${MICROPY_TARGET} PRIVATE
 target_link_libraries(${MICROPY_TARGET} usermod)
 
 target_include_directories(${MICROPY_TARGET} PRIVATE
+    ${MICROPY_INC_CORE}
     ${MICROPY_INC_USERMOD}
     "${PROJECT_SOURCE_DIR}"
-    "${MICROPY_DIR}"
     "${CMAKE_BINARY_DIR}"
 )
 
@@ -170,6 +170,7 @@ target_compile_definitions(${MICROPY_TARGET} PRIVATE
     PICO_NO_PROGRAM_VERSION_STRING=1 # do it ourselves in main.c
     MICROPY_BUILD_TYPE="${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSION} ${CMAKE_BUILD_TYPE}"
     PICO_NO_BI_STDIO_UART=1 # we call it UART REPL
+    PICO_RP2040_USB_DEVICE_ENUMERATION_FIX=1
 )
 
 target_link_libraries(${MICROPY_TARGET}
@@ -192,29 +193,9 @@ add_custom_command(TARGET ${MICROPY_TARGET}
 )
 
 # Collect all the include directories and compile definitions for the pico-sdk components.
-macro(_process_target targ)
-    if(TARGET ${targ})
-        get_target_property(type ${targ} TYPE)
-        set(_inc OFF)
-        set(_def OFF)
-        if(${type} STREQUAL STATIC_LIBRARY)
-            get_target_property(_inc ${targ} INCLUDE_DIRECTORIES)
-            get_target_property(_def ${targ} COMPILE_DEFINITIONS)
-        elseif(${type} STREQUAL INTERFACE_LIBRARY)
-            get_target_property(_inc ${targ} INTERFACE_INCLUDE_DIRECTORIES)
-            get_target_property(_def ${targ} INTERFACE_COMPILE_DEFINITIONS)
-        endif()
-        if(_inc)
-            list(APPEND MICROPY_CPP_INC_EXTRA ${_inc})
-        endif()
-        if(_def)
-            list(APPEND MICROPY_CPP_DEF_EXTRA ${_def})
-        endif()
-    endif()
-endmacro()
 foreach(comp ${PICO_SDK_COMPONENTS})
-    _process_target(${comp})
-    _process_target(${comp}_headers)
+    micropy_gather_target_properties(${comp})
+    micropy_gather_target_properties(${comp}_headers)
 endforeach()
 
 # Include the main MicroPython cmake rules.
