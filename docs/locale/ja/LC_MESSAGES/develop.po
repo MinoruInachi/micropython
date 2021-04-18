@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.14\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-01 11:03+0900\n"
-"PO-Revision-Date: 2021-04-03 11:04+0900\n"
+"PO-Revision-Date: 2021-04-18 19:53+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -60,12 +60,20 @@ msgstr ""
 #: ../../develop/cmodules.rst:20
 msgid ""
 "This chapter describes how to compile such external modules into the "
-"MicroPython executable or firmware image."
+"MicroPython executable or firmware image.  Both Make and CMake build "
+"tools are supported, and when writing an external module it's a good idea"
+" to add the build files for both of these tools so the module can be used"
+" on all ports.  But when compiling a particular port you will only need "
+"to use one method of building, either Make or CMake."
 msgstr ""
 "この章では、そのような外部モジュールを MicroPython の実行ファイルまたはファーム"
 "ウェアイメージにコンパイルする方法について説明します。"
+"Make と CMake の両方のビルドツールがサポートされているので、外部モジュールを"
+"作成する際には、すべての ports でモジュールを使用できるように、両方のビルドツール用の"
+"ビルドファイルを追加することをお勧めします。しかし、特定のポートをコンパイルする際には、"
+"Make または CMake のどちらか一方のビルド方法のみを使うことになります。"
 
-#: ../../develop/cmodules.rst:23
+#: ../../develop/cmodules.rst:27
 msgid ""
 "An alternative approach is to use :ref:`natmod` which allows writing "
 "custom C code that is placed in a .mpy file, which can be imported "
@@ -76,19 +84,19 @@ msgstr ""
 "この .mpy ファイルは、メインのファームウェアを再コンパイルすることなく、利用中の "
 "MicroPython システムに動的にインポートできます。"
 
-#: ../../develop/cmodules.rst:29
+#: ../../develop/cmodules.rst:33
 msgid "Structure of an external C module"
 msgstr "外部 C モジュールの構造"
 
-#: ../../develop/cmodules.rst:31
+#: ../../develop/cmodules.rst:35
 msgid "A MicroPython user C module is a directory with the following files:"
 msgstr "MicroPython のユーザー C モジュールは、次のファイルを含むディレクトリーです:"
 
-#: ../../develop/cmodules.rst:33
+#: ../../develop/cmodules.rst:37
 msgid "``*.c`` / ``*.cpp`` / ``*.h`` source code files for your module."
 msgstr "モジュールのソースコードファイルである ``*.c`` / ``*.cpp`` / ``*.h`` 。"
 
-#: ../../develop/cmodules.rst:35
+#: ../../develop/cmodules.rst:39
 msgid ""
 "These will typically include the low level functionality being "
 "implemented and the MicroPython binding functions to expose the functions"
@@ -97,7 +105,7 @@ msgstr ""
 "これらのファイルには通常、C言語レベルでの機能実装と、それを MicroPython の"
 "公開関数/モジュールにバインディングするものから成っています。"
 
-#: ../../develop/cmodules.rst:38
+#: ../../develop/cmodules.rst:42
 msgid ""
 "Currently the best reference for writing these functions/modules is to "
 "find similar modules within the MicroPython tree and use them as "
@@ -106,11 +114,11 @@ msgstr ""
 "現在のところ、このような関数/モジュールを書くための最良の参考資料は MicroPython "
 "のソースツリー内で似たモジュールを見つけて、それらを例として使うことです。"
 
-#: ../../develop/cmodules.rst:41
+#: ../../develop/cmodules.rst:45
 msgid "``micropython.mk`` contains the Makefile fragment for this module."
 msgstr "``micropython.mk`` はモジュール用の Makefile の一部を含みます。"
 
-#: ../../develop/cmodules.rst:43
+#: ../../develop/cmodules.rst:47
 msgid ""
 "``$(USERMOD_DIR)`` is available in ``micropython.mk`` as the path to your"
 " module directory. As it's redefined for each c module, is should be "
@@ -121,7 +129,7 @@ msgstr ""
 "これは各 C モジュールに対して再定義されるので、``micropython.mk`` の中でローカルの make 変数に"
 "展開しておくべきです。たとえば ``EXAMPLE_MOD_DIR := $(USERMOD_DIR)`` とします。"
 
-#: ../../develop/cmodules.rst:48
+#: ../../develop/cmodules.rst:52
 msgid ""
 "Your ``micropython.mk`` must add your modules source files relative to "
 "your expanded copy of ``$(USERMOD_DIR)`` to ``SRC_USERMOD``, eg "
@@ -132,7 +140,7 @@ msgstr ""
 "いるものとして設定します。たとえば ``SRC_USERMOD += $(EXAMPLE_MOD_DIR)/example.c`` "
 "のようにします。"
 
-#: ../../develop/cmodules.rst:52
+#: ../../develop/cmodules.rst:56
 msgid ""
 "If you have custom compiler options (like ``-I`` to add directories to "
 "search for header files), these should be added to ``CFLAGS_USERMOD`` for"
@@ -142,11 +150,11 @@ msgstr ""
 "がある場合に、C コードについては ``CFLAGS_USERMOD`` 、C++ コードについては "
 "``CXXFLAGS_USERMOD`` に追加します。"
 
-#: ../../develop/cmodules.rst:56
+#: ../../develop/cmodules.rst:60
 msgid "``micropython.cmake`` contains the CMake configuration for this module."
 msgstr "``micropython.cmake`` にはこのモジュールのための CMake 設定を記載します。"
 
-#: ../../develop/cmodules.rst:58
+#: ../../develop/cmodules.rst:62
 msgid ""
 "In ``micropython.cmake``, you may use ``${CMAKE_CURRENT_LIST_DIR}`` as "
 "the path to the current module."
@@ -154,7 +162,7 @@ msgstr ""
 "``micropython.cmake`` に現在のモジュールへのパスを設定するには "
 "``${CMAKE_CURRENT_LIST_DIR}`` を使います。"
 
-#: ../../develop/cmodules.rst:61
+#: ../../develop/cmodules.rst:65
 msgid ""
 "Your ``micropython.cmake`` should define an ``INTERFACE`` library and "
 "associate your source files, compile definitions and include directories "
@@ -164,7 +172,7 @@ msgstr ""
 "コンパイル定義、インクルードディレクトリをそれに関連付ける必要があります。"
 "こうすることにより、ライブラリが ``usermod`` ターゲットにリンクされます。"
 
-#: ../../develop/cmodules.rst:65
+#: ../../develop/cmodules.rst:69
 msgid ""
 "add_library(usermod_cexample INTERFACE)\n"
 "\n"
@@ -179,15 +187,15 @@ msgid ""
 "target_link_libraries(usermod INTERFACE usermod_cexample)"
 msgstr ""
 
-#: ../../develop/cmodules.rst:80
+#: ../../develop/cmodules.rst:84
 msgid "See below for full usage example."
 msgstr "完全な使用例については下記を参照してください。"
 
-#: ../../develop/cmodules.rst:84
+#: ../../develop/cmodules.rst:88
 msgid "Basic example"
 msgstr "基本的な例"
 
-#: ../../develop/cmodules.rst:86
+#: ../../develop/cmodules.rst:90
 msgid ""
 "This simple module named ``cexample`` provides a single function "
 "``cexample.add_ints(a, b)`` which adds the two integer args together and "
@@ -203,7 +211,7 @@ msgstr ""
 "<https://github.com/micropython/micropython/tree/master/examples/usercmodule/cexample>`_ "
 "にもあります。"
 
-#: ../../develop/cmodules.rst:92
+#: ../../develop/cmodules.rst:96
 msgid ""
 "micropython/\n"
 "└──examples/\n"
@@ -214,21 +222,21 @@ msgid ""
 "         └── micropython.cmake"
 msgstr ""
 
-#: ../../develop/cmodules.rst:101
+#: ../../develop/cmodules.rst:105
 msgid ""
 "Refer to the comments in these files for additional explanation. Next to "
 "the ``cexample`` module there's also ``cppexample`` which works in the "
 "same way but shows one way of mixing C and C++ code in MicroPython."
 msgstr ""
 "より詳しい説明は、これらのファイルのコメントを参照してください。 "
-"``cexample`` モジュールの次には、同じように動作する ``cppexample`` もあり、
+"``cexample`` モジュールの次には、同じように動作する ``cppexample`` もあり、"
 "MicroPython で C と C++ コードを混ぜる方法の一つを示しています。"
 
-#: ../../develop/cmodules.rst:108
+#: ../../develop/cmodules.rst:112
 msgid "Compiling the cmodule into MicroPython"
 msgstr "cmodule を MicroPython に組み込む方法"
 
-#: ../../develop/cmodules.rst:110
+#: ../../develop/cmodules.rst:114
 msgid ""
 "To build such a module, compile MicroPython (see `getting started "
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_), "
@@ -239,139 +247,61 @@ msgstr ""
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_ "
 "を参照):"
 
-#: ../../develop/cmodules.rst:114
+#: ../../develop/cmodules.rst:118
 msgid ""
-"an extra ``make`` flag named ``USER_C_MODULES`` set to the directory "
-"containing all modules you want included (not to the module itself). For "
-"building the example modules which come with MicroPython, set "
-"``USER_C_MODULES`` to the ``examples/usercmodule`` directory. For your "
-"own projects it's more convenient to keep custom code out of the main "
-"source tree so a typical project directory structure will look like "
-"this::"
+"Set the build-time flag ``USER_C_MODULES`` to point to the modules you "
+"want to include.  For ports that use Make this variable should be a "
+"directory which is searched automatically for modules.  For ports that "
+"use CMake this variable should be a file which includes the modules to "
+"build.  See below for details."
 msgstr ""
-"``USER_C_MODULES`` という追加の ``make`` フラグにモジュールが含まれている"
-"ディレクトリを設定します(モジュール自体ではありません)。MicroPython に付属"
-"しているサンプルモジュールをビルドするには  ``USER_C_MODULES`` を "
-"``examples/usercmodule`` ディレクトリに設定します。自作のプロジェクト"
-"では、カスタムコードをメインのソースツリーに入れないほうがよいでしょう。"
-"よくあるプロジェクトのディレクトリ構造は次のようになります::"
+"ビルド時フラグ ``USER_C_MODULES`` を設定して、インクルードしたいモジュールを"
+"指すようにします。Make を使うポートでは、この変数にモジュールを自動的に検索する"
+"ディレクトリを指定します。CMake を使うポートでは、この変数にビルドするモジュールを"
+"含むファイルを指定してください。詳細は以下を参照してください。"
 
-#: ../../develop/cmodules.rst:122
+#: ../../develop/cmodules.rst:124
 msgid ""
-"my_project/\n"
-"├── modules/\n"
-"│   └──example1/\n"
-"│       ├──example1.c\n"
-"│       ├──micropython.mk\n"
-"│       └──micropython.cmake\n"
-"│   └──example2/\n"
-"│       ├──example2.c\n"
-"│       ├──micropython.mk\n"
-"│       └──micropython.cmake\n"
-"└── micropython/\n"
-"    ├──ports/\n"
-"   ... ├──stm32/\n"
-"      ..."
+"Enable the modules by setting the corresponding C preprocessor macro to "
+"1.  This is only needed if the modules you are building are not "
+"automatically enabled."
+msgstr ""
+"対応する C プリプロセッサのマクロを 1 に設定して、モジュールを有効にします。"
+"これは、ビルドするモジュールが自動的に有効になっていない場合にのみ必要です。"
+
+#: ../../develop/cmodules.rst:128
+msgid ""
+"For building the example modules which come with MicroPython, set "
+"``USER_C_MODULES`` to the ``examples/usercmodule`` directory for Make, or"
+" to ``examples/usercmodule/micropython.cmake`` for CMake."
+msgstr ""
+"MicroPython に付属するサンプルモジュールをビルドする場合、Make では "
+"``USER_C_MODULES`` を ``examples/usercmodule`` ディレクトリに設定し、"
+"CMake では ``examples/usercmodule/micropython.cmake`` に設定します。"
+
+#: ../../develop/cmodules.rst:132
+msgid ""
+"For example, here's how the to build the unix port with the example "
+"modules:"
+msgstr ""
+"たとえば、サンプルモジュールを使って unix ポートをビルドする方法は以下のとおりです。"
+
+#: ../../develop/cmodules.rst:134
+msgid ""
+"cd micropython/ports/unix\n"
+"make USER_C_MODULES=../../examples/usercmodule"
 msgstr ""
 
 #: ../../develop/cmodules.rst:139
-msgid "with ``USER_C_MODULES`` set to the ``my_project/modules`` directory."
-msgstr ""
-"この場合、 ``USER_C_MODULES`` には ``my_project/modules`` ディレクトリを"
-"設定します。"
-
-#: ../../develop/cmodules.rst:141
 msgid ""
-"A top level ``micropython.cmake`` - found directly in the "
-"``my_project/modules`` directory - should ``include`` all of your "
-"modules."
+"You may need to run ``make clean`` once at the start when including new "
+"user modules in the build.  The build output will show the modules "
+"found::"
 msgstr ""
-"トップレベルの ``micropython.cmake`` (``my_project/modules`` にあるもの)"
-"では、すべてのモジュールを取り込みます(``include``)。"
+"新しいユーザーモジュールをビルドに含める際には、最初に ``make clean`` を"
+"実行したほうがよいでしょう。ビルドの出力には見つかったモジュールが表示されます::"
 
-#: ../../develop/cmodules.rst:144
-msgid ""
-"include(${CMAKE_CURRENT_LIST_DIR}/example1/micropython.cmake)\n"
-"include(${CMAKE_CURRENT_LIST_DIR}/example2/micropython.cmake)"
-msgstr ""
-
-#: ../../develop/cmodules.rst:150
-msgid ""
-"all modules found in this directory (or added via ``include`` in the top-"
-"level ``micropython.cmake`` when using CMake) will be compiled, but only "
-"those which are enabled will be available for importing.  If a module is "
-"to always be enabled, which is usually the case for custom modules and "
-"custom builds, then it is enough to supply \"1\" as the third parameter "
-"to the registration macro, like:"
-msgstr ""
-"このディレクトリにあるすべてのモジュール(CMakeを使う場合にはトップレベルの "
-"``micropython.cmake`` に ``include`` で追加したモジュール)がコンパイルされますが、"
-"有効にしてあるモジュールだけがインポートできるようになります。カスタムモジュールや"
-"カスタムビルドのように、モジュールを常に有効にしたい場合は、次のように登録マクロの"
-"3番目のパラメータに \"1\" を指定するだけです。"
-
-#: ../../develop/cmodules.rst:156
-msgid "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, 1);"
-msgstr ""
-
-#: ../../develop/cmodules.rst:160
-msgid ""
-"Alternatively, to make the module disabled by default but selectable "
-"through a preprocessor configuration option, use:"
-msgstr ""
-"デフォルトではモジュールを無効にして、プリプロセッサの設定オプションで選択できるように"
-"するには次のようにします:"
-
-#: ../../develop/cmodules.rst:163
-msgid ""
-"MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, "
-"MODULE_CEXAMPLE_ENABLED);"
-msgstr ""
-
-#: ../../develop/cmodules.rst:168
-msgid ""
-"Then ``MODULE_CEXAMPLE_ENABLED`` has to be set to 1 to make the module "
-"available. This can be done by adding "
-"``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` to the ``make`` command, or "
-"editing ``mpconfigport.h`` or ``mpconfigboard.h`` to add"
-msgstr ""
-"この場合、モジュールを利用できるようにするには ``MODULE_CEXAMPLE_ENABLED`` を 1 "
-"に設定しなければなりません。これは ``make`` コマンドに "
-"``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` を追加するか、 "
-"``mpconfigport.h`` か ``mpconfigboard.h`` を編集して以下を追加します。"
-
-#: ../../develop/cmodules.rst:173
-msgid "#define MODULE_CEXAMPLE_ENABLED (1)"
-msgstr ""
-
-#: ../../develop/cmodules.rst:178
-msgid ""
-"Note that the exact method depends on the port as they have different "
-"structures. If not done correctly it will compile but importing will fail"
-" to find the module."
-msgstr ""
-"ポートによって異なる構造になっているので、正しい方法はポートに依存することに注意してください。"
-"適切に行われなかった場合、コンパイルはされたとしてもモジュールのインポートはできないでしょう。"
-
-#: ../../develop/cmodules.rst:182
-msgid ""
-"To sum up, here's how the ``cexample`` module from the "
-"``examples/usercmodule`` directory can be built for the unix port:"
-msgstr ""
-まとめるとして ``examples/usercmodule`` ディレクトリにある ``cexample`` "
-"モジュールを unix ポート用にビルドする方法を以下に示します:"
-
-#: ../../develop/cmodules.rst:185
-msgid ""
-"cd micropython/ports/unix\n"
-"make USER_C_MODULES=../../examples/usercmodule all"
-msgstr ""
-
-#: ../../develop/cmodules.rst:190
-msgid "The build output will show the modules found::"
-msgstr "ビルド中、次のようにモジュールを見つけた旨を示すメッセージが出力されるでしょう::"
-
-#: ../../develop/cmodules.rst:192
+#: ../../develop/cmodules.rst:142
 msgid ""
 "...\n"
 "Including User C Module from ../../examples/usercmodule/cexample\n"
@@ -379,21 +309,29 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:198
-msgid "For a CMake-based port such as rp2, this will look a little different:"
-msgstr "rp2 のような CMake ベースのポートでは、少々違ったやり方になります:""
+#: ../../develop/cmodules.rst:147
+msgid ""
+"For a CMake-based port such as rp2, this will look a little different "
+"(note that CMake is actually invoked by ``make``):"
+msgstr ""
+"rp2 のような CMake ベースのポートの場合、これは少し違った形になります"
+"(CMake は実際には ``make`` によって起動されることに注意してください):"
 
-#: ../../develop/cmodules.rst:200
+#: ../../develop/cmodules.rst:150
 msgid ""
 "cd micropython/ports/rp2\n"
-"make USER_C_MODULES=../../examples/usercmodule all"
+"make USER_C_MODULES=../../examples/usercmodule/micropython.cmake"
 msgstr ""
 
-#: ../../develop/cmodules.rst:206
-msgid "The CMake build output lists the modules by name::"
-msgstr "CMake はリストされているモジュールをビルドします::"
+#: ../../develop/cmodules.rst:155
+msgid ""
+"Again, you may need to run ``make clean`` first for CMake to pick up the "
+"user modules.  The CMake build output lists the modules by name::"
+msgstr ""
+"ここでも、CMake がユーザーモジュールをピックアップするために、最初に ``make clean`` "
+"を実行したほうがよいでしょう。CMake のビルド出力では、モジュールの名前が一覧表示されます::"
 
-#: ../../develop/cmodules.rst:208
+#: ../../develop/cmodules.rst:158
 msgid ""
 "...\n"
 "Including User C Module(s) from "
@@ -402,31 +340,177 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:214
+#: ../../develop/cmodules.rst:163
 msgid ""
-"The top-level ``micropython.cmake`` can be used to control which modules "
-"are enabled."
-msgstr "トップレベルの ``micropython.cmake`` では有効化するモジュールを指定できます。"
-
-#: ../../develop/cmodules.rst:217
-msgid ""
-"Or for your own project with a directory structure as shown above, "
-"including both modules and building the stm32 port for example:"
+"The contents of the top-level ``micropython.cmake`` can be used to "
+"control which modules are enabled."
 msgstr ""
-"また、上記のようなディレクトリ構造を持つ独自のプロジェクトで、たとえばモジュールと"
-"stm32 ポートのビルドを行うには次のようにします:"
+"トップレベルの ``micropython.cmake`` では有効化するモジュールを指定できます。"
 
-#: ../../develop/cmodules.rst:220
+#: ../../develop/cmodules.rst:166
+msgid ""
+"For your own projects it's more convenient to keep custom code out of the"
+" main MicroPython source tree, so a typical project directory structure "
+"will look like this::"
+msgstr ""
+"自作のプロジェクトでは、カスタムコードをMicroPythonのソースツリーに入れない方が"
+"便利なので、典型的なプロジェクトのディレクトリ構造は次のようになります::"
+
+#: ../../develop/cmodules.rst:170
+msgid ""
+"my_project/\n"
+"├── modules/\n"
+"│   ├── example1/\n"
+"│   │   ├── example1.c\n"
+"│   │   ├── micropython.mk\n"
+"│   │   └── micropython.cmake\n"
+"│   ├── example2/\n"
+"│   │   ├── example2.c\n"
+"│   │   ├── micropython.mk\n"
+"│   │   └── micropython.cmake\n"
+"│   └── micropython.cmake\n"
+"└── micropython/\n"
+"    ├──ports/\n"
+"   ... ├──stm32/\n"
+"      ..."
+msgstr ""
+
+#: ../../develop/cmodules.rst:186
+msgid ""
+"When building with Make set ``USER_C_MODULES`` to the "
+"``my_project/modules`` directory.  For example, building the stm32 port:"
+msgstr ""
+"Make でビルドする場合、 ``USER_C_MODULES`` には ``my_project/modules`` "
+"ディレクトリを設定します。たとえば stm32 ポートのビルドでは次のようになります:"
+
+#: ../../develop/cmodules.rst:189
 msgid ""
 "cd my_project/micropython/ports/stm32\n"
-"make USER_C_MODULES=../../../modules all"
+"make USER_C_MODULES=../../../modules"
 msgstr ""
 
-#: ../../develop/cmodules.rst:227 ../../develop/natmod.rst:201
+#: ../../develop/cmodules.rst:194
+msgid ""
+"When building with CMake the top level ``micropython.cmake`` -- found "
+"directly in the ``my_project/modules`` directory -- should ``include`` "
+"all of the modules you want to have available:"
+msgstr ""
+"CMake でビルドする場合、トップレベルの ``micropython.cmake`` "
+"(``my_project/modules`` にあるもの)では、すべてのモジュールを"
+"取り込みます(``include``)。"
+
+#: ../../develop/cmodules.rst:198
+msgid ""
+"include(${CMAKE_CURRENT_LIST_DIR}/example1/micropython.cmake)\n"
+"include(${CMAKE_CURRENT_LIST_DIR}/example2/micropython.cmake)"
+msgstr ""
+
+#: ../../develop/cmodules.rst:203
+msgid "Then build with:"
+msgstr "ビルドは次のように実行します:"
+
+#: ../../develop/cmodules.rst:205
+msgid ""
+"cd my_project/micropython/ports/esp32\n"
+"make USER_C_MODULES=../../../../modules/micropython.cmake"
+msgstr ""
+
+#: ../../develop/cmodules.rst:210
+msgid ""
+"Note that the esp32 port needs the extra ``..`` for relative paths due to"
+" the location of its main ``CMakeLists.txt`` file.   You can also specify"
+" absolute paths to ``USER_C_MODULES``."
+msgstr ""
+esp32 ポートでは、メインの ``CMakeLists.txt`` ファイルの場所により、"
+"相対パスのために余分な ``..`` が必要であることに注意してください。"
+"``USER_C_MODULES`` に絶対パスを指定することもできます。"
+
+#: ../../develop/cmodules.rst:214
+msgid ""
+"All modules specified by the ``USER_C_MODULES`` variable (either found in"
+" this directory when using Make, or added via ``include`` when using "
+"CMake) will be compiled, but only those which are enabled will be "
+"available for importing. User modules are usually enabled by default "
+"(this is decided by the developer of the module), in which case there is "
+"nothing more to do than set ``USER_C_MODULES`` as described above."
+msgstr ""
+"``USER_C_MODULES`` 変数で指定されたすべてのモジュール(Make を使う場合は"
+"このディレクトリで見つけたもの、CMake を使う場合は include で追加したもの)が"
+"コンパイルされますが、有効にしてあるモジュールだけがインポートできるようになります。"
+"ユーザーモジュールは通常デフォルトで有効になっており(モジュールの開発者が決定します)、"
+"その場合、上述のように ``USER_C_MODULES`` を設定する以外にすることはありません。"
+
+#: ../../develop/cmodules.rst:221
+msgid ""
+"If a module is not enabled by default then the corresponding C "
+"preprocessor macro must be enabled.  This macro name can be found by "
+"searching for the ``MP_REGISTER_MODULE`` line in the module's source code"
+" (it usually appears at the end of the main source file). The third "
+"argument to ``MP_REGISTER_MODULE`` is the macro name, and this must be "
+"set to 1 using ``CFLAGS_EXTRA`` to make the module available.  If the "
+"third argument is just the number 1 then the module is enabled by "
+"default."
+msgstr ""
+"モジュールがデフォルトで有効になっていない場合、対応する C プリプロセッサのマクロを"
+"有効にする必要があります。このマクロ名はモジュールのソースコードの "
+"``MP_REGISTER_MODULE`` 行を検索することで見つけられます(通常、メインソースファイル"
+"の最後に表示されます)。 ``MP_REGISTER_MODULE`` の第3引数はマクロ名で、"
+"モジュールを有効化するには ``CFLAGS_EXTRA`` を使ってこれを 1 に設定する"
+"必要があります。第3引数が単に数字の 1 であれば、モジュールはデフォルトで有効になります。"
+
+#: ../../develop/cmodules.rst:228
+msgid ""
+"For example, the ``examples/usercmodule/cexample`` module is enabled by "
+"default so has the following line in its source code:"
+msgstr ""
+"たとえば ``examples/usercmodule/cexample`` モジュールは、デフォルトで有効に"
+"なっているので、ソースコードに次のような行があります:"
+
+#: ../../develop/cmodules.rst:231
+msgid "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, 1);"
+msgstr ""
+
+#: ../../develop/cmodules.rst:235
+msgid ""
+"Alternatively, to make this module disabled by default but selectable "
+"through a preprocessor configuration option, it would be:"
+msgstr "デフォルトではモジュールを無効にして、プリプロセッサの設定オプションで選択できるようにするには次のようにします:"
+
+#: ../../develop/cmodules.rst:238
+msgid ""
+"MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, "
+"MODULE_CEXAMPLE_ENABLED);"
+msgstr ""
+
+#: ../../develop/cmodules.rst:242
+msgid ""
+"In this case the module is enabled by adding "
+"``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` to the ``make`` command, or "
+"editing ``mpconfigport.h`` or ``mpconfigboard.h`` to add"
+msgstr ""
+"この場合、モジュールを利用できるようにするには ``make`` コマンドに "
+"``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` を追加するか、 "
+"``mpconfigport.h`` か ``mpconfigboard.h`` を編集して以下を追加します。"
+
+#: ../../develop/cmodules.rst:245
+msgid "#define MODULE_CEXAMPLE_ENABLED (1)"
+msgstr ""
+
+#: ../../develop/cmodules.rst:249
+msgid ""
+"Note that the exact method depends on the port as they have different "
+"structures.  If not done correctly it will compile but importing will "
+"fail to find the module."
+msgstr ""
+"ポートによって異なる構造になっているので、正しい方法はポートに依存することに"
+"注意してください。適切に行われなかった場合、コンパイルはされたとしても"
+"モジュールのインポートはできないでしょう。"
+
+#: ../../develop/cmodules.rst:255 ../../develop/natmod.rst:201
 msgid "Module usage in MicroPython"
 msgstr "MicroPython でのモジュールの使い方"
 
-#: ../../develop/cmodules.rst:229
+#: ../../develop/cmodules.rst:257
 msgid ""
 "Once built into your copy of MicroPython, the module can now be accessed "
 "in Python just like any other builtin module, e.g."
@@ -434,7 +518,7 @@ msgstr ""
 "MicroPython 自前でビルドすると、他の組み込みモジュールと同じように Python で"
 "アクセスできるようになります。たとえば次のように使います。"
 
-#: ../../develop/cmodules.rst:232
+#: ../../develop/cmodules.rst:260
 msgid ""
 "import cexample\n"
 "print(cexample.add_ints(1, 3))\n"
