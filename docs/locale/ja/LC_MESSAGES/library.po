@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2014-2020, Damien P. George, Paul Sokolovsky, and
+# Copyright (C) 2014-2021, Damien P. George, Paul Sokolovsky, and
 # contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.13\n"
+"Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-26 09:54+0900\n"
-"PO-Revision-Date: 2021-02-23 12:45+0900\n"
+"POT-Creation-Date: 2021-04-29 10:23+0900\n"
+"PO-Revision-Date: 2021-04-29 10:33+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -897,7 +897,7 @@ msgid ""
 "All builtin functions and exceptions are described here. They are also "
 "available via ``builtins`` module."
 msgstr ""
-"組込みの関数と例外のすべては、ここで説明します。これらは"
+"組込みの関数と例外のすべては、ここで説明します。これらは "
 "``builtins`` モジュール経由でも利用できます。"
 
 #: ../../library/builtins.rst:8
@@ -932,20 +932,11 @@ msgstr "*slice* 組込み型は、スライスオブジェクトが持つデー�
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/builtins.rst:179
-msgid ""
-"|see_cpython| `python:OSError`. MicroPython doesn't implement ``errno`` "
-"attribute, instead use the standard way to access exception arguments: "
-"``exc.args[0]``."
-msgstr ""
-"|see_cpython| `python:OSError` 。MicroPython は ``errno`` 属性を実装しておらず、"
-"代わりに標準的な方法 ``exc.args[0]`` で例外引数にアクセスします。"
-
-#: ../../library/builtins.rst:191
+#: ../../library/builtins.rst:187
 msgid "|see_cpython| `python:SystemExit`."
 msgstr ""
 
-#: ../../library/builtins.rst:195
+#: ../../library/builtins.rst:191
 msgid "|see_cpython| `python:TypeError`."
 msgstr ""
 
@@ -13716,21 +13707,20 @@ msgstr ""
 msgid ""
 "Error codes, based on ANSI C/POSIX standard. All error codes start with "
 "\"E\". As mentioned above, inventory of the codes depends on "
-":term:`MicroPython port`. Errors are usually accessible as "
-"``exc.args[0]`` where ``exc`` is an instance of `OSError`. Usage "
-"example::"
+":term:`MicroPython port`. Errors are usually accessible as ``exc.errno`` "
+"where ``exc`` is an instance of `OSError`. Usage example::"
 msgstr ""
 "ANSI C/POSIX 規格に基づくエラーコードです。すべてのエラーコードは \"E\" で始まります。"
 "前述のように、コードに何があるかは :term:`MicroPython ポート <MicroPython port>` "
 "に依存します。 ``exc`` が `OSError` のインスタンスであるとすると、エラーには通常 "
-"``exc.args[0]`` でアクセス可能です。たとえば次のようにアクセスします::"
+"``exc.errno`` でアクセス可能です。たとえば次のようにアクセスします::"
 
 #: ../../library/uerrno.rst:22
 msgid ""
 "try:\n"
 "    uos.mkdir(\"my_dir\")\n"
 "except OSError as exc:\n"
-"    if exc.args[0] == uerrno.EEXIST:\n"
+"    if exc.errno == uerrno.EEXIST:\n"
 "        print(\"Directory already exists\")"
 msgstr ""
 
