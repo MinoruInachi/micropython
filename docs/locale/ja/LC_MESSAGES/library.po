@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-29 10:23+0900\n"
-"PO-Revision-Date: 2021-04-29 10:33+0900\n"
+"POT-Creation-Date: 2021-05-05 09:37+0900\n"
+"PO-Revision-Date: 2021-05-05 11:20+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1434,7 +1434,7 @@ msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
 "``clock_div`` *divides* the clock input which determines the resolution "
-"of the RMT channel. The numbers specificed in ``write_pulses`` are "
+"of the RMT channel. The numbers specified in ``write_pulses`` are "
 "multiplied by the resolution to define the pulses."
 msgstr ""
 "RMT モジュールへの入力は 80MHz クロックです(将来的には入力クロックを設定できる可能性もありますが、"
@@ -2898,11 +2898,27 @@ msgstr ""
 "リセット原因を取得します。戻り値については :ref:`定数 <machine_constants>` を"
 "参照してください。"
 
-#: ../../library/machine.rst:40 ../../library/pyb.rst:97
+#: ../../library/machine.rst:42
+msgid ""
+"Reset the device and enter its bootloader.  This is typically used to put"
+" the device into a state where it can be programmed with new firmware."
+msgstr ""
+"デバイスをリセットし、ブートローダに入ります。これは通常、デバイスを新しい"
+"ファームウェアでプログラム可能な状態にするために使います。"
+
+#: ../../library/machine.rst:45
+msgid ""
+"Some ports support passing in an optional *value* argument which can "
+"control which bootloader to enter, what to pass to it, or other things."
+msgstr ""
+"一部のポートでは、オプションの *value* 引数を渡すことができ、"
+"どのブートローダに入るか、何を渡すかなどを制御できます。"
+
+#: ../../library/machine.rst:49 ../../library/pyb.rst:97
 msgid "Interrupt related functions"
 msgstr "割り込み関連の関数"
 
-#: ../../library/machine.rst:45
+#: ../../library/machine.rst:53
 msgid ""
 "Disable interrupt requests. Returns the previous IRQ state which should "
 "be considered an opaque value. This return value should be passed to the "
@@ -2913,7 +2929,7 @@ msgstr ""
 "値とみなす必要があります。この戻り値は `disable_irq()` を呼び出す前の"
 "元の状態に割り込みを復元するために `enable_irq()` 関数に渡す必要があります。"
 
-#: ../../library/machine.rst:52
+#: ../../library/machine.rst:60
 msgid ""
 "Re-enable interrupt requests. The *state* parameter should be the value "
 "that was returned from the most recent call to the `disable_irq()` "
@@ -2922,15 +2938,15 @@ msgstr ""
 "割り込み要求を再度有効にします。 *state* パラメータは `disable_irq()` 関数の"
 "最も最近の呼び出しから返された値である必要があります。"
 
-#: ../../library/machine.rst:56 ../../library/pyb.rst:115
+#: ../../library/machine.rst:65 ../../library/pyb.rst:115
 msgid "Power related functions"
 msgstr "電力関連の関数"
 
-#: ../../library/machine.rst:61
+#: ../../library/machine.rst:69
 msgid "Returns CPU frequency in hertz."
 msgstr "CPU周波数をヘルツ単位で返します。"
 
-#: ../../library/machine.rst:65
+#: ../../library/machine.rst:73
 msgid ""
 "Gates the clock to the CPU, useful to reduce power consumption at any "
 "time during short or long periods. Peripherals continue working and "
@@ -2942,17 +2958,17 @@ msgstr ""
 "ペリフェラルは動作を継続し、割り込みが発生すると直ちに実行を再開します(多くのポートでは、"
 "システムタイマ割り込みがミリ秒単位で定期的に発生します)。"
 
-#: ../../library/machine.rst:72
+#: ../../library/machine.rst:80
 msgid ""
 "This function is deprecated, use `lightsleep()` instead with no arguments."
 msgstr ""
 "この関数は廃止予定です。代わりに `lightsleep()` を引数なしで使ってください。"
 
-#: ../../library/machine.rst:77
+#: ../../library/machine.rst:85
 msgid "Stops execution in an attempt to enter a low power state."
 msgstr "実行を停止して、低電力状態に入ります。"
 
-#: ../../library/machine.rst:79
+#: ../../library/machine.rst:87
 msgid ""
 "If *time_ms* is specified then this will be the maximum time in milliseconds that "
 "the sleep will last for.  Otherwise the sleep can last indefinitely."
@@ -2960,7 +2976,7 @@ msgstr ""
 "*time_ms* が指定されている場合、これはスリープが続く最大ミリ秒単位の時間になります。"
 "指定しなければスリープが無期限に続くようになります。"
 
-#: ../../library/machine.rst:82
+#: ../../library/machine.rst:90
 msgid ""
 "With or without a timeout, execution may resume at any time if there are "
 "events that require processing.  Such events, or wake sources, should be "
@@ -2970,7 +2986,7 @@ msgstr ""
 "そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
 "スリープ前に設定する必要があります。"
 
-#: ../../library/machine.rst:86
+#: ../../library/machine.rst:94
 msgid ""
 "The precise behaviour and power-saving capabilities of lightsleep and deepsleep is "
 "highly dependent on the underlying hardware, but the general properties are:"
@@ -2978,7 +2994,7 @@ msgstr ""
 "ライトスリープ(lightsleep)とディープスリープ(deepsleep)の正確な動作と省電力機能は、"
 "基盤となるハードウェアに大きく依存しますが、一般的な特性は次のとおりです。"
 
-#: ../../library/machine.rst:89
+#: ../../library/machine.rst:97
 msgid ""
 "A lightsleep has full RAM and state retention.  Upon wake execution is resumed "
 "from the point where the sleep was requested, with all subsystems operational."
@@ -2986,7 +3002,7 @@ msgstr ""
 "ライトスリープには RAM と状態の完全な保持があります。スリープ解除が要求された時点から実行が"
 "再開され、すべてのサブシステムが動作可能になります。"
 
-#: ../../library/machine.rst:92
+#: ../../library/machine.rst:100
 msgid ""
 "A deepsleep may not retain RAM or any other state of the system (for example "
 "peripherals or network interfaces).  Upon wake execution is resumed from the main "
@@ -2999,7 +3015,7 @@ msgstr ""
 "から実行が再開されます。 `reset_cause()` 関数は `machine.DEEPSLEEP` を返します。"
 "これは他のリセットとディープスリープからの起床を区別するのに使えます。"
 
-#: ../../library/machine.rst:100
+#: ../../library/machine.rst:108
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -3007,15 +3023,15 @@ msgstr ""
 "起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
 "を参照してください。"
 
-#: ../../library/machine.rst:102
+#: ../../library/machine.rst:110
 msgid "Availability: ESP32, WiPy."
 msgstr "可用性: ESP32、WiPy。"
 
-#: ../../library/machine.rst:104 ../../library/pyb.rst:187
+#: ../../library/machine.rst:113 ../../library/pyb.rst:187
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../library/machine.rst:109
+#: ../../library/machine.rst:117
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -3028,7 +3044,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../library/machine.rst:116
+#: ../../library/machine.rst:124
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -3037,7 +3053,7 @@ msgstr ""
 "指定の *pin* にパルスの持続時間をマイクロ秒単位で返します。 *pulse_level* 引数には、"
 "低パルスの時間計測で 0、高パルスの時間計測で 1 を指定します。"
 
-#: ../../library/machine.rst:120
+#: ../../library/machine.rst:128
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -3050,7 +3066,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../library/machine.rst:125
+#: ../../library/machine.rst:133
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -3061,24 +3077,24 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../library/machine.rst:132
+#: ../../library/machine.rst:140
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
 #: ../../library/machine.I2C.rst:87 ../../library/machine.UART.rst:149
-#: ../../library/machine.UART.rst:158 ../../library/machine.rst:134
+#: ../../library/machine.UART.rst:158 ../../library/machine.rst:142
 msgid "Availability: WiPy."
 msgstr "可用性: WiPy"
 
-#: ../../library/machine.rst:145
+#: ../../library/machine.rst:153
 msgid "IRQ wake values."
 msgstr "IRQ 起床値。"
 
-#: ../../library/machine.rst:153
+#: ../../library/machine.rst:161
 msgid "Reset causes."
 msgstr "リセット原因。"
 
-#: ../../library/machine.rst:159
+#: ../../library/machine.rst:167
 msgid "Wake-up reasons."
 msgstr "起床理由。"
 
@@ -3500,6 +3516,144 @@ msgstr ""
 "*addr* で指定したスレーブに、 *memaddr* で指定したメモリアドレスへ *buf* を書き込みます。"
 "引数 *addrsize* はアドレスサイズをビット数で指定します"
 "(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
+
+#: ../../library/machine.PWM.rst:5
+msgid "class PWM -- pulse width modulation"
+msgstr "クラス PWM -- パルス幅変調"
+
+#: ../../library/machine.PWM.rst:7
+msgid "This class provides pulse width modulation output."
+msgstr "このクラスはパルス幅変調出力を提供します。"
+
+#: ../../library/machine.PWM.rst:11
+msgid ""
+"from machine import PWM\n"
+"\n"
+"pwm = PWM(pin)          # create a PWM object on a pin\n"
+"pwm.duty_u16(32768)     # set duty to 50%\n"
+"\n"
+"# reinitialise with a period of 200us, duty of 5us\n"
+"pwm.init(freq=5000, duty_ns=5000)\n"
+"\n"
+"pwm.duty_ns(3000)       # set pulse width to 3us\n"
+"\n"
+"pwm.deinit()"
+msgstr ""
+"from machine import PWM\n"
+"\n"
+"pwm = PWM(pin)          # 指定のピンの PWM オブジェクトを作成\n"
+"pwm.duty_u16(32768)     # パルス幅を 50% に設定\n"
+"\n"
+"# 200us の周期、デューティ比を 5us で再初期化\n"
+"pwm.init(freq=5000, duty_ns=5000)\n"
+"\n"
+"pwm.duty_ns(3000)       # 3us のパルス幅を設定\n"
+"\n"
+"pwm.deinit()"
+
+#: ../../library/machine.PWM.rst:28
+msgid "Construct and return a new PWM object using the following parameters:"
+msgstr ""
+"次のパラメータを使って、新しい PWM オブジェクトを作成して返します:"
+
+#: ../../library/machine.PWM.rst:30
+msgid ""
+"*dest* is the entity on which the PWM is output, which is usually a "
+":ref:`machine.Pin <machine.Pin>` object, but a port may allow other "
+"values, like integers."
+msgstr ""
+"*dest* は PWM が出力される実体であり、通常は :ref:`machine.Pin <machine.Pin>` "
+"オブジェクトですが、ポートによっては整数など他の値を使える場合があります。"
+
+#: ../../library/machine.PWM.rst:33
+msgid ""
+"*freq* should be an integer which sets the frequency in Hz for the PWM "
+"cycle."
+msgstr ""
+"*freq* は PWM サイクルの周波数を Hz 単位で設定する整数です。"
+
+#: ../../library/machine.PWM.rst:35
+msgid "*duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65535``."
+msgstr "*duty_u16* はパルス幅を ``duty_u16 / 65535`` の比率で設定します。"
+
+#: ../../library/machine.PWM.rst:36
+msgid "*duty_ns* sets the pulse width in nanoseconds."
+msgstr "*duty_ns* はパルス幅をナノ秒単位で設定します。
+
+#: ../../library/machine.PWM.rst:38
+msgid ""
+"Setting *freq* may affect other PWM objects if the objects share the same"
+" underlying PWM generator (this is hardware specific). Only one of "
+"*duty_u16* and *duty_ns* should be specified at a time."
+msgstr ""
+"オブジェクトが同じ基盤の PWM ジェネレーターを共有している場合に "
+"*freq* を設定すると他の PWM オブジェクトに影響を与える可能性があります"
+"(これはハードウェアによります)。一度に指定する必要があるのは *duty_u16 * と "
+"*duty_ns* のいずれか１つだけです。"
+
+#: ../../library/machine.PWM.rst:47
+msgid ""
+"Modify settings for the PWM object.  See the above constructor for "
+"details about the parameters."
+msgstr ""
+"PWM オブジェクトの設定を変更します。パラメータの詳細については、"
+"上記のコンストラクタを参照してください。"
+
+#: ../../library/machine.PWM.rst:52
+msgid "Disable the PWM output."
+msgstr "PWM 出力を無効にします。"
+
+#: ../../library/machine.PWM.rst:56
+msgid "Get or set the current frequency of the PWM output."
+msgstr "PWM 出力の現在の周波数を取得または設定します。"
+
+#: ../../library/machine.PWM.rst:58
+msgid "With no arguments the frequency in Hz is returned."
+msgstr "引数がない場合、Hz 単位の周波数が返されます。"
+
+#: ../../library/machine.PWM.rst:60
+msgid ""
+"With a single *value* argument the frequency is set to that value in Hz."
+"  The method may raise a ``ValueError`` if the frequency is outside the "
+"valid range."
+msgstr ""
+"単一 *value* 引数を指定すると、周波数が指定の値に Hz 単位で設定されます。 "
+"周波数が有効範​​囲外の場合、メソッドは ``ValueError`` 例外を発生します。"
+
+#: ../../library/machine.PWM.rst:65
+msgid ""
+"Get or set the current duty cycle of the PWM output, as an unsigned "
+"16-bit value in the range 0 to 65535 inclusive."
+msgstr ""
+"PWM 出力の現在のパルス幅を、0〜65535 の範囲の符号なし16ビット値として"
+"取得または設定します。"
+
+#: ../../library/machine.PWM.rst:68
+msgid "With no arguments the duty cycle is returned."
+msgstr "引数がない場合、パルス幅が返されます。"
+
+#: ../../library/machine.PWM.rst:70
+msgid ""
+"With a single *value* argument the duty cycle is set to that value, "
+"measured as the ratio ``value / 65535``."
+msgstr ""
+"単一の *value* 引数を指定すると、パルス幅が ``value / 65535`` の比率"
+"として測定されます。"
+
+#: ../../library/machine.PWM.rst:75
+msgid ""
+"Get or set the current pulse width of the PWM output, as a value in "
+"nanoseconds."
+msgstr ""
+"PWM 出力の現在のパルス幅をナノ秒単位の値として取得または設定します。"
+
+#: ../../library/machine.PWM.rst:77
+msgid "With no arguments the pulse width in nanoseconds is returned."
+msgstr "引数がない場合、ナノ秒単位のパルス幅が返されます。"
+
+#: ../../library/machine.PWM.rst:79
+msgid "With a single *value* argument the pulse width is set to that value."
+msgstr "単一の *value* 引数を指定すると、パルス幅が指定の値に設定されます。"
 
 #: ../../library/machine.Pin.rst:5 ../../library/pyb.Pin.rst:5
 msgid "class Pin -- control I/O pins"
@@ -4935,7 +5089,7 @@ msgid ""
 "SoCs, differently greatly from a model to a model. MicroPython's Timer "
 "class defines a baseline operation of executing a callback with a given "
 "period (or once after some delay), and allow specific boards to define "
-"more non-standard behavior (which thus won't be portable to other "
+"more non-standard behaviour (which thus won't be portable to other "
 "boards)."
 msgstr ""
 "ハードウェアタイマーは、一定周期とイベントのタイミングで処理します。タイマーは"
@@ -5180,8 +5334,8 @@ msgstr ""
 
 #: ../../library/machine.TimerWiPy.rst:118
 msgid ""
-"The behavior of this callback is heavily dependent on the operating mode "
-"of the timer channel:"
+"The behaviour of this callback is heavily dependent on the operating mode"
+" of the timer channel:"
 msgstr ""
 
 #: ../../library/machine.TimerWiPy.rst:121
@@ -6188,8 +6342,8 @@ msgstr ""
 msgid ""
 "Activate (\"up\") or deactivate (\"down\") the network interface, if a "
 "boolean argument is passed. Otherwise, query current state if no argument"
-" is provided. Most other methods require an active interface (behavior of"
-" calling them on inactive interface is undefined)."
+" is provided. Most other methods require an active interface (behaviour "
+"of calling them on inactive interface is undefined)."
 msgstr ""
 "ブール型の引数が渡された場合、ネットワークインタフェースを有効化(\"up\")または"
 "無効化(\"down\")します。引数が与えられていなければ現在の状態を問い合わせます。"
@@ -13517,7 +13671,7 @@ msgstr "構造体デスクリプターの浮動小数点型"
 
 #: ../../library/uctypes.rst:248
 msgid ""
-"``VOID`` is an alias for ``UINT8``, and is provided to conviniently "
+"``VOID`` is an alias for ``UINT8``, and is provided to conveniently "
 "define C's void pointers: ``(uctypes.PTR, uctypes.VOID)``."
 msgstr ""
 "``VOID`` これは ``UINT8`` の別名であり、C の void ポインターのために定義"
@@ -13889,8 +14043,8 @@ msgstr ""
 
 #: ../../library/uio.rst:21
 msgid ""
-"(Abstract) base stream classes, which serve as a foundation for behavior "
-"of all the concrete classes, adhere to few dichotomies (pair-wise "
+"(Abstract) base stream classes, which serve as a foundation for behaviour"
+" of all the concrete classes, adhere to few dichotomies (pair-wise "
 "classifications) in CPython. In MicroPython, they are somewhat simplified"
 " and made implicit to achieve higher efficiencies and save resources."
 msgstr ""
@@ -13928,8 +14082,8 @@ msgid ""
 " for MicroPython. So, while MicroPython doesn't support buffered streams,"
 " it still provides for no-short-operations streams. Whether there will be"
 " short operations or not depends on each particular class' needs, but "
-"developers are strongly advised to favor no-short-operations behavior for"
-" the reasons stated above. For example, MicroPython sockets are "
+"developers are strongly advised to favour no-short-operations behaviour "
+"for the reasons stated above. For example, MicroPython sockets are "
 "guaranteed to avoid short read/writes. Actually, at this time, there is "
 "no example of a short-operations stream class in the core, and one would "
 "be a port-specific class, where such a need is governed by hardware "
@@ -13951,8 +14105,8 @@ msgstr ""
 
 #: ../../library/uio.rst:51
 msgid ""
-"The no-short-operations behavior gets tricky in case of non-blocking "
-"streams, blocking vs non-blocking behavior being another CPython "
+"The no-short-operations behaviour gets tricky in case of non-blocking "
+"streams, blocking vs non-blocking behaviour being another CPython "
 "dichotomy, fully supported by MicroPython. Non-blocking streams never "
 "wait for data either to arrive or be written - they read/write whatever "
 "possible, or signal lack of data (or ability to write data). Clearly, "
@@ -15298,11 +15452,11 @@ msgstr ""
 
 #: ../../library/uselect.rst:90
 msgid ""
-"If *flags* is 1, one-shot behavior for events is employed: streams for "
+"If *flags* is 1, one-shot behaviour for events is employed: streams for "
 "which events happened will have their event masks automatically reset "
 "(equivalent to ``poll.modify(obj, 0)``), so new events for such a stream "
 "won't be processed until new mask is set with `poll.modify()`. This "
-"behavior is useful for asynchronous I/O schedulers."
+"behaviour is useful for asynchronous I/O schedulers."
 msgstr ""
 "*flags* が 1 の場合、イベントのワンショット動作が採用されます。イベントが発生した"
 "ストリームは、イベントマスクが自動的にリセットされるので(``poll.modify(obj, 0)`` "
@@ -15707,8 +15861,8 @@ msgstr ""
 
 #: ../../library/usocket.rst:225
 msgid ""
-"The behavior of this method on non-blocking sockets is undefined. Due to "
-"this, on MicroPython, it's recommended to use `write()` method instead, "
+"The behaviour of this method on non-blocking sockets is undefined. Due to"
+" this, on MicroPython, it's recommended to use `write()` method instead, "
 "which has the same \"no short writes\" policy for blocking sockets, and "
 "will return number of bytes sent on non-blocking sockets."
 msgstr ""
@@ -16438,8 +16592,8 @@ msgid ""
 "finally look again, it may seem to you that only 1 hour has passed. To "
 "avoid this mistake, just look at the clock regularly. Your application "
 "should do the same. \"Too long sleep\" metaphor also maps directly to "
-"application behavior: don't let your application run any single task for "
-"too long. Run tasks in steps, and do time-keeping inbetween."
+"application behaviour: don't let your application run any single task for"
+" too long. Run tasks in steps, and do time-keeping inbetween."
 msgstr ""
 "上記の制約の形式的でない理論的根拠: 部屋に閉じ込められていて、普通の１２時間式の時計"
 "以外に時間の経過を調べる手段がないとします。ある時刻をチェックした後、１３時間経過する"
