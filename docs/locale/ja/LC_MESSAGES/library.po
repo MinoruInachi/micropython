@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 09:37+0900\n"
-"PO-Revision-Date: 2021-05-05 11:20+0900\n"
+"POT-Creation-Date: 2021-05-08 18:02+0900\n"
+"PO-Revision-Date: 2021-05-09 12:13+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -572,13 +572,14 @@ msgid ""
 "other types, you need to serialize them to `bytes` first)."
 msgstr ""
 "``btree`` モジュールは、外部記憶装置(ディスクファイル、または一般的な場合はランダム"
-"アクセスストリーム)を使用して単純な キー/値 (Key-Value)データベースを実装します。"
+"アクセスのストリーム `stream`)を使用して単純な キー/値 (Key-Value)データベースを"
+"実装します。"
 "キーはデータベースにソートして格納され、キー値による効率的な検索に加えて、データベース"
 "は効率的な順序付き範囲スキャン(特定の範囲内のキーを持つ値の検索)もサポートします。"
 "アプリケーションインタフェース側では、BTreeデータベースは標準の辞書型(`dict`)と"
-"同じように機能します。辞書型との大きな違いは、キーと値の両方が bytes 型オブジェクト"
+"同じように機能します。辞書型との大きな違いは、キーと値の両方が `bytes` 型オブジェクト"
 "でなければならないことです(したがって、他の型のオブジェクトを格納する"
-"場合は bytes 型オブジェクトにシリアル化しておく必要があります)。"
+"場合は `bytes` 型オブジェクトにシリアル化しておく必要があります)。"
 
 #: ../../library/btree.rst:17
 msgid "The module is based on the well-known BerkelyDB library, version 1.xx."
@@ -722,7 +723,7 @@ msgid ""
 "advanced parameters of the database operation (most users will not need "
 "them):"
 msgstr ""
-"ランダムアクセスストリームからデータベースをオープンします(ファイルのオープンに"
+"ランダムアクセスのストリーム(`stream`)からデータベースをオープンします(ファイルのオープンに"
 "似ています)。他のすべてのパラメータはオプション、キーワード指定のみであり、"
 "データベース操作の高度なパラメータを調整できます(ほとんどのユーザには必要ないで"
 "しょう):"
@@ -778,10 +779,11 @@ msgstr ""
 "以下で説明する追加のメソッドを実装しています。"
 
 #: ../../library/btree.rst:104 ../../library/machine.ADC.rst:29
-#: ../../library/machine.ADCWiPy.rst:40 ../../library/machine.Pin.rst:107
-#: ../../library/machine.RTC.rst:25 ../../library/machine.SD.rst:38
-#: ../../library/machine.SPI.rst:44 ../../library/machine.Signal.rst:97
-#: ../../library/machine.Timer.rst:36 ../../library/machine.TimerWiPy.rst:40
+#: ../../library/machine.ADCWiPy.rst:40 ../../library/machine.PWM.rst:43
+#: ../../library/machine.Pin.rst:107 ../../library/machine.RTC.rst:25
+#: ../../library/machine.SD.rst:38 ../../library/machine.SPI.rst:44
+#: ../../library/machine.Signal.rst:97 ../../library/machine.Timer.rst:38
+#: ../../library/machine.TimerWiPy.rst:40
 #: ../../library/machine.TimerWiPy.rst:114 ../../library/machine.UART.rst:44
 #: ../../library/machine.WDT.rst:32 ../../library/network.CC3K.rst:52
 #: ../../library/network.WIZNET5K.rst:52 ../../library/network.WLAN.rst:27
@@ -795,8 +797,10 @@ msgstr ""
 #: ../../library/pyb.Servo.rst:39 ../../library/pyb.Switch.rst:32
 #: ../../library/pyb.Timer.rst:63 ../../library/pyb.Timer.rst:229
 #: ../../library/pyb.UART.rst:85 ../../library/pyb.USB_HID.rst:22
-#: ../../library/pyb.USB_VCP.rst:22 ../../library/uhashlib.rst:43
-#: ../../library/uselect.rst:32 ../../library/usocket.rst:180
+#: ../../library/pyb.USB_VCP.rst:22 ../../library/rp2.Flash.rst:25
+#: ../../library/rp2.PIO.rst:28 ../../library/rp2.StateMachine.rst:27
+#: ../../library/uhashlib.rst:43 ../../library/uselect.rst:32
+#: ../../library/usocket.rst:180
 msgid "Methods"
 msgstr "メソッド"
 
@@ -861,14 +865,14 @@ msgstr ""
 #: ../../library/machine.Pin.rst:240 ../../library/machine.RTC.rst:65
 #: ../../library/machine.SPI.rst:103 ../../library/machine.Timer.rst:61
 #: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:152
-#: ../../library/machine.rst:139 ../../library/math.rst:177
+#: ../../library/machine.rst:149 ../../library/math.rst:177
 #: ../../library/network.CC3K.rst:83 ../../library/network.WLANWiPy.rst:145
 #: ../../library/pyb.CAN.rst:283 ../../library/pyb.ExtInt.rst:102
 #: ../../library/pyb.I2C.rst:157 ../../library/pyb.Pin.rst:181
 #: ../../library/pyb.SPI.rst:113 ../../library/pyb.UART.rst:178
-#: ../../library/pyb.USB_VCP.rst:114 ../../library/uerrno.rst:13
-#: ../../library/usocket.rst:139 ../../library/ussl.rst:42
-#: ../../library/usys.rst:47
+#: ../../library/pyb.USB_VCP.rst:114 ../../library/rp2.PIO.rst:66
+#: ../../library/uerrno.rst:13 ../../library/usocket.rst:139
+#: ../../library/ussl.rst:55 ../../library/usys.rst:47
 msgid "Constants"
 msgstr "定数"
 
@@ -1247,9 +1251,9 @@ msgid ""
 "for data heap regions and `esp32.HEAP_EXEC` for executable regions as "
 "used by the native code emitter."
 msgstr ""
-"capabilities パラメータは ESP-IDF の MALLOC_CAP_XXX の値に相当しますが、"
+"capabilities パラメータは ESP-IDF の ``MALLOC_CAP_XXX`` の値に相当しますが、"
 "最も有用な２つの値は esp32 モジュールに予め定義されています。 "
-"`esp32.HEAP_DATA` はデータヒープ領域用であり、
+"`esp32.HEAP_DATA` はデータヒープ領域用であり、 "
 "`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
 
 #: ../../library/esp32.rst:55
@@ -1747,22 +1751,24 @@ msgstr ""
 
 #: ../../library/framebuf.rst:29 ../../library/lcd160cr.rst:38
 #: ../../library/machine.ADC.rst:19 ../../library/machine.ADCWiPy.rst:23
-#: ../../library/machine.I2C.rst:42 ../../library/machine.Pin.rst:43
-#: ../../library/machine.RTC.rst:18 ../../library/machine.SD.rst:31
-#: ../../library/machine.SPI.rst:23 ../../library/machine.Signal.rst:75
-#: ../../library/machine.Timer.rst:28 ../../library/machine.TimerWiPy.rst:32
-#: ../../library/machine.UART.rst:37 ../../library/machine.WDT.rst:21
-#: ../../library/network.CC3K.rst:31 ../../library/network.WIZNET5K.rst:32
-#: ../../library/network.WLAN.rst:17 ../../library/network.WLANWiPy.rst:29
-#: ../../library/pyb.ADC.rst:24 ../../library/pyb.Accel.rst:17
-#: ../../library/pyb.CAN.rst:23 ../../library/pyb.DAC.rst:50
-#: ../../library/pyb.ExtInt.rst:52 ../../library/pyb.Flash.rst:16
-#: ../../library/pyb.I2C.rst:57 ../../library/pyb.LCD.rst:42
-#: ../../library/pyb.LED.rst:11 ../../library/pyb.Pin.rst:75
-#: ../../library/pyb.RTC.rst:18 ../../library/pyb.SPI.rst:29
-#: ../../library/pyb.Servo.rst:31 ../../library/pyb.Switch.rst:24
-#: ../../library/pyb.Timer.rst:54 ../../library/pyb.UART.rst:47
-#: ../../library/pyb.USB_HID.rst:14 ../../library/pyb.USB_VCP.rst:13
+#: ../../library/machine.I2C.rst:42 ../../library/machine.PWM.rst:24
+#: ../../library/machine.Pin.rst:43 ../../library/machine.RTC.rst:18
+#: ../../library/machine.SD.rst:31 ../../library/machine.SPI.rst:23
+#: ../../library/machine.Signal.rst:75 ../../library/machine.Timer.rst:28
+#: ../../library/machine.TimerWiPy.rst:32 ../../library/machine.UART.rst:37
+#: ../../library/machine.WDT.rst:21 ../../library/network.CC3K.rst:31
+#: ../../library/network.WIZNET5K.rst:32 ../../library/network.WLAN.rst:17
+#: ../../library/network.WLANWiPy.rst:29 ../../library/pyb.ADC.rst:24
+#: ../../library/pyb.Accel.rst:17 ../../library/pyb.CAN.rst:23
+#: ../../library/pyb.DAC.rst:50 ../../library/pyb.ExtInt.rst:52
+#: ../../library/pyb.Flash.rst:16 ../../library/pyb.I2C.rst:57
+#: ../../library/pyb.LCD.rst:42 ../../library/pyb.LED.rst:11
+#: ../../library/pyb.Pin.rst:75 ../../library/pyb.RTC.rst:18
+#: ../../library/pyb.SPI.rst:29 ../../library/pyb.Servo.rst:31
+#: ../../library/pyb.Switch.rst:24 ../../library/pyb.Timer.rst:54
+#: ../../library/pyb.UART.rst:47 ../../library/pyb.USB_HID.rst:14
+#: ../../library/pyb.USB_VCP.rst:13 ../../library/rp2.Flash.rst:17
+#: ../../library/rp2.PIO.rst:17 ../../library/rp2.StateMachine.rst:14
 #: ../../library/uhashlib.rst:28
 msgid "Constructors"
 msgstr "コンストラクタ"
@@ -2233,21 +2239,21 @@ msgstr ""
 "そのモジュールをロードします。何も見つからなければ、組込みの ``ujson`` モジュール"
 "をロードします。"
 
-#: ../../library/index.rst:101
+#: ../../library/index.rst:102
 msgid "MicroPython-specific libraries"
 msgstr "MicroPython 固有のライブラリ"
 
-#: ../../library/index.rst:103
+#: ../../library/index.rst:104
 msgid ""
 "Functionality specific to the MicroPython implementation is available in "
 "the following libraries."
 msgstr "MicroPython 処理系に固有の機能は、以下のライブラリで利用できます。"
 
-#: ../../library/index.rst:119
+#: ../../library/index.rst:121
 msgid "Port-specific libraries"
 msgstr "ポート固有のライブラリ"
 
-#: ../../library/index.rst:122
+#: ../../library/index.rst:123
 msgid ""
 "In some cases the following port/board-specific libraries have "
 "functions or classes similar to those in the :mod:`machine` library.  "
@@ -2259,7 +2265,7 @@ msgstr ""
 "ライブラリの方では、そのプラットフォームに固有のハードウェア機能が使えるように"
 "なっています。"
 
-#: ../../library/index.rst:122
+#: ../../library/index.rst:128
 msgid ""
 "To write portable code use functions and classes from the :mod:`machine` "
 "module. To access platform-specific hardware use the appropriate library, "
@@ -2270,29 +2276,40 @@ msgstr ""
 "ポート固有ライブラリを使ってください。たとえば Pyboard の場合は :mod:`pyb` "
 "を使います。"
 
-#: ../../library/index.rst:132
+#: ../../library/index.rst:134
 msgid "Libraries specific to the pyboard"
 msgstr "pyboard 固有のライブラリ"
 
-#: ../../library/index.rst:135
+#: ../../library/index.rst:136
 msgid "The following libraries are specific to the pyboard."
 msgstr "以下のライブラリは pyboard に固有のものです。"
 
-#: ../../library/index.rst:144
+#: ../../library/index.rst:146
 msgid "Libraries specific to the WiPy"
 msgstr "WiPy 固有のライブラリ"
 
-#: ../../library/index.rst:147
+#: ../../library/index.rst:148
 msgid "The following libraries and classes are specific to the WiPy."
 msgstr "以下のライブラリとクラスは WiPy に固有のものです。"
 
-#: ../../library/index.rst:157
+#: ../../library/index.rst:159
 msgid "Libraries specific to the ESP8266 and ESP32"
 msgstr "ESP8266 と ESP32 に固有のライブラリ"
 
-#: ../../library/index.rst:160
+#: ../../library/index.rst:161
 msgid "The following libraries are specific to the ESP8266 and ESP32."
 msgstr "以下のライブラリは ESP8266 と ESP32 に固有のものです。"
+
+#: ../../library/index.rst:171
+msgid "Libraries specific to the RP2040"
+msgstr "RP2040 に固有のライブラリ"
+
+#: ../../library/index.rst:173
+msgid ""
+"The following libraries are specific to the RP2040, as used in the "
+"Raspberry Pi Pico."
+msgstr ""
+"以下のライブラリは (Raspberry Pi Pico で使われている) RP2040 に固有のものです。"
 
 #: ../../library/lcd160cr.rst:2
 msgid ":mod:`lcd160cr` --- control of LCD160CR display"
@@ -2943,10 +2960,17 @@ msgid "Power related functions"
 msgstr "電力関連の関数"
 
 #: ../../library/machine.rst:69
-msgid "Returns CPU frequency in hertz."
+msgid "Returns the CPU frequency in hertz."
 msgstr "CPU周波数をヘルツ単位で返します。"
 
-#: ../../library/machine.rst:73
+#: ../../library/machine.rst:71
+msgid ""
+"On some ports this can also be used to set the CPU frequency by passing "
+"in *hz*."
+msgstr ""
+"一部のポートでは *hz* を指定することで CPU の周波数を設定できます。"
+
+#: ../../library/machine.rst:75
 msgid ""
 "Gates the clock to the CPU, useful to reduce power consumption at any "
 "time during short or long periods. Peripherals continue working and "
@@ -2958,17 +2982,17 @@ msgstr ""
 "ペリフェラルは動作を継続し、割り込みが発生すると直ちに実行を再開します(多くのポートでは、"
 "システムタイマ割り込みがミリ秒単位で定期的に発生します)。"
 
-#: ../../library/machine.rst:80
+#: ../../library/machine.rst:82
 msgid ""
 "This function is deprecated, use `lightsleep()` instead with no arguments."
 msgstr ""
 "この関数は廃止予定です。代わりに `lightsleep()` を引数なしで使ってください。"
 
-#: ../../library/machine.rst:85
+#: ../../library/machine.rst:87
 msgid "Stops execution in an attempt to enter a low power state."
 msgstr "実行を停止して、低電力状態に入ります。"
 
-#: ../../library/machine.rst:87
+#: ../../library/machine.rst:89
 msgid ""
 "If *time_ms* is specified then this will be the maximum time in milliseconds that "
 "the sleep will last for.  Otherwise the sleep can last indefinitely."
@@ -2976,7 +3000,7 @@ msgstr ""
 "*time_ms* が指定されている場合、これはスリープが続く最大ミリ秒単位の時間になります。"
 "指定しなければスリープが無期限に続くようになります。"
 
-#: ../../library/machine.rst:90
+#: ../../library/machine.rst:92
 msgid ""
 "With or without a timeout, execution may resume at any time if there are "
 "events that require processing.  Such events, or wake sources, should be "
@@ -2986,7 +3010,7 @@ msgstr ""
 "そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
 "スリープ前に設定する必要があります。"
 
-#: ../../library/machine.rst:94
+#: ../../library/machine.rst:96
 msgid ""
 "The precise behaviour and power-saving capabilities of lightsleep and deepsleep is "
 "highly dependent on the underlying hardware, but the general properties are:"
@@ -2994,7 +3018,7 @@ msgstr ""
 "ライトスリープ(lightsleep)とディープスリープ(deepsleep)の正確な動作と省電力機能は、"
 "基盤となるハードウェアに大きく依存しますが、一般的な特性は次のとおりです。"
 
-#: ../../library/machine.rst:97
+#: ../../library/machine.rst:99
 msgid ""
 "A lightsleep has full RAM and state retention.  Upon wake execution is resumed "
 "from the point where the sleep was requested, with all subsystems operational."
@@ -3002,7 +3026,7 @@ msgstr ""
 "ライトスリープには RAM と状態の完全な保持があります。スリープ解除が要求された時点から実行が"
 "再開され、すべてのサブシステムが動作可能になります。"
 
-#: ../../library/machine.rst:100
+#: ../../library/machine.rst:102
 msgid ""
 "A deepsleep may not retain RAM or any other state of the system (for example "
 "peripherals or network interfaces).  Upon wake execution is resumed from the main "
@@ -3015,7 +3039,7 @@ msgstr ""
 "から実行が再開されます。 `reset_cause()` 関数は `machine.DEEPSLEEP` を返します。"
 "これは他のリセットとディープスリープからの起床を区別するのに使えます。"
 
-#: ../../library/machine.rst:108
+#: ../../library/machine.rst:110
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -3023,7 +3047,7 @@ msgstr ""
 "起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
 "を参照してください。"
 
-#: ../../library/machine.rst:110
+#: ../../library/machine.rst:112
 msgid "Availability: ESP32, WiPy."
 msgstr "可用性: ESP32、WiPy。"
 
@@ -3031,7 +3055,7 @@ msgstr "可用性: ESP32、WiPy。"
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../library/machine.rst:117
+#: ../../library/machine.rst:119
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -3044,7 +3068,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../library/machine.rst:124
+#: ../../library/machine.rst:126
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -3053,7 +3077,7 @@ msgstr ""
 "指定の *pin* にパルスの持続時間をマイクロ秒単位で返します。 *pulse_level* 引数には、"
 "低パルスの時間計測で 0、高パルスの時間計測で 1 を指定します。"
 
-#: ../../library/machine.rst:128
+#: ../../library/machine.rst:130
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -3066,7 +3090,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../library/machine.rst:133
+#: ../../library/machine.rst:135
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -3077,26 +3101,33 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../library/machine.rst:140
+#: ../../library/machine.rst:142
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
 #: ../../library/machine.I2C.rst:87 ../../library/machine.UART.rst:149
-#: ../../library/machine.UART.rst:158 ../../library/machine.rst:142
+#: ../../library/machine.UART.rst:158 ../../library/machine.rst:144
 msgid "Availability: WiPy."
 msgstr "可用性: WiPy"
 
-#: ../../library/machine.rst:153
+#: ../../library/machine.rst:155
 msgid "IRQ wake values."
 msgstr "IRQ 起床値。"
 
-#: ../../library/machine.rst:161
+#: ../../library/machine.rst:163
 msgid "Reset causes."
 msgstr "リセット原因。"
 
-#: ../../library/machine.rst:167
+#: ../../library/machine.rst:169
 msgid "Wake-up reasons."
 msgstr "起床理由。"
+
+#: ../../library/machine.rst:172 ../../library/pyb.rst:302
+#: ../../library/rp2.rst:76 ../../library/uarray.rst:14
+#: ../../library/ucollections.rst:13 ../../library/ucryptolib.rst:8
+#: ../../library/uio.rst:87
+msgid "Classes"
+msgstr "クラス"
 
 #: ../../library/machine.ADC.rst:5 ../../library/pyb.ADC.rst:5
 msgid "class ADC -- analog to digital conversion"
@@ -3492,7 +3523,7 @@ msgid ""
 msgstr ""
 "*addr* で指定したスレーブより、 *memaddr* で指定したメモリアドレスから "
 "*nbytes* 分を読み込みます。引数 *addrsize* はアドレスサイズをビット数で指定します。"
-"この関数は読み込んだデータを持つ bytes 型オブジェクトを返します。"
+"この関数は読み込んだデータを持つ `bytes` 型オブジェクトを返します。"
 
 #: ../../library/machine.I2C.rst:185
 msgid ""
@@ -4729,7 +4760,7 @@ msgstr ""
 ""
 "ソフトウェア SPI オブジェクトを新規に構築します。追加のパラメータを指定する必要があり、"
 "たいていは少なくとも *sck*, *mosi*, *miso* を指定します。パラメータの説明は "
-"SPI.init を参照してください。"
+"`SPI.init` を参照してください。"
 
 #: ../../library/machine.SPI.rst:48 ../../library/pyb.SPI.rst:56
 msgid "Initialise the SPI bus with the given parameters:"
@@ -6130,7 +6161,7 @@ msgid ""
 "meaning the heap is not locked."
 msgstr ""
 "`heap_unlock()` と `heap_locked()` のどちらも現在のロックの深さを返します"
-"(`heap_unlock()` ではロック解除後の値)。返される値は 0 以上の整数値です。0 は"
+"(heap_unlock() ではロック解除後の値)。返される値は 0 以上の整数値です。0 は"
 "ヒープがロックされていないことを意味します。"
 
 #: ../../library/micropython.rst:99
@@ -9177,6 +9208,66 @@ msgstr ""
 msgid "interrupt on a rising or falling edge"
 msgstr ""
 
+#: ../../library/pyb.Flash.rst:5 ../../library/rp2.Flash.rst:5
+msgid "class Flash -- access to built-in flash storage"
+msgstr "クラス Flash -- 内蔵フラッシュストレージへのアクセス"
+
+#: ../../library/pyb.Flash.rst:7
+msgid ""
+"The Flash class allows direct access to the primary flash device on the "
+"pyboard."
+msgstr ""
+
+#: ../../library/pyb.Flash.rst:9 ../../library/rp2.Flash.rst:9
+msgid ""
+"In most cases, to store persistent data on the device, you'll want to use"
+" a higher-level abstraction, for example the filesystem via Python's "
+"standard file API, but this interface is useful to :ref:`customise the "
+"filesystem configuration <filesystem>` or implement a low-level storage "
+"system for your application."
+msgstr ""
+"ほとんどの場合、永続データをデバイスに保存するには高レベルの抽象化インタフェースを"
+"使うでしょう。たとえば、Python の標準ファイル API を介したファイルシステムなどです。"
+"この Flash クラスは、 :ref:`ファイルシステム構成をカスタマイズ <filesystem>` "
+"したり、特定のアプリケーションのための低レベルストレージシステムを実装するのに役立ちます。"
+
+#: ../../library/pyb.Flash.rst:20
+msgid ""
+"Create and return a block device that represents the flash device "
+"presented to the USB mass storage interface."
+msgstr ""
+
+#: ../../library/pyb.Flash.rst:23
+msgid ""
+"It includes a virtual partition table at the start, and the actual flash "
+"starts at block ``0x100``."
+msgstr ""
+
+#: ../../library/pyb.Flash.rst:26
+msgid ""
+"This constructor is deprecated and will be removed in a future version of"
+" MicroPython."
+msgstr ""
+
+#: ../../library/pyb.Flash.rst:31
+msgid ""
+"Create and return a block device that accesses the flash at the specified"
+" offset. The length defaults to the remaining size of the device."
+msgstr ""
+
+#: ../../library/pyb.Flash.rst:33
+msgid ""
+"The *start* and *len* offsets are in bytes, and must be a multiple of the"
+" block size (typically 512 for internal flash)."
+msgstr ""
+
+#: ../../library/pyb.Flash.rst:51
+msgid ""
+"On boards with external spiflash (e.g. Pyboard D), the MicroPython "
+"firmware will be configured to use that as the primary flash storage. On "
+"all other boards, the internal flash inside the :term:`MCU` will be used."
+msgstr ""
+
 #: ../../library/pyb.I2C.rst:15
 msgid ""
 "from pyb import I2C\n"
@@ -11333,6 +11424,507 @@ msgstr ""
 #: ../../library/pyb.USB_VCP.rst:103
 msgid "Return value: number of bytes sent."
 msgstr ""
+
+#: ../../library/rp2.rst:4
+msgid ":mod:`rp2` --- functionality specific to the RP2040"
+msgstr ""
+
+#: ../../library/rp2.rst:9
+msgid ""
+"The ``rp2`` module contains functions and classes specific to the RP2040,"
+" as used in the Raspberry Pi Pico."
+msgstr ""
+"``rp2`` モジュールは、Raspberry Pi Pico で使われている RP2040 に固有の関数とクラスを"
+"提供します。"
+
+#: ../../library/rp2.rst:12
+msgid ""
+"See the `RP2040 Python datasheet <https://datasheets.raspberrypi.org/pico"
+"/raspberry-pi-pico-python-sdk.pdf>`_ for more information, and `pico-"
+"micropython-examples <https://github.com/raspberrypi/pico-micropython-"
+"examples/tree/master/pio>`_ for example code."
+msgstr ""
+"詳しくは `RP2040 Python データシート <https://datasheets.raspberrypi.org/pico"
+"/raspberry-pi-pico-python-sdk.pdf>`_ を参照してください。サンプルコードについては "
+"`pico-micropython-examples <https://github.com/raspberrypi/pico-micropython-"
+"examples/tree/master/pio>`_ を参照してください。"
+
+#: ../../library/rp2.rst:20
+msgid "PIO related functions"
+msgstr "PIO 関連関数"
+
+#: ../../library/rp2.rst:22
+msgid "The ``rp2`` module includes functions for assembling PIO programs."
+msgstr "``rp2`` モジュールには PIO プログラムをアセンブルするための関数があります。""
+
+#: ../../library/rp2.rst:24
+msgid "For running PIO programs, see :class:`rp2.StateMachine`."
+msgstr "PIO プログラムの実行については :class:`rp2.StateMachine` を参照してください。"
+
+#: ../../library/rp2.rst:28
+msgid "Assemble a PIO program."
+msgstr "PIO プログラムをアセンブルします。"
+
+#: ../../library/rp2.rst:30
+msgid ""
+"The following parameters control the initial state of the GPIO pins, as "
+"one of `PIO.IN_LOW`, `PIO.IN_HIGH`, `PIO.OUT_LOW` or `PIO.OUT_HIGH`. If "
+"the program uses more than one pin, provide a tuple, e.g. "
+"``out_init=(PIO.OUT_LOW, PIO.OUT_LOW)``."
+msgstr ""
+"以下のパラメータは　GPIO　ピンの初期状態を　`PIO.IN_LOW`, `PIO.IN_HIGH`, "
+"`PIO.OUT_LOW`, `PIO.OUT_HIGH` のいずれかに制御します。プログラムが複数のピンを"
+"使う場合は ``out_init=(PIO.OUT_LOW, PIO.OUT_LOW)`` のようにタプルで指定します。"
+
+#: ../../library/rp2.rst:35
+msgid "*out_init* configures the pins used for ``out()`` instructions."
+msgstr "*out_init* は ``out()`` 命令に使うピンを構成します。"
+
+#: ../../library/rp2.rst:36
+msgid ""
+"*set_init* configures the pins used for ``set()`` instructions. There can"
+" be at most 5."
+msgstr ""
+"*set_init* は ``set()`` 命令で使うピンを構成します。最大５つのピンまで指定できます。"
+
+#: ../../library/rp2.rst:38
+msgid ""
+"*sideset_init* configures the pins used side-setting. There can be at "
+"most 5."
+msgstr ""
+"*sideset_init* はサイドセットで使うピンを構成します。最大５つのピンまで指定できます。"
+
+#: ../../library/rp2.rst:41
+msgid ""
+"The following parameters are used by default, but can be overriden in "
+"`StateMachine.init()`:"
+msgstr ""
+"以下のパラメータがデフォルトで使われますが、 `StateMachine.init()` で上書きできます:"
+
+#: ../../library/rp2.rst:44
+msgid ""
+"*in_shiftdir* is the default direction the ISR will shift, either "
+"`PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`."
+msgstr ""
+"*in_shiftdir* は ISR がシフトするデフォルトの方向です。 "
+"`PIO.SHIFT_LEFT` または `PIO.SHIFT_RIGHT` のどちらかを指定します。"
+
+#: ../../library/rp2.rst:46
+msgid ""
+"*out_shiftdir* is the default direction the OSR will shift, either "
+"`PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`."
+msgstr ""
+"*out_shiftdir* は OSR がシフトするデフォルトの方向です。 "
+"`PIO.SHIFT_LEFT` または `PIO.SHIFT_RIGHT` のどちらかを指定します。"
+
+#: ../../library/rp2.StateMachine.rst:56 ../../library/rp2.rst:48
+msgid ""
+"*push_thresh* is the threshold in bits before auto-push or conditional "
+"re-pushing is triggered."
+msgstr ""
+"*push_thresh* は、自動プッシュまたは条件付き再プッシュが起きる閾値をビット数で指定します。"
+
+#: ../../library/rp2.StateMachine.rst:58 ../../library/rp2.rst:50
+msgid ""
+"*pull_thresh* is the threshold in bits before auto-push or conditional "
+"re-pushing is triggered."
+msgstr ""
+"*pull_thresh* は、自動プルまたは条件付き再プルが起きる閾値をビット数で指定します。"
+
+#: ../../library/rp2.rst:53
+msgid "The remaining parameters are:"
+msgstr "残りのパラメータは以下のとおりです:"
+
+#: ../../library/rp2.rst:55
+msgid "*autopush* configures whether auto-push is enabled."
+msgstr "*autopush* は自動プッシュを有効にするかどうかを構成します。"
+
+#: ../../library/rp2.rst:56
+msgid "*autopull* configures whether auto-pull is enabled."
+msgstr "*autopull* は自動プルを有効にするかどうかを構成します。"
+
+#: ../../library/rp2.rst:57
+msgid ""
+"*fifo_join* configures whether the 4-word TX and RX FIFOs should be "
+"combined into a single 8-word FIFO for one direction only. The options "
+"are `PIO.JOIN_NONE`, `PIO.JOIN_RX` and `PIO.JOIN_TX`."
+msgstr ""
+"*fifo_join* は、４ワードの TX および RX FIFO を一方向のみの単一の８ワード FIFO "
+"に結合するかどうかを構成します。指定できるのは `PIO.JOIN_NONE`, "
+"`PIO.JOIN_RX`, `PIO.JOIN_TX` のいずれかです。"
+
+#: ../../library/rp2.rst:63
+msgid ""
+"Assemble a single PIO instruction. You usually want to use `asm_pio()` "
+"instead."
+msgstr ""
+"単一のPIO命令をアセンブルします。通常は `asm_pio()` の代わりに使います。"
+
+#: ../../library/rp2.rst:71
+msgid ""
+"This exception is raised from `asm_pio()` or `asm_pio_encode()` if there "
+"is an error assembling a PIO program."
+msgstr ""
+"この例外は `asm_pio()` または `asm_pio_encode()` での PIO プログラムの"
+"アセンブルでエラーが発生した場合に発生します。"
+
+#: ../../library/rp2.Flash.rst:7
+msgid "This class gives access to the SPI flash memory."
+msgstr "このクラスは SPI フラッシュメモリーへのアクセスを提供します。"
+
+#: ../../library/rp2.Flash.rst:21
+msgid "Gets the singleton object for accessing the SPI flash memory."
+msgstr "SPI フラッシュメモリにアクセスするためのシンゲルトンオブジェクトを取得します。"
+
+#: ../../library/rp2.Flash.rst:33
+msgid ""
+"These methods implement the simple and extended :ref:`block protocol "
+"<block-device-interface>` defined by :class:`uos.AbstractBlockDev`."
+msgstr ""
+"これらのメソッドは :class:`uos.AbstractBlockDev` で定義されている"
+"シンプルで拡張された :ref:`ブロックプロトコル <block-device-interface>` "
+"を実装しています。"
+
+#: ../../library/rp2.PIO.rst:5
+msgid "class PIO -- advanced PIO usage"
+msgstr "クラス PIO -- 高度な PIO インタフェース"
+
+#: ../../library/rp2.PIO.rst:7
+msgid ""
+"The :class:`PIO` class gives access to an instance of the RP2040's PIO "
+"(programmable I/O) interface."
+msgstr ""
+":class:`PIO` クラスは RP2040 の PIO (プログラム可能な I/O)インタフェースの"
+"インスタンスへのアクセスを提供します。"
+
+#: ../../library/rp2.PIO.rst:10
+msgid ""
+"The preferred way to interact with PIO is using "
+":class:`rp2.StateMachine`, the PIO class is for advanced use."
+msgstr ""
+"PIO とやりとりするための好ましい方法は :class:`rp2.StateMachine` を"
+"使うことです。PIO クラスは高度な利用を目的としています。"
+
+#: ../../library/rp2.PIO.rst:13 ../../library/rp2.StateMachine.rst:10
+msgid "For assembling PIO programs, see :func:`rp2.asm_pio`."
+msgstr "PIO プログラムのアセンブルについては :func:`rp2.asm_pio` を参照してください。"
+
+#: ../../library/rp2.PIO.rst:21
+msgid ""
+"Gets the PIO instance numbered *id*. The RP2040 has two PIO instances, "
+"numbered 0 and 1."
+msgstr ""
+"*id* で指定した番号の PIO インスタンスを取得します。RP2040 には 0 と 1 の"
+"番号の付いた２つの PIO インスタンスがあります。"
+
+#: ../../library/rp2.PIO.rst:24
+msgid "Raises a ``ValueError`` if any other argument is provided."
+msgstr "他の番号の引数が指定されている場合は ``ValueError`` が発生します。"
+
+#: ../../library/rp2.PIO.rst:32
+msgid "Add the *program* to the instruction memory of this PIO instance."
+msgstr "この PIO インスタンスの命令メモリにプログラム *program* を追加します。"
+
+
+#: ../../library/rp2.PIO.rst:34
+msgid ""
+"The amount of memory available for programs on each PIO instance is "
+"limited. If there isn't enough space left in the PIO's program memory "
+"this method will raise ``OSError(ENOMEM)``."
+msgstr ""
+"各 PIO インスタンスのプログラムで使用できるメモリの量は制限されています。"
+"PIOのプログラムメモリに十分なスペースが残っていない場合、このメソッドは "
+"``OSError(ENOMEM)`` を発生します。"
+
+#: ../../library/rp2.PIO.rst:40
+msgid "Remove *program* from the instruction memory of this PIO instance."
+msgstr "この PIO インスタンスの命令メモリからプログラム *program* を削除します。"
+
+#: ../../library/rp2.PIO.rst:42
+msgid "If no program is provided, it removes all programs."
+msgstr "プログラムを指定しない場合は、すべてのプログラムを削除します。"
+
+#: ../../library/rp2.PIO.rst:44
+msgid "It is not an error to remove a program which has already been removed."
+msgstr "すでに削除されているプログラムを削除してもエラーにはなりません。"
+
+#: ../../library/rp2.PIO.rst:48
+msgid ""
+"Gets the state machine numbered *id*. On the RP2040, each PIO instance "
+"has four state machines, numbered 0 to 3."
+msgstr ""
+"*id* で指定した番号のステートマシンを取得します。RP2040 には各 PIO インスタンスに "
+"0 から 3 までの番号が付けられた４つのステートマシンがあります。"
+
+#: ../../library/rp2.PIO.rst:51
+msgid "Optionally initialize it with a *program*: see `StateMachine.init`."
+msgstr ""
+"引数 *program* を指定すると、指定のプログラムでステートマシンを初期化します。 "
+"`StateMachine.init` を参照してください。"
+
+#: ../../library/rp2.PIO.rst:58
+msgid "Returns the IRQ object for this PIO instance."
+msgstr "この PIO インスタンスの IRQ オブジェクトを返します。"
+
+#: ../../library/rp2.PIO.rst:60
+msgid "MicroPython only uses IRQ 0 on each PIO instance. IRQ 1 is not available."
+msgstr "MicroPython は、各 PIO インスタンスで IRQ0 のみを使います。IRQ1 は使えません。"
+
+#: ../../library/rp2.PIO.rst:62 ../../library/rp2.StateMachine.rst:130
+msgid "Optionally configure it."
+msgstr "IRQ インスタンスは指定の引数で構成されます。"
+
+#: ../../library/rp2.PIO.rst:73
+msgid ""
+"These constants are used for the *out_init*, *set_init*, and "
+"*sideset_init* arguments to `asm_pio`."
+msgstr ""
+"これらの定数は `asm_pio` の引数 *out_init*, *set_init*, *sideset_init* "
+"で使います。"
+
+#: ../../library/rp2.PIO.rst:79
+msgid ""
+"These constants are used for the *in_shiftdir* and *out_shiftdir* "
+"arguments to `asm_pio` or `StateMachine.init`."
+msgstr ""
+"これらの定数は `asm_pio` または `StateMachine.init` の引数 *in_shiftdir* と "
+"*out_shiftdir* で使います。"
+
+#: ../../library/rp2.PIO.rst:86
+msgid "These constants are used for the *fifo_join* argument to `asm_pio`."
+msgstr "これらの定数は `asm_pio` の引数 *fifo_join* で使います。"
+
+#: ../../library/rp2.PIO.rst:93
+msgid "These constants are used for the *trigger* argument to `PIO.irq`."
+msgstr "これらの定数は `PIO.irq` の引数 *trigger* で使います。"
+
+#: ../../library/rp2.StateMachine.rst:5
+msgid "class StateMachine -- access to the RP2040's programmable I/O interface"
+msgstr "クラス StateMachine -- RP2040 のプログラム可能 I/O インタフェースへのインタフェース"
+
+#: ../../library/rp2.StateMachine.rst:7
+msgid ""
+"The :class:`StateMachine` class gives access to the RP2040's PIO "
+"(programmable I/O) interface."
+msgstr ""
+":class:`StateMachine` クラスは RP2040 の PIO (プログラム可能 I/O)"
+"インタフェースへのアクセスを提供します。"
+
+#: ../../library/rp2.StateMachine.rst:18
+msgid ""
+"Get the state machine numbered *id*. The RP2040 has two identical PIO "
+"instances, each with 4 state machines: so there are 8 state machines in "
+"total, numbered 0 to 7."
+msgstr ""
+"*id* で指定した番号のステートマシンを取得します。RP2040 には各 PIO インスタンスに"
+"４つのステートマシンがあります: したがって、0 から 7 までの番号の付いた合計8つの"
+"ステートマシンがあります。"
+
+#: ../../library/rp2.StateMachine.rst:22
+msgid ""
+"Optionally initialize it with the given program *program*: see "
+"`StateMachine.init`."
+msgstr ""
+"引数 *program* を指定すると、指定のプログラムでステートマシンを初期化します。 "
+"`StateMachine.init` を参照してください。"
+
+#: ../../library/rp2.StateMachine.rst:31
+msgid "Configure the state machine instance to run the given *program*."
+msgstr "指定したプログラム *program* を実行するようにステートマシンインスタンスを構成します。"
+
+#: ../../library/rp2.StateMachine.rst:33
+msgid ""
+"The program is added to the instruction memory of this PIO instance. If "
+"the instruction memory already contains this program, then its offset is "
+"re-used so as to save on instruction memory."
+msgstr ""
+"プログラムは、この PIO インスタンスの命令メモリに追加されます。"
+"命令メモリがこのプログラムをすでに含んでいる場合、そのオフセットは"
+"命令メモリを節約するために再利用されます。"
+
+#: ../../library/rp2.StateMachine.rst:37
+msgid ""
+"*freq* is the frequency in Hz to run the state machine at. Defaults to "
+"the system clock frequency."
+msgstr ""
+"*freq* は、ステートマシンを実行する周波数(Hz)です。"
+"デフォルトはシステムクロック周波数です。"
+
+#: ../../library/rp2.StateMachine.rst:40
+msgid ""
+"The clock divider is computed as ``system clock frequency / freq``, so "
+"there can be slight rounding errors."
+msgstr ""
+"クロック分周は ``システムクロック周波数 / freq`` として計算されるため、"
+"わずかな丸め誤差が発生する可能性があります。"
+
+#: ../../library/rp2.StateMachine.rst:43
+msgid ""
+"The minimum possible clock divider is one 65536th of the system clock: so"
+" at the default system clock frequency of 125MHz, the minimum value of "
+"*freq* is ``1908``. To run state machines at slower frequencies, you'll "
+"need to reduce the system clock speed with `machine.freq()`."
+msgstr ""
+"可能な最小クロック分周は、システムクロックの65536分の1です。"
+"したがって、デフォルトのシステムクロック周波数 125MHz では *freq* の最小値は "
+"``1908`` になります。ステートマシンをより遅い周波数で実行するには `machine.freq()` で"
+"システムクロック速度を下げる必要があります。"
+
+#: ../../library/rp2.StateMachine.rst:47
+msgid "*in_base* is the first pin to use for ``in()`` instructions."
+msgstr "*in_base* は ``in()`` 命令に使う先頭のピンです。"
+
+#: ../../library/rp2.StateMachine.rst:48
+msgid "*out_base* is the first pin to use for ``out()`` instructions."
+msgstr "*out_base* は ``out()`` 命令に使う先頭のピンです。"
+
+#: ../../library/rp2.StateMachine.rst:49
+msgid "*set_base* is the first pin to use for ``set()`` instructions."
+msgstr "*set_base* は ``set()`` 命令に使う先頭のピンです。"
+
+#: ../../library/rp2.StateMachine.rst:50
+msgid "*jmp_pin* is the first pin to use for ``jmp(pin, ...)`` instructions."
+msgstr "*jmp_pin* は ``jmp(pin, ...)`` 命令に使う先頭のピンです。"
+
+#: ../../library/rp2.StateMachine.rst:51
+msgid "*sideset_base* is the first pin to use for side-setting."
+msgstr "*sideset_base* はサイドセットに使う先頭のピンです。"
+
+#: ../../library/rp2.StateMachine.rst:52
+msgid ""
+"*in_shiftdir* is the direction the ISR will shift, either "
+"`PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`."
+msgstr ""
+"*in_shiftdir* は ISR がシフトする方向です。 "
+"`PIO.SHIFT_LEFT` または `PIO.SHIFT_RIGHT` のどちらかを指定します。"
+
+#: ../../library/rp2.StateMachine.rst:54
+msgid ""
+"*out_shiftdir* is the direction the OSR will shift, either "
+"`PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`."
+msgstr ""
+"*out_shiftdir* は OSR がシフトする方向です。 "
+"`PIO.SHIFT_LEFT` または `PIO.SHIFT_RIGHT` のどちらかを指定します。"
+
+#: ../../library/rp2.StateMachine.rst:63
+msgid "Gets or sets whether the state machine is currently running."
+msgstr "ステートマシンが現在実行されているかどうかを取得または設定します。"
+
+#: ../../library/rp2.StateMachine.rst:72
+msgid "Restarts the state machine and jumps to the beginning of the program."
+msgstr "ステートマシンを再起動し、プログラムの先頭にジャンプします。"
+
+#: ../../library/rp2.StateMachine.rst:74
+msgid ""
+"This method clears the state machine's internal state using the RP2040's "
+"``SM_RESTART`` register. This includes:"
+msgstr ""
+"このメソッドは、RP2040 の ``SM_RESTART`` レジスタを使ってステートマシンの"
+"内部状態をクリアします。クリアする内部状態は次のものです:"
+
+#: ../../library/rp2.StateMachine.rst:77
+msgid "input and output shift counters"
+msgstr "入力および出力シフトカウンター"
+
+#: ../../library/rp2.StateMachine.rst:78
+msgid "the contents of the input shift register"
+msgstr "入力シフトレジスタの内容"
+
+#: ../../library/rp2.StateMachine.rst:79
+msgid "the delay counter"
+msgstr "遅延カウンター"
+
+#: ../../library/rp2.StateMachine.rst:80
+msgid "the waiting-on-IRQ state"
+msgstr "IRQ 待機状態"
+
+#: ../../library/rp2.StateMachine.rst:81
+msgid "a stalled instruction run using `StateMachine.exec()`"
+msgstr "`StateMachine.exec()` で実行してストールした命令"
+
+#: ../../library/rp2.StateMachine.rst:85
+msgid ""
+"Execute a single PIO instruction. Uses `asm_pio_encode` to encode the "
+"instruction from the given string *instr*."
+msgstr ""
+"単一の PIO 命令を実行します。 与えた文字列 *instr* から命令にエンコードするのは "
+"`asm_pio_encode` を使ってください。"
+
+#: ../../library/rp2.StateMachine.rst:92
+msgid "Pull a word from the state machine's RX FIFO."
+msgstr "ステートマシンの RX FIFO からワードをプルします。"
+
+#: ../../library/rp2.StateMachine.rst:94
+msgid ""
+"If the FIFO is empty, it blocks until data arrives (i.e. the state "
+"machine pushes a word)."
+msgstr ""
+"FIFO が空の場合、データが到着するまで(つまり、ステートマシンがワードをプッシュするまで)"
+"ブロックします。"
+
+#: ../../library/rp2.StateMachine.rst:97
+msgid ""
+"The value is shifted right by *shift* bits before returning, i.e. the "
+"return value is ``word >> shift``."
+msgstr ""
+"値は、戻る前に *shift* ビットだけ右にシフトされます。つまり、戻り値は "
+"``word >> shift`` となります。"
+
+#: ../../library/rp2.StateMachine.rst:102
+msgid "Push a word onto the state machine's TX FIFO."
+msgstr "ステートマシンの TX FIFO にワードをプッシュします。"
+
+#: ../../library/rp2.StateMachine.rst:104
+msgid ""
+"If the FIFO is full, it blocks until there is space (i.e. the state "
+"machine pulls a word)."
+msgstr ""
+"FIFO がいっぱいになると、スペースができるまでブロックされます(つまり、ステートマシンが"
+"ワードをプルします)。"
+
+#: ../../library/rp2.StateMachine.rst:107
+msgid ""
+"The value is first shifted left by *shift* bits, i.e. the state machine "
+"receives ``value << shift``."
+msgstr ""
+"値は最初に *shift* シフトビットによって左にシフトされます。"
+"つまり、ステートマシンは ``value << shift`` を受信します。"
+
+#: ../../library/rp2.StateMachine.rst:112
+msgid ""
+"Returns the number of words in the state machine's RX FIFO. A value of 0 "
+"indicates the FIFO is empty."
+msgstr ""
+"ステートマシンの RX FIFO 内のワード数を返します。"
+"値が 0 であることは FIFO が空であることを示します。"
+
+#: ../../library/rp2.StateMachine.rst:115
+msgid ""
+"Useful for checking if data is waiting to be read, before calling "
+"`StateMachine.get()`."
+msgstr ""
+"`StateMachine.get()` を呼び出す前に、データの読取りを待機しているかを"
+"確認するのに利用できます。"
+
+#: ../../library/rp2.StateMachine.rst:120
+msgid ""
+"Returns the number of words in the state machine's TX FIFO. A value of 0 "
+"indicates the FIFO is empty."
+msgstr ""
+"ステートマシンの TX FIFO 内のワード数を返します。"
+"値が 0 であることは FIFO が空であることを示します。"
+
+#: ../../library/rp2.StateMachine.rst:123
+msgid ""
+"Useful for checking if there is space to push another word using "
+"`StateMachine.put()`."
+msgstr ""
+"`StateMachine.put()` を使ってワードをプッシュするスペースがあるかどうかを"
+"確認するのに利用できます。"
+
+#: ../../library/rp2.StateMachine.rst:128
+msgid "Returns the IRQ object for the given StateMachine."
+msgstr "指定した StateMachine の IRQ オブジェクトを返します。"
 
 #: ../../library/usys.rst:2
 msgid ":mod:`usys` -- system specific functions"
@@ -15504,7 +16096,7 @@ msgid ""
 "resolve textual address (including numeric addresses)::"
 msgstr ""
 "``usocket`` モジュールのネイティブなソケットアドレスフォーマットは `getaddrinfo` "
-"関数によって返される不透明なデータ型です。`getaddrinfo` は、テキストアドレス"
+"関数によって返される不透明なデータ型です。 getaddrinfo は、テキストアドレス"
 "(数値アドレスを含む)を解決するために使う必要があります。"
 
 #: ../../library/usocket.rst:28
@@ -16678,7 +17270,7 @@ msgid ""
 "will) also overflow. This is known as "
 "https://en.wikipedia.org/wiki/Year_2038_problem ."
 msgstr ""
-"注記: `ticks_diff()` には `time()` の値を渡さないでください。 `time()` の値に"
+"注記: `time()` の値を `ticks_diff()` に渡さないでください。 time() の値に"
 "ついては、通常の算術演算を使用する必要があります。ただし、 `time()` もオーバーフロー"
 "する可能性はあります。"
 "これは `2038年問題 <https://ja.wikipedia.org/wiki/2038%E5%B9%B4%E5%95%8F%E9%A1%8C>`_ "

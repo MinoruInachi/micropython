@@ -10,30 +10,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 09:37+0900\n"
-"PO-Revision-Date: 2021-05-05 10:40+0900\n"
+"POT-Creation-Date: 2021-05-08 18:02+0900\n"
+"PO-Revision-Date: 2021-05-08 18:57+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: ../../../esp8266/general.rst:4
+#: ../../esp8266/general.rst:4
 msgid "General information about the ESP8266 port"
 msgstr "ESP8266 ポートに関する一般的なこと"
 
-#: ../../../esp8266/general.rst:6
+#: ../../esp8266/general.rst:6
 msgid ""
 "ESP8266 is a popular WiFi-enabled System-on-Chip (SoC) by Espressif "
 "Systems."
 msgstr ""
 "ESP8266 は Espressif Systems 社の人気 WiFi 対応システムオンチップ(SoC)です。"
 
-#: ../../../esp8266/general.rst:9
+#: ../../esp8266/general.rst:9
 msgid "Multitude of boards"
 msgstr "ボードの多様さ"
 
-#: ../../../esp8266/general.rst:11
+#: ../../esp8266/general.rst:11
 msgid ""
 "There is a multitude of modules and boards from different sources which "
 "carry the ESP8266 chip. MicroPython tries to provide a generic port which"
@@ -52,7 +52,7 @@ msgstr ""
 "回路図、およびボードのその他の参考資料を用意して、ボードのさまざまな"
 "機能を調べるようにしてください。"
 
-#: ../../../esp8266/general.rst:19
+#: ../../esp8266/general.rst:19
 msgid ""
 "To make a generic ESP8266 port and support as many boards as possible, "
 "the following design and implementation decision were made:"
@@ -60,7 +60,7 @@ msgstr ""
 "一般的な ESP8266 ポートを作成し、可能な限り多くのボードをサポートする"
 "には、次の設計と実装の決定が行われました。"
 
-#: ../../../esp8266/general.rst:22
+#: ../../esp8266/general.rst:22
 msgid ""
 "GPIO pin numbering is based on ESP8266 chip numbering, not some "
 "\"logical\" numbering of a particular board. Please have the manual/pin "
@@ -77,7 +77,7 @@ msgstr ""
 "これは、最終的にコミュニティ管理の参照資料を収集するという"
 "アイデアです。"
 
-#: ../../../esp8266/general.rst:28
+#: ../../esp8266/general.rst:28
 msgid ""
 "All pins which make sense to support, are supported by MicroPython (for "
 "example, pins which are used to connect SPI flash are not exposed, as "
@@ -92,7 +92,7 @@ msgstr ""
 "のみを露出させることがあります。ボードリファレンスマニュアルを"
 "参照してください。"
 
-#: ../../../esp8266/general.rst:33
+#: ../../esp8266/general.rst:33
 msgid ""
 "Some boards may lack external pins/internal connectivity to support "
 "ESP8266 deepsleep mode."
@@ -100,11 +100,11 @@ msgstr ""
 "一部のボードには、ESP8266 ディープスリープモードをサポートするための"
 "外部ピン/内部接続がない場合があります。"
 
-#: ../../../esp8266/general.rst:38
+#: ../../esp8266/general.rst:38
 msgid "Technical specifications and SoC datasheets"
 msgstr "技術仕様および SoC データシート"
 
-#: ../../../esp8266/general.rst:40
+#: ../../esp8266/general.rst:40
 msgid ""
 "The datasheets and other reference material for ESP8266 chip are "
 "available from the vendor site: "
@@ -117,35 +117,35 @@ msgstr ""
 "から入手できます。これらは、チップの技術仕様、機能、動作モード、内部機能などの主要な"
 "参考資料となっています。"
 
-#: ../../../esp8266/general.rst:45
+#: ../../esp8266/general.rst:45
 msgid "For your convenience, some of technical specifications are provided below:"
 msgstr "便宜上、いくつかの技術仕様を以下に示します。"
 
-#: ../../../esp8266/general.rst:47
+#: ../../esp8266/general.rst:47
 msgid "Architecture: Xtensa lx106"
 msgstr "アーキテクチャ: Xtensa lx106"
 
-#: ../../../esp8266/general.rst:48
+#: ../../esp8266/general.rst:48
 msgid "CPU frequency: 80MHz overclockable to 160MHz"
 msgstr "CPU 周波数: 80MHz、160MHz にオーバークロック可能"
 
-#: ../../../esp8266/general.rst:49
+#: ../../esp8266/general.rst:49
 msgid "Total RAM available: 96KB (part of it reserved for system)"
 msgstr "使用可能なRAMの合計: 96KB (システムの予約分)"
 
-#: ../../../esp8266/general.rst:50
+#: ../../esp8266/general.rst:50
 msgid "BootROM: 64KB"
 msgstr "ブート ROM: 64KB"
 
-#: ../../../esp8266/general.rst:51
+#: ../../esp8266/general.rst:51
 msgid "Internal FlashROM: None"
 msgstr "内蔵フラッシュROM: なし"
 
-#: ../../../esp8266/general.rst:52
+#: ../../esp8266/general.rst:52
 msgid "External FlashROM: code and data, via SPI Flash. Normal sizes 512KB-4MB."
 msgstr "外部フラッシュROM: コードとデータ、SPIフラッシュ経由。通常のサイズは 512KB-4MB"
 
-#: ../../../esp8266/general.rst:53
+#: ../../esp8266/general.rst:53
 msgid ""
 "GPIO: 16 + 1 (GPIOs are multiplexed with other functions, including "
 "external FlashROM, UART, deep sleep wake-up, etc.)"
@@ -153,26 +153,26 @@ msgstr ""
 "GPIO: 16 + 1 (GPIO は外部フラッシュROM、UART、ディープスリープ起床など、"
 "他の機能と多重化されています)"
 
-#: ../../../esp8266/general.rst:55
+#: ../../esp8266/general.rst:55
 msgid "UART: One RX/TX UART (no hardware handshaking), one TX-only UART."
 msgstr "UART: １つのRX/TX UART (ハードウェアハンドシェイクなし)、１つのTX専用 UART"
 
-#: ../../../esp8266/general.rst:56
+#: ../../esp8266/general.rst:56
 msgid "SPI: 2 SPI interfaces (one used for FlashROM)."
 msgstr "SPI: ２つの SPI インタフェース (１つはフラッシュ ROM に使用)"
 
-#: ../../../esp8266/general.rst:57
+#: ../../esp8266/general.rst:57
 msgid ""
 "I2C: No native external I2C (bitbang implementation available on any "
 "pins)."
 msgstr ""
 "I2C: ネイティブの外部 I2C なし (任意のピンでビットバングの実装が可能)。"
 
-#: ../../../esp8266/general.rst:58
+#: ../../esp8266/general.rst:58
 msgid "I2S: 1."
 msgstr ""
 
-#: ../../../esp8266/general.rst:59
+#: ../../esp8266/general.rst:59
 msgid ""
 "Programming: using BootROM bootloader from UART. Due to external FlashROM"
 " and always-available BootROM bootloader, ESP8266 is not brickable."
@@ -180,11 +180,11 @@ msgstr ""
 "プログラミング: UART から BootROM ブートローダーを使用する。外部 FlashROM と"
 "常時使用可能な BootROM ブートローダのため、ESP8266 が文鎮化することはありません。"
 
-#: ../../../esp8266/general.rst:64
+#: ../../esp8266/general.rst:64
 msgid "Scarcity of runtime resources"
 msgstr "ランタイムリソースの不足"
 
-#: ../../../esp8266/general.rst:66
+#: ../../esp8266/general.rst:66
 msgid ""
 "ESP8266 has very modest resources (first of all, RAM memory). So, please "
 "avoid allocating too big container objects (lists, dictionaries) and "
@@ -199,11 +199,11 @@ msgstr ""
 "それはユーザー/ユーザーアプリケーションのタスクです。使用後できるだけ早くファイル、"
 "ソケットなどを閉じてください。"
 
-#: ../../../esp8266/general.rst:75
+#: ../../esp8266/general.rst:75
 msgid "Boot process"
 msgstr "ブートプロセス"
 
-#: ../../../esp8266/general.rst:77
+#: ../../esp8266/general.rst:77
 msgid ""
 "On boot, MicroPython EPS8266 port executes ``_boot.py`` script from "
 "internal frozen modules. It mounts filesystem in FlashROM, or if it's not"
@@ -222,7 +222,7 @@ msgstr ""
 "カスタマイズは、上級ユーザーや開発者だけ、標準的なプロセスを変更することによって生じる"
 "問題を自分で診断できる方だけが行うようにしてください)。"
 
-#: ../../../esp8266/general.rst:86
+#: ../../esp8266/general.rst:86
 msgid ""
 "Once the filesystem is mounted, ``boot.py`` is executed from it. The "
 "standard version of this file is created during first-time module set up "
@@ -247,7 +247,7 @@ msgstr ""
 "(特に、 ``webrepl_setup`` モジュール使用、WebREPL 設定の手編集のどちらかを"
 "使用することをお勧めしますが、両方を使用することはお勧めしません)。"
 
-#: ../../../esp8266/general.rst:98
+#: ../../esp8266/general.rst:98
 msgid ""
 "As a final step of boot procedure, ``main.py`` is executed from "
 "filesystem, if exists. This file is a hook to start up a user application"
@@ -263,13 +263,13 @@ msgstr ""
 "アプリケーションを別々のファイルに保存し、 ``main.py`` で次のようにすることを"
 "お勧めします。"
 
-#: ../../../esp8266/general.rst:105
+#: ../../esp8266/general.rst:105
 msgid ""
 "import my_app\n"
 "my_app.main()"
 msgstr ""
 
-#: ../../../esp8266/general.rst:108
+#: ../../esp8266/general.rst:108
 msgid ""
 "This will allow to keep the structure of your application clear, as well "
 "as allow to install multiple applications on a board, and switch among "
@@ -278,15 +278,15 @@ msgstr ""
 "これにより、アプリケーションの構造を明確に保ち、ボード上に複数の"
 "アプリケーションをインストールし、それらの間で切り替えることができます。"
 
-#: ../../../esp8266/general.rst:113
+#: ../../esp8266/general.rst:113
 msgid "Known Issues"
 msgstr "既知の問題"
 
-#: ../../../esp8266/general.rst:116
+#: ../../esp8266/general.rst:116
 msgid "Real-time clock"
 msgstr "リアルタイムクロック"
 
-#: ../../../esp8266/general.rst:118
+#: ../../esp8266/general.rst:118
 msgid ""
 "RTC in ESP8266 has very bad accuracy, drift may be seconds per minute. As"
 " a workaround, to measure short enough intervals you can use "
@@ -298,7 +298,7 @@ msgstr ""
 "使用できます。また、実時間とするには、含まれている ``ntptime.py`` モジュールを"
 "使用してネットから同期してください。"
 
-#: ../../../esp8266/general.rst:123
+#: ../../esp8266/general.rst:123
 msgid ""
 "Due to limitations of the ESP8266 chip the internal real-time clock (RTC)"
 " will overflow every 7:45h.  If a long-term working RTC time is required "
@@ -330,11 +330,11 @@ msgstr ""
 "このようなインターフェースの挙動を管理する必要があります。たとえば AP_IF のみを"
 "使う環境では STA_IF を無効にするなどです。"
 
-#: ../../../esp8266/general.rst:139
+#: ../../esp8266/general.rst:139
 msgid "Sockets and WiFi buffers overflow"
 msgstr "ソケットと WiFi バッファのオーバーフロー"
 
-#: ../../../esp8266/general.rst:141
+#: ../../esp8266/general.rst:141
 msgid ""
 "Socket instances remain active until they are explicitly closed. This has"
 " two consequences. Firstly they occupy RAM, so an application which opens"
@@ -353,7 +353,7 @@ msgstr ""
 "発生します。これは、WiFiスタックの入力キューをオーバーフローさせ、デッドロックを"
 "招く可能性があります。唯一の回復方法は、ハードリセットすることです。"
 
-#: ../../../esp8266/general.rst:149
+#: ../../esp8266/general.rst:149
 msgid ""
 "The above may also happen after an application terminates and quits to "
 "the REPL for any reason including an exception. Subsequent arrival of "
@@ -368,7 +368,7 @@ msgstr ""
 "終了するかどうかにかかわらず、どんな場合でも閉じなければなりません。たとえば、"
 "try/finally を使用します。"
 
-#: ../../../esp8266/general.rst:155
+#: ../../esp8266/general.rst:155
 msgid ""
 "sock = socket(...)\n"
 "try:\n"
@@ -377,11 +377,11 @@ msgid ""
 "    sock.close()"
 msgstr ""
 
-#: ../../../esp8266/general.rst:163
+#: ../../esp8266/general.rst:163
 msgid "SSL/TLS limitations"
 msgstr "SSL/TLS の制限事項"
 
-#: ../../../esp8266/general.rst:165
+#: ../../esp8266/general.rst:165
 msgid ""
 "ESP8266 uses `axTLS <http://axtls.sourceforge.net/>`_ library, which is "
 "one of the smallest TLS libraries with the compatible licensing. However,"
@@ -391,7 +391,7 @@ msgstr ""
 "これは互換性のあるライセンスを持つ最小の TLS ライブラリの１つです。ただし、既知の"
 "問題や制限事項もあります:"
 
-#: ../../../esp8266/general.rst:169
+#: ../../esp8266/general.rst:169
 msgid ""
 "No support for Diffie-Hellman (DH) key exchange and Elliptic-curve "
 "cryptography (ECC). This means it can't work with sites which force the "
@@ -401,7 +401,7 @@ msgstr ""
 "つまり、これらの機能を使用するサイトでは動作しません(従来のRSA証明書"
 "では正常に動作します)。"
 
-#: ../../../esp8266/general.rst:173
+#: ../../esp8266/general.rst:173
 msgid ""
 "Half-duplex communication nature. axTLS uses a single buffer for both "
 "sending and receiving, which leads to considerable memory saving and "
@@ -412,7 +412,7 @@ msgstr ""
 "メモリの節約につながり、HTTP などのプロトコルでうまく機能します。しかし、"
 "古典的な要求応答モデルにしたがわないプロトコルには問題があるかもしれません。"
 
-#: ../../../esp8266/general.rst:178
+#: ../../esp8266/general.rst:178
 msgid ""
 "Besides axTLS own limitations, the configuration used for MicroPython is "
 "highly optimized for code size, which leads to additional limitations "
@@ -421,7 +421,7 @@ msgstr ""
 "axTLS 独自の制限の他に、MicroPython で使用される設定はコードサイズに高度に最適化"
 "されているため、さらなる制限があります(これらは将来的に解消される可能性があります)。"
 
-#: ../../../esp8266/general.rst:182
+#: ../../esp8266/general.rst:182
 msgid ""
 "Optimized RSA algorithms are not enabled, which may lead to slow SSL "
 "handshakes."
@@ -429,7 +429,7 @@ msgstr ""
 "最適化された RSA アルゴリズムが有効になっていないため、SSL ハンドシェイクが"
 "遅くなる可能性があります。"
 
-#: ../../../esp8266/general.rst:184
+#: ../../esp8266/general.rst:184
 msgid ""
 "Stored sessions are not supported (may allow faster repeated connections "
 "to the same site in some circumstances)."
@@ -437,7 +437,7 @@ msgstr ""
 "ストアドセッションはサポートされていません(場合によっては、同じサイトへの接続が"
 "高速になる可能性があります)。"
 
-#: ../../../esp8266/general.rst:187
+#: ../../esp8266/general.rst:187
 msgid ""
 "Besides axTLS specific limitations described above, there's another "
 "generic limitation with usage of TLS on the low-memory devices:"
@@ -445,7 +445,7 @@ msgstr ""
 "上記の axTLS 固有の制限の他に、低メモリデバイスでの TLS の使用には別の一般的な"
 "制限があります:"
 
-#: ../../../esp8266/general.rst:190
+#: ../../esp8266/general.rst:190
 msgid ""
 "The TLS standard specifies the maximum length of the TLS record (unit of "
 "TLS communication, the entire record must be buffered before it can be "
@@ -470,7 +470,7 @@ msgstr ""
 "サイトにはアクセスできず、大量のデータをストリーミングすることができないという"
 "ことです。"
 
-#: ../../../esp8266/general.rst:205
+#: ../../esp8266/general.rst:205
 msgid ""
 "There are also some not implemented features specifically in "
 "MicroPython's ``ussl`` module based on axTLS:"
@@ -478,21 +478,21 @@ msgstr ""
 "また、AxTLS に ussl 基づくMicroPythonのモジュールに実装されていない"
 "機能もあります。"
 
-#: ../../../esp8266/general.rst:208
+#: ../../esp8266/general.rst:208
 msgid ""
 "Certificates are not validated (this may make connections susceptible to "
 "man-in-the-middle attacks)."
 msgstr ""
 "証明書は検証されません(これにより、中間者攻撃に接続が影響を受ける可能性があります)。"
 
-#: ../../../esp8266/general.rst:210
+#: ../../esp8266/general.rst:210
 msgid ""
 "There is no support for client certificates (scheduled to be fixed in "
 "1.9.4 release)."
 msgstr ""
 "クライアント証明書はサポートされていません(1.9.4リリースで修正予定)。"
 
-#: ../../../esp8266/quickref.rst:4
+#: ../../esp8266/quickref.rst:4
 msgid "Quick reference for the ESP8266"
 msgstr "ESP8266 用クイックリファレンス"
 
@@ -501,11 +501,11 @@ msgid ""
 "   :alt: Adafruit Feather HUZZAH board"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:10
+#: ../../esp8266/quickref.rst:10
 msgid "The Adafruit Feather HUZZAH board (image attribution: Adafruit)."
 msgstr "Adafruit Feather HUZZAH board (画像出所: Adafruit)"
 
-#: ../../../esp8266/quickref.rst:12
+#: ../../esp8266/quickref.rst:12
 msgid ""
 "Below is a quick reference for ESP8266-based boards.  If it is your first"
 " time working with this board please consider reading the following "
@@ -515,11 +515,11 @@ msgstr ""
 "このボードを初めて使う場合は、まず次のセクションを読むことを"
 "勧めます。"
 
-#: ../../../esp8266/quickref.rst:22
+#: ../../esp8266/quickref.rst:22
 msgid "Installing MicroPython"
 msgstr "MicroPython のインストール"
 
-#: ../../../esp8266/quickref.rst:24
+#: ../../esp8266/quickref.rst:24
 msgid ""
 "See the corresponding section of tutorial: :ref:`intro`. It also includes"
 " a troubleshooting subsection."
@@ -527,11 +527,11 @@ msgstr ""
 "チュートリアルの章: :ref:`intro` を参照してください。"
 "そこにはトラブルシューティングについても記載されています。"
 
-#: ../../../esp8266/quickref.rst:28
+#: ../../esp8266/quickref.rst:28
 msgid "General board control"
 msgstr "ボードの一般的な制御"
 
-#: ../../../esp8266/quickref.rst:30
+#: ../../esp8266/quickref.rst:30
 msgid ""
 "The MicroPython REPL is on UART0 (GPIO1=TX, GPIO3=RX) at baudrate 115200."
 " Tab-completion is useful to find out what methods an object has. Paste "
@@ -543,11 +543,11 @@ msgstr ""
 "調べるのに便利です。貼り付けモード(ctrl-E)は、大きめの Pythonコードを "
 "REPL に貼り付けるのに便利です。"
 
-#: ../../../esp8266/quickref.rst:35
+#: ../../esp8266/quickref.rst:35
 msgid "The :mod:`machine` module::"
 msgstr ":mod:`machine` モジュール::"
 
-#: ../../../esp8266/quickref.rst:37
+#: ../../esp8266/quickref.rst:37
 msgid ""
 "import machine\n"
 "\n"
@@ -559,11 +559,11 @@ msgstr ""
 "machine.freq()          # CPU の現在の周波数を取得\n"
 "machine.freq(160000000) # CPU の周波数を 160 MHz に設定"
 
-#: ../../../esp8266/quickref.rst:42
+#: ../../esp8266/quickref.rst:42
 msgid "The :mod:`esp` module::"
 msgstr ":mod:`esp` モジュール::"
 
-#: ../../../esp8266/quickref.rst:44
+#: ../../esp8266/quickref.rst:44
 msgid ""
 "import esp\n"
 "\n"
@@ -576,15 +576,15 @@ msgstr ""
 "esp.osdebug(None)       # ベンダ O/S デバッグメッセージをオフにする\n"
 "esp.osdebug(0)          # ベンダ O/S デバッグメッセージを UART(0) にリダイレクト"
 
-#: ../../../esp8266/quickref.rst:50
+#: ../../esp8266/quickref.rst:50
 msgid "Networking"
 msgstr "ネットワーキング"
 
-#: ../../../esp8266/quickref.rst:52
+#: ../../esp8266/quickref.rst:52
 msgid "The :mod:`network` module::"
 msgstr ":mod:`network` モジュール::"
 
-#: ../../../esp8266/quickref.rst:54
+#: ../../esp8266/quickref.rst:54
 msgid ""
 "import network\n"
 "\n"
@@ -616,11 +616,11 @@ msgstr ""
 "ap.active(True)         # インタフェースをアクティブ化\n"
 "ap.config(essid='ESP-AP') # アクセスポイントの ESSID を設定"
 
-#: ../../../esp8266/quickref.rst:68
+#: ../../esp8266/quickref.rst:68
 msgid "A useful function for connecting to your local WiFi network is::"
 msgstr "ローカルの WiFi ネットワークに接続するには、次の関数を流用してください::"
 
-#: ../../../esp8266/quickref.rst:70
+#: ../../esp8266/quickref.rst:70
 msgid ""
 "def do_connect():\n"
 "    import network\n"
@@ -634,7 +634,7 @@ msgid ""
 "    print('network config:', wlan.ifconfig())"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:81
+#: ../../esp8266/quickref.rst:81
 msgid ""
 "Once the network is established the :mod:`socket <usocket>` module can be"
 " used to create and use TCP/UDP sockets as usual."
@@ -642,15 +642,15 @@ msgstr ""
 "ネットワークが確立されると :mod:`socket <usocket>` モジュールを使って、"
 "通常どおり TCP/UDP ソケットを作成して使用できます。"
 
-#: ../../../esp8266/quickref.rst:85
+#: ../../esp8266/quickref.rst:85
 msgid "Delay and timing"
 msgstr "遅延とタイミング"
 
-#: ../../../esp8266/quickref.rst:87
+#: ../../esp8266/quickref.rst:87
 msgid "Use the :mod:`time <utime>` module::"
 msgstr ":mod:`time <utime>` モジュールを使います::"
 
-#: ../../../esp8266/quickref.rst:89
+#: ../../esp8266/quickref.rst:89
 msgid ""
 "import time\n"
 "\n"
@@ -668,11 +668,11 @@ msgstr ""
 "start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
 "delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
 
-#: ../../../esp8266/quickref.rst:98
+#: ../../esp8266/quickref.rst:98
 msgid "Timers"
 msgstr "タイマー"
 
-#: ../../../esp8266/quickref.rst:100
+#: ../../esp8266/quickref.rst:100
 msgid ""
 "Virtual (RTOS-based) timers are supported. Use the :ref:`machine.Timer "
 "<machine.Timer>` class with timer ID of -1::"
@@ -680,7 +680,7 @@ msgstr ""
 "仮想(RTOSベース)タイマーがサポートされています。 "
 ":ref:`machine.Timer <machine.Timer>` クラスを ID -1 で使ってください。"
 
-#: ../../../esp8266/quickref.rst:103
+#: ../../esp8266/quickref.rst:103
 msgid ""
 "from machine import Timer\n"
 "\n"
@@ -689,19 +689,19 @@ msgid ""
 "tim.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(2))"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:109
+#: ../../esp8266/quickref.rst:109
 msgid "The period is in milliseconds."
 msgstr "period の単位はミリ秒です。"
 
-#: ../../../esp8266/quickref.rst:112
+#: ../../esp8266/quickref.rst:112
 msgid "Pins and GPIO"
 msgstr "ピンと GPIO"
 
-#: ../../../esp8266/quickref.rst:114
+#: ../../esp8266/quickref.rst:114
 msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
 msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
 
-#: ../../../esp8266/quickref.rst:116
+#: ../../esp8266/quickref.rst:116
 msgid ""
 "from machine import Pin\n"
 "\n"
@@ -729,7 +729,7 @@ msgstr ""
 "p4 = Pin(4, Pin.IN, Pin.PULL_UP) # 内部プルアップ抵抗を有効化\n"
 "p5 = Pin(5, Pin.OUT, value=1) # 作成時にピンを high に設定"
 
-#: ../../../esp8266/quickref.rst:129
+#: ../../esp8266/quickref.rst:129
 msgid ""
 "Available pins are: 0, 1, 2, 3, 4, 5, 12, 13, 14, 15, 16, which "
 "correspond to the actual GPIO pin numbers of ESP8266 chip. Note that many"
@@ -747,7 +747,7 @@ msgstr ""
 "物理ピンとのマッピングについては、各ボードのマニュアルを参照して"
 "ください。"
 
-#: ../../../esp8266/quickref.rst:136
+#: ../../esp8266/quickref.rst:136
 msgid ""
 "Note that Pin(1) and Pin(3) are REPL UART TX and RX respectively. Also "
 "note that Pin(16) is a special pin (used for wakeup from deepsleep mode) "
@@ -844,11 +844,11 @@ msgid ""
 "uos.dupterm(uart, 1)"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:180
+#: ../../esp8266/quickref.rst:180
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../../esp8266/quickref.rst:183
+#: ../../esp8266/quickref.rst:183
 msgid ""
 "PWM can be enabled on all pins except Pin(16).  There is a single "
 "frequency for all channels, with range between 1 and 1000 (measured in "
@@ -858,11 +858,11 @@ msgstr ""
 "１つの周波数があり、範囲は 1〜1000 (単位は Hz)です。"
 "デューティ比は 0〜1023 です。"
 
-#: ../../../esp8266/quickref.rst:187
+#: ../../esp8266/quickref.rst:187
 msgid "Use the ``machine.PWM`` class::"
 msgstr "``machine.PWM`` クラスを使います::"
 
-#: ../../../esp8266/quickref.rst:189
+#: ../../esp8266/quickref.rst:189
 msgid ""
 "from machine import Pin, PWM\n"
 "\n"
@@ -886,11 +886,11 @@ msgstr ""
 "\n"
 "pwm2 = PWM(Pin(2), freq=500, duty=512) # 作成と設定を一度に実行"
 
-#: ../../../esp8266/quickref.rst:201
+#: ../../esp8266/quickref.rst:201
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../../esp8266/quickref.rst:203
+#: ../../esp8266/quickref.rst:203
 msgid ""
 "ADC is available on a dedicated pin. Note that input voltages on the ADC "
 "pin must be between 0v and 1.0v."
@@ -898,11 +898,11 @@ msgstr ""
 "ADC は専用ピンで利用できます。ADC ピンの入力電圧は 0v と 1.0v の間で"
 "なければならないことに注意してください。"
 
-#: ../../../esp8266/quickref.rst:206
+#: ../../esp8266/quickref.rst:206
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
-#: ../../../esp8266/quickref.rst:208
+#: ../../esp8266/quickref.rst:208
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -914,11 +914,11 @@ msgstr ""
 "adc = ADC(0)            # ADC ピンの ADC オブジェクトを作成\n"
 "adc.read()              # 0-1024 の間の値を読込み"
 
-#: ../../../esp8266/quickref.rst:214
+#: ../../esp8266/quickref.rst:214
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../../esp8266/quickref.rst:216
+#: ../../esp8266/quickref.rst:216
 msgid ""
 "There are two SPI drivers. One is implemented in software (bit-banging) "
 "and works on all pins, and is accessed via the :ref:`machine.SoftSPI "
@@ -928,7 +928,7 @@ msgstr ""
 "すべてのピンで動作し、 :ref:`machine.SoftSPI <machine.SPI>` "
 "クラスを介してアクセスします::"
 
-#: ../../../esp8266/quickref.rst:220
+#: ../../esp8266/quickref.rst:220
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -982,11 +982,11 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../../esp8266/quickref.rst:244
+#: ../../esp8266/quickref.rst:244
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../../esp8266/quickref.rst:246
+#: ../../esp8266/quickref.rst:246
 msgid ""
 "The hardware SPI is faster (up to 80Mhz), but only works on following "
 "pins: ``MISO`` is GPIO12, ``MOSI`` is GPIO13, and ``SCK`` is GPIO14. It "
@@ -998,22 +998,22 @@ msgstr ""
 "クラスと同じメソッドを持っていますが、コンストラクタと init のピンパラメータは"
 "固定されています。"
 
-#: ../../../esp8266/quickref.rst:251
+#: ../../esp8266/quickref.rst:251
 msgid ""
 "from machine import Pin, SPI\n"
 "\n"
 "hspi = SPI(1, baudrate=80000000, polarity=0, phase=0)"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:255
+#: ../../esp8266/quickref.rst:255
 msgid "(``SPI(0)`` is used for FlashROM and not available to users.)"
 msgstr "(``SPI(0)`` は FlashROM 用に使われるため、ユーザは利用できません。)"
 
-#: ../../../esp8266/quickref.rst:258
+#: ../../esp8266/quickref.rst:258
 msgid "I2C bus"
 msgstr "I2C バス"
 
-#: ../../../esp8266/quickref.rst:260
+#: ../../esp8266/quickref.rst:260
 msgid ""
 "The I2C driver is implemented in software and works on all pins, and is "
 "accessed via the :ref:`machine.I2C <machine.I2C>` class (which is an "
@@ -1023,7 +1023,7 @@ msgstr ""
 ":ref:`machine.I2C <machine.I2C>` クラスを介してアクセスします"
 "(このクラスは :ref:`machine.SoftI2C <machine.SoftI2C>` の別名です)::"
 
-#: ../../../esp8266/quickref.rst:264
+#: ../../esp8266/quickref.rst:264
 msgid ""
 "from machine import Pin, I2C\n"
 "\n"
@@ -1048,15 +1048,15 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをスレーブに書込み"
 
-#: ../../../esp8266/quickref.rst:276
+#: ../../esp8266/quickref.rst:276
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../../esp8266/quickref.rst:278
+#: ../../esp8266/quickref.rst:278
 msgid "See :ref:`machine.RTC <machine.RTC>` ::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../../esp8266/quickref.rst:280
+#: ../../esp8266/quickref.rst:280
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -1092,11 +1092,33 @@ msgstr ""
 "<RTC.irq>` (カスタムハンドラを利用), `RTC.init()`, `RTC.deinit()` は"
 "現在サポートしていｍせん。"
 
-#: ../../../esp8266/quickref.rst:297 ../../../esp8266/tutorial/powerctrl.rst:28
+#: ../../esp8266/quickref.rst:297
+msgid "WDT (Watchdog timer)"
+msgstr "WDT (ウォッチドッグタイマー)"
+
+#: ../../esp8266/quickref.rst:299
+msgid "See :ref:`machine.WDT <machine.WDT>`. ::"
+msgstr ":ref:`machine.WDT <machine.WDT>` を参照::"
+
+#: ../../esp8266/quickref.rst:301
+msgid ""
+"from machine import WDT\n"
+"\n"
+"# enable the WDT\n"
+"wdt = WDT()\n"
+"wdt.feed()"
+msgstr ""
+"from machine import WDT\n"
+"\n"
+"# WDT を有効化\n"
+"wdt = WDT()\n"
+"wdt.feed()"
+
+#: ../../esp8266/quickref.rst:308 ../../esp8266/tutorial/powerctrl.rst:28
 msgid "Deep-sleep mode"
 msgstr "ディープスリープモード"
 
-#: ../../../esp8266/quickref.rst:299
+#: ../../esp8266/quickref.rst:310
 msgid ""
 "Connect GPIO16 to the reset pin (RST on HUZZAH).  Then the following code"
 " can be used to sleep, wake and check the reset cause::"
@@ -1104,7 +1126,7 @@ msgstr ""
 "GPIO16 をリセットピン(HUZZAH| では RST)に接続してください。そのようにしておくと、"
 "次のコードで、スリープ、起床、リセット原因のチェックが行えます::"
 
-#: ../../../esp8266/quickref.rst:302
+#: ../../esp8266/quickref.rst:313
 msgid ""
 "import machine\n"
 "\n"
@@ -1138,15 +1160,15 @@ msgstr ""
 "# ディープスリープに入る\n"
 "machine.deepsleep()"
 
-#: ../../../esp8266/quickref.rst:319
+#: ../../esp8266/quickref.rst:330
 msgid "OneWire driver"
 msgstr "OneWire ドライバ"
 
-#: ../../../esp8266/quickref.rst:321
+#: ../../esp8266/quickref.rst:332
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../../esp8266/quickref.rst:323
+#: ../../esp8266/quickref.rst:334
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -1170,11 +1192,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../../esp8266/quickref.rst:334
+#: ../../esp8266/quickref.rst:345
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバがあります::"
 
-#: ../../../esp8266/quickref.rst:336
+#: ../../esp8266/quickref.rst:347
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -1185,7 +1207,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:344
+#: ../../esp8266/quickref.rst:355
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -1195,15 +1217,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../../esp8266/quickref.rst:349
+#: ../../esp8266/quickref.rst:360
 msgid "NeoPixel driver"
 msgstr "NeoPixel ドライバ"
 
-#: ../../../esp8266/quickref.rst:351
+#: ../../esp8266/quickref.rst:362
 msgid "Use the ``neopixel`` module::"
 msgstr "``neopixel`` モジュールを使います::"
 
-#: ../../../esp8266/quickref.rst:353
+#: ../../esp8266/quickref.rst:364
 msgid ""
 "from machine import Pin\n"
 "from neopixel import NeoPixel\n"
@@ -1223,17 +1245,17 @@ msgstr ""
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../../esp8266/quickref.rst:362
+#: ../../esp8266/quickref.rst:373
 msgid "For low-level driving of a NeoPixel::"
 msgstr "NeoPixel の低レベル駆動もあります::"
 
-#: ../../../esp8266/quickref.rst:364
+#: ../../esp8266/quickref.rst:375
 msgid ""
 "import esp\n"
 "esp.neopixel_write(pin, grb_buf, is800khz)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:368
+#: ../../esp8266/quickref.rst:379
 msgid ""
 "By default ``NeoPixel`` is configured to control the more popular "
 "*800kHz* units. It is possible to use alternative timing to control other"
@@ -1244,15 +1266,15 @@ msgstr ""
 "されています。 ``NeoPixel`` オブジェクトを構築する際に ``timing=0`` を渡すことで、"
 "他の(たいていは 400kHz)デバイスを制御する別のタイミングを使えます。"
 
-#: ../../../esp8266/quickref.rst:368
+#: ../../esp8266/quickref.rst:386
 msgid "APA102 driver"
 msgstr "APA102 ドライバ"
 
-#: ../../../esp8266/quickref.rst:370
+#: ../../esp8266/quickref.rst:388
 msgid "Use the ``apa102`` module::"
 msgstr "``apa102`` モジュールを使います::"
 
-#: ../../../esp8266/quickref.rst:372
+#: ../../esp8266/quickref.rst:390
 msgid ""
 "from machine import Pin\n"
 "from apa102 import APA102\n"
@@ -1276,25 +1298,25 @@ msgstr ""
 "apa.write()                  # 全ピクセルにデータ書込み\n"
 "r, g, b, brightness = apa[0] # 第１ピクセルの色を取得"
 
-#: ../../../esp8266/quickref.rst:382
+#: ../../esp8266/quickref.rst:400
 msgid "For low-level driving of an APA102::"
 msgstr "APA102 の低レベル駆動もあります::"
 
-#: ../../../esp8266/quickref.rst:384
+#: ../../esp8266/quickref.rst:402
 msgid ""
 "import esp\n"
 "esp.apa102_write(clock_pin, data_pin, rgbi_buf)"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:388
+#: ../../esp8266/quickref.rst:406
 msgid "DHT driver"
 msgstr "DHT ドライバ"
 
-#: ../../../esp8266/quickref.rst:390
+#: ../../esp8266/quickref.rst:408
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../../esp8266/quickref.rst:392
+#: ../../esp8266/quickref.rst:410
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -1322,11 +1344,11 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../../esp8266/quickref.rst:406
+#: ../../esp8266/quickref.rst:424
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../../esp8266/quickref.rst:408
+#: ../../esp8266/quickref.rst:426
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP8266 port. Download web client from "
@@ -1339,11 +1361,11 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../../esp8266/quickref.rst:413 ../../../esp8266/tutorial/repl.rst:51
+#: ../../esp8266/quickref.rst:431 ../../esp8266/tutorial/repl.rst:51
 msgid "import webrepl_setup"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:415
+#: ../../esp8266/quickref.rst:433
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -1352,13 +1374,13 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../../esp8266/quickref.rst:419
+#: ../../esp8266/quickref.rst:437
 msgid ""
 "import webrepl\n"
 "webrepl.start()"
 msgstr ""
 
-#: ../../../esp8266/quickref.rst:422
+#: ../../esp8266/quickref.rst:440
 msgid ""
 "The supported way to use WebREPL is by connecting to ESP8266 access "
 "point, but the daemon is also started on STA interface if it is active, "
@@ -1372,7 +1394,7 @@ msgstr ""
 "いれば WebREPL が使えるでしょう(問題が発生した場合は ESP8266 AP 接続メソッドを"
 "使ってください)。"
 
-#: ../../../esp8266/quickref.rst:428
+#: ../../esp8266/quickref.rst:446
 msgid ""
 "Besides terminal/command prompt access, WebREPL also has provision for "
 "file transfer (both upload and download). Web client has buttons for the "
@@ -1384,7 +1406,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../../esp8266/quickref.rst:433
+#: ../../esp8266/quickref.rst:451
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to ESP8266."
@@ -1392,11 +1414,11 @@ msgstr ""
 "ファイルを ESP8266 に転送するための、コミュニティでサポートされている"
 "他の代替方法については、MicroPython フォーラムを参照してください。"
 
-#: ../../../esp8266/tutorial/adc.rst:2
+#: ../../esp8266/tutorial/adc.rst:2
 msgid "Analog to Digital Conversion"
 msgstr "アナログ/デジタル変換"
 
-#: ../../../esp8266/tutorial/adc.rst:4
+#: ../../esp8266/tutorial/adc.rst:4
 msgid ""
 "The ESP8266 has a single pin (separate to the GPIO pins) which can be "
 "used to read analog voltages and convert them to a digital value.  You "
@@ -1406,23 +1428,23 @@ msgstr ""
 "１つだけあります(GPIOピンとは別)。このような ADC ピンオブジェクトは、次のように"
 "して構築できます。"
 
-#: ../../../esp8266/tutorial/adc.rst:8
+#: ../../esp8266/tutorial/adc.rst:8
 msgid ""
 ">>> import machine\n"
 ">>> adc = machine.ADC(0)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/adc.rst:11
+#: ../../esp8266/tutorial/adc.rst:11
 msgid "Then read its value with::"
 msgstr "値は次のようにして読んでください::"
 
-#: ../../../esp8266/tutorial/adc.rst:13
+#: ../../esp8266/tutorial/adc.rst:13
 msgid ""
 ">>> adc.read()\n"
 "58"
 msgstr ""
 
-#: ../../../esp8266/tutorial/adc.rst:16
+#: ../../esp8266/tutorial/adc.rst:16
 msgid ""
 "The values returned from the ``read()`` function are between 0 (for 0.0 "
 "volts) and 1024 (for 1.0 volts).  Please note that this input can only "
@@ -1560,11 +1582,11 @@ msgid ""
 "strip.write()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/dht.rst:2
+#: ../../esp8266/tutorial/dht.rst:2
 msgid "Temperature and Humidity"
 msgstr "温度と湿度"
 
-#: ../../../esp8266/tutorial/dht.rst:4
+#: ../../esp8266/tutorial/dht.rst:4
 msgid ""
 "DHT (Digital Humidity & Temperature) sensors are low cost digital sensors"
 " with capacitive humidity sensors and thermistors to measure the "
@@ -1577,7 +1599,7 @@ msgstr ""
 "処理し、1-wire インタフェースを提供するチップを備えています。より新しいセンサーは、"
 "I2Cインターフェースを追加提供します。"
 
-#: ../../../esp8266/tutorial/dht.rst:9
+#: ../../esp8266/tutorial/dht.rst:9
 msgid ""
 "The DHT11 (blue) and DHT22 (white) sensors provide the same 1-wire "
 "interface, however, the DHT22 requires a separate object as it has more "
@@ -1589,7 +1611,7 @@ msgstr ""
 "湿度と温度の両方の読み取り値に対して小数点以下1桁の分解能を持ちます。DHT11 は"
 "両方とも整数での分解能になります。"
 
-#: ../../../esp8266/tutorial/dht.rst:14
+#: ../../esp8266/tutorial/dht.rst:14
 msgid ""
 "A custom 1-wire protocol, which is different to Dallas 1-wire, is used to"
 " get the measurements from the sensor. The payload consists of a humidity"
@@ -1598,14 +1620,14 @@ msgstr ""
 "センサーから測定値を取得するには、Dallas 1-wire とは異なるカスタムの 1-wire "
 "プロトコルを使います。ペイロードは、湿度値、温度値、チェックサムで構成されています。"
 
-#: ../../../esp8266/tutorial/dht.rst:18
+#: ../../esp8266/tutorial/dht.rst:18
 msgid ""
 "To use the 1-wire interface, construct the objects referring to their "
 "data pin::"
 msgstr ""
 "1-wire インタフェースを使うには、データピンを指定してオブジェクトを構築します::"
 
-#: ../../../esp8266/tutorial/dht.rst:20
+#: ../../esp8266/tutorial/dht.rst:20
 msgid ""
 ">>> import dht\n"
 ">>> import machine\n"
@@ -1616,18 +1638,18 @@ msgid ""
 ">>> d = dht.DHT22(machine.Pin(4))"
 msgstr ""
 
-#: ../../../esp8266/tutorial/dht.rst:28
+#: ../../esp8266/tutorial/dht.rst:28
 msgid "Then measure and read their values with::"
 msgstr "次に、測定を行い、その結果を読み取ります::"
 
-#: ../../../esp8266/tutorial/dht.rst:30
+#: ../../esp8266/tutorial/dht.rst:30
 msgid ""
 ">>> d.measure()\n"
 ">>> d.temperature()\n"
 ">>> d.humidity()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/dht.rst:34
+#: ../../esp8266/tutorial/dht.rst:34
 msgid ""
 "Values returned from ``temperature()`` are in degrees Celsius and values "
 "returned from ``humidity()`` are a percentage of relative humidity."
@@ -1635,7 +1657,7 @@ msgstr ""
 "``temperature() `` が返す測定値は摂氏で、 ``humidity()`` が返す測定値は相対湿度"
 "のパーセンテージです。"
 
-#: ../../../esp8266/tutorial/dht.rst:37
+#: ../../esp8266/tutorial/dht.rst:37
 msgid ""
 "The DHT11 can be called no more than once per second and the DHT22 once "
 "every two seconds for most accurate results. Sensor accuracy will degrade"
@@ -1646,7 +1668,7 @@ msgstr ""
 "センサの精度は時間とともに低下します。各センサは異なる動作範囲をサポートしています。"
 "詳細については、製品データシートを参照してください。"
 
-#: ../../../esp8266/tutorial/dht.rst:42
+#: ../../esp8266/tutorial/dht.rst:42
 msgid ""
 "In 1-wire mode, only three of the four pins are used and in I2C mode, all"
 " four pins are used. Older sensors may still have 4 pins even though they"
@@ -1656,39 +1678,39 @@ msgstr ""
 "使用されます。古いセンサーは I2C をサポートしていないにもかかわらず4つのピンを持って"
 "いることがあります。3番ピンは単に接続されていません。"
 
-#: ../../../esp8266/tutorial/dht.rst:46
+#: ../../esp8266/tutorial/dht.rst:46
 msgid "Pin configurations:"
 msgstr "ピン配置"
 
-#: ../../../esp8266/tutorial/dht.rst:48
+#: ../../esp8266/tutorial/dht.rst:48
 msgid "Sensor without I2C in 1-wire mode (eg. DHT11, DHT22, AM2301, AM2302):"
 msgstr "1-wire モードで I2C のないセンサ (例: DHT11, DHT22, AM2301, AM2302):"
 
-#: ../../../esp8266/tutorial/dht.rst:50
+#: ../../esp8266/tutorial/dht.rst:50
 msgid "1=VDD, 2=Data, 3=NC, 4=GND"
 msgstr ""
 
-#: ../../../esp8266/tutorial/dht.rst:52
+#: ../../esp8266/tutorial/dht.rst:52
 msgid "Sensor with I2C in 1-wire mode (eg. DHT12, AM2320, AM2321, AM2322):"
 msgstr "1-wite モードで I2C ありのセンサー (例: DHT12, AM2320, AM2321, AM2322):"
 
-#: ../../../esp8266/tutorial/dht.rst:54
+#: ../../esp8266/tutorial/dht.rst:54
 msgid "1=VDD, 2=Data, 3=GND, 4=GND"
 msgstr ""
 
-#: ../../../esp8266/tutorial/dht.rst:56
+#: ../../esp8266/tutorial/dht.rst:56
 msgid "Sensor with I2C in I2C mode (eg. DHT12, AM2320, AM2321, AM2322):"
 msgstr "I2C モードで I2C ありのセンサー (例: DHT12, AM2320, AM2321, AM2322):"
 
-#: ../../../esp8266/tutorial/dht.rst:58
+#: ../../esp8266/tutorial/dht.rst:58
 msgid "1=VDD, 2=SDA, 3=GND, 4=SCL"
 msgstr ""
 
-#: ../../../esp8266/tutorial/dht.rst:60
+#: ../../esp8266/tutorial/dht.rst:60
 msgid "You should use pull-up resistors for the Data, SDA and SCL pins."
 msgstr "データ、SDA, SCL ピンにはプルアップ抵抗を使用する必要があります。"
 
-#: ../../../esp8266/tutorial/dht.rst:62
+#: ../../esp8266/tutorial/dht.rst:62
 msgid ""
 "To make newer I2C sensors work in backwards compatible 1-wire mode, you "
 "must connect both pins 3 and 4 to GND. This disables the I2C interface."
@@ -1696,17 +1718,17 @@ msgstr ""
 "新しい I2C センサを下位互換性のある 1-wire モードで動作させるには、ピン3と4の"
 "両方を GND に接続する必要があります。これにより I2C インターフェイスが無効になります。"
 
-#: ../../../esp8266/tutorial/dht.rst:65
+#: ../../esp8266/tutorial/dht.rst:65
 msgid ""
 "DHT22 sensors are now sold under the name AM2302 and are otherwise "
 "identical."
 msgstr "DHT22 センサーは現在、AM2302 という名前で販売されています。"
 
-#: ../../../esp8266/tutorial/filesystem.rst:2
+#: ../../esp8266/tutorial/filesystem.rst:2
 msgid "The internal filesystem"
 msgstr "内部ファイルシステム"
 
-#: ../../../esp8266/tutorial/filesystem.rst:4
+#: ../../esp8266/tutorial/filesystem.rst:4
 msgid ""
 "If your devices has 1Mbyte or more of storage then it will be set up "
 "(upon first boot) to contain a filesystem.  This filesystem uses the FAT "
@@ -1716,11 +1738,11 @@ msgstr ""
 "(最初の起動時に)設定されます。このファイルシステムは FAT フォーマットを使用し、"
 "MicroPython ファームウェアの後にフラッシュに保存されます。"
 
-#: ../../../esp8266/tutorial/filesystem.rst:9
+#: ../../esp8266/tutorial/filesystem.rst:9
 msgid "Creating and reading files"
 msgstr "ファイルの作成と読み取り"
 
-#: ../../../esp8266/tutorial/filesystem.rst:11
+#: ../../esp8266/tutorial/filesystem.rst:11
 msgid ""
 "MicroPython on the ESP8266 supports the standard way of accessing files "
 "in Python, using the built-in ``open()`` function."
@@ -1728,11 +1750,11 @@ msgstr ""
 "ESP8266 の MicroPython は、組込みの ``open()`` 関数を使用して Python で"
 "ファイルにアクセスする標準的な方法をサポートしています。"
 
-#: ../../../esp8266/tutorial/filesystem.rst:14
+#: ../../esp8266/tutorial/filesystem.rst:14
 msgid "To create a file try::"
 msgstr "ファイルを作成するには次のようにします::"
 
-#: ../../../esp8266/tutorial/filesystem.rst:16
+#: ../../esp8266/tutorial/filesystem.rst:16
 msgid ""
 ">>> f = open('data.txt', 'w')\n"
 ">>> f.write('some data')\n"
@@ -1740,7 +1762,7 @@ msgid ""
 ">>> f.close()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/filesystem.rst:21
+#: ../../esp8266/tutorial/filesystem.rst:21
 msgid ""
 "The \"9\" is the number of bytes that were written with the ``write()`` "
 "method. Then you can read back the contents of this new file using::"
@@ -1748,7 +1770,7 @@ msgstr ""
 "\"9\" は、 ``write()`` メソッドで書き込まれたバイト数です。次のコマンドを"
 "使用して、この新しいファイルの内容を読み取ることができます。"
 
-#: ../../../esp8266/tutorial/filesystem.rst:24
+#: ../../esp8266/tutorial/filesystem.rst:24
 msgid ""
 ">>> f = open('data.txt')\n"
 ">>> f.read()\n"
@@ -1756,7 +1778,7 @@ msgid ""
 ">>> f.close()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/filesystem.rst:29
+#: ../../esp8266/tutorial/filesystem.rst:29
 msgid ""
 "Note that the default mode when opening a file is to open it in read-only"
 " mode, and as a text file.  Specify ``'wb'`` as the second argument to "
@@ -1767,11 +1789,11 @@ msgstr ""
 "バイナリモードでの書込み用に開くには ``open()`` の第２引数に ``'wb'`` を指定し、"
 "読取り用に開くには 'rb' を指定します。"
 
-#: ../../../esp8266/tutorial/filesystem.rst:35
+#: ../../esp8266/tutorial/filesystem.rst:35
 msgid "Listing file and more"
 msgstr "ファイルのリスト表示など"
 
-#: ../../../esp8266/tutorial/filesystem.rst:37
+#: ../../esp8266/tutorial/filesystem.rst:37
 msgid ""
 "The os module can be used for further control over the filesystem.  First"
 " import the module::"
@@ -1779,41 +1801,41 @@ msgstr ""
 "os モジュールは、ファイルシステムをさらに制御するために使用できます。最初に"
 "モジュールをインポートします::"
 
-#: ../../../esp8266/tutorial/filesystem.rst:40
+#: ../../esp8266/tutorial/filesystem.rst:40
 msgid ">>> import os"
 msgstr ""
 
-#: ../../../esp8266/tutorial/filesystem.rst:42
+#: ../../esp8266/tutorial/filesystem.rst:42
 msgid "Then try listing the contents of the filesystem::"
 msgstr "次に、ファイルシステムの内容を列挙してみてください::"
 
-#: ../../../esp8266/tutorial/filesystem.rst:44
+#: ../../esp8266/tutorial/filesystem.rst:44
 msgid ""
 ">>> os.listdir()\n"
 "['boot.py', 'port_config.py', 'data.txt']"
 msgstr ""
 
-#: ../../../esp8266/tutorial/filesystem.rst:47
+#: ../../esp8266/tutorial/filesystem.rst:47
 msgid "You can make directories::"
 msgstr "ディレクトリを作れます::"
 
-#: ../../../esp8266/tutorial/filesystem.rst:49
+#: ../../esp8266/tutorial/filesystem.rst:49
 msgid ">>> os.mkdir('dir')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/filesystem.rst:51
+#: ../../esp8266/tutorial/filesystem.rst:51
 msgid "And remove entries::"
 msgstr "エントリを削除できます::"
 
-#: ../../../esp8266/tutorial/filesystem.rst:53
+#: ../../esp8266/tutorial/filesystem.rst:53
 msgid ">>> os.remove('data.txt')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/filesystem.rst:56
+#: ../../esp8266/tutorial/filesystem.rst:56
 msgid "Start up scripts"
 msgstr "スクリプトの起動"
 
-#: ../../../esp8266/tutorial/filesystem.rst:58
+#: ../../esp8266/tutorial/filesystem.rst:58
 msgid ""
 "There are two files that are treated specially by the ESP8266 when it "
 "starts up: boot.py and main.py.  The boot.py script is executed first (if"
@@ -1826,11 +1848,11 @@ msgstr ""
 "スクリプトが実行されます。これらのファイルを自分で作成し、デバイスの起動時に実行する"
 "コードを入力できます。"
 
-#: ../../../esp8266/tutorial/filesystem.rst:65
+#: ../../esp8266/tutorial/filesystem.rst:65
 msgid "Accessing the filesystem via WebREPL"
 msgstr "WebREPL を介したファイルシステムへのアクセス"
 
-#: ../../../esp8266/tutorial/filesystem.rst:67
+#: ../../esp8266/tutorial/filesystem.rst:67
 msgid ""
 "You can access the filesystem over WebREPL using the web client in a "
 "browser or via the command-line tool. Please refer to Quick Reference and"
@@ -1840,11 +1862,11 @@ msgstr ""
 "ファイルシステムにアクセスできます。WebREPL の詳細については、クイックリファレンスと"
 "チュートリアルの章を参照してください。"
 
-#: ../../../esp8266/tutorial/index.rst:4
+#: ../../esp8266/tutorial/index.rst:4
 msgid "MicroPython tutorial for ESP8266"
 msgstr "ESP8266用 MicroPythonチュートリアル"
 
-#: ../../../esp8266/tutorial/index.rst:6
+#: ../../esp8266/tutorial/index.rst:6
 msgid ""
 "This tutorial is intended to get you started using MicroPython on the "
 "ESP8266 system-on-a-chip.  If it is your first time it is recommended to "
@@ -1857,7 +1879,7 @@ msgstr ""
 "お勧めします。初めてでない場合、章はほとんど自己完結型であるので、興味のあるところを"
 "読むだけでよいです。"
 
-#: ../../../esp8266/tutorial/index.rst:11
+#: ../../esp8266/tutorial/index.rst:11
 msgid ""
 "The tutorial does not assume that you know Python, but it also does not "
 "attempt to explain any of the details of the Python language.  Instead it"
@@ -1870,11 +1892,11 @@ msgstr ""
 "途中で少しだけ Python 知識が得られるようにしています。Python自体の詳細については、 "
 "`<https://www.python.org>`__ を参照してください。"
 
-#: ../../../esp8266/tutorial/intro.rst:4
+#: ../../esp8266/tutorial/intro.rst:4
 msgid "Getting started with MicroPython on the ESP8266"
 msgstr "ESP8266 での MicroPython の始め方"
 
-#: ../../../esp8266/tutorial/intro.rst:6
+#: ../../esp8266/tutorial/intro.rst:6
 msgid ""
 "Using MicroPython is a great way to get the most of your ESP8266 board.  "
 "And vice versa, the ESP8266 chip is a great platform for using "
@@ -1889,15 +1911,15 @@ msgstr ""
 "ネットワークへの接続、インターネットとの通信、ハードウェアペリフェラルの使用、"
 "およびいくつかの外部コンポーネントの制御について説明します。"
 
-#: ../../../esp8266/tutorial/intro.rst:12
+#: ../../esp8266/tutorial/intro.rst:12
 msgid "Let's get started!"
 msgstr "始めましょう！"
 
-#: ../../../esp8266/tutorial/intro.rst:15
+#: ../../esp8266/tutorial/intro.rst:15
 msgid "Requirements"
 msgstr "必要なもの"
 
-#: ../../../esp8266/tutorial/intro.rst:17
+#: ../../esp8266/tutorial/intro.rst:17
 msgid ""
 "The first thing you need is a board with an ESP8266 chip.  The "
 "MicroPython software supports the ESP8266 chip itself and any board "
@@ -1912,7 +1934,7 @@ msgstr ""
 "どのように接続されているか、UART を PC で使用できるようにする内蔵 USB シリアル"
 "コンバータが含まれているかどうかです。"
 
-#: ../../../esp8266/tutorial/intro.rst:23
+#: ../../esp8266/tutorial/intro.rst:23
 msgid ""
 "The minimum requirement for flash size is 1Mbyte. There is also a special"
 " build for boards with 512KB, but it is highly limited comparing to the "
@@ -1927,7 +1949,7 @@ msgstr ""
 "特定のアプリケーションのパラメータを微調整するユーザーにとっては、512KB ビルドが"
 "より面白くなります。"
 
-#: ../../../esp8266/tutorial/intro.rst:30
+#: ../../esp8266/tutorial/intro.rst:30
 msgid ""
 "Names of pins will be given in this tutorial using the chip names (eg "
 "GPIO0) and it should be straightforward to find which pin this "
@@ -1936,11 +1958,11 @@ msgstr ""
 "このチュートリアルでは、チップ名(GPIO0など)を使用してピンの名前を示しています。"
 "これは、特定のボード上のどのピンに対応しているかを簡単に見つけることができます。"
 
-#: ../../../esp8266/tutorial/intro.rst:35
+#: ../../esp8266/tutorial/intro.rst:35
 msgid "Powering the board"
 msgstr "ボードの電源を入れる"
 
-#: ../../../esp8266/tutorial/intro.rst:37
+#: ../../esp8266/tutorial/intro.rst:37
 msgid ""
 "If your board has a USB connector on it then most likely it is powered "
 "through this when connected to your PC.  Otherwise you will need to power"
@@ -1951,11 +1973,11 @@ msgstr ""
 "可能性が非常に高いです。それ以外の場合は、直接電源を入力する必要があります。"
 "詳細については、ボードのドキュメントを参照してください。"
 
-#: ../../../esp8266/tutorial/intro.rst:42
+#: ../../esp8266/tutorial/intro.rst:42
 msgid "Getting the firmware"
 msgstr "ファームウェアの入手"
 
-#: ../../../esp8266/tutorial/intro.rst:44
+#: ../../esp8266/tutorial/intro.rst:44
 msgid ""
 "The first thing you need to do is download the most recent MicroPython "
 "firmware .bin file to load onto your ESP8266 device. You can download it "
@@ -1968,19 +1990,19 @@ msgstr ""
 "`MicroPython ダウンロードページ <http://micropython.org/download#esp8266>`_ "
 "からダウンロードできます。ここには、3つの主要な選択肢があります。"
 
-#: ../../../esp8266/tutorial/intro.rst:49
+#: ../../esp8266/tutorial/intro.rst:49
 msgid "Stable firmware builds for 1024kb modules and above."
 msgstr "安定版ファームウェアが 1024kb 以上のモジュール用にビルドされています。"
 
-#: ../../../esp8266/tutorial/intro.rst:50
+#: ../../esp8266/tutorial/intro.rst:50
 msgid "Daily firmware builds for 1024kb modules and above."
 msgstr "毎日ビルド版ファームウェアが 1024kb以上のモジュール用にビルドされています。"
 
-#: ../../../esp8266/tutorial/intro.rst:51
+#: ../../esp8266/tutorial/intro.rst:51
 msgid "Daily firmware builds for 512kb modules."
 msgstr "毎日ビルド版ファームウェアが 512kb のモジュール用にビルドされています。"
 
-#: ../../../esp8266/tutorial/intro.rst:53
+#: ../../esp8266/tutorial/intro.rst:53
 msgid ""
 "If you are just starting with MicroPython, the best bet is to go for the "
 "Stable firmware builds. If you are an advanced, experienced MicroPython "
@@ -1994,7 +2016,7 @@ msgstr ""
 "テストしたい場合は、毎日ビルド版があります(注記: 実際に開発経験が必要です。たとえば、"
 "どのような新しい変更や機能が導入されたのか知るために git の履歴を追う準備をするなど)。"
 
-#: ../../../esp8266/tutorial/intro.rst:60
+#: ../../esp8266/tutorial/intro.rst:60
 msgid ""
 "Support for 512kb modules is provided on a feature preview basis. For end"
 " users, it's recommended to use modules with flash of 1024kb or more. As "
@@ -2004,11 +2026,11 @@ msgstr ""
 "とっては、フラッシュメモリが 1024kb 以上のモジュールを使用することをお勧めします。"
 "そのため、512kb モジュールは毎日ビルド版のみが提供されています。"
 
-#: ../../../esp8266/tutorial/intro.rst:65
+#: ../../esp8266/tutorial/intro.rst:65
 msgid "Deploying the firmware"
 msgstr "ファームウェアの配備"
 
-#: ../../../esp8266/tutorial/intro.rst:67
+#: ../../esp8266/tutorial/intro.rst:67
 msgid ""
 "Once you have the MicroPython firmware (compiled code), you need to load "
 "it onto your ESP8266 device.  There are two main steps to do this: first "
@@ -2023,7 +2045,7 @@ msgstr ""
 "これらの手順の正確な手順は、特定のボードに大きく依存します。詳細については、"
 "そのドキュメントを参照する必要があります。"
 
-#: ../../../esp8266/tutorial/intro.rst:73
+#: ../../esp8266/tutorial/intro.rst:73
 msgid ""
 "If you have a board that has a USB connector, a USB-serial convertor, and"
 " has the DTR and RTS pins wired in a special way then deploying the "
@@ -2045,7 +2067,7 @@ msgstr ""
 "そのようなボードがない場合、GPIO0 をグランドに繋いだままで、リセットピンをグランドに"
 "繋いで離すことでデバイスをリセットし、プログラミングモードに入る必要があります。"
 
-#: ../../../esp8266/tutorial/intro.rst:82
+#: ../../esp8266/tutorial/intro.rst:82
 msgid ""
 "For best results it is recommended to first erase the entire flash of "
 "your device before putting on new MicroPython firmware."
@@ -2053,7 +2075,7 @@ msgstr ""
 "最良の結果を得るために、新しい MicroPython ファームウェアをインストールする前に、"
 "まずデバイスのフラッシュ全体を消去することをお勧めします。"
 
-#: ../../../esp8266/tutorial/intro.rst:85
+#: ../../esp8266/tutorial/intro.rst:85
 msgid ""
 "Currently we only support esptool.py to copy across the firmware.  You "
 "can find this tool here: `<https://github.com/espressif/esptool/>`__, or "
@@ -2063,11 +2085,11 @@ msgstr ""
 "このツールは `<https://github.com/espressif/esptool/>`__ "
 "からダウンロードするか、pip を使用してインストールしてください::"
 
-#: ../../../esp8266/tutorial/intro.rst:89
+#: ../../esp8266/tutorial/intro.rst:89
 msgid "pip install esptool"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:91
+#: ../../esp8266/tutorial/intro.rst:91
 msgid ""
 "Versions starting with 1.3 support both Python 2.7 and Python 3.4 (or "
 "newer). An older version (at least 1.2.1 is needed) works fine but will "
@@ -2077,7 +2099,7 @@ msgstr ""
 "バージョン)の両方をサポートしています。古いバージョンでも正常に動作しますが"
 "(少なくとも 1.2.1 が必要)、Python 2.7 が必要です。"
 
-#: ../../../esp8266/tutorial/intro.rst:95
+#: ../../esp8266/tutorial/intro.rst:95
 msgid ""
 "Any other flashing program should work, so feel free to try them out or "
 "refer to the documentation for your board to see its recommendations."
@@ -2085,25 +2107,25 @@ msgstr ""
 "これ以外のフラッシュプログラムが動作するかは、試してみるか、ボードのドキュメントを"
 "参照して推奨事項を確認してください。"
 
-#: ../../../esp8266/tutorial/intro.rst:98
+#: ../../esp8266/tutorial/intro.rst:98
 msgid "Using esptool.py you can erase the flash with the command::"
 msgstr "esptool.py を使用すると、次のコマンドでフラッシュを消去できます::"
 
-#: ../../../esp8266/tutorial/intro.rst:100
+#: ../../esp8266/tutorial/intro.rst:100
 msgid "esptool.py --port /dev/ttyUSB0 erase_flash"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:102
+#: ../../esp8266/tutorial/intro.rst:102
 msgid "And then deploy the new firmware using::"
 msgstr "消去したら、次の方法で新しいファームウェアを導入します::"
 
-#: ../../../esp8266/tutorial/intro.rst:104
+#: ../../esp8266/tutorial/intro.rst:104
 msgid ""
 "esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash "
 "--flash_size=detect 0 esp8266-20170108-v1.8.7.bin"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:106
+#: ../../esp8266/tutorial/intro.rst:106
 msgid ""
 "You might need to change the \"port\" setting to something else relevant "
 "for your PC.  You may also need to reduce the baudrate if you get errors "
@@ -2114,7 +2136,7 @@ msgstr ""
 "エラーが発生した場合はボーレートを下げる必要があります(たとえば 115200 まで)。"
 "ファームウェアのファイル名もダウンロードしたファイルの名前に変える必要があります。"
 
-#: ../../../esp8266/tutorial/intro.rst:111
+#: ../../esp8266/tutorial/intro.rst:111
 msgid ""
 "For some boards with a particular FlashROM configuration (e.g. some "
 "variants of a NodeMCU board) you may need to use the following command to"
@@ -2123,13 +2145,13 @@ msgstr ""
 "特定の FlashROM 構成を持つボード(NodeMCU ボードなど)には、次のコマンドを使用して"
 "ファームウェアを展開する必要があります(``-fm dio`` オプションに注意してください)。"
 
-#: ../../../esp8266/tutorial/intro.rst:115
+#: ../../esp8266/tutorial/intro.rst:115
 msgid ""
 "esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash "
 "--flash_size=detect -fm dio 0 esp8266-20170108-v1.8.7.bin"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:117
+#: ../../esp8266/tutorial/intro.rst:117
 msgid ""
 "If the above commands run without error then MicroPython should be "
 "installed on your board!"
@@ -2147,11 +2169,11 @@ msgstr ""
 "今すぐそれを解除して、再度リセットピンをグランドに繋いですぐに離すことでデバイスを"
 "リセットしてください。"
 
-#: ../../../esp8266/tutorial/intro.rst:125
+#: ../../esp8266/tutorial/intro.rst:125
 msgid "Serial prompt"
 msgstr "シリアルプロンプト"
 
-#: ../../../esp8266/tutorial/intro.rst:127
+#: ../../esp8266/tutorial/intro.rst:127
 msgid ""
 "Once you have the firmware on the device you can access the REPL (Python "
 "prompt) over UART0 (GPIO1=TX, GPIO3=RX), which might be connected to a "
@@ -2163,11 +2185,11 @@ msgstr ""
 "に接続されている可能性があります)。ボーレートは 115200 です。チュートリアルの次の"
 "部分では、プロンプトについて詳しく説明します。"
 
-#: ../../../esp8266/tutorial/intro.rst:133
+#: ../../esp8266/tutorial/intro.rst:133
 msgid "WiFi"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:135
+#: ../../esp8266/tutorial/intro.rst:135
 msgid ""
 "After a fresh install and boot the device configures itself as a WiFi "
 "access point (AP) that you can connect to.  The ESSID is of the form "
@@ -2185,11 +2207,11 @@ msgstr ""
 "ください)。一度ネットワークに接続すると、そのIPアドレスは 192.168.4.1 になります。"
 "WiFi の設定については、チュートリアルの後半で詳しく説明します。"
 
-#: ../../../esp8266/tutorial/intro.rst:144
+#: ../../esp8266/tutorial/intro.rst:144
 msgid "Troubleshooting installation problems"
 msgstr "インストールの問題のトラブルシューティング"
 
-#: ../../../esp8266/tutorial/intro.rst:146
+#: ../../esp8266/tutorial/intro.rst:146
 msgid ""
 "If you experience problems during flashing or with running firmware "
 "immediately after it, here are troubleshooting recommendations:"
@@ -2197,7 +2219,7 @@ msgstr ""
 "フラッシュ中またはファームウェアの実行直後に問題が発生した場合は、次の推奨事項を"
 "参照してください。"
 
-#: ../../../esp8266/tutorial/intro.rst:149
+#: ../../esp8266/tutorial/intro.rst:149
 msgid ""
 "Be aware of and try to exclude hardware problems. There are 2 common "
 "problems: bad power source quality and worn-out/defective FlashROM. "
@@ -2236,7 +2258,7 @@ msgstr ""
 "モジュール/ボードの購入にあたっては、ベンダー、価格、ドキュメント、保証、購入後のサポート"
 "などをよく考慮するようにしてください。"
 
-#: ../../../esp8266/tutorial/intro.rst:168
+#: ../../esp8266/tutorial/intro.rst:168
 msgid ""
 "The flashing instructions above use flashing speed of 460800 baud, which "
 "is good compromise between speed and stability. However, depending on "
@@ -2249,7 +2271,7 @@ msgstr ""
 "OS などによっては、上記ボーレートでも速すぎてエラーにつながる可能性があります。"
 "そのような場合には、より一般的な 115200 ボーレートを試してください。"
 
-#: ../../../esp8266/tutorial/intro.rst:174
+#: ../../esp8266/tutorial/intro.rst:174
 msgid ""
 "If lower baud rate didn't help, you may want to try older version of "
 "esptool.py, which had a different programming algorithm::"
@@ -2257,11 +2279,11 @@ msgstr ""
 "低いボーレートが役に立たなかった場合は、プログラミングアルゴリズムの異なる古い"
 "バージョンの esptool.py を試してみてください。"
 
-#: ../../../esp8266/tutorial/intro.rst:177
+#: ../../esp8266/tutorial/intro.rst:177
 msgid "pip install esptool==1.0.1"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:179
+#: ../../esp8266/tutorial/intro.rst:179
 msgid ""
 "This version doesn't support ``--flash_size=detect`` option, so you will "
 "need to specify FlashROM size explicitly (in megabits). It also requires "
@@ -2273,7 +2295,7 @@ msgstr ""
 "も必要です。したがって、上記のコマンドでは ``pip`` の代わりに ``pip2`` を使う"
 "必要があるかもしれません。"
 
-#: ../../../esp8266/tutorial/intro.rst:184
+#: ../../esp8266/tutorial/intro.rst:184
 msgid ""
 "The ``--flash_size`` option in the commands above is mandatory. Omitting "
 "it will lead to a corrupted firmware."
@@ -2281,7 +2303,7 @@ msgstr ""
 "上記のコマンドの ``--flash_size`` オプションは必須です。これを省略すると、"
 "ファームウェアが破損します。"
 
-#: ../../../esp8266/tutorial/intro.rst:187
+#: ../../esp8266/tutorial/intro.rst:187
 msgid ""
 "To catch incorrect flash content (e.g. from a defective sector on a "
 "chip), add ``--verify`` switch to the commands above."
@@ -2289,7 +2311,7 @@ msgstr ""
 "フラッシュの内容の不正(たとえば、チップ上の欠陥セクタなど)を検出するには、 "
 "上記のコマンドに ``--verify`` オプションを加えてください。"
 
-#: ../../../esp8266/tutorial/intro.rst:190
+#: ../../esp8266/tutorial/intro.rst:190
 msgid ""
 "Additionally, you can check the firmware integrity from a MicroPython "
 "REPL prompt (assuming you were able to flash it and ``--verify`` option "
@@ -2298,13 +2320,13 @@ msgstr ""
 "さらに、MicroPython REPL プロンプトからファームウェアの整合性をチェックすることも"
 "できます(フラッシュができて、 ``--verify`` オプションでもエラーが報告されない場合)::"
 
-#: ../../../esp8266/tutorial/intro.rst:194
+#: ../../esp8266/tutorial/intro.rst:194
 msgid ""
 "import esp\n"
 "esp.check_fw()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/intro.rst:197
+#: ../../esp8266/tutorial/intro.rst:197
 msgid ""
 "If the last output value is True, the firmware is OK. Otherwise, it's "
 "corrupted and need to be reflashed correctly."
@@ -2312,7 +2334,7 @@ msgstr ""
 "最後の出力値が True の場合、ファームウェアはOKです。それ以外の場合は破損している"
 "ため、正しく再フラッシュする必要があります。"
 
-#: ../../../esp8266/tutorial/intro.rst:200
+#: ../../esp8266/tutorial/intro.rst:200
 msgid ""
 "If you experience any issues with another flashing application (not "
 "esptool.py), try esptool.py, it is a generally accepted flashing "
@@ -2322,7 +2344,7 @@ msgstr ""
 "esptool.py を試してください。これは ESP8266 コミュニティで一般に認められて"
 "いるフラッシュアプリケーションです。"
 
-#: ../../../esp8266/tutorial/intro.rst:204
+#: ../../esp8266/tutorial/intro.rst:204
 msgid ""
 "If you still experience problems with even flashing the firmware, please "
 "refer to esptool.py project page, https://github.com/espressif/esptool "
@@ -2333,7 +2355,7 @@ msgstr ""
 "esptool.py プロジェクトページ https://github.com/espressif/esptool にある"
 "情報やバグトラッカーを参照してください。"
 
-#: ../../../esp8266/tutorial/intro.rst:208
+#: ../../esp8266/tutorial/intro.rst:208
 msgid ""
 "If you are able to flash firmware, but ``--verify`` option or "
 "``esp.check_fw()`` return errors even after multiple retries, you may "
@@ -2343,11 +2365,11 @@ msgstr ""
 "``esp.check_fw()`` が何度試してもエラーを返す場合は、上で説明したように、"
 "欠陥のある FlashROM チップである可能性があります。"
 
-#: ../../../esp8266/tutorial/neopixel.rst:2
+#: ../../esp8266/tutorial/neopixel.rst:2
 msgid "Controlling NeoPixels"
 msgstr "NeoPixel の制御"
 
-#: ../../../esp8266/tutorial/neopixel.rst:4
+#: ../../esp8266/tutorial/neopixel.rst:4
 msgid ""
 "NeoPixels, also known as WS2812 LEDs, are full-colour LEDs that are "
 "connected in serial, are individually addressable, and can have their "
@@ -2360,17 +2382,17 @@ msgstr ""
 "NeoPixel は正確なタイミングでの制御を必要とするため、特別な neopixel モジュール"
 "を用意しています。"
 
-#: ../../../esp8266/tutorial/neopixel.rst:9
+#: ../../esp8266/tutorial/neopixel.rst:9
 msgid "To create a NeoPixel object do the following::"
 msgstr "NeoPixel オブジェクトを作成するには、次のようにします::"
 
-#: ../../../esp8266/tutorial/neopixel.rst:11
+#: ../../esp8266/tutorial/neopixel.rst:11
 msgid ""
 ">>> import machine, neopixel\n"
 ">>> np = neopixel.NeoPixel(machine.Pin(4), 8)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/neopixel.rst:14
+#: ../../esp8266/tutorial/neopixel.rst:14
 msgid ""
 "This configures a NeoPixel strip on GPIO4 with 8 pixels.  You can adjust "
 "the \"4\" (pin number) and the \"8\" (number of pixel) to suit your set "
@@ -2379,11 +2401,11 @@ msgstr ""
 "これは、GPIO4 上の8ピクセルの NeoPixel を構築します。繋げたものに合わせて、\"4\" "
 "(ピン番号)と \"8\" (ピクセル数)を調整することができます。"
 
-#: ../../../esp8266/tutorial/neopixel.rst:17
+#: ../../esp8266/tutorial/neopixel.rst:17
 msgid "To set the colour of pixels use::"
 msgstr "ピクセルの色を設定するには次のようにします::"
 
-#: ../../../esp8266/tutorial/neopixel.rst:19
+#: ../../esp8266/tutorial/neopixel.rst:19
 msgid ""
 ">>> np[0] = (255, 0, 0) # set to red, full brightness\n"
 ">>> np[1] = (0, 128, 0) # set to green, half brightness\n"
@@ -2393,7 +2415,7 @@ msgstr ""
 ">>> np[1] = (0, 128, 0) # 緑の最大輝度に設定\n"
 ">>> np[2] = (0, 0, 64)  # 青の最大輝度に設定"
 
-#: ../../../esp8266/tutorial/neopixel.rst:23
+#: ../../esp8266/tutorial/neopixel.rst:23
 msgid ""
 "For LEDs with more than 3 colours, such as RGBW pixels or RGBY pixels, "
 "the NeoPixel class takes a ``bpp`` parameter. To setup a NeoPixel object "
@@ -2403,13 +2425,13 @@ msgstr ""
 "``bpp`` パラメータを取ります。RGBW ピクセルの NeoPixel オブジェクトを設定するには、"
 "次の操作を行います。"
 
-#: ../../../esp8266/tutorial/neopixel.rst:27
+#: ../../esp8266/tutorial/neopixel.rst:27
 msgid ""
 ">>> import machine, neopixel\n"
 ">>> np = neopixel.NeoPixel(machine.Pin(4), 8, bpp=4)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/neopixel.rst:30
+#: ../../esp8266/tutorial/neopixel.rst:30
 msgid ""
 "In a 4-bpp mode, remember to use 4-tuples instead of 3-tuples to set the "
 "colour. For example to set the first three pixels use::"
@@ -2417,26 +2439,26 @@ msgstr ""
 "4-bpp モードでは、3タプルの代わりに4タプルを使用して色を設定してください。"
 "たとえば、先の3つのピクセルを設定するには次のようにします。"
 
-#: ../../../esp8266/tutorial/neopixel.rst:33
+#: ../../esp8266/tutorial/neopixel.rst:33
 msgid ""
 ">>> np[0] = (255, 0, 0, 128) # RGBY 設定でのオレンジ\n"
 ">>> np[1] = (0, 255, 0, 128) # RGBY 設定での黄色\n"
 ">>> np[2] = (0, 0, 255, 128) # RGBY 設定での青緑"
 msgstr ""
 
-#: ../../../esp8266/tutorial/neopixel.rst:37
+#: ../../esp8266/tutorial/neopixel.rst:37
 msgid "Then use the ``write()`` method to output the colours to the LEDs::"
 msgstr "次に ``write()`` メソッドを使って色を LED に出力します::"
 
-#: ../../../esp8266/tutorial/neopixel.rst:39
+#: ../../esp8266/tutorial/neopixel.rst:39
 msgid ">>> np.write()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/neopixel.rst:41
+#: ../../esp8266/tutorial/neopixel.rst:41
 msgid "The following demo function makes a fancy show on the LEDs::"
 msgstr "以下のデモ関数は、いろいろな LED の光らせ方を見せてくれます::"
 
-#: ../../../esp8266/tutorial/neopixel.rst:43
+#: ../../esp8266/tutorial/neopixel.rst:43
 msgid ""
 "import time\n"
 "\n"
@@ -2516,19 +2538,19 @@ msgstr ""
 "        np[i] = (0, 0, 0)\n"
 "    np.write()"
 
-#: ../../../esp8266/tutorial/neopixel.rst:82
+#: ../../esp8266/tutorial/neopixel.rst:82
 msgid "Execute it using::"
 msgstr "この関数は次のように実行します::"
 
-#: ../../../<rst_epilog>:84
+#: ../../<rst_epilog>:84
 msgid ">>> demo(np)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:2
+#: ../../esp8266/tutorial/network_basics.rst:2
 msgid "Network basics"
 msgstr "ネットワークの基礎"
 
-#: ../../../esp8266/tutorial/network_basics.rst:4
+#: ../../esp8266/tutorial/network_basics.rst:4
 msgid ""
 "The network module is used to configure the WiFi connection.  There are "
 "two WiFi interfaces, one for the station (when the ESP8266 connects to a "
@@ -2540,18 +2562,18 @@ msgstr ""
 "デバイス用)の2つの WiFi インタフェースがあります。これらのオブジェクトの"
 "インスタンスを作成するには次のようにします::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:9
+#: ../../esp8266/tutorial/network_basics.rst:9
 msgid ""
 ">>> import network\n"
 ">>> sta_if = network.WLAN(network.STA_IF)\n"
 ">>> ap_if = network.WLAN(network.AP_IF)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:13
+#: ../../esp8266/tutorial/network_basics.rst:13
 msgid "You can check if the interfaces are active by::"
 msgstr "インターフェイスがアクティブかどうかは、次の方法で確認できます::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:15
+#: ../../esp8266/tutorial/network_basics.rst:15
 msgid ""
 ">>> sta_if.active()\n"
 "False\n"
@@ -2559,25 +2581,25 @@ msgid ""
 "True"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:20
+#: ../../esp8266/tutorial/network_basics.rst:20
 msgid "You can also check the network settings of the interface by::"
 msgstr "また、次の方法でインタフェースのネットワーク設定を確認することもできます::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:22
+#: ../../esp8266/tutorial/network_basics.rst:22
 msgid ""
 ">>> ap_if.ifconfig()\n"
 "('192.168.4.1', '255.255.255.0', '192.168.4.1', '8.8.8.8')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:25
+#: ../../esp8266/tutorial/network_basics.rst:25
 msgid "The returned values are: IP address, netmask, gateway, DNS."
 msgstr "戻り値は、IPアドレス、ネットマスク、ゲートウェイ、DNS です。"
 
-#: ../../../esp8266/tutorial/network_basics.rst:28
+#: ../../esp8266/tutorial/network_basics.rst:28
 msgid "Configuration of the WiFi"
 msgstr "WiFi の設定"
 
-#: ../../../esp8266/tutorial/network_basics.rst:30
+#: ../../esp8266/tutorial/network_basics.rst:30
 msgid ""
 "Upon a fresh install the ESP8266 is configured in access point mode, so "
 "the AP_IF interface is active and the STA_IF interface is inactive.  You "
@@ -2589,49 +2611,49 @@ msgstr ""
 "STA_IF インターフェイスを使って、自分のネットワークに接続するようにモジュールを"
 "設定できます。"
 
-#: ../../../esp8266/tutorial/network_basics.rst:34
+#: ../../esp8266/tutorial/network_basics.rst:34
 msgid "First activate the station interface::"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:36
+#: ../../esp8266/tutorial/network_basics.rst:36
 msgid ">>> sta_if.active(True)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:38
+#: ../../esp8266/tutorial/network_basics.rst:38
 msgid "Then connect to your WiFi network::"
 msgstr "最初にステーションインターフェイスを有効にします::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:40
+#: ../../esp8266/tutorial/network_basics.rst:40
 msgid ">>> sta_if.connect('<your ESSID>', '<your password>')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:42
+#: ../../esp8266/tutorial/network_basics.rst:42
 msgid "To check if the connection is established use::"
 msgstr "次に、WiFiネットワークに接続します::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:44
+#: ../../esp8266/tutorial/network_basics.rst:44
 msgid ">>> sta_if.isconnected()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:46
+#: ../../esp8266/tutorial/network_basics.rst:46
 msgid "Once established you can check the IP address::"
 msgstr "接続が確立されているかどうかを確認するには次のようにします::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:48
+#: ../../esp8266/tutorial/network_basics.rst:48
 msgid ""
 ">>> sta_if.ifconfig()\n"
 "('192.168.0.2', '255.255.255.0', '192.168.0.1', '8.8.8.8')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:51
+#: ../../esp8266/tutorial/network_basics.rst:51
 msgid "You can then disable the access-point interface if you no longer need it::"
 msgstr "アクセスポイントインターフェイスが不要になったら、アクセスポイントインターフェイスを無効にすることができます::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:53
+#: ../../esp8266/tutorial/network_basics.rst:53
 msgid ">>> ap_if.active(False)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:55
+#: ../../esp8266/tutorial/network_basics.rst:55
 msgid ""
 "Here is a function you can run (or put in your boot.py file) to "
 "automatically connect to your WiFi network::"
@@ -2639,7 +2661,7 @@ msgstr ""
 "以下は WiFi ネットワークに自動的に接続するために実行する関数です"
 "(boot.py ファイルに入れておくこともできます)::"
 
-#: ../../../esp8266/tutorial/network_basics.rst:58
+#: ../../esp8266/tutorial/network_basics.rst:58
 msgid ""
 "def do_connect():\n"
 "    import network\n"
@@ -2653,11 +2675,11 @@ msgid ""
 "    print('network config:', sta_if.ifconfig())"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_basics.rst:70
+#: ../../esp8266/tutorial/network_basics.rst:70
 msgid "Sockets"
 msgstr "ソケット"
 
-#: ../../../esp8266/tutorial/network_basics.rst:72
+#: ../../esp8266/tutorial/network_basics.rst:72
 msgid ""
 "Once the WiFi is set up the way to access the network is by using "
 "sockets. A socket represents an endpoint on a network device, and when "
@@ -2676,7 +2698,7 @@ msgstr ""
 "整数です。IP アドレスとポート番号を指定すると、リモートデバイスに接続して通話を"
 "開始できます。"
 
-#: ../../../esp8266/tutorial/network_basics.rst:80
+#: ../../esp8266/tutorial/network_basics.rst:80
 msgid ""
 "The next part of the tutorial discusses how to use sockets to do some "
 "common and useful network tasks."
@@ -2684,11 +2706,11 @@ msgstr ""
 "チュートリアルの次の章では、ソケットを使用して一般的で有用なネットワークタスクを"
 "実行する方法について説明します。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:2
+#: ../../esp8266/tutorial/network_tcp.rst:2
 msgid "Network - TCP sockets"
 msgstr "ネットワーク - TCPソケット"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:4
+#: ../../esp8266/tutorial/network_tcp.rst:4
 msgid ""
 "The building block of most of the internet is the TCP socket.  These "
 "sockets provide a reliable stream of bytes between the connected network "
@@ -2700,11 +2722,11 @@ msgstr ""
 "チュートリアルのこの部分では、いくつかの異なるケースで TCP ソケットを"
 "使用する方法を示します。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:10
+#: ../../esp8266/tutorial/network_tcp.rst:10
 msgid "Star Wars Asciimation"
 msgstr "スターウォーズのテキストアニメーション"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:12
+#: ../../esp8266/tutorial/network_tcp.rst:12
 msgid ""
 "The simplest thing to do is to download data from the internet.  In this "
 "case we will use the Star Wars Asciimation service provided by the "
@@ -2720,23 +2742,23 @@ msgstr ""
 "パスワードを入力する必要がない)ので、データのダウンロードをすぐに開始できで、"
 "使い方が簡単です。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:19
+#: ../../esp8266/tutorial/network_tcp.rst:19
 msgid "The first thing to do is make sure we have the socket module available::"
 msgstr "最初に行うことは、使用可能なソケットモジュールがあることを確認することです。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:21
+#: ../../esp8266/tutorial/network_tcp.rst:21
 msgid ">>> import socket"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:23
+#: ../../esp8266/tutorial/network_tcp.rst:23
 msgid "Then get the IP address of the server::"
 msgstr "次に、サーバーのIPアドレスを取得します。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:25
+#: ../../esp8266/tutorial/network_tcp.rst:25
 msgid ">>> addr_info = socket.getaddrinfo(\"towel.blinkenlights.nl\", 23)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:27
+#: ../../esp8266/tutorial/network_tcp.rst:27
 msgid ""
 "The ``getaddrinfo`` function actually returns a list of addresses, and "
 "each address has more information than we need.  We want to get just the "
@@ -2748,11 +2770,11 @@ msgstr ""
 "次にサーバーのIPアドレスとポートだけを取得する必要があります。これを行うには"
 "次のようにします::"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:31
+#: ../../esp8266/tutorial/network_tcp.rst:31
 msgid ">>> addr = addr_info[0][-1]"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:33
+#: ../../esp8266/tutorial/network_tcp.rst:33
 msgid ""
 "If you type ``addr_info`` and ``addr`` at the prompt you will see exactly"
 " what information they hold."
@@ -2760,21 +2782,21 @@ msgstr ""
 "プロンプトで ``addr_info`` と ``addr`` だけを入力してみると、これらが保持している"
 "情報を確認できます。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:36
+#: ../../esp8266/tutorial/network_tcp.rst:36
 msgid "Using the IP address we can make a socket and connect to the server::"
 msgstr "IP アドレスを使用してソケットを作成して、サーバに接続します::"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:38
+#: ../../esp8266/tutorial/network_tcp.rst:38
 msgid ""
 ">>> s = socket.socket()\n"
 ">>> s.connect(addr)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:41
+#: ../../esp8266/tutorial/network_tcp.rst:41
 msgid "Now that we are connected we can download and display the data::"
 msgstr "これで接続されたので、データをダウンロードして表示できます::"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:43
+#: ../../esp8266/tutorial/network_tcp.rst:43
 msgid ""
 ">>> while True:\n"
 "...     data = s.recv(500)\n"
@@ -2782,7 +2804,7 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:48
+#: ../../esp8266/tutorial/network_tcp.rst:48
 msgid ""
 "When this loop executes it should start showing the animation (use ctrl-C"
 " to interrupt it)."
@@ -2790,18 +2812,18 @@ msgstr ""
 "このループが実行されると、アニメーションの表示が開始されます(中断するには ctrl-C "
 "を使います)。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:51
+#: ../../esp8266/tutorial/network_tcp.rst:51
 msgid ""
 "You should also be able to run this same code on your PC using normal "
 "Python if you want to try it out there."
 msgstr ""
 "また、普通の Python を使って、このコードを試してみることもできます。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:55
+#: ../../esp8266/tutorial/network_tcp.rst:55
 msgid "HTTP GET request"
 msgstr "HTTP GETリクエスト"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:57
+#: ../../esp8266/tutorial/network_tcp.rst:57
 msgid ""
 "The next example shows how to download a webpage.  HTTP uses port 80 and "
 "you first need to send a \"GET\" request before you can download "
@@ -2812,11 +2834,11 @@ msgstr ""
 "何かをダウンロードする前にまず \"GET\" リクエストを送信する必要があります。"
 "リクエストの一部として、取得するページを指定する必要があります。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:61
+#: ../../esp8266/tutorial/network_tcp.rst:61
 msgid "Let's define a function that can download and print a URL::"
 msgstr "URL からダウンロードして表示する関数を定義しましょう::"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:63
+#: ../../esp8266/tutorial/network_tcp.rst:63
 msgid ""
 "def http_get(url):\n"
 "    import socket\n"
@@ -2835,25 +2857,25 @@ msgid ""
 "    s.close()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:78
+#: ../../esp8266/tutorial/network_tcp.rst:78
 msgid ""
 "Then you can try::"
 msgstr ""
 "次を試してください::"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:80
+#: ../../esp8266/tutorial/network_tcp.rst:80
 msgid ">>> http_get('http://micropython.org/ks/test.html')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/network_tcp.rst:82
+#: ../../esp8266/tutorial/network_tcp.rst:82
 msgid "This should retrieve the webpage and print the HTML to the console."
 msgstr "これにより、Webページが取得され、HTMLがコンソールに出力されます。"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:85
+#: ../../esp8266/tutorial/network_tcp.rst:85
 msgid "Simple HTTP server"
 msgstr "シンプルなHTTPサーバー"
 
-#: ../../../esp8266/tutorial/network_tcp.rst:87
+#: ../../esp8266/tutorial/network_tcp.rst:87
 msgid ""
 "The following code creates an simple HTTP server which serves a single "
 "webpage that contains a table with the state of all the GPIO pins::"
@@ -2861,7 +2883,7 @@ msgstr ""
 "次のコードは、すべての GPIO ピンの状態を示す表を含む単一の Web ページを提供する"
 "単純な HTTP サーバーを作成します。"
 
-#: ../../../<rst_epilog>:90
+#: ../../<rst_epilog>:90
 #, python-format
 msgid ""
 "import machine\n"
@@ -2903,11 +2925,11 @@ msgid ""
 "    cl.close()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/nextsteps.rst:2
+#: ../../esp8266/tutorial/nextsteps.rst:2
 msgid "Next steps"
 msgstr "次のステップ"
 
-#: ../../../esp8266/tutorial/nextsteps.rst:4
+#: ../../esp8266/tutorial/nextsteps.rst:4
 msgid ""
 "That brings us to the end of the tutorial!  Hopefully by now you have a "
 "good feel for the capabilities of MicroPython on the ESP8266 and "
@@ -2917,7 +2939,7 @@ msgstr ""
 "機能を十分に理解し、チップの WiFi と I/O の両方を制御する方法を理解している"
 "ことでしょう。"
 
-#: ../../../esp8266/tutorial/nextsteps.rst:8
+#: ../../esp8266/tutorial/nextsteps.rst:8
 msgid ""
 "There are many features that were not covered in this tutorial.  The best"
 " way to learn about them is to read the full documentation of the "
@@ -2926,15 +2948,15 @@ msgstr ""
 "このチュートリアルでは扱っていない機能もまだ多くあります。それらについて学ぶ最も良い"
 "方法は、モジュールの完全なドキュメントを読み、実験することです！"
 
-#: ../../../esp8266/tutorial/nextsteps.rst:12
+#: ../../esp8266/tutorial/nextsteps.rst:12
 msgid "Good luck creating your Internet of Things devices!"
 msgstr "IoT デバイス作成、がんばってください！"
 
-#: ../../../esp8266/tutorial/onewire.rst:2
+#: ../../esp8266/tutorial/onewire.rst:2
 msgid "Controlling 1-wire devices"
 msgstr "1-wire デバイスの制御"
 
-#: ../../../esp8266/tutorial/onewire.rst:4
+#: ../../esp8266/tutorial/onewire.rst:4
 msgid ""
 "The 1-wire bus is a serial bus that uses just a single wire for "
 "communication (in addition to wires for ground and power).  The DS18B20 "
@@ -2945,7 +2967,7 @@ msgstr ""
 "DS18B20 温度センサは非常に一般的な 1-wire デバイスです。ここでは onewire "
 "モジュールを使って、そのようなデバイスから読み取る方法を示します。"
 
-#: ../../../esp8266/tutorial/onewire.rst:9
+#: ../../esp8266/tutorial/onewire.rst:9
 msgid ""
 "For the following code to work you need to have at least one DS18S20 or "
 "DS18B20 temperature sensor with its data line connected to GPIO12.  You "
@@ -2956,7 +2978,7 @@ msgstr ""
 "を用意し、そのデータラインを GPIO12 に接続する必要があります。センサーに電力を"
 "供給し、データピンと電源ピンの間に 4.7kΩ の抵抗を接続する必要もあります::"
 
-#: ../../../esp8266/tutorial/onewire.rst:13
+#: ../../esp8266/tutorial/onewire.rst:13
 msgid ""
 "import time\n"
 "import machine\n"
@@ -3004,7 +3026,7 @@ msgstr ""
 "        print(ds.read_temp(rom), end=' ')\n"
 "    print()"
 
-#: ../../../esp8266/tutorial/onewire.rst:36
+#: ../../esp8266/tutorial/onewire.rst:36
 msgid ""
 "Note that you must execute the ``convert_temp()`` function to initiate a "
 "temperature reading, then wait at least 750ms before reading the value."
@@ -3012,11 +3034,11 @@ msgstr ""
 "``convert_temp()`` 関数で温度の読み取りをするには、この関数を実行してから"
 "値を読み取る前に少なくとも 750ms 待機してください。"
 
-#: ../../../esp8266/tutorial/pins.rst:2
+#: ../../esp8266/tutorial/pins.rst:2
 msgid "GPIO Pins"
 msgstr "GPIO ピン"
 
-#: ../../../esp8266/tutorial/pins.rst:4
+#: ../../esp8266/tutorial/pins.rst:4
 msgid ""
 "The way to connect your board to the external world, and control other "
 "components, is through the GPIO pins.  Not all pins are available to use,"
@@ -3026,7 +3048,7 @@ msgstr ""
 "すべてのピンを使えるわけではありません。ほとんどの場合、ピン 0, 2, 4, 5, 12, 13, "
 "14, 15, 16 のみを使用できます。"
 
-#: ../../../esp8266/tutorial/pins.rst:8
+#: ../../esp8266/tutorial/pins.rst:8
 msgid ""
 "The pins are available in the machine module, so make sure you import "
 "that first.  Then you can create a pin using::"
@@ -3034,11 +3056,11 @@ msgstr ""
 "ピンは machine モジュールで使えるので、最初に machine の import を確認して"
 "ください。machine が使えれば、次のようにピンを作成できます::"
 
-#: ../../../esp8266/tutorial/pins.rst:11
+#: ../../esp8266/tutorial/pins.rst:11
 msgid ">>> pin = machine.Pin(0)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:13
+#: ../../esp8266/tutorial/pins.rst:13
 msgid ""
 "Here, the \"0\" is the pin that you want to access.  Usually you want to "
 "configure the pin to be input or output, and you do this when "
@@ -3047,11 +3069,11 @@ msgstr ""
 "ここで、\"0\" はアクセスしたいピンの番号です。通常は、ピンを入力または出力に設定する"
 "必要があり、ピンを作成するときにこれを行います。入力ピンを使うには次のようにします::"
 
-#: ../../../esp8266/tutorial/pins.rst:17
+#: ../../esp8266/tutorial/pins.rst:17
 msgid ">>> pin = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:19
+#: ../../esp8266/tutorial/pins.rst:19
 msgid ""
 "You can either use PULL_UP or None for the input pull-mode.  If it's not "
 "specified then it defaults to None, which is no pull resistor. GPIO16 has"
@@ -3061,13 +3083,13 @@ msgstr ""
 "デフォルトで None になり、プル抵抗なしになります。GPIO16 にプルアップモードは"
 "ありません。作成したピンを使って次のようにして値を読めます::"
 
-#: ../../../esp8266/tutorial/pins.rst:24
+#: ../../esp8266/tutorial/pins.rst:24
 msgid ""
 ">>> pin.value()\n"
 "0"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:27
+#: ../../esp8266/tutorial/pins.rst:27
 msgid ""
 "The pin on your board may return 0 or 1 here, depending on what it's "
 "connected to.  To make an output pin use::"
@@ -3075,35 +3097,35 @@ msgstr ""
 "ボード上のピンは、接続されているものに応じてここで 0 または 1 を返します。"
 "出力ピンを使うには次のようにピンを作成します::"
 
-#: ../../../esp8266/tutorial/pins.rst:30
+#: ../../esp8266/tutorial/pins.rst:30
 msgid ">>> pin = machine.Pin(0, machine.Pin.OUT)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:32
+#: ../../esp8266/tutorial/pins.rst:32
 msgid "Then set its value using::"
 msgstr "次のようにして値を設定します::"
 
-#: ../../../esp8266/tutorial/pins.rst:34
+#: ../../esp8266/tutorial/pins.rst:34
 msgid ""
 ">>> pin.value(0)\n"
 ">>> pin.value(1)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:37
+#: ../../esp8266/tutorial/pins.rst:37
 msgid "Or::"
 msgstr "または次のようにします::"
 
-#: ../../../esp8266/tutorial/pins.rst:39
+#: ../../esp8266/tutorial/pins.rst:39
 msgid ""
 ">>> pin.off()\n"
 ">>> pin.on()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:43
+#: ../../esp8266/tutorial/pins.rst:43
 msgid "External interrupts"
 msgstr "外部割り込み"
 
-#: ../../../esp8266/tutorial/pins.rst:45
+#: ../../esp8266/tutorial/pins.rst:45
 msgid ""
 "All pins except number 16 can be configured to trigger a hard interrupt "
 "if their input changes.  You can set code (a callback function) to be "
@@ -3112,7 +3134,7 @@ msgstr ""
 "16番を除くすべてのピンは、入力が変化するとハード割り込みを発生させるように設定"
 "できます。トリガで実行されるコード(コールバック関数)を設定できます。"
 
-#: ../../../esp8266/tutorial/pins.rst:49
+#: ../../esp8266/tutorial/pins.rst:49
 msgid ""
 "Let's first define a callback function, which must take a single "
 "argument, being the pin that triggered the function.  We will make the "
@@ -3121,24 +3143,24 @@ msgstr ""
 "コールバック関数を定義しましょう。コールバック関数は、関数をトリガしたピンを唯一の"
 "引数としてとる必要があります。この関数ではピンを表紙するようにします::"
 
-#: ../../../esp8266/tutorial/pins.rst:53
+#: ../../esp8266/tutorial/pins.rst:53
 msgid ""
 ">>> def callback(p):\n"
 "...     print('pin change', p)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:56
+#: ../../esp8266/tutorial/pins.rst:56
 msgid "Next we will create two pins and configure them as inputs::"
 msgstr "次に、２つのピンを作成し、それらを入力として構築します::"
 
-#: ../../../esp8266/tutorial/pins.rst:58
+#: ../../esp8266/tutorial/pins.rst:58
 msgid ""
 ">>> from machine import Pin\n"
 ">>> p0 = Pin(0, Pin.IN)\n"
 ">>> p2 = Pin(2, Pin.IN)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:62
+#: ../../esp8266/tutorial/pins.rst:62
 msgid ""
 "An finally we need to tell the pins when to trigger, and the function to "
 "call when they detect an event::"
@@ -3146,13 +3168,13 @@ msgstr ""
 "最後に、ピンをトリガするタイミングと、イベントを検出したときに呼び出す関数を"
 "指定する必要があります::"
 
-#: ../../../esp8266/tutorial/pins.rst:65
+#: ../../esp8266/tutorial/pins.rst:65
 msgid ""
 ">>> p0.irq(trigger=Pin.IRQ_FALLING, handler=callback)\n"
 ">>> p2.irq(trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING, handler=callback)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pins.rst:68
+#: ../../esp8266/tutorial/pins.rst:68
 msgid ""
 "We set pin 0 to trigger only on a falling edge of the input (when it goes"
 " from high to low), and set pin 2 to trigger on both a rising and falling"
@@ -3164,7 +3186,7 @@ msgstr ""
 "設定します。このコードを入力した後、ピン 0 とピン 2 にハイとローの電圧を与えて、"
 "実行中の割り込みを確認することができます。"
 
-#: ../../../esp8266/tutorial/pins.rst:73
+#: ../../esp8266/tutorial/pins.rst:73
 msgid ""
 "A hard interrupt will trigger as soon as the event occurs and will "
 "interrupt any running code, including Python code.  As such your callback"
@@ -3175,11 +3197,11 @@ msgstr ""
 "含む)を中断します。コールバック関数は、その中ででできることが限られているので"
 "(たとえば、メモリを割り当てることはできません)、できるだけ短く簡単にする必要があります。"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:2
+#: ../../esp8266/tutorial/powerctrl.rst:2
 msgid "Power control"
 msgstr "電源制御"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:4
+#: ../../esp8266/tutorial/powerctrl.rst:4
 msgid ""
 "The ESP8266 provides the ability to change the CPU frequency on the fly, "
 "and enter a deep-sleep state.  Both can be used to manage power "
@@ -3188,11 +3210,11 @@ msgstr ""
 "ESP8266 は、臨機応変に CPU 周波数を変更できますし、ディープスリープ状態に入ることも"
 "できます。どちらも消費電力の管理に使用できます。"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:8
+#: ../../esp8266/tutorial/powerctrl.rst:8
 msgid "Changing the CPU frequency"
 msgstr "CPU 周波数の変更"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:10
+#: ../../esp8266/tutorial/powerctrl.rst:10
 msgid ""
 "The machine module has a function to get and set the CPU frequency.  To "
 "get the current frequency use::"
@@ -3200,14 +3222,14 @@ msgstr ""
 "machine モジュールには、CPU 周波数を取得および設定する機能があります。"
 "現在の周波数を取得するには次のようにします::"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:13
+#: ../../esp8266/tutorial/powerctrl.rst:13
 msgid ""
 ">>> import machine\n"
 ">>> machine.freq()\n"
 "80000000"
 msgstr ""
 
-#: ../../../esp8266/tutorial/powerctrl.rst:17
+#: ../../esp8266/tutorial/powerctrl.rst:17
 msgid ""
 "By default the CPU runs at 80MHz.  It can be changed to 160MHz if you "
 "need more processing power, at the expense of current consumption::"
@@ -3215,14 +3237,14 @@ msgstr ""
 "デフォルトで CPU は 80MHz で動作します。消費電流を犠牲にして、処理能力がさらに"
 "必要な場合は、160MHz に変更できます。"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:20
+#: ../../esp8266/tutorial/powerctrl.rst:20
 msgid ""
 ">>> machine.freq(160000000)\n"
 ">>> machine.freq()\n"
 "160000000"
 msgstr ""
 
-#: ../../../esp8266/tutorial/powerctrl.rst:24
+#: ../../esp8266/tutorial/powerctrl.rst:24
 msgid ""
 "You can change to the higher frequency just while your code does the "
 "heavy processing and then change back when it's finished."
@@ -3230,7 +3252,7 @@ msgstr ""
 "コードが重い処理をしている間はより高い周波数に変更して、完了したら元に戻す"
 "ようにもできます。"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:30
+#: ../../esp8266/tutorial/powerctrl.rst:30
 msgid ""
 "The deep-sleep mode will shut down the ESP8266 and all its peripherals, "
 "including the WiFi (but not including the real-time-clock, which is used "
@@ -3242,7 +3264,7 @@ msgstr ""
 "これにより、消費電流が大幅に削減され、バッテリで長時間にわたって動かせるデバイスを"
 "作れるようになります。"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:35
+#: ../../esp8266/tutorial/powerctrl.rst:35
 msgid ""
 "To be able to use the deep-sleep feature you must connect GPIO16 to the "
 "reset pin (RST on the Adafruit Feather HUZZAH board).  Then the following"
@@ -3252,7 +3274,7 @@ msgstr ""
 "ボードの RST)に接続する必要があります。次のコードを使うと、デバイスを動作状態から"
 "スリープ状態にすることができます。"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:39
+#: ../../esp8266/tutorial/powerctrl.rst:39
 msgid ""
 "import machine\n"
 "\n"
@@ -3278,7 +3300,7 @@ msgstr ""
 "# ディープスリープに入る\n"
 "machine.deepsleep()"
 
-#: ../../../esp8266/tutorial/powerctrl.rst:51
+#: ../../esp8266/tutorial/powerctrl.rst:51
 msgid ""
 "Note that when the chip wakes from a deep-sleep it is completely reset, "
 "including all of the memory.  The boot scripts will run as usual and you "
@@ -3292,7 +3314,7 @@ msgstr ""
 "チェックを入れておけます。たとえば、リセット原因を表示するには、次のコマンドを"
 "使います。"
 
-#: ../../../<rst_epilog>:57
+#: ../../<rst_epilog>:57
 msgid ""
 "if machine.reset_cause() == machine.DEEPSLEEP_RESET:\n"
 "    print('woke from a deep sleep')\n"
@@ -3300,11 +3322,11 @@ msgid ""
 "    print('power on or hard reset')"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:2
+#: ../../esp8266/tutorial/pwm.rst:2
 msgid "Pulse Width Modulation"
 msgstr "パルス幅変調"
 
-#: ../../../esp8266/tutorial/pwm.rst:4
+#: ../../esp8266/tutorial/pwm.rst:4
 msgid ""
 "Pulse width modulation (PWM) is a way to get an artificial analog output "
 "on a digital pin.  It achieves this by rapidly toggling the pin from low "
@@ -3321,7 +3343,7 @@ msgstr ""
 "どれくらい長いかを定義します。最大デューティサイクルはピンが常にハイレベルで、"
 "最小は常にローレベルです。"
 
-#: ../../../esp8266/tutorial/pwm.rst:12
+#: ../../esp8266/tutorial/pwm.rst:12
 msgid ""
 "On the ESP8266 the pins 0, 2, 4, 5, 12, 13, 14 and 15 all support PWM.  "
 "The limitation is that they must all be at the same frequency, and the "
@@ -3331,39 +3353,39 @@ msgstr ""
 "います。制限はすべて同じ周波数でなければならず、周波数は 1Hz と 1kHz の間で"
 "なければなりません。"
 
-#: ../../../esp8266/tutorial/pwm.rst:16
+#: ../../esp8266/tutorial/pwm.rst:16
 msgid "To use PWM on a pin you must first create the pin object, for example::"
 msgstr ""
 "ピンで PWM を使用するには、まずピンオブジェクトを作成する必要があります。"
 "たとえば次のようにします::"
 
-#: ../../../esp8266/tutorial/pwm.rst:18
+#: ../../esp8266/tutorial/pwm.rst:18
 msgid ""
 ">>> import machine\n"
 ">>> p12 = machine.Pin(12)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:21
+#: ../../esp8266/tutorial/pwm.rst:21
 msgid "Then create the PWM object using::"
 msgstr ""
 "次に、以下を使用してPWMオブジェクトを作成します。"
 
-#: ../../../esp8266/tutorial/pwm.rst:23
+#: ../../esp8266/tutorial/pwm.rst:23
 msgid ">>> pwm12 = machine.PWM(p12)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:25
+#: ../../esp8266/tutorial/pwm.rst:25
 msgid "You can set the frequency and duty cycle using::"
 msgstr ""
 "次のように周波数とデューティサイクルを設定できます。"
 
-#: ../../../esp8266/tutorial/pwm.rst:27
+#: ../../esp8266/tutorial/pwm.rst:27
 msgid ""
 ">>> pwm12.freq(500)\n"
 ">>> pwm12.duty(512)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:30
+#: ../../esp8266/tutorial/pwm.rst:30
 #, python-format
 msgid ""
 "Note that the duty cycle is between 0 (all off) and 1023 (all on), with "
@@ -3374,13 +3396,13 @@ msgstr ""
 "となります。この最小値/最大値を超える値は切り捨てられます。PWM オブジェクトを表示"
 "すると、現在の設定が表示されます。"
 
-#: ../../../esp8266/tutorial/pwm.rst:34
+#: ../../esp8266/tutorial/pwm.rst:34
 msgid ""
 ">>> pwm12\n"
 "PWM(12, freq=500, duty=512)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:37
+#: ../../esp8266/tutorial/pwm.rst:37
 msgid ""
 "You can also call the ``freq()`` and ``duty()`` methods with no arguments"
 " to get their current values."
@@ -3388,19 +3410,19 @@ msgstr ""
 "また、引数を持たない ``freq()`` や ``duty()`` を呼び出すのでも現在の値を取得"
 "できます。"
 
-#: ../../../esp8266/tutorial/pwm.rst:40
+#: ../../esp8266/tutorial/pwm.rst:40
 msgid "The pin will continue to be in PWM mode until you deinitialise it using::"
 msgstr "ピンは、以下を使用して初期化を解除するまで、PWMモードになります::"
 
-#: ../../../esp8266/tutorial/pwm.rst:42
+#: ../../esp8266/tutorial/pwm.rst:42
 msgid ">>> pwm12.deinit()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:45
+#: ../../esp8266/tutorial/pwm.rst:45
 msgid "Fading an LED"
 msgstr "LEDの減光"
 
-#: ../../../esp8266/tutorial/pwm.rst:47
+#: ../../esp8266/tutorial/pwm.rst:47
 msgid ""
 "Let's use the PWM feature to fade an LED.  Assuming your board has an LED"
 " connected to pin 2 (ESP-12 modules do) we can create an LED-PWM object "
@@ -3410,15 +3432,15 @@ msgstr ""
 "あるとすると(ESP-12 モジュールではそうなっています)、次の方法で LED-PWM "
 "オブジェクトを作成できます。"
 
-#: ../../../esp8266/tutorial/pwm.rst:50
+#: ../../esp8266/tutorial/pwm.rst:50
 msgid ">>> led = machine.PWM(machine.Pin(2), freq=1000)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:52
+#: ../../esp8266/tutorial/pwm.rst:52
 msgid "Notice that we can set the frequency in the PWM constructor."
 msgstr "PWM のコンストラクタで周波数を設定できることに注意してください。"
 
-#: ../../../esp8266/tutorial/pwm.rst:54
+#: ../../esp8266/tutorial/pwm.rst:54
 msgid ""
 "For the next part we will use timing and some math, so import these "
 "modules::"
@@ -3426,15 +3448,15 @@ msgstr ""
 "次の部分ではタイミングと数学関数を使うので、これらのモジュールを import "
 "してください::"
 
-#: ../../../esp8266/tutorial/pwm.rst:56
+#: ../../esp8266/tutorial/pwm.rst:56
 msgid ">>> import time, math"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:58
+#: ../../esp8266/tutorial/pwm.rst:58
 msgid "Then create a function to pulse the LED::"
 msgstr "次に、LED をパルスする関数を作成します::"
 
-#: ../../../esp8266/tutorial/pwm.rst:60
+#: ../../esp8266/tutorial/pwm.rst:60
 msgid ""
 ">>> def pulse(l, t):\n"
 "...     for i in range(20):\n"
@@ -3442,33 +3464,33 @@ msgid ""
 "...         time.sleep_ms(t)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:65
+#: ../../esp8266/tutorial/pwm.rst:65
 msgid "You can try this function out using::"
 msgstr "この関数を実行してみてください::"
 
-#: ../../../esp8266/tutorial/pwm.rst:67
+#: ../../esp8266/tutorial/pwm.rst:67
 msgid ">>> pulse(led, 50)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:69
+#: ../../esp8266/tutorial/pwm.rst:69
 msgid "For a nice effect you can pulse many times in a row::"
 msgstr "すてきな効果を出すために、連続して何度もパルスするようにもできます::"
 
-#: ../../../esp8266/tutorial/pwm.rst:71
+#: ../../esp8266/tutorial/pwm.rst:71
 msgid ""
 ">>> for i in range(10):\n"
 "...     pulse(led, 20)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/pwm.rst:74
+#: ../../esp8266/tutorial/pwm.rst:74
 msgid "Remember you can use ctrl-C to interrupt the code."
 msgstr "コードの実行を中断するには ctrl-C を使ってください。"
 
-#: ../../../esp8266/tutorial/pwm.rst:77
+#: ../../esp8266/tutorial/pwm.rst:77
 msgid "Control a hobby servo"
 msgstr "ホビー用サーボを制御する"
 
-#: ../../../esp8266/tutorial/pwm.rst:79
+#: ../../esp8266/tutorial/pwm.rst:79
 msgid ""
 "Hobby servo motors can be controlled using PWM.  They require a frequency"
 " of 50Hz and then a duty between about 40 and 115, with 77 being the "
@@ -3481,7 +3503,7 @@ msgstr ""
 "グランドピンに接続し、信号線をピン12に接続すると(他のピンも同様に機能します)、"
 "次のようにしてモータを制御できます::"
 
-#: ../../../<rst_epilog>:84
+#: ../../<rst_epilog>:84
 msgid ""
 ">>> servo = machine.PWM(machine.Pin(12), freq=50)\n"
 ">>> servo.duty(40)\n"
@@ -3489,11 +3511,11 @@ msgid ""
 ">>> servo.duty(77)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:2
+#: ../../esp8266/tutorial/repl.rst:2
 msgid "Getting a MicroPython REPL prompt"
 msgstr "MicroPython REPL プロンプトの始め方"
 
-#: ../../../esp8266/tutorial/repl.rst:4
+#: ../../esp8266/tutorial/repl.rst:4
 msgid ""
 "REPL stands for Read Evaluate Print Loop, and is the name given to the "
 "interactive MicroPython prompt that you can access on the ESP8266.  Using"
@@ -3505,7 +3527,7 @@ msgstr ""
 "REPL を使うことは、コードをテストしてコマンドを実行する"
 "最も簡単な方法です。"
 
-#: ../../../esp8266/tutorial/repl.rst:8
+#: ../../esp8266/tutorial/repl.rst:8
 msgid ""
 "There are two ways to access the REPL: either via a wired connection "
 "through the UART serial port, or via WiFi."
@@ -3513,11 +3535,11 @@ msgstr ""
 "REPL にアクセスするには、UART シリアルポート経由の有線接続を使う方法と、"
 "WiFi を使う方法があります。"
 
-#: ../../../esp8266/tutorial/repl.rst:12
+#: ../../esp8266/tutorial/repl.rst:12
 msgid "REPL over the serial port"
 msgstr "シリアルポート経由の REPL"
 
-#: ../../../esp8266/tutorial/repl.rst:14
+#: ../../esp8266/tutorial/repl.rst:14
 msgid ""
 "The REPL is always available on the UART0 serial peripheral, which is "
 "connected to the pins GPIO1 for TX and GPIO3 for RX.  The baudrate of the"
@@ -3531,7 +3553,7 @@ msgstr ""
 "されている場合は、PC から REPL に直接アクセスできます。それ以外の"
 "場合は、UART と通信する方法が必要です。"
 
-#: ../../../esp8266/tutorial/repl.rst:20
+#: ../../esp8266/tutorial/repl.rst:20
 msgid ""
 "To access the prompt over USB-serial you need to use a terminal emulator "
 "program. On Windows TeraTerm is a good choice, on Mac you can use the "
@@ -3545,15 +3567,15 @@ msgstr ""
 "Linux には picocom や minicom があります。もちろん、他にも多くの端末"
 "プログラムがありますので、好きなものを選んでください！"
 
-#: ../../../esp8266/tutorial/repl.rst:25
+#: ../../esp8266/tutorial/repl.rst:25
 msgid "For example, on Linux you can try running::"
 msgstr "たとえば、Linux では次のコマンドを実行できます。"
 
-#: ../../../esp8266/tutorial/repl.rst:27
+#: ../../esp8266/tutorial/repl.rst:27
 msgid "picocom /dev/ttyUSB0 -b115200"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:29
+#: ../../esp8266/tutorial/repl.rst:29
 msgid ""
 "Once you have made the connection over the serial port you can test if it"
 " is working by hitting enter a few times.  You should see the Python REPL"
@@ -3563,11 +3585,11 @@ msgstr ""
 "動作しているかどうかをテストできます。Python REPL プロンプト "
 "``>>>`` が表示されます。"
 
-#: ../../../esp8266/tutorial/repl.rst:34
+#: ../../esp8266/tutorial/repl.rst:34
 msgid "WebREPL - a prompt over WiFi"
 msgstr "WebREPL - WiFi 経由のプロンプト"
 
-#: ../../../esp8266/tutorial/repl.rst:36
+#: ../../esp8266/tutorial/repl.rst:36
 msgid ""
 "WebREPL allows you to use the Python prompt over WiFi, connecting through"
 " a browser. The latest versions of Firefox and Chrome are supported."
@@ -3575,7 +3597,7 @@ msgstr ""
 "WebREPLを使うと、Web ブラウザから WiFi 経由で Python プロンプトを"
 "使えます。Firefox と Chrome の最新バージョンがサポートされています。"
 
-#: ../../../esp8266/tutorial/repl.rst:39
+#: ../../esp8266/tutorial/repl.rst:39
 msgid ""
 "For your convenience, WebREPL client is hosted at "
 "`<http://micropython.org/webrepl>`__ . Alternatively, you can install it "
@@ -3587,7 +3609,7 @@ msgstr ""
 "`<https://github.com/micropython/webrepl>`__ からローカルにインストール"
 "することもできます。"
 
-#: ../../../esp8266/tutorial/repl.rst:44
+#: ../../esp8266/tutorial/repl.rst:44
 msgid ""
 "Before connecting to WebREPL, you should set a password and enable it via"
 " a normal serial connection. Initial versions of MicroPython for ESP8266 "
@@ -3603,7 +3625,7 @@ msgstr ""
 "セキュリティ向上の観点から、初期設定は有線接続で次を実行するよう変更に"
 "なりました::"
 
-#: ../../../esp8266/tutorial/repl.rst:53
+#: ../../esp8266/tutorial/repl.rst:53
 msgid ""
 "Follow the on-screen instructions and prompts. To make any changes "
 "active, you will need to reboot your device."
@@ -3611,7 +3633,7 @@ msgstr ""
 "画面上の指示とプロンプトにしたがってください。設定の変更を有効に"
 "するには、デバイスを再起動する必要があります。"
 
-#: ../../../esp8266/tutorial/repl.rst:56
+#: ../../esp8266/tutorial/repl.rst:56
 msgid ""
 "To use WebREPL connect your computer to the ESP8266's access point "
 "(MicroPython-xxxxxx, see the previous section about this).  If you have "
@@ -3622,7 +3644,7 @@ msgstr ""
 "(MicroPython-xxxxxx、前のセクションを参照)に接続します。すでにルータに"
 "接続するように ESP8266 を再設定している場合は、この部分をスキップできます。"
 
-#: ../../../esp8266/tutorial/repl.rst:61
+#: ../../esp8266/tutorial/repl.rst:61
 msgid ""
 "Once you are on the same network as the ESP8266 you click the \"Connect\""
 " button (if you are connecting via a router then you may need to change "
@@ -3636,7 +3658,7 @@ msgstr ""
 "接続したIPアドレスとなります)。接続が成功すると、パスワード"
 "プロンプトが表示されます。"
 
-#: ../../../esp8266/tutorial/repl.rst:66
+#: ../../esp8266/tutorial/repl.rst:66
 msgid ""
 "Once you type the password configured at the setup step above, press "
 "Enter once more and you should get a prompt looking like ``>>>``.  You "
@@ -3646,11 +3668,11 @@ msgstr ""
 "キーを押すと、プロンプト ``>>>`` が表示されます。これで、Python コマンドの"
 "入力を開始できます！"
 
-#: ../../../esp8266/tutorial/repl.rst:71
+#: ../../esp8266/tutorial/repl.rst:71
 msgid "Using the REPL"
 msgstr "REPL の使い方"
 
-#: ../../../esp8266/tutorial/repl.rst:73
+#: ../../esp8266/tutorial/repl.rst:73
 msgid ""
 "Once you have a prompt you can start experimenting!  Anything you type at"
 " the prompt will be executed after you press the Enter key.  MicroPython "
@@ -3663,17 +3685,17 @@ msgstr ""
 "コードを実行し、結果があればそれを印刷します。入力したテキストに"
 "エラーがある場合は、エラーメッセージが表示されます。"
 
-#: ../../../esp8266/tutorial/repl.rst:78
+#: ../../esp8266/tutorial/repl.rst:78
 msgid "Try typing the following at the prompt::"
 msgstr "プロンプトで次のように入力してください。"
 
-#: ../../../esp8266/tutorial/repl.rst:80
+#: ../../esp8266/tutorial/repl.rst:80
 msgid ""
 ">>> print('hello esp8266!')\n"
 "hello esp8266!"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:83
+#: ../../esp8266/tutorial/repl.rst:83
 msgid ""
 "Note that you shouldn't type the ``>>>`` arrows, they are there to "
 "indicate that you should type the text after it at the prompt.  And then "
@@ -3688,7 +3710,7 @@ msgstr ""
 "``print(\"hello esp8266!\")`` を入力して Enter キーを押すと、画面上の"
 "出力が上のようになるということです。"
 
-#: ../../../esp8266/tutorial/repl.rst:89
+#: ../../esp8266/tutorial/repl.rst:89
 msgid ""
 "If you already know some python you can now try some basic commands here."
 "   For example::"
@@ -3696,7 +3718,7 @@ msgstr ""
 "すでにいくらかでも python を知っているなら、ここでいくつかの基本的なコマンドを"
 "試すことができます。たとえば::"
 
-#: ../../../esp8266/tutorial/repl.rst:92
+#: ../../esp8266/tutorial/repl.rst:92
 msgid ""
 ">>> 1 + 2\n"
 "3\n"
@@ -3706,7 +3728,7 @@ msgid ""
 "4922235242952026704037113243122008064"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:99
+#: ../../esp8266/tutorial/repl.rst:99
 msgid ""
 "If your board has an LED attached to GPIO2 (the ESP-12 modules do) then "
 "you can turn it on and off using the following code::"
@@ -3714,7 +3736,7 @@ msgstr ""
 "ボードの GPIO2 にLEDが接続されている場合(ESP-12 モジュールの場合)、"
 "次のコードを使用して点灯/消灯を切り替えることができます。"
 
-#: ../../../esp8266/tutorial/repl.rst:102
+#: ../../esp8266/tutorial/repl.rst:102
 msgid ""
 ">>> import machine\n"
 ">>> pin = machine.Pin(2, machine.Pin.OUT)\n"
@@ -3722,7 +3744,7 @@ msgid ""
 ">>> pin.off()"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:107
+#: ../../esp8266/tutorial/repl.rst:107
 msgid ""
 "Note that ``on`` method of a Pin might turn the LED off and ``off`` might"
 " turn it on (or vice versa), depending on how the LED is wired on your "
@@ -3732,11 +3754,11 @@ msgstr ""
 "があります(またはその逆の可能性もあります)。これは、ボード上の LED が配線されている"
 "方法に依存します。これを解決するために、machine.Signal クラスが用意されています。"
 
-#: ../../../esp8266/tutorial/repl.rst:112
+#: ../../esp8266/tutorial/repl.rst:112
 msgid "Line editing"
 msgstr "ライン 編集"
 
-#: ../../../esp8266/tutorial/repl.rst:114
+#: ../../esp8266/tutorial/repl.rst:114
 msgid ""
 "You can edit the current line that you are entering using the left and "
 "right arrow keys to move the cursor, as well as the delete and backspace "
@@ -3747,11 +3769,11 @@ msgstr ""
 "使って入力している現在の行を編集できます。また、Home または Ctrl-A を押すと、"
 "カーソルが行の先頭に移動し、End または Ctrl-E を押すと行末に移動します。"
 
-#: ../../../esp8266/tutorial/repl.rst:120
+#: ../../esp8266/tutorial/repl.rst:120
 msgid "Input history"
 msgstr "履歴からの入力"
 
-#: ../../../esp8266/tutorial/repl.rst:122
+#: ../../esp8266/tutorial/repl.rst:122
 msgid ""
 "The REPL remembers a certain number of previous lines of text that you "
 "entered (up to 8 on the ESP8266).  To recall previous lines use the up "
@@ -3760,11 +3782,11 @@ msgstr ""
 "REPL は入力したテキストを最新から一定行数だけ記憶します(ESP8266では最大8行まで)。"
 "前の行を呼び出すには、上下の矢印キーを使います。"
 
-#: ../../../esp8266/tutorial/repl.rst:127
+#: ../../esp8266/tutorial/repl.rst:127
 msgid "Tab completion"
 msgstr "タブ補完"
 
-#: ../../../esp8266/tutorial/repl.rst:129
+#: ../../esp8266/tutorial/repl.rst:129
 msgid ""
 "Pressing the Tab key will do an auto-completion of the current word that "
 "you are entering.  This can be very useful to find out functions and "
@@ -3779,11 +3801,11 @@ msgstr ""
 "\"machine\" と補完されます。その後、\".\" とタイプして Tab キーをもう一度押すと、"
 "machine モジュールが持つすべての関数のリストが表示されます。"
 
-#: ../../../esp8266/tutorial/repl.rst:137
+#: ../../esp8266/tutorial/repl.rst:137
 msgid "Line continuation and auto-indent"
 msgstr "行の継続と自動インデント"
 
-#: ../../../esp8266/tutorial/repl.rst:139
+#: ../../esp8266/tutorial/repl.rst:139
 msgid ""
 "Certain things that you type will need \"continuing\", that is, will need"
 " more lines of text to make a proper Python statement.  In this case the "
@@ -3797,7 +3819,7 @@ msgstr ""
 "インデントされ、次の行をすぐに入力し始めることができます。次の関数を定義してこれを"
 "試してください::"
 
-#: ../../../esp8266/tutorial/repl.rst:145
+#: ../../esp8266/tutorial/repl.rst:145
 msgid ""
 ">>> def toggle(p):\n"
 "...    p.value(not p.value())\n"
@@ -3807,7 +3829,7 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:152
+#: ../../esp8266/tutorial/repl.rst:152
 msgid ""
 "In the above, you needed to press the Enter key three times in a row to "
 "finish the compound statement (that's the three lines with just dots on "
@@ -3821,7 +3843,7 @@ msgstr ""
 "行の先頭に移動し、Enter キーを押すことです。(間違えてしまい、継続モードから抜けたい"
 "場合は、Ctrl-Cを押してください。すべての行が無視されます。)"
 
-#: ../../../esp8266/tutorial/repl.rst:159
+#: ../../esp8266/tutorial/repl.rst:159
 msgid ""
 "The function you just defined allows you to toggle a pin.  The pin object"
 " you created earlier should still exist (recreate it if it doesn't) and "
@@ -3831,11 +3853,11 @@ msgstr ""
 "オブジェクトはまだ存在するはずです(そうでない場合は再作成してください)。次のように"
 "すると LED を点灯/消灯を切り替えられます。"
 
-#: ../../../esp8266/tutorial/repl.rst:163
+#: ../../esp8266/tutorial/repl.rst:163
 msgid ">>> toggle(pin)"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:165
+#: ../../esp8266/tutorial/repl.rst:165
 msgid ""
 "Let's now toggle the LED in a loop (if you don't have an LED then you can"
 " just print some text instead of calling toggle, to see the effect)::"
@@ -3843,7 +3865,7 @@ msgstr ""
 "ループで LED の点灯/消灯を切り替えましょう。(LEDがない場合は、toggle を呼び出す"
 "代わりに何かテキストを表示させるようにして効果を確認してください)::"
 
-#: ../../../esp8266/tutorial/repl.rst:168
+#: ../../esp8266/tutorial/repl.rst:168
 msgid ""
 ">>> import time\n"
 ">>> while True:\n"
@@ -3855,7 +3877,7 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:177
+#: ../../esp8266/tutorial/repl.rst:177
 msgid ""
 "This will toggle the LED at 1Hz (half a second on, half a second off).  "
 "To stop the toggling press ctrl-C, which will raise a KeyboardInterrupt "
@@ -3865,7 +3887,7 @@ msgstr ""
 "切り替えを止めるには、ctrl-C を押します。これは KeyboardInterrupt "
 "例外を発生させ、ループから抜け出します。"
 
-#: ../../../esp8266/tutorial/repl.rst:181
+#: ../../esp8266/tutorial/repl.rst:181
 msgid ""
 "The time module provides some useful functions for making delays and "
 "doing timing.  Use tab completion to find out what they are and play "
@@ -3875,11 +3897,11 @@ msgstr ""
 "Tab キーによる補完機能を使って、何があるのかを調べて、使って遊んでみて"
 "ください！"
 
-#: ../../../esp8266/tutorial/repl.rst:185
+#: ../../esp8266/tutorial/repl.rst:185
 msgid "Paste mode"
 msgstr "貼付けモード"
 
-#: ../../../esp8266/tutorial/repl.rst:187
+#: ../../esp8266/tutorial/repl.rst:187
 msgid ""
 "Pressing ctrl-E will enter a special paste mode.  This allows you to copy"
 " and paste a chunk of text into the REPL.  If you press ctrl-E you will "
@@ -3889,13 +3911,13 @@ msgstr ""
 "塊をコピーしてREPLに貼り付けることができます。ctrl-E を押すと、貼付け"
 "モードのプロンプトが表示されます::"
 
-#: ../../../esp8266/tutorial/repl.rst:191
+#: ../../esp8266/tutorial/repl.rst:191
 msgid ""
 "paste mode; Ctrl-C to cancel, Ctrl-D to finish\n"
 "==="
 msgstr ""
 
-#: ../../../esp8266/tutorial/repl.rst:194
+#: ../../esp8266/tutorial/repl.rst:194
 msgid ""
 "You can then paste (or type) your text in.  Note that none of the special"
 " keys or commands work in paste mode (eg Tab or backspace), they are just"
@@ -3906,15 +3928,15 @@ msgstr ""
 "(Tab や backspace など)は、貼付けモードでは機能せず、そのまま受け入れられます。"
 "ctrl-D を押すと、テキストの入力が完了し、入力したテキストを実行します。"
 
-#: ../../../esp8266/tutorial/repl.rst:199
+#: ../../esp8266/tutorial/repl.rst:199
 msgid "Other control commands"
 msgstr "その他の制御コマンド"
 
-#: ../../../esp8266/tutorial/repl.rst:201
+#: ../../esp8266/tutorial/repl.rst:201
 msgid "There are four other control commands:"
 msgstr "その他にも４つの制御コマンドがあります:"
 
-#: ../../../esp8266/tutorial/repl.rst:203
+#: ../../esp8266/tutorial/repl.rst:203
 msgid ""
 "Ctrl-A on a blank line will enter raw REPL mode.  This is like a "
 "permanent paste mode, except that characters are not echoed back."
@@ -3922,19 +3944,19 @@ msgstr ""
 "空白行で Ctrl-A を押すと、raw REPL モードになります。これは、文字が"
 "エコーバックされないという点を除いて、永続的な貼付けモードのようなものです。"
 
-#: ../../../esp8266/tutorial/repl.rst:206
+#: ../../esp8266/tutorial/repl.rst:206
 msgid "Ctrl-B on a blank like goes to normal REPL mode."
 msgstr "空白行で Ctrl-B を押すと、通常のREPLモードになります。"
 
-#: ../../../esp8266/tutorial/repl.rst:208
+#: ../../esp8266/tutorial/repl.rst:208
 msgid "Ctrl-C cancels any input, or interrupts the currently running code."
 msgstr "Ctrl-C は入力をキャンセルしたり、現在実行中のコードを中断したりします。"
 
-#: ../../../esp8266/tutorial/repl.rst:210
+#: ../../esp8266/tutorial/repl.rst:210
 msgid "Ctrl-D on a blank line will do a soft reset."
 msgstr "空白行で Ctrl-D を押すと、ソフトリセットを行います。"
 
-#: ../../../esp8266/tutorial/repl.rst:212
+#: ../../esp8266/tutorial/repl.rst:212
 msgid "Note that ctrl-A and ctrl-D do not work with WebREPL."
 msgstr "ctrl-A と ctrl-D は WebREPL では機能しません。"
 
