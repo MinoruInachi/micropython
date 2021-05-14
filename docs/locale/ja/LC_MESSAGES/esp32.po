@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-08 18:02+0900\n"
-"PO-Revision-Date: 2021-05-08 18:51+0900\n"
+"POT-Creation-Date: 2021-05-14 21:26+0900\n"
+"PO-Revision-Date: 2021-05-14 22:13+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -518,15 +518,25 @@ msgstr ""
 "一部のピンのプル値は、ディープスリープ中の消費電力を減らすために ``Pin.PULL_HOLD`` に"
 "設定できます。"
 
-#: ../../esp32/quickref.rst:175
+#: ../../esp32/quickref.rst:174
+msgid ""
+"There's a higher-level abstraction :ref:`machine.Signal <machine.Signal>`"
+" which can be used to invert a pin. Useful for illuminating active-low "
+"LEDs using ``on()`` or ``value(1)``."
+msgstr ""
+"ピンを反転させるのに使える、高レベルの抽象化インタフェース "
+":ref:`machine.Signal <machine.Signal>` があります。 "
+"負論理(active-low)の LED でも ``on()`` や ``value(1)`` で点灯できるので便利です。"
+
+#: ../../esp32/quickref.rst:179
 msgid "UART (serial bus)"
 msgstr "UART (シリアルバス)"
 
-#: ../../esp32/quickref.rst:177
+#: ../../esp32/quickref.rst:181
 msgid "See :ref:`machine.UART <machine.UART>`. ::"
 msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
 
-#: ../../esp32/quickref.rst:179
+#: ../../esp32/quickref.rst:183
 msgid ""
 "from machine import UART\n"
 "\n"
@@ -540,7 +550,7 @@ msgstr ""
 "uart1.write('hello')  # 5バイト書き出す\n"
 "uart1.read(5)         # 5バイトまで読み込む"
 
-#: ../../esp32/quickref.rst:185
+#: ../../esp32/quickref.rst:189
 msgid ""
 "The ESP32 has three hardware UARTs: UART0, UART1 and UART2. They each "
 "have default GPIO assigned to them, however depending on your ESP32 "
@@ -552,7 +562,7 @@ msgstr ""
 "よっては、これらのピンが内蔵フラッシュ、オンボードの PSRAM、ペリフェラルと競合"
 "しているかもしれません。"
 
-#: ../../esp32/quickref.rst:190
+#: ../../esp32/quickref.rst:194
 msgid ""
 "Any GPIO can be used for hardware UARTs using the GPIO matrix, so to "
 "avoid conflicts simply provide ``tx`` and ``rx`` pins when constructing. "
@@ -562,60 +572,60 @@ msgstr ""
 "するには、コンストラクト時に tx と rx ピンを指定するだけです。"
 "デフォルトのピンは以下の通りです。"
 
-#: ../../esp32/quickref.rst:195 ../../esp32/quickref.rst:320
-#: ../../esp32/quickref.rst:362
+#: ../../esp32/quickref.rst:199 ../../esp32/quickref.rst:324
+#: ../../esp32/quickref.rst:366
 msgid "\\"
 msgstr ""
 
-#: ../../esp32/quickref.rst:195
+#: ../../esp32/quickref.rst:199
 msgid "UART0"
 msgstr ""
 
-#: ../../esp32/quickref.rst:195
+#: ../../esp32/quickref.rst:199
 msgid "UART1"
 msgstr ""
 
-#: ../../esp32/quickref.rst:195
+#: ../../esp32/quickref.rst:199
 msgid "UART2"
 msgstr ""
 
-#: ../../esp32/quickref.rst:197
+#: ../../esp32/quickref.rst:201
 msgid "tx"
 msgstr ""
 
-#: ../../esp32/quickref.rst:197
+#: ../../esp32/quickref.rst:201
 msgid "1"
 msgstr ""
 
-#: ../../esp32/quickref.rst:197
+#: ../../esp32/quickref.rst:201
 msgid "10"
 msgstr ""
 
-#: ../../esp32/quickref.rst:197
+#: ../../esp32/quickref.rst:201
 msgid "17"
 msgstr ""
 
-#: ../../esp32/quickref.rst:198
+#: ../../esp32/quickref.rst:202
 msgid "rx"
 msgstr ""
 
-#: ../../esp32/quickref.rst:198
+#: ../../esp32/quickref.rst:202
 msgid "3"
 msgstr ""
 
-#: ../../esp32/quickref.rst:198
+#: ../../esp32/quickref.rst:202
 msgid "9"
 msgstr ""
 
-#: ../../esp32/quickref.rst:198
+#: ../../esp32/quickref.rst:202
 msgid "16"
 msgstr ""
 
-#: ../../esp32/quickref.rst:202
+#: ../../esp32/quickref.rst:206
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../esp32/quickref.rst:204
+#: ../../esp32/quickref.rst:208
 msgid ""
 "PWM can be enabled on all output-enabled pins. The base frequency can "
 "range from 1Hz to 40MHz but there is a tradeoff; as the base frequency "
@@ -630,11 +640,11 @@ msgstr ""
 "`LED制御 <https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html>`_ "
 "を参照してください。今のところ、デューティ比は 0-1023 の範囲内でなければなりません。"
 
-#: ../../esp32/quickref.rst:211
+#: ../../esp32/quickref.rst:215
 msgid "Use the ``machine.PWM`` class::"
 msgstr "``machine.PWM`` クラスを使います::"
 
-#: ../../esp32/quickref.rst:213
+#: ../../esp32/quickref.rst:217
 msgid ""
 "from machine import Pin, PWM\n"
 "\n"
@@ -658,11 +668,11 @@ msgstr ""
 "\n"
 "pwm2 = PWM(Pin(2), freq=20000, duty=512) # 作成と設定を一度に実行"
 
-#: ../../esp32/quickref.rst:225
+#: ../../esp32/quickref.rst:229
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../esp32/quickref.rst:227
+#: ../../esp32/quickref.rst:231
 msgid ""
 "On the ESP32 ADC functionality is available on Pins 32-39. Note that, when "
 "using the default configuration, input voltages on the ADC pin must be "
@@ -673,11 +683,11 @@ msgstr ""
 "ピンの入力電圧は 0.0V-1.0V である必要があります(1.0V を超える値は 4095 となります)。"
 "この電圧範囲を広げるには attenuation (減衰率)を適用する必要があります。"
 
-#: ../../esp32/quickref.rst:232
+#: ../../esp32/quickref.rst:236
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
-#: ../../esp32/quickref.rst:234
+#: ../../esp32/quickref.rst:238
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -697,11 +707,11 @@ msgstr ""
 "adc.width(ADC.WIDTH_9BIT)   # 9ビットの戻り値を設定(戻り値の範囲 0-511)\n"
 "adc.read()                  # 新しく設定された減衰率と戻り値幅を使って値を読込み"
 
-#: ../../esp32/quickref.rst:243
+#: ../../esp32/quickref.rst:247
 msgid "ESP32 specific ADC class method reference:"
 msgstr "ESP32 固有の ADC クラスのメソッドリファレンス:"
 
-#: ../../esp32/quickref.rst:247
+#: ../../esp32/quickref.rst:251
 msgid ""
 "This method allows for the setting of the amount of attenuation on the "
 "input of the ADC. This allows for a wider possible input voltage range, "
@@ -712,35 +722,35 @@ msgstr ""
 "より広い入力電圧範囲が可能になります(同じビット数でより広い範囲を表すようになります)。"
 "attenuation には次のものを指定できます:"
 
-#: ../../esp32/quickref.rst:252
+#: ../../esp32/quickref.rst:256
 msgid ""
 "``ADC.ATTN_0DB``: 0dB attenuation, gives a maximum input voltage of "
 "1.00v - this is the default configuration"
 msgstr ""
 "``ADC.ATTN_0DB``: 0dB の減衰率で、1.00v が最大入力電圧となります - これはデフォルト設定です"
 
-#: ../../esp32/quickref.rst:254
+#: ../../esp32/quickref.rst:258
 msgid ""
 "``ADC.ATTN_2_5DB``: 2.5dB attenuation, gives a maximum input voltage of "
 "approximately 1.34v"
 msgstr ""
 "``ADC.ATTN_2_5DB``: 2.5dBの減衰率、約1.34v が最大入力電圧となります"
 
-#: ../../esp32/quickref.rst:256
+#: ../../esp32/quickref.rst:260
 msgid ""
 "``ADC.ATTN_6DB``: 6dB attenuation, gives a maximum input voltage of "
 "approximately 2.00v"
 msgstr ""
 "``ADC.ATTN_6DB``: 6dBの減衰率、約2.00v が最大入力電圧となります"
 
-#: ../../esp32/quickref.rst:258
+#: ../../esp32/quickref.rst:262
 msgid ""
 "``ADC.ATTN_11DB``: 11dB attenuation, gives a maximum input voltage of "
 "approximately 3.6v"
 msgstr ""
 "``ADC.ATTN_11DB``: 11dBの減衰率、約3.6v が最大入力電圧となります"
 
-#: ../../esp32/quickref.rst:262
+#: ../../esp32/quickref.rst:266
 msgid ""
 "Despite 11dB attenuation allowing for up to a 3.6v range, note that the "
 "absolute maximum voltage rating for the input pins is 3.6v, and so going "
@@ -749,7 +759,7 @@ msgstr ""
 "11dB の減衰率で最大 3.6v までの範囲が可能となりますが、入力ピンの絶対最大定格電圧は "
 "3.6v なので、この境界に近づくとデバイスに損傷を与える可能性があります！"
 
-#: ../../esp32/quickref.rst:268
+#: ../../esp32/quickref.rst:272
 msgid ""
 "This method allows for the setting of the number of bits to be "
 "utilised and returned during ADC reads. Possible width options are:"
@@ -757,27 +767,27 @@ msgstr ""
 "このメソッドは ADC の読み取り中に利用して返すビット数を設定します。"
 "width には次のものが指定できます:"
 
-#: ../../esp32/quickref.rst:271
+#: ../../esp32/quickref.rst:275
 msgid "``ADC.WIDTH_9BIT``: 9 bit data"
 msgstr "``ADC.WIDTH_9BIT``: 9 ビットデータ"
 
-#: ../../esp32/quickref.rst:272
+#: ../../esp32/quickref.rst:276
 msgid "``ADC.WIDTH_10BIT``: 10 bit data"
 msgstr "``ADC.WIDTH_10BIT``: 10 ビットデータ"
 
-#: ../../esp32/quickref.rst:273
+#: ../../esp32/quickref.rst:277
 msgid "``ADC.WIDTH_11BIT``: 11 bit data"
 msgstr "``ADC.WIDTH_11BIT``: 11 ビットデータ"
 
-#: ../../esp32/quickref.rst:274
+#: ../../esp32/quickref.rst:278
 msgid "``ADC.WIDTH_12BIT``: 12 bit data - this is the default configuration"
 msgstr "``ADC.WIDTH_12BIT``: 12 ビットデータ - これはデフォルト設定です"
 
-#: ../../esp32/quickref.rst:277
+#: ../../esp32/quickref.rst:281
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../esp32/quickref.rst:279
+#: ../../esp32/quickref.rst:283
 msgid ""
 "Software SPI (using bit-banging) works on all pins, and is accessed via "
 "the :ref:`machine.SoftSPI <machine.SoftSPI>` class::"
@@ -785,7 +795,7 @@ msgstr ""
 "ソフトウェア SPI (ビットバンギング)はすべてのピンで動作し、 "
 ":ref:`machine.SoftSPI <machine.SoftSPI>` クラスを介してアクセスします::"
 
-#: ../../esp32/quickref.rst:282
+#: ../../esp32/quickref.rst:286
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -838,7 +848,7 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../esp32/quickref.rst:305
+#: ../../esp32/quickref.rst:309
 msgid ""
 "Currently *all* of ``sck``, ``mosi`` and ``miso`` *must* be specified "
 "when initialising Software SPI."
@@ -846,11 +856,11 @@ msgstr ""
 "現在のところ、ソフトウェア SPI を初期化するときには ``sck``, ``mosi``, ``miso`` "
 "*すべて* を指定しなければなりません。"
 
-#: ../../esp32/quickref.rst:309
+#: ../../esp32/quickref.rst:313
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../esp32/quickref.rst:311
+#: ../../esp32/quickref.rst:315
 msgid ""
 "There are two hardware SPI channels that allow faster transmission "
 "rates (up to 80Mhz). These may be used on any IO pins that support the "
@@ -867,51 +877,51 @@ msgstr ""
 "これは高速での信頼性に影響を与えます。次のデフォルト以外のピンで使用した場合、"
 "ハードウェア SPI チャネルは 40MHz に制限されます。"
 
-#: ../../esp32/quickref.rst:230
+#: ../../esp32/quickref.rst:234
 msgid "HSPI (id=1)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:322
+#: ../../esp32/quickref.rst:324
 msgid "VSPI (id=2)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:322
+#: ../../esp32/quickref.rst:326
 msgid "sck"
 msgstr ""
 
-#: ../../esp32/quickref.rst:322
+#: ../../esp32/quickref.rst:326
 msgid "14"
 msgstr ""
 
-#: ../../esp32/quickref.rst:322 ../../esp32/quickref.rst:364
+#: ../../esp32/quickref.rst:326 ../../esp32/quickref.rst:368
 msgid "18"
 msgstr ""
 
-#: ../../esp32/quickref.rst:323
+#: ../../esp32/quickref.rst:327
 msgid "mosi"
 msgstr ""
 
-#: ../../esp32/quickref.rst:323
+#: ../../esp32/quickref.rst:327
 msgid "13"
 msgstr ""
 
-#: ../../esp32/quickref.rst:323
+#: ../../esp32/quickref.rst:327
 msgid "23"
 msgstr ""
 
-#: ../../esp32/quickref.rst:324
+#: ../../esp32/quickref.rst:328
 msgid "miso"
 msgstr ""
 
-#: ../../esp32/quickref.rst:324
+#: ../../esp32/quickref.rst:328
 msgid "12"
 msgstr ""
 
-#: ../../esp32/quickref.rst:324 ../../esp32/quickref.rst:365
+#: ../../esp32/quickref.rst:328 ../../esp32/quickref.rst:369
 msgid "19"
 msgstr ""
 
-#: ../../esp32/quickref.rst:327
+#: ../../esp32/quickref.rst:331
 msgid ""
 "Hardware SPI is accessed via the :ref:`machine.SPI <machine.SPI>` class "
 "and has the same methods as software SPI above::"
@@ -919,7 +929,7 @@ msgstr ""
 "ハードウェア SPI には :ref:`machine.SPI <machine.SPI>` クラスを使って"
 "アクセスします::"
 
-#: ../../esp32/quickref.rst:330
+#: ../../esp32/quickref.rst:334
 msgid ""
 "from machine import Pin, SPI\n"
 "\n"
@@ -929,17 +939,17 @@ msgid ""
 " sck=Pin(18), mosi=Pin(23), miso=Pin(19))"
 msgstr ""
 
-#: ../../esp32/quickref.rst:337
+#: ../../esp32/quickref.rst:341
 msgid "I2C bus"
 msgstr "I2C バス"
 
-#: ../../esp32/quickref.rst:339
+#: ../../esp32/quickref.rst:343
 msgid ""
 "Software I2C (using bit-banging) works on all output-capable pins, and is"
 " accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
 msgstr ""
 
-#: ../../esp32/quickref.rst:342
+#: ../../esp32/quickref.rst:346
 msgid ""
 "from machine import Pin, SoftI2C\n"
 "\n"
@@ -965,11 +975,11 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをスレーブに書き込み"
 
-#: ../../esp32/quickref.rst:355
+#: ../../esp32/quickref.rst:359
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../esp32/quickref.rst:357
+#: ../../esp32/quickref.rst:361
 msgid ""
 "There are two hardware I2C peripherals with identifiers 0 and 1.  Any "
 "available output-capable pins can be used for SCL and SDA but the "
@@ -979,38 +989,38 @@ msgstr ""
 "利用可能な出力対応ピンはすべて SCL と SDA にできますが、デフォルトは以下の"
 "ようになっています。"
 
-#: ../../esp32/quickref.rst:362
+#: ../../esp32/quickref.rst:366
 msgid "I2C(0)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:362
+#: ../../esp32/quickref.rst:366
 msgid "I2C(1)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:364
+#: ../../esp32/quickref.rst:368
 msgid "scl"
 msgstr ""
 
-#: ../../esp32/quickref.rst:364
+#: ../../esp32/quickref.rst:368
 msgid "25"
 msgstr ""
 
-#: ../../esp32/quickref.rst:365
+#: ../../esp32/quickref.rst:369
 msgid "sda"
 msgstr ""
 
-#: ../../esp32/quickref.rst:365
+#: ../../esp32/quickref.rst:369
 msgid "26"
 msgstr ""
 
-#: ../../esp32/quickref.rst:368
+#: ../../esp32/quickref.rst:372
 msgid ""
 "The driver is accessed via the :ref:`machine.I2C <machine.I2C>` class and"
 " has the same methods as software I2C above::"
 msgstr ""
 "ドライバーには :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします::"
 
-#: ../../esp32/quickref.rst:371
+#: ../../esp32/quickref.rst:375
 msgid ""
 "from machine import Pin, I2C\n"
 "\n"
@@ -1018,15 +1028,15 @@ msgid ""
 "i2c = I2C(1, scl=Pin(5), sda=Pin(4), freq=400000)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:377
+#: ../../esp32/quickref.rst:381
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../esp32/quickref.rst:379
+#: ../../esp32/quickref.rst:383
 msgid "See :ref:`machine.RTC <machine.RTC>` ::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../esp32/quickref.rst:381
+#: ../../esp32/quickref.rst:385
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -1040,15 +1050,15 @@ msgstr ""
 "rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
 "rtc.datetime() # 日時を取得"
 
-#: ../../esp32/quickref.rst:388
+#: ../../esp32/quickref.rst:392
 msgid "WDT (Watchdog timer)"
 msgstr "WDT (ウォッチドッグタイマー)"
 
-#: ../../esp32/quickref.rst:390
+#: ../../esp32/quickref.rst:394
 msgid "See :ref:`machine.WDT <machine.WDT>`. ::"
 msgstr ":ref:`machine.WDT <machine.WDT>` を参照::"
 
-#: ../../esp32/quickref.rst:392
+#: ../../esp32/quickref.rst:396
 msgid ""
 "from machine import WDT\n"
 "\n"
@@ -1062,15 +1072,15 @@ msgstr ""
 "wdt = WDT(timeout=5000)\n"
 "wdt.feed()"
 
-#: ../../esp32/quickref.rst:399
+#: ../../esp32/quickref.rst:403
 msgid "Deep-sleep mode"
 msgstr "ディープスリープモード"
 
-#: ../../esp32/quickref.rst:401
+#: ../../esp32/quickref.rst:405
 msgid "The following code can be used to sleep, wake and check the reset cause::"
 msgstr "次のコードで、スリープ、起床、リセット原因のチェックが行えます::"
 
-#: ../../esp32/quickref.rst:403
+#: ../../esp32/quickref.rst:407
 msgid "import machine\n"
 "\n"
 "# check if the device woke from a deep sleep\n"
@@ -1089,15 +1099,15 @@ msgstr ""
 "# 10秒間のディープスリープに入る\n"
 "machine.deepsleep(10000)"
 
-#: ../../esp32/quickref.rst:414
+#: ../../esp32/quickref.rst:418
 msgid "Calling ``deepsleep()`` without an argument will put the device to sleep indefinitely"
 msgstr "``deepsleep()`` を引数なしで呼び出すと、デバイスは無期限にスリープします"
 
-#: ../../esp32/quickref.rst:416
+#: ../../esp32/quickref.rst:420
 msgid "A software reset does not change the reset cause"
 msgstr "ソフトウェアリセットによってリセットの原因が変わることはありません"
 
-#: ../../esp32/quickref.rst:417
+#: ../../esp32/quickref.rst:421
 msgid ""
 "There may be some leakage current flowing through enabled internal pullups. "
 "To further reduce power consumption it is possible to disable the internal pullups::"
@@ -1105,30 +1115,30 @@ msgstr ""
 "内部プルアップが有効であると、リーク電流が発生する可能性があります。"
 "消費電力をさらに減らすために、内部プルアップを無効にできます::"
 
-#: ../../esp32/quickref.rst:420
+#: ../../esp32/quickref.rst:424
 msgid "p1 = Pin(4, Pin.IN, Pin.PULL_HOLD)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:422
+#: ../../esp32/quickref.rst:426
 msgid ""
 "After leaving deepsleep it may be necessary to un-hold the pin explicitly (e.g. if "
 "it is an output pin) via::"
 msgstr ""
 "ディープスリープ解除後には、次のようにしてピンを有効化する必要があります(この例では出力ピンに設定)::"
 
-#: ../../esp32/quickref.rst:425
+#: ../../esp32/quickref.rst:429
 msgid "p1 = Pin(4, Pin.OUT, None)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:428
+#: ../../esp32/quickref.rst:432
 msgid "SD card"
 msgstr "SD カード"
 
-#: ../../esp32/quickref.rst:430
+#: ../../esp32/quickref.rst:434
 msgid "See :ref:`machine.SDCard <machine.SDCard>`. ::"
 msgstr ":ref:`machine.SDCard <machine.SDCard>` を参照::"
 
-#: ../../esp32/quickref.rst:432
+#: ../../esp32/quickref.rst:436
 msgid ""
 "import machine, uos\n"
 "\n"
@@ -1150,11 +1160,11 @@ msgstr ""
 "\n"
 "uos.umount('/sd')     # 取出し"
 
-#: ../../esp32/quickref.rst:443
+#: ../../esp32/quickref.rst:447
 msgid "RMT"
 msgstr ""
 
-#: ../../esp32/quickref.rst:445
+#: ../../esp32/quickref.rst:449
 msgid ""
 "The RMT is ESP32-specific and allows generation of accurate digital "
 "pulses with 12.5ns resolution.  See :ref:`esp32.RMT <esp32.RMT>` for "
@@ -1164,7 +1174,7 @@ msgstr ""
 "詳細については :ref:`esp32.RMT <esp32.RMT>` を参照してください。"
 "使い方は次のとおりです。"
 
-#: ../../esp32/quickref.rst:448
+#: ../../esp32/quickref.rst:452
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -1184,15 +1194,15 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), start=0) # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../esp32/quickref.rst:457
-msgid "OneWire driver"
-msgstr "OneWire ドライバ"
-
-#: ../../esp32/quickref.rst:459
-msgid "The OneWire driver is implemented in software and works on all pins::"
-msgstr "OneWire ドライバはソフトウェアで実装され、すべてのピンで動作します::"
-
 #: ../../esp32/quickref.rst:461
+msgid "OneWire driver"
+msgstr "OneWire ドライバー"
+
+#: ../../esp32/quickref.rst:463
+msgid "The OneWire driver is implemented in software and works on all pins::"
+msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
+
+#: ../../esp32/quickref.rst:465
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -1216,11 +1226,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../esp32/quickref.rst:472
+#: ../../esp32/quickref.rst:476
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
-msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバがあります::"
+msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバーがあります::"
 
-#: ../../esp32/quickref.rst:474
+#: ../../esp32/quickref.rst:478
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -1231,7 +1241,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../esp32/quickref.rst:482
+#: ../../esp32/quickref.rst:486
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the "
@@ -1241,15 +1251,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../esp32/quickref.rst:487
-msgid "NeoPixel driver"
-msgstr "NeoPixel ドライバ"
-
-#: ../../esp32/quickref.rst:489
-msgid "Use the ``neopixel`` module::"
-msgstr "``neopixel`` モジュールを使います::"
-
 #: ../../esp32/quickref.rst:491
+msgid "NeoPixel and APA106 driver"
+msgstr "NeoPixel/APA106 ドライバー"
+
+#: ../../esp32/quickref.rst:493
+msgid "Use the ``neopixel`` and ``apa106`` modules::"
+msgstr "``neopixel`` と ``apa106`` モジュールを使います::"
+
+#: ../../esp32/quickref.rst:495
 msgid ""
 "from machine import Pin\n"
 "from neopixel import NeoPixel\n"
@@ -1264,21 +1274,35 @@ msgstr ""
 "from neopixel import NeoPixel\n"
 "\n"
 "pin = Pin(0, Pin.OUT)   # NeoPixel 駆動のための GPIO 0 を出力に設定\n"
-"np = NeoPixel(pin, 8)   # 8ピクセル用の NeoPixel ドライバを GPIO 0 で作成\n"
+"np = NeoPixel(pin, 8)   # 8ピクセル用の NeoPixel ドライバーを GPIO 0 で作成\n"
 "np[0] = (255, 255, 255) # 第１ピクセルを白に設定\n"
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../esp32/quickref.rst:500
+#: ../../esp32/quickref.rst:505
+msgid ""
+"The APA106 driver extends NeoPixel, but internally uses a different "
+"colour order::"
+msgstr ""
+"APA106 ドライバーは NeoPixel を継承していますが、内部的には異なる色順を使っています::"
+
+#: ../../esp32/quickref.rst:507
+msgid ""
+"from apa106 import APA106\n"
+"ap = APA106(pin, 8)\n"
+"r, g, b = ap[0]"
+msgstr ""
+
+#: ../../esp32/quickref.rst:511
 msgid "For low-level driving of a NeoPixel::"
 msgstr "NeoPixel の低レベル駆動もあります::"
 
-#: ../../esp32/quickref.rst:502
+#: ../../esp32/quickref.rst:513
 msgid "import esp\n"
 "esp.neopixel_write(pin, grb_buf, is800khz)"
 msgstr ""
 
-#: ../../esp32/quickref.rst:506
+#: ../../esp32/quickref.rst:517
 msgid ""
 "By default ``NeoPixel`` is configured to control the more popular "
 "*800kHz* units. It is possible to use alternative timing to control "
@@ -1289,15 +1313,22 @@ msgstr ""
 "設定されています。 ``NeoPixel`` オブジェクト構築時に ``timing=0`` を渡すことで、"
 "他の(よくあるのは 400kHz)デバイスを制御する代替のタイミングを使えます。"
 
-#: ../../esp32/quickref.rst:513
+#: ../../esp32/quickref.rst:522
+msgid ""
+"APA102 (DotStar) uses a different driver as it has an additional clock "
+"pin."
+msgstr ""
+"APA102 (DotStar)はクロック端子が追加されているため、別のドライバーを使います。"
+
+#: ../../esp32/quickref.rst:525
 msgid "Capacitive touch"
 msgstr "静電容量タッチ"
 
-#: ../../esp32/quickref.rst:515
+#: ../../esp32/quickref.rst:527
 msgid "Use the ``TouchPad`` class in the ``machine`` module::"
 msgstr "``machine`` モジュールの ``TouchPad`` クラスを使います::"
 
-#: ../../esp32/quickref.rst:517
+#: ../../esp32/quickref.rst:529
 msgid ""
 "from machine import TouchPad, Pin\n"
 "\n"
@@ -1309,7 +1340,7 @@ msgstr ""
 "t = TouchPad(Pin(14))\n"
 "t.read()              # タッチすると小さい数値を返す"
 
-#: ../../esp32/quickref.rst:522
+#: ../../esp32/quickref.rst:534
 msgid ""
 "``TouchPad.read`` returns a value relative to the capacitive variation. "
 "Small numbers (typically in the *tens*) are common when a pin is touched,"
@@ -1322,7 +1353,7 @@ msgstr ""
 "一般的です。ただし、これらの値は相対的なもので、ボードと周囲の構成によって変わる"
 "可能性があるため、ある程度の調整が必要となるでしょう。"
 
-#: ../../esp32/quickref.rst:527
+#: ../../esp32/quickref.rst:539
 msgid ""
 "There are ten capacitive touch-enabled pins that can be used on the ESP32: "
 "0, 2, 4, 12, 13 14, 15, 27, 32, 33. Trying to assign to any other pins "
@@ -1331,11 +1362,11 @@ msgstr ""
 "ESP32 で使える静電容量タッチ対応ピンは 0, 2, 4, 12, 13 14, 15, 27, 32, 33 の"
 "10本です。この他のピンに割り当てようとすると ``ValueError`` になります。"
 
-#: ../../esp32/quickref.rst:530
+#: ../../esp32/quickref.rst:542
 msgid "Note that TouchPads can be used to wake an ESP32 from sleep::"
 msgstr "TouchPad を使ってESP32をスリープから復帰させることもできます::"
 
-#: ../../esp32/quickref.rst:532
+#: ../../esp32/quickref.rst:544
 msgid ""
 "import machine\n"
 "from machine import TouchPad, Pin\n"
@@ -1355,7 +1386,7 @@ msgstr ""
 "esp32.wake_on_touch(True)\n"
 "machine.lightsleep()        # タッチされる MCU をスリープさせる"
 
-#: ../../esp32/quickref.rst:541
+#: ../../esp32/quickref.rst:553
 msgid ""
 "For more details on touchpads refer to `Espressif Touch Sensor "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html>`_."
@@ -1364,15 +1395,15 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html>`_ "
 "を参照してください。"
 
-#: ../../esp32/quickref.rst:546
+#: ../../esp32/quickref.rst:558
 msgid "DHT driver"
-msgstr "DHT ドライバ"
+msgstr "DHT ドライバー"
 
-#: ../../esp32/quickref.rst:548
+#: ../../esp32/quickref.rst:560
 msgid "The DHT driver is implemented in software and works on all pins::"
-msgstr "DHT ドライバはソフトウェアで実装され、すべてのピンで動作します::"
+msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../esp32/quickref.rst:550
+#: ../../esp32/quickref.rst:562
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -1400,11 +1431,11 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../esp32/quickref.rst:564
+#: ../../esp32/quickref.rst:576
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../esp32/quickref.rst:566
+#: ../../esp32/quickref.rst:578
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP32 port. Download web client from "
@@ -1417,12 +1448,12 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../esp32/quickref.rst:571
+#: ../../esp32/quickref.rst:583
 msgid ""
 "import webrepl_setup"
 msgstr ""
 
-#: ../../esp32/quickref.rst:573
+#: ../../esp32/quickref.rst:585
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -1431,7 +1462,7 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../esp32/quickref.rst:577
+#: ../../esp32/quickref.rst:589
 msgid ""
 "import webrepl\n"
 "webrepl.start()\n"
@@ -1445,7 +1476,7 @@ msgstr ""
 "# もしくは指定のパスワードでスタート\n"
 "webrepl.start(password='mypass')"
 
-#: ../../esp32/quickref.rst:583
+#: ../../esp32/quickref.rst:595
 msgid ""
 "The WebREPL daemon listens on all active interfaces, which can be STA or AP.  "
 "This allows you to connect to the ESP32 via a router (the STA interface) or "
@@ -1455,7 +1486,7 @@ msgstr ""
 "これにより、ルータ(STA インターフェイス)を介してでも、またはアクセスポイントに接続している"
 "ときでも直接 ESP32 に接続できます。"
 
-#: ../../esp32/quickref.rst:587
+#: ../../esp32/quickref.rst:599
 msgid ""
 "In addition to terminal/command prompt access, WebREPL also has provision "
 "for file transfer (both upload and download).  The web client has buttons for "
@@ -1467,7 +1498,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../esp32/quickref.rst:592
+#: ../../esp32/quickref.rst:604
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to an ESP32 board."

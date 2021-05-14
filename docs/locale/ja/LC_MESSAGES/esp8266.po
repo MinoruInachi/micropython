@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-08 18:02+0900\n"
-"PO-Revision-Date: 2021-05-08 18:57+0900\n"
+"POT-Creation-Date: 2021-05-14 21:26+0900\n"
+"PO-Revision-Date: 2021-05-15 03:03+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -758,15 +758,25 @@ msgstr ""
 "また、Pin(16) は特殊なピンであり(ディープスリープモードからのウェイクアップに"
 "使われます)、Neopixel のような高レベルのクラスでは使えません。"
 
-#: ../../esp8266/quickref.rst:142
+#: ../../esp8266/quickref.rst:141
+msgid ""
+"There's a higher-level abstraction :ref:`machine.Signal <machine.Signal>`"
+" which can be used to invert a pin. Useful for illuminating active-low "
+"LEDs using ``on()`` or ``value(1)``."
+msgstr ""
+"ピンを反転させるのに使える、高レベルの抽象化インタフェース "
+":ref:`machine.Signal <machine.Signal>` があります。 "
+"負論理(active-low)の LED でも ``on()`` や ``value(1)`` で点灯できるので便利です。"
+
+#: ../../esp8266/quickref.rst:146
 msgid "UART (serial bus)"
 msgstr "UART (シリアルバス)"
 
-#: ../../esp8266/quickref.rst:144
+#: ../../esp8266/quickref.rst:148
 msgid "See :ref:`machine.UART <machine.UART>`. ::"
 msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
 
-#: ../../esp8266/quickref.rst:146
+#: ../../esp8266/quickref.rst:150
 msgid ""
 "from machine import UART\n"
 "uart = UART(0, baudrate=9600)\n"
@@ -778,7 +788,7 @@ msgstr ""
 "uart.write('hello')\n"
 "uart.read(5) # 5バイトまで読み込む"
 
-#: ../../esp8266/quickref.rst:151
+#: ../../esp8266/quickref.rst:156
 msgid ""
 "Two UARTs are available. UART0 is on Pins 1 (TX) and 3 (RX). UART0 is "
 "bidirectional, and by default is used for the REPL. UART1 is on Pins 2 "
@@ -790,7 +800,7 @@ msgstr ""
 "UART1 はピン2 (TX) とピン8 (RX)を使いますが、ピン8はフラッシュチップの"
 "接続に使うため、UART1 は TX のみです。
 
-#: ../../esp8266/quickref.rst:156
+#: ../../esp8266/quickref.rst:160
 msgid ""
 "When UART0 is attached to the REPL, all incoming chars on UART(0) go "
 "straight to stdin so uart.read() will always return None.  Use "
@@ -805,7 +815,7 @@ msgstr ""
 "読み取ってから、REPL に再アタッチしてください)。"
 "デタッチすると、UART(0) は他の目的に使えるようになります。"
 
-#: ../../esp8266/quickref.rst:162
+#: ../../esp8266/quickref.rst:166
 msgid ""
 "If there are no objects in any of the dupterm slots when the REPL is "
 "started (on hard or soft reset) then UART(0) is automatically attached. "
@@ -819,17 +829,17 @@ msgstr ""
 "フラッシュすることです(REPL を アタッチするデフォルトの boot.py も再インストール"
 "することになります)。"
 
-#: ../../esp8266/quickref.rst:168
+#: ../../esp8266/quickref.rst:172
 msgid "To detach the REPL from UART0, use::"
 msgstr "UART0 から REPL をデタッチするには次のようにします::"
 
-#: ../../esp8266/quickref.rst:170
+#: ../../esp8266/quickref.rst:174
 msgid ""
 "import uos\n"
 "uos.dupterm(None, 1)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:173
+#: ../../esp8266/quickref.rst:177
 msgid ""
 "The REPL is attached by default. If you have detached it, to reattach it "
 "use::"
@@ -837,18 +847,18 @@ msgstr ""
 "REPL にはデフォルトでアタッチします。デタッチした REPL を再アタッチするには"
 "次のようにします::"
 
-#: ../../esp8266/quickref.rst:176
+#: ../../esp8266/quickref.rst:180
 msgid ""
 "import uos, machine\n"
 "uart = machine.UART(0, 115200)\n"
 "uos.dupterm(uart, 1)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:180
+#: ../../esp8266/quickref.rst:184
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../esp8266/quickref.rst:183
+#: ../../esp8266/quickref.rst:187
 msgid ""
 "PWM can be enabled on all pins except Pin(16).  There is a single "
 "frequency for all channels, with range between 1 and 1000 (measured in "
@@ -858,11 +868,11 @@ msgstr ""
 "１つの周波数があり、範囲は 1〜1000 (単位は Hz)です。"
 "デューティ比は 0〜1023 です。"
 
-#: ../../esp8266/quickref.rst:187
+#: ../../esp8266/quickref.rst:191
 msgid "Use the ``machine.PWM`` class::"
 msgstr "``machine.PWM`` クラスを使います::"
 
-#: ../../esp8266/quickref.rst:189
+#: ../../esp8266/quickref.rst:193
 msgid ""
 "from machine import Pin, PWM\n"
 "\n"
@@ -886,11 +896,11 @@ msgstr ""
 "\n"
 "pwm2 = PWM(Pin(2), freq=500, duty=512) # 作成と設定を一度に実行"
 
-#: ../../esp8266/quickref.rst:201
+#: ../../esp8266/quickref.rst:205
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../esp8266/quickref.rst:203
+#: ../../esp8266/quickref.rst:207
 msgid ""
 "ADC is available on a dedicated pin. Note that input voltages on the ADC "
 "pin must be between 0v and 1.0v."
@@ -898,11 +908,11 @@ msgstr ""
 "ADC は専用ピンで利用できます。ADC ピンの入力電圧は 0v と 1.0v の間で"
 "なければならないことに注意してください。"
 
-#: ../../esp8266/quickref.rst:206
+#: ../../esp8266/quickref.rst:210
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
-#: ../../esp8266/quickref.rst:208
+#: ../../esp8266/quickref.rst:212
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -914,21 +924,21 @@ msgstr ""
 "adc = ADC(0)            # ADC ピンの ADC オブジェクトを作成\n"
 "adc.read()              # 0-1024 の間の値を読込み"
 
-#: ../../esp8266/quickref.rst:214
+#: ../../esp8266/quickref.rst:218
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../esp8266/quickref.rst:216
+#: ../../esp8266/quickref.rst:220
 msgid ""
 "There are two SPI drivers. One is implemented in software (bit-banging) "
 "and works on all pins, and is accessed via the :ref:`machine.SoftSPI "
 "<machine.SoftSPI>` class::"
 msgstr ""
-"SPI ドライバは２つあります。１つはソフトウェアで実装され(ビットバンギング)、"
+"SPI ドライバーは２つあります。１つはソフトウェアで実装され(ビットバンギング)、"
 "すべてのピンで動作し、 :ref:`machine.SoftSPI <machine.SPI>` "
 "クラスを介してアクセスします::"
 
-#: ../../esp8266/quickref.rst:220
+#: ../../esp8266/quickref.rst:224
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -982,11 +992,11 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../esp8266/quickref.rst:244
+#: ../../esp8266/quickref.rst:248
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../esp8266/quickref.rst:246
+#: ../../esp8266/quickref.rst:250
 msgid ""
 "The hardware SPI is faster (up to 80Mhz), but only works on following "
 "pins: ``MISO`` is GPIO12, ``MOSI`` is GPIO13, and ``SCK`` is GPIO14. It "
@@ -998,32 +1008,32 @@ msgstr ""
 "クラスと同じメソッドを持っていますが、コンストラクタと init のピンパラメータは"
 "固定されています。"
 
-#: ../../esp8266/quickref.rst:251
+#: ../../esp8266/quickref.rst:255
 msgid ""
 "from machine import Pin, SPI\n"
 "\n"
 "hspi = SPI(1, baudrate=80000000, polarity=0, phase=0)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:255
+#: ../../esp8266/quickref.rst:259
 msgid "(``SPI(0)`` is used for FlashROM and not available to users.)"
 msgstr "(``SPI(0)`` は FlashROM 用に使われるため、ユーザは利用できません。)"
 
-#: ../../esp8266/quickref.rst:258
+#: ../../esp8266/quickref.rst:262
 msgid "I2C bus"
 msgstr "I2C バス"
 
-#: ../../esp8266/quickref.rst:260
+#: ../../esp8266/quickref.rst:264
 msgid ""
 "The I2C driver is implemented in software and works on all pins, and is "
 "accessed via the :ref:`machine.I2C <machine.I2C>` class (which is an "
 "alias of :ref:`machine.SoftI2C <machine.SoftI2C>`)::"
 msgstr ""
-"I2C ドライバはソフトウェアで実装され、すべてのピンで動作し、"
+"I2C ドライバーはソフトウェアで実装され、すべてのピンで動作し、"
 ":ref:`machine.I2C <machine.I2C>` クラスを介してアクセスします"
 "(このクラスは :ref:`machine.SoftI2C <machine.SoftI2C>` の別名です)::"
 
-#: ../../esp8266/quickref.rst:264
+#: ../../esp8266/quickref.rst:268
 msgid ""
 "from machine import Pin, I2C\n"
 "\n"
@@ -1048,15 +1058,15 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをスレーブに書込み"
 
-#: ../../esp8266/quickref.rst:276
+#: ../../esp8266/quickref.rst:280
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../esp8266/quickref.rst:278
+#: ../../esp8266/quickref.rst:282
 msgid "See :ref:`machine.RTC <machine.RTC>` ::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../esp8266/quickref.rst:280
+#: ../../esp8266/quickref.rst:284
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -1082,7 +1092,7 @@ msgstr ""
 "ntptime.settime() # リモートサーバからの日時を rtc に設定\n"
 "rtc.datetime()    # 日時を UTC で取得\n"
 
-#: ../../esp8266/quickref.rst:292
+#: ../../esp8266/quickref.rst:296
 msgid ""
 "Not all methods are implemented: `RTC.now()`, `RTC.irq(handler=*) "
 "<RTC.irq>` (using a custom handler), `RTC.init()` and `RTC.deinit()` are "
@@ -1092,15 +1102,15 @@ msgstr ""
 "<RTC.irq>` (カスタムハンドラを利用), `RTC.init()`, `RTC.deinit()` は"
 "現在サポートしていｍせん。"
 
-#: ../../esp8266/quickref.rst:297
+#: ../../esp8266/quickref.rst:301
 msgid "WDT (Watchdog timer)"
 msgstr "WDT (ウォッチドッグタイマー)"
 
-#: ../../esp8266/quickref.rst:299
+#: ../../esp8266/quickref.rst:303
 msgid "See :ref:`machine.WDT <machine.WDT>`. ::"
 msgstr ":ref:`machine.WDT <machine.WDT>` を参照::"
 
-#: ../../esp8266/quickref.rst:301
+#: ../../esp8266/quickref.rst:305
 msgid ""
 "from machine import WDT\n"
 "\n"
@@ -1114,11 +1124,11 @@ msgstr ""
 "wdt = WDT()\n"
 "wdt.feed()"
 
-#: ../../esp8266/quickref.rst:308 ../../esp8266/tutorial/powerctrl.rst:28
+#: ../../esp8266/quickref.rst:312 ../../esp8266/tutorial/powerctrl.rst:28
 msgid "Deep-sleep mode"
 msgstr "ディープスリープモード"
 
-#: ../../esp8266/quickref.rst:310
+#: ../../esp8266/quickref.rst:314
 msgid ""
 "Connect GPIO16 to the reset pin (RST on HUZZAH).  Then the following code"
 " can be used to sleep, wake and check the reset cause::"
@@ -1126,7 +1136,7 @@ msgstr ""
 "GPIO16 をリセットピン(HUZZAH| では RST)に接続してください。そのようにしておくと、"
 "次のコードで、スリープ、起床、リセット原因のチェックが行えます::"
 
-#: ../../esp8266/quickref.rst:313
+#: ../../esp8266/quickref.rst:317
 msgid ""
 "import machine\n"
 "\n"
@@ -1160,15 +1170,15 @@ msgstr ""
 "# ディープスリープに入る\n"
 "machine.deepsleep()"
 
-#: ../../esp8266/quickref.rst:330
-msgid "OneWire driver"
-msgstr "OneWire ドライバ"
-
-#: ../../esp8266/quickref.rst:332
-msgid "The OneWire driver is implemented in software and works on all pins::"
-msgstr "OneWire ドライバはソフトウェアで実装され、すべてのピンで動作します::"
-
 #: ../../esp8266/quickref.rst:334
+msgid "OneWire driver"
+msgstr "OneWire ドライバー"
+
+#: ../../esp8266/quickref.rst:336
+msgid "The OneWire driver is implemented in software and works on all pins::"
+msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
+
+#: ../../esp8266/quickref.rst:338
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -1192,11 +1202,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../esp8266/quickref.rst:345
+#: ../../esp8266/quickref.rst:349
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
-msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバがあります::"
+msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバーがあります::"
 
-#: ../../esp8266/quickref.rst:347
+#: ../../esp8266/quickref.rst:351
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -1207,7 +1217,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:355
+#: ../../esp8266/quickref.rst:359
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -1217,15 +1227,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../esp8266/quickref.rst:360
+#: ../../esp8266/quickref.rst:364
 msgid "NeoPixel driver"
-msgstr "NeoPixel ドライバ"
+msgstr "NeoPixel ドライバー"
 
-#: ../../esp8266/quickref.rst:362
+#: ../../esp8266/quickref.rst:366
 msgid "Use the ``neopixel`` module::"
 msgstr "``neopixel`` モジュールを使います::"
 
-#: ../../esp8266/quickref.rst:364
+#: ../../esp8266/quickref.rst:370
 msgid ""
 "from machine import Pin\n"
 "from neopixel import NeoPixel\n"
@@ -1240,22 +1250,22 @@ msgstr ""
 "from neopixel import NeoPixel\n"
 "\n"
 "pin = Pin(0, Pin.OUT)   # NeoPixel 駆動のための GPIO0 を出力に設定\n"
-"np = NeoPixel(pin, 8)   # 8ピクセル用の NeoPixel ドライバを GPIO0 で作成\n"
+"np = NeoPixel(pin, 8)   # 8ピクセル用の NeoPixel ドライバーを GPIO0 で作成\n"
 "np[0] = (255, 255, 255) # 第１ピクセルを白に設定\n"
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../esp8266/quickref.rst:373
+#: ../../esp8266/quickref.rst:377
 msgid "For low-level driving of a NeoPixel::"
 msgstr "NeoPixel の低レベル駆動もあります::"
 
-#: ../../esp8266/quickref.rst:375
+#: ../../esp8266/quickref.rst:379
 msgid ""
 "import esp\n"
 "esp.neopixel_write(pin, grb_buf, is800khz)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:379
+#: ../../esp8266/quickref.rst:383
 msgid ""
 "By default ``NeoPixel`` is configured to control the more popular "
 "*800kHz* units. It is possible to use alternative timing to control other"
@@ -1266,15 +1276,15 @@ msgstr ""
 "されています。 ``NeoPixel`` オブジェクトを構築する際に ``timing=0`` を渡すことで、"
 "他の(たいていは 400kHz)デバイスを制御する別のタイミングを使えます。"
 
-#: ../../esp8266/quickref.rst:386
+#: ../../esp8266/quickref.rst:390
 msgid "APA102 driver"
-msgstr "APA102 ドライバ"
+msgstr "APA102 ドライバー"
 
-#: ../../esp8266/quickref.rst:388
+#: ../../esp8266/quickref.rst:392
 msgid "Use the ``apa102`` module::"
 msgstr "``apa102`` モジュールを使います::"
 
-#: ../../esp8266/quickref.rst:390
+#: ../../esp8266/quickref.rst:394
 msgid ""
 "from machine import Pin\n"
 "from apa102 import APA102\n"
@@ -1293,30 +1303,30 @@ msgstr ""
 "\n"
 "clock = Pin(14, Pin.OUT)     # クロック駆動のための GPIO14 を出力に設定\n"
 "data = Pin(13, Pin.OUT)      # データ駆動のための GPIO13 を出力に設定\n"
-"apa = APA102(clock, data, 8) # 8ピクセル用の APA102 ドライバを clock と data ピンで作成\n"
+"apa = APA102(clock, data, 8) # 8ピクセル用の APA102 ドライバーを clock と data ピンで作成\n"
 "apa[0] = (255, 255, 255, 31) # 第１ピクセルを輝度 31 の白に設定\n"
 "apa.write()                  # 全ピクセルにデータ書込み\n"
 "r, g, b, brightness = apa[0] # 第１ピクセルの色を取得"
 
-#: ../../esp8266/quickref.rst:400
+#: ../../esp8266/quickref.rst:404
 msgid "For low-level driving of an APA102::"
 msgstr "APA102 の低レベル駆動もあります::"
 
-#: ../../esp8266/quickref.rst:402
+#: ../../esp8266/quickref.rst:406
 msgid ""
 "import esp\n"
 "esp.apa102_write(clock_pin, data_pin, rgbi_buf)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:406
-msgid "DHT driver"
-msgstr "DHT ドライバ"
-
-#: ../../esp8266/quickref.rst:408
-msgid "The DHT driver is implemented in software and works on all pins::"
-msgstr "DHT ドライバはソフトウェアで実装され、すべてのピンで動作します::"
-
 #: ../../esp8266/quickref.rst:410
+msgid "DHT driver"
+msgstr "DHT ドライバー"
+
+#: ../../esp8266/quickref.rst:412
+msgid "The DHT driver is implemented in software and works on all pins::"
+msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
+
+#: ../../esp8266/quickref.rst:414
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -1344,11 +1354,35 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../esp8266/quickref.rst:424
+#: ../../esp8266/quickref.rst:428
+msgid "SSD1306 driver"
+msgstr "SSD1306 ドライバー"
+
+#: ../../esp8266/quickref.rst:430
+msgid ""
+"Driver for SSD1306 monochrome OLED displays. See tutorial :ref:`ssd1306`."
+" ::"
+msgstr ""
+"SSD1306 モノクロ有機ELディスプレイ用ドライバーです。"
+"チュートリアル :ref:`ssd1306` を参照してください。"
+
+#: ../../esp8266/quickref.rst:442
+msgid ""
+"from machine import Pin, I2C\n"
+"import ssd1306\n"
+"\n"
+"i2c = I2C(scl=Pin(5), sda=Pin(4), freq=100000)\n"
+"display = ssd1306.SSD1306_I2C(128, 64, i2c)\n"
+"\n"
+"display.text('Hello World', 0, 0, 1)\n"
+"display.show()"
+msgstr ""
+
+#: ../../esp8266/quickref.rst:442
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../esp8266/quickref.rst:426
+#: ../../esp8266/quickref.rst:444
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP8266 port. Download web client from "
@@ -1361,11 +1395,11 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../esp8266/quickref.rst:431 ../../esp8266/tutorial/repl.rst:51
+#: ../../esp8266/quickref.rst:449 ../../esp8266/tutorial/repl.rst:51
 msgid "import webrepl_setup"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:433
+#: ../../esp8266/quickref.rst:451
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -1374,13 +1408,13 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../esp8266/quickref.rst:437
+#: ../../esp8266/quickref.rst:455
 msgid ""
 "import webrepl\n"
 "webrepl.start()"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:440
+#: ../../esp8266/quickref.rst:458
 msgid ""
 "The supported way to use WebREPL is by connecting to ESP8266 access "
 "point, but the daemon is also started on STA interface if it is active, "
@@ -1394,7 +1428,7 @@ msgstr ""
 "いれば WebREPL が使えるでしょう(問題が発生した場合は ESP8266 AP 接続メソッドを"
 "使ってください)。"
 
-#: ../../esp8266/quickref.rst:446
+#: ../../esp8266/quickref.rst:464
 msgid ""
 "Besides terminal/command prompt access, WebREPL also has provision for "
 "file transfer (both upload and download). Web client has buttons for the "
@@ -1406,7 +1440,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../esp8266/quickref.rst:451
+#: ../../esp8266/quickref.rst:469
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to ESP8266."
@@ -3959,4 +3993,198 @@ msgstr "空白行で Ctrl-D を押すと、ソフトリセットを行います�
 #: ../../esp8266/tutorial/repl.rst:212
 msgid "Note that ctrl-A and ctrl-D do not work with WebREPL."
 msgstr "ctrl-A と ctrl-D は WebREPL では機能しません。"
+
+#: ../../esp8266/tutorial/ssd1306.rst:4
+msgid "Using a SSD1306 OLED display"
+msgstr "SSD1306 OLED ディスプレイの使い方"
+
+#: ../../esp8266/tutorial/ssd1306.rst:6
+msgid ""
+"The SSD1306 OLED display uses either a SPI or I2C interface and comes in "
+"a variety of sizes (128x64, 128x32, 72x40, 64x48) and colours (white, "
+"yellow, blue, yellow + blue)."
+msgstr ""
+"SSD1306 OLED ディスプレイには SPI インタフェースのものと I2C インタフェースの"
+"ものがあります。サイズはいろいろで(128x64, 128x32, 72x40, 64x48)、カラーも"
+"いろいろです(白、黄色、青、黄色+青)。"
+
+#: ../../esp8266/tutorial/ssd1306.rst:9
+msgid "Hardware SPI interface::"
+msgstr "ハードウェア SPI インタフェース::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:11
+msgid ""
+"from machine import Pin, SPI\n"
+"import ssd1306\n"
+"\n"
+"hspi = SPI(1)  # sck=14 (scl), mosi=13 (sda), miso=12 (unused)\n"
+"\n"
+"dc = Pin(4)    # data/command\n"
+"rst = Pin(5)   # reset\n"
+"cs = Pin(15)   # chip select, some modules do not have a pin for this\n"
+"\n"
+"display = ssd1306.SSD1306_SPI(128, 64, hspi, dc, rst, cs)"
+msgstr ""
+"from machine import Pin, SPI\n"
+"import ssd1306\n"
+"\n"
+"hspi = SPI(1)  # sck=14 (scl), mosi=13 (sda), miso=12 (unused)\n"
+"\n"
+"dc = Pin(4)    # data/command\n"
+"rst = Pin(5)   # reset\n"
+"cs = Pin(15)   # chip select: このためのピンが無いモジュールもあります\n"
+"\n"
+"display = ssd1306.SSD1306_SPI(128, 64, hspi, dc, rst, cs)"
+
+#: ../../esp8266/tutorial/ssd1306.rst:22
+msgid "Software SPI interface::"
+msgstr "ソフトウェア SPI インタフェース::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:24
+msgid ""
+"from machine import Pin, SoftSPI\n"
+"import ssd1306\n"
+"\n"
+"spi = SoftSPI(baudrate=500000, polarity=1, phase=0, sck=Pin(14), "
+"mosi=Pin(13), miso=Pin(12))\n"
+"\n"
+"dc = Pin(4)   # data/command\n"
+"rst = Pin(5)  # reset\n"
+"cs = Pin(15)  # chip select, some modules do not have a pin for this\n"
+"\n"
+"display = ssd1306.SSD1306_SPI(128, 64, spi, dc, rst, cs)"
+msgstr ""
+"from machine import Pin, SoftSPI\n"
+"import ssd1306\n"
+"\n"
+"spi = SoftSPI(baudrate=500000, polarity=1, phase=0, sck=Pin(14), "
+"mosi=Pin(13), miso=Pin(12))\n"
+"\n"
+"dc = Pin(4)   # data/command\n"
+"rst = Pin(5)  # reset\n"
+"cs = Pin(15)  # chip select: このためのピンが無いモジュールもあります\n"
+"\n"
+"display = ssd1306.SSD1306_SPI(128, 64, spi, dc, rst, cs)"
+
+#: ../../esp8266/tutorial/ssd1306.rst:35
+msgid "I2C interface::"
+msgstr "I2C インタフェース::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:37
+msgid ""
+"from machine import Pin, I2C\n"
+"import ssd1306\n"
+"\n"
+"# using default address 0x3C\n"
+"i2c = I2C(sda=Pin(4), scl=Pin(5))\n"
+"display = ssd1306.SSD1306_I2C(128, 64, i2c)"
+msgstr ""
+
+#: ../../esp8266/tutorial/ssd1306.rst:44
+msgid "Print Hello World on the first line::"
+msgstr "先頭行に Hello World を印字::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:46
+msgid ""
+"display.text('Hello, World!', 0, 0, 1)\n"
+"display.show()"
+msgstr ""
+
+#: ../../esp8266/tutorial/ssd1306.rst:49
+msgid "Basic functions::"
+msgstr "基本関数::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:51
+msgid ""
+"display.poweroff()     # power off the display, pixels persist in memory\n"
+"display.poweron()      # power on the display, pixels redrawn\n"
+"display.contrast(0)    # dim\n"
+"display.contrast(255)  # bright\n"
+"display.invert(1)      # display inverted\n"
+"display.invert(0)      # display normal\n"
+"display.rotate(True)   # rotate 180 degrees\n"
+"display.rotate(False)  # rotate 0 degrees\n"
+"display.show()         # write the contents of the FrameBuffer to display"
+" memory"
+msgstr ""
+"display.poweroff()     # ディスプレイの電源オフ、ピクセルはメモリに残存\n"
+"display.poweron()      # ディスプレイの電源オン、ピクセルを再描画\n"
+"display.contrast(0)    # 暗くする\n"
+"display.contrast(255)  # 明るくする\n"
+"display.invert(1)      # 反転\n"
+"display.invert(0)      # 通常表示\n"
+"display.rotate(True)   # 180度回転\n"
+"display.rotate(False)  # 0度回転\n"
+"display.show()         # FrameBuffer の内容をディスプレイメモリに書き出す"
+
+#: ../../esp8266/tutorial/ssd1306.rst:61
+msgid "Subclassing FrameBuffer provides support for graphics primitives::"
+msgstr "中で使われている FrameBuffer は基本的なグラフィック機能をサポートします::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:63
+msgid ""
+"display.fill(0)                         # fill entire screen with "
+"colour=0\n"
+"display.pixel(0, 10)                    # get pixel at x=0, y=10\n"
+"display.pixel(0, 10, 1)                 # set pixel at x=0, y=10 to "
+"colour=1\n"
+"display.hline(0, 8, 4, 1)               # draw horizontal line x=0, y=8, "
+"width=4, colour=1\n"
+"display.vline(0, 8, 4, 1)               # draw vertical line x=0, y=8, "
+"height=4, colour=1\n"
+"display.line(0, 0, 127, 63, 1)          # draw a line from 0,0 to 127,63\n"
+"display.rect(10, 10, 107, 43, 1)        # draw a rectangle outline 10,10 "
+"to 107,43, colour=1\n"
+"display.fill_rect(10, 10, 107, 43, 1)   # draw a solid rectangle 10,10 to"
+" 107,43, colour=1\n"
+"display.text('Hello World', 0, 0, 1)    # draw some text at x=0, y=0, "
+"colour=1\n"
+"display.scroll(20, 0)                   # scroll 20 pixels to the right\n"
+"\n"
+"# draw another FrameBuffer on top of the current one at the given "
+"coordinates\n"
+"import framebuf\n"
+"fbuf = framebuf.FrameBuffer(bytearray(8 * 8 * 1), 8, 8, "
+"framebuf.MONO_VLSB)\n"
+"fbuf.line(0, 0, 7, 7, 1)\n"
+"display.blit(fbuf, 10, 10, 0)           # draw on top at x=10, y=10, "
+"key=0\n"
+"display.show()"
+msgstr ""
+"display.fill(0)                         # スクリーン全体を colour=0 で埋める\n"
+"display.pixel(0, 10)                    # x=0, y=10 のピクセルを取得\n"
+"display.pixel(0, 10, 1)                 # x=0, y=10 のピクセルに colour=1 を設定\n"
+"display.hline(0, 8, 4, 1)               # x=0, y=8, width=4, colour=1 で水平線を描画\n"
+"display.vline(0, 8, 4, 1)               # x=0, y=8, height=4, colour=1 で垂直線を描画\n"
+"display.line(0, 0, 127, 63, 1)          # 0,0 から 127,63 に線を描画\n"
+"display.rect(10, 10, 107, 43, 1)        # 10,10 と 107,43 の間、colour=1 で長方形を描画\n"
+"display.fill_rect(10, 10, 107, 43, 1)   # 10,10 と 107,43 の間、colour=1 で塗り潰した長方形を描画\n"
+"display.text('Hello World', 0, 0, 1)    # x=0, y=0, colour=1 でテキストを描画\n"
+"display.scroll(20, 0)                   # 20 ピクセルだけ右にスクロール\n"
+"\n"
+"# 現在の FrameBuffer の上に、与えられた座標で別の FrameBuffer を描画\n"
+"import framebuf\n"
+"fbuf = framebuf.FrameBuffer(bytearray(8 * 8 * 1), 8, 8, framebuf.MONO_VLSB)\n"
+"fbuf.line(0, 0, 7, 7, 1)\n"
+"display.blit(fbuf, 10, 10, 0)           # x=10, y=10, key=0 の上に描画\n"
+"display.show()"
+
+#: ../../esp8266/tutorial/ssd1306.rst:81
+msgid "Draw the MicroPython logo and print some text::"
+msgstr "MicroPython のロゴを描画し、テキストを印字します::"
+
+#: ../../esp8266/tutorial/ssd1306.rst:83
+msgid ""
+"display.fill(0)\n"
+"display.fill_rect(0, 0, 32, 32, 1)\n"
+"display.fill_rect(2, 2, 28, 28, 0)\n"
+"display.vline(9, 8, 22, 1)\n"
+"display.vline(16, 2, 22, 1)\n"
+"display.vline(23, 8, 22, 1)\n"
+"display.fill_rect(26, 24, 2, 4, 1)\n"
+"display.text('MicroPython', 40, 0, 1)\n"
+"display.text('SSD1306', 40, 12, 1)\n"
+"display.text('OLED 128x64', 40, 24, 1)\n"
+"display.show()"
+msgstr ""
 
