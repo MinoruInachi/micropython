@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-14 21:26+0900\n"
-"PO-Revision-Date: 2021-05-14 21:30+0900\n"
+"POT-Creation-Date: 2021-06-06 19:28+0900\n"
+"PO-Revision-Date: 2021-06-06 20:26+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -6644,9 +6644,7 @@ msgid "IRQ connected to Y3"
 msgstr "IRQ を Y3 に配線"
 
 #: ../../library/network.CC3K.rst:28
-msgid ""
-"It is possible to use other SPI busses and other pins for CS, VBEN and "
-"IRQ."
+msgid "It is possible to use other SPI buses and other pins for CS, VBEN and IRQ."
 msgstr "他の SPI バスを使うことや、CS, VBEN, IRQ に他のピンを使うことも可能です。"
 
 #: ../../library/network.CC3K.rst:35
@@ -6811,7 +6809,7 @@ msgid "nRESET connected to X4"
 msgstr "nRESET を X4 に配線"
 
 #: ../../library/network.WIZNET5K.rst:29
-msgid "It is possible to use other SPI busses and other pins for nSS and nRESET."
+msgid "It is possible to use other SPI buses and other pins for nSS and nRESET."
 msgstr "他の SPI バスを使うことや、nSS, nRESET に他のピンを使うことも可能です。"
 
 #: ../../library/network.WIZNET5K.rst:36
@@ -7577,7 +7575,7 @@ msgstr "pclk2: APB2バスの周波数"
 #: ../../library/pyb.rst:128
 msgid ""
 "If given any arguments then the function sets the frequency of the CPU, "
-"and the busses if additional arguments are given.  Frequencies are given "
+"and the buses if additional arguments are given.  Frequencies are given "
 "in Hz.  Eg freq(120000000) sets sysclk (the CPU frequency) to 120MHz.  "
 "Note that not all values are supported and the largest supported "
 "frequency not greater than the given value will be selected."
@@ -8377,7 +8375,7 @@ msgid ""
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:33
-msgid "The physical pins of the CAN busses are:"
+msgid "The physical pins of the CAN buses are:"
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:35
@@ -9379,7 +9377,7 @@ msgstr ""
 "を参照してください。"
 
 #: ../../library/pyb.I2C.rst:67
-msgid "The physical pins of the I2C busses on Pyboards V1.0 and V1.1 are:"
+msgid "The physical pins of the I2C buses on Pyboards V1.0 and V1.1 are:"
 msgstr "Pyboards V1.0 および V1.1 の I2C バスの物理ピンは次のとおりです。"
 
 #: ../../library/pyb.I2C.rst:69 ../../library/pyb.I2C.rst:74
@@ -9872,6 +9870,10 @@ msgstr ""
 msgid "Initialise the pin:"
 msgstr ""
 
+#: ../../library/pyb.Pin.rst:105
+msgid "*mode* can be one of:"
+msgstr "*mode* は以下のいずれかです:"
+
 #: ../../library/pyb.Pin.rst:107
 msgid "``Pin.IN`` - configure the pin for input;"
 msgstr ""
@@ -10236,7 +10238,7 @@ msgid ""
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:39
-msgid "The physical pins of the SPI busses are:"
+msgid "The physical pins of the SPI buses are:"
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:41
@@ -10988,7 +10990,7 @@ msgid ""
 msgstr ""
 
 #: ../../library/pyb.UART.rst:60
-msgid "The physical pins of the UART busses on Pyboard are:"
+msgid "The physical pins of the UART buses on Pyboard are:"
 msgstr ""
 
 #: ../../library/pyb.UART.rst:62 ../../library/pyb.UART.rst:76
@@ -14579,29 +14581,39 @@ msgid "|see_cpython_module| :mod:`python:heapq`."
 msgstr ""
 
 #: ../../library/uheapq.rst:9
-msgid "This module implements the heap queue algorithm."
-msgstr "このモジュールは、ヒープキューアルゴリズムを実装します。"
-
-#: ../../library/uheapq.rst:11
 msgid ""
-"A heap queue is simply a list that has its elements stored in a certain "
-"way."
+"This module implements the `min heap queue algorithm "
+"<https://en.wikipedia.org/wiki/Heap_%28data_structure%29>`_."
+msgstr ""
+"このモジュールは、 `最小ヒープキューアルゴリズム "
+"<https://en.wikipedia.org/wiki/Heap_%28data_structure%29>`_ を実装します。"
+
+#: ../../library/uheapq.rst:12
+msgid ""
+"A heap queue is essentially a list that has its elements stored in such a"
+" way that the first item of the list is always the smallest."
 msgstr ""
 "ヒープキューは、要素が特定の方法で格納されている単なるリストです。"
+"ヒープキューは、基本的にリストの最初の項目が常に最小となるように要素が"
+"格納されたリストです。"
 
-#: ../../library/uheapq.rst:18
+#: ../../library/uheapq.rst:20
 msgid "Push the ``item`` onto the ``heap``."
 msgstr "``heap`` に ``item`` をプッシュします。"
 
-#: ../../library/uheapq.rst:22
+#: ../../library/uheapq.rst:24
 msgid ""
-"Pop the first item from the ``heap``, and return it.  Raises IndexError "
-"if heap is empty."
+"Pop the first item from the ``heap``, and return it.  Raise "
+"``IndexError`` if ``heap`` is empty."
 msgstr ""
-"``heap`` から最初の要素をポップして返します。ヒープが空の場合には IndexError "
-"を発生させます。"
+"指定のヒープ ``heap`` から最初の要素をポップして返します。 "
+"``heap`` が空の場合には ``IndexError`` を発生させます。"
 
 #: ../../library/uheapq.rst:27
+msgid "The returned item will be the smallest item in the ``heap``."
+msgstr "戻す要素は ``heap`` の中で最小の要素になります。"
+
+#: ../../library/uheapq.rst:31
 msgid "Convert the list ``x`` into a heap.  This is an in-place operation."
 msgstr "リスト ``x`` をヒープに変換します。これは、in-place (追加のメモリをほとんど使わずに行う)操作です。"
 
