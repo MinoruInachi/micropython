@@ -109,7 +109,7 @@ function ci_esp32_build {
     make ${MAKEOPTS} -C ports/esp32 submodules
     make ${MAKEOPTS} -C ports/esp32
     make ${MAKEOPTS} -C ports/esp32 clean
-    make ${MAKEOPTS} -C ports/esp32 USER_C_MODULES=../../../examples/usercmodule/micropython.cmake
+    make ${MAKEOPTS} -C ports/esp32 USER_C_MODULES=../../../examples/usercmodule/micropython.cmake FROZEN_MANIFEST=$(pwd)/ports/esp32/boards/manifest.py
     if [ -d $IDF_PATH/components/esp32s2 ]; then
         make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_S2
     fi
@@ -136,6 +136,20 @@ function ci_esp8266_build {
     make ${MAKEOPTS} -C ports/esp8266
     make ${MAKEOPTS} -C ports/esp8266 BOARD=GENERIC_512K
     make ${MAKEOPTS} -C ports/esp8266 BOARD=GENERIC_1M
+}
+
+########################################################################################
+# ports/mimxrt
+
+function ci_mimxrt_setup {
+    ci_gcc_arm_setup
+}
+
+function ci_mimxrt_build {
+    make ${MAKEOPTS} -C mpy-cross
+    make ${MAKEOPTS} -C ports/mimxrt submodules
+    make ${MAKEOPTS} -C ports/mimxrt BOARD=MIMXRT1020_EVK
+    make ${MAKEOPTS} -C ports/mimxrt BOARD=TEENSY40
 }
 
 ########################################################################################
@@ -181,6 +195,8 @@ function ci_qemu_arm_build {
     make ${MAKEOPTS} -C ports/qemu-arm CFLAGS_EXTRA=-DMP_ENDIANNESS_BIG=1
     make ${MAKEOPTS} -C ports/qemu-arm clean
     make ${MAKEOPTS} -C ports/qemu-arm -f Makefile.test test
+    make ${MAKEOPTS} -C ports/qemu-arm -f Makefile.test clean
+    make ${MAKEOPTS} -C ports/qemu-arm -f Makefile.test BOARD=sabrelite test
 }
 
 ########################################################################################
@@ -275,6 +291,19 @@ CI_UNIX_OPTS_SYS_SETTRACE_STACKLESS=(
     MICROPY_PY_FFI=0
     MICROPY_PY_USSL=0
     CFLAGS_EXTRA="-DMICROPY_STACKLESS=1 -DMICROPY_STACKLESS_STRICT=1 -DMICROPY_PY_SYS_SETTRACE=1"
+)
+
+CI_UNIX_OPTS_QEMU_MIPS=(
+    CROSS_COMPILE=mips-linux-gnu-
+    VARIANT=coverage
+    MICROPY_STANDALONE=1
+    LDFLAGS_EXTRA="-static"
+)
+
+CI_UNIX_OPTS_QEMU_ARM=(
+    CROSS_COMPILE=arm-linux-gnueabi-
+    VARIANT=coverage
+    MICROPY_STANDALONE=1
 )
 
 function ci_unix_build_helper {
@@ -461,6 +490,45 @@ function ci_unix_macos_run_tests {
     # - import_pkg7 has a problem with relative imports
     # - urandom_basic has a problem with getrandbits(0)
     (cd tests && ./run-tests.py --exclude 'uasyncio_(basic|heaplock|lock|wait_task)' --exclude 'import_pkg7.py' --exclude 'urandom_basic.py')
+}
+
+function ci_unix_qemu_mips_setup {
+    sudo apt-get update
+    sudo apt-get install gcc-mips-linux-gnu g++-mips-linux-gnu
+    sudo apt-get install qemu-user
+    qemu-mips --version
+}
+
+function ci_unix_qemu_mips_build {
+    # qemu-mips on GitHub Actions will seg-fault if not linked statically
+    ci_unix_build_helper "${CI_UNIX_OPTS_QEMU_MIPS[@]}"
+}
+
+function ci_unix_qemu_mips_run_tests {
+    # Issues with MIPS tests:
+    # - (i)listdir does not work, it always returns the empty list (it's an issue with the underlying C call)
+    # - ffi tests do not work
+    file ./ports/unix/micropython-coverage
+    (cd tests && MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests.py --exclude 'vfs_posix.py' --exclude 'ffi_(callback|float|float2).py')
+}
+
+function ci_unix_qemu_arm_setup {
+    sudo apt-get update
+    sudo apt-get install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+    sudo apt-get install qemu-user
+    qemu-arm --version
+}
+
+function ci_unix_qemu_arm_build {
+    ci_unix_build_helper "${CI_UNIX_OPTS_QEMU_ARM[@]}"
+}
+
+function ci_unix_qemu_arm_run_tests {
+    # Issues with ARM tests:
+    # - (i)listdir does not work, it always returns the empty list (it's an issue with the underlying C call)
+    export QEMU_LD_PREFIX=/usr/arm-linux-gnueabi
+    file ./ports/unix/micropython-coverage
+    (cd tests && MICROPY_MICROPYTHON=../ports/unix/micropython-coverage ./run-tests.py --exclude 'vfs_posix.py')
 }
 
 ########################################################################################
