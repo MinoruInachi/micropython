@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.15\n"
+"Project-Id-Version: MicroPython 1.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-06 19:28+0900\n"
-"PO-Revision-Date: 2021-06-06 20:26+0900\n"
+"POT-Creation-Date: 2021-06-18 21:25+0900\n"
+"PO-Revision-Date: 2021-06-18 22:33+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -440,10 +440,18 @@ msgid "Read up to *n* bytes and return them."
 msgstr "最大 *n* バイトを読み取って返します。"
 
 #: ../../library/uasyncio.rst:245
+msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
+msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
+
+#: ../../library/uasyncio.rst:247
+msgid "Return the number of bytes read into *buf*."
+msgstr "戻り値は *buf* に読み込んだバイト数です。"
+
+#: ../../library/uasyncio.rst:253
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/uasyncio.rst:251
+#: ../../library/uasyncio.rst:259
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -453,11 +461,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/uasyncio.rst:257
+#: ../../library/uasyncio.rst:265
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/uasyncio.rst:263
+#: ../../library/uasyncio.rst:271
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -465,28 +473,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/uasyncio.rst:268
+#: ../../library/uasyncio.rst:276
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/uasyncio.rst:272
+#: ../../library/uasyncio.rst:280
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:277
+#: ../../library/uasyncio.rst:285
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/uasyncio.rst:281
+#: ../../library/uasyncio.rst:289
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/uasyncio.rst:285
+#: ../../library/uasyncio.rst:293
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/uasyncio.rst:287
+#: ../../library/uasyncio.rst:295
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -494,7 +502,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/uasyncio.rst:292
+#: ../../library/uasyncio.rst:300
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -502,15 +510,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/uasyncio.rst:297
+#: ../../library/uasyncio.rst:305
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:301
+#: ../../library/uasyncio.rst:309
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/uasyncio.rst:305
+#: ../../library/uasyncio.rst:313
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -518,15 +526,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:310
+#: ../../library/uasyncio.rst:318
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/uasyncio.rst:314
+#: ../../library/uasyncio.rst:322
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/uasyncio.rst:318
+#: ../../library/uasyncio.rst:326
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -535,18 +543,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/uasyncio.rst:323
+#: ../../library/uasyncio.rst:331
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/uasyncio.rst:328
+#: ../../library/uasyncio.rst:336
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/uasyncio.rst:332
+#: ../../library/uasyncio.rst:340
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "
@@ -4200,33 +4208,57 @@ msgstr "RTCは、日時の経過を追う自律クロックです。"
 #: ../../library/machine.RTC.rst:12
 msgid ""
 "rtc = machine.RTC()\n"
-"rtc.init((2014, 5, 1, 4, 13, 0, 0, 0))\n"
-"print(rtc.now())"
+"rtc.datetime((2020, 1, 21, 2, 10, 32, 36, 0))\n"
+"print(rtc.datetime())"
 msgstr ""
 
 #: ../../library/machine.RTC.rst:22
 msgid "Create an RTC object. See init for parameters of initialization."
 msgstr "RTC オブジェクトを作成します。初期化パラメータについてはinitを参照してください。"
 
-#: ../../library/machine.RTC.rst:29
+#: ../../library/machine.RTC.rst:29 ../../library/pyb.RTC.rst:30
+msgid "Get or set the date and time of the RTC."
+msgstr "RTC の日付と時刻を取得または設定します。"
+
+#: ../../library/machine.RTC.rst:31
+msgid ""
+"With no arguments, this method returns an 8-tuple with the current date "
+"and time.  With 1 argument (being an 8-tuple) it sets the date and time."
+msgstr ""
+"引数がない場合、このメソッドは現在の日時を含む8項目のタプルを返します。"
+"1つの引数(8項目のタプル)を指定した場合は日時を設定します。"
+
+#: ../../library/machine.RTC.rst:35 ../../library/pyb.RTC.rst:36
+msgid "The 8-tuple has the following format:"
+msgstr "8項目のタプルの形式は次のとおりです:"
+
+#: ../../library/machine.RTC.rst:37 ../../library/pyb.RTC.rst:38
+msgid "(year, month, day, weekday, hours, minutes, seconds, subseconds)"
+msgstr ""
+
+#: ../../library/machine.RTC.rst:39
+msgid "The meaning of the ``subseconds`` field is hardware dependent."
+msgstr "``subseconds`` の意味はハードウェアに依存します。"
+
+#: ../../library/machine.RTC.rst:43
 msgid "Initialise the RTC. Datetime is a tuple of the form:"
 msgstr "RTC を初期化します。datetime は次の形式のタプルです。"
 
-#: ../../library/machine.RTC.rst:31
+#: ../../library/machine.RTC.rst:45
 msgid ""
 "``(year, month, day[, hour[, minute[, second[, microsecond[, "
 "tzinfo]]]]])``"
 msgstr ""
 
-#: ../../library/machine.RTC.rst:35
+#: ../../library/machine.RTC.rst:49
 msgid "Get get the current datetime tuple."
 msgstr "現在の日時タプルを取得します。"
 
-#: ../../library/machine.RTC.rst:39
+#: ../../library/machine.RTC.rst:53
 msgid "Resets the RTC to the time of January 1, 2015 and starts running it again."
 msgstr "RTC を2015年1月1日の時刻にリセットして、実行を再開します。"
 
-#: ../../library/machine.RTC.rst:43
+#: ../../library/machine.RTC.rst:57
 msgid ""
 "Set the RTC alarm. Time might be either a millisecond value to program "
 "the alarm to current time + time_in_ms in the future, or a datetimetuple."
@@ -4237,34 +4269,34 @@ msgstr ""
 "ミリ秒数、あるいは日時タプルのどちらかを指定します。time の指定がミリ秒の場合、"
 "repeat に True を設定すると、アラームを定期的に行うようになります。"
 
-#: ../../library/machine.RTC.rst:49
+#: ../../library/machine.RTC.rst:63
 msgid "Get the number of milliseconds left before the alarm expires."
 msgstr "アラームが期限切れになるまでの残りミリ秒数を取得します。"
 
-#: ../../library/machine.RTC.rst:53
+#: ../../library/machine.RTC.rst:67
 msgid "Cancel a running alarm."
 msgstr "作動中のアラームをキャンセルします。"
 
-#: ../../library/machine.RTC.rst:57
+#: ../../library/machine.RTC.rst:71
 msgid "Create an irq object triggered by a real time clock alarm."
 msgstr "リアルタイムクロックのアラームによってトリガーされる irq オブジェクトを作成します。"
 
-#: ../../library/machine.RTC.rst:59
+#: ../../library/machine.RTC.rst:73
 msgid "``trigger`` must be ``RTC.ALARM0``"
 msgstr "``trigger`` は ``RTC.ALARM0`` でなければなりません "
 
-#: ../../library/machine.RTC.rst:60
+#: ../../library/machine.RTC.rst:74
 msgid "``handler`` is the function to be called when the callback is triggered."
 msgstr "``handler`` はコールバックがトリガーされたときに呼び出される関数です。"
 
-#: ../../library/machine.RTC.rst:61
+#: ../../library/machine.RTC.rst:75
 msgid ""
 "``wake`` specifies the sleep mode from where this interrupt can wake up "
 "the system."
 msgstr ""
 "``wake`` は、この割り込みがシステムを起床できるスリープモードを指定します。"
 
-#: ../../library/machine.RTC.rst:69
+#: ../../library/machine.RTC.rst:83
 msgid "irq trigger source"
 msgstr "irq トリガーソース"
 
@@ -7145,6 +7177,14 @@ msgstr "アクセスパスワード(文字列)"
 #: ../../library/network.WLAN.rst:131
 msgid "dhcp_hostname"
 msgstr ""
+
+#: ../../library/network.WLAN.rst:132
+msgid "reconnects"
+msgstr ""
+
+#: ../../library/network.WLAN.rst:132
+msgid "Number of reconnect attempts to make (integer, 0=none, -1=unlimited)"
+msgstr "再接続を試みる回数(整数値、0=再接続なし、-1=無制限)"
 
 #: ../../library/network.WLAN.rst:131
 msgid "The DHCP hostname to use"
@@ -11425,6 +11465,27 @@ msgstr ""
 
 #: ../../library/pyb.USB_VCP.rst:103
 msgid "Return value: number of bytes sent."
+msgstr ""
+
+#: ../../library/pyb.USB_VCP.rst:114
+msgid ""
+"Register *handler* to be called whenever an event specified by *trigger* "
+"occurs.  The *handler* function must take exactly one argument, which "
+"will be the USB VCP object.  Pass in ``None`` to disable the callback."
+msgstr ""
+
+#: ../../library/pyb.USB_VCP.rst:118
+msgid "Valid values for *trigger* are:"
+msgstr ""
+
+#: ../../library/pyb.USB_VCP.rst:120
+msgid ""
+"``USB_VCP.IRQ_RX``: new data is available for reading from the USB VCP "
+"object."
+msgstr ""
+
+#: ../../library/pyb.USB_VCP.rst:133
+msgid "IRQ trigger values for :meth:`USB_VCP.irq`."
 msgstr ""
 
 #: ../../library/rp2.rst:4
