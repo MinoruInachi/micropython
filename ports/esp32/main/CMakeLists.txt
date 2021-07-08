@@ -27,6 +27,7 @@ set(MICROPY_SOURCE_LIB
     ${MICROPY_DIR}/lib/oofatfs/ffunicode.c
     ${MICROPY_DIR}/lib/timeutils/timeutils.c
     ${MICROPY_DIR}/lib/utils/interrupt_char.c
+    ${MICROPY_DIR}/lib/utils/stdout_helpers.c
     ${MICROPY_DIR}/lib/utils/sys_stdio_mphal.c
     ${MICROPY_DIR}/lib/utils/pyexec.c
 )
@@ -52,6 +53,7 @@ set(MICROPY_SOURCE_PORT
     ${PROJECT_DIR}/machine_adc.c
     ${PROJECT_DIR}/machine_dac.c
     ${PROJECT_DIR}/machine_i2c.c
+    ${PROJECT_DIR}/machine_i2s.c
     ${PROJECT_DIR}/machine_pwm.c
     ${PROJECT_DIR}/machine_uart.c
     ${PROJECT_DIR}/modmachine.c
