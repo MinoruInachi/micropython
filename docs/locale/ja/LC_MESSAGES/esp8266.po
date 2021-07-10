@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-14 21:26+0900\n"
-"PO-Revision-Date: 2021-05-15 03:03+0900\n"
+"POT-Creation-Date: 2021-07-10 10:29+0900\n"
+"PO-Revision-Date: 2021-07-10 10:58+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: ../../esp8266/general.rst:4
 msgid "General information about the ESP8266 port"
@@ -2173,19 +2173,25 @@ msgstr ""
 #: ../../esp8266/tutorial/intro.rst:111
 msgid ""
 "For some boards with a particular FlashROM configuration (e.g. some "
-"variants of a NodeMCU board) you may need to use the following command to"
-" deploy the firmware (note the ``-fm dio`` option)::"
+"variants of a NodeMCU board) you may need to manually set a compatible "
+"`SPI Flash Mode <https://github.com/espressif/esptool/wiki/SPI-Flash-"
+"Modes>`_. You'd usually pick the fastest option that is compatible with "
+"your device, but the ``-fm dout`` option (the slowest option) should have"
+" the best compatibility::"
 msgstr ""
-"特定の FlashROM 構成を持つボード(NodeMCU ボードなど)には、次のコマンドを使用して"
-"ファームウェアを展開する必要があります(``-fm dio`` オプションに注意してください)。"
+"FlashROM 構成の一部のボード(NodeMCU ボードの一部など)では、利用できる "
+"`SPI フラッシュモード <https://github.com/espressif/esptool/wiki/SPI-Flash-"
+"Modes>`_ を手動で設定する必要がある場合があります。たいていはデバイスで利用できる"
+"最速のオプションを選択するでしょうが、 ``-fm dout`` オプション(最低速オプション)を"
+"指定すると最も確実性が上がります::"
 
 #: ../../esp8266/tutorial/intro.rst:115
 msgid ""
 "esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash "
-"--flash_size=detect -fm dio 0 esp8266-20170108-v1.8.7.bin"
+"--flash_size=detect -fm dout 0 esp8266-20170108-v1.8.7.bin"
 msgstr ""
 
-#: ../../esp8266/tutorial/intro.rst:117
+#: ../../esp8266/tutorial/intro.rst:119
 msgid ""
 "If the above commands run without error then MicroPython should be "
 "installed on your board!"
@@ -2193,7 +2199,7 @@ msgstr ""
 "上記のコマンドがエラーなしで実行されれば、MicroPython がボードにインストール"
 "されたことになります！"
 
-#: ../../esp8266/tutorial/intro.rst:120
+#: ../../esp8266/tutorial/intro.rst:122
 msgid ""
 "If you pulled GPIO0 manually to ground to enter programming mode, release"
 " it now and reset the device by again pulling the reset pin to ground for"
@@ -2203,11 +2209,11 @@ msgstr ""
 "今すぐそれを解除して、再度リセットピンをグランドに繋いですぐに離すことでデバイスを"
 "リセットしてください。"
 
-#: ../../esp8266/tutorial/intro.rst:125
+#: ../../esp8266/tutorial/intro.rst:127
 msgid "Serial prompt"
 msgstr "シリアルプロンプト"
 
-#: ../../esp8266/tutorial/intro.rst:127
+#: ../../esp8266/tutorial/intro.rst:129
 msgid ""
 "Once you have the firmware on the device you can access the REPL (Python "
 "prompt) over UART0 (GPIO1=TX, GPIO3=RX), which might be connected to a "
@@ -2219,11 +2225,11 @@ msgstr ""
 "に接続されている可能性があります)。ボーレートは 115200 です。チュートリアルの次の"
 "部分では、プロンプトについて詳しく説明します。"
 
-#: ../../esp8266/tutorial/intro.rst:133
+#: ../../esp8266/tutorial/intro.rst:135
 msgid "WiFi"
 msgstr ""
 
-#: ../../esp8266/tutorial/intro.rst:135
+#: ../../esp8266/tutorial/intro.rst:137
 msgid ""
 "After a fresh install and boot the device configures itself as a WiFi "
 "access point (AP) that you can connect to.  The ESSID is of the form "
@@ -2241,11 +2247,11 @@ msgstr ""
 "ください)。一度ネットワークに接続すると、そのIPアドレスは 192.168.4.1 になります。"
 "WiFi の設定については、チュートリアルの後半で詳しく説明します。"
 
-#: ../../esp8266/tutorial/intro.rst:144
+#: ../../esp8266/tutorial/intro.rst:146
 msgid "Troubleshooting installation problems"
 msgstr "インストールの問題のトラブルシューティング"
 
-#: ../../esp8266/tutorial/intro.rst:146
+#: ../../esp8266/tutorial/intro.rst:148
 msgid ""
 "If you experience problems during flashing or with running firmware "
 "immediately after it, here are troubleshooting recommendations:"
@@ -2253,7 +2259,7 @@ msgstr ""
 "フラッシュ中またはファームウェアの実行直後に問題が発生した場合は、次の推奨事項を"
 "参照してください。"
 
-#: ../../esp8266/tutorial/intro.rst:149
+#: ../../esp8266/tutorial/intro.rst:151
 msgid ""
 "Be aware of and try to exclude hardware problems. There are 2 common "
 "problems: bad power source quality and worn-out/defective FlashROM. "
@@ -2292,7 +2298,7 @@ msgstr ""
 "モジュール/ボードの購入にあたっては、ベンダー、価格、ドキュメント、保証、購入後のサポート"
 "などをよく考慮するようにしてください。"
 
-#: ../../esp8266/tutorial/intro.rst:168
+#: ../../esp8266/tutorial/intro.rst:170
 msgid ""
 "The flashing instructions above use flashing speed of 460800 baud, which "
 "is good compromise between speed and stability. However, depending on "
@@ -2305,7 +2311,7 @@ msgstr ""
 "OS などによっては、上記ボーレートでも速すぎてエラーにつながる可能性があります。"
 "そのような場合には、より一般的な 115200 ボーレートを試してください。"
 
-#: ../../esp8266/tutorial/intro.rst:174
+#: ../../esp8266/tutorial/intro.rst:176
 msgid ""
 "If lower baud rate didn't help, you may want to try older version of "
 "esptool.py, which had a different programming algorithm::"
@@ -2313,11 +2319,11 @@ msgstr ""
 "低いボーレートが役に立たなかった場合は、プログラミングアルゴリズムの異なる古い"
 "バージョンの esptool.py を試してみてください。"
 
-#: ../../esp8266/tutorial/intro.rst:177
+#: ../../esp8266/tutorial/intro.rst:179
 msgid "pip install esptool==1.0.1"
 msgstr ""
 
-#: ../../esp8266/tutorial/intro.rst:179
+#: ../../esp8266/tutorial/intro.rst:181
 msgid ""
 "This version doesn't support ``--flash_size=detect`` option, so you will "
 "need to specify FlashROM size explicitly (in megabits). It also requires "
@@ -2329,7 +2335,7 @@ msgstr ""
 "も必要です。したがって、上記のコマンドでは ``pip`` の代わりに ``pip2`` を使う"
 "必要があるかもしれません。"
 
-#: ../../esp8266/tutorial/intro.rst:184
+#: ../../esp8266/tutorial/intro.rst:186
 msgid ""
 "The ``--flash_size`` option in the commands above is mandatory. Omitting "
 "it will lead to a corrupted firmware."
@@ -2337,7 +2343,7 @@ msgstr ""
 "上記のコマンドの ``--flash_size`` オプションは必須です。これを省略すると、"
 "ファームウェアが破損します。"
 
-#: ../../esp8266/tutorial/intro.rst:187
+#: ../../esp8266/tutorial/intro.rst:189
 msgid ""
 "To catch incorrect flash content (e.g. from a defective sector on a "
 "chip), add ``--verify`` switch to the commands above."
@@ -2345,7 +2351,7 @@ msgstr ""
 "フラッシュの内容の不正(たとえば、チップ上の欠陥セクタなど)を検出するには、 "
 "上記のコマンドに ``--verify`` オプションを加えてください。"
 
-#: ../../esp8266/tutorial/intro.rst:190
+#: ../../esp8266/tutorial/intro.rst:192
 msgid ""
 "Additionally, you can check the firmware integrity from a MicroPython "
 "REPL prompt (assuming you were able to flash it and ``--verify`` option "
@@ -2354,13 +2360,13 @@ msgstr ""
 "さらに、MicroPython REPL プロンプトからファームウェアの整合性をチェックすることも"
 "できます(フラッシュができて、 ``--verify`` オプションでもエラーが報告されない場合)::"
 
-#: ../../esp8266/tutorial/intro.rst:194
+#: ../../esp8266/tutorial/intro.rst:196
 msgid ""
 "import esp\n"
 "esp.check_fw()"
 msgstr ""
 
-#: ../../esp8266/tutorial/intro.rst:197
+#: ../../esp8266/tutorial/intro.rst:199
 msgid ""
 "If the last output value is True, the firmware is OK. Otherwise, it's "
 "corrupted and need to be reflashed correctly."
@@ -2368,7 +2374,7 @@ msgstr ""
 "最後の出力値が True の場合、ファームウェアはOKです。それ以外の場合は破損している"
 "ため、正しく再フラッシュする必要があります。"
 
-#: ../../esp8266/tutorial/intro.rst:200
+#: ../../esp8266/tutorial/intro.rst:202
 msgid ""
 "If you experience any issues with another flashing application (not "
 "esptool.py), try esptool.py, it is a generally accepted flashing "
@@ -2378,7 +2384,7 @@ msgstr ""
 "esptool.py を試してください。これは ESP8266 コミュニティで一般に認められて"
 "いるフラッシュアプリケーションです。"
 
-#: ../../esp8266/tutorial/intro.rst:204
+#: ../../esp8266/tutorial/intro.rst:206
 msgid ""
 "If you still experience problems with even flashing the firmware, please "
 "refer to esptool.py project page, https://github.com/espressif/esptool "
@@ -2389,7 +2395,7 @@ msgstr ""
 "esptool.py プロジェクトページ https://github.com/espressif/esptool にある"
 "情報やバグトラッカーを参照してください。"
 
-#: ../../esp8266/tutorial/intro.rst:208
+#: ../../esp8266/tutorial/intro.rst:210
 msgid ""
 "If you are able to flash firmware, but ``--verify`` option or "
 "``esp.check_fw()`` return errors even after multiple retries, you may "

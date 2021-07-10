@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 17:56+0900\n"
-"PO-Revision-Date: 2021-07-04 23:12+0900\n"
+"POT-Creation-Date: 2021-07-10 10:29+0900\n"
+"PO-Revision-Date: 2021-07-10 20:33+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: ../../library/_thread.rst:2
 msgid ":mod:`_thread` -- multithreading support"
@@ -787,11 +787,11 @@ msgstr ""
 "以下で説明する追加のメソッドを実装しています。"
 
 #: ../../library/btree.rst:104 ../../library/machine.ADC.rst:29
-#: ../../library/machine.ADCWiPy.rst:40 ../../library/machine.PWM.rst:43
-#: ../../library/machine.Pin.rst:107 ../../library/machine.RTC.rst:25
-#: ../../library/machine.SD.rst:38 ../../library/machine.SPI.rst:44
-#: ../../library/machine.Signal.rst:97 ../../library/machine.Timer.rst:38
-#: ../../library/machine.TimerWiPy.rst:40
+#: ../../library/machine.ADCWiPy.rst:40 ../../library/machine.I2S.rst:107
+#: ../../library/machine.PWM.rst:43 ../../library/machine.Pin.rst:107
+#: ../../library/machine.RTC.rst:25 ../../library/machine.SD.rst:38
+#: ../../library/machine.SPI.rst:44 ../../library/machine.Signal.rst:97
+#: ../../library/machine.Timer.rst:38 ../../library/machine.TimerWiPy.rst:40
 #: ../../library/machine.TimerWiPy.rst:114 ../../library/machine.UART.rst:44
 #: ../../library/machine.WDT.rst:32 ../../library/network.CC3K.rst:52
 #: ../../library/network.WIZNET5K.rst:52 ../../library/network.WLAN.rst:27
@@ -800,7 +800,7 @@ msgstr ""
 #: ../../library/pyb.DAC.rst:77 ../../library/pyb.ExtInt.rst:81
 #: ../../library/pyb.Flash.rst:36 ../../library/pyb.I2C.rst:81
 #: ../../library/pyb.LCD.rst:51 ../../library/pyb.LED.rst:21
-#: ../../library/pyb.Pin.rst:99 ../../library/pyb.Pin.rst:250
+#: ../../library/pyb.Pin.rst:99 ../../library/pyb.Pin.rst:253
 #: ../../library/pyb.RTC.rst:26 ../../library/pyb.SPI.rst:48
 #: ../../library/pyb.Servo.rst:39 ../../library/pyb.Switch.rst:32
 #: ../../library/pyb.Timer.rst:63 ../../library/pyb.Timer.rst:229
@@ -868,19 +868,20 @@ msgstr ""
 "できます。 flags の値はビットOR(|)演算を使って複数指定できます。"
 
 #: ../../library/btree.rst:149 ../../library/cmath.rst:55
-#: ../../library/esp32.rst:118 ../../library/esp32.rst:266
+#: ../../library/esp32.rst:118 ../../library/esp32.rst:275
 #: ../../library/framebuf.rst:118 ../../library/lcd160cr.rst:380
-#: ../../library/machine.Pin.rst:240 ../../library/machine.RTC.rst:65
-#: ../../library/machine.SPI.rst:103 ../../library/machine.Timer.rst:61
-#: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:152
-#: ../../library/machine.rst:149 ../../library/math.rst:177
-#: ../../library/network.CC3K.rst:83 ../../library/network.WLANWiPy.rst:145
-#: ../../library/pyb.CAN.rst:283 ../../library/pyb.ExtInt.rst:102
-#: ../../library/pyb.I2C.rst:157 ../../library/pyb.Pin.rst:181
-#: ../../library/pyb.SPI.rst:113 ../../library/pyb.UART.rst:178
-#: ../../library/pyb.USB_VCP.rst:114 ../../library/rp2.PIO.rst:66
-#: ../../library/uerrno.rst:13 ../../library/usocket.rst:139
-#: ../../library/ussl.rst:55 ../../library/usys.rst:47
+#: ../../library/machine.I2S.rst:144 ../../library/machine.Pin.rst:240
+#: ../../library/machine.RTC.rst:79 ../../library/machine.SPI.rst:103
+#: ../../library/machine.Timer.rst:61 ../../library/machine.TimerWiPy.rst:154
+#: ../../library/machine.UART.rst:152 ../../library/machine.rst:149
+#: ../../library/math.rst:177 ../../library/network.CC3K.rst:83
+#: ../../library/network.WLANWiPy.rst:145 ../../library/pyb.CAN.rst:283
+#: ../../library/pyb.ExtInt.rst:102 ../../library/pyb.I2C.rst:157
+#: ../../library/pyb.Pin.rst:184 ../../library/pyb.SPI.rst:113
+#: ../../library/pyb.UART.rst:178 ../../library/pyb.USB_VCP.rst:124
+#: ../../library/rp2.PIO.rst:66 ../../library/uerrno.rst:13
+#: ../../library/usocket.rst:139 ../../library/ussl.rst:55
+#: ../../library/usys.rst:47
 msgid "Constants"
 msgstr "定数"
 
@@ -3581,6 +3582,318 @@ msgstr ""
 "引数 *addrsize* はアドレスサイズをビット数で指定します"
 "(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
 
+#: ../../library/machine.I2S.rst:5
+msgid "class I2S -- Inter-IC Sound bus protocol"
+msgstr "クラス I2S -- IC間サウンド(Inter-IC Sound)バスプロトコル"
+
+#: ../../library/machine.I2S.rst:7
+msgid ""
+"I2S is a synchronous serial protocol used to connect digital audio "
+"devices. At the physical level, a bus consists of 3 lines: SCK, WS, SD. "
+"The I2S class supports Master operation.  Slave operation is not "
+"supported."
+msgstr ""
+"I2S は、デジタルオーディオデバイスの接続に使う同期シリアルプロトコルです。"
+"物理レベルで、バスは SCK, WS, SD の3つの回線で構成されます。"
+"I2S クラスはマスター操作をサポートします。スレーブ操作はサポートしません。"
+
+#: ../../library/machine.I2S.rst:11
+msgid ""
+"The I2S class is currently available as a Technical Preview.  During the "
+"preview period, feedback from users is encouraged.  Based on this "
+"feedback, the I2S class API and implementation may be changed."
+msgstr ""
+"I2S クラスは現在、テクニカルプレビューとして利用できます。プレビュー期間中は、"
+"ユーザーからのフィードバックを歓迎します。このフィードバックに基づいて、"
+"I2S クラス API と実装が変更される可能性があります。"
+
+#: ../../library/machine.I2S.rst:14
+msgid "I2S objects can be created and initialized using::"
+msgstr "I2S オブジェクトは、次に示すようにして作成および初期化します::"
+
+#: ../../library/machine.I2S.rst:16
+msgid ""
+"from machine import I2S\n"
+"from machine import Pin\n"
+"\n"
+"# ESP32\n"
+"sck_pin = Pin(14)   # Serial clock output\n"
+"ws_pin = Pin(13)    # Word clock output\n"
+"sdout_pin = Pin(12) # Serial data output\n"
+"\n"
+"or\n"
+"\n"
+"# PyBoards\n"
+"sck_pin = Pin(\"Y6\")   # Serial clock output\n"
+"ws_pin = Pin(\"Y5\")    # Word clock output\n"
+"sdout_pin = Pin(\"Y8\") # Serial data output\n"
+"\n"
+"audio_out = I2S(2,\n"
+"                sck=sck_pin, ws=ws_pin, sdin=sdin_pin,\n"
+"                mode=I2S.TX,\n"
+"                bits=16,\n"
+"                format=I2S.MONO,\n"
+"                rate=44100,\n"
+"                ibuf=20000)\n"
+"\n"
+"audio_in = I2S(2,\n"
+"               sck=sck_pin, ws=ws_pin, sdin=sdin_pin,\n"
+"               mode=I2S.RX,\n"
+"               bits=32,\n"
+"               format=I2S.STEREO,\n"
+"               rate=22050,\n"
+"               ibuf=20000)"
+msgstr ""
+"from machine import I2S\n"
+"from machine import Pin\n"
+"\n"
+"# ESP32 の場合\n"
+"sck_pin = Pin(14)   # シリアルクロック出力\n"
+"ws_pin = Pin(13)    # ワードクロック出力\n"
+"sdout_pin = Pin(12) # シリアルデータ出力\n"
+"\n"
+"または\n"
+"\n"
+"# PyBoard の場合\n"
+"sck_pin = Pin(\"Y6\")   # シリアルクロック出力\n"
+"ws_pin = Pin(\"Y5\")    # ワードクロック出力\n"
+"sdout_pin = Pin(\"Y8\") # シリアルデータ出力\n"
+"\n"
+"audio_out = I2S(2,\n"
+"                sck=sck_pin, ws=ws_pin, sdin=sdin_pin,\n"
+"                mode=I2S.TX,\n"
+"                bits=16,\n"
+"                format=I2S.MONO,\n"
+"                rate=44100,\n"
+"                ibuf=20000)\n"
+"\n"
+"audio_in = I2S(2,\n"
+"               sck=sck_pin, ws=ws_pin, sdin=sdin_pin,\n"
+"               mode=I2S.RX,\n"
+"               bits=32,\n"
+"               format=I2S.STEREO,\n"
+"               rate=22050,\n"
+"               ibuf=20000)"
+
+#: ../../library/machine.I2S.rst:50
+msgid "3 modes of operation are supported:"
+msgstr "次の３種類の操作モードをサポートしています:
+
+#: ../../library/machine.I2S.rst:48
+msgid "blocking"
+msgstr "ブロッキング"
+
+#: ../../library/machine.I2S.rst:49
+msgid "non-blocking"
+msgstr "ノンブロッキング"
+
+#: ../../library/machine.I2S.rst:50
+msgid "uasyncio"
+msgstr "非同期 I/O"
+
+#: ../../library/machine.I2S.rst:52
+msgid "blocking::"
+msgstr "ブロッキング::"
+
+#: ../../library/machine.I2S.rst:54
+msgid ""
+"num_written = audio_out.write(buf) # blocks until buf emptied\n"
+"\n"
+"num_read = audio_in.readinto(buf) # blocks until buf filled"
+msgstr ""
+"num_written = audio_out.write(buf) # buf から書き出すのが終わるまでブロック\n"
+"\n"
+"num_read = audio_in.readinto(buf) # buf への読み込むのが終わるまでブロック"
+
+#: ../../library/machine.I2S.rst:58
+msgid "non-blocking::"
+msgstr "ノンブロッキング::"
+
+#: ../../library/machine.I2S.rst:60
+msgid ""
+"audio_out.irq(i2s_callback)         # i2s_callback は buf から書き出すのが終わった時に呼び出すコールバック\n"
+"num_written = audio_out.write(buf)  # すぐに戻る\n"
+"\n"
+"audio_in.irq(i2s_callback)          # i2s_callback は buf への読み込むのが終わった時に呼び出すコールバック\n"
+"num_read = audio_in.readinto(buf)   # すぐに戻る"
+msgstr ""
+
+#: ../../library/machine.I2S.rst:66
+msgid "uasyncio::"
+msgstr "非同期 I/O"
+
+#: ../../library/machine.I2S.rst:68
+msgid ""
+"swriter = uasyncio.StreamWriter(audio_out)\n"
+"swriter.write(buf)\n"
+"await swriter.drain()\n"
+"\n"
+"sreader = uasyncio.StreamReader(audio_in)\n"
+"num_read = await sreader.readinto(buf)"
+msgstr ""
+
+#: ../../library/machine.I2S.rst:76 ../../library/ubluetooth.rst:23
+#: ../../library/ubluetooth.rst:731
+msgid "Constructor"
+msgstr "コンストラクタ"
+
+#: ../../library/machine.I2S.rst:80
+msgid "Construct an I2S object of the given id:"
+msgstr "指定の id で I2S オブジェクトを構築します:"
+
+#: ../../library/machine.I2S.rst:82
+msgid "``id`` identifies a particular I2S bus."
+msgstr "``id`` には I2S バスを識別するものを指定します。"
+
+#: ../../library/machine.I2S.rst:84
+msgid "``id`` is board and port specific:"
+msgstr "``id`` はボードやポートにより変わります:"
+
+#: ../../library/machine.I2S.rst:86
+msgid "PYBv1.0/v1.1: has one I2S bus with id=2."
+msgstr "PYBv1.0/v1.1: １つの I2S バス id=2 があります。"
+
+#: ../../library/machine.I2S.rst:87
+msgid "PYBD-SFxW: has two I2S buses with id=1 and id=2."
+msgstr "PYBD-SFxW: ２つの I2S バス、id=1 と id=2 があります。"
+
+#: ../../library/machine.I2S.rst:88
+msgid "ESP32: has two I2S buses with id=0 and id=1."
+msgstr "ESP32: ２つの I2S バス、id=0 と id=1 があります。"
+
+#: ../../library/machine.I2S.rst:90
+msgid "Keyword-only parameters that are supported on all ports:"
+msgstr "すべてのポートで次のキーワード引数をサポートしています:"
+
+#: ../../library/machine.I2S.rst:92
+msgid "``sck`` is a pin object for the serial clock line"
+msgstr "``sck`` にはシリアルクロックを結線するピンオブジェクトを指定します"
+
+#: ../../library/machine.I2S.rst:93
+msgid "``ws`` is a pin object for the word select line"
+msgstr "``ws`` にはワードセレクトを結線するピンオブジェクトを指定します"
+
+#: ../../library/machine.I2S.rst:94
+msgid "``sd`` is a pin object for the serial data line"
+msgstr "``sd`` にはシリアルデータを結線するピンオブジェクトを指定します"
+
+#: ../../library/machine.I2S.rst:95
+msgid "``mode`` specifies receive or transmit"
+msgstr "``mode`` には受信(I2S.RX)または送信(I2S.TX)を指定します。"
+
+#: ../../library/machine.I2S.rst:96
+msgid "``bits`` specifies sample size (bits), 16 or 32"
+msgstr "``bits`` にはサンプルサイズ(ビット数)、16 または 32 を指定します"
+
+#: ../../library/machine.I2S.rst:97
+msgid "``format`` specifies channel format, STEREO or MONO"
+msgstr "``format`` にはチャネルフォーマット、I2S.STEREO または I2S.MONO を指定します"
+
+#: ../../library/machine.I2S.rst:98
+msgid "``rate`` specifies audio sampling rate (samples/s)"
+msgstr "``rate`` にはオーディオサンプリングレート(サンプル/秒)を指定します"
+
+#: ../../library/machine.I2S.rst:99
+msgid "``ibuf`` specifies internal buffer length (bytes)"
+msgstr "``ibuf`` には内部バッファ長(バイト数)を指定します"
+
+#: ../../library/machine.I2S.rst:101
+msgid ""
+"For all ports, DMA runs continuously in the background and allows user "
+"applications to perform other operations while sample data is transfered "
+"between the internal buffer and the I2S peripheral unit. Increasing the "
+"size of the internal buffer has the potential to increase the time that "
+"user applications can perform non-I2S operations before underflow (e.g. "
+"``write`` method) or overflow (e.g. ``readinto`` method)."
+msgstr ""
+"すべてのポートで、DMA がバックグラウンドで継続的に実行され、サンプルデータが"
+"内部バッファと I2S ペリフェラルユニット間で転送されている間、"
+"ユーザーアプリケーションが他の操作を実行できるようにします。"
+"内部バッファのサイズを大きくすると、ユーザーアプリケーションがアンダーフロー"
+"(``write`` メソッドなど)またはオーバーフロー(``readinto`` メソッドなど)の"
+"前に非 I2S 操作を実行できる時間が長くなる可能性があります。"
+
+#: ../../library/machine.I2S.rst:111
+msgid "see Constructor for argument descriptions"
+msgstr "引数の説明についてはコンストラクターを参照してください"
+
+#: ../../library/machine.I2S.rst:115
+msgid "Deinitialize the I2S bus"
+msgstr "I2S バスを非初期化します"
+
+#: ../../library/machine.I2S.rst:119
+msgid ""
+"Read audio samples into the buffer specified by ``buf``.  ``buf`` must "
+"support the buffer protocol, such as bytearray or array. \"buf\" byte "
+"ordering is little-endian.  For Stereo format, left channel sample "
+"precedes right channel sample. For Mono format, the left channel sample "
+"data is used. Returns number of bytes read"
+msgstr ""
+"``buf`` に指定したバッファにオーディオサンプルを読み込みます。 "
+"``buf`` は bytearray や array のようなバッファプロトコルをサポートする"
+"必要があります。 \"buf\" のバイトオーダはリトルエンディアンです。"
+"ステレオフォーマットの場合、左チャンネルのサンプルが右チャンネルのサンプルよりも"
+"優先されます。モノラルフォーマットの場合、左チャンネルのサンプルデータが"
+"使われます。戻り値は読み込んだバイト数です"
+
+#: ../../library/machine.I2S.rst:126
+msgid ""
+"Write audio samples contained in ``buf``. ``buf`` must support the buffer"
+" protocol, such as bytearray or array. \"buf\" byte ordering is little-"
+"endian.  For Stereo format, left channel sample precedes right channel "
+"sample. For Mono format, the sample data is written to both the right and"
+" left channels. Returns number of bytes written"
+msgstr ""
+"``buf`` に含まれるオーディオサンプルを書き出します。"
+"``buf`` は bytearray や array のようなバッファプロトコルをサポートする"
+"必要があります。 \"buf\" のバイトオーダはリトルエンディアンです。"
+"ステレオフォーマットの場合、左チャンネルのサンプルが右チャンネルのサンプルよりも"
+"優先されます。モノラルフォーマットの場合、左チャンネルのサンプルデータが"
+"使われます。戻り値は書き出したバイト数です"
+
+#: ../../library/machine.I2S.rst:133
+msgid ""
+"Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` "
+"method) or becomes full (``readinto`` method). Setting a callback changes"
+" the ``write`` and ``readinto`` methods to non-blocking operation. "
+"``handler`` is called in the context of the MicroPython scheduler."
+msgstr ""
+"コールバックを設定します。 ``handler`` に指定したコールバック関数は、 ``write`` "
+"メソッドで buf の書き出しが完了したとき、または ``readinto`` メソッドで読み込みが"
+"完了したときに呼び出されます。コールバックを設定すると、 ``write`` と ``readinto`` "
+"メソッドはノンブロッキング操作に変更されます。 "
+"``handler`` は MicroPython のスケジューラのコンテキストで呼び出されます。"
+
+#: ../../library/machine.I2S.rst:139
+msgid ""
+"bitwise shift of all samples contained in ``buf``. ``bits`` specifies "
+"sample size in bits. ``shift`` specifies the number of bits to shift each"
+" sample. Positive for left shift, negative for right shift. Typically "
+"used for volume control.  Each bit shift changes sample volume by 6dB."
+msgstr ""
+``buf`` に含まれるすべてのサンプルのビット単位のシフトを行います。 "
+"``bits`` にはサンプルサイズをビット単位で指定します。"
+"``shift`` には各サンプルをシフトするビット数を指定します。"
+"左シフトの場合は正、右シフトの場合は負の整数を指定します。"
+"これは通常はボリュームコントロールに使います。各ビットシフトにより、"
+"サンプルボリュームが 6dB 変化します。"
+
+#: ../../library/machine.I2S.rst:148
+msgid "for initialising the I2S bus ``mode`` to receive"
+msgstr "I2S バス初期化時に ``mode`` を受信にするためのものです"
+
+#: ../../library/machine.I2S.rst:152
+msgid "for initialising the I2S bus ``mode`` to transmit"
+msgstr "I2S バス初期化時に ``mode`` を送信にするためのものです"
+
+#: ../../library/machine.I2S.rst:156
+msgid "for initialising the I2S bus ``format`` to stereo"
+msgstr "I2S バス初期化時に ``format`` をステレオにするためのものです"
+
+#: ../../library/machine.I2S.rst:160
+msgid "for initialising the I2S bus ``format`` to mono"
+msgstr "I2S バス初期化時に ``format`` をモノラルにするためのものです"
+
 #: ../../library/machine.PWM.rst:5
 msgid "class PWM -- pulse width modulation"
 msgstr "クラス PWM -- パルス幅変調"
@@ -5277,7 +5590,7 @@ msgid ""
 "Deinitialises the timer. Stops the timer, and disables the timer "
 "peripheral."
 msgstr ""
-"タイマーを初期化解除します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
+"タイマーを非初期化します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
 
 #: ../../library/machine.Timer.rst:66
 #: ../../library/machine.TimerWiPy.rst:159
@@ -16903,11 +17216,15 @@ msgstr ""
 "``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (最後の２つは浮動小数点の"
 "サポートに依存)。"
 
-#: ../../library/ustruct.rst:20
+#: ../../library/ustruct.rst:18
+msgid "Whitespace is not supported in format strings."
+msgstr "フォーマット文字列中に空白文字は使えません。"
+
+#: ../../library/ustruct.rst:25
 msgid "Return the number of bytes needed to store the given *fmt*."
 msgstr "指定した *fmt* で格納するために必要なバイト数を返します。"
 
-#: ../../library/ustruct.rst:24
+#: ../../library/ustruct.rst:29
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt*. The"
 " return value is a bytes object encoding the values."
@@ -16915,7 +17232,7 @@ msgstr ""
 "フォーマット文字列 *fmt* にしたがって、値 *v1*、*v2*、... をパックします。戻り値は、"
 "値をエンコードしたバイト列オブジェクトです。"
 
-#: ../../library/ustruct.rst:29
+#: ../../library/ustruct.rst:34
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt* into"
 " a *buffer* starting at *offset*. *offset* may be negative to count from "
@@ -16925,7 +17242,7 @@ msgstr ""
 "*buffer* の開始オフセット *offset* に格納します。 *offset* が負の場合は *buffer* "
 "の最後からのオフセットになります。"
 
-#: ../../library/ustruct.rst:35
+#: ../../library/ustruct.rst:40
 msgid ""
 "Unpack from the *data* according to the format string *fmt*. The return "
 "value is a tuple of the unpacked values."
@@ -16933,7 +17250,7 @@ msgstr ""
 "フォーマット文字列 *fmt* にしたがって *data* からアンパックします。"
 "戻り値はアンパックした値のタプルです。"
 
-#: ../../library/ustruct.rst:40
+#: ../../library/ustruct.rst:45
 msgid ""
 "Unpack from the *data* starting at *offset* according to the format "
 "string *fmt*. *offset* may be negative to count from the end of *buffer*."
