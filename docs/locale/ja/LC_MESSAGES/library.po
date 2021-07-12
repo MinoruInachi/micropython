@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.16\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-10 10:29+0900\n"
-"PO-Revision-Date: 2021-07-10 20:33+0900\n"
+"PO-Revision-Date: 2021-07-12 23:59+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -9594,6 +9594,7 @@ msgid ""
 "The Flash class allows direct access to the primary flash device on the "
 "pyboard."
 msgstr ""
+"Flash クラスを使うと、 pyboard 上のプライマリフラッシュデバイスに直接アクセスできます。"
 
 #: ../../library/pyb.Flash.rst:9 ../../library/rp2.Flash.rst:9
 msgid ""
@@ -9613,30 +9614,39 @@ msgid ""
 "Create and return a block device that represents the flash device "
 "presented to the USB mass storage interface."
 msgstr ""
+"USB マスストレージインタフェースのあるフラッシュデバイスを表す"
+"ブロックデバイスを作成して返します。"
 
 #: ../../library/pyb.Flash.rst:23
 msgid ""
 "It includes a virtual partition table at the start, and the actual flash "
 "starts at block ``0x100``."
 msgstr ""
+"開始時に仮想パーティションテーブルができ、"
+"実際のフラッシュはブロック ``0x100`` から開始されます。"
 
 #: ../../library/pyb.Flash.rst:26
 msgid ""
 "This constructor is deprecated and will be removed in a future version of"
 " MicroPython."
 msgstr ""
+"このコンストラクターは非推奨であり、MicroPython の将来のバージョンで削除される予定です。"
 
 #: ../../library/pyb.Flash.rst:31
 msgid ""
 "Create and return a block device that accesses the flash at the specified"
 " offset. The length defaults to the remaining size of the device."
 msgstr ""
+"指定したオフセットでフラッシュにアクセスするブロックデバイスを作成して返します。"
+"長さはデフォルトでデバイスの残りのサイズになります。"
 
 #: ../../library/pyb.Flash.rst:33
 msgid ""
 "The *start* and *len* offsets are in bytes, and must be a multiple of the"
 " block size (typically 512 for internal flash)."
 msgstr ""
+"*start* と *len* オフセットはバイト単位であり、"
+"ブロックサイズ(内蔵フラッシュでは典型的に 512)の倍数でなければなりません。"
 
 #: ../../library/pyb.Flash.rst:51
 msgid ""
@@ -9644,6 +9654,9 @@ msgid ""
 "firmware will be configured to use that as the primary flash storage. On "
 "all other boards, the internal flash inside the :term:`MCU` will be used."
 msgstr ""
+"外部 spiflash を備えたボード(Pyboard Dなど)において、MicroPython "
+"ファームウェアはそれをプライマリフラッシュストレージとして使うように構成されます。"
+"他のすべてのボードでは :term:`MCU` 内の内部フラッシュが使われます。"
 
 #: ../../library/pyb.I2C.rst:15
 msgid ""
@@ -10841,11 +10854,11 @@ msgstr ""
 
 #: ../../library/pyb.Switch.rst:5
 msgid "class Switch -- switch object"
-msgstr ""
+msgstr "class Switch -- スイッチオブジェクト"
 
 #: ../../library/pyb.Switch.rst:7
 msgid "A Switch object is used to control a push-button switch."
-msgstr ""
+msgstr "Switch オブジェクトは押しボタンスイッチの制御に使われます。"
 
 #: ../../library/pyb.Switch.rst:11
 msgid ""
@@ -10856,6 +10869,11 @@ msgid ""
 "                        #   switch is pressed down\n"
 "sw.callback(None)       # remove the callback"
 msgstr ""
+"sw = pyb.Switch()       # スイッチオブジェクトを作成\n"
+"sw.value()              # 状態を取得(押されていれば True、そうでなければ False)\n"
+"sw()                    # スイッチ状態を取得する略記法\n"
+"sw.callback(f)          # スイッチが押されたときに呼び出されるコールバックを登録\n"
+"sw.callback(None)       # コールバックを除去"
 
 #: ../../library/pyb.Switch.rst:20
 msgid "pyb.Switch().callback(lambda: pyb.LED(1).toggle())"
@@ -10863,25 +10881,31 @@ msgstr ""
 
 #: ../../library/pyb.Switch.rst:28
 msgid "Create and return a switch object."
-msgstr ""
+msgstr "スイッチオブジェクトを作成して返します。"
 
 #: ../../library/pyb.Switch.rst:36
 msgid ""
 "Call switch object directly to get its state: ``True`` if pressed down, "
 "``False`` otherwise."
 msgstr ""
+"スイッチオブジェクトを直接呼び出して、その状態を取得します: "
+"押されていれば ``True`` 、そうでなければ ``False`` になります。"
 
 #: ../../library/pyb.Switch.rst:41
 msgid ""
 "Get the switch state.  Returns ``True`` if pressed down, otherwise "
 "``False``."
 msgstr ""
+"スイッチの状態を取得します。"
+"押されていれば ``True`` 、そうでなければ ``False`` になります。"
 
 #: ../../library/pyb.Switch.rst:45
 msgid ""
 "Register the given function to be called when the switch is pressed down."
 " If ``fun`` is ``None``, then it disables the callback."
 msgstr ""
+"スイッチを押したときに呼び出される関数を登録します。 "
+"``fun`` に ``None`` を指定した場合は、コールバックを無効にします。
 
 #: ../../library/pyb.Timer.rst:5
 msgid "class Timer -- control internal timers"
