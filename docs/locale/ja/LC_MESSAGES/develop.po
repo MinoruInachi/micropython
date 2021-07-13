@@ -3579,13 +3579,15 @@ msgstr ""
 
 #: ../../develop/writingtests.rst:4
 msgid "Writing tests"
-msgstr ""
+msgstr "テストの作成"
 
 #: ../../develop/writingtests.rst:6
 msgid ""
 "Tests in MicroPython are located at the path ``tests/``. The following is"
 " a listing of key directories and the run-tests.py runner script:"
 msgstr ""
+"MicroPython のテストは ``tests/`` ディレクトリにあります。"
+"以下は、主なディレクトリと run-tests.py 実行スクリプトのリストです。
 
 #: ../../develop/writingtests.rst:9
 msgid ""
@@ -3605,12 +3607,18 @@ msgid ""
 "It's also possible to make custom tests outside this tests folder, which "
 "would be recommended for a custom port."
 msgstr ""
+"テストを分類するためのサブフォルダーがあります。"
+"テストを追加するには、既存のフォルダーのどれかか新しいフォルダーに"
+"新しいファイルを作成します。このテストフォルダーの外でカスタムテストを"
+"行うこともでき、カスタムポートにはこれを推奨します。"
 
 #: ../../develop/writingtests.rst:23
 msgid ""
 "For example, add the following code in a file ``print.py`` in the "
 "``tests/unix/`` subdirectory:"
 msgstr ""
+"たとえば ``tests/unix/`` サブディレクトリに ``print.py`` ファイルを作成し、"
+"次のコードを追加します。"
 
 #: ../../develop/writingtests.rst:25
 msgid ""
@@ -3622,7 +3630,7 @@ msgstr ""
 
 #: ../../develop/writingtests.rst:32
 msgid "If you run your tests, this test should appear in the test output:"
-msgstr ""
+msgstr "テストを実行すると、追加したテストがテスト出力に表示されます:"
 
 #: ../../develop/writingtests.rst:34
 msgid ""
@@ -3643,6 +3651,9 @@ msgid ""
 "output from CPython. So any test should use print statements to indicate "
 "test results."
 msgstr ""
+"テストは、テストターゲットからの出力を CPython からの出力と比較することによって"
+"実行されます。したがって、どのテストでも print 関数を使ってテスト結果を示す"
+"必要があります。"
 
 #: ../../develop/writingtests.rst:49
 msgid ""
@@ -3650,12 +3661,16 @@ msgid ""
 "functionality), you can provide a ``.py.exp`` file which will be used as "
 "the truth for comparison."
 msgstr ""
+"CPython と比較できないテスト(つまり micropython 固有の機能)の場合、"
+"比較用の正解として使う ``.py.exp`` ファイルを提供できます。"
 
 #: ../../develop/writingtests.rst:52
 msgid ""
 "The other way to run tests, which is useful when running on targets other"
 " than the Unix port, is:"
 msgstr ""
+"テストを実行するもう1つの方法は、Unix ポート以外のターゲットで実行する場合に役立ちます。"
+"その実行方法とは次のとおりです:"
 
 #: ../../develop/writingtests.rst:54
 msgid ""
@@ -3665,7 +3680,7 @@ msgstr ""
 
 #: ../../develop/writingtests.rst:59
 msgid "Then to run on a board:"
-msgstr ""
+msgstr "ボード上で実行するには次のようにします:"
 
 #: ../../develop/writingtests.rst:61
 msgid "$ ./run-tests.py --target minimal --device /dev/ttyACM0"
@@ -3673,7 +3688,7 @@ msgstr ""
 
 #: ../../develop/writingtests.rst:65
 msgid "And to run only a certain set of tests (eg a directory):"
-msgstr ""
+msgstr "また、特定のテストセット(ディレクトリなど)のみを実行するには次のようにします。"
 
 #: ../../develop/writingtests.rst:67
 msgid ""
