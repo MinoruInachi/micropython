@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-10 10:29+0900\n"
-"PO-Revision-Date: 2021-07-12 23:59+0900\n"
+"POT-Creation-Date: 2021-07-22 10:28+0900\n"
+"PO-Revision-Date: 2021-07-22 11:54+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3288,19 +3288,22 @@ msgid ""
 "                                # to select the peripheral and/or pins to"
 " use\n"
 "\n"
-"i2c.scan()                      # scan for slaves, returning a list of "
-"7-bit addresses\n"
+"i2c.scan()                      # scan for peripherals, returning a list "
+"of 7-bit addresses\n"
 "\n"
-"i2c.writeto(42, b'123')         # write 3 bytes to slave with 7-bit "
+"i2c.writeto(42, b'123')         # write 3 bytes to peripheral with 7-bit "
 "address 42\n"
-"i2c.readfrom(42, 4)             # read 4 bytes from slave with 7-bit "
-"address 42\n"
+"i2c.readfrom(42, 4)             # read 4 bytes from peripheral with 7-bit"
+" address 42\n"
 "\n"
-"i2c.readfrom_mem(42, 8, 3)      # read 3 bytes from memory of slave 42,\n"
+"i2c.readfrom_mem(42, 8, 3)      # read 3 bytes from memory of peripheral "
+"42,\n"
 "                                #   starting at memory-address 8 in the "
-"slave\n"
-"i2c.writeto_mem(42, 2, b'\\x10') # write 1 byte to memory of slave 42\n"
-"                                #   starting at address 2 in the slave"
+"peripheral\n"
+"i2c.writeto_mem(42, 2, b'\\x10') # write 1 byte to memory of peripheral "
+"42\n"
+"                                #   starting at address 2 in the "
+"peripheral"
 msgstr ""
 "from machine import I2C\n"
 "\n"
@@ -3308,14 +3311,14 @@ msgstr ""
 "                                # 作成します。使用するペリフェラルやピンを選択するために\n"
 "                                # 追加のパラメータが必要になる場合があります\n"
 "\n"
-"i2c.scan()                      # スレーブをスキャンし、7ビットアドレスのリストを返します\n"
+"i2c.scan()                      # ペリフェラルをスキャンし、7ビットアドレスのリストを返します\n"
 "\n"
-"i2c.writeto(42, b'123')         # 7ビットアドレス 42 のスレーブに３バイトを書き込みます\n"
-"i2c.readfrom(42, 4)             # 7ビットアドレス 42 のスレーブから４バイトを読み込みます\n"
+"i2c.writeto(42, b'123')         # 7ビットアドレス 42 のペリフェラルに３バイトを書き込みます\n"
+"i2c.readfrom(42, 4)             # 7ビットアドレス 42 のペリフェラルから４バイトを読み込みます\n"
 "\n"
-"i2c.readfrom_mem(42, 8, 3)      # スレーブ 42 のメモリから、スレーブのメモリアドレス 8 で\n"
+"i2c.readfrom_mem(42, 8, 3)      # スレーブ 42 のメモリから、ペリフェラルのメモリアドレス 8 で\n"
 "                                #   始まる３バイトを読み込みます\n"
-"i2c.writeto_mem(42, 2, b'\\x10') # スレーブ 42 のメモリの、スレーブのメモリアドレス 2 で\n"
+"i2c.writeto_mem(42, 2, b'\\x10') # スレーブ 42 のメモリの、ペリフェラルのメモリアドレス 2 で\n"
 "                                #   始まるところに２バイトを書き込みます"
 
 #: ../../library/machine.I2C.rst:46
@@ -3404,12 +3407,12 @@ msgstr "プリミティブ I2C 操作"
 
 #: ../../library/machine.I2C.rst:98
 msgid ""
-"The following methods implement the primitive I2C master bus operations "
-"and can be combined to make any I2C transaction.  They are provided if "
-"you need more control over the bus, otherwise the standard methods (see "
-"below) can be used."
+"The following methods implement the primitive I2C controller bus "
+"operations and can be combined to make any I2C transaction.  They are "
+"provided if you need more control over the bus, otherwise the standard "
+"methods (see below) can be used."
 msgstr ""
-"以下のメソッドは、プリミティブな I2C マスターのバス操作を実装しており、任意の I2C "
+"以下のメソッドは、プリミティブな I2C コントローラのバス操作を実装しており、任意の I2C "
 "トランザクションを作成するために組み合わせることができます。標準的なメソッド(下記参照)"
 "では足りない制御する必要があるなら、これらのメソッドを使います。"
 
@@ -3437,13 +3440,13 @@ msgid ""
 " read is the length of *buf*.  An ACK will be sent on the bus after "
 "receiving all but the last byte.  After the last byte is received, if "
 "*nack* is true then a NACK will be sent, otherwise an ACK will be sent "
-"(and in this case the slave assumes more bytes are going to be read in a "
-"later call)."
+"(and in this case the peripheral assumes more bytes are going to be read "
+"in a later call)."
 msgstr ""
 "バスから bytes 型オブジェクトを読み込んで *buf* に格納します。読み取るバイト数は "
 "*buf* の長さ分です。ACK は最後のバイトを除くすべてを受信した後にバス上に送信されます。"
 "最後のバイトが受信した後、 *nack* が true の場合は NACK が送信され、それ以外の場合は "
-"ACK が送信されます(この場合、スレーブは後の呼び出しでさらに bytes 型オブジェクトが"
+"ACK が送信されます(この場合、ペリフェラルは後の呼び出しでさらに bytes 型オブジェクトが"
 "読み取られると想定します)。"
 
 #: ../../library/machine.I2C.rst:122
@@ -3462,29 +3465,29 @@ msgstr "標準バスオペレーション"
 
 #: ../../library/machine.I2C.rst:129
 msgid ""
-"The following methods implement the standard I2C master read and write "
-"operations that target a given slave device."
+"The following methods implement the standard I2C controller read and "
+"write operations that target a given peripheral device."
 msgstr ""
-"以下のメソッドは、特定のスレーブデバイスをターゲットとする標準の I2C マスター読取り/書込み"
-"操作を実装しています。"
+"以下のメソッドは、特定のペリフェラルデバイスをターゲットとした"
+"標準 I2C コントローラの読取り/書込み操作を実装しています。"
 
 #: ../../library/machine.I2C.rst:134
 msgid ""
-"Read *nbytes* from the slave specified by *addr*. If *stop* is true then "
-"a STOP condition is generated at the end of the transfer. Returns a "
+"Read *nbytes* from the peripheral specified by *addr*. If *stop* is true "
+"then a STOP condition is generated at the end of the transfer. Returns a "
 "`bytes` object with the data read."
 msgstr ""
-"*addr* で指定されたスレーブから *nbytes* 分を読み取ります。 *stop* が True の場合、"
+"*addr* で指定されたペリフェラルから *nbytes* 分を読み取ります。 *stop* が True の場合、"
 "転送終了時に STOP 条件が生成されます。読み込んだデータを持つ `bytes` 型オブジェクトを"
 "返します。"
 
 #: ../../library/machine.I2C.rst:140
 msgid ""
-"Read into *buf* from the slave specified by *addr*. The number of bytes "
-"read will be the length of *buf*. If *stop* is true then a STOP condition"
-" is generated at the end of the transfer."
+"Read into *buf* from the peripheral specified by *addr*. The number of "
+"bytes read will be the length of *buf*. If *stop* is true then a STOP "
+"condition is generated at the end of the transfer."
 msgstr ""
-"*addr* で指定されたスレーブから *buf* に読み込みます。読み取られるバイト数は *buf* "
+"*addr* で指定されたペリフェラルから *buf* に読み込みます。読み取られるバイト数は *buf* "
 "の長さ分になります。 *stop* が True の場合、転送終了時にSTOP条件が生成されます。"
 
 #: ../../library/machine.I2C.rst:144 ../../library/machine.I2C.rst:191
@@ -3494,13 +3497,13 @@ msgstr "このメソッドは ``None`` を返します。"
 
 #: ../../library/machine.I2C.rst:148
 msgid ""
-"Write the bytes from *buf* to the slave specified by *addr*.  If a NACK "
-"is received following the write of a byte from *buf* then the remaining "
-"bytes are not sent.  If *stop* is true then a STOP condition is generated"
-" at the end of the transfer, even if a NACK is received. The function "
-"returns the number of ACKs that were received."
+"Write the bytes from *buf* to the peripheral specified by *addr*.  If a "
+"NACK is received following the write of a byte from *buf* then the "
+"remaining bytes are not sent.  If *stop* is true then a STOP condition is"
+" generated at the end of the transfer, even if a NACK is received. The "
+"function returns the number of ACKs that were received."
 msgstr ""
-"*buf* から *addr* で指定されたスレーブに bytes 型オブジェクトを書き込みます。 "
+"*buf* から *addr* で指定されたペリフェラルに bytes 型オブジェクトを書き込みます。 "
 "*buf* からの bytes 型オブジェクトの書き込みに続いて NACK を受信した場合、"
 "残りのバイトは送信されません。もし *stop* が True であれば、たとえ NACK "
 "が受信されたとしても、転送の終わりに STOP 条件が生成されます。この関数は受信した "
@@ -3508,13 +3511,13 @@ msgstr ""
 
 #: ../../library/machine.I2C.rst:156
 msgid ""
-"Write the bytes contained in *vector* to the slave specified by *addr*. "
-"*vector* should be a tuple or list of objects with the buffer protocol. "
-"The *addr* is sent once and then the bytes from each object in *vector* "
-"are written out sequentially.  The objects in *vector* may be zero bytes "
-"in length in which case they don't contribute to the output."
+"Write the bytes contained in *vector* to the peripheral specified by "
+"*addr*. *vector* should be a tuple or list of objects with the buffer "
+"protocol. The *addr* is sent once and then the bytes from each object in "
+"*vector* are written out sequentially.  The objects in *vector* may be "
+"zero bytes in length in which case they don't contribute to the output."
 msgstr ""
-"*vector* に指定した bytes 型オブジェクトを *addr* に指定したスレーブに書き込みます。"
+"*vector* に指定した bytes 型オブジェクトを *addr* に指定したペリフェラルに書き込みます。"
 "*vector* はバッファプロトコルを持つオブジェクトのタプルかリストであるべきです。"
 "*addr* が1回送信され、その後 *vector* 内の各オブジェクトからの bytes 型オブジェクトを"
 "順次書き込みます。 *vector* 内のオブジェクトは長さが0バイトであるかもしれませんが、"
@@ -3541,45 +3544,46 @@ msgstr "メモリ操作"
 msgid ""
 "Some I2C devices act as a memory device (or set of registers) that can be"
 " read from and written to.  In this case there are two addresses "
-"associated with an I2C transaction: the slave address and the memory "
-"address.  The following methods are convenience functions to communicate "
-"with such devices."
+"associated with an I2C transaction: the peripheral address and the memory"
+" address.  The following methods are convenience functions to communicate"
+" with such devices."
 msgstr ""
 "一部の I2C デバイスは、読み書き可能なメモリデバイス(またはレジスタセット)として機能します。"
-"この場合、I2C トランザクションに関連付けられた２つのアドレスがあります。スレーブアドレスと"
+"この場合、I2C トランザクションに関連付けられた２つのアドレスがあります。ペリフェラルアドレスと"
 "メモリアドレスです。以下のメソッドは、そのようなデバイスと通信するための便利な機能です。"
 
 #: ../../library/machine.I2C.rst:178
 msgid ""
-"Read *nbytes* from the slave specified by *addr* starting from the memory"
-" address specified by *memaddr*. The argument *addrsize* specifies the "
-"address size in bits. Returns a `bytes` object with the data read."
+"Read *nbytes* from the peripheral specified by *addr* starting from the "
+"memory address specified by *memaddr*. The argument *addrsize* specifies "
+"the address size in bits. Returns a `bytes` object with the data read."
 msgstr ""
-"*addr* で指定したスレーブより、 *memaddr* で指定したメモリアドレスから "
+"*addr* で指定したペリフェラルより、 *memaddr* で指定したメモリアドレスから "
 "*nbytes* 分を読み込みます。引数 *addrsize* はアドレスサイズをビット数で指定します。"
 "この関数は読み込んだデータを持つ `bytes` 型オブジェクトを返します。"
 
 #: ../../library/machine.I2C.rst:185
 msgid ""
-"Read into *buf* from the slave specified by *addr* starting from the "
-"memory address specified by *memaddr*.  The number of bytes read is the "
+"Read into *buf* from the peripheral specified by *addr* starting from the"
+" memory address specified by *memaddr*.  The number of bytes read is the "
 "length of *buf*. The argument *addrsize* specifies the address size in "
 "bits (on ESP8266 this argument is not recognised and the address size is "
 "always 8 bits)."
 msgstr ""
-"*addr* で指定したスレーブより、 *memaddr* で指定したメモリアドレスから *buf* に読み込みます。"
-"読み取られるバイト数は *buf* の長さです。引数 *addrsize* はアドレスサイズをビット数で指定します"
-"(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
+"*addr* で指定したペリフェラルより、 *memaddr* で指定したメモリアドレスから *buf* "
+"に読み込みます。読み取られるバイト数は *buf* の長さです。引数 *addrsize* は"
+"アドレスサイズをビット数で指定します(ESP8266ではこの引数は認識されず、"
+"アドレスサイズは常に8ビットです)。"
 
 #: ../../library/machine.I2C.rst:195
 msgid ""
-"Write *buf* to the slave specified by *addr* starting from the memory "
-"address specified by *memaddr*. The argument *addrsize* specifies the "
-"address size in bits (on ESP8266 this argument is not recognised and the "
-"address size is always 8 bits)."
+"Write *buf* to the peripheral specified by *addr* starting from the "
+"memory address specified by *memaddr*. The argument *addrsize* specifies "
+"the address size in bits (on ESP8266 this argument is not recognised and "
+"the address size is always 8 bits)."
 msgstr ""
-"*addr* で指定したスレーブに、 *memaddr* で指定したメモリアドレスへ *buf* を書き込みます。"
-"引数 *addrsize* はアドレスサイズをビット数で指定します"
+"*addr* で指定したペリフェラルに、 *memaddr* で指定したメモリアドレスへ *buf* "
+"を書き込みます。引数 *addrsize* はアドレスサイズをビット数で指定します"
 "(ESP8266ではこの引数は認識されず、アドレスサイズは常に8ビットです)。"
 
 #: ../../library/machine.I2S.rst:5
@@ -3590,12 +3594,12 @@ msgstr "クラス I2S -- IC間サウンド(Inter-IC Sound)バスプロトコル"
 msgid ""
 "I2S is a synchronous serial protocol used to connect digital audio "
 "devices. At the physical level, a bus consists of 3 lines: SCK, WS, SD. "
-"The I2S class supports Master operation.  Slave operation is not "
-"supported."
+"The I2S class supports controller operation.  Peripheral operation is not"
+" supported."
 msgstr ""
 "I2S は、デジタルオーディオデバイスの接続に使う同期シリアルプロトコルです。"
 "物理レベルで、バスは SCK, WS, SD の3つの回線で構成されます。"
-"I2S クラスはマスター操作をサポートします。スレーブ操作はサポートしません。"
+"I2S クラスはコントローラ操作をサポートします。ペリフェラル操作はサポートしません。"
 
 #: ../../library/machine.I2S.rst:11
 msgid ""
@@ -5062,22 +5066,22 @@ msgstr ""
 ":class:`machine.SD` のほうを使います。"
 
 #: ../../library/machine.SPI.rst:5
-msgid "class SPI -- a Serial Peripheral Interface bus protocol (master side)"
-msgstr "クラス SPI -- シリアルペリフェラルインタフェース バスプロトコル(マスタ側)"
+msgid "class SPI -- a Serial Peripheral Interface bus protocol (controller side)"
+msgstr "クラス SPI -- シリアルペリフェラルインタフェース バスプロトコル(コントローラ側)"
 
 #: ../../library/machine.SPI.rst:7
 msgid ""
-"SPI is a synchronous serial protocol that is driven by a master. At the "
-"physical level, a bus consists of 3 lines: SCK, MOSI, MISO. Multiple "
+"SPI is a synchronous serial protocol that is driven by a controller. At "
+"the physical level, a bus consists of 3 lines: SCK, MOSI, MISO. Multiple "
 "devices can share the same bus. Each device should have a separate, 4th "
-"signal, SS (Slave Select), to select a particular device on a bus with "
-"which communication takes place. Management of an SS signal should happen"
-" in user code (via machine.Pin class)."
+"signal, CS (Chip Select), to select a particular device on a bus with "
+"which communication takes place. Management of a CS signal should happen "
+"in user code (via machine.Pin class)."
 msgstr ""
-"SPI はマスタによって駆動される同期シリアルプロトコルです。物理レベルにおいて、バスは "
+"SPI はコントローラによって駆動される同期シリアルプロトコルです。物理レベルにおいて、バスは "
 "SCK、MOSI、MISO 3本の線で構成されています。複数のデバイスが同じバスを共有できます。"
-"各デバイスには、通信を行うバス上の特定のデバイスを選択するための個別の4番目の信号 SS "
-"(Slave Select)が必要です。SSシグナルの管理はユーザーコードで(machine.Pin クラス"
+"各デバイスには、通信を行うバス上の特定のデバイスを選択するための個別の4番目の信号 CS "
+"(Chip Select)が必要です。CSシグナルの管理はユーザーコードで(machine.Pin クラス"
 "経由で)行う必要があります。"
 
 #: ../../library/machine.SPI.rst:14
@@ -5241,8 +5245,8 @@ msgstr ""
 "を返します。"
 
 #: ../../library/machine.SPI.rst:107
-msgid "for initialising the SPI bus to master; this is only used for the WiPy"
-msgstr "SPI バスをマスタに初期化するためのものです。これは WiPy のみで使います。"
+msgid "for initialising the SPI bus to controller; this is only used for the WiPy"
+msgstr "SPI バスをコントローラに初期化するためのものです。これは WiPy のみで使います。"
 
 #: ../../library/machine.SPI.rst:111
 msgid "set the first bit to be the most significant bit"
@@ -9662,21 +9666,22 @@ msgstr ""
 msgid ""
 "from pyb import I2C\n"
 "\n"
-"i2c = I2C(1)                         # create on bus 1\n"
-"i2c = I2C(1, I2C.MASTER)             # create and init as a master\n"
-"i2c.init(I2C.MASTER, baudrate=20000) # init as a master\n"
-"i2c.init(I2C.SLAVE, addr=0x42)       # init as a slave with given address"
-"\n"
-"i2c.deinit()                         # turn off the peripheral"
+"i2c = I2C(1)                             # create on bus 1\n"
+"i2c = I2C(1, I2C.CONTROLLER)             # create and init as a "
+"controller\n"
+"i2c.init(I2C.CONTROLLER, baudrate=20000) # init as a controller\n"
+"i2c.init(I2C.PERIPHERAL, addr=0x42)      # init as a peripheral with "
+"given address\n"
+"i2c.deinit()                             # turn off the I2C unit"
 msgstr ""
 "from pyb import I2C\n"
 "\n"
-"i2c = I2C(1)                         # バス 1 に作成\n"
-"i2c = I2C(1, I2C.MASTER)             # マスターとして作成・初期化\n"
-"i2c.init(I2C.MASTER, baudrate=20000) # マスターとして初期化\n"
-"i2c.init(I2C.SLAVE, addr=0x42)       # 指定したアドレスでスレーブとして初期化"
+"i2c = I2C(1)                             # バス 1 に作成\n"
+"i2c = I2C(1, I2C.CONTROLLER)             # コントローラとして作成・初期化\n"
+"i2c.init(I2C.CONTROLLER, baudrate=20000) # コントローラとして初期化\n"
+"i2c.init(I2C.PERIPHERAL, addr=0x42)      # 指定したアドレスでペリフェラルとして初期化"
 "\n"
-"i2c.deinit()                         # ペリフェラルをオフ"
+"i2c.deinit()                             # ペリフェラルをオフ"
 
 #: ../../library/pyb.I2C.rst:23
 msgid "Printing the i2c object gives you information about its configuration."
@@ -9717,42 +9722,45 @@ msgid "i2c.send(b'123', timeout=2000)   # timeout after 2 seconds"
 msgstr "i2c.send(b'123', timeout=2000)   # 2秒後にタイムアウト"
 
 #: ../../library/pyb.I2C.rst:40
-msgid "A master must specify the recipient's address::"
-msgstr "マスターは受信側のアドレスを指定する必要があります::"
+msgid "A controller must specify the recipient's address::"
+msgstr "コントローラは受信側のアドレスを指定する必要があります::"
 
 #: ../../library/pyb.I2C.rst:42
 msgid ""
-"i2c.init(I2C.MASTER)\n"
-"i2c.send('123', 0x42)        # send 3 bytes to slave with address 0x42\n"
+"i2c.init(I2C.CONTROLLER)\n"
+"i2c.send('123', 0x42)        # send 3 bytes to peripheral with address "
+"0x42\n"
 "i2c.send(b'456', addr=0x42)  # keyword for address"
 msgstr ""
-"i2c.init(I2C.MASTER)\n"
-"i2c.send('123', 0x42)        # スレーブアドレス 0x42 に 3 バイト送信\n"
+"i2c.init(I2C.CONTROLLER)\n"
+"i2c.send('123', 0x42)        # ペリフェラルアドレス 0x42 に 3 バイト送信\n"
 "i2c.send(b'456', addr=0x42)  # アドレスをキーワード引数で指定"
 
 #: ../../library/pyb.I2C.rst:46
 msgid "Master also has other methods::"
-msgstr "マスターには他にもメソッドがあります::"
+msgstr "コントローラには他にもメソッドがあります::"
 
 #: ../../library/pyb.I2C.rst:48
 msgid ""
-"i2c.is_ready(0x42)           # check if slave 0x42 is ready\n"
-"i2c.scan()                   # scan for slaves on the bus, returning\n"
+"i2c.is_ready(0x42)           # check if peripheral 0x42 is ready\n"
+"i2c.scan()                   # scan for peripherals on the bus, returning"
+"\n"
 "                             #   a list of valid addresses\n"
-"i2c.mem_read(3, 0x42, 2)     # read 3 bytes from memory of slave 0x42,\n"
-"                             #   starting at address 2 in the slave\n"
+"i2c.mem_read(3, 0x42, 2)     # read 3 bytes from memory of peripheral "
+"0x42,\n"
+"                             #   starting at address 2 in the peripheral\n"
 "i2c.mem_write('abc', 0x42, 2, timeout=1000) # write 'abc' (3 bytes) to "
-"memory of slave 0x42\n"
+"memory of peripheral 0x42\n"
 "                                            # starting at address 2 in "
-"the slave, timeout after 1 second"
+"the peripheral, timeout after 1 second"
 msgstr ""
-"i2c.is_ready(0x42)           # スレーブ 0x42 の準備ができているか確認\n"
-"i2c.scan()                   # バスのスレーブをスキャンし、\n"
+"i2c.is_ready(0x42)           # ペリフェラル 0x42 の準備ができているか確認\n"
+"i2c.scan()                   # バスのペリフェラルをスキャンし、\n"
 "                             #   有効なアドレスのリストを戻す\n"
-"i2c.mem_read(3, 0x42, 2)     # スレーブ 0x42 のメモリから、スレーブ上の\n"
+"i2c.mem_read(3, 0x42, 2)     # ペリフェラル 0x42 のメモリから、ペリフェラル上の\n"
 "                             #   アドレス 2 で始まる 3 バイトを読み込む\n"
-"i2c.mem_write('abc', 0x42, 2, timeout=1000) # 'abc' (3 バイト)をスレーブ 0x42 のメモリの、\n"
-"                             #   スレーブ上のアドレス 2 から書き込む。1 秒後にタイムアウト"
+"i2c.mem_write('abc', 0x42, 2, timeout=1000) # 'abc' (3 バイト)をペリフェラル 0x42 のメモリの、\n"
+"                             #   ペリフェラル上のアドレス 2 から書き込む。1 秒後にタイムアウト"
 
 #: ../../library/pyb.I2C.rst:61
 msgid ""
@@ -9801,16 +9809,16 @@ msgid "Initialise the I2C bus with the given parameters:"
 msgstr "指定のパラメータで I2C バスを初期化します:"
 
 #: ../../library/pyb.I2C.rst:91
-msgid "``mode`` must be either ``I2C.MASTER`` or ``I2C.SLAVE``"
-msgstr "``mode`` は ``I2C.MASTER`` か ``I2C.SLAVE`` のいずれかでなければなりません"
+msgid "``mode`` must be either ``I2C.CONTROLLER`` or ``I2C.PERIPHERAL``"
+msgstr "``mode`` は ``I2C.CONTROLLER`` か ``I2C.PERIPHERAL`` のいずれかでなければなりません"
 
 #: ../../library/pyb.I2C.rst:92
-msgid "``addr`` is the 7-bit address (only sensible for a slave)"
-msgstr "``addr`` は 7 ビットアドレスです(スレーブ時のみ有効)"
+msgid "``addr`` is the 7-bit address (only sensible for a peripheral)"
+msgstr "``addr`` は 7 ビットアドレスです(ペリフェラル時のみ有効)"
 
 #: ../../library/pyb.I2C.rst:93
-msgid "``baudrate`` is the SCL clock rate (only sensible for a master)"
-msgstr "``baudrate`` は SCL クロックレートです(マスター時のみ有効)"
+msgid "``baudrate`` is the SCL clock rate (only sensible for a controller)"
+msgstr "``baudrate`` は SCL クロックレートです(コントローラ時のみ有効)"
 
 #: ../../library/pyb.I2C.rst:94
 msgid "``gencall`` is whether to support general call mode"
@@ -9828,10 +9836,10 @@ msgstr ""
 #: ../../library/pyb.I2C.rst:101
 msgid ""
 "Check if an I2C device responds to the given address.  Only valid when in"
-" master mode."
+" controller mode."
 msgstr ""
 "I2C デバイスが指定のアドレスに応答するかどうかを確認します。"
-"マスターモードの場合のみ有効です。"
+"コントローラモードの場合のみ有効です。"
 
 #: ../../library/pyb.I2C.rst:105
 msgid "Read from the memory of an I2C device:"
@@ -9860,8 +9868,8 @@ msgid "``addr_size`` selects width of memaddr: 8 or 16 bits"
 msgstr "``addr_size`` は memaddr の幅であり、8 または 16 を指定します"
 
 #: ../../library/pyb.I2C.rst:113
-msgid "Returns the read data. This is only valid in master mode."
-msgstr "読み取ったデータを返します。これはマスターモードでのみ有効です。"
+msgid "Returns the read data. This is only valid in controller mode."
+msgstr "読み取ったデータを返します。これはコントローラモードでのみ有効です。"
 
 #: ../../library/pyb.I2C.rst:118
 msgid "Write to the memory of an I2C device:"
@@ -9876,8 +9884,8 @@ msgid "``timeout`` is the timeout in milliseconds to wait for the write"
 msgstr "``timeout`` は書き込み待つタイムアウト時間をミリ秒単位で指定します"
 
 #: ../../library/pyb.I2C.rst:126
-msgid "Returns ``None``. This is only valid in master mode."
-msgstr "``None`` を返します。これはマスターモードでのみ有効です。"
+msgid "Returns ``None``. This is only valid in controller mode."
+msgstr "``None`` を返します。これはコントローラモードでのみ有効です。"
 
 #: ../../library/pyb.I2C.rst:133
 msgid ""
@@ -9888,8 +9896,8 @@ msgstr ""
 "格納する書き込み可能バッファを指定できます"
 
 #: ../../library/pyb.I2C.rst:135
-msgid "``addr`` is the address to receive from (only required in master mode)"
-msgstr "``addr`` は受信元のアドレスです(マスターモードでのみ必要)"
+msgid "``addr`` is the address to receive from (only required in controller mode)"
+msgstr "``addr`` は受信元のアドレスです(コントローラモードでのみ必要)"
 
 #: ../../library/pyb.I2C.rst:136
 msgid "``timeout`` is the timeout in milliseconds to wait for the receive"
@@ -9912,8 +9920,8 @@ msgid "``send`` is the data to send (an integer to send, or a buffer object)"
 msgstr "``send`` は送信するデータです(送信する整数値、またはバッファオブジェクト)"
 
 #: ../../library/pyb.I2C.rst:146
-msgid "``addr`` is the address to send to (only required in master mode)"
-msgstr "``addr`` は送信先のアドレスです(マスターモードでのみ必要)"
+msgid "``addr`` is the address to send to (only required in controller mode)"
+msgstr "``addr`` は送信先のアドレスです(コントローラモードでのみ必要)"
 
 #: ../../library/pyb.I2C.rst:147
 msgid "``timeout`` is the timeout in milliseconds to wait for the send"
@@ -9922,18 +9930,18 @@ msgstr "``timeout`` は送信を待つタイムアウト時間をミリ秒単位
 #: ../../library/pyb.I2C.rst:153
 msgid ""
 "Scan all I2C addresses from 0x01 to 0x7f and return a list of those that "
-"respond. Only valid when in master mode."
+"respond. Only valid when in controller mode."
 msgstr ""
 "0x01 から 0x7f までのすべてのI2Cアドレスをスキャンし、応答するアドレスのリストを"
-"返します。マスターモードの場合のみ有効です。"
+"返します。コントローラモードの場合のみ有効です。"
 
 #: ../../library/pyb.I2C.rst:161
-msgid "for initialising the bus to master mode"
-msgstr "バスをマスターモードに初期化するためのもの"
+msgid "for initialising the bus to controller mode"
+msgstr "バスをコントローラモードに初期化するためのもの"
 
 #: ../../library/pyb.I2C.rst:165
-msgid "for initialising the bus to slave mode"
-msgstr "バスをスレーブーモードに初期化するためのもの"
+msgid "for initialising the bus to peripheral mode"
+msgstr "バスをペリフェラルモードに初期化するためのもの"
 
 #: ../../library/pyb.LCD.rst:5
 msgid "class LCD -- LCD control for the LCD touch-sensor pyskin"
@@ -10578,13 +10586,13 @@ msgid ""
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:5
-msgid "class SPI -- a master-driven serial protocol"
+msgid "class SPI -- a controller-driven serial protocol"
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:7
 msgid ""
-"SPI is a serial protocol that is driven by a master.  At the physical "
-"level there are 3 lines: SCK, MOSI, MISO."
+"SPI is a serial protocol that is driven by a controller.  At the physical"
+" level there are 3 lines: SCK, MOSI, MISO."
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:10
@@ -10596,15 +10604,16 @@ msgstr ""
 #: ../../library/pyb.SPI.rst:13
 msgid ""
 "from pyb import SPI\n"
-"spi = SPI(1, SPI.MASTER, baudrate=600000, polarity=1, phase=0, crc=0x7)"
+"spi = SPI(1, SPI.CONTROLLER, baudrate=600000, polarity=1, phase=0, "
+"crc=0x7)"
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:16
 msgid ""
-"Only required parameter is mode, SPI.MASTER or SPI.SLAVE.  Polarity can "
-"be 0 or 1, and is the level the idle clock line sits at.  Phase can be 0 "
-"or 1 to sample data on the first or second clock edge respectively.  Crc "
-"can be None for no CRC, or a polynomial specifier."
+"Only required parameter is mode, SPI.CONTROLLER or SPI.PERIPHERAL.  "
+"Polarity can be 0 or 1, and is the level the idle clock line sits at.  "
+"Phase can be 0 or 1 to sample data on the first or second clock edge "
+"respectively.  Crc can be None for no CRC, or a polynomial specifier."
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:21
@@ -10652,11 +10661,11 @@ msgid ""
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:58
-msgid "``mode`` must be either ``SPI.MASTER`` or ``SPI.SLAVE``."
+msgid "``mode`` must be either ``SPI.CONTROLLER`` or ``SPI.PERIPHERAL``."
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:59
-msgid "``baudrate`` is the SCK clock rate (only sensible for a master)."
+msgid "``baudrate`` is the SCK clock rate (only sensible for a controller)."
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:60
@@ -10672,10 +10681,16 @@ msgid ""
 msgstr ""
 
 #: ../../library/pyb.SPI.rst:67
+msgid ""
+"``ti`` True indicates Texas Instruments, as opposed to Motorola, signal "
+"conventions."
+msgstr ""
+
+#: ../../library/pyb.SPI.rst:68
 msgid "``crc`` can be None for no CRC, or a polynomial specifier."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:69
+#: ../../library/pyb.SPI.rst:70
 msgid ""
 "Note that the SPI clock frequency will not always be the requested "
 "baudrate. The hardware only supports baudrates that are the APB bus "
@@ -10685,51 +10700,51 @@ msgid ""
 " instead of ``baudrate``."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:76
+#: ../../library/pyb.SPI.rst:77
 msgid ""
 "Printing the SPI object will show you the computed baudrate and the "
 "chosen prescaler."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:83
+#: ../../library/pyb.SPI.rst:84
 msgid ""
 "``recv`` can be an integer, which is the number of bytes to receive, or a"
 " mutable buffer, which will be filled with received bytes."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:85 ../../library/pyb.SPI.rst:107
-#: ../../library/pyb.USB_HID.rst:30 ../../library/pyb.USB_VCP.rst:91
+#: ../../library/pyb.SPI.rst:86 ../../library/pyb.SPI.rst:108
+#: ../../library/pyb.USB_HID.rst:30 ../../library/pyb.USB_VCP.rst:98
 msgid "``timeout`` is the timeout in milliseconds to wait for the receive."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:94 ../../library/pyb.SPI.rst:103
+#: ../../library/pyb.SPI.rst:95 ../../library/pyb.SPI.rst:104
 msgid "``send`` is the data to send (an integer to send, or a buffer object)."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:95 ../../library/pyb.USB_VCP.rst:101
+#: ../../library/pyb.SPI.rst:96 ../../library/pyb.USB_VCP.rst:108
 msgid "``timeout`` is the timeout in milliseconds to wait for the send."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:101
+#: ../../library/pyb.SPI.rst:102
 msgid "Send and receive data on the bus at the same time:"
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:104
+#: ../../library/pyb.SPI.rst:105
 msgid ""
 "``recv`` is a mutable buffer which will be filled with received bytes. It"
 " can be the same as ``send``, or omitted.  If omitted, a new buffer will "
 "be created."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:109
+#: ../../library/pyb.SPI.rst:110
 msgid "Return value: the buffer with the received bytes."
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:117
-msgid "for initialising the SPI bus to master or slave mode"
+#: ../../library/pyb.SPI.rst:118
+msgid "for initialising the SPI bus to controller or peripheral mode"
 msgstr ""
 
-#: ../../library/pyb.SPI.rst:122
+#: ../../library/pyb.SPI.rst:123
 msgid "set the first bit to be the least or most significant bit"
 msgstr ""
 
@@ -13348,7 +13363,7 @@ msgid ""
 msgstr ""
 "これらの値はローカルに保存され、サービス登録中に生成される「値ハンドル(value handle)」"
 "によってアクセスされます。また、リモートのクライアントデバイスから読み書きすることもできます。"
-"さらに、プリフェラルは接続ハンドルを介して接続されたクライアントにキャラクタリスティックを"
+"さらに、ペリフェラルは接続ハンドルを介して接続されたクライアントにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
 #: ../../library/ubluetooth.rst:411
@@ -17438,11 +17453,33 @@ msgstr ""
 
 #: ../../library/utime.rst:75
 msgid "Delay for given number of milliseconds, should be positive or 0."
-msgstr "指定のミリ秒間だけ遅延します。ミリ秒の指定は0以上の整数である必要があります。"
+msgstr "指定のミリ秒間遅延します。ミリ秒の指定は0以上の整数である必要があります。"
+
+#: ../../library/utime.rst:77
+msgid ""
+"This function will delay for at least the given number of milliseconds, "
+"but may take longer than that if other processing must take place, for "
+"example interrupt handlers or other threads.  Passing in 0 for *ms* will "
+"still allow this other processing to occur.  Use `sleep_us()` for more "
+"precise delays."
+msgstr ""
+"この関数は少なくとも指定したミリ秒間遅延させますが、割り込みハンドラや他のスレッドなど、"
+"他の処理が必要な場合は、それよりも長くかかることがあります。 "
+"*ms* に 0 を渡しても、他の処理が行われることがあります。より正確な遅延のためには "
+"`sleep_us()` を使用してください。"
 
 #: ../../library/utime.rst:79
 msgid "Delay for given number of microseconds, should be positive or 0."
 msgstr "指定のマイクロ秒間だけ遅延します。マイクロ秒の指定は0以上の整数である必要があります。"
+
+#: ../../library/utime.rst:86
+msgid ""
+"This function attempts to provide an accurate delay of at least *us* "
+"microseconds, but it may take longer if the system has other higher "
+"priority processing to perform."
+msgstr ""
+"この関数は、少なくとも *us* マイクロ秒の正確な遅延を提供しようとしますが、"
+"システムが他のより優先度の高い処理を実行している場合は、それ以上かかることがあります。"
 
 #: ../../library/utime.rst:83
 msgid ""
