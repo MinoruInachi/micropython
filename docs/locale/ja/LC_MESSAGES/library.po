@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 10:28+0900\n"
-"PO-Revision-Date: 2021-07-22 11:54+0900\n"
+"POT-Creation-Date: 2021-07-31 10:23+0900\n"
+"PO-Revision-Date: 2021-07-31 11:36+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -172,8 +172,8 @@ msgstr "*t* 秒間スリープします(float値も指定できます)。"
 #: ../../library/uasyncio.rst:163 ../../library/uasyncio.rst:184
 #: ../../library/uasyncio.rst:204 ../../library/uasyncio.rst:214
 #: ../../library/uasyncio.rst:235 ../../library/uasyncio.rst:241
-#: ../../library/uasyncio.rst:247 ../../library/uasyncio.rst:259
-#: ../../library/uasyncio.rst:274
+#: ../../library/uasyncio.rst:257 ../../library/uasyncio.rst:263
+#: ../../library/uasyncio.rst:275 ../../library/uasyncio.rst:290
 msgid "This is a coroutine."
 msgstr "これはコルーチンです。"
 
@@ -448,10 +448,21 @@ msgid "Return the number of bytes read into *buf*."
 msgstr "戻り値は *buf* に読み込んだバイト数です。"
 
 #: ../../library/uasyncio.rst:253
+msgid "Read exactly *n* bytes and return them as a bytes object."
+msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
+
+#: ../../library/uasyncio.rst:255
+msgid ""
+"Raises an ``EOFError`` exception if the stream ends before reading *n* "
+"bytes."
+msgstr ""
+"*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
+
+#: ../../library/uasyncio.rst:261
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/uasyncio.rst:259
+#: ../../library/uasyncio.rst:267
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -461,11 +472,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/uasyncio.rst:265
+#: ../../library/uasyncio.rst:273
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/uasyncio.rst:271
+#: ../../library/uasyncio.rst:279
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -473,28 +484,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/uasyncio.rst:276
+#: ../../library/uasyncio.rst:284
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/uasyncio.rst:280
+#: ../../library/uasyncio.rst:288
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:285
+#: ../../library/uasyncio.rst:293
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/uasyncio.rst:289
+#: ../../library/uasyncio.rst:297
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/uasyncio.rst:293
+#: ../../library/uasyncio.rst:301
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/uasyncio.rst:295
+#: ../../library/uasyncio.rst:303
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -502,7 +513,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/uasyncio.rst:300
+#: ../../library/uasyncio.rst:308
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -510,15 +521,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/uasyncio.rst:305
+#: ../../library/uasyncio.rst:313
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:309
+#: ../../library/uasyncio.rst:317
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/uasyncio.rst:313
+#: ../../library/uasyncio.rst:321
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -526,15 +537,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:318
+#: ../../library/uasyncio.rst:326
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/uasyncio.rst:322
+#: ../../library/uasyncio.rst:330
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/uasyncio.rst:326
+#: ../../library/uasyncio.rst:334
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -543,18 +554,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/uasyncio.rst:331
+#: ../../library/uasyncio.rst:339
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/uasyncio.rst:336
+#: ../../library/uasyncio.rst:344
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/uasyncio.rst:340
+#: ../../library/uasyncio.rst:348
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "
