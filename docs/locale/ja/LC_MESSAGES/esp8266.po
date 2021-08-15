@@ -290,11 +290,11 @@ msgstr "リアルタイムクロック"
 msgid ""
 "RTC in ESP8266 has very bad accuracy, drift may be seconds per minute. As"
 " a workaround, to measure short enough intervals you can use "
-"``utime.time()``, etc. functions, and for wall clock time, synchronize "
+"``time.time()``, etc. functions, and for wall clock time, synchronize "
 "from the net using included ``ntptime.py`` module."
 msgstr ""
 "ESP8266 の RTC は非常に精度が悪く、ドリフトは毎分秒になる可能性があります。"
-"回避策として、十分な短い間隔を測定する ``utime.time()`` などの機能を"
+"回避策として、十分な短い間隔を測定する ``time.time()`` などの機能を"
 "使用できます。また、実時間とするには、含まれている ``ntptime.py`` モジュールを"
 "使用してネットから同期してください。"
 
@@ -473,9 +473,9 @@ msgstr ""
 #: ../../esp8266/general.rst:205
 msgid ""
 "There are also some not implemented features specifically in "
-"MicroPython's ``ussl`` module based on axTLS:"
+"MicroPython's ``ssl`` module based on axTLS:"
 msgstr ""
-"また、AxTLS に ussl 基づくMicroPythonのモジュールに実装されていない"
+"また、AxTLS を基にした　MicroPython の ``ssl`` のモジュールには実装されていない"
 "機能もあります。"
 
 #: ../../esp8266/general.rst:208
@@ -636,10 +636,10 @@ msgstr ""
 
 #: ../../esp8266/quickref.rst:81
 msgid ""
-"Once the network is established the :mod:`socket <usocket>` module can be"
-" used to create and use TCP/UDP sockets as usual."
+"Once the network is established the :mod:`socket <socket>` module can be "
+"used to create and use TCP/UDP sockets as usual."
 msgstr ""
-"ネットワークが確立されると :mod:`socket <usocket>` モジュールを使って、"
+"ネットワークが確立されると :mod:`socket <socket>` モジュールを使って、"
 "通常どおり TCP/UDP ソケットを作成して使用できます。"
 
 #: ../../esp8266/quickref.rst:85
@@ -647,8 +647,8 @@ msgid "Delay and timing"
 msgstr "遅延とタイミング"
 
 #: ../../esp8266/quickref.rst:87
-msgid "Use the :mod:`time <utime>` module::"
-msgstr ":mod:`time <utime>` モジュールを使います::"
+msgid "Use the :mod:`time <time>` module::"
+msgstr ":mod:`time <time>` モジュールを使います::"
 
 #: ../../esp8266/quickref.rst:89
 msgid ""
@@ -835,8 +835,8 @@ msgstr "UART0 から REPL をデタッチするには次のようにします::"
 
 #: ../../esp8266/quickref.rst:174
 msgid ""
-"import uos\n"
-"uos.dupterm(None, 1)"
+"import os\n"
+"os.dupterm(None, 1)"
 msgstr ""
 
 #: ../../esp8266/quickref.rst:177
@@ -849,9 +849,9 @@ msgstr ""
 
 #: ../../esp8266/quickref.rst:180
 msgid ""
-"import uos, machine\n"
+"import os, machine\n"
 "uart = machine.UART(0, 115200)\n"
-"uos.dupterm(uart, 1)"
+"os.dupterm(uart, 1)"
 msgstr ""
 
 #: ../../esp8266/quickref.rst:184
