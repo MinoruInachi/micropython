@@ -1,0 +1,679 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2021,
+# Damien P. George, Paul Sokolovsky, and contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.16\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-14 18:07+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../zephyr/general.rst:4
+msgid "General information about the Zephyr port"
+msgstr ""
+
+#: ../../zephyr/general.rst:6
+msgid ""
+"The Zephyr Project is a Linux Foundation hosted Collaboration Project. "
+"It’s an open source collaborative effort uniting developers and users in "
+"building a small, scalable, real-time operating system (RTOS) optimized "
+"for resource-constrained devices, across multiple architectures."
+msgstr ""
+
+#: ../../zephyr/general.rst:12
+msgid "Multitude of boards"
+msgstr ""
+
+#: ../../zephyr/general.rst:14
+msgid ""
+"There is a multitude of modules and boards from different sources that "
+"are supported by the Zephyr OS. All boards supported by Zephyr (with "
+"standard level of features support, like UART console) should work with "
+"MicroPython (but not all were tested). The FRDM-K64f board is taken as a "
+"reference board for the port for this documentation. If you have another "
+"board, please make sure you have a datasheet, schematics and other "
+"reference materials for your board handy to look up various aspects of "
+"your board functioning."
+msgstr ""
+
+#: ../../zephyr/general.rst:22
+msgid ""
+"For a full list of Zephyr supported boards click `here (external link) "
+"<https://docs.zephyrproject.org/latest/boards/index.html#boards>`_"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:4
+msgid "Quick reference for the Zephyr port"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:6
+msgid ""
+"Below is a quick reference for the Zephyr port. If it is your first time "
+"working with this port please consider reading the following sections "
+"first:"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:15
+msgid "Running MicroPython"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:17
+msgid "See the corresponding section of the tutorial: :ref:`intro`."
+msgstr ""
+
+#: ../../zephyr/quickref.rst:20
+msgid "Delay and timing"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:22
+msgid "Use the :mod:`time <utime>` module::"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:24
+msgid ""
+"import time\n"
+"\n"
+"time.sleep(1)               # sleep for 1 second\n"
+"time.sleep_ms(500)          # sleep for 500 milliseconds\n"
+"time.sleep_us(10)           # sleep for 10 microseconds\n"
+"start = time.ticks_ms()     # get millisecond counter\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:33
+msgid "Pins and GPIO"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:35
+msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:37
+msgid ""
+"from machine import Pin\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.IN)   # create input pin on GPIO1\n"
+"print(pin)                          # print pin port and number\n"
+"\n"
+"pin.init(Pin.OUT, Pin.PULL_UP, value=1)     # reinitialize pin\n"
+"\n"
+"pin.value(1)                        # set pin to high\n"
+"pin.value(0)                        # set pin to low\n"
+"\n"
+"pin.on()                            # set pin to high\n"
+"pin.off()                           # set pin to low\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.IN)   # create input pin on GPIO1\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.OUT, value=1)         # set pin high on "
+"creation\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.IN, Pin.PULL_UP)      # enable internal "
+"pull-up resistor\n"
+"\n"
+"switch = Pin((\"GPIO_2\", 6), Pin.IN)                 # create input pin "
+"for a switch\n"
+"switch.irq(lambda t: print(\"SW2 changed\"))          # enable an "
+"interrupt when switch state is changed"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:60
+msgid "Hardware I2C bus"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:62
+msgid "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class::"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:64
+msgid ""
+"from machine import I2C\n"
+"\n"
+"i2c = I2C(\"I2C_0\")          # construct an i2c bus\n"
+"print(i2c)                  # print device name\n"
+"\n"
+"i2c.scan()                  # scan the device for available I2C slaves\n"
+"\n"
+"i2c.readfrom(0x1D, 4)                # read 4 bytes from slave 0x1D\n"
+"i2c.readfrom_mem(0x1D, 0x0D, 1)      # read 1 byte from slave 0x1D at "
+"slave memory 0x0D\n"
+"\n"
+"i2c.writeto(0x1D, b'abcd')           # write to slave with address 0x1D\n"
+"i2c.writeto_mem(0x1D, 0x0D, b'ab')   # write to slave 0x1D at slave "
+"memory 0x0D\n"
+"\n"
+"buf = bytearray(8)                  # create buffer of size 8\n"
+"i2c.writeto(0x1D, b'abcd')          # write buf to slave 0x1D"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:81
+msgid "Hardware SPI bus"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:83
+msgid "Hardware SPI is accessed via the :ref:`machine.SPI <machine.SPI>` class::"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:85
+msgid ""
+"from machine import SPI\n"
+"\n"
+"spi = SPI(\"SPI_0\")          # construct a spi bus with default "
+"configuration\n"
+"spi.init(baudrate=100000, polarity=0, phase=0, bits=8, firstbit=SPI.MSB) "
+"# set configuration\n"
+"\n"
+"# equivalently, construct spi bus and set configuration at the same time\n"
+"spi = SPI(\"SPI_0\", baudrate=100000, polarity=0, phase=0, bits=8, "
+"firstbit=SPI.MSB)\n"
+"print(spi)                  # print device name and bus configuration\n"
+"\n"
+"spi.read(4)                 # read 4 bytes on MISO\n"
+"spi.read(4, write=0xF)      # read 4 bytes while writing 0xF on MOSI\n"
+"\n"
+"buf = bytearray(8)          # create a buffer of size 8\n"
+"spi.readinto(buf)           # read into the buffer (reads number of bytes"
+" equal to the buffer size)\n"
+"spi.readinto(buf, 0xF)      # read into the buffer while writing 0xF on "
+"MOSI\n"
+"\n"
+"spi.write(b'abcd')          # write 4 bytes on MOSI\n"
+"\n"
+"buf = bytearray(4)                  # create buffer of size 8\n"
+"spi.write_readinto(b'abcd', buf)    # write to MOSI and read from MISO "
+"into the buffer\n"
+"spi.write_readinto(buf, buf)        # write buf to MOSI and read back "
+"into the buf"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:108 ../../zephyr/tutorial/storage.rst:12
+msgid "Disk Access"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:110
+msgid ""
+"Use the :ref:`zephyr.DiskAccess <zephyr.DiskAccess>` class to support "
+"filesystem::"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:112
+msgid ""
+"import os\n"
+"from zephyr import DiskAccess\n"
+"\n"
+"block_dev = DiskAccess('SDHC')      # create a block device object for an"
+" SD card\n"
+"os.VfsFat.mkfs(block_dev)           # create FAT filesystem object using "
+"the disk storage block\n"
+"os.mount(block_dev, '/sd')          # mount the filesystem at the SD card"
+" subdirectory\n"
+"\n"
+"# with the filesystem mounted, files can be manipulated as normal\n"
+"with open('/sd/hello.txt','w') as f:     # open a new file in the "
+"directory\n"
+"    f.write('Hello world')                  # write to the file\n"
+"print(open('/sd/hello.txt').read())      # print contents of the file"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:125 ../../zephyr/tutorial/storage.rst:35
+msgid "Flash Area"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:127
+msgid ""
+"Use the :ref:`zephyr.FlashArea <zephyr.FlashArea>` class to support "
+"filesystem::"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:129
+msgid ""
+"import os\n"
+"from zephyr import FlashArea\n"
+"\n"
+"block_dev = FlashArea(4, 4096)      # creates a block device object in "
+"the frdm-k64f flash scratch partition\n"
+"os.VfsLfs2.mkfs(block_dev)          # create filesystem in lfs2 format "
+"using the flash block device\n"
+"os.mount(block_dev, '/flash')       # mount the filesystem at the flash "
+"subdirectory\n"
+"\n"
+"# with the filesystem mounted, files can be manipulated as normal\n"
+"with open('/flash/hello.txt','w') as f:     # open a new file in the "
+"directory\n"
+"    f.write('Hello world')                  # write to the file\n"
+"print(open('/flash/hello.txt').read())      # print contents of the file"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:142
+msgid "Sensor"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:144
+msgid ""
+"Use the :ref:`zsensor.Sensor <zsensor.Sensor>` class to access sensor "
+"data::"
+msgstr ""
+
+#: ../../<rst_epilog>:146
+msgid ""
+"import zsensor\n"
+"from zsensor import Sensor\n"
+"\n"
+"accel = Sensor(\"FXOX8700\")    # create sensor object for the "
+"accelerometer\n"
+"\n"
+"accel.measure()               # obtain a measurement reading from the "
+"accelerometer\n"
+"\n"
+"# each of these prints the value taken by measure()\n"
+"accel.float(zsensor.ACCEL_X)  # print measurement value for accelerometer"
+" X-axis sensor channel as float\n"
+"accel.millis(zsensor.ACCEL_Y) # print measurement value for accelerometer"
+" Y-axis sensor channel in millionths\n"
+"accel.micro(zsensor.ACCEL_Z)  # print measurement value for accelerometer"
+" Z-axis sensor channel in thousandths\n"
+"accel.int(zsensor.ACCEL_X)    # print measurement integer value only for "
+"accelerometer X-axis sensor channel"
+msgstr ""
+
+#: ../../zephyr/tutorial/index.rst:4
+msgid "MicroPython tutorial for the Zephyr port"
+msgstr ""
+
+#: ../../zephyr/tutorial/index.rst:6
+msgid "This tutorial is intended to get you started with the Zephyr port."
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:4
+msgid "Getting started with MicroPython on the Zephyr port"
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:6
+msgid "Let’s get started!"
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:9
+msgid "Requirements"
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:11
+msgid ""
+"To use the MicroPython Zephyr port, you will need a Zephyr supported "
+"board (for a list of acceptable boards see :ref:`zephyr_general`)."
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:15
+msgid "Powering up"
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:17
+msgid ""
+"If your board has a USB connector on it then most likely it is powered "
+"through this when connected to your PC. Otherwise you will need to power "
+"it directly. Please refer to the documentation for your board for further"
+" details."
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:23
+msgid "Getting and deploying the firmware"
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:25
+msgid ""
+"The first step you will need to do is either clone the `MicroPython "
+"repository <https://github.com/micropython/micropython.git>`_ or download"
+" it from the `MicroPython downloads page "
+"<http://micropython.org/download>`_. If you are an end user of "
+"MicroPython, it is recommended to start with the stable firmware builds. "
+"If you would like to work on development, you may follow the daily builds"
+" on git."
+msgstr ""
+
+#: ../../zephyr/tutorial/intro.rst:30
+msgid ""
+"Next, follow the Zephyr port readme document (``ports/zephyr/README.md``)"
+" to build and run the application on your board."
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:4
+msgid "GPIO Pins"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:6
+msgid "Use :ref:`machine.Pin <machine.Pin>` to control I/O pins."
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:8
+msgid ""
+"For Zephyr, pins are initialized using a tuple of port and pin number "
+"``(\\\"GPIO_x\\\", pin#)`` for the ``id`` value. For example to "
+"initialize a pin for the red LED on a FRDM-k64 board::"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:11
+msgid "LED = Pin((\"GPIO_1\", 22), Pin.OUT)"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:13
+msgid ""
+"Reference your board's datasheet or Zephyr documentation for pin numbers,"
+" see below for more examples."
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:15
+msgid "Pin Formatting"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:18
+msgid "Board"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:19
+msgid "Pin"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:20
+msgid "Format"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:21
+msgid "frdm_k64f"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:22
+msgid "Red LED = PTB22"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:23
+msgid "(\"GPIO_1\", 22)"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:24
+msgid "96b_carbon"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:25
+msgid "LED1 = PD2"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:26
+msgid "(\"GPIOD\", 2)"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:27
+msgid "mimxrt685_evk_cm33"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:28
+msgid "Green LED = PIO0_14"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:29
+msgid "(\"GPIO0\", 14)"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:32
+msgid "Interrupts"
+msgstr ""
+
+#: ../../zephyr/tutorial/pins.rst:34
+msgid ""
+"The Zephyr port also supports interrupt handling for Pins using "
+"`machine.Pin.irq() <machine.Pin.irq>`. To respond to Pin change IRQs "
+"run::"
+msgstr ""
+
+#: ../../<rst_epilog>:37
+msgid ""
+"from machine import Pin\n"
+"\n"
+"SW2 = Pin((\"GPIO_2\", 6), Pin.IN)            # create Pin object for "
+"switch 2\n"
+"SW3 = Pin((\"GPIO_0\", 4), Pin.IN)            # create Pin object for "
+"switch 3\n"
+"\n"
+"SW2.irq(lambda t: print(\"SW2 changed\"))     # print message when SW2 "
+"state is changed (triggers change IRQ)\n"
+"SW3.irq(lambda t: print(\"SW3 changed\"))     # print message when SW3 "
+"state is changed (triggers change IRQ)\n"
+"\n"
+"while True:                                 # wait\n"
+"    pass"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:2
+msgid "Getting a MicroPython REPL prompt"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:4
+msgid ""
+"REPL stands for Read Evaluate Print Loop, and is the name given to the "
+"interactive MicroPython prompt that you can access on your board through "
+"Zephyr. It is recommended to use REPL to test out your code and run "
+"commands."
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:9
+msgid "REPL over the serial port"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:11
+msgid ""
+"The REPL is available on a UART serial peripheral specified for the board"
+" by the ``zephyr,console`` devicetree node. The baudrate of the REPL is "
+"115200. If your board has a USB-serial convertor on it then you should be"
+" able to access the REPL directly from your PC."
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:16
+msgid ""
+"To access the prompt over USB-serial you will need to use a terminal "
+"emulator program. For a Linux or Mac machine, open a terminal and run::"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:19
+msgid "screen /dev/ttyACM0 115200"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:21
+msgid ""
+"You can also try ``picocom`` or ``minicom`` instead of screen. You may "
+"have to use ``/dev/ttyACM1`` or a higher number for ``ttyACM``. "
+"Additional permissions may be necessary to access this device (eg group "
+"``uucp`` or ``dialout``, or use sudo). For Windows, get a terminal "
+"software, such as puTTY and connect via a serial session using the proper"
+" COM port."
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:28
+msgid "Using the REPL"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:30
+msgid ""
+"With your serial program open (PuTTY, screen, picocom, etc) you may see a"
+" blank screen with a flashing cursor. Press Enter (or reset the board) "
+"and you should be presented with the following text::"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:34
+msgid ""
+"*** Booting Zephyr OS build v2.6.0-rc1-416-g3056c5ec30ad  ***\n"
+"MicroPython v2.6.0-rc1-416-g3056c5ec30 on 2021-06-24; zephyr-frdm_k64f "
+"with mk64f12\n"
+"Type \"help()\" for more information.\n"
+">>>"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:39
+msgid "Now you can try running MicroPython code directly on your board."
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:41
+msgid ""
+"Anything you type at the prompt, indicated by ``>>>``, will be executed "
+"after you press the Enter key. If there is an error with the text that "
+"you enter then an error message is printed."
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:45
+msgid "Start by typing the following at the prompt to make sure it is working::"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:47
+msgid ""
+">>> print(\"hello world!\")\n"
+"hello world!"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:50
+msgid ""
+"If you already know some python you can now try some basic commands here."
+" For example::"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:53
+msgid ""
+">>> 1 + 2\n"
+"3\n"
+">>> 1 / 2\n"
+"0.5\n"
+">>> 3 * 'Zephyr'\n"
+"ZephyrZephyrZephyr"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:60
+msgid "If your board has an LED, you can blink it using the following code::"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:62
+msgid ""
+">>>import time\n"
+">>>from machine import Pin\n"
+"\n"
+">>>LED = Pin((\"GPIO_1\", 21), Pin.OUT)\n"
+">>>while True:\n"
+"...    LED.value(1)\n"
+"...    time.sleep(0.5)\n"
+"...    LED.value(0)\n"
+"...    time.sleep(0.5)"
+msgstr ""
+
+#: ../../zephyr/tutorial/repl.rst:72
+msgid ""
+"The above code uses an LED location for a FRDM-K64F board (port B, pin "
+"21; following Zephyr conventions ports are identified by \"GPIO_x\", "
+"where *x* starts from 0). You will need to adjust it for another board "
+"using the board's reference materials."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:4
+msgid "Filesystems and Storage"
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:6
+msgid ""
+"Storage modules support virtual filesystem with FAT and littlefs formats,"
+" backed by either Zephyr DiskAccess or FlashArea (flash map) APIs "
+"depending on which the board supports."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:9
+msgid ""
+"See `os Filesystem Mounting "
+"<https://docs.micropython.org/en/latest/library/os.html?highlight=os"
+"#filesystem-mounting>`_."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:14
+msgid ""
+"The :ref:`zephyr.DiskAccess <zephyr.DiskAccess>` class can be used to "
+"access storage devices, such as SD cards. This class uses `Zephyr Disk "
+"Access API "
+"<https://docs.zephyrproject.org/latest/reference/storage/disk/access.html>`_"
+" and implements the `os.AbstractBlockDev` protocol."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:18
+msgid ""
+"For use with SD card controllers, SD cards must be present at boot & not "
+"removed; they will be auto detected and initialized by filesystem at "
+"boot. Use the disk driver interface and a file system to access SD cards "
+"via disk access (see below)."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:22
+msgid "Example usage of FatFS with an SD card on the mimxrt1050_evk board::"
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:24
+msgid ""
+"import os\n"
+"from zephyr import DiskAccess\n"
+"bdev = zephyr.DiskAccess('SDHC')        # create block device object "
+"using DiskAccess\n"
+"os.VfsFat.mkfs(bdev)                    # create FAT filesystem object "
+"using the disk storage block\n"
+"os.mount(bdev, '/sd')                   # mount the filesystem at the SD "
+"card subdirectory\n"
+"with open('/sd/hello.txt','w') as f:    # open a new file in the "
+"directory\n"
+"    f.write('Hello world')              # write to the file\n"
+"print(open('/sd/hello.txt').read())     # print contents of the file"
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:37
+msgid ""
+"The :ref:`zephyr.FlashArea <zephyr.FlashArea>` class can be used to "
+"implement a low-level storage system or customize filesystem "
+"configurations. To store persistent data on the device, using a higher-"
+"level filesystem API is recommended (see below)."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:41
+msgid ""
+"This class uses `Zephyr Flash map API "
+"<https://docs.zephyrproject.org/latest/reference/storage/flash_map/flash_map.html#>`_"
+" and implements the `os.AbstractBlockDev` protocol."
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:44
+msgid ""
+"Example usage with the internal flash on the reel_board or the "
+"rv32m1_vega_ri5cy board::"
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:46
+msgid ""
+"import os\n"
+"from zephyr import FlashArea\n"
+"bdev = FlashArea(FlashArea.STORAGE, 4096)   # create block device object "
+"using FlashArea\n"
+"os.VfsLfs2.mkfs(bdev)                       # create Little filesystem "
+"object using the flash area block\n"
+"os.mount(bdev, '/flash')                    # mount the filesystem at the"
+" flash storage subdirectory\n"
+"with open('/flash/hello.txt','w') as f:     # open a new file in the "
+"directory\n"
+"    f.write('Hello world')                  # write to the file\n"
+"print(open('/flash/hello.txt').read())      # print contents of the file"
+msgstr ""
+
+#: ../../zephyr/tutorial/storage.rst:55
+msgid ""
+"For boards such as the frdm_k64f in which the MicroPython application "
+"spills into the default flash storage partition, use the scratch "
+"partition by replacing ``FlashArea.STORAGE`` with the integer value 4."
+msgstr ""
+
