@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:10+0900\n"
-"PO-Revision-Date: 2021-08-21 18:16+0900\n"
+"POT-Creation-Date: 2021-08-28 09:17+0900\n"
+"PO-Revision-Date: 2021-08-28 09:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -882,18 +882,18 @@ msgstr ""
 "できます。 flags の値はビットOR(|)演算を使って複数指定できます。"
 
 #: ../../library/btree.rst:149 ../../library/cmath.rst:55
-#: ../../library/esp32.rst:118 ../../library/esp32.rst:275
-#: ../../library/framebuf.rst:118 ../../library/lcd160cr.rst:380
-#: ../../library/machine.I2S.rst:144 ../../library/machine.Pin.rst:240
-#: ../../library/machine.RTC.rst:79 ../../library/machine.SPI.rst:103
-#: ../../library/machine.Timer.rst:61 ../../library/machine.TimerWiPy.rst:154
-#: ../../library/machine.UART.rst:163 ../../library/machine.rst:149
-#: ../../library/math.rst:177 ../../library/network.CC3K.rst:83
-#: ../../library/network.WLANWiPy.rst:145 ../../library/pyb.CAN.rst:283
-#: ../../library/pyb.ExtInt.rst:102 ../../library/pyb.I2C.rst:157
-#: ../../library/pyb.Pin.rst:184 ../../library/pyb.SPI.rst:113
-#: ../../library/pyb.UART.rst:178 ../../library/pyb.USB_VCP.rst:124
-#: ../../library/rp2.PIO.rst:66 ../../library/errno.rst:13
+#: ../../library/errno.rst:13 ../../library/esp32.rst:118
+#: ../../library/esp32.rst:275 ../../library/framebuf.rst:125
+#: ../../library/lcd160cr.rst:380 ../../library/machine.I2S.rst:144
+#: ../../library/machine.Pin.rst:240 ../../library/machine.RTC.rst:79
+#: ../../library/machine.SPI.rst:103 ../../library/machine.Timer.rst:61
+#: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:163
+#: ../../library/machine.rst:171 ../../library/math.rst:177
+#: ../../library/network.CC3K.rst:83 ../../library/network.WLANWiPy.rst:145
+#: ../../library/pyb.CAN.rst:283 ../../library/pyb.ExtInt.rst:102
+#: ../../library/pyb.I2C.rst:157 ../../library/pyb.Pin.rst:184
+#: ../../library/pyb.SPI.rst:113 ../../library/pyb.UART.rst:178
+#: ../../library/pyb.USB_VCP.rst:124 ../../library/rp2.PIO.rst:66
 #: ../../library/socket.rst:139 ../../library/ssl.rst:55
 #: ../../library/sys.rst:47
 msgid "Constants"
@@ -1962,14 +1962,30 @@ msgstr ""
 
 #: ../../library/framebuf.rst:113
 msgid ""
-"This method works between FrameBuffer instances utilising different "
-"formats, but the resulting colors may be unexpected due to the mismatch "
-"in color formats."
+"The *palette* argument enables blitting between FrameBuffers with "
+"differing formats. Typical usage is to render a monochrome or grayscale "
+"glyph/icon to a color display. The *palette* is a FrameBuffer instance "
+"whose format is that of the current FrameBuffer. The *palette* height is "
+"one pixel and its pixel width is the number of colors in the source "
+"FrameBuffer. The *palette* for an N-bit source needs 2**N pixels; the "
+"*palette* for a monochrome source would have 2 pixels representing "
+"background and foreground colors. The application assigns a color to each"
+" pixel in the *palette*. The color of the current pixel will be that of "
+"that *palette* pixel whose x position is the color of the corresponding "
+"source pixel."
 msgstr ""
-"このメソッドは、異なるフォーマットを使用する FrameBuffer インスタンス間で動作しますが、"
-"カラーフォーマットが一致しない場合の結果の色は予期できません。"
+"引数 *palette* を使うと、異なるフォーマットの FrameBuffer 間で結果の色を調整できます。"
+"典型的な利用法は、モノクロまたはグレースケールのグリフ/アイコンをカラーディスプレイに"
+"レンダリングすることです。 "
+"*palette* は、現在の FrameBuffer のフォーマットを持つ FrameBuffer インスタンスです。 "
+"*palette* の高さは1ピクセルで、そのピクセル幅はソースとなる FrameBuffer の色数です。"
+"Nビットソースの *palette* には 2**N ピクセルが必要です。*
+"モノクロソースの *palette* には、背景色と前景色を表す2ピクセルが必要です。"
+"アプリケーションは *palette* 内の各ピクセルに色を割り当てます。"
+"現在のピクセルの色は、x位置が対応するソースピクセルの色になっている *palette* "
+"ピクセルの色になります。"
 
-#: ../../library/framebuf.rst:122
+#: ../../library/framebuf.rst:129
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are vertically mapped with bit 0 being nearest the top of the "
@@ -1983,7 +1999,7 @@ msgstr ""
 "８垂直ピクセルを占有します。後続のバイトは、右端に達するまで連続した水平位置に"
 "現れます。さらに後続のバイトは、最左端から8ピクセル下の位置でレンダリングされます。"
 
-#: ../../library/framebuf.rst:131
+#: ../../library/framebuf.rst:138
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -1996,7 +2012,7 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:140
+#: ../../library/framebuf.rst:147
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -2009,19 +2025,19 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:149
+#: ../../library/framebuf.rst:156
 msgid "Red Green Blue (16-bit, 5+6+5) color format"
 msgstr "レッドグリーンブルー(16ビット、5+6+5)カラーフォーマット"
 
-#: ../../library/framebuf.rst:153
+#: ../../library/framebuf.rst:160
 msgid "Grayscale (2-bit) color format"
 msgstr "グレースケール(2ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:157
+#: ../../library/framebuf.rst:164
 msgid "Grayscale (4-bit) color format"
 msgstr "グレースケール(4ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:161
+#: ../../library/framebuf.rst:168
 msgid "Grayscale (8-bit) color format"
 msgstr "グレースケール(8ビット)カラーフォーマット"
 
