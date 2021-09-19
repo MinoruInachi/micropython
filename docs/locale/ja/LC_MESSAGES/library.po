@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.16\n"
+"Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-02 21:04+0900\n"
-"PO-Revision-Date: 2021-09-02 21:13+0900\n"
+"POT-Creation-Date: 2021-09-19 17:48+0900\n"
+"PO-Revision-Date: 2021-09-19 18:02+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -12965,10 +12965,10 @@ msgstr ""
 "戻り値は ``(addr_type, addr)`` のタプルです。"
 
 #: ../../library/bluetooth.rst:52
-msgid "See :meth:`gatts_write <BLE.gap_scan>` for details about address type."
+msgid "See :meth:`gatts_write <BLE.gatts_write>` for details about address type."
 msgstr ""
-"アドレスタイプ ``addr_type`` について詳しくは :meth:`gatts_write <BLE.gap_scan>` "
-"を参照してください。"
+"アドレスタイプ ``addr_type`` について詳しくは :meth:`gatts_write "
+"<BLE.gatts_write>` を参照してください。"
 
 #: ../../library/bluetooth.rst:54
 msgid "This may only be queried while the interface is currently active."
@@ -16180,11 +16180,24 @@ msgid ""
 "``ioctl(6, ...)`` must also be intercepted. The need for others is "
 "hardware dependent."
 msgstr ""
-"少なくとも ``ioctl(4, ...)`` は受け付けられる必要があります。"
+"少なくとも ``ioctl(4, ...)`` が受け付けられる必要があります。"
 "littlefs については ``ioctl(6, ...)`` も受け付けられる必要があります。"
 "その他の操作が受け付けられるかはハードウェアに依存します。"
 
 #: ../../library/os.rst:317
+msgid ""
+"Prior to any call to ``writeblocks(block, ...)`` littlefs issues "
+"``ioctl(6, block)``. This enables a device driver to erase the block "
+"prior to a write if the hardware requires it. Alternatively a driver "
+"might intercept ``ioctl(6, block)`` and return 0 (success). In this case "
+"the driver assumes responsibility for detecting the need for erasure."
+msgstr ""
+"littlefs は ``writeblocks(block, ...)`` の呼び出しの前に ``ioctl(6, block)`` "
+"を発行します。これによりハードウェアが要求するなら、デバイスドライバは書き込みの前に"
+"ブロックを消去できます。あるいは、ドライバが ``ioctl(6, block)`` を捉えて 0 (成功)を"
+"返すようにするかもしれません。この場合、ドライバは消去の必要性を検出する責任を負います。"
+
+#: ../../library/os.rst:323
 msgid ""
 "Unless otherwise stated ``ioctl(op, arg)`` can return ``None``. "
 "Consequently an implementation can ignore unused values of ``op``. Where "
