@@ -16,6 +16,7 @@ set(MICROPY_SOURCE_EXTMOD
     ${MICROPY_EXTMOD_DIR}/modbluetooth.c
     ${MICROPY_EXTMOD_DIR}/modbtree.c
     ${MICROPY_EXTMOD_DIR}/modframebuf.c
+    ${MICROPY_EXTMOD_DIR}/modnetwork.c
     ${MICROPY_EXTMOD_DIR}/modonewire.c
     ${MICROPY_EXTMOD_DIR}/moduasyncio.c
     ${MICROPY_EXTMOD_DIR}/modubinascii.c
@@ -24,9 +25,11 @@ set(MICROPY_SOURCE_EXTMOD
     ${MICROPY_EXTMOD_DIR}/moduhashlib.c
     ${MICROPY_EXTMOD_DIR}/moduheapq.c
     ${MICROPY_EXTMOD_DIR}/modujson.c
+    ${MICROPY_EXTMOD_DIR}/moduplatform.c
     ${MICROPY_EXTMOD_DIR}/modurandom.c
     ${MICROPY_EXTMOD_DIR}/modure.c
     ${MICROPY_EXTMOD_DIR}/moduselect.c
+    ${MICROPY_EXTMOD_DIR}/modusocket.c
     ${MICROPY_EXTMOD_DIR}/modussl_axtls.c
     ${MICROPY_EXTMOD_DIR}/modussl_mbedtls.c
     ${MICROPY_EXTMOD_DIR}/modutimeq.c
