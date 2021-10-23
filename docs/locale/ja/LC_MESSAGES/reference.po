@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-19 17:48+0900\n"
+"POT-Creation-Date: 2021-10-17 11:19+0900\n"
 "PO-Revision-Date: 2021-09-19 18:11+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
@@ -4492,6 +4492,540 @@ msgid ""
 " is reset with ``ctrl D``."
 msgstr ""
 "これはタイマーが明示的に無効にされるか、ボードが ``ctrl D`` でリセットされるまで続きます。"
+
+#: ../../reference/manifest.rst:2
+msgid "MicroPython manifest files"
+msgstr ""
+
+#: ../../reference/manifest.rst:4
+msgid ""
+"When building firmware for a device the following components are included"
+" in the compilation process:"
+msgstr ""
+
+#: ../../reference/manifest.rst:7
+msgid "the core MicroPython virtual machine and runtime"
+msgstr ""
+
+#: ../../reference/manifest.rst:8
+msgid ""
+"port-specific system code and drivers to interface with the "
+"microcontroller/device that the firmware is targeting"
+msgstr ""
+
+#: ../../reference/manifest.rst:10
+msgid "standard built-in modules, like ``sys``"
+msgstr ""
+
+#: ../../reference/manifest.rst:11
+msgid "extended built-in modules, like ``json`` and ``machine``"
+msgstr ""
+
+#: ../../reference/manifest.rst:12
+msgid "extra modules written in C/C++"
+msgstr ""
+
+#: ../../reference/manifest.rst:13
+msgid "extra modules written in Python"
+msgstr ""
+
+#: ../../reference/manifest.rst:15
+msgid ""
+"All the modules included in the firmware are available via ``import`` "
+"from Python code.  The extra modules written in Python that are included "
+"in a build (the last point above) are called *frozen modules*, and are "
+"specified by a ``manifest.py`` file.  Changing this manifest requires "
+"rebuilding the firmware."
+msgstr ""
+
+#: ../../reference/manifest.rst:20
+msgid ""
+"It's also possible to add additional modules to the filesystem of the "
+"device once it is up and running.  Adding and removing modules to/from "
+"the filesystem does not require rebuilding the firmware so is a simpler "
+"process than rebuilding firmware.  The benefit of using a manifest is "
+"that frozen modules are more efficient: they are faster to import and "
+"take up less RAM once imported."
+msgstr ""
+
+#: ../../reference/manifest.rst:26
+msgid ""
+"MicroPython manifest files are Python files and can contain arbitrary "
+"Python code.  There are also a set of commands (predefined functions) "
+"which are used to specify the Python source files to include.  These "
+"commands are described below."
+msgstr ""
+
+#: ../../reference/manifest.rst:32
+msgid "Freezing source code"
+msgstr ""
+
+#: ../../reference/manifest.rst:36
+msgid ""
+"Freeze the input specified by *path*, automatically determining its type."
+"  A ``.py`` script will be compiled to a ``.mpy`` first then frozen, and "
+"a ``.mpy`` file will be frozen directly."
+msgstr ""
+
+#: ../../reference/manifest.rst:40
+msgid ""
+"*path* must be a directory, which is the base directory to begin "
+"searching for files.  When importing the resulting frozen modules, the "
+"name of the module will start after *path*, i.e. *path* is excluded from "
+"the module name."
+msgstr ""
+
+#: ../../reference/manifest.rst:45
+msgid ""
+"If *path* is relative, it is resolved to the current ``manifest.py``.  "
+"Use ``$(MPY_DIR)``, ``$(MPY_LIB_DIR)``, ``$(PORT_DIR)``, ``$(BOARD_DIR)``"
+" if you need to access specific paths."
+msgstr ""
+
+#: ../../reference/manifest.rst:49
+msgid "If *script* is None, all files in *path* will be frozen."
+msgstr ""
+
+#: ../../reference/manifest.rst:51
+msgid ""
+"If *script* is an iterable then ``freeze()`` is called on all items of "
+"the iterable (with the same *path* and *opt* passed through)."
+msgstr ""
+
+#: ../../reference/manifest.rst:54
+msgid ""
+"If *script* is a string then it specifies the file or directory to "
+"freeze, and can include extra directories before the file or last "
+"directory.  The file or directory will be searched for in *path*.  If "
+"*script* is a directory then all files in that directory will be frozen."
+msgstr ""
+
+#: ../../reference/manifest.rst:59
+msgid ""
+"*opt* is the optimisation level to pass to mpy-cross when compiling "
+"``.py`` to ``.mpy``."
+msgstr ""
+
+#: ../../reference/manifest.rst:64
+msgid ""
+"Freeze the given *path* and all ``.py`` scripts within it as a string, "
+"which will be compiled upon import."
+msgstr ""
+
+#: ../../reference/manifest.rst:69
+msgid ""
+"Freeze the input by first compiling the ``.py`` scripts to ``.mpy`` "
+"files, then freezing the resulting ``.mpy`` files.  See ``freeze()`` for "
+"further details on the arguments."
+msgstr ""
+
+#: ../../reference/manifest.rst:75
+msgid ""
+"Freeze the input, which must be ``.mpy`` files that are frozen directly. "
+"See ``freeze()`` for further details on the arguments."
+msgstr ""
+
+#: ../../reference/manifest.rst:80
+msgid "Including other manifest files"
+msgstr ""
+
+#: ../../reference/manifest.rst:84
+msgid "Include another manifest."
+msgstr ""
+
+#: ../../reference/manifest.rst:86
+msgid ""
+"The *manifest* argument can be a string (filename) or an iterable of "
+"strings."
+msgstr ""
+
+#: ../../reference/manifest.rst:89
+msgid "Relative paths are resolved with respect to the current manifest file."
+msgstr ""
+
+#: ../../reference/manifest.rst:91
+msgid ""
+"Optional *kwargs* can be provided which will be available to the included"
+" script via the *options* variable."
+msgstr ""
+
+#: ../../reference/manifest.rst:94 ../../reference/repl.rst:88
+msgid "For example:"
+msgstr ""
+
+#: ../../reference/manifest.rst:96
+msgid "include(\"path.py\", extra_features=True)"
+msgstr ""
+
+#: ../../reference/manifest.rst:100
+msgid "then in path.py:"
+msgstr ""
+
+#: ../../reference/manifest.rst:102
+msgid ""
+"options.defaults(standard_features=True)\n"
+"# freeze minimal modules.\n"
+"if options.standard_features:\n"
+"    # freeze standard modules.\n"
+"if options.extra_features:\n"
+"    # freeze extra modules."
+msgstr ""
+
+#: ../../reference/manifest.rst:113 ../../reference/mpremote.rst:166
+msgid "Examples"
+msgstr ""
+
+#: ../../reference/manifest.rst:115
+msgid "To freeze a single file which is available as ``import mydriver``, use:"
+msgstr ""
+
+#: ../../reference/manifest.rst:117
+msgid "freeze(\".\", \"mydriver.py\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:121
+msgid ""
+"To freeze a set of files which are available as ``import test1`` and "
+"``import test2``, and which are compiled with optimisation level 3, use:"
+msgstr ""
+
+#: ../../reference/manifest.rst:124
+msgid "freeze(\"/path/to/tests\", (\"test1.py\", \"test2.py\"), opt=3)"
+msgstr ""
+
+#: ../../reference/manifest.rst:128
+msgid "To freeze a module which can be imported as ``import mymodule``, use:"
+msgstr ""
+
+#: ../../reference/manifest.rst:130
+msgid ""
+"freeze(\n"
+"    \"../relative/path\",\n"
+"    (\n"
+"        \"mymodule/__init__.py\",\n"
+"        \"mymodule/core.py\",\n"
+"        \"mymodule/extra.py\",\n"
+"    ),\n"
+")"
+msgstr ""
+
+#: ../../reference/manifest.rst:141
+msgid "To include a manifest from the MicroPython repository, use:"
+msgstr ""
+
+#: ../../reference/manifest.rst:143
+msgid "include(\"$(MPY_DIR)/extmod/uasyncio/manifest.py\")"
+msgstr ""
+
+#: ../../reference/mpremote.rst:2
+msgid "MicroPython remote control: mpremote"
+msgstr ""
+
+#: ../../reference/mpremote.rst:4
+msgid ""
+"The ``mpremote`` command line tool provides an integrated set of "
+"utilities to remotely interact with and automate a MicroPython device "
+"over a serial connection."
+msgstr ""
+
+#: ../../reference/mpremote.rst:8
+msgid "To use mpremote install it via ``pip``:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:10
+msgid "$ pip install mpremote"
+msgstr ""
+
+#: ../../reference/mpremote.rst:14
+msgid ""
+"The simplest way to use this tool is just by invoking it without any "
+"arguments:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:16
+msgid "mpremote"
+msgstr ""
+
+#: ../../reference/mpremote.rst:20
+msgid ""
+"This command automatically detects and connects to the first available "
+"serial device and provides an interactive REPL.  Serial ports are opened "
+"in exclusive mode, so running a second (or third, etc) instance of "
+"``mpremote`` will connect to subsequent serial devices, if any are "
+"available."
+msgstr ""
+
+#: ../../reference/mpremote.rst:27
+msgid "Commands"
+msgstr ""
+
+#: ../../reference/mpremote.rst:29
+msgid ""
+"For REPL access, running ``mpremote`` without any arguments is usually "
+"all that is needed.  ``mpremote`` also supports a set of commands given "
+"at the command line which will perform various actions on remote "
+"MicroPython devices."
+msgstr ""
+
+#: ../../reference/mpremote.rst:33
+msgid "The full list of supported commands are:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:35
+msgid "connect to a specified device via a device-name shortcut:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:37
+msgid "$ mpremote <device-shortcut>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:41
+msgid "connect to specified device via name:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:43
+msgid "$ mpremote connect <device>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:47
+msgid "``<device>`` may be one of:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:49
+msgid "``list``: list available devices"
+msgstr ""
+
+#: ../../reference/mpremote.rst:50
+msgid "``auto``: connect to the first available device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:51
+msgid ""
+"``id:<serial>``: connect to the device with USB serial number "
+"``<serial>`` (the second entry in the output from the ``connect list`` "
+"command)"
+msgstr ""
+
+#: ../../reference/mpremote.rst:54
+msgid "``port:<path>``: connect to the device with the given path"
+msgstr ""
+
+#: ../../reference/mpremote.rst:55
+msgid "any valid device name/path, to connect to that device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:57
+msgid "disconnect current device:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:59
+msgid "$ mpremote disconnect"
+msgstr ""
+
+#: ../../reference/mpremote.rst:63
+msgid "enter the REPL on the connected device:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:65
+msgid "$ mpremote repl [options]"
+msgstr ""
+
+#: ../../reference/mpremote.rst:69
+msgid "Options are:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:71
+msgid ""
+"``--capture <file>``, to capture output of the REPL session to the given "
+"file"
+msgstr ""
+
+#: ../../reference/mpremote.rst:73
+msgid ""
+"``--inject-code <string>``, to specify characters to inject at the REPL "
+"when Ctrl-J is pressed"
+msgstr ""
+
+#: ../../reference/mpremote.rst:75
+msgid ""
+"``--inject-file <file>``, to specify a file to inject at the REPL when "
+"Ctrl-K is pressed"
+msgstr ""
+
+#: ../../reference/mpremote.rst:78
+msgid "evaluate and print the result of a Python expression:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:80
+msgid "$ mpremote eval <string>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:84
+msgid "execute the given Python code:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:86
+msgid "$ mpremote exec <string>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:90
+msgid "run a script from the local filesystem:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:92
+msgid "$ mpremote run <file>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:96
+msgid "execute filesystem commands on the device:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:98
+msgid "$ mpremote fs <command>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:102
+msgid "``<command>`` may be:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:104
+msgid "``cat <file..>`` to show the contents of a file or files on the device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:105
+msgid "``ls`` to list the current directory"
+msgstr ""
+
+#: ../../reference/mpremote.rst:106
+msgid "``ls <dirs...>`` to list the given directories"
+msgstr ""
+
+#: ../../reference/mpremote.rst:107
+msgid ""
+"``cp [-r] <src...> <dest>`` to copy files; use \":\" as a prefix to "
+"specify a file on the device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:109
+msgid "``rm <src...>`` to remove files on the device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:110
+msgid "``mkdir <dirs...>`` to create directories on the device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:111
+msgid "``rmdir <dirs...>`` to remove directories on the device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:113
+msgid "mount the local directory on the remote device:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:115
+msgid "$ mpremote mount <local-dir>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:119
+msgid ""
+"Multiple commands can be specified and they will be run sequentially. "
+"Connection and disconnection will be done automatically at the start and "
+"end of the execution of the tool, if such commands are not explicitly "
+"given.  Automatic connection will search for the first available serial "
+"device. If no action is specified then the REPL will be entered."
+msgstr ""
+
+#: ../../reference/mpremote.rst:126
+msgid "Shortcuts"
+msgstr ""
+
+#: ../../reference/mpremote.rst:128
+msgid "Shortcuts can be defined using the macro system.  Built-in shortcuts are::"
+msgstr ""
+
+#: ../../reference/mpremote.rst:130
+msgid "- ``devs``: list available devices (shortcut for ``connect list``)"
+msgstr ""
+
+#: ../../reference/mpremote.rst:132
+msgid "``a0``, ``a1``, ``a2``, ``a3``: connect to /dev/ttyACM?"
+msgstr ""
+
+#: ../../reference/mpremote.rst:134
+msgid "``u0``, ``u1``, ``u2``, ``u3``: connect to /dev/ttyUSB?"
+msgstr ""
+
+#: ../../reference/mpremote.rst:136
+msgid "``c0``, ``c1``, ``c2``, ``c3``: connect to COM?"
+msgstr ""
+
+#: ../../reference/mpremote.rst:138
+msgid ""
+"``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``df``: filesystem"
+" commands"
+msgstr ""
+
+#: ../../reference/mpremote.rst:141
+msgid "``reset``: reset the device"
+msgstr ""
+
+#: ../../reference/mpremote.rst:143
+msgid "``bootloader``: make the device enter its bootloader"
+msgstr ""
+
+#: ../../reference/mpremote.rst:145
+msgid ""
+"Any user configuration, including user-defined shortcuts, can be placed "
+"in the file ``.config/mpremote/config.py``. For example:"
+msgstr ""
+
+#: ../../reference/mpremote.rst:148
+msgid ""
+"commands = {\n"
+"    \"c33\": \"connect id:334D335C3138\",\n"
+"    \"bl\": \"bootloader\",\n"
+"    \"double x=4\": \"eval x*2\",  # x is an argument, with default 4\n"
+"    \"wl_scan\": [\"exec\", \"\"\"\n"
+"import network\n"
+"wl = network.WLAN()\n"
+"wl.active(1)\n"
+"for ap in wl.scan():\n"
+"    print(ap)\n"
+"\"\"\",],\n"
+"    \"test\": [\"mount\", \".\", \"exec\", \"import test\"],\n"
+"}"
+msgstr ""
+
+#: ../../reference/mpremote.rst:168
+msgid ""
+"mpremote\n"
+"\n"
+"mpremote a1\n"
+"\n"
+"mpremote connect /dev/ttyUSB0 repl\n"
+"\n"
+"mpremote ls\n"
+"\n"
+"mpremote a1 ls\n"
+"\n"
+"mpremote exec \"import micropython; micropython.mem_info()\"\n"
+"\n"
+"mpremote eval 1/2 eval 3/4\n"
+"\n"
+"mpremote mount .\n"
+"\n"
+"mpremote mount . exec \"import local_script\"\n"
+"\n"
+"mpremote ls\n"
+"\n"
+"mpremote cat boot.py\n"
+"\n"
+"mpremote cp :main.py .\n"
+"\n"
+"mpremote cp main.py :\n"
+"\n"
+"mpremote cp -r dir/ :"
+msgstr ""
 
 #: ../../reference/mpyfiles.rst:4
 msgid "MicroPython .mpy files"

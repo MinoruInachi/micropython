@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 10:28+0900\n"
-"PO-Revision-Date: 2021-07-22 18:49+0900\n"
+"POT-Creation-Date: 2021-10-17 11:19+0900\n"
+"PO-Revision-Date: 2021-10-22 23:24+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -716,4 +716,316 @@ msgstr "RP2xxx での MicroPython の始め方"
 #: ../../rp2/tutorial/intro.rst:6
 msgid "Let's get started!"
 msgstr "始めましょう！"
+
+#: ../../rp2/tutorial/pio.rst:2
+msgid "Programmable IO"
+msgstr "プログラマブル IO"
+
+#: ../../rp2/tutorial/pio.rst:4
+msgid ""
+"The RP2040 has hardware support for standard communication protocols like"
+" I2C, SPI and UART. For protocols where there is no hardware support, or "
+"where there is a requirement of custom I/O behaviour, Programmable Input "
+"Output (PIO) comes into play.  Also, some MicroPython applications make "
+"use of a technique called bit banging in which pins are rapidly turned on"
+" and off to transmit data.  This can make the entire process slow as the "
+"processor concentrates on bit banging rather than executing other logic."
+"  However, PIO allows bit banging to happen in the background while the "
+"CPU is executing the main work."
+msgstr ""
+"RP2040 は I2C、SPI、UART など標準的な通信プロトコルをハードウェアでサポートしています。"
+"ハードウェアでサポートされていないプロトコルや、カスタム化した I/O 動作が必要な場合は、"
+"プログラマブル IO (Programmable Input Output: PIO)が活躍します。"
+"また、MicroPython のアプリケーションの中には、データを送信するためにピンを高速で"
+"オン/オフするビットバンギングと呼ばれる技術を使用しているものがあります。"
+"これは、プロセッサが他のロジックを実行するよりもビットバンギングに集中するため、"
+"処理全体が遅くなる可能性があります。しかし、PIO は、CPU がメインの作業を実行している"
+"間に、ビットバンギングをバックグラウンドで行えます。"
+
+#: ../../rp2/tutorial/pio.rst:13
+msgid ""
+"Along with the two central Cortex-M0+ processing cores, the RP2040 has "
+"two PIO blocks each of which has four independent state machines.  These "
+"state machines can transfer data to/from other entities using First-In-"
+"First-Out (FIFO) buffers, which allow the state machine and main "
+"processor to work independently yet also synchronise their data.  Each "
+"FIFO has four words (each of 32 bits) which can be linked to the DMA to "
+"transfer larger amounts of data."
+msgstr ""
+"RP2040 には、２つの Cortex-M0+ プロセッシングコアに加えて、２つの PIO ブロックがあり、"
+"それぞれが４つの独立したステートマシンを持っています。"
+"これらのステートマシンは、先入れ先出し (FIFO) バッファを使って、"
+"他のエンティティとの間でデータを転送できます。これにより、ステートマシンと"
+"メインプロセッサは独立して動作しながら、データを同期させることができます。"
+"各 FIFO には４ワード(各32ビット)があり、これを DMA にリンクすることで"
+"大容量のデータを転送できます。"
+
+#: ../../rp2/tutorial/pio.rst:20
+msgid "All PIO instructions follow a common pattern::"
+msgstr "すべての PIO 命令は共通のパターンにしたがいます::"
+
+#: ../../rp2/tutorial/pio.rst:22
+msgid "<instruction> .side(<side_set_value>) [<delay_value>]"
+msgstr ""
+
+#: ../../rp2/tutorial/pio.rst:24
+msgid ""
+"The side-set ``.side(...)`` and delay ``[...]`` parts are both optional, "
+"and if specified allow the instruction to perform more than one "
+"operation.  This keeps PIO programs small and efficient."
+msgstr ""
+"サイドセット ``.side(...)`` と遅延 ``[...]`` の部分はいずれもオプションで、"
+"指定するとその命令で複数の処理を行えます。これにより、PIO のプログラムは小さく、"
+"効率的になります。"
+
+#: ../../rp2/tutorial/pio.rst:28
+msgid "There are nine instructions which perform the following tasks:"
+msgstr "タスクを処理する命令には、以下の９つのものがあります:"
+
+#: ../../rp2/tutorial/pio.rst:30
+msgid "``jmp()`` transfers control to a different part of the code"
+msgstr "``jmp()`` は、コードの違う場所に制御を移します"
+
+#: ../../rp2/tutorial/pio.rst:31
+msgid "``wait()`` pauses until a particular action happens"
+msgstr "``wait()`` は、特定のアクションが発生するまで一時停止します"
+
+#: ../../rp2/tutorial/pio.rst:32
+msgid ""
+"``in_()`` shifts the bits from a source (scratch register or set of pins)"
+" to the input shift register"
+msgstr ""
+"``in_()`` は、ビット列をソース(スクラッチレジスタまたはピンのセット)から"
+"入力シフトレジスタにシフトします"
+
+#: ../../rp2/tutorial/pio.rst:34
+msgid "``out()`` shifts the bits from the output shift register to a destination"
+msgstr "``out()`` は、ビット列を出力シフトレジスタからデスティネーションにシフトします"
+
+#: ../../rp2/tutorial/pio.rst:35
+msgid "``push()`` sends data to the RX FIFO"
+msgstr "``push()`` は、RX FIFO にデータを送信します"
+
+#: ../../rp2/tutorial/pio.rst:36
+msgid "``pull()`` receives data from the TX FIFO"
+msgstr "``pull()`` は、TX FIFO からデータを受信します"
+
+#: ../../rp2/tutorial/pio.rst:37
+msgid "``mov()`` moves data from a source to a destination"
+msgstr "``mov()`` は、データをソースからデスティネーションに移動します"
+
+#: ../../rp2/tutorial/pio.rst:38
+msgid "``irq()`` sets or clears an IRQ flag"
+msgstr "``irq()`` は、IRQ フラグを設定またはクリアします"
+
+#: ../../rp2/tutorial/pio.rst:39
+msgid "``set()`` writes a literal value to a destination"
+msgstr "``set()`` は、リテラル値をデスティネーションに書き込みます"
+
+#: ../../rp2/tutorial/pio.rst:41
+msgid "The instruction modifiers are:"
+msgstr "命令修飾子は次のものがあります:"
+
+#: ../../rp2/tutorial/pio.rst:43
+msgid "``.side()`` sets the side-set pins at the start of the instruction"
+msgstr "``.side()`` は、命令の開始時にサイドセットピンを設定します"
+
+#: ../../rp2/tutorial/pio.rst:44
+msgid ""
+"``[]`` delays for a certain number of cycles after execution of the "
+"instruction"
+msgstr "``[]`` は、命令の実行後に特定のサイクル数だけ遅延します"
+
+#: ../../rp2/tutorial/pio.rst:46
+msgid "There are also directives:"
+msgstr "ディレクティブもあります:"
+
+#: ../../rp2/tutorial/pio.rst:48
+msgid ""
+"``wrap_target()`` specifies where the program execution will get "
+"continued from"
+msgstr "``wrap_target()`` は、プログラムの実行をどこから続行するかを指定します"
+
+#: ../../rp2/tutorial/pio.rst:49
+msgid ""
+"``wrap()`` specifies the instruction where the control flow of the "
+"program will get wrapped from"
+msgstr "``wrap()`` は、プログラムの制御フローをラップする命令を指定します"
+
+#: ../../rp2/tutorial/pio.rst:51
+msgid "``label()`` sets a label for use with ``jmp()`` instructions"
+msgstr "``label()`` は、 ``jmp()`` 命令で使うラベルを設定します"
+
+#: ../../rp2/tutorial/pio.rst:52
+msgid ""
+"``word()`` emits a raw 16-bit value which acts as an instruction in the "
+"program"
+msgstr ""
+"``word()`` は、プログラムの命令として機能する生の16ビット値を出力します"
+
+#: ../../rp2/tutorial/pio.rst:55
+msgid "An example"
+msgstr "サンプルコード"
+
+#: ../../rp2/tutorial/pio.rst:57
+msgid ""
+"Take the ``pio_1hz.py`` example for a simple understanding of how to use "
+"the PIO and state machines. Below is the code for reference."
+msgstr ""
+"PIO とステートマシンの使い方を簡単に理解するには、ソースに含まれるサンプルルコード "
+"``pio_1hz.py`` を参照してください。以下に引用します。"
+
+#: ../../rp2/tutorial/pio.rst:60
+msgid ""
+"# Example using PIO to blink an LED and raise an IRQ at 1Hz.\n"
+"\n"
+"import time\n"
+"from machine import Pin\n"
+"import rp2\n"
+"\n"
+"\n"
+"@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)\n"
+"def blink_1hz():\n"
+"    # Cycles: 1 + 1 + 6 + 32 * (30 + 1) = 1000\n"
+"    irq(rel(0))\n"
+"    set(pins, 1)\n"
+"    set(x, 31)                  [5]\n"
+"    label(\"delay_high\")\n"
+"    nop()                       [29]\n"
+"    jmp(x_dec, \"delay_high\")\n"
+"\n"
+"    # Cycles: 1 + 7 + 32 * (30 + 1) = 1000\n"
+"    set(pins, 0)\n"
+"    set(x, 31)                  [6]\n"
+"    label(\"delay_low\")\n"
+"    nop()                       [29]\n"
+"    jmp(x_dec, \"delay_low\")\n"
+"\n"
+"\n"
+"# Create the StateMachine with the blink_1hz program, outputting on "
+"Pin(25).\n"
+"sm = rp2.StateMachine(0, blink_1hz, freq=2000, set_base=Pin(25))\n"
+"\n"
+"# Set the IRQ handler to print the millisecond timestamp.\n"
+"sm.irq(lambda p: print(time.ticks_ms()))\n"
+"\n"
+"# Start the StateMachine.\n"
+"sm.active(1)"
+msgstr ""
+"# LED を点滅し、1Hz の IRQ を起こす PIO の使用例。\n"
+"\n"
+"import time\n"
+"from machine import Pin\n"
+"import rp2\n"
+"\n"
+"\n"
+"@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)\n"
+"def blink_1hz():\n"
+"    # サイクル: 1 + 1 + 6 + 32 * (30 + 1) = 1000\n"
+"    irq(rel(0))\n"
+"    set(pins, 1)\n"
+"    set(x, 31)                  [5]\n"
+"    label(\"delay_high\")\n"
+"    nop()                       [29]\n"
+"    jmp(x_dec, \"delay_high\")\n"
+"\n"
+"    # サイクル: 1 + 7 + 32 * (30 + 1) = 1000\n"
+"    set(pins, 0)\n"
+"    set(x, 31)                  [6]\n"
+"    label(\"delay_low\")\n"
+"    nop()                       [29]\n"
+"    jmp(x_dec, \"delay_low\")\n"
+"\n"
+"\n"
+"# blink_1hz プログラムを持ち、出力に Pin(25) を使うステートマシンの作成。\n"
+"sm = rp2.StateMachine(0, blink_1hz, freq=2000, set_base=Pin(25))\n"
+"\n"
+"# ミリ秒単位のタイムスタンプをプリントする IRQ ハンドラの設定。\n"
+"sm.irq(lambda p: print(time.ticks_ms()))\n"
+"\n"
+"# ステートマシンを始動。\n"
+"sm.active(1)"
+
+#: ../../rp2/tutorial/pio.rst:96
+msgid ""
+"This creates an instance of class :class:`rp2.StateMachine` which runs "
+"the ``blink_1hz`` program at 2000Hz, and connects to pin 25.  The "
+"``blink_1hz`` program uses the PIO to blink an LED connected to this pin "
+"at 1Hz, and also raises an IRQ as the LED turns on.  This IRQ then calls "
+"the ``lambda`` function which prints out a millisecond timestamp."
+msgstr ""
+"これは、2000Hz で ``blink_1hz`` プログラムを実行し、ピン 25 に接続する、"
+"クラス :class:`rp2.StateMachine` インスタンスを作成します。 "
+"``blink_1hz`` プログラムは PIO を使って、このピンに接続されたLEDを 1Hz で点滅させ、"
+"LED がオンになると IRQ を起こします。このIRQ はミリ秒単位のタイムスタンプを出力する "
+"``lambda`` 関数を呼び出します。"
+
+#: ../../rp2/tutorial/pio.rst:102
+msgid ""
+"The ``blink_1hz`` program is a PIO assembler routine.  It connects to a "
+"single pin which is configured as an output and starts out low.  The "
+"instructions do the following:"
+msgstr ""
+"blink_1hz プログラムは PIO のアセンブラルーチンです。これは、出力として構成され、"
+"ローから始まる単一のピンに接続します。命令は次のとおりです:"
+
+#: ../../rp2/tutorial/pio.rst:106
+msgid "``irq(rel(0))`` raises the IRQ associated with the state machine."
+msgstr "``irq(rel(0))`` は、ステートマシンに関連付けられた IRQ を起こします。"
+
+#: ../../rp2/tutorial/pio.rst:107
+msgid "The LED is turned on via the ``set(pins, 1)`` instruction."
+msgstr "LED は ``set(pins, 1)`` 命令により点灯します。
+
+#: ../../rp2/tutorial/pio.rst:108
+msgid ""
+"The value 31 is put into register X, and then there is a delay for 5 more"
+" cycles, specified by the ``[5]``."
+msgstr ""
+"値 31 をレジスタ X に入れ、その後に ``[5]`` で指定したように、5サイクルだけ遅延します。"
+
+#: ../../rp2/tutorial/pio.rst:110
+msgid "The ``nop() [29]`` instruction waits for 30 cycles."
+msgstr "``nop() [29]`` 命令は 30 サイクルだけ遅延します。"
+
+#: ../../rp2/tutorial/pio.rst:111
+msgid ""
+"The ``jmp(x_dec, \"delay_high\")`` will keep looping to the "
+"``delay_high`` label as long as the register X is non-zero, and will also"
+" post-decrement X.  Since X starts with the value 31 this jump will "
+"happen 31 times, so the ``nop() [29]`` runs 32 times in total (note there"
+" is also one instruction cycle taken by the ``jmp`` for each of these 32 "
+"loops)."
+msgstr ""
+"``jmp(x_dec, \"delay_high\")`` により、レジスタ X が 0 になるまで "
+"``delay_high`` ラベルとの間をループします。この命令が実行された後、X は "
+"1 だけ減ります。X は値31から始まるのでので、このジャンプは31回発生します。"
+"したがって ``nop() [29]`` が合計32回実行されます(32回のループのそれぞれで "
+" ``jmp`` による１命令のサイクルもかかります)。"
+
+#: ../../rp2/tutorial/pio.rst:116
+msgid "``set(pins, 0)`` will turn the LED off by setting pin 25 low."
+msgstr "``set(pins, 0)`` はピン 25 をローに設定することにより、LED をオフにします。"
+
+#: ../../rp2/tutorial/pio.rst:117
+msgid "Another 32 loops of ``nop() [29]`` and ``jmp(...)`` will execute."
+msgstr "次に ``nop() [29]`` と ``jmp(...)`` の32回のループを実行します。"
+
+#: ../../rp2/tutorial/pio.rst:118
+msgid ""
+"Because ``wrap_target()`` and ``wrap()`` are not specified, their default"
+" will be used and execution of the program will wrap around from the "
+"bottom to the top.  This wrapping does not cost any execution cycles."
+msgstr ""
+"``wrap_target()`` と ``wrap()`` が指定されていないため、デフォルトが使用され、"
+"プログラムの実行は最下から最上に折り返されます。このラッピングに実行サイクルはかかりません。"
+
+#: ../../rp2/tutorial/pio.rst:122
+msgid ""
+"The entire routine takes exactly 2000 cycles of the state machine.  "
+"Setting the frequency of the state machine to 2000Hz makes the LED blink "
+"at 1Hz."
+msgstr ""
+"ルーチン全体は、正確にステートマシンの 2000 サイクルかかります。"
+"ステートマシンの周波数を 2000Hz に設定すると LED が 1Hz で点滅します。"
 
