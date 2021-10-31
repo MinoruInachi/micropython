@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-17 11:19+0900\n"
-"PO-Revision-Date: 2021-10-23 11:36+0900\n"
+"POT-Creation-Date: 2021-10-31 13:32+0900\n"
+"PO-Revision-Date: 2021-10-31 15:52+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -798,11 +798,32 @@ msgstr ""
 msgid "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised."
 msgstr "接続に成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:372
+#: ../../library/bluetooth.rst:370
+msgid ""
+"The device will wait up to *scan_duration_ms* to receive an advertising "
+"payload from the device."
+msgstr ""
+"デバイスからのアドバタイジングペイロードを受信するまで *scan_duration_ms* まで"
+"待機します。"
+
+#: ../../library/bluetooth.rst:373
+msgid ""
+"The connection interval can be configured in **micro**\\ seconds using "
+"either or both of *min_conn_interval_us* and *max_conn_interval_us*. "
+"Otherwise a default interval will be chosen, typically between 30000 and "
+"50000 microseconds. A shorter interval will increase throughput, at the "
+"expense of power usage."
+msgstr ""
+"接続間隔は *min_conn_interval_us* および *max_conn_interval_us* のいずれか"
+"または両方を使って **マイクロ** 秒単位で設定できます。それ以外の場合は、"
+"通常 30000～50000 マイクロ秒の間でデフォルトの間隔が選択されます。"
+"間隔を短くするとスループットが向上しますが消費電力は増加します。"
+
+#: ../../library/bluetooth.rst:381
 msgid "Peripheral Role"
 msgstr "ペリフェラルロール"
 
-#: ../../library/bluetooth.rst:374
+#: ../../library/bluetooth.rst:383
 msgid ""
 "A peripheral device is expected to send connectable advertisements (see "
 ":meth:`gap_advertise<BLE.gap_advertise>`). It will usually be acting as a"
@@ -815,18 +836,18 @@ msgstr ""
 "用いて最初に登録されたサービスとキャラクタリスティックを持つ GATT サーバとして"
 "動作します。"
 
-#: ../../library/bluetooth.rst:379
+#: ../../library/bluetooth.rst:388
 msgid ""
 "When a central connects, the ``_IRQ_CENTRAL_CONNECT`` event will be "
 "raised."
 msgstr ""
 "セントラルが接続すると ``_IRQ_CENTRAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:383
+#: ../../library/bluetooth.rst:392
 msgid "Central & Peripheral Roles"
 msgstr "セントラル＆ペリフェラルロール"
 
-#: ../../library/bluetooth.rst:387
+#: ../../library/bluetooth.rst:396
 msgid ""
 "Disconnect the specified connection handle. This can either be a central "
 "that has connected to this device (if acting as a peripheral) or a "
@@ -837,7 +858,7 @@ msgstr ""
 "接続したセントラル、または(セントラルとして動作している)このデバイスに以前に接続されていた"
 "ペリフェラルのいずれかになります。"
 
-#: ../../library/bluetooth.rst:392
+#: ../../library/bluetooth.rst:401
 msgid ""
 "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` or "
 "``_IRQ_CENTRAL_DISCONNECT`` event will be raised."
@@ -845,7 +866,7 @@ msgstr ""
 "切断に成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` または "
 "``_IRQ_CENTRAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:395
+#: ../../library/bluetooth.rst:404
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
@@ -853,11 +874,11 @@ msgstr ""
 "接続ハンドルが接続されていない場合は ``False`` を、そうでない場合は ``True`` "
 "を返します。"
 
-#: ../../library/bluetooth.rst:400
+#: ../../library/bluetooth.rst:409
 msgid "GATT Server"
 msgstr "GATT サーバー"
 
-#: ../../library/bluetooth.rst:402
+#: ../../library/bluetooth.rst:411
 msgid ""
 "A GATT server has a set of registered services. Each service may contain "
 "characteristics, which each have a value. Characteristics can also "
@@ -868,7 +889,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/bluetooth.rst:406
+#: ../../library/bluetooth.rst:415
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -881,7 +902,7 @@ msgstr ""
 "さらに、ペリフェラルは接続ハンドルを介して接続されたクライアントにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/bluetooth.rst:411
+#: ../../library/bluetooth.rst:420
 msgid ""
 "A device in either central or peripheral roles may function as a GATT "
 "server, however in most cases it will be more common for a peripheral "
@@ -890,7 +911,7 @@ msgstr ""
 "セントラルまたはペリフェラルのいずれかのロールを持つデバイスが GATT サーバとして"
 "機能することもありますが、ほとんどの場合、ペリフェラルがサーバとして機能するのが一般的です。"
 
-#: ../../library/bluetooth.rst:415
+#: ../../library/bluetooth.rst:424
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a client will be truncated to this length. "
@@ -906,14 +927,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/bluetooth.rst:424
+#: ../../library/bluetooth.rst:433
 msgid ""
 "Configures the server with the specified services, replacing any existing"
 " services."
 msgstr ""
 "指定したサービスでサーバーを構成し、既存のサービスを置換します。"
 
-#: ../../library/bluetooth.rst:427
+#: ../../library/bluetooth.rst:436
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -922,7 +943,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/bluetooth.rst:430
+#: ../../library/bluetooth.rst:439
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -930,14 +951,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/bluetooth.rst:433
+#: ../../library/bluetooth.rst:442
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/bluetooth.rst:436
+#: ../../library/bluetooth.rst:445
 msgid ""
 "The **flags** are a bitwise-OR combination of the flags defined below. "
 "These set both the behaviour of the characteristic (or descriptor) as "
@@ -947,7 +968,7 @@ msgstr ""
 "これらは、キャラクタリスティック(またはディスクリプタ)の振舞いおよびセキュリティと"
 "プライバシーの要件の両方を設定します。"
 
-#: ../../library/bluetooth.rst:440
+#: ../../library/bluetooth.rst:449
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -957,14 +978,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/bluetooth.rst:444
+#: ../../library/bluetooth.rst:453
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/bluetooth.rst:446
+#: ../../library/bluetooth.rst:455
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -980,7 +1001,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:456
+#: ../../library/bluetooth.rst:465
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -992,16 +1013,16 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>`, "
 ":meth:`gatts_indicate <BLE.gatts_indicate>` で使えます。"
 
-#: ../../library/bluetooth.rst:460
+#: ../../library/bluetooth.rst:469
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/bluetooth.rst:462
+#: ../../library/bluetooth.rst:471
 msgid "Available flags for characteristics and descriptors are::"
 msgstr "キャラクタリスティックとディスクリプタで使えるフラグは次のとおりです::"
 
-#: ../../library/bluetooth.rst:464
+#: ../../library/bluetooth.rst:473
 msgid ""
 "from micropython import const\n"
 "_FLAG_BROADCAST = const(0x0001)\n"
@@ -1021,14 +1042,14 @@ msgid ""
 "_FLAG_WRITE_AUTHORIZED = const(0x4000)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:481
+#: ../../library/bluetooth.rst:490
 msgid ""
 "As for the IRQs above, any required constants should be added to your "
 "Python code."
 msgstr ""
 "先述の IRQ と同様に、必要な定数を Python コードに追加してください。"
 
-#: ../../library/bluetooth.rst:485
+#: ../../library/bluetooth.rst:494
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote client)."
@@ -1036,12 +1057,12 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートクライアントで書き込まれたもの)を読み取ります。"
 
-#: ../../library/bluetooth.rst:490
+#: ../../library/bluetooth.rst:499
 msgid "Writes the local value for this handle, which can be read by a client."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、クライアントによって読み取ることができます。"
 
-#: ../../library/bluetooth.rst:492
+#: ../../library/bluetooth.rst:501
 msgid ""
 "If *send_update* is ``True``, then any subscribed clients will be "
 "notified (or indicated, depending on what they're subscribed to and which"
@@ -1051,11 +1072,11 @@ msgstr ""
 "この書き込みについて通知されます(またはサブスクライブしている内容と、キャラクタリスティックが"
 "サポートしている操作に応じてレスポンスを要求します)。
 
-#: ../../library/bluetooth.rst:498
+#: ../../library/bluetooth.rst:507
 msgid "Sends a notification request to a connected client."
 msgstr "接続されているクライアントにノーティフィケーション要求を送信します。"
 
-#: ../../library/bluetooth.rst:500
+#: ../../library/bluetooth.rst:509
 msgid ""
 "If *data* is not ``None``, then that value is sent to the client as part "
 "of the notification. The local value will not be modified."
@@ -1063,7 +1084,7 @@ msgstr ""
 "*data* が ``None`` でなければ、その値が通知の一部としてクライアントに送信されます。"
 "ローカル値は変更されません。"
 
-#: ../../library/bluetooth.rst:503
+#: ../../library/bluetooth.rst:512
 msgid ""
 "Otherwise, if *data* is ``None``, then the current local value (as set "
 "with :meth:`gatts_write <BLE.gatts_write>`) will be sent."
@@ -1071,7 +1092,7 @@ msgstr ""
 "*data* が ``None`` でなければ、現在のローカル値("
 ":meth:`gatts_write <BLE.gatts_write>` で設定された値)が送信されます。"
 
-#: ../../library/bluetooth.rst:506
+#: ../../library/bluetooth.rst:515
 msgid ""
 "**Note:** The notification will be sent regardless of the subscription "
 "status of the client to this characteristic."
@@ -1079,7 +1100,7 @@ msgstr ""
 "注記:** 通知は、このキャラクタリスティックに対するクライアントの"
 "サブスクリプションステータスに関係なく送信されます。"
 
-#: ../../library/bluetooth.rst:511
+#: ../../library/bluetooth.rst:520
 msgid ""
 "Sends an indication request containing the characteristic's current value"
 " to a connected client."
@@ -1087,7 +1108,7 @@ msgstr ""
 "キャラクタリスティックの現在の値を含む指示(indication)要求を接続中のクライアントに"
 "送信します。"
 
-#: ../../library/bluetooth.rst:514
+#: ../../library/bluetooth.rst:523
 msgid ""
 "On acknowledgment (or failure, e.g. timeout), the "
 "``_IRQ_GATTS_INDICATE_DONE`` event will be raised."
@@ -1095,7 +1116,7 @@ msgstr ""
 "acknowledgment (あるいはタイムアウトなどの失敗)があった場合、 "
 "``_IRQ_GATTS_INDICATE_DONE`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:517
+#: ../../library/bluetooth.rst:526
 msgid ""
 "**Note:** The indication will be sent regardless of the subscription "
 "status of the client to this characteristic."
@@ -1103,7 +1124,7 @@ msgstr ""
 "注記:** 指示は、このキャラクタリスティックに対するクライアントの"
 "サブスクリプションステータスに関係なく送信されます。"
 
-#: ../../library/bluetooth.rst:522
+#: ../../library/bluetooth.rst:531
 msgid ""
 "Sets the internal buffer size for a value in bytes. This will limit the "
 "largest possible write that can be received. The default is 20."
@@ -1111,7 +1132,7 @@ msgstr ""
 "値の内部バッファサイズをバイト数で設定します。これにより、受信可能な最大の書き込みが"
 "制限されます。デフォルトは 20 です。"
 
-#: ../../library/bluetooth.rst:525
+#: ../../library/bluetooth.rst:534
 msgid ""
 "Setting *append* to ``True`` will make all remote writes append to, "
 "rather than replace, the current value. At most *len* bytes can be "
@@ -1125,11 +1146,11 @@ msgstr ""
 "読み取り後に値がクリアされます。この機能は、Nordic UART サービスのようなものを"
 "実装するときに役立ちます。"
 
-#: ../../library/bluetooth.rst:532
+#: ../../library/bluetooth.rst:541
 msgid "GATT Client"
 msgstr "GATT クライアント"
 
-#: ../../library/bluetooth.rst:534
+#: ../../library/bluetooth.rst:543
 msgid ""
 "A GATT client can discover and read/write characteristics on a remote "
 "GATT server."
@@ -1137,7 +1158,7 @@ msgstr ""
 "GATT クライアントは、リモートの GATT サーバ上のキャラクタリスティックを発見し、"
 "読み書きすることができます。"
 
-#: ../../library/bluetooth.rst:536
+#: ../../library/bluetooth.rst:545
 msgid ""
 "It is more common for a central role device to act as the GATT client, "
 "however it's also possible for a peripheral to act as a client in order "
@@ -1148,7 +1169,7 @@ msgstr ""
 "接続したセントラルについての情報を発見するためにペリフェラルがクライアントとして"
 "動作することも可能です(デバイス情報サービスからデバイス名を読み取るなど)。
 
-#: ../../library/bluetooth.rst:543
+#: ../../library/bluetooth.rst:552
 msgid "Query a connected server for its services."
 msgstr "サービスについて接続されたサーバーを問い合わせます。"
 
@@ -1156,7 +1177,7 @@ msgstr "サービスについて接続されたサーバーを問い合わせま
 msgid "Optionally specify a service *uuid* to query for that service only."
 msgstr "オプションで照会するサービスの *uuid* を指定できます。"
 
-#: ../../library/bluetooth.rst:547
+#: ../../library/bluetooth.rst:556
 msgid ""
 "For each service discovered, the ``_IRQ_GATTC_SERVICE_RESULT`` event will"
 " be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion."
@@ -1164,18 +1185,18 @@ msgstr ""
 "検出された各サービスについて ``_IRQ_GATTC_SERVICE_RESULT`` イベントが発生し、"
 "検索が完了すると ``_IRQ_GATTC_SERVICE_DONE`` になります。"
 
-#: ../../library/bluetooth.rst:552
+#: ../../library/bluetooth.rst:561
 msgid "Query a connected server for characteristics in the specified range."
 msgstr "指定した範囲のキャラクタリスティックについて接続されたサーバーを問い合わせます。"
 
-#: ../../library/bluetooth.rst:554
+#: ../../library/bluetooth.rst:563
 msgid ""
 "Optionally specify a characteristic *uuid* to query for that "
 "characteristic only."
 msgstr ""
 "オプションで照会するキャラクタリスティックの *uuid* を指定できます。"
 
-#: ../../library/bluetooth.rst:557
+#: ../../library/bluetooth.rst:566
 msgid ""
 "You can use ``start_handle=1``, ``end_handle=0xffff`` to search for a "
 "characteristic in any service."
@@ -1183,7 +1204,7 @@ msgstr ""
 "任意のサービスのキャラクタリスティックを検索するには "
 "``start_handle=1``, ``end_handle=0xffff`` とします。"
 
-#: ../../library/bluetooth.rst:560
+#: ../../library/bluetooth.rst:569
 msgid ""
 "For each characteristic discovered, the "
 "``_IRQ_GATTC_CHARACTERISTIC_RESULT`` event will be raised, followed by "
@@ -1192,11 +1213,11 @@ msgstr ""
 "検出された各キャラクタリスティックについて ``_IRQ_GATTC_CHARACTERISTIC_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_CHARACTERISTIC_DONE`` になります。"
 
-#: ../../library/bluetooth.rst:565
+#: ../../library/bluetooth.rst:574
 msgid "Query a connected server for descriptors in the specified range."
 msgstr "指定した範囲のディスクリプタについて接続されたサーバーを問い合わせます。"
 
-#: ../../library/bluetooth.rst:567
+#: ../../library/bluetooth.rst:576
 msgid ""
 "For each descriptor discovered, the ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "event will be raised, followed by ``_IRQ_GATTC_DESCRIPTOR_DONE`` on "
@@ -1205,7 +1226,7 @@ msgstr ""
 "検出された各ディスクリプタについて ``_IRQ_GATTC_DESCRIPTOR_RESULT`` "
 "イベントが発生し、検索が完了すると ``_IRQ_GATTC_DESCRIPTOR_DONE`` になります。"
 
-#: ../../library/bluetooth.rst:572
+#: ../../library/bluetooth.rst:581
 msgid ""
 "Issue a remote read to a connected server for the specified "
 "characteristic or descriptor handle."
@@ -1213,7 +1234,7 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたサーバーに"
 "リモート読み込みを発行します。"
 
-#: ../../library/bluetooth.rst:575
+#: ../../library/bluetooth.rst:584
 msgid ""
 "When a value is available, the ``_IRQ_GATTC_READ_RESULT`` event will be "
 "raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised."
@@ -1221,7 +1242,7 @@ msgstr ""
 "値は有効であれば ``_IRQ_GATTC_READ_RESULT`` イベントが発生し、"
 "加えて ``_IRQ_GATTC_READ_DONE`` が発生します。"
 
-#: ../../library/bluetooth.rst:580
+#: ../../library/bluetooth.rst:589
 msgid ""
 "Issue a remote write to a connected server for the specified "
 "characteristic or descriptor handle."
@@ -1229,14 +1250,14 @@ msgstr ""
 "指定したキャラクタリスティックあるいはディスクリプタについて接続されたサーバーに"
 "リモート書き込みを発行します。"
 
-#: ../../library/bluetooth.rst:583
+#: ../../library/bluetooth.rst:592
 msgid ""
 "The argument *mode* specifies the write behaviour, with the currently "
 "supported values being:"
 msgstr ""
 "引数 *mode* は書き込み動作を指定します。現在サポートされている値は次のとおりです:"
 
-#: ../../library/bluetooth.rst:586
+#: ../../library/bluetooth.rst:595
 msgid ""
 "``mode=0`` (default) is a write-without-response: the write will be sent "
 "to the remote server but no confirmation will be returned, and no event "
@@ -1245,7 +1266,7 @@ msgstr ""
 "``mode=0`` (デフォルト)は応答なしの書き込みです。書き込みはリモートサーバーに"
 "送信されますが、確認は返されず、イベントは発生しません。"
 
-#: ../../library/bluetooth.rst:589
+#: ../../library/bluetooth.rst:598
 msgid ""
 "``mode=1`` is a write-with-response: the remote server is requested to "
 "send a response/acknowledgement that it received the data."
@@ -1253,7 +1274,7 @@ msgstr ""
 "``mode=1`` は応答付きの書き込みです。リモートサーバーはデータを受信したという"
 "応答/承認(acknowledgement)を送信するように要求されます。"
 
-#: ../../library/bluetooth.rst:593
+#: ../../library/bluetooth.rst:602
 msgid ""
 "If a response is received from the remote server the "
 "``_IRQ_GATTC_WRITE_DONE`` event will be raised."
@@ -1261,7 +1282,7 @@ msgstr ""
 "リモートサーバーから応答を受信すると ``_IRQ_GATTC_WRITE_DONE`` "
 "イベントが発生します。"
 
-#: ../../library/bluetooth.rst:598
+#: ../../library/bluetooth.rst:607
 msgid ""
 "Initiate MTU exchange with a connected server, using the preferred MTU "
 "set using ``BLE.config(mtu=value)``."
@@ -1269,14 +1290,14 @@ msgstr ""
 "``BLE.config(mtu=value)`` で設定した優先 MTU を使って、接続されているサーバとの "
 "MTU 交換を開始します。"
 
-#: ../../library/bluetooth.rst:601
+#: ../../library/bluetooth.rst:610
 msgid ""
 "The ``_IRQ_MTU_EXCHANGED`` event will be raised when MTU exchange "
 "completes."
 msgstr ""
 "MTU 交換が完了すると ``_IRQ_MTU_EXCHANGED`` イベントは発生します。"
 
-#: ../../library/bluetooth.rst:604
+#: ../../library/bluetooth.rst:613
 msgid ""
 "**Note:** MTU exchange is typically initiated by the central. When using "
 "the BlueKitchen stack in the central role, it does not support a remote "
@@ -1286,11 +1307,11 @@ msgstr ""
 "セントラルロールで BlueKitchen スタックを使う場合、リモートペリフェラルが MTU 交換を"
 "開始することはサポートしていません。NimBLE は両方のロールに対応しています。"
 
-#: ../../library/bluetooth.rst:610
+#: ../../library/bluetooth.rst:619
 msgid "L2CAP connection-oriented-channels"
 msgstr ""
 
-#: ../../library/bluetooth.rst:612
+#: ../../library/bluetooth.rst:621
 msgid ""
 "This feature allows for socket-like data exchange between two BLE "
 "devices. Once the devices are connected via GAP, either device can listen"
@@ -1301,7 +1322,7 @@ msgstr ""
 "デバイスが GAP を介して接続されると、どちらかのデバイスは他方のデバイスが "
 "PSM (Protocol/Service Multiplexer)番号でリスン(listen)できます。"
 
-#: ../../library/bluetooth.rst:616
+#: ../../library/bluetooth.rst:625
 msgid ""
 "**Note:** This is currently only supported when using the NimBLE stack on"
 " STM32 and Unix (not ESP32). Only one L2CAP channel may be active at a "
@@ -1311,7 +1332,7 @@ msgstr ""
 "サポートされています(ESP32 ではサポートしていません)。一度に1つの L2CAP チャネルのみが"
 "アクティブになることがあります(つまりリスン中は接続できません)。"
 
-#: ../../library/bluetooth.rst:620
+#: ../../library/bluetooth.rst:629
 msgid ""
 "Active L2CAP channels are identified by the connection handle that they "
 "were established on and a CID (channel ID)."
@@ -1319,7 +1340,7 @@ msgstr ""
 "アクティブな L2CAP チャネルは、確立された接続ハンドルと CID (チャネル ID)によって"
 "識別されます。"
 
-#: ../../library/bluetooth.rst:623
+#: ../../library/bluetooth.rst:632
 msgid ""
 "Connection-oriented channels have built-in credit-based flow control. "
 "Unlike ATT, where devices negotiate a shared MTU, both the listening and "
@@ -1333,7 +1354,7 @@ msgstr ""
 ":meth:`l2cap_recvinto <BLE.l2cap_recvinto>` で完全に消費される前に"
 "送信できる未処理データの最大量を制限します。"
 
-#: ../../library/bluetooth.rst:631
+#: ../../library/bluetooth.rst:640
 msgid ""
 "Start listening for incoming L2CAP channel requests on the specified "
 "*psm* with the local MTU set to *mtu*."
@@ -1341,7 +1362,7 @@ msgstr ""
 "指定の *psm* と *mtu* に指定のローカル MTU で、L2CAP チャネル要求の着信のための"
 "リスンを開始します。"
 
-#: ../../library/bluetooth.rst:634
+#: ../../library/bluetooth.rst:643
 msgid ""
 "When a remote device initiates a connection, the ``_IRQ_L2CAP_ACCEPT`` "
 "event will be raised, which gives the listening server a chance to reject"
@@ -1350,7 +1371,7 @@ msgstr ""
 "リモートデバイスが接続を開始すると ``_IRQ_L2CAP_ACCEPT`` イベントが発生し、"
 "リスン中のサーバに着信接続を(0 以外の整数を返すことで)拒否する機会が与えられます。"
 
-#: ../../library/bluetooth.rst:638
+#: ../../library/bluetooth.rst:647
 msgid ""
 "Once the connection is accepted, the ``_IRQ_L2CAP_CONNECT`` event will be"
 " raised, allowing the server to obtain the channel id (CID) and the local"
@@ -1359,18 +1380,18 @@ msgstr ""
 "接続が受け入れられると ``_IRQ_L2CAP_CONNECT`` イベントが発生し、"
 "サーバがチャネル ID (CID) とローカルおよびリモートの MTU を取得できるようになります。"
 
-#: ../../library/bluetooth.rst:642
+#: ../../library/bluetooth.rst:651
 msgid "**Note:** It is not currently possible to stop listening."
 msgstr "**注意:** 現在のところリスンを停止することはできません。"
 
-#: ../../library/bluetooth.rst:646
+#: ../../library/bluetooth.rst:655
 msgid ""
 "Connect to a listening peer on the specified *psm* with local MTU set to "
 "*mtu*."
 msgstr ""
 "*mtu* に設定したローカル MTU で、指定した *psm* 上のリスニングピアに接続します。"
 
-#: ../../library/bluetooth.rst:648
+#: ../../library/bluetooth.rst:657
 msgid ""
 "On successful connection, the the ``_IRQ_L2CAP_CONNECT`` event will be "
 "raised, allowing the client to obtain the CID and the local and remote "
@@ -1379,21 +1400,21 @@ msgstr ""
 "接続に成功すると ``_IRQ_L2CAP_CONNECT`` イベントが発生し、"
 "クライアントは CID とローカルおよびリモートの(ピア) MTU を取得できるようになります。"
 
-#: ../../library/bluetooth.rst:651
+#: ../../library/bluetooth.rst:660
 msgid ""
 "An unsuccessful connection will raise the ``_IRQ_L2CAP_DISCONNECT`` event"
 " with a non-zero status."
 msgstr ""
 "接続に失敗すると ``_IRQ_L2CAP_DISCONNECT`` イベントが発生し、ステータスは 0 以外になります。"
 
-#: ../../library/bluetooth.rst:656
+#: ../../library/bluetooth.rst:665
 msgid ""
 "Disconnect an active L2CAP channel with the specified *conn_handle* and "
 "*cid*."
 msgstr ""
 "指定した *conn_handle* と *cid* を持つアクティブな L2CAP チャネルを切断します。"
 
-#: ../../library/bluetooth.rst:661
+#: ../../library/bluetooth.rst:670
 msgid ""
 "Send the specified *buf* (which must support the buffer protocol) on the "
 "L2CAP channel identified by *conn_handle* and *cid*."
@@ -1401,7 +1422,7 @@ msgstr ""
 "*conn_handle* と *cid* で識別される L2CAP チャネル上で、"
 "指定した *buf* (バッファプロトコルをサポートしている必要あり)を送信します。"
 
-#: ../../library/bluetooth.rst:664
+#: ../../library/bluetooth.rst:673
 msgid ""
 "The specified buffer cannot be larger than the remote (peer) MTU, and no "
 "more than twice the size of the local MTU."
@@ -1409,7 +1430,7 @@ msgstr ""
 "指定されたバッファは、リモート(ピア) MTU よりも大きく、ローカル MTU の "
 "2倍以下のサイズにすることはできません。"
 
-#: ../../library/bluetooth.rst:667
+#: ../../library/bluetooth.rst:676
 msgid ""
 "This will return ``False`` if the channel is now \"stalled\", which means"
 " that :meth:`l2cap_send <BLE.l2cap_send>` must not be called again until "
@@ -1423,7 +1444,7 @@ msgstr ""
 "受信して処理した後に発生します)、 :meth:`l2cap_send <BLE.l2cap_send>` "
 "を再度呼び出してはなりません。"
 
-#: ../../library/bluetooth.rst:675
+#: ../../library/bluetooth.rst:684
 msgid ""
 "Receive data from the specified *conn_handle* and *cid* into the provided"
 " *buf* (which must support the buffer protocol, e.g. bytearray or "
@@ -1432,15 +1453,15 @@ msgstr ""
 "指定した *conn_handle* および *cid* から、指定した *buf* (bytearray や "
 "memoryview などのバッファプロトコルをサポートしている必要があり)にデータを受信します。"
 
-#: ../../library/bluetooth.rst:679
+#: ../../library/bluetooth.rst:688
 msgid "Returns the number of bytes read from the channel."
 msgstr "チャネルから読み込んだバイト数を返します。"
 
-#: ../../library/bluetooth.rst:681
+#: ../../library/bluetooth.rst:690
 msgid "If *buf* is None, then returns the number of bytes available."
 msgstr "*buf* が None の場合、利用可能なバイト数を返します。"
 
-#: ../../library/bluetooth.rst:683
+#: ../../library/bluetooth.rst:692
 msgid ""
 "**Note:** After receiving the ``_IRQ_L2CAP_RECV`` event, the application "
 "should continue calling :meth:`l2cap_recvinto <BLE.l2cap_recvinto>` until"
@@ -1451,7 +1472,7 @@ msgstr ""
 "バイト列がなくなるまで(通常はリモート(ピア)の MTU のサイズになるまで)、 "
 ":meth:`l2cap_recvinto <BLE.l2cap_recvinto>` を呼び出し続ける必要があります。"
 
-#: ../../library/bluetooth.rst:689
+#: ../../library/bluetooth.rst:698
 msgid ""
 "Until the receive buffer is empty, the remote device will not be granted "
 "more channel credits and will be unable to send any more data."
@@ -1459,11 +1480,11 @@ msgstr ""
 "受信バッファが空になるまで、リモートデバイスはそれ以上のチャネルクレジットを付与されず、"
 "それ以上のデータを送信できなくなります。"
 
-#: ../../library/bluetooth.rst:693
+#: ../../library/bluetooth.rst:702
 msgid "Pairing and bonding"
 msgstr "ペアリングとボンディング"
 
-#: ../../library/bluetooth.rst:695
+#: ../../library/bluetooth.rst:704
 msgid ""
 "Pairing allows a connection to be encrypted and authenticated via "
 "exchange of secrets (with optional MITM protection via passkey "
@@ -1472,7 +1493,7 @@ msgstr ""
 "ペアリングは、シークレット(パスキー認証によるオプションのMITM保護付き)を交換することで、"
 "暗号化した接続と認証が可能になります。"
 
-#: ../../library/bluetooth.rst:698
+#: ../../library/bluetooth.rst:707
 msgid ""
 "Bonding is the process of storing those secrets into non-volatile "
 "storage. When bonded, a device is able to resolve a resolvable private "
@@ -1486,7 +1507,7 @@ msgstr ""
 "ボンディングをサポートするには、アプリケーションは ``_IRQ_GET_SECRET`` イベントと "
 "``_IRQ_SET_SECRET`` イベントを実装する必要があります。"
 
-#: ../../library/bluetooth.rst:704
+#: ../../library/bluetooth.rst:713
 msgid ""
 "**Note:** This is currently only supported when using the NimBLE stack on"
 " STM32 and Unix (not ESP32)."
@@ -1494,11 +1515,11 @@ msgstr ""
 "**注記:** これは現在のところ、STM32 および Unix で NimBLE スタックを使う場合に"
 "のみサポートされています(ESP32 は未サポートです)。"
 
-#: ../../library/bluetooth.rst:709
+#: ../../library/bluetooth.rst:718
 msgid "Initiate pairing with the remote device."
 msgstr "リモートデバイスとのペアリングを開始します。"
 
-#: ../../library/bluetooth.rst:711
+#: ../../library/bluetooth.rst:720
 msgid ""
 "Before calling this, ensure that the ``io``, ``mitm``, ``le_secure``, and"
 " ``bond`` configuration options are set (via :meth:`config<BLE.config>`)."
@@ -1506,14 +1527,14 @@ msgstr ""
 "これを呼び出す前に ``io``, ``mitm``, ``le_secure``, ``bond`` 構成オプションが"
 "(:meth:`config<BLE.config>` で)設定していることを確認してください。"
 
-#: ../../library/bluetooth.rst:714
+#: ../../library/bluetooth.rst:723
 msgid ""
 "On successful pairing, the ``_IRQ_ENCRYPTION_UPDATE`` event will be "
 "raised."
 msgstr ""
 "ペアリングに成功すると ``_IRQ_ENCRYPTION_UPDATE`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:718
+#: ../../library/bluetooth.rst:727
 msgid ""
 "Respond to a ``_IRQ_PASSKEY_ACTION`` event for the specified "
 "*conn_handle* and *action*."
@@ -1521,7 +1542,7 @@ msgstr ""
 "指定した *conn_handle* と *action* の ``_IRQ_PASSKEY_ACTION`` "
 "イベントに応答します。"
 
-#: ../../library/bluetooth.rst:721
+#: ../../library/bluetooth.rst:730
 msgid ""
 "The *passkey* is a numeric value and will depend on on the *action* "
 "(which will depend on what I/O capability has been set):"
@@ -1529,7 +1550,7 @@ msgstr ""
 "*passkey* は数値であり、 *action* に依存します(どのような I/O が設定されているか"
 "に依存します)。"
 
-#: ../../library/bluetooth.rst:724
+#: ../../library/bluetooth.rst:733
 msgid ""
 "When the *action* is ``_PASSKEY_ACTION_INPUT``, then the application "
 "should prompt the user to enter the passkey that is shown on the remote "
@@ -1538,7 +1559,7 @@ msgstr ""
 "*action* が ``_PASSKEY_ACTION_INPUT`` の場合、アプリケーションはリモートデバイスに"
 "表示されているパスキーを入力するようユーザに促します。"
 
-#: ../../library/bluetooth.rst:726
+#: ../../library/bluetooth.rst:735
 msgid ""
 "When the *action* is ``_PASSKEY_ACTION_DISPLAY``, then the application "
 "should generate a random 6-digit passkey and show it to the user."
@@ -1546,7 +1567,7 @@ msgstr ""
 "*action* が ``_PASSKEY_ACTION_DISPLAY`` の場合、アプリケーションはランダムな"
 "6桁のパ スキーを生成してユーザーに示します。"
 
-#: ../../library/bluetooth.rst:728
+#: ../../library/bluetooth.rst:737
 msgid ""
 "When the *action* is ``_PASSKEY_ACTION_NUMERIC_COMPARISON``, then the "
 "application should show the passkey that was provided in the "
@@ -1557,23 +1578,23 @@ msgstr ""
 "``_IRQ_PASSKEY_ACTION`` イベントで提供されたパスキーを表示し、 ``0`` (ペアリングの"
 "キャンセル)または ``1`` (ペアリングの受け入れ)のいずれかで応答すべきです。"
 
-#: ../../library/bluetooth.rst:734
+#: ../../library/bluetooth.rst:743
 msgid "class UUID"
 msgstr "クラス UUID"
 
-#: ../../library/bluetooth.rst:742
+#: ../../library/bluetooth.rst:751
 msgid "Creates a UUID instance with the specified **value**."
 msgstr "指定した **value** で UUID インスタンスを作成します。"
 
-#: ../../library/bluetooth.rst:744
+#: ../../library/bluetooth.rst:753
 msgid "The **value** can be either:"
 msgstr "**value** は次のいずれかです:"
 
-#: ../../library/bluetooth.rst:746
+#: ../../library/bluetooth.rst:755
 msgid "A 16-bit integer. e.g. ``0x2908``."
 msgstr "16 ビット整数。たとえば ``0x2908``"
 
-#: ../../library/bluetooth.rst:747
+#: ../../library/bluetooth.rst:756
 msgid "A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``."
 msgstr "128 ビット UUID 文字列。たとえば ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``"
 
