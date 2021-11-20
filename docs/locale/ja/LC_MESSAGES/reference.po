@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-06 10:58+0900\n"
-"PO-Revision-Date: 2021-11-07 11:46+0900\n"
+"POT-Creation-Date: 2021-11-20 09:51+0900\n"
+"PO-Revision-Date: 2021-11-20 10:36+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2924,21 +2924,11 @@ msgstr ""
 "詳しくは `littlefs issue 347`_  と `littlefs issue 295`_ "
 "を参照してください。"
 
-#: ../../reference/filesystem.rst:223
-msgid ""
-"Note: It can be still be accessed over USB MSC using the `littlefs FUSE "
-"driver`_. Note that you must use the ``-b=4096`` option to override the "
-"block size."
-msgstr ""
-"注記: `littlefs FUSE driver`_ を使えば USB MSC 経由でアクセスすることができます。"
-"ブロックサイズを上書きするには ``-b=4096`` オプションを使用しなければならないことに"
-"注意してください。"
-
-#: ../../reference/filesystem.rst:231
+#: ../../reference/filesystem.rst:222
 msgid "To format the entire flash using littlefs v2::"
 msgstr "littlefs v2 を使用してフラッシュ全体をフォーマットするには次のようにします::"
 
-#: ../../reference/filesystem.rst:233
+#: ../../reference/filesystem.rst:224
 msgid ""
 "# ESP8266 and ESP32\n"
 "import os\n"
@@ -2966,11 +2956,46 @@ msgstr ""
 "os.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 
+#: ../../reference/filesystem.rst:237
+msgid ""
+"A littlefs filesystem can be still be accessed on a PC over USB MSC using"
+" the `littlefs FUSE driver`_.  Note that you must specify both the "
+"``--block_size`` and ``--block_count`` options to override the defaults."
+"  For example (after building the littlefs-fuse executable)::"
+msgstr ""
+"littlefs ファイルシステムは、 `littlefs FUSE ドライバ`_ を使って、USB MSC 経由で "
+"PC からアクセスできます。デフォルトを上書きするためには ``--block_size`` と "
+"``--block_count`` の両方のオプションを指定しなければならないことに注意してください。"
+"たとえば、（littlefs-fuse 実行ファイルをビルドした後に)次のようにします::"
+
+#: ../../reference/filesystem.rst:242
+msgid "$ ./lfs --block_size=4096 --block_count=512 -o allow_other /dev/sdb1 mnt"
+msgstr ""
+
+#: ../../reference/filesystem.rst:244
+msgid ""
+"This will allow the board's littlefs filesystem to be accessed at the "
+"``mnt`` directory.  To get the correct values of ``block_size`` and "
+"``block_count`` use::"
+msgstr ""
+"これにより、ボードの littlefs ファイルシステムが ``mnt`` ディレクトリでアクセス"
+"できるようになります。 ``block_size`` と ``block_count`` の正しい値を得るには、"
+"次のようにします::"
+
 #: ../../reference/filesystem.rst:247
+msgid ""
+"import pyb\n"
+"f = pyb.Flash(start=0)\n"
+"f.ioctl(1, 1)  # initialise flash in littlefs raw-block mode\n"
+"block_count = f.ioctl(4, 0)\n"
+"block_size = f.ioctl(5, 0)"
+msgstr ""
+
+#: ../../reference/filesystem.rst:259
 msgid "Hybrid (STM32)"
 msgstr "ハイブリッド (STM32)"
 
-#: ../../reference/filesystem.rst:249
+#: ../../reference/filesystem.rst:261
 msgid ""
 "By using the ``start`` and ``len`` kwargs to :class:`pyb.Flash`, you can "
 "create block devices spanning a subset of the flash device."
@@ -2978,7 +3003,7 @@ msgstr ""
 "``start`` と ``len`` という :class:`pyb.Flash` のキーワード引数を使えば、"
 "フラッシュデバイスを分割して複数のブロックデバイスを作成できます。"
 
-#: ../../reference/filesystem.rst:252
+#: ../../reference/filesystem.rst:264
 msgid ""
 "For example, to configure the first 256kiB as FAT (and available over USB"
 " MSC), and the remainder as littlefs::"
@@ -2986,7 +3011,7 @@ msgstr ""
 "たとえば次のようにすると、最初の 256kiB を FAT (USB MSCで利用可能)として設定し、"
 "残りを littlefs として設定できます::"
 
-#: ../../reference/filesystem.rst:255
+#: ../../reference/filesystem.rst:267
 msgid ""
 "import os, pyb\n"
 "os.umount('/flash')\n"
@@ -2999,7 +3024,7 @@ msgid ""
 "os.chdir('/flash')"
 msgstr ""
 
-#: ../../reference/filesystem.rst:265
+#: ../../reference/filesystem.rst:277
 msgid ""
 "This might be useful to make your Python files, configuration and other "
 "rarely-modified content available over USB MSC, but allowing for "
@@ -3010,7 +3035,7 @@ msgstr ""
 "USB MSC 経由で利用できる一方で、頻繁に変更されるアプリケーションのデータを"
 "停電などへの耐性を持った littlefs 上に置けるようになります。"
 
-#: ../../reference/filesystem.rst:270
+#: ../../reference/filesystem.rst:282
 msgid ""
 "The partition at offset ``0`` will be mounted automatically (and the "
 "filesystem type automatically detected), but you can add::"
@@ -3018,22 +3043,22 @@ msgstr ""
 "オフセット 0 のパーティションは自動的にマウントされますが(ファイルシステムの種別は"
 "自動で検出されます)、次のようにしてマウントを追加することもできます::"
 
-#: ../../reference/filesystem.rst:273
+#: ../../reference/filesystem.rst:285
 msgid ""
 "import os, pyb\n"
 "p2 = pyb.Flash(start=256*1024)\n"
 "os.mount(p2, '/data')"
 msgstr ""
 
-#: ../../reference/filesystem.rst:277
+#: ../../reference/filesystem.rst:289
 msgid "to ``boot.py`` to mount the data partition."
 msgstr "このようなパーティションのマウントの記述は ``boot.py`` に書くとよいでしょう。"
 
-#: ../../reference/filesystem.rst:280
+#: ../../reference/filesystem.rst:292
 msgid "Hybrid (ESP32)"
 msgstr "ハイブリッド (ESP32)"
 
-#: ../../reference/filesystem.rst:282
+#: ../../reference/filesystem.rst:294
 msgid ""
 "On ESP32, if you build custom firmware, you can modify ``partitions.csv``"
 " to define an arbitrary partition layout."
@@ -3041,7 +3066,7 @@ msgstr ""
 "ESP32 では、カスタムファームウェアを作成するときに、 ``partitions.csv`` を変更して"
 "任意のパーティションレイアウトを定義できます。"
 
-#: ../../reference/filesystem.rst:285
+#: ../../reference/filesystem.rst:297
 msgid ""
 "At boot, the partition named \"vfs\" will be mounted at ``/`` by default,"
 " but any additional partitions can be mounted in your ``boot.py`` using::"
@@ -3049,7 +3074,7 @@ msgstr ""
 "ブート時、デフォルトでは \"vfs\" という名前のパーティションが ``/`` にマウント"
 "されますが、追加のパーティションは ``boot.py`` で以下のようにしてマウントできます::"
 
-#: ../../reference/filesystem.rst:288
+#: ../../reference/filesystem.rst:300
 msgid ""
 "import esp32, os\n"
 "p = esp32.Partition.find(esp32.Partition.TYPE_DATA, label='foo')\n"
