@@ -1,7 +1,45 @@
 # This makefile fragment provides rules to build 3rd-party components for extmod modules
 
+################################################################################
+# VFS FAT FS
+
+OOFATFS_DIR = lib/oofatfs
+
 # this sets the config file for FatFs
-CFLAGS_MOD += -DFFCONF_H=\"lib/oofatfs/ffconf.h\"
+CFLAGS_MOD += -DFFCONF_H=\"$(OOFATFS_DIR)/ffconf.h\"
+
+ifeq ($(MICROPY_VFS_FAT),1)
+CFLAGS_MOD += -DMICROPY_VFS_FAT=1
+SRC_MOD += $(addprefix $(OOFATFS_DIR)/,\
+	ff.c \
+	ffunicode.c \
+	)
+endif
+
+################################################################################
+# VFS littlefs
+
+LITTLEFS_DIR = lib/littlefs
+
+ifeq ($(MICROPY_VFS_LFS1),1)
+CFLAGS_MOD += -DMICROPY_VFS_LFS1=1
+CFLAGS_MOD += -DLFS1_NO_MALLOC -DLFS1_NO_DEBUG -DLFS1_NO_WARN -DLFS1_NO_ERROR -DLFS1_NO_ASSERT
+SRC_MOD += $(addprefix $(LITTLEFS_DIR)/,\
+	lfs1.c \
+	lfs1_util.c \
+	)
+endif
+
+ifeq ($(MICROPY_VFS_LFS2),1)
+CFLAGS_MOD += -DMICROPY_VFS_LFS2=1
+CFLAGS_MOD += -DLFS2_NO_MALLOC -DLFS2_NO_DEBUG -DLFS2_NO_WARN -DLFS2_NO_ERROR -DLFS2_NO_ASSERT
+SRC_MOD += $(addprefix $(LITTLEFS_DIR)/,\
+	lfs2.c \
+	lfs2_util.c \
+	)
+
+$(BUILD)/$(LITTLEFS_DIR)/lfs2.o: CFLAGS += -Wno-missing-field-initializers
+endif
 
 ################################################################################
 # ussl
@@ -11,7 +49,7 @@ CFLAGS_MOD += -DMICROPY_PY_USSL=1
 ifeq ($(MICROPY_SSL_AXTLS),1)
 CFLAGS_MOD += -DMICROPY_SSL_AXTLS=1 -I$(TOP)/lib/axtls/ssl -I$(TOP)/lib/axtls/crypto -I$(TOP)/extmod/axtls-include
 AXTLS_DIR = lib/axtls
-$(BUILD)/$(AXTLS_DIR)/%.o: CFLAGS += -Wno-all -Wno-unused-parameter -Wno-uninitialized -Wno-sign-compare -Wno-old-style-definition $(AXTLS_DEFS_EXTRA)
+$(BUILD)/$(AXTLS_DIR)/%.o: CFLAGS += -Wno-all -Wno-unused-parameter -Wno-uninitialized -Wno-sign-compare -Wno-old-style-definition -Dmp_stream_errno=errno $(AXTLS_DEFS_EXTRA)
 SRC_MOD += $(addprefix $(AXTLS_DIR)/,\
 	ssl/asn1.c \
 	ssl/loader.c \
@@ -115,7 +153,7 @@ LWIP_DIR = lib/lwip/src
 INC += -I$(TOP)/$(LWIP_DIR)/include
 CFLAGS_MOD += -DMICROPY_PY_LWIP=1
 $(BUILD)/$(LWIP_DIR)/core/ipv4/dhcp.o: CFLAGS_MOD += -Wno-address
-SRC_MOD += extmod/modlwip.c lib/netutils/netutils.c
+SRC_MOD += extmod/modlwip.c shared/netutils/netutils.c
 SRC_MOD += $(addprefix $(LWIP_DIR)/,\
 	apps/mdns/mdns.c \
 	core/def.c \

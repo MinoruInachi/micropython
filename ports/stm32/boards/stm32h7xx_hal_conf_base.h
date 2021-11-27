@@ -34,6 +34,7 @@
 #include "stm32h7xx_hal_crc.h"
 #include "stm32h7xx_hal_dac.h"
 #include "stm32h7xx_hal_dcmi.h"
+#include "stm32h7xx_hal_fdcan.h"
 #include "stm32h7xx_hal_flash.h"
 #include "stm32h7xx_hal_gpio.h"
 #include "stm32h7xx_hal_hash.h"
@@ -52,6 +53,11 @@
 #include "stm32h7xx_hal_uart.h"
 #include "stm32h7xx_hal_usart.h"
 #include "stm32h7xx_hal_wwdg.h"
+#include "stm32h7xx_ll_adc.h"
+#include "stm32h7xx_ll_lpuart.h"
+#include "stm32h7xx_ll_pwr.h"
+#include "stm32h7xx_ll_rtc.h"
+#include "stm32h7xx_ll_usart.h"
 
 // Enable various HAL modules
 #define HAL_ADC_MODULE_ENABLED
@@ -60,6 +66,7 @@
 #define HAL_DAC_MODULE_ENABLED
 #define HAL_DCMI_MODULE_ENABLED
 #define HAL_DMA_MODULE_ENABLED
+#define HAL_FDCAN_MODULE_ENABLED
 #define HAL_FLASH_MODULE_ENABLED
 #define HAL_GPIO_MODULE_ENABLED
 #define HAL_HASH_MODULE_ENABLED

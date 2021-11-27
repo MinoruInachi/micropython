@@ -62,7 +62,7 @@ Constructors
 Methods
 -------
 
-.. method:: Timer.init(\*, freq, prescaler, period)
+.. method:: Timer.init(*, freq, prescaler, period, mode=Timer.UP, div=1, callback=None, deadtime=0)
 
    Initialise the timer.  Initialisation must be either by frequency (in Hz)
    or by prescaler and period::
@@ -112,7 +112,7 @@ Methods
 .. method:: Timer.deinit()
 
    Deinitialises the timer.
-   
+
    Disables the callback (and the associated irq).
 
    Disables any channel callbacks (and the associated irq).
@@ -191,7 +191,7 @@ Methods
      - Read the encoder value using the timer.counter() method.
      - Only works on CH1 and CH2 (and not on CH1N or CH2N)
      - The channel number is ignored when setting the encoder mode.
-       
+
    PWM Example::
 
        timer = pyb.Timer(2, freq=1000)

@@ -1,6 +1,6 @@
 .. _speed_python:
 
-Maximising MicroPython Speed
+Maximising MicroPython speed
 ============================
 
 .. contents::
@@ -40,7 +40,7 @@ the best algorithm is employed. This is a topic for textbooks rather than for a
 MicroPython guide but spectacular performance gains can sometimes be achieved
 by adopting algorithms known for their efficiency.
 
-RAM Allocation
+RAM allocation
 ~~~~~~~~~~~~~~
 
 To design efficient MicroPython code it is necessary to have an understanding of the
@@ -69,7 +69,7 @@ example, objects which support stream interface (e.g., file or UART) provide ``r
 method which allocates new buffer for read data, but also a ``readinto()`` method
 to read data into an existing buffer.
 
-Floating Point
+Floating point
 ~~~~~~~~~~~~~~
 
 Some MicroPython ports allocate floating point numbers on heap. Some other ports
@@ -91,9 +91,11 @@ code these should be pre-allocated and passed as arguments or as bound objects.
 
 When passing slices of objects such as `bytearray` instances, Python creates
 a copy which involves allocation of the size proportional to the size of slice.
-This can be alleviated using a `memoryview` object. `memoryview` itself
-is allocated on heap, but is a small, fixed-size object, regardless of the size
-of slice it points too.
+This can be alleviated using a `memoryview` object. The `memoryview` itself
+is allocated on the heap, but is a small, fixed-size object, regardless of the size
+of slice it points too. Slicing a `memoryview` creates a new `memoryview`, so this
+cannot be done in an interrupt service routine. Further, the slice syntax ``a:b``
+causes further allocation by instantiating a ``slice(a, b)`` object.
 
 .. code:: python
 
@@ -123,7 +125,7 @@ This is a process known as profiling and is covered in textbooks and
 (for standard Python) supported by various software tools. For the type of
 smaller embedded application likely to be running on MicroPython platforms
 the slowest function or method can usually be established by judicious use
-of the timing ``ticks`` group of functions documented in `utime`.
+of the timing ``ticks`` group of functions documented in `time`.
 Code execution time can be measured in ms, us, or CPU cycles.
 
 The following enables any function or method to be timed by adding an
@@ -134,9 +136,9 @@ The following enables any function or method to be timed by adding an
     def timed_function(f, *args, **kwargs):
         myname = str(f).split(' ')[1]
         def new_func(*args, **kwargs):
-            t = utime.ticks_us()
+            t = time.ticks_us()
             result = f(*args, **kwargs)
-            delta = utime.ticks_diff(utime.ticks_us(), t)
+            delta = time.ticks_diff(time.ticks_us(), t)
             print('Function {} Time = {:6.3f}ms'.format(myname, delta/1000))
             return result
         return new_func
@@ -165,7 +167,7 @@ by caching the object in a local variable:
 
     class foo(object):
         def __init__(self):
-            ba = bytearray(100)
+            self.ba = bytearray(100)
         def bar(self, obj_display):
             ba_ref = self.ba
             fb = obj_display.framebuffer
@@ -214,7 +216,7 @@ There are certain limitations in the current implementation of the native code e
 * Generators are not supported.
 * If ``raise`` is used an argument must be supplied.
 
-The trade-off for the improved performance (roughly twices as fast as bytecode) is an
+The trade-off for the improved performance (roughly twice as fast as bytecode) is an
 increase in compiled code size.
 
 The Viper code emitter
@@ -293,10 +295,12 @@ microseconds. The rules for casting are as follows:
 * The argument to a bool cast must be integral type (boolean or integer); when used as a return
   type the viper function will return True or False objects.
 * If the argument is a Python object and the cast is ``ptr``, ``ptr``, ``ptr16`` or ``ptr32``,
-  then the Python object must either have the buffer protocol with read-write capabilities
-  (in which case a pointer to the start of the buffer is returned) or it must be of integral
-  type (in which case the value of that integral object is returned).
- 
+  then the Python object must either have the buffer protocol (in which case a pointer to the
+  start of the buffer is returned) or it must be of integral type (in which case the value of
+  that integral object is returned).
+
+Writing to a pointer which points to a read-only object will lead to undefined behaviour.
+
 The following example illustrates the use of a ``ptr16`` cast to toggle pin X1 ``n`` times:
 
 .. code:: python

@@ -13,7 +13,7 @@ floating-point support).
 Classes
 -------
 
-.. class:: array.array(typecode, [iterable])
+.. class:: array(typecode, [iterable])
 
     Create array with elements of given type. Initial contents of the
     array are given by *iterable*. If it is not provided, an empty

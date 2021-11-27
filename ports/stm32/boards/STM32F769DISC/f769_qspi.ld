@@ -17,7 +17,7 @@
 
 MEMORY
 {
-    FLASH_APP (rx)  : ORIGIN = 0x08020000, LENGTH = 2016K   /* sectors 1-11 3x32K 1*128K 7*256K */
+    FLASH_APP (rx)  : ORIGIN = 0x08020000, LENGTH = 1920K   /* sectors 4-11 1*128K 7*256K */
     FLASH_QSPI (rx) : ORIGIN = 0x90000000, LENGTH = 64M     /* external QSPI flash in XIP mode */
     DTCM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K    /* Used for storage cache */
     RAM (xrw)       : ORIGIN = 0x20020000, LENGTH = 384K    /* SRAM1 = 368K, SRAM2 = 16K */
@@ -68,43 +68,6 @@ SECTIONS
         _etext = .;
     } >FLASH_APP
 
-    /* Used by the startup to initialize data */
-    _sidata = LOADADDR(.data);
-
-    /* The initialized data section */
-    .data :
-    {
-        . = ALIGN(4);
-        _sdata = .;
-        *(.data*)
-        . = ALIGN(4);
-        _edata = .;
-    } >RAM AT> FLASH_APP
-
-    /* The uninitialized (zeroed) data section */
-    .bss :
-    {
-        . = ALIGN(4);
-        _sbss = .;
-        *(.bss*)
-        *(COMMON)
-        . = ALIGN(4);
-        _ebss = .;
-    } >RAM
-
-    /* Define the start of the heap, and make sure we have a minimum size */
-    .heap :
-    {
-        . = ALIGN(4);
-        . = . + _minimum_heap_size;
-        . = ALIGN(4);
-    } >RAM
-
-    /* Just checks there is enough RAM for the stack */
-    .stack :
-    {
-        . = ALIGN(4);
-        . = . + _minimum_stack_size;
-        . = ALIGN(4);
-    } >RAM
+    INCLUDE common_extratext_data_in_flash_app.ld
+    INCLUDE common_bss_heap_stack.ld
 }

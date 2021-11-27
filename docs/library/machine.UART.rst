@@ -43,7 +43,7 @@ Constructors
 Methods
 -------
 
-.. method:: UART.init(baudrate=9600, bits=8, parity=None, stop=1, \*, ...)
+.. method:: UART.init(baudrate=9600, bits=8, parity=None, stop=1, *, ...)
 
    Initialise the UART bus with the given parameters:
 
@@ -56,8 +56,22 @@ Methods
 
      - *tx* specifies the TX pin to use.
      - *rx* specifies the RX pin to use.
+     - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
+     - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
      - *txbuf* specifies the length in characters of the TX buffer.
      - *rxbuf* specifies the length in characters of the RX buffer.
+     - *timeout* specifies the time to wait for the first character (in ms).
+     - *timeout_char* specifies the time to wait between characters (in ms).
+     - *invert* specifies which lines to invert.
+     - *flow* specifies which hardware flow control signals to use. The value
+       is a bitmask. 
+
+         - ``0`` will ignore hardware flow control signals.
+         - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
+           signal if the receive FIFO has sufficient space to accept more data.
+         - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
+           CTS input pin signals that the receiver is running low on buffer space.
+         - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
 
    On the WiPy only the following keyword-only parameter is supported:
 
@@ -87,7 +101,8 @@ Methods
 .. method:: UART.read([nbytes])
 
    Read characters.  If ``nbytes`` is specified then read at most that many bytes,
-   otherwise read as much data as possible.
+   otherwise read as much data as possible. It may return sooner if a timeout
+   is reached. The timeout is configurable in the constructor.
 
    Return value: a bytes object containing the bytes read in.  Returns ``None``
    on timeout.
@@ -95,14 +110,16 @@ Methods
 .. method:: UART.readinto(buf[, nbytes])
 
    Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
-   that many bytes.  Otherwise, read at most ``len(buf)`` bytes.
+   that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
+   is reached. The timeout is configurable in the constructor.
 
    Return value: number of bytes read and stored into ``buf`` or ``None`` on
    timeout.
 
 .. method:: UART.readline()
 
-   Read a line, ending in a newline character.
+   Read a line, ending in a newline character. It may return sooner if a timeout
+   is reached. The timeout is configurable in the constructor.
 
    Return value: the line read or ``None`` on timeout.
 

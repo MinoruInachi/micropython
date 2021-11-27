@@ -26,6 +26,7 @@
 
 #include "py/mperrno.h"
 #include "py/mphal.h"
+#include "py/runtime.h"
 #include "i2c.h"
 
 #if MICROPY_HW_ENABLE_HW_I2C
@@ -267,7 +268,12 @@ int i2c_write(i2c_t *i2c, const uint8_t *src, size_t len, size_t next_len) {
     return num_acks;
 }
 
-#elif defined(STM32F0) || defined(STM32F7)
+#elif defined(STM32F0) || defined(STM32F7) || defined(STM32H7)
+
+#if defined(STM32H7)
+#define APB1ENR            APB1LENR
+#define RCC_APB1ENR_I2C1EN RCC_APB1LENR_I2C1EN
+#endif
 
 STATIC uint16_t i2c_timeout_ms[MICROPY_HW_MAX_I2C];
 
@@ -340,8 +346,7 @@ STATIC int i2c_wait_isr_set(i2c_t *i2c, uint32_t mask) {
 int i2c_start_addr(i2c_t *i2c, int rd_wrn, uint16_t addr, size_t len, bool stop) {
     // Enable the peripheral and send the START condition with slave address
     i2c->CR1 |= I2C_CR1_PE;
-    i2c->CR2 = stop << I2C_CR2_AUTOEND_Pos
-        | (len > 1) << I2C_CR2_RELOAD_Pos
+    i2c->CR2 = (len > 1) << I2C_CR2_RELOAD_Pos
         | (len > 0) << I2C_CR2_NBYTES_Pos
         | rd_wrn << I2C_CR2_RD_WRN_Pos
         | (addr & 0x7f) << 1;
@@ -359,6 +364,11 @@ int i2c_start_addr(i2c_t *i2c, int rd_wrn, uint16_t addr, size_t len, bool stop)
         i2c_wait_isr_set(i2c, I2C_ISR_STOPF); // Don't leak errors from this call
         i2c->CR1 &= ~I2C_CR1_PE;
         return -MP_ENODEV;
+    }
+
+    // Configure automatic STOP if needed
+    if (stop) {
+        i2c->CR2 |= I2C_CR2_AUTOEND;
     }
 
     // Repurpose OAR1 to indicate that we loaded CR2
@@ -463,7 +473,7 @@ int i2c_write(i2c_t *i2c, const uint8_t *src, size_t len, size_t next_len) {
 
 #endif
 
-#if defined(STM32F0) || defined(STM32F4) || defined(STM32F7)
+#if defined(STM32F0) || defined(STM32F4) || defined(STM32F7) || defined(STM32H7)
 
 int i2c_readfrom(i2c_t *i2c, uint16_t addr, uint8_t *dest, size_t len, bool stop) {
     int ret;
@@ -482,5 +492,60 @@ int i2c_writeto(i2c_t *i2c, uint16_t addr, const uint8_t *src, size_t len, bool 
 }
 
 #endif
+
+STATIC const uint8_t i2c_available =
+    0
+    #if defined(MICROPY_HW_I2C1_SCL)
+    | 1 << 1
+    #endif
+    #if defined(MICROPY_HW_I2C2_SCL)
+    | 1 << 2
+    #endif
+    #if defined(MICROPY_HW_I2C3_SCL)
+    | 1 << 3
+    #endif
+    #if defined(MICROPY_HW_I2C4_SCL)
+    | 1 << 4
+    #endif
+;
+
+int i2c_find_peripheral(mp_obj_t id) {
+    int i2c_id = 0;
+    if (mp_obj_is_str(id)) {
+        const char *port = mp_obj_str_get_str(id);
+        if (0) {
+        #ifdef MICROPY_HW_I2C1_NAME
+        } else if (strcmp(port, MICROPY_HW_I2C1_NAME) == 0) {
+            i2c_id = 1;
+        #endif
+        #ifdef MICROPY_HW_I2C2_NAME
+        } else if (strcmp(port, MICROPY_HW_I2C2_NAME) == 0) {
+            i2c_id = 2;
+        #endif
+        #ifdef MICROPY_HW_I2C3_NAME
+        } else if (strcmp(port, MICROPY_HW_I2C3_NAME) == 0) {
+            i2c_id = 3;
+        #endif
+        #ifdef MICROPY_HW_I2C4_NAME
+        } else if (strcmp(port, MICROPY_HW_I2C4_NAME) == 0) {
+            i2c_id = 4;
+        #endif
+        } else {
+            mp_raise_msg_varg(&mp_type_ValueError, MP_ERROR_TEXT("I2C(%s) doesn't exist"), port);
+        }
+    } else {
+        i2c_id = mp_obj_get_int(id);
+        if (i2c_id < 1 || i2c_id >= 8 * sizeof(i2c_available) || !(i2c_available & (1 << i2c_id))) {
+            mp_raise_msg_varg(&mp_type_ValueError, MP_ERROR_TEXT("I2C(%d) doesn't exist"), i2c_id);
+        }
+    }
+
+    // check if the I2C is reserved for system use or not
+    if (MICROPY_HW_I2C_IS_RESERVED(i2c_id)) {
+        mp_raise_msg_varg(&mp_type_ValueError, MP_ERROR_TEXT("I2C(%d) is reserved"), i2c_id);
+    }
+
+    return i2c_id;
+}
 
 #endif // MICROPY_HW_ENABLE_HW_I2C

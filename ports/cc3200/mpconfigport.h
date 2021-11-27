@@ -53,7 +53,6 @@
 #define MICROPY_LONGINT_IMPL                        (MICROPY_LONGINT_IMPL_MPZ)
 #define MICROPY_FLOAT_IMPL                          (MICROPY_FLOAT_IMPL_NONE)
 #define MICROPY_OPT_COMPUTED_GOTO                   (0)
-#define MICROPY_OPT_CACHE_MAP_LOOKUP_IN_BYTECODE    (0)
 #define MICROPY_READER_VFS                          (1)
 #ifndef DEBUG // we need ram on the launchxl while debugging
 #define MICROPY_CPYTHON_COMPAT                      (1)
@@ -110,7 +109,7 @@
 #define MICROPY_PY_UERRNO_ERRORCODE                 (0)
 #define MICROPY_PY_THREAD                           (1)
 #define MICROPY_PY_THREAD_GIL                       (1)
-#define MICROPY_PY_UBINASCII                        (0)
+#define MICROPY_PY_UBINASCII                        (1)
 #define MICROPY_PY_UCTYPES                          (0)
 #define MICROPY_PY_UZLIB                            (0)
 #define MICROPY_PY_UJSON                            (1)
@@ -169,19 +168,6 @@ extern const struct _mp_obj_module_t mp_module_ussl;
     { MP_ROM_QSTR(MP_QSTR_ubinascii),   MP_ROM_PTR(&mp_module_ubinascii) }, \
     { MP_ROM_QSTR(MP_QSTR_ussl),        MP_ROM_PTR(&mp_module_ussl) },      \
 
-#define MICROPY_PORT_BUILTIN_MODULE_WEAK_LINKS \
-    { MP_ROM_QSTR(MP_QSTR_errno),       MP_ROM_PTR(&mp_module_uerrno) },    \
-    { MP_ROM_QSTR(MP_QSTR_struct),      MP_ROM_PTR(&mp_module_ustruct) },   \
-    { MP_ROM_QSTR(MP_QSTR_re),          MP_ROM_PTR(&mp_module_ure) },       \
-    { MP_ROM_QSTR(MP_QSTR_json),        MP_ROM_PTR(&mp_module_ujson) },     \
-    { MP_ROM_QSTR(MP_QSTR_os),          MP_ROM_PTR(&mp_module_uos) },       \
-    { MP_ROM_QSTR(MP_QSTR_time),        MP_ROM_PTR(&mp_module_utime) },     \
-    { MP_ROM_QSTR(MP_QSTR_select),      MP_ROM_PTR(&mp_module_uselect) },   \
-    { MP_ROM_QSTR(MP_QSTR_socket),      MP_ROM_PTR(&mp_module_usocket) },   \
-    { MP_ROM_QSTR(MP_QSTR_binascii),    MP_ROM_PTR(&mp_module_ubinascii) }, \
-    { MP_ROM_QSTR(MP_QSTR_ssl),         MP_ROM_PTR(&mp_module_ussl) },      \
-    { MP_ROM_QSTR(MP_QSTR_machine),     MP_ROM_PTR(&machine_module) },      \
-
 // extra constants
 #define MICROPY_PORT_CONSTANTS \
     { MP_ROM_QSTR(MP_QSTR_umachine),     MP_ROM_PTR(&machine_module) },      \
@@ -200,17 +186,15 @@ extern const struct _mp_obj_module_t mp_module_ussl;
 
 
 // type definitions for the specific machine
-#define MICROPY_MAKE_POINTER_CALLABLE(p)            ((void*)((mp_uint_t)(p) | 1))
+#define MICROPY_MAKE_POINTER_CALLABLE(p)            ((void *)((mp_uint_t)(p) | 1))
 #define MP_SSIZE_MAX                                (0x7FFFFFFF)
 
 #define UINT_FMT                                    "%u"
 #define INT_FMT                                     "%d"
 
-typedef int32_t         mp_int_t;                   // must be pointer size
-typedef unsigned int    mp_uint_t;                  // must be pointer size
-typedef long            mp_off_t;
-
-#define MP_PLAT_PRINT_STRN(str, len) mp_hal_stdout_tx_strn_cooked(str, len)
+typedef int32_t mp_int_t;                           // must be pointer size
+typedef unsigned int mp_uint_t;                     // must be pointer size
+typedef long mp_off_t;
 
 #define MICROPY_BEGIN_ATOMIC_SECTION()              disable_irq()
 #define MICROPY_END_ATOMIC_SECTION(state)           enable_irq(state)

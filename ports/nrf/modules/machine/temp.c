@@ -29,9 +29,13 @@
 
 #include "py/nlr.h"
 #include "py/runtime.h"
+#include "py/mperrno.h"
 #include "py/mphal.h"
+
+#if MICROPY_PY_MACHINE_TEMP
+
 #include "temp.h"
-#include "nrf_temp.h"
+#include "nrfx_temp.h"
 
 #if BLUETOOTH_SD
 #include "py/nlr.h"
@@ -39,8 +43,6 @@
 #include "nrf_soc.h"
 #define BLUETOOTH_STACK_ENABLED() (ble_drv_stack_enabled())
 #endif // BLUETOOTH_SD
-
-#if MICROPY_PY_MACHINE_TEMP
 
 typedef struct _machine_temp_obj_t {
     mp_obj_base_t base;
@@ -67,12 +69,24 @@ STATIC mp_obj_t machine_temp_make_new(const mp_obj_type_t *type, size_t n_args, 
     // parse args
     mp_arg_val_t args[MP_ARRAY_SIZE(allowed_args)];
     mp_arg_parse_all_kw_array(n_args, n_kw, all_args, MP_ARRAY_SIZE(allowed_args), allowed_args, args);
-    
+
     machine_temp_obj_t *self = m_new_obj(machine_temp_obj_t);
-    
+
     self->base.type = &machine_temp_type;
 
     return MP_OBJ_FROM_PTR(self);
+}
+
+int32_t temp_read(void) {
+    const nrfx_temp_config_t config = NRFX_TEMP_DEFAULT_CONFIG;
+    nrfx_temp_init(&config, NULL); // Blocking mode.
+    if (nrfx_temp_measure() != NRFX_SUCCESS) {
+        mp_raise_OSError(MP_EIO);
+    }
+    int32_t raw_temp = nrfx_temp_result_get();
+    int32_t temp_c = nrfx_temp_calculate(raw_temp);
+    nrfx_temp_uninit();
+    return temp_c;
 }
 
 /// \method read()
@@ -87,7 +101,7 @@ STATIC mp_obj_t machine_temp_read(mp_uint_t n_args, const mp_obj_t *args) {
     }
 #endif // BLUETOOTH_SD
 
-    return MP_OBJ_NEW_SMALL_INT(nrf_temp_read());
+    return MP_OBJ_NEW_SMALL_INT(temp_read());
 }
 
 STATIC MP_DEFINE_CONST_FUN_OBJ_VAR_BETWEEN(mp_machine_temp_read_obj, 0, 1, machine_temp_read);
