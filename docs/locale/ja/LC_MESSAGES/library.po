@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2014-2021, Damien P. George, Paul Sokolovsky, and
-# contributors
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2021,
+# Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-12 09:52+0900\n"
-"PO-Revision-Date: 2021-12-12 14:15+0900\n"
+"POT-Creation-Date: 2022-01-01 15:06+0900\n"
+"PO-Revision-Date: 2022-01-01 17:39+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2320,9 +2320,9 @@ msgstr ":mod:`esp` --- ESP8266 と ESP32 に関連する関数"
 
 #: ../../library/esp.rst:7
 msgid ""
-"The ``esp`` module contains specific functions related to both the ESP8266 "
-"and ESP32 modules.  Some functions are only available on one or the other "
-"of these ports."
+"The ``esp`` module contains specific functions related to both the "
+"ESP8266 and ESP32 modules.  Some functions are only available on one or "
+"the other of these ports."
 msgstr ""
 "``esp`` モジュールは、ESP8266 と ESP32 の両方のモジュールに関連する固有の機能を提供します。"
 "一部の機能はこれらのポートのどちらか一方でしか使えません。"
@@ -4928,7 +4928,7 @@ msgstr ""
 #: ../../library/pyb.DAC.rst:12 ../../library/pyb.RTC.rst:10
 #: ../../library/pyb.Servo.rst:12
 msgid "Example usage::"
-msgstr "使用例:"
+msgstr "使用例::"
 
 #: ../../library/machine.ADC.rst:13
 msgid ""
@@ -4963,19 +4963,118 @@ msgstr ""
 "戻り値は、ADC によって取得された生の読み取り値を表し、"
 "最小値が 0、最大値が 65535 になるようにスケーリングされます。"
 
-#: ../../library/machine.ADC.rst:62
+#: ../../library/machine.ADCWiPy.rst:5
+msgid "class ADCWiPy -- analog to digital conversion"
+msgstr "クラス ADCWiPy -- アナログ-デジタル変換"
+
+#: ../../library/machine.ADCWiPy.rst:9
+msgid ""
+"This class is a non-standard ADC implementation for the WiPy. It is "
+"available simply as ``machine.ADC`` on the WiPy but is named in the "
+"documentation below as ``machine.ADCWiPy`` to distinguish it from the "
+"more general :ref:`machine.ADC <machine.ADC>` class."
+msgstr ""
+"このクラスは WiPy 用に実装した非標準の ADC です。"
+"WiPy 上では単に ``machine.ADC`` として利用できますが、より一般的な ``machine.ADC`` "
+"クラスと区別するために、以下のドキュメントでは :ref:`machine.ADC <machine.ADC>` "
+"と命名されています。"
+
+#: ../../library/machine.ADCWiPy.rst:14 ../../library/pyb.ADC.rst:7
+#: ../../library/pyb.Switch.rst:9
+msgid "Usage::"
+msgstr "使用例::"
+
+#: ../../library/machine.ADCWiPy.rst:16
+msgid ""
+"import machine\n"
+"\n"
+"adc = machine.ADC()             # create an ADC object\n"
+"apin = adc.channel(pin='GP3')   # create an analog pin on GP3\n"
+"val = apin()                    # read an analog value"
+msgstr ""
+"import machine\n"
+"\n"
+"adc = machine.ADC()             # ADC オブジェクトを作成\n"
+"apin = adc.channel(pin='GP3')   # GP3 のアナログピンを作成\n"
+"val = apin()                    # アナログ値を読み込み"
+
+#: ../../library/machine.ADCWiPy.rst:27
+msgid ""
+"Create an ADC object associated with the given pin. This allows you to "
+"then read analog values on that pin. For more info check the `pinout and "
+"alternate functions table. "
+"<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_"
+msgstr ""
+"指定したピンについて ADC オブジェクトを作成します。これにより、そのピンのアナログ値を"
+"読み取れます。より詳細な情報は、 `ピン配置と代替機能の表 "
+"<https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_ "
+"を参照してください。"
+
+#: ../../library/machine.ADCWiPy.rst:34
+msgid ""
+"ADC pin input range is 0-1.4V (being 1.8V the absolute maximum that it "
+"can withstand). When GP2, GP3, GP4 or GP5 are remapped to the ADC block, "
+"1.8 V is the maximum. If these pins are used in digital mode, then the "
+"maximum allowed input is 3.6V."
+msgstr ""
+"ADC ピンに入力できるのは 0-1.4V です(1.8Vが耐えられる絶対最大値)。"
+"GP2、GP3、GP4、GP5 を ADC ブロックにリマップした場合、1.8V が最大となります。"
+"デジタルモードで使う場合は、3.6V まで入力可能です。"
+
+#: ../../library/machine.ADCWiPy.rst:44
+msgid ""
+"Create an analog pin. If only channel ID is given, the correct pin will "
+"be selected. Alternatively, only the pin can be passed and the correct "
+"channel will be selected. Examples::"
+msgstr ""
+"アナログピンを作成します。チャネルIDのみを指定した場合、適正なピンが選択されます。"
+"また、ピンのみを渡しても適正なチャネルが選択されます。次に例をあげます::
+
+#: ../../library/machine.ADCWiPy.rst:48
+msgid ""
+"# all of these are equivalent and enable ADC channel 1 on GP3\n"
+"apin = adc.channel(1)\n"
+"apin = adc.channel(pin='GP3')\n"
+"apin = adc.channel(id=1, pin='GP3')"
+msgstr ""
+"# 以下の３行はどれも同等で、GP3 の ADC チャンネル 1 を有効にします\n"
+"apin = adc.channel(1)\n"
+"apin = adc.channel(pin='GP3')\n"
+"apin = adc.channel(id=1, pin='GP3')"
+
+#: ../../library/machine.ADCWiPy.rst:55
+msgid "Enable the ADC block."
+msgstr "ADC ブロックを有効にします。"
+
+#: ../../library/machine.ADCWiPy.rst:59
+msgid "Disable the ADC block."
+msgstr "ADC ブロックを無効にします。"
+
+#: ../../library/machine.ADCWiPy.rst:62
+msgid "class ADCChannel --- read analog values from internal or external sources"
+msgstr "クラス ADCChannel --- 内部または外部ソースからのアナログ値の読込み"
+
+#: ../../library/machine.ADCWiPy.rst:64
+msgid ""
+"ADC channels can be connected to internal points of the MCU or to GPIO "
+"pins. ADC channels are created using the ADC.channel method."
+msgstr ""
+"ADC チャネルは MCU の内部ポイントまたは GPIO ピンに接続できます。"
+"ADC チャネルは ADC.channel メソッドで作成します。"
+
+#: ../../library/machine.ADCWiPy.rst:69
 msgid "Fast method to read the channel value."
 msgstr "チャネル値を読み取るための高速メソッド。"
 
-#: ../../library/machine.ADC.rst:66
+#: ../../library/machine.ADCWiPy.rst:73
 msgid "Read the channel value."
 msgstr "チャンネル値を読みます。"
 
-#: ../../library/machine.ADC.rst:70
+#: ../../library/machine.ADCWiPy.rst:77
 msgid "Re-init (and effectively enable) the ADC channel."
 msgstr "ADC チャネルを再初期化(そして効果的に有効化)します。"
 
-#: ../../library/machine.ADC.rst:74
+#: ../../library/machine.ADCWiPy.rst:81
 msgid "Disable the ADC channel."
 msgstr "ADC チャネルを無効化します。"
 
@@ -17310,7 +17409,20 @@ msgstr ""
 msgid "A mutable list of directories to search for imported modules."
 msgstr "import するモジュールを検索するディレクトリの変更可能なリスト。"
 
-#: ../../library/sys.rst:120
+#: ../../library/sys.rst:121
+msgid ""
+"On MicroPython, an entry with the value ``\".frozen\"`` will indicate "
+"that import should search :term:`frozen modules <frozen module>` at that "
+"point in the search. If no frozen module is found then search will *not* "
+"look for a directory called ``.frozen``, instead it will continue with "
+"the next entry in ``sys.path``."
+msgstr ""
+"MicroPythonでは、``\".frozen\"`` という値を持つエントリは、import が検索時に "
+":term:`凍結モジュール <frozen module>` を検索することを意味します。"
+"凍結モジュールが見つからなければ、 ``.frozen`` というディレクトリを *探さず* 、"
+"代わりに ``sys.path`` の次のエントリで検索を続行します。"
+
+#: ../../library/sys.rst:128
 msgid ""
 "The platform that MicroPython is running on. For OS/RTOS ports, this is "
 "usually an identifier of the OS, e.g. ``\"linux\"``. For baremetal ports "
@@ -17328,30 +17440,30 @@ msgstr ""
 "実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
-#: ../../library/sys.rst:129
+#: ../../library/sys.rst:137
 msgid "Standard error `stream`."
 msgstr "標準エラーの `stream` 。"
 
-#: ../../library/sys.rst:134
+#: ../../library/sys.rst:141
 msgid "Standard input `stream`."
 msgstr "標準入力の `stream` 。"
 
-#: ../../library/sys.rst:137
+#: ../../library/sys.rst:145
 msgid "Standard output `stream`."
 msgstr "標準出力の `stream` 。"
 
-#: ../../library/sys.rst:141
+#: ../../library/sys.rst:149
 msgid "Python language version that this implementation conforms to, as a string."
 msgstr "この処理系が準拠する Python 言語バージョンを表す文字列。"
 
-#: ../../library/sys.rst:145
+#: ../../library/sys.rst:153
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
 "この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
-#: ../../library/sys.rst:150
+#: ../../library/sys.rst:158
 msgid ""
 "Only the first three version numbers (major, minor, micro) are supported "
 "and they can be referenced only by index, not by name."
