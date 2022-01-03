@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-01 15:06+0900\n"
-"PO-Revision-Date: 2022-01-01 15:54+0900\n"
+"PO-Revision-Date: 2022-01-03 12:43+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -527,31 +527,36 @@ msgstr ""
 
 #: ../../develop/compiler.rst:4
 msgid "The Compiler"
-msgstr ""
+msgstr "コンパイラ"
 
 #: ../../develop/compiler.rst:6
 msgid "The compilation process in MicroPython involves the following steps:"
 msgstr ""
+"MicroPython のコンパイルは以下の手順で行われます。"
 
 #: ../../develop/compiler.rst:8
 msgid ""
 "The lexer converts the stream of text that makes up a MicroPython program"
 " into tokens."
 msgstr ""
+"語彙解析器は MicroPython プログラムを構成するテキストのストリームをトークンに変換します。"
 
 #: ../../develop/compiler.rst:9
 msgid "The parser then converts the tokens into an abstract syntax (parse tree)."
 msgstr ""
+"次に構文解析器が、トークンを抽象的な構文(構文木)に変換します。"
 
 #: ../../develop/compiler.rst:10
 msgid "Then bytecode or native code is emitted based on the parse tree."
 msgstr ""
+"次に構文木に基づいてバイトコードまたはネイティブコードを出力します。"
 
 #: ../../develop/compiler.rst:12
 msgid ""
 "For purposes of this discussion we are going to add a simple language "
 "feature ``add1`` that can be use in Python as:"
 msgstr ""
+"この説明のために、Python に単純な言語機能 ``add1`` 追加してみることにします。"
 
 #: ../../develop/compiler.rst:15
 msgid ""
@@ -563,10 +568,11 @@ msgstr ""
 #: ../../develop/compiler.rst:21
 msgid "The ``add1`` statement takes an integer as argument and adds ``1`` to it."
 msgstr ""
+"``add1`` 文は、引数として整数を受け取り、それに ``1`` を加算します。"
 
 #: ../../develop/compiler.rst:24
 msgid "Adding a grammar rule"
-msgstr ""
+msgstr "文法規則の追加"
 
 #: ../../develop/compiler.rst:26
 msgid ""
@@ -576,6 +582,11 @@ msgid ""
 "<https://github.com/micropython/micropython/blob/master/py/grammar.h>`_. "
 "This grammar is what is used to parse MicroPython source files."
 msgstr ""
+"MicroPython の文法は `CPythonの文法 "
+"<https://docs.python.org/ja/3.5/reference/grammar.html>`_ をベースに"
+"していて、それは `py/grammar.h "
+"<https://github.com/micropython/micropython/blob/master/py/grammar.h>`_ "
+"に定義されています。この文法はMicroPython のソースファイルを構文解析するために使われます。"
 
 #: ../../develop/compiler.rst:30
 msgid ""
@@ -584,12 +595,17 @@ msgid ""
 "rule with an associated compile function, while ``DEF_RULE_NC`` has no "
 "compile (NC) function for it."
 msgstr ""
+"文法規則を定義するために知っておかなければならないマクロが2つあります: "
+"``DEF_RULE`` と ``DEF_RULE_NC`` です。 "
+"``DEF_RULE`` はコンパイル関数を関連付けた規則を定義でき、"
+"``DEF_RULE_NC`` はそのためのコンパイル関数を定義しないものです。"
 
 #: ../../develop/compiler.rst:34
 msgid ""
 "A simple grammar definition with a compile function for our new ``add1`` "
 "statement looks like the following:"
 msgstr ""
+"新しい ``add1`` 文のコンパイル関数を使った簡単な文法定義は次のようになります。"
 
 #: ../../develop/compiler.rst:37
 msgid "DEF_RULE(add1_stmt, c(add1_stmt), and(2), tok(KW_ADD1), rule(testlist))"
@@ -601,6 +617,8 @@ msgid ""
 "function that should be implemented in ``py/compile.c`` to turn this rule"
 " into executable code."
 msgstr ""
+"第2引数の ``c(add1_stmt)`` は対応するコンパイル関数であり、"
+"この規則を実行コードに変換するために ``py/compile.c`` で実装すべき関数です。"
 
 #: ../../develop/compiler.rst:44
 msgid ""
@@ -612,12 +630,20 @@ msgid ""
 " ``add1`` corresponding to ``KW_ADD1``, and the other for its argument, a"
 " ``testlist`` rule which is the top-level expression rule."
 msgstr ""
+"第3の必須引数には ``or`` または ``and`` を指定できます。"
+"これには文に関連するノード数を指定します。"
+"たとえば、今回の ``add1`` 文はアセンブリ言語の ADD1 に似ています。"
+"これは１つの数値引数を取ります。したがって ``add1_stmt`` には２つの"
+"ノードが関連付けられています。１つは文そのもの、すなわちリテラル "
+"``add1`` に対応する ``KW_ADD1`` ノード、もう１つはその引数で、
+"トップレベルの式規則である ``testlist`` 規則のノードです。"
 
 #: ../../develop/compiler.rst:51
 msgid ""
 "The ``add1`` rule here is just an example and not part of the standard "
 "MicroPython grammar."
 msgstr ""
+"ここでの ``add1`` 規則は単なる例であり、MicroPython の標準文法の一部ではありません。"
 
 #: ../../develop/compiler.rst:54
 msgid ""
@@ -625,12 +651,16 @@ msgid ""
 "rule, ``KW_ADD1``. This token should be defined in the lexer by editing "
 "``py/lexer.h``."
 msgstr ""
+"この例の第4引数は ``KW_ADD1`` というルールに対応するトークンです。"
+"このトークンは ``py/lexer.h`` を編集して語彙解析器の中で定義されるものです。"
 
 #: ../../develop/compiler.rst:57
 msgid ""
 "Defining the same rule without a compile function is achieved by using "
 "the ``DEF_RULE_NC`` macro and omitting the compile function argument:"
 msgstr ""
+"同じ規則をコンパイル関数なしで定義するには ``DEF_RULE_NC`` マクロを使って実現できます。"
+"このマクロではコンパイル関数の引数を省略します。"
 
 #: ../../develop/compiler.rst:60
 msgid "DEF_RULE_NC(add1_stmt, and(2), tok(KW_ADD1), rule(testlist))"
@@ -644,6 +674,11 @@ msgid ""
 "of a complicated grammar structure that cannot be expressed in a single "
 "rule."
 msgstr ""
+"残りの引数も同じ意味を持ちます。"
+"コンパイル関数のないルールは、"
+"この規則をノードとして持つ可能性のあるすべての規則において明示的に処理されなければ"
+"なりません。このようなコンパイル関数の無い規則は、通常、単一の規則では表現できない"
+"複雑な文法構造の下位部分を表現するために用います。"
 
 #: ../../develop/compiler.rst:70
 msgid ""
@@ -651,10 +686,14 @@ msgid ""
 "in-depth understanding of supported parameters, see `py/grammar.h "
 "<https://github.com/micropython/micropython/blob/master/py/grammar.h>`_."
 msgstr ""
+"マクロ ``DEF_RULE`` と ``DEF_RULE_NC`` は他の引数も取ります。"
+"サポートされている引数の詳細を理解するには `py/grammar.h "
+"<https://github.com/micropython/micropython/blob/master/py/grammar.h>`_ "
+"を参照してください。"
 
 #: ../../develop/compiler.rst:74
 msgid "Adding a lexical token"
-msgstr ""
+msgstr "語彙トークンの追加"
 
 #: ../../develop/compiler.rst:76
 msgid ""
@@ -662,6 +701,8 @@ msgid ""
 "that is defined in ``py/lexer.h``. Add this token by editing the "
 "``_mp_token_kind_t`` enum:"
 msgstr ""
+"文法で定義されたすべての規則は ``py/lexer.h`` で定義されたトークンに関連づける"
+"必要があります。列挙型 ``_mp_token_kind_t`` を編集して、このトークンを追加します。"
 
 #: ../../develop/compiler.rst:79
 msgid ""
@@ -683,6 +724,7 @@ msgstr ""
 #: ../../develop/compiler.rst:96
 msgid "Then also edit ``py/lexer.c`` to add the new keyword literal text:"
 msgstr ""
+"次に ``py/lexer.c`` も編集して、新しいキーワードのリテラルテキストを追加します:"
 
 #: ../../develop/compiler.rst:98
 msgid ""
@@ -706,16 +748,20 @@ msgid ""
 "Notice the keyword is named depending on what you want it to be. For "
 "consistency, maintain the naming standard accordingly."
 msgstr ""
+"キーワードの名前は望んだとおりに付けられていることに注意してください。"
+"一貫性が保たれるように命名の標準を維持してください。"
 
 #: ../../develop/compiler.rst:119
 msgid ""
 "The order of these keywords in ``py/lexer.c`` must match the order of "
 "tokens in the enum defined in ``py/lexer.h``."
 msgstr ""
+"``py/lexer.c`` 中のキーワードの順序は ``py/lexer.h`` で定義した enum 中の"
+"トークンの順序と一致させなければなりません。"
 
 #: ../../develop/compiler.rst:123
 msgid "Parsing"
-msgstr ""
+msgstr "構文解析"
 
 #: ../../develop/compiler.rst:125
 msgid ""
@@ -724,6 +770,11 @@ msgid ""
 "implementation for the parser is defined in `py/parse.c "
 "<https://github.com/micropython/micropython/blob/master/py/parse.c>`_."
 msgstr ""
+"構文解析のステージでは、構文解析器が語彙解析器で生成したトークンを受け取り、"
+"抽象構文木(AST: Abstract Syntax Tree)に変換します(抽象構文木は *パースツリー* "
+"と呼ぶこともあります)。構文解析の実装は `py/parse.c "
+"<https://github.com/micropython/micropython/blob/master/py/parse.c>`_ "
+"で定義します。"
 
 #: ../../develop/compiler.rst:128
 msgid ""
@@ -732,6 +783,9 @@ msgid ""
 "<https://steemit.com/programming/@drifter1/writing-a-simple-compiler-on-"
 "my-own-symbol-table-basic-structure>`_ does."
 msgstr ""
+"構文解析器は解析のさまざまな局面で使う定数のテーブルを維持します。これは `シンボルテーブル "
+"<https://steemit.com/programming/@drifter1/writing-a-simple-compiler-on-"
+"my-own-symbol-table-basic-structure>`_ が行うことと似ています。"
 
 #: ../../develop/compiler.rst:132
 msgid ""
@@ -741,6 +795,9 @@ msgid ""
 "optimizing enhancements on parenthesis around expressions are performed "
 "during this phase, along with some optimizations on strings."
 msgstr ""
+"このフェーズでは、論理、バイナリ、単項などのほとんどの演算に対する整数の `定数畳み込み "
+"<http://compileroptimizations.com/category/constant_folding.htm>`_ や、"
+"式の周りの括弧の最適化など、いくつかの最適化が行われ、文字列の最適化も行われます。"
 
 #: ../../develop/compiler.rst:136
 msgid ""
@@ -749,10 +806,13 @@ msgid ""
 "<https://en.wikipedia.org/wiki/String_interning>`_ are not applied to "
 "*docstrings*."
 msgstr ""
+"注目すべきは *docstring* が破棄され、コンパイラからはアクセスできないことです。 "
+"`文字列インターン <https://en.wikipedia.org/wiki/String_interning>`_ "
+"のような最適化も *docstring* には適用されません。"
 
 #: ../../develop/compiler.rst:141
 msgid "Compiler passes"
-msgstr ""
+msgstr "コンパイラのパス"
 
 #: ../../develop/compiler.rst:143
 msgid ""
@@ -762,6 +822,10 @@ msgid ""
 "<https://github.com/micropython/micropython/blob/master/py/compile.c>`_. "
 "The most relevant method you should know about is this:"
 msgstr ""
+"多くのコンパイラと同様、MicroPython はすべてのコードを MicroPython のバイトコード"
+"またはネイティブコードにコンパイルします。これを実現する機能は `py/compile.c "
+"<https://github.com/micropython/micropython/blob/master/py/compile.c>`_ "
+"に実装されています。知っておくべき最も関連性の高いメソッドは次のものです:"
 
 #: ../../develop/compiler.rst:147
 msgid ""
@@ -783,10 +847,13 @@ msgid ""
 "structure, with different things being computed each time based on the "
 "results of the previous pass."
 msgstr ""
+"コンパイラは、スコープ、スタックサイズ、コードサイズ、エミットの４つのパスでコードを"
+"コンパイルします。各パスは同じASTデータ構造に対して同じCコードを実行し、"
+"前のパスの結果に基づいて異なるものが算出されます。"
 
 #: ../../develop/compiler.rst:161
 msgid "First pass"
-msgstr ""
+msgstr "第１パス"
 
 #: ../../develop/compiler.rst:163
 msgid ""
@@ -795,6 +862,9 @@ msgid ""
 "the same pass the emitter (bytecode or native code) also computes the "
 "number of labels needed for the emitted code."
 msgstr ""
+"第１パスで、コンパイラは既知の識別子(変数)とそのスコープ（グローバル、ローカル、"
+"クローズドオーバーなど)を学習します。同じパスで(バイトコードまたはネイティブコードの)"
+"エミッターは出力コードに必要なラベルの数も算出します。"
 
 #: ../../develop/compiler.rst:168
 msgid ""
@@ -825,7 +895,7 @@ msgstr ""
 
 #: ../../develop/compiler.rst:193
 msgid "Second and third passes"
-msgstr ""
+msgstr "第２パスと第３パス"
 
 #: ../../develop/compiler.rst:195
 msgid ""
@@ -833,6 +903,9 @@ msgid ""
 "code size for the bytecode or native code. After the third pass the code "
 "size cannot change, otherwise jump labels will be incorrect."
 msgstr ""
+"第２パスと第３パスは、Python のスタックサイズとバイトコードまたはネイティブコードの"
+"コードサイズを算出します。第３パスの後、コードサイズは変更できません。そうしないと、"
+"ジャンプラベルが不正確なものになるからです。"
 
 #: ../../develop/compiler.rst:199
 msgid ""
@@ -857,6 +930,8 @@ msgid ""
 "Just before pass two there is a selection for the type of code to be "
 "emitted, which can either be native or bytecode."
 msgstr ""
+"第２パスの直前には、出力するコード種別を選択肢があり、ネイティブコードかバイトコードかを"
+"選択できます。"
 
 #: ../../develop/compiler.rst:218
 msgid ""
@@ -886,6 +961,10 @@ msgid ""
 " :ref:`Emitting native code <emitting_native_code>` section for more "
 "details on viper annotations."
 msgstr ""
+"バイトコードオプションはデフォルトですが、ネイティブコードオプションで注意すべき"
+"ユニークな点は ``VIPER`` による別のオプションがあることです。 viper アノテーションの"
+"詳細については :ref:`ネイティブコードの出力 <emitting_native_code>` の章を"
+"参照してください。"
 
 #: ../../develop/compiler.rst:242
 msgid ""
@@ -897,16 +976,25 @@ msgid ""
 "<https://docs.micropython.org/en/latest/pyboard/tutorial/assembler.html"
 "#pyboard-tutorial-assembler>`_ for more details."
 msgstr ""
+"また、インラインアセンブリコードもサポートされており、アセンブリ命令は Python の"
+"関数呼び出しとして記述されますが、対応するマシンコードとして直接エミュレートされます。"
+"このアセンブラは３つのパス(スコープ、コードサイズ、エミット)しか持たず、 "
+"``compile_scope`` 関数ではなく、別の実装を使います。詳しくは "
+"`インラインアセンブラのチュートリアル "
+"<https://micropython-docs-ja.readthedocs.io/ja/latest/pyboard/tutorial/assembler.html#pyboard-tutorial-assembler>`_ "
+"を参照してください。"
 
 #: ../../develop/compiler.rst:250
 msgid "Fourth pass"
-msgstr ""
+msgstr "第４パス"
 
 #: ../../develop/compiler.rst:252
 msgid ""
 "The fourth pass emits the final code that can be executed, either "
 "bytecode in the virtual machine, or native code directly by the CPU."
 msgstr ""
+"第４パスでは、仮想マシンのバイトコード、またはCPUが直接実行するネイティブコードとして、"
+"最終的なコードを出力します。"
 
 #: ../../develop/compiler.rst:255
 msgid ""
@@ -923,7 +1011,7 @@ msgstr ""
 
 #: ../../develop/compiler.rst:267
 msgid "Emitting bytecode"
-msgstr ""
+msgstr "バイトコードの出力"
 
 #: ../../develop/compiler.rst:269
 msgid ""
@@ -932,12 +1020,17 @@ msgid ""
 "add\". Some statements do not emit anything but instead affect other "
 "things like the scope of variables, for example ``global a``."
 msgstr ""
+"Python コードにおける文はたいてい出力されるバイトコードに対応しています。たとえば "
+"``a + b`` は \"push a\"、\"push b\"、\"binary op add\" の順に出力されます。"
+"文の中には何も出力しないものもありますが、その代わりに変数のスコープなど他のものに"
+"影響を与えるものもあります(例: ``global a``)。"
 
 #: ../../develop/compiler.rst:274
 msgid ""
 "The implementation of a function that emits bytecode looks similar to "
 "this:"
 msgstr ""
+"バイトコードを出力する関数の実装は次のようなものです:"
 
 #: ../../develop/compiler.rst:276
 msgid ""
@@ -954,16 +1047,22 @@ msgid ""
 "function ``emit_get_cur_to_write_bytecode()`` that all functions must "
 "call to emit bytecode."
 msgstr ""
+"ここでは単項演算子式を例に挙げますが、他の文や式でも実装の詳細は同様です。"
+"メソッド ``emit_write_bytecode_byte()`` は、メイン関数 "
+"``emit_get_cur_to_write_bytecode()`` のラッパーで、バイトコードを"
+"出力するためのすべての関数を呼び出します。"
 
 #: ../../develop/compiler.rst:290
 msgid "Emitting native code"
-msgstr ""
+msgstr "ネイティブコードの出力"
 
 #: ../../develop/compiler.rst:292
 msgid ""
 "Similar to how bytecode is generated, there should be a corresponding "
 "function in ``py/emitnative.c`` for each code statement:"
 msgstr ""
+"バイトコードを生成するのと同様に、ネイティブコードについても各コード文に対応する関数が "
+"``py/emitnative.c`` に存在します。"
 
 #: ../../develop/compiler.rst:295
 msgid ""
@@ -995,6 +1094,15 @@ msgid ""
 "example, integers become native integers and can overflow (unlike Python "
 "integers which extend automatically to arbitrary precision)."
 msgstr ""
+"違いは *viper の型付け* を処理しなければならないことです。"
+"viper アノテーションを使えば複数のタイプの変数を扱えます。"
+"デフォルトですべての変数は Python オブジェクトですが、viper での変数は"
+"ネイティブの整数やポインタのような機械的に型付けされた変数として宣言することもできます。"
+"viper は Python のスーパーセットと考えることができ、通常の Python オブジェクトは"
+"通常どおり扱われ、ネイティブな機械語変数は演算に直接に機械語命令を使用することで"
+"最適化された方法で扱われます。viper の型付けは Python との互換性を破るかもしれません。"
+"たとえば、整数はネイティブな整数となり、オーバーフローする可能性があります"
+"(任意の精度まで自動的に拡張する Python の整数と異なります)。"
 
 #: ../../develop/extendingmicropython.rst:4
 msgid "Extending MicroPython in C"
