@@ -509,7 +509,7 @@ The RMT is ESP32-specific and allows generation of accurate digital pulses with
     r = esp32.RMT(0, pin=Pin(18), clock_div=8)
     r   # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8)
     # The channel resolution is 100ns (1/(source_freq/clock_div)).
-    r.write_pulses((1, 20, 2, 40), start=0) # Send 0 for 100ns, 1 for 2000ns, 0 for 200ns, 1 for 4000ns
+    r.write_pulses((1, 20, 2, 40), 0) # Send 0 for 100ns, 1 for 2000ns, 0 for 200ns, 1 for 4000ns
 
 OneWire driver
 --------------
@@ -572,6 +572,9 @@ For low-level driving of a NeoPixel::
    units. It is possible to use alternative timing to control other (typically
    400kHz) devices by passing ``timing=0`` when constructing the
    ``NeoPixel`` object.
+
+The low-level driver uses an RMT channel by default.  To configure this see
+`RMT.bitstream_channel`.
 
 APA102 (DotStar) uses a different driver as it has an additional clock pin.
 
