@@ -58,25 +58,20 @@ typedef struct _nina_obj_t {
 
 static uint16_t bind_port = BIND_PORT_RANGE_MIN;
 const mod_network_nic_type_t mod_network_nic_type_nina;
-static nina_obj_t nina_obj = {{(mp_obj_type_t *)&mod_network_nic_type_nina}, false, MOD_NETWORK_STA_IF};
+static nina_obj_t network_nina_wl_sta = {{(mp_obj_type_t *)&mod_network_nic_type_nina}, false, MOD_NETWORK_STA_IF};
+static nina_obj_t network_nina_wl_ap = {{(mp_obj_type_t *)&mod_network_nic_type_nina}, false, MOD_NETWORK_AP_IF};
 
 STATIC mp_obj_t network_ninaw10_make_new(const mp_obj_type_t *type, size_t n_args, size_t n_kw, const mp_obj_t *args) {
     mp_arg_check_num(n_args, n_kw, 0, 1, false);
-
-    nina_obj.active = false;
-    if (n_args == 0) {
-        nina_obj.itf = MOD_NETWORK_STA_IF;
+    mp_obj_t nina_obj;
+    if (n_args == 0 || mp_obj_get_int(args[0]) == MOD_NETWORK_STA_IF) {
+        nina_obj = MP_OBJ_FROM_PTR(&network_nina_wl_sta);
     } else {
-        nina_obj.itf = mp_obj_get_int(args[0]);
+        nina_obj = MP_OBJ_FROM_PTR(&network_nina_wl_ap);
     }
-
-    // Reset autobind port.
-    bind_port = BIND_PORT_RANGE_MIN;
-
     // Register with network module
-    mod_network_register_nic(MP_OBJ_FROM_PTR(&nina_obj));
-
-    return MP_OBJ_FROM_PTR(&nina_obj);
+    mod_network_register_nic(nina_obj);
+    return nina_obj;
 }
 
 STATIC mp_obj_t network_ninaw10_active(size_t n_args, const mp_obj_t *args) {
@@ -171,6 +166,11 @@ STATIC mp_obj_t network_ninaw10_connect(mp_uint_t n_args, const mp_obj_t *pos_ar
 
     if (security != NINA_SEC_OPEN && strlen(key) == 0) {
         mp_raise_msg(&mp_type_OSError, MP_ERROR_TEXT("Key can't be empty!"));
+    }
+
+    // Disconnect active connections first.
+    if (nina_isconnected()) {
+        nina_disconnect();
     }
 
     if (self->itf == MOD_NETWORK_STA_IF) {
@@ -435,7 +435,7 @@ STATIC mp_uint_t network_ninaw10_socket_send(mod_network_socket_obj_t *socket, c
     if (ret == NINA_ERROR_TIMEOUT) {
         // The socket is Not closed on timeout when calling functions that accept a timeout.
         *_errno = MP_ETIMEDOUT;
-        return 0;
+        return -1;
     } else if (ret < 0) {
         // Close the socket on any other errors.
         *_errno = ret;
@@ -446,11 +446,19 @@ STATIC mp_uint_t network_ninaw10_socket_send(mod_network_socket_obj_t *socket, c
 }
 
 STATIC mp_uint_t network_ninaw10_socket_recv(mod_network_socket_obj_t *socket, byte *buf, mp_uint_t len, int *_errno) {
-    int ret = nina_socket_recv(socket->fileno, buf, len, socket->timeout);
+    int ret = 0;
+    if (socket->type == MOD_NETWORK_SOCK_DGRAM) {
+        byte ip[4];
+        uint16_t port;
+        ret = nina_socket_recvfrom(socket->fileno, buf, len, ip, &port, socket->timeout);
+    } else {
+        ret = nina_socket_recv(socket->fileno, buf, len, socket->timeout);
+    }
+
     if (ret == NINA_ERROR_TIMEOUT) {
         // The socket is Not closed on timeout when calling functions that accept a timeout.
         *_errno = MP_ETIMEDOUT;
-        return 0;
+        return -1;
     } else if (ret < 0) {
         // Close the socket on any other errors.
         *_errno = ret;
@@ -482,7 +490,7 @@ STATIC mp_uint_t network_ninaw10_socket_sendto(mod_network_socket_obj_t *socket,
     if (ret == NINA_ERROR_TIMEOUT) {
         // The socket is Not closed on timeout when calling functions that accept a timeout.
         *_errno = MP_ETIMEDOUT;
-        return 0;
+        return -1;
     } else if (ret < 0) {
         *_errno = ret;
         network_ninaw10_socket_close(socket);
@@ -493,16 +501,22 @@ STATIC mp_uint_t network_ninaw10_socket_sendto(mod_network_socket_obj_t *socket,
 
 STATIC mp_uint_t network_ninaw10_socket_recvfrom(mod_network_socket_obj_t *socket,
     byte *buf, mp_uint_t len, byte *ip, mp_uint_t *port, int *_errno) {
-    // Auto-bind the socket first if the socket is unbound.
-    if (network_ninaw10_socket_auto_bind(socket, _errno) != 0) {
-        return -1;
+    int ret = 0;
+    if (socket->type == MOD_NETWORK_SOCK_STREAM) {
+        *port = 0;
+        *((uint32_t *)ip) = 0;
+        ret = nina_socket_recv(socket->fileno, buf, len, socket->timeout);
+    } else {
+        // Auto-bind the socket first if the socket is unbound.
+        if (network_ninaw10_socket_auto_bind(socket, _errno) != 0) {
+            return -1;
+        }
+        ret = nina_socket_recvfrom(socket->fileno, buf, len, ip, (uint16_t *)port, socket->timeout);
     }
-
-    int ret = nina_socket_recvfrom(socket->fileno, buf, len, ip, (uint16_t *)port, socket->timeout);
     if (ret == NINA_ERROR_TIMEOUT) {
         // The socket is Not closed on timeout when calling functions that accept a timeout.
         *_errno = MP_ETIMEDOUT;
-        return 0;
+        return -1;
     } else if (ret < 0) {
         // Close the socket on any other errors.
         *_errno = ret;

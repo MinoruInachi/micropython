@@ -1552,7 +1552,10 @@ typedef double mp_float_t;
 
 #ifndef MICROPY_PY_USSL
 #define MICROPY_PY_USSL (0)
+#endif
+
 // Whether to add finaliser code to ussl objects
+#ifndef MICROPY_PY_USSL_FINALISER
 #define MICROPY_PY_USSL_FINALISER (0)
 #endif
 
@@ -1579,6 +1582,12 @@ typedef double mp_float_t;
 // Additional builtin function definitions - see modbuiltins.c:mp_module_builtins_globals_table for format.
 #ifndef MICROPY_PORT_BUILTINS
 #define MICROPY_PORT_BUILTINS
+#endif
+
+// Additional builtin function definitions for extension by command-line, boards or variants.
+// See modbuiltins.c:mp_module_builtins_globals_table for format.
+#ifndef MICROPY_PORT_EXTRA_BUILTINS
+#define MICROPY_PORT_EXTRA_BUILTINS
 #endif
 
 // Additional builtin module definitions - see objmodule.c:mp_builtin_module_table for format.

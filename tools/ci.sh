@@ -603,20 +603,24 @@ function ci_windows_build {
 ########################################################################################
 # ports/zephyr
 
+ZEPHYR_DOCKER_VERSION=v0.21.0
+ZEPHYR_SDK_VERSION=0.13.2
+ZEPHYR_VERSION=v2.7.0
+
 function ci_zephyr_setup {
-    docker pull zephyrprojectrtos/ci:v0.17.3
+    docker pull zephyrprojectrtos/ci:${ZEPHYR_DOCKER_VERSION}
     docker run --name zephyr-ci -d -it \
       -v "$(pwd)":/micropython \
-      -e ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains/zephyr-sdk-0.12.4 \
+      -e ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains/zephyr-sdk-${ZEPHYR_SDK_VERSION} \
       -e ZEPHYR_TOOLCHAIN_VARIANT=zephyr \
       -e ZEPHYR_BASE=/zephyrproject/zephyr \
       -w /micropython/ports/zephyr \
-      zephyrprojectrtos/ci:v0.17.3
+      zephyrprojectrtos/ci:${ZEPHYR_DOCKER_VERSION}
     docker ps -a
 }
 
 function ci_zephyr_install {
-    docker exec zephyr-ci west init --mr v2.6.0 /zephyrproject
+    docker exec zephyr-ci west init --mr ${ZEPHYR_VERSION} /zephyrproject
     docker exec -w /zephyrproject zephyr-ci west update
     docker exec -w /zephyrproject zephyr-ci west zephyr-export
 }
