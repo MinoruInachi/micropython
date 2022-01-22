@@ -2,10 +2,35 @@
 
 Builtin types
 =============
-Generated Sun 31 Jan 2021 14:55:11 UTC
+Generated Sat 22 Jan 2022 08:20:40 UTC
 
 Exception
 ---------
+
+.. _cpydiff_types_exception_attrs:
+
+All exceptions have readable ``value`` and ``errno`` attributes, not just ``StopIteration`` and ``OSError``.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised to reduce code size.
+
+**Workaround:** Only use ``value`` on ``StopIteration`` exceptions, and ``errno`` on ``OSError`` exceptions.  Do not use or rely on these attributes on other exceptions.
+
+Sample code::
+
+    e = Exception(1)
+    print(e.value)
+    print(e.errno)
+
++-----------------------------------------------------------------+-------------+
+| CPy output:                                                     | uPy output: |
++-----------------------------------------------------------------+-------------+
+| ::                                                              | ::          |
+|                                                                 |             |
+|     Traceback (most recent call last):                          |     1       |
+|       File "<stdin>", line 8, in <module>                       |     1       |
+|     AttributeError: 'Exception' object has no attribute 'value' |             |
++-----------------------------------------------------------------+-------------+
 
 .. _cpydiff_types_exception_chaining:
 
@@ -265,6 +290,31 @@ Sample code::
 
 int
 ---
+
+.. _cpydiff_types_int_bit_length:
+
+``bit_length`` method doesn't exist.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** bit_length method is not implemented.
+
+**Workaround:** Avoid using this method on MicroPython.
+
+Sample code::
+
+    
+    x = 255
+    print("{} is {} bits long.".format(x, x.bit_length()))
+
++-------------------------+----------------------------------------------------------------+
+| CPy output:             | uPy output:                                                    |
++-------------------------+----------------------------------------------------------------+
+| ::                      | ::                                                             |
+|                         |                                                                |
+|     255 is 8 bits long. |     Traceback (most recent call last):                         |
+|                         |       File "<stdin>", line 9, in <module>                      |
+|                         |     AttributeError: 'int' object has no attribute 'bit_length' |
++-------------------------+----------------------------------------------------------------+
 
 .. _cpydiff_types_int_subclassconv:
 

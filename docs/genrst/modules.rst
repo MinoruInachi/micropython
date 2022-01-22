@@ -2,10 +2,61 @@
 
 Modules
 =======
-Generated Sun 31 Jan 2021 14:55:11 UTC
+Generated Sat 22 Jan 2022 08:20:40 UTC
 
 array
 -----
+
+.. _cpydiff_module_array_comparison:
+
+Comparison between different typecodes not supported
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** Code size
+
+**Workaround:** Compare individual elements
+
+Sample code::
+
+    import array
+    
+    array.array("b", [1, 2]) == array.array("i", [1, 2])
+
++-------------+-------------------------------------------+
+| CPy output: | uPy output:                               |
++-------------+-------------------------------------------+
+|             | ::                                        |
+|             |                                           |
+|             |     Traceback (most recent call last):    |
+|             |       File "<stdin>", line 9, in <module> |
+|             |     NotImplementedError:                  |
++-------------+-------------------------------------------+
+
+.. _cpydiff_module_array_constructor:
+
+Overflow checking is not implemented
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython implements implicit truncation in order to reduce code size and execution time
+
+**Workaround:** If CPython compatibility is needed then mask the value explicitly
+
+Sample code::
+
+    import array
+    
+    a = array.array("b", [257])
+    print(a)
+
++--------------------------------------------------------+---------------------+
+| CPy output:                                            | uPy output:         |
++--------------------------------------------------------+---------------------+
+| ::                                                     | ::                  |
+|                                                        |                     |
+|     Traceback (most recent call last):                 |     array('b', [1]) |
+|       File "<stdin>", line 9, in <module>              |                     |
+|     OverflowError: signed char is greater than maximum |                     |
++--------------------------------------------------------+---------------------+
 
 .. _cpydiff_modules_array_containment:
 
@@ -244,6 +295,65 @@ Sample code::
 |             |     DEFAULT             |
 +-------------+-------------------------+
 
+random
+------
+
+.. _cpydiff_modules_random_getrandbits:
+
+``getrandbits`` method can only return a maximum of 32 bits at a time.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** PRNG's internal state is only 32bits so it can only return a maximum of 32 bits of data at a time.
+
+**Workaround:** If you need a number that has more than 32 bits then utilize the random module from micropython-lib.
+
+Sample code::
+
+    
+    import random
+    
+    
+    x = random.getrandbits(64)
+    print("{}".format(x))
+
++-------------------------+--------------------------------------------+
+| CPy output:             | uPy output:                                |
++-------------------------+--------------------------------------------+
+| ::                      | ::                                         |
+|                         |                                            |
+|     4639675801447594684 |     Traceback (most recent call last):     |
+|                         |       File "<stdin>", line 11, in <module> |
+|                         |     ValueError: bits must be 32 or less    |
++-------------------------+--------------------------------------------+
+
+.. _cpydiff_modules_random_randint:
+
+``randint`` method can only return an integer that is at most the native word size.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** PRNG is only able to generate 32 bits of state at a time. The result is then cast into a native sized int instead of a full int object.
+
+**Workaround:** If you need integers larger than native wordsize use the random module from micropython-lib.
+
+Sample code::
+
+    
+    import random
+    
+    
+    x = random.randint(2 ** 128 - 1, 2 ** 128)
+    print("x={}".format(x))
+
++-----------------------------------------------+----------------------------------------------------------------+
+| CPy output:                                   | uPy output:                                                    |
++-----------------------------------------------+----------------------------------------------------------------+
+| ::                                            | ::                                                             |
+|                                               |                                                                |
+|     x=340282366920938463463374607431768211456 |     Traceback (most recent call last):                         |
+|                                               |       File "<stdin>", line 11, in <module>                     |
+|                                               |     AttributeError: 'module' object has no attribute 'randint' |
++-----------------------------------------------+----------------------------------------------------------------+
+
 struct
 ------
 
@@ -294,6 +404,34 @@ Sample code::
 |     struct.error |     b'\x01\x02'         |
 |                  |     Should not get here |
 +------------------+-------------------------+
+
+.. _cpydiff_modules_struct_whitespace_in_format:
+
+Struct pack with whitespace in format, whitespace ignored by CPython, error on uPy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code size.
+
+**Workaround:** Don't use spaces in format strings.
+
+Sample code::
+
+    import struct
+    
+    try:
+        print(struct.pack("b b", 1, 2))
+        print("Should have worked")
+    except:
+        print("struct.error")
+
++------------------------+------------------+
+| CPy output:            | uPy output:      |
++------------------------+------------------+
+| ::                     | ::               |
+|                        |                  |
+|     b'\x01\x02'        |     struct.error |
+|     Should have worked |                  |
++------------------------+------------------+
 
 sys
 ---

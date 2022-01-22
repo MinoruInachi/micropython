@@ -2,7 +2,119 @@
 
 Core language
 =============
-Generated Sun 31 Jan 2021 14:55:11 UTC
+Generated Sat 22 Jan 2022 08:20:40 UTC
+
+.. _cpydiff_core_fstring_concat:
+
+f-strings don't support concatenation with adjacent literals if the adjacent literals contain braces or are f-strings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code space.
+
+**Workaround:** Use the + operator between literal strings when either or both are f-strings
+
+Sample code::
+
+    
+    x, y = 1, 2
+    print("aa" f"{x}")  # works
+    print(f"{x}" "ab")  # works
+    print("a{}a" f"{x}")  # fails
+    print(f"{x}" "a{}b")  # fails
+    print(f"{x}" f"{y}")  # fails
+
++-------------+----------------------------------------+
+| CPy output: | uPy output:                            |
++-------------+----------------------------------------+
+| ::          | ::                                     |
+|             |                                        |
+|     aa1     |     Traceback (most recent call last): |
+|     1ab     |       File "<stdin>", line 13          |
+|     a{}a1   |     SyntaxError: invalid syntax        |
+|     1a{}b   |                                        |
+|     12      |                                        |
++-------------+----------------------------------------+
+
+.. _cpydiff_core_fstring_parser:
+
+f-strings cannot support expressions that require parsing to resolve unbalanced nested braces and brackets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code space.
+
+**Workaround:** Always use balanced braces and brackets in expressions inside f-strings
+
+Sample code::
+
+    
+    print(f'{"hello { world"}')
+    print(f'{"hello ] world"}')
+
++-------------------+----------------------------------------+
+| CPy output:       | uPy output:                            |
++-------------------+----------------------------------------+
+| ::                | ::                                     |
+|                   |                                        |
+|     hello { world |     Traceback (most recent call last): |
+|     hello ] world |       File "<stdin>", line 9           |
+|                   |     SyntaxError: invalid syntax        |
++-------------------+----------------------------------------+
+
+.. _cpydiff_core_fstring_raw:
+
+Raw f-strings are not supported
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code space.
+
+Sample code::
+
+    
+    rf"hello"
+
++-------------+--------------------------------------------------+
+| CPy output: | uPy output:                                      |
++-------------+--------------------------------------------------+
+|             | ::                                               |
+|             |                                                  |
+|             |     Traceback (most recent call last):           |
+|             |       File "<stdin>", line 8                     |
+|             |     SyntaxError: raw f-strings are not supported |
++-------------+--------------------------------------------------+
+
+.. _cpydiff_core_fstring_repr:
+
+f-strings don't support the !r, !s, and !a conversions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code space.
+
+**Workaround:** Use repr(), str(), and ascii() explictly.
+
+Sample code::
+
+    
+    
+    class X:
+        def __repr__(self):
+            return "repr"
+    
+        def __str__(self):
+            return "str"
+    
+    
+    print(f"{X()!r}")
+    print(f"{X()!s}")
+
++-------------+----------------------------------------+
+| CPy output: | uPy output:                            |
++-------------+----------------------------------------+
+| ::          | ::                                     |
+|             |                                        |
+|     repr    |     Traceback (most recent call last): |
+|     str     |       File "<stdin>", line 17          |
+|             |     SyntaxError: invalid syntax        |
++-------------+----------------------------------------+
 
 Classes
 -------
@@ -176,6 +288,35 @@ Sample code::
 |     append() takes exactly one argument (0 given) |     function takes 2 positional arguments but 1 were given |
 +---------------------------------------------------+------------------------------------------------------------+
 
+.. _cpydiff_core_function_moduleattr:
+
+Function objects do not have the ``__module__`` attribute
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimized for reduced code size and RAM usage.
+
+**Workaround:** Use ``sys.modules[function.__globals__['__name__']]`` for non-builtin modules.
+
+Sample code::
+
+    
+    
+    def f():
+        pass
+    
+    
+    print(f.__module__)
+
++--------------+---------------------------------------------------------------------+
+| CPy output:  | uPy output:                                                         |
++--------------+---------------------------------------------------------------------+
+| ::           | ::                                                                  |
+|              |                                                                     |
+|     __main__ |     Traceback (most recent call last):                              |
+|              |       File "<stdin>", line 13, in <module>                          |
+|              |     AttributeError: 'function' object has no attribute '__module__' |
++--------------+---------------------------------------------------------------------+
+
 .. _cpydiff_core_function_userattr:
 
 User-defined attributes for functions are not supported
@@ -279,7 +420,7 @@ Sample code::
 +----------------+------------------------------------------------------------------------------------------------+
 | ::             | ::                                                                                             |
 |                |                                                                                                |
-|     {'val': 2} |     {'test': <function test at 0x7fcf72506100>, '__name__': '__main__', '__file__': '<stdin>'} |
+|     {'val': 2} |     {'test': <function test at 0x7fac96006100>, '__name__': '__main__', '__file__': '<stdin>'} |
 +----------------+------------------------------------------------------------------------------------------------+
 
 .. _cpydiff_core_locals_eval:
@@ -354,13 +495,13 @@ Sample code::
     
     print(modules.__path__)
 
-+--------------------------------------------------------------+-------------------------------+
-| CPy output:                                                  | uPy output:                   |
-+--------------------------------------------------------------+-------------------------------+
-| ::                                                           | ::                            |
-|                                                              |                               |
-|     ['/Users/inachi/work/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff//modules |
-+--------------------------------------------------------------+-------------------------------+
++-------------------------------------------------------------------+-------------------------------+
+| CPy output:                                                       | uPy output:                   |
++-------------------------------------------------------------------+-------------------------------+
+| ::                                                                | ::                            |
+|                                                                   |                               |
+|     ['/Users/inachi/work/pico/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff//modules |
++-------------------------------------------------------------------+-------------------------------+
 
 .. _cpydiff_core_import_prereg:
 

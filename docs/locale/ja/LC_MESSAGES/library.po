@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-01 15:06+0900\n"
-"PO-Revision-Date: 2022-01-01 17:39+0900\n"
+"POT-Creation-Date: 2022-01-22 09:00+0900\n"
+"PO-Revision-Date: 2022-01-22 17:39+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1822,12 +1822,12 @@ msgstr ""
 "以下で説明する追加のメソッドを実装しています。"
 
 #: ../../library/btree.rst:104 ../../library/hashlib.rst:43
-#: ../../library/machine.ADC.rst:29 ../../library/machine.ADCWiPy.rst:40
-#: ../../library/machine.I2S.rst:107 ../../library/machine.PWM.rst:43
-#: ../../library/machine.Pin.rst:107 ../../library/machine.RTC.rst:25
-#: ../../library/machine.SD.rst:38 ../../library/machine.SPI.rst:44
-#: ../../library/machine.Signal.rst:97 ../../library/machine.Timer.rst:38
-#: ../../library/machine.TimerWiPy.rst:40
+#: ../../library/machine.ADC.rst:40 ../../library/machine.ADCBlock.rst:35
+#: ../../library/machine.ADCWiPy.rst:40 ../../library/machine.I2S.rst:107
+#: ../../library/machine.PWM.rst:43 ../../library/machine.Pin.rst:109
+#: ../../library/machine.RTC.rst:25 ../../library/machine.SD.rst:38
+#: ../../library/machine.SPI.rst:80 ../../library/machine.Signal.rst:97
+#: ../../library/machine.Timer.rst:39 ../../library/machine.TimerWiPy.rst:40
 #: ../../library/machine.TimerWiPy.rst:114 ../../library/machine.UART.rst:44
 #: ../../library/machine.WDT.rst:32 ../../library/network.CC3K.rst:52
 #: ../../library/network.WIZNET5K.rst:52 ../../library/network.WLAN.rst:27
@@ -2914,35 +2914,60 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:246
+#: ../../library/esp32.rst:255
+msgid ""
+"Select which RMT channel is used by the `machine.bitstream` "
+"implementation. *value* can be ``None`` or a valid RMT channel number.  "
+"The default RMT channel is the highest numbered one."
+msgstr ""
+"`machine.bitstream` の実装でどのRMTチャンネルを使用するかを選択します。 "
+"*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
+"デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
+
+#: ../../library/esp32.rst:259
+msgid ""
+"Passing in ``None`` disables the use of RMT and instead selects a bit-"
+"banging implementation for `machine.bitstream`."
+msgstr ""
+"``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
+"ビットバング実装が選択されます。"
+
+#: ../../library/esp32.rst:262
+msgid ""
+"Passing in no argument will not change the channel.  This function "
+"returns the current channel number."
+msgstr ""
+"引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
+
+#: ../../library/esp32.rst:266
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサ"
 
-#: ../../library/esp32.rst:250
+#: ../../library/esp32.rst:270
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:253
+#: ../../library/esp32.rst:273
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:258
+#: ../../library/esp32.rst:278
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:262
+#: ../../library/esp32.rst:282
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:271
+#: ../../library/esp32.rst:291
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:274
+#: ../../library/esp32.rst:294
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:276
+#: ../../library/esp32.rst:296
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -2956,7 +2981,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:283
+#: ../../library/esp32.rst:303
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -2965,14 +2990,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:288
+#: ../../library/esp32.rst:308
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:293
+#: ../../library/esp32.rst:313
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -2980,7 +3005,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:297
+#: ../../library/esp32.rst:317
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -2988,7 +3013,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:302
+#: ../../library/esp32.rst:322
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -3001,7 +3026,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:309
+#: ../../library/esp32.rst:329
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -3013,11 +3038,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:315
+#: ../../library/esp32.rst:335
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:319
+#: ../../library/esp32.rst:339
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -4921,28 +4946,38 @@ msgstr ""
 "ADC クラスはアナログ-デジタルコンバーターへのインターフェイスを提供します。"
 "これは、電圧変動をサンプリングして離散値に変換する単一のエンドポイントを表します。"
 
-#: ../../library/machine.ADC.rst:11 ../../library/machine.I2C.rst:23
-#: ../../library/machine.PWM.rst:9 ../../library/machine.RTC.rst:10
-#: ../../library/machine.SD.rst:20 ../../library/machine.SPI.rst:22
-#: ../../library/machine.WDT.rst:12 ../../library/network.WIZNET5K.rst:12
-#: ../../library/pyb.DAC.rst:12 ../../library/pyb.RTC.rst:10
-#: ../../library/pyb.Servo.rst:12
+#: ../../library/machine.ADC.rst:11
+msgid ""
+"For extra control over ADC sampling see :ref:`machine.ADCBlock "
+"<machine.ADCBlock>`."
+msgstr ""
+"ADC サンプリングの追加制御については :ref:`machine.ADCBlock <machine.ADCBlock>` "
+"を参照してください。"
+
+#: ../../library/machine.ADC.rst:13 ../../library/machine.ADCBlock.rst:14
+#: ../../library/machine.I2C.rst:23 ../../library/machine.PWM.rst:9
+#: ../../library/machine.RTC.rst:10 ../../library/machine.SD.rst:20
+#: ../../library/machine.SPI.rst:22 ../../library/machine.WDT.rst:12
+#: ../../library/network.WIZNET5K.rst:12 ../../library/pyb.DAC.rst:12
+#: ../../library/pyb.RTC.rst:10 ../../library/pyb.Servo.rst:12
 msgid "Example usage::"
 msgstr "使用例::"
 
-#: ../../library/machine.ADC.rst:13
+#: ../../library/machine.ADC.rst:15
 msgid ""
-"import machine\n"
+"from machine import ADC\n"
 "\n"
-"adc = machine.ADC(pin)   # create an ADC object acting on a pin\n"
-"val = adc.read_u16()     # read a raw analog value in the range 0-65535"
+"adc = ADC(pin)        # create an ADC object acting on a pin\n"
+"val = adc.read_u16()  # read a raw analog value in the range 0-65535\n"
+"val = adc.read_uv()   # read an analog value in microvolts"
 msgstr ""
-"import machine\n"
+"from machine import ADC\n"
 "\n"
-"adc = machine.ADC(pin)   # 指定のピンの ADC オブジェクトを作成\n"
-"val = adc.read_u16()     # 生のアナログ値を 0-65535 の範囲で読み込み"
+"adc = ADC(pin)        # 指定のピンで動作する ADC オブジェクトを作成\n"
+"val = adc.read_u16()  # 生のアナログ値を 0-65535 の範囲で読込み\n"
+"val = adc.read_uv()   # アナログ値をマイクロボルトで読込み"
 
-#: ../../library/machine.ADC.rst:20
+#: ../../library/machine.ADC.rst:26
 msgid ""
 "Access the ADC associated with a source identified by *id*.  This *id* "
 "may be an integer (usually specifying a channel number), a :ref:`Pin "
@@ -4953,7 +4988,50 @@ msgstr ""
 "この *id* は、整数(通常はチャネル番号を指定)、 :ref:`Pin <machine.Pin>` "
 "オブジェクト、基盤の基礎のハードウェアがサポートする他の値です。"
 
-#: ../../library/machine.ADC.rst:33
+#: ../../library/machine.ADC.rst:31
+msgid ""
+"If additional keyword-arguments are given then they will configure "
+"various aspects of the ADC.  If not given, these settings will take "
+"previous or default values.  The settings are:"
+msgstr ""
+"追加のキーワード引数が与えられた場合、それらは ADC の様々な側面を構成します。"
+"指定しない場合、これらの設定は以前の値またはデフォルト値をとります。"
+"設定項目は次の通りです:"
+
+#: ../../library/machine.ADC.rst:35
+msgid "*sample_ns* is the sampling time in nanoseconds."
+msgstr "*sample_ns* はナノ秒単位のサンプリング時間です。"
+
+#: ../../library/machine.ADC.rst:37
+msgid "*atten* specifies the input attenuation."
+msgstr "*atten* は、入力減衰率を指定します。"
+
+#: ../../library/machine.ADC.rst:44
+msgid ""
+"Apply the given settings to the ADC.  Only those arguments that are "
+"specified will be changed.  See the ADC constructor above for what the "
+"arguments are."
+msgstr ""
+"与えた設定を ADC に適用します。指定した引数のみが変更される。"
+"引数に何があるかは、上記の ADC コンストラクタを参照してください。"
+
+#: ../../library/machine.ADC.rst:50
+msgid ""
+"Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with "
+"this ADC object."
+msgstr ""
+"この ADC オブジェクトに対応する :ref:`ADCBlock <machine.ADCBlock>` "
+"インスタンスを返します。"
+
+#: ../../library/machine.ADC.rst:53
+msgid ""
+"This method only exists if the port supports the :ref:`ADCBlock "
+"<machine.ADCBlock>` class."
+msgstr ""
+"このメソッドは、ポートが :ref:`ADCBlock <machine.ADCBlock>` "
+"クラスをサポートしている場合にのみ存在します。"
+
+#: ../../library/machine.ADC.rst:58
 msgid ""
 "Take an analog reading and return an integer in the range 0-65535. The "
 "return value represents the raw reading taken by the ADC, scaled such "
@@ -4962,6 +5040,112 @@ msgstr ""
 "アナログ値の読込み行い、0-65535 の範囲の整数を返します。"
 "戻り値は、ADC によって取得された生の読み取り値を表し、"
 "最小値が 0、最大値が 65535 になるようにスケーリングされます。"
+
+#: ../../library/machine.ADC.rst:64
+msgid ""
+"Take an analog reading and return an integer value with units of "
+"microvolts.  It is up to the particular port whether or not this value is"
+" calibrated, and how calibration is done."
+msgstr ""
+"アナログの読み取りを行い、マイクロボルト単位で整数値を返します。"
+"この値を校正するかどうか、またどのように校正するかは、特定のポートに任されています。"
+
+#: ../../library/machine.ADCBlock.rst:5
+msgid "class ADCBlock -- control ADC peripherals"
+msgstr "クラス ADCBlock -- ADC ペリフェラルの制御"
+
+#: ../../library/machine.ADCBlock.rst:7
+msgid ""
+"The ADCBlock class provides access to an ADC peripheral which has a "
+"number of channels that can be used to sample analog values.  It allows "
+"finer control over configuration of :ref:`machine.ADC <machine.ADC>` "
+"objects, which do the actual sampling."
+msgstr ""
+"ADCBlock クラスは、アナログ値のサンプリングに使う多数のチャンネルを持つ "
+"ADC ペリフェラルへのアクセスを提供します。実際のサンプリングを行う "
+"これにより :ref:`machine.ADC <machine.ADC>` オブジェクトの"
+"コンフィギュレーションをより細かく制御できるようになります。"
+
+#: ../../library/machine.ADCBlock.rst:12
+msgid "This class is not always available."
+msgstr "このクラスはどのポートでも使えるわけではありません。"
+
+#: ../../library/machine.ADCBlock.rst:16
+msgid ""
+"from machine import ADCBlock\n"
+"\n"
+"block = ADCBlock(id, bits=12)  # create an ADCBlock with 12-bit "
+"resolution\n"
+"adc = block.connect(4, pin)    # connect channel 4 to the given pin\n"
+"val = adc.read_uv()            # read an analog value"
+msgstr ""
+"from machine import ADCBlock\n"
+"\n"
+"block = ADCBlock(id, bits=12)  # 12 ビットの分解能で ADCBlock を作成\n"
+"adc = block.connect(4, pin)    # 指定したピンにチャンネル 4 を接続\n"
+"val = adc.read_uv()            # アナログ値を読取り"
+
+#: ../../library/machine.ADCBlock.rst:27
+msgid ""
+"Access the ADC peripheral identified by *id*, which may be an integer or "
+"string."
+msgstr ""
+"*id* (整数または文字列)で識別される ADC ペリフェラルにアクセスします。"
+
+#: ../../library/machine.ADCBlock.rst:30
+msgid ""
+"The *bits* argument, if given, sets the resolution in bits of the "
+"conversion process.  If not specified then the previous or default "
+"resolution is used."
+msgstr ""
+"*bits* 引数を与えると、変換処理のビット数での分解能を設定します。"
+"指定しない場合、以前の設定またはデフォルトの分解能が適用されます。"
+
+#: ../../library/machine.ADCBlock.rst:39
+msgid ""
+"Configure the ADC peripheral.  *bits* will set the resolution of the "
+"conversion process."
+msgstr ""
+"ADC ペリフェラルを設定します。 *bits* は変換処理の分解能を設定します。"
+
+#: ../../library/machine.ADCBlock.rst:46
+msgid ""
+"Connect up a channel on the ADC peripheral so it is ready for sampling, "
+"and return an :ref:`ADC <machine.ADC>` object that represents that "
+"connection."
+msgstr ""
+"ADC ペリフェラル上のチャンネルをサンプリングできるように接続し、"
+"その接続を表す :ref:`ADC <machine.ADC>` オブジェクトを返します。"
+
+#: ../../library/machine.ADCBlock.rst:49
+msgid ""
+"The *channel* argument must be an integer, and *source* must be an object"
+" (for example a :ref:`Pin <machine.Pin>`) which can be connected up for "
+"sampling."
+msgstr ""
+"*channel* 引数は整数でなければならず、 *source* はサンプリングのために接続される"
+"オブジェクト(たとえば :ref:`Pin <machine.Pin>`)でなければなりません。"
+
+#: ../../library/machine.ADCBlock.rst:52
+msgid "If only *channel* is given then it is configured for sampling."
+msgstr ""
+"*channel* だけを与えた場合、それはサンプリングのために設定されます。"
+
+#: ../../library/machine.ADCBlock.rst:54
+msgid ""
+"If only *source* is given then that object is connected to a default "
+"channel ready for sampling."
+msgstr ""
+"*source* だけを与えた場合、そのオブジェクトはサンプリングに適したデフォルトの"
+"チャンネルに接続されます。"
+
+#: ../../library/machine.ADCBlock.rst:57
+msgid ""
+"If both *channel* and *source* are given then they are connected together"
+" and made ready for sampling."
+msgstr ""
+"*channel* と *source* の両方を指定した場合、それらは一緒に接続され、サンプリング"
+"できるようになります。"
 
 #: ../../library/machine.ADCWiPy.rst:5
 msgid "class ADCWiPy -- analog to digital conversion"
