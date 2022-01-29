@@ -500,7 +500,7 @@ Sample code::
 +-------------------------------------------------------------------+-------------------------------+
 | ::                                                                | ::                            |
 |                                                                   |                               |
-|     ['/Users/inachi/work/pico/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff//modules |
+|     ['/home/micropython/micropython-autodocs/tests/cpydiff/modules'] |     ../tests/cpydiff//modules |
 +-------------------------------------------------------------------+-------------------------------+
 
 .. _cpydiff_core_import_prereg:
