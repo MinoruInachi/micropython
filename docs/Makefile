@@ -56,12 +56,12 @@ help:
 
 clean:
 	rm -rf $(BUILDDIR)/*
-	rm -f $(GENRSTDIR)/*
+	# rm -f $(GENRSTDIR)/*
 
 cpydiff:
 	@echo "Generating MicroPython Differences."
-	rm -f $(GENRSTDIR)/*
-	cd $(CPYDIFFDIR) && $(PYTHON) $(CPYDIFF)
+	# rm -f $(GENRSTDIR)/*
+	# cd $(CPYDIFFDIR) && $(PYTHON) $(CPYDIFF)
 
 html: cpydiff
 	$(SPHINXBUILD) $(FORCE) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
