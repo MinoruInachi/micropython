@@ -2,7 +2,7 @@
 
 Core language
 =============
-Generated Sat 22 Jan 2022 08:20:40 UTC
+Generated Sat 05 Feb 2022 04:06:58 UTC
 
 .. _cpydiff_core_fstring_concat:
 
@@ -420,7 +420,7 @@ Sample code::
 +----------------+------------------------------------------------------------------------------------------------+
 | ::             | ::                                                                                             |
 |                |                                                                                                |
-|     {'val': 2} |     {'test': <function test at 0x7fac96006100>, '__name__': '__main__', '__file__': '<stdin>'} |
+|     {'val': 2} |     {'test': <function test at 0x7fc23b006100>, '__name__': '__main__', '__file__': '<stdin>'} |
 +----------------+------------------------------------------------------------------------------------------------+
 
 .. _cpydiff_core_locals_eval:

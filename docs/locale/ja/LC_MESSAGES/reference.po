@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.17\n"
+"Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-01 15:06+0900\n"
-"PO-Revision-Date: 2022-01-01 17:46+0900\n"
+"POT-Creation-Date: 2022-02-05 10:55+0900\n"
+"PO-Revision-Date: 2022-02-05 12:47+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -4160,11 +4160,59 @@ msgstr ""
 "ISR が例外を発生させると、メインループには伝播しません。例外が ISR コードによって"
 "処理されない限り、割り込みは無効になります。"
 
-#: ../../../reference/isr_rules.rst:223
+#: ../../reference/isr_rules.rst:223
+msgid "Interfacing to uasyncio"
+msgstr "uasyncio とのインタフェース"
+
+#: ../../reference/isr_rules.rst:225
+msgid ""
+"When an ISR runs it can preempt the `uasyncio` scheduler. If the ISR "
+"performs a `uasyncio` operation the scheduler's operation can be "
+"disrupted. This applies whether the interrupt is hard or soft and also "
+"applies if the ISR has passed execution to another function via "
+"`micropython.schedule`. In particular creating or cancelling tasks is "
+"invalid in an ISR context. The safe way to interact with `uasyncio` is to"
+" implement a coroutine with synchronisation performed by "
+"`uasyncio.ThreadSafeFlag`. The following fragment illustrates the "
+"creation of a task in response to an interrupt:"
+msgstr ""
+"ISR が実行されると `uasyncio` スケジューラーを先取りすることができます。"
+"ISR が `uasyncio` オペレーションを実行すると、スケジューラの動作が中断される"
+"可能性があります。これは割り込みがハードかソフトかに関係なく、また ISR が "
+"`micropython.schedule` を介して他の関数に実行を移した場合にも当てはまります。"
+"特に、タスクの作成やキャンセルは、ISR のコンテキストでは無効です。 `uasyncio` と"
+"安全にやりとりする方法は、 `uasyncio.ThreadSafeFlag` によって同期が行われる"
+"コルーチンを実装することです。次の図は、割り込みに応答してタスクを生成しているところです:"
+
+#: ../../reference/isr_rules.rst:233
+msgid ""
+"tsf = uasyncio.ThreadSafeFlag()\n"
+"\n"
+"def isr(_):  # Interrupt handler\n"
+"    tsf.set()\n"
+"\n"
+"async def foo():\n"
+"    while True:\n"
+"        await tsf.wait()\n"
+"        uasyncio.create_task(bar())"
+msgstr ""
+
+#: ../../reference/isr_rules.rst:245
+msgid ""
+"In this example there will be a variable amount of latency between the "
+"execution of the ISR and the execution of ``foo()``. This is inherent to "
+"cooperative scheduling. The maximum latency is application and platform "
+"dependent but may typically be measured in tens of ms."
+msgstr ""
+"この例では、ISR の実行と ``foo()`` の実行の間に可変長の待ち時間が発生します。"
+"これは協調スケジューリングに固有のものです。最大遅延時間はアプリケーションと"
+"プラットフォームに依存しますが、通常数十ミリ秒の単位で測定されるでしょう。"
+
+#: ../../../reference/isr_rules.rst:250
 msgid "General issues"
 msgstr "一般的な問題"
 
-#: ../../../reference/isr_rules.rst:225
+#: ../../../reference/isr_rules.rst:252
 msgid ""
 "This is merely a brief introduction to the subject of real time "
 "programming. Beginners should note that design errors in real time "
@@ -4180,11 +4228,11 @@ msgstr ""
 "初期設計の権利を取得し、問題が発生する前に予測することが重要です。割り込みハンドラと"
 "メインプログラムは、次の問題を認識して設計する必要があります。"
 
-#: ../../../reference/isr_rules.rst:234
+#: ../../../reference/isr_rules.rst:261
 msgid "Interrupt handler design"
 msgstr "割り込みハンドラの設計"
 
-#: ../../../reference/isr_rules.rst:236
+#: ../../../reference/isr_rules.rst:263
 msgid ""
 "As mentioned above, ISR's should be designed to be as simple as possible."
 " They should always return in a short, predictable period of time. This "
@@ -4202,7 +4250,7 @@ msgstr ""
 "診断するのが難しい原因となり得る。ISR 実行時間の意味を理解するためには、割り込み"
 "優先順位の基本的な把握が必要です。"
 
-#: ../../../reference/isr_rules.rst:242
+#: ../../../reference/isr_rules.rst:269
 msgid ""
 "Interrupts are organised according to a priority scheme. ISR code may "
 "itself be interrupted by a higher priority interrupt. This has "
@@ -4226,7 +4274,7 @@ msgstr ""
 "です。2番目の割り込みは最初の割り込みの終了時に処理されます。しかし、着信割り込みの"
 "レートがISRのサービス能力を一貫して超えている場合、結果は幸いなことではありません。"
 
-#: ../../../reference/isr_rules.rst:250
+#: ../../../reference/isr_rules.rst:277
 msgid ""
 "Consequently looping constructs should be avoided or minimised. I/O to "
 "devices other than to the interrupting device should normally be avoided:"
@@ -4250,7 +4298,7 @@ msgstr ""
 "そのようなアクセスに要する時間を計算または測定し、アプリケーションへの影響を評価する"
 "必要があります。"
 
-#: ../../../reference/isr_rules.rst:258
+#: ../../../reference/isr_rules.rst:285
 msgid ""
 "There is usually a need to share data between the ISR and the main loop. "
 "This may be done either through global variables or via class or instance"
@@ -4268,7 +4316,7 @@ msgstr ""
 "一部にアクセスしたときに割り込みが発生する場合を考慮する必要があります。これは矛盾を"
 "引き起こす可能性があります。"
 
-#: ../../../reference/isr_rules.rst:264
+#: ../../../reference/isr_rules.rst:291
 msgid ""
 "Consider the following design. An ISR stores incoming data in a "
 "bytearray, then adds the number of bytes received to an integer "
@@ -4287,7 +4335,7 @@ msgstr ""
 "バッファに入れ、受信した番号を更新しますが、メインプログラムは既に番号を読み取って"
 "いるため、最初に受信したデータを処理します。新しく到着したバイトは失われます。"
 
-#: ../../../reference/isr_rules.rst:271
+#: ../../../reference/isr_rules.rst:298
 msgid ""
 "There are various ways of avoiding this hazard, the simplest being to use"
 " a circular buffer. If it is not possible to use a structure with "
@@ -4297,11 +4345,11 @@ msgstr ""
 "ことです。固有のスレッド安全性を持つ構造体を使用することができない場合は、他の方法を"
 "以下で説明します。"
 
-#: ../../../reference/isr_rules.rst:275
+#: ../../../reference/isr_rules.rst:302
 msgid "Reentrancy"
 msgstr "リエントラント性"
 
-#: ../../../reference/isr_rules.rst:277
+#: ../../../reference/isr_rules.rst:304
 msgid ""
 "A potential hazard may occur if a function or method is shared between "
 "the main program and one or more ISR's or between multiple ISR's. The "
@@ -4316,11 +4364,11 @@ msgstr ""
 "関数はリエントラントになるように設計する必要があります。これがどのように行われるかは、"
 "このチュートリアルの範囲を超えた高度なトピックです。"
 
-#: ../../../reference/isr_rules.rst:285
+#: ../../../reference/isr_rules.rst:312
 msgid "Critical sections"
 msgstr "クリティカルセクション"
 
-#: ../../../reference/isr_rules.rst:287
+#: ../../../reference/isr_rules.rst:314
 msgid ""
 "An example of a critical section of code is one which accesses more than "
 "one variable which can be affected by an ISR. If the interrupt happens to"
@@ -4341,7 +4389,7 @@ msgstr ""
 "１つの方法は、セクションの開始前に ``pyb.disable_irq()`` を発行し、最後に "
 "``pyb.enable_irq()`` を発行することです。このアプローチの例を次に示します:"
 
-#: ../../../reference/isr_rules.rst:327
+#: ../../../reference/isr_rules.rst:321
 msgid ""
 "import pyb, micropython, array\n"
 "micropython.alloc_emergency_exception_buf(100)\n"
@@ -4376,7 +4424,7 @@ msgid ""
 "tim4.callback(None)"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:328
+#: ../../../reference/isr_rules.rst:355
 msgid ""
 "A critical section can comprise a single line of code and a single "
 "variable. Consider the following code fragment."
@@ -4384,7 +4432,7 @@ msgstr ""
 "クリティカルセクションは、1行のコードと1つの変数で構成できます。"
 "以下のコード断片を考えてみましょう。"
 
-#: ../../../reference/isr_rules.rst:339
+#: ../../../reference/isr_rules.rst:357
 msgid ""
 "count = 0\n"
 "def cb(): # An interrupt callback\n"
@@ -4395,26 +4443,26 @@ msgid ""
 "        count += 1"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:340
+#: ../../../reference/isr_rules.rst:367
 msgid ""
 "This example illustrates a subtle source of bugs. The line ``count += 1``"
 " in the main loop carries a specific race condition hazard known as a "
 "read-modify-write. This is a classic cause of bugs in real time systems. "
-"In the main loop MicroPython reads the value of ``t.counter``, adds 1 to "
-"it, and writes it back. On rare occasions the  interrupt occurs after the"
-" read and before the write. The interrupt modifies ``t.counter`` but its "
+"In the main loop MicroPython reads the value of ``count``, adds 1 to it, "
+"and writes it back. On rare occasions the  interrupt occurs after the "
+"read and before the write. The interrupt modifies ``count`` but its "
 "change is overwritten by the main loop when the ISR returns. In a real "
 "system this could lead to rare, unpredictable failures."
 msgstr ""
 "この例は、微妙なバグの原因を示しています。メインループ内の行 ``count += 1`` は、"
 "リードモディファイライトと呼ばれる特定の競合状態の危険を伴います。これはリアルタイム"
-"システムのバグの古典的な原因です。メインループで MicroPython は ``t.counter`` 値を"
+"システムのバグの古典的な原因です。メインループで MicroPython は ``count`` 値を"
 "読み取り、1を加算して書き戻します。ごくまれに、読み込みの後で書き込みの前に割り込みが"
-"発生します。割り込みは ``t.counter`` を変更しますが、ISR が復帰するとメインループに"
+"発生します。割り込みは ``count`` を変更しますが、ISR が復帰するとメインループに"
 "よってその変更が上書きされます。実際のシステムでは、これはまれな、予期しない障害に"
 "つながる可能性があります。"
 
-#: ../../../reference/isr_rules.rst:346
+#: ../../../reference/isr_rules.rst:373
 msgid ""
 "As mentioned above, care should be taken if an instance of a Python built"
 " in type is modified in the main code and that instance is accessed in an"
@@ -4427,7 +4475,7 @@ msgstr ""
 "ISR の実行時にインスタンスが有効な状態にあることを確認するためのクリティカルセクション"
 "とみなす必要があります。"
 
-#: ../../../reference/isr_rules.rst:350
+#: ../../../reference/isr_rules.rst:377
 msgid ""
 "Particular care needs to be taken if a dataset is shared between "
 "different ISR's. The hazard here is that the higher priority interrupt "
@@ -4442,7 +4490,7 @@ msgstr ""
 "オブジェクトを使用することがあることに注意する以外にも、この紹介の範囲を超えた"
 "高度なトピックです。"
 
-#: ../../../reference/isr_rules.rst:355
+#: ../../../reference/isr_rules.rst:382
 msgid ""
 "Disabling interrupts for the duration of a critical section is the usual "
 "and simplest way to proceed, but it disables all interrupts rather than "
@@ -4462,7 +4510,7 @@ msgstr ""
 "遅すぎとなる可能性があります。ISR と同様に、メインコードのクリティカルセクションは、"
 "短く、予測可能な期間を持つようにする必要があります。"
 
-#: ../../../reference/isr_rules.rst:362
+#: ../../../reference/isr_rules.rst:389
 msgid ""
 "An approach to dealing with critical sections which radically reduces the"
 " time for which interrupts are disabled is to use an object termed a "
@@ -4487,11 +4535,11 @@ msgstr ""
 "mutex コードは割り込みを無効にしますが、８つのマシン語命令の間のみ有効です。
 "このアプローチの利点は、他の割り込みにはほとんど影響がないことです。"
 
-#: ../../../reference/isr_rules.rst:372
+#: ../../../reference/isr_rules.rst:399
 msgid "Interrupts and the REPL"
 msgstr "割り込みと REPL"
 
-#: ../../../reference/isr_rules.rst:374
+#: ../../../reference/isr_rules.rst:401
 msgid ""
 "Interrupt handlers, such as those associated with timers, can continue to"
 " run after a program terminates.  This may produce unexpected results "
@@ -4503,7 +4551,7 @@ msgstr ""
 "予想される場合に、予期しない結果が生じることがあります。"
 "次は pyboardの場合 の例です:"
 
-#: ../../../reference/isr_rules.rst:385
+#: ../../../reference/isr_rules.rst:406
 msgid ""
 "def bar():\n"
 "    foo = pyb.Timer(2, freq=4, callback=lambda t: print('.', end=''))\n"
@@ -4511,7 +4559,7 @@ msgid ""
 "bar()"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:386
+#: ../../../reference/isr_rules.rst:413
 msgid ""
 "This continues to run until the timer is explicitly disabled or the board"
 " is reset with ``ctrl D``."

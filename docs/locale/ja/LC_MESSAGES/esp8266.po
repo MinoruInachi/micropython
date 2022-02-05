@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.17\n"
+"Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-01 15:06+0900\n"
-"PO-Revision-Date: 2022-01-01 16:55+0900\n"
+"POT-Creation-Date: 2022-02-05 10:55+0900\n"
+"PO-Revision-Date: 2022-02-05 12:55+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1256,16 +1256,6 @@ msgstr ""
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../esp8266/quickref.rst:377
-msgid "For low-level driving of a NeoPixel::"
-msgstr "NeoPixel の低レベル駆動もあります::"
-
-#: ../../esp8266/quickref.rst:379
-msgid ""
-"import esp\n"
-"esp.neopixel_write(pin, grb_buf, is800khz)"
-msgstr ""
-
 #: ../../esp8266/quickref.rst:383
 msgid ""
 "By default ``NeoPixel`` is configured to control the more popular "
@@ -1277,15 +1267,19 @@ msgstr ""
 "されています。 ``NeoPixel`` オブジェクトを構築する際に ``timing=0`` を渡すことで、"
 "他の(たいていは 400kHz)デバイスを制御する別のタイミングを使えます。"
 
-#: ../../esp8266/quickref.rst:390
+#: ../../esp8266/quickref.rst:383
+msgid "For low-level driving of a NeoPixel see `machine.bitstream`."
+msgstr "NeoPixel の低レベル駆動については `machine.bitstream` を参照してください。"
+
+#: ../../esp8266/quickref.rst:386
 msgid "APA102 driver"
 msgstr "APA102 ドライバー"
 
-#: ../../esp8266/quickref.rst:392
+#: ../../esp8266/quickref.rst:388
 msgid "Use the ``apa102`` module::"
 msgstr "``apa102`` モジュールを使います::"
 
-#: ../../esp8266/quickref.rst:394
+#: ../../esp8266/quickref.rst:390
 msgid ""
 "from machine import Pin\n"
 "from apa102 import APA102\n"
@@ -1309,25 +1303,25 @@ msgstr ""
 "apa.write()                  # 全ピクセルにデータ書込み\n"
 "r, g, b, brightness = apa[0] # 第１ピクセルの色を取得"
 
-#: ../../esp8266/quickref.rst:404
+#: ../../esp8266/quickref.rst:400
 msgid "For low-level driving of an APA102::"
 msgstr "APA102 の低レベル駆動もあります::"
 
-#: ../../esp8266/quickref.rst:406
+#: ../../esp8266/quickref.rst:402
 msgid ""
 "import esp\n"
 "esp.apa102_write(clock_pin, data_pin, rgbi_buf)"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:410
+#: ../../esp8266/quickref.rst:406
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../esp8266/quickref.rst:412
+#: ../../esp8266/quickref.rst:408
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../esp8266/quickref.rst:414
+#: ../../esp8266/quickref.rst:410
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -1355,11 +1349,11 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../esp8266/quickref.rst:428
+#: ../../esp8266/quickref.rst:424
 msgid "SSD1306 driver"
 msgstr "SSD1306 ドライバー"
 
-#: ../../esp8266/quickref.rst:430
+#: ../../esp8266/quickref.rst:426
 msgid ""
 "Driver for SSD1306 monochrome OLED displays. See tutorial :ref:`ssd1306`."
 " ::"
@@ -1367,7 +1361,7 @@ msgstr ""
 "SSD1306 モノクロ有機ELディスプレイ用ドライバーです。"
 "チュートリアル :ref:`ssd1306` を参照してください。"
 
-#: ../../esp8266/quickref.rst:442
+#: ../../esp8266/quickref.rst:428
 msgid ""
 "from machine import Pin, I2C\n"
 "import ssd1306\n"
@@ -1379,11 +1373,11 @@ msgid ""
 "display.show()"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:442
+#: ../../esp8266/quickref.rst:438
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../esp8266/quickref.rst:444
+#: ../../esp8266/quickref.rst:440
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP8266 port. Download web client from "
@@ -1396,11 +1390,11 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../esp8266/quickref.rst:449 ../../esp8266/tutorial/repl.rst:51
+#: ../../esp8266/quickref.rst:445 ../../esp8266/tutorial/repl.rst:51
 msgid "import webrepl_setup"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:451
+#: ../../esp8266/quickref.rst:447
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -1409,13 +1403,13 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../esp8266/quickref.rst:455
+#: ../../esp8266/quickref.rst:451
 msgid ""
 "import webrepl\n"
 "webrepl.start()"
 msgstr ""
 
-#: ../../esp8266/quickref.rst:458
+#: ../../esp8266/quickref.rst:454
 msgid ""
 "The supported way to use WebREPL is by connecting to ESP8266 access "
 "point, but the daemon is also started on STA interface if it is active, "
@@ -1429,7 +1423,7 @@ msgstr ""
 "いれば WebREPL が使えるでしょう(問題が発生した場合は ESP8266 AP 接続メソッドを"
 "使ってください)。"
 
-#: ../../esp8266/quickref.rst:464
+#: ../../esp8266/quickref.rst:460
 msgid ""
 "Besides terminal/command prompt access, WebREPL also has provision for "
 "file transfer (both upload and download). Web client has buttons for the "
@@ -1441,7 +1435,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../esp8266/quickref.rst:469
+#: ../../esp8266/quickref.rst:465
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to ESP8266."
