@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-22 09:00+0900\n"
-"PO-Revision-Date: 2022-01-22 17:39+0900\n"
+"POT-Creation-Date: 2022-02-11 10:22+0900\n"
+"PO-Revision-Date: 2022-02-11 10:55+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2400,7 +2400,55 @@ msgstr "フラッシュメモリの合計サイズを取得します。"
 msgid "Read the memory offset at which the user flash space begins."
 msgstr "ユーザフラッシュスペースが始まるメモリオフセットを取得します。"
 
+#: ../../library/esp.rst:67
+msgid "Turn esp os debugging messages on or off."
+msgstr "esp os デバッグメッセージのON/OFFを設定します。"
+
 #: ../../library/esp.rst:69
+msgid ""
+"The *level* parameter sets the threshold for the log messages for all esp"
+" components. The log levels are defined as constants:"
+msgstr ""
+"*level* パラメータは、すべての esp コンポーネントのログメッセージのための閾値を"
+"設定します。ログレベルは、定数として定義されています:"
+
+#: ../../library/esp.rst:72
+msgid "``LOG_NONE`` -- No log output"
+msgstr "``LOG_NONE`` -- ログを出力しない"
+
+#: ../../library/esp.rst:73
+msgid ""
+"``LOG_ERROR`` -- Critical errors, software module can not recover on its "
+"own"
+msgstr ""
+"``LOG_ERROR`` -- 重大なエラー、ソフトウェアモジュールが自力で回復できない場合"
+
+#: ../../library/esp.rst:74
+msgid ""
+"``LOG_WARN`` -- Error conditions from which recovery measures have been "
+"taken"
+msgstr ""
+"``LOG_WARN`` -- 回復措置がとられたエラー状態"
+
+#: ../../library/esp.rst:75
+msgid "``LOG_INFO`` -- Information messages which describe normal flow of events"
+msgstr "``LOG_INFO`` -- 正常なイベントの流れを記述する情報メッセージ"
+
+#: ../../library/esp.rst:76
+msgid ""
+"``LOG_DEBUG`` -- Extra information which is not necessary for normal use "
+"(values, pointers, sizes, etc)"
+msgstr ""
+"``LOG_DEBUG`` -- 通常の利用には必要のない余分な情報(値、ポインタ、サイズなど)"
+
+#: ../../library/esp.rst:77
+msgid ""
+"``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent "
+"messages which can potentially flood the output"
+msgstr ""
+"``LOG_VERBOSE`` -- デバッグ情報の大きな塊、あるいは出力があふれる可能性のあるメッセージを頻繁に出力"
+
+#: ../../library/esp.rst:84
 msgid ""
 "Set the location that native code will be placed for execution after it "
 "is compiled.  Native code is emitted when the ``@micropython.native``, "
@@ -2415,7 +2463,7 @@ msgstr ""
 "(メモリマップされている)フラッシュの下位 1MB のいずれかからコードを実行する必要があり、"
 "この関数はその位置を制御します。"
 
-#: ../../library/esp.rst:76
+#: ../../library/esp.rst:91
 msgid ""
 "If *start* and *length* are both ``None`` then the native code location "
 "is set to the unused portion of memory at the end of the iRAM1 region.  "
@@ -2429,7 +2477,7 @@ msgstr ""
 "によって異なり、通常は非常に小さく(約500バイト)、非常に小さな関数を格納するのに使います。"
 "この iRAM1 領域を使用する利点は書き込んでもメモリの寿命が縮まないことです。"
 
-#: ../../library/esp.rst:83
+#: ../../library/esp.rst:98
 msgid ""
 "If neither *start* nor *length* are ``None`` then they should be "
 "integers. *start* should specify the byte offset from the beginning of "
@@ -2447,7 +2495,7 @@ msgstr ""
 "してください。フラッシュする前にフラッシュは自動的に消去されるので、他(たとえば"
 "ファームウェアやファイルシステム)では使用されないフラッシュの領域を使うようにしてください。"
 
-#: ../../library/esp.rst:92
+#: ../../library/esp.rst:107
 msgid ""
 "When using the flash to store native code *start+length* must be less "
 "than or equal to 1MByte.  Note that the flash can be worn out if repeated"
@@ -2460,7 +2508,7 @@ msgstr ""
 "いくので、この機能は控えめに使ってください。特に、ネイティブコードは起動ごとに"
 "再コンパイルしてフラッシュに書き換える必要があります(スリープ解除からの起動の場合も含みます)。"
 
-#: ../../library/esp.rst:98
+#: ../../library/esp.rst:113
 msgid ""
 "In both cases above, using iRAM1 or flash, if there is no more room left "
 "in the specified region then the use of a native decorator on a function "
@@ -11299,6 +11347,14 @@ msgstr ""
 "*high_speed* パラメータを ``True`` に設定すると、ハードウェアでサポートされていれば "
 "USB HS モードが有効になります。"
 
+#: ../../library/pyb.rst:307
+msgid ""
+"A tuple of (subclass, protocol, max packet length, polling interval, "
+"report descriptor) to set appropriate values for a USB mouse or keyboard."
+msgstr ""
+"(サブクラス, プロトコル, 最大パケット長, ポーリング間隔, レポートデスクリプタ) "
+"のタプルで、USB マウスやキーボードに適切な値を設定するためのもの。"
+
 #: ../../library/pyb.ADC.rst:9
 msgid ""
 "import pyb\n"
@@ -12435,6 +12491,17 @@ msgid ""
 "dac2 = DAC(2)\n"
 "dac1.write_timed(buf1, pyb.Timer(6, freq=100), mode=DAC.CIRCULAR)\n"
 "dac2.write_timed(buf2, pyb.Timer(7, freq=200), mode=DAC.CIRCULAR)"
+msgstr ""
+
+#: ../../library/pyb.DAC.rst:131
+msgid "NORMAL mode does a single transmission of the waveform in the data buffer,"
+msgstr ""
+
+#: ../../library/pyb.DAC.rst:135
+msgid ""
+"CIRCULAR mode does a transmission of the waveform in the data buffer, and"
+" wraps around to the start of the data buffer every time it reaches the "
+"end of the table."
 msgstr ""
 
 #: ../../library/pyb.ExtInt.rst:5
@@ -14355,6 +14422,12 @@ msgid ""
 "period for which the pulse is active.  The value can be an integer or "
 "floating-point number for more accuracy.  For example, a value of 25 "
 "gives a duty cycle of 25%."
+msgstr ""
+
+#: ../../library/pyb.Timer.rst:273
+msgid ""
+"Configures the timer to count Up, Down, or from 0 to ARR and then back "
+"down to 0."
 msgstr ""
 
 #: ../../library/pyb.UART.rst:14
@@ -16599,31 +16672,6 @@ msgstr ""
 
 #: ../../library/socket.rst:71
 msgid ""
-"Create a new socket using the given address family, socket type and "
-"protocol number. Note that specifying *proto* in most cases is not "
-"required (and not recommended, as some MicroPython ports may omit "
-"``IPPROTO_*`` constants). Instead, *type* argument will select needed "
-"protocol automatically::"
-msgstr ""
-"指定したアドレスファミリ、ソケットタイプ、プロトコル番号を使って新しいソケットを"
-"作成します。ほとんどの場合 *proto* を指定する必要はありません(MicroPython の"
-"一部のポートでは ``IPPROTO_*`` 定数が省略されている場合があるため、指定はお勧め"
-"しません)。代わりに *type* 引数が必要なプロトコルを自動的に選択します。"
-
-#: ../../library/socket.rst:77
-msgid ""
-"# Create STREAM TCP socket\n"
-"socket(AF_INET, SOCK_STREAM)\n"
-"# Create DGRAM UDP socket\n"
-"socket(AF_INET, SOCK_DGRAM)"
-msgstr ""
-"# STREAM TCP ソケットを作成\n"
-"socket(AF_INET, SOCK_STREAM)\n"
-"# DGRAM UDP ソケットを作成\n"
-"socket(AF_INET, SOCK_DGRAM)"
-
-#: ../../library/socket.rst:84
-msgid ""
 "Translate the host/port argument into a sequence of 5-tuples that contain"
 " all the necessary arguments for creating a socket connected to that "
 "service. Arguments *af*, *type*, and *proto* (which have the same meaning"
@@ -16638,19 +16686,19 @@ msgstr ""
 "できます。パラメータが指定されていないかゼロの場合、アドレスのすべての組み合わせを返す"
 "ことができます(利用者側でのフィルタリングが必要です)。"
 
-#: ../../library/socket.rst:91
+#: ../../library/socket.rst:78
 msgid "The resulting list of 5-tuples has the following structure::"
 msgstr "結果として得られる５項目のタプルは次のの構造を持ちます::"
 
-#: ../../library/socket.rst:93
+#: ../../library/socket.rst:80
 msgid "(family, type, proto, canonname, sockaddr)"
 msgstr ""
 
-#: ../../library/socket.rst:95
+#: ../../library/socket.rst:82
 msgid "The following example shows how to connect to a given url::"
 msgstr "次の例は特定の URL に接続する方法を示しています::"
 
-#: ../../library/socket.rst:97
+#: ../../library/socket.rst:84
 msgid ""
 "s = socket.socket()\n"
 "# This assumes that if \"type\" is not specified, an address for\n"
@@ -16662,11 +16710,11 @@ msgstr ""
 "# ことを前提としています。これは正しくない可能性があります\n"
 "s.connect(socket.getaddrinfo('www.micropython.org', 80)[0][-1])"
 
-#: ../../library/socket.rst:102
+#: ../../library/socket.rst:89
 msgid "Recommended use of filtering params::"
 msgstr "フィルタリングパラメータの推奨の使用法は次のとおりです::"
 
-#: ../../library/socket.rst:104
+#: ../../library/socket.rst:91
 msgid ""
 "s = socket.socket()\n"
 "# Guaranteed to return an address which can be connect'ed to for\n"
@@ -16679,7 +16727,7 @@ msgstr ""
 "s.connect(socket.getaddrinfo('www.micropython.org', 80, 0, "
 "SOCK_STREAM)[0][-1])"
 
-#: ../../library/socket.rst:112
+#: ../../library/socket.rst:99
 msgid ""
 "CPython raises a ``socket.gaierror`` exception (`OSError` subclass) in "
 "case of error in this function. MicroPython doesn't have "
@@ -16699,7 +16747,7 @@ msgstr ""
 "区別できます(エラー番号には例外オブジェクトの ``e.args[0]`` プロパティを使って"
 "アクセスできます)。負の値の使用は暫定的な処置であり、将来変更される可能性があります。"
 
-#: ../../library/socket.rst:124
+#: ../../library/socket.rst:111
 msgid ""
 "Convert a binary network address *bin_addr* of the given address family "
 "*af* to a textual representation::"
@@ -16707,13 +16755,13 @@ msgstr ""
 "指定したアドレスファミリ *af* のバイナリ形式ネットワークアドレス *bin_addr* "
 "をテキスト表現に変換します。"
 
-#: ../../library/socket.rst:127
+#: ../../library/socket.rst:114
 msgid ""
 ">>> socket.inet_ntop(socket.AF_INET, b\"\\x7f\\0\\0\\1\")\n"
 "'127.0.0.1'"
 msgstr ""
 
-#: ../../library/socket.rst:132
+#: ../../library/socket.rst:119
 msgid ""
 "Convert a textual network address *txt_addr* of the given address family "
 "*af* to a binary representation::"
@@ -16721,13 +16769,13 @@ msgstr ""
 "指定したアドレスファミリ *af* のテキスト形式のネットワークアドレス *txt_addr* "
 "をバイナリ表現に変換します。"
 
-#: ../../library/socket.rst:135
+#: ../../library/socket.rst:122
 msgid ""
 ">>> socket.inet_pton(socket.AF_INET, \"1.2.3.4\")\n"
 "b'\\x01\\x02\\x03\\x04'"
 msgstr ""
 
-#: ../../library/socket.rst:144
+#: ../../library/socket.rst:131
 msgid ""
 "Address family types. Availability depends on a particular "
 ":term:`MicroPython port`."
@@ -16735,11 +16783,11 @@ msgstr ""
 "アドレスファミリタイプ。可用性は特定の :term:`MicroPython ポート <MicroPython port>` "
 "に依存します。"
 
-#: ../../library/socket.rst:149
+#: ../../library/socket.rst:136
 msgid "Socket types."
 msgstr "ソケットタイプ。"
 
-#: ../../library/socket.rst:154
+#: ../../library/socket.rst:141
 msgid ""
 "IP protocol numbers. Availability depends on a particular "
 ":term:`MicroPython port`. Note that you don't need to specify these in a "
@@ -16754,7 +16802,7 @@ msgstr ""
 "のソケットタイプが自動的に選択されるからです。したがって、これらの定数の唯一の実際に"
 "使うのは `setsockopt()` の引数としてです。"
 
-#: ../../library/socket.rst:162
+#: ../../library/socket.rst:149
 msgid ""
 "Socket option levels (an argument to `setsockopt()`). The exact inventory"
 " depends on a :term:`MicroPython port`."
@@ -16762,7 +16810,7 @@ msgstr ""
 "ソケットオプションレベル(`setsockopt()` の引数)。何があるかは "
 ":term:`MicroPython ポート <MicroPython port>` に依存します。"
 
-#: ../../library/socket.rst:167
+#: ../../library/socket.rst:154
 msgid ""
 "Socket options (an argument to `setsockopt()`). The exact inventory "
 "depends on a :term:`MicroPython port`."
@@ -16770,17 +16818,42 @@ msgstr ""
 "ソケットオプション(`setsockopt()` の引数)。何があるかは "
 ":term:`MicroPython ポート <MicroPython port>` に依存します。"
 
-#: ../../library/socket.rst:170
+#: ../../library/socket.rst:157
 msgid "Constants specific to WiPy:"
 msgstr "WiPy に固有の定数:"
 
-#: ../../library/socket.rst:174
+#: ../../library/socket.rst:161
 msgid "Special protocol value to create SSL-compatible socket."
 msgstr "SSL 互換ソケットを作成するための特別なプロトコル値。"
 
-#: ../../library/socket.rst:177
+#: ../../library/socket.rst:164
 msgid "class socket"
 msgstr "クラス socket"
+
+#: ../../library/socket.rst:168
+msgid ""
+"Create a new socket using the given address family, socket type and "
+"protocol number. Note that specifying *proto* in most cases is not "
+"required (and not recommended, as some MicroPython ports may omit "
+"``IPPROTO_*`` constants). Instead, *type* argument will select needed "
+"protocol automatically::"
+msgstr ""
+"指定したアドレスファミリ、ソケットタイプ、プロトコル番号を使って新しいソケットを"
+"作成します。ほとんどの場合 *proto* を指定する必要はありません(MicroPython の"
+"一部のポートでは ``IPPROTO_*`` 定数が省略されている場合があるため、指定はお勧め"
+"しません)。代わりに *type* 引数が必要なプロトコルを自動的に選択します。"
+
+#: ../../library/socket.rst:174
+msgid ""
+"# Create STREAM TCP socket\n"
+"socket(AF_INET, SOCK_STREAM)\n"
+"# Create DGRAM UDP socket\n"
+"socket(AF_INET, SOCK_DGRAM)"
+msgstr ""
+"# STREAM TCP ソケットを作成\n"
+"socket(AF_INET, SOCK_STREAM)\n"
+"# DGRAM UDP ソケットを作成\n"
+"socket(AF_INET, SOCK_DGRAM)"
 
 #: ../../library/socket.rst:184
 msgid ""
@@ -18409,9 +18482,10 @@ msgstr ""
 #: ../../library/uasyncio.rst:161
 msgid ""
 "Wait for the flag to be set.  If the flag is already set then it returns "
-"immediately."
+"immediately.  The flag is automatically reset upon return from ``wait``."
 msgstr ""
 "フラグが設定されるのを待ちます。フラグがすでに設定されている場合はすぐに戻ります。"
+"このフラグは ``wait`` から戻ったときに自動的にリセットされます。"
 
 #: ../../library/uasyncio.rst:164
 msgid "A flag may only be waited on by a single task at a time."
