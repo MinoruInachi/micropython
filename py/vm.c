@@ -44,7 +44,7 @@
 #else
 #define TRACE_PREFIX mp_printf(&mp_plat_print, "sp=%d ", (int)(sp - &code_state->state[0] + 1))
 #endif
-#define TRACE(ip) TRACE_PREFIX; mp_bytecode_print2(&mp_plat_print, ip, 1, &code_state->fun_bc->context->constants);
+#define TRACE(ip) TRACE_PREFIX; mp_bytecode_print2(&mp_plat_print, ip, 1, code_state->fun_bc->child_table, &code_state->fun_bc->context->constants);
 #else
 #define TRACE(ip)
 #endif
@@ -61,8 +61,30 @@
     do { \
         unum = (unum << 7) + (*ip & 0x7f); \
     } while ((*ip++ & 0x80) != 0)
-#define DECODE_ULABEL size_t ulab = (ip[0] | (ip[1] << 8)); ip += 2
-#define DECODE_SLABEL size_t slab = (ip[0] | (ip[1] << 8)) - 0x8000; ip += 2
+
+#define DECODE_ULABEL \
+    size_t ulab; \
+    do { \
+        if (ip[0] & 0x80) { \
+            ulab = ((ip[0] & 0x7f) | (ip[1] << 7)); \
+            ip += 2; \
+        } else { \
+            ulab = ip[0]; \
+            ip += 1; \
+        } \
+    } while (0)
+
+#define DECODE_SLABEL \
+    size_t slab; \
+    do { \
+        if (ip[0] & 0x80) { \
+            slab = ((ip[0] & 0x7f) | (ip[1] << 7)) - 0x4000; \
+            ip += 2; \
+        } else { \
+            slab = ip[0] - 0x40; \
+            ip += 1; \
+        } \
+    } while (0)
 
 #if MICROPY_EMIT_BYTECODE_USES_QSTR_TABLE
 
@@ -538,9 +560,9 @@ dispatch_loop:
                 }
 
                 ENTRY(MP_BC_JUMP_IF_TRUE_OR_POP): {
-                    DECODE_SLABEL;
+                    DECODE_ULABEL;
                     if (mp_obj_is_true(TOP())) {
-                        ip += slab;
+                        ip += ulab;
                     } else {
                         sp--;
                     }
@@ -548,11 +570,11 @@ dispatch_loop:
                 }
 
                 ENTRY(MP_BC_JUMP_IF_FALSE_OR_POP): {
-                    DECODE_SLABEL;
+                    DECODE_ULABEL;
                     if (mp_obj_is_true(TOP())) {
                         sp--;
                     } else {
-                        ip += slab;
+                        ip += ulab;
                     }
                     DISPATCH_WITH_PEND_EXC_CHECK();
                 }
