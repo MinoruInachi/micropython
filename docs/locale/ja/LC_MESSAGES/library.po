@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-26 11:31+0900\n"
-"PO-Revision-Date: 2022-02-26 11:49+0900\n"
+"POT-Creation-Date: 2022-03-30 08:31+0900\n"
+"PO-Revision-Date: 2022-03-30 11:56+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2559,18 +2559,26 @@ msgstr ""
 
 #: ../../library/esp32.rst:35
 msgid ""
+"Configure whether non-RTC GPIO pin configuration is retained during deep-"
+"sleep mode for held pads. *enable* should be a boolean value."
+msgstr ""
+"ディープスリープモード中のパッドホールドについて、RTC 以外の GPIO ピンの設定を"
+"保持するかどうかを設定します。 *enable* 引数はブール値でなければなりません。"
+
+#: ../../library/esp32.rst:40
+msgid ""
 "Read the raw value of the internal temperature sensor, returning an "
 "integer."
 msgstr ""
 "内部温度センサーの素の値を読み、整数を返します。"
 
-#: ../../library/esp32.rst:39
+#: ../../library/esp32.rst:44
 msgid ""
 "Read the raw value of the internal Hall sensor, returning an integer."
 msgstr ""
 "内部ホールセンサーの素の値を読み、整数を返します。"
 
-#: ../../library/esp32.rst:43
+#: ../../library/esp32.rst:48
 msgid ""
 "Returns information about the ESP-IDF heap memory regions. One of them "
 "contains the MicroPython heap and the others are used by ESP-IDF, e.g., "
@@ -2590,7 +2598,7 @@ msgstr ""
 "返される情報は Python のアロケーション失敗のトラブルシューティングには"
 "役に立ちませんので、代わりに `micropython.mem_info()` を使ってください。"
 
-#: ../../library/esp32.rst:51
+#: ../../library/esp32.rst:56
 msgid ""
 "The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` "
 "values but the two most useful ones are predefined as `esp32.HEAP_DATA` "
@@ -2602,7 +2610,7 @@ msgstr ""
 "`esp32.HEAP_DATA` はデータヒープ領域用であり、 "
 "`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
 
-#: ../../library/esp32.rst:55
+#: ../../library/esp32.rst:60
 msgid ""
 "The return value is a list of 4-tuples, where each 4-tuple corresponds to"
 " one heap and contains: the total bytes, the free bytes, the largest free"
@@ -2612,11 +2620,11 @@ msgstr ""
 "タプルの各項目は、合計バイト数、空きバイト数、最大空きブロック数、"
 "時間経過にともなう最小空きブロック数を意味します。"
 
-#: ../../library/esp32.rst:59
+#: ../../library/esp32.rst:64
 msgid "Example after booting::"
 msgstr "ブート後の例::"
 
-#: ../../library/esp32.rst:61
+#: ../../library/esp32.rst:66
 msgid ""
 ">>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)\n"
 "[(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512,"
@@ -2624,11 +2632,11 @@ msgid ""
 " (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]"
 msgstr ""
 
-#: ../../library/esp32.rst:66
+#: ../../library/esp32.rst:71
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:68
+#: ../../library/esp32.rst:73
 msgid ""
 "This class gives access to the partitions in the device's flash memory "
 "and includes methods to enable over-the-air (OTA) updates."
@@ -2636,7 +2644,7 @@ msgstr ""
 "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 "加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:73
+#: ../../library/esp32.rst:78
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -2647,7 +2655,7 @@ msgstr ""
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。 "
 "*block_size* は個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:79
+#: ../../library/esp32.rst:84
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
@@ -2658,18 +2666,18 @@ msgstr ""
 "注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
 "は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:83
+#: ../../library/esp32.rst:88
 msgid ""
 "*block_size* specifies the byte size of an individual block used by the "
 "returned objects."
 msgstr ""
 "*block_size* は、返されるオブジェクトが使う個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:88
+#: ../../library/esp32.rst:93
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:96 ../../library/pyb.Flash.rst:44
+#: ../../library/esp32.rst:101 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`os.AbstractBlockDev`."
@@ -2677,11 +2685,11 @@ msgstr ""
 "これらのメソッドは :class:`os.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:102
+#: ../../library/esp32.rst:107
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:106
+#: ../../library/esp32.rst:111
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object. Typical usage is "
@@ -2692,7 +2700,7 @@ msgstr ""
 "返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
 "これは現在更新中のパーティションの次のパーティションを返します。"
 
-#: ../../library/esp32.rst:112
+#: ../../library/esp32.rst:117
 msgid ""
 "Signals that the current boot is considered successful. Calling "
 "``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
@@ -2713,7 +2721,7 @@ msgstr ""
 "呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
 "場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:127
+#: ../../library/esp32.rst:132
 msgid ""
 "Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
 " is the partition that will be booted at the next reset and ``RUNNING`` "
@@ -2723,9 +2731,8 @@ msgstr ""
 "``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
 "は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:134
+#: ../../library/esp32.rst:139
 msgid ""
-"Used in `Partition.find` to specify the partition type."
 "Used in `Partition.find` to specify the partition type: ``APP`` is for "
 "bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
 "``ota_1``), and ``DATA`` is for other partitions, e.g. ``nvs``, "
@@ -2736,15 +2743,15 @@ msgstr ""
 "``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
 "パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
 
-#: ../../library/esp32.rst:141
+#: ../../library/esp32.rst:146
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:146
+#: ../../library/esp32.rst:151
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:148
+#: ../../library/esp32.rst:153
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -2756,7 +2763,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:153
+#: ../../library/esp32.rst:158
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -2786,7 +2793,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:165
+#: ../../library/esp32.rst:170
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -2798,7 +2805,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:171
+#: ../../library/esp32.rst:176
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (0-32,768) number. There are "
@@ -2808,7 +2815,7 @@ msgstr ""
 "数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
 "分周器を使えます。"
 
-#: ../../library/esp32.rst:175
+#: ../../library/esp32.rst:180
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -2819,7 +2826,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:180
+#: ../../library/esp32.rst:185
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -2829,7 +2836,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:184
+#: ../../library/esp32.rst:189
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -2838,7 +2845,7 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:191
+#: ../../library/esp32.rst:196
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -2857,7 +2864,7 @@ msgstr ""
 "ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
 "が低電圧を意味します。"
 
-#: ../../library/esp32.rst:200
+#: ../../library/esp32.rst:205
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -2868,7 +2875,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューイ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:207
+#: ../../library/esp32.rst:212
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -2876,7 +2883,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:212
+#: ../../library/esp32.rst:217
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -2884,7 +2891,7 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:217
+#: ../../library/esp32.rst:222
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
@@ -2896,7 +2903,7 @@ msgstr ""
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
 
-#: ../../library/esp32.rst:224
+#: ../../library/esp32.rst:229
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
@@ -2909,11 +2916,11 @@ msgstr ""
 "ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
 "転送を停止します。"
 
-#: ../../library/esp32.rst:231
+#: ../../library/esp32.rst:236
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
 msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:233
+#: ../../library/esp32.rst:238
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -2923,7 +2930,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:237
+#: ../../library/esp32.rst:242
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -2931,7 +2938,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:240
+#: ../../library/esp32.rst:245
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -2939,7 +2946,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:243
+#: ../../library/esp32.rst:248
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and 32767 units. Output levels are any value that can "
@@ -2950,7 +2957,7 @@ msgstr ""
 "1から32767の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:248
+#: ../../library/esp32.rst:253
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -2959,7 +2966,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:251
+#: ../../library/esp32.rst:256
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -2972,7 +2979,7 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:259
+#: ../../library/esp32.rst:264
 msgid ""
 "Select which RMT channel is used by the `machine.bitstream` "
 "implementation. *value* can be ``None`` or a valid RMT channel number.  "
@@ -2982,7 +2989,7 @@ msgstr ""
 "*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
 "デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
 
-#: ../../library/esp32.rst:263
+#: ../../library/esp32.rst:268
 msgid ""
 "Passing in ``None`` disables the use of RMT and instead selects a bit-"
 "banging implementation for `machine.bitstream`."
@@ -2990,42 +2997,42 @@ msgstr ""
 "``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
 "ビットバング実装が選択されます。"
 
-#: ../../library/esp32.rst:266
+#: ../../library/esp32.rst:271
 msgid ""
 "Passing in no argument will not change the channel.  This function "
 "returns the current channel number."
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:266
+#: ../../library/esp32.rst:275
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサ"
 
-#: ../../library/esp32.rst:274
+#: ../../library/esp32.rst:279
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:277
+#: ../../library/esp32.rst:283
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:282
+#: ../../library/esp32.rst:287
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:286
+#: ../../library/esp32.rst:291
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:295
+#: ../../library/esp32.rst:300
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:298
+#: ../../library/esp32.rst:303
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:300
+#: ../../library/esp32.rst:305
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -3039,7 +3046,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:307
+#: ../../library/esp32.rst:312
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -3048,14 +3055,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:312
+#: ../../library/esp32.rst:317
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:317
+#: ../../library/esp32.rst:322
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -3063,7 +3070,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:321
+#: ../../library/esp32.rst:326
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -3071,7 +3078,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:326
+#: ../../library/esp32.rst:331
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -3084,7 +3091,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:333
+#: ../../library/esp32.rst:338
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -3096,11 +3103,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:339
+#: ../../library/esp32.rst:344
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:343
+#: ../../library/esp32.rst:348
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -5881,14 +5888,18 @@ msgid "``format`` specifies channel format, STEREO or MONO"
 msgstr "``format`` にはチャネルフォーマット、I2S.STEREO または I2S.MONO を指定します"
 
 #: ../../library/machine.I2S.rst:98
-msgid "``rate`` specifies audio sampling rate (samples/s)"
-msgstr "``rate`` にはオーディオサンプリングレート(サンプル/秒)を指定します"
+msgid ""
+"``rate`` specifies audio sampling rate (Hz); this is the frequency of the"
+" ``ws`` signal"
+msgstr ""
+"``rate`` にはオーディオサンプリングレート(Hz)を指定します。"
+"これは ``ws`` 信号の周波数です"
 
-#: ../../library/machine.I2S.rst:99
+#: ../../library/machine.I2S.rst:100
 msgid "``ibuf`` specifies internal buffer length (bytes)"
 msgstr "``ibuf`` には内部バッファ長(バイト数)を指定します"
 
-#: ../../library/machine.I2S.rst:101
+#: ../../library/machine.I2S.rst:102
 msgid ""
 "For all ports, DMA runs continuously in the background and allows user "
 "applications to perform other operations while sample data is transfered "
@@ -5904,15 +5915,15 @@ msgstr ""
 "(``write`` メソッドなど)またはオーバーフロー(``readinto`` メソッドなど)の"
 "前に非 I2S 操作を実行できる時間が長くなる可能性があります。"
 
-#: ../../library/machine.I2S.rst:111
+#: ../../library/machine.I2S.rst:112
 msgid "see Constructor for argument descriptions"
 msgstr "引数の説明についてはコンストラクターを参照してください"
 
-#: ../../library/machine.I2S.rst:115
+#: ../../library/machine.I2S.rst:116
 msgid "Deinitialize the I2S bus"
 msgstr "I2S バスを非初期化します"
 
-#: ../../library/machine.I2S.rst:119
+#: ../../library/machine.I2S.rst:120
 msgid ""
 "Read audio samples into the buffer specified by ``buf``.  ``buf`` must "
 "support the buffer protocol, such as bytearray or array. \"buf\" byte "
@@ -5927,7 +5938,7 @@ msgstr ""
 "優先されます。モノラルフォーマットの場合、左チャンネルのサンプルデータが"
 "使われます。戻り値は読み込んだバイト数です"
 
-#: ../../library/machine.I2S.rst:126
+#: ../../library/machine.I2S.rst:127
 msgid ""
 "Write audio samples contained in ``buf``. ``buf`` must support the buffer"
 " protocol, such as bytearray or array. \"buf\" byte ordering is little-"
@@ -5942,7 +5953,7 @@ msgstr ""
 "優先されます。モノラルフォーマットの場合、左チャンネルのサンプルデータが"
 "使われます。戻り値は書き出したバイト数です"
 
-#: ../../library/machine.I2S.rst:133
+#: ../../library/machine.I2S.rst:134
 msgid ""
 "Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` "
 "method) or becomes full (``readinto`` method). Setting a callback changes"
@@ -5955,7 +5966,7 @@ msgstr ""
 "メソッドはノンブロッキング操作に変更されます。 "
 "``handler`` は MicroPython のスケジューラのコンテキストで呼び出されます。"
 
-#: ../../library/machine.I2S.rst:139
+#: ../../library/machine.I2S.rst:140
 msgid ""
 "bitwise shift of all samples contained in ``buf``. ``bits`` specifies "
 "sample size in bits. ``shift`` specifies the number of bits to shift each"
@@ -5969,19 +5980,19 @@ msgstr ""
 "これは通常はボリュームコントロールに使います。各ビットシフトにより、"
 "サンプルボリュームが 6dB 変化します。"
 
-#: ../../library/machine.I2S.rst:148
+#: ../../library/machine.I2S.rst:149
 msgid "for initialising the I2S bus ``mode`` to receive"
 msgstr "I2S バス初期化時に ``mode`` を受信にするためのものです"
 
-#: ../../library/machine.I2S.rst:152
+#: ../../library/machine.I2S.rst:153
 msgid "for initialising the I2S bus ``mode`` to transmit"
 msgstr "I2S バス初期化時に ``mode`` を送信にするためのものです"
 
-#: ../../library/machine.I2S.rst:156
+#: ../../library/machine.I2S.rst:157
 msgid "for initialising the I2S bus ``format`` to stereo"
 msgstr "I2S バス初期化時に ``format`` をステレオにするためのものです"
 
-#: ../../library/machine.I2S.rst:160
+#: ../../library/machine.I2S.rst:161
 msgid "for initialising the I2S bus ``format`` to mono"
 msgstr "I2S バス初期化時に ``format`` をモノラルにするためのものです"
 
@@ -6380,17 +6391,18 @@ msgstr ""
 "いる場合は初期出力ピン値になります。指定のない場合、ピンのペリフェラルの状態は"
 "変更されません。"
 
-#: ../../library/machine.Pin.rst:70
+#: ../../library/machine.Pin.rst:90
 msgid ""
 "``drive`` specifies the output power of the pin and can be one of: "
-"``Pin.LOW_POWER``, ``Pin.MED_POWER`` or ``Pin.HIGH_POWER``.  The actual "
-"current driving capabilities are port dependent.  Not all ports implement"
-" this argument."
+"``Pin.DRIVE_0``, ``Pin.DRIVE_1``, etc., increasing in drive strength.  "
+"The actual current driving capabilities are port dependent.  Not all "
+"ports implement this argument."
 msgstr ""
-"``drive`` はピンの出力電力を指定します。この引数には ``Pin.LOW_POWER``, "
-"``Pin.MED_POWER``, ``Pin.HIGH_POWER`` のいずれかを指定します。実際の電流駆動"
-"能力はポートによって異なります。すべてのポートがこの引数を実装しているわけでは"
-"ありません。"
+"``drive`` はピンの出力電流を指定します。この引数には ``Pin.DRIVE_0``, "
+"``Pin.DRIVE_1`` などの定数のいずれかを指定し、数が大きいほどドライブ電流値"
+"(drive strength)が強くなります。"
+"実際のドライブ電流能力はポートに依存します。"
+"すべてのポートがこの引数を実装しているわけではありません。"
 
 #: ../../library/machine.Pin.rst:94
 msgid ""
@@ -6692,10 +6704,16 @@ msgstr ""
 "を使ってください。"
 
 #: ../../library/machine.Pin.rst:267
-msgid "Selects the pin drive strength."
-msgstr "ピンのドライブ強度を選択します。"
+msgid ""
+"Selects the pin drive strength.  A port may define additional drive "
+"constants with increasing number corresponding to increasing drive "
+"strength."
+msgstr ""
+"ピンのドライブ電流値(drive strength)を選択します。"
+"ポートに依存して、さらにドライブ定数を定義することができ、"
+"数が大きいほどドライブ電流値が強くなります。"
 
-#: ../../library/machine.Pin.rst:274
+#: ../../library/machine.Pin.rst:276
 msgid "Selects the IRQ trigger type."
 msgstr "IRQ トリガタイプを選択します。"
 
@@ -8210,18 +8228,36 @@ msgstr "*timeout_char* は文字間の待機時間を指定します(ミリ秒�
 msgid "*invert* specifies which lines to invert."
 msgstr "*invert* は極性反転を指定します。"
 
-#: ../../library/machine.UART.rst:66
+#: ../../library/machine.UART.rst:67
+msgid "``0`` will not invert lines (idle state of both lines is logic high)."
+msgstr "``0`` は極性を反転しません(両ラインのアイドル状態はロジックハイ)。"
+
+#: ../../library/machine.UART.rst:68
+msgid "``UART.INV_TX`` will invert TX line (idle state of TX line now logic low)."
+msgstr "``UART.INV_TX`` は TX ラインを反転します(TX ラインのアイドル状態はロジックロー)。"
+
+#: ../../library/machine.UART.rst:69
+msgid "``UART.INV_RX`` will invert RX line (idle state of RX line now logic low)."
+msgstr "``UART.INV_RX`` は RX ラインを反転します(RX ラインのアイドル状態はロジックロー)。"
+
+#: ../../library/machine.UART.rst:70
+msgid ""
+"``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic"
+" low)."
+msgstr "``UART.INV_TX | UART.INV_RX`` は両ラインを反転します(アイドル状態はロジックロー)。"
+
+#: ../../library/machine.UART.rst:72
 msgid ""
 "*flow* specifies which hardware flow control signals to use. The value is"
 " a bitmask."
 msgstr ""
 "*flow* は、利用するハードウェアフロー制御信号を指定します。値はビットマスクです。"
 
-#: ../../library/machine.UART.rst:69
+#: ../../library/machine.UART.rst:75
 msgid "``0`` will ignore hardware flow control signals."
 msgstr "``0`` はハードウェアによるフロー制御信号を無視します。"
 
-#: ../../library/machine.UART.rst:70
+#: ../../library/machine.UART.rst:76
 msgid ""
 "``UART.RTS`` will enable receive flow control by using the RTS output pin"
 " to signal if the receive FIFO has sufficient space to accept more data."
@@ -8229,7 +8265,7 @@ msgstr ""
 "``UART.RTS`` は受信フロー制御を有効にします。RTS 出力ピンを使い、"
 "受信 FIFO にさらなるデータを受け入れるための十分なスペースがあるかどうかを通知します。"
 
-#: ../../library/machine.UART.rst:72
+#: ../../library/machine.UART.rst:78
 msgid ""
 "``UART.CTS`` will enable transmit flow control by pausing transmission "
 "when the CTS input pin signals that the receiver is running low on buffer"
@@ -8238,17 +8274,17 @@ msgstr ""
 "``UART.CTS`` は送信フロー制御を有効にします。CTS 入力ピンが受信側の"
 "バッファ容量が不足していることを通知した場合、送信を一時停止します。"
 
-#: ../../library/machine.UART.rst:74
+#: ../../library/machine.UART.rst:80
 msgid "``UART.RTS | UART.CTS`` will enable both, for full hardware flow control."
 msgstr ""
 "``UART.RTS | UART.CTS`` では両方が有効となり、"
 "完全なハードウェアフロー制御となります。"
 
-#: ../../library/machine.UART.rst:76
+#: ../../library/machine.UART.rst:82
 msgid "On the WiPy only the following keyword-only parameter is supported:"
 msgstr "WiPy では、次のキーワード指定のみのパラメータがサポートされています。"
 
-#: ../../library/machine.UART.rst:78
+#: ../../library/machine.UART.rst:84
 msgid ""
 "*pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in "
 "that order). Any of the pins can be None if one wants the UART to operate"
@@ -8263,11 +8299,11 @@ msgstr ""
 "ピンが指定されていない場合は、デフォルトの TX ピンと RX ピンが使われ、ハードウェア"
 "フロー制御は無効になります。pins が None の場合、ピンの割り当ては行われません。"
 
-#: ../../library/machine.UART.rst:86 ../../library/pyb.UART.rst:113
+#: ../../library/machine.UART.rst:92 ../../library/pyb.UART.rst:113
 msgid "Turn off the UART bus."
 msgstr "UART バスをオフにします。"
 
-#: ../../library/machine.UART.rst:90
+#: ../../library/machine.UART.rst:96
 msgid ""
 "Returns an integer counting the number of characters that can be read "
 "without blocking.  It will return 0 if there are no characters available "
@@ -8278,18 +8314,18 @@ msgstr ""
 "文字がある場合は正の数を返します。読み込める文字が複数ある場合でも、このメソッドは "
 "1 を返すことがあります。"
 
-#: ../../library/machine.UART.rst:95
+#: ../../library/machine.UART.rst:101
 msgid "For more sophisticated querying of available characters use select.poll::"
 msgstr "読み込める文字のより洗練された問い合わせには select.poll を使ってください::"
 
-#: ../../library/machine.UART.rst:97
+#: ../../library/machine.UART.rst:103
 msgid ""
 "poll = select.poll()\n"
 "poll.register(uart, select.POLLIN)\n"
 "poll.poll(timeout)"
 msgstr ""
 
-#: ../../library/machine.UART.rst:103
+#: ../../library/machine.UART.rst:109
 msgid ""
 "Read characters.  If ``nbytes`` is specified then read at most that many "
 "bytes, otherwise read as much data as possible. It may return sooner "
@@ -8300,7 +8336,7 @@ msgstr ""
 "タイムアウトにより、より早く戻ることがあります。"
 "タイムアウトはコンストラクタで設定できます。"
 
-#: ../../library/machine.UART.rst:107 ../../library/pyb.UART.rst:131
+#: ../../library/machine.UART.rst:113 ../../library/pyb.UART.rst:131
 msgid ""
 "Return value: a bytes object containing the bytes read in.  Returns "
 "``None`` on timeout."
@@ -8308,7 +8344,7 @@ msgstr ""
 "戻り値: 読み込んだバイト列を含む bytes 型オブジェクト。タイムアウト時は "
 "``None`` を返します。"
 
-#: ../../library/machine.UART.rst:112
+#: ../../library/machine.UART.rst:118
 msgid ""
 "Read bytes into the ``buf``.  If ``nbytes`` is specified then read at "
 "most that many bytes.  Otherwise, read at most ``len(buf)`` bytes. "
@@ -8321,14 +8357,14 @@ msgstr ""
 "タイムアウトにより、より早く戻ることがあります。"
 "タイムアウトはコンストラクタで設定できます。"
 
-#: ../../library/machine.UART.rst:116 ../../library/pyb.UART.rst:145
+#: ../../library/machine.UART.rst:122 ../../library/pyb.UART.rst:145
 msgid ""
 "Return value: number of bytes read and stored into ``buf`` or ``None`` on"
 " timeout."
 msgstr ""
 "戻り値: 読み込んで ``buf`` に格納したバイト数。タイムアウト時は ``None`` を返します。"
 
-#: ../../library/machine.UART.rst:121
+#: ../../library/machine.UART.rst:127
 msgid ""
 "Read a line, ending in a newline character. It may return sooner if a "
 "timeout is reached. The timeout is configurable in the constructor."
@@ -8337,19 +8373,19 @@ msgstr ""
 "タイムアウトにより、より早く戻ることがあります。"
 "タイムアウトはコンストラクタで設定できます。"
 
-#: ../../library/machine.UART.rst:124
+#: ../../library/machine.UART.rst:130
 msgid "Return value: the line read or ``None`` on timeout."
 msgstr "戻り値: 読み込まれた行。タイムアウト時は ``None`` を返します。"
 
-#: ../../library/machine.UART.rst:128
+#: ../../library/machine.UART.rst:134
 msgid "Write the buffer of bytes to the bus."
 msgstr "バッファの bytes 型オブジェクトをバスに書き込みます。"
 
-#: ../../library/machine.UART.rst:130
+#: ../../library/machine.UART.rst:136
 msgid "Return value: number of bytes written or ``None`` on timeout."
 msgstr "戻り値: 書き込まれたバイト数。タイムアウト時は ``None`` を返します。"
 
-#: ../../library/machine.UART.rst:134
+#: ../../library/machine.UART.rst:140
 msgid ""
 "Send a break condition on the bus. This drives the bus low for a duration"
 " longer than required for a normal transmission of a character."
@@ -8357,15 +8393,15 @@ msgstr ""
 "バスにブレーク信号を送信します。これは通常の文字伝送に必要とされるよりも長い期間に"
 "わたってバスをローで駆動します。"
 
-#: ../../library/machine.UART.rst:139
+#: ../../library/machine.UART.rst:145
 msgid "Create a callback to be triggered when data is received on the UART."
 msgstr "データが UART で受信されたときにトリガーされるコールバックを作成します。"
 
-#: ../../library/machine.UART.rst:141
+#: ../../library/machine.UART.rst:147
 msgid "*trigger* can only be ``UART.RX_ANY``"
 msgstr "*trigger* には ``UART.RX_ANY`` だけを指定できます。"
 
-#: ../../library/machine.UART.rst:142
+#: ../../library/machine.UART.rst:148
 msgid ""
 "*priority* level of the interrupt. Can take values in the range 1-7. "
 "Higher values represent higher priorities."
@@ -8373,26 +8409,26 @@ msgstr ""
 "*priority* は割り込みの優先順位です。1-7 の範囲の値を取ることができます。"
 "値が大きいほど優先順位が高くなります。"
 
-#: ../../library/machine.UART.rst:144
+#: ../../library/machine.UART.rst:150
 msgid "*handler* an optional function to be called when new characters arrive."
 msgstr "*hanfler* は新しい文字が到着したときに呼び出されるオプションの関数です。"
 
-#: ../../library/machine.UART.rst:145
+#: ../../library/machine.UART.rst:161
 msgid "*wake* can only be ``machine.IDLE``."
 msgstr "*wake* には ``machine.IDLE`` だけを指定できます。"
 
-#: ../../library/machine.UART.rst:149
+#: ../../library/machine.UART.rst:155
 msgid ""
 "The handler will be called whenever any of the following two conditions "
 "are met:"
 msgstr ""
 "このハンドラは、次の2つの条件のいずれかが満たされると必ず呼び出されます:"
 
-#: ../../library/machine.UART.rst:151
+#: ../../library/machine.UART.rst:157
 msgid "8 new characters have been received."
 msgstr "新規に８文字を受信した。"
 
-#: ../../library/machine.UART.rst:152
+#: ../../library/machine.UART.rst:158
 msgid ""
 "At least 1 new character is waiting in the Rx buffer and the Rx line has "
 "been silent for the duration of 1 complete frame."
@@ -8400,18 +8436,18 @@ msgstr ""
 "少なくとも新規の１文字が Rx バッファーで待機していて、Rx の線が1つの完全なフレームの間、"
 "何も受信していない。"
 
-#: ../../library/machine.UART.rst:155
+#: ../../library/machine.UART.rst:161
 msgid ""
 "This means that when the handler function is called there will be between"
 " 1 to 8 characters waiting."
 msgstr ""
 "つまり、ハンドラ関数が呼び出されると、1 から 8 文字の間の待機があります。"
 
-#: ../../library/machine.UART.rst:158
+#: ../../library/machine.UART.rst:164
 msgid "Returns an irq object."
 msgstr "irq オブジェクトを返します。"
 
-#: ../../library/machine.UART.rst:167
+#: ../../library/machine.UART.rst:173
 msgid "IRQ trigger sources"
 msgstr "IRQ トリガーソース"
 
@@ -17707,30 +17743,51 @@ msgstr ""
 "実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
-#: ../../library/sys.rst:137
+#: ../../library/sys.rst:138
+msgid ""
+"Mutable attributes holding strings, which are used for the REPL prompt.  "
+"The defaults give the standard Python prompt of ``>>>`` and ``...``."
+msgstr ""
+"REPL プロンプトに使う文字列を保持する変更可能属性です。"
+"デフォルトでは、標準的な Python プロンプトである ``>>>`` や ``...`` を表示します。"
+
+#: ../../library/sys.rst:143
 msgid "Standard error `stream`."
 msgstr "標準エラーの `stream` 。"
 
-#: ../../library/sys.rst:141
+#: ../../library/sys.rst:147
 msgid "Standard input `stream`."
 msgstr "標準入力の `stream` 。"
 
-#: ../../library/sys.rst:145
+#: ../../library/sys.rst:151
 msgid "Standard output `stream`."
 msgstr "標準出力の `stream` 。"
 
-#: ../../library/sys.rst:149
+#: ../../library/sys.rst:155
+msgid ""
+"A mutable attribute holding an integer value which is the maximum number "
+"of traceback entries to store in an exception.  Set to 0 to disable "
+"adding tracebacks.  Defaults to 1000."
+msgstr ""
+"例外に格納するトレースバックエントリの最大数を整数値で保持する変更可能属性です。"
+"0 を設定すると、トレースバックの追加を無効にします。デフォルトは 1000 です。"
+
+#: ../../library/sys.rst:159
+msgid "Note: this is not available on all ports."
+msgstr "注記: これはすべてのポートで使用できるわけではありません。"
+
+#: ../../library/sys.rst:163
 msgid "Python language version that this implementation conforms to, as a string."
 msgstr "この処理系が準拠する Python 言語バージョンを表す文字列。"
 
-#: ../../library/sys.rst:153
+#: ../../library/sys.rst:167
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
 "この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
-#: ../../library/sys.rst:158
+#: ../../library/sys.rst:172
 msgid ""
 "Only the first three version numbers (major, minor, micro) are supported "
 "and they can be referenced only by index, not by name."
