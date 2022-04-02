@@ -32,6 +32,7 @@
 #include <assert.h>
 
 #include "py/mpstate.h"
+#include "py/smallint.h"
 #include "py/emit.h"
 #include "py/bc0.h"
 
@@ -471,6 +472,7 @@ void mp_emit_bc_load_const_tok(emit_t *emit, mp_token_kind_t tok) {
 }
 
 void mp_emit_bc_load_const_small_int(emit_t *emit, mp_int_t arg) {
+    assert(MP_SMALL_INT_FITS(arg));
     if (-MP_BC_LOAD_CONST_SMALL_INT_MULTI_EXCESS <= arg
         && arg < MP_BC_LOAD_CONST_SMALL_INT_MULTI_NUM - MP_BC_LOAD_CONST_SMALL_INT_MULTI_EXCESS) {
         emit_write_bytecode_byte(emit, 1,
@@ -752,7 +754,9 @@ void mp_emit_bc_make_closure(emit_t *emit, scope_t *scope, mp_uint_t n_closed_ov
 
 STATIC void emit_bc_call_function_method_helper(emit_t *emit, int stack_adj, mp_uint_t bytecode_base, mp_uint_t n_positional, mp_uint_t n_keyword, mp_uint_t star_flags) {
     if (star_flags) {
-        stack_adj -= (int)n_positional + 2 * (int)n_keyword + 2;
+        // each positional arg is one object, each kwarg is two objects, the key
+        // and the value and one extra object for the star args bitmap.
+        stack_adj -= (int)n_positional + 2 * (int)n_keyword + 1;
         emit_write_bytecode_byte_uint(emit, stack_adj, bytecode_base + 1, (n_keyword << 8) | n_positional); // TODO make it 2 separate uints?
     } else {
         stack_adj -= (int)n_positional + 2 * (int)n_keyword;
