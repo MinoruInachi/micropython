@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-05 10:55+0900\n"
-"PO-Revision-Date: 2022-02-05 11:04+0900\n"
+"PO-Revision-Date: 2022-02-05 20:26+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2045,7 +2045,7 @@ msgstr ""
 
 #: ../../develop/memorymgt.rst:4
 msgid "Memory Management"
-msgstr ""
+msgstr "メモリー管理"
 
 #: ../../develop/memorymgt.rst:6
 msgid ""
@@ -2059,18 +2059,25 @@ msgid ""
 "Automatic memory management takes many forms, one of them being garbage "
 "collection (GC)."
 msgstr ""
+"C/C++ などのプログラミング言語と違い、MicroPython は自動メモリー管理をサポート"
+"することで、メモリー管理の詳細を開発者から隠蔽しています。自動メモリー管理とは、"
+"オペレーティングシステムやアプリケーションが、メモリの割り当てと解放を自動的に管理"
+"するために使う手法です。これにより、オブジェクトに割り当てられたメモリーの解放を忘れる"
+"といった問題がなくなります。また、自動メモリ管理は、すでに解放されているメモリーを"
+"使ってしまうという重大な問題を回避できます。自動メモリー管理には様々な形態がありますが、"
+"その１つがガベージコレクション(GC: Garbage Collection)です。"
 
 #: ../../develop/memorymgt.rst:14
 msgid "The garbage collector usually has two responsibilities;"
-msgstr ""
+msgstr "ガベージコレクションは通常２つの責任を負っています。"
 
 #: ../../develop/memorymgt.rst:16
 msgid "Allocate new objects in available memory."
-msgstr ""
+msgstr "利用可能なメモリに新しいオブジェクトを割り当てる。"
 
 #: ../../develop/memorymgt.rst:17
 msgid "Free unused memory."
-msgstr ""
+msgstr "使わなくなったメモリーを解放する。"
 
 #: ../../develop/memorymgt.rst:19
 msgid ""
@@ -2080,12 +2087,19 @@ msgid ""
 "traverses the heap marking all live objects while the sweep phase goes "
 "through the heap reclaiming all unmarked objects."
 msgstr ""
+"多くの GC アルゴリズムがありますが、MicroPython は「マーク＆スイープ」"
+"(`Mark and Sweep "
+"<https://en.wikipedia.org/wiki/Tracing_garbage_collection#Basic_algorithm>`_ )"
+"というポリシーでメモリー管理を行います。このアルゴリズムは、ヒープを横断してすべての"
+"生きているオブジェクトをマークするマークフェーズと、ヒープを横断してすべてのマーク"
+"されていないオブジェクトを回収するスイープフェーズを持っています。"
 
 #: ../../develop/memorymgt.rst:24
 msgid ""
 "Garbage collection functionality in MicroPython is available through the "
 "``gc`` built-in module:"
 msgstr ""
+"MicroPython のガベージコレクション機能は ``gc`` 組込みモジュールで利用できます。"
 
 #: ../../develop/memorymgt.rst:27
 msgid ""
@@ -2109,10 +2123,12 @@ msgid ""
 "Even when ``gc.disable()`` is invoked, collection can be triggered with "
 "``gc.collect()``."
 msgstr ""
+"``gc.disable()`` を実行した場合でも、 ``gc.collect()`` で"
+"メモリー回収を起動できます。"
 
 #: ../../develop/memorymgt.rst:46
 msgid "The object model"
-msgstr ""
+msgstr "オブジェクトモデル"
 
 #: ../../develop/memorymgt.rst:48
 msgid ""
@@ -2123,6 +2139,12 @@ msgid ""
 "certain object representations, for example ``OBJ_REPR_D`` has a 64-bit "
 "sized ``mp_obj_t`` on a 32-bit architecture."
 msgstr ""
+"すべての MicroPython オブジェクトは ``mp_obj_t`` データ型で参照されます。"
+"これは通常、ワードサイズ(つまり、ターゲットアーキテクチャ上のポインタと同じサイズ)で、"
+"32ビット(STM32、nRF、ESP32、Unix x86)または64ビット(Unix x64)であることが多いです。"
+"また、特定のオブジェクト表現では、ワードサイズより大きくなることもあります。"
+"たとえば ``OBJ_REPR_D`` は 32 ビットアーキテクチャ上であっても 64 ビットサイズの "
+"``mp_obj_t`` を持ちます。"
 
 #: ../../develop/memorymgt.rst:54
 msgid ""
@@ -2134,16 +2156,24 @@ msgid ""
 "heap) and their ``mp_obj_t`` contains a pointer to that memory. A portion"
 " of ``mp_obj_t`` is the tag which tells what type of object it is."
 msgstr ""
+"``mp_obj_t`` は MicroPython オブジェクトを表します。たとえば、整数、浮動小数点数、"
+"型、辞書、クラスのインスタンスなどです。 真偽値や小さな整数のようなオブジェクトは、"
+"その値が直接 mp_obj_t の値に格納されるので、追加のメモリは必要ありません。"
+"他のオブジェクトはその値がメモリの他の場所(たとえば、ガベージコレクション対象のヒープ上)に"
+"格納され、その ``mp_obj_t`` はそのメモリへのポインターを持っています。 "
+"``mp_obj_t`` 内の一部は、それがどのような種類のオブジェクトであるかを示すタグに"
+"なっています。"
 
 #: ../../develop/memorymgt.rst:60
 msgid ""
 "See ``py/mpconfig.h`` for the specific details of the available "
 "representations."
 msgstr ""
+"利用可能な表現の具体的な詳細については ``py/mpconfig.h`` を参照してください。"
 
 #: ../../develop/memorymgt.rst:62
 msgid "**Pointer tagging**"
-msgstr ""
+msgstr "**ポインタータグ**"
 
 #: ../../develop/memorymgt.rst:64
 msgid ""
@@ -2151,6 +2181,9 @@ msgid ""
 "``mp_obj_t`` the lower bits of this object handle will be zero.  For "
 "example on a 32-bit architecture the lower 2 bits will be zero:"
 msgstr ""
+"ポインターはワードアラインされているので、 ``mp_obj_t`` に格納する場合、"
+"このオブジェクトハンドルの下位ビットはゼロになります。たとえば、32 ビット"
+"アーキテクチャでは、下位 2 ビットは 0 になります。"
 
 #: ../../develop/memorymgt.rst:68 ../../develop/memorymgt.rst:88
 msgid "``********|********|********|******00``"
@@ -2164,10 +2197,16 @@ msgid ""
 "tag tells if we are dealing with a small integer, interned (small) string"
 " or a concrete object, and different semantics apply to each of these."
 msgstr ""
+"これらのビットは、タグを格納するために予約されています。"
+"このタグに付加情報を格納することにより、"
+"オブジェクトに新しいフィールドを用意して情報を格納するような非効率化を避けています。"
+"MicroPython において、タグは小さな整数、隔離化した(サイズの小さな)文字列、"
+"具象オブジェクトを扱っているかどうかを示し、それぞれに異なるセマンティクスが"
+"適用されます。"
 
 #: ../../develop/memorymgt.rst:75
 msgid "For small integers the mapping is this:"
-msgstr ""
+msgstr "小さい整数の場合、マッピングは次のようになります:"
 
 #: ../../develop/memorymgt.rst:77
 msgid "``********|********|********|*******1``"
@@ -2179,6 +2218,9 @@ msgid ""
 "string or an immediate object (e.g. ``True``) the layout of the "
 "``mp_obj_t`` value is, respectively:"
 msgstr ""
+"上の表現で、アスタリスクは実際の整数値を表しています。"
+"隔離化した文字列または即値オブジェクト(``True`` など)の場合、 "
+"`` mp_obj_t`` 値のレイアウトはそれぞれ次のようになります:"
 
 #: ../../develop/memorymgt.rst:82
 msgid "``********|********|********|*****010``"
@@ -2190,15 +2232,15 @@ msgstr ""
 
 #: ../../develop/memorymgt.rst:86
 msgid "While a concrete object that is none of the above takes the form:"
-msgstr ""
+msgstr "上記のいずれでもない具象オブジェクトは、次のような形式をとります:"
 
 #: ../../develop/memorymgt.rst:90
 msgid "The stars here correspond to the address of the concrete object in memory."
-msgstr ""
+msgstr "上記のアスタリスクは、メモリー上の具象オブジェクトのアドレスに相当します。"
 
 #: ../../develop/memorymgt.rst:93
 msgid "Allocation of objects"
-msgstr ""
+msgstr "オブジェクトの割当て"
 
 #: ../../develop/memorymgt.rst:95
 msgid ""
@@ -2208,6 +2250,10 @@ msgid ""
 "interned strings that already have their textual data stored elsewhere, "
 "and immediate values like ``None``, ``False`` and ``True``."
 msgstr ""
+"小さな整数の値は ``mp_obj_t`` に直接格納され、ヒープなどではなく、"
+"埋め込みで割り当てられることになります。そのため、小さな整数の作成はヒープに影響を"
+"与えません。同様に、すでにテキストデータが別の場所に保存されている隔離化文字列や、 "
+"``None``, ``False``, ``True`` などの即値も同様です。"
 
 #: ../../develop/memorymgt.rst:101
 msgid ""
@@ -2215,6 +2261,9 @@ msgid ""
 "its object structure is such that a field is reserved in the object "
 "header to store the type of the object."
 msgstr ""
+"それ以外の具象オブジェクトはすべてヒープ上に確保されます。"
+"そのオブジェクト構造は、オブジェクトの型を格納するフィールドが"
+"オブジェクトヘッダに予約されているようなものです。"
 
 #: ../../develop/memorymgt.rst:104
 msgid ""
@@ -2228,6 +2277,15 @@ msgid ""
 "+         +\n"
 "+++++++++++"
 msgstr ""
+"+++++++++++\n"
+"+         +\n"
+"+ 型      + オブジェクトヘッダー\n"
+"+         +\n"
+"+++++++++++\n"
+"+         + オブジェクトアイテム\n"
+"+         +\n"
+"+         +\n"
+"+++++++++++"
 
 #: ../../develop/memorymgt.rst:116
 msgid ""
@@ -2236,6 +2294,9 @@ msgid ""
 "machine). Another structure also allocated on the heap tracks the "
 "allocation of objects in each block. This structure is called a *bitmap*."
 msgstr ""
+"ヒープの割当ての最小単位はブロックであり、その大きさは4マシンワード(32ビットマシンでは"
+"16バイト、64ビットマシンでは32バイト)です。また、ヒープに割り当てられた別の構造体が、"
+"各ブロック内のオブジェクトの割り当てを追跡します。この構造体はビットマップと呼ばれています。"
 
 #: ../../develop/memorymgt.rst:122
 msgid ".. image:: develop/img/bitmap.png"
@@ -2246,6 +2307,8 @@ msgid ""
 "The bitmap tracks whether a block is \"free\" or \"in use\" and use two "
 "bits to track this state for each block."
 msgstr ""
+"ビットマップは、ブロックが「空き」なのか「使用中」なのかを追跡し、"
+"ブロックごとに2ビットを使います。"
 
 #: ../../develop/memorymgt.rst:126
 msgid ""
@@ -2255,40 +2318,47 @@ msgid ""
 "<https://github.com/micropython/micropython/blob/master/py/gc.c>`_ for "
 "the full implementation of these details."
 msgstr ""
+"マーク＆スイープガベージコレクションは、ヒープ上に割り当てられたオブジェクトを管理し、"
+"また、まだ使用中のオブジェクトをマークするためにビットマップを利用します。"
+"これらの詳細の完全な実装は py/gc.c を参照してください。"
 
 #: ../../develop/memorymgt.rst:131
 msgid "**Allocation: heap layout**"
-msgstr ""
+msgstr "**割当て: ヒープレイアウト**"
 
 #: ../../develop/memorymgt.rst:133
 msgid ""
 "The heap is arranged such that it consists of blocks in pools. A block "
 "can have different properties:"
 msgstr ""
+"ヒープはプール内のブロックから構成されるように配置されます。"
+"ブロックは異なるプロパティを持てます。"
 
 #: ../../develop/memorymgt.rst:136
 msgid "*ATB(allocation table byte):* If set, then the block is a normal block"
 msgstr ""
+"*ATB(Allocation Table Byte):* 設定されている場合、そのブロックは通常のブロックです。"
 
 #: ../../develop/memorymgt.rst:137
 msgid "*FREE:* Free block"
-msgstr ""
+msgstr "*FREE:* フリーブロック"
 
 #: ../../develop/memorymgt.rst:138
 msgid "*HEAD:* Head of a chain of blocks"
-msgstr ""
+msgstr "*HEAD：* ブロックのチェーンの先頭"
 
 #: ../../develop/memorymgt.rst:139
 msgid "*TAIL:* In the tail of a chain of blocks"
-msgstr ""
+msgstr "*TAIL:* ブロックのチェーンの最後尾"
 
 #: ../../develop/memorymgt.rst:140
 msgid "*MARK :* Marked head block"
-msgstr ""
+msgstr "*MARK:* マークされたヘッドブロック"
 
 #: ../../develop/memorymgt.rst:141
 msgid "*FTB(finaliser table byte):* If set, then the block has a finaliser"
 msgstr ""
+"*FTB(Finaliser Table Byte):* 設定されている場合，そのブロックはファイナライザを持ちます"
 
 #: ../../develop/natmod.rst:4
 msgid "Native machine code in .mpy files"
