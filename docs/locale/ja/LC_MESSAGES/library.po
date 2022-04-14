@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 12:50+0900\n"
-"PO-Revision-Date: 2022-04-02 13:12+0900\n"
+"POT-Creation-Date: 2022-04-13 09:29+0900\n"
+"PO-Revision-Date: 2022-04-14 19:11+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3757,10 +3757,14 @@ msgid ""
 msgstr "MicroPython 処理系に固有の機能は、以下のライブラリで利用できます。"
 
 #: ../../library/index.rst:100
+msgid "The following libraries provide drivers for hardware components."
+msgstr "次のライブラリはハードウェアコンポーネントのためのドライバとして提供します。"
+
+#: ../../library/index.rst:109
 msgid "Port-specific libraries"
 msgstr "ポート固有のライブラリ"
 
-#: ../../library/index.rst:102
+#: ../../library/index.rst:111
 msgid ""
 "In some cases the following port/board-specific libraries have "
 "functions or classes similar to those in the :mod:`machine` library.  "
@@ -3772,7 +3776,7 @@ msgstr ""
 "ライブラリの方では、そのプラットフォームに固有のハードウェア機能が使えるように"
 "なっています。"
 
-#: ../../library/index.rst:107
+#: ../../library/index.rst:116
 msgid ""
 "To write portable code use functions and classes from the :mod:`machine` "
 "module. To access platform-specific hardware use the appropriate library, "
@@ -3783,54 +3787,54 @@ msgstr ""
 "ポート固有ライブラリを使ってください。たとえば Pyboard の場合は :mod:`pyb` "
 "を使います。"
 
-#: ../../library/index.rst:113
+#: ../../library/index.rst:122
 msgid "Libraries specific to the pyboard"
 msgstr "pyboard 固有のライブラリ"
 
-#: ../../library/index.rst:115
+#: ../../library/index.rst:124
 msgid "The following libraries are specific to the pyboard."
 msgstr "以下のライブラリは pyboard に固有のものです。"
 
-#: ../../library/index.rst:125
+#: ../../library/index.rst:134
 msgid "Libraries specific to the WiPy"
 msgstr "WiPy 固有のライブラリ"
 
-#: ../../library/index.rst:127
+#: ../../library/index.rst:136
 msgid "The following libraries and classes are specific to the WiPy."
 msgstr "以下のライブラリとクラスは WiPy に固有のものです。"
 
-#: ../../library/index.rst:138
+#: ../../library/index.rst:147
 msgid "Libraries specific to the ESP8266 and ESP32"
 msgstr "ESP8266 と ESP32 に固有のライブラリ"
 
-#: ../../library/index.rst:140
+#: ../../library/index.rst:149
 msgid "The following libraries are specific to the ESP8266 and ESP32."
 msgstr "以下のライブラリは ESP8266 と ESP32 に固有のものです。"
 
-#: ../../library/index.rst:150
+#: ../../library/index.rst:159
 msgid "Libraries specific to the RP2040"
 msgstr "RP2040 に固有のライブラリ"
 
-#: ../../library/index.rst:152
+#: ../../library/index.rst:161
 msgid ""
 "The following libraries are specific to the RP2040, as used in the "
 "Raspberry Pi Pico."
 msgstr ""
 "以下のライブラリは (Raspberry Pi Pico で使われている) RP2040 に固有のものです。"
 
-#: ../../library/index.rst:160
+#: ../../library/index.rst:169
 msgid "Libraries specific to Zephyr"
 msgstr "Zephyr に固有のライブラリ"
 
-#: ../../library/index.rst:162
+#: ../../library/index.rst:171
 msgid "The following libraries are specific to the Zephyr port."
 msgstr "以下のライブラリは Zephyr ポート に固有のものです。"
 
-#: ../../library/index.rst:171
+#: ../../library/index.rst:180
 msgid "Extending built-in libraries from Python"
 msgstr "Python での組込みライブラリの拡張"
 
-#: ../../library/index.rst:173
+#: ../../library/index.rst:182
 msgid ""
 "In most cases, the above modules are actually named ``umodule`` rather "
 "than ``module``, but MicroPython will alias any module prefixed with a "
@@ -3842,7 +3846,7 @@ msgstr ""
 "接頭辞の無いものにエイリアスします。しかし ``module.py`` という名前のファイル(またはその "
 ":term:`凍結モジュール <frozen module>`)は、このエイリアスよりも優先されます。"
 
-#: ../../library/index.rst:177
+#: ../../library/index.rst:187
 msgid ""
 "This allows the user to provide an extended implementation of a built-in "
 "library (perhaps to provide additional CPython compatibility). The user-"
@@ -3856,7 +3860,7 @@ msgstr ""
 ":term:`micropython-lib` で広く使われています。詳しくは :ref:`packages` を"
 "参照してください。"
 
-#: ../../library/index.rst:183
+#: ../../library/index.rst:193
 msgid ""
 "This applies to both the Python standard libraries (e.g. ``os``, "
 "``time``, etc), but also the MicroPython libraries too (e.g. ``machine``,"
@@ -3867,7 +3871,7 @@ msgstr ""
 "MicroPythonのライブラリ(例: ``machine``, ``bluetooth`` など)にも適用されます。"
 "主な例外はポート固有のライブラリ(``pyb``, ``esp`` など)です。"
 
-#: ../../library/index.rst:187
+#: ../../library/index.rst:197
 msgid ""
 "*Other than when you specifically want to force the use of the built-in "
 "module, we recommend always using ``import module`` rather than ``import "
@@ -5830,38 +5834,49 @@ msgid ""
 "num_read = await sreader.readinto(buf)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:23 ../../library/bluetooth.rst:731
-#: ../../library/machine.I2S.rst:76 ../../library/zephyr.zsensor.rst:26
-msgid "Constructor"
-msgstr "コンストラクタ"
+#: ../../library/machine.I2S.rst:75
+msgid ""
+"Some codec devices like the WM8960 or SGTL5000 require separate "
+"initialization before they can operate with the I2S class.  For these, "
+"separate drivers are supplied, which also offer methods for controlling "
+"volume, audio processing and other things.  For these drivers see:"
+msgstr ""
+"WM8960 や SGTL5000 など一部のコーデックデバイスは、I2S クラスで動作させる前に"
+"別途初期化を必要とします。これらのコーデックデバイスについては別途ドライバが提供"
+"されており、音量や音声処理などを制御する方法も提供されています。これらのドライバに"
+"ついては以下を参照してください。"
 
 #: ../../library/machine.I2S.rst:80
+msgid ":ref:`wm8960`"
+msgstr ""
+
+#: ../../library/machine.I2S.rst:87
 msgid "Construct an I2S object of the given id:"
 msgstr "指定の id で I2S オブジェクトを構築します:"
 
-#: ../../library/machine.I2S.rst:82
+#: ../../library/machine.I2S.rst:89
 msgid "``id`` identifies a particular I2S bus; it is board and port specific"
 msgstr ""
 "``id`` には I2S バスを識別するものを指定します。"
 "指定する値はボードやポートに依存します"
 
-#: ../../library/machine.I2S.rst:84
+#: ../../library/machine.I2S.rst:91
 msgid "Keyword-only parameters that are supported on all ports:"
 msgstr "すべてのポートで次のキーワード引数をサポートしています:"
 
-#: ../../library/machine.I2S.rst:86
+#: ../../library/machine.I2S.rst:93
 msgid "``sck`` is a pin object for the serial clock line"
 msgstr "``sck`` にはシリアルクロックを結線するピンオブジェクトを指定します"
 
-#: ../../library/machine.I2S.rst:87
+#: ../../library/machine.I2S.rst:94
 msgid "``ws`` is a pin object for the word select line"
 msgstr "``ws`` にはワードセレクトを結線するピンオブジェクトを指定します"
 
-#: ../../library/machine.I2S.rst:88
+#: ../../library/machine.I2S.rst:95
 msgid "``sd`` is a pin object for the serial data line"
 msgstr "``sd`` にはシリアルデータを結線するピンオブジェクトを指定します"
 
-#: ../../library/machine.I2S.rst:89
+#: ../../library/machine.I2S.rst:96
 msgid ""
 "``mck`` is a pin object for the master clock line; master clock frequency"
 " is sampling rate * 256"
@@ -5869,19 +5884,19 @@ msgstr ""
 "``mck`` はマスタークロックラインのピンオブジェクトです。"
 "マスタークロックの周波数はサンプリングレート* 256 です。"
 
-#: ../../library/machine.I2S.rst:91
+#: ../../library/machine.I2S.rst:98
 msgid "``mode`` specifies receive or transmit"
 msgstr "``mode`` には受信(I2S.RX)または送信(I2S.TX)を指定します。"
 
-#: ../../library/machine.I2S.rst:92
+#: ../../library/machine.I2S.rst:99
 msgid "``bits`` specifies sample size (bits), 16 or 32"
 msgstr "``bits`` にはサンプルサイズ(ビット数)、16 または 32 を指定します"
 
-#: ../../library/machine.I2S.rst:93
+#: ../../library/machine.I2S.rst:100
 msgid "``format`` specifies channel format, STEREO or MONO"
 msgstr "``format`` にはチャネルフォーマット、I2S.STEREO または I2S.MONO を指定します"
 
-#: ../../library/machine.I2S.rst:94
+#: ../../library/machine.I2S.rst:101
 msgid ""
 "``rate`` specifies audio sampling rate (Hz); this is the frequency of the"
 " ``ws`` signal"
@@ -5889,11 +5904,11 @@ msgstr ""
 "``rate`` にはオーディオサンプリングレート(Hz)を指定します。"
 "これは ``ws`` 信号の周波数です"
 
-#: ../../library/machine.I2S.rst:96
+#: ../../library/machine.I2S.rst:103
 msgid "``ibuf`` specifies internal buffer length (bytes)"
 msgstr "``ibuf`` には内部バッファ長(バイト数)を指定します"
 
-#: ../../library/machine.I2S.rst:98
+#: ../../library/machine.I2S.rst:105
 msgid ""
 "For all ports, DMA runs continuously in the background and allows user "
 "applications to perform other operations while sample data is transfered "
@@ -5909,15 +5924,15 @@ msgstr ""
 "(``write`` メソッドなど)またはオーバーフロー(``readinto`` メソッドなど)の"
 "前に非 I2S 操作を実行できる時間が長くなる可能性があります。"
 
-#: ../../library/machine.I2S.rst:108
+#: ../../library/machine.I2S.rst:115
 msgid "see Constructor for argument descriptions"
 msgstr "引数の説明についてはコンストラクターを参照してください"
 
-#: ../../library/machine.I2S.rst:112
+#: ../../library/machine.I2S.rst:119
 msgid "Deinitialize the I2S bus"
 msgstr "I2S バスを非初期化します"
 
-#: ../../library/machine.I2S.rst:116
+#: ../../library/machine.I2S.rst:123
 msgid ""
 "Read audio samples into the buffer specified by ``buf``.  ``buf`` must "
 "support the buffer protocol, such as bytearray or array. \"buf\" byte "
@@ -5932,7 +5947,7 @@ msgstr ""
 "優先されます。モノラルフォーマットの場合、左チャンネルのサンプルデータが"
 "使われます。戻り値は読み込んだバイト数です"
 
-#: ../../library/machine.I2S.rst:121
+#: ../../library/machine.I2S.rst:130
 msgid ""
 "Write audio samples contained in ``buf``. ``buf`` must support the buffer"
 " protocol, such as bytearray or array. \"buf\" byte ordering is little-"
@@ -5947,7 +5962,7 @@ msgstr ""
 "優先されます。モノラルフォーマットの場合、左チャンネルのサンプルデータが"
 "使われます。戻り値は書き出したバイト数です"
 
-#: ../../library/machine.I2S.rst:130
+#: ../../library/machine.I2S.rst:137
 msgid ""
 "Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` "
 "method) or becomes full (``readinto`` method). Setting a callback changes"
@@ -5960,7 +5975,7 @@ msgstr ""
 "メソッドはノンブロッキング操作に変更されます。 "
 "``handler`` は MicroPython のスケジューラのコンテキストで呼び出されます。"
 
-#: ../../library/machine.I2S.rst:136
+#: ../../library/machine.I2S.rst:143
 msgid ""
 "bitwise shift of all samples contained in ``buf``. ``bits`` specifies "
 "sample size in bits. ``shift`` specifies the number of bits to shift each"
@@ -5974,19 +5989,19 @@ msgstr ""
 "これは通常はボリュームコントロールに使います。各ビットシフトにより、"
 "サンプルボリュームが 6dB 変化します。"
 
-#: ../../library/machine.I2S.rst:145
+#: ../../library/machine.I2S.rst:152
 msgid "for initialising the I2S bus ``mode`` to receive"
 msgstr "I2S バス初期化時に ``mode`` を受信にするためのものです"
 
-#: ../../library/machine.I2S.rst:149
+#: ../../library/machine.I2S.rst:156
 msgid "for initialising the I2S bus ``mode`` to transmit"
 msgstr "I2S バス初期化時に ``mode`` を送信にするためのものです"
 
-#: ../../library/machine.I2S.rst:153
+#: ../../library/machine.I2S.rst:160
 msgid "for initialising the I2S bus ``format`` to stereo"
 msgstr "I2S バス初期化時に ``format`` をステレオにするためのものです"
 
-#: ../../library/machine.I2S.rst:157
+#: ../../library/machine.I2S.rst:164
 msgid "for initialising the I2S bus ``format`` to mono"
 msgstr "I2S バス初期化時に ``format`` をモノラルにするためのものです"
 
@@ -6127,6 +6142,18 @@ msgstr "引数がない場合、ナノ秒単位のパルス幅が返されます
 #: ../../library/machine.PWM.rst:79
 msgid "With a single *value* argument the pulse width is set to that value."
 msgstr "単一の *value* 引数を指定すると、パルス幅が指定の値に設定されます。"
+
+#: ../../library/machine.PWM.rst:82
+msgid "Specific PWM class implementations"
+msgstr "特定の PWM クラス実装"
+
+#: ../../library/machine.PWM.rst:84
+msgid "The following concrete class(es) implement enhancements to the PWM class."
+msgstr "次の具象クラスは PWM クラスに拡張を実装しでいます。"
+
+#: ../../library/machine.PWM.rst
+msgid ":ref:`pyb.Timer for PyBoard <pyb.Timer>`"
+msgstr ":ref:`PyBoard の pyb.Timer <pyb.Timer>`"
 
 #: ../../library/machine.PWM.rst:82
 msgid "Limitations of PWM"
@@ -7236,6 +7263,89 @@ msgid ""
 msgstr ""
 "*注記:* 現在の cc3200 SDカードの実装では :class:`machine.SDCard` ではなく、"
 ":class:`machine.SD` のほうを使います。"
+
+#: ../../library/machine.SDCard.rst:127
+msgid "mimxrt"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:129
+msgid ""
+"The SDCard module for the mimxrt port only supports access via dedicated "
+"SD/MMC peripheral (USDHC) in 4-bit mode with 50MHz clock frequency "
+"exclusively. Unfortunately the MIMXRT1011 controller does not support the"
+" USDHC peripheral. Hence this controller does not feature the "
+"``machine.SDCard`` module."
+msgstr ""
+"mimxrt ポートの SDCard モジュールは、4ビットモード、クロック周波数 50MHz の専用 "
+"SD/MMC ペリフェラル (USDHC)経由のアクセスのみをサポートしています。残念ながら、"
+"MIMXRT1011 コントローラは USDHC ペリフェラルをサポートしていません。したがって、"
+"このコントローラでは ``machine.SDCard`` モジュールが機能しません。"
+
+#: ../../library/machine.SDCard.rst:134
+msgid ""
+"Due to the decision to only support 4-bit mode with 50MHz clock frequency"
+" the interface has been simplified, and the constructor signature is:"
+msgstr ""
+"クロック周波数 50MHz の4ビットモードのみをサポートすることにしたため、"
+"インタフェースは簡素化され、コンストラクタのシグネチャは次のようになっています。"
+
+#: ../../library/machine.SDCard.rst:140
+msgid ""
+"The pins used for the USDHC peripheral have to be configured in "
+"``mpconfigboard.h``. Most of the controllers supported by the mimxrt port"
+" provide up to two USDHC peripherals.  Therefore the pin configuration is"
+" performed using the macro ``MICROPY_USDHCx`` with x being 1 or 2 "
+"respectively."
+msgstr ""
+"USDHC ペリフェラルで使うピンは ``mpconfigboard.h`` で設定する必要があります。"
+"mimxrt ポートでサポートされるほとんどのコントローラは、最大2つの USDHC ペリフェラルを"
+"提供します。したがって、ピン設定はマクロ ``MICROPY_USDHCx`` (x は1または2)を使って"
+"行います。"
+
+#: ../../library/machine.SDCard.rst:145
+msgid "The following shows an example configuration for USDHC1::"
+msgstr "以下は USDHC1 の設定例を示しています::"
+
+#: ../../library/machine.SDCard.rst:147
+msgid ""
+"#define MICROPY_USDHC1 \\\n"
+"  { \\\n"
+"        .cmd   = { GPIO_SD_B0_02_USDHC1_CMD}, \\\n"
+"        .clk   = { GPIO_SD_B0_03_USDHC1_CLK }, \\\n"
+"        .cd_b  = { GPIO_SD_B0_06_USDHC1_CD_B },\\\n"
+"        .data0 = { GPIO_SD_B0_04_USDHC1_DATA0 },\\\n"
+"        .data1 = { GPIO_SD_B0_05_USDHC1_DATA1 },\\\n"
+"        .data2 = { GPIO_SD_B0_00_USDHC1_DATA2 },\\\n"
+"        .data3 = { GPIO_SD_B0_01_USDHC1_DATA3 },\\\n"
+"  }"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:158
+msgid ""
+"If the card detect pin is not used (cb_b pin) then the respective entry "
+"has to be filled with the following dummy value::"
+msgstr ""
+"カード検出ピンを使わない場合(cb_b ピン)、各エントリに次のダミー値を設定する必要があります。"
+
+#: ../../library/machine.SDCard.rst:161
+msgid "#define USDHC_DUMMY_PIN NULL , 0"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:163
+msgid ""
+"Based on the definition of macro ``MICROPY_USDHC1`` and/or "
+"``MICROPY_USDHC2`` the ``machine.SDCard`` module either supports one or "
+"two slots.  If only one of the defines is provided, calling "
+"``machine.SDCard()`` or ``machine.SDCard(1)`` will return an instance "
+"using the respective USDHC peripheral.  When both macros are defined, "
+"calling ``machine.SDCard(2)`` returns an instance using USDHC2."
+msgstr ""
+"マクロ ``MICROPY_USDHC1`` や ``MICROPY_USDHC2`` の定義に基づき、 "
+"``machine.SDCard`` モジュールは１スロットまたは２スロットをサポートします。"
+"どちらか一方しか定義されていない場合、 ``machine.SDCard()`` または "
+"``machine.SDCard(1)`` を呼び出すと、それぞれの USDHC ペリフェラルを使った"
+"インスタンスが返されます。両方のマクロが定義されている場合、 ``machine.SDCard(2)`` "
+"を呼び出すと、USDHC2 を使用するインスタンスが返されます。"
 
 #: ../../library/machine.SPI.rst:5
 msgid "class SPI -- a Serial Peripheral Interface bus protocol (controller side)"
@@ -9317,8 +9427,8 @@ msgstr ""
 "上記の情報を含む4タプルを返します。上記の値を設定するには、必要な情報を含む4項目の"
 "タプルを渡します。例えば次のように設定します:"
 
-#: ../../library/network.WIZNET5K.rst:67
-#: ../../library/network.WLAN.rst:101 ../../library/network.rst:123
+#: ../../library/network.LAN.rst:68 ../../library/network.WIZNET5K.rst:67
+#: ../../library/network.WLAN.rst:103 ../../library/network.rst:123
 msgid "nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))"
 msgstr ""
 
@@ -9480,9 +9590,8 @@ msgstr ""
 "CC3K ドライバーオブジェクトを作成し、指定した SPI バスとピンを使って CC3000 モジュール"
 "を初期化し、CC3K オブジェクトを返します。"
 
-#: ../../library/network.CC3K.rst:38
-#: ../../library/network.WIZNET5K.rst:39
-#: ../../library/network.WLANWiPy.rst:50
+#: ../../library/network.CC3K.rst:38 ../../library/network.LAN.rst:27
+#: ../../library/network.WIZNET5K.rst:39 ../../library/network.WLANWiPy.rst:50
 msgid "Arguments are:"
 msgstr "引数は次のとおりです:"
 
@@ -9574,6 +9683,177 @@ msgstr ""
 #: ../../library/network.CC3K.rst:89
 msgid "security type to use"
 msgstr "使用するセキュリティの種類"
+
+#: ../../library/network.LAN.rst:5
+msgid "class LAN -- control an Ethernet module"
+msgstr "クラス LAN -- イーサネットモジュールの制御"
+
+#: ../../library/network.LAN.rst:7
+msgid ""
+"This class allows you to control the Ethernet interface. The PHY hardware"
+" type is board-specific."
+msgstr ""
+"このクラスは、イーサネットインターフェースを制御できます。"
+"PHY ハードウェア種別はボードに依存します。"
+
+#: ../../library/network.LAN.rst:11
+msgid ""
+"import network\n"
+"nic = network.LAN(0)\n"
+"print(nic.ifconfig())\n"
+"\n"
+"# now use socket as usual\n"
+"..."
+msgstr ""
+"import network\n"
+"nic = network.LAN(0)\n"
+"print(nic.ifconfig())\n"
+"\n"
+"# ここから普通にソケットを利用\n"
+"..."
+
+#: ../../library/network.LAN.rst:24
+msgid ""
+"Create a LAN driver object, initialise the LAN module using the given PHY"
+" driver name, and return the LAN object."
+msgstr ""
+"LAN ドライバオブジェクトを生成し、指定した PHY ドライバ名で LAN モジュールを初期化し、"
+"LAN オブジェクトを返します。"
+
+#: ../../library/network.LAN.rst:29
+msgid "*id* is the number of the Ethernet port, either 0 or 1."
+msgstr "*id* は Ethernet ポートの番号です。0 または 1 のいずれかを指定します。"
+
+#: ../../library/network.LAN.rst:30
+msgid ""
+"*phy_type* is the name of the PHY driver. For most board the on-board PHY"
+" has to be used and is the default. Suitable values are port specific."
+msgstr ""
+"*phy_type* は、PHY ドライバの名前です。ほとんどのボードでは、オンボードの PHY を使う"
+"必要があり、これがデフォルトになります。適切な値は、ポートに依存します。"
+
+#: ../../library/network.LAN.rst:32
+msgid ""
+"*phy_addr* specifies the address of the PHY interface. As with "
+"*phy_type*, the hardwired value has to be used for most boards and that "
+"value is the default."
+msgstr ""
+"*phy_addr* は、PHY インタフェースのアドレスを指定します。 *phy_type* と同様に、"
+"ほとんどのボードでは、ハードワイヤード値を使わなければならず、その値がデフォルトに"
+"なります。"
+
+#: ../../library/network.LAN.rst:34
+msgid ""
+"*phy_clock* specifies, whether the data clock is provided by the Ethernet"
+" controller or the PYH interface. The default value is the one that "
+"matches the board. If set to ``True``, the clock is driven by the "
+"Ethernet controller, otherwise by the PHY interface."
+msgstr ""
+"*phy_clock* は、データクロックがイーサネットコントローラまたは PYH インタフェースの"
+"どちらから提供されるかを指定します。デフォルト値は、ボードにマッチしたものです。 "
+"``True`` を指定すると、クロックはイーサネットコントローラから駆動され、"
+"そうでなければ PHY インターフェースから駆動されます。"
+
+#: ../../library/network.LAN.rst:38
+msgid "For example, with the Seeed Arch Mix board you can  use::"
+msgstr "たとえば、Seeed Arch Mix ボードでは次のように使います::"
+
+#: ../../library/network.LAN.rst:40
+msgid "nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=2, phy_clock=False)"
+msgstr ""
+
+#: ../../library/network.LAN.rst:47
+msgid ""
+"With a parameter, it sets the interface active if *state* is true, "
+"otherwise it sets it inactive. Without a parameter, it returns the state."
+msgstr ""
+"パラメータありの場合、 *state* が True の場合はインタフェースを有効化し、"
+"それ以外の場合は無効化します。パラメータなしの場合は状態を返します。"
+
+#: ../../library/network.LAN.rst:53 ../../library/network.WIZNET5K.rst:56
+msgid ""
+"Returns ``True`` if the physical Ethernet link is connected and up. "
+"Returns ``False`` otherwise."
+msgstr ""
+"物理的なイーサネットリンクが接続され、かつアップしている場合、 ``True`` を返します。"
+"それ以外の場合は ``False`` を返します。"
+
+#: ../../library/network.LAN.rst:58
+msgid "Returns the LAN status."
+msgstr "LAN 状態えお返します。"
+
+#: ../../library/network.LAN.rst:62 ../../library/network.WIZNET5K.rst:61
+msgid "Get/set IP address, subnet mask, gateway and DNS."
+msgstr "IP アドレス、サブネットマスク、ゲートウェイ、DNS を取得・設定します。"
+
+#: ../../library/network.LAN.rst:64 ../../library/network.WIZNET5K.rst:63
+msgid ""
+"When called with no arguments, this method returns a 4-tuple with the "
+"above information."
+msgstr ""
+"引数なしで呼び出した場合、このメソッドは上記の情報を持つ４項目のタプルを返します。"
+
+#: ../../library/network.LAN.rst:66 ../../library/network.WIZNET5K.rst:65
+msgid ""
+"To set the above values, pass a 4-tuple with the required information.  "
+"For example::"
+msgstr ""
+"上記の値を設定するには、必要な情報を持つ４項目のタプルを引数に渡します。"
+"たとえば次のようにします::"
+
+#: ../../library/network.LAN.rst:72
+msgid ""
+"Sets or gets parameters of the LAN interface. The only parameter that can"
+" be retrieved is the MAC address, using::"
+msgstr ""
+"LAN インタフェースのパラメータを設定または取得します。取得できるパラメータは、MAC "
+"アドレスのみです。たとえば次のように使います::"
+
+#: ../../library/network.LAN.rst:75
+msgid "mac = LAN.config(\"mac\")"
+msgstr ""
+
+#: ../../library/network.LAN.rst:77
+msgid "The parameters that can be set are:"
+msgstr "設定可能なパラメータは次のとおりです:"
+
+#: ../../library/network.LAN.rst:79
+msgid "``trace=n`` sets trace levels; suitable values are:"
+msgstr "``trace=n`` はトレースレベルを設定します:"
+
+#: ../../library/network.LAN.rst:81
+msgid "2: trace TX"
+msgstr "2: TX をトレース"
+
+#: ../../library/network.LAN.rst:82
+msgid "4: trace RX"
+msgstr "4: RX をトレース"
+
+#: ../../library/network.LAN.rst:83
+msgid "8: full trace"
+msgstr "8: フルトレース"
+
+#: ../../library/network.LAN.rst:85
+msgid ""
+"``low_power=bool`` sets or clears low power mode, valid values being "
+"``False`` or ``True``."
+msgstr ""
+"``low_power=bool`` は低電力モードを設定または解除します。"
+"有効な値は ``False`` または ``True`` です。"
+
+#: ../../library/network.LAN.rst:90
+msgid "Specific LAN class implementations"
+msgstr "特定の LAN クラスの実装"
+
+#: ../../library/network.LAN.rst:92
+msgid ""
+"On the mimxrt port, suitable values for the *phy_type* constructor "
+"argument are: ``PHY_KSZ8081``, ``PHY_DP83825``, ``PHY_DP83848``, "
+"``PHY_LAN8720``, ``PHY_RTL8211F``."
+msgstr ""
+"mimxrt ポートでは、コンストラクタの引数 *phy_type* に適切な値を指定します。 "
+"指定できる値は ``PHY_KSZ8081``, ``PHY_DP83825``, ``PHY_DP83848``, "
+"``PHY_LAN8720``, ``PHY_RTL8211F`` のいずれかです。"
 
 #: ../../library/network.WIZNET5K.rst:5
 msgid "class WIZNET5K -- control WIZnet5x00 Ethernet modules"
@@ -11828,17 +12108,20 @@ msgstr ""
 
 #: ../../library/pyb.CAN.rst:7
 msgid ""
-"CAN implements the standard CAN communications protocol.  At the physical"
-" level it consists of 2 lines: RX and TX.  Note that to connect the "
-"pyboard to a CAN bus you must use a CAN transceiver to convert the CAN "
-"logic signals from the pyboard to the correct voltage levels on the bus."
+"CAN implements support for classic CAN (available on F4, F7 MCUs) and CAN"
+" FD (H7 series) controllers. At the physical level CAN bus consists of 2 "
+"lines: RX and TX.  Note that to connect the pyboard to a CAN bus you must"
+" use a CAN transceiver to convert the CAN logic signals from the pyboard "
+"to the correct voltage levels on the bus."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:13
-msgid "Example usage (works without anything connected)::"
+#: ../../library/pyb.CAN.rst:12
+msgid ""
+"Example usage for classic CAN controller in Loopback (transceiver-less) "
+"mode::"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:15
+#: ../../library/pyb.CAN.rst:14
 msgid ""
 "from pyb import CAN\n"
 "can = CAN(1, CAN.LOOPBACK)\n"
@@ -11848,7 +12131,30 @@ msgid ""
 "can.recv(0)                 # receive message on FIFO 0"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:27
+#: ../../library/pyb.CAN.rst:20
+msgid ""
+"Example usage for CAN FD controller with all of the possible options "
+"enabled::"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:22
+msgid ""
+"# FD frame + BRS mode + Extended frame ID. 500 Kbit/s for arbitration "
+"phase, 1Mbit/s for data phase.\n"
+"can = CAN(1, CAN.NORMAL, baudrate=500_000, brs_baudrate=1_000_000, "
+"sample_point=80)\n"
+"can.setfilter(0, CAN.RANGE, 0, (0xFFF0, 0xFFFF))\n"
+"can.send('a'*64, 0xFFFF, fdf=True, brs=True, extframe=True)\n"
+"can.recv(0)"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:28
+msgid ""
+"The following CAN module functions and their arguments are available for "
+"both classic and FD CAN controllers, unless otherwise stated."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:36
 msgid ""
 "Construct a CAN object on the given bus.  *bus* can be 1-2, or ``'YA'`` "
 "or ``'YB'``. With no additional parameters, the CAN object is created but"
@@ -11857,77 +12163,56 @@ msgid ""
 " :meth:`CAN.init` for parameters of initialisation."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:33
+#: ../../library/pyb.CAN.rst:42
 msgid "The physical pins of the CAN buses are:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:35
+#: ../../library/pyb.CAN.rst:44
 msgid "``CAN(1)`` is on ``YA``: ``(RX, TX) = (Y3, Y4) = (PB8, PB9)``"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:36
+#: ../../library/pyb.CAN.rst:45
 msgid "``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:39
-msgid "Class Methods"
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:42
-msgid ""
-"Reset and disable all filter banks and assign how many banks should be "
-"available for CAN(1)."
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:44
-msgid ""
-"STM32F405 has 28 filter banks that are shared between the two available "
-"CAN bus controllers. This function configures how many filter banks "
-"should be assigned to each. *nr* is the number of banks that will be "
-"assigned to CAN(1), the rest of the 28 are assigned to CAN(2). At boot, "
-"14 banks are assigned to each controller."
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:54
+#: ../../library/pyb.CAN.rst:53
 msgid "Initialise the CAN bus with the given parameters:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:56
+#: ../../library/pyb.CAN.rst:55
 msgid "*mode* is one of:  NORMAL, LOOPBACK, SILENT, SILENT_LOOPBACK"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:57
+#: ../../library/pyb.CAN.rst:56
 msgid ""
-"if *extframe* is True then the bus uses extended identifiers in the "
-"frames (29 bits); otherwise it uses standard 11 bit identifiers"
+"*prescaler* is the value by which the CAN input clock is divided to "
+"generate the nominal bit time quanta. The prescaler can be a value "
+"between 1 and 1024 inclusive for classic CAN, and between 1 and 512 "
+"inclusive for CAN FD."
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:59
 msgid ""
-"*prescaler* is used to set the duration of 1 time quanta; the time quanta"
-" will be the input clock (PCLK1, see :meth:`pyb.freq()`) divided by the "
-"prescaler"
+"*sjw* is the resynchronisation jump width in units of time quanta for "
+"nominal bits; it can be a value between 1 and 4 inclusive for classic "
+"CAN, and between 1 and 128 inclusive for CAN FD."
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:61
 msgid ""
-"*sjw* is the resynchronisation jump width in units of the time quanta; it"
-" can be 1, 2, 3, 4"
+"*bs1* defines the location of the sample point in units of the time "
+"quanta for nominal bits; it can be a value between 1 and 16 inclusive for"
+" classic CAN, and between 2 and 256 inclusive for CAN FD."
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:63
 msgid ""
-"*bs1* defines the location of the sample point in units of the time "
-"quanta; it can be between 1 and 1024 inclusive"
+"*bs2* defines the location of the transmit point in units of the time "
+"quanta for nominal bits; it can be a value between 1 and 8 inclusive for "
+"classic CAN, and between 2 and 128 inclusive for CAN FD."
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:65
-msgid ""
-"*bs2* defines the location of the transmit point in units of the time "
-"quanta; it can be between 1 and 16 inclusive"
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:67
 msgid ""
 "*auto_restart* sets whether the controller will automatically try and "
 "restart communications after entering the bus-off state; if this is "
@@ -11935,29 +12220,75 @@ msgid ""
 "state"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:70
+#: ../../library/pyb.CAN.rst:68
 msgid ""
 "*baudrate* if a baudrate other than 0 is provided, this function will try"
-" to automatically calculate a CAN bit-timing (overriding *prescaler*, "
-"*bs1* and *bs2*) that satisfies both the baudrate and the desired "
-"*sample_point*."
+" to automatically calculate the CAN nominal bit time (overriding "
+"*prescaler*, *bs1* and *bs2*) that satisfies both the baudrate and the "
+"desired *sample_point*."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:71
+msgid ""
+"*sample_point* given in a percentage of the nominal bit time, the "
+"*sample_point* specifies the position of the bit sample with respect to "
+"the whole nominal bit time. The default *sample_point* is 75%."
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:73
 msgid ""
-"*sample_point* given in a percentage of the bit time, the *sample_point* "
-"specifies the position of the last bit sample with respect to the whole "
-"bit time. The default *sample_point* is 75%."
+"*num_filter_banks* for classic CAN, this is the number of banks that will"
+" be assigned to CAN(1), the rest of the 28 are assigned to CAN(2)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:76
+#: ../../library/pyb.CAN.rst:75
+msgid ""
+"*brs_prescaler* is the value by which the CAN FD input clock is divided "
+"to generate the data bit time quanta. The prescaler can be a value "
+"between 1 and 32 inclusive."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:77
+msgid ""
+"*brs_sjw* is the resynchronisation jump width in units of time quanta for"
+" data bits; it can be a value between 1 and 16 inclusive"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:79
+msgid ""
+"*brs_bs1* defines the location of the sample point in units of the time "
+"quanta for data bits; it can be a value between 1 and 32 inclusive"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:81
+msgid ""
+"*brs_bs2* defines the location of the transmit point in units of the time"
+" quanta for data bits; it can be a value between 1 and 16 inclusive"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:83
+msgid ""
+"*brs_baudrate* if a baudrate other than 0 is provided, this function will"
+" try to automatically calculate the CAN data bit time (overriding "
+"*brs_prescaler*, *brs_bs1* and *brs_bs2*) that satisfies both the "
+"baudrate and the desired *brs_sample_point*."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:86
+msgid ""
+"*brs_sample_point* given in a percentage of the data bit time, the "
+"*brs_sample_point* specifies the position of the bit sample with respect "
+"to the whole data bit time. The default *brs_sample_point* is 75%."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:90
 msgid ""
 "The time quanta tq is the basic unit of time for the CAN bus.  tq is the "
 "CAN prescaler value divided by PCLK1 (the frequency of internal "
 "peripheral bus 1); see :meth:`pyb.freq()` to determine PCLK1."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:79
+#: ../../library/pyb.CAN.rst:94
 msgid ""
 "A single bit is made up of the synchronisation segment, which is always 1"
 " tq. Then follows bit segment 1, then bit segment 2.  The sample point is"
@@ -11966,28 +12297,28 @@ msgid ""
 "+ BS2 multiplied by the time quanta tq."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:86
+#: ../../library/pyb.CAN.rst:100
 msgid ""
 "For example, with PCLK1=42MHz, prescaler=100, sjw=1, bs1=6, bs2=8, the "
 "value of tq is 2.38 microseconds.  The bittime is 35.7 microseconds, and "
 "the baudrate is 28kHz."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:90
+#: ../../library/pyb.CAN.rst:104
 msgid "See page 680 of the STM32F405 datasheet for more details."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:94
+#: ../../library/pyb.CAN.rst:108
 msgid "Turn off the CAN bus."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:98
+#: ../../library/pyb.CAN.rst:112
 msgid ""
 "Force a software restart of the CAN controller without resetting its "
 "configuration."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:101
+#: ../../library/pyb.CAN.rst:115
 msgid ""
 "If the controller enters the bus-off state then it will no longer "
 "participate in bus activity.  If the controller is not configured to "
@@ -11996,39 +12327,39 @@ msgid ""
 "protocol to leave the bus-off state and go into the error active state."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:109
+#: ../../library/pyb.CAN.rst:123
 msgid "Return the state of the controller.  The return value can be one of:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:106
+#: ../../library/pyb.CAN.rst:125
 msgid "``CAN.STOPPED`` -- the controller is completely off and reset;"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:112
+#: ../../library/pyb.CAN.rst:126
 msgid ""
 "``CAN.ERROR_ACTIVE`` -- the controller is on and in the Error Active "
 "state (both TEC and REC are less than 96);"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:114
+#: ../../library/pyb.CAN.rst:128
 msgid ""
 "``CAN.ERROR_WARNING`` -- the controller is on and in the Error Warning "
 "state (at least one of TEC or REC is 96 or greater);"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:116
+#: ../../library/pyb.CAN.rst:130
 msgid ""
 "``CAN.ERROR_PASSIVE`` -- the controller is on and in the Error Passive "
 "state (at least one of TEC or REC is 128 or greater);"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:118
+#: ../../library/pyb.CAN.rst:132
 msgid ""
 "``CAN.BUS_OFF`` -- the controller is on but not participating in bus "
 "activity (TEC overflowed beyond 255)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:123
+#: ../../library/pyb.CAN.rst:137
 msgid ""
 "Get information about the controller's error states and TX and RX "
 "buffers. If *list* is provided then it should be a list object with at "
@@ -12037,101 +12368,104 @@ msgid ""
 "value of the method is the populated list."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:129
+#: ../../library/pyb.CAN.rst:143
 msgid "The values in the list are:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:131
+#: ../../library/pyb.CAN.rst:145
 msgid "TEC value"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:132
+#: ../../library/pyb.CAN.rst:146
 msgid "REC value"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:133
+#: ../../library/pyb.CAN.rst:147
 msgid ""
 "number of times the controller enterted the Error Warning state (wrapped "
 "around to 0 after 65535)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:135
+#: ../../library/pyb.CAN.rst:149
 msgid ""
 "number of times the controller enterted the Error Passive state (wrapped "
 "around to 0 after 65535)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:137
+#: ../../library/pyb.CAN.rst:151
 msgid ""
 "number of times the controller enterted the Bus Off state (wrapped around"
 " to 0 after 65535)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:139
+#: ../../library/pyb.CAN.rst:153
 msgid "number of pending TX messages"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:140
+#: ../../library/pyb.CAN.rst:154
 msgid "number of pending RX messages on fifo 0"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:141
+#: ../../library/pyb.CAN.rst:155
 msgid "number of pending RX messages on fifo 1"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:145
+#: ../../library/pyb.CAN.rst:159
 msgid "Configure a filter bank:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:147
-msgid "*bank* is the filter bank that is to be configured."
+#: ../../library/pyb.CAN.rst:161
+msgid ""
+"*bank* is the classic CAN controller filter bank, or CAN FD filter index,"
+" to configure."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:148
-msgid "*mode* is the mode the filter should operate in."
+#: ../../library/pyb.CAN.rst:162
+msgid "*mode* is the mode the filter should operate in, see the tables below."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:149
+#: ../../library/pyb.CAN.rst:163
 msgid ""
 "*fifo* is which fifo (0 or 1) a message should be stored in, if it is "
 "accepted by this filter."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:150
+#: ../../library/pyb.CAN.rst:164
 msgid ""
 "*params* is an array of values the defines the filter. The contents of "
 "the array depends on the *mode* argument."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:153 ../../library/pyb.CAN.rst:174
+#: ../../library/pyb.CAN.rst:167 ../../library/pyb.CAN.rst:183
+#: ../../library/pyb.CAN.rst:198
 msgid "*mode*"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:153
-msgid "contents of *params* array"
+#: ../../library/pyb.CAN.rst:167
+msgid "Contents of *params* array for classic CAN controller"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:155 ../../library/pyb.CAN.rst:176
+#: ../../library/pyb.CAN.rst:169 ../../library/pyb.CAN.rst:200
 msgid "CAN.LIST16"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:155
+#: ../../library/pyb.CAN.rst:169
 msgid "Four 16 bit ids that will be accepted"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:157 ../../library/pyb.CAN.rst:178
+#: ../../library/pyb.CAN.rst:171 ../../library/pyb.CAN.rst:202
 msgid "CAN.LIST32"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:157
+#: ../../library/pyb.CAN.rst:171
 msgid "Two 32 bit ids that will be accepted"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:159 ../../library/pyb.CAN.rst:180
+#: ../../library/pyb.CAN.rst:173 ../../library/pyb.CAN.rst:204
 msgid "CAN.MASK16"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:162
+#: ../../library/pyb.CAN.rst:176
 msgid "Two 16 bit id/mask pairs. E.g. (1, 3, 4, 4)"
 msgstr ""
 
@@ -12151,110 +12485,144 @@ msgstr ""
 msgid "that have bit 2 = 1."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:165 ../../library/pyb.CAN.rst:182
+#: ../../library/pyb.CAN.rst:179 ../../library/pyb.CAN.rst:206
 msgid "CAN.MASK32"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:165
+#: ../../library/pyb.CAN.rst:179
 msgid "As with CAN.MASK16 but with only one 32 bit id/mask pair."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:168
-msgid ""
-"*rtr* is an array of booleans that states if a filter should accept a "
-"remote transmission request message.  If this argument is not given then "
-"it defaults to ``False`` for all entries.  The length of the array "
-"depends on the *mode* argument."
+#: ../../library/pyb.CAN.rst:183
+msgid "Contents of *params* array for CAN FD controller"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:174
-msgid "length of *rtr* array"
+#: ../../library/pyb.CAN.rst:185
+msgid "CAN.RANGE"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:176
-msgid "4"
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:178 ../../library/pyb.CAN.rst:180
-#: ../../library/pyb.CAN.rst:266
-msgid "2"
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:177 ../../library/pyb.CAN.rst:258
-msgid "1"
+#: ../../library/pyb.CAN.rst:185
+msgid "Two ids that represent a range of accepted ids."
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:187
-msgid "Clear and disables a filter bank:"
+msgid "CAN.DUAL"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:187
+msgid "Two ids that will be accepted. For example (1, 2)"
 msgstr ""
 
 #: ../../library/pyb.CAN.rst:189
-msgid "*bank* is the filter bank that is to be cleared."
+msgid "CAN.MASK"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:193
+#: ../../library/pyb.CAN.rst:189
+msgid "One filter ID and a mask. For example (0x111, 0x7FF)"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:192
+msgid ""
+"*rtr* For classic CAN controllers, this is an array of booleans that "
+"states if a filter should accept a remote transmission request message. "
+"If this argument is not given then it defaults to ``False`` for all "
+"entries. The length of the array depends on the *mode* argument. For CAN "
+"FD, this argument is ignored."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:198
+msgid "length of *rtr* array"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:209
+msgid ""
+"*extframe* If True the frame will have an extended identifier (29 bits), "
+"otherwise a standard identifier (11 bits) is used."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:215
+msgid "Clear and disables a filter bank:"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:217
+msgid ""
+"*bank* is the classic CAN controller filter bank, or CAN FD filter index,"
+" to clear."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:218
+msgid ""
+"*extframe* For CAN FD controllers, if True, clear an extended filter "
+"(configured with extframe=True), otherwise the clear a standard "
+"identifier (configured with extframe=False)."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:223
 msgid "Return ``True`` if any message waiting on the FIFO, else ``False``."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:197 ../../library/pyb.I2C.rst:131
-#: ../../library/pyb.SPI.rst:81 ../../library/pyb.USB_HID.rst:26
-#: ../../library/pyb.USB_VCP.rst:87
+#: ../../library/pyb.CAN.rst:227 ../../library/pyb.I2C.rst:131
+#: ../../library/pyb.SPI.rst:82 ../../library/pyb.USB_HID.rst:26
+#: ../../library/pyb.USB_VCP.rst:94
 msgid "Receive data on the bus:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:199
+#: ../../library/pyb.CAN.rst:229
 msgid "*fifo* is an integer, which is the FIFO to receive on"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:200
+#: ../../library/pyb.CAN.rst:230
 msgid "*list* is an optional list object to be used as the return value"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:201
+#: ../../library/pyb.CAN.rst:231
 msgid "*timeout* is the timeout in milliseconds to wait for the receive."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:203
-msgid "Return value: A tuple containing four values."
+#: ../../library/pyb.CAN.rst:233
+msgid "Return value: A tuple containing five values."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:205
+#: ../../library/pyb.CAN.rst:235
 msgid "The id of the message."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:201
+#: ../../library/pyb.CAN.rst:236
+msgid "A boolean that indicates if the message ID is standard or extended."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:237
 msgid "A boolean that indicates if the message is an RTR message."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:207
+#: ../../library/pyb.CAN.rst:238
 msgid "The FMI (Filter Match Index) value."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:208
+#: ../../library/pyb.CAN.rst:239
 msgid "An array containing the data."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:210
+#: ../../library/pyb.CAN.rst:241
 msgid ""
 "If *list* is ``None`` then a new tuple will be allocated, as well as a "
-"new bytes object to contain the data (as the fourth element in the "
-"tuple)."
+"new bytes object to contain the data (as the fifth element in the tuple)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:213
+#: ../../library/pyb.CAN.rst:244
 msgid ""
 "If *list* is not ``None`` then it should be a list object with a least "
-"four elements.  The fourth element should be a memoryview object which is"
-" created from either a bytearray or an array of type 'B' or 'b', and this"
-" array must have enough room for at least 8 bytes.  The list object will "
-"then be populated with the first three return values above, and the "
+"five elements.  The fifth element should be a memoryview object which is "
+"created from either a bytearray or an array of type 'B' or 'b', and this "
+"array must have enough room for at least 8 bytes.  The list object will "
+"then be populated with the first four return values above, and the "
 "memoryview object will be resized inplace to the size of the data and "
 "filled in with that data. The same list and memoryview objects can be "
 "reused in subsequent calls to this method, providing a way of receiving "
 "data without using the heap. For example::"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:223
+#: ../../library/pyb.CAN.rst:254
 msgid ""
 "buf = bytearray(8)\n"
 "lst = [0, 0, 0, memoryview(buf)]\n"
@@ -12262,23 +12630,23 @@ msgid ""
 "can.recv(0, lst)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:230
+#: ../../library/pyb.CAN.rst:261
 msgid "Send a message on the bus:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:232
+#: ../../library/pyb.CAN.rst:263
 msgid "*data* is the data to send (an integer to send, or a buffer object)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:233
+#: ../../library/pyb.CAN.rst:264
 msgid "*id* is the id of the message to be sent."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:234
+#: ../../library/pyb.CAN.rst:265
 msgid "*timeout* is the timeout in milliseconds to wait for the send."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:235
+#: ../../library/pyb.CAN.rst:266
 msgid ""
 "*rtr* is a boolean that specifies if the message shall be sent as a "
 "remote transmission request.  If *rtr* is True then only the length of "
@@ -12286,7 +12654,26 @@ msgid ""
 "*data* are unused."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:240
+#: ../../library/pyb.CAN.rst:270
+msgid ""
+"*extframe* if True the frame will have an extended identifier (29 bits), "
+"otherwise a standard identifier (11 bits) is used."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:272
+msgid ""
+"*fdf* for CAN FD controllers, if set to True, the frame will have an FD "
+"frame format, which supports data payloads up to 64 bytes."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:274
+msgid ""
+"*brs* for CAN FD controllers, if set to True, the bitrate switching mode "
+"is enabled, in which the data phase is transmitted at a differet bitrate."
+" See :meth:`CAN.init` for the data bit timing configuration parameters."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:278
 msgid ""
 "If timeout is 0 the message is placed in a buffer in one of three "
 "hardware buffers and the method returns immediately. If all three buffers"
@@ -12295,56 +12682,52 @@ msgid ""
 "within the specified time an exception is thrown."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:245 ../../library/pyb.I2C.rst:149
-#: ../../library/pyb.SPI.rst:97
+#: ../../library/pyb.CAN.rst:284 ../../library/pyb.I2C.rst:149
+#: ../../library/pyb.SPI.rst:98
 msgid "Return value: ``None``."
-msgstr "戻り値: ``None`` 。"
+msgstr ""
 
-#: ../../library/pyb.CAN.rst:250
+#: ../../library/pyb.CAN.rst:288
 msgid ""
 "Register a function to be called when a message is accepted into a empty "
 "fifo:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:252
+#: ../../library/pyb.CAN.rst:290
 msgid "*fifo* is the receiving fifo."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:253
+#: ../../library/pyb.CAN.rst:291
 msgid "*fun* is the function to be called when the fifo becomes non empty."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:255
+#: ../../library/pyb.CAN.rst:293
 msgid ""
 "The callback function takes two arguments the first is the can object it "
 "self the second is a integer that indicates the reason for the callback."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:259
+#: ../../library/pyb.CAN.rst:297
 msgid "Reason"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:261
-msgid "0"
-msgstr ""
-
-#: ../../library/pyb.CAN.rst:261
+#: ../../library/pyb.CAN.rst:299
 msgid "A message has been accepted into a empty FIFO."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:263
+#: ../../library/pyb.CAN.rst:301
 msgid "The FIFO is full"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:265
+#: ../../library/pyb.CAN.rst:303
 msgid "A message has been lost due to a full FIFO"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:268
+#: ../../library/pyb.CAN.rst:306
 msgid "Example use of rxcallback::"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:270
+#: ../../library/pyb.CAN.rst:308
 msgid ""
 "def cb0(bus, reason):\n"
 "  print('cb0')\n"
@@ -12359,16 +12742,24 @@ msgid ""
 "can.rxcallback(0, cb0)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:290
+#: ../../library/pyb.CAN.rst:328
 msgid "The mode of the CAN bus used in :meth:`~CAN.init()`."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:298
+#: ../../library/pyb.CAN.rst:336
 msgid "Possible states of the CAN controller returned from :meth:`~CAN.state()`."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:305
-msgid "The operation mode of a filter used in :meth:`~CAN.setfilter()`."
+#: ../../library/pyb.CAN.rst:343
+msgid ""
+"The operation mode of a filter used in :meth:`~CAN.setfilter()` for "
+"classic CAN."
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:349
+msgid ""
+"The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN "
+"FD."
 msgstr ""
 
 #: ../../library/pyb.DAC.rst:5
@@ -19440,6 +19831,677 @@ msgstr ""
 msgid ""
 "Get or set the state (enabled or disabled) of the heartbeat LED. Accepts "
 "and returns boolean values (``True`` or ``False``)."
+msgstr ""
+
+#: ../../library/wm8960.rst:4
+msgid ":mod:`WM8960` -- Driver for the WM8960 codec"
+msgstr ""
+
+#: ../../library/wm8960.rst:6
+msgid ""
+"This driver is used to control a WM8960 codec chip.  It is a Python "
+"translation of the C-Code provided by NXP/Freescale for their i.MX RT "
+"series of MCUs.  Very little has been added, and just a few API related "
+"names were changed or added to cope with the naming style of MicroPython."
+msgstr ""
+
+#: ../../library/wm8960.rst:11
+msgid ""
+"The primary purpose of the driver is initialization and setting operation"
+" modes of the codec.  It does not do the audio data processing for the "
+"codec.  That is the task of a separate driver."
+msgstr ""
+
+#: ../../library/wm8960.rst:15
+msgid ""
+"The WM8960 supports an I2C interface, in addition to the audio interface."
+"  The connection depends on the interface used and the number of devices "
+"in the system. For the I2C interface, SCL and SDA have to be connected, "
+"and of course GND and Vcc.  The I2C default address is ``0x1A``."
+msgstr ""
+
+#: ../../library/wm8960.rst:25
+msgid ""
+"Create a WM8960 driver object, initialize the device with default "
+"settings and return the WM8960 object."
+msgstr ""
+
+#: ../../library/wm8960.rst:28
+msgid ""
+"Only the first two arguments are mandatory. All others are optional. The "
+"arguments are:"
+msgstr ""
+
+#: ../../library/wm8960.rst:30
+msgid "*i2c* is the I2C bus object."
+msgstr ""
+
+#: ../../library/wm8960.rst:31
+msgid ""
+"*sample_rate* is the audio sample rate. Acceptable values are 8000, "
+"11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 96000, 192000 and"
+" 384000.  Note that not every I2S hardware will support all values."
+msgstr ""
+
+#: ../../library/wm8960.rst:34
+msgid ""
+"*bits* is the number of bits per audio word. Acceptable value are 16, 20,"
+" 24, and 32."
+msgstr ""
+
+#: ../../library/wm8960.rst:36
+msgid "*swap* swaps the left & right channel, if set; see below for options."
+msgstr ""
+
+#: ../../library/wm8960.rst:37
+msgid "*route* Setting the audio path in the codec; see below for options."
+msgstr ""
+
+#: ../../library/wm8960.rst:38
+msgid ""
+"*left_input* sets the audio source for the left input channel; see below "
+"for options."
+msgstr ""
+
+#: ../../library/wm8960.rst:40
+msgid ""
+"*right_input* sets the audio source for the right input channel; see "
+"below for options."
+msgstr ""
+
+#: ../../library/wm8960.rst:42
+msgid ""
+"*play_source* sets the audio target for the output audio; see below for "
+"options."
+msgstr ""
+
+#: ../../library/wm8960.rst:44
+msgid ""
+"*sysclk_source* controls whether the internal master clock called "
+"\"sysclk\" is directly taken from the MCLK input or derived from it using"
+" an internal PLL. It is usually not required to change this."
+msgstr ""
+
+#: ../../library/wm8960.rst:47
+msgid ""
+"*mclk_freq* sets the mclk frequency applied to the MCLK pin of the codec."
+" If not set, default values are used."
+msgstr ""
+
+#: ../../library/wm8960.rst:49
+msgid ""
+"*primary* lets the WM8960 act as primary or secondary device. The default"
+" setting is ``False``.  When set to ``False``, *sample_rate* and *bits* "
+"are controlled by the MCU."
+msgstr ""
+
+#: ../../library/wm8960.rst:52
+msgid ""
+"*adc_sync* sets which input is used for the ADC sync signal. The default "
+"is using the DACLRC pin."
+msgstr ""
+
+#: ../../library/wm8960.rst:54
+msgid ""
+"*protocol* sets the communication protocol. The default is I2S. See below"
+" for all options."
+msgstr ""
+
+#: ../../library/wm8960.rst:56
+msgid "*i2c_address* sets the I2C address of the WM8960, with default ``0x1A``."
+msgstr ""
+
+#: ../../library/wm8960.rst:58
+msgid "If *mclk_freq* is not set the following default values are used:"
+msgstr ""
+
+#: ../../library/wm8960.rst:60
+msgid ""
+"sysclk_source == SYSCLK_PLL: 11.2896 MHz for sample rates of 44100, 22050"
+" and 11015 Hz, and 12.288 Mhz for sample rates < 48000, otherwise "
+"sample_rate * 256."
+msgstr ""
+
+#: ../../library/wm8960.rst:63
+msgid "sysclk_source == SYSCLK_MCLK: sample_rate * 256."
+msgstr ""
+
+#: ../../library/wm8960.rst:65
+msgid ""
+"If the MCLK signal is applied using, for example,. a separate oscillator,"
+" it must be specified for proper operation."
+msgstr ""
+
+#: ../../library/wm8960.rst:69
+msgid "Tables of parameter constants"
+msgstr ""
+
+#: ../../library/wm8960.rst:71
+msgid "**Swap Parameter**"
+msgstr ""
+
+#: ../../library/wm8960.rst:76 ../../library/wm8960.rst:88
+#: ../../library/wm8960.rst:102 ../../library/wm8960.rst:117
+#: ../../library/wm8960.rst:130 ../../library/wm8960.rst:141
+#: ../../library/wm8960.rst:161 ../../library/wm8960.rst:174
+msgid "Value"
+msgstr ""
+
+#: ../../library/wm8960.rst:76 ../../library/wm8960.rst:88
+#: ../../library/wm8960.rst:102 ../../library/wm8960.rst:117
+#: ../../library/wm8960.rst:130 ../../library/wm8960.rst:141
+#: ../../library/wm8960.rst:161 ../../library/wm8960.rst:174
+#: ../../library/wm8960.rst:214
+msgid "Name"
+msgstr ""
+
+#: ../../library/wm8960.rst:78
+msgid "SWAP_NONE"
+msgstr ""
+
+#: ../../library/wm8960.rst:79
+msgid "SWAP_INPUT"
+msgstr ""
+
+#: ../../library/wm8960.rst:80
+msgid "SWAP_OUTPUT"
+msgstr ""
+
+#: ../../library/wm8960.rst:83
+msgid "**Protocol Parameter**"
+msgstr ""
+
+#: ../../library/wm8960.rst:90
+msgid "BUS_I2S"
+msgstr ""
+
+#: ../../library/wm8960.rst:91
+msgid "BUS_LEFT_JUSTIFIED"
+msgstr ""
+
+#: ../../library/wm8960.rst:92
+msgid "BUS_RIGHT_JUSTIFIED"
+msgstr ""
+
+#: ../../library/wm8960.rst:93
+msgid "BUS_PCMA"
+msgstr ""
+
+#: ../../library/wm8960.rst:94
+msgid "BUS_PCMB"
+msgstr ""
+
+#: ../../library/wm8960.rst:97
+msgid "**Input Source Parameter**"
+msgstr ""
+
+#: ../../library/wm8960.rst:102
+msgid "Type"
+msgstr ""
+
+#: ../../library/wm8960.rst:104
+msgid "INPUT_CLOSED"
+msgstr ""
+
+#: ../../library/wm8960.rst:105
+msgid "INPUT_MIC1"
+msgstr ""
+
+#: ../../library/wm8960.rst:105
+msgid "Single ended"
+msgstr ""
+
+#: ../../library/wm8960.rst:106
+msgid "INPUT_MIC2"
+msgstr ""
+
+#: ../../library/wm8960.rst:106 ../../library/wm8960.rst:107
+msgid "Differential"
+msgstr ""
+
+#: ../../library/wm8960.rst:107
+msgid "INPUT_MIC3"
+msgstr ""
+
+#: ../../library/wm8960.rst:108
+msgid "INPUT_LINE2"
+msgstr ""
+
+#: ../../library/wm8960.rst:109
+msgid "INPUT_LINE3"
+msgstr ""
+
+#: ../../library/wm8960.rst:112
+msgid "**Route Parameter**"
+msgstr ""
+
+#: ../../library/wm8960.rst:119
+msgid "ROUTE_BYPASS"
+msgstr ""
+
+#: ../../library/wm8960.rst:120
+msgid "ROUTE_PLAYBACK"
+msgstr ""
+
+#: ../../library/wm8960.rst:121
+msgid "ROUTE_PLAYBACK_RECORD"
+msgstr ""
+
+#: ../../library/wm8960.rst:122
+msgid "ROUTE_RECORD"
+msgstr ""
+
+#: ../../library/wm8960.rst:125
+msgid "**Master Clock Source Parameter**"
+msgstr ""
+
+#: ../../library/wm8960.rst:132
+msgid "SYSCLK_MCLK"
+msgstr ""
+
+#: ../../library/wm8960.rst:133
+msgid "SYSCLK_PLL"
+msgstr ""
+
+#: ../../library/wm8960.rst:136
+msgid "**Module Names**"
+msgstr ""
+
+#: ../../library/wm8960.rst:143 ../../library/wm8960.rst:216
+msgid "MODULE_ADC"
+msgstr ""
+
+#: ../../library/wm8960.rst:144 ../../library/wm8960.rst:217
+msgid "MODULE_DAC"
+msgstr ""
+
+#: ../../library/wm8960.rst:145
+msgid "MODULE_VREF"
+msgstr ""
+
+#: ../../library/wm8960.rst:146 ../../library/wm8960.rst:218
+msgid "MODULE_HEADPHONE"
+msgstr ""
+
+#: ../../library/wm8960.rst:147
+msgid "MODULE_MIC_BIAS"
+msgstr ""
+
+#: ../../library/wm8960.rst:148
+msgid "MODULE_MIC"
+msgstr ""
+
+#: ../../library/wm8960.rst:149 ../../library/wm8960.rst:219
+msgid "MODULE_LINE_IN"
+msgstr ""
+
+#: ../../library/wm8960.rst:150
+msgid "MODULE_LINE_OUT"
+msgstr ""
+
+#: ../../library/wm8960.rst:151 ../../library/wm8960.rst:220
+msgid "MODULE_SPEAKER"
+msgstr ""
+
+#: ../../library/wm8960.rst:152
+msgid "MODULE_OMIX"
+msgstr ""
+
+#: ../../library/wm8960.rst:153
+msgid "MODULE_MONO_OUT"
+msgstr ""
+
+#: ../../library/wm8960.rst:156
+msgid "**Play Channel Names**"
+msgstr ""
+
+#: ../../library/wm8960.rst:163
+msgid "PLAY_HEADPHONE_LEFT"
+msgstr ""
+
+#: ../../library/wm8960.rst:164
+msgid "PLAY_HEADPHONE_RIGHT"
+msgstr ""
+
+#: ../../library/wm8960.rst:165
+msgid "PLAY_SPEAKER_LEFT"
+msgstr ""
+
+#: ../../library/wm8960.rst:166
+msgid "PLAY_SPEAKER_RIGHT"
+msgstr ""
+
+#: ../../library/wm8960.rst:169
+msgid "**adc_sync Parameters**"
+msgstr ""
+
+#: ../../library/wm8960.rst:176
+msgid "SYNC_ADC"
+msgstr ""
+
+#: ../../library/wm8960.rst:177
+msgid "SYNC_DAC"
+msgstr ""
+
+#: ../../library/wm8960.rst:184
+msgid ""
+"In addition to initialization, the driver provides some useful methods "
+"for controlling its operation:"
+msgstr ""
+
+#: ../../library/wm8960.rst:189
+msgid ""
+"Specify the source for the left input.  The input source names are listed"
+" above."
+msgstr ""
+
+#: ../../library/wm8960.rst:193
+msgid ""
+"Specify the source for the right input.  The input source names are "
+"listed above."
+msgstr ""
+
+#: ../../library/wm8960.rst:197
+msgid "Sets or gets the volume of a certain module."
+msgstr ""
+
+#: ../../library/wm8960.rst:199
+msgid "If no volume values are supplied, the actual volume tuple is returned."
+msgstr ""
+
+#: ../../library/wm8960.rst:201
+msgid ""
+"If one or two values are supplied, it sets the volume of a certain "
+"module. If two values are provided, the first one is used for the left "
+"channel, the second for the right channel.  If only one value is "
+"supplied, it is used for both channels.  The value range is normalized to"
+" 0.0-100.0 with a logarithmic scale."
+msgstr ""
+
+#: ../../library/wm8960.rst:207
+msgid "For a list of suitable modules and db/step, see the table below."
+msgstr ""
+
+#: ../../library/wm8960.rst:209
+msgid "**Module Names and dB steps**"
+msgstr ""
+
+#: ../../library/wm8960.rst:214
+msgid "dB/Step"
+msgstr ""
+
+#: ../../library/wm8960.rst:216 ../../library/wm8960.rst:217
+msgid "1.28"
+msgstr ""
+
+#: ../../library/wm8960.rst:218 ../../library/wm8960.rst:220
+msgid "0.8"
+msgstr ""
+
+#: ../../library/wm8960.rst:219
+msgid "0.475"
+msgstr ""
+
+#: ../../library/wm8960.rst:225
+msgid ""
+"Mute or unmute the output. If *mute* is True, the output is muted, if "
+"``False`` it is unmuted."
+msgstr ""
+
+#: ../../library/wm8960.rst:228
+msgid ""
+"If *soft* is set as True, muting will happen as a soft transition.  The "
+"time for the transition is defined by *ramp*, which is either "
+"``MUTE_FAST`` or ``MUTE_SLOW``."
+msgstr ""
+
+#: ../../library/wm8960.rst:233
+msgid ""
+"Set the audio data route.  For the parameter value/names, see the table "
+"above."
+msgstr ""
+
+#: ../../library/wm8960.rst:237
+msgid ""
+"Enable or disable a module, with *active* being ``False`` or ``True``.  "
+"For the list of module names, see the table above."
+msgstr ""
+
+#: ../../library/wm8960.rst:240
+msgid ""
+"Note that enabling ``MODULE_MONO_OUT`` is different from the "
+"`WM8960.mono` method.  The first enables output 3, while the "
+"`WM8960.mono` method sends a mono mix to the left and right output."
+msgstr ""
+
+#: ../../library/wm8960.rst:246
+msgid "Enable a module.  For the list of module names, see the table above."
+msgstr ""
+
+#: ../../library/wm8960.rst:250
+msgid "Disable a module.  For the list of module names, see the table above."
+msgstr ""
+
+#: ../../library/wm8960.rst:254
+msgid ""
+"Enable Stereo 3D exansion.  *level* is a number between 0 and 15. A value"
+" of 0 disables the expansion."
+msgstr ""
+
+#: ../../library/wm8960.rst:259
+msgid ""
+"If *active* is ``True``, a Mono mix is sent to the left and right output "
+"channel.  This is different from enabling the ``MODULE_MONO_MIX``, which "
+"enables output 3."
+msgstr ""
+
+#: ../../library/wm8960.rst:265
+msgid "Enables or disables ALC mode.  Parameters are:"
+msgstr ""
+
+#: ../../library/wm8960.rst:267
+msgid "*channel* enables and sets the channel for ALC. The parameter values are:"
+msgstr ""
+
+#: ../../library/wm8960.rst:269
+msgid "ALC_OFF:   Switch ALC off"
+msgstr ""
+
+#: ../../library/wm8960.rst:270
+msgid "ALS_RIGHT:  Use the right input channel"
+msgstr ""
+
+#: ../../library/wm8960.rst:271
+msgid "ALC_LEFT:   Use the left input channel"
+msgstr ""
+
+#: ../../library/wm8960.rst:272
+msgid "ALC_STEREO: Use both input channels."
+msgstr ""
+
+#: ../../library/wm8960.rst:274
+msgid "*mode* sets the ALC mode. Input values are:"
+msgstr ""
+
+#: ../../library/wm8960.rst:276
+msgid "ALC_MODE:   act as ALC"
+msgstr ""
+
+#: ../../library/wm8960.rst:277
+msgid "ALC_LIMITER: act as limiter."
+msgstr ""
+
+#: ../../library/wm8960.rst:281
+msgid ""
+"Set the target level, highest and lowest gain levels and the noise gate "
+"as dB level. Permitted ranges are:"
+msgstr ""
+
+#: ../../library/wm8960.rst:284
+msgid "*target*: -22.5 to -1.5 dB"
+msgstr ""
+
+#: ../../library/wm8960.rst:285
+msgid "*max_gain*: -12 to 30 dB"
+msgstr ""
+
+#: ../../library/wm8960.rst:286
+msgid "*min_gain*: -17 to 25 dB"
+msgstr ""
+
+#: ../../library/wm8960.rst:287
+msgid "*noise_gate*: -78 to -30 dB"
+msgstr ""
+
+#: ../../library/wm8960.rst:289
+msgid ""
+"Excess values are limited to the permitted ranges.  A value of -78 or "
+"less for *noise_gate* disables the noise gate function."
+msgstr ""
+
+#: ../../library/wm8960.rst:294
+msgid ""
+"Set the dynamic characteristic of ALC.  The times are given as "
+"millisecond values.  Permitted ranges are:"
+msgstr ""
+
+#: ../../library/wm8960.rst:297
+msgid "*attack*: 6 to 6140"
+msgstr ""
+
+#: ../../library/wm8960.rst:298
+msgid "*decay*: 24 to 24580"
+msgstr ""
+
+#: ../../library/wm8960.rst:299
+msgid "*hold*: 0 to 43000"
+msgstr ""
+
+#: ../../library/wm8960.rst:301
+msgid "Excess values are limited within the permitted ranges."
+msgstr ""
+
+#: ../../library/wm8960.rst:305
+msgid ""
+"Enables or disables a deemphasis filter for playback, with *active* being"
+" ``False`` or ``True``.  This filter is applied only for sample rates of "
+"32000, 44100 and 48000.  For other sample rates, the filter setting is "
+"silently ignored."
+msgstr ""
+
+#: ../../library/wm8960.rst:312
+msgid "Disable all modules."
+msgstr ""
+
+#: ../../library/wm8960.rst:316
+msgid "Examples"
+msgstr ""
+
+#: ../../library/wm8960.rst:318
+msgid "Run WM8960 in secondary mode (default)::"
+msgstr ""
+
+#: ../../library/wm8960.rst:320
+msgid ""
+"# Micro_python WM8960 Codec driver\n"
+"#\n"
+"# Setting the driver to Slave mode using the default settings\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, 32000, left_input=wm8960.INPUT_MIC1)\n"
+"wm.set_volume(wm8960.MODULE_HEADPHONE, 100)"
+msgstr ""
+
+#: ../../library/wm8960.rst:331
+msgid "Run WM8960 in primary mode::"
+msgstr ""
+
+#: ../../library/wm8960.rst:333
+msgid ""
+"# Micro_python WM8960 Codec driver\n"
+"#\n"
+"# Setting the driver to Master mode using specific audio format settings\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, 44100, primary=True, bits=16)"
+msgstr ""
+
+#: ../../library/wm8960.rst:344
+msgid "Run WM8960 on a MIMXRT10xx_DEV board in secondary mode (default)::"
+msgstr ""
+
+#: ../../library/wm8960.rst:346
+msgid ""
+"# Micro_python WM8960 Codec driver\n"
+"#\n"
+"# Setting the driver to Slave mode using the default settings\n"
+"# swap the input channels such that a MIMXRT Dev board mic, which\n"
+"# is connected to the right input, is assigned to the left audio channel."
+"\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, sample_rate=16_000,\n"
+"    adc_sync=wm8960.SYNC_DAC,\n"
+"    swap=wm8960.SWAP_INPUT,\n"
+"    sysclk_source=wm8960.SYSCLK_MCLK)"
+msgstr ""
+
+#: ../../library/wm8960.rst:361
+msgid ""
+"Record with a Sparkfun WM8960 breakout board with Teensy in secondary "
+"mode (default)::"
+msgstr ""
+
+#: ../../library/wm8960.rst:363
+msgid ""
+"# Micro_python WM8960 Codec driver\n"
+"#\n"
+"# The breakout board uses a fixed 24MHz MCLK. Therefore the internal\n"
+"# PLL must be used as sysclk, which is the master audio clock.\n"
+"# The Sparkfun board has the WS pins for RX and TX connected on the\n"
+"# board. Therefore adc_sync must be set to sync_adc, to configure\n"
+"# it's ADCLRC pin as input.\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, sample_rate=16_000,\n"
+"    adc_sync=wm8960.SYNC_ADC,\n"
+"    sysclk_source=wm8960.SYSCLK_PLL,\n"
+"    mclk_freq=24_000_000,\n"
+"    left_input=wm8960.INPUT_MIC1,\n"
+"    right_input=wm8960.INPUT_CLOSED)"
+msgstr ""
+
+#: ../../library/wm8960.rst:382
+msgid ""
+"Play with a Sparkfun WM8960 breakout board with Teensy in secondary mode "
+"(default)::"
+msgstr ""
+
+#: ../../library/wm8960.rst:384
+msgid ""
+"# The breakout board uses a fixed 24MHz MCLK. Therefore the internal\n"
+"# PLL must be used as sysclk, which is the master audio clock.\n"
+"# The Sparkfun board has the WS pins for RX and TX connected on the\n"
+"# board. Therefore adc_sync must be set to sync_adc, to configure\n"
+"# it's ADCLRC pin as input.\n"
+"\n"
+"from machine import I2C\n"
+"i2c=I2C(0)\n"
+"import wm8960\n"
+"wm=wm8960.WM8960(i2c, sample_rate=44_100,\n"
+"    adc_sync=wm8960.SYNC_ADC,\n"
+"    sysclk_source=wm8960.SYSCLK_PLL,\n"
+"    mclk_freq=24_000_000)\n"
+"wm.set_volume(wm8960.MODULE_HEADPHONE, 100)"
 msgstr ""
 
 #: ../../library/zephyr.rst:4

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-26 11:31+0900\n"
-"PO-Revision-Date: 2022-02-26 12:18+0900\n"
+"POT-Creation-Date: 2022-04-13 09:29+0900\n"
+"PO-Revision-Date: 2022-04-14 19:13+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -5045,28 +5045,55 @@ msgid "mount the local directory on the remote device:"
 msgstr "リモートデバイス上にローカルディレクトリをマウント:"
 
 #: ../../reference/mpremote.rst:134
-msgid "$ mpremote mount <local-dir>"
+msgid "$ mpremote mount [options] <local-dir>"
 msgstr ""
 
 #: ../../reference/mpremote.rst:138
+msgid ""
+"During usage, Ctrl-D will soft-reboot and normally reconnect the mount "
+"automatically. If the unit has a main.py running at startup however the "
+"remount cannot occur. In this case a raw mode soft reboot can be used: "
+"Ctrl-A Ctrl-D to reboot, then Ctrl-B to get back to normal repl at which "
+"point the mount will be ready."
+msgstr ""
+"使用中に Ctrl-D を入力すると、ソフトリブートを行い、通常は自動的にマウントを再接続します。"
+"しかし、起動時に main.py が実行されている場合、再マウントは行われません。"
+"この場合、raw モードのソフトリブートを使えます。Ctrl-A Ctrl-D でリブート、Ctrl-B "
+"で通常のリプレイに戻り、マウントの準備ができます。"
+
+#: ../../reference/mpremote.rst:145
+msgid ""
+"``-l``, ``--unsafe-links``: By default an error will be raised if the "
+"device accesses a file or directory which is outside (up one or more "
+"directory levels) the local directory that is mounted.  This option "
+"disables this check for symbolic links, allowing the device to follow "
+"symbolic links outside of the local directory."
+msgstr ""
+"``-l``, ``--unsafe-links``: デフォルトではデバイスがマウントされている"
+"ローカルディレクトリの外側(1つ以上のディレクトリレベル)にあるファイルや"
+"ディレクトリにアクセスすると、エラーが発生します。このオプションは、"
+"シンボリックリンクのチェックを無効にし、デバイスがローカルディレクトリの"
+"外側のシンボリックリンクをたどることを可能にします。"
+
+#: ../../reference/mpremote.rst:150
 msgid "unmount the local directory from the remote device:"
 msgstr "リモートデバイスからローカルディレクトリをアンマウント:"
 
-#: ../../reference/mpremote.rst:140
+#: ../../reference/mpremote.rst:152
 msgid "$ mpremote umount"
 msgstr ""
 
-#: ../../reference/mpremote.rst:144
+#: ../../reference/mpremote.rst:156
 msgid ""
 "Multiple commands can be specified and they will be run sequentially. "
 msgstr ""
 "複数のコマンドを指定することができ、それらは順次実行されます。"
 
-#: ../../reference/mpremote.rst:148
+#: ../../reference/mpremote.rst:160
 msgid "Auto connection and soft-reset"
 msgstr "自動接続とソフトリセット"
 
-#: ../../reference/mpremote.rst:150
+#: ../../reference/mpremote.rst:162
 msgid ""
 "Connection and disconnection will be done automatically at the start and "
 "end of the execution of the tool, if such commands are not explicitly "
@@ -5078,7 +5105,7 @@ msgstr ""
 "自動接続では、最初に利用可能なシリアルデバイスを検索します。アクションが指定されて"
 "いない場合は REPL が起動します。"
 
-#: ../../reference/mpremote.rst:155
+#: ../../reference/mpremote.rst:167
 msgid ""
 "Once connected to a device, ``mpremote`` will automatically soft-reset "
 "the device if needed.  This clears the Python heap and restarts the "
@@ -5095,7 +5122,7 @@ msgstr ""
 "ソフトリセットを初めて行った後、 ``disconnect`` コマンドを発行するまで、自動的に"
 "ソフトリセットを行うことはありません。"
 
-#: ../../reference/mpremote.rst:163
+#: ../../reference/mpremote.rst:175
 msgid ""
 "Auto soft-reset behaviour can be controlled by the ``resume`` command.  "
 "And the ``soft-reset`` command can be used to perform an explicit soft "
@@ -5104,33 +5131,33 @@ msgstr ""
 "自動的なソフトリセットの動作は、 ``resume`` コマンドで制御することができます。"
 "また、 ``soft-reset`` コマンドを使用すると、明示的なソフトリセットを行えます。"
 
-#: ../../reference/mpremote.rst:168
+#: ../../reference/mpremote.rst:180
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: ../../reference/mpremote.rst:170
+#: ../../reference/mpremote.rst:182
 msgid "Shortcuts can be defined using the macro system.  Built-in shortcuts are::"
 msgstr ""
 "ショートカットはマクロシステムを使って定義できます。内蔵のショートカットには"
 "次のものがあります:"
 
-#: ../../reference/mpremote.rst:172
+#: ../../reference/mpremote.rst:184
 msgid "- ``devs``: list available devices (shortcut for ``connect list``)"
 msgstr "- ``devs``: 利用可能なデバイスを一覧表示"
 
-#: ../../reference/mpremote.rst:174
+#: ../../reference/mpremote.rst:186
 msgid "``a0``, ``a1``, ``a2``, ``a3``: connect to /dev/ttyACM?"
 msgstr "``a0``, ``a1``, ``a2``, ``a3``: /dev/ttyACM? に接続"
 
-#: ../../reference/mpremote.rst:176
+#: ../../reference/mpremote.rst:188
 msgid "``u0``, ``u1``, ``u2``, ``u3``: connect to /dev/ttyUSB?"
 msgstr "``u0``, ``u1``, ``u2``, ``u3``: /dev/ttyUSB? に接続"
 
-#: ../../reference/mpremote.rst:178
+#: ../../reference/mpremote.rst:190
 msgid "``c0``, ``c1``, ``c2``, ``c3``: connect to COM?"
 msgstr "``c0``, ``c1``, ``c2``, ``c3``: COM? に接続"
 
-#: ../../reference/mpremote.rst:180
+#: ../../reference/mpremote.rst:192
 msgid ""
 "``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``df``: filesystem"
 " commands"
@@ -5138,15 +5165,15 @@ msgstr ""
 "``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``df``: "
 "ファイルシステムコマンド"
 
-#: ../../reference/mpremote.rst:183
+#: ../../reference/mpremote.rst:195
 msgid "``reset``: reset the device"
 msgstr "``reset``: デバイスをリセット"
 
-#: ../../reference/mpremote.rst:185
+#: ../../reference/mpremote.rst:197
 msgid "``bootloader``: make the device enter its bootloader"
 msgstr "``bootloader``: デバイスのブートローダを起動"
 
-#: ../../reference/mpremote.rst:187
+#: ../../reference/mpremote.rst:199
 msgid ""
 "Any user configuration, including user-defined shortcuts, can be placed "
 "in the file ``.config/mpremote/config.py``. For example:"
@@ -5155,7 +5182,7 @@ msgstr ""
 "``.config/mpremote/config.py`` に入れることができます。"
 "たとえば、以下のようになります:"
 
-#: ../../reference/mpremote.rst:190
+#: ../../reference/mpremote.rst:202
 msgid ""
 "commands = {\n"
 "    \"c33\": \"connect id:334D335C3138\",\n"
@@ -5172,7 +5199,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../reference/mpremote.rst:210
+#: ../../reference/mpremote.rst:222
 msgid ""
 "mpremote\n"
 "\n"
