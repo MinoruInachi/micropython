@@ -1,0 +1,1536 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2022,
+# Damien P. George, Paul Sokolovsky, and contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython 1.18\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-30 09:23+0900\n"
+"PO-Revision-Date: 2022-04-30 15:50+0900\n"
+"Last-Translator: Minoru Inachi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: ../../renesas-ra/general.rst:4
+msgid "General information about Renesas RA port"
+msgstr "Renesas RA ポートに関する一般情報"
+
+#: ../../renesas-ra/general.rst:7
+msgid "Overview"
+msgstr "概要"
+
+#: ../../renesas-ra/general.rst:9
+msgid ""
+"The renesas-ra port supports boards powered by Renesas Electronics's the "
+"flexible Renesas Advanced (RA) 32-bit microcontrollers (MCUs) family, "
+"industry-leading 32-bit MCUs with the Arm® Cortex®-M33, -M23 and -M4 "
+"processor cores and PSA certification."
+msgstr ""
+"renesas-ra ポートは、ルネサスエレクトロニクスの flexible Renesas Advanced (RA) "
+"32ビットマイクロコントローラ (MCU)ファミリーを載せたボードに対応しています。"
+"Renesas RA ファミリーは Arm® Cortex®-M33, -M23, -M4 プロセッサコアを"
+"搭載した業界最先端の32ビット MCU で、PSA 認定を受けています。"
+
+#: ../../renesas-ra/general.rst:14
+msgid ""
+"The ported hardware functionalities are Pin, SPI, I2C, UART and RTC at "
+"this present. Other hardware functionalities such as Timer, PWM, USB, CAN"
+" and WDT are not implemented yet."
+msgstr ""
+"現時点では Pin、SPI、I2C、UART、RTC のハードウェア機能が移植されています。"
+"その他のハードウェア機能(Timer、PWM、USB、CAN、WDTなど)は未実装です。"
+
+#: ../../renesas-ra/general.rst:17
+msgid "The following boards are officially supported."
+msgstr ""
+"公式にサポートしているボードには次のものがあります。"
+
+#: ../../renesas-ra/general.rst:19 ../../renesas-ra/quickref.rst:163
+#: ../../renesas-ra/quickref.rst:284 ../../renesas-ra/quickref.rst:343
+msgid "RA4M1-CLICKER"
+msgstr ""
+
+#: ../../renesas-ra/general.rst:21
+msgid ""
+"For the manual and other references for the board and RA Family MCU, "
+"please refer to the web page: `EK-RA4M1 CLICKER "
+"<https://www.mikroe.com/ra4m1-clicker>`_"
+msgstr ""
+"このボードおよび RA ファミリー MCU のマニュアルおよびその他のリファレンスは、次の"
+"ウェブページを参照してください: `EK-RA4M1 CLICKER "
+"<https://www.mikroe.com/ra4m1-clicker>`_"
+
+#: ../../renesas-ra/general.rst:23 ../../renesas-ra/quickref.rst:155
+#: ../../renesas-ra/quickref.rst:274 ../../renesas-ra/quickref.rst:336
+#: ../../renesas-ra/tutorial/intro.rst:38
+#: ../../renesas-ra/tutorial/intro.rst:55
+#: ../../renesas-ra/tutorial/program_in_flash.rst:22
+msgid "EK-RA6M2"
+msgstr ""
+
+#: ../../renesas-ra/general.rst:25
+msgid ""
+"For the manual and other references for the board and RA Family MCU, "
+"please refer to the web page: `EK-RA6M2 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra6m2-ra6m2-mcu-"
+"group-evaluation-board>`_"
+msgstr ""
+"このボードおよび RA ファミリー MCU のマニュアルおよびその他のリファレンスは、次の"
+"ウェブページを参照してください: `EK-RA6M2 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra6m2-ra6m2-mcu-"
+"group-evaluation-board>`_"
+
+#: ../../renesas-ra/general.rst:27
+msgid "The following boards are unofficially supported."
+msgstr "非公式にサポートしているボードには次のものがあります。"
+
+#: ../../renesas-ra/general.rst:29 ../../renesas-ra/quickref.rst:131
+#: ../../renesas-ra/quickref.rst:244 ../../renesas-ra/quickref.rst:315
+#: ../../renesas-ra/tutorial/intro.rst:35
+#: ../../renesas-ra/tutorial/intro.rst:52
+#: ../../renesas-ra/tutorial/program_in_flash.rst:19
+msgid "EK-RA4M1"
+msgstr ""
+
+#: ../../renesas-ra/general.rst:31
+msgid ""
+"For the manual and other references for the board and RA Family MCU, "
+"please refer to the web page: `EK-RA4M1 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra4m1-ra4m1-mcu-"
+"group-evaluation-board>`_"
+msgstr ""
+"このボードおよび RA ファミリー MCU のマニュアルおよびその他のリファレンスは、次の"
+"ウェブページを参照してください: `EK-RA4M1 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra4m1-ra4m1-mcu-"
+"group-evaluation-board>`_"
+
+#: ../../renesas-ra/general.rst:33 ../../renesas-ra/quickref.rst:139
+#: ../../renesas-ra/quickref.rst:254 ../../renesas-ra/quickref.rst:322
+#: ../../renesas-ra/tutorial/intro.rst:36
+#: ../../renesas-ra/tutorial/intro.rst:53
+#: ../../renesas-ra/tutorial/program_in_flash.rst:20
+msgid "EK-RA4W1"
+msgstr ""
+
+#: ../../renesas-ra/general.rst:35
+msgid ""
+"For the manual and other references for the board and RA Family MCU, "
+"please refer to the web page: `EK-RA4W1 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra4w1-ra4w1-mcu-"
+"group-evaluation-board>`_"
+msgstr ""
+"このボードおよび RA ファミリー MCU のマニュアルおよびその他のリファレンスは、次の"
+"ウェブページを参照してください: `EK-RA4W1 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra4w1-ra4w1-mcu-"
+"group-evaluation-board>`_"
+
+#: ../../renesas-ra/general.rst:37 ../../renesas-ra/quickref.rst:147
+#: ../../renesas-ra/quickref.rst:264 ../../renesas-ra/quickref.rst:329
+#: ../../renesas-ra/tutorial/intro.rst:37
+#: ../../renesas-ra/tutorial/intro.rst:54
+#: ../../renesas-ra/tutorial/program_in_flash.rst:21
+msgid "EK-RA6M1"
+msgstr ""
+
+#: ../../renesas-ra/general.rst:39
+msgid ""
+"For the manual and other references for the board and RA Family MCU, "
+"please refer to the web page: `EK-RA6M1 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra6m1-ra6m1-mcu-"
+"group-evaluation-board>`_"
+msgstr ""
+"このボードおよび RA ファミリー MCU のマニュアルおよびその他のリファレンスは、次の"
+"ウェブページを参照してください: `EK-RA6M1 <https://www.renesas.com/products"
+"/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra6m1-ra6m1-mcu-"
+"group-evaluation-board>`_"
+
+#: ../../renesas-ra/general.rst:41
+msgid ""
+"For more information, please visit the web page: "
+"`<https://github.com/renesas/micropython/wiki>`_"
+msgstr ""
+"詳しくは次のウェブページを参照してください: "
+"`<https://github.com/renesas/micropython/wiki>`_"
+
+#: ../../renesas-ra/quickref.rst:4
+msgid "Quick reference for the Renesas RA"
+msgstr "Renesas RA 用クイックリファレンス"
+
+msgid ""
+".. image:: renesas-ra/img/ek_ra6m2_board.jpg\n"
+"   :alt: Renesas Evaluation Kit for RA6M2 MCU Group"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:10
+msgid "The Renesas EK-RA6M2 board."
+msgstr "Renesas EK-RA6M2 ボード"
+
+#: ../../renesas-ra/quickref.rst:12
+msgid ""
+"Below is a quick reference for the Renesas RA boards.  If it is your "
+"first time working with this board, it may be useful to get an overview "
+"of the microcontroller and the board:"
+msgstr ""
+"以下は、Renesas RA ボードのためのクイックリファレンスです。"
+"このボードを初めて使う場合は、まず次のマイクロコントローラとボードの概要を"
+"概要を確認してみてください。"
+
+#: ../../renesas-ra/quickref.rst:22
+msgid "Installing MicroPython"
+msgstr "MicroPython のインストール"
+
+#: ../../renesas-ra/quickref.rst:24
+msgid ""
+"See the corresponding section of tutorial: :ref:`renesas-ra_intro`. It "
+"also includes a troubleshooting subsection."
+msgstr ""
+"チュートリアルの章: :ref:`renesas-ra_intro` を参照してください。"
+"そこにはトラブルシューティングについても記載されています。"
+
+#: ../../renesas-ra/quickref.rst:27
+msgid "General board control"
+msgstr "ボードの一般的な制御"
+
+#: ../../renesas-ra/quickref.rst:29
+msgid ""
+"The MicroPython REPL is accessed via the USB serial port. Tab-completion "
+"is useful to find out what methods an object has. Paste mode (ctrl-E) is "
+"useful to paste a large slab of Python code into the REPL.  Some of "
+"features are not implemented for Renesas RA boards yet, please refer to "
+"the tutorial for more details."
+msgstr ""
+"MicroPython REPL は USB ポートで利用できます。"
+"タブ補完は、オブジェクトにどのようなメソッドがあるかを調べるのに便利です。"
+"貼り付けモード(ctrl-E)は、大きめの Pythonコードを REPL に貼り付けるのに便利です。"
+"一部の機能は Renesas RAボード にまだ実装されていません。"
+"詳しくはチュートリアルを参照してください。"
+
+#: ../../renesas-ra/quickref.rst:31
+msgid "The :mod:`machine` module::"
+msgstr ":mod:`machine` モジュール"
+
+#: ../../renesas-ra/quickref.rst:33
+msgid ""
+"import machine\n"
+"\n"
+"machine.freq()    # get the current frequency of the CPU"
+msgstr ""
+"import machine\n"
+"\n"
+"machine.freq()    # CPU の現在の周波数を取得"
+
+#: ../../renesas-ra/quickref.rst:38
+msgid "Following functions are supported::"
+msgstr "次の関数をサポートしています::"
+
+#: ../../renesas-ra/quickref.rst:40
+msgid ""
+"machine.freq()\n"
+"machine.reset()\n"
+"machine.soft_reset()\n"
+"machine.unique_id()"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:45 ../../renesas-ra/quickref.rst:91
+#: ../../renesas-ra/quickref.rst:170 ../../renesas-ra/quickref.rst:195
+#: ../../renesas-ra/quickref.rst:217 ../../renesas-ra/quickref.rst:292
+#: ../../renesas-ra/quickref.rst:349
+msgid "Following functions are not supported at the present::"
+msgstr "次の関数は現時点で未サポートです::"
+
+#: ../../renesas-ra/quickref.rst:47
+msgid ""
+"machine.reset_cause()\n"
+"machine.bootloader([value])\n"
+"machine.disable_irq()\n"
+"machine.enable_irq(state)\n"
+"machine.freq([hz])\n"
+"machine.idle()\n"
+"machine.sleep()\n"
+"machine.lightsleep()\n"
+"machine.lightsleep([time_ms])\n"
+"machine.deepsleep()\n"
+"machine.deepsleep([time_ms])\n"
+"machine.wake_reason()\n"
+"machine.time_pulse_us(pin, pulse_level, timeout_us=1000000,/)\n"
+"machine.bitstream(pin, encoding, timing, data, /)\n"
+"machine.rng()"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:65
+msgid "Delay and timing"
+msgstr "遅延とタイミング"
+
+#: ../../renesas-ra/quickref.rst:67
+msgid "Use the :mod:`time <time>` module::"
+msgstr ":mod:`time <time>` モジュールを使います::"
+
+#: ../../renesas-ra/quickref.rst:69
+msgid ""
+"import time\n"
+"\n"
+"time.sleep(1)           # sleep for 1 second\n"
+"time.sleep_ms(500)      # sleep for 500 milliseconds\n"
+"time.sleep_us(10)       # sleep for 10 microseconds\n"
+"start = time.ticks_ms() # get value of millisecond counter\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
+msgstr ""
+"import time\n"
+"\n"
+"time.sleep(1)           # 1秒間、一時停止する\n"
+"time.sleep_ms(500)      # 500ミリ秒間、一時停止する\n"
+"time.sleep_us(10)       # 10マイクロ秒間、一時停止する\n"
+"start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
+
+#: ../../renesas-ra/quickref.rst:78
+msgid "Timers"
+msgstr "タイマー"
+
+#: ../../renesas-ra/quickref.rst:80
+msgid ""
+"The RA MCU's system timer peripheral provides a global microsecond "
+"timebase and generates interrupts for it. The software timer is available"
+" currently and there are unlimited number of them (memory permitting). "
+"There is no need to specify the timer id (id=-1 is supported at the "
+"moment) as it will default to this."
+msgstr ""
+"RA MCU のシステムタイマーペリフェラルは、グローバルなマイクロ秒単位のタイムベースを"
+"提供し、そのために割り込みを発生させます。ソフトウェアタイマーは現在利用可能で、"
+"その数は(メモリが許す限り)無制限です。タイマー id はデフォルトで指定されるため"
+"(現時点では id=-1 がサポートされています)、指定する必要はありません。"
+
+#: ../../renesas-ra/quickref.rst:82
+msgid "Use the :mod:`machine.Timer` class::"
+msgstr ":mod:`machine.Timer` クラスを使います::"
+
+#: ../../renesas-ra/quickref.rst:84
+msgid ""
+"from machine import Timer\n"
+"\n"
+"tim = Timer(-1)\n"
+"tim.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:print(1))\n"
+"tim.init(period=2000, mode=Timer.PERIODIC, callback=lambda t: print(2))"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:91
+msgid "Timer(id)  # hardware timer is not supported."
+msgstr "Timer(id)  # ハードウェアタイマーは未サポート。"
+
+#: ../../renesas-ra/quickref.rst:94
+msgid "Pins and GPIO"
+msgstr "ピンと GPIO"
+
+#: ../../renesas-ra/quickref.rst:96
+msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
+msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
+
+#: ../../renesas-ra/quickref.rst:98
+msgid ""
+"from machine import Pin\n"
+"\n"
+"p0 = Pin('P000', Pin.OUT)      # create output pin on P000\n"
+"p0.on()                        # set pin to \"on\" (high) level\n"
+"p0.off()                       # set pin to \"off\" (low) level\n"
+"p0.value(1)                    # set pin to on/high\n"
+"\n"
+"p2 = Pin(Pin.cpu.P002, Pin.IN) # create input pin on P002\n"
+"print(p2.value())              # get value, 0 or 1\n"
+"\n"
+"p4 = Pin('P004', Pin.PULL_UP)      # enable internal pull-up register\n"
+"p5 = Pin('P005', Pin.OUT, value=1) # set pin high on creation"
+msgstr ""
+"from machine import Pin\n"
+"\n"
+"p0 = Pin('P000', Pin.OUT)      # P000 の出力ピンを作成\n"
+"p0.on()                        # ピンを \"on\" (high) レベルに設定\n"
+"p0.off()                       # ピンを \"off\" (low) レベルに設定\n"
+"p0.value(1)                    # ピンを on/high に設定\n"
+"\n"
+"p2 = Pin(Pin.cpu.P002, Pin.IN) # P002 の入力ピンを作成\n"
+"print(p2.value())              # 値 0 または 1 を取得\n"
+"\n"
+"p4 = Pin('P004', Pin.PULL_UP)      # 内部プルアップ抵抗を有効化\n"
+"p5 = Pin('P005', Pin.OUT, value=1) # 作成時にピンを high に設定"
+
+#: ../../renesas-ra/quickref.rst:111
+msgid ""
+"Pin id is available corresponding to the RA MCU's pin name which are "
+"Pin.cpu.P106 and 'P106'. The RA MCU has many feature's pins. However, "
+"there are some cases that pin feature is fixed or not connected by the "
+"board. Please confirm the board manual for the pin mapping."
+msgstr ""
+"ピン id は RA MCU のピン名に対応して Pin.cpu.P106 という形式でも "
+"'P106' という形式でも指定できます。RA MCU には多くの機能のピンがあります。"
+"しかし、ピンの機能が固定されていたり、ボードによって接続されていない場合があります。"
+"ピンのマッピングについてはボードのマニュアルを確認してください。"
+
+#: ../../renesas-ra/quickref.rst:114
+msgid "UART (serial bus)"
+msgstr "UART (シリアルバス)"
+
+#: ../../renesas-ra/quickref.rst:116
+msgid ""
+"The RA MCU has some hardware UARTs called SCI (Serial Communication "
+"Interface). UART id is available corresponding to the RA MCU's SCI number"
+" which are UART(0) as SCI0 and UART(1) as SCI1."
+msgstr ""
+"RA MCU は SCI (Serial Communication Interface)というハードウェア UART "
+"をいくつか備えています。UART ID は RA MCU の SCI 番号に対応しており、"
+"UART(0) を SCI0、 UART(1) を SCI1 として利用できます。"
+
+#: ../../renesas-ra/quickref.rst:119
+msgid "See :ref:`machine.UART <machine.UART>`. ::"
+msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
+
+#: ../../renesas-ra/quickref.rst:121
+msgid ""
+"from machine import UART\n"
+"\n"
+"uart1 = UART(1, 115200)\n"
+"uart1.write('hello')    # write 5 bytes\n"
+"uart1.read(5)           # read up to 5 bytes"
+msgstr ""
+"from machine import UART\n"
+"\n"
+"uart1 = UART(1, 115200)\n"
+"uart1.write('hello')    # 5バイト書き出す\n"
+"uart1.read(5)           # 5バイトまで読み込む"
+
+#: ../../renesas-ra/quickref.rst:128
+msgid ""
+"Available UARTs and pins on the board are fixed and follows. One of these"
+" UARTs is used for REPL."
+msgstr ""
+"ボード上で利用可能な UART とピンは固定されていて、次のとおりです。"
+"UARTの１つはは REPL に使われます。"
+
+#: ../../renesas-ra/quickref.rst:131 ../../renesas-ra/quickref.rst:147
+#: ../../renesas-ra/quickref.rst:155
+msgid "UART0(REPL)"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:131 ../../renesas-ra/quickref.rst:139
+msgid "UART1"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:131 ../../renesas-ra/quickref.rst:147
+msgid "UART2"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:141
+#: ../../renesas-ra/quickref.rst:149 ../../renesas-ra/quickref.rst:157
+#: ../../renesas-ra/quickref.rst:165
+msgid "tx"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:149
+#: ../../renesas-ra/quickref.rst:157 ../../renesas-ra/quickref.rst:165
+#: ../../renesas-ra/tutorial/intro.rst:52
+#: ../../renesas-ra/tutorial/intro.rst:54
+#: ../../renesas-ra/tutorial/intro.rst:55
+msgid "P411"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:157
+#: ../../renesas-ra/quickref.rst:165 ../../renesas-ra/quickref.rst:332
+#: ../../renesas-ra/tutorial/intro.rst:56
+msgid "P401"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:149
+msgid "P302"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:142
+#: ../../renesas-ra/quickref.rst:150 ../../renesas-ra/quickref.rst:158
+#: ../../renesas-ra/quickref.rst:166
+msgid "rx"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:150
+#: ../../renesas-ra/quickref.rst:158 ../../renesas-ra/quickref.rst:166
+#: ../../renesas-ra/tutorial/intro.rst:52
+#: ../../renesas-ra/tutorial/intro.rst:54
+#: ../../renesas-ra/tutorial/intro.rst:55
+msgid "P410"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:158
+#: ../../renesas-ra/quickref.rst:166 ../../renesas-ra/tutorial/intro.rst:56
+msgid "P402"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:150
+msgid "P301"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:139
+msgid "UART4(REPL)"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:139 ../../renesas-ra/quickref.rst:155
+msgid "UART9"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:141
+msgid "P213"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:141 ../../renesas-ra/quickref.rst:324
+msgid "P204"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:141
+msgid "P109"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:142
+msgid "P212"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:142 ../../renesas-ra/quickref.rst:249
+#: ../../renesas-ra/quickref.rst:346 ../../renesas-ra/tutorial/intro.rst:53
+msgid "P206"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:142
+msgid "P110"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:147
+msgid "UART8"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:149
+msgid "P105"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:150
+msgid "P104"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:155
+msgid "UART7"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:157
+msgid "P602"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:158
+msgid "P601"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:163
+msgid "UART0"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:163
+msgid "UART1(REPL)"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:172
+msgid ""
+"UART.init(baudrate)   # now only 115200 is confirmed\n"
+"UART.init(cts, rts)   # Pins are fixed.\n"
+"UART.init(invert)\n"
+"UART.init(tx,rx)      # Pins are fixed.\n"
+"UART.init(txbuf)\n"
+"UART.init(flow)\n"
+"UART.irq(handler)\n"
+"UART.irq(trigger=RX_ANY)\n"
+"UART.irq(priority)\n"
+"UART.irq(wake=machine.IDLE)"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:184
+msgid "Real time clock (RTC)"
+msgstr "リアルタイムクロック (RTC)"
+
+#: ../../renesas-ra/quickref.rst:186
+msgid "See :ref:`machine.RTC <machine.RTC>` ::"
+msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
+
+#: ../../renesas-ra/quickref.rst:188
+msgid ""
+"from machine import RTC\n"
+"\n"
+"rtc = RTC()\n"
+"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
+"time\n"
+"                                             # time, eg 2017/8/23 1:12:48"
+"\n"
+"rtc.datetime() # get date and time"
+msgstr ""
+"from machine import RTC\n"
+"\n"
+"rtc = RTC()\n"
+"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
+"                                             # 日時 2017/8/23 1:12:48\n"
+"rtc.datetime() # 日時を取得"
+
+#: ../../renesas-ra/quickref.rst:197
+msgid ""
+"RTC.init(datetime)\n"
+"RTC.now()\n"
+"RTC.deinit()\n"
+"RTC.alarm()\n"
+"RTC.alarm_left()\n"
+"RTC.cancel()\n"
+"RTC.irq()"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:206
+msgid "ADC (analog to digital conversion)"
+msgstr "ADC (アナログ/デジタル変換)"
+
+#: ../../renesas-ra/quickref.rst:208
+msgid "See :ref:`machine.ADC <machine.ADC>` ::"
+msgstr ":ref:`machine.ADC <machine.ADC>` を参照::"
+
+#: ../../renesas-ra/quickref.rst:210
+msgid ""
+"from machine import ADC\n"
+"\n"
+"adc = ADC('P000')    # create an ADC object acting on a pin\n"
+"adc.read_u16()       # read a raw analog value in the range 0-65535"
+msgstr ""
+"from machine import ADC\n"
+"\n"
+"adc = ADC('P000')    # ADC ピンの ADC オブジェクトを作成\n"
+"adc.read_u16()       # 生のアナログ値を 0-65535 の範囲で読込み"
+
+#: ../../renesas-ra/quickref.rst:215
+msgid ""
+"Pin id is available corresponding to the RA MCU's pin name which are "
+"'P000' as AN000 (analog channel 000). The RA MCU has many analog "
+"channels. However, there are some cases that pin feature is fixed or not "
+"available by the board. Please confirm the MCU and board manual for the "
+"pin mapping."
+msgstr ""
+"ピン id は RA MCU のピン名が 'P000' であるなら AN000 (アナログチャネル 000)"
+"として利用できます。RA MCU は多くのアナログチャンネルを備えています。"
+"しかし、ピン機能はボードによって固定されていたり、利用できない場合があります。"
+"ピンのマッピングについては、MCUおよびボードのマニュアルを確認してください。"
+
+#: ../../renesas-ra/quickref.rst:219
+msgid ""
+"ADC.init()\n"
+"ADC(sample_ns)\n"
+"ADC(atten)\n"
+"ADC.read_uv()\n"
+"ADC.block()"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:226
+msgid "SPI bus"
+msgstr "SPI バス"
+
+#: ../../renesas-ra/quickref.rst:228
+msgid ""
+"The RA MCU has some hardware SPIs (Serial Peripheral Interface). SPI id "
+"is available corresponding to the RA MCU's SPI number which are SPI(0) as"
+" SPI0 and SPI(1) as SPI1. If with no additional parameters, "
+"machine.SoftSPI() is called."
+msgstr ""
+"RA MCUはいくつかのハードウェア SPI (Serial Peripheral Interface)を備えています。"
+"SPI id は RA MCU の SPI 番号に対応しており、SPI(0) をSPI0、SPI(1) を SPI1 "
+"として利用できます。追加パラメータがない場合は machine.SoftSPI() が呼び出されます。"
+
+#: ../../renesas-ra/quickref.rst:231
+msgid "See :ref:`machine.SPI <machine.SPI>`. ::"
+msgstr ":ref:`machine.SPI <machine.SPI>` を参照::"
+
+#: ../../renesas-ra/quickref.rst:233
+msgid ""
+"from machine import SPI, Pin\n"
+"\n"
+"spi = SPI(0, baudrate=500000)\n"
+"cs = Pin.cpu.P103\n"
+"cs(0)\n"
+"spi.write(b\"12345678\")\n"
+"cs(1)"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:241
+msgid "Available SPIs and pins on the board are fixed and follows."
+msgstr "利用可能な SPI とピンは固定されていて、次のとおりです。"
+
+#: ../../renesas-ra/quickref.rst:244 ../../renesas-ra/quickref.rst:254
+#: ../../renesas-ra/quickref.rst:264 ../../renesas-ra/quickref.rst:274
+#: ../../renesas-ra/quickref.rst:284
+msgid "SPI0"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:246 ../../renesas-ra/quickref.rst:256
+#: ../../renesas-ra/quickref.rst:266 ../../renesas-ra/quickref.rst:276
+#: ../../renesas-ra/quickref.rst:286
+msgid "sck"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:246 ../../renesas-ra/quickref.rst:256
+#: ../../renesas-ra/quickref.rst:266 ../../renesas-ra/quickref.rst:276
+#: ../../renesas-ra/quickref.rst:286
+msgid "P102"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:247 ../../renesas-ra/quickref.rst:257
+#: ../../renesas-ra/quickref.rst:267 ../../renesas-ra/quickref.rst:277
+#: ../../renesas-ra/quickref.rst:287
+msgid "mosi"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:247 ../../renesas-ra/quickref.rst:257
+#: ../../renesas-ra/quickref.rst:267 ../../renesas-ra/quickref.rst:277
+#: ../../renesas-ra/quickref.rst:287
+msgid "P101"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:248 ../../renesas-ra/quickref.rst:258
+#: ../../renesas-ra/quickref.rst:268 ../../renesas-ra/quickref.rst:278
+#: ../../renesas-ra/quickref.rst:288
+msgid "miso"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:248 ../../renesas-ra/quickref.rst:258
+#: ../../renesas-ra/quickref.rst:268 ../../renesas-ra/quickref.rst:278
+#: ../../renesas-ra/quickref.rst:288
+msgid "P100"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:249 ../../renesas-ra/quickref.rst:259
+#: ../../renesas-ra/quickref.rst:269 ../../renesas-ra/quickref.rst:279
+#: ../../renesas-ra/quickref.rst:289
+msgid "cs"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:259 ../../renesas-ra/quickref.rst:269
+#: ../../renesas-ra/quickref.rst:279 ../../renesas-ra/quickref.rst:289
+msgid "P103"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:274
+msgid "SPI1"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:276
+msgid "P702"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:277
+msgid "P701"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:278
+msgid "P700"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:279
+msgid "P703"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:294
+msgid ""
+"SPI.init(firstbit)    # now fixed with SPI.LSB\n"
+"SPI.init(baudrate)    # now confirmed only 500000"
+msgstr ""
+"SPI.init(firstbit)    # 現状は SPI.LSB で固定\n"
+"SPI.init(baudrate)    # 現状は 500000 のみ確認"
+
+#: ../../renesas-ra/quickref.rst:298
+msgid "I2C bus"
+msgstr "I2C バス"
+
+#: ../../renesas-ra/quickref.rst:300
+msgid ""
+"The RA MCU has some hardware IIC (Inter-Integrated Circuit Bus). I2C id "
+"is available corresponding to the RA MCU's I2C number which are I2C(0) as"
+" IIC0 and I2C(1) as IIC1. If with no additional parameters, "
+"machine.SoftI2C() is called."
+msgstr ""
+"RA MCU はいくつかのハードウェア IIC (Inter-Integrated Circuit Bus)を備えています。"
+"I2C id は RA MCU の I2C 番号に対応しており、I2C(0) を IIC0、I2C(1) を IIC1 "
+"として使えます。追加パラメータがない場合は、machine.SoftI2C() が呼び出されます。"
+
+#: ../../renesas-ra/quickref.rst:303
+msgid "See :ref:`machine.I2C <machine.I2C>` ::"
+msgstr ":ref:`machine.I2C <machine.I2C>` を参照::"
+
+#: ../../renesas-ra/quickref.rst:305
+msgid ""
+"from machine import I2C\n"
+"\n"
+"i2c = I2C(0)\n"
+"\n"
+"i2c.scan()         # returns list of slave addresses\n"
+"i2c.readfrom_mem(0x50, 0x10, 2, addrsize=16)  # read 2 bytes from slave "
+"0x50, slave memory 0x10"
+msgstr ""
+"from machine import I2C\n"
+"\n"
+"i2c = I2C(0)\n"
+"\n"
+"i2c.scan()         # スレーブアドレスのリストを返す\n"
+"i2c.readfrom_mem(0x50, 0x10, 2, addrsize=16)  # スレーブ 0x50、スレーブメモリ 0x10 から 2 バイト読込み"
+
+#: ../../renesas-ra/quickref.rst:312
+msgid "Available I2Cs and pins on the board are fixed and follows."
+msgstr "利用可能な I2C とピンは固定されていて、次のとおりです。"
+
+#: ../../renesas-ra/quickref.rst:317 ../../renesas-ra/quickref.rst:324
+#: ../../renesas-ra/quickref.rst:331 ../../renesas-ra/quickref.rst:338
+#: ../../renesas-ra/quickref.rst:345
+msgid "scl"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:317 ../../renesas-ra/quickref.rst:318
+msgid "not supported"
+msgstr "未サポート"
+
+#: ../../renesas-ra/quickref.rst:318 ../../renesas-ra/quickref.rst:325
+#: ../../renesas-ra/quickref.rst:332 ../../renesas-ra/quickref.rst:339
+#: ../../renesas-ra/quickref.rst:346
+msgid "sda"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:322 ../../renesas-ra/quickref.rst:329
+msgid "I2C0"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:325
+msgid "P407"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:331
+msgid "P400"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:336
+msgid "I2C2"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:338
+msgid "P512"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:339
+msgid "P511"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:343
+msgid "I2C1"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:345 ../../renesas-ra/tutorial/intro.rst:53
+msgid "P205"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:351
+msgid ""
+"I2C.init(freq)    # now confirmed only 400000\n"
+"I2C.deinit()\n"
+"I2C.start()\n"
+"I2C.stop()"
+msgstr ""
+"I2C.init(freq)    # 現状は 400000 のみ確認\n"
+"I2C.deinit()\n"
+"I2C.start()\n"
+"I2C.stop()"
+
+#: ../../renesas-ra/quickref.rst:357
+msgid "PWM (pulse width modulation)"
+msgstr "PWM (パルス幅変調)"
+
+#: ../../renesas-ra/quickref.rst:359
+msgid "PWM is not supported."
+msgstr "PWM は未サポートです。"
+
+#: ../../renesas-ra/quickref.rst:362
+msgid "WDT (Watchdog timer)"
+msgstr "WDT (ウォッチドッグタイマー)"
+
+#: ../../renesas-ra/quickref.rst:364
+msgid "WDT is not supported."
+msgstr "WDT は未サポートです。"
+
+#: ../../renesas-ra/quickref.rst:367
+msgid "SDCard"
+msgstr "SD カード"
+
+#: ../../renesas-ra/quickref.rst:369
+msgid ""
+"The frozen sdcard driver (drivers/sdcard/sdcard.py) is available by "
+"connecting microSD card device to hardware SPI0 pins.::"
+msgstr ""
+"microSD カードデバイスをハードウェア SPI0 ピンに接続することで、"
+"凍結した sdcard ドライバ(drivers/sdcard/sdcard.py)が利用できます。"
+
+#: ../../renesas-ra/quickref.rst:371
+msgid ""
+"from machine import Pin, SPI\n"
+"import os, sdcard\n"
+"\n"
+"spi = SPI(0, baudrate=500000)\n"
+"cs = Pin.cpu.P103\n"
+"sd = sdcard.SDCard(spi, cs)\n"
+"os.mount(sd, '/sd')\n"
+"os.listdir('/')\n"
+"os.chdir('/sd')\n"
+"os.umount('/sd')"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:383
+msgid "OneWire driver"
+msgstr "OneWire ドライバー"
+
+#: ../../renesas-ra/quickref.rst:385
+msgid "The OneWire driver is implemented in software and works on all pins::"
+msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
+
+#: ../../renesas-ra/quickref.rst:387
+msgid ""
+"from machine import Pin\n"
+"import onewire\n"
+"\n"
+"ow = onewire.OneWire(Pin(P012)) # create a OneWire bus on P012\n"
+"ow.scan()               # return a list of devices on the bus\n"
+"ow.reset()              # reset the bus\n"
+"ow.readbyte()           # read a byte\n"
+"ow.writebyte(0x12)      # write a byte on the bus\n"
+"ow.write('123')         # write bytes on the bus\n"
+"ow.select_rom(b'12345678') # select a specific device by its ROM code"
+msgstr ""
+"from machine import Pin\n"
+"import onewire\n"
+"\n"
+"ow = onewire.OneWire(Pin(P012)) # P012 で OneWire バスを作成\n"
+"ow.scan()               # バス上のデバイスリストを返す\n"
+"ow.reset()              # バスをリセット\n"
+"ow.readbyte()           # １バイト読込み\n"
+"ow.writebyte(0x12)      # バスに１バイト書込み\n"
+"ow.write('123')         # バスに複数バイト書込み\n"
+"ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
+
+#: ../../renesas-ra/quickref.rst:398
+msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
+msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
+
+#: ../../renesas-ra/quickref.rst:400
+msgid ""
+"import time, ds18x20\n"
+"ds = ds18x20.DS18X20(ow)\n"
+"roms = ds.scan()\n"
+"ds.convert_temp()\n"
+"time.sleep_ms(750)\n"
+"for rom in roms:\n"
+"    print(ds.read_temp(rom))"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:408
+msgid ""
+"Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
+"``convert_temp()`` method must be called each time you want to sample the"
+" temperature."
+msgstr ""
+"4.7k のプルアップ抵抗をデータラインに接続してください。"
+"``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
+"必要があることに注意してください。"
+
+#: ../../renesas-ra/quickref.rst:413
+msgid "NeoPixel and APA106 driver"
+msgstr "NeoPixel/APA106 ドライバー"
+
+#: ../../renesas-ra/quickref.rst:415
+msgid "NeoPixel is not supported currently."
+msgstr "NeoPixel は現在のところ未サポートです。"
+
+#: ../../renesas-ra/tutorial/index.rst:4
+msgid "MicroPython tutorial for Renesas RA port"
+msgstr "Renesas RA 用 MicroPython チュートリアル"
+
+#: ../../renesas-ra/tutorial/index.rst:6
+msgid ""
+"This tutorial is intended to get you started using MicroPython on the "
+"Renesas RA port."
+msgstr ""
+"このチュートリアルは、Renesas RA ポートで MicroPython を使い始めることを"
+"目的としています。"
+
+#: ../../renesas-ra/tutorial/intro.rst:4
+msgid "Getting started with MicroPython on the Renesas RA"
+msgstr "Renesas RA での MicroPython の始め方"
+
+#: ../../renesas-ra/tutorial/intro.rst:6
+msgid ""
+"This tutorial will guide you through setting up MicroPython, getting a "
+"prompt, using the hardware peripherals, using internal flash file system,"
+" reset and boot modes, and Factory reset the internal file system."
+msgstr ""
+"このチュートリアルでは、MicroPython の設定、プロンプトの表示、ハードウェア"
+"ペリフェラルの使用、内部フラッシュファイルシステムの使用、リセットおよびブートモード、"
+"内部ファイルシステムの工場出荷時へのリセットについて説明します。"
+
+#: ../../renesas-ra/tutorial/intro.rst:12
+msgid "Requirements"
+msgstr "必要なもの"
+
+#: ../../renesas-ra/tutorial/intro.rst:14
+msgid ""
+"You need a board. For the information of available boards, please refer "
+"to the general information about Renesas RA port: :ref:`renesas-"
+"ra_general`."
+msgstr ""
+"まずはボードが必要です。使用可能なボードの情報は :ref:`renesas-ra_general` "
+"を参照してください。"
+
+#: ../../renesas-ra/tutorial/intro.rst:17
+msgid ""
+"You need a USB-Serial conversion cable to connect the board and your PC. "
+"Please get a type with separate signal pins so that you can connect to "
+"the UART TX and RX pins on the board."
+msgstr ""
+"ボードと PC を接続するために USB-シリアル変換ケーブルが必要です。"
+"ボードの UART TX、RX 端子に接続できるよう、信号ピンが分離している"
+"タイプを用意してください。"
+
+#: ../../renesas-ra/tutorial/intro.rst:22
+msgid "Flashing the MicroPython image with J-Link OB"
+msgstr "J-Link OB による MicroPython イメージの書込み"
+
+#: ../../renesas-ra/tutorial/intro.rst:24
+msgid ""
+"The board has a builtin programmer interface called J-Link OB. Using the "
+"J-Link Software, you can flash the binary image \"firmware.hex\" of "
+"MicroPython on the board via J-Link OB."
+msgstr ""
+"ボードには J-Link OB というプログラマインタフェースが内蔵されています。"
+"J-Link Software を使うと、J-Link OB を介して MicroPython のバイナリイメージ "
+"\"firmware.hex\" をボードに書き込めます。"
+
+#: ../../renesas-ra/tutorial/intro.rst:28
+msgid ""
+"You can download the J-Link Software and Documentation pack from "
+"https://www.segger.com/downloads/jlink/."
+msgstr ""
+"J-Link Software とドキュメントのパックは "
+"https://www.segger.com/downloads/jlink/ からダウンロードできます。"
+
+#: ../../renesas-ra/tutorial/intro.rst:30
+msgid ""
+"After installing J-Link Software, start J-Flash-Lite program.  Then "
+"specify following device in Device select menu in J-Flash-Lite."
+msgstr ""
+"J-Link Software をインストール後、J-Flash-Lite を起動します。"
+"J-Flash-Lite の Device 選択メニューで、次のデバイスを指定してください。"
+
+#: ../../renesas-ra/tutorial/intro.rst:33
+#: ../../renesas-ra/tutorial/intro.rst:50
+#: ../../renesas-ra/tutorial/program_in_flash.rst:17
+msgid "Board"
+msgstr "ボード"
+
+#: ../../renesas-ra/tutorial/intro.rst:33
+msgid "Device"
+msgstr "デバイス"
+
+#: ../../renesas-ra/tutorial/intro.rst:35
+#: ../../renesas-ra/tutorial/intro.rst:39
+msgid "R7FA4M1AB"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/intro.rst:36
+msgid "R7FA4W1AD2CNG"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/intro.rst:37
+msgid "R7FA6M1AD"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/intro.rst:38
+msgid "R7FA6M2AF"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/intro.rst:39
+#: ../../renesas-ra/tutorial/intro.rst:56
+#: ../../renesas-ra/tutorial/program_in_flash.rst:23
+msgid "RA4M1 CLICKER"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/intro.rst:42
+msgid ""
+"Select a firmware hex file in Data File of J-Link-Lite, and push Program "
+"Device button to flash the firmware."
+msgstr ""
+"J-Link-Lite の Data File でファームウェアの hex ファイルを選択し、"
+"Program Device ボタンを押すとファームウェアが書き込まれます。"
+
+#: ../../renesas-ra/tutorial/intro.rst:45
+msgid "Getting a prompt of MicroPython"
+msgstr "MicroPython プロンプトの表示"
+
+#: ../../renesas-ra/tutorial/intro.rst:47
+msgid ""
+"Cross connect USB-Serial conversion cable RX/TX/GND pins to TX/RX/GND "
+"pins on the board."
+msgstr ""
+"USB-シリアル変換ケーブルの RX/TX/GND ピンと基板の TX/RX/GND ピンを"
+"クロス結線します。"
+
+#: ../../renesas-ra/tutorial/intro.rst:50
+msgid "USB Serial RX"
+msgstr "USB シリアル RX"
+
+#: ../../renesas-ra/tutorial/intro.rst:50
+msgid "USB Serial TX"
+msgstr "USB シリアル TX"
+
+#: ../../renesas-ra/tutorial/intro.rst:59
+msgid ""
+"Access the MicroPython REPL (the Python prompt) via USB serial or UART "
+"with 115200 baud rate, 1 stop bit and no parity bit using your favorite "
+"terminal software, picocom on Linux or Tera Term on Windows.  You can try"
+" on Linux::"
+msgstr ""
+"MicroPython REPL (Pythonプロンプト)には、USB シリアルまたは UART で、"
+"ボーレート 115200、ストップビット 1、パリティビット無しで、好みのターミナルソフト、"
+"Linux なら picocom、Windows なら Tera Term などでアクセスしてください。"
+"Linux では次のコマンドで試せます::"
+
+#: ../../renesas-ra/tutorial/intro.rst:61
+msgid "$ picocom /dev/ttyACM0"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/intro.rst:63
+msgid "You can see the MicroPython REPL prompt like below::"
+msgstr "次のように MicroPython REPL のプロンプトが表示されます::"
+
+#: ../../renesas-ra/tutorial/intro.rst:65
+msgid ""
+"MicroPython v1.18-293-g339aa09b8-dirty on 2022-03-26; RA6M2_EK with RA6M2"
+"\n"
+"Type \"help()\" for more information.\n"
+">>>"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:4
+msgid "Write a program in internal file system"
+msgstr "内部ファイルシステムへのプログラムの書込み"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:7
+msgid "Internal file system"
+msgstr "内部ファイルシステム"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:9
+msgid ""
+"The FAT file system is created and initialized in the RA MCU's internal "
+"flash when the MicroPython starts at the first time on the board. The "
+"file system is mounted as \"/flash\", so you can access this flash system"
+" and create a program file into the /flash directory."
+msgstr ""
+"MicroPython がボード上で初めて起動するとき、RA MCU の内部フラッシュに FAT "
+"ファイルシステムが作成され、初期化されます。ファイルシステムは \"/flash\" として"
+"マウントされますので、このフラッシュシステムに /flash ディレクトリでアクセスでき、"
+"プログラムファイルを作成できます。"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:14
+msgid "As the factory setting, following size is allocated for the file system:"
+msgstr "工場出荷時、ファイルシステムには以下のサイズが割り当てられています:"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:17
+msgid "File System Size"
+msgstr "ファイルシステムサイズ"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:19
+#: ../../renesas-ra/tutorial/program_in_flash.rst:23
+msgid "36KB ( 36864B)"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:20
+msgid "64KB ( 65536B)"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:21
+msgid "128KB (131072B)"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:22
+msgid "256KB (262144B)"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:26
+msgid "As the factory setting, following 2 files are created in the file system:"
+msgstr "工場出荷時には、次の２つのファイルがファイルシステム上に作成されます:"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:28
+msgid "boot.py : executed first when the system starts"
+msgstr "boot.py : システムの起動時に最初に実行されます"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:29
+msgid "main.py : executed after boot.py completes"
+msgstr "main.py : boot.py が完了した後に実行されます"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:32
+msgid "Write a program in the internal file system"
+msgstr "内部ファイルシステムへのプログラムの書込み"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:34
+msgid ""
+"You can write a program in main.py which is executed automatically when "
+"the MicroPython starts. For example, you can write LED blinking program "
+"like below::"
+msgstr ""
+"MicroPython の起動時に自動的に実行されるプログラムを main.py に記述できます。"
+"たとえば、以下のようなLED点滅のプログラムを書くことができます。"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:38
+msgid ""
+"import os\n"
+"os.getcwd()\n"
+"f = open('main.py', 'rw+')\n"
+"print(f.read())\n"
+"f.write('import time\\n')\n"
+"f.write('from machine import Pin\\n')\n"
+"f.write('led1 = Pin(Pin.cpu.P106)\\n')\n"
+"f.write('while True:\\n')\n"
+"f.write('    led1.on()\\n')\n"
+"f.write('    time.sleep(1)\\n')\n"
+"f.write('    led1.off()\\n')\n"
+"f.write('    time.sleep(1)\\n')\n"
+"f.close()\n"
+"f = open('main.py', 'r')\n"
+"print(f.read())\n"
+"f.close()"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:55
+msgid ""
+"Entering CTRL-D for software reset, the MicroPython reboots, displays "
+"following messages::"
+msgstr ""
+"CTRL-D でソフトウェアリセットを入力すると、MicroPython が再起動し、"
+"次のメッセージが表示されます::"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:58
+msgid ""
+"MPY: sync filesystems\n"
+"MPY: soft reboot"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:61
+msgid ""
+"and main.py is executed and LED1 blinks per 1 second. If you want to stop"
+" the program, please enter CTRL-C."
+msgstr ""
+"そして main.py が実行され、LED1 が１秒ごとに点滅します。"
+"プログラムを停止したい場合は CTRL-C を入力してください。"
+
+#: ../../renesas-ra/tutorial/reset.rst:4
+msgid "Reset and boot mode"
+msgstr "リセットとブートモード"
+
+#: ../../renesas-ra/tutorial/reset.rst:7
+msgid "Resetting the board"
+msgstr "ボードのリセット"
+
+#: ../../renesas-ra/tutorial/reset.rst:9
+msgid ""
+"If something goes wrong, you can reset the board in two ways. The first "
+"is to press CTRL-D at the MicroPython prompt, which performs a soft "
+"reset. You will see a message something like ::"
+msgstr ""
+"何か問題が発生した場合、２つの方法でボードをリセットできます。１つ目は、MicroPython の"
+"プロンプトで CTRL-D を押して、ソフトリセットを実行する方法です。このとき、次のような"
+"メッセージが表示されます::"
+
+#: ../../renesas-ra/tutorial/reset.rst:13
+msgid ""
+"MPY: sync filesystems\n"
+"MPY: soft reboot\n"
+"MicroPython v1.18-293-g339aa09b8-dirty on 2022-03-26; RA6M2_EK with RA6M2"
+"\n"
+"Type \"help()\" for more information.\n"
+">>>"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/reset.rst:19
+msgid ""
+"If that isn't working you can perform a hard reset (turn-it-off-and-on-"
+"again) by pressing the RESET button. This will end your session, "
+"disconnecting whatever program (PuTTY, screen, etc) that you used to "
+"connect to the board."
+msgstr ""
+"それがうまくいかない場合は、RESET ボタンを押してハードリセット(電源を切ってもう一度入れる)"
+"を実行できます。これによりセッションが終了し、ボードに接続するために使用したプログラム"
+"(PuTTY、screen など)が切断されます。"
+
+#: ../../renesas-ra/tutorial/reset.rst:24
+msgid "boot mode"
+msgstr "ブートモード"
+
+#: ../../renesas-ra/tutorial/reset.rst:26
+msgid "There are 3 boot modes:"
+msgstr "３つのブートモードがあります:"
+
+#: ../../renesas-ra/tutorial/reset.rst:28
+msgid "normal boot mode"
+msgstr "ノーマルブートモード"
+
+#: ../../renesas-ra/tutorial/reset.rst:29
+msgid "safe boot mode"
+msgstr "セーフブートモード"
+
+#: ../../renesas-ra/tutorial/reset.rst:30
+msgid "factory filesystem boot mode"
+msgstr "工場出荷時ファイルシステムブートモード"
+
+#: ../../renesas-ra/tutorial/reset.rst:32
+msgid "boot.py and main.py are executed on \"normal boot mode\"."
+msgstr "boot.py と main.py は「ノーマルブートモード」で実行されます。"
+
+#: ../../renesas-ra/tutorial/reset.rst:34
+msgid "boot.py and main.py are *NOT* executed on \"safe boot mode\"."
+msgstr "boot.py と main.py は「セーフブートモード」で実行 *されません* 。"
+
+#: ../../renesas-ra/tutorial/reset.rst:36
+msgid ""
+"The file system of internal flash is initialized and *all files are "
+"erased* on \"factory filesystem boot mode\"."
+msgstr ""
+"「工場出荷時ファイルシステムブートモード」では、内蔵フラッシュのファイルシステムが"
+"初期化され、すべてのファイルが消去されます。"
+
+#: ../../renesas-ra/tutorial/reset.rst:38
+msgid ""
+"For changing boot mode, please push the RESET button with pressing USER "
+"SW1 on the board:"
+msgstr ""
+"ブートモードを変更するには、ボード上の USER SW1 を押しながら RESET ボタンを"
+"押してください:"
+
+#: ../../renesas-ra/tutorial/reset.rst:41
+msgid ""
+"For normal boot mode, release the USER SW1 after LED1 flashes 4 times or "
+"more"
+msgstr ""
+"ノーマルブートモードにする場合、LED1 が４回以上点滅した後、USER SW1を離します。"
+
+#: ../../renesas-ra/tutorial/reset.rst:43
+msgid "For safe boot mode, release the USER SW1 after LED1 flashes 2 times"
+msgstr ""
+"セーフブートモードにする場合、LED1 が２回点滅した後、USER SW1を離します。"
+
+#: ../../renesas-ra/tutorial/reset.rst:45
+msgid ""
+"For factory file system boot mode, release the USER SW1 after LED1 "
+"flashes 3 times."
+msgstr ""
+"工場出荷時ファイルシステムブートモードの場合、LED1 が３回点滅した後に USER SW1 "
+"を離します。"
+
+#: ../../renesas-ra/tutorial/reset.rst:47
+msgid ""
+"You have created the main.py which executes LED1 blinking in the previous"
+" part. If you change the boot mode to safe boot mode, the MicroPython "
+"starts without the execution of main.py. Then you can remove the main.py "
+"by following command or change the boot mode to factory file system boot "
+"mode.::"
+msgstr ""
+"前章で、LED1 点滅を実行する main.py を作成しました。"
+"ブートモードをセーフブートモードに変更すると、main.py が実行されずに MicroPython "
+"が起動します。そこで、次のコマンドで main.py を削除してください。"
+
+#: ../../renesas-ra/tutorial/reset.rst:52
+msgid ""
+"import os\n"
+"os.remove('main.py')"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/reset.rst:55
+msgid "or change the boot mode to factory file system boot mode."
+msgstr ""
+"または、ブートモードを工場出荷時ファイルシステムブートモードに変更してください。"
+
+#: ../../renesas-ra/tutorial/reset.rst:57
+msgid ""
+"You can confirm that the initialized file system that there are only "
+"boot.py and main.py files.::"
+msgstr ""
+"ファイルシステムが初期化され、boot.py と main.py のファイルだけが存在することを"
+"確認できます。"
+
+#: ../../renesas-ra/tutorial/reset.rst:59
+msgid ""
+"import os\n"
+"os.listdir()"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/troubleshooting.rst:4
+msgid "Trouble Shooting"
+msgstr "トラブルシューティング"
+
+#: ../../renesas-ra/tutorial/troubleshooting.rst:7
+msgid "Flash file system"
+msgstr "フラッシュファイルシステム"
+
+#: ../../renesas-ra/tutorial/troubleshooting.rst:9
+msgid "MicroPython REPL prompt is not displayed."
+msgstr "MicroPython REPL プロンプトが表示されない。"
+
+#: ../../renesas-ra/tutorial/troubleshooting.rst:11
+msgid "Re-program the MicroPython image file."
+msgstr "MicroPython イメージファイルを再書込みしてください。"
+
+#: ../../renesas-ra/tutorial/troubleshooting.rst:13
+msgid ""
+"Confirm serial port connection. The connection must be crossed that the "
+"board TXD pin is connected with USB-serial conversion's RXD signal pin."
+msgstr ""
+"シリアルポートの接続を確認してください。ボードの TXD ピンと USB シリアル変換の RXD "
+"信号ピンがクロス結線されている必要があります。"
+
+#: ../../renesas-ra/tutorial/troubleshooting.rst:17
+msgid ""
+"If the prompt is not displayed suddenly, try to do factory file system "
+"boot mode as the final method.  Please note that all files are removed "
+"forever."
+msgstr ""
+"突然プロンプトが表示されなくなった場合、最終手段として工場出荷時ファイルシステム"
+"ブートモードを試してみてください。その際、すべてのファイルが永久に削除されることに"
+"ご注意ください。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:4
+msgid "Using peripherals"
+msgstr "ペリフェラルの使用方法"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:6
+msgid "For quick help information, please enter::"
+msgstr "クイックヘルプ情報については、次を入力してください::"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:8
+msgid "help()"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:10
+msgid ""
+"You can access RA MCU's peripherals using MicroPython modules. To list "
+"supported modules, please enter::"
+msgstr ""
+"MicroPython モジュールを使用して RA MCU のペリフェラルにアクセスすることができます。"
+"サポートされているモジュールを一覧表示するには、次を入力してください::"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:13
+msgid "help('modules')"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:15
+msgid ""
+"Especially `machine` module and class :ref:`machine.Pin <machine.Pin>` "
+"are very important for using peripherals. Note that prefix 'u' is added "
+"to the module for MicroPython, so you can see \"umachine\" in the list "
+"but you can use it like \"import machine\"."
+msgstr ""
+"特に `machine` モジュールとクラス :ref:`machine.Pin <machine.Pin>` は"
+"ペリフェラルを使用する上で非常に重要です。MicroPython 用のモジュールには接頭辞 "
+"'u' が付くので、一覧に \"umachine\" と表示されますが、 \"import machine\" "
+"のように使うことができることに注意してください。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:19
+msgid ""
+"Using \"from machine import Pin\", Pin name is available corresponding to"
+" the RA MCU's pin name which are Pin.cpu.P000 and 'P000'. In addition, "
+"you can use 'LED1', 'LED2', 'SW1', and 'SW2' name if the board has these "
+"LEDs and switches."
+msgstr ""
+"\"from machine import Pin\" を使うと、RA MCU のピン名に対応した Pin.cpu.P000 "
+"と 'P000' が利用できます。また、ボードに３つの LED と複数のスイッチがある場合には "
+"'LED1', 'LED2', 'SW1', 'SW2' を使うこともできます。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:25
+msgid "LED blinking"
+msgstr "LED の点滅"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:27
+msgid ""
+"As simple example, you can enter following program to blink LED1. Please "
+"enter key 4 times after the input of last time.sleep(1). ::"
+msgstr ""
+"簡単な例として、LED1 を点滅させるには、次のようなプログラムを入力します。 "
+"time.sleep(1) を入力後、 ENTER キーを４回入力してください。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:30
+msgid ""
+"import time\n"
+"from machine import Pin\n"
+"led1 = Pin('LED1')\n"
+"print(led1)\n"
+"while True:\n"
+"    led1.on()\n"
+"    time.sleep(1)\n"
+"    led1.off()\n"
+"    time.sleep(1)"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:40
+msgid "You can see the LED1 blinking per 1 second."
+msgstr "LED1 が１秒ごとに点滅します。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:42
+msgid "If you want to stop the program, please enter CTRL-C. ::"
+msgstr "プログラムを停止したい場合は CTRL-C を入力してください。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:44
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 5, in <module>\n"
+"KeyboardInterrupt:"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:48
+msgid ""
+"This message is displayed, and the program stops. The message means the "
+"program was interrupted at line 5 \"while\" statement."
+msgstr ""
+"次のメッセージが表示され、プログラムが停止します。"
+"このメッセージは、５行目の \"while\" 文のところでプログラムが中断されたことを意味します。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:51
+msgid ""
+"Using print(led1), you can confirm that LED1 is assigned to Pin.cpu.P106 "
+"on the board.::"
+msgstr ""
+"print(led1) を使って、LED1 がボード上の Pin.cpu.P106 に割り当てられていることを"
+"確認できます。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:54
+msgid "Pin(Pin.cpu.P106, mode=Pin.OUT, pull=Pin.PULL_NONE, drive=Pin.LOW_POWER)"
+msgstr ""
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:56
+msgid ""
+"So you can get the same result if Pin(Pin.cpu.P106) is specified instead "
+"of Pin('LED1'). ::"
+msgstr ""
+"そのため、 Pin('LED1') の代わりに Pin(Pin.cpu.P106) を指定しても"
+"同じ結果になります。"
+
+#: ../../renesas-ra/tutorial/using_peripheral.rst:59
+msgid ""
+"import time\n"
+"from machine import Pin\n"
+"led1 = Pin(Pin.cpu.P106)\n"
+"print(led1)\n"
+"while True:\n"
+"    led1.on()\n"
+"    time.sleep(1)\n"
+"    led1.off()\n"
+"    time.sleep(1)"
+msgstr ""
+
