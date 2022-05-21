@@ -149,7 +149,7 @@ function ci_esp32_build {
 # ports/esp8266
 
 function ci_esp8266_setup {
-    sudo pip install pyserial esptool
+    sudo pip install pyserial esptool==3.3.1
     wget https://github.com/jepler/esp-open-sdk/releases/download/2018-06-10/xtensa-lx106-elf-standalone.tar.gz
     zcat xtensa-lx106-elf-standalone.tar.gz | tar x
     # Remove this esptool.py so pip version is used instead
@@ -546,7 +546,7 @@ function ci_unix_settrace_build {
 }
 
 function ci_unix_settrace_run_tests {
-    ci_unix_run_tests_helper "${CI_UNIX_OPTS_SYS_SETTRACE[@]}"
+    ci_unix_run_tests_full_helper standard "${CI_UNIX_OPTS_SYS_SETTRACE[@]}"
 }
 
 function ci_unix_settrace_stackless_build {
@@ -555,7 +555,7 @@ function ci_unix_settrace_stackless_build {
 }
 
 function ci_unix_settrace_stackless_run_tests {
-    ci_unix_run_tests_helper "${CI_UNIX_OPTS_SYS_SETTRACE_STACKLESS[@]}"
+    ci_unix_run_tests_full_helper standard "${CI_UNIX_OPTS_SYS_SETTRACE_STACKLESS[@]}"
 }
 
 function ci_unix_macos_build {
