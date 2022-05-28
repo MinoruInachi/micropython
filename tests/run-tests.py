@@ -122,11 +122,15 @@ def prepare_script_for_target(args, *, script_filename=None, script_text=None, f
         else:
             cleanup_script_filename = False
 
-        subprocess.check_output(
-            [MPYCROSS]
-            + args.mpy_cross_flags.split()
-            + ["-o", mpy_filename, "-X", "emit=" + args.emit, script_filename]
-        )
+        try:
+            subprocess.check_output(
+                [MPYCROSS]
+                + args.mpy_cross_flags.split()
+                + ["-o", mpy_filename, "-X", "emit=" + args.emit, script_filename],
+                stderr=subprocess.STDOUT,
+            )
+        except subprocess.CalledProcessError as er:
+            return True, b"mpy-cross crash\n" + er.output
 
         with open(mpy_filename, "rb") as f:
             script_text = b"__buf=" + bytes(repr(f.read()), "ascii") + b"\n"
@@ -140,11 +144,16 @@ def prepare_script_for_target(args, *, script_filename=None, script_text=None, f
         print("error: using emit={} must go via .mpy".format(args.emit))
         sys.exit(1)
 
-    return script_text
+    return False, script_text
 
 
 def run_script_on_remote_target(pyb, args, test_file, is_special):
-    script = prepare_script_for_target(args, script_filename=test_file, force_plain=is_special)
+    had_crash, script = prepare_script_for_target(
+        args, script_filename=test_file, force_plain=is_special
+    )
+    if had_crash:
+        return True, script
+
     try:
         had_crash = False
         pyb.enter_raw_repl()
@@ -249,6 +258,8 @@ def run_micropython(pyb, args, test_file, is_special=False):
             cmdlist = [MICROPYTHON, "-X", "emit=" + args.emit]
             if args.heapsize is not None:
                 cmdlist.extend(["-X", "heapsize=" + args.heapsize])
+            if sys.platform == "darwin":
+                cmdlist.extend(["-X", "realtime"])
 
             # if running via .mpy, first compile the .py file
             if args.via_mpy:
@@ -886,7 +897,16 @@ the last matching regex is used:
         "unix",
         "qemu-arm",
     )
-    EXTERNAL_TARGETS = ("pyboard", "wipy", "esp8266", "esp32", "minimal", "nrf", "renesas-ra")
+    EXTERNAL_TARGETS = (
+        "pyboard",
+        "wipy",
+        "esp8266",
+        "esp32",
+        "minimal",
+        "nrf",
+        "renesas-ra",
+        "rp2",
+    )
     if args.target in LOCAL_TARGETS or args.list_tests:
         pyb = None
     elif args.target in EXTERNAL_TARGETS:
@@ -899,6 +919,10 @@ the last matching regex is used:
                 args.mpy_cross_flags = "-march=xtensa"
             elif args.target == "esp32":
                 args.mpy_cross_flags = "-march=xtensawin"
+            elif args.target == "rp2":
+                args.mpy_cross_flags = "-march=armv6m"
+            elif args.target == "pyboard":
+                args.mpy_cross_flags = "-march=armv7emsp"
             else:
                 args.mpy_cross_flags = "-march=armv7m"
 
@@ -917,9 +941,11 @@ the last matching regex is used:
             )
             if args.target == "pyboard":
                 # run pyboard tests
-                test_dirs += ("float", "stress", "pyb", "pybnative", "inlineasm")
+                test_dirs += ("float", "stress", "pyb", "inlineasm")
             elif args.target in ("renesas-ra"):
                 test_dirs += ("float", "inlineasm", "renesas-ra")
+            elif args.target == "rp2":
+                test_dirs += ("float", "stress", "inlineasm")
             elif args.target in ("esp8266", "esp32", "minimal", "nrf"):
                 test_dirs += ("float",)
             elif args.target == "wipy":

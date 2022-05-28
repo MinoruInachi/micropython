@@ -55,7 +55,6 @@
 #define MICROPY_EMIT_THUMB_ARMV7M               (0)
 #define MICROPY_EMIT_INLINE_THUMB               (1)
 #define MICROPY_EMIT_INLINE_THUMB_FLOAT         (0)
-#define MICROPY_EMIT_INLINE_THUMB_ARMV7M        (0)
 
 // Optimisations
 #define MICROPY_OPT_COMPUTED_GOTO               (1)
@@ -66,8 +65,11 @@
 #define MICROPY_ENABLE_EMERGENCY_EXCEPTION_BUF  (1)
 #define MICROPY_LONGINT_IMPL                    (MICROPY_LONGINT_IMPL_MPZ)
 #define MICROPY_FLOAT_IMPL                      (MICROPY_FLOAT_IMPL_FLOAT)
-#define MICROPY_USE_INTERNAL_ERRNO              (1)
 #define MICROPY_SCHEDULER_DEPTH                 (8)
+#define MICROPY_SCHEDULER_STATIC_NODES          (1)
+#ifndef MICROPY_USE_INTERNAL_ERRNO
+#define MICROPY_USE_INTERNAL_ERRNO              (1)
+#endif
 
 // Fine control over Python builtins, classes, modules, etc
 #define MICROPY_PY_BUILTINS_HELP_TEXT           rp2_help_text
@@ -125,15 +127,6 @@
 #define mp_type_textio mp_type_vfs_lfs2_textio
 #endif
 
-// Use VFS's functions for import stat and builtin open
-#define mp_import_stat mp_vfs_import_stat
-#define mp_builtin_open_obj mp_vfs_open_obj
-
-// Hooks to add builtins
-
-#define MICROPY_PORT_BUILTINS \
-    { MP_ROM_QSTR(MP_QSTR_open), MP_ROM_PTR(&mp_builtin_open_obj) },
-
 #if MICROPY_PY_NETWORK
 #define NETWORK_ROOT_POINTERS               mp_obj_list_t mod_network_nic_list;
 #else
@@ -160,7 +153,7 @@ struct _mp_bluetooth_nimble_malloc_t;
 #define MICROPY_PY_USOCKET_EXTENDED_STATE   (1)
 #endif
 // It also requires an additional root pointer for the SPI object.
-#define MICROPY_PORT_ROOT_POINTER_NINAW10   struct _machine_spi_obj_t *mp_wifi_spi;
+#define MICROPY_PORT_ROOT_POINTER_NINAW10   struct _machine_spi_obj_t *mp_wifi_spi; struct _machine_timer_obj_t *mp_wifi_timer; struct _mp_obj_list_t *mp_wifi_sockpoll_list;
 extern const struct _mod_network_nic_type_t mod_network_nic_type_nina;
 #define MICROPY_HW_NIC_NINAW10              { MP_ROM_QSTR(MP_QSTR_WLAN), MP_ROM_PTR(&mod_network_nic_type_nina) },
 #else
