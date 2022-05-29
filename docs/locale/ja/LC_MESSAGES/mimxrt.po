@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 09:29+0900\n"
-"PO-Revision-Date: 2022-04-14 19:11+0900\n"
+"POT-Creation-Date: 2022-05-28 23:17+0900\n"
+"PO-Revision-Date: 2022-05-29 10:24+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -59,42 +59,42 @@ msgstr ""
 msgid "The following boards are supported by the port:"
 msgstr "次のボードがポートでサポートされています:"
 
-#: ../../mimxrt/general.rst:23 ../../mimxrt/quickref.rst:140
-#: ../../mimxrt/quickref.rst:157
+#: ../../mimxrt/general.rst:23 ../../mimxrt/pinout.rst:22
+#: ../../mimxrt/pinout.rst:41
 msgid "MIMXRT1010-EVK"
 msgstr ""
 
-#: ../../mimxrt/general.rst:24 ../../mimxrt/quickref.rst:142
-#: ../../mimxrt/quickref.rst:159
+#: ../../mimxrt/general.rst:24 ../../mimxrt/pinout.rst:24
+#: ../../mimxrt/pinout.rst:43
 msgid "MIMXRT1020-EVK"
 msgstr ""
 
-#: ../../mimxrt/general.rst:25 ../../mimxrt/quickref.rst:143
-#: ../../mimxrt/quickref.rst:160
+#: ../../mimxrt/general.rst:25 ../../mimxrt/pinout.rst:25
+#: ../../mimxrt/pinout.rst:44
 msgid "MIMXRT1050-EVK"
 msgstr ""
 
-#: ../../mimxrt/general.rst:26 ../../mimxrt/quickref.rst:145
-#: ../../mimxrt/quickref.rst:162
+#: ../../mimxrt/general.rst:26 ../../mimxrt/pinout.rst:27
+#: ../../mimxrt/pinout.rst:46
 msgid "MIMXRT1060-EVK"
 msgstr ""
 
-#: ../../mimxrt/general.rst:27 ../../mimxrt/quickref.rst:146
-#: ../../mimxrt/quickref.rst:163
+#: ../../mimxrt/general.rst:27 ../../mimxrt/pinout.rst:28
+#: ../../mimxrt/pinout.rst:47
 msgid "MIMXRT1064-EVK"
 msgstr ""
 
-#: ../../mimxrt/general.rst:28 ../../mimxrt/quickref.rst:138
-#: ../../mimxrt/quickref.rst:155 ../../mimxrt/quickref.rst:321
-#: ../../mimxrt/quickref.rst:572 ../../mimxrt/quickref.rst:636
-#: ../../mimxrt/quickref.rst:726 ../../mimxrt/quickref.rst:727
+#: ../../mimxrt/general.rst:28 ../../mimxrt/pinout.rst:20
+#: ../../mimxrt/pinout.rst:39 ../../mimxrt/pinout.rst:100
+#: ../../mimxrt/pinout.rst:311 ../../mimxrt/pinout.rst:342
+#: ../../mimxrt/pinout.rst:369 ../../mimxrt/pinout.rst:370
 msgid "Teensy 4.0"
 msgstr ""
 
-#: ../../mimxrt/general.rst:29 ../../mimxrt/quickref.rst:139
-#: ../../mimxrt/quickref.rst:156 ../../mimxrt/quickref.rst:321
-#: ../../mimxrt/quickref.rst:573 ../../mimxrt/quickref.rst:637
-#: ../../mimxrt/quickref.rst:728 ../../mimxrt/quickref.rst:729
+#: ../../mimxrt/general.rst:29 ../../mimxrt/pinout.rst:21
+#: ../../mimxrt/pinout.rst:40 ../../mimxrt/pinout.rst:100
+#: ../../mimxrt/pinout.rst:312 ../../mimxrt/pinout.rst:343
+#: ../../mimxrt/pinout.rst:371 ../../mimxrt/pinout.rst:372
 msgid "Teensy 4.1"
 msgstr ""
 
@@ -160,14 +160,18 @@ msgid "256 kB SRAM"
 msgstr ""
 
 #: ../../mimxrt/general.rst:47
-msgid "i.MX RT1010"
+msgid "i.MX RT1015"
 msgstr ""
 
-#: ../../mimxrt/general.rst:47
+#: ../../mimxrt/general.rst:47 ../../mimxrt/general.rst:49
 msgid "128 kB SRAM"
 msgstr ""
 
-#: ../../mimxrt/general.rst:50
+#: ../../mimxrt/general.rst:47
+msgid "i.MX RT1010"
+msgstr ""
+
+#: ../../mimxrt/general.rst:52
 msgid ""
 "Note: Most of the controllers do not have internal flash memory. "
 "Therefore their flash capacity is dependent on an external flash chip."
@@ -175,7 +179,7 @@ msgstr ""
 "注記: ほとんどのコントローラーには、内部フラッシュメモリーがありません。"
 "したがって、それらのフラッシュ容量は外部フラッシュチップに依存します。"
 
-#: ../../mimxrt/general.rst:53
+#: ../../mimxrt/general.rst:55
 msgid ""
 "To make a generic MIMXRT port and support as many boards as possible the "
 "following design and implementation decision were made:"
@@ -183,7 +187,7 @@ msgstr ""
 "汎用の MIMXRT ポートを作成し、できるだけ多くのボードをサポートするために、"
 "次の設計と実装の決定が行われました。"
 
-#: ../../mimxrt/general.rst:56
+#: ../../mimxrt/general.rst:58
 msgid ""
 "GPIO pin numbering is based on the board numbering as well as on the MCU "
 "numbering.  Please have the manual/pin diagram of your board at hand to "
@@ -193,7 +197,7 @@ msgstr ""
 "ボードのピンと実際の i.MXRT ピンの対応を確認するには、ボードの"
 "マニュアル/ピン図を手元に用意してください。"
 
-#: ../../mimxrt/general.rst:59
+#: ../../mimxrt/general.rst:61
 msgid ""
 "All MCU pins are supported by MicroPython but not all are usable on any "
 "given board."
@@ -201,11 +205,11 @@ msgstr ""
 "すべての MCU ピンは MicroPython でサポートされていますが、すべてが特定のボードで"
 "使えるわけではありません。"
 
-#: ../../mimxrt/general.rst:62
+#: ../../mimxrt/general.rst:64
 msgid "Technical specifications and SoC datasheets"
 msgstr "技術仕様と SoC データシート"
 
-#: ../../mimxrt/general.rst:64
+#: ../../mimxrt/general.rst:66
 msgid ""
 "The data sheets and other reference material for i.MXRT chip are "
 "available from the vendor site: https://www.nxp.com/products/processors-"
@@ -220,76 +224,76 @@ msgstr ""
 "SERIES "
 "これらはチップの技術仕様、機能、動作モード、内部機能などの主要なリファレンスです。"
 
-#: ../../mimxrt/general.rst:69
+#: ../../mimxrt/general.rst:71
 msgid "For your convenience, a few technical specifications are provided below:"
 msgstr "便宜上、いくつかの技術仕様を以下に示します。"
 
-#: ../../mimxrt/general.rst:71
+#: ../../mimxrt/general.rst:73
 msgid "Architecture: ARM Cortex M7"
 msgstr "アーキテクチャ: ARM Cortex M7"
 
-#: ../../mimxrt/general.rst:72
+#: ../../mimxrt/general.rst:74
 msgid "CPU frequency: up to 600MHz"
 msgstr "CPU 周波数: 最大 600MHz"
 
-#: ../../mimxrt/general.rst:73
+#: ../../mimxrt/general.rst:75
 msgid "Total RAM available: up to 1 MByte (see table)"
 msgstr "総 RAM 容量: 最大 1 MByte (表を参照)"
 
-#: ../../mimxrt/general.rst:74
+#: ../../mimxrt/general.rst:76
 msgid "BootROM: 96KB"
 msgstr "BootROM: 96KB"
 
-#: ../../mimxrt/general.rst:75
+#: ../../mimxrt/general.rst:77
 msgid ""
-"External FlashROM: code and data, via SPI Flash; usual size 2 - 8 MB Some"
-" boards provide additional external RAM and SPI flash."
+"External FlashROM: code and data, via SPI Flash; usual size 2 - 16 MB "
+"Some boards provide additional external RAM and SPI flash."
 msgstr ""
 "外部フラッシュ ROM: SPI フラッシュ経由のコードとデータ。"
-"通常のサイズ 2 - 8 MB。ボードにより、追加の外部 RAM と SPI フラッシュを提供します。"
+"通常のサイズ 2 - 16 MB。ボードにより、追加の外部 RAM と SPI フラッシュを提供します。"
 
-#: ../../mimxrt/general.rst:77
+#: ../../mimxrt/general.rst:79
 msgid ""
 "GPIO: up to 124 (GPIOs are multiplexed with other functions, including "
 "external FlashROM, UART, etc.)"
 msgstr ""
 "GPIO: 最大 124 (GPIO は外部フラッシュ ROM、UART などを含む他の機能と多重化されます)"
 
-#: ../../mimxrt/general.rst:79
+#: ../../mimxrt/general.rst:81
 msgid ""
 "UART: 4 or 8 RX/TX UART. Hardware handshaking is supported by the MCU, "
 "but the boards used for testing do not expose the signals."
 msgstr ""
 "UART: ４つまたは８つの RX /TX UART。ハードウェアハンドシェイクは MCU でサポート"
-"されていますが、テストで使うボードは信号を公開しません。"
+"されていますが、テストで使うボードは信号線を公開しません。"
 
-#: ../../mimxrt/general.rst:81
+#: ../../mimxrt/general.rst:83
 msgid ""
 "SPI: 2 or 4 low power SPI interfaces (software implementation available "
 "on every pin)"
 msgstr ""
 "SPI: ２つまたは４つの低電力 SPI インタフェース(すべてのピンで利用可能なソフトウェア実装)"
 
-#: ../../mimxrt/general.rst:82
+#: ../../mimxrt/general.rst:84
 msgid ""
 "I2C: 2 or 4 low power I2C interfaces (software implementation available "
 "on every pin)"
 msgstr ""
 "I2C: ２つまたは４つの低電力 I2C インタフェース(すべてのピンで利用可能なソフトウェア実装)"
 
-#: ../../mimxrt/general.rst:83
-msgid "I2S: 3 I2S interfaces"
-msgstr "I2S: ３つの I2S インターフェース"
+#: ../../mimxrt/general.rst:85
+msgid "I2S: 1 to 3 I2S interfaces"
+msgstr "I2S: １つから３つまでの I2S インターフェース"
 
-#: ../../mimxrt/general.rst:84
+#: ../../mimxrt/general.rst:86
 msgid "ADC: one or two 12-bit SAR ADC converters"
 msgstr "ADC: １つまたは２つの12ビット SAR ADC コンバーター"
 
-#: ../../mimxrt/general.rst:85
-msgid "Ethernet controller"
-msgstr "イーサネットコントローラ"
+#: ../../mimxrt/general.rst:87
+msgid "Ethernet controller (except i.MX RT1010/-1015)"
+msgstr "イーサネットコントローラ(i.MX RT1010/-1015 を除く)"
 
-#: ../../mimxrt/general.rst:86
+#: ../../mimxrt/general.rst:88
 msgid ""
 "Programming: using BootROM bootloader from USB - due to external FlashROM"
 " and always-available BootROM bootloader, the MIMXRT is not brickable"
@@ -298,18 +302,1605 @@ msgstr ""
 "外部フラッシュ ROM と常に利用可能なBootROMブートローダーのため、"
 "MIMXRT は文鎮化することがありません"
 
-#: ../../mimxrt/general.rst:89
+#: ../../mimxrt/general.rst:91
 msgid "The lower numbers for UART, SPI and I2C apply to the i.MXRT 101x MCU."
 msgstr ""
 "少ない数の UART、SPI、I2C は i.MXRT 101x MCU に適用されます。"
 
-#: ../../mimxrt/general.rst:91
+#: ../../mimxrt/general.rst:93
 msgid ""
 "For more information see the i.MXRT data sheets or reference manuals. NXP"
 " provides software support through it's SDK packages."
 msgstr ""
 "詳細については、i.MXRT データシートまたはリファレンスマニュアルを参照してください。"
 "NXP は SDK パッケージを通じてソフトウェアサポートを提供します。"
+
+#: ../../mimxrt/pinout.rst:4
+msgid "Pinout for the i.MXRT machine modules"
+msgstr "i.MXRT machine モジュールの入出力ピン"
+
+#: ../../mimxrt/pinout.rst:11
+msgid "UART pin assignment"
+msgstr "UART のピン割当て"
+
+#: ../../mimxrt/pinout.rst:13
+msgid ""
+"The pin assignment of UARTs to pins is fixed. The UARTs are numbered "
+"0..8.  The rx/tx pins are assigned according to the tables below:"
+msgstr ""
+"UART のピンへの割り当ては固定されています。UART には 1..8 の番号が付けられています。"
+"rx/tx ピンは次の表にしたがって割り当てられます。"
+
+#: ../../mimxrt/pinout.rst:18 ../../mimxrt/pinout.rst:37
+#: ../../mimxrt/pinout.rst:309 ../../mimxrt/pinout.rst:340
+msgid "Board / Pin"
+msgstr "ボード / ピン"
+
+#: ../../mimxrt/pinout.rst:18
+msgid "UART0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:18
+msgid "UART1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:18
+msgid "UART2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:18
+msgid "UART3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:20 ../../mimxrt/pinout.rst:21
+msgid "0/1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:20 ../../mimxrt/pinout.rst:21
+msgid "7/8"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:20 ../../mimxrt/pinout.rst:21
+msgid "14/15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:22 ../../mimxrt/pinout.rst:23
+#: ../../mimxrt/pinout.rst:24 ../../mimxrt/pinout.rst:25
+#: ../../mimxrt/pinout.rst:26 ../../mimxrt/pinout.rst:27
+#: ../../mimxrt/pinout.rst:28 ../../mimxrt/pinout.rst:29
+msgid "Debug USB"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:22 ../../mimxrt/pinout.rst:23
+#: ../../mimxrt/pinout.rst:24 ../../mimxrt/pinout.rst:25
+#: ../../mimxrt/pinout.rst:26 ../../mimxrt/pinout.rst:27
+#: ../../mimxrt/pinout.rst:28 ../../mimxrt/pinout.rst:29
+#: ../../mimxrt/pinout.rst:344 ../../mimxrt/pinout.rst:346
+msgid "D0/D1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:22 ../../mimxrt/pinout.rst:25
+#: ../../mimxrt/pinout.rst:26 ../../mimxrt/pinout.rst:27
+#: ../../mimxrt/pinout.rst:28
+msgid "D7/D6"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:23 ../../mimxrt/pinout.rst:42
+msgid "MIMXRT1015-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:23
+msgid "D7/A1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:24
+msgid "D9/D6"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:24 ../../mimxrt/pinout.rst:29
+msgid "D10/D13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:25 ../../mimxrt/pinout.rst:26
+#: ../../mimxrt/pinout.rst:27 ../../mimxrt/pinout.rst:28
+msgid "D8/D9"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:26 ../../mimxrt/pinout.rst:45
+msgid "MIMXRT1050-EVKB"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:29 ../../mimxrt/pinout.rst:48
+msgid "MIMXRT1170-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:29
+msgid "D12/D11"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:30 ../../mimxrt/pinout.rst:49
+#: ../../mimxrt/pinout.rst:321 ../../mimxrt/pinout.rst:352
+#: ../../mimxrt/pinout.rst:374 ../../mimxrt/pinout.rst:375
+msgid "Olimex RT1010Py"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:30
+msgid "RxD/TxD"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:30
+msgid "D5/D6"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:31 ../../mimxrt/pinout.rst:50
+#: ../../mimxrt/pinout.rst:147 ../../mimxrt/pinout.rst:322
+#: ../../mimxrt/pinout.rst:353
+msgid "Seeed ARCH MIX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:31
+msgid "J3_19/J3_20"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:31
+msgid "J4_16/J4_17"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:31 ../../mimxrt/pinout.rst:353
+msgid "J4_06/J4_07"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:37
+msgid "UART4"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:37
+msgid "UART5"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:37
+msgid "UART6"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:37
+msgid "UART7"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:37
+msgid "UART8"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:39 ../../mimxrt/pinout.rst:40
+msgid "16/17"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:39 ../../mimxrt/pinout.rst:40
+msgid "21/20"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:39 ../../mimxrt/pinout.rst:40
+#: ../../mimxrt/pinout.rst:342 ../../mimxrt/pinout.rst:343
+msgid "25/24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:39 ../../mimxrt/pinout.rst:40
+msgid "28/29"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:40
+msgid "34/35"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:43 ../../mimxrt/pinout.rst:48
+msgid "D15/D14"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:43 ../../mimxrt/pinout.rst:44
+#: ../../mimxrt/pinout.rst:45 ../../mimxrt/pinout.rst:46
+#: ../../mimxrt/pinout.rst:47
+msgid "A1/A0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:48
+msgid "D25/D26"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:48
+msgid "D33/D34"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:48
+msgid "D35/D36"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:50
+msgid "J4_10/J4_11"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:50
+msgid "J5_08/J5_12"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:59
+msgid "PWM pin assignment"
+msgstr "PWM のピン割当て"
+
+#: ../../mimxrt/pinout.rst:61
+msgid ""
+"Pins are specified in the same way as for the Pin class.  The following "
+"tables show the assignment of the board Pins to PWM modules:"
+msgstr ""
+"ピンは Pin クラスと同様に指定します。下表にPWM モジュールへのボードのピン割当てを示します:"
+
+#: ../../mimxrt/pinout.rst:65
+msgid "Pin/ MIMXRT"
+msgstr "ピン/ MIMXRT"
+
+#: ../../mimxrt/pinout.rst:65
+msgid "1010"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:65
+msgid "1015"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:65
+msgid "1020"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:65
+msgid "1050/1060/1064"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:65
+msgid "1170"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:67 ../../mimxrt/pinout.rst:190
+msgid "D0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:67 ../../mimxrt/pinout.rst:114
+#: ../../mimxrt/pinout.rst:162
+msgid "Q1/1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:67 ../../mimxrt/pinout.rst:75
+#: ../../mimxrt/pinout.rst:91 ../../mimxrt/pinout.rst:129
+#: ../../mimxrt/pinout.rst:139 ../../mimxrt/pinout.rst:193
+#: ../../mimxrt/pinout.rst:202
+msgid "F1/1/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:68 ../../mimxrt/pinout.rst:191
+#: ../../mimxrt/pinout.rst:374
+msgid "D1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:68 ../../mimxrt/pinout.rst:112
+#: ../../mimxrt/pinout.rst:161
+msgid "Q1/0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:68 ../../mimxrt/pinout.rst:92
+#: ../../mimxrt/pinout.rst:130 ../../mimxrt/pinout.rst:140
+#: ../../mimxrt/pinout.rst:194 ../../mimxrt/pinout.rst:203
+msgid "F1/1/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:69 ../../mimxrt/pinout.rst:192
+#: ../../mimxrt/pinout.rst:374
+msgid "D2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:69 ../../mimxrt/pinout.rst:77
+#: ../../mimxrt/pinout.rst:84 ../../mimxrt/pinout.rst:86
+#: ../../mimxrt/pinout.rst:109 ../../mimxrt/pinout.rst:174
+#: ../../mimxrt/pinout.rst:182 ../../mimxrt/pinout.rst:197
+#: ../../mimxrt/pinout.rst:208
+msgid "F1/3/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:69 ../../mimxrt/pinout.rst:70
+#: ../../mimxrt/pinout.rst:72 ../../mimxrt/pinout.rst:80
+#: ../../mimxrt/pinout.rst:85 ../../mimxrt/pinout.rst:110
+#: ../../mimxrt/pinout.rst:173 ../../mimxrt/pinout.rst:181
+#: ../../mimxrt/pinout.rst:198 ../../mimxrt/pinout.rst:209
+msgid "F1/3/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:70 ../../mimxrt/pinout.rst:193
+#: ../../mimxrt/pinout.rst:374
+msgid "D3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:70 ../../mimxrt/pinout.rst:73
+#: ../../mimxrt/pinout.rst:74 ../../mimxrt/pinout.rst:75
+#: ../../mimxrt/pinout.rst:82 ../../mimxrt/pinout.rst:94
+#: ../../mimxrt/pinout.rst:132 ../../mimxrt/pinout.rst:192
+#: ../../mimxrt/pinout.rst:201
+msgid "F1/0/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:70 ../../mimxrt/pinout.rst:81
+#: ../../mimxrt/pinout.rst:128 ../../mimxrt/pinout.rst:176
+msgid "F2/3/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:70 ../../mimxrt/pinout.rst:120
+#: ../../mimxrt/pinout.rst:157
+msgid "F4/0/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:70 ../../mimxrt/pinout.rst:76
+#: ../../mimxrt/pinout.rst:78 ../../mimxrt/pinout.rst:83
+#: ../../mimxrt/pinout.rst:86 ../../mimxrt/pinout.rst:90
+#: ../../mimxrt/pinout.rst:133 ../../mimxrt/pinout.rst:136
+#: ../../mimxrt/pinout.rst:196 ../../mimxrt/pinout.rst:207
+msgid "F1/2/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:71 ../../mimxrt/pinout.rst:194
+#: ../../mimxrt/pinout.rst:374
+msgid "D4"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:71
+msgid "F1/3/A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:71 ../../mimxrt/pinout.rst:113
+#: ../../mimxrt/pinout.rst:163
+msgid "Q1/2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:71 ../../mimxrt/pinout.rst:165
+msgid "Q2/1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:71 ../../mimxrt/pinout.rst:72
+#: ../../mimxrt/pinout.rst:82 ../../mimxrt/pinout.rst:127
+#: ../../mimxrt/pinout.rst:175 ../../mimxrt/pinout.rst:180
+msgid "F2/3/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:71
+msgid "Q4/2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:72 ../../mimxrt/pinout.rst:195
+msgid "D5"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:72 ../../mimxrt/pinout.rst:77
+msgid "F1/0/B (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:72 ../../mimxrt/pinout.rst:75
+#: ../../mimxrt/pinout.rst:76 ../../mimxrt/pinout.rst:81
+#: ../../mimxrt/pinout.rst:93 ../../mimxrt/pinout.rst:131
+#: ../../mimxrt/pinout.rst:135 ../../mimxrt/pinout.rst:191
+#: ../../mimxrt/pinout.rst:200
+msgid "F1/0/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:72 ../../mimxrt/pinout.rst:73
+#: ../../mimxrt/pinout.rst:79 ../../mimxrt/pinout.rst:84
+#: ../../mimxrt/pinout.rst:89 ../../mimxrt/pinout.rst:134
+#: ../../mimxrt/pinout.rst:137 ../../mimxrt/pinout.rst:195
+#: ../../mimxrt/pinout.rst:206
+msgid "F1/2/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:73 ../../mimxrt/pinout.rst:196
+#: ../../mimxrt/pinout.rst:374
+msgid "D6"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:73 ../../mimxrt/pinout.rst:106
+#: ../../mimxrt/pinout.rst:167
+msgid "F2/0/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:73 ../../mimxrt/pinout.rst:116
+#: ../../mimxrt/pinout.rst:159
+msgid "Q3/2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:74 ../../mimxrt/pinout.rst:197
+#: ../../mimxrt/pinout.rst:374
+msgid "D7"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:74 ../../mimxrt/pinout.rst:117
+#: ../../mimxrt/pinout.rst:152 ../../mimxrt/pinout.rst:160
+msgid "Q3/3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:75 ../../mimxrt/pinout.rst:198
+#: ../../mimxrt/pinout.rst:374
+msgid "D8"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:75 ../../mimxrt/pinout.rst:102
+#: ../../mimxrt/pinout.rst:212
+msgid "F1/1/X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:75 ../../mimxrt/pinout.rst:149
+msgid "Q4/3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:76 ../../mimxrt/pinout.rst:199
+#: ../../mimxrt/pinout.rst:375
+msgid "D9"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:76 ../../mimxrt/pinout.rst:79
+msgid "F1/1/B (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:76 ../../mimxrt/pinout.rst:126
+#: ../../mimxrt/pinout.rst:168
+msgid "F2/0/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:76 ../../mimxrt/pinout.rst:103
+#: ../../mimxrt/pinout.rst:179 ../../mimxrt/pinout.rst:213
+msgid "F1/0/X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:77 ../../mimxrt/pinout.rst:200
+#: ../../mimxrt/pinout.rst:375
+msgid "D10"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:77 ../../mimxrt/pinout.rst:111
+#: ../../mimxrt/pinout.rst:172
+msgid "F2/2/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:78 ../../mimxrt/pinout.rst:201
+#: ../../mimxrt/pinout.rst:375
+msgid "D11"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:78 ../../mimxrt/pinout.rst:107
+#: ../../mimxrt/pinout.rst:169
+msgid "F2/1/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:78
+msgid "F1/1/A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:79 ../../mimxrt/pinout.rst:202
+msgid "D12"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:79 ../../mimxrt/pinout.rst:170
+msgid "F2/1/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:80 ../../mimxrt/pinout.rst:203
+msgid "D13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:80 ../../mimxrt/pinout.rst:108
+#: ../../mimxrt/pinout.rst:171
+msgid "F2/2/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:80
+msgid "F1/0/A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:81 ../../mimxrt/pinout.rst:204
+msgid "D14"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:82
+msgid "D15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:83 ../../mimxrt/pinout.rst:205
+msgid "A0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:84 ../../mimxrt/pinout.rst:206
+msgid "A1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:84 ../../mimxrt/pinout.rst:123
+#: ../../mimxrt/pinout.rst:155 ../../mimxrt/pinout.rst:210
+msgid "F1/3/X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:85 ../../mimxrt/pinout.rst:207
+msgid "A2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:85 ../../mimxrt/pinout.rst:122
+#: ../../mimxrt/pinout.rst:156 ../../mimxrt/pinout.rst:211
+msgid "F1/2/X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:86 ../../mimxrt/pinout.rst:208
+msgid "A3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:87 ../../mimxrt/pinout.rst:209
+msgid "A4"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:87 ../../mimxrt/pinout.rst:118
+#: ../../mimxrt/pinout.rst:154 ../../mimxrt/pinout.rst:178
+msgid "Q3/1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:88
+msgid "A5"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:88 ../../mimxrt/pinout.rst:119
+#: ../../mimxrt/pinout.rst:153 ../../mimxrt/pinout.rst:177
+msgid "Q3/0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:89
+msgid "D31"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:90
+msgid "D32"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:91
+msgid "D33"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:92
+msgid "D34"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:93
+msgid "D35"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:94
+msgid "D36"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:97 ../../mimxrt/pinout.rst:325
+msgid "Pins denoted with (*) are by default not wired at the board."
+msgstr "(*) で示されたピンはデフォルトで基板に配線されていません。"
+
+#: ../../mimxrt/pinout.rst:100 ../../mimxrt/pinout.rst:147
+#: ../../mimxrt/pinout.rst:188 ../../mimxrt/pinout.rst:231
+#: ../../mimxrt/pinout.rst:243 ../../mimxrt/pinout.rst:259
+#: ../../mimxrt/pinout.rst:280
+msgid "Pin"
+msgstr "ピン"
+
+#: ../../mimxrt/pinout.rst:102
+msgid "0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:103 ../../mimxrt/pinout.rst:369
+#: ../../mimxrt/pinout.rst:371 ../../mimxrt/pinout.rst:373
+#: ../../mimxrt/pinout.rst:374 ../../mimxrt/pinout.rst:376
+msgid "1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:104 ../../mimxrt/pinout.rst:370
+#: ../../mimxrt/pinout.rst:372
+msgid "2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:104
+msgid "F4/2/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:105 ../../mimxrt/pinout.rst:370
+#: ../../mimxrt/pinout.rst:372 ../../mimxrt/pinout.rst:375
+msgid "3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:105
+msgid "F4/2/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:106 ../../mimxrt/pinout.rst:370
+#: ../../mimxrt/pinout.rst:372
+msgid "4"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:107 ../../mimxrt/pinout.rst:370
+#: ../../mimxrt/pinout.rst:372
+msgid "5"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:108
+msgid "6"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:109 ../../mimxrt/pinout.rst:369
+#: ../../mimxrt/pinout.rst:371
+msgid "7"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:110 ../../mimxrt/pinout.rst:369
+#: ../../mimxrt/pinout.rst:371
+msgid "8"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:111
+msgid "9"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:112
+msgid "10"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:113
+msgid "11"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:114
+msgid "12"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:115
+msgid "13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:115 ../../mimxrt/pinout.rst:164
+msgid "Q2/0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:116
+msgid "14"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:117
+msgid "15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:118
+msgid "18"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:119
+msgid "19"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:120
+msgid "22"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:121 ../../mimxrt/pinout.rst:369
+#: ../../mimxrt/pinout.rst:371
+msgid "23"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:121 ../../mimxrt/pinout.rst:158
+msgid "F4/1/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:122
+msgid "24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:123
+msgid "25"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:124
+msgid "28"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:124
+msgid "F3/1/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:125
+msgid "29"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:125
+msgid "F3/1/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:126 ../../mimxrt/pinout.rst:370
+#: ../../mimxrt/pinout.rst:372
+msgid "33"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:127
+msgid "36"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:128
+msgid "37"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:129
+msgid "DAT1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:129
+msgid "42"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:130
+msgid "DAT0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:130
+msgid "43"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:131
+msgid "CLK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:131
+msgid "44"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:132
+msgid "CMD"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:132
+msgid "45"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:133
+msgid "DAT2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:133
+msgid "46"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:134
+msgid "DAT3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:134
+msgid "47"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:135
+msgid "48"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:136
+msgid "49"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:137
+msgid "50"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:138
+msgid "51"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:138
+msgid "F3/3/B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:139
+msgid "52"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:140
+msgid "53"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:141
+msgid "54"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:141
+msgid "F3/0/A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:149
+msgid "J3_04"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:150
+msgid "J3_10"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:150
+msgid "Q1/3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:151
+msgid "J3_12"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:151 ../../mimxrt/pinout.rst:166
+msgid "Q2/3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:152
+msgid "J3_13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:153
+msgid "J3_16"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:154
+msgid "J3_17"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:155
+msgid "J3_19"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:156
+msgid "J3_20"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:157
+msgid "J4_08"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:158 ../../mimxrt/pinout.rst:373
+msgid "J4_09"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:159
+msgid "J4_16"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:160
+msgid "J4_17"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:161
+msgid "J5_32"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:162
+msgid "J5_28"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:163
+msgid "J5_29"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:164
+msgid "J5_30"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:165
+msgid "J5_04"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:166
+msgid "J5_05"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:167
+msgid "J5_06"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:168
+msgid "J5_07"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:169
+msgid "J5_08"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:170
+msgid "J5_12"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:171
+msgid "J5_13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:172
+msgid "J5_14"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:173
+msgid "J5_23"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:174
+msgid "J5_24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:175
+msgid "J5_25"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:176
+msgid "J5_26"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:177
+msgid "J5_42"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:178
+msgid "J5_43"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:179
+msgid "J5_50"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:180
+msgid "LED_RED"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:181
+msgid "LED_GREEN"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:182
+msgid "LED_BLUE"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:188
+msgid "Olimex RT1010PY"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:210
+msgid "SDI"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:211
+msgid "SDO"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:212
+msgid "CS0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:213
+msgid "SCK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:216
+msgid "Legend:"
+msgstr "凡例:"
+
+#: ../../mimxrt/pinout.rst:218
+msgid "Qm/n:    QTMR module m, channel n"
+msgstr "Qm/n:    QTMR モジュール m、チャンネル n"
+
+#: ../../mimxrt/pinout.rst:219
+msgid ""
+"Fm/n/l:  FLEXPWM module m, submodule n, channel l. The pulse at a X "
+"channel is always aligned to the period start."
+msgstr ""
+"Fm/n/l:  FLEXPWM モジュール m、サブモジュール n、チャンネル l。"
+"X チャンネルのパルスは常にピリオドスタートに揃えます。"
+
+#: ../../mimxrt/pinout.rst:222
+msgid ""
+"Pins without a PWM signal are not listed.  A signal may be available at "
+"more than one Pin.  FlexPWM pins may also be pure CPU pin, not assigned "
+"to a board signal.  In that case the PWM output is disabled.  The PWM "
+"channel of a submodule 0 may still be used as synchronization source for "
+"other channels of the same module, unless used by another peripheral."
+msgstr ""
+"PWM 信号のないピンはリストされていません。１つの信号が複数の Pin で利用可能な場合が"
+"あります。FlexPWM ピンは、ボード信号に割り当てられていない、純粋な CPU ピンである"
+"場合もあります。その場合、PWM 出力は無効となります。サブモジュール0の PWM チャンネルは、"
+"他のペリフェラルで使用されない限り、同じモジュールの他のチャンネルの同期ソースとして"
+"使えます。"
+
+#: ../../mimxrt/pinout.rst:228
+msgid "Submodule 0 pins for i.MX RT1011:"
+msgstr "i.MX RT1011 のサブモジュール 0 ピン:"
+
+#: ../../mimxrt/pinout.rst:231
+msgid "Channel"
+msgstr "チャンネル"
+
+#: ../../mimxrt/pinout.rst:233
+msgid "Pin.cpu.GPIO_01"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:233 ../../mimxrt/pinout.rst:236
+msgid "B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:234
+msgid "Pin.cpu.GPIO_02"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:234 ../../mimxrt/pinout.rst:237
+msgid "A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:235
+msgid "Pin.cpu.GPIO_AD_12"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:235
+msgid "X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:236
+msgid "Pin.cpu.GPIO_SD_01"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:237
+msgid "Pin.cpu.GPIO_SD_02"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:240
+msgid "Submodule 0 pins for i.MX RT1021:"
+msgstr "i.MX RT1021 のサブモジュール 0 ピン"
+
+#: ../../mimxrt/pinout.rst:243 ../../mimxrt/pinout.rst:259
+#: ../../mimxrt/pinout.rst:280
+msgid "Module & Channel"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:245
+msgid "Pin.cpu.GPIO_AD_B1_06"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:245 ../../mimxrt/pinout.rst:247
+#: ../../mimxrt/pinout.rst:262 ../../mimxrt/pinout.rst:264
+#: ../../mimxrt/pinout.rst:290
+msgid "FLEXPWM1 Channel A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:246
+msgid "Pin.cpu.GPIO_AD_B1_07"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:246 ../../mimxrt/pinout.rst:248
+#: ../../mimxrt/pinout.rst:263 ../../mimxrt/pinout.rst:265
+#: ../../mimxrt/pinout.rst:291
+msgid "FLEXPWM1 Channel B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:247
+msgid "Pin.cpu.GPIO_EMC_26"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:248
+msgid "Pin.cpu.GPIO_EMC_27"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:249
+msgid "Pin.cpu.GPIO_AD_B0_14"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:249 ../../mimxrt/pinout.rst:252
+#: ../../mimxrt/pinout.rst:266 ../../mimxrt/pinout.rst:268
+#: ../../mimxrt/pinout.rst:292
+msgid "FLEXPWM2 Channel A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:250
+msgid "Pin.cpu.GPIO_AD_B0_15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:250 ../../mimxrt/pinout.rst:253
+#: ../../mimxrt/pinout.rst:267 ../../mimxrt/pinout.rst:269
+#: ../../mimxrt/pinout.rst:293
+msgid "FLEXPWM2 Channel B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:251
+msgid "Pin.cpu.GPIO_EMC_10"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:251
+msgid "FLEXPWM2 Channel X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:252
+msgid "Pin.cpu.GPIO_EMC_38"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:253
+msgid "Pin.cpu.GPIO_EMC_39"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:256
+msgid "Submodule 0 pins for i.MX RT1052, i.MX RT1062 and i.MX RT1064:"
+msgstr "i.MX RT1052, i.MX RT1062, i.MX RT1064 のサブモジュール 0 ピン:"
+
+#: ../../mimxrt/pinout.rst:261
+msgid "Pin.cpu.GPIO_AD_B0_02"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:261
+msgid "FLEXPWM1 Channel X"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:262
+msgid "Pin.cpu.GPIO_EMC_23"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:263
+msgid "Pin.cpu.GPIO_EMC_24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:264
+msgid "Pin.cpu.GPIO_SD_B0_00"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:265
+msgid "Pin.cpu.GPIO_SD_B0_01"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:266
+msgid "Pin.cpu.GPIO_B0_06"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:267
+msgid "Pin.cpu.GPIO_B0_07"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:268
+msgid "Pin.cpu.GPIO_EMC_06"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:269
+msgid "Pin.cpu.GPIO_EMC_07"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:270
+msgid "Pin.cpu.GPIO_EMC_29"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:270
+msgid "FLEXPWM3 Channel A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:271
+msgid "Pin.cpu.GPIO_EMC_30"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:271
+msgid "FLEXPWM3 Channel B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:272
+msgid "Pin.cpu.GPIO_AD_B1_08"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:272 ../../mimxrt/pinout.rst:273
+msgid "FLEXPWM4 Channel A"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:273
+msgid "Pin.cpu.GPIO_EMC_00"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:274
+msgid "Pin.cpu.GPIO_EMC_01"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:274
+msgid "FLEXPWM4 Channel B"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:277
+msgid "Submodule 0 pins for i.MX RT1176"
+msgstr "i.MX RT1176 のサブモジュール 0 ピン"
+
+#: ../../mimxrt/pinout.rst:282
+msgid "Pin.cpu.GPIO_EMC_B1_00"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:282
+msgid "FLEXPWM4 Channel A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:283
+msgid "Pin.cpu.GPIO_EMC_B1_01"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:283
+msgid "FLEXPWM4 Channel B (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:284
+msgid "Pin.cpu.GPIO_EMC_B1_06"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:284
+msgid "FLEXPWM2 Channel A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:285
+msgid "Pin.cpu.GPIO_EMC_B1_07"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:285
+msgid "FLEXPWM2 Channel B (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:286
+msgid "Pin.cpu.GPIO_EMC_B1_23"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:286
+msgid "FLEXPWM1 Channel A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:287
+msgid "Pin.cpu.GPIO_EMC_B1_24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:287
+msgid "FLEXPWM1 Channel B (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:288
+msgid "Pin.cpu.GPIO_EMC_B1_29"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:288
+msgid "FLEXPWM3 Channel A (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:289
+msgid "Pin.cpu.GPIO_EMC_B1_30"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:289
+msgid "FLEXPWM3 Channel B (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:290
+msgid "Pin.cpu.GPIO_AD_00"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:291
+msgid "Pin.cpu.GPIO_AD_01"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:292
+msgid "Pin.cpu.GPIO_AD_24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:293
+msgid "Pin.cpu.GPIO_AD_25"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:302
+msgid "Hardware SPI pin assignment"
+msgstr "ハードウェア SPI のピン割当て"
+
+#: ../../mimxrt/pinout.rst:304
+msgid ""
+"The SPI signals have fixed assignments to GPIO pins. It depends on the "
+"board design, which SPI's signals are exposed to the user, as detailed in"
+" the table below.  The signal order in the table is: CS0, CS1, MOSI, "
+"MISO, CLK."
+msgstr ""
+"SPI 信号線は GPIO ピンへの割り当てが固定されています。どの SPI 信号線がユーザーに"
+"公開されるかはボード設計に依存し、下表のように詳細が決められています。"
+"表中の信号線の表記は CS0, CS1, MOSI, MISO, CLK の順となっています。"
+
+#: ../../mimxrt/pinout.rst:309
+msgid "SPI0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:309
+msgid "SPI1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:309
+msgid "SPI2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:311
+msgid "10/-/11/12/13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:311 ../../mimxrt/pinout.rst:312
+msgid "0/-/26/1/27"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:312
+msgid "10/37/11/12/13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:312
+msgid "-/29/50/54/49"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:313 ../../mimxrt/pinout.rst:344
+msgid "MIXMXRT1010-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:313
+msgid "D10/D7/D11/D12/D13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:314 ../../mimxrt/pinout.rst:345
+msgid "MIXMXRT1015-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:314 ../../mimxrt/pinout.rst:315
+#: ../../mimxrt/pinout.rst:320
+msgid "D10/-/D11/D12/D13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:315 ../../mimxrt/pinout.rst:346
+msgid "MIXMXRT1020-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:315
+msgid "A3/D0/A5/A4/A0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:316 ../../mimxrt/pinout.rst:347
+msgid "MIXMXRT1050-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:316 ../../mimxrt/pinout.rst:317
+#: ../../mimxrt/pinout.rst:318 ../../mimxrt/pinout.rst:319
+msgid "D10/-/D11/D12/D13 (*)"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:317 ../../mimxrt/pinout.rst:348
+msgid "MIXMXRT1050-EVKB"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:318 ../../mimxrt/pinout.rst:349
+msgid "MIXMXRT1060-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:319 ../../mimxrt/pinout.rst:350
+msgid "MIXMXRT1064-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:320 ../../mimxrt/pinout.rst:351
+msgid "MIXMXRT1170-EVK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:320
+msgid "D28/-/D25/D24/D26"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:320
+msgid "-/-/D14/D15/D24"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:321
+msgid "CS0/-/SDO/SDI/SCK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:321
+msgid "SDCARD with CS1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:322
+msgid "J4_12/-/J4_14/J4_13/J4_15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:322
+msgid "J3_09/J3_05/J3_08_J3_11"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:333
+msgid "Hardware I2C pin assignment"
+msgstr "ハードウェア I2C のピン割当て"
+
+#: ../../mimxrt/pinout.rst:335
+msgid ""
+"The I2C signals have fixed assignments to GPIO pins. It depends on the "
+"board design, which I2C's signals are exposed to the user, as detailed in"
+" the table below.  The signal order in the table is: SDA, SCL."
+msgstr ""
+"I2C 信号線は GPIO ピンへの割り当てが固定されています。どの I2C 信号線がユーザーに"
+"公開されるかは、ボード設計に依存し、次の表のように詳細が決められています。"
+"表中の信号線の表記は SDA, SCL の順になっています。"
+
+#: ../../mimxrt/pinout.rst:340
+msgid "I2C 0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:340
+msgid "I2C 1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:340
+msgid "I2C 2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:340
+msgid "I2C 3"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:340
+msgid "I2C 4"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:342 ../../mimxrt/pinout.rst:343
+msgid "18/19"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:342 ../../mimxrt/pinout.rst:343
+msgid "17/16"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:344 ../../mimxrt/pinout.rst:345
+#: ../../mimxrt/pinout.rst:346 ../../mimxrt/pinout.rst:351
+msgid "D14/D15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:346 ../../mimxrt/pinout.rst:347
+#: ../../mimxrt/pinout.rst:348 ../../mimxrt/pinout.rst:349
+#: ../../mimxrt/pinout.rst:350 ../../mimxrt/pinout.rst:351
+msgid "A4/A5"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:347 ../../mimxrt/pinout.rst:348
+#: ../../mimxrt/pinout.rst:349 ../../mimxrt/pinout.rst:350
+#: ../../mimxrt/pinout.rst:351
+msgid "D1/D0"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:351
+msgid "D26/D25"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:351
+msgid "D19/D18"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:352
+msgid "SDA1/SCL1"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:352
+msgid "SDA2/SCL2"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:353
+msgid "J3_17/J3_16"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:353
+msgid "J5_05/J5_04"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:362
+msgid "Hardware I2S pin assignment"
+msgstr "ハードウェア I2S のピン割当て"
+
+#: ../../mimxrt/pinout.rst:364
+msgid "Pin assignments for a few MIMXRT boards:"
+msgstr "いくつかの MIMXRT ボードのピン割当てを示します:"
+
+#: ../../mimxrt/pinout.rst:367
+msgid "Board"
+msgstr "ボード"
+
+#: ../../mimxrt/pinout.rst:367
+msgid "ID"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "MCK"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "SCK_TX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "WS_TX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "SD_TX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "SCK_RX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "WS_RX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:367
+msgid "SD_RX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:369 ../../mimxrt/pinout.rst:371
+msgid "26"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:369 ../../mimxrt/pinout.rst:371
+msgid "27"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:369 ../../mimxrt/pinout.rst:371
+msgid "21"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:369 ../../mimxrt/pinout.rst:371
+msgid "20"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:373
+msgid "Seeed Arch MIX"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:373
+msgid "J4_14"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:373
+msgid "J4_15"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:373
+msgid "J14_13"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:373
+msgid "J4_11"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:373
+msgid "J4_10"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "MIMXRT_DEV"
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"MCK\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"SCK_TX\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"WS_TX\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"SD_TX\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"SCK_RX\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"WS_RX\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:376
+msgid "\"SD_RX\""
+msgstr ""
+
+#: ../../mimxrt/pinout.rst:379
+msgid ""
+"Symbolic pin names are provided for the MIMXRT_10xx_DEV boards. These are"
+" provided for the other boards as well."
+msgstr ""
+"MIMXRT_10xx_DEV ボードには、シンボリックなピン名を付けています。他のボードも同様です。"
 
 #: ../../mimxrt/quickref.rst:4
 msgid "Quick reference for the i.MXRT family"
@@ -333,11 +1924,11 @@ msgstr ""
 "以下は、i.MXRT ベースのボードのためのクイックリファレンスです。"
 "このボードを初めて使う場合は、まず次のマイクロコントローラの概要を確認してみてください。"
 
-#: ../../mimxrt/quickref.rst:23
+#: ../../mimxrt/quickref.rst:24
 msgid "Installing MicroPython"
 msgstr "MicroPython のインストール"
 
-#: ../../mimxrt/quickref.rst:25
+#: ../../mimxrt/quickref.rst:26
 msgid ""
 "See the corresponding section of tutorial: :ref:`mimxrt_intro`. It also "
 "includes a troubleshooting subsection."
@@ -345,11 +1936,11 @@ msgstr ""
 "チュートリアルの章: :ref:`mimxrt_intro` を参照してください。"
 "そこにはトラブルシューティングについても記載されています。"
 
-#: ../../mimxrt/quickref.rst:29
+#: ../../mimxrt/quickref.rst:30
 msgid "General board control"
 msgstr "ボードの一般的な制御"
 
-#: ../../mimxrt/quickref.rst:31
+#: ../../mimxrt/quickref.rst:32
 msgid ""
 "The MicroPython REPL is on the USB port, configured in VCP mode. Tab-"
 "completion is useful to find out what methods an object has. Paste mode "
@@ -359,11 +1950,11 @@ msgstr ""
 "タブ補完は、オブジェクトにどのようなメソッドがあるかを調べるのに便利です。"
 "貼り付けモード(ctrl-E)は、大きめの Pythonコードを REPL に貼り付けるのに便利です。"
 
-#: ../../mimxrt/quickref.rst:36
+#: ../../mimxrt/quickref.rst:37
 msgid "The :mod:`machine` module::"
 msgstr ":mod:`machine` モジュール"
 
-#: ../../mimxrt/quickref.rst:38
+#: ../../mimxrt/quickref.rst:39
 msgid ""
 "import machine\n"
 "\n"
@@ -373,15 +1964,15 @@ msgstr ""
 "\n"
 "machine.freq()          # CPU の現在の周波数を取得"
 
-#: ../../mimxrt/quickref.rst:43
+#: ../../mimxrt/quickref.rst:44
 msgid "Delay and timing"
 msgstr "遅延とタイミング"
 
-#: ../../mimxrt/quickref.rst:45
+#: ../../mimxrt/quickref.rst:46
 msgid "Use the :mod:`time <time>` module::"
 msgstr ":mod:`time <time>` モジュールを使います::"
 
-#: ../../mimxrt/quickref.rst:47
+#: ../../mimxrt/quickref.rst:48
 msgid ""
 "import time\n"
 "\n"
@@ -399,11 +1990,11 @@ msgstr ""
 "start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
 "delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
 
-#: ../../mimxrt/quickref.rst:56
+#: ../../mimxrt/quickref.rst:57
 msgid "Timers"
 msgstr "タイマー"
 
-#: ../../mimxrt/quickref.rst:58
+#: ../../mimxrt/quickref.rst:59
 msgid ""
 "The i.MXRT port has three hardware timers. Use the :ref:`machine.Timer "
 "<machine.Timer>` class with a timer ID from 0 to 2 (inclusive)::"
@@ -412,7 +2003,7 @@ msgstr ""
 ":ref:`machine.Timer <machine.Timer>` クラスに 0 から 2 までのタイマーIDを"
 "指定して使います。"
 
-#: ../../mimxrt/quickref.rst:61
+#: ../../mimxrt/quickref.rst:62
 msgid ""
 "from machine import Timer\n"
 "\n"
@@ -423,23 +2014,23 @@ msgid ""
 "tim1.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(1))"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:69
+#: ../../mimxrt/quickref.rst:70
 msgid "The period is in milliseconds."
 msgstr "period の単位はミリ秒です。"
 
-#: ../../mimxrt/quickref.rst:71
+#: ../../mimxrt/quickref.rst:72
 msgid "Virtual timers are not currently supported on this port."
 msgstr "仮想タイマーは、このポートではサポートしていません。"
 
-#: ../../mimxrt/quickref.rst:76
+#: ../../mimxrt/quickref.rst:77
 msgid "Pins and GPIO"
 msgstr "ピンと GPIO"
 
-#: ../../mimxrt/quickref.rst:78
+#: ../../mimxrt/quickref.rst:79
 msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
 msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
 
-#: ../../mimxrt/quickref.rst:80
+#: ../../mimxrt/quickref.rst:81
 msgid ""
 "from machine import Pin\n"
 "\n"
@@ -471,38 +2062,38 @@ msgstr ""
 "\n"
 "p6 = Pin(pin.cpu.GPIO_B1_15, Pin.OUT) # cpu ピン名を使用"
 
-#: ../../mimxrt/quickref.rst:95
+#: ../../mimxrt/quickref.rst:96
 msgid ""
 "Available Pins follow the ranges and labelling of the respective board, "
 "like:"
 msgstr ""
 "使用可能なピンは、次のように、それぞれのボードの範囲とラベルによります:"
 
-#: ../../mimxrt/quickref.rst:97
+#: ../../mimxrt/quickref.rst:98
 msgid "0-33 for Teensy 4.0,"
 msgstr "Teensy 4.0: 0-33"
 
-#: ../../mimxrt/quickref.rst:98
+#: ../../mimxrt/quickref.rst:99
 msgid "0-21 for the MIMXRT10xx-EVK board, or 'D0-Dxx', or 'A0-Ann',"
 msgstr "MIMXRT10xx-EVK ボード: 0-21, 'D0-Dxx', 'A0-Ann'"
 
-#: ../../mimxrt/quickref.rst:99
+#: ../../mimxrt/quickref.rst:100
 msgid "0-14 for the Olimex RT1010Py board, or 'D0'-'Dxx' and 'A0'-'Ann'"
 msgstr "Olimex RT1010Py ボード: 0-14, 'D0-Dxx', 'A0-Ann'"
 
-#: ../../mimxrt/quickref.rst:100
+#: ../../mimxrt/quickref.rst:101
 msgid "'J3_xx', 'J4_xx', 'J5_xx' for the Seeed ARCH MIX board,"
 msgstr "Seeed ARCH MIX ボード: 'J3_xx', 'J4_xx', 'J5_xx' "
 
-#: ../../mimxrt/quickref.rst:102
+#: ../../mimxrt/quickref.rst:103
 msgid "or the pin names of the Pin.board or Pin.cpu classes."
 msgstr "または、Pin.board または Pin.cpu クラスのピン名。"
 
-#: ../../mimxrt/quickref.rst:104 ../../mimxrt/quickref.rst:596
+#: ../../mimxrt/quickref.rst:105 ../../mimxrt/quickref.rst:312
 msgid "Notes:"
 msgstr "注記:"
 
-#: ../../mimxrt/quickref.rst:106
+#: ../../mimxrt/quickref.rst:107
 msgid ""
 "The MIMXRT1xxx-EVK boards may have other on-board devices connected to "
 "these pins, limiting it's use for input or output."
@@ -510,7 +2101,7 @@ msgstr ""
 "MIMXRT1xxx-EVK ボードでは、これらのピンに他のオンボードデバイスが接続されている"
 "場合があり、入力または出力での使用が制限されます。"
 
-#: ../../mimxrt/quickref.rst:108
+#: ../../mimxrt/quickref.rst:109
 msgid ""
 "At the MIMXRT1010_EVK, pins D4, D5 and D9 of the Arduino connector are by"
 " default not connected to the MCU. For details refer to the schematics."
@@ -518,18 +2109,18 @@ msgstr ""
 "MIMXRT1010_EVK では、Arduinoコネクタのピン D4、D5、D9 はデフォルトで MCU に"
 "接続されていません。詳細については、回路図を参照してください。"
 
-#: ../../mimxrt/quickref.rst:113
+#: ../../mimxrt/quickref.rst:114
 msgid ""
 "At the MIMXRT1170_EVK board, the inner rows of the Arduino connectors are"
 " assigned as follows:"
 msgstr ""
 "MIMXRT1170_EVK ボードでは、Arduino コネクタの内側の列が次のように割り当てられています:"
 
-#: ../../mimxrt/quickref.rst:111
+#: ../../mimxrt/quickref.rst:112
 msgid "D16 - D23: J9, odd pin numbers; D17 is by default not connected."
 msgstr "D16 - D23: J9、奇数のピン番号。D17はデフォルトでは接続されていません。"
 
-#: ../../mimxrt/quickref.rst:112
+#: ../../mimxrt/quickref.rst:113
 msgid ""
 "D24 - D27: J26, odd pin numbers; J63-J66 have to be closed to enable "
 "these pins."
@@ -537,11 +2128,11 @@ msgstr ""
 "D24 - D27: J26、奇数のピン番号。これらのピンを有効にするには、J63-J66を閉じる"
 "必要があります。"
 
-#: ../../mimxrt/quickref.rst:113
+#: ../../mimxrt/quickref.rst:114
 msgid "D29 - D36: J25, odd pin numbers; D29 and D30 are by default not connected."
 msgstr "D29 - D36: J25、奇数のピン番号。D29 と D30 はデフォルトでは接続されていません。"
 
-#: ../../mimxrt/quickref.rst:115
+#: ../../mimxrt/quickref.rst:116
 msgid ""
 "There's a higher-level abstraction :ref:`machine.Signal <machine.Signal>`"
 " which can be used to invert a pin.  Useful for illuminating active-low "
@@ -551,15 +2142,15 @@ msgstr ""
 ":ref:`machine.Signal <machine.Signal>` があります。 "
 "負論理(active-low)の LED でも ``on()`` や ``value(1)`` で点灯できるので便利です。"
 
-#: ../../mimxrt/quickref.rst:120
+#: ../../mimxrt/quickref.rst:121
 msgid "UART (serial bus)"
 msgstr "UART (シリアルバス)"
 
-#: ../../mimxrt/quickref.rst:122
+#: ../../mimxrt/quickref.rst:123
 msgid "See :ref:`machine.UART <machine.UART>`. ::"
 msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
 
-#: ../../mimxrt/quickref.rst:124
+#: ../../mimxrt/quickref.rst:125
 msgid ""
 "from machine import UART\n"
 "\n"
@@ -573,213 +2164,22 @@ msgstr ""
 "uart1.write('hello')  # 5バイト書き出す\n"
 "uart1.read(5)         # 5バイトまで読み込む"
 
-#: ../../mimxrt/quickref.rst:130
+#: ../../mimxrt/quickref.rst:131
 msgid ""
 "The i.MXRT has up to eight hardware UARTs, but not every board exposes "
-"all TX and RX pins for users.  The pin assignment of UARTs to pins is "
-"fixed. The UARTs are numbered 1..8.  The rx/tx pins are assigned "
-"according to the tables below:"
+"all TX and RX pins for users. For the assignment of Pins to UART signals,"
+" refer to the :ref:`UART pinout <mimxrt_uart_pinout>`."
 msgstr ""
 "i.MXRT には最大８つのハードウェア UART がありますが、"
 "すべてのボードがすべての TX ピンと RX ピンをユーザーに公開しているわけではありません。"
-"UART のピンへの割り当ては固定されています。UART には 1..8 の番号が付けられています。"
-"rx/tx ピンは次の表にしたがって割り当てられます。"
-
-#: ../../mimxrt/quickref.rst:136 ../../mimxrt/quickref.rst:153
-#: ../../mimxrt/quickref.rst:570 ../../mimxrt/quickref.rst:634
-msgid "Board / Pin"
-msgstr ""
+"UART 信号線のピン割り当てについては :ref:`UART 入出力ピン <mimxrt_uart_pinout>` "
+"を参照してください。"
 
 #: ../../mimxrt/quickref.rst:136
-msgid "UART0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:136
-msgid "UART1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:136
-msgid "UART2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:136
-msgid "UART3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:138 ../../mimxrt/quickref.rst:139
-msgid "0/1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:138 ../../mimxrt/quickref.rst:139
-msgid "7/8"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:138 ../../mimxrt/quickref.rst:139
-msgid "14/15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:140 ../../mimxrt/quickref.rst:141
-#: ../../mimxrt/quickref.rst:142 ../../mimxrt/quickref.rst:143
-#: ../../mimxrt/quickref.rst:144 ../../mimxrt/quickref.rst:145
-#: ../../mimxrt/quickref.rst:146 ../../mimxrt/quickref.rst:147
-msgid "Debug USB"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:140 ../../mimxrt/quickref.rst:141
-#: ../../mimxrt/quickref.rst:142 ../../mimxrt/quickref.rst:143
-#: ../../mimxrt/quickref.rst:144 ../../mimxrt/quickref.rst:145
-#: ../../mimxrt/quickref.rst:146 ../../mimxrt/quickref.rst:147
-#: ../../mimxrt/quickref.rst:638 ../../mimxrt/quickref.rst:640
-msgid "D0/D1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:140 ../../mimxrt/quickref.rst:143
-#: ../../mimxrt/quickref.rst:144 ../../mimxrt/quickref.rst:145
-#: ../../mimxrt/quickref.rst:146
-msgid "D7/D6"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:141 ../../mimxrt/quickref.rst:158
-msgid "MIMXRT1015-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:141
-msgid "D7/A1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:142
-msgid "D9/D6"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:142 ../../mimxrt/quickref.rst:147
-msgid "D10/D13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:143 ../../mimxrt/quickref.rst:144
-#: ../../mimxrt/quickref.rst:145 ../../mimxrt/quickref.rst:146
-msgid "D8/D9"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:144 ../../mimxrt/quickref.rst:161
-msgid "MIMXRT1050-EVKB"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:147 ../../mimxrt/quickref.rst:164
-msgid "MIMXRT1170-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:147
-msgid "D12/D11"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:148 ../../mimxrt/quickref.rst:165
-#: ../../mimxrt/quickref.rst:582 ../../mimxrt/quickref.rst:646
-#: ../../mimxrt/quickref.rst:731 ../../mimxrt/quickref.rst:732
-msgid "Olimex RT1010Py"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:148
-msgid "RxD/TxD"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:148
-msgid "D5/D6"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:149 ../../mimxrt/quickref.rst:166
-#: ../../mimxrt/quickref.rst:366 ../../mimxrt/quickref.rst:583
-#: ../../mimxrt/quickref.rst:647
-msgid "Seeed ARCH MIX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:149
-msgid "J3_19/J3_20"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:149
-msgid "J4_16/J4_17"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:149 ../../mimxrt/quickref.rst:647
-msgid "J4_06/J4_07"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:153
-msgid "UART4"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:153
-msgid "UART5"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:153
-msgid "UART6"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:153
-msgid "UART7"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:153
-msgid "UART8"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:155 ../../mimxrt/quickref.rst:156
-msgid "16/17"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:155 ../../mimxrt/quickref.rst:156
-msgid "21/20"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:155 ../../mimxrt/quickref.rst:156
-#: ../../mimxrt/quickref.rst:636 ../../mimxrt/quickref.rst:637
-msgid "25/24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:155 ../../mimxrt/quickref.rst:156
-msgid "28/29"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:156
-msgid "34/35"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:159 ../../mimxrt/quickref.rst:164
-msgid "D15/D14"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:159 ../../mimxrt/quickref.rst:160
-#: ../../mimxrt/quickref.rst:161 ../../mimxrt/quickref.rst:162
-#: ../../mimxrt/quickref.rst:163
-msgid "A1/A0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:164
-msgid "D25/D26"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:164
-msgid "D33/D34"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:164
-msgid "D35/D36"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:166
-msgid "J4_10/J4_11"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:166
-msgid "J5_08/J5_12"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:170
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../mimxrt/quickref.rst:172
+#: ../../mimxrt/quickref.rst:138
 msgid ""
 "The i.MXRT has up to four dedicated PWM modules with four FLEXPWM "
 "submodules each and up to four QTMR modules with four channels, which can"
@@ -789,7 +2189,7 @@ msgstr ""
 "モジュールと、PWM信号または信号ペアを生成するために使用できる４つのチャンネルを"
 "備えた最大４つの QTMR モジュールがあります。"
 
-#: ../../mimxrt/quickref.rst:176
+#: ../../mimxrt/quickref.rst:142
 msgid ""
 "The PWM functions are provided by the :ref:`machine.PWM <machine.PWM>` "
 "class. It supports all basic methods listed for that class and a few "
@@ -799,7 +2199,7 @@ msgstr ""
 "そのクラスにリストされているすべての基本メソッドと、シグナルグループを処理する"
 "ためのいくつかの追加メソッドをサポートします。"
 
-#: ../../mimxrt/quickref.rst:180
+#: ../../mimxrt/quickref.rst:146
 msgid ""
 "# Samples for Teensy\n"
 "#\n"
@@ -849,15 +2249,15 @@ msgstr ""
 "\n"
 "pwm3                    # PWM オブジェクトのプロパティを表示"
 
-#: ../../mimxrt/quickref.rst:206
+#: ../../mimxrt/quickref.rst:172
 msgid "PWM Constructor"
 msgstr "PWM コンストラクタ"
 
-#: ../../mimxrt/quickref.rst:211
+#: ../../mimxrt/quickref.rst:177
 msgid "Construct and return a new PWM object using the following parameters:"
 msgstr "以下のパラメータで新しいPWMオブジェクトを構築して、返します。"
 
-#: ../../mimxrt/quickref.rst:213
+#: ../../mimxrt/quickref.rst:179
 msgid ""
 "*dest* is the entity on which the PWM is output, which is usually a "
 ":ref:`machine.Pin <machine.Pin>` object, but a port may allow other "
@@ -873,7 +2273,7 @@ msgstr ""
 "タプルのいずれかです。オブジェクトのタプルが指定された場合、２つのピンは補完"
 "モードで動作します。この２つのピンは、同じサブモジュールのA/Bチャンネルでなければなりません。"
 
-#: ../../mimxrt/quickref.rst:220
+#: ../../mimxrt/quickref.rst:186
 msgid ""
 "PWM objects are either provided by a FLEXPWM module or a QTMR module. The"
 " i.MXRT devices have either two or four FLEXPWM and QTMR modules. Each "
@@ -889,7 +2289,7 @@ msgstr ""
 "各 FLEXPWM サブモジュールまたは QTMR チャンネルは、異なるパラメータに設定できます。"
 "すべてのチャンネルがボードピンに配線されているわけではありません。詳細は後述します。"
 
-#: ../../mimxrt/quickref.rst:227
+#: ../../mimxrt/quickref.rst:193
 msgid ""
 "Setting *freq* affects the three channels of the same FLEXPWM submodule. "
 "Only one of *duty_u16* and *duty_ns* should be specified at a time."
@@ -897,11 +2297,11 @@ msgstr ""
 "*freq* を設定すると、同じ FLEXPWM サブモジュールの３つのチャンネルに影響します。 "
 "*duty_u16* と *duty_ns* は、一度に１つだけ指定する必要があります。"
 
-#: ../../mimxrt/quickref.rst:230
+#: ../../mimxrt/quickref.rst:196
 msgid "Keyword arguments:"
 msgstr "キーワード引数:"
 
-#: ../../mimxrt/quickref.rst:232
+#: ../../mimxrt/quickref.rst:198
 msgid ""
 "*freq* should be an integer which sets the frequency in Hz for the PWM "
 "cycle. The valid frequency range is 15 Hz resp. 18Hz resp. 24Hz up to > 1"
@@ -910,7 +2310,7 @@ msgstr ""
 "*freq* は PWM 周期の周波数を Hz 単位で設定する整数でなければなりません。"
 "有効な周波数範囲はそれぞれ 15Hz, 18Hz, 24Hzから 最大 1MHz 未満です。
 
-#: ../../mimxrt/quickref.rst:234
+#: ../../mimxrt/quickref.rst:200
 msgid ""
 "*duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65536``. The duty "
 "cycle of a X channel can only be changed, if the A and B channel of the "
@@ -922,7 +2322,7 @@ msgstr ""
 "使われていない場合にのみ変更できます。それ以外の場合、X チャンネルの duty_16 値は "
 "32768 (50％)です。"
 
-#: ../../mimxrt/quickref.rst:238
+#: ../../mimxrt/quickref.rst:204
 msgid ""
 "*duty_ns* sets the pulse width in nanoseconds. The limitation for X "
 "channels apply as well."
@@ -930,7 +2330,7 @@ msgstr ""
 "*duty_ns* は、パルス幅をナノ秒単位で設定します。"
 "X チャンネルに対する制限も同様に適用されます。"
 
-#: ../../mimxrt/quickref.rst:240
+#: ../../mimxrt/quickref.rst:206
 msgid ""
 "*center*\\=value. An integer sets the center of the pulse within the "
 "pulse period. The range is 0-65535. The resulting pulse will last from "
@@ -940,7 +2340,7 @@ msgstr ""
 "値の範囲は 0-65535 です。結果として、center - duty_u16/2　から "
 "center + duty_u16/2 までのパルスが持続します。"
 
-#: ../../mimxrt/quickref.rst:243
+#: ../../mimxrt/quickref.rst:209
 msgid ""
 "*align*\\=value. Shortcuts for the pulse center setting, causing the "
 "pulse either at the center of the frame (value=0), the leading edge at "
@@ -950,7 +2350,7 @@ msgstr ""
 "*align*\\=value: パルス中心設定のショートカットで、パルスをフレームの中心(value=0)、"
 "開始時の前縁(value=1)、パルス周期の終了時の後縁(value=2)のいずれかにします。"
 
-#: ../../mimxrt/quickref.rst:246
+#: ../../mimxrt/quickref.rst:212
 msgid ""
 "*invert*\\=True|False channel_mask. Setting a bit in the mask inverts the"
 " respective channel. Bit 0 inverts the first specified channel, bit 2 the"
@@ -960,7 +2360,7 @@ msgstr ""
 "ビット0は最初に指定されたチャンネルを反転させ，ビット2は2番目に指定されたチャンネルを"
 "反転させます。デフォルトは0です。"
 
-#: ../../mimxrt/quickref.rst:248
+#: ../../mimxrt/quickref.rst:214
 msgid ""
 "*sync*\\=True|False. If a channel of a module's submodule 0 is already "
 "active, other submodules of the same module can be forced to be "
@@ -971,7 +2371,7 @@ msgstr ""
 "同じモジュールの他のサブモジュールは、サブモジュール0に同期するように強制できます。"
 "デフォルトは False です。"
 
-#: ../../mimxrt/quickref.rst:251
+#: ../../mimxrt/quickref.rst:217
 msgid ""
 "*xor*\\=0|1|2. If set to 1 or 2, the channel will output the XOR'd signal"
 " from channels A or B. If set to 1 on channel A or B, both A and B will "
@@ -984,7 +2384,7 @@ msgstr ""
 "図解は、MCU のリファレンスマニュアル \"Double Switching PWMs\" の章を"
 "参照してください。"
 
-#: ../../mimxrt/quickref.rst:255
+#: ../../mimxrt/quickref.rst:221
 msgid ""
 "*deadtime*\\=time_ns. This setting affects complementary channels and "
 "defines a deadtime between an edge of a first channel and the edge of the"
@@ -997,11 +2397,11 @@ msgstr ""
 "ローに設定されます。これにより、接続されたHブリッジは、プッシュプルドライバの片側を"
 "スイッチオフしてから、もう片側をスイッチオンすることができます。"
 
-#: ../../mimxrt/quickref.rst:261
+#: ../../mimxrt/quickref.rst:227
 msgid "PWM Methods"
 msgstr "PWM メソッド"
 
-#: ../../mimxrt/quickref.rst:263
+#: ../../mimxrt/quickref.rst:229
 msgid ""
 "The methods are identical to the generic :ref:`machine.PWM <machine.PWM>`"
 " class, with additional keyword arguments to the init() method, matchings"
@@ -1010,7 +2410,7 @@ msgstr ""
 "メソッドは汎用的な :ref:`machine.PWM <machine.PWM>` クラスと同じですが、"
 "init() メソッドのキーワード引数が追加され、コンストラクタの引数と同じになります。"
 
-#: ../../mimxrt/quickref.rst:266
+#: ../../mimxrt/quickref.rst:232
 msgid ""
 "Each FLEX submodule or QTMR module may run at different frequencies.  The"
 " PWM signal is created by dividing the pwm_clk signal by an integral "
@@ -1019,11 +2419,11 @@ msgstr ""
 "各 FLEX サブモジュールまたは QTMR モジュールは、異なる周波数で動作することがあります。"
 "PWM 信号は、式に従って、pwm_clk 信号を積分係数で割ることによって生成されます::"
 
-#: ../../mimxrt/quickref.rst:269
+#: ../../mimxrt/quickref.rst:235
 msgid "f = pwm_clk / (2**n * m)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:271
+#: ../../mimxrt/quickref.rst:237
 msgid ""
 "with n being in the range of 0..7, and m in the range of 2..65536. "
 "pmw_clk is 125Mhz for MIMXRT1010/1015/1020, 150 MHz for "
@@ -1042,1081 +2442,32 @@ msgstr ""
 "達成可能な最高周波数は、A/B チャンネルでは pwm_clk/3、X チャンネルと QTMR 信号では "
 "pwm_clk/2 となります。"
 
-#: ../../mimxrt/quickref.rst:280
+#: ../../mimxrt/quickref.rst:246
 msgid "PWM Pin Assignment"
-msgstr "PWM ピンの割当て"
+msgstr "PWM のピン割当て"
 
-#: ../../mimxrt/quickref.rst:282
+#: ../../mimxrt/quickref.rst:248
 msgid ""
-"Pins are specified in the same way as for the Pin class.  The following "
-"tables show the assignment of the board Pins to PWM modules:"
+"Pins are specified in the same way as for the Pin class.  For the "
+"assignment of Pins to PWM signals, refer to the :ref:`PWM pinout "
+"<mimxrt_pwm_pinout>`."
 msgstr ""
-"ピンは Pin クラスと同様に指定します。下表にPWM モジュールへのボードのピン割当てを示します:"
+"ピンは Pin クラスと同様に指定します。PWM 信号線のピン割当てについては "
+":ref:`PWM 入出力ピン <mimxrt_pwm_pinout>` を参照してください。"
 
-#: ../../mimxrt/quickref.rst:286
-msgid "Pin/ MIMXRT"
-msgstr "ピン/ MIMXRT"
-
-#: ../../mimxrt/quickref.rst:286
-msgid "1010"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:286
-msgid "1015"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:286
-msgid "1020"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:286
-msgid "1050/1060/1064"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:286
-msgid "1170"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:288 ../../mimxrt/quickref.rst:407
-msgid "D0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:288 ../../mimxrt/quickref.rst:335
-#: ../../mimxrt/quickref.rst:381
-msgid "Q1/1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:288 ../../mimxrt/quickref.rst:296
-#: ../../mimxrt/quickref.rst:312 ../../mimxrt/quickref.rst:350
-#: ../../mimxrt/quickref.rst:360 ../../mimxrt/quickref.rst:410
-#: ../../mimxrt/quickref.rst:419
-msgid "F1/1/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:289 ../../mimxrt/quickref.rst:408
-#: ../../mimxrt/quickref.rst:731
-msgid "D1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:289 ../../mimxrt/quickref.rst:333
-#: ../../mimxrt/quickref.rst:380
-msgid "Q1/0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:289 ../../mimxrt/quickref.rst:313
-#: ../../mimxrt/quickref.rst:351 ../../mimxrt/quickref.rst:361
-#: ../../mimxrt/quickref.rst:411 ../../mimxrt/quickref.rst:420
-msgid "F1/1/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:290 ../../mimxrt/quickref.rst:409
-#: ../../mimxrt/quickref.rst:731
-msgid "D2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:290 ../../mimxrt/quickref.rst:298
-#: ../../mimxrt/quickref.rst:305 ../../mimxrt/quickref.rst:307
-#: ../../mimxrt/quickref.rst:330 ../../mimxrt/quickref.rst:393
-#: ../../mimxrt/quickref.rst:401 ../../mimxrt/quickref.rst:414
-#: ../../mimxrt/quickref.rst:425
-msgid "F1/3/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:290 ../../mimxrt/quickref.rst:291
-#: ../../mimxrt/quickref.rst:293 ../../mimxrt/quickref.rst:301
-#: ../../mimxrt/quickref.rst:306 ../../mimxrt/quickref.rst:331
-#: ../../mimxrt/quickref.rst:392 ../../mimxrt/quickref.rst:400
-#: ../../mimxrt/quickref.rst:415 ../../mimxrt/quickref.rst:426
-msgid "F1/3/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:291 ../../mimxrt/quickref.rst:410
-#: ../../mimxrt/quickref.rst:731
-msgid "D3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:291 ../../mimxrt/quickref.rst:294
-#: ../../mimxrt/quickref.rst:295 ../../mimxrt/quickref.rst:296
-#: ../../mimxrt/quickref.rst:303 ../../mimxrt/quickref.rst:315
-#: ../../mimxrt/quickref.rst:353 ../../mimxrt/quickref.rst:409
-#: ../../mimxrt/quickref.rst:418
-msgid "F1/0/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:291 ../../mimxrt/quickref.rst:302
-#: ../../mimxrt/quickref.rst:349 ../../mimxrt/quickref.rst:395
-msgid "F2/3/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:291 ../../mimxrt/quickref.rst:341
-#: ../../mimxrt/quickref.rst:376
-msgid "F4/0/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:291 ../../mimxrt/quickref.rst:297
-#: ../../mimxrt/quickref.rst:299 ../../mimxrt/quickref.rst:304
-#: ../../mimxrt/quickref.rst:307 ../../mimxrt/quickref.rst:311
-#: ../../mimxrt/quickref.rst:354 ../../mimxrt/quickref.rst:357
-#: ../../mimxrt/quickref.rst:413 ../../mimxrt/quickref.rst:424
-msgid "F1/2/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:292 ../../mimxrt/quickref.rst:411
-#: ../../mimxrt/quickref.rst:731
-msgid "D4"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:292
-msgid "F1/3/A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:292 ../../mimxrt/quickref.rst:334
-#: ../../mimxrt/quickref.rst:382
-msgid "Q1/2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:292 ../../mimxrt/quickref.rst:384
-msgid "Q2/1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:292 ../../mimxrt/quickref.rst:293
-#: ../../mimxrt/quickref.rst:303 ../../mimxrt/quickref.rst:348
-#: ../../mimxrt/quickref.rst:394 ../../mimxrt/quickref.rst:399
-msgid "F2/3/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:292
-msgid "Q4/2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:293 ../../mimxrt/quickref.rst:412
-msgid "D5"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:293 ../../mimxrt/quickref.rst:298
-msgid "F1/0/B (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:293 ../../mimxrt/quickref.rst:296
-#: ../../mimxrt/quickref.rst:297 ../../mimxrt/quickref.rst:302
-#: ../../mimxrt/quickref.rst:314 ../../mimxrt/quickref.rst:352
-#: ../../mimxrt/quickref.rst:356 ../../mimxrt/quickref.rst:408
-#: ../../mimxrt/quickref.rst:417
-msgid "F1/0/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:293 ../../mimxrt/quickref.rst:294
-#: ../../mimxrt/quickref.rst:300 ../../mimxrt/quickref.rst:305
-#: ../../mimxrt/quickref.rst:310 ../../mimxrt/quickref.rst:355
-#: ../../mimxrt/quickref.rst:358 ../../mimxrt/quickref.rst:412
-#: ../../mimxrt/quickref.rst:423
-msgid "F1/2/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:294 ../../mimxrt/quickref.rst:413
-#: ../../mimxrt/quickref.rst:731
-msgid "D6"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:294 ../../mimxrt/quickref.rst:327
-#: ../../mimxrt/quickref.rst:386
-msgid "F2/0/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:294 ../../mimxrt/quickref.rst:337
-#: ../../mimxrt/quickref.rst:378
-msgid "Q3/2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:295 ../../mimxrt/quickref.rst:414
-#: ../../mimxrt/quickref.rst:731
-msgid "D7"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:295 ../../mimxrt/quickref.rst:338
-#: ../../mimxrt/quickref.rst:371 ../../mimxrt/quickref.rst:379
-msgid "Q3/3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:296 ../../mimxrt/quickref.rst:415
-#: ../../mimxrt/quickref.rst:731
-msgid "D8"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:296 ../../mimxrt/quickref.rst:323
-#: ../../mimxrt/quickref.rst:429
-msgid "F1/1/X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:296 ../../mimxrt/quickref.rst:368
-msgid "Q4/3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:297 ../../mimxrt/quickref.rst:416
-#: ../../mimxrt/quickref.rst:732
-msgid "D9"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:297 ../../mimxrt/quickref.rst:300
-msgid "F1/1/B (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:297 ../../mimxrt/quickref.rst:347
-#: ../../mimxrt/quickref.rst:387
-msgid "F2/0/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:297 ../../mimxrt/quickref.rst:324
-#: ../../mimxrt/quickref.rst:398 ../../mimxrt/quickref.rst:430
-msgid "F1/0/X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:298 ../../mimxrt/quickref.rst:417
-#: ../../mimxrt/quickref.rst:732
-msgid "D10"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:298 ../../mimxrt/quickref.rst:332
-#: ../../mimxrt/quickref.rst:391
-msgid "F2/2/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:299 ../../mimxrt/quickref.rst:418
-#: ../../mimxrt/quickref.rst:732
-msgid "D11"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:299 ../../mimxrt/quickref.rst:328
-#: ../../mimxrt/quickref.rst:388
-msgid "F2/1/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:299
-msgid "F1/1/A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:300 ../../mimxrt/quickref.rst:419
-msgid "D12"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:300 ../../mimxrt/quickref.rst:389
-msgid "F2/1/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:301 ../../mimxrt/quickref.rst:420
-msgid "D13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:301 ../../mimxrt/quickref.rst:329
-#: ../../mimxrt/quickref.rst:390
-msgid "F2/2/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:301
-msgid "F1/0/A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:302 ../../mimxrt/quickref.rst:421
-msgid "D14"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:303
-msgid "D15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:304 ../../mimxrt/quickref.rst:422
-msgid "A0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:305 ../../mimxrt/quickref.rst:423
-msgid "A1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:305 ../../mimxrt/quickref.rst:344
-#: ../../mimxrt/quickref.rst:374 ../../mimxrt/quickref.rst:427
-msgid "F1/3/X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:306 ../../mimxrt/quickref.rst:424
-msgid "A2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:306 ../../mimxrt/quickref.rst:343
-#: ../../mimxrt/quickref.rst:375 ../../mimxrt/quickref.rst:428
-msgid "F1/2/X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:307 ../../mimxrt/quickref.rst:425
-msgid "A3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:308 ../../mimxrt/quickref.rst:426
-msgid "A4"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:308 ../../mimxrt/quickref.rst:339
-#: ../../mimxrt/quickref.rst:373 ../../mimxrt/quickref.rst:397
-msgid "Q3/1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:309
-msgid "A5"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:309 ../../mimxrt/quickref.rst:340
-#: ../../mimxrt/quickref.rst:372 ../../mimxrt/quickref.rst:396
-msgid "Q3/0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:310
-msgid "D31"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:311
-msgid "D32"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:312
-msgid "D33"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:313
-msgid "D34"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:314
-msgid "D35"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:315
-msgid "D36"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:318 ../../mimxrt/quickref.rst:586
-msgid "Pins denoted with (*) are by default not wired at the board."
-msgstr "(*) で示されたピンはデフォルトで基板に配線されていません。"
-
-#: ../../mimxrt/quickref.rst:321 ../../mimxrt/quickref.rst:366
-#: ../../mimxrt/quickref.rst:405 ../../mimxrt/quickref.rst:448
-#: ../../mimxrt/quickref.rst:460 ../../mimxrt/quickref.rst:476
-#: ../../mimxrt/quickref.rst:497
-msgid "Pin"
-msgstr "ピン"
-
-#: ../../mimxrt/quickref.rst:323
-msgid "0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:324 ../../mimxrt/quickref.rst:726
-#: ../../mimxrt/quickref.rst:728 ../../mimxrt/quickref.rst:730
-#: ../../mimxrt/quickref.rst:731 ../../mimxrt/quickref.rst:733
-msgid "1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:325 ../../mimxrt/quickref.rst:727
-#: ../../mimxrt/quickref.rst:729
-msgid "2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:325
-msgid "F4/2/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:326 ../../mimxrt/quickref.rst:727
-#: ../../mimxrt/quickref.rst:729 ../../mimxrt/quickref.rst:732
-msgid "3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:326
-msgid "F4/2/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:327 ../../mimxrt/quickref.rst:727
-#: ../../mimxrt/quickref.rst:729
-msgid "4"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:328 ../../mimxrt/quickref.rst:727
-#: ../../mimxrt/quickref.rst:729
-msgid "5"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:329
-msgid "6"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:330 ../../mimxrt/quickref.rst:726
-#: ../../mimxrt/quickref.rst:728
-msgid "7"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:331 ../../mimxrt/quickref.rst:726
-#: ../../mimxrt/quickref.rst:728
-msgid "8"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:332
-msgid "9"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:333
-msgid "10"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:334
-msgid "11"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:335
-msgid "12"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:336
-msgid "13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:336 ../../mimxrt/quickref.rst:383
-msgid "Q2/0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:337
-msgid "14"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:338
-msgid "15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:339
-msgid "18"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:340
-msgid "19"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:341
-msgid "22"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:342 ../../mimxrt/quickref.rst:726
-#: ../../mimxrt/quickref.rst:728
-msgid "23"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:342 ../../mimxrt/quickref.rst:377
-msgid "F4/1/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:343
-msgid "24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:344
-msgid "25"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:345
-msgid "28"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:345
-msgid "F3/1/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:346
-msgid "29"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:346
-msgid "F3/1/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:347 ../../mimxrt/quickref.rst:727
-#: ../../mimxrt/quickref.rst:729
-msgid "33"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:348
-msgid "36"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:349
-msgid "37"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:350
-msgid "DAT1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:350
-msgid "42"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:351
-msgid "DAT0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:351
-msgid "43"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:352
-msgid "CLK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:352
-msgid "44"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:353
-msgid "CMD"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:353
-msgid "45"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:354
-msgid "DAT2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:354
-msgid "46"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:355
-msgid "DAT3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:355
-msgid "47"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:356
-msgid "48"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:357
-msgid "49"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:358
-msgid "50"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:359
-msgid "51"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:359
-msgid "F3/3/B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:360
-msgid "52"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:361
-msgid "53"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:362
-msgid "54"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:362
-msgid "F3/0/A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:368
-msgid "J3_04"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:369
-msgid "J3_10"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:369
-msgid "Q1/3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:370
-msgid "J3_12"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:370 ../../mimxrt/quickref.rst:385
-msgid "Q2/3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:371
-msgid "J3_13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:372
-msgid "J3_16"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:373
-msgid "J3_17"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:374
-msgid "J3_19"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:375
-msgid "J3_20"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:376
-msgid "J4_08"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:377 ../../mimxrt/quickref.rst:730
-msgid "J4_09"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:378
-msgid "J4_16"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:379
-msgid "J4_17"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:380
-msgid "J5_32"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:381
-msgid "J5_28"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:382
-msgid "J5_29"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:383
-msgid "J5_30"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:384
-msgid "J5_04"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:385
-msgid "J5_05"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:386
-msgid "J5_06"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:387
-msgid "J5_07"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:388
-msgid "J5_08"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:389
-msgid "J5_12"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:390
-msgid "J5_13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:391
-msgid "J5_14"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:392
-msgid "J5_23"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:393
-msgid "J5_24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:394
-msgid "J5_25"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:395
-msgid "J5_26"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:396
-msgid "J5_42"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:397
-msgid "J5_43"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:398
-msgid "J5_50"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:399
-msgid "LED_RED"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:400
-msgid "LED_GREEN"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:401
-msgid "LED_BLUE"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:405
-msgid "Olimex RT1010PY"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:427
-msgid "SDI"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:428
-msgid "SDO"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:429
-msgid "CS0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:430
-msgid "SCK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:433
-msgid "Legend:"
-msgstr "凡例:"
-
-#: ../../mimxrt/quickref.rst:435
-msgid "Qm/n:    QTMR module m, channel n"
-msgstr "Qm/n:    QTMR モジュール m、チャンネル n"
-
-#: ../../mimxrt/quickref.rst:436
-msgid ""
-"Fm/n/l:  FLEXPWM module m, submodule n, channel l. The pulse at a X "
-"channel is always aligned to the period start."
-msgstr ""
-"Fm/n/l:  FLEXPWM モジュール m、サブモジュール n、チャンネル l。"
-"X チャンネルのパルスは常にピリオドスタートに揃えます。"
-
-#: ../../mimxrt/quickref.rst:439
-msgid ""
-"Pins without a PWM signal are not listed.  A signal may be available at "
-"more than one Pin.  FlexPWM pins may also be pure CPU pin, not assigned "
-"to a board signal.  In that case the PWM output is disabled.  The PWM "
-"channel of a submodule 0 may still be used as synchronization source for "
-"other channels of the same module, unless used by another peripheral."
-msgstr ""
-"PWM 信号のないピンはリストされていません。１つの信号が複数の Pin で利用可能な場合が"
-"あります。FlexPWM ピンは、ボード信号に割り当てられていない、純粋な CPU ピンである"
-"場合もあります。その場合、PWM 出力は無効となります。サブモジュール0の PWM チャンネルは、"
-"他のペリフェラルで使用されない限り、同じモジュールの他のチャンネルの同期ソースとして"
-"使えます。"
-
-#: ../../mimxrt/quickref.rst:445
-msgid "Submodule 0 pins for i.MX RT1011:"
-msgstr "i.MX RT1011 のサブモジュール0ピン:"
-
-#: ../../mimxrt/quickref.rst:448
-msgid "Channel"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:450
-msgid "Pin.cpu.GPIO_01"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:450 ../../mimxrt/quickref.rst:453
-msgid "B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:451
-msgid "Pin.cpu.GPIO_02"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:451 ../../mimxrt/quickref.rst:454
-msgid "A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:452
-msgid "Pin.cpu.GPIO_AD_12"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:452
-msgid "X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:453
-msgid "Pin.cpu.GPIO_SD_01"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:454
-msgid "Pin.cpu.GPIO_SD_02"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:457
-msgid "Submodule 0 pins for i.MX RT1021:"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:460 ../../mimxrt/quickref.rst:476
-#: ../../mimxrt/quickref.rst:497
-msgid "Module & Channel"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:462
-msgid "Pin.cpu.GPIO_AD_B1_06"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:462 ../../mimxrt/quickref.rst:464
-#: ../../mimxrt/quickref.rst:479 ../../mimxrt/quickref.rst:481
-#: ../../mimxrt/quickref.rst:507
-msgid "FLEXPWM1 Channel A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:463
-msgid "Pin.cpu.GPIO_AD_B1_07"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:463 ../../mimxrt/quickref.rst:465
-#: ../../mimxrt/quickref.rst:480 ../../mimxrt/quickref.rst:482
-#: ../../mimxrt/quickref.rst:508
-msgid "FLEXPWM1 Channel B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:464
-msgid "Pin.cpu.GPIO_EMC_26"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:465
-msgid "Pin.cpu.GPIO_EMC_27"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:466
-msgid "Pin.cpu.GPIO_AD_B0_14"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:466 ../../mimxrt/quickref.rst:469
-#: ../../mimxrt/quickref.rst:483 ../../mimxrt/quickref.rst:485
-#: ../../mimxrt/quickref.rst:509
-msgid "FLEXPWM2 Channel A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:467
-msgid "Pin.cpu.GPIO_AD_B0_15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:467 ../../mimxrt/quickref.rst:470
-#: ../../mimxrt/quickref.rst:484 ../../mimxrt/quickref.rst:486
-#: ../../mimxrt/quickref.rst:510
-msgid "FLEXPWM2 Channel B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:468
-msgid "Pin.cpu.GPIO_EMC_10"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:468
-msgid "FLEXPWM2 Channel X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:469
-msgid "Pin.cpu.GPIO_EMC_38"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:470
-msgid "Pin.cpu.GPIO_EMC_39"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:473
-msgid "Submodule 0 pins for i.MX RT1052, i.MX RT1062 and i.MX RT1064:"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:478
-msgid "Pin.cpu.GPIO_AD_B0_02"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:478
-msgid "FLEXPWM1 Channel X"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:479
-msgid "Pin.cpu.GPIO_EMC_23"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:480
-msgid "Pin.cpu.GPIO_EMC_24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:481
-msgid "Pin.cpu.GPIO_SD_B0_00"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:482
-msgid "Pin.cpu.GPIO_SD_B0_01"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:483
-msgid "Pin.cpu.GPIO_B0_06"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:484
-msgid "Pin.cpu.GPIO_B0_07"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:485
-msgid "Pin.cpu.GPIO_EMC_06"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:486
-msgid "Pin.cpu.GPIO_EMC_07"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:487
-msgid "Pin.cpu.GPIO_EMC_29"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:487
-msgid "FLEXPWM3 Channel A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:488
-msgid "Pin.cpu.GPIO_EMC_30"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:488
-msgid "FLEXPWM3 Channel B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:489
-msgid "Pin.cpu.GPIO_AD_B1_08"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:489 ../../mimxrt/quickref.rst:490
-msgid "FLEXPWM4 Channel A"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:490
-msgid "Pin.cpu.GPIO_EMC_00"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:491
-msgid "Pin.cpu.GPIO_EMC_01"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:491
-msgid "FLEXPWM4 Channel B"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:494
-msgid "Submodule 0 pins for i.MX RT1176"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:499
-msgid "Pin.cpu.GPIO_EMC_B1_00"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:499
-msgid "FLEXPWM4 Channel A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:500
-msgid "Pin.cpu.GPIO_EMC_B1_01"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:500
-msgid "FLEXPWM4 Channel B (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:501
-msgid "Pin.cpu.GPIO_EMC_B1_06"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:501
-msgid "FLEXPWM2 Channel A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:502
-msgid "Pin.cpu.GPIO_EMC_B1_07"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:502
-msgid "FLEXPWM2 Channel B (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:503
-msgid "Pin.cpu.GPIO_EMC_B1_23"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:503
-msgid "FLEXPWM1 Channel A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:504
-msgid "Pin.cpu.GPIO_EMC_B1_24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:504
-msgid "FLEXPWM1 Channel B (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:505
-msgid "Pin.cpu.GPIO_EMC_B1_29"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:505
-msgid "FLEXPWM3 Channel A (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:506
-msgid "Pin.cpu.GPIO_EMC_B1_30"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:506
-msgid "FLEXPWM3 Channel B (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:507
-msgid "Pin.cpu.GPIO_AD_00"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:508
-msgid "Pin.cpu.GPIO_AD_01"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:509
-msgid "Pin.cpu.GPIO_AD_24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:510
-msgid "Pin.cpu.GPIO_AD_25"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:513
-msgid "(*) Pin used for SDRAM"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:516
+#: ../../mimxrt/quickref.rst:252
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../mimxrt/quickref.rst:518
+#: ../../mimxrt/quickref.rst:254
 msgid "On the i.MXRT ADC functionality is available on Pins labeled 'Ann'."
 msgstr "i.MXRT で ADC 機能は 'Ann' と名づけられたピンで利用できます。"
 
-#: ../../mimxrt/quickref.rst:520
+#: ../../mimxrt/quickref.rst:256
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
-#: ../../mimxrt/quickref.rst:522
+#: ../../mimxrt/quickref.rst:258
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -2129,7 +2480,7 @@ msgstr ""
 "adc = ADC(Pin(32))          # ADC ピンの ADC オブジェクトを作成\n"
 "val = adc.read_u16()        # 生のアナログ値を 0-65535 (0.0v - 3.3v)の範囲で読込み"
 
-#: ../../mimxrt/quickref.rst:527
+#: ../../mimxrt/quickref.rst:263
 msgid ""
 "The resolution of the ADC is 12 bit with 10 to 11 bit accuracy, "
 "irrespective of the value returned by read_u16(). If you need a higher "
@@ -2138,11 +2489,11 @@ msgstr ""
 "ADC の分解能は12bitで、read_u16() が返す値とは関係なく、10～11bit の精度を持ちます。"
 "より高い分解能や精度が必要な場合は、外部 ADC を使用してください。"
 
-#: ../../mimxrt/quickref.rst:532
+#: ../../mimxrt/quickref.rst:268
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../mimxrt/quickref.rst:534
+#: ../../mimxrt/quickref.rst:270
 msgid ""
 "Software SPI (using bit-banging) works on all pins, and is accessed via "
 "the :ref:`machine.SoftSPI <machine.SoftSPI>` class. ::"
@@ -2150,7 +2501,7 @@ msgstr ""
 "ソフトウェア SPI (ビットバンギング)はすべてのピンで動作し、 "
 ":ref:`machine.SoftSPI <machine.SoftSPI>` クラスを介してアクセスします::"
 
-#: ../../mimxrt/quickref.rst:537
+#: ../../mimxrt/quickref.rst:273
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -2204,139 +2555,25 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../mimxrt/quickref.rst:559
+#: ../../mimxrt/quickref.rst:295
 msgid "The highest supported baud rate is 500000."
 msgstr "サポートしている最大ボーレートは 500000 です。"
 
-#: ../../mimxrt/quickref.rst:562
+#: ../../mimxrt/quickref.rst:298
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../mimxrt/quickref.rst:564
+#: ../../mimxrt/quickref.rst:300
 msgid ""
 "There are up to four hardware SPI channels that allow faster transmission"
-" rates (up to 90Mhz).  The SPI signals have fixed assignments to GPIO "
-"pins. It depends on the board design, which SPI's signals are exposed to "
-"the user, as detailed in the table below.  The signal order in the table "
-"is: CS0, CS1, MOSI, MISO, CLK."
+" rates (up to 30Mhz).  Hardware SPI is accessed via the :ref:`machine.SPI"
+" <machine.SPI>` class and has the same methods as software SPI above::"
 msgstr ""
-"最大４つのハードウェア SPI チャンネルがあります(最大90MHz)。"
-"ハードウェア SPI は、より高速な伝送速度を可能にします。"
-"SPI 信号線は、GPIO ピンへの割り当てが固定されています。どの SPI 信号線がユーザーに"
-"公開されるかはボード設計に依存し、下表のように詳細が決められています。"
-"表中の信号線の表記は CS0, CS1, MOSI, MISO, CLK の順となっています。"
-
-#: ../../mimxrt/quickref.rst:570
-msgid "SPI0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:570
-msgid "SPI1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:570
-msgid "SPI2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:572
-msgid "10/-/11/12/13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:572 ../../mimxrt/quickref.rst:573
-msgid "0/-/26/1/27"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:573
-msgid "10/37/11/12/13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:573
-msgid "-/29/50/54/49"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:574 ../../mimxrt/quickref.rst:638
-msgid "MIXMXRT1010-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:574
-msgid "D10/D7/D11/D12/D13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:575 ../../mimxrt/quickref.rst:639
-msgid "MIXMXRT1015-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:575 ../../mimxrt/quickref.rst:576
-#: ../../mimxrt/quickref.rst:581
-msgid "D10/-/D11/D12/D13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:576 ../../mimxrt/quickref.rst:640
-msgid "MIXMXRT1020-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:576
-msgid "A3/D0/A5/A4/A0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:577 ../../mimxrt/quickref.rst:641
-msgid "MIXMXRT1050-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:577 ../../mimxrt/quickref.rst:578
-#: ../../mimxrt/quickref.rst:579 ../../mimxrt/quickref.rst:580
-msgid "D10/-/D11/D12/D13 (*)"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:578 ../../mimxrt/quickref.rst:642
-msgid "MIXMXRT1050-EVKB"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:579 ../../mimxrt/quickref.rst:643
-msgid "MIXMXRT1060-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:580 ../../mimxrt/quickref.rst:644
-msgid "MIXMXRT1064-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:581 ../../mimxrt/quickref.rst:645
-msgid "MIXMXRT1170-EVK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:581
-msgid "D28/-/D25/D24/D26"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:581
-msgid "-/-/D14/D15/D24"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:582
-msgid "CS0/-/SDO/SDI/SCK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:582
-msgid "SDCARD with CS1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:583
-msgid "J4_12/-/J4_14/J4_13/J4_15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:583
-msgid "J3_09/J3_05/J3_08_J3_11"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:588
-msgid ""
-"Hardware SPI is accessed via the :ref:`machine.SPI <machine.SPI>` class "
-"and has the same methods as software SPI above::"
-msgstr ""
+"最大４つのハードウェア SPI チャンネルがあります(最大30MHz)。"
 "ハードウェア SPI には :ref:`machine.SPI <machine.SPI>` クラスを使って"
 "アクセスします。このクラスには先述のソフトウェア SPI と同じメソッドがあります::"
 
-#: ../../mimxrt/quickref.rst:591
+#: ../../mimxrt/quickref.rst:304
 msgid ""
 "from machine import SPI\n"
 "\n"
@@ -2344,27 +2581,36 @@ msgid ""
 "spi.write('Hello World')"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:598
+#: ../../mimxrt/quickref.rst:309
 msgid ""
-"Even if the highest supported baud rate at the moment is 90 Mhz, setting "
-"a baud rate will not always result in exactly that frequency, especially "
-"at high baud rates."
+"For the assignment of Pins to SPI signals, refer to :ref:`Hardware SPI "
+"pinout <mimxrt_spi_pinout>`."
 msgstr ""
-"現時点でサポートしている最大最高のボーレートが 90Mhz であっても、"
+"SPI 信号線のピン割当てについては :ref:`ハードウェア SPI 入出力ピン "
+"<mimxrt_spi_pinout>` を参照してください。"
+
+#: ../../mimxrt/quickref.rst:314
+msgid ""
+"Even if the highest reliable baud rate at the moment is about 30 Mhz, "
+"setting a baud rate will not always result in exactly that frequency, "
+"especially at high baud rates."
+msgstr ""
+"現時点で最も信頼性の高いボーレートが 30MHz 程度であっても、"
 "特に高いボーレートでは、ボーレートの設定が必ずしもその通りの周波数になるとは限りません。"
 
-#: ../../mimxrt/quickref.rst:602
+#: ../../mimxrt/quickref.rst:318
 msgid ""
-"Sending at 90 MHz is possible, but in the tests receiving only worked up "
-"to 60 MHz."
+"Sending at higher baud rate is possible. In the tests receiving worked up"
+" to 60 MHz, sending up to 90 MHz."
 msgstr ""
-"90MHz での送信は可能ですが、テストでは 60MHz までしか受信がうまくいきませんでした。"
+"より高速なボーレートでの送信も可能です。テストでは、受信は 60MHz まで、送信は "
+"90MHz まで動作しました。"
 
-#: ../../mimxrt/quickref.rst:606
+#: ../../mimxrt/quickref.rst:322
 msgid "Software I2C bus"
 msgstr "ソフトウェア I2C バス"
 
-#: ../../mimxrt/quickref.rst:608
+#: ../../mimxrt/quickref.rst:324
 msgid ""
 "Software I2C (using bit-banging) works on all output-capable pins, and is"
 " accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
@@ -2372,7 +2618,7 @@ msgstr ""
 "ソフトウェア I2C (ビット・バンギングを使用)は、出力可能なすべてのピンで動作し、 "
 ":ref:`machine.SoftI2C <machine.SoftI2C>` クラスを使ってアクセスします。"
 
-#: ../../mimxrt/quickref.rst:611
+#: ../../mimxrt/quickref.rst:327
 msgid ""
 "from machine import Pin, SoftI2C\n"
 "\n"
@@ -2398,98 +2644,28 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをペリフェラルに書き込み"
 
-#: ../../mimxrt/quickref.rst:623
+#: ../../mimxrt/quickref.rst:339
 msgid "The highest supported freq is 400000."
 msgstr "サポートしている最大周波数は 400000 です。"
 
-#: ../../mimxrt/quickref.rst:626
+#: ../../mimxrt/quickref.rst:342
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../mimxrt/quickref.rst:628
+#: ../../mimxrt/quickref.rst:344
 msgid ""
 "There are up to four hardware I2C channels that allow faster transmission"
 " rates and support the full I2C protocol.  The I2C signals have fixed "
-"assignments to GPIO pins. It depends on the board design, which I2C's "
-"signals are exposed to the user, as detailed in the table below.  The "
-"signal order in the table is: SDA, SCL."
+"assignments to GPIO pins. For the assignment of Pins to I2C signals, "
+"refer to :ref:`Hardware I2C pinout <mimxrt_i2c_pinout>`."
 msgstr ""
 "最大４つのハードウェア I2C チャンネルがあります。
 "ハードウェア I2C は、より高速な伝送速度を可能にし、完全な I2C プロトコルをサポートします。"
-"I2C 信号線は GPIO ピンへの割り当てが固定されています。どの I2C 信号線がユーザーに"
-"公開されるかは、ボード設計に依存し、下表のように詳細が決められています。"
-"表中の信号線の表記は SDA, SCL の順ちなっています。"
+"I2C 信号線は GPIO ピンへの割り当てが固定されています。"
+"I2C 信号線のピン割当てについては :ref:`ハードウェア I2C の入出力ピン "
+"<mimxrt_i2c_pinout>` を参照してください。"
 
-#: ../../mimxrt/quickref.rst:634
-msgid "I2C 0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:634
-msgid "I2C 1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:634
-msgid "I2C 2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:634
-msgid "I2C 3"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:634
-msgid "I2C 4"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:636 ../../mimxrt/quickref.rst:637
-msgid "18/19"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:636 ../../mimxrt/quickref.rst:637
-msgid "17/16"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:638 ../../mimxrt/quickref.rst:639
-#: ../../mimxrt/quickref.rst:640 ../../mimxrt/quickref.rst:645
-msgid "D14/D15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:640 ../../mimxrt/quickref.rst:641
-#: ../../mimxrt/quickref.rst:642 ../../mimxrt/quickref.rst:643
-#: ../../mimxrt/quickref.rst:644 ../../mimxrt/quickref.rst:645
-msgid "A4/A5"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:641 ../../mimxrt/quickref.rst:642
-#: ../../mimxrt/quickref.rst:643 ../../mimxrt/quickref.rst:644
-#: ../../mimxrt/quickref.rst:645
-msgid "D1/D0"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:645
-msgid "D26/D25"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:645
-msgid "D19/D18"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:646
-msgid "SDA1/SCL1"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:646
-msgid "SDA2/SCL2"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:647
-msgid "J3_17/J3_16"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:647
-msgid "J5_05/J5_04"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:650
+#: ../../mimxrt/quickref.rst:348
 msgid ""
 "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class "
 "and has the same methods as software SPI above::"
@@ -2497,7 +2673,7 @@ msgstr ""
 "ハードウェア I2C には :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。
 "このクラスには先述のソフトウェア I2C と同じメソッドがあります::"
 
-#: ../../mimxrt/quickref.rst:653
+#: ../../mimxrt/quickref.rst:351
 msgid ""
 "from machine import I2C\n"
 "\n"
@@ -2505,11 +2681,11 @@ msgid ""
 "i2c.writeto(0x76, b\"Hello World\")"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:659
+#: ../../mimxrt/quickref.rst:357
 msgid "I2S bus"
 msgstr "I2S バス"
 
-#: ../../mimxrt/quickref.rst:661
+#: ../../mimxrt/quickref.rst:359
 msgid ""
 "See :ref:`machine.I2S <machine.I2S>`. Example using a Teensy 4.1 board "
 "with a simple external Codec like UDA1334.::"
@@ -2518,7 +2694,7 @@ msgstr ""
 "次のコードは Teensy 4.1 ボードと UDA1334 のようなシンプルな外部コーデックを"
 "使った例です::"
 
-#: ../../mimxrt/quickref.rst:664
+#: ../../mimxrt/quickref.rst:362
 msgid ""
 "from machine import I2S, Pin\n"
 "i2s = I2S(2, sck=Pin(26), ws=Pin(27), sd=Pin(7),\n"
@@ -2532,11 +2708,11 @@ msgstr ""
 "    rate=44100,ibuf=40000)\n"
 "i2s.write(buf)             # オーディオサンプルのバッファを I2S デバイスに書き出す"
 
-#: ../../mimxrt/quickref.rst:671
+#: ../../mimxrt/quickref.rst:369
 msgid "Example for using I2S with a MIMXRT10xx_DEV board::"
 msgstr "次のコードは MIMXRT10xx_DEV ボードで I2S を使う例です::"
 
-#: ../../mimxrt/quickref.rst:673
+#: ../../mimxrt/quickref.rst:371
 msgid ""
 "from machine import I2S, I2C, Pin\n"
 "import wm8960\n"
@@ -2567,7 +2743,7 @@ msgstr ""
 "    rate=32000,ibuf=10000)\n"
 "i2s.readinto(buf)          # I2S デバイスからのオーディオサンプルをバッファに読み込む"
 
-#: ../../mimxrt/quickref.rst:687
+#: ../../mimxrt/quickref.rst:385
 msgid ""
 "In this example, the input channels are swapped in the WM8960 driver, "
 "since the on-board microphone is connected to the right channel, but mono"
@@ -2581,11 +2757,11 @@ msgstr ""
 "これは意図的なもので、MW8960コーデックでは、これらの信号が RX と TX で共有"
 "されているからです。"
 
-#: ../../mimxrt/quickref.rst:693
+#: ../../mimxrt/quickref.rst:391
 msgid "Example using the Teensy audio shield::"
 msgstr "次こコードは Teensy オーディオシールドを使った例です。"
 
-#: ../../mimxrt/quickref.rst:695
+#: ../../mimxrt/quickref.rst:393
 msgid ""
 "from machine import I2C, I2S, Pin\n"
 "from sgtl5000 import CODEC\n"
@@ -2623,7 +2799,7 @@ msgstr ""
 "\n"
 "i2s.write(buf)             # オーディオサンプルのバッファを I2S デバイスに書き出す"
 
-#: ../../mimxrt/quickref.rst:713
+#: ../../mimxrt/quickref.rst:411
 msgid ""
 "The SGTL5000 codec used by the Teensy Audio shield uses the RX signals "
 "for both RX and TX.  Note that the codec is initialized after the I2S "
@@ -2634,142 +2810,28 @@ msgstr ""
 "両方に使います。コーデックは、I2S デバイスの後で初期化されることに注意してください。"
 "MCK は I2C の動作に必要で、I2Sコントローラから提供されるため、これは不可欠なことです。"
 
-#: ../../mimxrt/quickref.rst:718
+#: ../../mimxrt/quickref.rst:416
 msgid ""
 "MIMXRT boards may have 1 or 2 I2S buses available at the board "
-"connectors. On MIMXRT1010 devices the bus numbers are 1 and 3."
+"connectors. On MIMXRT1010 devices the bus numbers are 1 and 3. The I2S "
+"signals have fixed assignments to GPIO pins. For the assignment of Pins "
+"to I2S signals, refer to :ref:`I2S pinout <mimxrt_i2s_pinout>`."
 msgstr ""
-"MIMXRT ボードでは、ボードコネクタで1または2のI2Sバスが利用可能です。"
+"MIMXRT ボードでは、ボードコネクタで 1 または 2 の I2S バスが利用可能です。"
 "MIMXRT1010 デバイスの場合、バス番号は1および3です。"
+"I2S 信号線は GPIO ピンへの割り当てが固定されています。"
+"I2S 信号線のピン割当てについては :ref:`I2S 入出力ピン <mimxrt_i2s_pinout>` "
+"を参照してください。"
 
-#: ../../mimxrt/quickref.rst:721
-msgid "Pin assignments for a few MIMXRT boards:"
-msgstr "一部の MIMXRT ボードのピン配置を示します:"
-
-#: ../../mimxrt/quickref.rst:724
-msgid "Board"
-msgstr "ボード"
-
-#: ../../mimxrt/quickref.rst:724
-msgid "ID"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "MCK"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "SCK_TX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "WS_TX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "SD_TX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "SCK_RX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "WS_RX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:724
-msgid "SD_RX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:726 ../../mimxrt/quickref.rst:728
-msgid "26"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:726 ../../mimxrt/quickref.rst:728
-msgid "27"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:726 ../../mimxrt/quickref.rst:728
-msgid "21"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:726 ../../mimxrt/quickref.rst:728
-msgid "20"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:730
-msgid "Seeed Arch MIX"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:730
-msgid "J4_14"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:730
-msgid "J4_15"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:730
-msgid "J14_13"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:730
-msgid "J4_11"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:730
-msgid "J4_10"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "MIMXRT_DEV"
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"MCK\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"SCK_TX\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"WS_TX\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"SD_TX\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"SCK_RX\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"WS_RX\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:733
-msgid "\"SD_RX\""
-msgstr ""
-
-#: ../../mimxrt/quickref.rst:736
-msgid ""
-"Symbolic pin names are provided for the MIMXRT_10xx_DEV boards. These are"
-" provided for the other boards as well."
-msgstr ""
-"MIMXRT_10xx_DEV ボードには、シンボリックなピン名を付けています。他のボードも同様です。"
-
-#: ../../mimxrt/quickref.rst:740
+#: ../../mimxrt/quickref.rst:422
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../mimxrt/quickref.rst:742
+#: ../../mimxrt/quickref.rst:424
 msgid "See :ref:`machine.RTC <machine.RTC>`::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../mimxrt/quickref.rst:744
+#: ../../mimxrt/quickref.rst:426
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -2786,7 +2848,7 @@ msgstr ""
 "rtc.datetime() # 日時を取得\n"
 "rtc.now() # CPython フォーマットで日時を返す。"
 
-#: ../../mimxrt/quickref.rst:751
+#: ../../mimxrt/quickref.rst:433
 msgid ""
 "The i.MXRT MCU supports battery backup of the RTC.  By connecting a "
 "battery of 1.5-3.6V, time and date are maintained in the absence of the "
@@ -2798,15 +2860,15 @@ msgstr ""
 "バッテリーから引き出される電流は 〜20µA で、これはかなり大きいです。"
 "CR2032 コイン電池で約1年使用できます。"
 
-#: ../../mimxrt/quickref.rst:757
+#: ../../mimxrt/quickref.rst:439
 msgid "SD card"
 msgstr "SD カード"
 
-#: ../../mimxrt/quickref.rst:759
+#: ../../mimxrt/quickref.rst:441
 msgid "See :ref:`machine.SDCard <machine.SDCard>`::"
 msgstr ":ref:`machine.SDCard <machine.SDCard>` を参照::"
 
-#: ../../mimxrt/quickref.rst:761
+#: ../../mimxrt/quickref.rst:443
 msgid ""
 "import machine, os\n"
 "\n"
@@ -2824,7 +2886,7 @@ msgstr ""
 "os.listdir('/sd')    # ディレクトリ内容の一覧\n"
 "os.umount('/sd')     # 取出し"
 
-#: ../../mimxrt/quickref.rst:769
+#: ../../mimxrt/quickref.rst:451
 msgid ""
 "Note: The i.mx-rt 1011 and 1015 based boards do not support the "
 "``machine.SDCard`` class.  For these, the SPI based driver ``sdcard.py`` "
@@ -2837,7 +2899,7 @@ msgstr ""
 "モジュールの CS ピンをオーバードライブする必要があります。"
 "使用例を次に示します。"
 
-#: ../../mimxrt/quickref.rst:774
+#: ../../mimxrt/quickref.rst:456
 msgid ""
 "import os, sdcard, machine\n"
 "\n"
@@ -2849,15 +2911,15 @@ msgid ""
 "os.mount(vfs, \"/sdcard\")"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:784
+#: ../../mimxrt/quickref.rst:466
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../mimxrt/quickref.rst:786
+#: ../../mimxrt/quickref.rst:468
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../mimxrt/quickref.rst:788
+#: ../../mimxrt/quickref.rst:470
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -2881,11 +2943,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../mimxrt/quickref.rst:799
+#: ../../mimxrt/quickref.rst:481
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
 
-#: ../../mimxrt/quickref.rst:801
+#: ../../mimxrt/quickref.rst:483
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -2896,7 +2958,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:809
+#: ../../mimxrt/quickref.rst:491
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -2906,15 +2968,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../mimxrt/quickref.rst:814
+#: ../../mimxrt/quickref.rst:496
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../mimxrt/quickref.rst:816
+#: ../../mimxrt/quickref.rst:498
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../mimxrt/quickref.rst:818
+#: ../../mimxrt/quickref.rst:500
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -2942,7 +3004,7 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../mimxrt/quickref.rst:831
+#: ../../mimxrt/quickref.rst:513
 msgid ""
 "Be sure to have a 4.7k pull-up resistor on the data line.  Some DHT "
 "modules may already have one."
@@ -2950,11 +3012,11 @@ msgstr ""
 "4.7k のプルアップ抵抗をデータラインに接続してください。"
 "DHT モジュールの中にはプルアップ抵抗が実装済みのものもあります。
 
-#: ../../mimxrt/quickref.rst:835
+#: ../../mimxrt/quickref.rst:517
 msgid "Ethernet driver"
 msgstr "イーサネットドライバー"
 
-#: ../../mimxrt/quickref.rst:837
+#: ../../mimxrt/quickref.rst:519
 msgid ""
 "All MIMXRT boards except the MIMXRT1011 based boards and Teensy 4.0 "
 "support Ethernet.  Example usage::"
@@ -2962,7 +3024,7 @@ msgstr ""
 "MIMXRT1011 搭載ボードと Teensy 4.0 を除くすべての MIMXRT ボードではイーサネットを"
 "サポートしています。使用例を次に示します。"
 
-#: ../../mimxrt/quickref.rst:840
+#: ../../mimxrt/quickref.rst:522
 msgid ""
 "import network\n"
 "\n"
@@ -2970,7 +3032,7 @@ msgid ""
 "lan.active(True)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:845
+#: ../../mimxrt/quickref.rst:527
 msgid ""
 "If there is a DHCP server in the LAN, the IP address is supplied by that "
 "server. Otherwise, the IP address can be set with lan.ifconfig().  The "
@@ -2980,7 +3042,7 @@ msgstr ""
 "DHCPサーバが無い場合は lan.ifconfig() でIPアドレスを設定できます。"
 "デフォルトのアドレスは 192.168.0.1 です。"
 
-#: ../../mimxrt/quickref.rst:849
+#: ../../mimxrt/quickref.rst:531
 msgid ""
 "Teensy 4.1 does not have an Ethernet jack on the board, but PJRC offers "
 "an adapter for self-assembly.  The Seeed ARCH MIX board has no PHY "
@@ -2996,7 +3058,7 @@ msgstr ""
 "イーサネットポートを装備しており、100MポートにはLAN(0)、1GポートにはLAN(1)と"
 "アドレス指定されています。"
 
-#: ../../mimxrt/quickref.rst:856
+#: ../../mimxrt/quickref.rst:538
 msgid ""
 "For details of the network interface refer to the class :ref:`network.LAN"
 " <network.LAN>`."
@@ -3004,11 +3066,11 @@ msgstr ""
 "ネットワークインタフェースの詳細については :ref:`network.LAN <network.LAN>` "
 "クラスを参照してください。
 
-#: ../../mimxrt/quickref.rst:859
+#: ../../mimxrt/quickref.rst:541
 msgid "Transferring files"
 msgstr "ファイルの転送"
 
-#: ../../mimxrt/quickref.rst:861
+#: ../../mimxrt/quickref.rst:543
 msgid ""
 "Files can be transferred to the i.MXRT devices for instance with the "
 "``mpremote`` tool or using an SD card.  If Ethernet is available, you can"

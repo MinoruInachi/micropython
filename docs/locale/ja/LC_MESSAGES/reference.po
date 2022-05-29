@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-29 22:38+0900\n"
-"PO-Revision-Date: 2022-04-29 23:05+0900\n"
+"POT-Creation-Date: 2022-05-28 23:17+0900\n"
+"PO-Revision-Date: 2022-05-28 23:47+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1714,18 +1714,21 @@ msgstr ""
 #: ../../../reference/constrained.rst:114
 msgid ""
 "The argument to ``const()`` may be anything which, at compile time, "
-"evaluates to an integer e.g. ``0x100`` or ``1 << 8``. It can even include"
-" other const symbols that have already been defined, e.g. ``1 << BIT``."
+"evaluates to a constant e.g. ``0x100``, ``1 << 8`` or ``(True, "
+"\"string\", b\"bytes\")`` (see section below for details).  It can even "
+"include other const symbols that have already been defined, e.g. ``1 << "
+"BIT``."
 msgstr ""
-"``const()`` の引数には、``0x100`` や ``1 << 8`` など、コンパイル時に整数に"
+"``const()`` の引数には、``0x100``, ``1 << 8``, "
+"``(True, \"string\", b\"bytes\")`` など、コンパイル時に定数に"
 "評価できるものであれば何でも指定できます。 ``1 << BIT`` など、定義済の const "
 "シンボルを含めることもできます。"
 
-#: ../../../reference/constrained.rst:118
+#: ../../../reference/constrained.rst:119
 msgid "**Constant data structures**"
 msgstr "**定数データ構造**"
 
-#: ../../../reference/constrained.rst:120
+#: ../../../reference/constrained.rst:121
 msgid ""
 "Where there is a substantial volume of constant data and the platform "
 "supports execution from Flash, RAM may be saved as follows. The data "
@@ -1743,7 +1746,7 @@ msgstr ""
 "`struct` モジュールを使えば `bytes` 型と他の Python 組み込み型との間の変換に"
 "役立ちます。"
 
-#: ../../../reference/constrained.rst:128
+#: ../../../reference/constrained.rst:129
 msgid ""
 "When considering the implications of frozen bytecode, note that in Python"
 " strings, floats, bytes, integers, complex numbers and tuples are "
@@ -1755,11 +1758,11 @@ msgstr ""
 "されます(タプルについては、すべての項目が不変である場合に限ります)。"
 "次のような行がある場合、"
 
-#: ../../../reference/constrained.rst:133
+#: ../../../reference/constrained.rst:134
 msgid "mystring = \"The quick brown fox\""
 msgstr ""
 
-#: ../../../reference/constrained.rst:137
+#: ../../../reference/constrained.rst:138
 msgid ""
 "the actual string \"The quick brown fox\" will reside in flash. At "
 "runtime a reference to the string is assigned to the *variable* "
@@ -1770,11 +1773,11 @@ msgstr ""
 "文字列への参照が変数 ``mystring`` に割り当てられます。参照は単一の機械語に"
 "なります。原理上は長整数を使って定数データを格納できます。"
 
-#: ../../../reference/constrained.rst:142
+#: ../../../reference/constrained.rst:143
 msgid "bar = 0xDEADBEEF0000DEADBEEF"
 msgstr ""
 
-#: ../../../reference/constrained.rst:146
+#: ../../../reference/constrained.rst:147
 msgid ""
 "As in the string example, at runtime a reference to the arbitrarily large"
 " integer is assigned to the variable ``bar``. That reference occupies a "
@@ -1783,7 +1786,7 @@ msgstr ""
 "文字列の例のように、実行時に、任意の大きい整数への参照が変数 ``bar`` に割り当て"
 "られます。その参照は単一の機械語になります。"
 
-#: ../../../reference/constrained.rst:150
+#: ../../../reference/constrained.rst:151
 msgid ""
 "Tuples of constant objects are themselves constant. Such constant tuples "
 "are optimised by the compiler so they do not need to be created at "
@@ -1793,11 +1796,11 @@ msgstr ""
 "このような定数タプルはコンパイラによって最適化されるため、"
 "実行時に使うたびに生成する必要がありません。たとえば:"
 
-#: ../../../reference/constrained.rst:154
+#: ../../../reference/constrained.rst:155
 msgid "foo = (1, 2, 3, 4, 5, 6, 100000, (\"string\", b\"bytes\", False, True))"
 msgstr ""
 
-#: ../../../reference/constrained.rst:158
+#: ../../../reference/constrained.rst:159
 msgid ""
 "This entire tuple will exist as a single object (potentially in flash if "
 "the code is frozen) and referenced each time it is needed."
@@ -1805,11 +1808,11 @@ msgstr ""
 "このタプル全体が１つのオブジェクトとして存在し(コードを凍結している場合はフラッシュにある"
 "可能性もあり）、必要なときに毎回参照されます。"
 
-#: ../../../reference/constrained.rst:161
+#: ../../../reference/constrained.rst:162
 msgid "**Needless object creation**"
 msgstr "**不要なオブジェクト作成**"
 
-#: ../../../reference/constrained.rst:163
+#: ../../../reference/constrained.rst:164
 msgid ""
 "There are a number of situations where objects may unwittingly be created"
 " and destroyed. This can reduce the usability of RAM through "
@@ -1819,18 +1822,18 @@ msgstr ""
 "これによりフラグメンテーションが発生して、RAM 可用性は低下することがありえます。"
 "以降の章では、この事例について説明します。"
 
-#: ../../../reference/constrained.rst:167
+#: ../../../reference/constrained.rst:168
 msgid "**String concatenation**"
 msgstr "**文字列の結合**"
 
-#: ../../../reference/constrained.rst:169
+#: ../../../reference/constrained.rst:170
 msgid ""
 "Consider the following code fragments which aim to produce constant "
 "strings:"
 msgstr ""
 "定数文字列を生成することを目的とした次のコードフラグメントを検討してください:"
 
-#: ../../../reference/constrained.rst:178
+#: ../../../reference/constrained.rst:179
 msgid ""
 "var = \"foo\" + \"bar\"\n"
 "var1 = \"foo\" \"bar\"\n"
@@ -1839,7 +1842,7 @@ msgid ""
 "bar\"\"\""
 msgstr ""
 
-#: ../../../reference/constrained.rst:179
+#: ../../../reference/constrained.rst:180
 msgid ""
 "Each produces the same outcome, however the first needlessly creates two "
 "string objects at runtime, allocates more RAM for concatenation before "
@@ -1850,7 +1853,7 @@ msgstr ""
 "不必要に作成し、結果を生成する前に連結用に RAM を追加で割り当てます。他のものは"
 "コンパイル時に連結を実行します。これはより効率的で、フラグメンテーションを減らします。"
 
-#: ../../../reference/constrained.rst:184
+#: ../../../reference/constrained.rst:185
 msgid ""
 "Where strings must be dynamically created before being fed to a stream "
 "such as a file it will save RAM if this is done in a piecemeal fashion. "
@@ -1861,22 +1864,22 @@ msgstr ""
 "これを少しずつ行うようにすれば RAM を節約できます。大きな文字列オブジェクトを"
 "作成するのではなく、部分文字列を作成して送りってから、次の部分文字列を扱うようにします。"
 
-#: ../../../reference/constrained.rst:189
+#: ../../../reference/constrained.rst:190
 msgid ""
 "The best way to create dynamic strings is by means of the string "
 "``format()`` method:"
 msgstr ""
 "動的文字列を作成する最良の方法は、文字列の ``format()`` メソッドを使うことです:"
 
-#: ../../../reference/constrained.rst:195
+#: ../../../reference/constrained.rst:196
 msgid "var = \"Temperature {:5.2f} Pressure {:06d}\\n\".format(temp, press)"
 msgstr ""
 
-#: ../../../reference/constrained.rst:196
+#: ../../../reference/constrained.rst:197
 msgid "**Buffers**"
 msgstr "**バッファ**"
 
-#: ../../../reference/constrained.rst:198
+#: ../../../reference/constrained.rst:199
 msgid ""
 "When accessing devices such as instances of UART, I2C and SPI interfaces,"
 " using pre-allocated buffers avoids the creation of needless objects. "
@@ -1886,8 +1889,7 @@ msgstr ""
 "バッファを使うようにすると、不要なオブジェクトが作成されなくなります。次の２つのループに"
 "ついて考えてみましょう:"
 
-
-#: ../../../reference/constrained.rst:202
+#: ../../../reference/constrained.rst:203
 msgid ""
 "while True:\n"
 "    var = spi.read(100)\n"
@@ -1907,7 +1909,7 @@ msgstr ""
 "    spi.readinto(buf)\n"
 "    # buf でデータを処理"
 
-#: ../../../reference/constrained.rst:213
+#: ../../../reference/constrained.rst:214
 msgid ""
 "The first creates a buffer on each pass whereas the second re-uses a pre-"
 "allocated buffer; this is both faster and more efficient in terms of "
@@ -1917,11 +1919,11 @@ msgstr ""
 "事前に割り当てられたバッファを再利用します。これにより、より高速になりますし、"
 "メモリのフラグメンテーションという点でも効率的です。"
 
-#: ../../../reference/constrained.rst:216
+#: ../../../reference/constrained.rst:217
 msgid "**Bytes are smaller than ints**"
 msgstr "**バイトは整数より小さい**"
 
-#: ../../../reference/constrained.rst:218
+#: ../../../reference/constrained.rst:219
 msgid ""
 "On most platforms an integer consumes four bytes. Consider the three "
 "calls to the function ``foo()``:"
@@ -1929,7 +1931,7 @@ msgstr ""
 "ほとんどのプラットフォームで、整数は4バイトを消費します。次の関数 ``foo()`` への"
 "３つの呼出しについて考えてみましょう:"
 
-#: ../../../reference/constrained.rst:221
+#: ../../../reference/constrained.rst:222
 msgid ""
 "def foo(bar):\n"
 "    for x in bar:\n"
@@ -1939,7 +1941,7 @@ msgid ""
 "foo(b'\\1\\2\\xff')"
 msgstr ""
 
-#: ../../../reference/constrained.rst:230
+#: ../../../reference/constrained.rst:231
 msgid ""
 "In the first call a `list` of integers is created in RAM each time the "
 "code is executed. The second call creates a constant `tuple` object (a "
@@ -1956,11 +1958,11 @@ msgstr ""
 "作成します。このモジュールをバイトコードに凍結した場合、 `tuple` と `bytes` "
 "オブジェクトの両方がフラッシュ内に置かれます。"
 
-#: ../../../reference/constrained.rst:237
+#: ../../../reference/constrained.rst:238
 msgid "**Strings Versus Bytes**"
 msgstr "**文字列とバイト列**"
 
-#: ../../../reference/constrained.rst:239
+#: ../../../reference/constrained.rst:240
 msgid ""
 "Python3 introduced Unicode support. This introduced a distinction between"
 " a string and an array of bytes. MicroPython ensures that Unicode strings"
@@ -1978,13 +1980,13 @@ msgstr ""
 "オブジェクトが使えます。ほとんどの文字列メソッド(たとえば :meth:`str.strip()`) は "
 "`bytes` インスタンスにも適用されるため、Unicode を排除する処理は簡単です。"
 
-#: ../../../reference/constrained.rst:247
+#: ../../../reference/constrained.rst:248
 msgid ""
 "s = 'the quick brown fox'   # A string instance\n"
 "b = b'the quick brown fox'  # A bytes instance"
 msgstr ""
 
-#: ../../../reference/constrained.rst:252
+#: ../../../reference/constrained.rst:253
 msgid ""
 "Where it is necessary to convert between strings and bytes the "
 ":meth:`str.encode` and the :meth:`bytes.decode` methods can be used. Note"
@@ -2000,17 +2002,17 @@ msgstr ""
 "コードの２行目には、新しい bytes オブジェクトが割り当てられています。foo が"
 "文字列の場合も同様です。"
 
-#: ../../../reference/constrained.rst:259
+#: ../../../reference/constrained.rst:260
 msgid ""
 "foo = b'   empty whitespace'\n"
 "foo = foo.lstrip()"
 msgstr ""
 
-#: ../../../reference/constrained.rst:264
+#: ../../../reference/constrained.rst:265
 msgid "**Runtime compiler execution**"
 msgstr "**ランタイムコンパイラの実行**"
 
-#: ../../../reference/constrained.rst:266
+#: ../../../reference/constrained.rst:267
 msgid ""
 "The Python funcitons `eval` and `exec` invoke the compiler at runtime, "
 "which requires significant amounts of RAM. Note that the ``pickle`` "
@@ -2022,11 +2024,11 @@ msgstr ""
 "ライブラリは `exec` を利用していることに注意してください。オブジェクトのシリアル化"
 "については `json` ライブラリを使うと、RAM の効率が上がる可能性があります 。"
 
-#: ../../../reference/constrained.rst:271
+#: ../../../reference/constrained.rst:272
 msgid "**Storing strings in flash**"
 msgstr "**文字列をフラッシュに保存する**"
 
-#: ../../../reference/constrained.rst:273
+#: ../../../reference/constrained.rst:274
 msgid ""
 "Python strings are immutable hence have the potential to be stored in "
 "read only memory. The compiler can place in flash strings defined in "
@@ -2041,7 +2043,7 @@ msgstr ""
 "ツールチェーンを用意する必要があります。モジュールをインポートして実行できる限り、"
 "モジュールが完全にデバッグされていなくても、この手順を実行できます。"
 
-#: ../../../reference/constrained.rst:279
+#: ../../../reference/constrained.rst:280
 msgid "After importing the modules, execute:"
 msgstr "モジュールをインポートした後に次を実行してください:"
 
@@ -2049,7 +2051,7 @@ msgstr "モジュールをインポートした後に次を実行してくださ
 msgid "micropython.qstr_info(1)"
 msgstr ""
 
-#: ../../../reference/constrained.rst:285
+#: ../../../reference/constrained.rst:286
 msgid ""
 "Then copy and paste all the Q(xxx) lines into a text editor. Check for "
 "and remove lines which are obviously invalid. Open the file "
@@ -2065,15 +2067,15 @@ msgstr ""
 "ファイルの末尾に貼り付けます。ファイルを保存し、ファームウェアを再構築してフラッシュ"
 "します。結果はモジュールをインポートして再度発行することで確認できます:"
 
-#: ../../../reference/constrained.rst:296
+#: ../../../reference/constrained.rst:297
 msgid "The Q(xxx) lines should be gone."
 msgstr "Q(xxx) 行は消えます。"
 
-#: ../../../reference/constrained.rst:301
+#: ../../../reference/constrained.rst:302
 msgid "The heap"
 msgstr "ヒープ"
 
-#: ../../../reference/constrained.rst:303
+#: ../../../reference/constrained.rst:304
 msgid ""
 "When a running program instantiates an object the necessary RAM is "
 "allocated from a fixed size pool known as the heap. When the object goes "
@@ -2090,24 +2092,24 @@ msgstr ""
 "回収し、空きヒープに戻します。このプロセスは自動的に実行されますが、 `gc.collect()` "
 "によって直接呼び出すこともできます。"
 
-#: ../../../reference/constrained.rst:310
+#: ../../../reference/constrained.rst:311
 msgid ""
 "The discourse on this is somewhat involved. For a 'quick fix' issue the "
 "following periodically:"
 msgstr ""
 "これについての説明は多少複雑です。「迅速な修正」のために、定期的に以下を発行してください:"
 
-#: ../../reference/constrained.rst:313 ../../reference/constrained.rst:414
+#: ../../reference/constrained.rst:314 ../../reference/constrained.rst:415
 msgid ""
 "gc.collect()\n"
 "gc.threshold(gc.mem_free() // 4 + gc.mem_alloc())"
 msgstr ""
 
-#: ../../../reference/constrained.rst:319
+#: ../../../reference/constrained.rst:320
 msgid "Fragmentation"
 msgstr "フラグメンテーション"
 
-#: ../../../reference/constrained.rst:321
+#: ../../../reference/constrained.rst:322
 msgid ""
 "Say a program creates an object ``foo``, then an object ``bar``. "
 "Subsequently ``foo`` goes out of scope but ``bar`` remains. The RAM used "
@@ -2126,7 +2128,7 @@ msgstr ""
 "あります。使用可能な RAM がかなりあるにもかかわらず、特定のオブジェクトを割り当てるための"
 "隣接スペースが不足し、プログラムがメモリーエラーで失敗します。"
 
-#: ../../../reference/constrained.rst:330
+#: ../../../reference/constrained.rst:331
 msgid ""
 "The techniques outlined above aim to minimise this. Where large permanent"
 " buffers or other objects are required it is best to instantiate these "
@@ -2139,11 +2141,11 @@ msgstr ""
 "早い段階でこれらをインスタンス化するのが最善です。ヒープの状態を監視し、GC を制御"
 "することで、さらに改善することができます。これらの概要は以下の通りです。"
 
-#: ../../../reference/constrained.rst:337
+#: ../../../reference/constrained.rst:338
 msgid "Reporting"
 msgstr "レポート機能"
 
-#: ../../../reference/constrained.rst:339
+#: ../../../reference/constrained.rst:340
 msgid ""
 "A number of library functions are available to report on memory "
 "allocation and to control GC. These are to be found in the `gc` and "
@@ -2155,7 +2157,7 @@ msgstr ""
 "貼り付けることができます(``Ctrl-e`` で貼り付けモードに入り、 ``Ctrl-d`` "
 "で実行します)。"
 
-#: ../../../reference/constrained.rst:344
+#: ../../../reference/constrained.rst:345
 msgid ""
 "import gc\n"
 "import micropython\n"
@@ -2179,34 +2181,34 @@ msgid ""
 "micropython.mem_info(1)"
 msgstr ""
 
-#: ../../../reference/constrained.rst:363
+#: ../../../reference/constrained.rst:364
 msgid "Methods employed above:"
 msgstr "上記で採用したメソッド:"
 
-#: ../../../reference/constrained.rst:365
+#: ../../../reference/constrained.rst:366
 msgid "`gc.collect()` Force a garbage collection. See footnote."
 msgstr "`gc.collect()` ガベージコレクションを強制します。脚注を参照してください。"
 
-#: ../../../reference/constrained.rst:366
+#: ../../../reference/constrained.rst:367
 msgid "`micropython.mem_info()` Print a summary of RAM utilisation."
 msgstr "`micropython.mem_info()` RAM 使用率の要約を表示します。"
 
-#: ../../../reference/constrained.rst:367
+#: ../../../reference/constrained.rst:368
 msgid "`gc.mem_free()` Return the free heap size in bytes."
 msgstr "`gc.mem_free()` 空きヒープサイズをバイト数で返します。"
 
-#: ../../../reference/constrained.rst:368
+#: ../../../reference/constrained.rst:369
 msgid "`gc.mem_alloc()` Return the number of bytes currently allocated."
 msgstr "`gc.mem_alloc()` 現在割り当てられているバイト数を返します。"
 
-#: ../../../reference/constrained.rst:369
+#: ../../../reference/constrained.rst:370
 msgid ""
 "``micropython.mem_info(1)`` Print a table of heap utilisation (detailed "
 "below)."
 msgstr ""
 "``micropython.mem_info(1)`` ヒープ使用率の表を表示します(詳細は後述)。"
 
-#: ../../../reference/constrained.rst:371
+#: ../../../reference/constrained.rst:372
 msgid ""
 "The numbers produced are dependent on the platform, but it can be seen "
 "that declaring the function uses a small amount of RAM in the form of "
@@ -2221,7 +2223,7 @@ msgstr ""
 "10KiB 以上が使われますが、戻り時に a はスコープ外となり、ガベージとなります。"
 "最後は `gc.collect()` により、そのメモリが回収されます。"
 
-#: ../../../reference/constrained.rst:378
+#: ../../../reference/constrained.rst:379
 msgid ""
 "The final output produced by ``micropython.mem_info(1)`` will vary in "
 "detail but may be interpreted as follows:"
@@ -2229,95 +2231,95 @@ msgstr ""
 "``micropython.mem_info(1)`` によって生成される最終的な出力は、詳細は異なって"
 "いるかもしれませんが、次のように解釈される場合があります。"
 
-#: ../../../reference/constrained.rst:382
+#: ../../../reference/constrained.rst:383
 msgid "Symbol"
 msgstr "シンボル"
 
-#: ../../../reference/constrained.rst:382
+#: ../../../reference/constrained.rst:383
 msgid "Meaning"
 msgstr "意味"
 
-#: ../../../reference/constrained.rst:379
+#: ../../../reference/constrained.rst:380
 msgid "."
 msgstr ""
 
-#: ../../../reference/constrained.rst:384
+#: ../../../reference/constrained.rst:385
 msgid "free block"
 msgstr "フリーブロック"
 
-#: ../../../reference/constrained.rst:385
+#: ../../../reference/constrained.rst:386
 msgid "h"
 msgstr ""
 
-#: ../../../reference/constrained.rst:385
+#: ../../../reference/constrained.rst:386
 msgid "head block"
 msgstr "ヘッドブロック"
 
-#: ../../../reference/constrained.rst:386
+#: ../../../reference/constrained.rst:387
 msgid "="
 msgstr ""
 
-#: ../../../reference/constrained.rst:386
+#: ../../../reference/constrained.rst:387
 msgid "tail block"
 msgstr "テイルブロック"
 
-#: ../../../reference/constrained.rst:387
+#: ../../../reference/constrained.rst:388
 msgid "m"
 msgstr ""
 
-#: ../../../reference/constrained.rst:387
+#: ../../../reference/constrained.rst:388
 msgid "marked head block"
 msgstr "マーク付きヘッドブロック"
 
-#: ../../../reference/constrained.rst:388
+#: ../../../reference/constrained.rst:389
 msgid "T"
 msgstr ""
 
-#: ../../../reference/constrained.rst:388
+#: ../../../reference/constrained.rst:389
 msgid "tuple"
 msgstr "タプル"
 
-#: ../../../reference/constrained.rst:389
+#: ../../../reference/constrained.rst:390
 msgid "L"
 msgstr ""
 
-#: ../../../reference/constrained.rst:389
+#: ../../../reference/constrained.rst:390
 msgid "list"
 msgstr "リスト"
 
-#: ../../../reference/constrained.rst:390
+#: ../../../reference/constrained.rst:391
 msgid "D"
 msgstr ""
 
-#: ../../../reference/constrained.rst:390
+#: ../../../reference/constrained.rst:391
 msgid "dict"
 msgstr "辞書"
 
-#: ../../../reference/constrained.rst:391
+#: ../../../reference/constrained.rst:392
 msgid "F"
 msgstr ""
 
-#: ../../../reference/constrained.rst:391
+#: ../../../reference/constrained.rst:392
 msgid "float"
 msgstr "浮動小数点"
 
-#: ../../../reference/constrained.rst:392
+#: ../../../reference/constrained.rst:393
 msgid "B"
 msgstr ""
 
-#: ../../../reference/constrained.rst:392
+#: ../../../reference/constrained.rst:393
 msgid "byte code"
 msgstr "バイトコード"
 
-#: ../../../reference/constrained.rst:393
+#: ../../../reference/constrained.rst:394
 msgid "M"
 msgstr ""
 
-#: ../../../reference/constrained.rst:393
+#: ../../../reference/constrained.rst:394
 msgid "module"
 msgstr "モジュール"
 
-#: ../../../reference/constrained.rst:396
+#: ../../../reference/constrained.rst:397
 msgid ""
 "Each letter represents a single block of memory, a block being 16 bytes. "
 "So each line of the heap dump represents 0x400 bytes or 1KiB of RAM."
@@ -2325,11 +2327,11 @@ msgstr ""
 "各文字は1ブロックのメモリを表し、1ブロックは16バイトです。したがって、"
 "ヒープダンプの各行は 0x400 バイトまたは 1KB の RAM を表します。"
 
-#: ../../../reference/constrained.rst:400
+#: ../../../reference/constrained.rst:401
 msgid "Control of garbage collection"
 msgstr "ガベージコレクションの制御"
 
-#: ../../../reference/constrained.rst:402
+#: ../../../reference/constrained.rst:403
 msgid ""
 "A GC can be demanded at any time by issuing `gc.collect()`. It is "
 "advantageous to do this at intervals, firstly to pre-empt fragmentation "
@@ -2344,7 +2346,7 @@ msgstr ""
 "(pyboardでは約1ms)。明示的な呼び出しは、プログラム内の適切な時点で確実に発生する"
 "ようにしながら、GC による遅延を最小限に抑えることができます。"
 
-#: ../../../reference/constrained.rst:408
+#: ../../../reference/constrained.rst:409
 msgid ""
 "Automatic GC is provoked under the following circumstances. When an "
 "attempt at allocation fails, a GC is performed and the allocation re-"
@@ -2357,7 +2359,7 @@ msgstr ""
 "RAM の量がしきい値を下回ると、自動 GC がトリガーされます。実行が進むにつれて、"
 "このしきい値を調整することができます。"
 
-#: ../../../reference/constrained.rst:419
+#: ../../../reference/constrained.rst:420
 #, python-format
 msgid ""
 "This will provoke a GC when more than 25% of the currently free heap "
@@ -2365,7 +2367,7 @@ msgid ""
 msgstr ""
 "これは、現在の空きヒープの25％以上が占有されるようになると、GCを引き起こします。"
 
-#: ../../../reference/constrained.rst:422
+#: ../../../reference/constrained.rst:423
 msgid ""
 "In general modules should instantiate data objects at runtime using "
 "constructors or other initialisation functions. The reason is that if "
@@ -2379,11 +2381,11 @@ msgstr ""
 "です。モジュールがインポート時にデータをインスタンス化する場合は、インポート後に "
 "`gc.collect()` を実行すると、問題が改善します。"
 
-#: ../../../reference/constrained.rst:429
+#: ../../../reference/constrained.rst:430
 msgid "String operations"
 msgstr "文字列操作"
 
-#: ../../../reference/constrained.rst:431
+#: ../../../reference/constrained.rst:432
 msgid ""
 "MicroPython handles strings in an efficient manner and understanding this"
 " can help in designing applications to run on microcontrollers. When a "
@@ -2400,7 +2402,7 @@ msgstr ""
 "されたモジュールでは、その単一のインスタンスは RAM に配置されますが、前述のように、"
 "バイトコードとして凍結されたモジュールではフラッシュに配置されます。"
 
-#: ../../../reference/constrained.rst:438
+#: ../../../reference/constrained.rst:439
 msgid ""
 "String comparisons are also performed efficiently using hashing rather "
 "than character by character. The penalty for using strings rather than "
@@ -2411,11 +2413,11 @@ msgstr ""
 "整数ではなく文字列を使用することによるペナルティは、パフォーマンスと RAM の使用量の"
 "両方の点で小さい場合があります。これは、C プログラマにとっては驚くべきことです。"
 
-#: ../../../reference/constrained.rst:444
+#: ../../../reference/constrained.rst:445
 msgid "Postscript"
 msgstr "あとがき"
 
-#: ../../../reference/constrained.rst:446
+#: ../../../reference/constrained.rst:447
 msgid ""
 "MicroPython passes, returns and (by default) copies objects by reference."
 " A reference occupies a single machine word so these processes are "
@@ -2425,7 +2427,7 @@ msgstr ""
 "参照は単一のマシンワードを占有するため、これらのプロセスは RAM の使用と速度の点で"
 "効率的です。"
 
-#: ../../../reference/constrained.rst:450
+#: ../../../reference/constrained.rst:451
 msgid ""
 "Where variables are required whose size is neither a byte nor a machine "
 "word there are standard libraries which can assist in storing these "
@@ -2436,11 +2438,11 @@ msgstr ""
 "実行するのを助けることができる標準ライブラリがあります。"
 "`array`, `struct`, `uctypes` モジュールを参照してください。"
 
-#: ../../../reference/constrained.rst:456
+#: ../../../reference/constrained.rst:457
 msgid "Footnote: gc.collect() return value"
 msgstr "脚注: gc.collect（）の戻り値"
 
-#: ../../../reference/constrained.rst:458
+#: ../../../reference/constrained.rst:459
 msgid ""
 "On Unix and Windows platforms the `gc.collect()` method returns an "
 "integer which signifies the number of distinct memory regions that were "
@@ -4685,7 +4687,8 @@ msgstr ""
 #: ../../reference/manifest.rst:59
 msgid ""
 "*opt* is the optimisation level to pass to mpy-cross when compiling "
-"``.py`` to ``.mpy``."
+"``.py`` to ``.mpy``.  These levels are described in "
+":func:`micropython.opt_level`."
 msgstr ""
 
 #: ../../reference/manifest.rst:64
@@ -5298,16 +5301,6 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:30
 msgid ""
-"Bytecode features used in the .mpy file: there are two bytecode features "
-"which must match between the file and the system: unicode support and "
-"inline caching of map lookups in the bytecode."
-msgstr ""
-".mpy ファイルで使用されるバイトコード機能: ファイルとシステムの間で一致する必要が"
-"ある２つのバイトコード機能があります。ユニコードサポートとバイトコードでのマップ"
-"検索のインラインキャッシュです。"
-
-#: ../../reference/mpyfiles.rst:34
-msgid ""
 "Small integer bits: the .mpy file will require a minimum number of bits "
 "in a small integer and the system loading it must support at least this "
 "many bits."
@@ -5315,16 +5308,7 @@ msgstr ""
 "スモール整数ビット: .mpy ファイルにはスモール整数の最小ビット数の要求があり、"
 ".mpy をロードするシステムは少なくともこの数のビットをサポートする必要があります。"
 
-#: ../../reference/mpyfiles.rst:38
-msgid ""
-"Qstr compression window size: the .mpy file will require a minimum window"
-" size for qstr decompression and the system loading it must have a window"
-" greater or equal to this size."
-msgstr ""
-"qstr 圧縮ウィンドウサイズ: .mpy ファイルには qstr 解凍のための最小ウィンドウサイズの"
-"要求があり、.mpy をロードするシステムにはこのサイズ以上のウィンドウが必要です。"
-
-#: ../../reference/mpyfiles.rst:42
+#: ../../reference/mpyfiles.rst:34
 msgid ""
 "Native architecture: if the .mpy file contains native machine code then "
 "it will specify the architecture of that machine code and the system "
@@ -5334,7 +5318,7 @@ msgstr ""
 "そのマシンコードのアーキテクチャの指定があり、.mpy をロードするシステムはその"
 "アーキテクチャのコードの実行をサポートする必要があります。"
 
-#: ../../reference/mpyfiles.rst:46
+#: ../../reference/mpyfiles.rst:38
 msgid ""
 "If a MicroPython system supports importing .mpy files then the "
 "``sys.implementation._mpy`` field will exist and return an integer which "
@@ -5344,7 +5328,7 @@ msgstr ""
 "``sys.implementation._mpy`` フィールドが存在し、バージョン(下位8ビット)、"
 "機能、ネイティブアーキテクチャをエンコードした整数を返します。"
 
-#: ../../reference/mpyfiles.rst:50
+#: ../../reference/mpyfiles.rst:42
 msgid ""
 "Trying to import an .mpy file that fails one of the first four tests will"
 " raise ``ValueError('incompatible .mpy file')``.  Trying to import an "
@@ -5357,11 +5341,11 @@ msgstr ""
 ".mpy　ファイルをインポートしようとすると ``ValueError('incompatible .mpy arch')`` "
 "が発生します。"
 
-#: ../../reference/mpyfiles.rst:55
+#: ../../reference/mpyfiles.rst:47
 msgid "If importing an .mpy file fails then try the following:"
 msgstr ".mpy ファイルのインポートに失敗した場合は、次を試してください:"
 
-#: ../../reference/mpyfiles.rst:57
+#: ../../reference/mpyfiles.rst:49
 msgid ""
 "Determine the .mpy version and flags supported by your MicroPython system"
 " by executing::"
@@ -5369,7 +5353,7 @@ msgstr ""
 "以下を実行して、MicroPython システムでサポートされている .mpy バージョンとフラグを"
 "確認します::"
 
-#: ../../reference/mpyfiles.rst:60
+#: ../../reference/mpyfiles.rst:52
 msgid ""
 "import sys\n"
 "sys_mpy = sys.implementation._mpy\n"
@@ -5380,12 +5364,10 @@ msgid ""
 "print('mpy flags:', end='')\n"
 "if arch:\n"
 "    print(' -march=' + arch, end='')\n"
-"if not sys_mpy & 0x200:\n"
-"    print(' -mno-unicode', end='')\n"
 "print()"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:75
+#: ../../reference/mpyfiles.rst:63
 msgid ""
 "Check the validity of the .mpy file by inspecting the first two bytes of "
 "the file.  The first byte should be an uppercase 'M' and the second byte "
@@ -5397,7 +5379,7 @@ msgstr ""
 "このバージョン番号は、上記のシステムバージョンと一致する必要があります。"
 "一致しない場合は .mpy ファイルを再作成してください。"
 
-#: ../../reference/mpyfiles.rst:80
+#: ../../reference/mpyfiles.rst:68
 msgid ""
 "Check if the system .mpy version matches the version emitted by ``mpy-"
 "cross`` that was used to build the .mpy file, found by ``mpy-cross "
@@ -5411,7 +5393,7 @@ msgstr ""
 "一致しない場合は ``mpy-cross --version`` によって報告されたタグ(またはハッシュ)で"
 "チェックアウトした Git リポジトリにある ``mpy-cross`` で再コンパイルします。"
 
-#: ../../reference/mpyfiles.rst:85
+#: ../../reference/mpyfiles.rst:73
 msgid ""
 "Make sure you are using the correct ``mpy-cross`` flags, found by the "
 "code above, or by inspecting the ``MPY_CROSS_FLAGS`` Makefile variable "
@@ -5421,62 +5403,62 @@ msgstr ""
 "フラグは上記のコードで見つけるか、使っているポートの "
 "``MPY_CROSS_FLAGS`` Makefile 変数を調べてください。"
 
-#: ../../reference/mpyfiles.rst:89
+#: ../../reference/mpyfiles.rst:77
 msgid ""
 "The following table shows the correspondence between MicroPython release "
 "and .mpy version."
 msgstr ""
 "次の表は、MicroPythonリリースと.mpyバージョンの対応を示しています。"
 
-#: ../../reference/mpyfiles.rst:93
+#: ../../reference/mpyfiles.rst:81
 msgid "MicroPython release"
 msgstr "MicroPython リリース"
 
-#: ../../reference/mpyfiles.rst:93
+#: ../../reference/mpyfiles.rst:81
 msgid ".mpy version"
 msgstr ".mpy バージョン"
 
-#: ../../reference/mpyfiles.rst:95
+#: ../../reference/mpyfiles.rst:83
 msgid "v1.12 and up"
 msgstr "v1.12 以上"
 
-#: ../../reference/mpyfiles.rst:95
+#: ../../reference/mpyfiles.rst:83
 msgid "5"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:96
+#: ../../reference/mpyfiles.rst:84
 msgid "v1.11"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:96
+#: ../../reference/mpyfiles.rst:84
 msgid "4"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:97
+#: ../../reference/mpyfiles.rst:85
 msgid "v1.9.3 - v1.10"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:97
+#: ../../reference/mpyfiles.rst:85
 msgid "3"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:98
+#: ../../reference/mpyfiles.rst:86
 msgid "v1.9 - v1.9.2"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:98
+#: ../../reference/mpyfiles.rst:86
 msgid "2"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:99
+#: ../../reference/mpyfiles.rst:87
 msgid "v1.5.1 - v1.8.7"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:99
+#: ../../reference/mpyfiles.rst:87
 msgid "0"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:102
+#: ../../reference/mpyfiles.rst:90
 msgid ""
 "For completeness, the next table shows the Git commit of the main "
 "MicroPython repository at which the .mpy version was changed."
@@ -5484,67 +5466,67 @@ msgstr ""
 "完全を期すため、次の表は .mpy バージョンが変更されたメイン MicroPython "
 "リポジトリの Git コミットを示しています。"
 
-#: ../../reference/mpyfiles.rst:106
+#: ../../reference/mpyfiles.rst:94
 msgid ".mpy version change"
 msgstr ".mpy バージョン変更"
 
-#: ../../reference/mpyfiles.rst:106
+#: ../../reference/mpyfiles.rst:94
 msgid "Git commit"
 msgstr "Git コミット"
 
-#: ../../reference/mpyfiles.rst:108
+#: ../../reference/mpyfiles.rst:96
 msgid "4 to 5"
 msgstr "4 から 5"
 
-#: ../../reference/mpyfiles.rst:108
+#: ../../reference/mpyfiles.rst:96
 msgid "5716c5cf65e9b2cb46c2906f40302401bdd27517"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:109
+#: ../../reference/mpyfiles.rst:97
 msgid "3 to 4"
 msgstr "3 から 4"
 
-#: ../../reference/mpyfiles.rst:109
+#: ../../reference/mpyfiles.rst:97
 msgid "9a5f92ea72754c01cc03e5efcdfe94021120531e"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:110
+#: ../../reference/mpyfiles.rst:98
 msgid "2 to 3"
 msgstr "2 から 3"
 
-#: ../../reference/mpyfiles.rst:110
+#: ../../reference/mpyfiles.rst:98
 msgid "ff93fd4f50321c6190e1659b19e64fef3045a484"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:111
+#: ../../reference/mpyfiles.rst:99
 msgid "1 to 2"
 msgstr "1 から 2"
 
-#: ../../reference/mpyfiles.rst:111
+#: ../../reference/mpyfiles.rst:99
 msgid "dd11af209d226b7d18d5148b239662e30ed60bad"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:112
+#: ../../reference/mpyfiles.rst:100
 msgid "0 to 1"
 msgstr "0 から 1"
 
-#: ../../reference/mpyfiles.rst:112
+#: ../../reference/mpyfiles.rst:100
 msgid "6a11048af1d01c78bdacddadd1b72dc7ba7c6478"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:113
+#: ../../reference/mpyfiles.rst:101
 msgid "initial version 0"
 msgstr "初期バージョン 0"
 
-#: ../../reference/mpyfiles.rst:113
+#: ../../reference/mpyfiles.rst:101
 msgid "d8c834c95d506db979ec871417de90b7951edc30"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:117
+#: ../../reference/mpyfiles.rst:105
 msgid "Binary encoding of .mpy files"
 msgstr ".mpy ファイルのバイナリエンコーディング"
 
-#: ../../reference/mpyfiles.rst:119
+#: ../../reference/mpyfiles.rst:107
 msgid ""
 "MicroPython .mpy files are a binary container format with code objects "
 "stored internally in a nested hierarchy.  To keep files small while still"
@@ -5561,15 +5543,15 @@ msgstr ""
 "1バイトあたり7ビットを格納し、1つ以上のバイトが続く場合は8ビット目(MSB)が設定されます。"
 "符号なし整数のビットは、LSB 形式で vuint に格納されます。"
 
-#: ../../reference/mpyfiles.rst:127
+#: ../../reference/mpyfiles.rst:115
 msgid "The top-level of an .mpy file consists of two parts:"
 msgstr ".mpyファイルのトップレベルは2つの部分で構成されています:"
 
-#: ../../reference/mpyfiles.rst:129
+#: ../../reference/mpyfiles.rst:117
 msgid "The header."
 msgstr "ヘッダー"
 
-#: ../../reference/mpyfiles.rst:131
+#: ../../reference/mpyfiles.rst:119
 msgid ""
 "The raw-code for the outer scope of the module. This outer scope is "
 "executed when the .mpy file is imported."
@@ -5577,57 +5559,57 @@ msgstr ""
 "モジュールの外部スコープの raw コード。この外部スコープは .mpy ファイルがインポート"
 "されるときに実行されます。"
 
-#: ../../reference/mpyfiles.rst:135
+#: ../../reference/mpyfiles.rst:123
 msgid "The header"
 msgstr "ヘッダー"
 
-#: ../../reference/mpyfiles.rst:137
+#: ../../reference/mpyfiles.rst:125
 msgid "The .mpy header is:"
 msgstr ".mpy のヘッダーは次のとおりです:"
 
-#: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:156
+#: ../../reference/mpyfiles.rst:128 ../../reference/mpyfiles.rst:144
 msgid "size"
 msgstr "サイズ"
 
-#: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:156
+#: ../../reference/mpyfiles.rst:128 ../../reference/mpyfiles.rst:144
 msgid "field"
 msgstr "フォールド"
 
-#: ../../reference/mpyfiles.rst:142 ../../reference/mpyfiles.rst:143
-#: ../../reference/mpyfiles.rst:144 ../../reference/mpyfiles.rst:145
+#: ../../reference/mpyfiles.rst:130 ../../reference/mpyfiles.rst:131
+#: ../../reference/mpyfiles.rst:132 ../../reference/mpyfiles.rst:133
 msgid "byte"
 msgstr "バイト"
 
-#: ../../reference/mpyfiles.rst:142
+#: ../../reference/mpyfiles.rst:130
 msgid "value 0x4d (ASCII 'M')"
 msgstr "値 0x4d (ASCII の "M')"
 
-#: ../../reference/mpyfiles.rst:143
+#: ../../reference/mpyfiles.rst:131
 msgid ".mpy version number"
 msgstr ".mpy バージョン番号"
 
-#: ../../reference/mpyfiles.rst:144
+#: ../../reference/mpyfiles.rst:132
 msgid "feature flags"
 msgstr "機能フラグ"
 
-#: ../../reference/mpyfiles.rst:145
+#: ../../reference/mpyfiles.rst:133
 msgid "number of bits in a small int"
 msgstr "スモール整数のビット数"
 
-#: ../../reference/mpyfiles.rst:146 ../../reference/mpyfiles.rst:158
-#: ../../reference/mpyfiles.rst:160 ../../reference/mpyfiles.rst:161
+#: ../../reference/mpyfiles.rst:134 ../../reference/mpyfiles.rst:146
+#: ../../reference/mpyfiles.rst:148 ../../reference/mpyfiles.rst:149
 msgid "vuint"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:146
+#: ../../reference/mpyfiles.rst:134
 msgid "size of qstr window"
 msgstr "qstr ウィンドウのサイズ"
 
-#: ../../reference/mpyfiles.rst:150
+#: ../../reference/mpyfiles.rst:138
 msgid "Raw code elements"
 msgstr "raw コードの要素"
 
-#: ../../reference/mpyfiles.rst:152
+#: ../../reference/mpyfiles.rst:140
 msgid ""
 "A raw-code element contains code, either bytecode or native machine code."
 "  Its contents are:"
@@ -5635,36 +5617,36 @@ msgstr ""
 "raw コードの要素には、バイトコードまたはネイティブマシンコードのコードが含まれます。"
 "その内容は次のとおりです:"
 
-#: ../../reference/mpyfiles.rst:158
+#: ../../reference/mpyfiles.rst:146
 msgid "type and size"
 msgstr "タイプとサイズ"
 
-#: ../../reference/mpyfiles.rst:159 ../../reference/mpyfiles.rst:162
-#: ../../reference/mpyfiles.rst:163
+#: ../../reference/mpyfiles.rst:147 ../../reference/mpyfiles.rst:150
+#: ../../reference/mpyfiles.rst:151
 msgid "..."
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:159
+#: ../../reference/mpyfiles.rst:147
 msgid "code (bytecode or machine code)"
 msgstr "コード(バイトコードまたはマシンコード)"
 
-#: ../../reference/mpyfiles.rst:160
+#: ../../reference/mpyfiles.rst:148
 msgid "number of constant objects"
 msgstr "定数オブジェクトの数"
 
-#: ../../reference/mpyfiles.rst:161
+#: ../../reference/mpyfiles.rst:149
 msgid "number of sub-raw-code elements"
 msgstr "副 raw コード要素の数"
 
-#: ../../reference/mpyfiles.rst:162
+#: ../../reference/mpyfiles.rst:150
 msgid "constant objects"
 msgstr "定数オブジェクト"
 
-#: ../../reference/mpyfiles.rst:163
+#: ../../reference/mpyfiles.rst:151
 msgid "sub-raw-code elements"
 msgstr "副 raw コード要素"
 
-#: ../../reference/mpyfiles.rst:166
+#: ../../reference/mpyfiles.rst:154
 msgid ""
 "The first vuint in a raw-code element encodes the type of code stored in "
 "this element (the two least-significant bits), and the decompressed "
@@ -5674,14 +5656,14 @@ msgstr ""
 "(最下位2ビット)と、圧縮解除されたコードの長さ(割り当てられるRAMの量)を"
 "エンコードしています。"
 
-#: ../../reference/mpyfiles.rst:170
+#: ../../reference/mpyfiles.rst:158
 msgid ""
 "Following the vuint comes the code itself.  In the case of bytecode it "
 "also contains compressed qstr values."
 msgstr ""
 "vuint に続いてコード自体が続きます。バイトコードの場合、圧縮された qstr 値も含まれます。"
 
-#: ../../reference/mpyfiles.rst:173
+#: ../../reference/mpyfiles.rst:161
 msgid ""
 "Following the code comes a vuint counting the number of constant objects,"
 " and another vuint counting the number of sub-raw-code elements."
@@ -5689,11 +5671,11 @@ msgstr ""
 "コードに続いて、定数オブジェクトの数を数える vuint と、副 raw コード要素数の "
 "vuint が続きます。"
 
-#: ../../reference/mpyfiles.rst:176
+#: ../../reference/mpyfiles.rst:164
 msgid "The constant objects are then stored next."
 msgstr "定数オブジェクトは次に保存されます。"
 
-#: ../../reference/mpyfiles.rst:178
+#: ../../reference/mpyfiles.rst:166
 msgid "Finally any sub-raw-code elements are stored, recursively."
 msgstr "最後に 副 raw コード要素が再帰的に保存されます。"
 
