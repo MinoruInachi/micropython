@@ -60,6 +60,7 @@
 #define MICROPY_OPT_COMPUTED_GOTO               (1)
 
 // Python internal features
+#define MICROPY_TRACKED_ALLOC                   (MICROPY_SSL_MBEDTLS)
 #define MICROPY_READER_VFS                      (1)
 #define MICROPY_ENABLE_GC                       (1)
 #define MICROPY_ENABLE_EMERGENCY_EXCEPTION_BUF  (1)
@@ -76,6 +77,7 @@
 #define MICROPY_PY_SYS_PLATFORM                 "rp2"
 #define MICROPY_PY_THREAD                       (1)
 #define MICROPY_PY_THREAD_GIL                   (0)
+#define MICROPY_THREAD_YIELD()                  mp_handle_pending(true)
 
 // Extended modules
 #define MICROPY_EPOCH_IS_1970                   (1)
@@ -105,6 +107,7 @@
 #define MICROPY_VFS_LFS2                        (1)
 #define MICROPY_VFS_FAT                         (1)
 #define MICROPY_SSL_MBEDTLS                     (1)
+#define MICROPY_PY_LWIP_SOCK_RAW                (MICROPY_PY_LWIP)
 
 // fatfs configuration
 #define MICROPY_FATFS_ENABLE_LFN                (1)
@@ -161,12 +164,24 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_nina;
 #define MICROPY_PORT_ROOT_POINTER_NINAW10
 #endif
 
+#if MICROPY_PY_WIZNET5K
+#if MICROPY_PY_LWIP
+extern const struct _mp_obj_type_t mod_network_nic_type_wiznet5k;
+#else
+extern const struct _mod_network_nic_type_t mod_network_nic_type_wiznet5k;
+#endif
+#define MICROPY_HW_NIC_WIZNET5K             { MP_ROM_QSTR(MP_QSTR_WIZNET5K), MP_ROM_PTR(&mod_network_nic_type_wiznet5k) },
+#else
+#define MICROPY_HW_NIC_WIZNET5K
+#endif
+
 #ifndef MICROPY_BOARD_NETWORK_INTERFACES
 #define MICROPY_BOARD_NETWORK_INTERFACES
 #endif
 
 #define MICROPY_PORT_NETWORK_INTERFACES \
     MICROPY_HW_NIC_NINAW10  \
+    MICROPY_HW_NIC_WIZNET5K \
     MICROPY_BOARD_NETWORK_INTERFACES \
 
 #ifndef MICROPY_BOARD_ROOT_POINTERS
@@ -194,6 +209,11 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_nina;
 // TODO need to look and see if these could/should be spinlock/mutex
 #define MICROPY_BEGIN_ATOMIC_SECTION()     save_and_disable_interrupts()
 #define MICROPY_END_ATOMIC_SECTION(state)  restore_interrupts(state)
+
+// Prevent the "lwIP task" from running when unsafe to do so.
+#define MICROPY_PY_LWIP_ENTER   lwip_lock_acquire();
+#define MICROPY_PY_LWIP_REENTER lwip_lock_acquire();
+#define MICROPY_PY_LWIP_EXIT    lwip_lock_release();
 
 #if MICROPY_HW_ENABLE_USBDEV
 #define MICROPY_HW_USBDEV_TASK_HOOK extern void tud_task(void); tud_task();
@@ -232,3 +252,5 @@ typedef intptr_t mp_off_t;
 #define MICROPY_FROZEN_LIST_ITEM(name, file) bi_decl(bi_string(BINARY_INFO_TAG_MICROPYTHON, BINARY_INFO_ID_MP_FROZEN, name))
 
 extern uint32_t rosc_random_u32(void);
+extern void lwip_lock_acquire(void);
+extern void lwip_lock_release(void);
