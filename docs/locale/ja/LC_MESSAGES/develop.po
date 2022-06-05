@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 23:17+0900\n"
-"PO-Revision-Date: 2022-05-28 23:57+0900\n"
+"POT-Creation-Date: 2022-06-05 20:40+0900\n"
+"PO-Revision-Date: 2022-06-05 21:02+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.6.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: ../../develop/cmodules.rst:4
 msgid "MicroPython external C modules"
@@ -445,18 +445,20 @@ msgid ""
 "If a module is not enabled by default then the corresponding C "
 "preprocessor macro must be enabled.  This macro name can be found by "
 "searching for the ``MP_REGISTER_MODULE`` line in the module's source code"
-" (it usually appears at the end of the main source file). The third "
-"argument to ``MP_REGISTER_MODULE`` is the macro name, and this must be "
-"set to 1 using ``CFLAGS_EXTRA`` to make the module available.  If the "
-"third argument is just the number 1 then the module is enabled by "
-"default."
+" (it usually appears at the end of the main source file). This macro "
+"should be surrounded by a ``#if X`` / ``#endif`` pair, and the "
+"configuration option ``X`` must be set to 1 using ``CFLAGS_EXTRA`` to "
+"make the module available.  If there is no ``#if X`` / ``#endif`` pair "
+"then the module is enabled by default."
 msgstr ""
 "モジュールがデフォルトで有効になっていない場合、対応する C プリプロセッサのマクロを"
 "有効にする必要があります。このマクロ名はモジュールのソースコードの "
 "``MP_REGISTER_MODULE`` 行を検索することで見つけられます(通常、メインソースファイル"
-"の最後に表示されます)。 ``MP_REGISTER_MODULE`` の第3引数はマクロ名で、"
-"モジュールを有効化するには ``CFLAGS_EXTRA`` を使ってこれを 1 に設定する"
-"必要があります。第3引数が単に数字の 1 であれば、モジュールはデフォルトで有効になります。"
+"の最後に表示されます)。"
+"このマクロは ``#if X`` / ``#endif`` のペアで囲む必要があり、"
+"モジュールを有効化するには ``CFLAGS_EXTRA`` を使って ``X`` を 1 に設定する"
+"必要があります。 ``#if X`` / ``#endif`` のペアがない場合、モジュールは"
+"デフォルトで有効になります。"
 
 #: ../../develop/cmodules.rst:228
 msgid ""
@@ -467,7 +469,7 @@ msgstr ""
 "なっているので、ソースコードに次のような行があります:"
 
 #: ../../develop/cmodules.rst:231
-msgid "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, 1);"
+msgid "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule);"
 msgstr ""
 
 #: ../../develop/cmodules.rst:235
@@ -478,11 +480,12 @@ msgstr "デフォルトではモジュールを無効にして、プリプロセ
 
 #: ../../develop/cmodules.rst:238
 msgid ""
-"MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule, "
-"MODULE_CEXAMPLE_ENABLED);"
+"#if MODULE_CEXAMPLE_ENABLED\n"
+"MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule);\n"
+"#endif"
 msgstr ""
 
-#: ../../develop/cmodules.rst:242
+#: ../../develop/cmodules.rst:244
 msgid ""
 "In this case the module is enabled by adding "
 "``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` to the ``make`` command, or "
@@ -492,11 +495,11 @@ msgstr ""
 "``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` を追加するか、 "
 "``mpconfigport.h`` か ``mpconfigboard.h`` を編集して以下を追加します。"
 
-#: ../../develop/cmodules.rst:245
+#: ../../develop/cmodules.rst:247
 msgid "#define MODULE_CEXAMPLE_ENABLED (1)"
 msgstr ""
 
-#: ../../develop/cmodules.rst:249
+#: ../../develop/cmodules.rst:251
 msgid ""
 "Note that the exact method depends on the port as they have different "
 "structures.  If not done correctly it will compile but importing will "
@@ -506,11 +509,11 @@ msgstr ""
 "注意してください。適切に行われなかった場合、コンパイルはされたとしても"
 "モジュールのインポートはできないでしょう。"
 
-#: ../../develop/cmodules.rst:255 ../../develop/natmod.rst:201
+#: ../../develop/cmodules.rst:257 ../../develop/natmod.rst:202
 msgid "Module usage in MicroPython"
 msgstr "MicroPython でのモジュールの使い方"
 
-#: ../../develop/cmodules.rst:257
+#: ../../develop/cmodules.rst:259
 msgid ""
 "Once built into your copy of MicroPython, the module can now be accessed "
 "in Python just like any other builtin module, e.g."
@@ -518,7 +521,7 @@ msgstr ""
 "MicroPython 自前でビルドすると、他の組み込みモジュールと同じように Python で"
 "アクセスできるようになります。たとえば次のように使います。"
 
-#: ../../develop/cmodules.rst:260
+#: ../../develop/cmodules.rst:262
 msgid ""
 "import cexample\n"
 "print(cexample.add_ints(1, 3))\n"
@@ -1913,8 +1916,7 @@ msgid ""
 "    .globals = (mp_obj_dict_t *)&mp_module_subsystem_globals,\n"
 "};\n"
 "\n"
-"MP_REGISTER_MODULE(MP_QSTR_subsystem, mp_module_subsystem, "
-"MICROPY_PY_SUBSYSTEM);\n"
+"MP_REGISTER_MODULE(MP_QSTR_subsystem, mp_module_subsystem);\n"
 "\n"
 "#endif"
 msgstr ""
@@ -3406,25 +3408,17 @@ msgid ""
 "    .globals = (mp_obj_dict_t *)&myport_module_globals,\n"
 "};\n"
 "\n"
-"MP_REGISTER_MODULE(MP_QSTR_myport, myport_module, 1);"
+"MP_REGISTER_MODULE(MP_QSTR_myport, myport_module);"
 msgstr ""
 
-#: ../../develop/porting.rst:282
-msgid ""
-"Note: the \"1\" as the third argument in ``MP_REGISTER_MODULE`` enables "
-"this new module unconditionally. To allow it to be conditionally enabled,"
-" replace the \"1\" by ``MICROPY_PY_MYPORT`` and then add ``#define "
-"MICROPY_PY_MYPORT (1)`` in ``mpconfigport.h`` accordingly."
-msgstr ""
-
-#: ../../develop/porting.rst:287
+#: ../../develop/porting.rst:285
 msgid ""
 "You will also need to edit the Makefile to add ``modmyport.c`` to the "
 "``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
 "qstrs are searched for in this new file), like this:"
 msgstr ""
 
-#: ../../develop/porting.rst:291
+#: ../../develop/porting.rst:289
 msgid ""
 "SRC_C = \\\n"
 "    main.c \\\n"
@@ -3435,13 +3429,13 @@ msgid ""
 "SRC_QSTR += modmyport.c"
 msgstr ""
 
-#: ../../develop/porting.rst:301
+#: ../../develop/porting.rst:299
 msgid ""
 "If all went correctly then, after rebuilding, you should be able to "
 "import the new module:"
 msgstr ""
 
-#: ../../develop/porting.rst:303
+#: ../../develop/porting.rst:301
 msgid ""
 ">>> import myport\n"
 ">>> myport.info()\n"
