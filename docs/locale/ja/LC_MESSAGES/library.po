@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.19\n"
+"Project-Id-Version: MicroPython 1.19.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-16 23:48+0900\n"
-"PO-Revision-Date: 2022-06-16 23:52+0900\n"
+"POT-Creation-Date: 2022-06-18 09:11+0900\n"
+"PO-Revision-Date: 2022-06-18 09:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -9366,10 +9366,10 @@ msgstr ""
 
 #: ../../library/network.rst:92
 msgid ""
-"WiFi: (ssid, bssid, channel, RSSI, authmode, hidden). There may be "
+"WiFi: (ssid, bssid, channel, RSSI, security, hidden). There may be "
 "further fields, specific to a particular device."
 msgstr ""
-"WiFi: (ssid, bssid, channel, RSSI, authmode, hidden)。特定のデバイスに"
+"WiFi: (ssid, bssid, channel, RSSI, security, hidden)。特定のデバイスに"
 "固有のさらなる項目もあり得ます。"
 
 #: ../../library/network.rst:95
@@ -9452,16 +9452,16 @@ msgstr ""
 
 #: ../../library/network.WLAN.rst:113 ../../library/network.rst:136
 msgid ""
-"# Set WiFi access point name (formally known as ESSID) and WiFi channel\n"
+"# Set WiFi access point name (formally known as SSID) and WiFi channel\n"
 "ap.config(essid='My AP', channel=11)\n"
 "# Query params one by one\n"
-"print(ap.config('essid'))\n"
+"print(ap.config('ssid'))\n"
 "print(ap.config('channel'))"
 msgstr ""
-"# WiFi アクセスポイント名(正式には ESSID と呼ばれている)と WiFi チャンネルを設定\n"
-"ap.config(essid='My AP', channel=11)\n"
+"# WiFi アクセスポイント名(正式には SSID と呼ばれている)と WiFi チャンネルを設定\n"
+"ap.config(ssid='My AP', channel=11)\n"
 "# 一つずつパラメータを問合せ\n"
-"print(ap.config('essid'))\n"
+"print(ap.config('ssid'))\n"
 "print(ap.config('channel'))"
 
 #: ../../library/network.rst:143
@@ -9997,14 +9997,14 @@ msgid ""
 "# enable station interface and connect to WiFi access point\n"
 "nic = network.WLAN(network.STA_IF)\n"
 "nic.active(True)\n"
-"nic.connect('your-ssid', 'your-password')\n"
+"nic.connect('your-ssid', 'your-key')\n"
 "# now use sockets as usual"
 msgstr ""
 "import network\n"
 "# ステーションインタフェースを有効にし、WiFi アクセスポイントに接続\n"
 "nic = network.WLAN(network.STA_IF)\n"
 "nic.active(True)\n"
-"nic.connect('your-ssid', 'your-password')\n"
+"nic.connect('your-ssid', 'your-key')\n"
 "# これで通常どおりソケットを使えるようになる"
 
 #: ../../library/network.WLAN.rst:20
@@ -10034,12 +10034,12 @@ msgstr ""
 
 #: ../../library/network.WLAN.rst:37
 msgid ""
-"Connect to the specified wireless network, using the specified password. "
-"If *bssid* is given then the connection will be restricted to the access-"
+"Connect to the specified wireless network, using the specified key. If "
+"*bssid* is given then the connection will be restricted to the access-"
 "point with that MAC address (the *ssid* must also be specified in this "
 "case)."
 msgstr ""
-"指定されたパスワードを使用して、指定されたワイヤレスネットワークに接続します。 "
+"指定のワイヤレスネットワークに、指定のキーを使って接続します。 "
 "*bssid* が与えられると、接続はそのMACアドレスのアクセスポイントに制限されます"
 "(この場合でも *ssid* は指定する必要があります)。"
 
@@ -10066,7 +10066,7 @@ msgstr ""
 "関する情報を含むタプルのリストです。"
 
 #: ../../library/network.WLAN.rst:55
-msgid "(ssid, bssid, channel, RSSI, authmode, hidden)"
+msgid "(ssid, bssid, channel, RSSI, security, hidden)"
 msgstr ""
 
 #: ../../library/network.WLAN.rst:57
