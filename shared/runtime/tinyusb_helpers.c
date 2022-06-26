@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2013, 2014 Damien P. George
+ * Copyright (c) 2022 Ibrahim Abdelkader <iabdalkader@openmv.io>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,32 +24,31 @@
  * THE SOFTWARE.
  */
 
-#include "py/obj.h"
+#include "py/runtime.h"
+#include "py/mphal.h"
+#include "modmachine.h"
 
-#if MICROPY_ERROR_REPORTING == MICROPY_ERROR_REPORTING_DETAILED
-STATIC void cell_print(const mp_print_t *print, mp_obj_t o_in, mp_print_kind_t kind) {
-    (void)kind;
-    mp_obj_cell_t *o = MP_OBJ_TO_PTR(o_in);
-    mp_printf(print, "<cell %p ", o->obj);
-    if (o->obj == MP_OBJ_NULL) {
-        mp_print_str(print, "(nil)");
-    } else {
-        mp_obj_print_helper(print, o->obj, PRINT_REPR);
+#if MICROPY_HW_USB_CDC_1200BPS_TOUCH
+
+#include "tusb.h"
+
+static mp_sched_node_t mp_bootloader_sched_node;
+
+STATIC void usbd_cdc_run_bootloader_task(mp_sched_node_t *node) {
+    mp_hal_delay_ms(250);
+    machine_bootloader(0, NULL);
+}
+
+void tud_cdc_line_state_cb(uint8_t itf, bool dtr, bool rts) {
+    if (dtr == false && rts == false) {
+        // Device is disconnected.
+        cdc_line_coding_t line_coding;
+        tud_cdc_n_get_line_coding(itf, &line_coding);
+        if (line_coding.bit_rate == 1200) {
+            // Delay bootloader jump to allow the USB stack to service endpoints.
+            mp_sched_schedule_node(&mp_bootloader_sched_node, usbd_cdc_run_bootloader_task);
+        }
     }
-    mp_print_str(print, ">");
 }
+
 #endif
-
-STATIC const mp_obj_type_t mp_type_cell = {
-    { &mp_type_type },
-    .name = MP_QSTR_, // cell representation is just value in < >
-    #if MICROPY_ERROR_REPORTING == MICROPY_ERROR_REPORTING_DETAILED
-    .print = cell_print,
-    #endif
-};
-
-mp_obj_t mp_obj_new_cell(mp_obj_t obj) {
-    mp_obj_cell_t *o = mp_obj_malloc(mp_obj_cell_t, &mp_type_cell);
-    o->obj = obj;
-    return MP_OBJ_FROM_PTR(o);
-}

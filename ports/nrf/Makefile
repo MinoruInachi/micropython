@@ -56,6 +56,7 @@ FROZEN_MANIFEST ?= modules/manifest.py
 
 # include py core make definitions
 include ../../py/py.mk
+include ../../extmod/extmod.mk
 
 GIT_SUBMODULES = lib/nrfx lib/tinyusb
 
@@ -231,6 +232,7 @@ SRC_LIB += $(addprefix shared/,\
 	runtime/pyexec.c \
 	runtime/sys_stdio_mphal.c \
 	runtime/interrupt_char.c \
+	runtime/tinyusb_helpers.c \
 	timeutils/timeutils.c \
 	)
 
