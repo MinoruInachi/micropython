@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2019 Damien P. George
+ * Copyright (c) 2022 Damien P. George
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#ifndef MICROPY_INCLUDED_RP2_PENDSV_H
+#define MICROPY_INCLUDED_RP2_PENDSV_H
 
-// Set base feature level.
-#define MICROPY_CONFIG_ROM_LEVEL (MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES)
+#include <stddef.h>
 
-// Enable some additional features.
-#ifndef MICROPY_REPL_EMACS_WORDS_MOVE
-#define MICROPY_REPL_EMACS_WORDS_MOVE           (1)
-#endif
-#ifndef MICROPY_REPL_EMACS_EXTRA_WORDS_MOVE
-#define MICROPY_REPL_EMACS_EXTRA_WORDS_MOVE     (1)
-#endif
-#ifndef MICROPY_PY_SYS_SETTRACE
-#define MICROPY_PY_SYS_SETTRACE                 (1)
-#endif
-#define MICROPY_PY_URANDOM_SEED_INIT_FUNC       (mp_urandom_seed_init())
+enum {
+    #if MICROPY_PY_LWIP
+    PENDSV_DISPATCH_LWIP,
+    #endif
+    #if MICROPY_PY_NETWORK_CYW43
+    PENDSV_DISPATCH_CYW43,
+    #endif
+    #if MICROPY_PY_NETWORK_WIZNET5K
+    PENDSV_DISPATCH_WIZNET,
+    #endif
+    PENDSV_DISPATCH_MAX
+};
+
+#define PENDSV_DISPATCH_NUM_SLOTS PENDSV_DISPATCH_MAX
+
+typedef void (*pendsv_dispatch_t)(void);
+
+void pendsv_suspend(void);
+void pendsv_resume(void);
+void pendsv_schedule_dispatch(size_t slot, pendsv_dispatch_t f);
+
+#endif // MICROPY_INCLUDED_RP2_PENDSV_H
