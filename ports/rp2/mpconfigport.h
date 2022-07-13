@@ -30,6 +30,7 @@
 #include "hardware/spi.h"
 #include "hardware/sync.h"
 #include "pico/binary_info.h"
+#include "pico/multicore.h"
 #include "mpconfigboard.h"
 #if MICROPY_HW_USB_MSC
 #include "hardware/flash.h"
@@ -154,6 +155,28 @@ struct _mp_bluetooth_nimble_malloc_t;
 #define MICROPY_PORT_ROOT_POINTER_BLUETOOTH_NIMBLE
 #endif
 
+// By default networking should include sockets, ssl, websockets, webrepl, dupterm.
+#if MICROPY_PY_NETWORK
+#ifndef MICROPY_PY_USOCKET
+#define MICROPY_PY_USOCKET              (1)
+#endif
+#ifndef MICROPY_PY_USSL
+#define MICROPY_PY_USSL                 (1)
+#endif
+#ifndef MICROPY_PY_UWEBSOCKET
+#define MICROPY_PY_UWEBSOCKET           (1)
+#endif
+#ifndef MICROPY_PY_UHASHLIB_SHA1
+#define MICROPY_PY_UHASHLIB_SHA1        (1)
+#endif
+#ifndef MICROPY_PY_WEBREPL
+#define MICROPY_PY_WEBREPL              (1)
+#endif
+#ifndef MICROPY_PY_OS_DUPTERM
+#define MICROPY_PY_OS_DUPTERM           (1)
+#endif
+#endif
+
 #if MICROPY_PY_NETWORK_CYW43
 extern const struct _mp_obj_type_t mp_network_cyw43_type;
 #define MICROPY_HW_NIC_CYW43 \
@@ -225,9 +248,11 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_wiznet5k;
 
 // Miscellaneous settings
 
-// TODO need to look and see if these could/should be spinlock/mutex
-#define MICROPY_BEGIN_ATOMIC_SECTION()     save_and_disable_interrupts()
-#define MICROPY_END_ATOMIC_SECTION(state)  restore_interrupts(state)
+// Entering a critical section.
+extern uint32_t mp_thread_begin_atomic_section(void);
+extern void mp_thread_end_atomic_section(uint32_t);
+#define MICROPY_BEGIN_ATOMIC_SECTION()     mp_thread_begin_atomic_section()
+#define MICROPY_END_ATOMIC_SECTION(state)  mp_thread_end_atomic_section(state)
 
 // Prevent the "lwIP task" from running when unsafe to do so.
 #define MICROPY_PY_LWIP_ENTER   lwip_lock_acquire();
@@ -238,7 +263,7 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_wiznet5k;
 #define MICROPY_HW_USBDEV_TASK_HOOK extern void tud_task(void); tud_task();
 #define MICROPY_VM_HOOK_COUNT (10)
 #define MICROPY_VM_HOOK_INIT static uint vm_hook_divisor = MICROPY_VM_HOOK_COUNT;
-#define MICROPY_VM_HOOK_POLL if (--vm_hook_divisor == 0) { \
+#define MICROPY_VM_HOOK_POLL if (get_core_num() == 0 && --vm_hook_divisor == 0) { \
         vm_hook_divisor = MICROPY_VM_HOOK_COUNT; \
         MICROPY_HW_USBDEV_TASK_HOOK \
 }
@@ -250,7 +275,7 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_wiznet5k;
 
 #define MICROPY_EVENT_POLL_HOOK_FAST \
     do { \
-        MICROPY_HW_USBDEV_TASK_HOOK \
+        if (get_core_num() == 0) { MICROPY_HW_USBDEV_TASK_HOOK } \
         extern void mp_handle_pending(bool); \
         mp_handle_pending(true); \
     } while (0)
