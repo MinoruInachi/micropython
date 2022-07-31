@@ -91,20 +91,18 @@ SRC_TINYUSB_C += \
 	lib/tinyusb/src/common/tusb_fifo.c \
 	lib/tinyusb/src/device/usbd.c \
 	lib/tinyusb/src/device/usbd_control.c \
-	lib/tinyusb/src/portable/nxp/transdimension/dcd_transdimension.c \
+	lib/tinyusb/src/portable/chipidea/ci_hs/dcd_ci_hs.c \
 	lib/tinyusb/src/tusb.c
 
 # All settings for Ethernet support are controller by the value of MICROPY_PY_LWIP
 ifeq ($(MICROPY_PY_LWIP),1)
-SRC_MOD := $(filter-out %/mbedtls/library/error.c, $(SRC_MOD))
 SRC_ETH_C += \
 	$(MCU_DIR)/drivers/fsl_enet.c \
 	hal/phy/device/phydp83825/fsl_phydp83825.c \
 	hal/phy/device/phydp83848/fsl_phydp83848.c \
 	hal/phy/device/phyksz8081/fsl_phyksz8081.c \
 	hal/phy/device/phylan8720/fsl_phylan8720.c \
-	hal/phy/mdio/enet/fsl_enet_mdio.c \
-	lib/mbedtls_errors/mp_mbedtls_errors.c
+	hal/phy/mdio/enet/fsl_enet_mdio.c
 endif
 
 # NXP SDK sources
@@ -290,6 +288,7 @@ SRC_QSTR += \
 	modmimxrt.c \
 	modutime.c \
 	pin.c \
+	shared/readline/readline.c \
 	shared/runtime/mpirq.c \
 	shared/runtime/sys_stdio_mphal.c \
 	$(GEN_PINS_SRC)
@@ -298,8 +297,9 @@ SRC_QSTR += \
 # Compiler Flags
 # =============================================================================
 
+CFLAGS += -g  # always include debug info in the ELF
 ifeq ($(DEBUG),1)
-CFLAGS += -Og -ggdb
+CFLAGS += -Og
 else
 CFLAGS += -Os -DNDEBUG
 endif

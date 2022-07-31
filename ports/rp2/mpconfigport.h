@@ -122,37 +122,8 @@
 #define MICROPY_FATFS_MAX_SS                    (FLASH_SECTOR_SIZE)
 #endif
 
-#if MICROPY_VFS_FAT && MICROPY_HW_USB_MSC
-#define mp_type_fileio mp_type_vfs_fat_fileio
-#define mp_type_textio mp_type_vfs_fat_textio
-#elif MICROPY_VFS_LFS2
-// Use VfsLfs2's types for fileio/textio
-#define mp_type_fileio mp_type_vfs_lfs2_fileio
-#define mp_type_textio mp_type_vfs_lfs2_textio
-#endif
-
 #ifndef MICROPY_BOARD_ENTER_BOOTLOADER
 #define MICROPY_BOARD_ENTER_BOOTLOADER(nargs, args)
-#endif
-
-#if MICROPY_PY_NETWORK
-#define NETWORK_ROOT_POINTERS               mp_obj_list_t mod_network_nic_list;
-#else
-#define NETWORK_ROOT_POINTERS
-#endif
-
-#if MICROPY_PY_BLUETOOTH
-#define MICROPY_PORT_ROOT_POINTER_BLUETOOTH struct _machine_uart_obj_t *mp_bthci_uart;
-#else
-#define MICROPY_PORT_ROOT_POINTER_BLUETOOTH
-#endif
-
-#if MICROPY_BLUETOOTH_NIMBLE
-struct _mp_bluetooth_nimble_root_pointers_t;
-struct _mp_bluetooth_nimble_malloc_t;
-#define MICROPY_PORT_ROOT_POINTER_BLUETOOTH_NIMBLE struct _mp_bluetooth_nimble_malloc_t *bluetooth_nimble_memory; struct _mp_bluetooth_nimble_root_pointers_t *bluetooth_nimble_root_pointers;
-#else
-#define MICROPY_PORT_ROOT_POINTER_BLUETOOTH_NIMBLE
 #endif
 
 // By default networking should include sockets, ssl, websockets, webrepl, dupterm.
@@ -196,13 +167,10 @@ extern const struct _mp_obj_type_t mp_network_cyw43_type;
 #ifndef MICROPY_PY_USOCKET_EXTENDED_STATE
 #define MICROPY_PY_USOCKET_EXTENDED_STATE   (1)
 #endif
-// It also requires an additional root pointer for the SPI object.
-#define MICROPY_PORT_ROOT_POINTER_NINAW10   struct _machine_spi_obj_t *mp_wifi_spi; struct _machine_timer_obj_t *mp_wifi_timer; struct _mp_obj_list_t *mp_wifi_sockpoll_list;
 extern const struct _mod_network_nic_type_t mod_network_nic_type_nina;
 #define MICROPY_HW_NIC_NINAW10              { MP_ROM_QSTR(MP_QSTR_WLAN), MP_ROM_PTR(&mod_network_nic_type_nina) },
 #else
 #define MICROPY_HW_NIC_NINAW10
-#define MICROPY_PORT_ROOT_POINTER_NINAW10
 #endif
 
 #if MICROPY_PY_NETWORK_WIZNET5K
@@ -226,24 +194,6 @@ extern const struct _mod_network_nic_type_t mod_network_nic_type_wiznet5k;
     MICROPY_HW_NIC_WIZNET5K \
     MICROPY_BOARD_NETWORK_INTERFACES \
 
-#ifndef MICROPY_BOARD_ROOT_POINTERS
-#define MICROPY_BOARD_ROOT_POINTERS
-#endif
-
-#define MICROPY_PORT_ROOT_POINTERS \
-    const char *readline_hist[8]; \
-    void *machine_pin_irq_obj[30]; \
-    void *rp2_pio_irq_obj[2]; \
-    void *rp2_state_machine_irq_obj[8]; \
-    void *rp2_uart_rx_buffer[2]; \
-    void *rp2_uart_tx_buffer[2]; \
-    void *machine_i2s_obj[2]; \
-    NETWORK_ROOT_POINTERS \
-    MICROPY_BOARD_ROOT_POINTERS \
-    MICROPY_PORT_ROOT_POINTER_NINAW10 \
-    MICROPY_PORT_ROOT_POINTER_BLUETOOTH \
-        MICROPY_PORT_ROOT_POINTER_BLUETOOTH_NIMBLE \
-
 #define MP_STATE_PORT MP_STATE_VM
 
 // Miscellaneous settings
@@ -260,7 +210,7 @@ extern void mp_thread_end_atomic_section(uint32_t);
 #define MICROPY_PY_LWIP_EXIT    lwip_lock_release();
 
 #if MICROPY_HW_ENABLE_USBDEV
-#define MICROPY_HW_USBDEV_TASK_HOOK extern void tud_task(void); tud_task();
+#define MICROPY_HW_USBDEV_TASK_HOOK extern void tud_task_ext(uint32_t, bool); tud_task_ext(0, false);
 #define MICROPY_VM_HOOK_COUNT (10)
 #define MICROPY_VM_HOOK_INIT static uint vm_hook_divisor = MICROPY_VM_HOOK_COUNT;
 #define MICROPY_VM_HOOK_POLL if (get_core_num() == 0 && --vm_hook_divisor == 0) { \

@@ -516,6 +516,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
     if upy_float_precision < 64:
         skip_tests.add("float/float_divmod.py")  # tested by float/float_divmod_relaxed.py instead
         skip_tests.add("float/float2int_doubleprec_intbig.py")
+        skip_tests.add("float/float_format_ints_doubleprec.py")
         skip_tests.add("float/float_parse_doubleprec.py")
 
     if not has_complex:
@@ -525,6 +526,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         skip_tests.add("float/int_big_float.py")
         skip_tests.add("float/true_value.py")
         skip_tests.add("float/types.py")
+        skip_tests.add("float/complex_dunder.py")
 
     if not has_coverage:
         skip_tests.add("cmdline/cmd_parsetree.py")

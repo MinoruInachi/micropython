@@ -120,6 +120,10 @@
     #define MICROPY_EMIT_ARM        (1)
 #endif
 #define MICROPY_ENABLE_GC           (1)
+// Number of heaps to assign if MICROPY_GC_SPLIT_HEAP=1
+#ifndef MICROPY_GC_SPLIT_HEAP_N_HEAPS
+#define MICROPY_GC_SPLIT_HEAP_N_HEAPS (1)
+#endif
 #define MICROPY_MALLOC_USES_ALLOCATED_SIZE (1)
 #define MICROPY_MEM_STATS           (1)
 #define MICROPY_DEBUG_PRINTERS      (1)
@@ -129,6 +133,9 @@
 #define MICROPY_READER_POSIX        (1)
 #define MICROPY_READER_VFS          (1)
 #define MICROPY_USE_READLINE_HISTORY (1)
+#ifndef MICROPY_READLINE_HISTORY_SIZE
+#define MICROPY_READLINE_HISTORY_SIZE 50
+#endif
 #define MICROPY_HELPER_LEXER_UNIX   (1)
 #ifndef MICROPY_FLOAT_IMPL
 #define MICROPY_FLOAT_IMPL          (MICROPY_FLOAT_IMPL_DOUBLE)
@@ -217,9 +224,6 @@ extern const struct _mp_print_t mp_stderr_print;
 #define MICROPY_EMERGENCY_EXCEPTION_BUF_SIZE  (256)
 #define MICROPY_ASYNC_KBD_INTR      (1)
 
-#define mp_type_fileio mp_type_vfs_posix_fileio
-#define mp_type_textio mp_type_vfs_posix_textio
-
 // type definitions for the specific machine
 
 // For size_t and ssize_t
@@ -287,25 +291,6 @@ static inline unsigned long mp_urandom_seed_init(void) {
 
 #define MP_STATE_PORT MP_STATE_VM
 
-#if MICROPY_PY_BLUETOOTH
-#if MICROPY_BLUETOOTH_BTSTACK
-struct _mp_bluetooth_btstack_root_pointers_t;
-#define MICROPY_BLUETOOTH_ROOT_POINTERS struct _mp_bluetooth_btstack_root_pointers_t *bluetooth_btstack_root_pointers;
-#endif
-#if MICROPY_BLUETOOTH_NIMBLE
-struct _mp_bluetooth_nimble_root_pointers_t;
-struct _mp_bluetooth_nimble_malloc_t;
-#define MICROPY_BLUETOOTH_ROOT_POINTERS struct _mp_bluetooth_nimble_malloc_t *bluetooth_nimble_memory; struct _mp_bluetooth_nimble_root_pointers_t *bluetooth_nimble_root_pointers;
-#endif
-#else
-#define MICROPY_BLUETOOTH_ROOT_POINTERS
-#endif
-
-#define MICROPY_PORT_ROOT_POINTERS \
-    const char *readline_hist[50]; \
-    void *mmap_region_head; \
-    MICROPY_BLUETOOTH_ROOT_POINTERS \
-
 // We need to provide a declaration/definition of alloca()
 // unless support for it is disabled.
 #if !defined(MICROPY_NO_ALLOCA) || MICROPY_NO_ALLOCA == 0
@@ -340,12 +325,14 @@ struct _mp_bluetooth_nimble_malloc_t;
 #define MICROPY_END_ATOMIC_SECTION(x) (void)x; mp_thread_unix_end_atomic_section()
 #endif
 
+#ifndef MICROPY_EVENT_POLL_HOOK
 #define MICROPY_EVENT_POLL_HOOK \
     do { \
         extern void mp_handle_pending(bool); \
         mp_handle_pending(true); \
-        mp_hal_delay_us(500); \
+        usleep(500); /* equivalent to mp_hal_delay_us(500) */ \
     } while (0);
+#endif
 
 #include <sched.h>
 #define MICROPY_UNIX_MACHINE_IDLE sched_yield();

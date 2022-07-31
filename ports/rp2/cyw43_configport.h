@@ -32,6 +32,7 @@
 #include "py/mphal.h"
 #include "pendsv.h"
 
+#define CYW43_WIFI_NVRAM_INCLUDE_FILE   "wifi_nvram_43439.h"
 #define CYW43_IOCTL_TIMEOUT_US          (1000000)
 #define CYW43_SLEEP_MAX                 (10)
 #define CYW43_NETUTILS                  (1)
@@ -92,7 +93,10 @@ static inline void cyw43_delay_ms(uint32_t ms) {
     int32_t start = mp_hal_ticks_us();
     while (mp_hal_ticks_us() - start < us) {
         __WFI();
+        MICROPY_EVENT_POLL_HOOK_FAST;
     }
 }
+
+#define CYW43_EVENT_POLL_HOOK MICROPY_EVENT_POLL_HOOK_FAST
 
 #endif // MICROPY_INCLUDED_RP2_CYW43_CONFIGPORT_H

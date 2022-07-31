@@ -114,8 +114,9 @@ $(BUILD)/stm32_it.o $(BUILD)/pendsv.o: CFLAGS += -fno-lto
 endif
 
 # Debugging/Optimization
+CFLAGS += -g  # always include debug info in the ELF
 ifeq ($(DEBUG), 1)
-CFLAGS += -g -DPENDSV_DEBUG
+CFLAGS += -DPENDSV_DEBUG
 COPT ?= -Og
 # Disable text compression in debug builds
 MICROPY_ROM_TEXT_COMPRESSION = 0
@@ -144,6 +145,7 @@ SHARED_SRC_C += $(addprefix shared/,\
 	runtime/interrupt_char.c \
 	runtime/mpirq.c \
 	runtime/pyexec.c \
+	runtime/softtimer.c  \
 	runtime/stdout_helpers.c \
 	runtime/sys_stdio_mphal.c \
 	timeutils/timeutils.c \
@@ -270,7 +272,6 @@ SRC_C += \
 	irq.c \
 	pendsv.c \
 	systick.c  \
-	softtimer.c  \
 	powerctrl.c \
 	powerctrlboot.c \
 	rfcore.c \
@@ -499,9 +500,6 @@ endif
 ifeq ($(MICROPY_SSL_MBEDTLS),1)
 CFLAGS_MOD += -DMBEDTLS_CONFIG_FILE='"mbedtls/mbedtls_config.h"'
 SRC_MOD += mbedtls/mbedtls_port.c
-# replace mbedtls' error.c by ours
-SRC_MOD := $(filter-out %/mbedtls/library/error.c, $(SRC_MOD))
-LIB_SRC_C += lib/mbedtls_errors/mp_mbedtls_errors.c
 endif
 
 ifeq ($(MICROPY_PY_BLUETOOTH),1)
@@ -534,6 +532,9 @@ endif
 
 endif
 
+# SRC_O should be placed first to work around this LTO bug with binutils <2.35:
+# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=83967
+OBJ += $(addprefix $(BUILD)/, $(SRC_O))
 OBJ += $(PY_O)
 OBJ += $(addprefix $(BUILD)/, $(LIB_SRC_C:.c=.o))
 OBJ += $(LIBM_O)
@@ -544,7 +545,6 @@ OBJ += $(addprefix $(BUILD)/, $(HAL_SRC_C:.c=.o))
 OBJ += $(addprefix $(BUILD)/, $(USBDEV_SRC_C:.c=.o))
 OBJ += $(addprefix $(BUILD)/, $(SRC_C:.c=.o))
 OBJ += $(addprefix $(BUILD)/, $(SRC_CXX:.cpp=.o))
-OBJ += $(addprefix $(BUILD)/, $(SRC_O))
 OBJ += $(addprefix $(BUILD)/, $(SRC_MOD:.c=.o))
 OBJ += $(BUILD)/pins_$(BOARD).o
 

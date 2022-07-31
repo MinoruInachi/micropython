@@ -469,8 +469,8 @@ STATIC mp_obj_t rp2_state_machine_init_helper(const rp2_state_machine_obj_t *sel
     if (offset < 0) {
         rp2_pio_add_program(&rp2_pio_obj[PIO_NUM(self->pio)], args[ARG_prog].u_obj);
         offset = mp_obj_get_int(prog[PROG_OFFSET_PIO0 + PIO_NUM(self->pio)]);
-        rp2_state_machine_initial_pc[self->id] = offset;
     }
+    rp2_state_machine_initial_pc[self->id] = offset;
 
     // Compute the clock divider.
     uint16_t clkdiv_int;
@@ -839,3 +839,6 @@ STATIC const mp_irq_methods_t rp2_state_machine_irq_methods = {
     .trigger = rp2_state_machine_irq_trigger,
     .info = rp2_state_machine_irq_info,
 };
+
+MP_REGISTER_ROOT_POINTER(void *rp2_pio_irq_obj[2]);
+MP_REGISTER_ROOT_POINTER(void *rp2_state_machine_irq_obj[8]);

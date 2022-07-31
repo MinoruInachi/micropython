@@ -134,23 +134,7 @@ void *esp_native_code_commit(void *, size_t, void *);
 // printer for debugging output, goes to UART only
 extern const struct _mp_print_t mp_debug_print;
 
-#if MICROPY_VFS_FAT
-#define mp_type_fileio mp_type_vfs_fat_fileio
-#define mp_type_textio mp_type_vfs_fat_textio
-#elif MICROPY_VFS_LFS1
-#define mp_type_fileio mp_type_vfs_lfs1_fileio
-#define mp_type_textio mp_type_vfs_lfs1_textio
-#elif MICROPY_VFS_LFS2
-#define mp_type_fileio mp_type_vfs_lfs2_fileio
-#define mp_type_textio mp_type_vfs_lfs2_textio
-#endif
-
 #define MP_STATE_PORT MP_STATE_VM
-
-#define MICROPY_PORT_ROOT_POINTERS \
-    const char *readline_hist[8]; \
-    mp_obj_t pin_irq_handler[16]; \
-    byte *uart0_rxbuf; \
 
 // We need an implementation of the log2 function which is not a macro
 #define MP_NEED_LOG2 (1)

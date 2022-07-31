@@ -606,6 +606,11 @@
 #define MICROPY_ENABLE_GC (0)
 #endif
 
+// Whether the garbage-collected heap can be split over multiple memory areas.
+#ifndef MICROPY_GC_SPLIT_HEAP
+#define MICROPY_GC_SPLIT_HEAP (0)
+#endif
+
 // Hook to run code during time consuming garbage collector operations
 #ifndef MICROPY_GC_HOOK_LOOP
 #define MICROPY_GC_HOOK_LOOP
@@ -697,6 +702,11 @@
 // Whether port requires event-driven REPL functions
 #ifndef MICROPY_REPL_EVENT_DRIVEN
 #define MICROPY_REPL_EVENT_DRIVEN (0)
+#endif
+
+// The number of items to keep in the readline history.
+#ifndef MICROPY_READLINE_HISTORY_SIZE
+#define MICROPY_READLINE_HISTORY_SIZE (8)
 #endif
 
 // Whether to include lexer helper function for unix
@@ -1652,11 +1662,6 @@ typedef double mp_float_t;
 // Additional constant definitions for the compiler - see compile.c:mp_constants_table.
 #ifndef MICROPY_PORT_CONSTANTS
 #define MICROPY_PORT_CONSTANTS
-#endif
-
-// Any root pointers for GC scanning - see mpstate.c
-#ifndef MICROPY_PORT_ROOT_POINTERS
-#define MICROPY_PORT_ROOT_POINTERS
 #endif
 
 /*****************************************************************************/

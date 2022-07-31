@@ -35,6 +35,7 @@
 #include "py/mphal.h"
 #include "shared/readline/readline.h"
 #include "shared/runtime/pyexec.h"
+#include "shared/runtime/softtimer.h"
 #include "lib/oofatfs/ff.h"
 #include "lib/littlefs/lfs1.h"
 #include "lib/littlefs/lfs1_util.h"
@@ -52,7 +53,6 @@
 #include "gccollect.h"
 #include "factoryreset.h"
 #include "modmachine.h"
-#include "softtimer.h"
 #include "spi.h"
 #include "uart.h"
 #include "timer.h"
@@ -397,3 +397,5 @@ soft_reset_exit:
 
     goto soft_reset;
 }
+
+MP_REGISTER_ROOT_POINTER(mp_obj_t pyb_config_main);

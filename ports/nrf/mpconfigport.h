@@ -133,23 +133,6 @@
     #define MICROPY_FATFS_MAX_SS       (4096)
 #endif
 
-#if MICROPY_VFS
-// TODO these should be generic, not bound to a particular FS implementation
-#if MICROPY_VFS_FAT
-#define mp_type_fileio mp_type_vfs_fat_fileio
-#define mp_type_textio mp_type_vfs_fat_textio
-#elif MICROPY_VFS_LFS1
-#define mp_type_fileio mp_type_vfs_lfs1_fileio
-#define mp_type_textio mp_type_vfs_lfs1_textio
-#elif MICROPY_VFS_LFS2
-#define mp_type_fileio mp_type_vfs_lfs2_fileio
-#define mp_type_textio mp_type_vfs_lfs2_textio
-#endif
-#else // !MICROPY_VFS_FAT
-#define mp_type_fileio fatfs_type_fileio
-#define mp_type_textio fatfs_type_textio
-#endif
-
 // Use port specific uos module rather than extmod variant.
 #define MICROPY_PY_UOS              (0)
 
@@ -295,14 +278,6 @@ typedef int mp_int_t; // must be pointer size
 typedef unsigned int mp_uint_t; // must be pointer size
 typedef long mp_off_t;
 
-// extra built in modules to add to the list of known ones
-extern const struct _mp_obj_module_t board_module;
-extern const struct _mp_obj_module_t nrf_module;
-extern const struct _mp_obj_module_t mp_module_utime;
-extern const struct _mp_obj_module_t mp_module_uos;
-extern const struct _mp_obj_module_t mp_module_ubluepy;
-extern const struct _mp_obj_module_t music_module;
-
 #if BOARD_SPECIFIC_MODULES
 #include "boardmodules.h"
 #endif // BOARD_SPECIFIC_MODULES
@@ -314,49 +289,20 @@ extern const struct _mp_obj_module_t music_module;
 
 // extra constants
 #define MICROPY_PORT_CONSTANTS \
-    { MP_ROM_QSTR(MP_QSTR_board), MP_ROM_PTR(&board_module) }, \
     { MP_ROM_QSTR(MP_QSTR_machine), MP_ROM_PTR(&mp_module_machine) }, \
 
 #define MP_STATE_PORT MP_STATE_VM
 
-#if MICROPY_PY_MUSIC
-#define ROOT_POINTERS_MUSIC \
-    struct _music_data_t *music_data;
+#if MICROPY_HW_USB_CDC
+#include "device/usbd.h"
+#define MICROPY_HW_USBDEV_TASK_HOOK extern void tud_task(void); tud_task();
 #else
-#define ROOT_POINTERS_MUSIC
+#define MICROPY_HW_USBDEV_TASK_HOOK ;
 #endif
-
-#if MICROPY_PY_MACHINE_SOFT_PWM
-#define ROOT_POINTERS_SOFTPWM \
-    const struct _pwm_events *pwm_active_events; \
-    const struct _pwm_events *pwm_pending_events;
-#else
-#define ROOT_POINTERS_SOFTPWM
-#endif
-
-#if defined(NRF52840_XXAA)
-#define NUM_OF_PINS 48
-#else
-#define NUM_OF_PINS 32
-#endif
-
-#define MICROPY_PORT_ROOT_POINTERS \
-    const char *readline_hist[8]; \
-    mp_obj_t pin_class_mapper; \
-    mp_obj_t pin_class_map_dict; \
-    mp_obj_t pin_irq_handlers[NUM_OF_PINS]; \
-    \
-    /* stdio is repeated on this UART object if it's not null */ \
-    struct _machine_hard_uart_obj_t *board_stdio_uart; \
-    \
-    ROOT_POINTERS_MUSIC \
-    ROOT_POINTERS_SOFTPWM \
-    \
-    /* micro:bit root pointers */ \
-    void *async_data[2]; \
 
 #define MICROPY_EVENT_POLL_HOOK \
     do { \
+        MICROPY_HW_USBDEV_TASK_HOOK \
         extern void mp_handle_pending(bool); \
         mp_handle_pending(true); \
         __WFI(); \

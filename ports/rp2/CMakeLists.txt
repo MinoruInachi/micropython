@@ -77,7 +77,6 @@ set(MICROPY_SOURCE_LIB
     ${MICROPY_DIR}/lib/littlefs/lfs1_util.c
     ${MICROPY_DIR}/lib/littlefs/lfs2.c
     ${MICROPY_DIR}/lib/littlefs/lfs2_util.c
-    ${MICROPY_DIR}/lib/mbedtls_errors/mp_mbedtls_errors.c
     ${MICROPY_DIR}/lib/oofatfs/ff.c
     ${MICROPY_DIR}/lib/oofatfs/ffunicode.c
     ${MICROPY_DIR}/shared/netutils/dhcpserver.c
@@ -130,6 +129,7 @@ set(MICROPY_SOURCE_PORT
 
 set(MICROPY_SOURCE_QSTR
     ${MICROPY_SOURCE_PY}
+    ${MICROPY_DIR}/shared/readline/readline.c
     ${MICROPY_DIR}/shared/runtime/mpirq.c
     ${MICROPY_DIR}/shared/runtime/sys_stdio_mphal.c
     ${PROJECT_SOURCE_DIR}/machine_adc.c
@@ -341,12 +341,6 @@ target_sources(${MICROPY_TARGET} PRIVATE
 )
 
 target_link_libraries(${MICROPY_TARGET} micropy_lib_mbedtls)
-
-# Filter out library/error.c as we're using mp_mbedtls_errors.c instead.
-set_source_files_properties(${MICROPY_LIB_MBEDTLS_DIR}/library/error.c
-    TARGET_DIRECTORY micropy_lib_mbedtls
-    PROPERTIES HEADER_FILE_ONLY ON
-)
 
 target_link_libraries(${MICROPY_TARGET} usermod)
 
