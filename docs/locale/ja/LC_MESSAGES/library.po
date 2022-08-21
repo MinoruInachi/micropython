@@ -1,3 +1,4 @@
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) - The MicroPython Documentation is Copyright © 2014-2021,
 # Damien P. George, Paul Sokolovsky, and contributors
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.19.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 09:13+0900\n"
-"PO-Revision-Date: 2022-07-31 10:15+0900\n"
+"POT-Creation-Date: 2022-08-21 11:29+0900\n"
+"PO-Revision-Date: 2022-08-21 12:58+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1923,7 +1924,7 @@ msgstr ""
 
 #: ../../library/btree.rst:150 ../../library/cmath.rst:55
 #: ../../library/errno.rst:13 ../../library/esp32.rst:132
-#: ../../library/esp32.rst:300 ../../library/framebuf.rst:125
+#: ../../library/esp32.rst:300 ../../library/framebuf.rst:150
 #: ../../library/lcd160cr.rst:380 ../../library/machine.I2S.rst:148
 #: ../../library/machine.Pin.rst:242 ../../library/machine.RTC.rst:79
 #: ../../library/machine.SPI.rst:139 ../../library/machine.Timer.rst:76
@@ -3155,11 +3156,12 @@ msgstr "クラス FrameBuffer"
 #: ../../library/framebuf.rst:13
 msgid ""
 "The FrameBuffer class provides a pixel buffer which can be drawn upon "
-"with pixels, lines, rectangles, text and even other FrameBuffer's. It is "
-"useful when generating output for displays."
+"with pixels, lines, rectangles, ellipses, polygons, text and even other "
+"FrameBuffers. It is useful when generating output for displays."
 msgstr ""
-"FrameBuffer クラスは、ピクセル、ライン、矩形、テキスト、さらには他の FrameBuffer で"
-"描画できるピクセルバッファを提供します。ディスプレイの出力を生成するときに便利です。"
+"FrameBuffer クラスは、ピクセル、ライン、矩形、楕円、多角形、テキスト、"
+"さらには他の FrameBuffer で描画できるピクセルバッファを提供します。"
+"ディスプレイの出力を生成するときに便利です。"
 
 #: ../../library/framebuf.rst:17 ../../library/lcd160cr.rst:25
 #: ../../library/neopixel.rst:21 ../../library/network.rst:15
@@ -3303,21 +3305,76 @@ msgstr ""
 "メソッドはラインを第2の座標セットへ描画するのに対し、 `hline` と `vline` "
 "メソッドはそれぞれ指定された長さまで水平ラインと垂直ラインを描画します。"
 
-#: ../../library/framebuf.rst:83
-msgid ""
-"Draw a rectangle at the given location, size and color. The `rect` method"
-" draws only a 1 pixel outline whereas the `fill_rect` method draws both "
-"the outline and interior."
-msgstr ""
-"指定された場所、サイズ、色で四角形を描画します。 `rect` メソッドはは１ピクセルの"
-"アウトラインを描画するのに対して、 `fill_rect` メソッドは輪郭とその内側の両方を"
-"描きます。"
+#: ../../library/framebuf.rst:82
+msgid "Draw a rectangle at the given location, size and color."
+msgstr "指定した位置、サイズ、色で短形を描画します。"
 
-#: ../../library/framebuf.rst:88 ../../library/lcd160cr.rst:172
+#: ../../library/framebuf.rst:84
+msgid ""
+"The optional *f* parameter can be set to ``True`` to fill the rectangle. "
+"Otherwise just a one pixel outline is drawn."
+msgstr ""
+"オプションの *f* パラメータに ``True`` を指定すると、短形の内側を塗りつぶします。"
+"さもなければ１ピクセル幅で輪郭を描画するのみです。"
+
+#: ../../library/framebuf.rst:89
+msgid ""
+"Draw an ellipse at the given location. Radii *xr* and *yr* define the "
+"geometry; equal values cause a circle to be drawn. The *c* parameter "
+"defines the color."
+msgstr ""
+"指定した位置に楕円を描画します。半径 *xr* と *yr* がジオメトリを定義し、"
+"同じ値であれば円を描画します。 *c* パラメータは色を定義します。"
+
+#: ../../library/framebuf.rst:93
+msgid ""
+"The optional *f* parameter can be set to ``True`` to fill the ellipse. "
+"Otherwise just a one pixel outline is drawn."
+msgstr ""
+"オプションの *f* パラメータに ``True`` を指定すると、楕円の内側を塗りつぶします。"
+"さもなければ１ピクセル幅で輪郭を描画するのみです。"
+
+#: ../../library/framebuf.rst:96
+msgid ""
+"The optional *m* parameter enables drawing to be restricted to certain "
+"quadrants of the ellipse. The LS four bits determine which quadrants are "
+"to be drawn, with bit 0 specifying Q1, b1 Q2, b2 Q3 and b3 Q4. Quadrants "
+"are numbered counterclockwise with Q1 being top right."
+msgstr ""
+"オプションの *m* パラメータは、楕円の特定の象限に描画を制限できます。"
+"LS 4 ビットで描画する象限を決定します。"
+"ビット 0 で Q1、b1 Q2、b2 Q3、b3 Q4 を指定します。"
+"象限は反時計回りに番号付けされ、Q1が右上になります。"
+
+#: ../../library/framebuf.rst:103
+msgid ""
+"Given a list of coordinates, draw an arbitrary (convex or concave) closed"
+" polygon at the given x, y location using the given color."
+msgstr ""
+"座標のリストを指定し、その指定した x, y の位置に任意の（凸または凹）閉じた多角形を、"
+"指定の色で描画します。"
+
+#: ../../library/framebuf.rst:106
+msgid ""
+"The *coords* must be specified as a :mod:`array` of integers, e.g. "
+"``array('h', [x0, y0, x1, y1, ... xn, yn])``."
+msgstr ""
+"*coords* は :mod:`array` を使って整数の配列で指定する必要があります。"
+"たとえば、 ``array('h', [x0, y0, x1, y1, ... xn, yn])`` のように指定します。"
+
+#: ../../library/framebuf.rst:109
+msgid ""
+"The optional *f* parameter can be set to ``True`` to fill the polygon. "
+"Otherwise just a one pixel outline is drawn."
+msgstr ""
+"オプションの *f* パラメータに ``True`` を指定すると、ポリゴンを塗りつぶします。"
+"さもなければ１ピクセル幅で輪郭を描画するのみです。"
+
+#: ../../library/framebuf.rst:113 ../../library/lcd160cr.rst:172
 msgid "Drawing text"
 msgstr "テキストの描画"
 
-#: ../../library/framebuf.rst:92
+#: ../../library/framebuf.rst:117
 msgid ""
 "Write text to the FrameBuffer using the the coordinates as the upper-left"
 " corner of the text. The color of the text can be defined by the optional"
@@ -3329,11 +3386,11 @@ msgstr ""
 "オプションの引数で定義できますが、それ以外の場合はデフォルト値は 1 です。すべての"
 "文字のサイズは8x8ピクセルですが、現在フォントを変更する方法はありません。"
 
-#: ../../library/framebuf.rst:99
+#: ../../library/framebuf.rst:124
 msgid "Other methods"
 msgstr "その他のメソッド"
 
-#: ../../library/framebuf.rst:103
+#: ../../library/framebuf.rst:128
 msgid ""
 "Shift the contents of the FrameBuffer by the given vector. This may leave"
 " a footprint of the previous colors in the FrameBuffer."
@@ -3341,7 +3398,7 @@ msgstr ""
 "指定された方向へ FrameBuffer の内容をシフトします。これにより、FrameBuffer に"
 "前の色のフットプリントが残る場合があります。"
 
-#: ../../library/framebuf.rst:108
+#: ../../library/framebuf.rst:122
 msgid ""
 "Draw another FrameBuffer on top of the current one at the given "
 "coordinates. If *key* is specified then it should be a color integer and "
@@ -3352,7 +3409,7 @@ msgstr ""
 "*key* が指定されている場合、それは色を表す整数でなければならず、対応する色は"
 "透明であるとみなされます。その色の値を持つすべてのピクセルは描画されません。"
 
-#: ../../library/framebuf.rst:113
+#: ../../library/framebuf.rst:138
 msgid ""
 "The *palette* argument enables blitting between FrameBuffers with "
 "differing formats. Typical usage is to render a monochrome or grayscale "
@@ -3377,7 +3434,7 @@ msgstr ""
 "現在のピクセルの色は、x位置が対応するソースピクセルの色になっている *palette* "
 "ピクセルの色になります。"
 
-#: ../../library/framebuf.rst:129
+#: ../../library/framebuf.rst:154
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are vertically mapped with bit 0 being nearest the top of the "
@@ -3391,7 +3448,7 @@ msgstr ""
 "８垂直ピクセルを占有します。後続のバイトは、右端に達するまで連続した水平位置に"
 "現れます。さらに後続のバイトは、最左端から8ピクセル下の位置でレンダリングされます。"
 
-#: ../../library/framebuf.rst:138
+#: ../../library/framebuf.rst:163
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -3404,7 +3461,7 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:147
+#: ../../library/framebuf.rst:172
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -3417,19 +3474,19 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:156
+#: ../../library/framebuf.rst:181
 msgid "Red Green Blue (16-bit, 5+6+5) color format"
 msgstr "レッドグリーンブルー(16ビット、5+6+5)カラーフォーマット"
 
-#: ../../library/framebuf.rst:160
+#: ../../library/framebuf.rst:185
 msgid "Grayscale (2-bit) color format"
 msgstr "グレースケール(2ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:164
+#: ../../library/framebuf.rst:189
 msgid "Grayscale (4-bit) color format"
 msgstr "グレースケール(4ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:168
+#: ../../library/framebuf.rst:193
 msgid "Grayscale (8-bit) color format"
 msgstr "グレースケール(8ビット)カラーフォーマット"
 
@@ -16126,8 +16183,8 @@ msgstr ""
 
 #: ../../library/rp2.StateMachine.rst:58 ../../library/rp2.rst:50
 msgid ""
-"*pull_thresh* is the threshold in bits before auto-push or conditional "
-"re-pushing is triggered."
+"*pull_thresh* is the threshold in bits before auto-pull or conditional "
+"re-pulling is triggered."
 msgstr ""
 "*pull_thresh* は、自動プルまたは条件付き再プルが起きる閾値をビット数で指定します。"
 
@@ -19085,13 +19142,21 @@ msgstr ""
 
 #: ../../library/uasyncio.rst:156
 msgid ""
-"Set the flag.  If there is a task waiting on the event, it will be "
+"Set the flag.  If there is a task waiting on the flag, it will be "
 "scheduled to run."
 msgstr ""
-"フラグを設定します。イベントを待機しているタスクがある場合、そのタスクが実行されるよう"
+"フラグを設定します。フラグを待機しているタスクがある場合、そのタスクが実行されるよう"
 "スケジュールされます。"
 
 #: ../../library/uasyncio.rst:161
+msgid ""
+"Clear the flag. This may be used to ensure that a possibly previously-set"
+" flag is clear before waiting for it."
+msgstr ""
+"フラグをクリアします。これは、以前に設定した可能性のあるフラグについて、"
+"それを待機する前に確実にクリアするために使います。"
+
+#: ../../library/uasyncio.rst:166
 msgid ""
 "Wait for the flag to be set.  If the flag is already set then it returns "
 "immediately.  The flag is automatically reset upon return from ``wait``."
@@ -19099,34 +19164,34 @@ msgstr ""
 "フラグが設定されるのを待ちます。フラグがすでに設定されている場合はすぐに戻ります。"
 "このフラグは ``wait`` から戻ったときに自動的にリセットされます。"
 
-#: ../../library/uasyncio.rst:164
+#: ../../library/uasyncio.rst:169
 msgid "A flag may only be waited on by a single task at a time."
 msgstr "フラグは、一度に1つのタスクでのみ待機できます。"
 
-#: ../../library/uasyncio.rst:169
+#: ../../library/uasyncio.rst:174
 msgid "class Lock"
 msgstr "クラス Lock"
 
-#: ../../library/uasyncio.rst:173
+#: ../../library/uasyncio.rst:178
 msgid ""
 "Create a new lock which can be used to coordinate tasks.  Locks start in "
 "the unlocked state."
 msgstr ""
 "タスクの調整に使用できる新しいロックを作成します。ロックは解除状態から始まります。"
 
-#: ../../library/uasyncio.rst:176
+#: ../../library/uasyncio.rst:181
 msgid ""
 "In addition to the methods below, locks can be used in an ``async with`` "
 "statement."
 msgstr ""
 "以下のメソッドに加えて、 ``async with`` ステートメントでロックを使用できます。"
 
-#: ../../library/uasyncio.rst:180
+#: ../../library/uasyncio.rst:185
 msgid "Returns ``True`` if the lock is locked, otherwise ``False``."
 msgstr ""
 "ロックされていれば ``True`` を返し、さもなければ ``False`` を返します。"
 
-#: ../../library/uasyncio.rst:184
+#: ../../library/uasyncio.rst:189
 msgid ""
 "Wait for the lock to be in the unlocked state and then lock it in an "
 "atomic way.  Only one task can acquire the lock at any one time."
@@ -19134,7 +19199,7 @@ msgstr ""
 "ロックが解除状態になるのを待ってから、アトミックな手段でロックします。"
 "一度に1つのタスクのみがロックを取得できます。"
 
-#: ../../library/uasyncio.rst:191
+#: ../../library/uasyncio.rst:196
 msgid ""
 "Release the lock.  If any tasks are waiting on the lock then the next one"
 " in the queue is scheduled to run and the lock remains locked.  "
@@ -19144,11 +19209,11 @@ msgstr ""
 "実行されるようスケジュールされ、ロックされたままになります。待機中のタスクが無い場合は、"
 "ロックが解除されます。"
 
-#: ../../library/uasyncio.rst:195
+#: ../../library/uasyncio.rst:201
 msgid "TCP stream connections"
 msgstr "TCP ストリーム接続"
 
-#: ../../library/uasyncio.rst:200
+#: ../../library/uasyncio.rst:205
 msgid ""
 "Open a TCP connection to the given *host* and *port*.  The *host* address"
 " will be resolved using `socket.getaddrinfo`, which is currently a "
@@ -19158,7 +19223,7 @@ msgstr ""
 "*host* のアドレスは `socket.getaddrinfo` を使って解決されます。"
 "この解決は現在のところブロッキング呼出しです。"
 
-#: ../../library/uasyncio.rst:203
+#: ../../library/uasyncio.rst:208
 msgid ""
 "Returns a pair of streams: a reader and a writer stream. Will raise a "
 "socket-specific ``OSError`` if the host could not be resolved or if the "
@@ -19168,7 +19233,7 @@ msgstr ""
 "ホストを解決できなかった場合、または接続を確立できなかった場合は、
 "ソケット特有の ``OSError`` 例外を発生します。"
 
-#: ../../library/uasyncio.rst:211
+#: ../../library/uasyncio.rst:216
 msgid ""
 "Start a TCP server on the given *host* and *port*.  The *callback* will "
 "be called with incoming, accepted connections, and be passed 2 arguments:"
@@ -19178,11 +19243,11 @@ msgstr ""
 "コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
 "(読み取りストリームと書き込みストリーム)で呼び出されます。"
 
-#: ../../library/uasyncio.rst:215
+#: ../../library/uasyncio.rst:220
 msgid "Returns a `Server` object."
 msgstr "`Server` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:221
+#: ../../library/uasyncio.rst:226
 msgid ""
 "This represents a TCP stream connection.  To minimise code this class "
 "implements both a reader and a writer, and both ``StreamReader`` and "
@@ -19192,7 +19257,7 @@ msgstr ""
 "このクラスには読み取りと書き込みの両方を実装しています。
 "StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
 
-#: ../../library/uasyncio.rst:227
+#: ../../library/uasyncio.rst:232
 msgid ""
 "Get extra information about the stream, given by *v*.  The valid values "
 "for *v* are: ``peername``."
@@ -19200,42 +19265,48 @@ msgstr ""
 "*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
 "``peername`` です。"
 
-#: ../../library/uasyncio.rst:232
+#: ../../library/uasyncio.rst:237
 msgid "Close the stream."
 msgstr "ストリームをクローズします。"
 
-#: ../../library/uasyncio.rst:233
+#: ../../library/uasyncio.rst:241
 msgid "Wait for the stream to close."
 msgstr "ストリームがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:242
-msgid "Read up to *n* bytes and return them."
-msgstr "最大 *n* バイトを読み取って返します。"
-
 #: ../../library/uasyncio.rst:247
+msgid ""
+"Read up to *n* bytes and return them.  If *n* is not provided or -1 then "
+"read all bytes until EOF.  The returned value will be an empty bytes "
+"object if EOF is encountered before any bytes are read."
+msgstr ""
+"最大 *n* バイトを読み取って返します。"
+"*n* が指定されていないか、または -1 の場合、EOF まで全てのバイトを読み込みます。"
+"バイト列を読み込む前に EOF に達した場合、戻り値は空のバイト列オブジェクトになります。
+
+#: ../../library/uasyncio.rst:255
 msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
 msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
 
-#: ../../library/uasyncio.rst:250
+#: ../../library/uasyncio.rst:257
 msgid "Return the number of bytes read into *buf*."
 msgstr "戻り値は *buf* に読み込んだバイト数です。"
 
-#: ../../library/uasyncio.rst:256
+#: ../../library/uasyncio.rst:263
 msgid "Read exactly *n* bytes and return them as a bytes object."
 msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
 
-#: ../../library/uasyncio.rst:258
+#: ../../library/uasyncio.rst:265
 msgid ""
 "Raises an ``EOFError`` exception if the stream ends before reading *n* "
 "bytes."
 msgstr ""
 "*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
 
-#: ../../library/uasyncio.rst:264
+#: ../../library/uasyncio.rst:271
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/uasyncio.rst:270
+#: ../../library/uasyncio.rst:277
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -19245,11 +19316,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/uasyncio.rst:276
+#: ../../library/uasyncio.rst:283
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/uasyncio.rst:282
+#: ../../library/uasyncio.rst:289
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -19257,28 +19328,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/uasyncio.rst:287
+#: ../../library/uasyncio.rst:294
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/uasyncio.rst:291
+#: ../../library/uasyncio.rst:298
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:296
+#: ../../library/uasyncio.rst:303
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/uasyncio.rst:300
+#: ../../library/uasyncio.rst:307
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/uasyncio.rst:304
+#: ../../library/uasyncio.rst:311
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/uasyncio.rst:306
+#: ../../library/uasyncio.rst:313
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -19286,7 +19357,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/uasyncio.rst:311
+#: ../../library/uasyncio.rst:318
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -19294,15 +19365,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/uasyncio.rst:316
+#: ../../library/uasyncio.rst:323
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:320
+#: ../../library/uasyncio.rst:327
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/uasyncio.rst:324
+#: ../../library/uasyncio.rst:331
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -19310,15 +19381,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:330
+#: ../../library/uasyncio.rst:336
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/uasyncio.rst:333
+#: ../../library/uasyncio.rst:340
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/uasyncio.rst:337
+#: ../../library/uasyncio.rst:344
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -19327,18 +19398,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/uasyncio.rst:342
+#: ../../library/uasyncio.rst:349
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/uasyncio.rst:347
+#: ../../library/uasyncio.rst:354
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/uasyncio.rst:351
+#: ../../library/uasyncio.rst:358
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "

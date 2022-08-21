@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.18\n"
+"Project-Id-Version: MicroPython 1.19.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-11 18:31+0900\n"
-"PO-Revision-Date: 2022-06-12 07:32+0900\n"
+"POT-Creation-Date: 2022-08-21 11:29+0900\n"
+"PO-Revision-Date: 2022-08-21 13:24+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -4863,38 +4863,46 @@ msgstr ""
 "これによりリモートの MicroPython デバイスに対して様々なアクションを実行します。"
 
 #: ../../reference/mpremote.rst:33
+msgid ""
+"For commands that support multiple arguments (e.g. a list of files), the "
+"argument list can be terminated with ``+``."
+msgstr ""
+"複数の引数をサポートするコマンド(たとえばファイルのリスト)では、"
+"引数リストを ``+`` で終了できます。"
+
+#: ../../reference/mpremote.rst:36
 msgid "The full list of supported commands are:"
 msgstr "サポートされているコマンドの全リストは以下の通りです:"
 
-#: ../../reference/mpremote.rst:35
+#: ../../reference/mpremote.rst:38
 msgid "connect to a specified device via a device-name shortcut:"
 msgstr "デバイス名ショートカットで指定したデバイスに接続:"
 
-#: ../../reference/mpremote.rst:37
+#: ../../reference/mpremote.rst:40
 msgid "$ mpremote <device-shortcut>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:41
+#: ../../reference/mpremote.rst:44
 msgid "connect to specified device via name:"
 msgstr "名前で指定したデバイスに接続:"
 
-#: ../../reference/mpremote.rst:43
+#: ../../reference/mpremote.rst:46
 msgid "$ mpremote connect <device>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:47
+#: ../../reference/mpremote.rst:50
 msgid "``<device>`` may be one of:"
 msgstr "``<device>`` は以下のいずれかです:"
 
-#: ../../reference/mpremote.rst:49
+#: ../../reference/mpremote.rst:52
 msgid "``list``: list available devices"
 msgstr "``list``: 利用可能なデバイスのリスト
 
-#: ../../reference/mpremote.rst:50
+#: ../../reference/mpremote.rst:53
 msgid "``auto``: connect to the first available device"
 msgstr "``auto``: 利用可能な最初のデバイスに接続
 
-#: ../../reference/mpremote.rst:51
+#: ../../reference/mpremote.rst:54
 msgid ""
 "``id:<serial>``: connect to the device with USB serial number "
 "``<serial>`` (the second entry in the output from the ``connect list`` "
@@ -4903,47 +4911,47 @@ msgstr ""
 "``id:<serial>``: USB シリアル番号 ``<serial>`` (``connect list`` "
 "コマンドで出力される2番目の項目)を持つデバイスに接続 "
 
-#: ../../reference/mpremote.rst:54
+#: ../../reference/mpremote.rst:57
 msgid "``port:<path>``: connect to the device with the given path"
 msgstr "``port:<path>``: 指定したパスを持つデバイスに接続"
 
-#: ../../reference/mpremote.rst:55
+#: ../../reference/mpremote.rst:58
 msgid "any valid device name/path, to connect to that device"
 msgstr "任意の有効なデバイス名/パスを指定して、そのデバイスに接続"
 
-#: ../../reference/mpremote.rst:57
+#: ../../reference/mpremote.rst:60
 msgid "disconnect current device:"
 msgstr "現在のデバイスを切断:"
 
-#: ../../reference/mpremote.rst:59
+#: ../../reference/mpremote.rst:62
 msgid "$ mpremote disconnect"
 msgstr ""
 
-#: ../../reference/mpremote.rst:63
+#: ../../reference/mpremote.rst:66
 msgid "After a disconnect, auto soft-reset is enabled."
 msgstr "切断後、自動ソフトリセットが有効化されます。"
 
-#: ../../reference/mpremote.rst:65
+#: ../../reference/mpremote.rst:68
 msgid "resume a previous ``mpremote`` session:"
 msgstr "以前の ``mpremote`` セッションを再開:"
 
-#: ../../reference/mpremote.rst:67
+#: ../../reference/mpremote.rst:70
 msgid "$ mpremote resume"
 msgstr ""
 
-#: ../../reference/mpremote.rst:71
+#: ../../reference/mpremote.rst:74
 msgid "This disables auto soft-reset."
 msgstr "これは自動ソフトリセットを無効化します。"
 
-#: ../../reference/mpremote.rst:73
+#: ../../reference/mpremote.rst:76
 msgid "perform a soft-reset of the device:"
 msgstr "デバイスのソフトリセットを実行:"
 
-#: ../../reference/mpremote.rst:75
+#: ../../reference/mpremote.rst:78
 msgid "$ mpremote soft-reset"
 msgstr ""
 
-#: ../../reference/mpremote.rst:79
+#: ../../reference/mpremote.rst:82
 msgid ""
 "This will clear out the Python heap and restart the interpreter.  It also"
 " disables auto soft-reset."
@@ -4951,88 +4959,88 @@ msgstr ""
 "これにより、Python のヒープがクリアされ、インタープリターが再起動します。"
 "また、自動ソフトリセットを無効にします。"
 
-#: ../../reference/mpremote.rst:82
+#: ../../reference/mpremote.rst:85
 msgid "enter the REPL on the connected device:"
 msgstr "接続したデバイスの REPL に入る:"
 
-#: ../../reference/mpremote.rst:84
+#: ../../reference/mpremote.rst:87
 msgid "$ mpremote repl [options]"
 msgstr ""
 
-#: ../../reference/mpremote.rst:88
+#: ../../reference/mpremote.rst:91 ../../reference/mpremote.rst:158
 msgid "Options are:"
-msgstr "オプションは次のとおり:"
+msgstr "オプションは次のとおりです:"
 
-#: ../../reference/mpremote.rst:90
+#: ../../reference/mpremote.rst:93
 msgid ""
 "``--capture <file>``, to capture output of the REPL session to the given "
 "file"
 msgstr ""
 "``--capture <file>``: REPL セッションの出力を指定したファイルにキャプチャーします"
 
-#: ../../reference/mpremote.rst:92
+#: ../../reference/mpremote.rst:95
 msgid ""
 "``--inject-code <string>``, to specify characters to inject at the REPL "
 "when Ctrl-J is pressed"
 msgstr ""
 "``--inject-code <string>``: REPL で Ctrl-J が押されたときに注入する文字を指定します"
 
-#: ../../reference/mpremote.rst:94
+#: ../../reference/mpremote.rst:97
 msgid ""
 "``--inject-file <file>``, to specify a file to inject at the REPL when "
 "Ctrl-K is pressed"
 msgstr ""
 "``--inject-file <file>``: Ctrl-K が押されたときに REPL に注入するファイルを指定します"
 
-#: ../../reference/mpremote.rst:97
+#: ../../reference/mpremote.rst:100
 msgid "evaluate and print the result of a Python expression:"
 msgstr "Python の式を評価して結果を表示:"
 
-#: ../../reference/mpremote.rst:99
+#: ../../reference/mpremote.rst:102
 msgid "$ mpremote eval <string>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:103
+#: ../../reference/mpremote.rst:106
 msgid "execute the given Python code:"
 msgstr "指定した Python のコードを実行:"
 
-#: ../../reference/mpremote.rst:105
+#: ../../reference/mpremote.rst:108
 msgid "$ mpremote exec <string>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:109
+#: ../../reference/mpremote.rst:112
 msgid "run a script from the local filesystem:"
 msgstr "ローカルファイルシステムにあるスクリプトを実行:"
 
-#: ../../reference/mpremote.rst:111
+#: ../../reference/mpremote.rst:114
 msgid "$ mpremote run <file>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:115
+#: ../../reference/mpremote.rst:118
 msgid "execute filesystem commands on the device:"
 msgstr "デバイスに対してファイルシステムコマンドを実行:"
 
-#: ../../reference/mpremote.rst:117
+#: ../../reference/mpremote.rst:120
 msgid "$ mpremote fs <command>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:121
+#: ../../reference/mpremote.rst:124
 msgid "``<command>`` may be:"
 msgstr "``<command>`` は次のとおり:"
 
-#: ../../reference/mpremote.rst:123
+#: ../../reference/mpremote.rst:126
 msgid "``cat <file..>`` to show the contents of a file or files on the device"
 msgstr "``cat <file..>`` : デバイスにあるファイルの内容を表示"
 
-#: ../../reference/mpremote.rst:124
+#: ../../reference/mpremote.rst:127
 msgid "``ls`` to list the current directory"
 msgstr "``ls`` : カレントディレクトリを一覧表示"
 
-#: ../../reference/mpremote.rst:125
+#: ../../reference/mpremote.rst:128
 msgid "``ls <dirs...>`` to list the given directories"
 msgstr "``ls <dirs...>`` : 指定のディレクトリを一覧表示"
 
-#: ../../reference/mpremote.rst:126
+#: ../../reference/mpremote.rst:129
 msgid ""
 "``cp [-r] <src...> <dest>`` to copy files; use \":\" as a prefix to "
 "specify a file on the device"
@@ -5040,27 +5048,50 @@ msgstr ""
 "``cp [-r] <src...> <dest>`` : ファイルをコピー。接頭辞として \":\" があると、"
 "デバイス上のファイルを指定したことになる"
 
-#: ../../reference/mpremote.rst:128
+#: ../../reference/mpremote.rst:131
 msgid "``rm <src...>`` to remove files on the device"
 msgstr "``rm <src...>`` : デバイス上のファイルを削除"
 
-#: ../../reference/mpremote.rst:129
+#: ../../reference/mpremote.rst:132
 msgid "``mkdir <dirs...>`` to create directories on the device"
 msgstr "``mkdir <dirs...>`` : デバイスにディレクトリを作成"
 
-#: ../../reference/mpremote.rst:130
+#: ../../reference/mpremote.rst:133
 msgid "``rmdir <dirs...>`` to remove directories on the device"
 msgstr "``rmdir <dirs...>`` : デバイス上のディレクトリを削除"
 
-#: ../../reference/mpremote.rst:132
+#: ../../reference/mpremote.rst:134
+msgid "``touch <file..>`` to create the files (if they don't already exist)"
+msgstr "``touch <file..>`` : (ファイルがまだ存在しなければ)ファイルを作成"
+
+#: ../../reference/mpremote.rst:136
+msgid "edit a file on the device:"
+msgstr "デバイス上のファイルを編集:"
+
+#: ../../reference/mpremote.rst:138
+msgid "$ mpremote edit <files...>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:142
+msgid ""
+"The ``edit`` command will copy each file from the device to a local "
+"temporary directory and then launch your editor for each file (defined by"
+" the environment variable ``$EDITOR``). If the editor exits successfully,"
+" the updated file will be copied back to the device."
+msgstr ""
+"``edit`` コマンドは、各ファイルをデバイスからローカルの一時ディレクトリにコピーし、"
+"各ファイルに対してエディタを起動します (環境変数 ``$EDITOR`` で定義します)。"
+"エディタが正常に終了すると、更新されたファイルがデバイスにコピーバックされます。"
+
+#: ../../reference/mpremote.rst:147
 msgid "mount the local directory on the remote device:"
 msgstr "リモートデバイス上にローカルディレクトリをマウント:"
 
-#: ../../reference/mpremote.rst:134
+#: ../../reference/mpremote.rst:149
 msgid "$ mpremote mount [options] <local-dir>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:138
+#: ../../reference/mpremote.rst:153
 msgid ""
 "During usage, Ctrl-D will soft-reboot and normally reconnect the mount "
 "automatically. If the unit has a main.py running at startup however the "
@@ -5073,7 +5104,7 @@ msgstr ""
 "この場合、raw モードのソフトリブートを使えます。Ctrl-A Ctrl-D でリブート、Ctrl-B "
 "で通常のリプレイに戻り、マウントの準備ができます。"
 
-#: ../../reference/mpremote.rst:145
+#: ../../reference/mpremote.rst:160
 msgid ""
 "``-l``, ``--unsafe-links``: By default an error will be raised if the "
 "device accesses a file or directory which is outside (up one or more "
@@ -5087,25 +5118,25 @@ msgstr ""
 "シンボリックリンクのチェックを無効にし、デバイスがローカルディレクトリの"
 "外側のシンボリックリンクをたどることを可能にします。"
 
-#: ../../reference/mpremote.rst:150
+#: ../../reference/mpremote.rst:165
 msgid "unmount the local directory from the remote device:"
 msgstr "リモートデバイスからローカルディレクトリをアンマウント:"
 
-#: ../../reference/mpremote.rst:152
+#: ../../reference/mpremote.rst:167
 msgid "$ mpremote umount"
 msgstr ""
 
-#: ../../reference/mpremote.rst:156
+#: ../../reference/mpremote.rst:171
 msgid ""
 "Multiple commands can be specified and they will be run sequentially. "
 msgstr ""
 "複数のコマンドを指定することができ、それらは順次実行されます。"
 
-#: ../../reference/mpremote.rst:160
+#: ../../reference/mpremote.rst:175
 msgid "Auto connection and soft-reset"
 msgstr "自動接続とソフトリセット"
 
-#: ../../reference/mpremote.rst:162
+#: ../../reference/mpremote.rst:177
 msgid ""
 "Connection and disconnection will be done automatically at the start and "
 "end of the execution of the tool, if such commands are not explicitly "
@@ -5117,7 +5148,7 @@ msgstr ""
 "自動接続では、最初に利用可能なシリアルデバイスを検索します。アクションが指定されて"
 "いない場合は REPL が起動します。"
 
-#: ../../reference/mpremote.rst:167
+#: ../../reference/mpremote.rst:182
 msgid ""
 "Once connected to a device, ``mpremote`` will automatically soft-reset "
 "the device if needed.  This clears the Python heap and restarts the "
@@ -5134,7 +5165,7 @@ msgstr ""
 "ソフトリセットを初めて行った後、 ``disconnect`` コマンドを発行するまで、自動的に"
 "ソフトリセットを行うことはありません。"
 
-#: ../../reference/mpremote.rst:175
+#: ../../reference/mpremote.rst:190
 msgid ""
 "Auto soft-reset behaviour can be controlled by the ``resume`` command.  "
 "And the ``soft-reset`` command can be used to perform an explicit soft "
@@ -5143,49 +5174,49 @@ msgstr ""
 "自動的なソフトリセットの動作は、 ``resume`` コマンドで制御することができます。"
 "また、 ``soft-reset`` コマンドを使用すると、明示的なソフトリセットを行えます。"
 
-#: ../../reference/mpremote.rst:180
+#: ../../reference/mpremote.rst:195
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: ../../reference/mpremote.rst:182
+#: ../../reference/mpremote.rst:197
 msgid "Shortcuts can be defined using the macro system.  Built-in shortcuts are::"
 msgstr ""
 "ショートカットはマクロシステムを使って定義できます。内蔵のショートカットには"
 "次のものがあります:"
 
-#: ../../reference/mpremote.rst:184
+#: ../../reference/mpremote.rst:199
 msgid "- ``devs``: list available devices (shortcut for ``connect list``)"
 msgstr "- ``devs``: 利用可能なデバイスを一覧表示"
 
-#: ../../reference/mpremote.rst:186
+#: ../../reference/mpremote.rst:201
 msgid "``a0``, ``a1``, ``a2``, ``a3``: connect to /dev/ttyACM?"
 msgstr "``a0``, ``a1``, ``a2``, ``a3``: /dev/ttyACM? に接続"
 
-#: ../../reference/mpremote.rst:188
+#: ../../reference/mpremote.rst:203
 msgid "``u0``, ``u1``, ``u2``, ``u3``: connect to /dev/ttyUSB?"
 msgstr "``u0``, ``u1``, ``u2``, ``u3``: /dev/ttyUSB? に接続"
 
-#: ../../reference/mpremote.rst:190
+#: ../../reference/mpremote.rst:205
 msgid "``c0``, ``c1``, ``c2``, ``c3``: connect to COM?"
 msgstr "``c0``, ``c1``, ``c2``, ``c3``: COM? に接続"
 
-#: ../../reference/mpremote.rst:192
+#: ../../reference/mpremote.rst:207
 msgid ""
-"``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``df``: filesystem"
-" commands"
+"``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``touch``, ``df``:"
+" filesystem commands"
 msgstr ""
-"``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``df``: "
-"ファイルシステムコマンド"
+"``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``touch``, ``df``:"
+" ファイルシステムコマンド"
 
-#: ../../reference/mpremote.rst:195
+#: ../../reference/mpremote.rst:210
 msgid "``reset``: reset the device"
 msgstr "``reset``: デバイスをリセット"
 
-#: ../../reference/mpremote.rst:197
+#: ../../reference/mpremote.rst:212
 msgid "``bootloader``: make the device enter its bootloader"
 msgstr "``bootloader``: デバイスのブートローダを起動"
 
-#: ../../reference/mpremote.rst:199
+#: ../../reference/mpremote.rst:214
 msgid ""
 "Any user configuration, including user-defined shortcuts, can be placed "
 "in the file ``.config/mpremote/config.py``. For example:"
@@ -5194,7 +5225,7 @@ msgstr ""
 "``.config/mpremote/config.py`` に入れることができます。"
 "たとえば、以下のようになります:"
 
-#: ../../reference/mpremote.rst:202
+#: ../../reference/mpremote.rst:217
 msgid ""
 "commands = {\n"
 "    \"c33\": \"connect id:334D335C3138\",\n"
@@ -5211,7 +5242,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../reference/mpremote.rst:222
+#: ../../reference/mpremote.rst:237
 msgid ""
 "mpremote\n"
 "\n"
@@ -5240,6 +5271,8 @@ msgid ""
 "mpremote cp main.py :\n"
 "\n"
 "mpremote cp -r dir/ :"
+"\n"
+"mpremote cp a.py b.py : + repl"
 msgstr ""
 
 #: ../../reference/mpyfiles.rst:4
@@ -6345,23 +6378,23 @@ msgid ""
 "                        path | rmdir path"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:54
+#: ../../reference/pyboard.py.rst:56
 msgid "Running a command on the device"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:56
+#: ../../reference/pyboard.py.rst:58
 msgid ""
 "This is useful for testing short snippets of code, or to script an "
 "interaction with the device.::"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:59
+#: ../../reference/pyboard.py.rst:61
 msgid ""
 "$ pyboard.py --device /dev/ttyACM0 -c 'print(1+1)'\n"
 "2"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:62
+#: ../../reference/pyboard.py.rst:64
 msgid ""
 "If you are often interacting with the same device, you can set the "
 "environment variable ``PYBOARD_DEVICE`` as an alternative to using the "
@@ -6369,110 +6402,114 @@ msgid ""
 "equivalent to the previous example::"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:67
+#: ../../reference/pyboard.py.rst:69
 msgid ""
 "$ export PYBOARD_DEVICE=/dev/ttyACM0\n"
 "$ pyboard.py -c 'print(1+1)'"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:70
+#: ../../reference/pyboard.py.rst:72
 msgid ""
 "Similarly, the ``PYBOARD_BAUDRATE`` environment variable can be used to "
 "set the default for the ``--baudrate`` option."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:74
+#: ../../reference/pyboard.py.rst:76
 msgid "Running a script on the device"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:76
+#: ../../reference/pyboard.py.rst:78
 msgid ""
 "If you have a script, ``app.py`` that you want to run on a device, then "
 "use::"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:78
+#: ../../reference/pyboard.py.rst:80
 msgid "$ pyboard.py --device /dev/ttyACM0 app.py"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:80
+#: ../../reference/pyboard.py.rst:82
 msgid ""
 "Note that this doesn't actually copy app.py to the device's filesystem, "
 "it just loads the code into RAM and executes it. Any output generated by "
 "the program will be displayed."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:84
+#: ../../reference/pyboard.py.rst:86
 msgid ""
 "If the program app.py does not finish then you'll need to stop "
 "``pyboard.py``, eg with Ctrl-C. The program ``app.py`` will still "
 "continue to run on the MicroPython device."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:89
+#: ../../reference/pyboard.py.rst:91
 msgid "Filesystem access"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:91
+#: ../../reference/pyboard.py.rst:93
 msgid "Using the ``-f`` flag, the following filesystem operations are supported:"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:93
-msgid "``cp src [src...] dest`` Copy files to/from the device."
-msgstr ""
-
-#: ../../reference/pyboard.py.rst:94
+#: ../../reference/pyboard.py.rst:95
 msgid "``cat path`` Print the contents of a file on the device."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:95
+#: ../../reference/pyboard.py.rst:96
+msgid "``cp src [src...] dest`` Copy files to/from the device."
+msgstr ""
+
+#: ../../reference/pyboard.py.rst:97
 msgid ""
 "``ls [path]`` List contents of a directory (defaults to current working "
 "directory)."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:96
-msgid "``rm path`` Remove a file."
-msgstr ""
-
-#: ../../reference/pyboard.py.rst:97
+#: ../../reference/pyboard.py.rst:98
 msgid "``mkdir path`` Create a directory."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:98
-msgid "``rmdir path`` Remove a directory."
+#: ../../reference/pyboard.py.rst:99
+msgid "``rm path`` Remove a file."
 msgstr ""
 
 #: ../../reference/pyboard.py.rst:100
+msgid "``rmdir path`` Remove a directory."
+msgstr ""
+
+#: ../../reference/pyboard.py.rst:101
+msgid "``touch path`` Create a file if it doesn't already exist."
+msgstr ""
+
+#: ../../reference/pyboard.py.rst:103
 msgid ""
 "The ``cp`` command uses a ``ssh``-like convention for referring to local "
 "and remote files. Any path starting with a ``:`` will be interpreted as "
 "on the device, otherwise it will be local. So::"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:104
+#: ../../reference/pyboard.py.rst:107
 msgid "$ pyboard.py --device /dev/ttyACM0 -f cp main.py :main.py"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:106
+#: ../../reference/pyboard.py.rst:109
 msgid ""
 "will copy main.py from the current directory on the PC to a file named "
 "main.py on the device. The filename can be omitted, e.g.::"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:109
+#: ../../reference/pyboard.py.rst:112
 msgid "$ pyboard.py --device /dev/ttyACM0 -f cp main.py :"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:111
+#: ../../reference/pyboard.py.rst:114
 msgid "is equivalent to the above."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:113
+#: ../../reference/pyboard.py.rst:116
 msgid "Some more examples::"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:115
+#: ../../reference/pyboard.py.rst:118
 msgid ""
 "# Copy main.py from the device to the local PC.\n"
 "$ pyboard.py --device /dev/ttyACM0 -f cp :main.py main.py\n"
@@ -6491,17 +6528,17 @@ msgid ""
 "...contents of boot.py..."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:132
+#: ../../reference/pyboard.py.rst:135
 msgid "Using the pyboard library"
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:134
+#: ../../reference/pyboard.py.rst:137
 msgid ""
 "You can also use ``pyboard.py`` as a library for scripting interactions "
 "with a MicroPython board."
 msgstr ""
 
-#: ../../reference/pyboard.py.rst:137
+#: ../../reference/pyboard.py.rst:140
 msgid ""
 "import pyboard\n"
 "pyb = pyboard.Pyboard('/dev/ttyACM0', 115200)\n"
