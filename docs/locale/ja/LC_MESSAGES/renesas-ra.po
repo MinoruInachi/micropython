@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.18\n"
+"Project-Id-Version: MicroPython 1.19.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-30 09:23+0900\n"
-"PO-Revision-Date: 2022-04-30 15:50+0900\n"
+"PO-Revision-Date: 2022-09-11 11:22+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -372,11 +372,52 @@ msgstr ""
 "しかし、ピンの機能が固定されていたり、ボードによって接続されていない場合があります。"
 "ピンのマッピングについてはボードのマニュアルを確認してください。"
 
-#: ../../renesas-ra/quickref.rst:114
+#: ../../renesas-ra/quickref.rst:113
+msgid ""
+"The following *drive* keyword argument are available if the port drive "
+"capability of the Pin is supported by the MCU::"
+msgstr ""
+"Pin のポートドライブ機能が MCU によってサポートされている場合、"
+"以下の *drive* キーワード引数が指定できます。
+
+#: ../../renesas-ra/quickref.rst:115
+msgid ""
+"Pin.DRIVE_0: Low drive\n"
+"Pin.DRIVE_1: Middle drive\n"
+"Pin.DRIVE_2: Middle drive for I2C Fast-mode\n"
+"Pin.DRIVE_3: High drive"
+msgstr ""
+
+#: ../../renesas-ra/quickref.rst:120
+msgid "The *alt* keyword argument is not supported."
+msgstr "*alt* キーワード引数はサポートされません。"
+
+#: ../../renesas-ra/quickref.rst:122
+msgid "The following functions are not supported::"
+msgstr "次の関数はサポートされません::"
+
+#: ../../renesas-ra/quickref.rst:124
+msgid ""
+"Pin.irq(priority=)  # priority keyword argument is not supported\n"
+"Pin.irq(wake=)      # wake keyword argument is not supported\n"
+"Pin.irq(hard=)      # hard keyword argument is ignored because hardware "
+"interrupt is used\n"
+"Pin.mode()\n"
+"Pin.pull()\n"
+"Pin.drive()"
+msgstr ""
+"Pin.irq(priority=)  # priority キーワード引数はサポートされません\n"
+"Pin.irq(wake=)      # wake キーワード引数はサポートされません\n"
+"Pin.irq(hard=)      # ハードウェア割込みが適用されるので、hard キーワード引数は無視されます\n"
+"Pin.mode()\n"
+"Pin.pull()\n"
+"Pin.drive()"
+
+#: ../../renesas-ra/quickref.rst:132
 msgid "UART (serial bus)"
 msgstr "UART (シリアルバス)"
 
-#: ../../renesas-ra/quickref.rst:116
+#: ../../renesas-ra/quickref.rst:134
 msgid ""
 "The RA MCU has some hardware UARTs called SCI (Serial Communication "
 "Interface). UART id is available corresponding to the RA MCU's SCI number"
@@ -386,11 +427,11 @@ msgstr ""
 "をいくつか備えています。UART ID は RA MCU の SCI 番号に対応しており、"
 "UART(0) を SCI0、 UART(1) を SCI1 として利用できます。"
 
-#: ../../renesas-ra/quickref.rst:119
+#: ../../renesas-ra/quickref.rst:137
 msgid "See :ref:`machine.UART <machine.UART>`. ::"
 msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
 
-#: ../../renesas-ra/quickref.rst:121
+#: ../../renesas-ra/quickref.rst:139
 msgid ""
 "from machine import UART\n"
 "\n"
@@ -404,7 +445,7 @@ msgstr ""
 "uart1.write('hello')    # 5バイト書き出す\n"
 "uart1.read(5)           # 5バイトまで読み込む"
 
-#: ../../renesas-ra/quickref.rst:128
+#: ../../renesas-ra/quickref.rst:146
 msgid ""
 "Available UARTs and pins on the board are fixed and follows. One of these"
 " UARTs is used for REPL."
@@ -412,132 +453,132 @@ msgstr ""
 "ボード上で利用可能な UART とピンは固定されていて、次のとおりです。"
 "UARTの１つはは REPL に使われます。"
 
-#: ../../renesas-ra/quickref.rst:131 ../../renesas-ra/quickref.rst:147
-#: ../../renesas-ra/quickref.rst:155
+#: ../../renesas-ra/quickref.rst:149 ../../renesas-ra/quickref.rst:165
+#: ../../renesas-ra/quickref.rst:173
 msgid "UART0(REPL)"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:131 ../../renesas-ra/quickref.rst:139
+#: ../../renesas-ra/quickref.rst:149 ../../renesas-ra/quickref.rst:157
 msgid "UART1"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:131 ../../renesas-ra/quickref.rst:147
+#: ../../renesas-ra/quickref.rst:149 ../../renesas-ra/quickref.rst:165
 msgid "UART2"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:141
-#: ../../renesas-ra/quickref.rst:149 ../../renesas-ra/quickref.rst:157
-#: ../../renesas-ra/quickref.rst:165
+#: ../../renesas-ra/quickref.rst:151 ../../renesas-ra/quickref.rst:159
+#: ../../renesas-ra/quickref.rst:167 ../../renesas-ra/quickref.rst:175
+#: ../../renesas-ra/quickref.rst:183
 msgid "tx"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:149
-#: ../../renesas-ra/quickref.rst:157 ../../renesas-ra/quickref.rst:165
+#: ../../renesas-ra/quickref.rst:151 ../../renesas-ra/quickref.rst:167
+#: ../../renesas-ra/quickref.rst:175 ../../renesas-ra/quickref.rst:183
 #: ../../renesas-ra/tutorial/intro.rst:52
 #: ../../renesas-ra/tutorial/intro.rst:54
 #: ../../renesas-ra/tutorial/intro.rst:55
 msgid "P411"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:157
-#: ../../renesas-ra/quickref.rst:165 ../../renesas-ra/quickref.rst:332
+#: ../../renesas-ra/quickref.rst:151 ../../renesas-ra/quickref.rst:175
+#: ../../renesas-ra/quickref.rst:183 ../../renesas-ra/quickref.rst:350
 #: ../../renesas-ra/tutorial/intro.rst:56
 msgid "P401"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:133 ../../renesas-ra/quickref.rst:149
+#: ../../renesas-ra/quickref.rst:151 ../../renesas-ra/quickref.rst:167
 msgid "P302"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:142
-#: ../../renesas-ra/quickref.rst:150 ../../renesas-ra/quickref.rst:158
-#: ../../renesas-ra/quickref.rst:166
+#: ../../renesas-ra/quickref.rst:152 ../../renesas-ra/quickref.rst:160
+#: ../../renesas-ra/quickref.rst:168 ../../renesas-ra/quickref.rst:176
+#: ../../renesas-ra/quickref.rst:184
 msgid "rx"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:150
-#: ../../renesas-ra/quickref.rst:158 ../../renesas-ra/quickref.rst:166
+#: ../../renesas-ra/quickref.rst:152 ../../renesas-ra/quickref.rst:168
+#: ../../renesas-ra/quickref.rst:176 ../../renesas-ra/quickref.rst:184
 #: ../../renesas-ra/tutorial/intro.rst:52
 #: ../../renesas-ra/tutorial/intro.rst:54
 #: ../../renesas-ra/tutorial/intro.rst:55
 msgid "P410"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:158
-#: ../../renesas-ra/quickref.rst:166 ../../renesas-ra/tutorial/intro.rst:56
+#: ../../renesas-ra/quickref.rst:152 ../../renesas-ra/quickref.rst:176
+#: ../../renesas-ra/quickref.rst:184 ../../renesas-ra/tutorial/intro.rst:56
 msgid "P402"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:134 ../../renesas-ra/quickref.rst:150
+#: ../../renesas-ra/quickref.rst:152 ../../renesas-ra/quickref.rst:168
 msgid "P301"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:139
+#: ../../renesas-ra/quickref.rst:157
 msgid "UART4(REPL)"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:139 ../../renesas-ra/quickref.rst:155
+#: ../../renesas-ra/quickref.rst:157 ../../renesas-ra/quickref.rst:173
 msgid "UART9"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:141
+#: ../../renesas-ra/quickref.rst:159
 msgid "P213"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:141 ../../renesas-ra/quickref.rst:324
+#: ../../renesas-ra/quickref.rst:159 ../../renesas-ra/quickref.rst:342
 msgid "P204"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:141
+#: ../../renesas-ra/quickref.rst:159
 msgid "P109"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:142
+#: ../../renesas-ra/quickref.rst:160
 msgid "P212"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:142 ../../renesas-ra/quickref.rst:249
-#: ../../renesas-ra/quickref.rst:346 ../../renesas-ra/tutorial/intro.rst:53
+#: ../../renesas-ra/quickref.rst:160 ../../renesas-ra/quickref.rst:267
+#: ../../renesas-ra/quickref.rst:364 ../../renesas-ra/tutorial/intro.rst:53
 msgid "P206"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:142
+#: ../../renesas-ra/quickref.rst:160
 msgid "P110"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:147
+#: ../../renesas-ra/quickref.rst:165
 msgid "UART8"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:149
+#: ../../renesas-ra/quickref.rst:167
 msgid "P105"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:150
+#: ../../renesas-ra/quickref.rst:168
 msgid "P104"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:155
+#: ../../renesas-ra/quickref.rst:173
 msgid "UART7"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:157
+#: ../../renesas-ra/quickref.rst:175
 msgid "P602"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:158
+#: ../../renesas-ra/quickref.rst:176
 msgid "P601"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:163
+#: ../../renesas-ra/quickref.rst:181
 msgid "UART0"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:163
+#: ../../renesas-ra/quickref.rst:181
 msgid "UART1(REPL)"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:172
+#: ../../renesas-ra/quickref.rst:190
 msgid ""
 "UART.init(baudrate)   # now only 115200 is confirmed\n"
 "UART.init(cts, rts)   # Pins are fixed.\n"
@@ -551,15 +592,15 @@ msgid ""
 "UART.irq(wake=machine.IDLE)"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:184
+#: ../../renesas-ra/quickref.rst:202
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../renesas-ra/quickref.rst:186
+#: ../../renesas-ra/quickref.rst:204
 msgid "See :ref:`machine.RTC <machine.RTC>` ::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../renesas-ra/quickref.rst:188
+#: ../../renesas-ra/quickref.rst:206
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -577,7 +618,7 @@ msgstr ""
 "                                             # 日時 2017/8/23 1:12:48\n"
 "rtc.datetime() # 日時を取得"
 
-#: ../../renesas-ra/quickref.rst:197
+#: ../../renesas-ra/quickref.rst:215
 msgid ""
 "RTC.init(datetime)\n"
 "RTC.now()\n"
@@ -588,15 +629,15 @@ msgid ""
 "RTC.irq()"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:206
+#: ../../renesas-ra/quickref.rst:224
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../renesas-ra/quickref.rst:208
+#: ../../renesas-ra/quickref.rst:226
 msgid "See :ref:`machine.ADC <machine.ADC>` ::"
 msgstr ":ref:`machine.ADC <machine.ADC>` を参照::"
 
-#: ../../renesas-ra/quickref.rst:210
+#: ../../renesas-ra/quickref.rst:228
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -608,7 +649,7 @@ msgstr ""
 "adc = ADC('P000')    # ADC ピンの ADC オブジェクトを作成\n"
 "adc.read_u16()       # 生のアナログ値を 0-65535 の範囲で読込み"
 
-#: ../../renesas-ra/quickref.rst:215
+#: ../../renesas-ra/quickref.rst:223
 msgid ""
 "Pin id is available corresponding to the RA MCU's pin name which are "
 "'P000' as AN000 (analog channel 000). The RA MCU has many analog "
@@ -621,7 +662,7 @@ msgstr ""
 "しかし、ピン機能はボードによって固定されていたり、利用できない場合があります。"
 "ピンのマッピングについては、MCUおよびボードのマニュアルを確認してください。"
 
-#: ../../renesas-ra/quickref.rst:219
+#: ../../renesas-ra/quickref.rst:237
 msgid ""
 "ADC.init()\n"
 "ADC(sample_ns)\n"
@@ -630,11 +671,11 @@ msgid ""
 "ADC.block()"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:226
+#: ../../renesas-ra/quickref.rst:244
 msgid "SPI bus"
 msgstr "SPI バス"
 
-#: ../../renesas-ra/quickref.rst:228
+#: ../../renesas-ra/quickref.rst:246
 msgid ""
 "The RA MCU has some hardware SPIs (Serial Peripheral Interface). SPI id "
 "is available corresponding to the RA MCU's SPI number which are SPI(0) as"
@@ -645,11 +686,11 @@ msgstr ""
 "SPI id は RA MCU の SPI 番号に対応しており、SPI(0) をSPI0、SPI(1) を SPI1 "
 "として利用できます。追加パラメータがない場合は machine.SoftSPI() が呼び出されます。"
 
-#: ../../renesas-ra/quickref.rst:231
+#: ../../renesas-ra/quickref.rst:249
 msgid "See :ref:`machine.SPI <machine.SPI>`. ::"
 msgstr ":ref:`machine.SPI <machine.SPI>` を参照::"
 
-#: ../../renesas-ra/quickref.rst:233
+#: ../../renesas-ra/quickref.rst:251
 msgid ""
 "from machine import SPI, Pin\n"
 "\n"
@@ -660,84 +701,84 @@ msgid ""
 "cs(1)"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:241
+#: ../../renesas-ra/quickref.rst:259
 msgid "Available SPIs and pins on the board are fixed and follows."
 msgstr "利用可能な SPI とピンは固定されていて、次のとおりです。"
 
-#: ../../renesas-ra/quickref.rst:244 ../../renesas-ra/quickref.rst:254
-#: ../../renesas-ra/quickref.rst:264 ../../renesas-ra/quickref.rst:274
-#: ../../renesas-ra/quickref.rst:284
+#: ../../renesas-ra/quickref.rst:262 ../../renesas-ra/quickref.rst:272
+#: ../../renesas-ra/quickref.rst:282 ../../renesas-ra/quickref.rst:292
+#: ../../renesas-ra/quickref.rst:302
 msgid "SPI0"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:246 ../../renesas-ra/quickref.rst:256
-#: ../../renesas-ra/quickref.rst:266 ../../renesas-ra/quickref.rst:276
-#: ../../renesas-ra/quickref.rst:286
+#: ../../renesas-ra/quickref.rst:264 ../../renesas-ra/quickref.rst:274
+#: ../../renesas-ra/quickref.rst:284 ../../renesas-ra/quickref.rst:294
+#: ../../renesas-ra/quickref.rst:304
 msgid "sck"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:246 ../../renesas-ra/quickref.rst:256
-#: ../../renesas-ra/quickref.rst:266 ../../renesas-ra/quickref.rst:276
-#: ../../renesas-ra/quickref.rst:286
+#: ../../renesas-ra/quickref.rst:264 ../../renesas-ra/quickref.rst:274
+#: ../../renesas-ra/quickref.rst:284 ../../renesas-ra/quickref.rst:294
+#: ../../renesas-ra/quickref.rst:304
 msgid "P102"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:247 ../../renesas-ra/quickref.rst:257
-#: ../../renesas-ra/quickref.rst:267 ../../renesas-ra/quickref.rst:277
-#: ../../renesas-ra/quickref.rst:287
+#: ../../renesas-ra/quickref.rst:265 ../../renesas-ra/quickref.rst:275
+#: ../../renesas-ra/quickref.rst:285 ../../renesas-ra/quickref.rst:295
+#: ../../renesas-ra/quickref.rst:305
 msgid "mosi"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:247 ../../renesas-ra/quickref.rst:257
-#: ../../renesas-ra/quickref.rst:267 ../../renesas-ra/quickref.rst:277
-#: ../../renesas-ra/quickref.rst:287
+#: ../../renesas-ra/quickref.rst:265 ../../renesas-ra/quickref.rst:275
+#: ../../renesas-ra/quickref.rst:285 ../../renesas-ra/quickref.rst:295
+#: ../../renesas-ra/quickref.rst:305
 msgid "P101"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:248 ../../renesas-ra/quickref.rst:258
-#: ../../renesas-ra/quickref.rst:268 ../../renesas-ra/quickref.rst:278
-#: ../../renesas-ra/quickref.rst:288
+#: ../../renesas-ra/quickref.rst:266 ../../renesas-ra/quickref.rst:276
+#: ../../renesas-ra/quickref.rst:286 ../../renesas-ra/quickref.rst:296
+#: ../../renesas-ra/quickref.rst:306
 msgid "miso"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:248 ../../renesas-ra/quickref.rst:258
-#: ../../renesas-ra/quickref.rst:268 ../../renesas-ra/quickref.rst:278
-#: ../../renesas-ra/quickref.rst:288
+#: ../../renesas-ra/quickref.rst:266 ../../renesas-ra/quickref.rst:276
+#: ../../renesas-ra/quickref.rst:286 ../../renesas-ra/quickref.rst:296
+#: ../../renesas-ra/quickref.rst:306
 msgid "P100"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:249 ../../renesas-ra/quickref.rst:259
-#: ../../renesas-ra/quickref.rst:269 ../../renesas-ra/quickref.rst:279
-#: ../../renesas-ra/quickref.rst:289
+#: ../../renesas-ra/quickref.rst:267 ../../renesas-ra/quickref.rst:277
+#: ../../renesas-ra/quickref.rst:287 ../../renesas-ra/quickref.rst:297
+#: ../../renesas-ra/quickref.rst:307
 msgid "cs"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:259 ../../renesas-ra/quickref.rst:269
-#: ../../renesas-ra/quickref.rst:279 ../../renesas-ra/quickref.rst:289
+#: ../../renesas-ra/quickref.rst:277 ../../renesas-ra/quickref.rst:287
+#: ../../renesas-ra/quickref.rst:297 ../../renesas-ra/quickref.rst:307
 msgid "P103"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:274
+#: ../../renesas-ra/quickref.rst:292
 msgid "SPI1"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:276
+#: ../../renesas-ra/quickref.rst:294
 msgid "P702"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:277
+#: ../../renesas-ra/quickref.rst:295
 msgid "P701"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:278
+#: ../../renesas-ra/quickref.rst:296
 msgid "P700"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:279
+#: ../../renesas-ra/quickref.rst:297
 msgid "P703"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:294
+#: ../../renesas-ra/quickref.rst:312
 msgid ""
 "SPI.init(firstbit)    # now fixed with SPI.LSB\n"
 "SPI.init(baudrate)    # now confirmed only 500000"
@@ -745,11 +786,11 @@ msgstr ""
 "SPI.init(firstbit)    # 現状は SPI.LSB で固定\n"
 "SPI.init(baudrate)    # 現状は 500000 のみ確認"
 
-#: ../../renesas-ra/quickref.rst:298
+#: ../../renesas-ra/quickref.rst:316
 msgid "I2C bus"
 msgstr "I2C バス"
 
-#: ../../renesas-ra/quickref.rst:300
+#: ../../renesas-ra/quickref.rst:318
 msgid ""
 "The RA MCU has some hardware IIC (Inter-Integrated Circuit Bus). I2C id "
 "is available corresponding to the RA MCU's I2C number which are I2C(0) as"
@@ -760,11 +801,11 @@ msgstr ""
 "I2C id は RA MCU の I2C 番号に対応しており、I2C(0) を IIC0、I2C(1) を IIC1 "
 "として使えます。追加パラメータがない場合は、machine.SoftI2C() が呼び出されます。"
 
-#: ../../renesas-ra/quickref.rst:303
+#: ../../renesas-ra/quickref.rst:321
 msgid "See :ref:`machine.I2C <machine.I2C>` ::"
 msgstr ":ref:`machine.I2C <machine.I2C>` を参照::"
 
-#: ../../renesas-ra/quickref.rst:305
+#: ../../renesas-ra/quickref.rst:323
 msgid ""
 "from machine import I2C\n"
 "\n"
@@ -781,59 +822,59 @@ msgstr ""
 "i2c.scan()         # スレーブアドレスのリストを返す\n"
 "i2c.readfrom_mem(0x50, 0x10, 2, addrsize=16)  # スレーブ 0x50、スレーブメモリ 0x10 から 2 バイト読込み"
 
-#: ../../renesas-ra/quickref.rst:312
+#: ../../renesas-ra/quickref.rst:330
 msgid "Available I2Cs and pins on the board are fixed and follows."
 msgstr "利用可能な I2C とピンは固定されていて、次のとおりです。"
 
-#: ../../renesas-ra/quickref.rst:317 ../../renesas-ra/quickref.rst:324
-#: ../../renesas-ra/quickref.rst:331 ../../renesas-ra/quickref.rst:338
-#: ../../renesas-ra/quickref.rst:345
+#: ../../renesas-ra/quickref.rst:335 ../../renesas-ra/quickref.rst:342
+#: ../../renesas-ra/quickref.rst:349 ../../renesas-ra/quickref.rst:356
+#: ../../renesas-ra/quickref.rst:363
 msgid "scl"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:317 ../../renesas-ra/quickref.rst:318
+#: ../../renesas-ra/quickref.rst:335 ../../renesas-ra/quickref.rst:336
 msgid "not supported"
 msgstr "未サポート"
 
-#: ../../renesas-ra/quickref.rst:318 ../../renesas-ra/quickref.rst:325
-#: ../../renesas-ra/quickref.rst:332 ../../renesas-ra/quickref.rst:339
-#: ../../renesas-ra/quickref.rst:346
+#: ../../renesas-ra/quickref.rst:336 ../../renesas-ra/quickref.rst:343
+#: ../../renesas-ra/quickref.rst:350 ../../renesas-ra/quickref.rst:357
+#: ../../renesas-ra/quickref.rst:364
 msgid "sda"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:322 ../../renesas-ra/quickref.rst:329
+#: ../../renesas-ra/quickref.rst:340 ../../renesas-ra/quickref.rst:347
 msgid "I2C0"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:325
+#: ../../renesas-ra/quickref.rst:343
 msgid "P407"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:331
+#: ../../renesas-ra/quickref.rst:349
 msgid "P400"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:336
+#: ../../renesas-ra/quickref.rst:354
 msgid "I2C2"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:338
+#: ../../renesas-ra/quickref.rst:356
 msgid "P512"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:339
+#: ../../renesas-ra/quickref.rst:357
 msgid "P511"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:343
+#: ../../renesas-ra/quickref.rst:361
 msgid "I2C1"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:345 ../../renesas-ra/tutorial/intro.rst:53
+#: ../../renesas-ra/quickref.rst:363 ../../renesas-ra/tutorial/intro.rst:53
 msgid "P205"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:351
+#: ../../renesas-ra/quickref.rst:369
 msgid ""
 "I2C.init(freq)    # now confirmed only 400000\n"
 "I2C.deinit()\n"
@@ -845,27 +886,27 @@ msgstr ""
 "I2C.start()\n"
 "I2C.stop()"
 
-#: ../../renesas-ra/quickref.rst:357
+#: ../../renesas-ra/quickref.rst:375
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../renesas-ra/quickref.rst:359
+#: ../../renesas-ra/quickref.rst:377
 msgid "PWM is not supported."
 msgstr "PWM は未サポートです。"
 
-#: ../../renesas-ra/quickref.rst:362
+#: ../../renesas-ra/quickref.rst:380
 msgid "WDT (Watchdog timer)"
 msgstr "WDT (ウォッチドッグタイマー)"
 
-#: ../../renesas-ra/quickref.rst:364
+#: ../../renesas-ra/quickref.rst:382
 msgid "WDT is not supported."
 msgstr "WDT は未サポートです。"
 
-#: ../../renesas-ra/quickref.rst:367
+#: ../../renesas-ra/quickref.rst:385
 msgid "SDCard"
 msgstr "SD カード"
 
-#: ../../renesas-ra/quickref.rst:369
+#: ../../renesas-ra/quickref.rst:387
 msgid ""
 "The frozen sdcard driver (drivers/sdcard/sdcard.py) is available by "
 "connecting microSD card device to hardware SPI0 pins.::"
@@ -873,7 +914,7 @@ msgstr ""
 "microSD カードデバイスをハードウェア SPI0 ピンに接続することで、"
 "凍結した sdcard ドライバ(drivers/sdcard/sdcard.py)が利用できます。"
 
-#: ../../renesas-ra/quickref.rst:371
+#: ../../renesas-ra/quickref.rst:389
 msgid ""
 "from machine import Pin, SPI\n"
 "import os, sdcard\n"
@@ -887,15 +928,15 @@ msgid ""
 "os.umount('/sd')"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:383
+#: ../../renesas-ra/quickref.rst:401
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../renesas-ra/quickref.rst:385
+#: ../../renesas-ra/quickref.rst:403
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../renesas-ra/quickref.rst:387
+#: ../../renesas-ra/quickref.rst:405
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -919,11 +960,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../renesas-ra/quickref.rst:398
+#: ../../renesas-ra/quickref.rst:416
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
 
-#: ../../renesas-ra/quickref.rst:400
+#: ../../renesas-ra/quickref.rst:418
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -934,7 +975,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../renesas-ra/quickref.rst:408
+#: ../../renesas-ra/quickref.rst:426
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -944,11 +985,11 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../renesas-ra/quickref.rst:413
+#: ../../renesas-ra/quickref.rst:431
 msgid "NeoPixel and APA106 driver"
 msgstr "NeoPixel/APA106 ドライバー"
 
-#: ../../renesas-ra/quickref.rst:415
+#: ../../renesas-ra/quickref.rst:433
 msgid "NeoPixel is not supported currently."
 msgstr "NeoPixel は現在のところ未サポートです。"
 
