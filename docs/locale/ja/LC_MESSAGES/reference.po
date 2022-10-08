@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.19.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-21 11:29+0900\n"
-"PO-Revision-Date: 2022-09-11 11:59+0900\n"
+"POT-Creation-Date: 2022-10-08 21:05+0900\n"
+"PO-Revision-Date: 2022-10-08 22:48+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3219,12 +3219,12 @@ msgstr "クロスコンパイラ"
 msgid ""
 "Also known as ``mpy-cross``. This tool runs on your PC and converts a "
 ":term:`.py file` containing MicroPython code into a :term:`.mpy file` "
-"containing MicroPython bytecode. This means it loads faster (the board "
-"doesn't have to compile the code), and uses less space on flash (the "
-"bytecode is more space efficient)."
+"containing MicroPython :term:`bytecode`. This means it loads faster (the "
+"board doesn't have to compile the code), and uses less space on flash "
+"(the bytecode is more space efficient)."
 msgstr ""
 "``mpy-cross`` としても知られています。このツールは PC 上で動作し、MicroPython "
-"コードで書いた :term:`.py ファイル` を MicroPython バイトコードを含んだ "
+"コードで書いた :term:`.py ファイル` を MicroPython :term:`バイトコード` を含んだ "
 ":term:`.mpy ファイル` ファイルに変換します。 これにより、ロードが高速になり"
 "（ボードがコードをコンパイルする必要がない）、フラッシュ上のスペースが少なくなります"
 "（バイトコードはスペース効率が高い）。"
@@ -3410,13 +3410,13 @@ msgstr ""
 
 #: ../../../reference/glossary.rst:129
 msgid ""
-"Unlike the :term:`CPython` stdlib, micropython-lib modules are "
-"intended to be installed individually - either using manual copying or "
-"using :term:`upip`."
+"Unlike the :term:`CPython` stdlib, micropython-lib modules are intended "
+"to be installed individually - either using manual copying or using "
+":term:`mip`."
 msgstr ""
 ":term:`CPython` の stdlib とは異なり、micropython-lib モジュールは、"
 "個別にインストールしなければなりません。この手段としては手動コピーするか、 "
-":term:`upip` を使います。"
+":term:`mip` を使います。"
 
 #: ../../../reference/glossary.rst:133
 msgid "MicroPython port"
@@ -3465,42 +3465,68 @@ msgstr ""
 "依存しない機能の迅速な開発とテストに非常に役立ちます。 ":term:`CPython` の "
 "``python`` 実行ファイルと同様の方法で機能することもできます。"
 
-#: ../../../reference/glossary.rst:154
+#: ../../reference/glossary.rst:153
+msgid "mip"
+msgstr ""
+
+#: ../../reference/glossary.rst:155
+msgid ""
+"A package installer for MicroPython (mip - \"mip installs packages\"). It"
+" installs MicroPython packages either from :term:`micropython-lib`, "
+"GitHub, or arbitrary URLs.  mip can be used on-device on network-capable "
+"boards, and internally by tools such as :term:`mpremote`."
+msgstr ""
+"MicroPython のパッケージインストーラです(mip - \"mip installs packages\")。"
+"mip は MicroPython のパッケージを :term:`micropython-lib`、GitHub、または"
+"任意の URL からインストールします。"
+"mip はネットワーク対応ボードであればデバイス上で使えますし、 :term:`mpremote` "
+"などのツール内で使うこともできます。"
+
+#: ../../reference/glossary.rst:160 ../../reference/mpremote.rst:18
+msgid "mpremote"
+msgstr ""
+
+#: ../../reference/glossary.rst:162
+msgid "A tool for interacting with a MicroPython device. See :ref:`mpremote`."
+msgstr ""
+"MicroPython デバイスと対話するためのツールです。 :ref:`mpremote` を参照してください。"
+
+#: ../../../reference/glossary.rst:163
 msgid ".mpy file"
 msgstr ".mpy ファイル"
 
-#: ../../../reference/glossary.rst:155
+#: ../../../reference/glossary.rst:165
 msgid ""
-"The output of the :term:`cross-compiler`. A compiled form of a "
-":term:`.py file` that contains MicroPython bytecode instead of Python "
+"The output of the :term:`cross-compiler`. A compiled form of a :term:`.py"
+" file` that contains MicroPython :term:`bytecode` instead of Python "
 "source code."
 msgstr ""
 ":term:`クロスコンパイラ` の出力。 :term:`.py ファイル` からコンパイル"
-"したものであり、Python ソースコードの代わりに MicroPython バイトコードを"
+"したものであり、Python ソースコードの代わりに MicroPython :term:`バイトコード` を"
 "含みます。"
 
-#: ../../../reference/glossary.rst:159
+#: ../../../reference/glossary.rst:168
 msgid "native"
 msgstr "ネイティブ"
 
-#: ../../../reference/glossary.rst:160
+#: ../../../reference/glossary.rst:170
 msgid ""
 "Usually refers to \"native code\", i.e. machine code for the target "
 "microcontroller (such as ARM Thumb, Xtensa, x86/x64). The ``@native`` "
 "decorator can be applied to a MicroPython function to generate native "
-"code instead of bytecode for that function, which will likely be "
+"code instead of :term:`bytecode` for that function, which will likely be "
 "faster but use more RAM."
 msgstr ""
 "通常、「ネイティブコード」、つまりターゲットマイクロコントローラーのマシンコード"
 "（ARM Thumb, Xtensa, x86/x64 など）を指します。 ``@native`` デコレータを"
-"MacroPython 関数に適用すると、バイトコードを生成する代わりにネイティブコードを"
+"MacroPython 関数に適用すると、 :term:`バイトコード` を生成する代わりにネイティブコードを"
 "生成するようになり、おそらく高速にはなりますが、RAM をより多く使ってしまいます。"
 
-#: ../../../reference/glossary.rst:166
+#: ../../../reference/glossary.rst:175
 msgid "port"
 msgstr "ポート"
 
-#: ../../../reference/glossary.rst:167
+#: ../../../reference/glossary.rst:177
 msgid ""
 "Usually short for :term:`MicroPython port`, but could also refer to "
 ":term:`GPIO port`."
@@ -3508,21 +3534,21 @@ msgstr ""
 "通常は :term:`MicroPython ポート` の略ですが、 :term:`GPIO ポート` "
 "を指していることもあります。"
 
-#: ../../../reference/glossary.rst:166
+#: ../../../reference/glossary.rst:179
 msgid ".py file"
 msgstr ".py ファイル"
 
-#: ../../../reference/glossary.rst:167
+#: ../../../reference/glossary.rst:181
 msgid ""
 "A file containing Python source code."
 msgstr ""
 "Python ソースコードが書き込まれたファイル。"
 
-#: ../../../reference/glossary.rst:173
+#: ../../../reference/glossary.rst:182
 msgid "REPL"
 msgstr ""
 
-#: ../../../reference/glossary.rst:174
+#: ../../../reference/glossary.rst:184
 msgid ""
 "An acronym for \"Read, Eval, Print, Loop\". This is the interactive "
 "Python prompt, useful for debugging or testing short snippets of code. "
@@ -3534,11 +3560,11 @@ msgstr ""
 "テストをするのに便利です。ほとんどの MicroPython ボードでは、UART を介して "
 "REPL を利用できます。これは通常、ホストPCでUSB経由でアクセスできます。"
 
-#: ../../../reference/glossary.rst:179
+#: ../../../reference/glossary.rst:188
 msgid "stream"
 msgstr "ストリーム"
 
-#: ../../../reference/glossary.rst:180
+#: ../../../reference/glossary.rst:190
 msgid ""
 "Also known as a \"file-like object\". A Python object which provides "
 "sequential read-write access to the underlying data. A stream object "
@@ -3557,11 +3583,11 @@ msgstr ""
 "しているので、異なるコンテキスト間でも一貫かつ交換可能に使えます。"
 "MicroPython のストリームの詳細については、 `io` モジュールを参照してください。"
 
-#: ../../../reference/glossary.rst:189
+#: ../../../reference/glossary.rst:198
 msgid "UART"
 msgstr ""
 
-#: ../../../reference/glossary.rst:190
+#: ../../../reference/glossary.rst:200
 msgid ""
 "Acronym for \"Universal Asynchronous Receiver/Transmitter\". This is a "
 "peripheral that sends data over a pair of pins (TX & RX). Many boards "
@@ -3573,23 +3599,19 @@ msgstr ""
 "多くのボードには、少なくとも１つの UART をホストPCの USB 経由の"
 "シリアルポートとして使えるようになっています。"
 
-#: ../../../reference/glossary.rst:195
+#: ../../../reference/glossary.rst:204
 msgid "upip"
 msgstr ""
 
-#: ../../../reference/glossary.rst:196
+#: ../../../reference/glossary.rst:206
 msgid ""
-"(Literally, \"micro pip\"). A package manager for MicroPython, inspired "
-"by :term:`CPython`'s pip, but much smaller and with reduced "
-"functionality. "
-"upip runs both on the :term:`Unix port <MicroPython Unix port>` and on "
-":term:`baremetal` ports which offer filesystem and networking support."
+"A now-obsolete package manager for MicroPython, inspired by "
+":term:`CPython`'s pip, but much smaller and with reduced functionality. "
+"See its replacement, :term:`mip`."
 msgstr ""
-"(言い換えれば「マイクロ pip」)。MicroPython のパッケージマネージャーは "
-":term:`CPython` の pip に影響されていますが、はるかに小さく、限定された"
-"機能になっています。upip は :term:`Unix ポート <MicroPython Unix port>` "
-"と、ファイルシステムとネットワークをサポートした :term:`ベアメタル` ポート"
-"の両方で動作します。"
+"MicroPython 用の使われなくなったパッケージマネージャで、 :term:`CPython` の pip に"
+"影響されていますが、はるかに小さく、機能も限定されています。"
+"このツールの代わりとなる :term:`mip` を参照してください。"
 
 #: ../../../reference/index.rst:2
 msgid "MicroPython language and implementation"
@@ -4577,81 +4599,307 @@ msgid ""
 msgstr ""
 "これはタイマーが明示的に無効にされるか、ボードが ``ctrl D`` でリセットされるまで続きます。"
 
-#: ../../reference/manifest.rst:2
+#: ../../reference/manifest.rst:4
 msgid "MicroPython manifest files"
 msgstr ""
 
-#: ../../reference/manifest.rst:4
-msgid ""
-"When building firmware for a device the following components are included"
-" in the compilation process:"
-msgstr ""
-
 #: ../../reference/manifest.rst:7
-msgid "the core MicroPython virtual machine and runtime"
+msgid "Summary"
 msgstr ""
 
-#: ../../reference/manifest.rst:8
+#: ../../reference/manifest.rst:9
 msgid ""
-"port-specific system code and drivers to interface with the "
-"microcontroller/device that the firmware is targeting"
-msgstr ""
-
-#: ../../reference/manifest.rst:10
-msgid "standard built-in modules, like ``sys``"
-msgstr ""
-
-#: ../../reference/manifest.rst:11
-msgid "extended built-in modules, like ``json`` and ``machine``"
+"MicroPython has a feature that allows Python code to be \"frozen\" into "
+"the firmware, as an alternative to loading code from the filesystem."
 msgstr ""
 
 #: ../../reference/manifest.rst:12
-msgid "extra modules written in C/C++"
+msgid "This has the following benefits:"
 msgstr ""
 
-#: ../../reference/manifest.rst:13
-msgid "extra modules written in Python"
-msgstr ""
-
-#: ../../reference/manifest.rst:15
+#: ../../reference/manifest.rst:14
 msgid ""
-"All the modules included in the firmware are available via ``import`` "
-"from Python code.  The extra modules written in Python that are included "
-"in a build (the last point above) are called *frozen modules*, and are "
-"specified by a ``manifest.py`` file.  Changing this manifest requires "
-"rebuilding the firmware."
+"the code is pre-compiled to bytecode, avoiding the need for the Python "
+"source to be compiled at load-time."
+msgstr ""
+
+#: ../../reference/manifest.rst:16
+msgid ""
+"the bytecode can be executed directly from ROM (i.e. flash memory) rather"
+" than being copied into RAM. Similarly any constant objects (strings, "
+"tuples, etc) are loaded from ROM also. This can lead to significantly "
+"more memory being available for your application."
 msgstr ""
 
 #: ../../reference/manifest.rst:20
 msgid ""
-"It's also possible to add additional modules to the filesystem of the "
-"device once it is up and running.  Adding and removing modules to/from "
-"the filesystem does not require rebuilding the firmware so is a simpler "
-"process than rebuilding firmware.  The benefit of using a manifest is "
-"that frozen modules are more efficient: they are faster to import and "
-"take up less RAM once imported."
+"on devices that do not have a filesystem, this is the only way to load "
+"Python code."
 msgstr ""
 
-#: ../../reference/manifest.rst:26
+#: ../../reference/manifest.rst:23
 msgid ""
-"MicroPython manifest files are Python files and can contain arbitrary "
-"Python code.  There are also a set of commands (predefined functions) "
-"which are used to specify the Python source files to include.  These "
-"commands are described below."
+"During development, freezing is generally not recommended as it will "
+"significantly slow down your development cycle, as each update will "
+"require re-flashing the entire firmware. However, it can still be useful "
+"to selectively freeze some rarely-changing dependencies (such as third-"
+"party libraries)."
 msgstr ""
 
-#: ../../reference/manifest.rst:32
-msgid "Freezing source code"
+#: ../../reference/manifest.rst:29
+msgid ""
+"The way to list the Python files to be be frozen into the firmware is via"
+" a \"manifest\", which is a Python file that will be interpreted by the "
+"build process. Typically you would write a manifest file as part of a "
+"board definition, but you can also write a stand-alone manifest file and "
+"use it with an existing board definition."
 msgstr ""
 
-#: ../../reference/manifest.rst:36
+#: ../../reference/manifest.rst:35
+msgid ""
+"Manifest files can define dependencies on libraries from :term"
+":`micropython-lib` as well as Python files on the filesystem, and also on"
+" other manifest files."
+msgstr ""
+
+#: ../../reference/manifest.rst:39
+msgid "Writing manifest files"
+msgstr ""
+
+#: ../../reference/manifest.rst:41
+msgid ""
+"A manifest file is a Python file containing a series of function calls. "
+"See the available functions defined below."
+msgstr ""
+
+#: ../../reference/manifest.rst:44
+msgid ""
+"Any paths used in manifest files can include the following variables. "
+"These all resolve to absolute paths."
+msgstr ""
+
+#: ../../reference/manifest.rst:47
+msgid "``$(MPY_DIR)`` -- path to the micropython repo."
+msgstr ""
+
+#: ../../reference/manifest.rst:48
+msgid ""
+"``$(MPY_LIB_DIR)`` -- path to the micropython-lib submodule. Prefer to "
+"use ``require()``."
+msgstr ""
+
+#: ../../reference/manifest.rst:50
+msgid "``$(PORT_DIR)`` -- path to the current port (e.g. ``ports/stm32``)"
+msgstr ""
+
+#: ../../reference/manifest.rst:51
+msgid ""
+"``$(BOARD_DIR)`` -- path to the current board (e.g. "
+"``ports/stm32/boards/PYBV11``)"
+msgstr ""
+
+#: ../../reference/manifest.rst:54
+msgid ""
+"Custom manifest files should not live in the main MicroPython repository."
+" You should keep them in version control with the rest of your project."
+msgstr ""
+
+#: ../../reference/manifest.rst:57
+msgid ""
+"Typically a manifest used for compiling firmware will need to include the"
+" port manifest, which might include frozen modules that are required for "
+"the board to function. If you just want to add additional modules to an "
+"existing board, then include the board manifest (which will in turn "
+"include the port manifest)."
+msgstr ""
+
+#: ../../reference/manifest.rst:63
+msgid "Building with a custom manifest"
+msgstr ""
+
+#: ../../reference/manifest.rst:65
+msgid "Your manifest can be specified on the ``make`` command line with:"
+msgstr ""
+
+#: ../../reference/manifest.rst:67
+msgid "$ make BOARD=MYBOARD FROZEN_MANIFEST=/path/to/my/project/manifest.py"
+msgstr ""
+
+#: ../../reference/manifest.rst:71
+msgid ""
+"This applies to all ports, including CMake-based ones (e.g. esp32, rp2), "
+"as the Makefile wrapper that will pass this into the CMake build."
+msgstr ""
+
+#: ../../reference/manifest.rst:75
+msgid "Adding a manifest to a board definition"
+msgstr ""
+
+#: ../../reference/manifest.rst:77
+msgid ""
+"If you have a custom board definition, you can make it include your "
+"custom manifest automatically. On make-based ports (most ports), in your "
+"``mpconfigboard.mk`` set the ``FROZEN_MANIFEST`` variable."
+msgstr ""
+
+#: ../../reference/manifest.rst:81
+msgid "FROZEN_MANIFEST ?= $(BOARD_DIR)/manifest.py"
+msgstr ""
+
+#: ../../reference/manifest.rst:85
+msgid ""
+"On CMake-based ports (e.g. esp32, rp2), instead use "
+"``mpconfigboard.cmake``"
+msgstr ""
+
+#: ../../reference/manifest.rst:87
+msgid "set(MICROPY_FROZEN_MANIFEST ${MICROPY_BOARD_DIR}/manifest.py)"
+msgstr ""
+
+#: ../../reference/manifest.rst:92
+msgid "High-level functions"
+msgstr ""
+
+#: ../../reference/manifest.rst:94
+msgid ""
+"Note: The ``opt`` keyword argument can be set on the various functions, "
+"this controls the optimisation level used by the cross-compiler. See "
+":func:`micropython.opt_level`."
+msgstr ""
+
+#: ../../reference/manifest.rst:100
+msgid ""
+"This is equivalent to copying the \"package_path\" directory to the "
+"device (except as frozen code)."
+msgstr ""
+
+#: ../../reference/manifest.rst:103
+msgid ""
+"In the simplest case, to freeze a package \"foo\" in the current "
+"directory:"
+msgstr ""
+
+#: ../../reference/manifest.rst:105
+msgid "package(\"foo\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:109
+msgid ""
+"will recursively include all .py files in foo, and will be frozen as "
+"``foo/**/*.py``."
+msgstr ""
+
+#: ../../reference/manifest.rst:112
+msgid ""
+"If the package isn't in the same directory as the manifest file, use "
+"``base_path``:"
+msgstr ""
+
+#: ../../reference/manifest.rst:114
+msgid "package(\"foo\", base_path=\"path/to/libraries\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:118 ../../reference/manifest.rst:139
+msgid "You can use the variables above, such as ``$(PORT_DIR)`` in ``base_path``."
+msgstr ""
+
+#: ../../reference/manifest.rst:120
+msgid ""
+"To restrict to certain files in the package use ``files`` (note: paths "
+"should be relative to the package): ``package(\"foo\", "
+"files=[\"bar/baz.py\"])``."
+msgstr ""
+
+#: ../../reference/manifest.rst:125
+msgid "Include a single Python file as a module."
+msgstr ""
+
+#: ../../reference/manifest.rst:127
+msgid "If the file is in the current directory:"
+msgstr ""
+
+#: ../../reference/manifest.rst:129
+msgid "module(\"foo.py\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:133
+msgid "Otherwise use base_path to locate the file:"
+msgstr ""
+
+#: ../../reference/manifest.rst:135
+msgid "module(\"foo.py\", base_path=\"src/drivers\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:143
+msgid ""
+"Require a package by name (and its dependencies) from :term:`micropython-"
+"lib`."
+msgstr ""
+
+#: ../../reference/manifest.rst:145
+msgid ""
+"Optionally specify unix_ffi=True to use a module from the unix-ffi "
+"directory."
+msgstr ""
+
+#: ../../reference/manifest.rst:149
+msgid "Include another manifest."
+msgstr ""
+
+#: ../../reference/manifest.rst:151
+msgid ""
+"Typically a manifest used for compiling firmware will need to include the"
+" port manifest, which might include frozen modules that are required for "
+"the board to function."
+msgstr ""
+
+#: ../../reference/manifest.rst:155
+msgid ""
+"The *manifest* argument can be a string (filename) or an iterable of "
+"strings."
+msgstr ""
+
+#: ../../reference/manifest.rst:158
+msgid "Relative paths are resolved with respect to the current manifest file."
+msgstr ""
+
+#: ../../reference/manifest.rst:160
+msgid ""
+"If the path is to a directory, then it implicitly includes the "
+"manifest.py file inside that directory."
+msgstr ""
+
+#: ../../reference/manifest.rst:163
+msgid ""
+"You can use the variables above, such as ``$(PORT_DIR)`` in "
+"``manifest_path``."
+msgstr ""
+
+#: ../../reference/manifest.rst:167
+msgid ""
+"Define metadata for this manifest file. This is useful for manifests for "
+"micropython-lib packages."
+msgstr ""
+
+#: ../../reference/manifest.rst:171
+msgid "Low-level functions"
+msgstr ""
+
+#: ../../reference/manifest.rst:173
+msgid ""
+"These functions are documented for completeness, but with the exception "
+"of ``freeze_as_str`` all functionality can be accessed via the high-level"
+" functions."
+msgstr ""
+
+#: ../../reference/manifest.rst:178
 msgid ""
 "Freeze the input specified by *path*, automatically determining its type."
 "  A ``.py`` script will be compiled to a ``.mpy`` first then frozen, and "
 "a ``.mpy`` file will be frozen directly."
 msgstr ""
 
-#: ../../reference/manifest.rst:40
+#: ../../reference/manifest.rst:182
 msgid ""
 "*path* must be a directory, which is the base directory to begin "
 "searching for files.  When importing the resulting frozen modules, the "
@@ -4659,24 +4907,21 @@ msgid ""
 "the module name."
 msgstr ""
 
-#: ../../reference/manifest.rst:45
-msgid ""
-"If *path* is relative, it is resolved to the current ``manifest.py``.  "
-"Use ``$(MPY_DIR)``, ``$(MPY_LIB_DIR)``, ``$(PORT_DIR)``, ``$(BOARD_DIR)``"
-" if you need to access specific paths."
+#: ../../reference/manifest.rst:187
+msgid "If *path* is relative, it is resolved to the current ``manifest.py``."
 msgstr ""
 
-#: ../../reference/manifest.rst:49
+#: ../../reference/manifest.rst:189
 msgid "If *script* is None, all files in *path* will be frozen."
 msgstr ""
 
-#: ../../reference/manifest.rst:51
+#: ../../reference/manifest.rst:191
 msgid ""
 "If *script* is an iterable then ``freeze()`` is called on all items of "
 "the iterable (with the same *path* and *opt* passed through)."
 msgstr ""
 
-#: ../../reference/manifest.rst:54
+#: ../../reference/manifest.rst:194
 msgid ""
 "If *script* is a string then it specifies the file or directory to "
 "freeze, and can include extra directories before the file or last "
@@ -4684,122 +4929,95 @@ msgid ""
 "*script* is a directory then all files in that directory will be frozen."
 msgstr ""
 
-#: ../../reference/manifest.rst:59
+#: ../../reference/manifest.rst:199
 msgid ""
 "*opt* is the optimisation level to pass to mpy-cross when compiling "
 "``.py`` to ``.mpy``.  These levels are described in "
 ":func:`micropython.opt_level`."
 msgstr ""
 
-#: ../../reference/manifest.rst:64
+#: ../../reference/manifest.rst:204
 msgid ""
 "Freeze the given *path* and all ``.py`` scripts within it as a string, "
 "which will be compiled upon import."
 msgstr ""
 
-#: ../../reference/manifest.rst:69
+#: ../../reference/manifest.rst:209
 msgid ""
 "Freeze the input by first compiling the ``.py`` scripts to ``.mpy`` "
 "files, then freezing the resulting ``.mpy`` files.  See ``freeze()`` for "
 "further details on the arguments."
 msgstr ""
 
-#: ../../reference/manifest.rst:75
+#: ../../reference/manifest.rst:215
 msgid ""
 "Freeze the input, which must be ``.mpy`` files that are frozen directly. "
 "See ``freeze()`` for further details on the arguments."
 msgstr ""
 
-#: ../../reference/manifest.rst:80
-msgid "Including other manifest files"
-msgstr ""
-
-#: ../../reference/manifest.rst:84
-msgid "Include another manifest."
-msgstr ""
-
-#: ../../reference/manifest.rst:86
-msgid ""
-"The *manifest* argument can be a string (filename) or an iterable of "
-"strings."
-msgstr ""
-
-#: ../../reference/manifest.rst:89
-msgid "Relative paths are resolved with respect to the current manifest file."
-msgstr ""
-
-#: ../../reference/manifest.rst:91
-msgid ""
-"Optional *kwargs* can be provided which will be available to the included"
-" script via the *options* variable."
-msgstr ""
-
-#: ../../reference/manifest.rst:94 ../../reference/repl.rst:88
-msgid "For example:"
-msgstr ""
-
-#: ../../reference/manifest.rst:96
-msgid "include(\"path.py\", extra_features=True)"
-msgstr ""
-
-#: ../../reference/manifest.rst:100
-msgid "then in path.py:"
-msgstr ""
-
-#: ../../reference/manifest.rst:102
-msgid ""
-"options.defaults(standard_features=True)\n"
-"# freeze minimal modules.\n"
-"if options.standard_features:\n"
-"    # freeze standard modules.\n"
-"if options.extra_features:\n"
-"    # freeze extra modules."
-msgstr ""
-
-#: ../../reference/manifest.rst:113 ../../reference/mpremote.rst:166
+#: ../../reference/manifest.rst:219 ../../reference/mpremote.rst:245
 msgid "Examples"
-msgstr "利用例"
-
-#: ../../reference/manifest.rst:115
-msgid "To freeze a single file which is available as ``import mydriver``, use:"
 msgstr ""
 
-#: ../../reference/manifest.rst:117
-msgid "freeze(\".\", \"mydriver.py\")"
-msgstr ""
-
-#: ../../reference/manifest.rst:121
+#: ../../reference/manifest.rst:221
 msgid ""
-"To freeze a set of files which are available as ``import test1`` and "
-"``import test2``, and which are compiled with optimisation level 3, use:"
+"To freeze a single file from the current directory which will be "
+"available as ``import mydriver``, use:"
 msgstr ""
 
-#: ../../reference/manifest.rst:124
-msgid "freeze(\"/path/to/tests\", (\"test1.py\", \"test2.py\"), opt=3)"
+#: ../../reference/manifest.rst:224
+msgid "module(\"mydriver.py\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:128
-msgid "To freeze a module which can be imported as ``import mymodule``, use:"
-msgstr ""
-
-#: ../../reference/manifest.rst:130
+#: ../../reference/manifest.rst:228
 msgid ""
-"freeze(\n"
-"    \"../relative/path\",\n"
-"    (\n"
-"        \"mymodule/__init__.py\",\n"
-"        \"mymodule/core.py\",\n"
-"        \"mymodule/extra.py\",\n"
-"    ),\n"
-")"
+"To freeze a directory of files in a subdirectory \"mydriver\" of the "
+"current directory which will be available as ``import mydriver``, use:"
 msgstr ""
 
-#: ../../reference/manifest.rst:141
-msgid "To include a manifest from the MicroPython repository, use:"
+#: ../../reference/manifest.rst:231
+msgid "package(\"mydriver\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:143
-msgid "include(\"$(MPY_DIR)/extmod/uasyncio/manifest.py\")"
+#: ../../reference/manifest.rst:235
+msgid "To freeze the \"hmac\" library from :term:`micropython-lib`, use:"
+msgstr ""
+
+#: ../../reference/manifest.rst:237
+msgid "require(\"hmac\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:241
+msgid ""
+"A more complete example of a custom ``manifest.py`` file for the "
+"``PYBD_SF2`` board is:"
+msgstr ""
+
+#: ../../reference/manifest.rst:244
+msgid ""
+"# Include the board's default manifest.\n"
+"include(\"$(BOARD_DIR)/manifest.py\")\n"
+"# Add a custom driver\n"
+"module(\"mydriver.py\")\n"
+"# Add aiorepl from micropython-lib\n"
+"require(\"aiorepl\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:253
+msgid "Then the board can be compiled with"
+msgstr ""
+
+#: ../../reference/manifest.rst:255
+msgid ""
+"$ cd ports/stm32\n"
+"$ make BOARD=PYBD_SF2 FROZEN_MANIFEST=~/src/myproject/manifest.py"
+msgstr ""
+
+#: ../../reference/manifest.rst:260
+msgid ""
+"Note that most boards do not have their own ``manifest.py``, rather they "
+"use the port one directly, in which case your manifest should just "
+"``include(\"$(PORT_DIR)/boards/manifest.py\")`` instead."
 msgstr ""
 
 #: ../../reference/mpremote.rst:2
@@ -5083,15 +5301,31 @@ msgstr ""
 "各ファイルに対してエディタを起動します (環境変数 ``$EDITOR`` で定義します)。"
 "エディタが正常に終了すると、更新されたファイルがデバイスにコピーバックされます。"
 
-#: ../../reference/mpremote.rst:147
+#: ../../reference/mpremote.rst:149
+msgid ""
+"install packages from :term:`micropython-lib` (or GitHub) using the "
+"``mip`` tool:"
+msgstr ""
+"``mip`` ツールを使って :term:`micropython-lib` (または GitHub)から"
+"パッケージをインストール:"
+
+#: ../../reference/mpremote.rst:151
+msgid "$ mpremote mip install <packages...>"
+msgstr ""
+
+#: ../../reference/mpremote.rst:155
+msgid "See :ref:`packages` for more information."
+msgstr "より詳しくは :ref:`packages` を参照してください。"
+
+#: ../../reference/mpremote.rst:157
 msgid "mount the local directory on the remote device:"
 msgstr "リモートデバイス上にローカルディレクトリをマウント:"
 
-#: ../../reference/mpremote.rst:149
+#: ../../reference/mpremote.rst:159
 msgid "$ mpremote mount [options] <local-dir>"
 msgstr ""
 
-#: ../../reference/mpremote.rst:153
+#: ../../reference/mpremote.rst:163
 msgid ""
 "During usage, Ctrl-D will soft-reboot and normally reconnect the mount "
 "automatically. If the unit has a main.py running at startup however the "
@@ -5104,7 +5338,7 @@ msgstr ""
 "この場合、raw モードのソフトリブートを使えます。Ctrl-A Ctrl-D でリブート、Ctrl-B "
 "で通常のリプレイに戻り、マウントの準備ができます。"
 
-#: ../../reference/mpremote.rst:160
+#: ../../reference/mpremote.rst:170
 msgid ""
 "``-l``, ``--unsafe-links``: By default an error will be raised if the "
 "device accesses a file or directory which is outside (up one or more "
@@ -5118,25 +5352,25 @@ msgstr ""
 "シンボリックリンクのチェックを無効にし、デバイスがローカルディレクトリの"
 "外側のシンボリックリンクをたどることを可能にします。"
 
-#: ../../reference/mpremote.rst:165
+#: ../../reference/mpremote.rst:175
 msgid "unmount the local directory from the remote device:"
 msgstr "リモートデバイスからローカルディレクトリをアンマウント:"
 
-#: ../../reference/mpremote.rst:167
+#: ../../reference/mpremote.rst:177
 msgid "$ mpremote umount"
 msgstr ""
 
-#: ../../reference/mpremote.rst:171
+#: ../../reference/mpremote.rst:181
 msgid ""
 "Multiple commands can be specified and they will be run sequentially. "
 msgstr ""
 "複数のコマンドを指定することができ、それらは順次実行されます。"
 
-#: ../../reference/mpremote.rst:175
+#: ../../reference/mpremote.rst:185
 msgid "Auto connection and soft-reset"
 msgstr "自動接続とソフトリセット"
 
-#: ../../reference/mpremote.rst:177
+#: ../../reference/mpremote.rst:187
 msgid ""
 "Connection and disconnection will be done automatically at the start and "
 "end of the execution of the tool, if such commands are not explicitly "
@@ -5148,7 +5382,7 @@ msgstr ""
 "自動接続では、最初に利用可能なシリアルデバイスを検索します。アクションが指定されて"
 "いない場合は REPL が起動します。"
 
-#: ../../reference/mpremote.rst:182
+#: ../../reference/mpremote.rst:192
 msgid ""
 "Once connected to a device, ``mpremote`` will automatically soft-reset "
 "the device if needed.  This clears the Python heap and restarts the "
@@ -5165,7 +5399,7 @@ msgstr ""
 "ソフトリセットを初めて行った後、 ``disconnect`` コマンドを発行するまで、自動的に"
 "ソフトリセットを行うことはありません。"
 
-#: ../../reference/mpremote.rst:190
+#: ../../reference/mpremote.rst:200
 msgid ""
 "Auto soft-reset behaviour can be controlled by the ``resume`` command.  "
 "And the ``soft-reset`` command can be used to perform an explicit soft "
@@ -5174,33 +5408,33 @@ msgstr ""
 "自動的なソフトリセットの動作は、 ``resume`` コマンドで制御することができます。"
 "また、 ``soft-reset`` コマンドを使用すると、明示的なソフトリセットを行えます。"
 
-#: ../../reference/mpremote.rst:195
+#: ../../reference/mpremote.rst:205
 msgid "Shortcuts"
 msgstr "ショートカット"
 
-#: ../../reference/mpremote.rst:197
+#: ../../reference/mpremote.rst:207
 msgid "Shortcuts can be defined using the macro system.  Built-in shortcuts are::"
 msgstr ""
 "ショートカットはマクロシステムを使って定義できます。内蔵のショートカットには"
 "次のものがあります:"
 
-#: ../../reference/mpremote.rst:199
+#: ../../reference/mpremote.rst:209
 msgid "- ``devs``: list available devices (shortcut for ``connect list``)"
 msgstr "- ``devs``: 利用可能なデバイスを一覧表示"
 
-#: ../../reference/mpremote.rst:201
+#: ../../reference/mpremote.rst:211
 msgid "``a0``, ``a1``, ``a2``, ``a3``: connect to /dev/ttyACM?"
 msgstr "``a0``, ``a1``, ``a2``, ``a3``: /dev/ttyACM? に接続"
 
-#: ../../reference/mpremote.rst:203
+#: ../../reference/mpremote.rst:213
 msgid "``u0``, ``u1``, ``u2``, ``u3``: connect to /dev/ttyUSB?"
 msgstr "``u0``, ``u1``, ``u2``, ``u3``: /dev/ttyUSB? に接続"
 
-#: ../../reference/mpremote.rst:205
+#: ../../reference/mpremote.rst:215
 msgid "``c0``, ``c1``, ``c2``, ``c3``: connect to COM?"
 msgstr "``c0``, ``c1``, ``c2``, ``c3``: COM? に接続"
 
-#: ../../reference/mpremote.rst:207
+#: ../../reference/mpremote.rst:217
 msgid ""
 "``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``touch``, ``df``:"
 " filesystem commands"
@@ -5208,15 +5442,15 @@ msgstr ""
 "``cat``, ``ls``, ``cp``, ``rm``, ``mkdir``, ``rmdir``, ``touch``, ``df``:"
 " ファイルシステムコマンド"
 
-#: ../../reference/mpremote.rst:210
+#: ../../reference/mpremote.rst:220
 msgid "``reset``: reset the device"
 msgstr "``reset``: デバイスをリセット"
 
-#: ../../reference/mpremote.rst:212
+#: ../../reference/mpremote.rst:222
 msgid "``bootloader``: make the device enter its bootloader"
 msgstr "``bootloader``: デバイスのブートローダを起動"
 
-#: ../../reference/mpremote.rst:214
+#: ../../reference/mpremote.rst:224
 msgid ""
 "Any user configuration, including user-defined shortcuts, can be placed "
 "in the file ``.config/mpremote/config.py``. For example:"
@@ -5225,7 +5459,7 @@ msgstr ""
 "``.config/mpremote/config.py`` に入れることができます。"
 "たとえば、以下のようになります:"
 
-#: ../../reference/mpremote.rst:217
+#: ../../reference/mpremote.rst:227
 msgid ""
 "commands = {\n"
 "    \"c33\": \"connect id:334D335C3138\",\n"
@@ -5242,7 +5476,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../reference/mpremote.rst:237
+#: ../../reference/mpremote.rst:247
 msgid ""
 "mpremote\n"
 "\n"
@@ -5275,6 +5509,12 @@ msgid ""
 "mpremote cp -r dir/ :"
 "\n"
 "mpremote cp a.py b.py : + repl"
+"\n"
+"mpremote mip install aioble\n"
+"\n"
+"mpremote mip install github:org/repo@branch\n"
+"\n"
+"mpremote mip install --target /flash/third-party functools"
 msgstr ""
 
 #: ../../reference/mpyfiles.rst:4
@@ -5336,6 +5576,18 @@ msgstr ""
 
 #: ../../reference/mpyfiles.rst:30
 msgid ""
+"Sub-version of the .mpy file: if the .mpy file contains native machine "
+"code then the sub-version of the file must match the version support by "
+"the system loading it.  Otherwise, if there is no native machine code in "
+"the .mpy file, then the sub-version is ignored when loading."
+msgstr ""
+".mpy ファイルのサブバージョン: .mpy ファイルがネイティブのマシンコードを含んでいる場合、"
+"ファイルのサブバージョンは、それを読み込むシステムがサポートするバージョンと一致しなければ"
+"なりません。そうでない場合、.mpy ファイルにネイティブのマシンコードがなければ、"
+"ロード時にサブバージョンは無視されます。"
+
+#: ../../reference/mpyfiles.rst:35
+msgid ""
 "Small integer bits: the .mpy file will require a minimum number of bits "
 "in a small integer and the system loading it must support at least this "
 "many bits."
@@ -5343,7 +5595,7 @@ msgstr ""
 "スモール整数ビット: .mpy ファイルにはスモール整数の最小ビット数の要求があり、"
 ".mpy をロードするシステムは少なくともこの数のビットをサポートする必要があります。"
 
-#: ../../reference/mpyfiles.rst:34
+#: ../../reference/mpyfiles.rst:39
 msgid ""
 "Native architecture: if the .mpy file contains native machine code then "
 "it will specify the architecture of that machine code and the system "
@@ -5353,7 +5605,7 @@ msgstr ""
 "そのマシンコードのアーキテクチャの指定があり、.mpy をロードするシステムはその"
 "アーキテクチャのコードの実行をサポートする必要があります。"
 
-#: ../../reference/mpyfiles.rst:38
+#: ../../reference/mpyfiles.rst:43
 msgid ""
 "If a MicroPython system supports importing .mpy files then the "
 "``sys.implementation._mpy`` field will exist and return an integer which "
@@ -5363,7 +5615,7 @@ msgstr ""
 "``sys.implementation._mpy`` フィールドが存在し、バージョン(下位8ビット)、"
 "機能、ネイティブアーキテクチャをエンコードした整数を返します。"
 
-#: ../../reference/mpyfiles.rst:42
+#: ../../reference/mpyfiles.rst:47
 msgid ""
 "Trying to import an .mpy file that fails one of the first four tests will"
 " raise ``ValueError('incompatible .mpy file')``.  Trying to import an "
@@ -5376,11 +5628,11 @@ msgstr ""
 ".mpy　ファイルをインポートしようとすると ``ValueError('incompatible .mpy arch')`` "
 "が発生します。"
 
-#: ../../reference/mpyfiles.rst:47
+#: ../../reference/mpyfiles.rst:52
 msgid "If importing an .mpy file fails then try the following:"
 msgstr ".mpy ファイルのインポートに失敗した場合は、次を試してください:"
 
-#: ../../reference/mpyfiles.rst:49
+#: ../../reference/mpyfiles.rst:54
 msgid ""
 "Determine the .mpy version and flags supported by your MicroPython system"
 " by executing::"
@@ -5388,7 +5640,7 @@ msgstr ""
 "以下を実行して、MicroPython システムでサポートされている .mpy バージョンとフラグを"
 "確認します::"
 
-#: ../../reference/mpyfiles.rst:52
+#: ../../reference/mpyfiles.rst:57
 msgid ""
 "import sys\n"
 "sys_mpy = sys.implementation._mpy\n"
@@ -5396,13 +5648,14 @@ msgid ""
 "    'armv6', 'armv6m', 'armv7m', 'armv7em', 'armv7emsp', 'armv7emdp',\n"
 "    'xtensa', 'xtensawin'][sys_mpy >> 10]\n"
 "print('mpy version:', sys_mpy & 0xff)\n"
+"print('mpy sub-version:', sys_mpy >> 8 & 3)\n"
 "print('mpy flags:', end='')\n"
 "if arch:\n"
 "    print(' -march=' + arch, end='')\n"
 "print()"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:63
+#: ../../reference/mpyfiles.rst:69
 msgid ""
 "Check the validity of the .mpy file by inspecting the first two bytes of "
 "the file.  The first byte should be an uppercase 'M' and the second byte "
@@ -5414,7 +5667,7 @@ msgstr ""
 "このバージョン番号は、上記のシステムバージョンと一致する必要があります。"
 "一致しない場合は .mpy ファイルを再作成してください。"
 
-#: ../../reference/mpyfiles.rst:68
+#: ../../reference/mpyfiles.rst:74
 msgid ""
 "Check if the system .mpy version matches the version emitted by ``mpy-"
 "cross`` that was used to build the .mpy file, found by ``mpy-cross "
@@ -5428,7 +5681,7 @@ msgstr ""
 "一致しない場合は ``mpy-cross --version`` によって報告されたタグ(またはハッシュ)で"
 "チェックアウトした Git リポジトリにある ``mpy-cross`` で再コンパイルします。"
 
-#: ../../reference/mpyfiles.rst:73
+#: ../../reference/mpyfiles.rst:79
 msgid ""
 "Make sure you are using the correct ``mpy-cross`` flags, found by the "
 "code above, or by inspecting the ``MPY_CROSS_FLAGS`` Makefile variable "
@@ -5438,70 +5691,70 @@ msgstr ""
 "フラグは上記のコードで見つけるか、使っているポートの "
 "``MPY_CROSS_FLAGS`` Makefile 変数を調べてください。"
 
-#: ../../reference/mpyfiles.rst:77
+#: ../../reference/mpyfiles.rst:83
 msgid ""
 "The following table shows the correspondence between MicroPython release "
 "and .mpy version."
 msgstr ""
 "次の表は、MicroPythonリリースと.mpyバージョンの対応を示しています。"
 
-#: ../../reference/mpyfiles.rst:81
+#: ../../reference/mpyfiles.rst:87
 msgid "MicroPython release"
 msgstr "MicroPython リリース"
 
-#: ../../reference/mpyfiles.rst:81
+#: ../../reference/mpyfiles.rst:87
 msgid ".mpy version"
 msgstr ".mpy バージョン"
 
-#: ../../reference/mpyfiles.rst:83
+#: ../../reference/mpyfiles.rst:89
 msgid "v1.19 and up"
 msgstr "v1.19 以上"
 
-#: ../../reference/mpyfiles.rst:83
+#: ../../reference/mpyfiles.rst:89
 msgid "6"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:84
+#: ../../reference/mpyfiles.rst:90
 msgid "v1.12 - v1.18"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:84
+#: ../../reference/mpyfiles.rst:90
 msgid "5"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:85
+#: ../../reference/mpyfiles.rst:91
 msgid "v1.11"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:85
+#: ../../reference/mpyfiles.rst:91
 msgid "4"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:86
+#: ../../reference/mpyfiles.rst:92
 msgid "v1.9.3 - v1.10"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:86
+#: ../../reference/mpyfiles.rst:92
 msgid "3"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:87
+#: ../../reference/mpyfiles.rst:93
 msgid "v1.9 - v1.9.2"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:87
+#: ../../reference/mpyfiles.rst:93
 msgid "2"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:88
+#: ../../reference/mpyfiles.rst:94
 msgid "v1.5.1 - v1.8.7"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:88
+#: ../../reference/mpyfiles.rst:94
 msgid "0"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:91
+#: ../../reference/mpyfiles.rst:97
 msgid ""
 "For completeness, the next table shows the Git commit of the main "
 "MicroPython repository at which the .mpy version was changed."
@@ -5509,75 +5762,75 @@ msgstr ""
 "完全を期すため、次の表は .mpy バージョンが変更されたメイン MicroPython "
 "リポジトリの Git コミットを示しています。"
 
-#: ../../reference/mpyfiles.rst:95
+#: ../../reference/mpyfiles.rst:101
 msgid ".mpy version change"
 msgstr ".mpy バージョン変更"
 
-#: ../../reference/mpyfiles.rst:95
+#: ../../reference/mpyfiles.rst:101
 msgid "Git commit"
 msgstr "Git コミット"
 
-#: ../../reference/mpyfiles.rst:97
+#: ../../reference/mpyfiles.rst:103
 msgid "5 to 6"
 msgstr "5 から 6"
 
-#: ../../reference/mpyfiles.rst:97
+#: ../../reference/mpyfiles.rst:103
 msgid "f2040bfc7ee033e48acef9f289790f3b4e6b74e5"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:98
+#: ../../reference/mpyfiles.rst:104
 msgid "4 to 5"
 msgstr "4 から 5"
 
-#: ../../reference/mpyfiles.rst:98
+#: ../../reference/mpyfiles.rst:104
 msgid "5716c5cf65e9b2cb46c2906f40302401bdd27517"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:99
+#: ../../reference/mpyfiles.rst:105
 msgid "3 to 4"
 msgstr "3 から 4"
 
-#: ../../reference/mpyfiles.rst:99
+#: ../../reference/mpyfiles.rst:105
 msgid "9a5f92ea72754c01cc03e5efcdfe94021120531e"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:100
+#: ../../reference/mpyfiles.rst:106
 msgid "2 to 3"
 msgstr "2 から 3"
 
-#: ../../reference/mpyfiles.rst:100
+#: ../../reference/mpyfiles.rst:106
 msgid "ff93fd4f50321c6190e1659b19e64fef3045a484"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:101
+#: ../../reference/mpyfiles.rst:107
 msgid "1 to 2"
 msgstr "1 から 2"
 
-#: ../../reference/mpyfiles.rst:101
+#: ../../reference/mpyfiles.rst:107
 msgid "dd11af209d226b7d18d5148b239662e30ed60bad"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:102
+#: ../../reference/mpyfiles.rst:108
 msgid "0 to 1"
 msgstr "0 から 1"
 
-#: ../../reference/mpyfiles.rst:102
+#: ../../reference/mpyfiles.rst:108
 msgid "6a11048af1d01c78bdacddadd1b72dc7ba7c6478"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:103
+#: ../../reference/mpyfiles.rst:109
 msgid "initial version 0"
 msgstr "初期バージョン 0"
 
-#: ../../reference/mpyfiles.rst:103
+#: ../../reference/mpyfiles.rst:109
 msgid "d8c834c95d506db979ec871417de90b7951edc30"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:107
+#: ../../reference/mpyfiles.rst:113
 msgid "Binary encoding of .mpy files"
 msgstr ".mpy ファイルのバイナリエンコーディング"
 
-#: ../../reference/mpyfiles.rst:109
+#: ../../reference/mpyfiles.rst:115
 msgid ""
 "MicroPython .mpy files are a binary container format with code objects "
 "(bytecode and native machine code) stored internally in a nested "
@@ -5602,19 +5855,19 @@ msgstr ""
 "1バイトあたり7ビットを格納し、1つ以上のバイトが続く場合は8ビット目(MSB)が設定されます。"
 "符号なし整数のビットは、LSB 形式で vuint に格納されます。"
 
-#: ../../reference/mpyfiles.rst:120
+#: ../../reference/mpyfiles.rst:126
 msgid "The top-level of an .mpy file consists of three parts:"
 msgstr ".mpyファイルのトップレベルは3つの部分で構成されています:"
 
-#: ../../reference/mpyfiles.rst:122
+#: ../../reference/mpyfiles.rst:128
 msgid "The header."
 msgstr "ヘッダー。"
 
-#: ../../reference/mpyfiles.rst:124
+#: ../../reference/mpyfiles.rst:130
 msgid "グローバルな qstr と定数のテーブル。"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:126
+#: ../../reference/mpyfiles.rst:132
 msgid ""
 "The raw-code for the outer scope of the module. This outer scope is "
 "executed when the .mpy file is imported."
@@ -5622,7 +5875,7 @@ msgstr ""
 "モジュールの外部スコープの raw コード。この外部スコープは .mpy ファイルがインポート"
 "されるときに実行されます。"
 
-#: ../../reference/mpyfiles.rst:129
+#: ../../reference/mpyfiles.rst:135
 msgid ""
 "You can inspect the contents of a .mpy file by using ``mpy-tool.py``, for"
 " example (run from the root of the main MicroPython repository)::"
@@ -5630,54 +5883,54 @@ msgstr ""
 ".mpy ファイルの内容を調べるには、たとえば ``mpy-tool.py`` が使えます"
 "(MicroPython のメインリポジトリのルートから実行します)::"
 
-#: ../../reference/mpyfiles.rst:132
+#: ../../reference/mpyfiles.rst:138
 msgid "$ ./tools/mpy-tool.py -xd myfile.mpy"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:135
+#: ../../reference/mpyfiles.rst:141
 msgid "The header"
 msgstr "ヘッダー"
 
-#: ../../reference/mpyfiles.rst:137
+#: ../../reference/mpyfiles.rst:143
 msgid "The .mpy header is:"
 msgstr ".mpy のヘッダーは次のとおりです:"
 
-#: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:160
-#: ../../reference/mpyfiles.rst:175
+#: ../../reference/mpyfiles.rst:146 ../../reference/mpyfiles.rst:166
+#: ../../reference/mpyfiles.rst:181
 msgid "size"
 msgstr "サイズ"
 
-#: ../../reference/mpyfiles.rst:140 ../../reference/mpyfiles.rst:160
-#: ../../reference/mpyfiles.rst:175
+#: ../../reference/mpyfiles.rst:146 ../../reference/mpyfiles.rst:166
+#: ../../reference/mpyfiles.rst:181
 msgid "field"
 msgstr "フォールド"
 
-#: ../../reference/mpyfiles.rst:142 ../../reference/mpyfiles.rst:143
-#: ../../reference/mpyfiles.rst:144 ../../reference/mpyfiles.rst:145
+#: ../../reference/mpyfiles.rst:148 ../../reference/mpyfiles.rst:149
+#: ../../reference/mpyfiles.rst:150 ../../reference/mpyfiles.rst:151
 msgid "byte"
 msgstr "バイト"
 
-#: ../../reference/mpyfiles.rst:142
+#: ../../reference/mpyfiles.rst:148
 msgid "value 0x4d (ASCII 'M')"
 msgstr "値 0x4d (ASCII の "M')"
 
-#: ../../reference/mpyfiles.rst:143
+#: ../../reference/mpyfiles.rst:149
 msgid ".mpy version number"
 msgstr ".mpy バージョン番号"
 
-#: ../../reference/mpyfiles.rst:144
+#: ../../reference/mpyfiles.rst:150
 msgid "feature flags"
 msgstr "機能フラグ"
 
-#: ../../reference/mpyfiles.rst:145
+#: ../../reference/mpyfiles.rst:151
 msgid "number of bits in a small int"
 msgstr "スモール整数のビット数"
 
-#: ../../reference/mpyfiles.rst:149
+#: ../../reference/mpyfiles.rst:155
 msgid "The global qstr and constant tables"
 msgstr "グローバルな qstr と定数のテーブル"
 
-#: ../../reference/mpyfiles.rst:151
+#: ../../reference/mpyfiles.rst:157
 msgid ""
 "An .mpy file contains a single qstr table, and a single constant object "
 "table. These are global to the .mpy file, they are referenced by all "
@@ -5696,37 +5949,37 @@ msgstr ""
 "定数オブジェクトテーブルには .mpy ファイルが必要とするすべての定数オブジェクトへの"
 "参照が置かれます。"
 
-#: ../../reference/mpyfiles.rst:162 ../../reference/mpyfiles.rst:163
-#: ../../reference/mpyfiles.rst:177 ../../reference/mpyfiles.rst:179
+#: ../../reference/mpyfiles.rst:168 ../../reference/mpyfiles.rst:169
+#: ../../reference/mpyfiles.rst:183 ../../reference/mpyfiles.rst:185
 msgid "vuint"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:162
+#: ../../reference/mpyfiles.rst:168
 msgid "number of qstrs"
 msgstr "qstr 数"
 
-#: ../../reference/mpyfiles.rst:163
+#: ../../reference/mpyfiles.rst:169
 msgid "number of constant objects"
 msgstr "定数オブジェクト数"
 
-#: ../../reference/mpyfiles.rst:164 ../../reference/mpyfiles.rst:165
-#: ../../reference/mpyfiles.rst:178 ../../reference/mpyfiles.rst:180
+#: ../../reference/mpyfiles.rst:170 ../../reference/mpyfiles.rst:171
+#: ../../reference/mpyfiles.rst:184 ../../reference/mpyfiles.rst:186
 msgid "..."
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:164
+#: ../../reference/mpyfiles.rst:170
 msgid "qstr data"
 msgstr "qstr データ"
 
-#: ../../reference/mpyfiles.rst:165
+#: ../../reference/mpyfiles.rst:171
 msgid "encoded constant objects"
 msgstr "エンコードした定数オブジェクト"
 
-#: ../../reference/mpyfiles.rst:169
+#: ../../reference/mpyfiles.rst:175
 msgid "Raw code elements"
 msgstr "raw コードの要素"
 
-#: ../../reference/mpyfiles.rst:171
+#: ../../reference/mpyfiles.rst:177
 msgid ""
 "A raw-code element contains code, either bytecode or native machine code."
 "  Its contents are:"
@@ -5734,23 +5987,23 @@ msgstr ""
 "raw コードの要素には、バイトコードまたはネイティブマシンコードのコードが含まれます。"
 "その内容は次のとおりです:"
 
-#: ../../reference/mpyfiles.rst:177
+#: ../../reference/mpyfiles.rst:183
 msgid "type, size and whether there are sub-raw-code elements"
 msgstr "タイプ、サイズ、サブ raw コードの有無"
 
-#: ../../reference/mpyfiles.rst:178
+#: ../../reference/mpyfiles.rst:184
 msgid "code (bytecode or machine code)"
 msgstr "コード(バイトコードまたはマシンコード)"
 
-#: ../../reference/mpyfiles.rst:179
+#: ../../reference/mpyfiles.rst:185
 msgid "number of sub-raw-code elements (only if non-zero)"
 msgstr "サブ raw コード要素数(0でない場合のみ)"
 
-#: ../../reference/mpyfiles.rst:180
+#: ../../reference/mpyfiles.rst:186
 msgid "sub-raw-code elements"
 msgstr "サブ raw コード要素"
 
-#: ../../reference/mpyfiles.rst:183
+#: ../../reference/mpyfiles.rst:189
 msgid ""
 "The first vuint in a raw-code element encodes the type of code stored in "
 "this element (the two least-significant bits), whether this raw-code has "
@@ -5761,7 +6014,7 @@ msgstr ""
 "(最下位2ビット)、この raw コードに子があるかどうか(最下位3ビット)、"
 "それに続くコードの長さ(そのために確保すべきRAMの量)をエンコードしています。"
 
-#: ../../reference/mpyfiles.rst:188
+#: ../../reference/mpyfiles.rst:194
 msgid ""
 "Following the vuint comes the code itself.  Unless the code type is viper"
 " code with relocations, this code is constant data and does not need to "
@@ -5771,15 +6024,7 @@ msgstr ""
 "コード種別が再配置を伴うバイパーコードでない限り、このコードは定数データであり、"
 "更新する必要はありません。"
 
-#: ../../reference/mpyfiles.rst:161
-msgid ""
-"Following the code comes a vuint counting the number of constant objects,"
-" and another vuint counting the number of sub-raw-code elements."
-msgstr ""
-"コードに続いて、定数オブジェクトの数を数える vuint と、副 raw コード要素数の "
-"vuint が続きます。"
-
-#: ../../reference/mpyfiles.rst:191
+#: ../../reference/mpyfiles.rst:197
 msgid ""
 "If this raw-code has any children (as indicated by a bit in the first "
 "vuint), following the code comes a vuint counting the number of sub-raw-"
@@ -5788,520 +6033,264 @@ msgstr ""
 "この raw コードが(最初の vuint のビットで示されるように)子を持つ場合、"
 "コードの後に、サブ raw コードの要素数をカウントする vuint が来ます。"
 
-#: ../../reference/mpyfiles.rst:166
+#: ../../reference/mpyfiles.rst:200
 msgid "Finally any sub-raw-code elements are stored, recursively."
 msgstr "最後にサブ raw コード要素が再帰的に保存されます。"
 
-#: ../../../reference/packages.rst:2
-msgid "Distribution packages, package management, and deploying applications"
+#: ../../reference/packages.rst:4
+msgid "Package management"
 msgstr ""
 
-#: ../../../reference/packages.rst:4
+#: ../../reference/packages.rst:7
+msgid "Installing packages with ``mip``"
+msgstr ""
+
+#: ../../reference/packages.rst:9
 msgid ""
-"Just as the \"big\" Python, MicroPython supports creation of \"third "
-"party\" packages, distributing them, and easily installing them in each "
-"user's environment. This chapter discusses how these actions are "
-"achieved. Some familiarity with Python packaging is recommended."
+"Network-capable boards include the ``mip`` module, which can install "
+"packages from :term:`micropython-lib` and from third-party sites "
+"(including GitHub)."
 msgstr ""
 
-#: ../../../reference/packages.rst:10
-msgid "Overview"
-msgstr ""
-
-#: ../../../reference/packages.rst:12
+#: ../../reference/packages.rst:12
 msgid ""
-"Steps below represent a high-level workflow when creating and consuming "
-"packages:"
+"``mip`` (\"mip installs packages\") is similar in concept to Python's "
+"``pip`` tool, however it does not use the PyPI index, rather it uses "
+":term:`micropython-lib` as its index by default. ``mip`` will "
+"automatically fetch compiled :term:`.mpy file` when downloading from "
+"micropython-lib."
 msgstr ""
 
-#: ../../../reference/packages.rst:15
+#: ../../reference/packages.rst:17
+msgid "The most common way to use ``mip`` is from the REPL::"
+msgstr ""
+
+#: ../../reference/packages.rst:19
 msgid ""
-"Python modules and packages are turned into distribution package "
-"archives, and published at the Python Package Index (PyPI)."
+">>> import mip\n"
+">>> mip.install(\"pkgname\")  # Installs the latest version of "
+"\"pkgname\" (and dependencies)\n"
+">>> mip.install(\"pkgname\", version=\"x.y\")  # Installs version x.y of "
+"\"pkgname\"\n"
+">>> mip.install(\"pkgname\", mpy=False)  # Installs the source version "
+"(i.e. .py rather than .mpy files)"
 msgstr ""
 
-#: ../../../reference/packages.rst:17
+#: ../../reference/packages.rst:24
 msgid ""
-":term:`upip` package manager can be used to install a distribution "
-"package on a :term:`MicroPython port` with networking capabilities (for "
-"example, on the Unix port)."
+"``mip`` will detect an appropriate location on the filesystem by "
+"searching ``sys.path`` for the first entry ending in ``/lib``. You can "
+"override the destination using ``target``, but note that this path must "
+"be in ``sys.path`` to be able to subsequently import it.::"
 msgstr ""
 
-#: ../../../reference/packages.rst:20
+#: ../../reference/packages.rst:29
 msgid ""
-"For ports without networking capabilities, an \"installation image\" can "
-"be prepared on the Unix port, and transferred to a device by suitable "
-"means."
+">>> mip.install(\"pkgname\", target=\"third-party\")\n"
+">>> sys.path.append(\"third-party\")"
 msgstr ""
 
-#: ../../../reference/packages.rst:23
+#: ../../reference/packages.rst:32
 msgid ""
-"For low-memory ports, the installation image can be frozen as the "
-"bytecode into MicroPython executable, thus minimizing the memory storage "
-"overheads."
+"As well as downloading packages from the micropython-lib index, ``mip`` "
+"can also install third-party libraries. The simplest way is to download a"
+" file directly::"
 msgstr ""
 
-#: ../../../reference/packages.rst:27
-msgid "The sections below describe this process in details."
-msgstr ""
-
-#: ../../../reference/packages.rst:30
-msgid "Distribution packages"
-msgstr ""
-
-#: ../../../reference/packages.rst:32
+#: ../../reference/packages.rst:35
 msgid ""
-"Python modules and packages can be packaged into archives suitable for "
-"transfer between systems, storing at the well-known location (PyPI), and "
-"downloading on demand for deployment. These archives are known as "
-"*distribution packages* (to differentiate them from Python packages "
-"(means to organize Python source code))."
+">>> mip.install(\"http://example.com/x/y/foo.py\")\n"
+">>> mip.install(\"http://example.com/x/y/foo.mpy\")"
 msgstr ""
 
-#: ../../../reference/packages.rst:38
+#: ../../reference/packages.rst:38
 msgid ""
-"The MicroPython distribution package format is a well-known tar.gz "
-"format, with some adaptations however. The Gzip compressor, used as an "
-"external wrapper for TAR archives, by default uses 32KB dictionary size, "
-"which means that to uncompress a compressed stream, 32KB of contiguous "
-"memory needs to be allocated. This requirement may be not satisfiable on "
-"low-memory devices, which may have total memory available less than that "
-"amount, and even if not, a contiguous block like that may be hard to "
-"allocate due to memory fragmentation. To accommodate these constraints, "
-"MicroPython distribution packages use Gzip compression with the "
-"dictionary size of 4K, which should be a suitable compromise with still "
-"achieving some compression while being able to uncompressed even by the "
-"smallest devices."
+"When installing a file directly, the ``target`` argument is still "
+"supported to set the destination path, but ``mpy`` and ``version`` are "
+"ignored."
 msgstr ""
 
-#: ../../../reference/packages.rst:51
+#: ../../reference/packages.rst:41
 msgid ""
-"Besides the small compression dictionary size, MicroPython distribution "
-"packages also have other optimizations, like removing any files from the "
-"archive which aren't used by the installation process. In particular, "
-":term:`upip` package manager doesn't execute ``setup.py`` during "
-"installation (see below), and thus that file is not included in the "
-"archive."
+"The URL can also start with ``github:`` as a simple way of pointing to "
+"content hosted on GitHub::"
 msgstr ""
 
-#: ../../../reference/packages.rst:57
+#: ../../reference/packages.rst:44
 msgid ""
-"At the same time, these optimizations make MicroPython distribution "
-"packages not compatible with :term:`CPython`'s package manager, ``pip``. "
-"This isn't considered a big problem, because:"
+">>> mip.install(\"github:org/repo/path/foo.py\")  # Uses default branch\n"
+">>> mip.install(\"github:org/repo/path/foo.py\", version=\"branch-or-"
+"tag\")  # Optionally specify the branch or tag"
 msgstr ""
 
-#: ../../../reference/packages.rst:61
+#: ../../reference/packages.rst:47
 msgid ""
-"Packages can be installed with :term:`upip`, and then can be used with "
-"CPython (if they are compatible with it)."
+"More sophisticated packages (i.e. with more than one file, or with "
+"dependencies) can be downloaded by specifying the path to their "
+"``package.json``."
 msgstr ""
 
-#: ../../../reference/packages.rst:63
+#: ../../reference/packages.rst:53
+msgid "If no json file is specified, then \"package.json\" is implicitly added::"
+msgstr ""
+
+#: ../../reference/packages.rst:55
 msgid ""
-"In the other direction, majority of CPython packages would be "
-"incompatible with MicroPython by various reasons, first of all, the "
-"reliance on features not implemented by MicroPython."
+">>> mip.install(\"http://example.com/x/\")\n"
+">>> mip.install(\"github:org/repo\")\n"
+">>> mip.install(\"github:org/repo\", version=\"branch-or-tag\")"
 msgstr ""
 
-#: ../../../reference/packages.rst:67
+#: ../../reference/packages.rst:61
+msgid "Using ``mip`` on the Unix port"
+msgstr ""
+
+#: ../../reference/packages.rst:63
 msgid ""
-"Summing up, the MicroPython distribution package archives are highly "
-"optimized for MicroPython's target environments, which are highly "
-"resource constrained devices."
+"On the Unix port, ``mip`` can be used at the REPL as above, and also by "
+"using ``-m``::"
 msgstr ""
 
-#: ../../../reference/packages.rst:73
-msgid "``upip`` package manager"
-msgstr ""
-
-#: ../../../reference/packages.rst:75
+#: ../../reference/packages.rst:65
 msgid ""
-"MicroPython distribution packages are intended to be installed using the "
-":term:`upip` package manager. :term:`upip` is a Python application which "
-"is usually distributed (as frozen bytecode) with network-enabled "
-":term:`MicroPython ports <MicroPython port>`. At the very least, "
-":term:`upip` is available in the :term:`MicroPython Unix port`."
+"$ ./micropython -m mip install pkgname-or-url\n"
+"$ ./micropython -m mip install pkgname-or-url@version"
 msgstr ""
 
-#: ../../../reference/packages.rst:81
+#: ../../reference/packages.rst:68 ../../reference/packages.rst:87
 msgid ""
-"On any :term:`MicroPython port` providing :term:`upip`, it can be "
-"accessed as following::"
+"The ``--target=path``, ``--no-mpy``, and ``--index`` arguments can be "
+"set::"
 msgstr ""
 
-#: ../../../reference/packages.rst:84
+#: ../../reference/packages.rst:70
 msgid ""
-"import upip\n"
-"upip.help()\n"
-"upip.install(package_or_package_list, [path])"
+"$ ./micropython -m mip install --target=third-party pkgname\n"
+"$ ./micropython -m mip install --no-mpy pkgname\n"
+"$ ./micropython -m mip install --index https://host/pi pkgname"
 msgstr ""
 
-#: ../../../reference/packages.rst:88
+#: ../../reference/packages.rst:75
+msgid "Installing packages with ``mpremote``"
+msgstr ""
+
+#: ../../reference/packages.rst:77
 msgid ""
-"Where *package_or_package_list* is the name of a distribution package to "
-"install, or a list of such names to install multiple packages. Optional "
-"*path* parameter specifies filesystem location to install under and "
-"defaults to the standard library location (see below)."
+"The :term:`mpremote` tool also includes the same functionality as ``mip``"
+" and can be used from a host PC to install packages to a locally "
+"connected device (e.g. via USB or UART)::"
 msgstr ""
 
-#: ../../../reference/packages.rst:94
-msgid "An example of installing a specific package and then using it::"
-msgstr ""
-
-#: ../../../reference/packages.rst:96
+#: ../../reference/packages.rst:81
 msgid ""
-">>> import upip\n"
-">>> upip.install(\"micropython-pystone_lowmem\")\n"
-"[...]\n"
-">>> import pystone_lowmem\n"
-">>> pystone_lowmem.main()"
+"$ mpremote mip install pkgname\n"
+"$ mpremote mip install pkgname@x.y\n"
+"$ mpremote mip install http://example.com/x/y/foo.py\n"
+"$ mpremote mip install github:org/repo\n"
+"$ mpremote mip install github:org/repo@branch-or-tag"
 msgstr ""
 
-#: ../../../reference/packages.rst:102
+#: ../../reference/packages.rst:89
 msgid ""
-"Note that the name of Python package and the name of distribution package"
-" for it in general don't have to match, and oftentimes they don't. This "
-"is because PyPI provides a central package repository for all different "
-"Python implementations and versions, and thus distribution package names "
-"may need to be namespaced for a particular implementation. For example, "
-"all packages from `micropython-lib` follow this naming convention: for a "
-"Python module or package named ``foo``, the distribution package name is "
-"``micropython-foo``."
+"$ mpremote mip install --target=/flash/third-party pkgname\n"
+"$ mpremote mip install --no-mpy pkgname\n"
+"$ mpremote mip install --index https://host/pi pkgname"
 msgstr ""
 
-#: ../../../reference/packages.rst:111
+#: ../../reference/packages.rst:94
+msgid "Installing packages manually"
+msgstr ""
+
+#: ../../reference/packages.rst:96
 msgid ""
-"For the ports which run MicroPython executable from the OS command "
-"prompts (like the Unix port), `upip` can be (and indeed, usually is) run "
-"from the command line instead of MicroPython's own REPL. The commands "
-"which corresponds to the example above are::"
+"Packages can also be installed (in either .py or .mpy form) by manually "
+"copying the files to the device. Depending on the board this might be via"
+" USB Mass Storage, the :term:`mpremote` tool (e.g. ``mpremote fs cp "
+"path/to/package.py :package.py``), :term:`webrepl`, etc."
 msgstr ""
 
-#: ../../../reference/packages.rst:116
+#: ../../reference/packages.rst:102
+msgid "Writing & publishing packages"
+msgstr ""
+
+#: ../../reference/packages.rst:104
 msgid ""
-"micropython -m upip -h\n"
-"micropython -m upip install [-p <path>] <packages>...\n"
-"micropython -m upip install micropython-pystone_lowmem"
+"Publishing to :term:`micropython-lib` is the easiest way to make your "
+"package broadly accessible to MicroPython users, and automatically "
+"available via ``mip`` and ``mpremote`` and compiled to bytecode. See "
+"https://github.com/micropython/micropython-lib for more information."
 msgstr ""
 
-#: ../../../reference/packages.rst:120
-msgid "[TODO: Describe installation path.]"
-msgstr ""
-
-#: ../../../reference/packages.rst:124
-msgid "Cross-installing packages"
-msgstr ""
-
-#: ../../../reference/packages.rst:126
+#: ../../reference/packages.rst:109
 msgid ""
-"For :term:`MicroPython ports <MicroPython port>` without native "
-"networking capabilities, the recommend process is \"cross-installing\" "
-"them into a \"directory image\" using the :term:`MicroPython Unix port`, "
-"and then transferring this image to a device by suitable means."
+"To write a \"self-hosted\" package that can be downloaded by ``mip`` or "
+"``mpremote``, you need a static webserver (or GitHub) to host either a "
+"single .py file, or a package.json file alongside your .py files."
 msgstr ""
 
-#: ../../../reference/packages.rst:131
+#: ../../reference/packages.rst:113
+msgid "A typical package.json for an example ``mlx90640`` library looks like::"
+msgstr ""
+
+#: ../../reference/packages.rst:115
 msgid ""
-"Installing to a directory image involves using ``-p`` switch to "
-":term:`upip`::"
+"{\n"
+"  \"urls\": [\n"
+"    [\"mlx90640/__init__.py\", \"github:org/micropython-"
+"mlx90640/mlx90640/__init__.py\"],\n"
+"    [\"mlx90640/utils.py\", \"github:org/micropython-"
+"mlx90640/mlx90640/utils.py\"]\n"
+"  ],\n"
+"  \"deps\": [\n"
+"    [\"collections-defaultdict\", \"latest\"],\n"
+"    [\"os-path\", \"latest\"]\n"
+"  ],\n"
+"  \"version\": \"0.2\"\n"
+"}"
 msgstr ""
 
-#: ../../../reference/packages.rst:133
-msgid "micropython -m upip install -p install_dir micropython-pystone_lowmem"
-msgstr ""
-
-#: ../../../reference/packages.rst:135
+#: ../../reference/packages.rst:127
 msgid ""
-"After this command, the package content (and contents of every dependency"
-" packages) will be available in the ``install_dir/`` subdirectory. You "
-"would need to transfer contents of this directory (without the "
-"``install_dir/`` prefix) to the device, at the suitable location, where "
-"it can be found by the Python ``import`` statement (see discussion of the"
-" :term:`upip` installation path above)."
+"This includes two files, hosted at a GitHub repo named ``org/micropython-"
+"mlx90640``, which install into the ``mlx90640`` directory on the device. "
+"It depends on ``collections-defaultdict`` and ``os-path`` which will be "
+"installed automatically."
 msgstr ""
 
-#: ../../../reference/packages.rst:144
-msgid "Cross-installing packages with freezing"
+#: ../../reference/packages.rst:133
+msgid "Freezing packages"
 msgstr ""
 
-#: ../../../reference/packages.rst:146
+#: ../../reference/packages.rst:135
 msgid ""
-"For the low-memory :term:`MicroPython ports <MicroPython port>`, the "
-"process described in the previous section does not provide the most "
-"efficient resource usage,because the packages are installed in the source"
-" form, so need to be compiled to the bytecome on each import. This "
-"compilation requires RAM, and the resulting bytecode is also stored in "
-"RAM, reducing its amount available for storing application data. "
-"Moreover, the process above requires presence of the filesystem on a "
-"device, and the most resource-constrained devices may not even have it."
+"When a Python module or package is imported from the device filesystem, "
+"it is compiled into :term:`bytecode` in RAM, ready to be executed by the "
+"VM. For a :term:`.mpy file`, this conversion has been done already, but "
+"the bytecode still ends up in RAM."
 msgstr ""
 
-#: ../../../reference/packages.rst:155
+#: ../../reference/packages.rst:140
 msgid ""
-"The bytecode freezing is a process which resolves all the issues "
-"mentioned above:"
+"For low-memory devices, or for large applications, it can be advantageous"
+" to instead run the bytecode from ROM (i.e. flash memory). This can be "
+"done by \"freezing\" the bytecode into the MicroPython firmware, which is"
+" then flashed to the device. The runtime performance is the same "
+"(although importing is faster), but it can free up significant amounts of"
+" RAM for your program to use."
 msgstr ""
 
-#: ../../../reference/packages.rst:158
-msgid "The source code is pre-compiled into bytecode and store as such."
-msgstr ""
-
-#: ../../../reference/packages.rst:159
-msgid "The bytecode is stored in ROM, not RAM."
-msgstr ""
-
-#: ../../../reference/packages.rst:160
-msgid "Filesystem is not required for frozen packages."
-msgstr ""
-
-#: ../../../reference/packages.rst:162
+#: ../../reference/packages.rst:147
 msgid ""
-"Using frozen bytecode requires building the executable (firmware) for a "
-"given :term:`MicroPython port` from the C source code. Consequently, the "
-"process is:"
+"The downside of this approach is that it's much slower to develop, "
+"because you have to flash the firmware each time, but it can be still "
+"useful to freeze dependencies that don't change often."
 msgstr ""
 
-#: ../../../reference/packages.rst:166
+#: ../../reference/packages.rst:151
 msgid ""
-"Follow the instructions for a particular port on setting up a toolchain "
-"and building the port. For example, for ESP8266 port, study instructions "
-"in ``ports/esp8266/README.md`` and follow them. Make sure you can build "
-"the port and deploy the resulting executable/firmware successfully before"
-" proceeding to the next steps."
-msgstr ""
-
-#: ../../../reference/packages.rst:171
-msgid ""
-"Build :term:`MicroPython Unix port` and make sure it is in your PATH and "
-"you can execute ``micropython``."
-msgstr ""
-
-#: ../../../reference/packages.rst:173
-msgid "Change to port's directory (e.g. ``ports/esp8266/`` for ESP8266)."
-msgstr ""
-
-#: ../../../reference/packages.rst:174
-msgid ""
-"Run ``make clean-frozen``. This step cleans up any previous modules which"
-" were installed for freezing (consequently, you need to skip this step to"
-" add additional modules, instead of starting from scratch)."
-msgstr ""
-
-#: ../../../reference/packages.rst:178
-msgid ""
-"Run ``micropython -m upip install -p modules <packages>...`` to install "
-"packages you want to freeze."
-msgstr ""
-
-#: ../../../reference/packages.rst:180
-msgid "Run ``make clean``."
-msgstr ""
-
-#: ../../../reference/packages.rst:181
-msgid "Run ``make``."
-msgstr ""
-
-#: ../../../reference/packages.rst:183
-msgid ""
-"After this, you should have the executable/firmware with modules as the "
-"bytecode inside, which you can deploy the usual way."
-msgstr ""
-
-#: ../../../reference/packages.rst:186
-msgid "Few notes:"
-msgstr ""
-
-#: ../../../reference/packages.rst:188
-msgid ""
-"Step 5 in the sequence above assumes that the distribution package is "
-"available from PyPI. If that is not the case, you would need to copy "
-"Python source files manually to ``modules/`` subdirectory of the port "
-"directory. (Note that upip does not support installing from e.g. version "
-"control repositories)."
-msgstr ""
-
-#: ../../../reference/packages.rst:193
-msgid ""
-"The firmware for baremetal devices usually has size restrictions, so "
-"adding too many frozen modules may overflow it. Usually, you would get a "
-"linking error if this happens. However, in some cases, an image may be "
-"produced, which is not runnable on a device. Such cases are in general "
-"bugs, and should be reported and further investigated. If you face such a"
-" situation, as an initial step, you may want to decrease the amount of "
-"frozen modules included."
-msgstr ""
-
-#: ../../../reference/packages.rst:203
-msgid "Creating distribution packages"
-msgstr ""
-
-#: ../../../reference/packages.rst:205
-msgid ""
-"Distribution packages for MicroPython are created in the same manner as "
-"for CPython or any other Python implementation, see references at the end"
-" of chapter. Setuptools (instead of distutils) should be used, because "
-"distutils do not support dependencies and other features. \"Source "
-"distribution\" (``sdist``) format is used for packaging. The post-"
-"processing discussed above, (and pre-processing discussed in the "
-"following section) is achieved by using custom ``sdist`` command for "
-"setuptools. Thus, packaging steps remain the same as for the standard "
-"setuptools, the user just needs to override ``sdist`` command "
-"implementation by passing the appropriate argument to ``setup()`` call::"
-msgstr ""
-
-#: ../../../reference/packages.rst:216
-msgid ""
-"from setuptools import setup\n"
-"import sdist_upip\n"
-"\n"
-"setup(\n"
-"    ...,\n"
-"    cmdclass={'sdist': sdist_upip.sdist}\n"
-")"
-msgstr ""
-
-#: ../../../reference/packages.rst:224
-msgid ""
-"The sdist_upip.py module as referenced above can be found in "
-"`micropython-lib`: https://github.com/micropython/micropython-"
-"lib/blob/master/sdist_upip.py"
-msgstr ""
-
-#: ../../../reference/packages.rst:230
-msgid "Application resources"
-msgstr ""
-
-#: ../../../reference/packages.rst:232
-msgid ""
-"A complete application, besides the source code, oftentimes also consists"
-" of data files, e.g. web page templates, game images, etc. It's clear how"
-" to deal with those when application is installed manually - you just put"
-" those data files in the filesystem at some location and use the normal "
-"file access functions."
-msgstr ""
-
-#: ../../../reference/packages.rst:238
-msgid ""
-"The situation is different when deploying applications from packages - "
-"this is more advanced, streamlined and flexible way, but also requires "
-"more advanced approach to accessing data files. This approach is treating"
-" the data files as \"resources\", and abstracting away access to them."
-msgstr ""
-
-#: ../../../reference/packages.rst:243
-msgid ""
-"Python supports resource access using its \"setuptools\" library, using "
-"``pkg_resources`` module. MicroPython, following its usual approach, "
-"implements subset of the functionality of that module, specifically "
-"``pkg_resources.resource_stream(package, resource)`` function. The idea "
-"is that an application calls this function, passing a resource "
-"identifier, which is a relative path to data file within the specified "
-"package (usually top-level application package). It returns a stream "
-"object which can be used to access resource contents. Thus, the "
-"``resource_stream()`` emulates interface of the standard `open()` "
-"function."
-msgstr ""
-
-#: ../../../reference/packages.rst:254
-msgid ""
-"Implementation-wise, ``resource_stream()`` uses file operations "
-"underlyingly, if distribution package is install in the filesystem. "
-"However, it also supports functioning without the underlying filesystem, "
-"e.g. if the package is frozen as the bytecode. This however requires an "
-"extra intermediate step when packaging application - creation of \"Python"
-" resource module\"."
-msgstr ""
-
-#: ../../../reference/packages.rst:261
-msgid ""
-"The idea of this module is to convert binary data to a Python bytes "
-"object, and put it into the dictionary, indexed by the resource name. "
-"This conversion is done automatically using overridden ``sdist`` command "
-"described in the previous section."
-msgstr ""
-
-#: ../../../reference/packages.rst:266
-msgid ""
-"Let's trace the complete process using the following example. Suppose "
-"your application has the following structure::"
-msgstr ""
-
-#: ../../../reference/packages.rst:269
-msgid ""
-"my_app/\n"
-"    __main__.py\n"
-"    utils.py\n"
-"    data/\n"
-"        page.html\n"
-"        image.png"
-msgstr ""
-
-#: ../../../reference/packages.rst:276
-msgid ""
-"``__main__.py`` and ``utils.py`` should access resources using the "
-"following calls::"
-msgstr ""
-
-#: ../../../reference/packages.rst:279
-msgid ""
-"import pkg_resources\n"
-"\n"
-"pkg_resources.resource_stream(__name__, \"data/page.html\")\n"
-"pkg_resources.resource_stream(__name__, \"data/image.png\")"
-msgstr ""
-
-#: ../../../reference/packages.rst:284
-msgid ""
-"You can develop and debug using the :term:`MicroPython Unix port` as "
-"usual. When time comes to make a distribution package out of it, just use"
-" overridden \"sdist\" command from sdist_upip.py module as described in "
-"the previous section."
-msgstr ""
-
-#: ../../../reference/packages.rst:289
-msgid ""
-"This will create a Python resource module named ``R.py``, based on the "
-"files declared in ``MANIFEST`` or ``MANIFEST.in`` files (any non-``.py`` "
-"file will be considered a resource and added to ``R.py``) - before "
-"proceeding with the normal packaging steps."
-msgstr ""
-
-#: ../../../reference/packages.rst:294
-msgid ""
-"Prepared like this, your application will work both when deployed to "
-"filesystem and as frozen bytecode."
-msgstr ""
-
-#: ../../../reference/packages.rst:297
-msgid "If you would like to debug ``R.py`` creation, you can run::"
-msgstr ""
-
-#: ../../../reference/packages.rst:299
-msgid "python3 setup.py sdist --manifest-only"
-msgstr ""
-
-#: ../../../reference/packages.rst:301
-msgid ""
-"Alternatively, you can use tools/mpy_bin2res.py script from the "
-"MicroPython distribution, in which can you will need to pass paths to all"
-" resource files::"
-msgstr ""
-
-#: ../../../reference/packages.rst:305
-msgid "mpy_bin2res.py data/page.html data/image.png"
-msgstr ""
-
-#: ../../../reference/packages.rst:310
-msgid "Python Packaging User Guide: https://packaging.python.org/"
-msgstr ""
-
-#: ../../../reference/packages.rst:311
-msgid "Setuptools documentation: https://setuptools.readthedocs.io/"
-msgstr ""
-
-#: ../../../reference/packages.rst:312
-msgid "Distutils documentation: https://docs.python.org/3/library/distutils.html"
+"Freezing is done by writing a manifest file and using it in the build, "
+"often as part of a custom board definition. See the :ref:`manifest` guide"
+" for more information."
 msgstr ""
 
 #: ../../reference/pyboard.py.rst:4

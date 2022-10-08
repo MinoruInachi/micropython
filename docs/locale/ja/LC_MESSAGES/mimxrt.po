@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython 1.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-28 23:17+0900\n"
-"PO-Revision-Date: 2022-05-29 10:24+0900\n"
+"POT-Creation-Date: 2022-10-08 21:05+0900\n"
+"PO-Revision-Date: 2022-10-08 21:39+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -871,7 +871,7 @@ msgstr ""
 msgid "D36"
 msgstr ""
 
-#: ../../mimxrt/pinout.rst:97 ../../mimxrt/pinout.rst:325
+#: ../../mimxrt/pinout.rst:97
 msgid "Pins denoted with (*) are by default not wired at the board."
 msgstr "(*) で示されたピンはデフォルトで基板に配線されていません。"
 
@@ -1695,6 +1695,16 @@ msgstr ""
 #: ../../mimxrt/pinout.rst:322
 msgid "J3_09/J3_05/J3_08_J3_11"
 msgstr ""
+
+#: ../../mimxrt/pinout.rst:325
+msgid ""
+"Pins denoted with (*) are by default not wired at the board. The CS0 and "
+"CS1 signals are enabled with the keyword option cs=0 or cs=1 of the SPI "
+"object constructor."
+msgstr ""
+"(*) で示されたピンはデフォルトで基板に配線されていません。"
+"CS0 と CS1 信号は、SPI オブジェクトのコンストラクタのキーワードオプション cs=0 "
+"または cs=1 で有効になります。"
 
 #: ../../mimxrt/pinout.rst:333
 msgid "Hardware I2C pin assignment"
@@ -2575,21 +2585,32 @@ msgstr ""
 
 #: ../../mimxrt/quickref.rst:304
 msgid ""
-"from machine import SPI\n"
+"from machine import SPI, Pin\n"
 "\n"
 "spi = SPI(0, 10000000)\n"
-"spi.write('Hello World')"
+"cs_pin = Pin(6, Pin.OUT, value=1)\n"
+"cs_pin(0)\n"
+"spi.write('Hello World')\n"
+"cs_pin(1)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:309
+#: ../../mimxrt/quickref.rst:312
 msgid ""
 "For the assignment of Pins to SPI signals, refer to :ref:`Hardware SPI "
-"pinout <mimxrt_spi_pinout>`."
+"pinout <mimxrt_spi_pinout>`. The keyword option cs=n can be used to "
+"enable the cs pin 0 or 1 for an automatic cs signal. The default is "
+"cs=-1. Using cs=-1 the automatic cs signal is not created. In that case, "
+"cs has to be set by the script. Clearing that assignment requires a power"
+" cycle."
 msgstr ""
 "SPI 信号線のピン割当てについては :ref:`ハードウェア SPI 入出力ピン "
 "<mimxrt_spi_pinout>` を参照してください。"
+"キーワードオプション cs=n を使うと、cs ピン 0 または 1 を自動 cs 信号として有効化"
+"できます。デフォルトは cs=-1 です。cs=-1 を適用すると自動 cs 信号は生成されません。"
+"この場合、cs はスクリプトによって設定されなければなりません。その割り当てをクリア"
+"するには電源の再投入が必要です。"
 
-#: ../../mimxrt/quickref.rst:314
+#: ../../mimxrt/quickref.rst:320
 msgid ""
 "Even if the highest reliable baud rate at the moment is about 30 Mhz, "
 "setting a baud rate will not always result in exactly that frequency, "
@@ -2598,7 +2619,7 @@ msgstr ""
 "現時点で最も信頼性の高いボーレートが 30MHz 程度であっても、"
 "特に高いボーレートでは、ボーレートの設定が必ずしもその通りの周波数になるとは限りません。"
 
-#: ../../mimxrt/quickref.rst:318
+#: ../../mimxrt/quickref.rst:324
 msgid ""
 "Sending at higher baud rate is possible. In the tests receiving worked up"
 " to 60 MHz, sending up to 90 MHz."
@@ -2606,11 +2627,11 @@ msgstr ""
 "より高速なボーレートでの送信も可能です。テストでは、受信は 60MHz まで、送信は "
 "90MHz まで動作しました。"
 
-#: ../../mimxrt/quickref.rst:322
+#: ../../mimxrt/quickref.rst:328
 msgid "Software I2C bus"
 msgstr "ソフトウェア I2C バス"
 
-#: ../../mimxrt/quickref.rst:324
+#: ../../mimxrt/quickref.rst:330
 msgid ""
 "Software I2C (using bit-banging) works on all output-capable pins, and is"
 " accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
@@ -2618,7 +2639,7 @@ msgstr ""
 "ソフトウェア I2C (ビット・バンギングを使用)は、出力可能なすべてのピンで動作し、 "
 ":ref:`machine.SoftI2C <machine.SoftI2C>` クラスを使ってアクセスします。"
 
-#: ../../mimxrt/quickref.rst:327
+#: ../../mimxrt/quickref.rst:333
 msgid ""
 "from machine import Pin, SoftI2C\n"
 "\n"
@@ -2644,15 +2665,15 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをペリフェラルに書き込み"
 
-#: ../../mimxrt/quickref.rst:339
+#: ../../mimxrt/quickref.rst:345
 msgid "The highest supported freq is 400000."
 msgstr "サポートしている最大周波数は 400000 です。"
 
-#: ../../mimxrt/quickref.rst:342
+#: ../../mimxrt/quickref.rst:348
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../mimxrt/quickref.rst:344
+#: ../../mimxrt/quickref.rst:350
 msgid ""
 "There are up to four hardware I2C channels that allow faster transmission"
 " rates and support the full I2C protocol.  The I2C signals have fixed "
@@ -2665,7 +2686,7 @@ msgstr ""
 "I2C 信号線のピン割当てについては :ref:`ハードウェア I2C の入出力ピン "
 "<mimxrt_i2c_pinout>` を参照してください。"
 
-#: ../../mimxrt/quickref.rst:348
+#: ../../mimxrt/quickref.rst:354
 msgid ""
 "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class "
 "and has the same methods as software SPI above::"
@@ -2673,7 +2694,7 @@ msgstr ""
 "ハードウェア I2C には :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。
 "このクラスには先述のソフトウェア I2C と同じメソッドがあります::"
 
-#: ../../mimxrt/quickref.rst:351
+#: ../../mimxrt/quickref.rst:357
 msgid ""
 "from machine import I2C\n"
 "\n"
@@ -2681,11 +2702,11 @@ msgid ""
 "i2c.writeto(0x76, b\"Hello World\")"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:357
+#: ../../mimxrt/quickref.rst:363
 msgid "I2S bus"
 msgstr "I2S バス"
 
-#: ../../mimxrt/quickref.rst:359
+#: ../../mimxrt/quickref.rst:365
 msgid ""
 "See :ref:`machine.I2S <machine.I2S>`. Example using a Teensy 4.1 board "
 "with a simple external Codec like UDA1334.::"
@@ -2694,7 +2715,7 @@ msgstr ""
 "次のコードは Teensy 4.1 ボードと UDA1334 のようなシンプルな外部コーデックを"
 "使った例です::"
 
-#: ../../mimxrt/quickref.rst:362
+#: ../../mimxrt/quickref.rst:368
 msgid ""
 "from machine import I2S, Pin\n"
 "i2s = I2S(2, sck=Pin(26), ws=Pin(27), sd=Pin(7),\n"
@@ -2708,11 +2729,11 @@ msgstr ""
 "    rate=44100,ibuf=40000)\n"
 "i2s.write(buf)             # オーディオサンプルのバッファを I2S デバイスに書き出す"
 
-#: ../../mimxrt/quickref.rst:369
+#: ../../mimxrt/quickref.rst:375
 msgid "Example for using I2S with a MIMXRT10xx_DEV board::"
 msgstr "次のコードは MIMXRT10xx_DEV ボードで I2S を使う例です::"
 
-#: ../../mimxrt/quickref.rst:371
+#: ../../mimxrt/quickref.rst:377
 msgid ""
 "from machine import I2S, I2C, Pin\n"
 "import wm8960\n"
@@ -2743,7 +2764,7 @@ msgstr ""
 "    rate=32000,ibuf=10000)\n"
 "i2s.readinto(buf)          # I2S デバイスからのオーディオサンプルをバッファに読み込む"
 
-#: ../../mimxrt/quickref.rst:385
+#: ../../mimxrt/quickref.rst:391
 msgid ""
 "In this example, the input channels are swapped in the WM8960 driver, "
 "since the on-board microphone is connected to the right channel, but mono"
@@ -2757,11 +2778,11 @@ msgstr ""
 "これは意図的なもので、MW8960コーデックでは、これらの信号が RX と TX で共有"
 "されているからです。"
 
-#: ../../mimxrt/quickref.rst:391
+#: ../../mimxrt/quickref.rst:397
 msgid "Example using the Teensy audio shield::"
 msgstr "次こコードは Teensy オーディオシールドを使った例です。"
 
-#: ../../mimxrt/quickref.rst:393
+#: ../../mimxrt/quickref.rst:399
 msgid ""
 "from machine import I2C, I2S, Pin\n"
 "from sgtl5000 import CODEC\n"
@@ -2799,7 +2820,7 @@ msgstr ""
 "\n"
 "i2s.write(buf)             # オーディオサンプルのバッファを I2S デバイスに書き出す"
 
-#: ../../mimxrt/quickref.rst:411
+#: ../../mimxrt/quickref.rst:417
 msgid ""
 "The SGTL5000 codec used by the Teensy Audio shield uses the RX signals "
 "for both RX and TX.  Note that the codec is initialized after the I2S "
@@ -2810,7 +2831,7 @@ msgstr ""
 "両方に使います。コーデックは、I2S デバイスの後で初期化されることに注意してください。"
 "MCK は I2C の動作に必要で、I2Sコントローラから提供されるため、これは不可欠なことです。"
 
-#: ../../mimxrt/quickref.rst:416
+#: ../../mimxrt/quickref.rst:422
 msgid ""
 "MIMXRT boards may have 1 or 2 I2S buses available at the board "
 "connectors. On MIMXRT1010 devices the bus numbers are 1 and 3. The I2S "
@@ -2823,15 +2844,15 @@ msgstr ""
 "I2S 信号線のピン割当てについては :ref:`I2S 入出力ピン <mimxrt_i2s_pinout>` "
 "を参照してください。"
 
-#: ../../mimxrt/quickref.rst:422
+#: ../../mimxrt/quickref.rst:428
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../mimxrt/quickref.rst:424
+#: ../../mimxrt/quickref.rst:430
 msgid "See :ref:`machine.RTC <machine.RTC>`::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../mimxrt/quickref.rst:426
+#: ../../mimxrt/quickref.rst:432
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -2848,7 +2869,7 @@ msgstr ""
 "rtc.datetime() # 日時を取得\n"
 "rtc.now() # CPython フォーマットで日時を返す。"
 
-#: ../../mimxrt/quickref.rst:433
+#: ../../mimxrt/quickref.rst:439
 msgid ""
 "The i.MXRT MCU supports battery backup of the RTC.  By connecting a "
 "battery of 1.5-3.6V, time and date are maintained in the absence of the "
@@ -2860,15 +2881,15 @@ msgstr ""
 "バッテリーから引き出される電流は 〜20µA で、これはかなり大きいです。"
 "CR2032 コイン電池で約1年使用できます。"
 
-#: ../../mimxrt/quickref.rst:439
+#: ../../mimxrt/quickref.rst:445
 msgid "SD card"
 msgstr "SD カード"
 
-#: ../../mimxrt/quickref.rst:441
+#: ../../mimxrt/quickref.rst:447
 msgid "See :ref:`machine.SDCard <machine.SDCard>`::"
 msgstr ":ref:`machine.SDCard <machine.SDCard>` を参照::"
 
-#: ../../mimxrt/quickref.rst:443
+#: ../../mimxrt/quickref.rst:449
 msgid ""
 "import machine, os\n"
 "\n"
@@ -2886,7 +2907,7 @@ msgstr ""
 "os.listdir('/sd')    # ディレクトリ内容の一覧\n"
 "os.umount('/sd')     # 取出し"
 
-#: ../../mimxrt/quickref.rst:451
+#: ../../mimxrt/quickref.rst:457
 msgid ""
 "Note: The i.mx-rt 1011 and 1015 based boards do not support the "
 "``machine.SDCard`` class.  For these, the SPI based driver ``sdcard.py`` "
@@ -2899,7 +2920,7 @@ msgstr ""
 "モジュールの CS ピンをオーバードライブする必要があります。"
 "使用例を次に示します。"
 
-#: ../../mimxrt/quickref.rst:456
+#: ../../mimxrt/quickref.rst:462
 msgid ""
 "import os, sdcard, machine\n"
 "\n"
@@ -2911,15 +2932,15 @@ msgid ""
 "os.mount(vfs, \"/sdcard\")"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:466
+#: ../../mimxrt/quickref.rst:472
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../mimxrt/quickref.rst:468
+#: ../../mimxrt/quickref.rst:474
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../mimxrt/quickref.rst:470
+#: ../../mimxrt/quickref.rst:476
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -2943,11 +2964,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../mimxrt/quickref.rst:481
+#: ../../mimxrt/quickref.rst:487
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
 
-#: ../../mimxrt/quickref.rst:483
+#: ../../mimxrt/quickref.rst:489
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -2958,7 +2979,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:491
+#: ../../mimxrt/quickref.rst:497
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -2968,15 +2989,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../mimxrt/quickref.rst:496
+#: ../../mimxrt/quickref.rst:502
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../mimxrt/quickref.rst:498
+#: ../../mimxrt/quickref.rst:504
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../mimxrt/quickref.rst:500
+#: ../../mimxrt/quickref.rst:506
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -3004,7 +3025,7 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../mimxrt/quickref.rst:513
+#: ../../mimxrt/quickref.rst:519
 msgid ""
 "Be sure to have a 4.7k pull-up resistor on the data line.  Some DHT "
 "modules may already have one."
@@ -3012,11 +3033,11 @@ msgstr ""
 "4.7k のプルアップ抵抗をデータラインに接続してください。"
 "DHT モジュールの中にはプルアップ抵抗が実装済みのものもあります。
 
-#: ../../mimxrt/quickref.rst:517
+#: ../../mimxrt/quickref.rst:523
 msgid "Ethernet driver"
 msgstr "イーサネットドライバー"
 
-#: ../../mimxrt/quickref.rst:519
+#: ../../mimxrt/quickref.rst:525
 msgid ""
 "All MIMXRT boards except the MIMXRT1011 based boards and Teensy 4.0 "
 "support Ethernet.  Example usage::"
@@ -3024,7 +3045,7 @@ msgstr ""
 "MIMXRT1011 搭載ボードと Teensy 4.0 を除くすべての MIMXRT ボードではイーサネットを"
 "サポートしています。使用例を次に示します。"
 
-#: ../../mimxrt/quickref.rst:522
+#: ../../mimxrt/quickref.rst:528
 msgid ""
 "import network\n"
 "\n"
@@ -3032,7 +3053,7 @@ msgid ""
 "lan.active(True)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:527
+#: ../../mimxrt/quickref.rst:533
 msgid ""
 "If there is a DHCP server in the LAN, the IP address is supplied by that "
 "server. Otherwise, the IP address can be set with lan.ifconfig().  The "
@@ -3042,7 +3063,7 @@ msgstr ""
 "DHCPサーバが無い場合は lan.ifconfig() でIPアドレスを設定できます。"
 "デフォルトのアドレスは 192.168.0.1 です。"
 
-#: ../../mimxrt/quickref.rst:531
+#: ../../mimxrt/quickref.rst:537
 msgid ""
 "Teensy 4.1 does not have an Ethernet jack on the board, but PJRC offers "
 "an adapter for self-assembly.  The Seeed ARCH MIX board has no PHY "
@@ -3058,7 +3079,7 @@ msgstr ""
 "イーサネットポートを装備しており、100MポートにはLAN(0)、1GポートにはLAN(1)と"
 "アドレス指定されています。"
 
-#: ../../mimxrt/quickref.rst:538
+#: ../../mimxrt/quickref.rst:544
 msgid ""
 "For details of the network interface refer to the class :ref:`network.LAN"
 " <network.LAN>`."
@@ -3066,11 +3087,11 @@ msgstr ""
 "ネットワークインタフェースの詳細については :ref:`network.LAN <network.LAN>` "
 "クラスを参照してください。
 
-#: ../../mimxrt/quickref.rst:541
+#: ../../mimxrt/quickref.rst:547
 msgid "Transferring files"
 msgstr "ファイルの転送"
 
-#: ../../mimxrt/quickref.rst:543
+#: ../../mimxrt/quickref.rst:549
 msgid ""
 "Files can be transferred to the i.MXRT devices for instance with the "
 "``mpremote`` tool or using an SD card.  If Ethernet is available, you can"
