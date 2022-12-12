@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.19.1\n"
+"Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-21 11:29+0900\n"
-"PO-Revision-Date: 2022-09-11 11:57+0900\n"
+"POT-Creation-Date: 2022-11-13 16:19+0900\n"
+"PO-Revision-Date: 2022-11-13 17:28+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: ../../library/array.rst:14 ../../library/collections.rst:13
 #: ../../library/cryptolib.rst:8 ../../library/io.rst:87
-#: ../../library/machine.rst:172 ../../library/pyb.rst:302
+#: ../../library/machine.rst:249 ../../library/pyb.rst:302
 #: ../../library/rp2.rst:76 ../../library/zephyr.rst:46
 msgid "Classes"
 msgstr "クラス"
@@ -1927,7 +1927,7 @@ msgstr ""
 #: ../../library/machine.Pin.rst:242 ../../library/machine.RTC.rst:79
 #: ../../library/machine.SPI.rst:139 ../../library/machine.Timer.rst:76
 #: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:207
-#: ../../library/machine.rst:188 ../../library/math.rst:177
+#: ../../library/machine.rst:226 ../../library/math.rst:177
 #: ../../library/network.WLANWiPy.rst:145 ../../library/pyb.CAN.rst:321
 #: ../../library/pyb.DAC.rst:127 ../../library/pyb.ExtInt.rst:102
 #: ../../library/pyb.I2C.rst:157 ../../library/pyb.Pin.rst:179
@@ -4800,18 +4800,68 @@ msgstr ""
 "割り込みのがある上に小さく用意されているものです)。 :ref:`isr_rules` を参照して"
 "ください。"
 
-#: ../../library/machine.rst:23 ../../library/pyb.rst:72
+#: ../../library/machine.rst:23 ../../library/stm.rst:13
+msgid "Memory access"
+msgstr "メモリアクセス"
+
+#: ../../library/machine.rst:25 ../../library/stm.rst:15
+msgid "The module exposes three objects used for raw memory access."
+msgstr "このモジュールは、素のメモリアクセスに使う3つのオブジェクトを提供します。"
+
+#: ../../library/machine.rst:29 ../../library/stm.rst:19
+msgid "Read/write 8 bits of memory."
+msgstr "メモリを８ビットで読み書きします。"
+
+#: ../../library/machine.rst:33 ../../library/stm.rst:23
+msgid "Read/write 16 bits of memory."
+msgstr "メモリを１６ビットで読み書きします。"
+
+#: ../../library/machine.rst:37 ../../library/stm.rst:27
+msgid "Read/write 32 bits of memory."
+msgstr "メモリを３２ビットで読み書きします。"
+
+#: ../../library/machine.rst:39
+msgid ""
+"Use subscript notation ``[...]`` to index these objects with the address "
+"of interest. Note that the address is the byte address, regardless of the"
+" size of memory being accessed."
+msgstr ""
+"目的のアドレスを指定するには、"
+"これらのオブジェクトのインデックス添字表記 ``[...]`` を使ってください。"
+"なお、アクセスするメモリのサイズに関係なく、アドレスはバイトアドレスです。"
+
+#: ../../library/machine.rst:43
+msgid "Example use (registers are specific to an stm32 microcontroller):"
+msgstr "使用例(レジスタは stm32 マイクロコントローラに固有のものです):"
+
+#: ../../library/machine.rst:45
+msgid ""
+"import machine\n"
+"from micropython import const\n"
+"\n"
+"GPIOA = const(0x48000000)\n"
+"GPIO_BSRR = const(0x18)\n"
+"GPIO_IDR = const(0x10)\n"
+"\n"
+"# set PA2 high\n"
+"machine.mem32[GPIOA + GPIO_BSRR] = 1 << 2\n"
+"\n"
+"# read PA3\n"
+"value = (machine.mem32[GPIOA + GPIO_IDR] >> 3) & 1"
+msgstr ""
+
+#: ../../library/machine.rst:61 ../../library/pyb.rst:72
 msgid "Reset related functions"
 msgstr "リセット関連の関数"
 
-#: ../../library/machine.rst:27
+#: ../../library/machine.rst:65
 msgid ""
 "Resets the device in a manner similar to pushing the external RESET "
 "button."
 msgstr ""
 "外部 RESET ボタンを押すのと同じようにデバイスをリセットします。"
 
-#: ../../library/machine.rst:32
+#: ../../library/machine.rst:70
 msgid ""
 "Performs a soft reset of the interpreter, deleting all Python objects and "
 "resetting the Python heap.  It tries to retain the method by which the user "
@@ -4821,7 +4871,7 @@ msgstr ""
 "Python のヒープをリセットします。MicroPython REPL への接続"
 "(シリアル、USB、Wifi など)はそのまま維持が試みられます。"
 
-#: ../../library/machine.rst:38
+#: ../../library/machine.rst:76
 msgid ""
 "Get the reset cause. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -4829,7 +4879,7 @@ msgstr ""
 "リセット原因を取得します。戻り値については :ref:`定数 <machine_constants>` を"
 "参照してください。"
 
-#: ../../library/machine.rst:42
+#: ../../library/machine.rst:80
 msgid ""
 "Reset the device and enter its bootloader.  This is typically used to put"
 " the device into a state where it can be programmed with new firmware."
@@ -4837,7 +4887,7 @@ msgstr ""
 "デバイスをリセットし、ブートローダに入ります。これは通常、デバイスを新しい"
 "ファームウェアでプログラム可能な状態にするために使います。"
 
-#: ../../library/machine.rst:45
+#: ../../library/machine.rst:83
 msgid ""
 "Some ports support passing in an optional *value* argument which can "
 "control which bootloader to enter, what to pass to it, or other things."
@@ -4845,11 +4895,11 @@ msgstr ""
 "一部のポートでは、オプションの *value* 引数を渡すことができ、"
 "どのブートローダに入るか、何を渡すかなどを制御できます。"
 
-#: ../../library/machine.rst:49 ../../library/pyb.rst:97
+#: ../../library/machine.rst:87 ../../library/pyb.rst:97
 msgid "Interrupt related functions"
 msgstr "割り込み関連の関数"
 
-#: ../../library/machine.rst:51
+#: ../../library/machine.rst:89
 msgid ""
 "The following functions allow control over interrupts.  Some systems "
 "require interrupts to operate correctly so disabling them for long "
@@ -4864,7 +4914,7 @@ msgstr ""
 "コア機能が損なわれることがあります。割り込みは最小限の時間だけ無効にし、"
 "その後は以前の状態に戻してください。たとえば次のようにします::"
 
-#: ../../library/machine.rst:57
+#: ../../library/machine.rst:95
 msgid ""
 "import machine\n"
 "\n"
@@ -4886,7 +4936,7 @@ msgstr ""
 "# 割り込みを有効にする\n"
 "machine.enable_irq(state)"
 
-#: ../../library/machine.rst:70
+#: ../../library/machine.rst:108
 msgid ""
 "Disable interrupt requests. Returns the previous IRQ state which should "
 "be considered an opaque value. This return value should be passed to the "
@@ -4897,7 +4947,7 @@ msgstr ""
 "値とみなす必要があります。この戻り値は `disable_irq()` を呼び出す前の"
 "元の状態に割り込みを復元するために `enable_irq()` 関数に渡す必要があります。"
 
-#: ../../library/machine.rst:77
+#: ../../library/machine.rst:115
 msgid ""
 "Re-enable interrupt requests. The *state* parameter should be the value "
 "that was returned from the most recent call to the `disable_irq()` "
@@ -4906,22 +4956,22 @@ msgstr ""
 "割り込み要求を再度有効にします。 *state* パラメータは `disable_irq()` 関数の"
 "最も最近の呼び出しから返された値である必要があります。"
 
-#: ../../library/machine.rst:82 ../../library/pyb.rst:115
+#: ../../library/machine.rst:120 ../../library/pyb.rst:115
 msgid "Power related functions"
 msgstr "電力関連の関数"
 
-#: ../../library/machine.rst:86
+#: ../../library/machine.rst:124
 msgid "Returns the CPU frequency in hertz."
 msgstr "CPU周波数をヘルツ単位で返します。"
 
-#: ../../library/machine.rst:88
+#: ../../library/machine.rst:126
 msgid ""
 "On some ports this can also be used to set the CPU frequency by passing "
 "in *hz*."
 msgstr ""
 "一部のポートでは *hz* を指定することで CPU の周波数を設定できます。"
 
-#: ../../library/machine.rst:92
+#: ../../library/machine.rst:130
 msgid ""
 "Gates the clock to the CPU, useful to reduce power consumption at any "
 "time during short or long periods. Peripherals continue working and "
@@ -4933,17 +4983,17 @@ msgstr ""
 "ペリフェラルは動作を継続し、割り込みが発生すると直ちに実行を再開します(多くのポートでは、"
 "システムタイマ割り込みがミリ秒単位で定期的に発生します)。"
 
-#: ../../library/machine.rst:99
+#: ../../library/machine.rst:137
 msgid ""
 "This function is deprecated, use `lightsleep()` instead with no arguments."
 msgstr ""
 "この関数は廃止予定です。代わりに `lightsleep()` を引数なしで使ってください。"
 
-#: ../../library/machine.rst:104
+#: ../../library/machine.rst:142
 msgid "Stops execution in an attempt to enter a low power state."
 msgstr "実行を停止して、低電力状態に入ります。"
 
-#: ../../library/machine.rst:106
+#: ../../library/machine.rst:144
 msgid ""
 "If *time_ms* is specified then this will be the maximum time in milliseconds that "
 "the sleep will last for.  Otherwise the sleep can last indefinitely."
@@ -4951,7 +5001,7 @@ msgstr ""
 "*time_ms* が指定されている場合、これはスリープが続く最大ミリ秒単位の時間になります。"
 "指定しなければスリープが無期限に続くようになります。"
 
-#: ../../library/machine.rst:109
+#: ../../library/machine.rst:147
 msgid ""
 "With or without a timeout, execution may resume at any time if there are "
 "events that require processing.  Such events, or wake sources, should be "
@@ -4961,7 +5011,7 @@ msgstr ""
 "そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
 "スリープ前に設定する必要があります。"
 
-#: ../../library/machine.rst:113
+#: ../../library/machine.rst:151
 msgid ""
 "The precise behaviour and power-saving capabilities of lightsleep and deepsleep is "
 "highly dependent on the underlying hardware, but the general properties are:"
@@ -4969,7 +5019,7 @@ msgstr ""
 "ライトスリープ(lightsleep)とディープスリープ(deepsleep)の正確な動作と省電力機能は、"
 "基盤となるハードウェアに大きく依存しますが、一般的な特性は次のとおりです。"
 
-#: ../../library/machine.rst:116
+#: ../../library/machine.rst:154
 msgid ""
 "A lightsleep has full RAM and state retention.  Upon wake execution is resumed "
 "from the point where the sleep was requested, with all subsystems operational."
@@ -4977,7 +5027,7 @@ msgstr ""
 "ライトスリープには RAM と状態の完全な保持があります。スリープ解除が要求された時点から実行が"
 "再開され、すべてのサブシステムが動作可能になります。"
 
-#: ../../library/machine.rst:119
+#: ../../library/machine.rst:157
 msgid ""
 "A deepsleep may not retain RAM or any other state of the system (for example "
 "peripherals or network interfaces).  Upon wake execution is resumed from the main "
@@ -4990,7 +5040,7 @@ msgstr ""
 "から実行が再開されます。 `reset_cause()` 関数は `machine.DEEPSLEEP` を返します。"
 "これは他のリセットとディープスリープからの起床を区別するのに使えます。"
 
-#: ../../library/machine.rst:127
+#: ../../library/machine.rst:165
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -4998,15 +5048,15 @@ msgstr ""
 "起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
 "を参照してください。"
 
-#: ../../library/machine.rst:129
+#: ../../library/machine.rst:167
 msgid "Availability: ESP32, WiPy."
 msgstr "可用性: ESP32、WiPy。"
 
-#: ../../library/machine.rst:132 ../../library/pyb.rst:187
+#: ../../library/machine.rst:170 ../../library/pyb.rst:187
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../library/machine.rst:136
+#: ../../library/machine.rst:174
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -5019,7 +5069,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../library/machine.rst:143
+#: ../../library/machine.rst:181
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -5029,7 +5079,7 @@ msgstr ""
 "*pulse_level* 引数には、低パルスを計時する場合に 0、高パルスを計時する"
 "場合に 1 を指定します。"
 
-#: ../../library/machine.rst:147
+#: ../../library/machine.rst:185
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -5042,7 +5092,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../library/machine.rst:152
+#: ../../library/machine.rst:190
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -5053,7 +5103,7 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../library/machine.rst:159
+#: ../../library/machine.rst:197
 msgid ""
 "Transmits *data* by bit-banging the specified *pin*. The *encoding* "
 "argument specifies how the bits are encoded, and *timing* is an encoding-"
@@ -5063,11 +5113,11 @@ msgstr ""
 "引数 *encoding* には、ビットのエンコード方法を指定し、 *timing* には"
 "エンコードに応じたタイミングを指定します。"
 
-#: ../../library/machine.rst:163
+#: ../../library/machine.rst:201
 msgid "The supported encodings are:"
 msgstr "サポートされているエンコーディングは次のとおりです:"
 
-#: ../../library/machine.rst:165
+#: ../../library/machine.rst:203
 msgid ""
 "``0`` for \"high low\" pulse duration modulation. This will transmit 0 "
 "and 1 bits as timed pulses, starting with the most significant bit. The "
@@ -5082,7 +5132,7 @@ msgstr ""
 "ナノ秒の4項目タプルでなければなりません。"
 "たとえば ``(400, 850, 800, 450)`` は 800kHz の WS2812 RGB LED のタイミング仕様です。"
 
-#: ../../library/machine.rst:172
+#: ../../library/machine.rst:210
 msgid ""
 "The accuracy of the timing varies between ports. On Cortex M0 at 48MHz, "
 "it is at best +/- 120ns, however on faster MCUs (ESP8266, ESP32, STM32, "
@@ -5092,7 +5142,7 @@ msgstr ""
 "せいぜい +/-120ns 程度ですが、より高速なMCU(ESP8266, ESP32, STM32, Pyboard）では "
 "+/-30ns 程度になります。"
 
-#: ../../library/machine.rst:176
+#: ../../library/machine.rst:214
 msgid ""
 "For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel` module "
 "for a higher-level API."
@@ -5100,24 +5150,24 @@ msgstr ""
 "WS2812/NeoPixel ストリップの制御については、上位の API である :mod:`neopixel` "
 "モジュールを参照してください。"
 
-#: ../../library/machine.rst:181
+#: ../../library/machine.rst:219
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
 #: ../../library/machine.I2C.rst:98 ../../library/machine.UART.rst:178
-#: ../../library/machine.UART.rst:213 ../../library/machine.rst:183
+#: ../../library/machine.UART.rst:213 ../../library/machine.rst:221
 msgid "Availability: WiPy."
 msgstr "可用性: WiPy"
 
-#: ../../library/machine.rst:194
+#: ../../library/machine.rst:232
 msgid "IRQ wake values."
 msgstr "IRQ 起床値。"
 
-#: ../../library/machine.rst:202
+#: ../../library/machine.rst:240
 msgid "Reset causes."
 msgstr "リセット原因。"
 
-#: ../../library/machine.rst:208
+#: ../../library/machine.rst:246
 msgid "Wake-up reasons."
 msgstr "起床理由。"
 

@@ -329,7 +329,6 @@ SRC_C += \
 	machine_i2c.c \
 	machine_i2s.c \
 	machine_spi.c \
-	machine_timer.c \
 	machine_uart.c \
 	modmachine.c \
 	modpyb.c \
@@ -475,7 +474,6 @@ USBDEV_SRC_C += $(addprefix $(USBDEV_DIR)/,\
 	)
 
 ifeq ($(MICROPY_SSL_MBEDTLS),1)
-CFLAGS += -DMBEDTLS_CONFIG_FILE='"mbedtls/mbedtls_config.h"'
 LIB_SRC_C += mbedtls/mbedtls_port.c
 endif
 

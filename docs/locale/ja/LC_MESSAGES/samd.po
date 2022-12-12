@@ -1,0 +1,4852 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2022,
+# Damien P. George, Paul Sokolovsky, and contributors
+# This file is distributed under the same license as the MicroPython
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroPython latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-13 16:19+0900\n"
+"PO-Revision-Date: 2022-12-12 18:27+0900\n"
+"Last-Translator: Minoru Inachi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: ../../samd/general.rst:4
+msgid "General information about the SAMD port"
+msgstr "SAMD ポートに関する一般的なこと"
+
+#: ../../samd/general.rst:6
+msgid ""
+"The SAMD21/SAMD51 MCU family is a high performance family of devices made"
+" by MicroChip. The SAMD21 devices are based on an ARM M0+ core, the "
+"SAMD51 device on ARM Cortex M4 core. They provide many on-chip I/O units "
+"for building small to medium sized devices."
+msgstr ""
+"SAMD21/SAMD51 MCU ファミリーは、MicroChip社製の高性能デバイスファミリーです。"
+"SAMD21 デバイスは ARM M0+ コアを、SAMD51 デバイスは ARM Cortex M4 コアを"
+"ベースにしています。これらのデバイスは、中小規模のデバイスを構築するために多くの"
+"オンチップ I/O ユニットを提供します。"
+
+#: ../../samd/general.rst:11
+msgid "Multitude of boards"
+msgstr "豊富なボード"
+
+#: ../../samd/general.rst:13
+msgid ""
+"There is a multitude of modules and boards from different sources which "
+"carry an SAMD21/SAMD51 chip.  MicroPython aims to provide a generic port "
+"which runs on as many boards/modules as possible, but there may be "
+"limitations.  The Adafruit ItsyBitsy M0 Express, Adafruit Feather M4 "
+"Express and the Adafruit ItsyBitsy M4 Express development boards are "
+"taken as reference for the port (for example, testing is performed on "
+"them). For any board you are using please make sure you have a data "
+"sheet, schematics and other reference materials so you can look up any "
+"board-specific functions."
+msgstr ""
+"SAMD21/SAMD51 チップを搭載したモジュールやボードは、様々なところから多数提供されています。"
+"MicroPython は、できるだけ多くのボードやモジュールで動作する汎用ポートの提供を"
+"目指していますが、制限がある場合があります。Adafruit ItsyBitsy M0 Express、"
+"Adafruit Feather M4 Express、Adafruit ItsyBitsy M4 Express 開発ボードが、"
+"ポートリファレンスのボードとして使われています"
+"(たとえば、テストはこれらのボードで行っています)。"
+"利用するボードについては、データシート、回路図、その他の参考資料を用意し、ボード固有の"
+"機能を調べられるようにしておいてください。"
+
+#: ../../samd/general.rst:21
+msgid "The following boards are at the moment supported by the port:"
+msgstr "現在のところ、ポートでサポートしているボードは次のとおりです:"
+
+#: ../../samd/general.rst:23
+msgid "ADAFRUIT FEATHER M0 EXPRESS"
+msgstr ""
+
+#: ../../samd/general.rst:24
+msgid "ADAFRUIT FEATHER M4 EXPRESS"
+msgstr ""
+
+#: ../../samd/general.rst:25
+msgid "ADAFRUIT ITSYBITSY M0 EXPRESS"
+msgstr ""
+
+#: ../../samd/general.rst:26
+msgid "ADAFRUIT ITSYBITSY M4 EXPRESS"
+msgstr ""
+
+#: ../../samd/general.rst:27
+msgid "ADAFRUIT TRINKET M0"
+msgstr ""
+
+#: ../../samd/general.rst:28
+msgid "MINISAM M4"
+msgstr ""
+
+#: ../../samd/general.rst:29
+msgid "SAMD21 XPLAINED PRO"
+msgstr ""
+
+#: ../../samd/general.rst:30
+msgid "SEEED WIO TERMINAL"
+msgstr ""
+
+#: ../../samd/general.rst:31
+msgid "SEEED XIAO"
+msgstr ""
+
+#: ../../samd/general.rst:33
+msgid ""
+"To make a generic SAMD port and support as many boards as possible the "
+"following design and implementation decision were made:"
+msgstr ""
+"一般的な SAMD ポートを作成し、可能な限り多くのボードをサポートするために、"
+"次の設計と実装の決定が行われました。"
+
+#: ../../samd/general.rst:36
+msgid ""
+"GPIO pin numbering is based on the board numbering. Please have the "
+"manual/pin diagram of your board at hand to find correspondence between "
+"your board pins and actual SAMD21/SAMD51 pins. For the boards listed "
+"above, the relation between the board pin number and the GPIO number can "
+"be found at :ref:`samd_pinout`."
+msgstr ""
+"GPIO ピン番号はボードがつけている番号に基づいています。ボードのピンと実際の "
+"SAMD21/SAMD51 ピンの対応を見つけるには、ボードのマニュアル/ピン図を用意してください。"
+"上記のボードについて、ボードのピン番号とGPIO番号の関係は、 :ref:`samd_pinout` "
+"で確認できます。"
+
+#: ../../samd/general.rst:41
+msgid ""
+"The pins that can be used by MicroPython are limited to those listed in "
+"the board definition files."
+msgstr ""
+"MicroPython で使えるピンは、ボード定義ファイルに記載されているものに限定されます。"
+
+#: ../../samd/general.rst:45
+msgid "Technical specifications and SoC data sheets"
+msgstr "技術仕様および SoC データシート"
+
+#: ../../samd/general.rst:47
+msgid ""
+"The data sheets and other reference material for SAMD21/SAMD51 chip are "
+"available from the vendor site: https://www.microchip.com/en-us/products"
+"/microcontrollers-and-microprocessors/32-bit-mcus/sam-32-bit-mcus They "
+"are the primary reference for the chip technical specifications, "
+"capabilities, operating modes, internal functioning, etc."
+msgstr ""
+"SAMD21/SAMD51 チップのデータシートおよびその他の参考資料は、ベンダーのサイト "
+"https://www.microchip.com/en-us/products"
+"/microcontrollers-and-microprocessors/32-bit-mcus/sam-32-bit-mcus "
+"から入手できます。これらは、チップの技術仕様、機能、動作モード、内部機能などの"
+"主要な参考資料となっています。"
+
+#: ../../samd/general.rst:52
+msgid "For your convenience, a few technical specifications are provided below:"
+msgstr "便宜上、いくつかの技術仕様を以下に示します。"
+
+#: ../../samd/general.rst:54
+msgid "SAMD21:"
+msgstr ""
+
+#: ../../samd/general.rst:56
+msgid "Architecture: ARM Cortex M0+"
+msgstr "アーキテクチャ: ARM Cortex M0+"
+
+#: ../../samd/general.rst:57
+msgid "CPU frequency: up to 48MHz"
+msgstr "CPU 周波数: 最大 48MHz"
+
+#: ../../samd/general.rst:58
+msgid "Total RAM available: up to 32 kB (see table)"
+msgstr "使用可能なRAMの合計: 最大 32kB"
+
+#: ../../samd/general.rst:59
+msgid ""
+"Internal FlashROM: up to 256 kB Some boards provide additional external "
+"SPI flash."
+msgstr ""
+"内部フラッシュROM: 最大 256kB (ボードによっては追加の外部 SPI フラッシュがあります)
+
+#: ../../samd/general.rst:61
+msgid ""
+"GPIO: up to 52 (GPIOs are multiplexed with other functions, including "
+"external FlashROM, UART, etc.)"
+msgstr ""
+"GPIO: 最大 52 (GPIO は外部フラッシュROM、UART など、他の機能と多重化されています)"
+
+#: ../../samd/general.rst:63
+msgid "UART: up to 6 serial devices, which can used for UART, SPI or I2C."
+msgstr "UART: 最大６つのシリアルデバイス(UART、SPI、I2C として利用可能)"
+
+#: ../../samd/general.rst:64 ../../samd/general.rst:78
+msgid "I2S: 1 I2S interfaces"
+msgstr "I2S: １つの I2S インタフェース"
+
+#: ../../samd/general.rst:65
+msgid "ADC: One 12-bit SAR ADC converter with 16 channels."
+msgstr "ADC: 1 (16 チャンネルの 12 ビット SAR ADC)"
+
+#: ../../samd/general.rst:66 ../../samd/general.rst:80
+msgid "Programming: using BootROM bootloader from USB."
+msgstr "プログラミング: USB から BootROM ブートローダーを使用。"
+
+#: ../../samd/general.rst:68
+msgid "SAMD51:"
+msgstr ""
+
+#: ../../samd/general.rst:70
+msgid "Architecture: ARM Cortex M4"
+msgstr "アーキテクチャ: ARM Cortex M4"
+
+#: ../../samd/general.rst:71
+msgid "CPU frequency: up to 120MHz"
+msgstr "CPU 周波数: 最大 120MHz"
+
+#: ../../samd/general.rst:72
+msgid "Total RAM available: up to 256 kB"
+msgstr "使用可能なRAMの合計: 最大 256kB"
+
+#: ../../samd/general.rst:73
+msgid ""
+"Internal FlashROM: up to 1 MB Some boards provide additional external SPI"
+" flash."
+msgstr ""
+"内部フラッシュROM: 最大 1MB (ボードによっては追加の外部 SPI フラッシュがあります)
+
+#: ../../samd/general.rst:75
+msgid ""
+"GPIO: up to 99 (GPIOs are multiplexed with other functions, including "
+"external FlashROM, UART, etc.)"
+msgstr ""
+"GPIO: 最大 99 (GPIO は外部フラッシュROM、UART など、他の機能と多重化されています)"
+
+#: ../../samd/general.rst:77
+msgid "UART: up to 8 serial devices, which can used for UART, SPI or I2C."
+msgstr "UART: 最大８つのシリアルデバイス(UART、SPI、I2C として利用可能)"
+
+#: ../../samd/general.rst:79
+msgid "ADC: Dual 12-bit SAR ADC converter with 16 channels."
+msgstr "ADC: 2 (16 チャンネルの 12 ビット SAR ADC)"
+
+#: ../../samd/general.rst:83
+msgid ""
+"For more information see the excellent SAMD21/SAMD51 data sheets or "
+"reference manuals."
+msgstr ""
+"詳細については SAMD21/SAMD51 データシートまたはリファレンスマニュアルを参照してください。"
+
+#: ../../samd/general.rst:85
+msgid ""
+"At the moment, the SAM21 port of MicroPython requires 256kB flash, of "
+"which 64kB is used for a small file system. The SAM51 port requires 512 "
+"kB of flash, of which all flash beyond 384kB is used for a file system. "
+"Some boards have additional flash memory, which can be used as additional"
+" file space."
+msgstr ""
+"現時点で、MicroPython の SAM21 ポートは 256kB のフラッシュを必要とし、"
+"そのうち 64kB は小さなファイルシステムに使います。SAM51 ポートは 512kB "
+"のフラッシュを必要とし、そのうち 384kB を超える残りすべてのフラッシュは"
+"ファイルシステムに使います。いくつかのボードには追加のフラッシュメモリがあり、"
+"追加のファイルスペースとして使えます。"
+
+#: ../../samd/pinout.rst:4
+msgid "Pinout for the SAMD machine modules"
+msgstr "SAMD の machine モジュールにおけるピン配列"
+
+#: ../../samd/pinout.rst:6
+msgid ""
+"The assignment of device functions to pins is very flexible. The same "
+"function may be used at different pins. The representation of the "
+"assignment choices are given by a table, which is a subset of the MCU's "
+"Pin MUX table and is specific to each board, as the available pin set "
+"varies. The structure of the table is the same for each board, but the "
+"set of rows is different."
+msgstr ""
+"デバイス機能のピンへの割当ては非常に柔軟です。"
+"同じ機能が異なるピンで使われることもあります。"
+"割当ての選択肢の表現は、１つのテーブルによって与えられます。"
+"このテーブルは MCU の Pin MUX テーブルのサブセットであり、"
+"各ボードで利用可能なピンセットが異なるので、テーブルもボードで固有になります。"
+"テーブルの構造は各ボードで同じですが、行のセットはボードにより異なっています。"
+
+#: ../../samd/pinout.rst:15
+msgid "Adafruit ItsyBitsy M0 Express pin assignment table"
+msgstr "Adafruit ItsyBitsy M0 Express のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/pinout.rst:449 ../../samd/pinout.rst:493
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "Pin"
+msgstr "ピン"
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/pinout.rst:449 ../../samd/pinout.rst:493
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "GPIO"
+msgstr ""
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/pinout.rst:449 ../../samd/pinout.rst:493
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "Pin name"
+msgstr "ピン名"
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/pinout.rst:449 ../../samd/pinout.rst:493
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "IRQ"
+msgstr ""
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/pinout.rst:449 ../../samd/pinout.rst:493
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "ADC"
+msgstr ""
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/pinout.rst:449 ../../samd/pinout.rst:493
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "Serial"
+msgstr "シリアル"
+
+#: ../../samd/pinout.rst:18 ../../samd/pinout.rst:337 ../../samd/pinout.rst:393
+#: ../../samd/phinout.rst:449 ../../samd/pinout.rst:493
+msgid "TCC/TC"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:29 ../../samd/pinout.rst:32
+#: ../../samd/pinout.rst:43 ../../samd/pinout.rst:141 ../../samd/pinout.rst:143
+#: ../../samd/pinout.rst:147 ../../samd/pinout.rst:168
+#: ../../samd/pinout.rst:270 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:304 ../../samd/pinout.rst:339
+#: ../../samd/pinout.rst:357 ../../samd/pinout.rst:364
+#: ../../samd/pinout.rst:395 ../../samd/pinout.rst:413
+#: ../../samd/pinout.rst:429 ../../samd/pinout.rst:452
+#: ../../samd/pinout.rst:457 ../../samd/pinout.rst:469
+#: ../../samd/pinout.rst:495 ../../samd/pinout.rst:523
+#: ../../samd/pinout.rst:525 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:566
+#: ../../samd/pinout.rst:567 ../../samd/pinout.rst:574
+#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:637
+#: ../../samd/pinout.rst:659 ../../samd/pinout.rst:664
+#: ../../samd/pinout.rst:675 ../../samd/pinout.rst:677
+#: ../../samd/pinout.rst:701 ../../samd/pinout.rst:713
+#: ../../samd/pinout.rst:734 ../../samd/pinout.rst:735
+#: ../../samd/pinout.rst:748 ../../samd/pinout.rst:768
+#: ../../samd/pinout.rst:781
+msgid "0"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:162 ../../samd/pinout.rst:288
+#: ../../samd/pinout.rst:342 ../../samd/pinout.rst:401
+#: ../../samd/pinout.rst:466 ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:683
+#: ../../samd/pinout.rst:752
+msgid "PA11"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:147 ../../samd/pinout.rst:276
+#: ../../samd/pinout.rst:401 ../../samd/pinout.rst:451
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:740
+msgid "D0"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:29 ../../samd/pinout.rst:42
+#: ../../samd/pinout.rst:162 ../../samd/pinout.rst:177
+#: ../../samd/pinout.rst:288 ../../samd/pinout.rst:309
+#: ../../samd/pinout.rst:342 ../../samd/pinout.rst:352
+#: ../../samd/pinout.rst:372 ../../samd/pinout.rst:374
+#: ../../samd/pinout.rst:401 ../../samd/pinout.rst:417
+#: ../../samd/pinout.rst:422 ../../samd/pinout.rst:426
+#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:466
+#: ../../samd/pinout.rst:500 ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:519 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:595
+#: ../../samd/pinout.rst:631 ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:661 ../../samd/pinout.rst:683
+#: ../../samd/pinout.rst:688 ../../samd/pinout.rst:702
+#: ../../samd/pinout.rst:752 ../../samd/pinout.rst:765
+msgid "11"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:37 ../../samd/pinout.rst:154
+#: ../../samd/pinout.rst:281 ../../samd/pinout.rst:342
+#: ../../samd/pinout.rst:353 ../../samd/pinout.rst:401
+#: ../../samd/pinout.rst:414 ../../samd/pinout.rst:466
+#: ../../samd/pinout.rst:472 ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:524 ../../samd/pinout.rst:563
+#: ../../samd/pinout.rst:686 ../../samd/pinout.rst:749
+msgid "19"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:27 ../../samd/pinout.rst:30
+#: ../../samd/pinout.rst:149 ../../samd/pinout.rst:157
+#: ../../samd/pinout.rst:162 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:288 ../../samd/pinout.rst:307
+#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:342
+#: ../../samd/pinout.rst:347 ../../samd/pinout.rst:353
+#: ../../samd/pinout.rst:401 ../../samd/pinout.rst:409
+#: ../../samd/pinout.rst:414 ../../samd/pinout.rst:454
+#: ../../samd/pinout.rst:466 ../../samd/pinout.rst:472
+#: ../../samd/pinout.rst:510 ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:524 ../../samd/pinout.rst:572
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:594
+#: ../../samd/pinout.rst:623 ../../samd/pinout.rst:634
+#: ../../samd/pinout.rst:649 ../../samd/pinout.rst:662
+#: ../../samd/pinout.rst:672 ../../samd/pinout.rst:683
+#: ../../samd/pinout.rst:687 ../../samd/pinout.rst:711
+#: ../../samd/pinout.rst:746 ../../samd/pinout.rst:752
+#: ../../samd/pinout.rst:760 ../../samd/pinout.rst:780
+msgid "0/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:25 ../../samd/pinout.rst:152
+#: ../../samd/pinout.rst:162 ../../samd/pinout.rst:288
+#: ../../samd/pinout.rst:308 ../../samd/pinout.rst:342
+#: ../../samd/pinout.rst:363 ../../samd/pinout.rst:401
+#: ../../samd/pinout.rst:406 ../../samd/pinout.rst:466
+#: ../../samd/pinout.rst:468 ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:527 ../../samd/pinout.rst:577
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:683 ../../samd/pinout.rst:698
+#: ../../samd/pinout.rst:711 ../../samd/pinout.rst:743
+#: ../../samd/pinout.rst:752
+msgid "2/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:20 ../../samd/pinout.rst:27 ../../samd/pinout.rst:31
+#: ../../samd/pinout.rst:44 ../../samd/pinout.rst:148 ../../samd/pinout.rst:149
+#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:162
+#: ../../samd/pinout.rst:169 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:288 ../../samd/pinout.rst:296
+#: ../../samd/pinout.rst:305 ../../samd/pinout.rst:307
+#: ../../samd/pinout.rst:342 ../../samd/pinout.rst:347
+#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:356
+#: ../../samd/pinout.rst:358 ../../samd/pinout.rst:401
+#: ../../samd/pinout.rst:409 ../../samd/pinout.rst:415
+#: ../../samd/pinout.rst:426 ../../samd/pinout.rst:430
+#: ../../samd/pinout.rst:454 ../../samd/pinout.rst:456
+#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:466
+#: ../../samd/pinout.rst:470 ../../samd/pinout.rst:510
+#: ../../samd/pinout.rst:512 ../../samd/pinout.rst:521
+#: ../../samd/pinout.rst:538 ../../samd/pinout.rst:542
+#: ../../samd/pinout.rst:562 ../../samd/pinout.rst:572
+#: ../../samd/pinout.rst:580 ../../samd/pinout.rst:590
+#: ../../samd/pinout.rst:597 ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:623 ../../samd/pinout.rst:632
+#: ../../samd/pinout.rst:642 ../../samd/pinout.rst:660
+#: ../../samd/pinout.rst:661 ../../samd/pinout.rst:676
+#: ../../samd/pinout.rst:683 ../../samd/pinout.rst:690
+#: ../../samd/pinout.rst:709 ../../samd/pinout.rst:746
+#: ../../samd/pinout.rst:750 ../../samd/pinout.rst:752
+#: ../../samd/pinout.rst:755 ../../samd/pinout.rst:769
+msgid "1/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:31 ../../samd/pinout.rst:44
+#: ../../samd/pinout.rst:144 ../../samd/pinout.rst:148
+#: ../../samd/pinout.rst:169 ../../samd/pinout.rst:273
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:296
+#: ../../samd/pinout.rst:303 ../../samd/pinout.rst:305
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:358
+#: ../../samd/pinout.rst:359 ../../samd/pinout.rst:415
+#: ../../samd/pinout.rst:430 ../../samd/pinout.rst:431
+#: ../../samd/pinout.rst:456 ../../samd/pinout.rst:463
+#: ../../samd/pinout.rst:470 ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:521 ../../samd/pinout.rst:526
+#: ../../samd/pinout.rst:532 ../../samd/pinout.rst:542
+#: ../../samd/pinout.rst:562 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:580 ../../samd/pinout.rst:616
+#: ../../samd/pinout.rst:622 ../../samd/pinout.rst:660
+#: ../../samd/pinout.rst:665 ../../samd/pinout.rst:676
+#: ../../samd/pinout.rst:692 ../../samd/pinout.rst:702
+#: ../../samd/pinout.rst:714 ../../samd/pinout.rst:736
+#: ../../samd/pinout.rst:750 ../../samd/pinout.rst:769
+#: ../../samd/pinout.rst:773 ../../samd/pinout.rst:782
+msgid "1"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:166 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:341 ../../samd/pinout.rst:402
+#: ../../samd/pinout.rst:458 ../../samd/pinout.rst:511
+#: ../../samd/pinout.rst:589 ../../samd/pinout.rst:682
+#: ../../samd/pinout.rst:751
+msgid "PA10"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:148 ../../samd/pinout.rst:277
+#: ../../samd/pinout.rst:402 ../../samd/pinout.rst:452
+#: ../../samd/pinout.rst:562 ../../samd/pinout.rst:741
+msgid "D1"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:28 ../../samd/pinout.rst:40
+#: ../../samd/pinout.rst:165 ../../samd/pinout.rst:166
+#: ../../samd/pinout.rst:176 ../../samd/pinout.rst:282
+#: ../../samd/pinout.rst:291 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:341 ../../samd/pinout.rst:351
+#: ../../samd/pinout.rst:371 ../../samd/pinout.rst:373
+#: ../../samd/pinout.rst:400 ../../samd/pinout.rst:402
+#: ../../samd/pinout.rst:420 ../../samd/pinout.rst:425
+#: ../../samd/pinout.rst:458 ../../samd/pinout.rst:459
+#: ../../samd/pinout.rst:499 ../../samd/pinout.rst:511
+#: ../../samd/pinout.rst:520 ../../samd/pinout.rst:537
+#: ../../samd/pinout.rst:573 ../../samd/pinout.rst:589
+#: ../../samd/pinout.rst:596 ../../samd/pinout.rst:630
+#: ../../samd/pinout.rst:647 ../../samd/pinout.rst:669
+#: ../../samd/pinout.rst:678 ../../samd/pinout.rst:682
+#: ../../samd/pinout.rst:689 ../../samd/pinout.rst:701
+#: ../../samd/pinout.rst:751 ../../samd/pinout.rst:770
+#: ../../samd/pinout.rst:778
+msgid "10"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:36 ../../samd/pinout.rst:153
+#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:341
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:402
+#: ../../samd/pinout.rst:412 ../../samd/pinout.rst:458
+#: ../../samd/pinout.rst:471 ../../samd/pinout.rst:511
+#: ../../samd/pinout.rst:522 ../../samd/pinout.rst:592
+#: ../../samd/pinout.rst:685 ../../samd/pinout.rst:747
+msgid "18"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:28 ../../samd/pinout.rst:146
+#: ../../samd/pinout.rst:158 ../../samd/pinout.rst:166
+#: ../../samd/pinout.rst:285 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:306 ../../samd/pinout.rst:317
+#: ../../samd/pinout.rst:341 ../../samd/pinout.rst:349
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:402
+#: ../../samd/pinout.rst:412 ../../samd/pinout.rst:421
+#: ../../samd/pinout.rst:455 ../../samd/pinout.rst:458
+#: ../../samd/pinout.rst:471 ../../samd/pinout.rst:508
+#: ../../samd/pinout.rst:511 ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:571 ../../samd/pinout.rst:589
+#: ../../samd/pinout.rst:593 ../../samd/pinout.rst:629
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:663 ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:682 ../../samd/pinout.rst:691
+#: ../../samd/pinout.rst:710 ../../samd/pinout.rst:742
+#: ../../samd/pinout.rst:751 ../../samd/pinout.rst:761
+#: ../../samd/pinout.rst:779
+msgid "0/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:22 ../../samd/pinout.rst:151
+#: ../../samd/pinout.rst:159 ../../samd/pinout.rst:166
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:278
+#: ../../samd/pinout.rst:292 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:311 ../../samd/pinout.rst:341
+#: ../../samd/pinout.rst:362 ../../samd/pinout.rst:402
+#: ../../samd/pinout.rst:403 ../../samd/pinout.rst:458
+#: ../../samd/pinout.rst:467 ../../samd/pinout.rst:511
+#: ../../samd/pinout.rst:543 ../../samd/pinout.rst:575
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:589
+#: ../../samd/pinout.rst:591 ../../samd/pinout.rst:655
+#: ../../samd/pinout.rst:673 ../../samd/pinout.rst:682
+#: ../../samd/pinout.rst:684 ../../samd/pinout.rst:697
+#: ../../samd/pinout.rst:710 ../../samd/pinout.rst:739
+#: ../../samd/pinout.rst:751 ../../samd/pinout.rst:766
+#: ../../samd/pinout.rst:771
+msgid "2/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:21 ../../samd/pinout.rst:29 ../../samd/pinout.rst:43
+#: ../../samd/pinout.rst:146 ../../samd/pinout.rst:147
+#: ../../samd/pinout.rst:165 ../../samd/pinout.rst:166
+#: ../../samd/pinout.rst:168 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:291 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:304 ../../samd/pinout.rst:306
+#: ../../samd/pinout.rst:341 ../../samd/pinout.rst:349
+#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:357
+#: ../../samd/pinout.rst:364 ../../samd/pinout.rst:402
+#: ../../samd/pinout.rst:413 ../../samd/pinout.rst:421
+#: ../../samd/pinout.rst:425 ../../samd/pinout.rst:429
+#: ../../samd/pinout.rst:455 ../../samd/pinout.rst:457
+#: ../../samd/pinout.rst:458 ../../samd/pinout.rst:459
+#: ../../samd/pinout.rst:469 ../../samd/pinout.rst:508
+#: ../../samd/pinout.rst:511 ../../samd/pinout.rst:523
+#: ../../samd/pinout.rst:537 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:571
+#: ../../samd/pinout.rst:574 ../../samd/pinout.rst:589
+#: ../../samd/pinout.rst:596 ../../samd/pinout.rst:620
+#: ../../samd/pinout.rst:629 ../../samd/pinout.rst:631
+#: ../../samd/pinout.rst:641 ../../samd/pinout.rst:659
+#: ../../samd/pinout.rst:669 ../../samd/pinout.rst:675
+#: ../../samd/pinout.rst:682 ../../samd/pinout.rst:689
+#: ../../samd/pinout.rst:708 ../../samd/pinout.rst:742
+#: ../../samd/pinout.rst:748 ../../samd/pinout.rst:751
+#: ../../samd/pinout.rst:768 ../../samd/pinout.rst:778
+msgid "1/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:28 ../../samd/pinout.rst:32
+#: ../../samd/pinout.rst:33 ../../samd/pinout.rst:37 ../../samd/pinout.rst:141
+#: ../../samd/pinout.rst:143 ../../samd/pinout.rst:153
+#: ../../samd/pinout.rst:159 ../../samd/pinout.rst:164
+#: ../../samd/pinout.rst:270 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:290
+#: ../../samd/pinout.rst:311 ../../samd/pinout.rst:339
+#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:350
+#: ../../samd/pinout.rst:371 ../../samd/pinout.rst:395
+#: ../../samd/pinout.rst:396 ../../samd/pinout.rst:400
+#: ../../samd/pinout.rst:412 ../../samd/pinout.rst:452
+#: ../../samd/pinout.rst:471 ../../samd/pinout.rst:499
+#: ../../samd/pinout.rst:506 ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:525 ../../samd/pinout.rst:566
+#: ../../samd/pinout.rst:567 ../../samd/pinout.rst:575
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:592
+#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:641
+#: ../../samd/pinout.rst:655 ../../samd/pinout.rst:663
+#: ../../samd/pinout.rst:677 ../../samd/pinout.rst:680
+#: ../../samd/pinout.rst:685 ../../samd/pinout.rst:703
+#: ../../samd/pinout.rst:734 ../../samd/pinout.rst:735
+#: ../../samd/pinout.rst:739 ../../samd/pinout.rst:747
+#: ../../samd/pinout.rst:753
+msgid "2"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:151 ../../samd/pinout.rst:278
+#: ../../samd/pinout.rst:362 ../../samd/pinout.rst:403
+#: ../../samd/pinout.rst:467 ../../samd/pinout.rst:543
+#: ../../samd/pinout.rst:591 ../../samd/pinout.rst:684
+#: ../../samd/pinout.rst:771
+msgid "PA14"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:149 ../../samd/pinout.rst:403
+#: ../../samd/pinout.rst:453
+msgid "D2"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:32 ../../samd/pinout.rst:151
+#: ../../samd/pinout.rst:159 ../../samd/pinout.rst:172
+#: ../../samd/pinout.rst:278 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:311 ../../samd/pinout.rst:317
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:362
+#: ../../samd/pinout.rst:403 ../../samd/pinout.rst:467
+#: ../../samd/pinout.rst:497 ../../samd/pinout.rst:517
+#: ../../samd/pinout.rst:536 ../../samd/pinout.rst:543
+#: ../../samd/pinout.rst:575 ../../samd/pinout.rst:583
+#: ../../samd/pinout.rst:591 ../../samd/pinout.rst:620
+#: ../../samd/pinout.rst:653 ../../samd/pinout.rst:655
+#: ../../samd/pinout.rst:666 ../../samd/pinout.rst:684
+#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:697
+#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:713
+#: ../../samd/pinout.rst:739 ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:771 ../../samd/pinout.rst:779
+#: ../../samd/pinout.rst:783
+msgid "14"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:40 ../../samd/pinout.rst:151
+#: ../../samd/pinout.rst:165 ../../samd/pinout.rst:278
+#: ../../samd/pinout.rst:291 ../../samd/pinout.rst:317
+#: ../../samd/pinout.rst:362 ../../samd/pinout.rst:373
+#: ../../samd/pinout.rst:403 ../../samd/pinout.rst:420
+#: ../../samd/pinout.rst:467 ../../samd/pinout.rst:517
+#: ../../samd/pinout.rst:520 ../../samd/pinout.rst:543
+#: ../../samd/pinout.rst:591 ../../samd/pinout.rst:596
+#: ../../samd/pinout.rst:684 ../../samd/pinout.rst:689
+#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:697
+#: ../../samd/pinout.rst:771 ../../samd/pinout.rst:778
+#: ../../samd/pinout.rst:779
+msgid "4/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:28 ../../samd/pinout.rst:29
+#: ../../samd/pinout.rst:38 ../../samd/pinout.rst:148 ../../samd/pinout.rst:151
+#: ../../samd/pinout.rst:153 ../../samd/pinout.rst:158
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:278
+#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:285
+#: ../../samd/pinout.rst:296 ../../samd/pinout.rst:315
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:362
+#: ../../samd/pinout.rst:364 ../../samd/pinout.rst:367
+#: ../../samd/pinout.rst:403 ../../samd/pinout.rst:412
+#: ../../samd/pinout.rst:413 ../../samd/pinout.rst:424
+#: ../../samd/pinout.rst:467 ../../samd/pinout.rst:469
+#: ../../samd/pinout.rst:471 ../../samd/pinout.rst:473
+#: ../../samd/pinout.rst:522 ../../samd/pinout.rst:523
+#: ../../samd/pinout.rst:543 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:562 ../../samd/pinout.rst:591
+#: ../../samd/pinout.rst:592 ../../samd/pinout.rst:593
+#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:637
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:643
+#: ../../samd/pinout.rst:660 ../../samd/pinout.rst:684
+#: ../../samd/pinout.rst:685 ../../samd/pinout.rst:709
+#: ../../samd/pinout.rst:747 ../../samd/pinout.rst:750
+#: ../../samd/pinout.rst:756 ../../samd/pinout.rst:761
+#: ../../samd/pinout.rst:771 ../../samd/pinout.rst:781
+msgid "3/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:22 ../../samd/pinout.rst:38 ../../samd/pinout.rst:40
+#: ../../samd/pinout.rst:147 ../../samd/pinout.rst:165
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:291 ../../samd/pinout.rst:362
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:367
+#: ../../samd/pinout.rst:373 ../../samd/pinout.rst:403
+#: ../../samd/pinout.rst:407 ../../samd/pinout.rst:420
+#: ../../samd/pinout.rst:424 ../../samd/pinout.rst:467
+#: ../../samd/pinout.rst:473 ../../samd/pinout.rst:513
+#: ../../samd/pinout.rst:520 ../../samd/pinout.rst:534
+#: ../../samd/pinout.rst:543 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:596
+#: ../../samd/pinout.rst:620 ../../samd/pinout.rst:633
+#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:659
+#: ../../samd/pinout.rst:689 ../../samd/pinout.rst:706
+#: ../../samd/pinout.rst:748 ../../samd/pinout.rst:778
+#: ../../samd/pinout.rst:781
+msgid "0/4"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:30 ../../samd/pinout.rst:34
+#: ../../samd/pinout.rst:46 ../../samd/pinout.rst:144 ../../samd/pinout.rst:154
+#: ../../samd/pinout.rst:163 ../../samd/pinout.rst:176
+#: ../../samd/pinout.rst:273 ../../samd/pinout.rst:281
+#: ../../samd/pinout.rst:282 ../../samd/pinout.rst:289
+#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:353
+#: ../../samd/pinout.rst:359 ../../samd/pinout.rst:372
+#: ../../samd/pinout.rst:397 ../../samd/pinout.rst:414
+#: ../../samd/pinout.rst:417 ../../samd/pinout.rst:431
+#: ../../samd/pinout.rst:463 ../../samd/pinout.rst:472
+#: ../../samd/pinout.rst:500 ../../samd/pinout.rst:505
+#: ../../samd/pinout.rst:524 ../../samd/pinout.rst:526
+#: ../../samd/pinout.rst:563 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:573 ../../samd/pinout.rst:588
+#: ../../samd/pinout.rst:622 ../../samd/pinout.rst:642
+#: ../../samd/pinout.rst:662 ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:678 ../../samd/pinout.rst:681
+#: ../../samd/pinout.rst:686 ../../samd/pinout.rst:704
+#: ../../samd/pinout.rst:736 ../../samd/pinout.rst:749
+#: ../../samd/pinout.rst:754 ../../samd/pinout.rst:770
+msgid "3"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:163 ../../samd/pinout.rst:289
+#: ../../samd/pinout.rst:344 ../../samd/pinout.rst:404
+#: ../../samd/pinout.rst:453 ../../samd/pinout.rst:504
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:681
+#: ../../samd/pinout.rst:754
+msgid "PA09"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:150 ../../samd/pinout.rst:404
+#: ../../samd/pinout.rst:454 ../../samd/pinout.rst:563
+msgid "D3"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:27 ../../samd/pinout.rst:34
+#: ../../samd/pinout.rst:144 ../../samd/pinout.rst:160
+#: ../../samd/pinout.rst:163 ../../samd/pinout.rst:175
+#: ../../samd/pinout.rst:273 ../../samd/pinout.rst:289
+#: ../../samd/pinout.rst:295 ../../samd/pinout.rst:302
+#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:314
+#: ../../samd/pinout.rst:344 ../../samd/pinout.rst:346
+#: ../../samd/pinout.rst:397 ../../samd/pinout.rst:404
+#: ../../samd/pinout.rst:453 ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:504 ../../samd/pinout.rst:505
+#: ../../samd/pinout.rst:534 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:576 ../../samd/pinout.rst:586
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:622
+#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:646
+#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:656
+#: ../../samd/pinout.rst:674 ../../samd/pinout.rst:681
+#: ../../samd/pinout.rst:696 ../../samd/pinout.rst:711
+#: ../../samd/pinout.rst:736 ../../samd/pinout.rst:754
+#: ../../samd/pinout.rst:758 ../../samd/pinout.rst:767
+#: ../../samd/pinout.rst:772 ../../samd/pinout.rst:777
+msgid "9"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:35 ../../samd/pinout.rst:148
+#: ../../samd/pinout.rst:296 ../../samd/pinout.rst:344
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:404
+#: ../../samd/pinout.rst:415 ../../samd/pinout.rst:453
+#: ../../samd/pinout.rst:470 ../../samd/pinout.rst:504
+#: ../../samd/pinout.rst:521 ../../samd/pinout.rst:562
+#: ../../samd/pinout.rst:660 ../../samd/pinout.rst:750
+msgid "17"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:36 ../../samd/pinout.rst:142
+#: ../../samd/pinout.rst:156 ../../samd/pinout.rst:163
+#: ../../samd/pinout.rst:271 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:289 ../../samd/pinout.rst:316
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:344
+#: ../../samd/pinout.rst:348 ../../samd/pinout.rst:399
+#: ../../samd/pinout.rst:404 ../../samd/pinout.rst:453
+#: ../../samd/pinout.rst:465 ../../samd/pinout.rst:504
+#: ../../samd/pinout.rst:507 ../../samd/pinout.rst:546
+#: ../../samd/pinout.rst:565 ../../samd/pinout.rst:570
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:636
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:664 ../../samd/pinout.rst:665
+#: ../../samd/pinout.rst:670 ../../samd/pinout.rst:679
+#: ../../samd/pinout.rst:681 ../../samd/pinout.rst:696
+#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:738
+#: ../../samd/pinout.rst:745 ../../samd/pinout.rst:754
+#: ../../samd/pinout.rst:759 ../../samd/pinout.rst:784
+msgid "0/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:31 ../../samd/pinout.rst:44
+#: ../../samd/pinout.rst:148 ../../samd/pinout.rst:152
+#: ../../samd/pinout.rst:164 ../../samd/pinout.rst:169
+#: ../../samd/pinout.rst:170 ../../samd/pinout.rst:173
+#: ../../samd/pinout.rst:290 ../../samd/pinout.rst:296
+#: ../../samd/pinout.rst:297 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:305 ../../samd/pinout.rst:308
+#: ../../samd/pinout.rst:344 ../../samd/pinout.rst:356
+#: ../../samd/pinout.rst:358 ../../samd/pinout.rst:361
+#: ../../samd/pinout.rst:404 ../../samd/pinout.rst:415
+#: ../../samd/pinout.rst:416 ../../samd/pinout.rst:430
+#: ../../samd/pinout.rst:453 ../../samd/pinout.rst:456
+#: ../../samd/pinout.rst:470 ../../samd/pinout.rst:504
+#: ../../samd/pinout.rst:521 ../../samd/pinout.rst:529
+#: ../../samd/pinout.rst:542 ../../samd/pinout.rst:562
+#: ../../samd/pinout.rst:577 ../../samd/pinout.rst:580
+#: ../../samd/pinout.rst:581 ../../samd/pinout.rst:584
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:651 ../../samd/pinout.rst:658
+#: ../../samd/pinout.rst:660 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:676 ../../samd/pinout.rst:680
+#: ../../samd/pinout.rst:695 ../../samd/pinout.rst:740
+#: ../../samd/pinout.rst:743 ../../samd/pinout.rst:750
+#: ../../samd/pinout.rst:753 ../../samd/pinout.rst:763
+#: ../../samd/pinout.rst:769
+msgid "2/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:23 ../../samd/pinout.rst:30 ../../samd/pinout.rst:152
+#: ../../samd/pinout.rst:154 ../../samd/pinout.rst:167
+#: ../../samd/pinout.rst:170 ../../samd/pinout.rst:173
+#: ../../samd/pinout.rst:281 ../../samd/pinout.rst:294
+#: ../../samd/pinout.rst:297 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:308 ../../samd/pinout.rst:344
+#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:353
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:404
+#: ../../samd/pinout.rst:414 ../../samd/pinout.rst:426
+#: ../../samd/pinout.rst:428 ../../samd/pinout.rst:453
+#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:462
+#: ../../samd/pinout.rst:472 ../../samd/pinout.rst:504
+#: ../../samd/pinout.rst:524 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:540 ../../samd/pinout.rst:546
+#: ../../samd/pinout.rst:563 ../../samd/pinout.rst:577
+#: ../../samd/pinout.rst:578 ../../samd/pinout.rst:581
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:644 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:658 ../../samd/pinout.rst:661
+#: ../../samd/pinout.rst:667 ../../samd/pinout.rst:686
+#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:740
+#: ../../samd/pinout.rst:743 ../../samd/pinout.rst:749
+#: ../../samd/pinout.rst:757 ../../samd/pinout.rst:763
+msgid "1/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:35 ../../samd/pinout.rst:145
+#: ../../samd/pinout.rst:155 ../../samd/pinout.rst:274
+#: ../../samd/pinout.rst:283 ../../samd/pinout.rst:312
+#: ../../samd/pinout.rst:340 ../../samd/pinout.rst:365
+#: ../../samd/pinout.rst:398 ../../samd/pinout.rst:407
+#: ../../samd/pinout.rst:464 ../../samd/pinout.rst:501
+#: ../../samd/pinout.rst:509 ../../samd/pinout.rst:513
+#: ../../samd/pinout.rst:564 ../../samd/pinout.rst:569
+#: ../../samd/pinout.rst:624 ../../samd/pinout.rst:627
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:643
+#: ../../samd/pinout.rst:671 ../../samd/pinout.rst:703
+#: ../../samd/pinout.rst:705 ../../samd/pinout.rst:706
+#: ../../samd/pinout.rst:737 ../../samd/pinout.rst:744
+#: ../../samd/pinout.rst:774
+msgid "4"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:164 ../../samd/pinout.rst:290
+#: ../../samd/pinout.rst:343 ../../samd/pinout.rst:405
+#: ../../samd/pinout.rst:451 ../../samd/pinout.rst:503
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:680
+#: ../../samd/pinout.rst:753
+msgid "PA08"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:151 ../../samd/pinout.rst:278
+#: ../../samd/pinout.rst:405 ../../samd/pinout.rst:455
+#: ../../samd/pinout.rst:564 ../../samd/pinout.rst:742
+msgid "D4"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:34 ../../samd/pinout.rst:147
+#: ../../samd/pinout.rst:279 ../../samd/pinout.rst:343
+#: ../../samd/pinout.rst:364 ../../samd/pinout.rst:405
+#: ../../samd/pinout.rst:413 ../../samd/pinout.rst:451
+#: ../../samd/pinout.rst:469 ../../samd/pinout.rst:503
+#: ../../samd/pinout.rst:523 ../../samd/pinout.rst:561
+#: ../../samd/pinout.rst:659 ../../samd/pinout.rst:748
+msgid "16"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:35 ../../samd/pinout.rst:145
+#: ../../samd/pinout.rst:155 ../../samd/pinout.rst:164
+#: ../../samd/pinout.rst:274 ../../samd/pinout.rst:283
+#: ../../samd/pinout.rst:290 ../../samd/pinout.rst:315
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:340
+#: ../../samd/pinout.rst:343 ../../samd/pinout.rst:398
+#: ../../samd/pinout.rst:405 ../../samd/pinout.rst:451
+#: ../../samd/pinout.rst:464 ../../samd/pinout.rst:503
+#: ../../samd/pinout.rst:509 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:564 ../../samd/pinout.rst:569
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:627
+#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:638
+#: ../../samd/pinout.rst:647 ../../samd/pinout.rst:664
+#: ../../samd/pinout.rst:665 ../../samd/pinout.rst:680
+#: ../../samd/pinout.rst:695 ../../samd/pinout.rst:699
+#: ../../samd/pinout.rst:705 ../../samd/pinout.rst:737
+#: ../../samd/pinout.rst:744 ../../samd/pinout.rst:753
+#: ../../samd/pinout.rst:756 ../../samd/pinout.rst:783
+msgid "0/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:29 ../../samd/pinout.rst:41
+#: ../../samd/pinout.rst:43 ../../samd/pinout.rst:147 ../../samd/pinout.rst:151
+#: ../../samd/pinout.rst:163 ../../samd/pinout.rst:168
+#: ../../samd/pinout.rst:171 ../../samd/pinout.rst:172
+#: ../../samd/pinout.rst:278 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:289 ../../samd/pinout.rst:298
+#: ../../samd/pinout.rst:299 ../../samd/pinout.rst:304
+#: ../../samd/pinout.rst:343 ../../samd/pinout.rst:357
+#: ../../samd/pinout.rst:360 ../../samd/pinout.rst:361
+#: ../../samd/pinout.rst:364 ../../samd/pinout.rst:405
+#: ../../samd/pinout.rst:413 ../../samd/pinout.rst:416
+#: ../../samd/pinout.rst:419 ../../samd/pinout.rst:429
+#: ../../samd/pinout.rst:451 ../../samd/pinout.rst:457
+#: ../../samd/pinout.rst:469 ../../samd/pinout.rst:503
+#: ../../samd/pinout.rst:523 ../../samd/pinout.rst:528
+#: ../../samd/pinout.rst:529 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:574
+#: ../../samd/pinout.rst:582 ../../samd/pinout.rst:583
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:591
+#: ../../samd/pinout.rst:618 ../../samd/pinout.rst:657
+#: ../../samd/pinout.rst:659 ../../samd/pinout.rst:666
+#: ../../samd/pinout.rst:675 ../../samd/pinout.rst:681
+#: ../../samd/pinout.rst:684 ../../samd/pinout.rst:696
+#: ../../samd/pinout.rst:741 ../../samd/pinout.rst:748
+#: ../../samd/pinout.rst:754 ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:768 ../../samd/pinout.rst:771
+msgid "2/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:24 ../../samd/pinout.rst:28 ../../samd/pinout.rst:150
+#: ../../samd/pinout.rst:151 ../../samd/pinout.rst:153
+#: ../../samd/pinout.rst:171 ../../samd/pinout.rst:172
+#: ../../samd/pinout.rst:278 ../../samd/pinout.rst:280
+#: ../../samd/pinout.rst:293 ../../samd/pinout.rst:298
+#: ../../samd/pinout.rst:299 ../../samd/pinout.rst:343
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:351
+#: ../../samd/pinout.rst:354 ../../samd/pinout.rst:405
+#: ../../samd/pinout.rst:412 ../../samd/pinout.rst:425
+#: ../../samd/pinout.rst:427 ../../samd/pinout.rst:451
+#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:461
+#: ../../samd/pinout.rst:471 ../../samd/pinout.rst:503
+#: ../../samd/pinout.rst:522 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:537 ../../samd/pinout.rst:539
+#: ../../samd/pinout.rst:579 ../../samd/pinout.rst:582
+#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:591
+#: ../../samd/pinout.rst:592 ../../samd/pinout.rst:618
+#: ../../samd/pinout.rst:643 ../../samd/pinout.rst:657
+#: ../../samd/pinout.rst:666 ../../samd/pinout.rst:669
+#: ../../samd/pinout.rst:684 ../../samd/pinout.rst:685
+#: ../../samd/pinout.rst:693 ../../samd/pinout.rst:741
+#: ../../samd/pinout.rst:747 ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:764 ../../samd/pinout.rst:771
+msgid "1/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:26 ../../samd/pinout.rst:36
+#: ../../samd/pinout.rst:142 ../../samd/pinout.rst:156
+#: ../../samd/pinout.rst:271 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:313 ../../samd/pinout.rst:348
+#: ../../samd/pinout.rst:366 ../../samd/pinout.rst:399
+#: ../../samd/pinout.rst:408 ../../samd/pinout.rst:465
+#: ../../samd/pinout.rst:502 ../../samd/pinout.rst:507
+#: ../../samd/pinout.rst:514 ../../samd/pinout.rst:565
+#: ../../samd/pinout.rst:570 ../../samd/pinout.rst:625
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:644
+#: ../../samd/pinout.rst:652 ../../samd/pinout.rst:672
+#: ../../samd/pinout.rst:679 ../../samd/pinout.rst:704
+#: ../../samd/pinout.rst:707 ../../samd/pinout.rst:738
+#: ../../samd/pinout.rst:745 ../../samd/pinout.rst:775
+msgid "5"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:152 ../../samd/pinout.rst:308
+#: ../../samd/pinout.rst:363 ../../samd/pinout.rst:406
+#: ../../samd/pinout.rst:468 ../../samd/pinout.rst:527
+#: ../../samd/pinout.rst:577 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:743
+msgid "PA15"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:152 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:406 ../../samd/pinout.rst:565
+#: ../../samd/pinout.rst:743
+msgid "D5"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:33 ../../samd/pinout.rst:152
+#: ../../samd/pinout.rst:160 ../../samd/pinout.rst:173
+#: ../../samd/pinout.rst:295 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:308 ../../samd/pinout.rst:318
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:363
+#: ../../samd/pinout.rst:369 ../../samd/pinout.rst:406
+#: ../../samd/pinout.rst:418 ../../samd/pinout.rst:468
+#: ../../samd/pinout.rst:475 ../../samd/pinout.rst:498
+#: ../../samd/pinout.rst:518 ../../samd/pinout.rst:527
+#: ../../samd/pinout.rst:531 ../../samd/pinout.rst:546
+#: ../../samd/pinout.rst:576 ../../samd/pinout.rst:577
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:656 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:698 ../../samd/pinout.rst:700
+#: ../../samd/pinout.rst:712 ../../samd/pinout.rst:714
+#: ../../samd/pinout.rst:743 ../../samd/pinout.rst:758
+#: ../../samd/pinout.rst:763 ../../samd/pinout.rst:780
+#: ../../samd/pinout.rst:784
+msgid "15"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:42 ../../samd/pinout.rst:152
+#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:308 ../../samd/pinout.rst:318
+#: ../../samd/pinout.rst:363 ../../samd/pinout.rst:374
+#: ../../samd/pinout.rst:406 ../../samd/pinout.rst:422
+#: ../../samd/pinout.rst:468 ../../samd/pinout.rst:518
+#: ../../samd/pinout.rst:519 ../../samd/pinout.rst:527
+#: ../../samd/pinout.rst:577 ../../samd/pinout.rst:597
+#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:690 ../../samd/pinout.rst:698
+#: ../../samd/pinout.rst:743 ../../samd/pinout.rst:755
+#: ../../samd/pinout.rst:780
+msgid "4/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:30 ../../samd/pinout.rst:31
+#: ../../samd/pinout.rst:39 ../../samd/pinout.rst:147 ../../samd/pinout.rst:152
+#: ../../samd/pinout.rst:154 ../../samd/pinout.rst:157
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:281 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:308 ../../samd/pinout.rst:316
+#: ../../samd/pinout.rst:353 ../../samd/pinout.rst:356
+#: ../../samd/pinout.rst:363 ../../samd/pinout.rst:368
+#: ../../samd/pinout.rst:406 ../../samd/pinout.rst:414
+#: ../../samd/pinout.rst:415 ../../samd/pinout.rst:423
+#: ../../samd/pinout.rst:468 ../../samd/pinout.rst:470
+#: ../../samd/pinout.rst:472 ../../samd/pinout.rst:474
+#: ../../samd/pinout.rst:521 ../../samd/pinout.rst:524
+#: ../../samd/pinout.rst:527 ../../samd/pinout.rst:545
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:563
+#: ../../samd/pinout.rst:577 ../../samd/pinout.rst:594
+#: ../../samd/pinout.rst:636 ../../samd/pinout.rst:644
+#: ../../samd/pinout.rst:651 ../../samd/pinout.rst:659
+#: ../../samd/pinout.rst:686 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:692 ../../samd/pinout.rst:708
+#: ../../samd/pinout.rst:743 ../../samd/pinout.rst:748
+#: ../../samd/pinout.rst:749 ../../samd/pinout.rst:759
+#: ../../samd/pinout.rst:760 ../../samd/pinout.rst:782
+msgid "3/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:25 ../../samd/pinout.rst:39 ../../samd/pinout.rst:42
+#: ../../samd/pinout.rst:148 ../../samd/pinout.rst:161
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:296 ../../samd/pinout.rst:363
+#: ../../samd/pinout.rst:368 ../../samd/pinout.rst:374
+#: ../../samd/pinout.rst:406 ../../samd/pinout.rst:422
+#: ../../samd/pinout.rst:423 ../../samd/pinout.rst:468
+#: ../../samd/pinout.rst:474 ../../samd/pinout.rst:519
+#: ../../samd/pinout.rst:527 ../../samd/pinout.rst:532
+#: ../../samd/pinout.rst:545 ../../samd/pinout.rst:562
+#: ../../samd/pinout.rst:597 ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:660 ../../samd/pinout.rst:668
+#: ../../samd/pinout.rst:690 ../../samd/pinout.rst:692
+#: ../../samd/pinout.rst:707 ../../samd/pinout.rst:708
+#: ../../samd/pinout.rst:750 ../../samd/pinout.rst:755
+#: ../../samd/pinout.rst:782
+msgid "0/5"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:27 ../../samd/pinout.rst:39
+#: ../../samd/pinout.rst:47 ../../samd/pinout.rst:149 ../../samd/pinout.rst:157
+#: ../../samd/pinout.rst:167 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:294 ../../samd/pinout.rst:307
+#: ../../samd/pinout.rst:313 ../../samd/pinout.rst:314
+#: ../../samd/pinout.rst:347 ../../samd/pinout.rst:368
+#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:409
+#: ../../samd/pinout.rst:410 ../../samd/pinout.rst:423
+#: ../../samd/pinout.rst:454 ../../samd/pinout.rst:474
+#: ../../samd/pinout.rst:498 ../../samd/pinout.rst:510
+#: ../../samd/pinout.rst:535 ../../samd/pinout.rst:545
+#: ../../samd/pinout.rst:572 ../../samd/pinout.rst:578
+#: ../../samd/pinout.rst:594 ../../samd/pinout.rst:623
+#: ../../samd/pinout.rst:625 ../../samd/pinout.rst:628
+#: ../../samd/pinout.rst:668 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:709
+#: ../../samd/pinout.rst:746 ../../samd/pinout.rst:757
+#: ../../samd/pinout.rst:760 ../../samd/pinout.rst:775
+#: ../../samd/pinout.rst:777
+msgid "7"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:156 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:366 ../../samd/pinout.rst:408
+#: ../../samd/pinout.rst:514 ../../samd/pinout.rst:565
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:745
+msgid "PA21"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:153 ../../samd/pinout.rst:408
+#: ../../samd/pinout.rst:745
+msgid "D7"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:47 ../../samd/pinout.rst:156
+#: ../../samd/pinout.rst:167 ../../samd/pinout.rst:175
+#: ../../samd/pinout.rst:284 ../../samd/pinout.rst:294
+#: ../../samd/pinout.rst:302 ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:366
+#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:408
+#: ../../samd/pinout.rst:410 ../../samd/pinout.rst:428
+#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:514 ../../samd/pinout.rst:535
+#: ../../samd/pinout.rst:540 ../../samd/pinout.rst:565
+#: ../../samd/pinout.rst:578 ../../samd/pinout.rst:586
+#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:639
+#: ../../samd/pinout.rst:642 ../../samd/pinout.rst:674
+#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:745
+#: ../../samd/pinout.rst:757 ../../samd/pinout.rst:767
+#: ../../samd/pinout.rst:773
+msgid "5/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:30 ../../samd/pinout.rst:154
+#: ../../samd/pinout.rst:156 ../../samd/pinout.rst:175
+#: ../../samd/pinout.rst:281 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:302 ../../samd/pinout.rst:353
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:366
+#: ../../samd/pinout.rst:408 ../../samd/pinout.rst:414
+#: ../../samd/pinout.rst:428 ../../samd/pinout.rst:462
+#: ../../samd/pinout.rst:472 ../../samd/pinout.rst:514
+#: ../../samd/pinout.rst:524 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:563 ../../samd/pinout.rst:565
+#: ../../samd/pinout.rst:586 ../../samd/pinout.rst:639
+#: ../../samd/pinout.rst:661 ../../samd/pinout.rst:674
+#: ../../samd/pinout.rst:686 ../../samd/pinout.rst:745
+#: ../../samd/pinout.rst:749 ../../samd/pinout.rst:767
+msgid "3/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:47 ../../samd/pinout.rst:156
+#: ../../samd/pinout.rst:167 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:294 ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:366
+#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:408
+#: ../../samd/pinout.rst:410 ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:514 ../../samd/pinout.rst:535
+#: ../../samd/pinout.rst:565 ../../samd/pinout.rst:578
+#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:639
+#: ../../samd/pinout.rst:643 ../../samd/pinout.rst:649
+#: ../../samd/pinout.rst:671 ../../samd/pinout.rst:694
+#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:745
+#: ../../samd/pinout.rst:757 ../../samd/pinout.rst:773
+#: ../../samd/pinout.rst:784
+msgid "7/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:26 ../../samd/pinout.rst:31 ../../samd/pinout.rst:154
+#: ../../samd/pinout.rst:170 ../../samd/pinout.rst:281
+#: ../../samd/pinout.rst:297 ../../samd/pinout.rst:320
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:361
+#: ../../samd/pinout.rst:366 ../../samd/pinout.rst:408
+#: ../../samd/pinout.rst:415 ../../samd/pinout.rst:416
+#: ../../samd/pinout.rst:470 ../../samd/pinout.rst:514
+#: ../../samd/pinout.rst:516 ../../samd/pinout.rst:521
+#: ../../samd/pinout.rst:529 ../../samd/pinout.rst:563
+#: ../../samd/pinout.rst:581 ../../samd/pinout.rst:658
+#: ../../samd/pinout.rst:686 ../../samd/pinout.rst:700
+#: ../../samd/pinout.rst:709 ../../samd/pinout.rst:740
+#: ../../samd/pinout.rst:749 ../../samd/pinout.rst:784
+msgid "0/7"
+msgstr ""
+
+#: ../../samd/pinout.rst:27 ../../samd/pinout.rst:149 ../../samd/pinout.rst:307
+#: ../../samd/pinout.rst:347 ../../samd/pinout.rst:409
+#: ../../samd/pinout.rst:454 ../../samd/pinout.rst:510
+#: ../../samd/pinout.rst:572 ../../samd/pinout.rst:623
+#: ../../samd/pinout.rst:746
+msgid "PA07"
+msgstr ""
+
+#: ../../samd/pinout.rst:27 ../../samd/pinout.rst:154 ../../samd/pinout.rst:281
+#: ../../samd/pinout.rst:409 ../../samd/pinout.rst:746
+msgid "D9"
+msgstr ""
+
+#: ../../samd/pinout.rst:28 ../../samd/pinout.rst:153 ../../samd/pinout.rst:280
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:412
+#: ../../samd/pinout.rst:471 ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:592 ../../samd/pinout.rst:685
+#: ../../samd/pinout.rst:747
+msgid "PA18"
+msgstr ""
+
+#: ../../samd/pinout.rst:28 ../../samd/pinout.rst:155 ../../samd/pinout.rst:283
+#: ../../samd/pinout.rst:412 ../../samd/pinout.rst:747
+msgid "D10"
+msgstr ""
+
+#: ../../samd/pinout.rst:28 ../../samd/pinout.rst:153 ../../samd/pinout.rst:155
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:280
+#: ../../samd/pinout.rst:283 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:354
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:407
+#: ../../samd/pinout.rst:412 ../../samd/pinout.rst:427
+#: ../../samd/pinout.rst:461 ../../samd/pinout.rst:471
+#: ../../samd/pinout.rst:513 ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:539 ../../samd/pinout.rst:564
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:592
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:669
+#: ../../samd/pinout.rst:673 ../../samd/pinout.rst:685
+#: ../../samd/pinout.rst:744 ../../samd/pinout.rst:747
+#: ../../samd/pinout.rst:766
+msgid "3/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:29 ../../samd/pinout.rst:147 ../../samd/pinout.rst:279
+#: ../../samd/pinout.rst:364 ../../samd/pinout.rst:413
+#: ../../samd/pinout.rst:469 ../../samd/pinout.rst:523
+#: ../../samd/pinout.rst:561 ../../samd/pinout.rst:659
+#: ../../samd/pinout.rst:748
+msgid "PA16"
+msgstr ""
+
+#: ../../samd/pinout.rst:29 ../../samd/pinout.rst:156 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:413 ../../samd/pinout.rst:748
+msgid "D11"
+msgstr ""
+
+#: ../../samd/pinout.rst:29 ../../samd/pinout.rst:41 ../../samd/pinout.rst:153
+#: ../../samd/pinout.rst:171 ../../samd/pinout.rst:280
+#: ../../samd/pinout.rst:298 ../../samd/pinout.rst:319
+#: ../../samd/pinout.rst:360 ../../samd/pinout.rst:364
+#: ../../samd/pinout.rst:413 ../../samd/pinout.rst:419
+#: ../../samd/pinout.rst:469 ../../samd/pinout.rst:515
+#: ../../samd/pinout.rst:523 ../../samd/pinout.rst:528
+#: ../../samd/pinout.rst:582 ../../samd/pinout.rst:592
+#: ../../samd/pinout.rst:657 ../../samd/pinout.rst:685
+#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:741
+#: ../../samd/pinout.rst:747 ../../samd/pinout.rst:783
+msgid "0/6"
+msgstr ""
+
+#: ../../samd/pinout.rst:30 ../../samd/pinout.rst:41 ../../samd/pinout.rst:161
+#: ../../samd/pinout.rst:171 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:298 ../../samd/pinout.rst:310
+#: ../../samd/pinout.rst:315 ../../samd/pinout.rst:354
+#: ../../samd/pinout.rst:360 ../../samd/pinout.rst:419
+#: ../../samd/pinout.rst:427 ../../samd/pinout.rst:461
+#: ../../samd/pinout.rst:501 ../../samd/pinout.rst:515
+#: ../../samd/pinout.rst:528 ../../samd/pinout.rst:539
+#: ../../samd/pinout.rst:582 ../../samd/pinout.rst:597
+#: ../../samd/pinout.rst:618 ../../samd/pinout.rst:632
+#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:653 ../../samd/pinout.rst:654
+#: ../../samd/pinout.rst:657 ../../samd/pinout.rst:690
+#: ../../samd/pinout.rst:741 ../../samd/pinout.rst:755
+#: ../../samd/pinout.rst:756 ../../samd/pinout.rst:772
+msgid "12"
+msgstr ""
+
+#: ../../samd/pinout.rst:30 ../../samd/pinout.rst:154 ../../samd/pinout.rst:281
+#: ../../samd/pinout.rst:353 ../../samd/pinout.rst:414
+#: ../../samd/pinout.rst:472 ../../samd/pinout.rst:524
+#: ../../samd/pinout.rst:563 ../../samd/pinout.rst:686
+#: ../../samd/pinout.rst:749
+msgid "PA19"
+msgstr ""
+
+#: ../../samd/pinout.rst:30 ../../samd/pinout.rst:157 ../../samd/pinout.rst:285
+#: ../../samd/pinout.rst:414 ../../samd/pinout.rst:749
+msgid "D12"
+msgstr ""
+
+#: ../../samd/pinout.rst:31 ../../samd/pinout.rst:170 ../../samd/pinout.rst:297
+#: ../../samd/pinout.rst:303 ../../samd/pinout.rst:316
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:361
+#: ../../samd/pinout.rst:416 ../../samd/pinout.rst:428
+#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:502
+#: ../../samd/pinout.rst:516 ../../samd/pinout.rst:529
+#: ../../samd/pinout.rst:540 ../../samd/pinout.rst:581
+#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:636 ../../samd/pinout.rst:649
+#: ../../samd/pinout.rst:658 ../../samd/pinout.rst:712
+#: ../../samd/pinout.rst:740 ../../samd/pinout.rst:759
+#: ../../samd/pinout.rst:773
+msgid "13"
+msgstr ""
+
+#: ../../samd/pinout.rst:31 ../../samd/pinout.rst:148 ../../samd/pinout.rst:296
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:415
+#: ../../samd/pinout.rst:470 ../../samd/pinout.rst:521
+#: ../../samd/pinout.rst:562 ../../samd/pinout.rst:660
+#: ../../samd/pinout.rst:750
+msgid "PA17"
+msgstr ""
+
+#: ../../samd/pinout.rst:31 ../../samd/pinout.rst:158 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:415 ../../samd/pinout.rst:750
+msgid "D13"
+msgstr ""
+
+#: ../../samd/pinout.rst:32 ../../samd/pinout.rst:141 ../../samd/pinout.rst:270
+#: ../../samd/pinout.rst:339 ../../samd/pinout.rst:395
+#: ../../samd/pinout.rst:452 ../../samd/pinout.rst:525
+#: ../../samd/pinout.rst:566 ../../samd/pinout.rst:677
+#: ../../samd/pinout.rst:734
+msgid "PA02"
+msgstr ""
+
+#: ../../samd/pinout.rst:32 ../../samd/pinout.rst:141 ../../samd/pinout.rst:270
+#: ../../samd/pinout.rst:395 ../../samd/pinout.rst:734
+msgid "A0"
+msgstr ""
+
+#: ../../samd/pinout.rst:33 ../../samd/pinout.rst:143 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:396
+#: ../../samd/pinout.rst:506 ../../samd/pinout.rst:567
+#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:735
+msgid "PB08"
+msgstr ""
+
+#: ../../samd/pinout.rst:33 ../../samd/pinout.rst:142 ../../samd/pinout.rst:271
+#: ../../samd/pinout.rst:396 ../../samd/pinout.rst:735
+msgid "A1"
+msgstr ""
+
+#: ../../samd/pinout.rst:33 ../../samd/pinout.rst:143 ../../samd/pinout.rst:164
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:275 ../../samd/pinout.rst:290
+#: ../../samd/pinout.rst:301 ../../samd/pinout.rst:343
+#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:370
+#: ../../samd/pinout.rst:396 ../../samd/pinout.rst:405
+#: ../../samd/pinout.rst:432 ../../samd/pinout.rst:451
+#: ../../samd/pinout.rst:476 ../../samd/pinout.rst:495
+#: ../../samd/pinout.rst:503 ../../samd/pinout.rst:506
+#: ../../samd/pinout.rst:530 ../../samd/pinout.rst:567
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:587
+#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:626
+#: ../../samd/pinout.rst:673 ../../samd/pinout.rst:680
+#: ../../samd/pinout.rst:695 ../../samd/pinout.rst:710
+#: ../../samd/pinout.rst:735 ../../samd/pinout.rst:753
+#: ../../samd/pinout.rst:766 ../../samd/pinout.rst:776
+msgid "8"
+msgstr ""
+
+#: ../../samd/pinout.rst:33 ../../samd/pinout.rst:38 ../../samd/pinout.rst:41
+#: ../../samd/pinout.rst:143 ../../samd/pinout.rst:158
+#: ../../samd/pinout.rst:170 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:285 ../../samd/pinout.rst:297
+#: ../../samd/pinout.rst:315 ../../samd/pinout.rst:317
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:345
+#: ../../samd/pinout.rst:360 ../../samd/pinout.rst:367
+#: ../../samd/pinout.rst:396 ../../samd/pinout.rst:419
+#: ../../samd/pinout.rst:424 ../../samd/pinout.rst:473
+#: ../../samd/pinout.rst:506 ../../samd/pinout.rst:515
+#: ../../samd/pinout.rst:528 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:567 ../../samd/pinout.rst:581
+#: ../../samd/pinout.rst:593 ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:635
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:658
+#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:699
+#: ../../samd/pinout.rst:735 ../../samd/pinout.rst:740
+#: ../../samd/pinout.rst:756 ../../samd/pinout.rst:761
+#: ../../samd/pinout.rst:779 ../../samd/pinout.rst:783
+msgid "4/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:34 ../../samd/pinout.rst:144 ../../samd/pinout.rst:273
+#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:397
+#: ../../samd/pinout.rst:505 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:622 ../../samd/pinout.rst:736
+msgid "PB09"
+msgstr ""
+
+#: ../../samd/pinout.rst:34 ../../samd/pinout.rst:143 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:397 ../../samd/pinout.rst:736
+msgid "A2"
+msgstr ""
+
+#: ../../samd/pinout.rst:34 ../../samd/pinout.rst:39 ../../samd/pinout.rst:144
+#: ../../samd/pinout.rst:157 ../../samd/pinout.rst:171
+#: ../../samd/pinout.rst:273 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:298 ../../samd/pinout.rst:316
+#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:320
+#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:361
+#: ../../samd/pinout.rst:368 ../../samd/pinout.rst:397
+#: ../../samd/pinout.rst:416 ../../samd/pinout.rst:423
+#: ../../samd/pinout.rst:474 ../../samd/pinout.rst:505
+#: ../../samd/pinout.rst:516 ../../samd/pinout.rst:529
+#: ../../samd/pinout.rst:545 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:582 ../../samd/pinout.rst:594
+#: ../../samd/pinout.rst:618 ../../samd/pinout.rst:622
+#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:636
+#: ../../samd/pinout.rst:657 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:736
+#: ../../samd/pinout.rst:741 ../../samd/pinout.rst:759
+#: ../../samd/pinout.rst:760 ../../samd/pinout.rst:780
+#: ../../samd/pinout.rst:784
+msgid "4/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:35 ../../samd/pinout.rst:145 ../../samd/pinout.rst:274
+#: ../../samd/pinout.rst:340 ../../samd/pinout.rst:398
+#: ../../samd/pinout.rst:464 ../../samd/pinout.rst:509
+#: ../../samd/pinout.rst:569 ../../samd/pinout.rst:627
+#: ../../samd/pinout.rst:737
+msgid "PA04"
+msgstr ""
+
+#: ../../samd/pinout.rst:35 ../../samd/pinout.rst:144 ../../samd/pinout.rst:273
+#: ../../samd/pinout.rst:398 ../../samd/pinout.rst:737
+msgid "A3"
+msgstr ""
+
+#: ../../samd/pinout.rst:36 ../../samd/pinout.rst:142 ../../samd/pinout.rst:271
+#: ../../samd/pinout.rst:348 ../../samd/pinout.rst:399
+#: ../../samd/pinout.rst:465 ../../samd/pinout.rst:507
+#: ../../samd/pinout.rst:570 ../../samd/pinout.rst:679
+#: ../../samd/pinout.rst:738
+msgid "PA05"
+msgstr ""
+
+#: ../../samd/pinout.rst:36 ../../samd/pinout.rst:145 ../../samd/pinout.rst:274
+#: ../../samd/pinout.rst:399 ../../samd/pinout.rst:738
+msgid "A4"
+msgstr ""
+
+#: ../../samd/pinout.rst:37 ../../samd/pinout.rst:159 ../../samd/pinout.rst:311
+#: ../../samd/pinout.rst:371 ../../samd/pinout.rst:400
+#: ../../samd/pinout.rst:499 ../../samd/pinout.rst:575
+#: ../../samd/pinout.rst:655 ../../samd/pinout.rst:739
+msgid "PB02"
+msgstr ""
+
+#: ../../samd/pinout.rst:37 ../../samd/pinout.rst:146 ../../samd/pinout.rst:275
+#: ../../samd/pinout.rst:400 ../../samd/pinout.rst:571
+#: ../../samd/pinout.rst:739
+msgid "A5"
+msgstr ""
+
+#: ../../samd/pinout.rst:37 ../../samd/pinout.rst:38 ../../samd/pinout.rst:40
+#: ../../samd/pinout.rst:157 ../../samd/pinout.rst:159
+#: ../../samd/pinout.rst:165 ../../samd/pinout.rst:174
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:291 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:311 ../../samd/pinout.rst:317
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:354
+#: ../../samd/pinout.rst:367 ../../samd/pinout.rst:371
+#: ../../samd/pinout.rst:373 ../../samd/pinout.rst:400
+#: ../../samd/pinout.rst:420 ../../samd/pinout.rst:424
+#: ../../samd/pinout.rst:427 ../../samd/pinout.rst:461
+#: ../../samd/pinout.rst:473 ../../samd/pinout.rst:499
+#: ../../samd/pinout.rst:517 ../../samd/pinout.rst:520
+#: ../../samd/pinout.rst:534 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:539 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:575 ../../samd/pinout.rst:585
+#: ../../samd/pinout.rst:594 ../../samd/pinout.rst:596
+#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:655
+#: ../../samd/pinout.rst:673 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:689 ../../samd/pinout.rst:691
+#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:739
+#: ../../samd/pinout.rst:760 ../../samd/pinout.rst:766
+#: ../../samd/pinout.rst:778 ../../samd/pinout.rst:779
+#: ../../samd/pinout.rst:781 ../../samd/pinout.rst:784
+msgid "5/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:37 ../../samd/pinout.rst:159 ../../samd/pinout.rst:172
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:311 ../../samd/pinout.rst:371
+#: ../../samd/pinout.rst:400 ../../samd/pinout.rst:499
+#: ../../samd/pinout.rst:534 ../../samd/pinout.rst:575
+#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:637
+#: ../../samd/pinout.rst:649 ../../samd/pinout.rst:655
+#: ../../samd/pinout.rst:664 ../../samd/pinout.rst:666
+#: ../../samd/pinout.rst:671 ../../samd/pinout.rst:705
+#: ../../samd/pinout.rst:739 ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:781
+msgid "6/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:38 ../../samd/pinout.rst:155 ../../samd/pinout.rst:283
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:407
+#: ../../samd/pinout.rst:513 ../../samd/pinout.rst:564
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:744
+msgid "20"
+msgstr ""
+
+#: ../../samd/pinout.rst:38 ../../samd/pinout.rst:158 ../../samd/pinout.rst:285
+#: ../../samd/pinout.rst:367 ../../samd/pinout.rst:424
+#: ../../samd/pinout.rst:473 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:593 ../../samd/pinout.rst:640
+#: ../../samd/pinout.rst:761
+msgid "PA22"
+msgstr ""
+
+#: ../../samd/pinout.rst:38 ../../samd/pinout.rst:171 ../../samd/pinout.rst:298
+#: ../../samd/pinout.rst:424 ../../samd/pinout.rst:582
+#: ../../samd/pinout.rst:761
+msgid "SDA"
+msgstr ""
+
+#: ../../samd/pinout.rst:38 ../../samd/pinout.rst:45 ../../samd/pinout.rst:146
+#: ../../samd/pinout.rst:158 ../../samd/pinout.rst:275
+#: ../../samd/pinout.rst:285 ../../samd/pinout.rst:306
+#: ../../samd/pinout.rst:312 ../../samd/pinout.rst:349
+#: ../../samd/pinout.rst:367 ../../samd/pinout.rst:375
+#: ../../samd/pinout.rst:411 ../../samd/pinout.rst:421
+#: ../../samd/pinout.rst:424 ../../samd/pinout.rst:455
+#: ../../samd/pinout.rst:473 ../../samd/pinout.rst:497
+#: ../../samd/pinout.rst:508 ../../samd/pinout.rst:533
+#: ../../samd/pinout.rst:544 ../../samd/pinout.rst:571
+#: ../../samd/pinout.rst:593 ../../samd/pinout.rst:624
+#: ../../samd/pinout.rst:626 ../../samd/pinout.rst:629
+#: ../../samd/pinout.rst:633 ../../samd/pinout.rst:640
+#: ../../samd/pinout.rst:645 ../../samd/pinout.rst:708
+#: ../../samd/pinout.rst:742 ../../samd/pinout.rst:761
+#: ../../samd/pinout.rst:774 ../../samd/pinout.rst:776
+msgid "6"
+msgstr ""
+
+#: ../../samd/pinout.rst:39 ../../samd/pinout.rst:156 ../../samd/pinout.rst:284
+#: ../../samd/pinout.rst:366 ../../samd/pinout.rst:408
+#: ../../samd/pinout.rst:514 ../../samd/pinout.rst:565
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:745
+msgid "21"
+msgstr ""
+
+#: ../../samd/pinout.rst:39 ../../samd/pinout.rst:157 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:368 ../../samd/pinout.rst:423
+#: ../../samd/pinout.rst:474 ../../samd/pinout.rst:545
+#: ../../samd/pinout.rst:594 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:760
+msgid "PA23"
+msgstr ""
+
+#: ../../samd/pinout.rst:39 ../../samd/pinout.rst:170 ../../samd/pinout.rst:297
+#: ../../samd/pinout.rst:423 ../../samd/pinout.rst:581
+#: ../../samd/pinout.rst:760
+msgid "SCL"
+msgstr ""
+
+#: ../../samd/pinout.rst:39 ../../samd/pinout.rst:42 ../../samd/pinout.rst:46
+#: ../../samd/pinout.rst:158 ../../samd/pinout.rst:160
+#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:175
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:285
+#: ../../samd/pinout.rst:287 ../../samd/pinout.rst:295
+#: ../../samd/pinout.rst:302 ../../samd/pinout.rst:318
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:355
+#: ../../samd/pinout.rst:368 ../../samd/pinout.rst:372
+#: ../../samd/pinout.rst:374 ../../samd/pinout.rst:417
+#: ../../samd/pinout.rst:422 ../../samd/pinout.rst:423
+#: ../../samd/pinout.rst:428 ../../samd/pinout.rst:462
+#: ../../samd/pinout.rst:474 ../../samd/pinout.rst:500
+#: ../../samd/pinout.rst:518 ../../samd/pinout.rst:519
+#: ../../samd/pinout.rst:532 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:545 ../../samd/pinout.rst:546
+#: ../../samd/pinout.rst:576 ../../samd/pinout.rst:586
+#: ../../samd/pinout.rst:593 ../../samd/pinout.rst:597
+#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:640
+#: ../../samd/pinout.rst:656 ../../samd/pinout.rst:674
+#: ../../samd/pinout.rst:690 ../../samd/pinout.rst:692
+#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:755
+#: ../../samd/pinout.rst:758 ../../samd/pinout.rst:761
+#: ../../samd/pinout.rst:767 ../../samd/pinout.rst:780
+#: ../../samd/pinout.rst:782 ../../samd/pinout.rst:783
+msgid "5/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:40 ../../samd/pinout.rst:150 ../../samd/pinout.rst:158
+#: ../../samd/pinout.rst:285 ../../samd/pinout.rst:293
+#: ../../samd/pinout.rst:367 ../../samd/pinout.rst:424
+#: ../../samd/pinout.rst:473 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:579 ../../samd/pinout.rst:593
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:693
+#: ../../samd/pinout.rst:761 ../../samd/pinout.rst:764
+msgid "22"
+msgstr ""
+
+#: ../../samd/pinout.rst:40 ../../samd/pinout.rst:165 ../../samd/pinout.rst:291
+#: ../../samd/pinout.rst:373 ../../samd/pinout.rst:420
+#: ../../samd/pinout.rst:520 ../../samd/pinout.rst:596
+#: ../../samd/pinout.rst:689 ../../samd/pinout.rst:778
+msgid "PB10"
+msgstr ""
+
+#: ../../samd/pinout.rst:40 ../../samd/pinout.rst:168 ../../samd/pinout.rst:294
+#: ../../samd/pinout.rst:420 ../../samd/pinout.rst:579
+#: ../../samd/pinout.rst:655 ../../samd/pinout.rst:756
+msgid "MOSI"
+msgstr ""
+
+#: ../../samd/pinout.rst:41 ../../samd/pinout.rst:157 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:368 ../../samd/pinout.rst:423
+#: ../../samd/pinout.rst:474 ../../samd/pinout.rst:545
+#: ../../samd/pinout.rst:594 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:760
+msgid "23"
+msgstr ""
+
+#: ../../samd/pinout.rst:41 ../../samd/pinout.rst:171 ../../samd/pinout.rst:298
+#: ../../samd/pinout.rst:360 ../../samd/pinout.rst:419
+#: ../../samd/pinout.rst:528 ../../samd/pinout.rst:582
+#: ../../samd/pinout.rst:657 ../../samd/pinout.rst:741
+msgid "PA12"
+msgstr ""
+
+#: ../../samd/pinout.rst:41 ../../samd/pinout.rst:167 ../../samd/pinout.rst:293
+#: ../../samd/pinout.rst:419 ../../samd/pinout.rst:578
+#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:755
+msgid "MISO"
+msgstr ""
+
+#: ../../samd/pinout.rst:42 ../../samd/pinout.rst:174 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:354 ../../samd/pinout.rst:427
+#: ../../samd/pinout.rst:461 ../../samd/pinout.rst:539
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:673
+#: ../../samd/pinout.rst:766
+msgid "24"
+msgstr ""
+
+#: ../../samd/pinout.rst:42 ../../samd/pinout.rst:161 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:374 ../../samd/pinout.rst:422
+#: ../../samd/pinout.rst:519 ../../samd/pinout.rst:597
+#: ../../samd/pinout.rst:690 ../../samd/pinout.rst:755
+msgid "PB11"
+msgstr ""
+
+#: ../../samd/pinout.rst:42 ../../samd/pinout.rst:169 ../../samd/pinout.rst:296
+#: ../../samd/pinout.rst:422 ../../samd/pinout.rst:580
+#: ../../samd/pinout.rst:656 ../../samd/pinout.rst:759
+msgid "SCK"
+msgstr ""
+
+#: ../../samd/pinout.rst:43 ../../samd/pinout.rst:175 ../../samd/pinout.rst:302
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:428
+#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:586 ../../samd/pinout.rst:674
+#: ../../samd/pinout.rst:767
+msgid "25"
+msgstr ""
+
+#: ../../samd/pinout.rst:43 ../../samd/pinout.rst:168 ../../samd/pinout.rst:304
+#: ../../samd/pinout.rst:357 ../../samd/pinout.rst:429
+#: ../../samd/pinout.rst:457 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:574 ../../samd/pinout.rst:675
+#: ../../samd/pinout.rst:768
+msgid "PA00"
+msgstr ""
+
+#: ../../samd/pinout.rst:43 ../../samd/pinout.rst:159 ../../samd/pinout.rst:456
+#: ../../samd/pinout.rst:575
+msgid "DOTSTAR_CLK"
+msgstr ""
+
+#: ../../samd/pinout.rst:44
+msgid "26"
+msgstr ""
+
+#: ../../samd/pinout.rst:44 ../../samd/pinout.rst:169 ../../samd/pinout.rst:305
+#: ../../samd/pinout.rst:358 ../../samd/pinout.rst:430
+#: ../../samd/pinout.rst:456 ../../samd/pinout.rst:542
+#: ../../samd/pinout.rst:580 ../../samd/pinout.rst:676
+#: ../../samd/pinout.rst:769
+msgid "PA01"
+msgstr ""
+
+#: ../../samd/pinout.rst:44 ../../samd/pinout.rst:160 ../../samd/pinout.rst:457
+#: ../../samd/pinout.rst:576
+msgid "DOTSTAR_DATA"
+msgstr ""
+
+#: ../../samd/pinout.rst:45 ../../samd/pinout.rst:177 ../../samd/pinout.rst:309
+#: ../../samd/pinout.rst:369 ../../samd/pinout.rst:418
+#: ../../samd/pinout.rst:475 ../../samd/pinout.rst:531
+#: ../../samd/pinout.rst:595 ../../samd/pinout.rst:688
+#: ../../samd/pinout.rst:765
+msgid "27"
+msgstr ""
+
+#: ../../samd/pinout.rst:45 ../../samd/pinout.rst:150 ../../samd/pinout.rst:293
+#: ../../samd/pinout.rst:375 ../../samd/pinout.rst:411
+#: ../../samd/pinout.rst:533 ../../samd/pinout.rst:579
+#: ../../samd/pinout.rst:693 ../../samd/pinout.rst:764
+msgid "PB22"
+msgstr ""
+
+#: ../../samd/pinout.rst:45 ../../samd/pinout.rst:164 ../../samd/pinout.rst:290
+#: ../../samd/pinout.rst:753
+msgid "FLASH_MOSI"
+msgstr ""
+
+#: ../../samd/pinout.rst:45 ../../samd/pinout.rst:150 ../../samd/pinout.rst:155
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:283
+#: ../../samd/pinout.rst:293 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:354
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:375
+#: ../../samd/pinout.rst:407 ../../samd/pinout.rst:411
+#: ../../samd/pinout.rst:427 ../../samd/pinout.rst:461
+#: ../../samd/pinout.rst:495 ../../samd/pinout.rst:513
+#: ../../samd/pinout.rst:533 ../../samd/pinout.rst:539
+#: ../../samd/pinout.rst:564 ../../samd/pinout.rst:579
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:638
+#: ../../samd/pinout.rst:641 ../../samd/pinout.rst:654
+#: ../../samd/pinout.rst:673 ../../samd/pinout.rst:693
+#: ../../samd/pinout.rst:744 ../../samd/pinout.rst:764
+#: ../../samd/pinout.rst:766 ../../samd/pinout.rst:772
+msgid "5/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:45 ../../samd/pinout.rst:150 ../../samd/pinout.rst:155
+#: ../../samd/pinout.rst:283 ../../samd/pinout.rst:293
+#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:319
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:375
+#: ../../samd/pinout.rst:407 ../../samd/pinout.rst:411
+#: ../../samd/pinout.rst:495 ../../samd/pinout.rst:513
+#: ../../samd/pinout.rst:533 ../../samd/pinout.rst:564
+#: ../../samd/pinout.rst:579 ../../samd/pinout.rst:638
+#: ../../samd/pinout.rst:644 ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:693 ../../samd/pinout.rst:699
+#: ../../samd/pinout.rst:744 ../../samd/pinout.rst:764
+#: ../../samd/pinout.rst:772 ../../samd/pinout.rst:783
+msgid "7/0"
+msgstr ""
+
+#: ../../samd/pinout.rst:46 ../../samd/pinout.rst:370 ../../samd/pinout.rst:432
+#: ../../samd/pinout.rst:476 ../../samd/pinout.rst:530
+msgid "28"
+msgstr ""
+
+#: ../../samd/pinout.rst:46 ../../samd/pinout.rst:160 ../../samd/pinout.rst:295
+#: ../../samd/pinout.rst:372 ../../samd/pinout.rst:417
+#: ../../samd/pinout.rst:500 ../../samd/pinout.rst:576
+#: ../../samd/pinout.rst:656 ../../samd/pinout.rst:758
+msgid "PB03"
+msgstr ""
+
+#: ../../samd/pinout.rst:46 ../../samd/pinout.rst:163 ../../samd/pinout.rst:289
+#: ../../samd/pinout.rst:752
+msgid "FLASH_MISO"
+msgstr ""
+
+#: ../../samd/pinout.rst:46 ../../samd/pinout.rst:160 ../../samd/pinout.rst:173
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:295
+#: ../../samd/pinout.rst:300 ../../samd/pinout.rst:372
+#: ../../samd/pinout.rst:417 ../../samd/pinout.rst:500
+#: ../../samd/pinout.rst:532 ../../samd/pinout.rst:576
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:652 ../../samd/pinout.rst:656
+#: ../../samd/pinout.rst:665 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:670 ../../samd/pinout.rst:692
+#: ../../samd/pinout.rst:758 ../../samd/pinout.rst:763
+#: ../../samd/pinout.rst:782
+msgid "6/1"
+msgstr ""
+
+#: ../../samd/pinout.rst:47
+msgid "29"
+msgstr ""
+
+#: ../../samd/pinout.rst:47 ../../samd/pinout.rst:167 ../../samd/pinout.rst:294
+#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:410
+#: ../../samd/pinout.rst:535 ../../samd/pinout.rst:578
+#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:757
+msgid "PB23"
+msgstr ""
+
+#: ../../samd/pinout.rst:47 ../../samd/pinout.rst:165 ../../samd/pinout.rst:291
+#: ../../samd/pinout.rst:754
+msgid "FLASH_SCK"
+msgstr ""
+
+#: ../../samd/pinout.rst:51 ../../samd/pinout.rst:181
+msgid "Description of the columns:"
+msgstr "列の説明"
+
+#: ../../samd/pinout.rst:53 ../../samd/pinout.rst:183
+msgid ""
+"*Pin* - The number that is expected at ``machine.Pin(n)``, if the pin is "
+"given as a number. This is NOT the GPIO number, but the board pin number,"
+" as given in the board specific definition file."
+msgstr ""
+"*Pin* - ピンを番号で指定する場合、 ``machine.Pin(番号)`` への引数として"
+"期待される番号。"
+"これは GPIO 番号では *ありません* 。ボード固有の定義ファイルで与えられているような、"
+"ボードのピン番号です。"
+
+#: ../../samd/pinout.rst:56 ../../samd/pinout.rst:186
+msgid "*GPIO* - The GPIO number."
+msgstr "*GPIO* - GPIO 番号。"
+
+#: ../../samd/pinout.rst:57
+msgid ""
+"*Pin Name* - The name of a Pin which is expected argument to "
+"``machine.Pin(\"name\")``."
+msgstr ""
+"*ピン名* - ``machine.Pin(\"名前\")`` への引数として期待されるピンの名前。"
+
+#: ../../samd/pinout.rst:58 ../../samd/pinout.rst:188
+msgid ""
+"*IRQ* - The IRQ number assigned to that GPIO, used internally by "
+"``Pin.irq()``. When using ``Pin.irq()``, different pins must use "
+"different IRQs"
+msgstr ""
+"*IRQ* - その GPIO に割り当てられた IRQ 番号。 ``Pin.irq()`` によって"
+"内部的に使われます。 ``Pin.irq()`` を使う場合、異なるピンでは、異なる IRQ "
+"を使わなければなりません。"
+
+#: ../../samd/pinout.rst:60
+msgid ""
+"*ADC* - The ADC channel assigned to the pin. When using ADC, different "
+"pins must not use the same ADC channel."
+msgstr ""
+"*ADC* - ピンに割り当てられた ADC チャンネル。ADCを使う場合、異なるピンでは"
+"同じ ADC チャンネルを使ってはなりません。"
+
+#: ../../samd/pinout.rst:62 ../../samd/pinout.rst:192
+msgid ""
+"*Serial* - Two columns with optional Serial signal assignments. Both may "
+"be used. The cell content is device #/pad #. The pad # is the respective "
+"internal signal of that serial device. Details below."
+msgstr ""
+"*シリアル* - この２つの列は、オプションのシリアル信号の割当てです。"
+"両方を使うこともできます。セルの内容は、デバイス番号/パッド番号です。"
+"パッド番号は、そのシリアルデバイスそれぞれの内部信号です。詳細は後述します。"
+
+#: ../../samd/pinout.rst:65
+msgid ""
+"*TCC/TC* - Two columns with assignments of the TCC modules for PWM. The "
+"cell content is device #/output #. For PWM, devices 0, 1, and 2 are used."
+" The TC device pair 3/4 is used for ``ticks_us()``."
+msgstr ""
+"*TCC/TC* - この２つの列は、PWM 用 TCC モジュールの割当てです。"
+"セルの内容は、デバイス番号/出力番号です。PWM用には、デバイス 0、1、2 が使われます。"
+"TC デバイスペア 3/4 は ticks_us() に使われます。"
+
+#: ../../samd/pinout.rst:70
+msgid "SAMD21 UART assignments"
+msgstr "SAMD21 の UART 割当て"
+
+#: ../../samd/pinout.rst:71 ../../samd/pinout.rst:202
+msgid ""
+"The UART devices and signals must be chosen according to the following "
+"rules:"
+msgstr ""
+"UART のデバイスと信号は、次のルールにしたがって選択する必要があります:"
+
+#: ../../samd/pinout.rst:73
+msgid ""
+"The TX signal must be at a Pin with pad numbers 2 or 0, like Pin D1 with "
+"serial device 0 or 2."
+msgstr ""
+"TX 信号は、パッド番号 2 または 0 のピン、たとえばシリアルデバイス 0 または 2 の D1 "
+"ピンでなければなりません。"
+
+#: ../../samd/pinout.rst:75 ../../samd/pinout.rst:206
+msgid "The RX pin may be assigned to one of the other pads."
+msgstr "RX ピンは、他のパッドのいずれかに割り当てることができます。"
+
+#: ../../samd/pinout.rst:77 ../../samd/pinout.rst:95 ../../samd/pinout.rst:113
+#: ../../samd/pinout.rst:226 ../../samd/pinout.rst:244
+msgid "Examples for Adafruit ItsyBitsy M0 Express:"
+msgstr "Adafruit ItsyBitsy M0 Expressの例です:"
+
+#: ../../samd/pinout.rst:79
+msgid "uart 0 at pins D0/D1  This is the default UART at the RX/TX labelled pins"
+msgstr ""
+"uart 0 はピン D0/D1。これは RX/TX でラベル付けされているデフォルトの UART です。"
+
+#: ../../samd/pinout.rst:80
+msgid "uart 1 at pins D12/D10"
+msgstr "uart 1 はピン D12/D10"
+
+#: ../../samd/pinout.rst:81
+msgid "uart 2 at pins D0/D1"
+msgstr "uart 2 はピン D0/D1"
+
+#: ../../samd/pinout.rst:82
+msgid "uart 3 at pins D11/D13"
+msgstr "uart 3 はピン D11/D13"
+
+#: ../../samd/pinout.rst:83
+msgid "uart 4 at pins D2/D5"
+msgstr "uart 4 はピン D2/D5"
+
+#: ../../samd/pinout.rst:84
+msgid "uart 5 at pins SCL/SDA"
+msgstr "uart 5 はピン SCL/SDA"
+
+#: ../../samd/pinout.rst:86 ../../samd/pinout.rst:104 ../../samd/pinout.rst:121
+#: ../../samd/pinout.rst:217 ../../samd/pinout.rst:235
+#: ../../samd/pinout.rst:250
+msgid "or other combinations."
+msgstr "その他の組み合わせもあります。"
+
+#: ../../samd/pinout.rst:89
+msgid "SAMD21 I2C assignments"
+msgstr "SAMD21 の I2C 割当て"
+
+#: ../../samd/pinout.rst:90 ../../samd/pinout.rst:108 ../../samd/pinout.rst:221
+msgid ""
+"The I2C devices and signals must be chosen according to the following "
+"rules:"
+msgstr ""
+"I2C デバイスと信号は、次のルールにしたがって選択する必要があります。"
+
+#: ../../samd/pinout.rst:92 ../../samd/pinout.rst:223
+msgid "The SDA signal must be at a Pin with pad numbers 0."
+msgstr "SDA 信号は、パッド番号 0 のピンでなければなりません。"
+
+#: ../../samd/pinout.rst:93 ../../samd/pinout.rst:224
+msgid "The SCL signal must be at a Pin with pad numbers 1."
+msgstr "SCL 信号は、パッド番号 1 のピンでなければなりません。"
+
+#: ../../samd/pinout.rst:97
+msgid "I2C 0 at Pin A3/A4"
+msgstr "I2C 0 はピン A3/A4"
+
+#: ../../samd/pinout.rst:98
+msgid "I2C 1 at pins D11/D13"
+msgstr "I2C 1 はピン D11/D13"
+
+#: ../../samd/pinout.rst:99
+msgid "I2C 2 at the pins D4/D3"
+msgstr "I2C 2 はピン D4/D3"
+
+#: ../../samd/pinout.rst:100
+msgid ""
+"I2C 3 at the pins SDA/SCL This is the default I2C device at the SDA/SCl "
+"labelled pin"
+msgstr ""
+"I2C 3はピン SDA/SCL。これは SDA/SCL でラベル付けされているデフォルトの I2C "
+"デバイスです。"
+
+#: ../../samd/pinout.rst:101
+msgid "I2C 4 at the pins A1/A2"
+msgstr "I2C 4 はピン A1/A2"
+
+#: ../../samd/pinout.rst:102
+msgid "I2C 5 at the pins SDA/SCL,"
+msgstr "I2C 5 はピン SDA/SCL"
+
+#: ../../samd/pinout.rst:107
+msgid "SAMD21 SPI assignments"
+msgstr "SAMS21 の SPI 割当て"
+
+#: ../../samd/pinout.rst:110
+msgid ""
+"The following pad number pairs are suitable for MOSI/SCK: 0/1, 2/3, 3/1, "
+"and 0/3."
+msgstr ""
+"MOSI/SCK には、次のパッド番号のペアが適しています: 0/1、2/3、3/1、0/3。"
+
+#: ../../samd/pinout.rst:111 ../../samd/pinout.rst:242
+msgid ""
+"The MISO signal must be at a Pin with a different pad number than MOSI or"
+" SCK."
+msgstr ""
+"MISO 信号は、MOSI や SCK と異なるパッド番号のピンでなければなりません。"
+
+#: ../../samd/pinout.rst:115
+msgid "SPI 0 at pins D0/D4/D1"
+msgstr "SPI 0 はピン D0/D4/D1"
+
+#: ../../samd/pinout.rst:116
+msgid "SPI 1 at pins D11/D12/D13"
+msgstr "SPI 1 はピン D11/D12/D13"
+
+#: ../../samd/pinout.rst:117
+msgid "SPI 2 at pins D0/D4/D1"
+msgstr "SPI 2 はピン D0/D4/D1"
+
+#: ../../samd/pinout.rst:118
+msgid "SPI 3 at pins D11/D12/D13"
+msgstr "SPI 3 はピン D11/D12/D13"
+
+#: ../../samd/pinout.rst:119
+msgid ""
+"SPI 4 at Pin MOSI/MISO/SCK This is the default SPI device at the "
+"MOSI/MISO/SCK labelled pins."
+msgstr ""
+"SPI 4 はピン MOSI/MISO/SCK。"
+"これは MOSI/MISO/SCK でラベル付けされているデフォルトの SPI デバイスです。"
+
+#: ../../samd/pinout.rst:125
+msgid "SAMD21 PWM assignments"
+msgstr "SAMD21 の PWM 割当て"
+
+#: ../../samd/pinout.rst:127
+msgid ""
+"The TCC/TC device numbers 0, 1 and 2 can be used for PWM. Device 0 has "
+"four channels, device 1 and 2 have two channels. So in total 3 different "
+"PWM frequencies can be used, and 8 different duty cycle values."
+msgstr ""
+"TCC/TC デバイス番号 0、1、2 が PWM に使えます。デバイス0は4チャンネル、"
+"デバイス1と2は2チャンネルです。そのため、合計で3種類のPWM周波数と、"
+"8種類のデューティサイクル値を使えます。"
+
+#: ../../samd/pinout.rst:131
+msgid ""
+"The DAC output for the Adafruit ItsyBitsy M0 Express board is available "
+"at the pin A0."
+msgstr ""
+"Adafruit ItsyBitsy M0 Express ボードの DAC 出力は、A0 ピンで利用できます。"
+
+#: ../../samd/pinout.rst:136
+msgid "Adafruit ItsyBitsy M4 Express pin assignment table"
+msgstr "Adafruit ItsyBitsy M4 Express のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "TC"
+msgstr ""
+
+#: ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
+#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
+#: ../../samd/pinout.rst:732
+msgid "PWM"
+msgstr ""
+
+#: ../../samd/pinout.rst:143 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:396
+#: ../../samd/pinout.rst:506 ../../samd/pinout.rst:567
+#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:735
+msgid "40"
+msgstr ""
+
+#: ../../samd/pinout.rst:144 ../../samd/pinout.rst:273
+#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:397
+#: ../../samd/pinout.rst:505 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:622 ../../samd/pinout.rst:736
+msgid "41"
+msgstr ""
+
+#: ../../samd/pinout.rst:146 ../../samd/pinout.rst:306
+#: ../../samd/pinout.rst:349 ../../samd/pinout.rst:421
+#: ../../samd/pinout.rst:455 ../../samd/pinout.rst:508
+#: ../../samd/pinout.rst:571 ../../samd/pinout.rst:629
+#: ../../samd/pinout.rst:742
+msgid "PA06"
+msgstr ""
+
+#: ../../samd/pinout.rst:150 ../../samd/pinout.rst:293
+#: ../../samd/pinout.rst:375 ../../samd/pinout.rst:411
+#: ../../samd/pinout.rst:533 ../../samd/pinout.rst:579
+#: ../../samd/pinout.rst:693 ../../samd/pinout.rst:764
+msgid "54"
+msgstr ""
+
+#: ../../samd/pinout.rst:155 ../../samd/pinout.rst:283
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:407
+#: ../../samd/pinout.rst:513 ../../samd/pinout.rst:564
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:744
+msgid "PA20"
+msgstr ""
+
+#: ../../samd/pinout.rst:155 ../../samd/pinout.rst:164
+#: ../../samd/pinout.rst:283 ../../samd/pinout.rst:290
+#: ../../samd/pinout.rst:564 ../../samd/pinout.rst:587
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:647
+#: ../../samd/pinout.rst:680 ../../samd/pinout.rst:697
+#: ../../samd/pinout.rst:744 ../../samd/pinout.rst:753
+msgid "1/4"
+msgstr ""
+
+#: ../../samd/pinout.rst:156 ../../samd/pinout.rst:163
+#: ../../samd/pinout.rst:284 ../../samd/pinout.rst:289
+#: ../../samd/pinout.rst:565 ../../samd/pinout.rst:588
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:681 ../../samd/pinout.rst:698
+#: ../../samd/pinout.rst:745 ../../samd/pinout.rst:754
+msgid "1/5"
+msgstr ""
+
+#: ../../samd/pinout.rst:157 ../../samd/pinout.rst:162
+#: ../../samd/pinout.rst:286 ../../samd/pinout.rst:288
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:594
+#: ../../samd/pinout.rst:649 ../../samd/pinout.rst:683
+#: ../../samd/pinout.rst:687 ../../samd/pinout.rst:752
+#: ../../samd/pinout.rst:760
+msgid "1/7"
+msgstr ""
+
+#: ../../samd/pinout.rst:158 ../../samd/pinout.rst:166
+#: ../../samd/pinout.rst:285 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:589 ../../samd/pinout.rst:593
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:682 ../../samd/pinout.rst:751
+#: ../../samd/pinout.rst:761
+msgid "1/6"
+msgstr ""
+
+#: ../../samd/pinout.rst:159 ../../samd/pinout.rst:311
+#: ../../samd/pinout.rst:371 ../../samd/pinout.rst:400
+#: ../../samd/pinout.rst:499 ../../samd/pinout.rst:575
+#: ../../samd/pinout.rst:655 ../../samd/pinout.rst:739
+msgid "34"
+msgstr ""
+
+#: ../../samd/pinout.rst:160 ../../samd/pinout.rst:295
+#: ../../samd/pinout.rst:372 ../../samd/pinout.rst:417
+#: ../../samd/pinout.rst:500 ../../samd/pinout.rst:576
+#: ../../samd/pinout.rst:656 ../../samd/pinout.rst:758
+msgid "35"
+msgstr ""
+
+#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:374 ../../samd/pinout.rst:422
+#: ../../samd/pinout.rst:519 ../../samd/pinout.rst:597
+#: ../../samd/pinout.rst:690 ../../samd/pinout.rst:755
+msgid "43"
+msgstr ""
+
+#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:416 ../../samd/pinout.rst:751
+msgid "FLASH_CS"
+msgstr ""
+
+#: ../../samd/pinout.rst:162 ../../samd/pinout.rst:288
+msgid "FLASH_HOLD"
+msgstr ""
+
+#: ../../samd/pinout.rst:165 ../../samd/pinout.rst:291
+#: ../../samd/pinout.rst:373 ../../samd/pinout.rst:420
+#: ../../samd/pinout.rst:520 ../../samd/pinout.rst:596
+#: ../../samd/pinout.rst:689 ../../samd/pinout.rst:778
+msgid "42"
+msgstr ""
+
+#: ../../samd/pinout.rst:166 ../../samd/pinout.rst:292
+msgid "FLASH_WP"
+msgstr ""
+
+#: ../../samd/pinout.rst:167 ../../samd/pinout.rst:294
+#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:410
+#: ../../samd/pinout.rst:535 ../../samd/pinout.rst:578
+#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:757
+msgid "55"
+msgstr ""
+
+#: ../../samd/pinout.rst:170 ../../samd/pinout.rst:297
+#: ../../samd/pinout.rst:361 ../../samd/pinout.rst:416
+#: ../../samd/pinout.rst:529 ../../samd/pinout.rst:581
+#: ../../samd/pinout.rst:658 ../../samd/pinout.rst:740
+msgid "PA13"
+msgstr ""
+
+#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:425
+#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:537
+#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:666
+#: ../../samd/pinout.rst:762
+msgid "30"
+msgstr ""
+
+#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:425
+#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:537
+#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:666
+#: ../../samd/pinout.rst:762
+msgid "PA30"
+msgstr ""
+
+#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:425
+#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:537
+#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:666
+#: ../../samd/pinout.rst:762
+msgid "SWCLK"
+msgstr ""
+
+#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:620
+#: ../../samd/pinout.rst:641 ../../samd/pinout.rst:647
+#: ../../samd/pinout.rst:666 ../../samd/pinout.rst:672
+#: ../../samd/pinout.rst:762
+msgid "7/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:426
+#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:763
+msgid "31"
+msgstr ""
+
+#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:426
+#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:763
+msgid "PA31"
+msgstr ""
+
+#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:426
+#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:763
+msgid "SWDIO"
+msgstr ""
+
+#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
+#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:633 ../../samd/pinout.rst:642
+#: ../../samd/pinout.rst:650 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:763
+msgid "7/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:354 ../../samd/pinout.rst:427
+#: ../../samd/pinout.rst:461 ../../samd/pinout.rst:539
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:673
+#: ../../samd/pinout.rst:766
+msgid "PA24"
+msgstr ""
+
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:354 ../../samd/pinout.rst:427
+#: ../../samd/pinout.rst:461 ../../samd/pinout.rst:539
+#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:673
+#: ../../samd/pinout.rst:766
+msgid "USB_DM"
+msgstr ""
+
+#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:302
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:428
+#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:586 ../../samd/pinout.rst:674
+#: ../../samd/pinout.rst:767
+msgid "PA25"
+msgstr ""
+
+#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:302
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:428
+#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:586 ../../samd/pinout.rst:674
+#: ../../samd/pinout.rst:767
+msgid "USB_DP"
+msgstr ""
+
+#: ../../samd/pinout.rst:176 ../../samd/pinout.rst:282
+#: ../../samd/pinout.rst:359 ../../samd/pinout.rst:431
+#: ../../samd/pinout.rst:463 ../../samd/pinout.rst:526
+#: ../../samd/pinout.rst:573 ../../samd/pinout.rst:678
+#: ../../samd/pinout.rst:770
+msgid "PA03"
+msgstr ""
+
+#: ../../samd/pinout.rst:177 ../../samd/pinout.rst:309
+#: ../../samd/pinout.rst:369 ../../samd/pinout.rst:418
+#: ../../samd/pinout.rst:475 ../../samd/pinout.rst:531
+#: ../../samd/pinout.rst:595 ../../samd/pinout.rst:688
+#: ../../samd/pinout.rst:765
+msgid "PA27"
+msgstr ""
+
+#: ../../samd/pinout.rst:187
+msgid ""
+"*Pin Name* The name of a Pin which is expected argument to "
+"``machine.Pin(\"name\")``."
+msgstr ""
+"*ピン名* - ``machine.Pin(\"名前\")`` への引数として期待されるピンの名前。"
+
+#: ../../samd/pinout.rst:190
+msgid ""
+"*ADC* - The ADC0/1 channel assigned to the pin. When using ADC, different"
+" pins must not use the same ADC device and channel."
+msgstr ""
+"*ADC* - ピンに割り当てられた ADC0/1 チャンネル。ADCを使う場合、異なるピンでは"
+"同じ ADC デバイスとチャンネルを使ってはなりません。"
+
+#: ../../samd/pinout.rst:195
+msgid ""
+"*TC* - These device are currently not assigned to Pin. the TC device pair"
+" 0/1 is used for ``ticks_us()``."
+msgstr ""
+"*TC* - これらのデバイスは現在のところピンに割り当てられていません。"
+"TC デバイスペア 0/1 は ``ticks_us()`` 用に使われています。"
+
+#: ../../samd/pinout.rst:197
+msgid ""
+"*PWM* - Two columns with assignments of the TCC modules for PWM The cell "
+"content is device #/output #. Details below."
+msgstr ""
+"*PWM* - この２つの列は、PWM 用 TCC モジュールの割当てです。"
+"セルの内容は、デバイス番号/出力番号です。詳細は後述します。"
+
+#: ../../samd/pinout.rst:201
+msgid "SAMD51 UART assignments"
+msgstr "SAMD51 の UART 割当て"
+
+#: ../../samd/pinout.rst:204
+msgid ""
+"The TX signal must be at a Pin with pad numbers 0, like Pin D1 with "
+"serial device 3."
+msgstr ""
+"TX 信号は、シリアルデバイス 3 の D1 ピンのように、パッド番号 0 のピンである必要があります。"
+
+#: ../../samd/pinout.rst:208
+msgid "Examples for Adafruit ItsyBitsy 4 Express:"
+msgstr "Adafruit ItsyBitsy 4 Expressの例です:"
+
+#: ../../samd/pinout.rst:210
+msgid "uart 0 at pins A4/A1"
+msgstr "uart 0 はピン A4/A1"
+
+#: ../../samd/pinout.rst:211
+msgid "uart 1 at pins D1/D0   This is the default UART at the RX/TX labelled pins"
+msgstr "uart 1 はピン D1/D0。これは RX/TX でラベル付けされているデフォルトの UART です。"
+
+#: ../../samd/pinout.rst:212
+msgid ""
+"uart 2 at pins SCL/SDA  This is the default I2C device at the SDA/SCl "
+"labelled pin"
+msgstr "uart 2 はピン SCL/SDA。これは SDA/SCL でラベル付けされているデフォルトの I2C "
+"デバイスです。""
+
+#: ../../samd/pinout.rst:213
+msgid "uart 3 at pins D0/D1"
+msgstr "uart 3 はピン D0/D1"
+
+#: ../../samd/pinout.rst:214
+msgid "uart 4 at pins SDA/SCL"
+msgstr "usrt 4 はピン SDA/SCL"
+
+#: ../../samd/pinout.rst:215
+msgid "uart 5 at pins D12/D13"
+msgstr "uart 5 はピン D12/D13"
+
+#: ../../samd/pinout.rst:220
+msgid "SAMD51 I2C assignments"
+msgstr "SAMD51 の I2C 割当て"
+
+#: ../../samd/pinout.rst:228
+msgid "I2C 0 at pins A3/A4"
+msgstr "I2C 0 はピン A3/A4"
+
+#: ../../samd/pinout.rst:229
+msgid "I2C 1 at pins D0/D1"
+msgstr "I2C 1 はピン D0/D1"
+
+#: ../../samd/pinout.rst:230
+msgid "I2C 2 at the pins SDA/SCL"
+msgstr "I2C 2 はピン SDA/SCL"
+
+#: ../../samd/pinout.rst:231
+msgid "I2C 3 at the pins D1/D0"
+msgstr "I2C 3 はピン D1/D0"
+
+#: ../../samd/pinout.rst:232
+msgid "I2C 4 at the pins A2/A3"
+msgstr "I2C 4 はピン A2/A3"
+
+#: ../../samd/pinout.rst:233
+msgid "I2C 5 at the pins D12/D13"
+msgstr "I2C 5 はピン D12/D13"
+
+#: ../../samd/pinout.rst:238
+msgid "SAMD51 SPI assignments"
+msgstr "SAMD51 の SPI 割当て"
+
+#: ../../samd/pinout.rst:239
+msgid ""
+"The SPI devices and signals must be chosen according to the following "
+"rules:"
+msgstr ""
+"SPIデバイスと信号は、次のルールにしたがって選択する必要があります:"
+
+#: ../../samd/pinout.rst:241
+msgid "The following pad number pairs are suitable for MOSI/SCK: 0/1 and 3/1."
+msgstr "MOSI/SCK には、次のパッド番号のペアが適しています: 0/1 と 3/1。"
+
+#: ../../samd/pinout.rst:246
+msgid ""
+"SPI 1 at Pin MOSI/MISO/SCK  This is the default SPI device at the "
+"MOSI/MISO/SCK labelled pins."
+msgstr ""
+"SPI 1 は MOSI/MISO/SCK。"
+"これは MOSI/MISO/SCK でラベル付けされているデフォルトの SPI デバイスです。"
+
+#: ../../samd/pinout.rst:247
+msgid "SPI 3 at pins D13/D11/D12"
+msgstr "SPI 3 はピン D13/D11/D12"
+
+#: ../../samd/pinout.rst:248
+msgid "SPI 5 at pins D12/D3/D13"
+msgstr "SPI 5 はピン D12/D3/D13"
+
+#: ../../samd/pinout.rst:254
+msgid "SAMD51 PWM assignments"
+msgstr "SAMD51 の PWM 割当て"
+
+#: ../../samd/pinout.rst:256
+msgid ""
+"The TCC/PWM device numbers 0 through 4 can be used for PWM. Device 0 has "
+"six channels, device 1 has four channels, device 2 has three channels and"
+" devices 3 and 4 have two channels. So in total up to 5 different PWM "
+"frequencies can be used, and up to 17 different duty cycle values. Note "
+"that these numbers do not apply to every board."
+msgstr ""
+"TCC/PWM のデバイス番号 0～4 は、PWM 用に使えます。デバイス 0 は 6 チャンネル、"
+"デバイス 1 は 4 チャンネル、デバイス 2 は 3 チャンネル、デバイス 3 と 4 は 2 "
+"チャンネルです。そのため、合計で最大5種類のPWM周波数と、最大17種類のデューティ"
+"サイクル値を使えます。これらの数値は、すべてのボードに適用されるわけではないことに"
+"注意してください。"
+
+#: ../../samd/pinout.rst:262
+msgid ""
+"The DAC outputs for the Adafruit ItsyBitsy M4 Express board are available"
+" at the pins A0 and A1."
+msgstr ""
+"Adafruit ItsyBitsy M4 Express ボードの DAC 出力は、A0 と A1 ピンで使えます。"
+
+#: ../../samd/pinout.rst:265
+msgid "Adafruit Feather M4 Express pin assignment table"
+msgstr "Adafruit Feather M4 Express のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:275 ../../samd/pinout.rst:497
+#: ../../samd/pinout.rst:626 ../../samd/pinout.rst:776
+msgid "38"
+msgstr ""
+
+#: ../../samd/pinout.rst:275 ../../samd/pinout.rst:497
+#: ../../samd/pinout.rst:626 ../../samd/pinout.rst:776
+msgid "PB06"
+msgstr ""
+
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:532
+#: ../../samd/pinout.rst:692 ../../samd/pinout.rst:782
+msgid "49"
+msgstr ""
+
+#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:532
+#: ../../samd/pinout.rst:692 ../../samd/pinout.rst:782
+msgid "PB17"
+msgstr ""
+
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:534
+#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:781
+msgid "48"
+msgstr ""
+
+#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:534
+#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:781
+msgid "PB16"
+msgstr ""
+
+#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:407
+#: ../../samd/pinout.rst:744
+msgid "D6"
+msgstr ""
+
+#: ../../samd/pinout.rst:282 ../../samd/pinout.rst:573
+msgid "AREF"
+msgstr ""
+
+#: ../../samd/pinout.rst:295 ../../samd/pinout.rst:421
+msgid "NEOPIXEL"
+msgstr ""
+
+#: ../../samd/pinout.rst:303 ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:773
+msgid "33"
+msgstr ""
+
+#: ../../samd/pinout.rst:303 ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:773
+msgid "PB01"
+msgstr ""
+
+#: ../../samd/pinout.rst:303
+msgid "VDIV"
+msgstr ""
+
+#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:495
+#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:772
+msgid "32"
+msgstr ""
+
+#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:495
+#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:772
+msgid "PB00"
+msgstr ""
+
+#: ../../samd/pinout.rst:312 ../../samd/pinout.rst:501
+#: ../../samd/pinout.rst:624 ../../samd/pinout.rst:774
+msgid "36"
+msgstr ""
+
+#: ../../samd/pinout.rst:312 ../../samd/pinout.rst:501
+#: ../../samd/pinout.rst:624 ../../samd/pinout.rst:774
+msgid "PB04"
+msgstr ""
+
+#: ../../samd/pinout.rst:313 ../../samd/pinout.rst:502
+#: ../../samd/pinout.rst:625 ../../samd/pinout.rst:775
+msgid "37"
+msgstr ""
+
+#: ../../samd/pinout.rst:313 ../../samd/pinout.rst:502
+#: ../../samd/pinout.rst:625 ../../samd/pinout.rst:775
+msgid "PB05"
+msgstr ""
+
+#: ../../samd/pinout.rst:314 ../../samd/pinout.rst:498
+#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:777
+msgid "39"
+msgstr ""
+
+#: ../../samd/pinout.rst:314 ../../samd/pinout.rst:498
+#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:777
+msgid "PB07"
+msgstr ""
+
+#: ../../samd/pinout.rst:315 ../../samd/pinout.rst:515
+#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:756
+msgid "44"
+msgstr ""
+
+#: ../../samd/pinout.rst:315 ../../samd/pinout.rst:515
+#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:756
+msgid "PB12"
+msgstr ""
+
+#: ../../samd/pinout.rst:316 ../../samd/pinout.rst:516
+#: ../../samd/pinout.rst:636 ../../samd/pinout.rst:759
+msgid "45"
+msgstr ""
+
+#: ../../samd/pinout.rst:316 ../../samd/pinout.rst:516
+#: ../../samd/pinout.rst:636 ../../samd/pinout.rst:759
+msgid "PB13"
+msgstr ""
+
+#: ../../samd/pinout.rst:317 ../../samd/pinout.rst:517
+#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:779
+msgid "46"
+msgstr ""
+
+#: ../../samd/pinout.rst:317 ../../samd/pinout.rst:517
+#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:779
+msgid "PB14"
+msgstr ""
+
+#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:518
+#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:780
+msgid "47"
+msgstr ""
+
+#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:518
+#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:780
+msgid "PB15"
+msgstr ""
+
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:783
+msgid "62"
+msgstr ""
+
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:783
+msgid "PB30"
+msgstr ""
+
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:546
+#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:784
+msgid "63"
+msgstr ""
+
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:546
+#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:784
+msgid "PB31"
+msgstr ""
+
+#: ../../samd/pinout.rst:323 ../../samd/pinout.rst:600
+#: ../../samd/pinout.rst:717 ../../samd/pinout.rst:787
+msgid ""
+"For the definition of the table columns see the explanation at the table "
+"for Adafruit ItsyBitsy M4 Express :ref:`samd51_pinout_table`."
+msgstr ""
+"テーブルの列の定義については、Adafruit ItsyBitsy M4 Express "
+":ref:`samd51_pinout_table` のピン割当てテーブルの説明を参照してください。"
+
+#: ../../samd/pinout.rst:326 ../../samd/pinout.rst:382
+#: ../../samd/pinout.rst:438 ../../samd/pinout.rst:482
+#: ../../samd/pinout.rst:603 ../../samd/pinout.rst:790
+msgid "The default devices at the board are:"
+msgstr "ボードのデフォルトデバイスは次のとおりです:"
+
+#: ../../samd/pinout.rst:328
+msgid "UART 5 at pins D0/D1, labelled RX/TX"
+msgstr "UART 5 はピン D0/D1。RX/TX でラベル付けられています。"
+
+#: ../../samd/pinout.rst:329 ../../samd/pinout.rst:606
+msgid "I2C 2 at pins PA12/PA13, labelled SDA/SCL"
+msgstr "I2C 2 はピン PA12/PA13。SDA/SCL でラベル付けられています。"
+
+#: ../../samd/pinout.rst:330
+msgid "SPI 1 at pins PA23/PA22/PA17, labelled MOSI, MISO and SCK"
+msgstr "SPI 1 はピン PA23/PA22/PA17。MOSI, MISO, SCK でラベル付けられています。"
+
+#: ../../samd/pinout.rst:331
+msgid "DAC output on pins PA02 and PA05, labelled A0 and A1"
+msgstr "DAC 出力はピン PA02 と PA05。A0 と A1 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:334
+msgid "SEEED XIAO pin assignment table"
+msgstr "SEEED XIAO のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:339 ../../samd/pinout.rst:621
+msgid "A0_D0"
+msgstr ""
+
+#: ../../samd/pinout.rst:340 ../../samd/pinout.rst:622
+msgid "A1_D1"
+msgstr ""
+
+#: ../../samd/pinout.rst:341 ../../samd/pinout.rst:623
+msgid "A2_D2"
+msgstr ""
+
+#: ../../samd/pinout.rst:342 ../../samd/pinout.rst:624
+msgid "A3_D3"
+msgstr ""
+
+#: ../../samd/pinout.rst:343 ../../samd/pinout.rst:625
+msgid "A4_D4"
+msgstr ""
+
+#: ../../samd/pinout.rst:344 ../../samd/pinout.rst:626
+msgid "A5_D5"
+msgstr ""
+
+#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:627
+msgid "A6_D6"
+msgstr ""
+
+#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:628
+msgid "A7_D7"
+msgstr ""
+
+#: ../../samd/pinout.rst:347 ../../samd/pinout.rst:629
+msgid "A8_D8"
+msgstr ""
+
+#: ../../samd/pinout.rst:348
+msgid "A9_D9"
+msgstr ""
+
+#: ../../samd/pinout.rst:349
+msgid "A10_D10"
+msgstr ""
+
+#: ../../samd/pinout.rst:350
+msgid "RX_LED"
+msgstr ""
+
+#: ../../samd/pinout.rst:353
+msgid "TX_LED"
+msgstr ""
+
+#: ../../samd/pinout.rst:356
+msgid "USER_LED"
+msgstr ""
+
+#: ../../samd/pinout.rst:370 ../../samd/pinout.rst:432
+#: ../../samd/pinout.rst:476 ../../samd/pinout.rst:530
+msgid "PA28"
+msgstr ""
+
+#: ../../samd/pinout.rst:379 ../../samd/pinout.rst:435
+#: ../../samd/pinout.rst:479 ../../samd/pinout.rst:549
+msgid ""
+"For the definition of the table columns see the explanation at the table "
+"for Adafruit ItsyBitsy M0 Express :ref:`samd21_pinout_table`."
+msgstr ""
+"テーブルの列の定義については、Adafruit ItsyBitsy M0 Express "
+":ref:`samd21_pinout_table` のピン割当てテーブルの説明を参照してください。"
+
+#: ../../samd/pinout.rst:384
+msgid "UART 4 at pins PB08/PB09, labelled A6_D6/A7_D7"
+msgstr "UART 4 はピン PB08/PB09。A6_D6/A7_D7 でラベル付けられています。""
+
+#: ../../samd/pinout.rst:385
+msgid "I2C 2 at pins PA08/PA09, labelled A4_D4/A5_D5"
+msgstr "I2C 2 はピン PA08/PA09。A4_D4/A5_D5 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:386
+msgid "SPI 0 at pins PA06/PA05/PA07, labelled A10_D10, A9_D9 and A8_D8"
+msgstr "SPI 0はピン PA06/PA05/PA07。A10_D10, A9_D9, A8_D8 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:387
+msgid "DAC output on pin PA02, labelled A0_D0"
+msgstr "DAC 出力はピン PA02。A0_D0 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:390
+msgid "Adafruit Feather M0 Express pin assignment table"
+msgstr "Adafruit Feather M0 Express のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:410 ../../samd/pinout.rst:617
+msgid "RX"
+msgstr ""
+
+#: ../../samd/pinout.rst:411 ../../samd/pinout.rst:618
+msgid "TX"
+msgstr ""
+
+#: ../../samd/pinout.rst:417
+msgid "LED_RX"
+msgstr ""
+
+#: ../../samd/pinout.rst:418
+msgid "LED_TX"
+msgstr ""
+
+#: ../../samd/pinout.rst:440
+msgid "UART 5 at pins PB23/PB22, labelled RX/TX"
+msgstr "UART 5 はピン PB23/PB22。RX/TX でラベル付けられています。"
+
+#: ../../samd/pinout.rst:441
+msgid "I2C 3 at pins PA22/PA23, labelled SDA/SCL"
+msgstr "I2C 3 はピン PA22/PA23。SDA/SCL でラベル付けられています。"
+
+#: ../../samd/pinout.rst:442
+msgid "SPI 4 at pins PA10/PA12/PA11, labelled MOSI, MISO and SCK"
+msgstr "SPI 4 はピン PA10/PA12/PA11。MOSI, MISO, SCK でラベル付けられています。"
+
+#: ../../samd/pinout.rst:443
+msgid "DAC output on pin PA02, labelled A0"
+msgstr "DAC 出力はピン PA02。A0 でラベルで付けられています。"
+
+#: ../../samd/pinout.rst:446
+msgid "Adafruit Trinket M0 pin assignment table"
+msgstr "Adafruit Trinket M0 のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:458 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:577
+msgid "LED"
+msgstr ""
+
+#: ../../samd/pinout.rst:484
+msgid "UART 0 at pins PA07/PA06, labelled D3/D4"
+msgstr "UART 0 はピン PA07/PA06。D3/D4 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:485
+msgid "I2C 2 at pins PA08/PA09, labelled D0/D2"
+msgstr "I2C 2 はピン PA08/PA09。D0/D2 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:486
+msgid "SPI 0 at pins PA06/PA09/PA08, labelled D4, D2 and D0"
+msgstr "SPI 0 はピン PA06/PA09/PA08。D4, D2, D0 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:487
+msgid "DAC output on pin PA02, labelled D1"
+msgstr "DAC 出力はピン PA02。D1 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:490
+msgid "SAMD21 Xplained PRO pin assignment table"
+msgstr "SAMD21 Xplained PRO のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:495
+msgid "EXT1_PIN3"
+msgstr ""
+
+#: ../../samd/pinout.rst:496
+msgid "EXT1_PIN4"
+msgstr ""
+
+#: ../../samd/pinout.rst:497
+msgid "EXT1_PIN5"
+msgstr ""
+
+#: ../../samd/pinout.rst:498
+msgid "EXT1_PIN6"
+msgstr ""
+
+#: ../../samd/pinout.rst:499
+msgid "EXT1_PIN7"
+msgstr ""
+
+#: ../../samd/pinout.rst:500
+msgid "EXT1_PIN8"
+msgstr ""
+
+#: ../../samd/pinout.rst:501
+msgid "EXT1_PIN9"
+msgstr ""
+
+#: ../../samd/pinout.rst:502
+msgid "EXT1_PIN10"
+msgstr ""
+
+#: ../../samd/pinout.rst:503
+msgid "EXT1_PIN11"
+msgstr ""
+
+#: ../../samd/pinout.rst:504
+msgid "EXT1_PIN12"
+msgstr ""
+
+#: ../../samd/pinout.rst:505
+msgid "EXT1_PIN13"
+msgstr ""
+
+#: ../../samd/pinout.rst:506
+msgid "EXT1_PIN14"
+msgstr ""
+
+#: ../../samd/pinout.rst:507
+msgid "EXT1_PIN15"
+msgstr ""
+
+#: ../../samd/pinout.rst:508
+msgid "EXT1_PIN16"
+msgstr ""
+
+#: ../../samd/pinout.rst:509
+msgid "EXT1_PIN17"
+msgstr ""
+
+#: ../../samd/pinout.rst:510
+msgid "EXT1_PIN18"
+msgstr ""
+
+#: ../../samd/pinout.rst:511
+msgid "EXT2_PIN3"
+msgstr ""
+
+#: ../../samd/pinout.rst:512
+msgid "EXT2_PIN4"
+msgstr ""
+
+#: ../../samd/pinout.rst:513
+msgid "EXT2_PIN5"
+msgstr ""
+
+#: ../../samd/pinout.rst:514
+msgid "EXT2_PIN6"
+msgstr ""
+
+#: ../../samd/pinout.rst:515
+msgid "EXT2_PIN7"
+msgstr ""
+
+#: ../../samd/pinout.rst:516
+msgid "EXT2_PIN8"
+msgstr ""
+
+#: ../../samd/pinout.rst:517
+msgid "EXT2_PIN9"
+msgstr ""
+
+#: ../../samd/pinout.rst:518
+msgid "EXT2_PIN10"
+msgstr ""
+
+#: ../../samd/pinout.rst:519
+msgid "EXT2_PIN13"
+msgstr ""
+
+#: ../../samd/pinout.rst:520
+msgid "EXT2_PIN14"
+msgstr ""
+
+#: ../../samd/pinout.rst:521
+msgid "EXT2_PIN15"
+msgstr ""
+
+#: ../../samd/pinout.rst:522
+msgid "EXT2_PIN16"
+msgstr ""
+
+#: ../../samd/pinout.rst:523
+msgid "EXT2_PIN17"
+msgstr ""
+
+#: ../../samd/pinout.rst:524
+msgid "EXT2_PIN18"
+msgstr ""
+
+#: ../../samd/pinout.rst:525
+msgid "EXT3_PIN3"
+msgstr ""
+
+#: ../../samd/pinout.rst:526
+msgid "EXT3_PIN4"
+msgstr ""
+
+#: ../../samd/pinout.rst:527
+msgid "EXT3_PIN6"
+msgstr ""
+
+#: ../../samd/pinout.rst:528
+msgid "EXT3_PIN7"
+msgstr ""
+
+#: ../../samd/pinout.rst:529
+msgid "EXT3_PIN8"
+msgstr ""
+
+#: ../../samd/pinout.rst:530
+msgid "EXT3_PIN9"
+msgstr ""
+
+#: ../../samd/pinout.rst:531
+msgid "EXT3_PIN10"
+msgstr ""
+
+#: ../../samd/pinout.rst:532
+msgid "EXT3_PIN15"
+msgstr ""
+
+#: ../../samd/pinout.rst:533
+msgid "EXT3_PIN16"
+msgstr ""
+
+#: ../../samd/pinout.rst:534
+msgid "EXT3_PIN17"
+msgstr ""
+
+#: ../../samd/pinout.rst:535
+msgid "EXT3_PIN18"
+msgstr ""
+
+#: ../../samd/pinout.rst:552
+msgid ""
+"There are no pins labelled for default devices on this board. DAC output "
+"is on pin PA02, labelled EXT3_PIN3"
+msgstr ""
+"このボードには、デフォルトデバイス用にラベル付けされたピンはありません。"
+"DAC 出力はピン PA02 にあり、EXT3_PIN3 でラベル付けされています。"
+
+#: ../../samd/pinout.rst:556
+msgid "Minisam M4 pin assignment table"
+msgstr "Minisam M4 のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:566
+msgid "A0_D9"
+msgstr ""
+
+#: ../../samd/pinout.rst:567
+msgid "A1_D10"
+msgstr ""
+
+#: ../../samd/pinout.rst:568
+msgid "A2_D11"
+msgstr ""
+
+#: ../../samd/pinout.rst:569
+msgid "A3_D12"
+msgstr ""
+
+#: ../../samd/pinout.rst:570
+msgid "A4_D13"
+msgstr ""
+
+#: ../../samd/pinout.rst:572
+msgid "A6_D2"
+msgstr ""
+
+#: ../../samd/pinout.rst:574
+msgid "BUTTON"
+msgstr ""
+
+#: ../../samd/pinout.rst:605
+msgid "UART 1 at pins PA16/PA17, labelled D0/D1"
+msgstr "UART 1 はピン PA16/PA17。D0/D1 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:607
+msgid "SPI 1 at pins PB22/PB23/PA01, labelled MOSI, MISO and SCK"
+msgstr "SPI 1 はピン PB22/PB23/PA01。MOSI, MISO, SCK でラベル付けられています。"
+
+#: ../../samd/pinout.rst:608
+msgid "DAC output on pins PA02 and PA05, labelled A0_D9 and A4_D13"
+msgstr "DAC 出力はピン PA02 と PA05。A0_D9 と A4_D13 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:611
+msgid "Seeed WIO Terminal pin assignment table"
+msgstr "Seeed WIO Terminal のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:616
+msgid "CS"
+msgstr ""
+
+#: ../../samd/pinout.rst:617
+msgid "59"
+msgstr ""
+
+#: ../../samd/pinout.rst:617
+msgid "PB27"
+msgstr ""
+
+#: ../../samd/pinout.rst:618
+msgid "58"
+msgstr ""
+
+#: ../../samd/pinout.rst:618
+msgid "PB26"
+msgstr ""
+
+#: ../../samd/pinout.rst:619
+msgid "79"
+msgstr ""
+
+#: ../../samd/pinout.rst:619
+msgid "PC15"
+msgstr ""
+
+#: ../../samd/pinout.rst:619
+msgid "3V3_ENABLE"
+msgstr ""
+
+#: ../../samd/pinout.rst:619 ../../samd/pinout.rst:633
+#: ../../samd/pinout.rst:646 ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:662
+msgid "6/3"
+msgstr ""
+
+#: ../../samd/pinout.rst:620
+msgid "78"
+msgstr ""
+
+#: ../../samd/pinout.rst:620
+msgid "PC14"
+msgstr ""
+
+#: ../../samd/pinout.rst:620
+msgid "5V_ENABLE"
+msgstr ""
+
+#: ../../samd/pinout.rst:620 ../../samd/pinout.rst:645
+#: ../../samd/pinout.rst:647 ../../samd/pinout.rst:663
+#: ../../samd/pinout.rst:672
+msgid "6/2"
+msgstr ""
+
+#: ../../samd/pinout.rst:630
+msgid "90"
+msgstr ""
+
+#: ../../samd/pinout.rst:630
+msgid "PC26"
+msgstr ""
+
+#: ../../samd/pinout.rst:630
+msgid "BUTTON_1"
+msgstr ""
+
+#: ../../samd/pinout.rst:631
+msgid "91"
+msgstr ""
+
+#: ../../samd/pinout.rst:631
+msgid "PC27"
+msgstr ""
+
+#: ../../samd/pinout.rst:631
+msgid "BUTTON_2"
+msgstr ""
+
+#: ../../samd/pinout.rst:632
+msgid "92"
+msgstr ""
+
+#: ../../samd/pinout.rst:632
+msgid "PC28"
+msgstr ""
+
+#: ../../samd/pinout.rst:632
+msgid "BUTTON_3"
+msgstr ""
+
+#: ../../samd/pinout.rst:633
+msgid "107"
+msgstr ""
+
+#: ../../samd/pinout.rst:633
+msgid "PD11"
+msgstr ""
+
+#: ../../samd/pinout.rst:633
+msgid "BUZZER"
+msgstr ""
+
+#: ../../samd/pinout.rst:634
+msgid "GPCLK0"
+msgstr ""
+
+#: ../../samd/pinout.rst:635
+msgid "GPCLK1"
+msgstr ""
+
+#: ../../samd/pinout.rst:636
+msgid "GPCLK2"
+msgstr ""
+
+#: ../../samd/pinout.rst:637
+msgid "I2C_BCLK"
+msgstr ""
+
+#: ../../samd/pinout.rst:638
+msgid "I2S_LRCLK"
+msgstr ""
+
+#: ../../samd/pinout.rst:639
+msgid "I2S_SDIN"
+msgstr ""
+
+#: ../../samd/pinout.rst:640
+msgid "I2S_SDOUT"
+msgstr ""
+
+#: ../../samd/pinout.rst:641
+msgid "50"
+msgstr ""
+
+#: ../../samd/pinout.rst:641
+msgid "PB18"
+msgstr ""
+
+#: ../../samd/pinout.rst:641
+msgid "LCD_MISO"
+msgstr ""
+
+#: ../../samd/pinout.rst:642
+msgid "51"
+msgstr ""
+
+#: ../../samd/pinout.rst:642
+msgid "PB19"
+msgstr ""
+
+#: ../../samd/pinout.rst:642
+msgid "LCD_MOSI"
+msgstr ""
+
+#: ../../samd/pinout.rst:643
+msgid "52"
+msgstr ""
+
+#: ../../samd/pinout.rst:643
+msgid "PB20"
+msgstr ""
+
+#: ../../samd/pinout.rst:643
+msgid "LCD_SCK"
+msgstr ""
+
+#: ../../samd/pinout.rst:644
+msgid "53"
+msgstr ""
+
+#: ../../samd/pinout.rst:644
+msgid "PB21"
+msgstr ""
+
+#: ../../samd/pinout.rst:644
+msgid "LCD_CS"
+msgstr ""
+
+#: ../../samd/pinout.rst:645
+msgid "70"
+msgstr ""
+
+#: ../../samd/pinout.rst:645
+msgid "PC06"
+msgstr ""
+
+#: ../../samd/pinout.rst:645
+msgid "LCD_D/C"
+msgstr ""
+
+#: ../../samd/pinout.rst:646
+msgid "71"
+msgstr ""
+
+#: ../../samd/pinout.rst:646
+msgid "PC07"
+msgstr ""
+
+#: ../../samd/pinout.rst:646
+msgid "LCD_RESET"
+msgstr ""
+
+#: ../../samd/pinout.rst:647
+msgid "74"
+msgstr ""
+
+#: ../../samd/pinout.rst:647
+msgid "PC10"
+msgstr ""
+
+#: ../../samd/pinout.rst:647
+msgid "LCD_XL"
+msgstr ""
+
+#: ../../samd/pinout.rst:648
+msgid "76"
+msgstr ""
+
+#: ../../samd/pinout.rst:648
+msgid "PC12"
+msgstr ""
+
+#: ../../samd/pinout.rst:648
+msgid "LCD_XR"
+msgstr ""
+
+#: ../../samd/pinout.rst:649
+msgid "77"
+msgstr ""
+
+#: ../../samd/pinout.rst:649
+msgid "PC13"
+msgstr ""
+
+#: ../../samd/pinout.rst:649
+msgid "LCD_YD"
+msgstr ""
+
+#: ../../samd/pinout.rst:650
+msgid "75"
+msgstr ""
+
+#: ../../samd/pinout.rst:650
+msgid "PC11"
+msgstr ""
+
+#: ../../samd/pinout.rst:650
+msgid "LCD_YU"
+msgstr ""
+
+#: ../../samd/pinout.rst:651
+msgid "LED_BLUE"
+msgstr ""
+
+#: ../../samd/pinout.rst:652
+msgid "69"
+msgstr ""
+
+#: ../../samd/pinout.rst:652
+msgid "PC05"
+msgstr ""
+
+#: ../../samd/pinout.rst:652
+msgid "LED_LCD"
+msgstr ""
+
+#: ../../samd/pinout.rst:653
+msgid "94"
+msgstr ""
+
+#: ../../samd/pinout.rst:653
+msgid "PC30"
+msgstr ""
+
+#: ../../samd/pinout.rst:653
+msgid "MIC"
+msgstr ""
+
+#: ../../samd/pinout.rst:657
+msgid "SCL0"
+msgstr ""
+
+#: ../../samd/pinout.rst:658
+msgid "SDA0"
+msgstr ""
+
+#: ../../samd/pinout.rst:659
+msgid "SCL1"
+msgstr ""
+
+#: ../../samd/pinout.rst:660
+msgid "SDA1"
+msgstr ""
+
+#: ../../samd/pinout.rst:661
+msgid "117"
+msgstr ""
+
+#: ../../samd/pinout.rst:661
+msgid "PD21"
+msgstr ""
+
+#: ../../samd/pinout.rst:661
+msgid "SD_DET"
+msgstr ""
+
+#: ../../samd/pinout.rst:662
+msgid "83"
+msgstr ""
+
+#: ../../samd/pinout.rst:662
+msgid "PC19"
+msgstr ""
+
+#: ../../samd/pinout.rst:662
+msgid "SD_CS"
+msgstr ""
+
+#: ../../samd/pinout.rst:663
+msgid "82"
+msgstr ""
+
+#: ../../samd/pinout.rst:663
+msgid "PC18"
+msgstr ""
+
+#: ../../samd/pinout.rst:663
+msgid "SD_MISO"
+msgstr ""
+
+#: ../../samd/pinout.rst:664
+msgid "80"
+msgstr ""
+
+#: ../../samd/pinout.rst:664
+msgid "PC16"
+msgstr ""
+
+#: ../../samd/pinout.rst:664
+msgid "SD_MOSI"
+msgstr ""
+
+#: ../../samd/pinout.rst:665
+msgid "81"
+msgstr ""
+
+#: ../../samd/pinout.rst:665
+msgid "PC17"
+msgstr ""
+
+#: ../../samd/pinout.rst:665
+msgid "SD_SCK"
+msgstr ""
+
+#: ../../samd/pinout.rst:668
+msgid "108"
+msgstr ""
+
+#: ../../samd/pinout.rst:668
+msgid "PD12"
+msgstr ""
+
+#: ../../samd/pinout.rst:668
+msgid "SWITCH_B"
+msgstr ""
+
+#: ../../samd/pinout.rst:669
+msgid "116"
+msgstr ""
+
+#: ../../samd/pinout.rst:669
+msgid "PD20"
+msgstr ""
+
+#: ../../samd/pinout.rst:669
+msgid "SWITCH_U"
+msgstr ""
+
+#: ../../samd/pinout.rst:670
+msgid "104"
+msgstr ""
+
+#: ../../samd/pinout.rst:670
+msgid "PD08"
+msgstr ""
+
+#: ../../samd/pinout.rst:670
+msgid "SWITCH_X"
+msgstr ""
+
+#: ../../samd/pinout.rst:671
+msgid "105"
+msgstr ""
+
+#: ../../samd/pinout.rst:671
+msgid "PD09"
+msgstr ""
+
+#: ../../samd/pinout.rst:671
+msgid "SWITCH_Y"
+msgstr ""
+
+#: ../../samd/pinout.rst:672
+msgid "106"
+msgstr ""
+
+#: ../../samd/pinout.rst:672
+msgid "PD10"
+msgstr ""
+
+#: ../../samd/pinout.rst:672
+msgid "SWITCH_Z"
+msgstr ""
+
+#: ../../samd/pinout.rst:695
+msgid "56"
+msgstr ""
+
+#: ../../samd/pinout.rst:695
+msgid "PB24"
+msgstr ""
+
+#: ../../samd/pinout.rst:696
+msgid "57"
+msgstr ""
+
+#: ../../samd/pinout.rst:696
+msgid "PB25"
+msgstr ""
+
+#: ../../samd/pinout.rst:697
+msgid "60"
+msgstr ""
+
+#: ../../samd/pinout.rst:697
+msgid "PB28"
+msgstr ""
+
+#: ../../samd/pinout.rst:698
+msgid "61"
+msgstr ""
+
+#: ../../samd/pinout.rst:698
+msgid "PB29"
+msgstr ""
+
+#: ../../samd/pinout.rst:701
+msgid "64"
+msgstr ""
+
+#: ../../samd/pinout.rst:701
+msgid "PC00"
+msgstr ""
+
+#: ../../samd/pinout.rst:702
+msgid "65"
+msgstr ""
+
+#: ../../samd/pinout.rst:702
+msgid "PC01"
+msgstr ""
+
+#: ../../samd/pinout.rst:703
+msgid "66"
+msgstr ""
+
+#: ../../samd/pinout.rst:703
+msgid "PC02"
+msgstr ""
+
+#: ../../samd/pinout.rst:704
+msgid "67"
+msgstr ""
+
+#: ../../samd/pinout.rst:704
+msgid "PC03"
+msgstr ""
+
+#: ../../samd/pinout.rst:705
+msgid "68"
+msgstr ""
+
+#: ../../samd/pinout.rst:705
+msgid "PC04"
+msgstr ""
+
+#: ../../samd/pinout.rst:706
+msgid "84"
+msgstr ""
+
+#: ../../samd/pinout.rst:706
+msgid "PC20"
+msgstr ""
+
+#: ../../samd/pinout.rst:707
+msgid "85"
+msgstr ""
+
+#: ../../samd/pinout.rst:707
+msgid "PC21"
+msgstr ""
+
+#: ../../samd/pinout.rst:708
+msgid "86"
+msgstr ""
+
+#: ../../samd/pinout.rst:708
+msgid "PC22"
+msgstr ""
+
+#: ../../samd/pinout.rst:709
+msgid "87"
+msgstr ""
+
+#: ../../samd/pinout.rst:709
+msgid "PC23"
+msgstr ""
+
+#: ../../samd/pinout.rst:710
+msgid "88"
+msgstr ""
+
+#: ../../samd/pinout.rst:710
+msgid "PC24"
+msgstr ""
+
+#: ../../samd/pinout.rst:711
+msgid "89"
+msgstr ""
+
+#: ../../samd/pinout.rst:711
+msgid "PC25"
+msgstr ""
+
+#: ../../samd/pinout.rst:712
+msgid "95"
+msgstr ""
+
+#: ../../samd/pinout.rst:712
+msgid "PC31"
+msgstr ""
+
+#: ../../samd/pinout.rst:713
+msgid "96"
+msgstr ""
+
+#: ../../samd/pinout.rst:713
+msgid "PD00"
+msgstr ""
+
+#: ../../samd/pinout.rst:714
+msgid "97"
+msgstr ""
+
+#: ../../samd/pinout.rst:714
+msgid "PD01"
+msgstr ""
+
+#: ../../samd/pinout.rst:720
+msgid ""
+"Default pin assignments: - UART 2 at pins PB27 and PB26, labelled RX and "
+"TX - I2C 4 at pins PA12 and PA13, labelled SCL0 and SDA0 - I2C 3 at pins "
+"PA16 and PA17, labelled SCL1 and SDA1 - SPI 5 at pins PB00, PB02 and "
+"PB03, labelle MISO, MOSI and SCK"
+msgstr ""
+"デフォルトのピン割当て: - UART 2 はピン PB27 と PB26 (RX と TX) "
+"- I2C 4 はピン PA12 と PA13 (SCL0 と SDA0) "
+"- I2C 3 はピン PA16 と PA17 (SCL1 と SDA1) "
+"- SPI 5はピン PB00, PB02, PB03 (MISO, MOSI, SCK)。"
+
+#: ../../samd/pinout.rst:726
+msgid "There seems to be no default pin assignment for this board."
+msgstr "このボードにデフォルトのピン割当てはないようです。"
+
+#: ../../samd/pinout.rst:729
+msgid "Sparkfun SAMD51 Thing Plus pin assignment table"
+msgstr "Sparkfun SAMD51 Thing Plus のピン割当てテーブル"
+
+#: ../../samd/pinout.rst:757
+msgid "RXD"
+msgstr ""
+
+#: ../../samd/pinout.rst:758
+msgid "RXLED"
+msgstr ""
+
+#: ../../samd/pinout.rst:764
+msgid "TXD"
+msgstr ""
+
+#: ../../samd/pinout.rst:765
+msgid "TXLED"
+msgstr ""
+
+#: ../../samd/pinout.rst:792
+msgid "UART 1 at pins PB23/PB22, labelled RXD/TXD"
+msgstr "UART 1 はピン PB23/PB22。RXD/TXD でラベル付けられています。"
+
+#: ../../samd/pinout.rst:793
+msgid "I2C 5 at pins PA22/PA23, labelled SDA/SCL"
+msgstr "I2C 5 はピン PA22/PA23。SDA/SCL でラベル付けられています。"
+
+#: ../../samd/pinout.rst:794
+msgid "SPI 4 at pins PB12/PB11/PB13, labelled MOSI, MISO and SCK"
+msgstr "SPI 4 はピン PB12/PB11/PB13。MOSI, MISO, SCK でラベル付けられています。"
+
+#: ../../samd/pinout.rst:795
+msgid "DAC output on pins PA02 and PA05, labelled A0 and A4"
+msgstr "DAC 出力はピン PA02 と PA05。A0 と A4 でラベル付けられています。"
+
+#: ../../samd/pinout.rst:798
+msgid "Scripts for creating the pin assignment tables"
+msgstr "ピン割当てテーブルを作成するスクリプト"
+
+#: ../../samd/pinout.rst:800
+msgid ""
+"The tables shown above were created with small a Python script running on"
+" the target board::"
+msgstr ""
+"上記の表は、小さな Python スクリプトをターゲットボード上で実行して作成しました::"
+
+#: ../../samd/pinout.rst:802
+#, python-format
+msgid ""
+"from samd import pininfo\n"
+"from machine import Pin\n"
+"import os\n"
+"\n"
+"def print_entry(e, txt):\n"
+"    print(txt, end=\": \")\n"
+"    if e == 255:\n"
+"        print(\" - \", end=\"\")\n"
+"    else:\n"
+"        print(\"%d/%d\" % (e >> 4, e & 0x0f), end=\"\")\n"
+"\n"
+"def print_pininfo(pin, info):\n"
+"    print(\"%3d\" % pin, end=\" \")\n"
+"    print(\"P%c%02d\" % (\"ABCD\"[pin // 32], pin % 32), end=\"\")\n"
+"    print(\" %12s\" % info[0], end=\"\")\n"
+"    print(\" IRQ:%2s\" % (info[1] if info[1] != 255 else \"-\"), "
+"end=\"\")\n"
+"    print(\" ADC0:%2s\" % (info[2] if info[2] != 255 else \"-\"), "
+"end=\"\")\n"
+"    if len(info) == 7:\n"
+"        print_entry(info[3], \" Serial1\")\n"
+"        print_entry(info[4], \" Serial2\")\n"
+"        print_entry(info[5], \" PWM1\" if (info[5] >> 4) < 3 else \"   "
+"TC\")\n"
+"        print_entry(info[6], \" PWM2\")\n"
+"    else:\n"
+"        print(\" ADC1:%2s\" % (info[3] if info[3] != 255 else \"-\"), "
+"end=\"\")\n"
+"        print_entry(info[4], \" Serial1\")\n"
+"        print_entry(info[5], \" Serial2\")\n"
+"        print_entry(info[6], \" TC\")\n"
+"        print_entry(info[7], \" PWM1\")\n"
+"        print_entry(info[8], \" PWM2\")\n"
+"    print()\n"
+"\n"
+"def tblkey(i):\n"
+"    name = i[1][0]\n"
+"    if name != \"-\":\n"
+"        if len(name) < 3:\n"
+"            return \" \" + name\n"
+"        else:\n"
+"            return name\n"
+"    else:\n"
+"        return \"zzzzzzz%03d\" % i[0]\n"
+"\n"
+"def table(num = 127):\n"
+"    pintbl = []\n"
+"    for i in range(num):\n"
+"        try:\n"
+"            pintbl.append((i, pininfo(i)))\n"
+"        except:\n"
+"            pass\n"
+"            # print(\"not defined\")\n"
+"\n"
+"    pintbl.sort(key=tblkey)\n"
+"    for item in pintbl:\n"
+"        print_pininfo(item[0], item[1])\n"
+"\n"
+"table()"
+msgstr ""
+
+#: ../../samd/quickref.rst:4
+msgid "Quick reference for the SAMD21/SAMD51 family"
+msgstr "SAMD21/SAMD51 ファミリー用クイックリファレンス"
+
+msgid ""
+".. image:: samd/img/itsybitsy_m4_express.jpg\n"
+"   :alt: Adafruit ItsyBitsy M4 Express board"
+msgstr ""
+
+#: ../../samd/quickref.rst:10
+msgid "The Adafruit ItsyBitsy M4 Express board."
+msgstr ""
+
+#: ../../samd/quickref.rst:12
+msgid ""
+"Below is a quick reference for SAMD21/SAMD51-based boards.  If it is your"
+" first time working with this board it may be useful to get an overview "
+"of the microcontroller:"
+msgstr ""
+"以下は、SAMD21/SAMD51 ベースのボードのためのクイックリファレンスです。"
+"このボードを初めて使う場合は、まず次のマイクロコントローラの概要を確認してみてください。"
+
+#: ../../samd/quickref.rst:24
+msgid "Installing MicroPython"
+msgstr "MicroPython のインストール"
+
+#: ../../samd/quickref.rst:26
+msgid ""
+"See the corresponding section of tutorial: :ref:`samd_intro`. It also "
+"includes a troubleshooting subsection."
+msgstr ""
+"チュートリアルの章: :ref:`samd_intro` を参照してください。"
+"そこにはトラブルシューティングについても記載されています。"
+
+#: ../../samd/quickref.rst:30
+msgid "General board control"
+msgstr "ボードの一般的な制御"
+
+#: ../../samd/quickref.rst:32
+msgid ""
+"The MicroPython REPL is on the USB port, configured in VCP mode. Tab-"
+"completion is useful to find out what methods an object has. Paste mode "
+"(Ctrl-E) is useful to paste a large slab of Python code into the REPL."
+msgstr ""
+"MicroPython REPL は VCP モードに設定した USB ポートで利用できます。"
+"タブ補完は、オブジェクトにどのようなメソッドがあるかを調べるのに便利です。"
+"貼り付けモード(ctrl-E)は、大きめの Pythonコードを REPL に貼り付けるのに便利です。"
+
+#: ../../samd/quickref.rst:37
+msgid "The :mod:`machine` module::"
+msgstr ":mod:`machine` モジュール"
+
+#: ../../samd/quickref.rst:39
+msgid ""
+"import machine\n"
+"\n"
+"machine.freq()            # get the current frequency of the CPU\n"
+"machine.freq(96_000_000)  # set the CPU frequency to 96 MHz"
+msgstr ""
+"import machine\n"
+"\n"
+"machine.freq()            # CPU の現在の周波数を取得\n"
+"machine.freq(96_000_000)  # CPU の周波数を 96 MHz に設定"
+
+#: ../../samd/quickref.rst:44
+msgid ""
+"The range accepted by the function call is 1_000_000 to 200_000_000 (1 "
+"MHz to 200 MHz) for SAMD51 and 1_000_000 to 48_000_000 (1 MHz to 48 MHz) "
+"for SAMD21. The safe range for SAMD51 according to the data sheet is 96 "
+"MHz to 120 MHz. At frequencies below 8 MHz USB will be disabled. Changing"
+" the frequency below 48 MHz impacts the baud rates of UART, I2C and SPI. "
+"These have to be set again after changing the CPU frequency. The ms and "
+"µs timers are not affected by the frequency change."
+msgstr ""
+"この関数コールが受け付ける範囲は、SAMD51 の場合は 1_000_000 から 200_000_000 "
+"(1 MHz から 200 MHz)、SAMD21 の場合は 1_000_000 から 48_000_000 "
+"(1 MHz から 48 MHz)です。データシートによると、SAMD51 の安全範囲は 96 MHz～120 MHz "
+"です。8 MHz 未満の周波数では、USB が無効になります。48 MHz 未満の周波数を"
+"変更すると、UART, I2C, SPI のボーレートに影響があります。CPU の周波数を変更した後は、"
+"これらを再度設定する必要があります。ms および µs タイマーは、周波数変更の影響を受けません。"
+
+#: ../../samd/quickref.rst:54
+msgid "Delay and timing"
+msgstr "遅延とタイミング"
+
+#: ../../samd/quickref.rst:56 ../../samd/quickref.rst:74
+msgid "Use the :mod:`time <time>` module::"
+msgstr ":mod:`time <time>` モジュールを使います::"
+
+#: ../../samd/quickref.rst:58
+msgid ""
+"import time\n"
+"\n"
+"time.sleep(1)           # sleep for 1 second\n"
+"time.sleep_ms(500)      # sleep for 500 milliseconds\n"
+"time.sleep_us(10)       # sleep for 10 microseconds\n"
+"start = time.ticks_ms() # get millisecond counter\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
+msgstr ""
+"import time\n"
+"\n"
+"time.sleep(1)           # 1秒間、一時停止する\n"
+"time.sleep_ms(500)      # 500ミリ秒間、一時停止する\n"
+"time.sleep_us(10)       # 10マイクロ秒間、一時停止する\n"
+"start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
+
+#: ../../samd/quickref.rst:68
+msgid "Clock and time"
+msgstr "クロックとタイム"
+
+#: ../../samd/quickref.rst:70
+msgid ""
+"Two groups of functions are provided for time information. All boards "
+"have the datetime(), mktime() and time() functions. Boards with a 32kHz "
+"crystal also provide an RTC() module. The epoch start date is 1.1.2000."
+msgstr ""
+"時間情報については、２つの関数群を用意しています。すべてのボードに datetime(), "
+"mktime(), time() 関数があります。32kHz の水晶振動子を持つボードは、RTC() "
+"モジュールも提供します。エポックのスタートは、2000.1.1です。"
+
+#: ../../samd/quickref.rst:76
+msgid ""
+"import time\n"
+"\n"
+"date_time = time.localtime()        # Show the actual date/time "
+"information\n"
+"date_time = time.localtime(seconds) # decode the date/time form the "
+"seconds value\n"
+"seconds = time.mktime(date_time_tuple) # Convert seconds to a datetime "
+"tuple\n"
+"second = time.time()                # Return the actual system time."
+msgstr ""
+"import time\n"
+"\n"
+"date_time = time.localtime()        # 現在の日時情報を取得\n"
+"date_time = time.localtime(seconds) # 秒数の値から日時をデコード\n"
+"seconds = time.mktime(date_time_tuple) # 日時のタプルから秒数に変換\n"
+"second = time.time()                # 現在のシステムタイムを返す"
+
+#: ../../samd/quickref.rst:83
+msgid ""
+"The format of the date_time tuple follows the standard. The µs value of "
+"the date_time tuple is ignored. On boards without the RTC module, "
+"time.localtime(seconds) sets the system time. Use of the Use the "
+":mod:`RTC <RTC>` module::"
+msgstr ""
+"date_time タプルのフォーマットは標準にしたがいます。"
+"date_time タプルの µs 値は無視されます。"
+"RTC モジュールがないボードにおいて、time.localtime() はシステムタイムを返します。"
+"RTC は、:mod:`RTC <RTC>` モジュールを使います。"
+
+#: ../../samd/quickref.rst:87
+msgid ""
+"from machine import RTC\n"
+"rtc = RTC()\n"
+"date_time = rtc.datetime()      # return the actual date & time.\n"
+"rtc.datetime(date_time_tuple)   # Set date & time, ignoring weekday\n"
+"date_time = rtc.now()           # Return date & time in Unix order.\n"
+"rtc.calibration(value)          # Set a calibration factor"
+msgstr ""
+"from machine import RTC\n"
+"rtc = RTC()\n"
+"date_time = rtc.datetime()      # 現在の日時を返す\n"
+"rtc.datetime(date_time_tuple)   # 日時を設定。weekday は無視\n"
+"date_time = rtc.now()           # Unix オーダで日時を返す\n"
+"rtc.calibration(value)          # キャリブレーション係数を設定"
+
+#: ../../samd/quickref.rst:94
+msgid ""
+"The weekday value set will be ignored and calculated in the returned "
+"tuple from the actual date. rtc.now() is only provided at SAMD51 boards. "
+"The value used in the rtc.calibration() call has a range from -127 - 127."
+" It defines roughly a ppm quantity, by which the clock can run faster or "
+"slower."
+msgstr ""
+"weekday (曜日)設定は無視され、実際の日付から返されるタプルで計算されます。"
+"rtc.now() は、SAMD51 ボードでのみ提供されます。rtc.calibration() で指定する値は "
+"-127 から 127 までの範囲です。これはおおよその ppm 量を定義していて、"
+"これによってクロックを高速化したり低速化したりすることができます。"
+
+#: ../../samd/quickref.rst:101
+msgid "Timers"
+msgstr "タイマー"
+
+#: ../../samd/quickref.rst:103
+msgid ""
+"The SAMD21/SAMD51 uses software timers. Use the :ref:`machine.Timer "
+"<machine.Timer>` class::"
+msgstr ""
+"SAMD21/SAMD51 はソフトウェアタイマーをサポートします。 "
+":ref:`machine.Timer <machine.Timer>` クラスを使います::"
+
+#: ../../samd/quickref.rst:105
+msgid ""
+"from machine import Timer\n"
+"\n"
+"tim0 = Timer()\n"
+"tim0.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:print(0))\n"
+"\n"
+"tim1 = Timer()\n"
+"tim1.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(1))"
+msgstr ""
+
+#: ../../samd/quickref.rst:113
+msgid "The period is in milliseconds."
+msgstr "period の単位はミリ秒です。"
+
+#: ../../samd/quickref.rst:118
+msgid "Pins and GPIO"
+msgstr "ピンと GPIO"
+
+#: ../../samd/quickref.rst:120
+msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
+msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
+
+#: ../../samd/quickref.rst:122
+msgid ""
+"from machine import Pin\n"
+"\n"
+"p0 = Pin('D0', Pin.OUT) # create output pin on GPIO0\n"
+"p0.on()                 # set pin to \"on\" (high) level\n"
+"p0.off()                # set pin to \"off\" (low) level\n"
+"p0.value(1)             # set pin to on/high\n"
+"\n"
+"p2 = Pin('D2', Pin.IN)  # create input pin on GPIO2\n"
+"print(p2.value())       # get value, 0 or 1\n"
+"\n"
+"p4 = Pin('D4', Pin.IN, Pin.PULL_UP) # enable internal pull-up resistor\n"
+"p7 = Pin(\"PA07\", Pin.OUT, value=1) # set pin high on creation"
+msgstr ""
+"from machine import Pin\n"
+"\n"
+"p0 = Pin('D0', Pin.OUT) # GPIO0 の出力ピンを作成\n"
+"p0.on()                 # ピンを \"on\" (high) レベルに設定\n"
+"p0.off()                # ピンを \"off\" (low) レベルに設定\n"
+"p0.value(1)             # ピンを on/high に設定\n"
+"\n"
+"p2 = Pin('D2', Pin.IN)  # GPIO2 の入力ピンを作成\n"
+"print(p2.value())       # 値 0 または 1 を取得\n"
+"\n"
+"p4 = Pin('D4', Pin.IN, Pin.PULL_UP) # 内部プルアップ抵抗を有効化\n"
+"p7 = Pin(\"PA07\", Pin.OUT, value=1) # 作成時にピンを high に設定"
+
+#: ../../samd/quickref.rst:135
+msgid ""
+"Pins can be denoted by a string or a number. The string is either the pin"
+" label of the respective board, like \"D0\" or \"SDA\", or in the form "
+"\"Pxnn\", where x is A,B,C or D, and nn a two digit number in the range "
+"0-31. Examples: \"PA03\", PD31\"."
+msgstr ""
+"ピンは文字列または数字で表すことができます。文字列は \"D0\" や \"SDA\" などの"
+"各ボードのピンラベル、または \"Pxnn\" という形式で、x は A,B,C,D、nn は 0-31 の"
+"範囲の 2 桁の数値です。例：\"PA03\"、\"PD31\"。
+
+#: ../../samd/quickref.rst:140
+msgid "Pin numbers are the MCU port numbers in the range::"
+msgstr "ピン番号は、次の範囲の MCU ポート番号です::"
+
+#: ../../samd/quickref.rst:142
+msgid ""
+"PA0..PA31:  0..31\n"
+"PB0..PB31: 32..63\n"
+"PC0..PC31: 64..95\n"
+"PD0..PD31: 96..127"
+msgstr ""
+
+#: ../../samd/quickref.rst:147
+msgid ""
+"Note: On Adafruit Feather and ItsyBity boards, pin D5 is connected to an "
+"external gate output and can therefore only be used as input."
+msgstr ""
+"注記: Adafruit 社の Feather と ItsyBity ボードでは、D5 ピンが外部ゲート出力に"
+"接続されているため、入力としてのみ使用可能です。"
+
+#: ../../samd/quickref.rst:151
+msgid "UART (serial bus)"
+msgstr "UART (シリアルバス)"
+
+#: ../../samd/quickref.rst:153
+msgid "See :ref:`machine.UART <machine.UART>`. ::"
+msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
+
+#: ../../samd/quickref.rst:155
+msgid ""
+"# Use UART 3 on a ItsyBitsy M4 board\n"
+"from machine import UART\n"
+"\n"
+"uart3 = UART(3, tx=Pin(1), rx=Pin(0), baudrate=115200)\n"
+"uart3.write('hello')  # write 5 bytes\n"
+"uart3.read(5)         # read up to 5 bytes"
+msgstr ""
+"# ItsyBitsy M4 board の UART 3 を使用\n"
+"from machine import UART\n"
+"\n"
+"uart3 = UART(3, tx=Pin(1), rx=Pin(0), baudrate=115200)\n"
+"uart3.write('hello')  # 5バイト書き出す\n"
+"uart3.read(5)         # 5バイトまで読み込む"
+
+#: ../../samd/quickref.rst:162
+msgid ""
+"The SAMD21/SAMD51 MCUs have up to eight hardware so called SERCOM "
+"devices, which can be used as UART, SPI or I2C device, but not every MCU "
+"variant and board exposes all TX and RX pins for users. For the "
+"assignment of Pins to devices and UART signals, refer to the :ref:`SAMD "
+"pinout <samd_pinout>`."
+msgstr ""
+"SAMD21/SAMD51 MCU には、最大 8 つのハードウェア SERCOM デバイスがあり、"
+"UART、SPI、I2C デバイスとして使えますが、すべての MCU 製品とボードで、"
+"すべての TX および RX ピンをユーザーが使えるわけではありません。デバイスと "
+"UART 信号へのピンの割り当てについては :ref:`SAMD の入出力ピン <samd_pinout>` "
+"を参照してください。"
+
+#: ../../samd/quickref.rst:168
+msgid "PWM (pulse width modulation)"
+msgstr "PWM (パルス幅変調)"
+
+#: ../../samd/quickref.rst:170
+msgid ""
+"Up to five timer device of the SAMD21/SAMD51 MCUs are used for creating "
+"PWM signals."
+msgstr ""
+"SAMD21/SAMD51 MCU の最大5つのタイマーデバイスが PWM 信号の作成に使われます。"
+
+#: ../../samd/quickref.rst:172
+msgid ""
+"The PWM functions are provided by the :ref:`machine.PWM <machine.PWM>` "
+"class. It supports all basic methods listed for that class. ::"
+msgstr ""
+"PWM 機能は :ref:`machine.PWM <machine.PWM>` クラスによって提供されます。"
+"そのクラスにリストされているすべての基本メソッドをサポートします。"
+
+#: ../../samd/quickref.rst:175
+msgid ""
+"# Samples for Adafruit ItsyBitsy M4 Express\n"
+"\n"
+"from machine import Pin, PWM\n"
+"\n"
+"pwm = PWM(Pin(7))      # create PWM object from a pin\n"
+"pwm.freq()             # get current frequency\n"
+"pwm.freq(1000)         # set frequency\n"
+"pwm.duty_u16()         # get current duty cycle, range 0-65535\n"
+"pwm.duty_u16(200)      # set duty cycle, range 0-65535\n"
+"pwm.deinit()           # turn off PWM on the pin\n"
+"\n"
+"pwm                    # show the PWM objects properties"
+msgstr ""
+"# Adafruit ItsyBitsy M4 Express 用のサンプル\n"
+"\n"
+"from machine import Pin, PWM\n"
+"\n"
+"pwm = PWM(Pin(7))      # ピンから PWM オブジェクトを作成\n"
+"pwm.freq()             # 現在の周波数を取得\n"
+"pwm.freq(1000)         # 周波数を設定\n"
+"pwm.duty_u16()         # 現在のデューティ比(0-65535 の範囲)を取得\n"
+"pwm.duty_u16(200)      # 0 から 65535 の範囲でデューティ比を設定\n"
+"pwm.deinit()           # このピンの PWM を無効化\n"
+"\n"
+"pwm                    # PWM オブジェクトのプロパティを表示"
+
+#: ../../samd/quickref.rst:190
+msgid "PWM Constructor"
+msgstr "PWM コンストラクタ"
+
+#: ../../samd/quickref.rst:195
+msgid "Construct and return a new PWM object using the following parameters:"
+msgstr "以下のパラメータで新しいPWMオブジェクトを構築して、返します。"
+
+#: ../../samd/quickref.rst:197
+msgid "*dest* is the Pin object on which the PWM is output."
+msgstr "*dest* は PWM が出力されるエンティティです。"
+
+#: ../../samd/quickref.rst:199
+msgid ""
+"PWM objects are provided by TCC timer module. The TCC timer modules have "
+"up to six channels and eight outputs. All channels of a module run at the"
+" same frequency, but allow for different duty cycles. Outputs are "
+"assigned to channels in modulo-n fashion, where n is the number of "
+"channels. Outputs of a channel have the same frequency and duty rate, but"
+" may have different polarity. So if for instance a module has four "
+"channels, output 0 and 4, 1 and 5, 2 and 6, 3, and 7 share the same "
+"frequency and duty rate."
+msgstr ""
+"PWM オブジェクトは TCC タイマーモジュールによって提供されます。"
+"TCC タイマーモジュールは、最大で 6 チャンネル、8 出力を備えています。"
+"モジュールのすべてのチャンネルは同じ周波数で動作しますが、異なるデューティサイクルを"
+"許容します。出力は、モジュロ n 方式でチャンネルに割り当てられます(nはチャンネル数)。"
+"チャンネルの出力は、周波数とデューティレートは同じですが、極性は異なる場合があります。"
+"たとえば、モジュールに4つのチャンネルがある場合、出力 0 と 4、1 と 5、2 と 6、3 と 7 "
+"は、同じ周波数とデューティーレートを共有します。"
+
+#: ../../samd/quickref.rst:207
+msgid "Only one of *duty_u16* and *duty_ns* should be specified at a time."
+msgstr "*duty_u16* と *duty_ns* は、一度に1つだけ指定する必要があります。"
+
+#: ../../samd/quickref.rst:209 ../../samd/quickref.rst:264
+msgid "Keyword arguments:"
+msgstr "キーワード引数:"
+
+#: ../../samd/quickref.rst:211
+msgid ""
+"*freq* should be an integer which sets the frequency in Hz for the PWM "
+"cycle. The valid frequency range is 1 Hz to 24 MHz."
+msgstr ""
+"*freq* は PWM 周期の周波数を Hz 単位で設定する整数でなければなりません。"
+"有効な周波数範囲はそれぞれ 1Hz から 最大 24MHz までです。
+
+#: ../../samd/quickref.rst:213
+msgid ""
+"*duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65536``. The duty "
+"cycle of a X channel can only be changed, if the A and B channel of the "
+"respective submodule is not used. Otherwise the duty_16 value of the X "
+"channel is 32768 (50%)."
+msgstr ""
+"*duty_u16* は，デューティ比を ``duty_u16 / 65536`` の比率で設定します。"
+"X チャンネルのデューティ比は、それぞれのサブモジュールの A および B チャンネルが"
+"使われていない場合にのみ変更できます。それ以外の場合、X チャンネルの duty_16 値は "
+"32768 (50％)です。"
+
+#: ../../samd/quickref.rst:217
+msgid ""
+"*duty_ns* sets the pulse width in nanoseconds. The limitation for X "
+"channels apply as well."
+msgstr ""
+"*duty_ns* は、パルス幅をナノ秒単位で設定します。"
+"X チャンネルに対する制限も同様に適用されます。"
+
+#: ../../samd/quickref.rst:219
+msgid "*invert*\\=True|False. Setting a bit inverts the respective output."
+msgstr ""
+"*invert*\\=True|False: ビットを設定することにより、それぞれの出力が反転されます。"
+
+#: ../../samd/quickref.rst:220
+msgid ""
+"*device*\\=n Use TCC module n if available. At some pins two TCC modules "
+"could be used. If not device is mentioned, the software tries to use a "
+"module which is not yet used for a PWM signal. But if pins shall have the"
+" same frequency and/or duty cycle to be changed synchronously, they must "
+"be driven by the same TCC module."
+msgstr ""
+"*device*\\=n: "
+"TCC モジュール n が利用可能であれば使用する。ピンによっては２つの TCC モジュールを"
+"使えます。デバイスが指定されていない場合は、PWM 信号にまだ使用されていないモジュールを"
+"使おうとします。しかし、ピンの周波数やデューティサイクルが同じであれば、同じ TCC "
+"モジュールで駆動しなければなりません。"
+
+#: ../../samd/quickref.rst:226
+msgid "PWM Methods"
+msgstr "PWM メソッド"
+
+#: ../../samd/quickref.rst:228
+msgid ""
+"The methods are identical to the generic :ref:`machine.PWM <machine.PWM>`"
+" class, with additional keyword arguments to the init() method, matchings"
+" those of the constructor."
+msgstr ""
+"メソッドは汎用的な :ref:`machine.PWM <machine.PWM>` クラスと同じですが、"
+"init() メソッドのキーワード引数が追加され、コンストラクタの引数と同じになります。"
+
+#: ../../samd/quickref.rst:232
+msgid "PWM Pin Assignment"
+msgstr "PWM のピン割当て"
+
+#: ../../samd/quickref.rst:234
+msgid ""
+"Pins are specified in the same way as for the Pin class.  For the "
+"assignment of Pins to PWM signals, refer to the :ref:`SAMD pinout "
+"<samd_pinout>`."
+msgstr ""
+"ピンは Pin クラスと同様に指定します。PWM 信号線のピン割当てについては "
+":ref:`SAMD の入出力ピン <samd_pinout>` を参照してください。"
+
+#: ../../samd/quickref.rst:238
+msgid "ADC (analog to digital conversion)"
+msgstr "ADC (アナログ/デジタル変換)"
+
+#: ../../samd/quickref.rst:240
+msgid ""
+"On the SAMD21/SAMD51 ADC functionality is available on Pins labelled "
+"'Ann'."
+msgstr ""
+msgstr "SAMD21/SAMD51 での ADC 機能は 'Ann' とラベル付けられたピンで利用できます。"
+
+#: ../../samd/quickref.rst:242
+msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
+msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
+
+#: ../../samd/quickref.rst:244
+msgid ""
+"from machine import ADC\n"
+"\n"
+"adc0 = ADC(Pin(\"A0\"))            # create ADC object on ADC pin, "
+"average=16\n"
+"adc0.read_u16()                  # read value, 0-65536 across voltage "
+"range 0.0v - 3.3v\n"
+"adc1 = ADC(Pin(\"A1\"), average=1) # create ADC object on ADC pin, "
+"average=1"
+msgstr ""
+"from machine import ADC\n"
+"\n"
+"adc0 = ADC(Pin(\"A0\"))            # ADC ピンの ADC オブジェクトを average=16 で作成\n"
+"adc0.read_u16()                    # 生のアナログ値を 0-65535 (0.0v - 3.3v)の範囲で読込み\n"
+"adc1 = ADC(Pin(\"A1\"), average=1) # ADC ピンの ADC オブジェクトを average=1 で作成"
+
+#: ../../samd/quickref.rst:250
+msgid ""
+"The resolution of the ADC is 12 bit with 12 bit accuracy, irrespective of"
+" the value returned by read_u16(). If you need a higher resolution or "
+"better accuracy, use an external ADC."
+msgstr ""
+"ADC の分解能は12bitで、read_u16() が返す値とは関係なく、10～11bit の精度を持ちます。"
+"より高い分解能や精度が必要な場合は、外部 ADC を使用してください。"
+
+#: ../../samd/quickref.rst:255
+msgid "ADC Constructor"
+msgstr "ADC コンストラクタ"
+
+#: ../../samd/quickref.rst:260
+msgid "Construct and return a new ADC object using the following parameters:"
+msgstr "次のパラメータを使って新しい ADC オブジェクトを構築して返します:"
+
+#: ../../samd/quickref.rst:266
+msgid ""
+"*average* is used to reduce the noise. With a value of 16 the LSB noise "
+"is about 1 digit."
+msgstr ""
+"*average* はノイズを減らすために使われます。値が16の場合、LSBノイズは1桁程度です。"
+
+#: ../../samd/quickref.rst:262
+msgid "*dest* is the Pin object on which the ADC is output."
+msgstr "*dest* は ADC が出力される Pin オブジェクトです。"
+
+#: ../../samd/quickref.rst:269
+msgid "DAC (digital to analog conversion)"
+msgstr "DAC (デジタル/アナログ変換)"
+
+#: ../../samd/quickref.rst:271
+msgid ""
+"The DAC class provides a fast digital to analog conversion. Usage "
+"example::"
+msgstr ""
+"DAC クラスは、デジタルからアナログへの高速変換を実現します。使用例:"
+
+#: ../../samd/quickref.rst:273
+msgid ""
+"from machine import DAC\n"
+"\n"
+"dac0 = DAC(0)                    # create DAC object on DAC pin A0\n"
+"dac0.write(1023)                 # write value, 0-4095 across voltage "
+"range 0.0v - 3.3v\n"
+"dac1 = DAC(1)                    # create DAC object on DAC pin A1\n"
+"dac1.write(2000)                 # write value, 0-4095 across voltage "
+"range 0.0v - 3.3v"
+msgstr ""
+"from machine import DAC\n"
+"\n"
+"dac0 = DAC(0)                    # DAC ピン A0 の DAC オブジェクトを作成\n"
+"dac0.write(1023)                 # 電圧範囲 0.0V～3.3V を 0～4095の値で書込み\n"
+"dac1 = DAC(1)                    # DAC ピン A1 の DAC オブジェクトを作成\n"
+"dac1.write(2000)                 # 電圧範囲 0.0V～3.3V を 0～4095の値で書込み"
+
+#: ../../samd/quickref.rst:280
+msgid ""
+"The resolution of the DAC is 12 bit for SAMD51 and 10 bit for SAMD21. "
+"SAMD21 devices have 1 DAC channel at GPIO PA02, SAMD51 devices have 2 DAC"
+" channels at GPIO PA02 and PA05."
+msgstr ""
+"DAC の解像度は、SAMD51 の場合は 12 ビット、SAMD21 の場合は 10 ビットです。"
+"SAMD21 デバイスは GPIO PA02 に 1 つの DAC チャンネルを持ち、SAMD51 デバイスは "
+"GPIO PA02 と PA05 に 2 つの DAC チャンネルを持っています。"
+
+#: ../../samd/quickref.rst:284
+msgid "Software SPI bus"
+msgstr "ソフトウェア SPI バス"
+
+#: ../../samd/quickref.rst:286
+msgid ""
+"Software SPI (using bit-banging) works on all pins, and is accessed via "
+"the :ref:`machine.SoftSPI <machine.SoftSPI>` class. ::"
+msgstr ""
+"ソフトウェア SPI (ビットバンギング)はすべてのピンで動作し、 "
+":ref:`machine.SoftSPI <machine.SoftSPI>` クラスを介してアクセスします::"
+
+#: ../../samd/quickref.rst:289
+msgid ""
+"from machine import Pin, SoftSPI\n"
+"\n"
+"# construct a SoftSPI bus on the given pins\n"
+"# polarity is the idle state of SCK\n"
+"# phase=0 means sample on the first edge of SCK, phase=1 means the second"
+"\n"
+"spi = SoftSPI(baudrate=100000, polarity=1, phase=0, sck=Pin(7), "
+"mosi=Pin(9), miso=Pin(10))\n"
+"\n"
+"spi.init(baudrate=200000) # set the baud rate\n"
+"\n"
+"spi.read(10)            # read 10 bytes on MISO\n"
+"spi.read(10, 0xff)      # read 10 bytes while outputting 0xff on MOSI\n"
+"\n"
+"buf = bytearray(50)     # create a buffer\n"
+"spi.readinto(buf)       # read into the given buffer (reads 50 bytes in "
+"this case)\n"
+"spi.readinto(buf, 0xff) # read into the given buffer and output 0xff on "
+"MOSI\n"
+"\n"
+"spi.write(b'12345')     # write 5 bytes on MOSI\n"
+"\n"
+"buf = bytearray(4)      # create a buffer\n"
+"spi.write_readinto(b'1234', buf) # write to MOSI and read from MISO into "
+"the buffer\n"
+"spi.write_readinto(buf, buf) # write buf to MOSI and read MISO back into "
+"buf"
+msgstr ""
+"from machine import Pin, SoftSPI\n"
+"\n"
+"# 与えたピンから SoftSPI バスを構築\n"
+"# 極性 polarity は SCK のアイドル状態\n"
+"# phase=0 は SCK の第１エッジでサンプルを意味、chase=1 は第２を意味"
+"\n"
+"spi = SoftSPI(baudrate=100000, polarity=1, phase=0, sck=Pin(7), "
+"mosi=Pin(9), miso=Pin(10))\n"
+"\n"
+"spi.init(baudrate=200000) # ボーレートを設定\n"
+"\n"
+"spi.read(10)            # MISO で 10 バイト読込み\n"
+"spi.read(10, 0xff)      # 10 バイト読込み、その間 MOSI に 0xff を出力\n"
+"\n"
+"buf = bytearray(50)     # バッファを作成\n"
+"spi.readinto(buf)       # 与えたバッファに読込み(この場合は 50 バイト)\n"
+"spi.readinto(buf, 0xff) # 与えたバッファに読込み、MOSI に 0xff を出力\n"
+"\n"
+"spi.write(b'12345')     # MOSI に 5 バイト書込み\n"
+"\n"
+"buf = bytearray(4)      # バッファを作成\n"
+"spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
+"spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
+
+#: ../../samd/quickref.rst:311
+msgid "The highest supported baud rate is 500000."
+msgstr "サポートしている最大ボーレートは 500000 です。"
+
+#: ../../samd/quickref.rst:314
+msgid "Hardware SPI bus"
+msgstr "ハードウェア SPI バス"
+
+#: ../../samd/quickref.rst:316
+msgid ""
+"The SAMD21/SAMD51 MCUs have up to eight hardware so called SERCOM "
+"devices, which can be used as UART, SPI or I2C device, but not every MCU "
+"variant and board exposes all signal pins for users.  Hardware SPI is "
+"accessed via the :ref:`machine.SPI <machine.SPI>` class and has the same "
+"methods as software SPI above::"
+msgstr ""
+"SAMD21/SAMD51 MCU には、最大 8 つのハードウェア SERCOM デバイスがあり、"
+"UART、SPI、I2C デバイスとして使えますが、すべての MCU 製品とボードが"
+"すべての信号ピンをユーザーに公開しているわけではありません。ハードウェア SPI は "
+":ref:`machine.SPI <machine.SPI>` クラスを使ってアクセスします。
+"このクラスには先述のソフトウェア SPI と同じメソッドがあります::"
+
+#: ../../samd/quickref.rst:321
+msgid ""
+"from machine import SPI\n"
+"\n"
+"spi = SPI(1, sck=Pin(\"SCK\"), mosi=Pin(\"MOSI\"), miso=Pin(\"MISO\"), "
+"baudrate=10000000)\n"
+"spi.write('Hello World')"
+msgstr ""
+
+#: ../../samd/quickref.rst:326
+msgid ""
+"If miso is not specified, it is not used. For the assignment of Pins to "
+"SPI devices and signals, refer to :ref:`SAMD pinout <samd_pinout>`."
+msgstr ""
+"miso を指定しなければ、それは使われません。"
+"SPI 信号線のピン割当てについては :ref:`SAMD の入出力ピン <samd_pinout>` "
+"を参照してください。"
+
+#: ../../samd/quickref.rst:329
+msgid ""
+"Note: Even if the highest reliable baud rate at the moment is about 24 "
+"Mhz, setting a baud rate will not always result in exactly that "
+"frequency, especially at high baud rates."
+msgstr ""
+"注記: 現時点で最も信頼性の高いボーレートが 24MHz 程度であっても、"
+"特に高いボーレートでは、ボーレートの設定が必ずしもその通りの周波数になるとは限りません。"
+
+#: ../../samd/quickref.rst:334
+msgid "Software I2C bus"
+msgstr "ソフトウェア I2C バス"
+
+#: ../../samd/quickref.rst:336
+msgid ""
+"Software I2C (using bit-banging) works on all output-capable pins, and is"
+" accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
+msgstr ""
+"ソフトウェア I2C (ビット・バンギングを使用)は、出力可能なすべてのピンで動作し、 "
+":ref:`machine.SoftI2C <machine.SoftI2C>` クラスを使ってアクセスします。"
+
+#: ../../samd/quickref.rst:339
+msgid ""
+"from machine import Pin, SoftI2C\n"
+"\n"
+"i2c = SoftI2C(scl=Pin(10), sda=Pin(11), freq=100000)\n"
+"\n"
+"i2c.scan()              # scan for devices\n"
+"\n"
+"i2c.readfrom(0x3a, 4)   # read 4 bytes from device with address 0x3a\n"
+"i2c.writeto(0x3a, '12') # write '12' to device with address 0x3a\n"
+"\n"
+"buf = bytearray(10)     # create a buffer with 10 bytes\n"
+"i2c.writeto(0x3a, buf)  # write the given buffer to the slave"
+msgstr ""
+"from machine import Pin, SoftI2C\n"
+"\n"
+"i2c = SoftI2C(scl=Pin(10), sda=Pin(11), freq=100000)\n"
+"\n"
+"i2c.scan()              # デバイスをスキャン\n"
+"\n"
+"i2c.readfrom(0x3a, 4)   # アドレス 0x3a のデバイスから 4 バイト読み込み\n"
+"i2c.writeto(0x3a, '12') # アドレス 0x3a のデバイスに '12' を書き込み\n"
+"\n"
+"buf = bytearray(10)     # 10バイトのバッファを作成\n"
+"i2c.writeto(0x3a, buf)  # 与えたバッファをペリフェラルに書き込み"
+
+#: ../../samd/quickref.rst:351
+msgid "The highest supported freq is 400000."
+msgstr "サポートしている最大周波数は 400000 です。"
+
+#: ../../samd/quickref.rst:354
+msgid "Hardware I2C bus"
+msgstr "ハードウェア I2C バス"
+
+#: ../../samd/quickref.rst:356
+msgid ""
+"The SAMD21/SAMD51 MCUs have up to eight hardware so called SERCOM "
+"devices, which can be used as UART, SPI or I2C device, but not every MCU "
+"variant and board exposes all signal pins for users. For the assignment "
+"of Pins to devices and I2C signals, refer to :ref:`SAMD pinout "
+"<samd_pinout>`."
+msgstr ""
+"SAMD21/SAMD51 MCU には、最大 8 つのハードウェア SERCOM デバイスがあり、"
+"UART、SPI、I2C デバイスとして使えますが、すべての MCU 製品とボードが"
+"すべての信号ピンをユーザーに公開しているわけではありません。"
+"デバイスと I2C 信号線のピン割当てについては :ref:`SAMD の入出力ピン "
+"<samd_pinout>` を参照してください。"
+
+#: ../../samd/quickref.rst:361
+msgid ""
+"Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class "
+"and has the same methods as software SPI above::"
+msgstr ""
+"ハードウェア I2C は :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。
+"このクラスには先述のソフトウェア I2C と同じメソッドがあります::"
+
+#: ../../samd/quickref.rst:364
+msgid ""
+"from machine import I2C\n"
+"\n"
+"i2c = I2C(2, scl=Pin(\"SCL\"), sda=Pin(\"SDA\"), freq=400_000)\n"
+"i2c.writeto(0x76, b\"Hello World\")"
+msgstr ""
+
+#: ../../samd/quickref.rst:370
+msgid "OneWire driver"
+msgstr "OneWire ドライバー"
+
+#: ../../samd/quickref.rst:372
+msgid "The OneWire driver is implemented in software and works on all pins::"
+msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
+
+#: ../../samd/quickref.rst:374
+msgid ""
+"from machine import Pin\n"
+"import onewire\n"
+"\n"
+"ow = onewire.OneWire(Pin(12)) # create a OneWire bus on GPIO12\n"
+"ow.scan()                     # return a list of devices on the bus\n"
+"ow.reset()                    # reset the bus\n"
+"ow.readbyte()                 # read a byte\n"
+"ow.writebyte(0x12)            # write a byte on the bus\n"
+"ow.write('123')               # write bytes on the bus\n"
+"ow.select_rom(b'12345678')    # select a specific device by its ROM code"
+msgstr ""
+"from machine import Pin\n"
+"import onewire\n"
+"\n"
+"ow = onewire.OneWire(Pin(12)) # GPIO12 で OneWire バスを作成\n"
+"ow.scan()               # バス上のデバイスリストをスキャン\n"
+"ow.reset()              # バスをリセット\n"
+"ow.readbyte()           # １バイト読込み\n"
+"ow.writebyte(0x12)      # バスに１バイト書込み\n"
+"ow.write('123')         # バスに複数バイト書込み\n"
+"ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
+
+#: ../../samd/quickref.rst:385
+msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
+msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
+
+#: ../../samd/quickref.rst:387
+msgid ""
+"import time, ds18x20\n"
+"ds = ds18x20.DS18X20(ow)\n"
+"roms = ds.scan()\n"
+"ds.convert_temp()\n"
+"time.sleep_ms(750)\n"
+"for rom in roms:\n"
+"    print(ds.read_temp(rom))"
+msgstr ""
+
+#: ../../samd/quickref.rst:395
+msgid ""
+"Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
+"``convert_temp()`` method must be called each time you want to sample the"
+" temperature."
+msgstr ""
+"4.7k のプルアップ抵抗をデータラインに接続してください。"
+"``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
+"必要があることに注意してください。"
+
+#: ../../samd/quickref.rst:400
+msgid "DHT driver"
+msgstr "DHT ドライバー"
+
+#: ../../samd/quickref.rst:402
+msgid "The DHT driver is implemented in software and works on all pins::"
+msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
+
+#: ../../samd/quickref.rst:404
+msgid ""
+"import dht\n"
+"import machine\n"
+"\n"
+"d = dht.DHT11(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # eg. 23 (°C)\n"
+"d.humidity()    # eg. 41 (% RH)\n"
+"\n"
+"d = dht.DHT22(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # eg. 23.6 (°C)\n"
+"d.humidity()    # eg. 41.3 (% RH)"
+msgstr ""
+"import dht\n"
+"import machine\n"
+"\n"
+"d = dht.DHT11(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # 例: 23 (°C)\n"
+"d.humidity()    # 例: 41 (% RH)\n"
+"\n"
+"d = dht.DHT22(machine.Pin(4))\n"
+"d.measure()\n"
+"d.temperature() # 例: 23.6 (°C)\n"
+"d.humidity()    # 例: 41.3 (% RH)"
+
+#: ../../samd/quickref.rst:417
+msgid ""
+"Be sure to have a 4.7k pull-up resistor on the data line.  Some DHT "
+"modules may already have one."
+msgstr ""
+"4.7k のプルアップ抵抗をデータラインに接続してください。"
+"DHT モジュールの中にはプルアップ抵抗が実装済みのものもあります。
+
+#: ../../samd/quickref.rst:421
+msgid "Driving an APA102 LED"
+msgstr "APA102 LED の駆動"
+
+#: ../../samd/quickref.rst:423
+msgid "The APA102 on some Adafruit boards can be controlled using SoftSPI::"
+msgstr "一部の Adafruit ボードにある APA102 は SoftSPI で制御できます::"
+
+#: ../../samd/quickref.rst:425
+msgid ""
+"from machine import SoftSPI, Pin\n"
+"# create the SPI object. miso can be any unused pin.\n"
+"spi=SoftSPI(sck=Pin(25), mosi=Pin(26), miso=Pin(14))\n"
+"\n"
+"# define a little function that writes the data with\n"
+"# preamble and postfix\n"
+"def write(red, green, blue):\n"
+"    spi.write(b\"\\x00\\x00\\x00\\x00\\xff\")\n"
+"    spi.write(bytearray((blue, green, red)))\n"
+"    spi.write(b\"\\xff\\xff\\xff\")\n"
+"\n"
+"# set the LED to red\n"
+"write(128, 0, 0)"
+msgstr ""
+"from machine import SoftSPI, Pin\n"
+"# SPI オブジェクトを作成。miso は未使用のピンのどれでもよい。\n"
+"spi=SoftSPI(sck=Pin(25), mosi=Pin(26), miso=Pin(14))\n"
+"\n"
+"# プリアンブルとポストフィックスを持つデータを書き込むための"
+"# 小さな関数を定義\n"
+"def write(red, green, blue):\n"
+"    spi.write(b\"\\x00\\x00\\x00\\x00\\xff\")\n"
+"    spi.write(bytearray((blue, green, red)))\n"
+"    spi.write(b\"\\xff\\xff\\xff\")\n"
+"\n"
+"# LED を赤に設定\n"
+"write(128, 0, 0)"
+
+#: ../../samd/quickref.rst:439
+msgid ""
+"Since SoftSPI does not allow miso to be undefined, miso has to be "
+"assigned to an otherwise unused pin."
+msgstr ""
+"SoftSPI では miso を未定義にできないため、miso を未使用のピンに割り当てる"
+"必要があります。"
+
+#: ../../samd/quickref.rst:443
+msgid "Driving a Neopixel LED"
+msgstr "Neopixel LED の駆動"
+
+#: ../../samd/quickref.rst:445
+msgid ""
+"The built-in machine.bitstream() method supports driving Neopixel LEDs in"
+" combination with the Neopixel driver from the MicroPython driver "
+"library::"
+msgstr ""
+"組込みの machine.bitstream() メソッドは、MicroPython ドライバーライブラリにある"
+"Neopixel ドライバーと組み合わせて、NeoPixel LED の駆動をサポートします::"
+
+#: ../../samd/quickref.rst:448
+msgid ""
+"import neopixel\n"
+"import machine\n"
+"\n"
+"# 1 LED connected to Pin D8 on Adafruit Feather boards\n"
+"p = machine.Pin(8, machine.Pin.OUT)\n"
+"n = neopixel.NeoPixel(p, 1)\n"
+"\n"
+"# set the led to red.\n"
+"n[0] = (128, 0, 0)\n"
+"\n"
+"# Update the LED.\n"
+"n.write()"
+msgstr ""
+"import neopixel\n"
+"import machine\n"
+"\n"
+"# Adafruit Feather ボードの Pin D8 に繋げられている 1 LED\n"
+"p = machine.Pin(8, machine.Pin.OUT)\n"
+"n = neopixel.NeoPixel(p, 1)\n"
+"\n"
+"# LED を赤に設定\n"
+"n[0] = (128, 0, 0)\n"
+"\n"
+"# LED の表示を更新\n"
+"n.write()"
+
+#: ../../samd/quickref.rst:461
+msgid ""
+"machine.bitstream() is set up for a SAMD21 clock frequency of 48MHz and a"
+" SAMD51 clock frequency of 120 MHz. At other clock frequencies, the "
+"timing will not fit."
+msgstr ""
+"machine.bitstream() は、SAMD21 のクロック周波数 48MHz と SAMD51 のクロック"
+"周波数 120MHz を想定して設定されています。他のクロック周波数では、タイミングが合いません。"
+
+#: ../../samd/quickref.rst:465
+msgid "Transferring files"
+msgstr "ファイル転送"
+
+#: ../../samd/quickref.rst:467
+msgid ""
+"Files can be transferred to the SAMD21/SAMD51 devices for instance with "
+"the :ref:`mpremote <mpremote>` tool. See the MicroPython forum for "
+"community-supported alternatives to transfer files to an SAMD21/SAMD51 "
+"board, like rshell or Thonny."
+msgstr ""
+":ref:`mpremote <mpremote>` ツールを使って、SAMD21/SAMD51 デバイスにファイルを"
+"転送できます。SAMD21/SAMD51 ボードにファイルを転送する方法として、コミュニティが"
+"サポートする代替手段(rshell や Thonny など)については MicroPython フォーラムを"
+"参照してください。"
+
+#: ../../samd/tutorial/intro.rst:4
+msgid "Getting started with MicroPython on the SAMD"
+msgstr "SAMD での MicroPython の始め方"
+
+#: ../../samd/tutorial/intro.rst:6
+msgid ""
+"Using MicroPython is a great way to get the most of your SAMD board.  And"
+" vice versa, the SAMD chip is a great platform for using MicroPython.  "
+"This tutorial will guide you through setting up MicroPython, getting a "
+"prompt, using the hardware peripherals, and controlling some external "
+"components."
+msgstr ""
+"MicroPython を使うと、SAMD ボードを最大限に活用できます。"
+"逆も同様、SAMD チップは MicroPython を使用するための優れたプラットフォームです。"
+"このチュートリアルでは、MicroPython の設定、プロンプトの表示、ハードウェア"
+"ペリフェラルの使用、およびいくつかの外部コンポーネントの制御について説明します。"
+
+#: ../../samd/tutorial/intro.rst:11
+msgid "Let's get started!"
+msgstr "始めましょう！"
+
+#: ../../samd/tutorial/intro.rst:14
+msgid "Requirements"
+msgstr "必要なもの"
+
+#: ../../samd/tutorial/intro.rst:16
+msgid ""
+"The first thing you need is a board with an SAMD chip.  The MicroPython "
+"software supports the SAMD chip itself and any board should work.  The "
+"main characteristic of a board is how the GPIO pins are connected to the "
+"outside world, and whether it includes a built-in USB-serial converter to"
+" make the UART available to your PC."
+msgstr ""
+"最初に必要なのは、SAMD チップを搭載したボードです。MicroPython ソフトウェアは "
+"SAMD チップ自体をサポートしており、どのボードでも動作するはずです。"
+"ボードについて気にするとことは、GPIO ピンが外にどのように接続されているか、"
+"UART を PC で使用できるようにする内蔵 USB シリアルコンバータが含まれているかどうかです。"
+
+#: ../../samd/tutorial/intro.rst:22
+msgid ""
+"Names of pins will be given in this tutorial using the board names "
+"(\"D0\") and it should be straightforward to find which pin this "
+"corresponds to on your particular board."
+msgstr ""
+"このチュートリアルではピンの名前にボード名(例: \"D0\")を使っていますが、これが特定の"
+"ボード上でどのピンに対応するかを見つけるのは簡単なはずです。"
+
+#: ../../samd/tutorial/intro.rst:27
+msgid "Powering the board"
+msgstr "ボードの電源を入れる"
+
+#: ../../samd/tutorial/intro.rst:29
+msgid ""
+"If your board has a USB connector on it then most likely it is powered "
+"through this when connected to your PC.  Otherwise you will need to power"
+" it directly. Please refer to the documentation for your board for "
+"further details."
+msgstr ""
+"ボードに USB コネクタがある場合は、PC に接続されているときに電源が供給されている"
+"可能性が非常に高いです。それ以外の場合は、直接電源を入力する必要があります。"
+"詳細については、ボードのドキュメントを参照してください。"
+
+#: ../../samd/tutorial/intro.rst:34
+msgid "Getting the firmware"
+msgstr "ファームウェアの入手"
+
+#: ../../samd/tutorial/intro.rst:36
+msgid ""
+"Firmware versions are provided at the `MicroPython download page "
+"<https://micropython.org/download/?port=samd>`_. You can download the "
+"most recent MicroPython firmware .uf2 file to load onto your SAMD device."
+"  From that download page you have two main choices:"
+msgstr ""
+"ファームウェアは MicroPython の `ダウンロードページ "
+"<https://micropython.org/download/?port=samd>`_ で提供しています。"
+"最新の MicroPython ファームウェアの .uf2 ファイルをダウンロードして、"
+"SAMD デバイスにロードできます。このダウンロードページでは主に2つの選択肢があります:"
+
+#: ../../samd/tutorial/intro.rst:41
+msgid "stable firmware builds"
+msgstr "安定ビルド版ファームウェア"
+
+#: ../../samd/tutorial/intro.rst:42
+msgid "daily firmware builds"
+msgstr "日次ビルド版ファームウェア"
+
+#: ../../samd/tutorial/intro.rst:44
+msgid ""
+"If you are just starting with MicroPython, the best bet is to go for the "
+"stable firmware builds. If you are an advanced, experienced MicroPython "
+"SAMD user who would like to follow development closely and help with "
+"testing new features, there are daily builds. They run through the same "
+"rigid internal test sequence as the stable builds, but the firmware "
+"features may change."
+msgstr ""
+"MicroPython を使い始めたばかりの方には、安定版ファームウェアビルドをお勧めします。"
+"経験豊富で経験豊かな MicroPython i.MXRT ユーザーで、開発が続けられている新機能を"
+"テストしたい場合は、日次ビルド版があります。"
+"日次ビルド版においても、安定版のビルドと同じ厳格な内部テストシーケンスを実行してはいますが、"
+"ファームウェアの機能は変更される可能性があります。"
+
+#: ../../samd/tutorial/intro.rst:51
+msgid "Deploying the firmware"
+msgstr "ファームウェアの配備"
+
+#: ../../samd/tutorial/intro.rst:53
+msgid ""
+"Once you have the MicroPython firmware you need to load it onto your SAMD"
+" device. Most of the boards support the following easy procedure for "
+"firmware upload."
+msgstr ""
+"MicroPython ファームウェアを取得したら、SAMD デバイスにロードする必要があります。"
+"ほとんどのボードは、以下の簡単な手順でのファームウェアのアップロードに対応しています。"
+
+#: ../../samd/tutorial/intro.rst:57
+msgid "Connect the board by an USB-A/USB-Micro cable to your PC."
+msgstr "ボードを USB-A/USB-Micro ケーブルで PC に接続してください。"
+
+#: ../../samd/tutorial/intro.rst:58
+msgid ""
+"Push the reset button twice. Then, a drive should pop up at the PC's file"
+" manager. Many boards have a on-board RGB LED, which first lights up red,"
+" and then changes it's colour to green. The timing of the double push is "
+"sometimes tricky. So you may have to try to get the proper rhythm."
+msgstr ""
+"リセットボタンを2回押してください。すると、PC のファイルマネージャーでドライブが"
+"ポップアップするはずです。多くのボードには RGB LED が搭載されており、最初に赤く点灯し、"
+"その後緑色に変化します。ダブルプッシュのタイミングが難しい場合もあります。"
+"そのため、適切なリズムを得るためには、試行錯誤が必要かもしれません。"
+
+#: ../../samd/tutorial/intro.rst:62
+msgid ""
+"Copy the .uf2 file to that newly opened drive. A LED on the board may "
+"flash a while. When the copy is finished, the board drive will disappear "
+"and the RGB led will turn from green to the initial state."
+msgstr ""
+".uf2 ファイルを新しく開いたドライブにコピーしてください。ボード上のLEDがしばらく"
+"点滅することがあります。コピーが終了すると、ボードのドライブが消え、RGBのLEDが"
+"緑色から初期状態になります。"
+
+#: ../../samd/tutorial/intro.rst:67
+msgid "Serial prompt"
+msgstr "シリアルプロンプト"
+
+#: ../../samd/tutorial/intro.rst:69
+msgid ""
+"Once you have the firmware on the device you can access the REPL (Python "
+"prompt) over USB."
+msgstr ""
+"デバイスにファームウェアをインストールしたら、USB を介して REPL (Python プロンプト)に"
+"アクセスできます。"
+
+#: ../../samd/tutorial/intro.rst:72
+msgid "From there you can follow the SAMD tutorial."
+msgstr "ここまでできたならば、後は SAMD チュートリアルにしたがって進めることができます。"
+
+#: ../../samd/tutorial/intro.rst:75
+msgid "Troubleshooting installation problems"
+msgstr "インストールの問題のトラブルシューティング"
+
+#: ../../samd/tutorial/intro.rst:77
+msgid ""
+"If you experience problems during flashing or with running firmware "
+"immediately after it, here are some troubleshooting recommendations:"
+msgstr ""
+"フラッシュ中またはファームウェアの実行直後に問題が発生した場合は、次の推奨事項を"
+"参照してください:"
+
+#: ../../samd/tutorial/intro.rst:80
+msgid ""
+"Be aware of and try to exclude hardware problems.  There are two common "
+"problems: bad power source quality, and worn-out/defective Flash ROM. "
+"Speaking of power source, not just raw amperage is important, but also "
+"low ripple and noise/EMI in general.  The most reliable and convenient "
+"power source is a USB port."
+msgstr ""
+"ハードウェア上の問題がないかを調べ、取り除いてください。発生しやすい問題は２つあります。"
+"電源品質が悪いことと Flash ROM の寿命/欠陥です。電源と言えば、素のアンペア数だけでなく、"
+"一般的に低リップルやノイズ/EMIも重要です。最も信頼性が高く便利な電源はUSBポートです。"
+

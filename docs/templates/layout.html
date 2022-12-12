@@ -4,3 +4,27 @@
 {# we change the master_doc variable so that links to the index
    page are to index.html instead of <port>_index.html #}
 {% set master_doc = "index" %}
+
+{% block document %}
+  {% if is_release %}
+    <div class="wy-alert wy-alert-danger">
+      <p>
+        これは MicroPython バージョン v{{ release }} のドキュメンテーションです。
+        このページの<a href="/ja/latest/{{ pagename }}.html">最新開発版</a>
+        の方が、より新しい内容になっています。
+      </p>
+    </div>
+  {% else %}
+    <div class="wy-alert wy-alert-danger">
+      <p>
+        このドキュメンテーションは、MicroPython の最新開発ブランチのためのものです。
+        リリースバージョンでは利用できない機能に言及することがあります。
+      </p>
+      <p>
+        特定のリリースのドキュメントをお探しの場合は、左側のドロップダウンメニューを使って、
+        望みのバージョンを選択します。
+      </p>
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}

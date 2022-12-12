@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.19.1\n"
+"Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 17:29+0900\n"
-"PO-Revision-Date: 2022-10-16 18:03+0900\n"
+"POT-Creation-Date: 2022-11-13 16:19+0900\n"
+"PO-Revision-Date: 2022-11-13 16:40+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -852,16 +852,21 @@ msgstr ""
 msgid ""
 "mp_obj_t mp_compile(mp_parse_tree_t *parse_tree, qstr source_file, bool "
 "is_repl) {\n"
+"    // Create a context for this module, and set its globals dict.\n"
+"    mp_module_context_t *context = m_new_obj(mp_module_context_t);\n"
+"    context->module.globals = mp_globals_get();\n"
+"\n"
 "    // Compile the input parse_tree to a raw-code structure.\n"
-"    mp_raw_code_t *rc = mp_compile_to_raw_code(parse_tree, source_file, "
-"is_repl);\n"
+"    mp_compiled_module_t cm = mp_compile_to_raw_code(parse_tree, "
+"source_file, is_repl, context);\n"
+"\n"
 "    // Create and return a function object that executes the outer "
 "module.\n"
-"    return mp_make_function_from_raw_code(rc, MP_OBJ_NULL, MP_OBJ_NULL);\n"
+"    return mp_make_function_from_raw_code(cm.rc, cm.context, NULL);\n"
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:156
+#: ../../develop/compiler.rst:161
 msgid ""
 "The compiler compiles the code in four passes: scope, stack size, code "
 "size and emit. Each pass runs the same C code over the same AST data "
@@ -872,11 +877,11 @@ msgstr ""
 "コンパイルします。各パスは同じASTデータ構造に対して同じCコードを実行し、"
 "前のパスの結果に基づいて異なるものが算出されます。"
 
-#: ../../develop/compiler.rst:161
+#: ../../develop/compiler.rst:166
 msgid "First pass"
 msgstr "第１パス"
 
-#: ../../develop/compiler.rst:163
+#: ../../develop/compiler.rst:168
 msgid ""
 "In the first pass, the compiler learns about the known identifiers "
 "(variables) and their scope, being global, local, closed over, etc. In "
@@ -887,7 +892,7 @@ msgstr ""
 "クローズドオーバーなど)を学習します。同じパスで(バイトコードまたはネイティブコードの)"
 "エミッターは出力コードに必要なラベルの数も算出します。"
 
-#: ../../develop/compiler.rst:168
+#: ../../develop/compiler.rst:173
 msgid ""
 "// Compile pass 1.\n"
 "comp->emit = emit_bc;\n"
@@ -914,11 +919,11 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:193
+#: ../../develop/compiler.rst:198
 msgid "Second and third passes"
 msgstr "第２パスと第３パス"
 
-#: ../../develop/compiler.rst:195
+#: ../../develop/compiler.rst:200
 msgid ""
 "The second and third passes involve computing the Python stack size and "
 "code size for the bytecode or native code. After the third pass the code "
@@ -928,7 +933,7 @@ msgstr ""
 "コードサイズを算出します。第３パスの後、コードサイズは変更できません。そうしないと、"
 "ジャンプラベルが不正確なものになるからです。"
 
-#: ../../develop/compiler.rst:199
+#: ../../develop/compiler.rst:204
 msgid ""
 "for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
 "MP_OBJ_NULL; s = s->next) {\n"
@@ -946,7 +951,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:215
+#: ../../develop/compiler.rst:220
 msgid ""
 "Just before pass two there is a selection for the type of code to be "
 "emitted, which can either be native or bytecode."
@@ -954,7 +959,7 @@ msgstr ""
 "第２パスの直前には、出力するコード種別を選択肢があり、ネイティブコードかバイトコードかを"
 "選択できます。"
 
-#: ../../develop/compiler.rst:218
+#: ../../develop/compiler.rst:223
 msgid ""
 "// Choose the emitter type.\n"
 "switch (s->emit_options) {\n"
@@ -975,7 +980,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:237
+#: ../../develop/compiler.rst:242
 msgid ""
 "The bytecode option is the default but something unique to note for the "
 "native code option is that there is another option via ``VIPER``. See the"
@@ -987,7 +992,7 @@ msgstr ""
 "詳細については :ref:`ネイティブコードの出力 <emitting_native_code>` の章を"
 "参照してください。"
 
-#: ../../develop/compiler.rst:242
+#: ../../develop/compiler.rst:247
 msgid ""
 "There is also support for *inline assembly code*, where assembly "
 "instructions are written as Python function calls but are emitted "
@@ -1005,11 +1010,11 @@ msgstr ""
 "<https://micropython-docs-ja.readthedocs.io/ja/latest/pyboard/tutorial/assembler.html#pyboard-tutorial-assembler>`_ "
 "を参照してください。"
 
-#: ../../develop/compiler.rst:250
+#: ../../develop/compiler.rst:255
 msgid "Fourth pass"
 msgstr "第４パス"
 
-#: ../../develop/compiler.rst:252
+#: ../../develop/compiler.rst:257
 msgid ""
 "The fourth pass emits the final code that can be executed, either "
 "bytecode in the virtual machine, or native code directly by the CPU."
@@ -1017,7 +1022,7 @@ msgstr ""
 "第４パスでは、仮想マシンのバイトコード、またはCPUが直接実行するネイティブコードとして、"
 "最終的なコードを出力します。"
 
-#: ../../develop/compiler.rst:255
+#: ../../develop/compiler.rst:260
 msgid ""
 "for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
 "MP_OBJ_NULL; s = s->next) {\n"
@@ -1030,11 +1035,11 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:267
+#: ../../develop/compiler.rst:272
 msgid "Emitting bytecode"
 msgstr "バイトコードの出力"
 
-#: ../../develop/compiler.rst:269
+#: ../../develop/compiler.rst:274
 msgid ""
 "Statements in Python code usually correspond to emitted bytecode, for "
 "example ``a + b`` generates \"push a\" then \"push b\" then \"binary op "
@@ -1046,21 +1051,21 @@ msgstr ""
 "文の中には何も出力しないものもありますが、その代わりに変数のスコープなど他のものに"
 "影響を与えるものもあります(例: ``global a``)。"
 
-#: ../../develop/compiler.rst:274
+#: ../../develop/compiler.rst:279
 msgid ""
 "The implementation of a function that emits bytecode looks similar to "
 "this:"
 msgstr ""
 "バイトコードを出力する関数の実装は次のようなものです:"
 
-#: ../../develop/compiler.rst:276
+#: ../../develop/compiler.rst:281
 msgid ""
 "void mp_emit_bc_unary_op(emit_t *emit, mp_unary_op_t op) {\n"
 "    emit_write_bytecode_byte(emit, 0, MP_BC_UNARY_OP_MULTI + op);\n"
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:282
+#: ../../develop/compiler.rst:287
 msgid ""
 "We use the unary operator expressions for an example here but the "
 "implementation details are similar for other statements/expressions. The "
@@ -1073,11 +1078,11 @@ msgstr ""
 "``emit_get_cur_to_write_bytecode()`` のラッパーで、バイトコードを"
 "出力するためのすべての関数を呼び出します。"
 
-#: ../../develop/compiler.rst:290
+#: ../../develop/compiler.rst:295
 msgid "Emitting native code"
 msgstr "ネイティブコードの出力"
 
-#: ../../develop/compiler.rst:292
+#: ../../develop/compiler.rst:297
 msgid ""
 "Similar to how bytecode is generated, there should be a corresponding "
 "function in ``py/emitnative.c`` for each code statement:"
@@ -1085,7 +1090,7 @@ msgstr ""
 "バイトコードを生成するのと同様に、ネイティブコードについても各コード文に対応する関数が "
 "``py/emitnative.c`` に存在します。"
 
-#: ../../develop/compiler.rst:295
+#: ../../develop/compiler.rst:300
 msgid ""
 "STATIC void emit_native_unary_op(emit_t *emit, mp_unary_op_t op) {\n"
 "     vtype_kind_t vtype;\n"
@@ -1102,7 +1107,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:310
+#: ../../develop/compiler.rst:315
 msgid ""
 "The difference here is that we have to handle *viper typing*. Viper "
 "annotations allow us to handle more than one type of variable. By default"

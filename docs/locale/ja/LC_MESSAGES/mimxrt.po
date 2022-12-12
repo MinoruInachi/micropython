@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.18\n"
+"Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-08 21:05+0900\n"
-"PO-Revision-Date: 2022-10-08 21:39+0900\n"
+"POT-Creation-Date: 2022-11-13 16:19+0900\n"
+"PO-Revision-Date: 2022-11-13 17:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: ../../mimxrt/general.rst:11
 msgid "Multitude of boards"
-msgstr "多数のボード"
+msgstr "豊富なボード"
 
 #: ../../mimxrt/general.rst:13
 msgid ""
@@ -2005,42 +2005,33 @@ msgid "Timers"
 msgstr "タイマー"
 
 #: ../../mimxrt/quickref.rst:59
-msgid ""
-"The i.MXRT port has three hardware timers. Use the :ref:`machine.Timer "
-"<machine.Timer>` class with a timer ID from 0 to 2 (inclusive)::"
-msgstr ""
-"i.MXRT ポートには３つのハードウェアタイマーがあります。 "
-":ref:`machine.Timer <machine.Timer>` クラスに 0 から 2 までのタイマーIDを"
-"指定して使います。"
+msgid "The i.MXRT port supports virtual Timers. Example of usage::"
+msgstr "i.MXRT ポートは仮想タイマーをサポートします。次の例のように使います::"
 
-#: ../../mimxrt/quickref.rst:62
+#: ../../mimxrt/quickref.rst:61
 msgid ""
 "from machine import Timer\n"
 "\n"
-"tim0 = Timer(0)\n"
+"tim0 = Timer(-1)\n"
 "tim0.init(period=5000, mode=Timer.ONE_SHOT, callback=lambda t:print(0))\n"
 "\n"
-"tim1 = Timer(1)\n"
+"tim1 = Timer(-1)\n"
 "tim1.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(1))"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:70
+#: ../../mimxrt/quickref.rst:69
 msgid "The period is in milliseconds."
 msgstr "period の単位はミリ秒です。"
 
-#: ../../mimxrt/quickref.rst:72
-msgid "Virtual timers are not currently supported on this port."
-msgstr "仮想タイマーは、このポートではサポートしていません。"
-
-#: ../../mimxrt/quickref.rst:77
+#: ../../mimxrt/quickref.rst:74
 msgid "Pins and GPIO"
 msgstr "ピンと GPIO"
 
-#: ../../mimxrt/quickref.rst:79
+#: ../../mimxrt/quickref.rst:76
 msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
 msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
 
-#: ../../mimxrt/quickref.rst:81
+#: ../../mimxrt/quickref.rst:78
 msgid ""
 "from machine import Pin\n"
 "\n"
@@ -2072,38 +2063,38 @@ msgstr ""
 "\n"
 "p6 = Pin(pin.cpu.GPIO_B1_15, Pin.OUT) # cpu ピン名を使用"
 
-#: ../../mimxrt/quickref.rst:96
+#: ../../mimxrt/quickref.rst:93
 msgid ""
 "Available Pins follow the ranges and labelling of the respective board, "
 "like:"
 msgstr ""
 "使用可能なピンは、次のように、それぞれのボードの範囲とラベルによります:"
 
-#: ../../mimxrt/quickref.rst:98
+#: ../../mimxrt/quickref.rst:95
 msgid "0-33 for Teensy 4.0,"
 msgstr "Teensy 4.0: 0-33"
 
-#: ../../mimxrt/quickref.rst:99
+#: ../../mimxrt/quickref.rst:96
 msgid "0-21 for the MIMXRT10xx-EVK board, or 'D0-Dxx', or 'A0-Ann',"
 msgstr "MIMXRT10xx-EVK ボード: 0-21, 'D0-Dxx', 'A0-Ann'"
 
-#: ../../mimxrt/quickref.rst:100
+#: ../../mimxrt/quickref.rst:97
 msgid "0-14 for the Olimex RT1010Py board, or 'D0'-'Dxx' and 'A0'-'Ann'"
 msgstr "Olimex RT1010Py ボード: 0-14, 'D0-Dxx', 'A0-Ann'"
 
-#: ../../mimxrt/quickref.rst:101
+#: ../../mimxrt/quickref.rst:98
 msgid "'J3_xx', 'J4_xx', 'J5_xx' for the Seeed ARCH MIX board,"
 msgstr "Seeed ARCH MIX ボード: 'J3_xx', 'J4_xx', 'J5_xx' "
 
-#: ../../mimxrt/quickref.rst:103
+#: ../../mimxrt/quickref.rst:100
 msgid "or the pin names of the Pin.board or Pin.cpu classes."
 msgstr "または、Pin.board または Pin.cpu クラスのピン名。"
 
-#: ../../mimxrt/quickref.rst:105 ../../mimxrt/quickref.rst:312
+#: ../../mimxrt/quickref.rst:102 ../../mimxrt/quickref.rst:312
 msgid "Notes:"
 msgstr "注記:"
 
-#: ../../mimxrt/quickref.rst:107
+#: ../../mimxrt/quickref.rst:104
 msgid ""
 "The MIMXRT1xxx-EVK boards may have other on-board devices connected to "
 "these pins, limiting it's use for input or output."
@@ -2111,7 +2102,7 @@ msgstr ""
 "MIMXRT1xxx-EVK ボードでは、これらのピンに他のオンボードデバイスが接続されている"
 "場合があり、入力または出力での使用が制限されます。"
 
-#: ../../mimxrt/quickref.rst:109
+#: ../../mimxrt/quickref.rst:106
 msgid ""
 "At the MIMXRT1010_EVK, pins D4, D5 and D9 of the Arduino connector are by"
 " default not connected to the MCU. For details refer to the schematics."
@@ -2119,18 +2110,18 @@ msgstr ""
 "MIMXRT1010_EVK では、Arduinoコネクタのピン D4、D5、D9 はデフォルトで MCU に"
 "接続されていません。詳細については、回路図を参照してください。"
 
-#: ../../mimxrt/quickref.rst:114
+#: ../../mimxrt/quickref.rst:111
 msgid ""
 "At the MIMXRT1170_EVK board, the inner rows of the Arduino connectors are"
 " assigned as follows:"
 msgstr ""
 "MIMXRT1170_EVK ボードでは、Arduino コネクタの内側の列が次のように割り当てられています:"
 
-#: ../../mimxrt/quickref.rst:112
+#: ../../mimxrt/quickref.rst:109
 msgid "D16 - D23: J9, odd pin numbers; D17 is by default not connected."
 msgstr "D16 - D23: J9、奇数のピン番号。D17はデフォルトでは接続されていません。"
 
-#: ../../mimxrt/quickref.rst:113
+#: ../../mimxrt/quickref.rst:110
 msgid ""
 "D24 - D27: J26, odd pin numbers; J63-J66 have to be closed to enable "
 "these pins."
@@ -2138,11 +2129,11 @@ msgstr ""
 "D24 - D27: J26、奇数のピン番号。これらのピンを有効にするには、J63-J66を閉じる"
 "必要があります。"
 
-#: ../../mimxrt/quickref.rst:114
+#: ../../mimxrt/quickref.rst:111
 msgid "D29 - D36: J25, odd pin numbers; D29 and D30 are by default not connected."
 msgstr "D29 - D36: J25、奇数のピン番号。D29 と D30 はデフォルトでは接続されていません。"
 
-#: ../../mimxrt/quickref.rst:116
+#: ../../mimxrt/quickref.rst:113
 msgid ""
 "There's a higher-level abstraction :ref:`machine.Signal <machine.Signal>`"
 " which can be used to invert a pin.  Useful for illuminating active-low "
@@ -2152,15 +2143,15 @@ msgstr ""
 ":ref:`machine.Signal <machine.Signal>` があります。 "
 "負論理(active-low)の LED でも ``on()`` や ``value(1)`` で点灯できるので便利です。"
 
-#: ../../mimxrt/quickref.rst:121
+#: ../../mimxrt/quickref.rst:118
 msgid "UART (serial bus)"
 msgstr "UART (シリアルバス)"
 
-#: ../../mimxrt/quickref.rst:123
+#: ../../mimxrt/quickref.rst:120
 msgid "See :ref:`machine.UART <machine.UART>`. ::"
 msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
 
-#: ../../mimxrt/quickref.rst:125
+#: ../../mimxrt/quickref.rst:122
 msgid ""
 "from machine import UART\n"
 "\n"
@@ -2174,7 +2165,7 @@ msgstr ""
 "uart1.write('hello')  # 5バイト書き出す\n"
 "uart1.read(5)         # 5バイトまで読み込む"
 
-#: ../../mimxrt/quickref.rst:131
+#: ../../mimxrt/quickref.rst:128
 msgid ""
 "The i.MXRT has up to eight hardware UARTs, but not every board exposes "
 "all TX and RX pins for users. For the assignment of Pins to UART signals,"
@@ -2185,11 +2176,11 @@ msgstr ""
 "UART 信号線のピン割り当てについては :ref:`UART 入出力ピン <mimxrt_uart_pinout>` "
 "を参照してください。"
 
-#: ../../mimxrt/quickref.rst:136
+#: ../../mimxrt/quickref.rst:133
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../mimxrt/quickref.rst:138
+#: ../../mimxrt/quickref.rst:135
 msgid ""
 "The i.MXRT has up to four dedicated PWM modules with four FLEXPWM "
 "submodules each and up to four QTMR modules with four channels, which can"
@@ -2199,7 +2190,7 @@ msgstr ""
 "モジュールと、PWM信号または信号ペアを生成するために使用できる４つのチャンネルを"
 "備えた最大４つの QTMR モジュールがあります。"
 
-#: ../../mimxrt/quickref.rst:142
+#: ../../mimxrt/quickref.rst:139
 msgid ""
 "The PWM functions are provided by the :ref:`machine.PWM <machine.PWM>` "
 "class. It supports all basic methods listed for that class and a few "
@@ -2209,7 +2200,7 @@ msgstr ""
 "そのクラスにリストされているすべての基本メソッドと、シグナルグループを処理する"
 "ためのいくつかの追加メソッドをサポートします。"
 
-#: ../../mimxrt/quickref.rst:146
+#: ../../mimxrt/quickref.rst:143
 msgid ""
 "# Samples for Teensy\n"
 "#\n"
@@ -2259,15 +2250,15 @@ msgstr ""
 "\n"
 "pwm3                    # PWM オブジェクトのプロパティを表示"
 
-#: ../../mimxrt/quickref.rst:172
+#: ../../mimxrt/quickref.rst:169
 msgid "PWM Constructor"
 msgstr "PWM コンストラクタ"
 
-#: ../../mimxrt/quickref.rst:177
+#: ../../mimxrt/quickref.rst:174
 msgid "Construct and return a new PWM object using the following parameters:"
 msgstr "以下のパラメータで新しいPWMオブジェクトを構築して、返します。"
 
-#: ../../mimxrt/quickref.rst:179
+#: ../../mimxrt/quickref.rst:176
 msgid ""
 "*dest* is the entity on which the PWM is output, which is usually a "
 ":ref:`machine.Pin <machine.Pin>` object, but a port may allow other "
@@ -2283,7 +2274,7 @@ msgstr ""
 "タプルのいずれかです。オブジェクトのタプルが指定された場合、２つのピンは補完"
 "モードで動作します。この２つのピンは、同じサブモジュールのA/Bチャンネルでなければなりません。"
 
-#: ../../mimxrt/quickref.rst:186
+#: ../../mimxrt/quickref.rst:183
 msgid ""
 "PWM objects are either provided by a FLEXPWM module or a QTMR module. The"
 " i.MXRT devices have either two or four FLEXPWM and QTMR modules. Each "
@@ -2299,7 +2290,7 @@ msgstr ""
 "各 FLEXPWM サブモジュールまたは QTMR チャンネルは、異なるパラメータに設定できます。"
 "すべてのチャンネルがボードピンに配線されているわけではありません。詳細は後述します。"
 
-#: ../../mimxrt/quickref.rst:193
+#: ../../mimxrt/quickref.rst:190
 msgid ""
 "Setting *freq* affects the three channels of the same FLEXPWM submodule. "
 "Only one of *duty_u16* and *duty_ns* should be specified at a time."
@@ -2307,11 +2298,11 @@ msgstr ""
 "*freq* を設定すると、同じ FLEXPWM サブモジュールの３つのチャンネルに影響します。 "
 "*duty_u16* と *duty_ns* は、一度に１つだけ指定する必要があります。"
 
-#: ../../mimxrt/quickref.rst:196
+#: ../../mimxrt/quickref.rst:193
 msgid "Keyword arguments:"
 msgstr "キーワード引数:"
 
-#: ../../mimxrt/quickref.rst:198
+#: ../../mimxrt/quickref.rst:195
 msgid ""
 "*freq* should be an integer which sets the frequency in Hz for the PWM "
 "cycle. The valid frequency range is 15 Hz resp. 18Hz resp. 24Hz up to > 1"
@@ -2320,7 +2311,7 @@ msgstr ""
 "*freq* は PWM 周期の周波数を Hz 単位で設定する整数でなければなりません。"
 "有効な周波数範囲はそれぞれ 15Hz, 18Hz, 24Hzから 最大 1MHz 未満です。
 
-#: ../../mimxrt/quickref.rst:200
+#: ../../mimxrt/quickref.rst:197
 msgid ""
 "*duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65536``. The duty "
 "cycle of a X channel can only be changed, if the A and B channel of the "
@@ -2332,7 +2323,7 @@ msgstr ""
 "使われていない場合にのみ変更できます。それ以外の場合、X チャンネルの duty_16 値は "
 "32768 (50％)です。"
 
-#: ../../mimxrt/quickref.rst:204
+#: ../../mimxrt/quickref.rst:201
 msgid ""
 "*duty_ns* sets the pulse width in nanoseconds. The limitation for X "
 "channels apply as well."
@@ -2340,7 +2331,7 @@ msgstr ""
 "*duty_ns* は、パルス幅をナノ秒単位で設定します。"
 "X チャンネルに対する制限も同様に適用されます。"
 
-#: ../../mimxrt/quickref.rst:206
+#: ../../mimxrt/quickref.rst:203
 msgid ""
 "*center*\\=value. An integer sets the center of the pulse within the "
 "pulse period. The range is 0-65535. The resulting pulse will last from "
@@ -2350,7 +2341,7 @@ msgstr ""
 "値の範囲は 0-65535 です。結果として、center - duty_u16/2　から "
 "center + duty_u16/2 までのパルスが持続します。"
 
-#: ../../mimxrt/quickref.rst:209
+#: ../../mimxrt/quickref.rst:206
 msgid ""
 "*align*\\=value. Shortcuts for the pulse center setting, causing the "
 "pulse either at the center of the frame (value=0), the leading edge at "
@@ -2360,17 +2351,17 @@ msgstr ""
 "*align*\\=value: パルス中心設定のショートカットで、パルスをフレームの中心(value=0)、"
 "開始時の前縁(value=1)、パルス周期の終了時の後縁(value=2)のいずれかにします。"
 
-#: ../../mimxrt/quickref.rst:212
+#: ../../mimxrt/quickref.rst:209
 msgid ""
 "*invert*\\=True|False channel_mask. Setting a bit in the mask inverts the"
 " respective channel. Bit 0 inverts the first specified channel, bit 2 the"
 " second. The default is 0."
 msgstr ""
-"*invert*\\=True|False channel_mask: マスクのビットを設定すると各チャンネルが反転。"
-"ビット0は最初に指定されたチャンネルを反転させ，ビット2は2番目に指定されたチャンネルを"
+"*invert*\\=True|False: チャンネルマスク。マスクのビットを設定すると各チャンネルが反転。"
+"ビット0は最初に指定されたチャンネルを反転させ、ビット2は2番目に指定されたチャンネルを"
 "反転させます。デフォルトは0です。"
 
-#: ../../mimxrt/quickref.rst:214
+#: ../../mimxrt/quickref.rst:211
 msgid ""
 "*sync*\\=True|False. If a channel of a module's submodule 0 is already "
 "active, other submodules of the same module can be forced to be "
@@ -2381,7 +2372,7 @@ msgstr ""
 "同じモジュールの他のサブモジュールは、サブモジュール0に同期するように強制できます。"
 "デフォルトは False です。"
 
-#: ../../mimxrt/quickref.rst:217
+#: ../../mimxrt/quickref.rst:214
 msgid ""
 "*xor*\\=0|1|2. If set to 1 or 2, the channel will output the XOR'd signal"
 " from channels A or B. If set to 1 on channel A or B, both A and B will "
@@ -2394,7 +2385,7 @@ msgstr ""
 "図解は、MCU のリファレンスマニュアル \"Double Switching PWMs\" の章を"
 "参照してください。"
 
-#: ../../mimxrt/quickref.rst:221
+#: ../../mimxrt/quickref.rst:218
 msgid ""
 "*deadtime*\\=time_ns. This setting affects complementary channels and "
 "defines a deadtime between an edge of a first channel and the edge of the"
@@ -2407,11 +2398,11 @@ msgstr ""
 "ローに設定されます。これにより、接続されたHブリッジは、プッシュプルドライバの片側を"
 "スイッチオフしてから、もう片側をスイッチオンすることができます。"
 
-#: ../../mimxrt/quickref.rst:227
+#: ../../mimxrt/quickref.rst:224
 msgid "PWM Methods"
 msgstr "PWM メソッド"
 
-#: ../../mimxrt/quickref.rst:229
+#: ../../mimxrt/quickref.rst:226
 msgid ""
 "The methods are identical to the generic :ref:`machine.PWM <machine.PWM>`"
 " class, with additional keyword arguments to the init() method, matchings"
@@ -2420,7 +2411,7 @@ msgstr ""
 "メソッドは汎用的な :ref:`machine.PWM <machine.PWM>` クラスと同じですが、"
 "init() メソッドのキーワード引数が追加され、コンストラクタの引数と同じになります。"
 
-#: ../../mimxrt/quickref.rst:232
+#: ../../mimxrt/quickref.rst:229
 msgid ""
 "Each FLEX submodule or QTMR module may run at different frequencies.  The"
 " PWM signal is created by dividing the pwm_clk signal by an integral "
@@ -2429,11 +2420,11 @@ msgstr ""
 "各 FLEX サブモジュールまたは QTMR モジュールは、異なる周波数で動作することがあります。"
 "PWM 信号は、式に従って、pwm_clk 信号を積分係数で割ることによって生成されます::"
 
-#: ../../mimxrt/quickref.rst:235
+#: ../../mimxrt/quickref.rst:232
 msgid "f = pwm_clk / (2**n * m)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:237
+#: ../../mimxrt/quickref.rst:234
 msgid ""
 "with n being in the range of 0..7, and m in the range of 2..65536. "
 "pmw_clk is 125Mhz for MIMXRT1010/1015/1020, 150 MHz for "
@@ -2452,11 +2443,11 @@ msgstr ""
 "達成可能な最高周波数は、A/B チャンネルでは pwm_clk/3、X チャンネルと QTMR 信号では "
 "pwm_clk/2 となります。"
 
-#: ../../mimxrt/quickref.rst:246
+#: ../../mimxrt/quickref.rst:243
 msgid "PWM Pin Assignment"
 msgstr "PWM のピン割当て"
 
-#: ../../mimxrt/quickref.rst:248
+#: ../../mimxrt/quickref.rst:245
 msgid ""
 "Pins are specified in the same way as for the Pin class.  For the "
 "assignment of Pins to PWM signals, refer to the :ref:`PWM pinout "
@@ -2465,19 +2456,19 @@ msgstr ""
 "ピンは Pin クラスと同様に指定します。PWM 信号線のピン割当てについては "
 ":ref:`PWM 入出力ピン <mimxrt_pwm_pinout>` を参照してください。"
 
-#: ../../mimxrt/quickref.rst:252
+#: ../../mimxrt/quickref.rst:249
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../mimxrt/quickref.rst:254
+#: ../../mimxrt/quickref.rst:251
 msgid "On the i.MXRT ADC functionality is available on Pins labeled 'Ann'."
-msgstr "i.MXRT で ADC 機能は 'Ann' と名づけられたピンで利用できます。"
+msgstr "i.MXRT での ADC 機能は 'Ann' とラベル付けられたピンで利用できます。"
 
-#: ../../mimxrt/quickref.rst:256
+#: ../../mimxrt/quickref.rst:253
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
-#: ../../mimxrt/quickref.rst:258
+#: ../../mimxrt/quickref.rst:255
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -2490,7 +2481,7 @@ msgstr ""
 "adc = ADC(Pin(32))          # ADC ピンの ADC オブジェクトを作成\n"
 "val = adc.read_u16()        # 生のアナログ値を 0-65535 (0.0v - 3.3v)の範囲で読込み"
 
-#: ../../mimxrt/quickref.rst:263
+#: ../../mimxrt/quickref.rst:260
 msgid ""
 "The resolution of the ADC is 12 bit with 10 to 11 bit accuracy, "
 "irrespective of the value returned by read_u16(). If you need a higher "
@@ -2499,11 +2490,11 @@ msgstr ""
 "ADC の分解能は12bitで、read_u16() が返す値とは関係なく、10～11bit の精度を持ちます。"
 "より高い分解能や精度が必要な場合は、外部 ADC を使用してください。"
 
-#: ../../mimxrt/quickref.rst:268
+#: ../../mimxrt/quickref.rst:265
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../mimxrt/quickref.rst:270
+#: ../../mimxrt/quickref.rst:267
 msgid ""
 "Software SPI (using bit-banging) works on all pins, and is accessed via "
 "the :ref:`machine.SoftSPI <machine.SoftSPI>` class. ::"
@@ -2511,7 +2502,7 @@ msgstr ""
 "ソフトウェア SPI (ビットバンギング)はすべてのピンで動作し、 "
 ":ref:`machine.SoftSPI <machine.SoftSPI>` クラスを介してアクセスします::"
 
-#: ../../mimxrt/quickref.rst:273
+#: ../../mimxrt/quickref.rst:270
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -2565,15 +2556,15 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../mimxrt/quickref.rst:295
+#: ../../mimxrt/quickref.rst:292
 msgid "The highest supported baud rate is 500000."
 msgstr "サポートしている最大ボーレートは 500000 です。"
 
-#: ../../mimxrt/quickref.rst:298
+#: ../../mimxrt/quickref.rst:295
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../mimxrt/quickref.rst:300
+#: ../../mimxrt/quickref.rst:297
 msgid ""
 "There are up to four hardware SPI channels that allow faster transmission"
 " rates (up to 30Mhz).  Hardware SPI is accessed via the :ref:`machine.SPI"
@@ -2583,7 +2574,7 @@ msgstr ""
 "ハードウェア SPI には :ref:`machine.SPI <machine.SPI>` クラスを使って"
 "アクセスします。このクラスには先述のソフトウェア SPI と同じメソッドがあります::"
 
-#: ../../mimxrt/quickref.rst:304
+#: ../../mimxrt/quickref.rst:301
 msgid ""
 "from machine import SPI, Pin\n"
 "\n"
@@ -2594,7 +2585,7 @@ msgid ""
 "cs_pin(1)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:312
+#: ../../mimxrt/quickref.rst:309
 msgid ""
 "For the assignment of Pins to SPI signals, refer to :ref:`Hardware SPI "
 "pinout <mimxrt_spi_pinout>`. The keyword option cs=n can be used to "
@@ -2610,7 +2601,7 @@ msgstr ""
 "この場合、cs はスクリプトによって設定されなければなりません。その割り当てをクリア"
 "するには電源の再投入が必要です。"
 
-#: ../../mimxrt/quickref.rst:320
+#: ../../mimxrt/quickref.rst:317
 msgid ""
 "Even if the highest reliable baud rate at the moment is about 30 Mhz, "
 "setting a baud rate will not always result in exactly that frequency, "
@@ -2619,7 +2610,7 @@ msgstr ""
 "現時点で最も信頼性の高いボーレートが 30MHz 程度であっても、"
 "特に高いボーレートでは、ボーレートの設定が必ずしもその通りの周波数になるとは限りません。"
 
-#: ../../mimxrt/quickref.rst:324
+#: ../../mimxrt/quickref.rst:321
 msgid ""
 "Sending at higher baud rate is possible. In the tests receiving worked up"
 " to 60 MHz, sending up to 90 MHz."
@@ -2627,11 +2618,11 @@ msgstr ""
 "より高速なボーレートでの送信も可能です。テストでは、受信は 60MHz まで、送信は "
 "90MHz まで動作しました。"
 
-#: ../../mimxrt/quickref.rst:328
+#: ../../mimxrt/quickref.rst:325
 msgid "Software I2C bus"
 msgstr "ソフトウェア I2C バス"
 
-#: ../../mimxrt/quickref.rst:330
+#: ../../mimxrt/quickref.rst:327
 msgid ""
 "Software I2C (using bit-banging) works on all output-capable pins, and is"
 " accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
@@ -2639,7 +2630,7 @@ msgstr ""
 "ソフトウェア I2C (ビット・バンギングを使用)は、出力可能なすべてのピンで動作し、 "
 ":ref:`machine.SoftI2C <machine.SoftI2C>` クラスを使ってアクセスします。"
 
-#: ../../mimxrt/quickref.rst:333
+#: ../../mimxrt/quickref.rst:330
 msgid ""
 "from machine import Pin, SoftI2C\n"
 "\n"
@@ -2665,15 +2656,15 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをペリフェラルに書き込み"
 
-#: ../../mimxrt/quickref.rst:345
+#: ../../mimxrt/quickref.rst:342
 msgid "The highest supported freq is 400000."
 msgstr "サポートしている最大周波数は 400000 です。"
 
-#: ../../mimxrt/quickref.rst:348
+#: ../../mimxrt/quickref.rst:345
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../mimxrt/quickref.rst:350
+#: ../../mimxrt/quickref.rst:347
 msgid ""
 "There are up to four hardware I2C channels that allow faster transmission"
 " rates and support the full I2C protocol.  The I2C signals have fixed "
@@ -2686,7 +2677,7 @@ msgstr ""
 "I2C 信号線のピン割当てについては :ref:`ハードウェア I2C の入出力ピン "
 "<mimxrt_i2c_pinout>` を参照してください。"
 
-#: ../../mimxrt/quickref.rst:354
+#: ../../mimxrt/quickref.rst:351
 msgid ""
 "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class "
 "and has the same methods as software SPI above::"
@@ -2694,7 +2685,7 @@ msgstr ""
 "ハードウェア I2C には :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。
 "このクラスには先述のソフトウェア I2C と同じメソッドがあります::"
 
-#: ../../mimxrt/quickref.rst:357
+#: ../../mimxrt/quickref.rst:354
 msgid ""
 "from machine import I2C\n"
 "\n"
@@ -2702,11 +2693,11 @@ msgid ""
 "i2c.writeto(0x76, b\"Hello World\")"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:363
+#: ../../mimxrt/quickref.rst:360
 msgid "I2S bus"
 msgstr "I2S バス"
 
-#: ../../mimxrt/quickref.rst:365
+#: ../../mimxrt/quickref.rst:362
 msgid ""
 "See :ref:`machine.I2S <machine.I2S>`. Example using a Teensy 4.1 board "
 "with a simple external Codec like UDA1334.::"
@@ -2715,7 +2706,7 @@ msgstr ""
 "次のコードは Teensy 4.1 ボードと UDA1334 のようなシンプルな外部コーデックを"
 "使った例です::"
 
-#: ../../mimxrt/quickref.rst:368
+#: ../../mimxrt/quickref.rst:365
 msgid ""
 "from machine import I2S, Pin\n"
 "i2s = I2S(2, sck=Pin(26), ws=Pin(27), sd=Pin(7),\n"
@@ -2729,11 +2720,11 @@ msgstr ""
 "    rate=44100,ibuf=40000)\n"
 "i2s.write(buf)             # オーディオサンプルのバッファを I2S デバイスに書き出す"
 
-#: ../../mimxrt/quickref.rst:375
+#: ../../mimxrt/quickref.rst:372
 msgid "Example for using I2S with a MIMXRT10xx_DEV board::"
 msgstr "次のコードは MIMXRT10xx_DEV ボードで I2S を使う例です::"
 
-#: ../../mimxrt/quickref.rst:377
+#: ../../mimxrt/quickref.rst:374
 msgid ""
 "from machine import I2S, I2C, Pin\n"
 "import wm8960\n"
@@ -2764,7 +2755,7 @@ msgstr ""
 "    rate=32000,ibuf=10000)\n"
 "i2s.readinto(buf)          # I2S デバイスからのオーディオサンプルをバッファに読み込む"
 
-#: ../../mimxrt/quickref.rst:391
+#: ../../mimxrt/quickref.rst:388
 msgid ""
 "In this example, the input channels are swapped in the WM8960 driver, "
 "since the on-board microphone is connected to the right channel, but mono"
@@ -2778,11 +2769,11 @@ msgstr ""
 "これは意図的なもので、MW8960コーデックでは、これらの信号が RX と TX で共有"
 "されているからです。"
 
-#: ../../mimxrt/quickref.rst:397
+#: ../../mimxrt/quickref.rst:394
 msgid "Example using the Teensy audio shield::"
 msgstr "次こコードは Teensy オーディオシールドを使った例です。"
 
-#: ../../mimxrt/quickref.rst:399
+#: ../../mimxrt/quickref.rst:396
 msgid ""
 "from machine import I2C, I2S, Pin\n"
 "from sgtl5000 import CODEC\n"
@@ -2820,7 +2811,7 @@ msgstr ""
 "\n"
 "i2s.write(buf)             # オーディオサンプルのバッファを I2S デバイスに書き出す"
 
-#: ../../mimxrt/quickref.rst:417
+#: ../../mimxrt/quickref.rst:414
 msgid ""
 "The SGTL5000 codec used by the Teensy Audio shield uses the RX signals "
 "for both RX and TX.  Note that the codec is initialized after the I2S "
@@ -2831,7 +2822,7 @@ msgstr ""
 "両方に使います。コーデックは、I2S デバイスの後で初期化されることに注意してください。"
 "MCK は I2C の動作に必要で、I2Sコントローラから提供されるため、これは不可欠なことです。"
 
-#: ../../mimxrt/quickref.rst:422
+#: ../../mimxrt/quickref.rst:419
 msgid ""
 "MIMXRT boards may have 1 or 2 I2S buses available at the board "
 "connectors. On MIMXRT1010 devices the bus numbers are 1 and 3. The I2S "
@@ -2844,15 +2835,15 @@ msgstr ""
 "I2S 信号線のピン割当てについては :ref:`I2S 入出力ピン <mimxrt_i2s_pinout>` "
 "を参照してください。"
 
-#: ../../mimxrt/quickref.rst:428
+#: ../../mimxrt/quickref.rst:425
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../mimxrt/quickref.rst:430
+#: ../../mimxrt/quickref.rst:427
 msgid "See :ref:`machine.RTC <machine.RTC>`::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../mimxrt/quickref.rst:432
+#: ../../mimxrt/quickref.rst:429
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -2869,7 +2860,7 @@ msgstr ""
 "rtc.datetime() # 日時を取得\n"
 "rtc.now() # CPython フォーマットで日時を返す。"
 
-#: ../../mimxrt/quickref.rst:439
+#: ../../mimxrt/quickref.rst:436
 msgid ""
 "The i.MXRT MCU supports battery backup of the RTC.  By connecting a "
 "battery of 1.5-3.6V, time and date are maintained in the absence of the "
@@ -2881,15 +2872,15 @@ msgstr ""
 "バッテリーから引き出される電流は 〜20µA で、これはかなり大きいです。"
 "CR2032 コイン電池で約1年使用できます。"
 
-#: ../../mimxrt/quickref.rst:445
+#: ../../mimxrt/quickref.rst:442
 msgid "SD card"
 msgstr "SD カード"
 
-#: ../../mimxrt/quickref.rst:447
+#: ../../mimxrt/quickref.rst:444
 msgid "See :ref:`machine.SDCard <machine.SDCard>`::"
 msgstr ":ref:`machine.SDCard <machine.SDCard>` を参照::"
 
-#: ../../mimxrt/quickref.rst:449
+#: ../../mimxrt/quickref.rst:446
 msgid ""
 "import machine, os\n"
 "\n"
@@ -2907,7 +2898,7 @@ msgstr ""
 "os.listdir('/sd')    # ディレクトリ内容の一覧\n"
 "os.umount('/sd')     # 取出し"
 
-#: ../../mimxrt/quickref.rst:457
+#: ../../mimxrt/quickref.rst:454
 msgid ""
 "Note: The i.mx-rt 1011 and 1015 based boards do not support the "
 "``machine.SDCard`` class.  For these, the SPI based driver ``sdcard.py`` "
@@ -2920,7 +2911,7 @@ msgstr ""
 "モジュールの CS ピンをオーバードライブする必要があります。"
 "使用例を次に示します。"
 
-#: ../../mimxrt/quickref.rst:462
+#: ../../mimxrt/quickref.rst:459
 msgid ""
 "import os, sdcard, machine\n"
 "\n"
@@ -2932,15 +2923,15 @@ msgid ""
 "os.mount(vfs, \"/sdcard\")"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:472
+#: ../../mimxrt/quickref.rst:469
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../mimxrt/quickref.rst:474
+#: ../../mimxrt/quickref.rst:471
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../mimxrt/quickref.rst:476
+#: ../../mimxrt/quickref.rst:473
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -2964,11 +2955,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../mimxrt/quickref.rst:487
+#: ../../mimxrt/quickref.rst:484
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
 
-#: ../../mimxrt/quickref.rst:489
+#: ../../mimxrt/quickref.rst:486
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -2979,7 +2970,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:497
+#: ../../mimxrt/quickref.rst:494
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -2989,15 +2980,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../mimxrt/quickref.rst:502
+#: ../../mimxrt/quickref.rst:499
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../mimxrt/quickref.rst:504
+#: ../../mimxrt/quickref.rst:501
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../mimxrt/quickref.rst:506
+#: ../../mimxrt/quickref.rst:503
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -3025,7 +3016,7 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../mimxrt/quickref.rst:519
+#: ../../mimxrt/quickref.rst:516
 msgid ""
 "Be sure to have a 4.7k pull-up resistor on the data line.  Some DHT "
 "modules may already have one."
@@ -3033,11 +3024,11 @@ msgstr ""
 "4.7k のプルアップ抵抗をデータラインに接続してください。"
 "DHT モジュールの中にはプルアップ抵抗が実装済みのものもあります。
 
-#: ../../mimxrt/quickref.rst:523
+#: ../../mimxrt/quickref.rst:520
 msgid "Ethernet driver"
 msgstr "イーサネットドライバー"
 
-#: ../../mimxrt/quickref.rst:525
+#: ../../mimxrt/quickref.rst:522
 msgid ""
 "All MIMXRT boards except the MIMXRT1011 based boards and Teensy 4.0 "
 "support Ethernet.  Example usage::"
@@ -3045,7 +3036,7 @@ msgstr ""
 "MIMXRT1011 搭載ボードと Teensy 4.0 を除くすべての MIMXRT ボードではイーサネットを"
 "サポートしています。使用例を次に示します。"
 
-#: ../../mimxrt/quickref.rst:528
+#: ../../mimxrt/quickref.rst:525
 msgid ""
 "import network\n"
 "\n"
@@ -3053,7 +3044,7 @@ msgid ""
 "lan.active(True)"
 msgstr ""
 
-#: ../../mimxrt/quickref.rst:533
+#: ../../mimxrt/quickref.rst:530
 msgid ""
 "If there is a DHCP server in the LAN, the IP address is supplied by that "
 "server. Otherwise, the IP address can be set with lan.ifconfig().  The "
@@ -3063,7 +3054,7 @@ msgstr ""
 "DHCPサーバが無い場合は lan.ifconfig() でIPアドレスを設定できます。"
 "デフォルトのアドレスは 192.168.0.1 です。"
 
-#: ../../mimxrt/quickref.rst:537
+#: ../../mimxrt/quickref.rst:534
 msgid ""
 "Teensy 4.1 does not have an Ethernet jack on the board, but PJRC offers "
 "an adapter for self-assembly.  The Seeed ARCH MIX board has no PHY "
@@ -3079,7 +3070,7 @@ msgstr ""
 "イーサネットポートを装備しており、100MポートにはLAN(0)、1GポートにはLAN(1)と"
 "アドレス指定されています。"
 
-#: ../../mimxrt/quickref.rst:544
+#: ../../mimxrt/quickref.rst:541
 msgid ""
 "For details of the network interface refer to the class :ref:`network.LAN"
 " <network.LAN>`."
@@ -3087,11 +3078,11 @@ msgstr ""
 "ネットワークインタフェースの詳細については :ref:`network.LAN <network.LAN>` "
 "クラスを参照してください。
 
-#: ../../mimxrt/quickref.rst:547
+#: ../../mimxrt/quickref.rst:544
 msgid "Transferring files"
 msgstr "ファイルの転送"
 
-#: ../../mimxrt/quickref.rst:549
+#: ../../mimxrt/quickref.rst:546
 msgid ""
 "Files can be transferred to the i.MXRT devices for instance with the "
 "``mpremote`` tool or using an SD card.  If Ethernet is available, you can"
@@ -3117,7 +3108,7 @@ msgid ""
 "MicroPython, getting a prompt, using the hardware peripherals, and "
 "controlling some external components."
 msgstr ""
-"MicroPython を使うと、i.MXRT ボードを最大限に活用することができます。"
+"MicroPython を使うと、i.MXRT ボードを最大限に活用できます。"
 "逆も同様、i.MXRT チップは MicroPython を使用するための優れたプラットフォームです。"
 "このチュートリアルでは、MicroPython の設定、プロンプトの表示、ハードウェア"
 "ペリフェラルの使用、およびいくつかの外部コンポーネントの制御について説明します。"
@@ -3200,7 +3191,7 @@ msgid ""
 msgstr ""
 "MicroPython を使い始めたばかりの方には、安定版ファームウェアビルドをお勧めします。"
 "経験豊富で経験豊かな MicroPython i.MXRT ユーザーで、開発が続けられている新機能を"
-"テストしたい場合は、毎日ビルド版があります。"
+"テストしたい場合は、日次ビルド版があります。"
 
 #: ../../mimxrt/tutorial/intro.rst:50
 msgid "Deploying the firmware"
