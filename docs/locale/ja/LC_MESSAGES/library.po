@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-13 16:19+0900\n"
-"PO-Revision-Date: 2022-11-13 17:28+0900\n"
+"POT-Creation-Date: 2022-12-12 20:12+0900\n"
+"PO-Revision-Date: 2022-12-14 00:54+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -81,6 +81,127 @@ msgid ""
 "growing it."
 msgstr ""
 "配列の最後に *iterable* に含まれる新しい要素を追加します。"
+
+#: ../../library/array.rst:33
+msgid ""
+"Indexed read of the array, called as ``a[index]`` (where ``a`` is an "
+"``array``). Returns a value if *index* is an ``int`` and an ``array`` if "
+"*index* is a slice. Negative indices count from the end and "
+"``IndexError`` is thrown if the index is out of range."
+msgstr ""
+"配列のインデックスによる読み出しであり、 ``a[index]`` (``a`` は ``array``)の"
+"形で呼び出します。 *index* が ``int`` の場合は値を、 *index* がスライスの場合は"
+"配列を返します。負のインデックスは末尾から数えます。インデックスが範囲外の場合は "
+"``IndexError`` が発生します。"
+
+#: ../../library/array.rst:38
+msgid ""
+"**Note:** ``__getitem__`` cannot be called directly "
+"(``a.__getitem__(index)`` fails) and is not present in ``__dict__``, "
+"however ``a[index]`` does work."
+msgstr ""
+"**注記:** ``__getitem__`` を直接呼び出すことはできず "
+"(``a.__getitem__(index)`` は失敗します)、 ``__dict__`` にも存在しませんが、 "
+"``a[index]`` は動作します。"
+
+#: ../../library/array.rst:43
+msgid ""
+"Indexed write into the array, called as ``a[index] = value`` (where ``a``"
+" is an ``array``). ``value`` is a single value if *index* is an ``int`` "
+"and an ``array`` if *index* is a slice. Negative indices count from the "
+"end and ``IndexError`` is thrown if the index is out of range."
+msgstr ""
+"配列へのインデックスによる書き込みであり、 ``a[index] = value`` (``a`` は ``array``)"
+"の形で呼び出します。 ``value`` は ``index`` が ``int` の場合は単一の値、 ``index`` "
+"がスライスの場合は配列になります。負のインデックスは末尾から数えます。インデックスが範囲外の"
+"場合は ``IndexError`` が発生します。"
+
+#: ../../library/array.rst:47
+msgid ""
+"**Note:** ``__setitem__`` cannot be called directly "
+"(``a.__setitem__(index, value)`` fails) and is not present in "
+"``__dict__``, however ``a[index] = value`` does work."
+msgstr ""
+"**注記:** ``__setitem__`` を直接呼ぶことはできず "
+"(``a.__setitem__(index, value)`` は失敗します)、 ``__dict__`` にも"
+"存在しませんが、 ``a[index] = value`` は動作します。"
+
+#: ../../library/array.rst:52
+msgid ""
+"Returns the number of items in the array, called as ``len(a)`` (where "
+"``a`` is an ``array``)."
+msgstr ""
+"配列の中の項目の数を返すメソッドで、 ``len(a)`` (``a`` は ``array``)の形で"
+"呼び出します。"
+
+#: ../../library/array.rst:54
+msgid ""
+"**Note:** ``__len__`` cannot be called directly (``a.__len__()`` fails) "
+"and the method is not present in ``__dict__``, however ``len(a)`` does "
+"work."
+msgstr ""
+"**注記:** ``__len__`` を直接呼び出すことはできず "
+"(``a.__len__()`` は失敗します)、このメソッドは ``__dict__`` にも存在しませんが、 "
+"``len(a)`` は動作します。"
+
+#: ../../library/array.rst:59
+msgid ""
+"Return a new ``array`` that is the concatenation of the array with "
+"*other*, called as ``a + other`` (where ``a`` and *other* are both "
+"``arrays``)."
+msgstr ""
+"array と *other* を連結した新しい ``array`` を返すメソッドで(``a`` と *other* は"
+"共に ``array``)、 ``a + other`` の形で呼び出します。
+
+#: ../../library/array.rst:62
+msgid ""
+"**Note:** ``__add__`` cannot be called directly (``a.__add__(other)`` "
+"fails) and is not present in ``__dict__``, however ``a + other`` does "
+"work."
+msgstr ""
+"**注記:** ``__add__`` を直接呼ぶことはできず (``a.__add__(other)`` は失敗します)、 "
+"``__dict__`` にも存在しませんが、 ``a + other`` は動作します。"
+
+#: ../../library/array.rst:67
+msgid ""
+"Concatenates the array with *other* in-place, called as ``a += other`` "
+"(where ``a`` and *other* are both ``arrays``).  Equivalent to "
+"``extend(other)``."
+msgstr ""
+"array に *other* を連結するメソッドで(``a`` と *other* は共に ``array``)、"
+"``a += other`` の形で呼び出します。 ``extend(other)`` と同等です。"
+
+#: ../../library/array.rst:70
+msgid ""
+"**Note:** ``__iadd__`` cannot be called directly (``a.__iadd__(other)`` "
+"fails) and is not present in ``__dict__``, however ``a += other`` does "
+"work."
+msgstr ""
+"**注記:** ``__iadd__`` を直接呼び出すことはできず (``a.__iadd__(other)`` は"
+"失敗します)、 ``__dict__`` にも存在しませんが、 ``a += other`` は動作します。"
+
+#: ../../library/array.rst:75
+msgid ""
+"Returns the string representation of the array, called as ``str(a)`` or "
+"``repr(a)``` (where ``a`` is an ``array``).  Returns the string "
+"``\"array(<type>, [<elements>])\"``, where ``<type>`` is the type code "
+"letter for the array and ``<elements>`` is a comma seperated list of the "
+"elements of the array."
+msgstr ""
+"array の文字列表現を返すメソッドで、 ``str(a)`` または ``repr(a)`` (``a`` は "
+"``array``)の形で呼び出します。 "
+"返す文字列の形式は ``\"array(<type>, [<elements>])\" というものであり、ここで "
+"``<type>`` は array の型コード文字、 ``<elements>`` は array の要素をカンマで"
+"区切ったリストです。"
+
+#: ../../library/array.rst:80
+msgid ""
+"**Note:** ``__repr__`` cannot be called directly (``a.__repr__()`` fails)"
+" and is not present in ``__dict__``, however ``str(a)`` and ``repr(a)`` "
+"both work."
+msgstr ""
+"**注記:** ``__repr__`` を直接呼び出すことはできず (``a.__repr__()`` は失敗します)、 "
+"``__dict__`` にも存在しませんが、 ``str(a)`` と ``repr(a)`` は両方とも動作します。"
 
 #: ../../library/binascii.rst:2
 msgid ":mod:`binascii` -- binary/ASCII conversions"
@@ -3401,13 +3522,17 @@ msgid ""
 "Draw another FrameBuffer on top of the current one at the given "
 "coordinates. If *key* is specified then it should be a color integer and "
 "the corresponding color will be considered transparent: all pixels with "
-"that color value will not be drawn."
+"that color value will not be drawn. (If the *palette* is specified then "
+"the *key* is compared to the value from *palette*, not to the value "
+"directly from *fbuf*.)"
 msgstr ""
 "現在のフレームバッファの上の指定された座標に、別の FrameBuffer を描画します。 "
 "*key* が指定されている場合、それは色を表す整数でなければならず、対応する色は"
 "透明であるとみなされます。その色の値を持つすべてのピクセルは描画されません。"
+"(*palette* が指定された場合、 *key* は *fbuf* から直接得られる値ではなく、 "
+"*palette* の値と比較されます。)"
 
-#: ../../library/framebuf.rst:138
+#: ../../library/framebuf.rst:140
 msgid ""
 "The *palette* argument enables blitting between FrameBuffers with "
 "differing formats. Typical usage is to render a monochrome or grayscale "
@@ -3432,7 +3557,7 @@ msgstr ""
 "現在のピクセルの色は、x位置が対応するソースピクセルの色になっている *palette* "
 "ピクセルの色になります。"
 
-#: ../../library/framebuf.rst:154
+#: ../../library/framebuf.rst:156
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are vertically mapped with bit 0 being nearest the top of the "
@@ -3446,7 +3571,7 @@ msgstr ""
 "８垂直ピクセルを占有します。後続のバイトは、右端に達するまで連続した水平位置に"
 "現れます。さらに後続のバイトは、最左端から8ピクセル下の位置でレンダリングされます。"
 
-#: ../../library/framebuf.rst:163
+#: ../../library/framebuf.rst:165
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -3459,7 +3584,7 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:172
+#: ../../library/framebuf.rst:174
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -3472,19 +3597,19 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:181
+#: ../../library/framebuf.rst:183
 msgid "Red Green Blue (16-bit, 5+6+5) color format"
 msgstr "レッドグリーンブルー(16ビット、5+6+5)カラーフォーマット"
 
-#: ../../library/framebuf.rst:185
+#: ../../library/framebuf.rst:187
 msgid "Grayscale (2-bit) color format"
 msgstr "グレースケール(2ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:189
+#: ../../library/framebuf.rst:191
 msgid "Grayscale (4-bit) color format"
 msgstr "グレースケール(4ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:193
+#: ../../library/framebuf.rst:195
 msgid "Grayscale (8-bit) color format"
 msgstr "グレースケール(8ビット)カラーフォーマット"
 
@@ -5678,11 +5803,21 @@ msgstr "*sda* は SDA ラインのピンオブジェクトです"
 msgid "*freq* is the SCL clock rate"
 msgstr "*freq* は SCL のクロックレートです"
 
-#: ../../library/machine.I2C.rst:96 ../../library/pyb.I2C.rst:85
+#: ../../library/machine.I2C.rst:94
+msgid ""
+"In the case of hardware I2C the actual clock frequency may be lower than "
+"the requested frequency. This is dependant on the platform hardware. The "
+"actual rate may be determined by printing the I2C object."
+msgstr ""
+"ハードウェアI2Cの場合、実際のクロック周波数は指定した周波数より低くなることがあります。"
+"これはプラットフォームハードウェアに依存します。実際の周波数は、I2C オブジェクトを"
+"プリントすることによって分かるかもしれません。"
+
+#: ../../library/machine.I2C.rst:100 ../../library/pyb.I2C.rst:85
 msgid "Turn off the I2C bus."
 msgstr "I2C バスをオフにします。"
 
-#: ../../library/machine.I2C.rst:102
+#: ../../library/machine.I2C.rst:106
 msgid ""
 "Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list "
 "of those that respond.  A device responds if it pulls the SDA line low "
@@ -5692,11 +5827,11 @@ msgstr ""
 "デバイスは、アドレス(書き込みビットを含む)がバスに送信された後に SDA ラインをローに"
 "引き下げると応答します。"
 
-#: ../../library/machine.I2C.rst:107
+#: ../../library/machine.I2C.rst:111
 msgid "Primitive I2C operations"
 msgstr "プリミティブ I2C 操作"
 
-#: ../../library/machine.I2C.rst:109
+#: ../../library/machine.I2C.rst:113
 msgid ""
 "The following methods implement the primitive I2C controller bus "
 "operations and can be combined to make any I2C transaction.  They are "
@@ -5707,25 +5842,25 @@ msgstr ""
 "トランザクションを作成するために組み合わせることができます。標準的なメソッド(下記参照)"
 "では足りない制御する必要があるなら、これらのメソッドを使います。"
 
-#: ../../library/machine.I2C.rst:113
+#: ../../library/machine.I2C.rst:117
 msgid "These methods are only available on the `machine.SoftI2C` class."
 msgstr "これらのメソッドは `machine.SoftI2C` クラスでのみ利用できます。"
 
-#: ../../library/machine.I2C.rst:117
+#: ../../library/machine.I2C.rst:121
 msgid ""
 "Generate a START condition on the bus (SDA transitions to low while SCL "
 "is high)."
 msgstr ""
 "バス上で START 条件を生成します(SCL がハイの間に SDA がローに遷移します)。"
 
-#: ../../library/machine.I2C.rst:121
+#: ../../library/machine.I2C.rst:125
 msgid ""
 "Generate a STOP condition on the bus (SDA transitions to high while SCL "
 "is high)."
 msgstr ""
 "バス上で STOP 条件を生成します(SCL がハイの間に SDA がハイに遷移します)。"
 
-#: ../../library/machine.I2C.rst:125
+#: ../../library/machine.I2C.rst:129
 msgid ""
 "Reads bytes from the bus and stores them into *buf*.  The number of bytes"
 " read is the length of *buf*.  An ACK will be sent on the bus after "
@@ -5740,7 +5875,7 @@ msgstr ""
 "ACK が送信されます(この場合、ペリフェラルは後の呼び出しでさらに bytes 型オブジェクトが"
 "読み取られると想定します)。"
 
-#: ../../library/machine.I2C.rst:133
+#: ../../library/machine.I2C.rst:137
 msgid ""
 "Write the bytes from *buf* to the bus.  Checks that an ACK is received "
 "after each byte and stops transmitting the remaining bytes if a NACK is "
@@ -5750,11 +5885,11 @@ msgstr ""
 "ことを確認し、NACK が受信された場合は残りのバイト列の送信を停止します。"
 "この関数は受信した ACK の数を返します。"
 
-#: ../../library/machine.I2C.rst:138
+#: ../../library/machine.I2C.rst:142
 msgid "Standard bus operations"
 msgstr "標準バスオペレーション"
 
-#: ../../library/machine.I2C.rst:140
+#: ../../library/machine.I2C.rst:144
 msgid ""
 "The following methods implement the standard I2C controller read and "
 "write operations that target a given peripheral device."
@@ -5762,7 +5897,7 @@ msgstr ""
 "以下のメソッドは、特定のペリフェラルデバイスをターゲットとした"
 "標準 I2C コントローラの読取り/書込み操作を実装しています。"
 
-#: ../../library/machine.I2C.rst:145
+#: ../../library/machine.I2C.rst:149
 msgid ""
 "Read *nbytes* from the peripheral specified by *addr*. If *stop* is true "
 "then a STOP condition is generated at the end of the transfer. Returns a "
@@ -5772,7 +5907,7 @@ msgstr ""
 "転送終了時に STOP 条件が生成されます。読み込んだデータを持つ `bytes` 型オブジェクトを"
 "返します。"
 
-#: ../../library/machine.I2C.rst:151
+#: ../../library/machine.I2C.rst:155
 msgid ""
 "Read into *buf* from the peripheral specified by *addr*. The number of "
 "bytes read will be the length of *buf*. If *stop* is true then a STOP "
@@ -5781,12 +5916,12 @@ msgstr ""
 "*addr* で指定されたペリフェラルから *buf* に読み込みます。読み取られるバイト数は *buf* "
 "の長さ分になります。 *stop* が True の場合、転送終了時にSTOP条件が生成されます。"
 
-#: ../../library/machine.I2C.rst:155 ../../library/machine.I2C.rst:202
-#: ../../library/machine.I2C.rst:211
+#: ../../library/machine.I2C.rst:159 ../../library/machine.I2C.rst:206
+#: ../../library/machine.I2C.rst:215
 msgid "The method returns ``None``."
 msgstr "このメソッドは ``None`` を返します。"
 
-#: ../../library/machine.I2C.rst:159
+#: ../../library/machine.I2C.rst:163
 msgid ""
 "Write the bytes from *buf* to the peripheral specified by *addr*.  If a "
 "NACK is received following the write of a byte from *buf* then the "
@@ -5800,7 +5935,7 @@ msgstr ""
 "が受信されたとしても、転送の終わりに STOP 条件が生成されます。この関数は受信した "
 "ACK の数を返します。"
 
-#: ../../library/machine.I2C.rst:167
+#: ../../library/machine.I2C.rst:171
 msgid ""
 "Write the bytes contained in *vector* to the peripheral specified by "
 "*addr*. *vector* should be a tuple or list of objects with the buffer "
@@ -5814,7 +5949,7 @@ msgstr ""
 "順次書き込みます。 *vector* 内のオブジェクトは長さが0バイトであるかもしれませんが、"
 "その場合には出力しません。"
 
-#: ../../library/machine.I2C.rst:173
+#: ../../library/machine.I2C.rst:177
 msgid ""
 "If a NACK is received following the write of a byte from one of the "
 "objects in *vector* then the remaining bytes, and any remaining objects, "
@@ -5827,11 +5962,11 @@ msgstr ""
 "が受信されても、転送の終わりに STOP 条件が生成されます。この関数は受信した ACK の数を"
 "返します。"
 
-#: ../../library/machine.I2C.rst:180
+#: ../../library/machine.I2C.rst:184
 msgid "Memory operations"
 msgstr "メモリ操作"
 
-#: ../../library/machine.I2C.rst:182
+#: ../../library/machine.I2C.rst:186
 msgid ""
 "Some I2C devices act as a memory device (or set of registers) that can be"
 " read from and written to.  In this case there are two addresses "
@@ -5843,7 +5978,7 @@ msgstr ""
 "この場合、I2C トランザクションに関連付けられた２つのアドレスがあります。ペリフェラルアドレスと"
 "メモリアドレスです。以下のメソッドは、そのようなデバイスと通信するための便利な機能です。"
 
-#: ../../library/machine.I2C.rst:189
+#: ../../library/machine.I2C.rst:193
 msgid ""
 "Read *nbytes* from the peripheral specified by *addr* starting from the "
 "memory address specified by *memaddr*. The argument *addrsize* specifies "
@@ -5853,7 +5988,7 @@ msgstr ""
 "*nbytes* 分を読み込みます。引数 *addrsize* はアドレスサイズをビット数で指定します。"
 "この関数は読み込んだデータを持つ `bytes` 型オブジェクトを返します。"
 
-#: ../../library/machine.I2C.rst:196
+#: ../../library/machine.I2C.rst:200
 msgid ""
 "Read into *buf* from the peripheral specified by *addr* starting from the"
 " memory address specified by *memaddr*.  The number of bytes read is the "
@@ -5866,7 +6001,7 @@ msgstr ""
 "アドレスサイズをビット数で指定します(ESP8266ではこの引数は認識されず、"
 "アドレスサイズは常に8ビットです)。"
 
-#: ../../library/machine.I2C.rst:206
+#: ../../library/machine.I2C.rst:210
 msgid ""
 "Write *buf* to the peripheral specified by *addr* starting from the "
 "memory address specified by *memaddr*. The argument *addrsize* specifies "
@@ -9373,20 +9508,24 @@ msgstr "このモジュールは WS2812 / NeoPixel LED のドライバです。"
 #: ../../library/neopixel.rst:9
 msgid ""
 "This module is only included by default on the ESP8266, ESP32 and RP2 "
-"ports. On STM32 / Pyboard, you can `download the module "
-"<https://github.com/micropython/micropython/blob/master/drivers/neopixel/neopixel.py>`_"
-" and copy it to the filesystem."
+"ports. On STM32 / Pyboard and others, you can either install the "
+"``neopixel`` package using :term:`mip`, or you can download the module "
+"directly from <https://raw.githubusercontent.com/micropython/micropython-"
+"lib/master/micropython/drivers/led/neopixel/neopixel.py>`_ and copy it to"
+" the filesystem."
 msgstr ""
 "このモジュールは ESP8266、ESP32、RP2 のポートにのみデフォルトで含まれています。"
-"STM32 / Pyboard では、 `モジュールをダウンロードして "
-"<https://github.com/micropython/micropython/blob/master/drivers/neopixel/neopixel.py>`_ "
-"、ファイルシステムにコピーしてください。"
+"STM32 / Pyboard などでは :term:`mip` を使って ``neopixel`` パッケージを"
+"インストールするか、 直接 "
+"<https://raw.githubusercontent.com/micropython/micropython-"
+"lib/master/micropython/drivers/led/neopixel/neopixel.py> からモジュールを"
+"ダウンロードして、ファイルシステムにコピーしてください。"
 
-#: ../../library/neopixel.rst:15
+#: ../../library/neopixel.rst:17
 msgid "class NeoPixel"
 msgstr "クラス NeoPixel"
 
-#: ../../library/neopixel.rst:17
+#: ../../library/neopixel.rst:19
 msgid ""
 "This class stores pixel data for a WS2812 LED strip connected to a pin. "
 "The application should set pixel data and then call "
@@ -9396,7 +9535,7 @@ msgstr ""
 "アプリケーションは、ピクセルデータを設定し、ストリップを更新する準備ができたら、 "
 ":meth:`NeoPixel.write` を呼び出す必要があります。"
 
-#: ../../library/neopixel.rst:23
+#: ../../library/neopixel.rst:25
 msgid ""
 "import neopixel\n"
 "\n"
@@ -9424,50 +9563,50 @@ msgstr ""
 "# ストリップを更新\n"
 "n.write()"
 
-#: ../../library/neopixel.rst:41
+#: ../../library/neopixel.rst:43
 msgid "Construct an NeoPixel object.  The parameters are:"
 msgstr "NeoPixel オブジェクトを構築します。パラメータは次のとおりです:"
 
-#: ../../library/neopixel.rst:43
+#: ../../library/neopixel.rst:45
 msgid "*pin* is a machine.Pin instance."
 msgstr "*pin* は machine.Pin のインスタンスです。"
 
-#: ../../library/neopixel.rst:44
+#: ../../library/neopixel.rst:46
 msgid "*n* is the number of LEDs in the strip."
 msgstr "*n* はストリップにある LED の数です。"
 
-#: ../../library/neopixel.rst:45
+#: ../../library/neopixel.rst:47
 msgid "*bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs."
 msgstr "*bpp* は RGB LED の場合で 3、RGBW LED の場合で 4 です。"
 
-#: ../../library/neopixel.rst:46
+#: ../../library/neopixel.rst:48
 msgid "*timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz)."
-msgstr "*timing* は 40kKHz で　0、800kHz で 1 です(たいていは 800kHz)。"
+msgstr "*timing* は 40kKHz で 0、800kHz で 1 です(たいていは 800kHz)。"
 
-#: ../../library/neopixel.rst:53
+#: ../../library/neopixel.rst:55
 msgid ""
 "Sets the value of all pixels to the specified *pixel* value (i.e. an "
 "RGB/RGBW tuple)."
 msgstr ""
 "指定した *pixel* 値(すなわち RGB/RGBW のタプル)を、すべてのピクセルの値に設定します。"
 
-#: ../../library/neopixel.rst:58
+#: ../../library/neopixel.rst:60
 msgid "Returns the number of LEDs in the strip."
 msgstr "ストリップにある LED の数を返します。"
 
-#: ../../library/neopixel.rst:62
+#: ../../library/neopixel.rst:64
 msgid "Set the pixel at *index* to the value, which is an RGB/RGBW tuple."
 msgstr "*index* で指定したピクセルに値(RGB/RGBW のタプル)を設定します。"
 
-#: ../../library/neopixel.rst:66
+#: ../../library/neopixel.rst:68
 msgid "Returns the pixel at *index* as an RGB/RGBW tuple."
 msgstr "*index* で指定したピクセルの値(RGB/RGBW のタプル)を返します。"
 
-#: ../../library/neopixel.rst:69
+#: ../../library/neopixel.rst:71
 msgid "Output methods"
 msgstr "出力メソッド"
 
-#: ../../library/neopixel.rst:73
+#: ../../library/neopixel.rst:75
 msgid "Writes the current pixel data to the strip."
 msgstr "現在のピクセルデータをストリップに書き出します。"
 
@@ -9835,25 +9974,27 @@ msgstr ""
 
 #: ../../library/network.LAN.rst:34
 msgid ""
-"*phy_clock* specifies, whether the data clock is provided by the Ethernet"
-" controller or the PYH interface. The default value is the one that "
-"matches the board. If set to ``True``, the clock is driven by the "
-"Ethernet controller, otherwise by the PHY interface."
+"*ref_clk_mode* specifies, whether the data clock is provided by the "
+"Ethernet controller or the PYH interface. The default value is the one "
+"that matches the board. If set to ``LAN.OUT`` or ``Pin.OUT`` or ``True``,"
+" the clock is driven by the Ethernet controller, if set to ``LAN.IN`` or "
+"``Pin.IN`` or ``False``, the clock is driven by the PHY interface."
 msgstr ""
-"*phy_clock* は、データクロックがイーサネットコントローラまたは PYH インタフェースの"
-"どちらから提供されるかを指定します。デフォルト値は、ボードにマッチしたものです。 "
-"``True`` を指定すると、クロックはイーサネットコントローラから駆動され、"
-"そうでなければ PHY インターフェースから駆動されます。"
+"*ref_clk_mode* は、データクロックをイーサネットコントローラと PYH インタフェースの"
+"どちらから供給するかを指定します。デフォルト値は、ボードにマッチしたものです。 "
+"``LAN.OUT`` または ``Pin.OUT`` または ``True`` に設定すると、クロックは"
+"イーサネットコントローラから駆動され、 ``LAN.IN`` または ``Pin.IN`` または "
+"``False`` に設定すると、クロックは PHY インターフェイスから駆動されます。"
 
-#: ../../library/network.LAN.rst:38
+#: ../../library/network.LAN.rst:40
 msgid "For example, with the Seeed Arch Mix board you can  use::"
 msgstr "たとえば、Seeed Arch Mix ボードでは次のように使います::"
 
-#: ../../library/network.LAN.rst:40
-msgid "nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=2, phy_clock=False)"
+#: ../../library/network.LAN.rst:42
+msgid "nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)"
 msgstr ""
 
-#: ../../library/network.LAN.rst:47
+#: ../../library/network.LAN.rst:49
 msgid ""
 "With a parameter, it sets the interface active if *state* is true, "
 "otherwise it sets it inactive. Without a parameter, it returns the state."
@@ -9861,7 +10002,7 @@ msgstr ""
 "パラメータありの場合、 *state* が True の場合はインタフェースを有効化し、"
 "それ以外の場合は無効化します。パラメータなしの場合は状態を返します。"
 
-#: ../../library/network.LAN.rst:53 ../../library/network.WIZNET5K.rst:56
+#: ../../library/network.LAN.rst:55 ../../library/network.WIZNET5K.rst:56
 msgid ""
 "Returns ``True`` if the physical Ethernet link is connected and up. "
 "Returns ``False`` otherwise."
@@ -9869,22 +10010,22 @@ msgstr ""
 "物理的なイーサネットリンクが接続され、かつアップしている場合、 ``True`` を返します。"
 "それ以外の場合は ``False`` を返します。"
 
-#: ../../library/network.LAN.rst:58
+#: ../../library/network.LAN.rst:60
 msgid "Returns the LAN status."
 msgstr "LAN 状態えお返します。"
 
-#: ../../library/network.LAN.rst:62 ../../library/network.WIZNET5K.rst:61
+#: ../../library/network.LAN.rst:64 ../../library/network.WIZNET5K.rst:61
 msgid "Get/set IP address, subnet mask, gateway and DNS."
 msgstr "IP アドレス、サブネットマスク、ゲートウェイ、DNS を取得・設定します。"
 
-#: ../../library/network.LAN.rst:64 ../../library/network.WIZNET5K.rst:63
+#: ../../library/network.LAN.rst:66 ../../library/network.WIZNET5K.rst:63
 msgid ""
 "When called with no arguments, this method returns a 4-tuple with the "
 "above information."
 msgstr ""
 "引数なしで呼び出した場合、このメソッドは上記の情報を持つ４項目のタプルを返します。"
 
-#: ../../library/network.LAN.rst:66 ../../library/network.WIZNET5K.rst:65
+#: ../../library/network.LAN.rst:68 ../../library/network.WIZNET5K.rst:65
 msgid ""
 "To set the above values, pass a 4-tuple with the required information.  "
 "For example::"
@@ -9892,7 +10033,7 @@ msgstr ""
 "上記の値を設定するには、必要な情報を持つ４項目のタプルを引数に渡します。"
 "たとえば次のようにします::"
 
-#: ../../library/network.LAN.rst:72
+#: ../../library/network.LAN.rst:74
 msgid ""
 "Sets or gets parameters of the LAN interface. The only parameter that can"
 " be retrieved is the MAC address, using::"
@@ -9900,31 +10041,31 @@ msgstr ""
 "LAN インタフェースのパラメータを設定または取得します。取得できるパラメータは、MAC "
 "アドレスのみです。たとえば次のように使います::"
 
-#: ../../library/network.LAN.rst:75
+#: ../../library/network.LAN.rst:77
 msgid "mac = LAN.config(\"mac\")"
 msgstr ""
 
-#: ../../library/network.LAN.rst:77
+#: ../../library/network.LAN.rst:79
 msgid "The parameters that can be set are:"
 msgstr "設定可能なパラメータは次のとおりです:"
 
-#: ../../library/network.LAN.rst:79
+#: ../../library/network.LAN.rst:81
 msgid "``trace=n`` sets trace levels; suitable values are:"
 msgstr "``trace=n`` はトレースレベルを設定します:"
 
-#: ../../library/network.LAN.rst:81
+#: ../../library/network.LAN.rst:83
 msgid "2: trace TX"
 msgstr "2: TX をトレース"
 
-#: ../../library/network.LAN.rst:82
+#: ../../library/network.LAN.rst:84
 msgid "4: trace RX"
 msgstr "4: RX をトレース"
 
-#: ../../library/network.LAN.rst:83
+#: ../../library/network.LAN.rst:85
 msgid "8: full trace"
 msgstr "8: フルトレース"
 
-#: ../../library/network.LAN.rst:85
+#: ../../library/network.LAN.rst:87
 msgid ""
 "``low_power=bool`` sets or clears low power mode, valid values being "
 "``False`` or ``True``."
@@ -9932,11 +10073,11 @@ msgstr ""
 "``low_power=bool`` は低電力モードを設定または解除します。"
 "有効な値は ``False`` または ``True`` です。"
 
-#: ../../library/network.LAN.rst:90
+#: ../../library/network.LAN.rst:92
 msgid "Specific LAN class implementations"
 msgstr "特定の LAN クラスの実装"
 
-#: ../../library/network.LAN.rst:92
+#: ../../library/network.LAN.rst:94
 msgid ""
 "On the mimxrt port, suitable values for the *phy_type* constructor "
 "argument are: ``PHY_KSZ8081``, ``PHY_DP83825``, ``PHY_DP83848``, "
@@ -12728,7 +12869,7 @@ msgstr ""
 #: ../../library/pyb.CAN.rst:254
 msgid ""
 "buf = bytearray(8)\n"
-"lst = [0, 0, 0, memoryview(buf)]\n"
+"lst = [0, 0, 0, 0, memoryview(buf)]\n"
 "# No heap memory is allocated in the following call\n"
 "can.recv(0, lst)"
 msgstr ""
@@ -13438,7 +13579,17 @@ msgstr ""
 "``dma`` は I2C 転送に DMA の使用を許可するかどうかを指定します(DMA 転送のタイミングは"
 "より正確ですが、現在のところバスエラーを適切に処理しないことに注意してください)"
 
-#: ../../library/pyb.I2C.rst:101
+#: ../../library/pyb.I2C.rst:99
+msgid ""
+"The actual clock frequency may be lower than the requested frequency. "
+"This is dependant on the platform hardware. The actual rate may be "
+"determined by printing the I2C object."
+msgstr ""
+"実際のクロック周波数は、指定した周波数より低くなることがあります。これは、"
+"プラットフォームのハードウェアに依存します。実際の周波数は、I2C オブジェクトを"
+"プリントすることによって分かるかもしれません。"
+
+#: ../../library/pyb.I2C.rst:105
 msgid ""
 "Check if an I2C device responds to the given address.  Only valid when in"
 " controller mode."
@@ -13446,53 +13597,53 @@ msgstr ""
 "I2C デバイスが指定のアドレスに応答するかどうかを確認します。"
 "コントローラモードの場合のみ有効です。"
 
-#: ../../library/pyb.I2C.rst:105
+#: ../../library/pyb.I2C.rst:109
 msgid "Read from the memory of an I2C device:"
 msgstr "I2C デバイスのメモリから読み取ります:"
 
-#: ../../library/pyb.I2C.rst:107
+#: ../../library/pyb.I2C.rst:111
 msgid ""
 "``data`` can be an integer (number of bytes to read) or a buffer to read "
 "into"
 msgstr "``data`` には整数(読み取るバイト数)または読み込むバッファを指定します"
 
-#: ../../library/pyb.I2C.rst:108 ../../library/pyb.I2C.rst:121
+#: ../../library/pyb.I2C.rst:112 ../../library/pyb.I2C.rst:125
 msgid "``addr`` is the I2C device address"
 msgstr "``addr`` は I2C デバイスアドレスです"
 
-#: ../../library/pyb.I2C.rst:109 ../../library/pyb.I2C.rst:122
+#: ../../library/pyb.I2C.rst:113 ../../library/pyb.I2C.rst:126
 msgid "``memaddr`` is the memory location within the I2C device"
 msgstr "``memaddr`` は I2C デバイス中のメモリ位置です"
 
-#: ../../library/pyb.I2C.rst:110
+#: ../../library/pyb.I2C.rst:114
 msgid "``timeout`` is the timeout in milliseconds to wait for the read"
 msgstr "``timeout`` は読み取りを待つタイムアウト時間をミリ秒単位で指定します"
 
-#: ../../library/pyb.I2C.rst:111 ../../library/pyb.I2C.rst:124
+#: ../../library/pyb.I2C.rst:115 ../../library/pyb.I2C.rst:129
 msgid "``addr_size`` selects width of memaddr: 8 or 16 bits"
 msgstr "``addr_size`` は memaddr の幅であり、8 または 16 を指定します"
 
-#: ../../library/pyb.I2C.rst:113
+#: ../../library/pyb.I2C.rst:117
 msgid "Returns the read data. This is only valid in controller mode."
 msgstr "読み取ったデータを返します。これはコントローラモードでのみ有効です。"
 
-#: ../../library/pyb.I2C.rst:118
+#: ../../library/pyb.I2C.rst:122
 msgid "Write to the memory of an I2C device:"
 msgstr "I2C デバイスのメモリに書き込みます:"
 
-#: ../../library/pyb.I2C.rst:120
+#: ../../library/pyb.I2C.rst:124
 msgid "``data`` can be an integer or a buffer to write from"
 msgstr "``data`` には整数または書き込み元のバッファを指定します"
 
-#: ../../library/pyb.I2C.rst:123
+#: ../../library/pyb.I2C.rst:127
 msgid "``timeout`` is the timeout in milliseconds to wait for the write"
 msgstr "``timeout`` は書き込み待つタイムアウト時間をミリ秒単位で指定します"
 
-#: ../../library/pyb.I2C.rst:126
+#: ../../library/pyb.I2C.rst:130
 msgid "Returns ``None``. This is only valid in controller mode."
 msgstr "``None`` を返します。これはコントローラモードでのみ有効です。"
 
-#: ../../library/pyb.I2C.rst:133
+#: ../../library/pyb.I2C.rst:137
 msgid ""
 "``recv`` can be an integer, which is the number of bytes to receive, or a"
 " mutable buffer, which will be filled with received bytes"
@@ -13500,15 +13651,15 @@ msgstr ""
 "``recv`` には受信するバイト数を示す整数、または受信した bytes 型オブジェクトを"
 "格納する書き込み可能バッファを指定できます"
 
-#: ../../library/pyb.I2C.rst:135
+#: ../../library/pyb.I2C.rst:139
 msgid "``addr`` is the address to receive from (only required in controller mode)"
 msgstr "``addr`` は受信元のアドレスです(コントローラモードでのみ必要)"
 
-#: ../../library/pyb.I2C.rst:136
+#: ../../library/pyb.I2C.rst:140
 msgid "``timeout`` is the timeout in milliseconds to wait for the receive"
 msgstr "``timeout`` は受信を待つタイムアウト時間をミリ秒単位で指定します"
 
-#: ../../library/pyb.I2C.rst:138 ../../library/pyb.SPI.rst:87
+#: ../../library/pyb.I2C.rst:142 ../../library/pyb.SPI.rst:87
 msgid ""
 "Return value: if ``recv`` is an integer then a new buffer of the bytes "
 "received, otherwise the same buffer that was passed in to ``recv``."
@@ -13516,23 +13667,23 @@ msgstr ""
 "戻り値: パラメータ ``recv`` が整数であれば、受信したバイト数を格納した新しい"
 "バッファを返します。さもなければ ``recv`` に渡したのと同じバッファを返します。"
 
-#: ../../library/pyb.I2C.rst:143 ../../library/pyb.SPI.rst:92
+#: ../../library/pyb.I2C.rst:147 ../../library/pyb.SPI.rst:92
 msgid "Send data on the bus:"
 msgstr "バスにデータを送信します:"
 
-#: ../../library/pyb.I2C.rst:145
+#: ../../library/pyb.I2C.rst:149
 msgid "``send`` is the data to send (an integer to send, or a buffer object)"
 msgstr "``send`` は送信するデータです(送信する整数値、またはバッファオブジェクト)"
 
-#: ../../library/pyb.I2C.rst:146
+#: ../../library/pyb.I2C.rst:150
 msgid "``addr`` is the address to send to (only required in controller mode)"
 msgstr "``addr`` は送信先のアドレスです(コントローラモードでのみ必要)"
 
-#: ../../library/pyb.I2C.rst:147
+#: ../../library/pyb.I2C.rst:151
 msgid "``timeout`` is the timeout in milliseconds to wait for the send"
 msgstr "``timeout`` は送信を待つタイムアウト時間をミリ秒単位で指定します"
 
-#: ../../library/pyb.I2C.rst:153
+#: ../../library/pyb.I2C.rst:157
 msgid ""
 "Scan all I2C addresses from 0x01 to 0x7f and return a list of those that "
 "respond. Only valid when in controller mode."
@@ -13540,11 +13691,11 @@ msgstr ""
 "0x01 から 0x7f までのすべてのI2Cアドレスをスキャンし、応答するアドレスのリストを"
 "返します。コントローラモードの場合のみ有効です。"
 
-#: ../../library/pyb.I2C.rst:161
+#: ../../library/pyb.I2C.rst:165
 msgid "for initialising the bus to controller mode"
 msgstr "バスをコントローラモードに初期化するためのもの"
 
-#: ../../library/pyb.I2C.rst:165
+#: ../../library/pyb.I2C.rst:169
 msgid "for initialising the bus to peripheral mode"
 msgstr "バスをペリフェラルモードに初期化するためのもの"
 
@@ -18036,28 +18187,236 @@ msgid "|see_cpython_module| :mod:`python:struct`."
 msgstr ""
 
 #: ../../library/struct.rst:9
-msgid "Supported size/byte order prefixes: ``@``, ``<``, ``>``, ``!``."
-msgstr "サポートするサイズ/バイト順プレフィックス: ``@``, ``<``, ``>``, ``!``."
+msgid "The following byte orders are supported:"
+msgstr "次のバイト順をサポートしています:"
 
-#: ../../library/struct.rst:11
-msgid ""
-"Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``, "
-"``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (the latter 2 depending "
-"on the floating-point support)."
+#: ../../library/struct.rst:12
+msgid "Character"
+msgstr "文字"
+
+#: ../../library/struct.rst:12
+msgid "Byte order"
+msgstr "バイト順"
+
+#: ../../library/struct.rst:12
+msgid "Size"
+msgstr "サイズ"
+
+#: ../../library/struct.rst:12
+msgid "Alignment"
+msgstr "アライメント"
+
+#: ../../library/struct.rst:14
+msgid "@"
 msgstr ""
-"サポートする書式コード: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``, "
-"``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (最後の２つは浮動小数点の"
-"サポートに依存)。"
+
+#: ../../library/struct.rst:14
+msgid "native"
+msgstr "ネイティブ"
+
+#: ../../library/struct.rst:16
+msgid "<"
+msgstr ""
+
+#: ../../library/struct.rst:16
+msgid "little-endian"
+msgstr "リトルエンディアン"
+
+#: ../../library/struct.rst:16 ../../library/struct.rst:18
+#: ../../library/struct.rst:20
+msgid "standard"
+msgstr "標準"
+
+#: ../../library/struct.rst:16 ../../library/struct.rst:18
+#: ../../library/struct.rst:20
+msgid "none"
+msgstr ""
 
 #: ../../library/struct.rst:18
+msgid ">"
+msgstr ""
+
+#: ../../library/struct.rst:18
+msgid "big-endian"
+msgstr "ビッグエンディアン"
+
+#: ../../library/struct.rst:20
+msgid "!"
+msgstr ""
+
+#: ../../library/struct.rst:20
+msgid "network (= big-endian)"
+msgstr "ネットワーク(= ビッグエンディアン)"
+
+#: ../../library/struct.rst:23
+msgid "The following data types are supported:"
+msgstr "次のデータ型をサポートしています:"
+
+#: ../../library/struct.rst:26
+msgid "Format"
+msgstr "フォーマット"
+
+#: ../../library/struct.rst:26
+msgid "C Type"
+msgstr "C 型"
+
+#: ../../library/struct.rst:26
+msgid "Python type"
+msgstr "Python 型"
+
+#: ../../library/struct.rst:26
+msgid "Standard size"
+msgstr "標準サイズ"
+
+#: ../../library/struct.rst:28
+msgid "b"
+msgstr ""
+
+#: ../../library/struct.rst:28
+msgid "signed char"
+msgstr ""
+
+#: ../../library/struct.rst:28 ../../library/struct.rst:30
+#: ../../library/struct.rst:32 ../../library/struct.rst:34
+#: ../../library/struct.rst:54
+msgid "integer"
+msgstr ""
+
+#: ../../library/struct.rst:30
+msgid "B"
+msgstr ""
+
+#: ../../library/struct.rst:30
+msgid "unsigned char"
+msgstr ""
+
+#: ../../library/struct.rst:32
+msgid "h"
+msgstr ""
+
+#: ../../library/struct.rst:32
+msgid "short"
+msgstr ""
+
+#: ../../library/struct.rst:34
+msgid "H"
+msgstr ""
+
+#: ../../library/struct.rst:34
+msgid "unsigned short"
+msgstr ""
+
+#: ../../library/struct.rst:36
+msgid "i"
+msgstr ""
+
+#: ../../library/struct.rst:36
+msgid "int"
+msgstr ""
+
+#: ../../library/struct.rst:36 ../../library/struct.rst:38
+#: ../../library/struct.rst:40 ../../library/struct.rst:42
+#: ../../library/struct.rst:44 ../../library/struct.rst:46
+msgid "integer (`1<fn>`)"
+msgstr ""
+
+#: ../../library/struct.rst:38
+msgid "I"
+msgstr ""
+
+#: ../../library/struct.rst:38
+msgid "unsigned int"
+msgstr ""
+
+#: ../../library/struct.rst:40
+msgid "l"
+msgstr ""
+
+#: ../../library/struct.rst:40
+msgid "long"
+msgstr ""
+
+#: ../../library/struct.rst:42
+msgid "L"
+msgstr ""
+
+#: ../../library/struct.rst:42
+msgid "unsigned long"
+msgstr ""
+
+#: ../../library/struct.rst:44
+msgid "q"
+msgstr ""
+
+#: ../../library/struct.rst:44
+msgid "long long"
+msgstr ""
+
+#: ../../library/struct.rst:46
+msgid "Q"
+msgstr ""
+
+#: ../../library/struct.rst:46
+msgid "unsigned long long"
+msgstr ""
+
+#: ../../library/struct.rst:48
+msgid "f"
+msgstr ""
+
+#: ../../library/struct.rst:48
+msgid "float"
+msgstr ""
+
+#: ../../library/struct.rst:48 ../../library/struct.rst:50
+msgid "float (`2<fn>`)"
+msgstr ""
+
+#: ../../library/struct.rst:50
+msgid "d"
+msgstr ""
+
+#: ../../library/struct.rst:50
+msgid "double"
+msgstr ""
+
+#: ../../library/struct.rst:52
+msgid "s"
+msgstr ""
+
+#: ../../library/struct.rst:52
+msgid "char[]"
+msgstr ""
+
+#: ../../library/struct.rst:52
+msgid "bytes"
+msgstr ""
+
+#: ../../library/struct.rst:54
+msgid "P"
+msgstr ""
+
+#: ../../library/struct.rst:54
+msgid "void *"
+msgstr ""
+
+#: ../../library/struct.rst:59
+msgid "Requires long support when used with values larger than 30 bits."
+msgstr ""
+
+#: ../../library/struct.rst:60
+msgid "Requires floating point support."
+msgstr ""
+
+#: ../../library/struct.rst:65
 msgid "Whitespace is not supported in format strings."
 msgstr "フォーマット文字列中に空白文字は使えません。"
 
-#: ../../library/struct.rst:25
+#: ../../library/struct.rst:72
 msgid "Return the number of bytes needed to store the given *fmt*."
 msgstr "指定した *fmt* で格納するために必要なバイト数を返します。"
 
-#: ../../library/struct.rst:29
+#: ../../library/struct.rst:76
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt*. The"
 " return value is a bytes object encoding the values."
@@ -18065,7 +18424,7 @@ msgstr ""
 "フォーマット文字列 *fmt* にしたがって、値 *v1*、*v2*、... をパックします。戻り値は、"
 "値をエンコードしたバイト列オブジェクトです。"
 
-#: ../../library/struct.rst:34
+#: ../../library/struct.rst:81
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt* into"
 " a *buffer* starting at *offset*. *offset* may be negative to count from "
@@ -18075,7 +18434,7 @@ msgstr ""
 "*buffer* の開始オフセット *offset* に格納します。 *offset* が負の場合は *buffer* "
 "の最後からのオフセットになります。"
 
-#: ../../library/struct.rst:40
+#: ../../library/struct.rst:87
 msgid ""
 "Unpack from the *data* according to the format string *fmt*. The return "
 "value is a tuple of the unpacked values."
@@ -18083,14 +18442,14 @@ msgstr ""
 "フォーマット文字列 *fmt* にしたがって *data* からアンパックします。"
 "戻り値はアンパックした値のタプルです。"
 
-#: ../../library/struct.rst:45
+#: ../../library/struct.rst:92
 msgid ""
 "Unpack from the *data* starting at *offset* according to the format "
-"string *fmt*. *offset* may be negative to count from the end of *buffer*."
-" The return value is a tuple of the unpacked values."
+"string *fmt*. *offset* may be negative to count from the end of *data*. "
+"The return value is a tuple of the unpacked values."
 msgstr ""
 "フォーマット文字列 *fmt* にしたがって "*data* の開始オフセット *offset* から"
-"アンパックします。 *offset* が負の場合は *buffer* の最後からのオフセットになります。"
+"アンパックします。 *offset* が負の場合は *data* の最後からのオフセットになります。"
 "戻り値はアンパックした値のタプルです。"
 
 #: ../../library/sys.rst:2
@@ -19103,14 +19462,15 @@ msgstr "クラス ThreadSafeFlag"
 #: ../../library/uasyncio.rst:150
 msgid ""
 "Create a new flag which can be used to synchronise a task with code "
-"running outside the asyncio loop, such as other threads, IRQs, or "
-"scheduler callbacks.  Flags start in the cleared state."
+"running outside the uasyncio loop, such as other threads, IRQs, or "
+"scheduler callbacks.  Flags start in the cleared state.  The class does "
+"not currently work under the Unix build of MicroPython."
 msgstr ""
 "他のスレッド、IRQ、スケジューラコールバックなど、asyncio ループの外部で動作している"
 "コードのタスクを同期するために使えるフラグを新規作成します。フラグはクリアされた状態で"
-"始まります。"
+"始まります。このクラスは、現在のところ MicroPython の Unix ビルドでは動作しません。"
 
-#: ../../library/uasyncio.rst:156
+#: ../../library/uasyncio.rst:157
 msgid ""
 "Set the flag.  If there is a task waiting on the flag, it will be "
 "scheduled to run."
@@ -19118,7 +19478,7 @@ msgstr ""
 "フラグを設定します。フラグを待機しているタスクがある場合、そのタスクが実行されるよう"
 "スケジュールされます。"
 
-#: ../../library/uasyncio.rst:161
+#: ../../library/uasyncio.rst:162
 msgid ""
 "Clear the flag. This may be used to ensure that a possibly previously-set"
 " flag is clear before waiting for it."
@@ -19126,7 +19486,7 @@ msgstr ""
 "フラグをクリアします。これは、以前に設定した可能性のあるフラグについて、"
 "それを待機する前に確実にクリアするために使います。"
 
-#: ../../library/uasyncio.rst:166
+#: ../../library/uasyncio.rst:167
 msgid ""
 "Wait for the flag to be set.  If the flag is already set then it returns "
 "immediately.  The flag is automatically reset upon return from ``wait``."
@@ -19134,34 +19494,34 @@ msgstr ""
 "フラグが設定されるのを待ちます。フラグがすでに設定されている場合はすぐに戻ります。"
 "このフラグは ``wait`` から戻ったときに自動的にリセットされます。"
 
-#: ../../library/uasyncio.rst:169
+#: ../../library/uasyncio.rst:170
 msgid "A flag may only be waited on by a single task at a time."
 msgstr "フラグは、一度に1つのタスクでのみ待機できます。"
 
-#: ../../library/uasyncio.rst:174
+#: ../../library/uasyncio.rst:175
 msgid "class Lock"
 msgstr "クラス Lock"
 
-#: ../../library/uasyncio.rst:178
+#: ../../library/uasyncio.rst:179
 msgid ""
 "Create a new lock which can be used to coordinate tasks.  Locks start in "
 "the unlocked state."
 msgstr ""
 "タスクの調整に使用できる新しいロックを作成します。ロックは解除状態から始まります。"
 
-#: ../../library/uasyncio.rst:181
+#: ../../library/uasyncio.rst:182
 msgid ""
 "In addition to the methods below, locks can be used in an ``async with`` "
 "statement."
 msgstr ""
 "以下のメソッドに加えて、 ``async with`` ステートメントでロックを使用できます。"
 
-#: ../../library/uasyncio.rst:185
+#: ../../library/uasyncio.rst:186
 msgid "Returns ``True`` if the lock is locked, otherwise ``False``."
 msgstr ""
 "ロックされていれば ``True`` を返し、さもなければ ``False`` を返します。"
 
-#: ../../library/uasyncio.rst:189
+#: ../../library/uasyncio.rst:190
 msgid ""
 "Wait for the lock to be in the unlocked state and then lock it in an "
 "atomic way.  Only one task can acquire the lock at any one time."
@@ -19169,7 +19529,7 @@ msgstr ""
 "ロックが解除状態になるのを待ってから、アトミックな手段でロックします。"
 "一度に1つのタスクのみがロックを取得できます。"
 
-#: ../../library/uasyncio.rst:196
+#: ../../library/uasyncio.rst:197
 msgid ""
 "Release the lock.  If any tasks are waiting on the lock then the next one"
 " in the queue is scheduled to run and the lock remains locked.  "
@@ -19179,11 +19539,11 @@ msgstr ""
 "実行されるようスケジュールされ、ロックされたままになります。待機中のタスクが無い場合は、"
 "ロックが解除されます。"
 
-#: ../../library/uasyncio.rst:201
+#: ../../library/uasyncio.rst:202
 msgid "TCP stream connections"
 msgstr "TCP ストリーム接続"
 
-#: ../../library/uasyncio.rst:205
+#: ../../library/uasyncio.rst:206
 msgid ""
 "Open a TCP connection to the given *host* and *port*.  The *host* address"
 " will be resolved using `socket.getaddrinfo`, which is currently a "
@@ -19193,7 +19553,7 @@ msgstr ""
 "*host* のアドレスは `socket.getaddrinfo` を使って解決されます。"
 "この解決は現在のところブロッキング呼出しです。"
 
-#: ../../library/uasyncio.rst:208
+#: ../../library/uasyncio.rst:209
 msgid ""
 "Returns a pair of streams: a reader and a writer stream. Will raise a "
 "socket-specific ``OSError`` if the host could not be resolved or if the "
@@ -19203,7 +19563,7 @@ msgstr ""
 "ホストを解決できなかった場合、または接続を確立できなかった場合は、
 "ソケット特有の ``OSError`` 例外を発生します。"
 
-#: ../../library/uasyncio.rst:216
+#: ../../library/uasyncio.rst:217
 msgid ""
 "Start a TCP server on the given *host* and *port*.  The *callback* will "
 "be called with incoming, accepted connections, and be passed 2 arguments:"
@@ -19213,11 +19573,11 @@ msgstr ""
 "コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
 "(読み取りストリームと書き込みストリーム)で呼び出されます。"
 
-#: ../../library/uasyncio.rst:220
+#: ../../library/uasyncio.rst:221
 msgid "Returns a `Server` object."
 msgstr "`Server` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:226
+#: ../../library/uasyncio.rst:227
 msgid ""
 "This represents a TCP stream connection.  To minimise code this class "
 "implements both a reader and a writer, and both ``StreamReader`` and "
@@ -19227,7 +19587,7 @@ msgstr ""
 "このクラスには読み取りと書き込みの両方を実装しています。
 "StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
 
-#: ../../library/uasyncio.rst:232
+#: ../../library/uasyncio.rst:233
 msgid ""
 "Get extra information about the stream, given by *v*.  The valid values "
 "for *v* are: ``peername``."
@@ -19235,15 +19595,15 @@ msgstr ""
 "*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
 "``peername`` です。"
 
-#: ../../library/uasyncio.rst:237
+#: ../../library/uasyncio.rst:238
 msgid "Close the stream."
 msgstr "ストリームをクローズします。"
 
-#: ../../library/uasyncio.rst:241
+#: ../../library/uasyncio.rst:242
 msgid "Wait for the stream to close."
 msgstr "ストリームがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:247
+#: ../../library/uasyncio.rst:248
 msgid ""
 "Read up to *n* bytes and return them.  If *n* is not provided or -1 then "
 "read all bytes until EOF.  The returned value will be an empty bytes "
@@ -19253,30 +19613,30 @@ msgstr ""
 "*n* が指定されていないか、または -1 の場合、EOF まで全てのバイトを読み込みます。"
 "バイト列を読み込む前に EOF に達した場合、戻り値は空のバイト列オブジェクトになります。
 
-#: ../../library/uasyncio.rst:255
+#: ../../library/uasyncio.rst:256
 msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
 msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
 
-#: ../../library/uasyncio.rst:257
+#: ../../library/uasyncio.rst:258
 msgid "Return the number of bytes read into *buf*."
 msgstr "戻り値は *buf* に読み込んだバイト数です。"
 
-#: ../../library/uasyncio.rst:263
+#: ../../library/uasyncio.rst:264
 msgid "Read exactly *n* bytes and return them as a bytes object."
 msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
 
-#: ../../library/uasyncio.rst:265
+#: ../../library/uasyncio.rst:266
 msgid ""
 "Raises an ``EOFError`` exception if the stream ends before reading *n* "
 "bytes."
 msgstr ""
 "*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
 
-#: ../../library/uasyncio.rst:271
+#: ../../library/uasyncio.rst:272
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/uasyncio.rst:277
+#: ../../library/uasyncio.rst:278
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -19286,11 +19646,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/uasyncio.rst:283
+#: ../../library/uasyncio.rst:284
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/uasyncio.rst:289
+#: ../../library/uasyncio.rst:290
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -19298,28 +19658,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/uasyncio.rst:294
+#: ../../library/uasyncio.rst:295
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/uasyncio.rst:298
+#: ../../library/uasyncio.rst:299
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/uasyncio.rst:303
+#: ../../library/uasyncio.rst:304
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/uasyncio.rst:307
+#: ../../library/uasyncio.rst:308
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/uasyncio.rst:311
+#: ../../library/uasyncio.rst:312
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/uasyncio.rst:313
+#: ../../library/uasyncio.rst:314
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -19327,7 +19687,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/uasyncio.rst:318
+#: ../../library/uasyncio.rst:319
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -19335,15 +19695,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/uasyncio.rst:323
+#: ../../library/uasyncio.rst:324
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/uasyncio.rst:327
+#: ../../library/uasyncio.rst:328
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/uasyncio.rst:331
+#: ../../library/uasyncio.rst:332
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -19351,15 +19711,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/uasyncio.rst:336
+#: ../../library/uasyncio.rst:337
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/uasyncio.rst:340
+#: ../../library/uasyncio.rst:341
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/uasyncio.rst:344
+#: ../../library/uasyncio.rst:345
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -19368,18 +19728,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/uasyncio.rst:349
+#: ../../library/uasyncio.rst:350
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/uasyncio.rst:354
+#: ../../library/uasyncio.rst:355
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/uasyncio.rst:358
+#: ../../library/uasyncio.rst:359
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "

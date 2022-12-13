@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-13 16:19+0900\n"
-"PO-Revision-Date: 2022-11-13 16:40+0900\n"
+"POT-Creation-Date: 2022-12-12 20:12+0900\n"
+"PO-Revision-Date: 2022-12-13 16:40+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -215,21 +215,29 @@ msgstr "基本的な例"
 
 #: ../../develop/cmodules.rst:98
 msgid ""
-"This simple module named ``cexample`` provides a single function "
-"``cexample.add_ints(a, b)`` which adds the two integer args together and "
-"returns the result. It can be found in the MicroPython source tree `in "
-"the examples directory "
+"The ``cexample`` module provides examples for a function and a class. The"
+" ``cexample.add_ints(a, b)`` function adds two integer args together and "
+"returns the result. The ``cexample.Timer()`` type creates timers that can"
+" be used to measure the elapsed time since the object is instantiated."
+msgstr ""
+"ここでとりあげる ``cexample`` モジュールは関数とクラスの例を提供しています。 "
+"``cexample.add_ints(a, b)`` 関数は２つの整数の引数を足し合わせて結果を返します。 "
+"``cexample.Timer()`` 型は、オブジェクトがインスタンス化されてからの経過時間を"
+"計測するために使用できるタイマーを作成します。"
+
+#: ../../develop/cmodules.rst:103
+msgid ""
+"The module can be found in the MicroPython source tree `in the examples "
+"directory "
 "<https://github.com/micropython/micropython/tree/master/examples/usercmodule/cexample>`_"
 " and has a source file and a Makefile fragment with content as described "
 "above::"
 msgstr ""
-"ここでとりあげる単純な名前のモジュール ``cexample`` は、2つの整数引数を加算して"
-"結果を返す単一の関数 ``cexample.add_ints(a, b)`` を提供します。"
-"上で説明したコードは MicroPython のソースツリー中の `サンプルディレクトリ "
+"このモジュールは MicroPython のソースツリーの `examples ディレクトリ "
 "<https://github.com/micropython/micropython/tree/master/examples/usercmodule/cexample>`_ "
-"にもあります。"
+"に用意していて、上記のような内容を持つソースファイルと Makefile があります。"
 
-#: ../../develop/cmodules.rst:104
+#: ../../develop/cmodules.rst:107
 msgid ""
 "micropython/\n"
 "└──examples/\n"
@@ -240,7 +248,7 @@ msgid ""
 "         └── micropython.cmake"
 msgstr ""
 
-#: ../../develop/cmodules.rst:113
+#: ../../develop/cmodules.rst:116
 msgid ""
 "Refer to the comments in these files for additional explanation. Next to "
 "the ``cexample`` module there's also ``cppexample`` which works in the "
@@ -250,11 +258,11 @@ msgstr ""
 "``cexample`` モジュールの次には、同じように動作する ``cppexample`` もあり、"
 "MicroPython で C と C++ コードを混ぜる方法の一つを示しています。"
 
-#: ../../develop/cmodules.rst:120
+#: ../../develop/cmodules.rst:123
 msgid "Compiling the cmodule into MicroPython"
 msgstr "cmodule を MicroPython に組み込む方法"
 
-#: ../../develop/cmodules.rst:122
+#: ../../develop/cmodules.rst:125
 msgid ""
 "To build such a module, compile MicroPython (see `getting started "
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_), "
@@ -265,7 +273,7 @@ msgstr ""
 "<https://github.com/micropython/micropython/wiki/Getting-Started>`_ "
 "を参照):"
 
-#: ../../develop/cmodules.rst:126
+#: ../../develop/cmodules.rst:129
 msgid ""
 "Set the build-time flag ``USER_C_MODULES`` to point to the modules you "
 "want to include.  For ports that use Make this variable should be a "
@@ -278,7 +286,7 @@ msgstr ""
 "ディレクトリを指定します。CMake を使うポートでは、この変数にビルドするモジュールを"
 "含むファイルを指定してください。詳細は以下を参照してください。"
 
-#: ../../develop/cmodules.rst:132
+#: ../../develop/cmodules.rst:135
 msgid ""
 "Enable the modules by setting the corresponding C preprocessor macro to "
 "1.  This is only needed if the modules you are building are not "
@@ -287,7 +295,7 @@ msgstr ""
 "対応する C プリプロセッサのマクロを 1 に設定して、モジュールを有効にします。"
 "これは、ビルドするモジュールが自動的に有効になっていない場合にのみ必要です。"
 
-#: ../../develop/cmodules.rst:136
+#: ../../develop/cmodules.rst:139
 msgid ""
 "For building the example modules which come with MicroPython, set "
 "``USER_C_MODULES`` to the ``examples/usercmodule`` directory for Make, or"
@@ -297,20 +305,20 @@ msgstr ""
 "``USER_C_MODULES`` を ``examples/usercmodule`` ディレクトリに設定し、"
 "CMake では ``examples/usercmodule/micropython.cmake`` に設定します。"
 
-#: ../../develop/cmodules.rst:140
+#: ../../develop/cmodules.rst:143
 msgid ""
 "For example, here's how the to build the unix port with the example "
 "modules:"
 msgstr ""
 "たとえば、サンプルモジュールを使って unix ポートをビルドする方法は以下のとおりです。"
 
-#: ../../develop/cmodules.rst:142
+#: ../../develop/cmodules.rst:145
 msgid ""
 "cd micropython/ports/unix\n"
 "make USER_C_MODULES=../../examples/usercmodule"
 msgstr ""
 
-#: ../../develop/cmodules.rst:147
+#: ../../develop/cmodules.rst:150
 msgid ""
 "You may need to run ``make clean`` once at the start when including new "
 "user modules in the build.  The build output will show the modules "
@@ -319,7 +327,7 @@ msgstr ""
 "新しいユーザーモジュールをビルドに含める際には、最初に ``make clean`` を"
 "実行したほうがよいでしょう。ビルドの出力には見つかったモジュールが表示されます::"
 
-#: ../../develop/cmodules.rst:150
+#: ../../develop/cmodules.rst:153
 msgid ""
 "...\n"
 "Including User C Module from ../../examples/usercmodule/cexample\n"
@@ -327,7 +335,7 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:155
+#: ../../develop/cmodules.rst:158
 msgid ""
 "For a CMake-based port such as rp2, this will look a little different "
 "(note that CMake is actually invoked by ``make``):"
@@ -335,13 +343,13 @@ msgstr ""
 "rp2 のような CMake ベースのポートの場合、これは少し違った形になります"
 "(CMake は実際には ``make`` によって起動されることに注意してください):"
 
-#: ../../develop/cmodules.rst:158
+#: ../../develop/cmodules.rst:161
 msgid ""
 "cd micropython/ports/rp2\n"
 "make USER_C_MODULES=../../examples/usercmodule/micropython.cmake"
 msgstr ""
 
-#: ../../develop/cmodules.rst:163
+#: ../../develop/cmodules.rst:166
 msgid ""
 "Again, you may need to run ``make clean`` first for CMake to pick up the "
 "user modules.  The CMake build output lists the modules by name::"
@@ -349,7 +357,7 @@ msgstr ""
 "ここでも、CMake がユーザーモジュールをピックアップするために、最初に ``make clean`` "
 "を実行したほうがよいでしょう。CMake のビルド出力では、モジュールの名前が一覧表示されます::"
 
-#: ../../develop/cmodules.rst:166
+#: ../../develop/cmodules.rst:169
 msgid ""
 "...\n"
 "Including User C Module(s) from "
@@ -358,14 +366,14 @@ msgid ""
 "..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:171
+#: ../../develop/cmodules.rst:174
 msgid ""
 "The contents of the top-level ``micropython.cmake`` can be used to "
 "control which modules are enabled."
 msgstr ""
 "トップレベルの ``micropython.cmake`` では有効化するモジュールを指定できます。"
 
-#: ../../develop/cmodules.rst:174
+#: ../../develop/cmodules.rst:177
 msgid ""
 "For your own projects it's more convenient to keep custom code out of the"
 " main MicroPython source tree, so a typical project directory structure "
@@ -374,7 +382,7 @@ msgstr ""
 "自作のプロジェクトでは、カスタムコードをMicroPythonのソースツリーに入れない方が"
 "便利なので、典型的なプロジェクトのディレクトリ構造は次のようになります::"
 
-#: ../../develop/cmodules.rst:178
+#: ../../develop/cmodules.rst:181
 msgid ""
 "my_project/\n"
 "├── modules/\n"
@@ -393,7 +401,7 @@ msgid ""
 "      ..."
 msgstr ""
 
-#: ../../develop/cmodules.rst:194
+#: ../../develop/cmodules.rst:197
 msgid ""
 "When building with Make set ``USER_C_MODULES`` to the "
 "``my_project/modules`` directory.  For example, building the stm32 port:"
@@ -401,13 +409,13 @@ msgstr ""
 "Make でビルドする場合、 ``USER_C_MODULES`` には ``my_project/modules`` "
 "ディレクトリを設定します。たとえば stm32 ポートのビルドでは次のようになります:"
 
-#: ../../develop/cmodules.rst:197
+#: ../../develop/cmodules.rst:200
 msgid ""
 "cd my_project/micropython/ports/stm32\n"
 "make USER_C_MODULES=../../../modules"
 msgstr ""
 
-#: ../../develop/cmodules.rst:202
+#: ../../develop/cmodules.rst:205
 msgid ""
 "When building with CMake the top level ``micropython.cmake`` -- found "
 "directly in the ``my_project/modules`` directory -- should ``include`` "
@@ -417,23 +425,23 @@ msgstr ""
 "(``my_project/modules`` にあるもの)では、すべてのモジュールを"
 "取り込みます(``include``)。"
 
-#: ../../develop/cmodules.rst:206
+#: ../../develop/cmodules.rst:209
 msgid ""
 "include(${CMAKE_CURRENT_LIST_DIR}/example1/micropython.cmake)\n"
 "include(${CMAKE_CURRENT_LIST_DIR}/example2/micropython.cmake)"
 msgstr ""
 
-#: ../../develop/cmodules.rst:211
+#: ../../develop/cmodules.rst:214
 msgid "Then build with:"
 msgstr "ビルドは次のように実行します:"
 
-#: ../../develop/cmodules.rst:213
+#: ../../develop/cmodules.rst:216
 msgid ""
 "cd my_project/micropython/ports/esp32\n"
 "make USER_C_MODULES=../../../../modules/micropython.cmake"
 msgstr ""
 
-#: ../../develop/cmodules.rst:218
+#: ../../develop/cmodules.rst:221
 msgid ""
 "Note that the esp32 port needs the extra ``..`` for relative paths due to"
 " the location of its main ``CMakeLists.txt`` file.   You can also specify"
@@ -443,7 +451,7 @@ msgstr ""
 "相対パスのために余分な ``..`` が必要であることに注意してください。"
 "``USER_C_MODULES`` に絶対パスを指定することもできます。"
 
-#: ../../develop/cmodules.rst:222
+#: ../../develop/cmodules.rst:225
 msgid ""
 "All modules specified by the ``USER_C_MODULES`` variable (either found in"
 " this directory when using Make, or added via ``include`` when using "
@@ -458,7 +466,7 @@ msgstr ""
 "ユーザーモジュールは通常デフォルトで有効になっており(モジュールの開発者が決定します)、"
 "その場合、上述のように ``USER_C_MODULES`` を設定する以外にすることはありません。"
 
-#: ../../develop/cmodules.rst:229
+#: ../../develop/cmodules.rst:232
 msgid ""
 "If a module is not enabled by default then the corresponding C "
 "preprocessor macro must be enabled.  This macro name can be found by "
@@ -478,7 +486,7 @@ msgstr ""
 "必要があります。 ``#if X`` / ``#endif`` のペアがない場合、モジュールは"
 "デフォルトで有効になります。"
 
-#: ../../develop/cmodules.rst:236
+#: ../../develop/cmodules.rst:239
 msgid ""
 "For example, the ``examples/usercmodule/cexample`` module is enabled by "
 "default so has the following line in its source code:"
@@ -486,24 +494,24 @@ msgstr ""
 "たとえば ``examples/usercmodule/cexample`` モジュールは、デフォルトで有効に"
 "なっているので、ソースコードに次のような行があります:"
 
-#: ../../develop/cmodules.rst:239
+#: ../../develop/cmodules.rst:242
 msgid "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule);"
 msgstr ""
 
-#: ../../develop/cmodules.rst:243
+#: ../../develop/cmodules.rst:245
 msgid ""
 "Alternatively, to make this module disabled by default but selectable "
 "through a preprocessor configuration option, it would be:"
 msgstr "デフォルトではモジュールを無効にして、プリプロセッサの設定オプションで選択できるようにするには次のようにします:"
 
-#: ../../develop/cmodules.rst:246
+#: ../../develop/cmodules.rst:249
 msgid ""
 "#if MODULE_CEXAMPLE_ENABLED\n"
 "MP_REGISTER_MODULE(MP_QSTR_cexample, example_user_cmodule);\n"
 "#endif"
 msgstr ""
 
-#: ../../develop/cmodules.rst:252
+#: ../../develop/cmodules.rst:255
 msgid ""
 "In this case the module is enabled by adding "
 "``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` to the ``make`` command, or "
@@ -513,11 +521,11 @@ msgstr ""
 "``CFLAGS_EXTRA=-DMODULE_CEXAMPLE_ENABLED=1`` を追加するか、 "
 "``mpconfigport.h`` か ``mpconfigboard.h`` を編集して以下を追加します。"
 
-#: ../../develop/cmodules.rst:255
+#: ../../develop/cmodules.rst:258
 msgid "#define MODULE_CEXAMPLE_ENABLED (1)"
 msgstr ""
 
-#: ../../develop/cmodules.rst:259
+#: ../../develop/cmodules.rst:262
 msgid ""
 "Note that the exact method depends on the port as they have different "
 "structures.  If not done correctly it will compile but importing will "
@@ -527,11 +535,11 @@ msgstr ""
 "注意してください。適切に行われなかった場合、コンパイルはされたとしても"
 "モジュールのインポートはできないでしょう。"
 
-#: ../../develop/cmodules.rst:265 ../../develop/natmod.rst:202
+#: ../../develop/cmodules.rst:268 ../../develop/natmod.rst:202
 msgid "Module usage in MicroPython"
 msgstr "MicroPython でのモジュールの使い方"
 
-#: ../../develop/cmodules.rst:267
+#: ../../develop/cmodules.rst:270
 msgid ""
 "Once built into your copy of MicroPython, the module can now be accessed "
 "in Python just like any other builtin module, e.g."
@@ -539,12 +547,33 @@ msgstr ""
 "MicroPython 自前でビルドすると、他の組み込みモジュールと同じように Python で"
 "アクセスできるようになります。たとえば次のように使います。"
 
-#: ../../develop/cmodules.rst:270
+#: ../../develop/cmodules.rst:273
 msgid ""
 "import cexample\n"
 "print(cexample.add_ints(1, 3))\n"
 "# should display 4"
 msgstr ""
+"import cexample\n"
+"print(cexample.add_ints(1, 3))\n"
+"# 4 が表示されるはず"
+
+#: ../../develop/cmodules.rst:279
+msgid ""
+"from cexample import Timer\n"
+"from time import sleep_ms\n"
+"\n"
+"watch = Timer()\n"
+"sleep_ms(1000)\n"
+"print(watch.time())\n"
+"# should display approximately 1000"
+msgstr ""
+"from cexample import Timer\n"
+"from time import sleep_ms\n"
+"\n"
+"watch = Timer()\n"
+"sleep_ms(1000)\n"
+"print(watch.time())\n"
+"# 1000 に近い値が表示されるはず"
 
 #: ../../develop/compiler.rst:4
 msgid "The Compiler"
@@ -857,8 +886,9 @@ msgid ""
 "    context->module.globals = mp_globals_get();\n"
 "\n"
 "    // Compile the input parse_tree to a raw-code structure.\n"
-"    mp_compiled_module_t cm = mp_compile_to_raw_code(parse_tree, "
-"source_file, is_repl, context);\n"
+"    mp_compiled_module_t cm;\n"
+"    cm.context = context;\n"
+"    mp_compile_to_raw_code(parse_tree, source_file, is_repl, &cm);\n"
 "\n"
 "    // Create and return a function object that executes the outer "
 "module.\n"
@@ -866,7 +896,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:161
+#: ../../develop/compiler.rst:163
 msgid ""
 "The compiler compiles the code in four passes: scope, stack size, code "
 "size and emit. Each pass runs the same C code over the same AST data "
@@ -877,11 +907,11 @@ msgstr ""
 "コンパイルします。各パスは同じASTデータ構造に対して同じCコードを実行し、"
 "前のパスの結果に基づいて異なるものが算出されます。"
 
-#: ../../develop/compiler.rst:166
+#: ../../develop/compiler.rst:168
 msgid "First pass"
 msgstr "第１パス"
 
-#: ../../develop/compiler.rst:168
+#: ../../develop/compiler.rst:170
 msgid ""
 "In the first pass, the compiler learns about the known identifiers "
 "(variables) and their scope, being global, local, closed over, etc. In "
@@ -892,7 +922,7 @@ msgstr ""
 "クローズドオーバーなど)を学習します。同じパスで(バイトコードまたはネイティブコードの)"
 "エミッターは出力コードに必要なラベルの数も算出します。"
 
-#: ../../develop/compiler.rst:173
+#: ../../develop/compiler.rst:175
 msgid ""
 "// Compile pass 1.\n"
 "comp->emit = emit_bc;\n"
@@ -919,11 +949,11 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:198
+#: ../../develop/compiler.rst:200
 msgid "Second and third passes"
 msgstr "第２パスと第３パス"
 
-#: ../../develop/compiler.rst:200
+#: ../../develop/compiler.rst:202
 msgid ""
 "The second and third passes involve computing the Python stack size and "
 "code size for the bytecode or native code. After the third pass the code "
@@ -933,7 +963,7 @@ msgstr ""
 "コードサイズを算出します。第３パスの後、コードサイズは変更できません。そうしないと、"
 "ジャンプラベルが不正確なものになるからです。"
 
-#: ../../develop/compiler.rst:204
+#: ../../develop/compiler.rst:206
 msgid ""
 "for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
 "MP_OBJ_NULL; s = s->next) {\n"
@@ -951,7 +981,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:220
+#: ../../develop/compiler.rst:222
 msgid ""
 "Just before pass two there is a selection for the type of code to be "
 "emitted, which can either be native or bytecode."
@@ -959,7 +989,7 @@ msgstr ""
 "第２パスの直前には、出力するコード種別を選択肢があり、ネイティブコードかバイトコードかを"
 "選択できます。"
 
-#: ../../develop/compiler.rst:223
+#: ../../develop/compiler.rst:225
 msgid ""
 "// Choose the emitter type.\n"
 "switch (s->emit_options) {\n"
@@ -980,7 +1010,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:242
+#: ../../develop/compiler.rst:244
 msgid ""
 "The bytecode option is the default but something unique to note for the "
 "native code option is that there is another option via ``VIPER``. See the"
@@ -992,7 +1022,7 @@ msgstr ""
 "詳細については :ref:`ネイティブコードの出力 <emitting_native_code>` の章を"
 "参照してください。"
 
-#: ../../develop/compiler.rst:247
+#: ../../develop/compiler.rst:249
 msgid ""
 "There is also support for *inline assembly code*, where assembly "
 "instructions are written as Python function calls but are emitted "
@@ -1010,11 +1040,11 @@ msgstr ""
 "<https://micropython-docs-ja.readthedocs.io/ja/latest/pyboard/tutorial/assembler.html#pyboard-tutorial-assembler>`_ "
 "を参照してください。"
 
-#: ../../develop/compiler.rst:255
+#: ../../develop/compiler.rst:257
 msgid "Fourth pass"
 msgstr "第４パス"
 
-#: ../../develop/compiler.rst:257
+#: ../../develop/compiler.rst:259
 msgid ""
 "The fourth pass emits the final code that can be executed, either "
 "bytecode in the virtual machine, or native code directly by the CPU."
@@ -1022,7 +1052,7 @@ msgstr ""
 "第４パスでは、仮想マシンのバイトコード、またはCPUが直接実行するネイティブコードとして、"
 "最終的なコードを出力します。"
 
-#: ../../develop/compiler.rst:260
+#: ../../develop/compiler.rst:262
 msgid ""
 "for (scope_t *s = comp->scope_head; s != NULL && comp->compile_error == "
 "MP_OBJ_NULL; s = s->next) {\n"
@@ -1035,11 +1065,11 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:272
+#: ../../develop/compiler.rst:274
 msgid "Emitting bytecode"
 msgstr "バイトコードの出力"
 
-#: ../../develop/compiler.rst:274
+#: ../../develop/compiler.rst:276
 msgid ""
 "Statements in Python code usually correspond to emitted bytecode, for "
 "example ``a + b`` generates \"push a\" then \"push b\" then \"binary op "
@@ -1051,21 +1081,21 @@ msgstr ""
 "文の中には何も出力しないものもありますが、その代わりに変数のスコープなど他のものに"
 "影響を与えるものもあります(例: ``global a``)。"
 
-#: ../../develop/compiler.rst:279
+#: ../../develop/compiler.rst:281
 msgid ""
 "The implementation of a function that emits bytecode looks similar to "
 "this:"
 msgstr ""
 "バイトコードを出力する関数の実装は次のようなものです:"
 
-#: ../../develop/compiler.rst:281
+#: ../../develop/compiler.rst:283
 msgid ""
 "void mp_emit_bc_unary_op(emit_t *emit, mp_unary_op_t op) {\n"
 "    emit_write_bytecode_byte(emit, 0, MP_BC_UNARY_OP_MULTI + op);\n"
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:287
+#: ../../develop/compiler.rst:289
 msgid ""
 "We use the unary operator expressions for an example here but the "
 "implementation details are similar for other statements/expressions. The "
@@ -1078,11 +1108,11 @@ msgstr ""
 "``emit_get_cur_to_write_bytecode()`` のラッパーで、バイトコードを"
 "出力するためのすべての関数を呼び出します。"
 
-#: ../../develop/compiler.rst:295
+#: ../../develop/compiler.rst:297
 msgid "Emitting native code"
 msgstr "ネイティブコードの出力"
 
-#: ../../develop/compiler.rst:297
+#: ../../develop/compiler.rst:299
 msgid ""
 "Similar to how bytecode is generated, there should be a corresponding "
 "function in ``py/emitnative.c`` for each code statement:"
@@ -1090,7 +1120,7 @@ msgstr ""
 "バイトコードを生成するのと同様に、ネイティブコードについても各コード文に対応する関数が "
 "``py/emitnative.c`` に存在します。"
 
-#: ../../develop/compiler.rst:300
+#: ../../develop/compiler.rst:302
 msgid ""
 "STATIC void emit_native_unary_op(emit_t *emit, mp_unary_op_t op) {\n"
 "     vtype_kind_t vtype;\n"
@@ -1107,7 +1137,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/compiler.rst:315
+#: ../../develop/compiler.rst:317
 msgid ""
 "The difference here is that we have to handle *viper typing*. Viper "
 "annotations allow us to handle more than one type of variable. By default"
