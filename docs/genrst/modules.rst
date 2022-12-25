@@ -2,7 +2,7 @@
 
 Modules
 =======
-Generated Sat 05 Feb 2022 04:06:58 UTC
+Generated Sun 25 Dec 2022 09:32:55 UTC
 
 array
 -----
@@ -202,13 +202,15 @@ Sample code::
     except TypeError:
         print("TypeError")
 
-+---------------+-------------------------+
-| CPy output:   | uPy output:             |
-+---------------+-------------------------+
-| ::            | ::                      |
-|               |                         |
-|     TypeError |     Should not get here |
-+---------------+-------------------------+
++---------------+--------------------------------------------+
+| CPy output:   | uPy output:                                |
++---------------+--------------------------------------------+
+| ::            | ::                                         |
+|               |                                            |
+|     TypeError |     Traceback (most recent call last):     |
+|               |       File "<stdin>", line 12, in <module> |
+|               |     UnicodeError:                          |
++---------------+--------------------------------------------+
 
 os
 --
@@ -268,33 +270,6 @@ Sample code::
 |     None    |     VALUE   |
 +-------------+-------------+
 
-.. _cpydiff_modules_os_getenv_argcount:
-
-``getenv`` only allows one argument
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Workaround:** Test that the return value is ``None``
-
-Sample code::
-
-    import os
-    
-    try:
-        print(os.getenv("NEW_VARIABLE", "DEFAULT"))
-    except TypeError:
-        print("should not get here")
-        # this assumes NEW_VARIABLE is never an empty variable
-        print(os.getenv("NEW_VARIABLE") or "DEFAULT")
-
-+-------------+-------------------------+
-| CPy output: | uPy output:             |
-+-------------+-------------------------+
-| ::          | ::                      |
-|             |                         |
-|     DEFAULT |     should not get here |
-|             |     DEFAULT             |
-+-------------+-------------------------+
-
 random
 ------
 
@@ -316,15 +291,15 @@ Sample code::
     x = random.getrandbits(64)
     print("{}".format(x))
 
-+-------------------------+--------------------------------------------+
-| CPy output:             | uPy output:                                |
-+-------------------------+--------------------------------------------+
-| ::                      | ::                                         |
-|                         |                                            |
-|     2164811888406875915 |     Traceback (most recent call last):     |
-|                         |       File "<stdin>", line 11, in <module> |
-|                         |     ValueError: bits must be 32 or less    |
-+-------------------------+--------------------------------------------+
++--------------------------+--------------------------------------------+
+| CPy output:              | uPy output:                                |
++--------------------------+--------------------------------------------+
+| ::                       | ::                                         |
+|                          |                                            |
+|     11041704701311572346 |     Traceback (most recent call last):     |
+|                          |       File "<stdin>", line 11, in <module> |
+|                          |     ValueError: bits must be 32 or less    |
++--------------------------+--------------------------------------------+
 
 .. _cpydiff_modules_random_randint:
 
@@ -344,15 +319,15 @@ Sample code::
     x = random.randint(2**128 - 1, 2**128)
     print("x={}".format(x))
 
-+-----------------------------------------------+----------------------------------------------------------------+
-| CPy output:                                   | uPy output:                                                    |
-+-----------------------------------------------+----------------------------------------------------------------+
-| ::                                            | ::                                                             |
-|                                               |                                                                |
-|     x=340282366920938463463374607431768211455 |     Traceback (most recent call last):                         |
-|                                               |       File "<stdin>", line 11, in <module>                     |
-|                                               |     AttributeError: 'module' object has no attribute 'randint' |
-+-----------------------------------------------+----------------------------------------------------------------+
++-----------------------------------------------+-----------------------------------------------------------------+
+| CPy output:                                   | uPy output:                                                     |
++-----------------------------------------------+-----------------------------------------------------------------+
+| ::                                            | ::                                                              |
+|                                               |                                                                 |
+|     x=340282366920938463463374607431768211455 |     Traceback (most recent call last):                          |
+|                                               |       File "<stdin>", line 11, in <module>                      |
+|                                               |     OverflowError: overflow converting long int to machine word |
++-----------------------------------------------+-----------------------------------------------------------------+
 
 struct
 ------

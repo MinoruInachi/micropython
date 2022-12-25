@@ -2,7 +2,7 @@
 
 Builtin types
 =============
-Generated Sat 05 Feb 2022 04:06:58 UTC
+Generated Sun 25 Dec 2022 09:32:55 UTC
 
 Exception
 ---------
@@ -209,15 +209,15 @@ Sample code::
 
     print(bytes("abc", encoding="utf8"))
 
-+-------------+--------------------------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                                                |
-+-------------+--------------------------------------------------------------------------------------------+
-| ::          | ::                                                                                         |
-|             |                                                                                            |
-|     b'abc'  |     Traceback (most recent call last):                                                     |
-|             |       File "<stdin>", line 7, in <module>                                                  |
-|             |     NotImplementedError: keyword argument(s) not yet implemented - use normal args instead |
-+-------------+--------------------------------------------------------------------------------------------+
++-------------+----------------------------------------------------------------------------------------+
+| CPy output: | uPy output:                                                                            |
++-------------+----------------------------------------------------------------------------------------+
+| ::          | ::                                                                                     |
+|             |                                                                                        |
+|     b'abc'  |     Traceback (most recent call last):                                                 |
+|             |       File "<stdin>", line 7, in <module>                                              |
+|             |     NotImplementedError: keyword argument(s) not implemented - use normal args instead |
++-------------+----------------------------------------------------------------------------------------+
 
 .. _cpydiff_types_bytes_subscrstep:
 
@@ -270,6 +270,34 @@ Sample code::
 
 float
 -----
+
+.. _cpydiff_types_float_implicit_conversion:
+
+uPy allows implicit conversion of objects in maths operations while CPython does not.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Workaround:** Objects should be wrapped in ``float(obj)`` for compatibility with CPython.
+
+Sample code::
+
+    
+    
+    class Test:
+        def __float__(self):
+            return 0.5
+    
+    
+    print(2.0 * Test())
+
++----------------------------------------------------------------------+-------------+
+| CPy output:                                                          | uPy output: |
++----------------------------------------------------------------------+-------------+
+| ::                                                                   | ::          |
+|                                                                      |             |
+|     Traceback (most recent call last):                               |     1.0     |
+|       File "<stdin>", line 14, in <module>                           |             |
+|     TypeError: unsupported operand type(s) for *: 'float' and 'Test' |             |
++----------------------------------------------------------------------+-------------+
 
 .. _cpydiff_types_float_rounding:
 
@@ -450,15 +478,15 @@ Sample code::
 
     print("{a[0]}".format(a=[1, 2]))
 
-+-------------+-------------------------------------------------------+
-| CPy output: | uPy output:                                           |
-+-------------+-------------------------------------------------------+
-| ::          | ::                                                    |
-|             |                                                       |
-|     1       |     Traceback (most recent call last):                |
-|             |       File "<stdin>", line 7, in <module>             |
-|             |     NotImplementedError: attributes not supported yet |
-+-------------+-------------------------------------------------------+
++-------------+---------------------------------------------------+
+| CPy output: | uPy output:                                       |
++-------------+---------------------------------------------------+
+| ::          | ::                                                |
+|             |                                                   |
+|     1       |     Traceback (most recent call last):            |
+|             |       File "<stdin>", line 7, in <module>         |
+|             |     NotImplementedError: attributes not supported |
++-------------+---------------------------------------------------+
 
 .. _cpydiff_types_str_keywords:
 
@@ -471,15 +499,15 @@ Sample code::
 
     print(str(b"abc", encoding="utf8"))
 
-+-------------+--------------------------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                                                |
-+-------------+--------------------------------------------------------------------------------------------+
-| ::          | ::                                                                                         |
-|             |                                                                                            |
-|     abc     |     Traceback (most recent call last):                                                     |
-|             |       File "<stdin>", line 7, in <module>                                                  |
-|             |     NotImplementedError: keyword argument(s) not yet implemented - use normal args instead |
-+-------------+--------------------------------------------------------------------------------------------+
++-------------+----------------------------------------------------------------------------------------+
+| CPy output: | uPy output:                                                                            |
++-------------+----------------------------------------------------------------------------------------+
+| ::          | ::                                                                                     |
+|             |                                                                                        |
+|     abc     |     Traceback (most recent call last):                                                 |
+|             |       File "<stdin>", line 7, in <module>                                              |
+|             |     NotImplementedError: keyword argument(s) not implemented - use normal args instead |
++-------------+----------------------------------------------------------------------------------------+
 
 .. _cpydiff_types_str_ljust_rjust:
 

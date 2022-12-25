@@ -2,7 +2,45 @@
 
 Syntax
 ======
-Generated Sat 05 Feb 2022 04:06:58 UTC
+Generated Sun 25 Dec 2022 09:32:55 UTC
+
+.. _cpydiff_syntax_arg_unpacking:
+
+Argument unpacking does not work if the argument being unpacked is the nth or greater argument where n is the number of bits in an MP_SMALL_INT.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** The implementation uses an MP_SMALL_INT to flag args that need to be unpacked.
+
+**Workaround:** Use fewer arguments.
+
+Sample code::
+
+    
+    
+    def example(*args):
+        print(len(args))
+    
+    
+    MORE = ["a", "b", "c"]
+    
+    example(
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+        16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+        32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+        48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,
+        *MORE,
+    )
+    
+
++-------------+--------------------------------------------+
+| CPy output: | uPy output:                                |
++-------------+--------------------------------------------+
+| ::          | ::                                         |
+|             |                                            |
+|     67      |     Traceback (most recent call last):     |
+|             |       File "<stdin>", line 21, in <module> |
+|             |     SyntaxError: too many args             |
++-------------+--------------------------------------------+
 
 Operators
 ---------

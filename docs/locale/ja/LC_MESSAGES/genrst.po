@@ -8,10 +8,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.18\n"
+"Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-22 17:21+0900\n"
-"PO-Revision-Date: 2022-01-22 19:15+0900\n"
+"POT-Creation-Date: 2022-12-25 17:54+0900\n"
+"PO-Revision-Date: 2022-12-25 18:32+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -285,31 +285,95 @@ msgid "float"
 msgstr ""
 
 #: ../../genrst/builtin_types.rst:277
-msgid "uPy and CPython outputs formats may differ"
+msgid ""
+"uPy allows implicit conversion of objects in maths operations while "
+"CPython does not."
 msgstr ""
-msgstr "uPy と CPython の出力フォーマットが異なることがある"
+"uPy では数学演算の際にオブジェクトの暗黙の変換が可能ですが、CPythonではできない。"
 
-#: ../../genrst/builtin_types.rst:292
-msgid "int"
+#: ../../genrst/builtin_types.rst:279
+msgid ""
+"**Workaround:** Objects should be wrapped in ``float(obj)`` for "
+"compatibility with CPython."
+msgstr ""
+"**回避策:** CPythonとの互換性のために、オブジェクトはfloat(obj)でラップすべき。"
+
+#: ../../genrst/builtin_types.rst:285
+msgid ""
+"class Test:\n"
+"    def __float__(self):\n"
+"        return 0.5\n"
+"\n"
+"\n"
+"print(2.0 * Test())"
 msgstr ""
 
 #: ../../genrst/builtin_types.rst:297
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"TypeError: unsupported operand type(s) for *: 'float' and 'Test'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:297
+msgid "1.0"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:305
+msgid "uPy and CPython outputs formats may differ"
+msgstr "uPy と CPython の出力フォーマットが異なることがある"
+
+#: ../../genrst/builtin_types.rst:309
+#, python-format
+msgid "print(\"%.1g\" % -9.9)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:316
+msgid "-1e+01"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:316
+msgid "-10"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:320
+msgid "int"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:325
 msgid "``bit_length`` method doesn't exist."
 msgstr "``bit_length`` メソッドは存在しない。"
 
-#: ../../genrst/builtin_types.rst:299
+#: ../../genrst/builtin_types.rst:327
 msgid "**Cause:** bit_length method is not implemented."
 msgstr "**原因:** bit_length メソッドは未実装。"
 
-#: ../../genrst/builtin_types.rst:301
+#: ../../genrst/builtin_types.rst:329
 msgid "**Workaround:** Avoid using this method on MicroPython."
 msgstr "**回避策:** MicroPython ではこのメソッドを利用しない。"
 
-#: ../../genrst/builtin_types.rst:322
+#: ../../genrst/builtin_types.rst:334
+msgid ""
+"x = 255\n"
+"print(\"{} is {} bits long.\".format(x, x.bit_length()))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:342
+msgid "255 is 8 bits long."
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:342
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"AttributeError: 'int' object has no attribute 'bit_length'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:350
 msgid "No int conversion for int-derived types available"
 msgstr "int の派生型に対する int 変換は使えない"
 
-#: ../../genrst/builtin_types.rst:324
+#: ../../genrst/builtin_types.rst:352
 msgid ""
 "**Workaround:** Avoid subclassing builtin types unless really needed. "
 "Prefer https://en.wikipedia.org/wiki/Composition_over_inheritance ."
@@ -317,54 +381,153 @@ msgstr ""
 "**回避策:** 本当に必要でない限り、組み込み型のサブクラス化は避けてください。 "
 "https://en.wikipedia.org/wiki/Composition_over_inheritance を推奨します。"
 
-#: ../../genrst/builtin_types.rst:349
+#: ../../genrst/builtin_types.rst:358
+msgid ""
+"class A(int):\n"
+"    __add__ = lambda self, other: A(int(self) + other)\n"
+"\n"
+"\n"
+"a = A(42)\n"
+"print(a + a)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:370
+msgid "84"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:370
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"  File \"<stdin>\", line 10, in <lambda>\n"
+"TypeError: unsupported types for __radd__: 'int', 'int'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:377
 msgid "list"
 msgstr ""
 
-#: ../../genrst/builtin_types.rst:354
+#: ../../genrst/builtin_types.rst:382
 msgid "List delete with step != 1 not implemented"
 msgstr "ステップが 1 以外のリスト要素の削除は未実装"
 
-#: ../../genrst/builtin_types.rst:356 ../../genrst/builtin_types.rst:404
+#: ../../genrst/builtin_types.rst:384 ../../genrst/builtin_types.rst:432
 msgid "**Workaround:** Use explicit loop for this rare operation."
 msgstr "**回避策:** このまれな操作には明示的なループを使ってください。"
 
-#: ../../genrst/builtin_types.rst:377
+#: ../../genrst/builtin_types.rst:388
+msgid ""
+"l = [1, 2, 3, 4]\n"
+"del l[0:4:2]\n"
+"print(l)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:397
+msgid "[2, 4]"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:397 ../../genrst/builtin_types.rst:445
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"NotImplementedError:"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:405
 msgid "List slice-store with non-iterable on RHS is not implemented"
 msgstr "リストのスライスへのイテレーティブの代入は未実装"
 
-#: ../../genrst/builtin_types.rst:379
+#: ../../genrst/builtin_types.rst:407
 msgid "**Cause:** RHS is restricted to be a tuple or list"
 msgstr "**原因:** 右辺はタプルかリストに制限されています。"
 
-#: ../../genrst/builtin_types.rst:381
+#: ../../genrst/builtin_types.rst:409
 msgid ""
 "**Workaround:** Use ``list(<iter>)`` on RHS to convert the iterable to a "
 "list"
 msgstr ""
 "**回避策**: イテレータブルをリストに変換するよう、右辺で ``list(<iter>)`` を使ってください。"
 
-#: ../../genrst/builtin_types.rst:402
+#: ../../genrst/builtin_types.rst:413
+msgid ""
+"l = [10, 20]\n"
+"l[0:1] = range(4)\n"
+"print(l)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:422
+msgid "[0, 1, 2, 3, 20]"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:422
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"TypeError: object 'range' isn't a tuple or list"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:430
 msgid "List store with step != 1 not implemented"
 msgstr "ステップ 1 以外のリストスライスへの代入は未実装"
 
-#: ../../genrst/builtin_types.rst:423
+#: ../../genrst/builtin_types.rst:436
+msgid ""
+"l = [1, 2, 3, 4]\n"
+"l[0:4:2] = [5, 6]\n"
+"print(l)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:445
+msgid "[5, 2, 6, 4]"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:451
 msgid "str"
 msgstr ""
 
-#: ../../genrst/builtin_types.rst:428
+#: ../../genrst/builtin_types.rst:456
 msgid "Start/end indices such as str.endswith(s, start) not implemented"
 msgstr "str.endswith(s, start) のような開始/終了インデックスは未実装"
 
-#: ../../genrst/builtin_types.rst:447
+#: ../../genrst/builtin_types.rst:460
+msgid "print(\"abc\".endswith(\"c\", 1))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:467
+msgid "True"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:467
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 7, in <module>\n"
+"NotImplementedError: start/end indices"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:475
 msgid "Attributes/subscr not implemented"
 msgstr "属性置換は未実装"
 
-#: ../../genrst/builtin_types.rst:466
+#: ../../genrst/builtin_types.rst:479
+msgid "print(\"{a[0]}\".format(a=[1, 2]))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:486
+msgid "1"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:486
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 7, in <module>\n"
+"NotImplementedError: attributes not supported"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:494
 msgid "str(...) with keywords not implemented"
 msgstr "str(...) のキーワード引数は未実装"
 
-#: ../../genrst/builtin_types.rst:468
+#: ../../genrst/builtin_types.rst:496
 msgid ""
 "**Workaround:** Input the encoding format directly. eg "
 "``print(bytes('abc', 'utf-8'))``"
@@ -372,20 +535,27 @@ msgstr ""
 "**回避策:** エンコーディングは位置パラメータで指定してください。たとえば "
 "``print(str(b'abc', 'utf-8'))`` のようにします。"
 
-#: ../../genrst/builtin_types.rst:487
+#: ../../genrst/builtin_types.rst:500
+msgid "print(str(b\"abc\", encoding=\"utf8\"))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:507 ../../genrst/builtin_types.rst:530
+msgid "abc"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:515
 msgid "str.ljust() and str.rjust() not implemented"
 msgstr "str.ljust() と str.rjust() は未実装"
 
-#: ../../genrst/builtin_types.rst:489
+#: ../../genrst/builtin_types.rst:517
 msgid ""
 "**Cause:** MicroPython is highly optimized for memory usage. Easy "
 "workarounds available."
 msgstr ""
-msgstr ""
 "**原因:** MicroPython はメモリ使用量について高度に最適化しています。"
 "これは簡単に回避できます。"
 
-#: ../../genrst/builtin_types.rst:491
+#: ../../genrst/builtin_types.rst:519
 #, python-format
 msgid ""
 "**Workaround:** Instead of ``s.ljust(10)`` use ``\"%-10s\" % s``, instead"
@@ -397,7 +567,18 @@ msgstr ""
 "あるいは ``\"{:<10}\".format(s)`` や ``\"{:>10}\".format(s)`` "
 "を使ってください。"
 
-#: ../../genrst/builtin_types.rst:510
+#: ../../genrst/builtin_types.rst:523
+msgid "print(\"abc\".ljust(10))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:530
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 7, in <module>\n"
+"AttributeError: 'str' object has no attribute 'ljust'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:538
 msgid ""
 "None as first argument for rsplit such as str.rsplit(None, n) not "
 "implemented"
@@ -405,17 +586,48 @@ msgstr ""
 "str.rsplit(None, n) のように rsplit の第１引数を None にするのは"
 "未実装"
 
-#: ../../genrst/builtin_types.rst:529 ../../genrst/modules.rst:108
+#: ../../genrst/builtin_types.rst:542
+msgid "print(\"a a a\".rsplit(None, 1))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:549
+msgid "['a a', 'a']"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:549
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 7, in <module>\n"
+"NotImplementedError: rsplit(None,n)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:557 ../../genrst/modules.rst:108
 msgid "Subscript with step != 1 is not yet implemented"
 msgstr "ステップが 1 でないスライスは未実装"
 
-#: ../../genrst/builtin_types.rst:546
+#: ../../genrst/builtin_types.rst:561
+msgid "print(\"abcdefghi\"[0:9:2])"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:568
+msgid "acegi"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:574
 msgid "tuple"
 msgstr ""
 
-#: ../../genrst/builtin_types.rst:551
+#: ../../genrst/builtin_types.rst:579
 msgid "Tuple load with step != 1 not implemented"
 msgstr "ステップが 1 でないタプルのスライスは未実装"
+
+#: ../../genrst/builtin_types.rst:583
+msgid "print((1, 2, 3, 4)[0:4:2])"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:590
+msgid "(1, 3)"
+msgstr ""
 
 #: ../../genrst/core_language.rst:4
 msgid "Core language"
@@ -914,11 +1126,57 @@ msgstr "**原因:** これらは読取り専用メモリに格納されている
 msgid "Syntax"
 msgstr "構文"
 
-#: ../../genrst/syntax.rst:8
+#: ../../genrst/syntax.rst:10
+msgid ""
+"Argument unpacking does not work if the argument being unpacked is the "
+"nth or greater argument where n is the number of bits in an MP_SMALL_INT."
+msgstr ""
+"引数の展開において、引数の数がn以上の場合(nは MP_SMALL_INT のビット数)、動作しない。"
+
+#: ../../genrst/syntax.rst:12
+msgid ""
+"**Cause:** The implementation uses an MP_SMALL_INT to flag args that need"
+" to be unpacked."
+msgstr ""
+"**原因:** 実装では MP_SMALL_INT を使って展開する必要がある引数をフラグ付けしている。"
+
+#: ../../genrst/syntax.rst:14
+msgid "**Workaround:** Use fewer arguments."
+msgstr "**回避策:** 引数をより少なくする。"
+
+#: ../../genrst/syntax.rst:20
+msgid ""
+"def example(*args):\n"
+"    print(len(args))\n"
+"\n"
+"\n"
+"MORE = [\"a\", \"b\", \"c\"]\n"
+"\n"
+"example(\n"
+"    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,\n"
+"    16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,\n"
+"    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,\n"
+"    48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,\n"
+"    *MORE,\n"
+")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:40
+msgid "67"
+msgstr ""
+
+#: ../../genrst/syntax.rst:40
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 21, in <module>\n"
+"SyntaxError: too many args"
+msgstr ""
+
+#: ../../genrst/syntax.rst:46
 msgid "Operators"
 msgstr "演算子"
 
-#: ../../genrst/syntax.rst:13
+#: ../../genrst/syntax.rst:51
 msgid ""
 "MicroPython allows using := to assign to the variable of a comprehension,"
 " CPython raises a SyntaxError."
@@ -926,33 +1184,91 @@ msgstr ""
 "MicroPython では内包表記の変数に := を使って代入できるが、CPython では "
 "SyntaxError になる。"
 
-#: ../../genrst/syntax.rst:15
+#: ../../genrst/syntax.rst:53
 msgid ""
 "**Cause:** MicroPython is optimised for code size and doesn't check this "
 "case."
 msgstr ""
 "**原因:** MicroPython はコードサイズに最適化されており、このケースをチェックしていない。"
 
-#: ../../genrst/syntax.rst:17
+#: ../../genrst/syntax.rst:55
 msgid ""
 "**Workaround:** Do not rely on this behaviour if writing CPython "
 "compatible code."
 msgstr ""
-"**回避策:** CPython 互換のコードを書く場合は、この動作に頼らない用にしてする。"
+"**回避策:** CPython 互換のコードを書く場合は、この動作に頼らないようにする。"
 
-#: ../../genrst/syntax.rst:33
-msgid "Spaces"
-msgstr "スペース"
-
-#: ../../genrst/syntax.rst:38
-msgid "uPy requires spaces between literal numbers and keywords, CPy doesn't"
-msgstr "uPy はリテラル数値とキーワードの間にスペースを必要とするが、CPy はそうではない"
+#: ../../genrst/syntax.rst:59
+msgid "print([i := -1 for i in range(4)])"
+msgstr ""
 
 #: ../../genrst/syntax.rst:66
-msgid "Unicode"
+msgid ""
+"  File \"<stdin>\", line 7\n"
+"SyntaxError: assignment expression cannot rebind comprehension iteration "
+"variable 'i'"
+msgstr ""
+
+#: ../../genrst/syntax.rst:66
+msgid "[-1, -1, -1, -1]"
 msgstr ""
 
 #: ../../genrst/syntax.rst:71
+msgid "Spaces"
+msgstr "スペース"
+
+#: ../../genrst/syntax.rst:76
+msgid "uPy requires spaces between literal numbers and keywords, CPy doesn't"
+msgstr "uPy はリテラル数値とキーワードの間にスペースを必要とするが、CPy はそうではない"
+
+#: ../../genrst/syntax.rst:80
+msgid ""
+"try:\n"
+"    print(eval(\"1and 0\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")\n"
+"try:\n"
+"    print(eval(\"1or 0\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")\n"
+"try:\n"
+"    print(eval(\"1if 1else 0\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:98
+msgid ""
+"0\n"
+"1\n"
+"1"
+msgstr ""
+
+#: ../../genrst/syntax.rst:98
+msgid ""
+"Should have worked\n"
+"Should have worked\n"
+"Should have worked"
+msgstr ""
+
+#: ../../genrst/syntax.rst:104
+msgid "Unicode"
+msgstr ""
+
+#: ../../genrst/syntax.rst:109
 msgid "Unicode name escapes are not implemented"
 msgstr "Unicode 名エスケープは未実装"
+
+#: ../../genrst/syntax.rst:113
+msgid "print(\"\\N{LATIN SMALL LETTER A}\")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:120
+msgid "a"
+msgstr ""
+
+#: ../../genrst/syntax.rst:120
+msgid "NotImplementedError: unicode name escapes"
+msgstr ""
+
 
