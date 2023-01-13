@@ -3,15 +3,15 @@
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-25 14:30+0900\n"
-"PO-Revision-Date: 2022-12-25 14:40+0900\n"
+"POT-Creation-Date: 2023-01-13 10:43+0900\n"
+"PO-Revision-Date: 2023-01-13 11:35+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -16859,7 +16859,7 @@ msgstr "この PIO インスタンスの IRQ オブジェクトを返します�
 msgid "MicroPython only uses IRQ 0 on each PIO instance. IRQ 1 is not available."
 msgstr "MicroPython は、各 PIO インスタンスで IRQ0 のみを使います。IRQ1 は使えません。"
 
-#: ../../library/rp2.PIO.rst:62 ../../library/rp2.StateMachine.rst:130
+#: ../../library/rp2.PIO.rst:62 ../../library/rp2.StateMachine.rst:134
 msgid "Optionally configure it."
 msgstr "IRQ インスタンスは指定の引数で構成されます。"
 
@@ -17060,26 +17060,36 @@ msgstr ""
 "``word >> shift`` となります。"
 
 #: ../../library/rp2.StateMachine.rst:102
-msgid "Push a word onto the state machine's TX FIFO."
+msgid "Push words onto the state machine's TX FIFO."
 msgstr "ステートマシンの TX FIFO にワードをプッシュします。"
 
 #: ../../library/rp2.StateMachine.rst:104
 msgid ""
-"If the FIFO is full, it blocks until there is space (i.e. the state "
-"machine pulls a word)."
+"*value* can be an integer, an array of type ``B``, ``H`` or ``I``, or a "
+"`bytearray`."
 msgstr ""
-"FIFO がいっぱいになると、スペースができるまでブロックされます(つまり、ステートマシンが"
-"ワードをプルします)。"
+"*value* には、整数、型が ``B``, ``H``, ``I`` の配列、 `bytearray` のいずれかを"
+"指定できます。"
 
 #: ../../library/rp2.StateMachine.rst:107
 msgid ""
-"The value is first shifted left by *shift* bits, i.e. the state machine "
-"receives ``value << shift``."
+"This method will block until all words have been written to the FIFO.  If"
+" the FIFO is, or becomes, full, the method will block until the state "
+"machine pulls enough words to complete the write."
 msgstr ""
-"値は最初に *shift* シフトビットによって左にシフトされます。"
-"つまり、ステートマシンは ``value << shift`` を受信します。"
+"このメソッドは、すべてのワードが FIFO に書き込まれるまでブロックされます。 "
+"FIFOが満杯の場合、または満杯になった場合、このメソッドは、ステートマシンが"
+"書き込みを完了するのに十分なワードをプルするまでブロックされます。"
 
-#: ../../library/rp2.StateMachine.rst:112
+#: ../../library/rp2.StateMachine.rst:111
+msgid ""
+"Each word is first shifted left by *shift* bits, i.e. the state machine "
+"receives ``word << shift``."
+msgstr ""
+"各ワードは最初に *shift* ビットだけ左にシフトされます。"
+"つまり、ステートマシンは ``word << shift`` を受け取ります。"
+
+#: ../../library/rp2.StateMachine.rst:116
 msgid ""
 "Returns the number of words in the state machine's RX FIFO. A value of 0 "
 "indicates the FIFO is empty."
@@ -17087,7 +17097,7 @@ msgstr ""
 "ステートマシンの RX FIFO 内のワード数を返します。"
 "値が 0 であることは FIFO が空であることを示します。"
 
-#: ../../library/rp2.StateMachine.rst:115
+#: ../../library/rp2.StateMachine.rst:119
 msgid ""
 "Useful for checking if data is waiting to be read, before calling "
 "`StateMachine.get()`."
@@ -17095,7 +17105,7 @@ msgstr ""
 "`StateMachine.get()` を呼び出す前に、データの読取りを待機しているかを"
 "確認するのに利用できます。"
 
-#: ../../library/rp2.StateMachine.rst:120
+#: ../../library/rp2.StateMachine.rst:124
 msgid ""
 "Returns the number of words in the state machine's TX FIFO. A value of 0 "
 "indicates the FIFO is empty."
@@ -17103,7 +17113,7 @@ msgstr ""
 "ステートマシンの TX FIFO 内のワード数を返します。"
 "値が 0 であることは FIFO が空であることを示します。"
 
-#: ../../library/rp2.StateMachine.rst:123
+#: ../../library/rp2.StateMachine.rst:127
 msgid ""
 "Useful for checking if there is space to push another word using "
 "`StateMachine.put()`."
@@ -17111,7 +17121,7 @@ msgstr ""
 "`StateMachine.put()` を使ってワードをプッシュするスペースがあるかどうかを"
 "確認するのに利用できます。"
 
-#: ../../library/rp2.StateMachine.rst:128
+#: ../../library/rp2.StateMachine.rst:132
 msgid "Returns the IRQ object for the given StateMachine."
 msgstr "指定した StateMachine の IRQ オブジェクトを返します。"
 
