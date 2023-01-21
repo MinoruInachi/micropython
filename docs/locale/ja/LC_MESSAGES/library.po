@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-14 00:11+0900\n"
-"PO-Revision-Date: 2023-01-14 00:16+0900\n"
+"POT-Creation-Date: 2023-01-21 11:01+0900\n"
+"PO-Revision-Date: 2023-01-21 11:57+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2046,7 +2046,7 @@ msgstr ""
 #: ../../library/esp32.rst:300 ../../library/framebuf.rst:150
 #: ../../library/lcd160cr.rst:380 ../../library/machine.I2S.rst:148
 #: ../../library/machine.Pin.rst:242 ../../library/machine.RTC.rst:79
-#: ../../library/machine.SPI.rst:139 ../../library/machine.Timer.rst:76
+#: ../../library/machine.SPI.rst:139 ../../library/machine.Timer.rst:84
 #: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:207
 #: ../../library/machine.rst:226 ../../library/math.rst:177
 #: ../../library/network.WLANWiPy.rst:145 ../../library/pyb.CAN.rst:321
@@ -8245,6 +8245,9 @@ msgid ""
 "def mycallback(t):\n"
 "    pass\n"
 "\n"
+"# periodic at 1kHz\n"
+"tim.init(mode=Timer.PERIODIC, freq=1000, callback=mycallback)\n"
+"\n"
 "# periodic with 100ms period\n"
 "tim.init(period=100, callback=mycallback)\n"
 "\n"
@@ -8254,23 +8257,26 @@ msgstr ""
 "def mycallback(t):\n"
 "    pass\n"
 "\n"
+"#1kHz で定期的に実行\n"
+"tim.init(mode=Timer.PERIODIC, freq=1000, callback=mycallback)\n"
+"\n"
 "# 100ms 周期で定期的に実行\n"
 "tim.init(period=100, callback=mycallback)\n"
 "\n"
 "# 1000ms 後に１度だけ実行\n"
 "tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)"
 
-#: ../../library/machine.Timer.rst:54 ../../library/machine.TimerWiPy.rst:49
-#: ../../library/pyb.Timer.rst:73 ../../library/pyb.Timer.rst:138
+#: ../../library/machine.Timer.rst:57 ../../library/machine.TimerWiPy.rst:49
+#: ../../library/pyb.Timer.rst:73 ../../library/pyb.Timer.rst:146
 msgid "Keyword arguments:"
 msgstr "キーワード引数:"
 
-#: ../../library/machine.Timer.rst:56 ../../library/machine.TimerWiPy.rst:51
-#: ../../library/pyb.Timer.rst:90 ../../library/pyb.Timer.rst:140
+#: ../../library/machine.Timer.rst:59 ../../library/machine.TimerWiPy.rst:51
+#: ../../library/pyb.Timer.rst:90 ../../library/pyb.Timer.rst:148
 msgid "``mode`` can be one of:"
 msgstr "``mode`` は次のいずれかになります。"
 
-#: ../../library/machine.Timer.rst:58
+#: ../../library/machine.Timer.rst:61
 msgid ""
 "``Timer.ONE_SHOT`` - The timer runs once until the configured period of "
 "the channel expires."
@@ -8278,18 +8284,29 @@ msgstr ""
 "``Timer.ONE_SHOT`` - タイマーは、設定したチャネルの周期が経過した後に1回だけ"
 "実行します。"
 
-#: ../../library/machine.Timer.rst:60
+#: ../../library/machine.Timer.rst:63
 msgid ""
 "``Timer.PERIODIC`` - The timer runs periodically at the configured "
 "frequency of the channel."
 msgstr ""
 "``Timer.PERIODIC`` - タイマーは、チャネルの設定した周期で定期的に実行します。"
 
-#: ../../library/machine.Timer.rst:63
+#: ../../library/machine.Timer.rst:66
+msgid ""
+"``freq`` - The timer frequency, in units of Hz.  The upper bound of the "
+"frequency is dependent on the port.  When both the ``freq`` and "
+"``period`` arguments are given, ``freq`` has a higher priority and "
+"``period`` is ignored."
+msgstr ""
+"``freq`` - タイマーの周波数(単位:Hz)。周波数の上限はポートに依存する。 "
+"``freq`` と ``period`` の両方の引数を与えた場合、 ``freq`` の方を優先し、 "
+"``period`` は無視します。"
+
+#: ../../library/machine.Timer.rst:71
 msgid "``period`` - The timer period, in milliseconds."
 msgstr "``period`` - タイマー期間(ミリ秒単位)。"
 
-#: ../../library/machine.Timer.rst:65
+#: ../../library/machine.Timer.rst:73
 msgid ""
 "``callback`` - The callable to call upon expiration of the timer period. "
 "The callback must take one argument, which is passed the Timer object. "
@@ -8303,14 +8320,14 @@ msgstr ""
 "タイマー満了時に次の例外が発生します: ``TypeError: 'NoneType' object isn't "
 "callable``"
 
-#: ../../library/machine.Timer.rst:73 ../../library/machine.TimerWiPy.rst:65
+#: ../../library/machine.Timer.rst:81 ../../library/machine.TimerWiPy.rst:65
 msgid ""
 "Deinitialises the timer. Stops the timer, and disables the timer "
 "peripheral."
 msgstr ""
 "タイマーを非初期化します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
 
-#: ../../library/machine.Timer.rst:81 ../../library/machine.TimerWiPy.rst:159
+#: ../../library/machine.Timer.rst:89 ../../library/machine.TimerWiPy.rst:159
 msgid "Timer operating mode."
 msgstr "タイマー操作モード。"
 

@@ -3,15 +3,15 @@
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 20:12+0900\n"
-"PO-Revision-Date: 2022-12-12 23:49+0900\n"
+"POT-Creation-Date: 2023-01-21 11:01+0900\n"
+"PO-Revision-Date: 2023-01-21 12:03+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -2319,7 +2319,23 @@ msgstr ""
 msgid "module"
 msgstr "モジュール"
 
-#: ../../../reference/constrained.rst:397
+#: ../../reference/constrained.rst:395
+msgid "S"
+msgstr ""
+
+#: ../../reference/constrained.rst:395
+msgid "string or bytes"
+msgstr "文字列またはバイト列"
+
+#: ../../reference/constrained.rst:396
+msgid "A"
+msgstr ""
+
+#: ../../reference/constrained.rst:396
+msgid "bytearray"
+msgstr ""
+
+#: ../../../reference/constrained.rst:399
 msgid ""
 "Each letter represents a single block of memory, a block being 16 bytes. "
 "So each line of the heap dump represents 0x400 bytes or 1KiB of RAM."
@@ -2327,11 +2343,11 @@ msgstr ""
 "各文字は1ブロックのメモリを表し、1ブロックは16バイトです。したがって、"
 "ヒープダンプの各行は 0x400 バイトまたは 1KB の RAM を表します。"
 
-#: ../../../reference/constrained.rst:401
+#: ../../../reference/constrained.rst:403
 msgid "Control of garbage collection"
 msgstr "ガベージコレクションの制御"
 
-#: ../../../reference/constrained.rst:403
+#: ../../../reference/constrained.rst:405
 msgid ""
 "A GC can be demanded at any time by issuing `gc.collect()`. It is "
 "advantageous to do this at intervals, firstly to pre-empt fragmentation "
@@ -2346,7 +2362,7 @@ msgstr ""
 "(pyboardでは約1ms)。明示的な呼び出しは、プログラム内の適切な時点で確実に発生する"
 "ようにしながら、GC による遅延を最小限に抑えることができます。"
 
-#: ../../../reference/constrained.rst:409
+#: ../../../reference/constrained.rst:411
 msgid ""
 "Automatic GC is provoked under the following circumstances. When an "
 "attempt at allocation fails, a GC is performed and the allocation re-"
@@ -2359,7 +2375,7 @@ msgstr ""
 "RAM の量がしきい値を下回ると、自動 GC がトリガーされます。実行が進むにつれて、"
 "このしきい値を調整することができます。"
 
-#: ../../../reference/constrained.rst:420
+#: ../../../reference/constrained.rst:422
 #, python-format
 msgid ""
 "This will provoke a GC when more than 25% of the currently free heap "
@@ -2367,7 +2383,7 @@ msgid ""
 msgstr ""
 "これは、現在の空きヒープの25％以上が占有されるようになると、GCを引き起こします。"
 
-#: ../../../reference/constrained.rst:423
+#: ../../../reference/constrained.rst:425
 msgid ""
 "In general modules should instantiate data objects at runtime using "
 "constructors or other initialisation functions. The reason is that if "
@@ -2381,11 +2397,11 @@ msgstr ""
 "です。モジュールがインポート時にデータをインスタンス化する場合は、インポート後に "
 "`gc.collect()` を実行すると、問題が改善します。"
 
-#: ../../../reference/constrained.rst:430
+#: ../../../reference/constrained.rst:432
 msgid "String operations"
 msgstr "文字列操作"
 
-#: ../../../reference/constrained.rst:432
+#: ../../../reference/constrained.rst:434
 msgid ""
 "MicroPython handles strings in an efficient manner and understanding this"
 " can help in designing applications to run on microcontrollers. When a "
@@ -2402,7 +2418,7 @@ msgstr ""
 "されたモジュールでは、その単一のインスタンスは RAM に配置されますが、前述のように、"
 "バイトコードとして凍結されたモジュールではフラッシュに配置されます。"
 
-#: ../../../reference/constrained.rst:439
+#: ../../../reference/constrained.rst:441
 msgid ""
 "String comparisons are also performed efficiently using hashing rather "
 "than character by character. The penalty for using strings rather than "
@@ -2413,11 +2429,11 @@ msgstr ""
 "整数ではなく文字列を使用することによるペナルティは、パフォーマンスと RAM の使用量の"
 "両方の点で小さい場合があります。これは、C プログラマにとっては驚くべきことです。"
 
-#: ../../../reference/constrained.rst:445
+#: ../../../reference/constrained.rst:447
 msgid "Postscript"
 msgstr "あとがき"
 
-#: ../../../reference/constrained.rst:447
+#: ../../../reference/constrained.rst:449
 msgid ""
 "MicroPython passes, returns and (by default) copies objects by reference."
 " A reference occupies a single machine word so these processes are "
@@ -2427,7 +2443,7 @@ msgstr ""
 "参照は単一のマシンワードを占有するため、これらのプロセスは RAM の使用と速度の点で"
 "効率的です。"
 
-#: ../../../reference/constrained.rst:451
+#: ../../../reference/constrained.rst:453
 msgid ""
 "Where variables are required whose size is neither a byte nor a machine "
 "word there are standard libraries which can assist in storing these "
@@ -2438,11 +2454,11 @@ msgstr ""
 "実行するのを助けることができる標準ライブラリがあります。"
 "`array`, `struct`, `uctypes` モジュールを参照してください。"
 
-#: ../../../reference/constrained.rst:457
+#: ../../../reference/constrained.rst:459
 msgid "Footnote: gc.collect() return value"
 msgstr "脚注: gc.collect（）の戻り値"
 
-#: ../../../reference/constrained.rst:459
+#: ../../../reference/constrained.rst:461
 msgid ""
 "On Unix and Windows platforms the `gc.collect()` method returns an "
 "integer which signifies the number of distinct memory regions that were "
