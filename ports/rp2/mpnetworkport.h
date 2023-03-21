@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2013-2014 Damien P. George
+ * Copyright (c) 2022 Jim Mussared
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,33 +23,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#ifndef MICROPY_INCLUDED_RP2_MPNETWORKPORT_H
+#define MICROPY_INCLUDED_RP2_MPNETWORKPORT_H
 
-    .syntax unified
-    .cpu cortex-m3
-    .thumb
+#if MICROPY_PY_NETWORK_CYW43
+extern void cyw43_irq_init(void);
+#endif
 
-    .section .text
-    .align  2
-
-    .global gc_helper_get_regs_and_sp
-    .type gc_helper_get_regs_and_sp, %function
-
-@ uint gc_helper_get_regs_and_sp(r0=uint regs[10])
-gc_helper_get_regs_and_sp:
-    @ store registers into given array
-    str     r4, [r0], #4
-    str     r5, [r0], #4
-    str     r6, [r0], #4
-    str     r7, [r0], #4
-    str     r8, [r0], #4
-    str     r9, [r0], #4
-    str     r10, [r0], #4
-    str     r11, [r0], #4
-    str     r12, [r0], #4
-    str     r13, [r0], #4
-
-    @ return the sp
-    mov     r0, sp
-    bx      lr
-
-    .size gc_helper_get_regs_and_sp, .-gc_helper_get_regs_and_sp
+#endif // MICROPY_INCLUDED_RP2_MPNETWORKPORT_H

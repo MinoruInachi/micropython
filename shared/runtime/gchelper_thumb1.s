@@ -25,7 +25,6 @@
  */
 
     .syntax unified
-    .cpu cortex-m0
     .thumb
 
     .section .text
@@ -33,6 +32,9 @@
 
     .global gc_helper_get_regs_and_sp
     .type gc_helper_get_regs_and_sp, %function
+
+@ This function will compile on processors like Cortex M0 that don't support
+@ newer Thumb-2 instructions.
 
 @ uint gc_helper_get_regs_and_sp(r0=uint regs[10])
 gc_helper_get_regs_and_sp:
