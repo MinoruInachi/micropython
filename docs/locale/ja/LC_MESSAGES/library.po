@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-21 11:01+0900\n"
-"PO-Revision-Date: 2023-01-21 11:57+0900\n"
+"POT-Creation-Date: 2023-03-21 22:44+0900\n"
+"PO-Revision-Date: 2023-03-21 23:47+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -9904,34 +9904,88 @@ msgid "The following are functions available in the network module."
 msgstr "以下はネットワークモジュールで利用可能な関数です。"
 
 #: ../../library/network.rst:163
+msgid ""
+"Get or set the two-letter ISO 3166-1 Alpha-2 country code to be used for "
+"radio compliance."
+msgstr ""
+"無線規格で使われる2文字の ISO 3166-1 Alpha-2 国コードを取得または設定します。"
+
+#: ../../library/network.rst:166
+msgid ""
+"If the *code* parameter is provided, the country will be set to this "
+"value. If the function is called without parameters, it returns the "
+"current country."
+msgstr ""
+"*code* パラメータを指定した場合、その値に国を設定します。"
+"パラメータを指定せずに関数を呼び出した場合、現在の国が返されます。"
+
+#: ../../library/network.rst:170
+msgid "The default code ``\"XX\"`` represents the \"worldwide\" region."
+msgstr "デフォルトのコード ``\"XX\"`` は、 ``\"XX\"`` リージョンを表します。"
+
+#: ../../library/network.rst:174
+msgid ""
+"Get or set the hostname that will identify this device on the network. It"
+" is applied to all interfaces."
+msgstr ""
+"ネットワーク上でこのデバイスを識別するために使うホスト名を取得または設定します。"
+"これはすべてのインターフェイスに適用されます。"
+
+#: ../../library/network.rst:179
+msgid "This hostname is used for:"
+msgstr "このホスト名は以下の用途で使われます。"
+
+#: ../../library/network.rst:178
+msgid "Sending to the DHCP server in the client request. (If using DHCP)"
+msgstr "DHCPサーバーへのクライアント要求(DHCP を使っている場合)"
+
+#: ../../library/network.rst:179
+msgid "Broadcasting via mDNS. (If enabled)"
+msgstr "mDNS経由でのブロードキャスト(有効な場合)"
+
+#: ../../library/network.rst:181
+msgid ""
+"If the *name* parameter is provided, the hostname will be set to this "
+"value. If the function is called without parameters, it returns the "
+"current hostname."
+msgstr ""
+"*name* パラメータを指定した場合、その値にホスト名を設定されます。"
+"パラメータを指定せずに関数を呼び出した場合、現在のホスト名が返されます。"
+
+#: ../../library/network.rst:185
+msgid "The default hostname is typically the name of the board."
+msgstr "デフォルトのホスト名は通常、ボードの名前になります。"
+
+#: ../../library/network.rst:189
 msgid "Get or set the PHY mode."
 msgstr "PHY モードを取得または設定します。"
 
-#: ../../library/network.rst:165
+#: ../../library/network.rst:191
 msgid ""
-"If the *mode* parameter is provided, sets the mode to its value. If the "
-"function is called without parameters, returns the current mode."
+"If the *mode* parameter is provided, the PHY mode will be set to this "
+"value. If the function is called without parameters, it returns the "
+"current PHY mode."
 msgstr ""
-"*mode* パラメータを与えた場合、その値にモードを設定します。関数がパラメータなしで"
-"呼び出された場合は、現在のモードを返します。"
+"*mode* パラメータを指定した場合、この値に PHY モードを設定します。"
+"パラメータなしで関数を呼び出すと、現在の PHY モードが返されます。"
 
-#: ../../library/network.rst:171
+#: ../../library/network.rst:198
 msgid "The possible modes are defined as constants:"
 msgstr "指定可能なモードは定数として定義されています:"
 
-#: ../../library/network.rst:169
+#: ../../library/network.rst:196
 msgid "``MODE_11B`` -- IEEE 802.11b,"
 msgstr ""
 
-#: ../../library/network.rst:170
+#: ../../library/network.rst:197
 msgid "``MODE_11G`` -- IEEE 802.11g,"
 msgstr ""
 
-#: ../../library/network.rst:171
+#: ../../library/network.rst:198
 msgid "``MODE_11N`` -- IEEE 802.11n."
 msgstr ""
 
-#: ../../library/network.rst:173
+#: ../../library/network.rst:200
 msgid "Availability: ESP8266."
 msgstr "可用性: ESP8266。"
 
@@ -10513,10 +10567,11 @@ msgstr ""
 #: ../../library/network.WLAN.rst:133
 msgid ""
 "The hostname that will be sent to DHCP (STA interfaces) and mDNS (if "
-"supported, both STA and AP)"
+"supported, both STA and AP). (Deprecated, use :func:`network.hostname` "
+"instead)"
 msgstr ""
 "DHCP (STA インターフェース)および mDNS (サポートされていれば STA と AP の両方)に"
-"送信されるホスト名"
+"送信されるホスト名。(非推奨、代わりに :func:`network.hostname` を使ってください)"
 
 #: ../../library/network.WLAN.rst:134
 msgid "reconnects"
@@ -16361,17 +16416,37 @@ msgstr ""
 
 #: ../../library/rp2.rst:71
 msgid ""
+"Temporarily turns the QSPI_SS pin into an input and reads its value, "
+"returning 1 for low and 0 for high. On a typical RP2040 board with a "
+"BOOTSEL button, a return value of 1 indicates that the button is pressed."
+msgstr ""
+"QSPI_SS ピンを一時的に入力に変更し、その値を読み取ります。"
+"low の場合は1を、high の場合は0を返します。"
+"RP2040ボード の BOOTSEL ボタンが押されている場合、戻り値は 1 になります。"
+
+#: ../../library/rp2.rst:76
+msgid ""
+"Since this function temporarily disables access to the external flash "
+"memory, it also temporarily disables interrupts and the other core to "
+"prevent them from trying to execute code from flash."
+msgstr ""
+"この関数は外部フラッシュメモリへのアクセスを一時的に無効にするため、"
+"割り込みや他のコアも一時的に無効にされ、フラッシュからのコード実行の"
+"試みを防止します。"
+
+#: ../../library/rp2.rst:82
+msgid ""
 "This exception is raised from `asm_pio()` or `asm_pio_encode()` if there "
 "is an error assembling a PIO program."
 msgstr ""
 "この例外は `asm_pio()` または `asm_pio_encode()` での PIO プログラムの"
 "アセンブルでエラーが発生した場合に発生します。"
 
-#: ../../library/rp2.rst:76
+#: ../../library/rp2.rst:87
 msgid "PIO assembly language instructions"
 msgstr "PIO アセンブリ言語命令"
 
-#: ../../library/rp2.rst:78
+#: ../../library/rp2.rst:89
 msgid ""
 "PIO state machines are programmed in a custom assembly language with nine"
 " core PIO-machine instructions.  In MicroPython, PIO assembly routines "
@@ -16388,11 +16463,11 @@ msgstr ""
 "エンコードしてアセンブラに指示する以下のカスタム関数もサポートしています。"
 "詳細は、RP2040 データシートの3.4節を参照してください。"
 
-#: ../../library/rp2.rst:87
+#: ../../library/rp2.rst:98
 msgid "wrap_target()"
 msgstr ""
 
-#: ../../library/rp2.rst:86
+#: ../../library/rp2.rst:97
 msgid ""
 "Specify the location where execution continues after program wrapping. By"
 " default this is the start of the PIO routine."
@@ -16400,11 +16475,11 @@ msgstr ""
 "プログラムの折り返し後に実行を継続する場所を指定します。"
 "デフォルトでは、PIO ルーチンの開始点となります。"
 
-#: ../../library/rp2.rst:92
+#: ../../library/rp2.rst:103
 msgid "wrap()"
 msgstr ""
 
-#: ../../library/rp2.rst:90
+#: ../../library/rp2.rst:101
 msgid ""
 "Specify the location where the program finishes and wraps around. If this"
 " directive is not used then it is added automatically at the end of the "
@@ -16414,11 +16489,11 @@ msgstr ""
 "この指示が使われない場合は、PIOルーチンの最後に自動的に追加されます。"
 "折り返しは実行サイクルを要しません。"
 
-#: ../../library/rp2.rst:96
+#: ../../library/rp2.rst:107
 msgid "label(label)"
 msgstr ""
 
-#: ../../library/rp2.rst:95
+#: ../../library/rp2.rst:106
 msgid ""
 "Define a label called *label* at the current location.  *label* can be a "
 "string or integer."
@@ -16426,30 +16501,30 @@ msgstr ""
 "現在の位置に *label* という名前のラベルを定義します。 "
 "*label* には文字列または整数を指定します。"
 
-#: ../../library/rp2.rst:103
+#: ../../library/rp2.rst:114
 msgid "word(instr, label=None)"
 msgstr ""
 
-#: ../../library/rp2.rst:99
+#: ../../library/rp2.rst:110
 msgid "Insert an arbitrary 16-bit word in the assembled output."
 msgstr "アセンブル出力に任意の16ビットワードを挿入します。"
 
-#: ../../library/rp2.rst:101
+#: ../../library/rp2.rst:112
 msgid "*instr*: the 16-bit value"
 msgstr "*instr*: 16ビットの値"
 
-#: ../../library/rp2.rst:102
+#: ../../library/rp2.rst:113
 msgid ""
 "*label*: if given, look up the label and logical-or the label's value "
 "with *instr*"
 msgstr ""
 "*label*: 与えられた場合、ラベルを検索し、ラベルの値を instr と論理和します。"
 
-#: ../../library/rp2.rst:122
+#: ../../library/rp2.rst:133
 msgid "jmp(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:106
+#: ../../library/rp2.rst:117
 msgid "This instruction takes two forms:"
 msgstr "この命令には2つの形式があります:"
 
@@ -16457,55 +16532,55 @@ msgstr "この命令には2つの形式があります:"
 msgid "jmp(label)"
 msgstr ""
 
-#: ../../library/rp2.rst:109
+#: ../../library/rp2.rst:120
 msgid "*label*: label to jump to unconditionally"
 msgstr "*label*: 無条件にジャンプするラベル"
 
-#: ../../library/rp2.rst:122
+#: ../../library/rp2.rst:133
 msgid "jmp(cond, label)"
 msgstr ""
 
-#: ../../library/rp2.rst:112
+#: ../../library/rp2.rst:123
 msgid "*cond*: the condition to check, one of:"
 msgstr "*cond*：チェックする条件、以下のいずれか:"
 
-#: ../../library/rp2.rst:114
+#: ../../library/rp2.rst:125
 msgid "``not_x``, ``not_y``: true if register is zero"
 msgstr "``not_x``, ``not_y``: レジスタがゼロなら真"
 
-#: ../../library/rp2.rst:115
+#: ../../library/rp2.rst:126
 msgid "``x_dec``, ``y_dec``: true if register is non-zero, and do post decrement"
 msgstr "``x_dec``, ``y_dec``: レジスタがゼロでなければ真、ポストデクリメントを行う"
 
-#: ../../library/rp2.rst:117
+#: ../../library/rp2.rst:128
 msgid "``x_not_y``: true if X is not equal to Y"
 msgstr "``x_not_y``: X と Y が等しくなければ真"
 
-#: ../../library/rp2.rst:118
+#: ../../library/rp2.rst:129
 msgid "``pin``: true if the input pin is set"
 msgstr "``pin``: 入力ピンが設定されていれば真"
 
-#: ../../library/rp2.rst:119
+#: ../../library/rp2.rst:130
 msgid "``not_osre``: true if OSR is not empty (hasn't reached its threshold)"
 msgstr "``not_osre``: OSR が空でない(閾値に達していない)場合は真"
 
-#: ../../library/rp2.rst:122
+#: ../../library/rp2.rst:133
 msgid "*label*: label to jump to if condition is true"
 msgstr "*label*: 条件が真の場合にジャンプするラベル"
 
-#: ../../library/rp2.rst:130
+#: ../../library/rp2.rst:141
 msgid "wait(polarity, src, index)"
 msgstr ""
 
-#: ../../library/rp2.rst:125
+#: ../../library/rp2.rst:136
 msgid "Block, waiting for high/low on a pin or IRQ line."
 msgstr "ブロック。ピンや IRQ ラインの high/low を待ちます。"
 
-#: ../../library/rp2.rst:127
+#: ../../library/rp2.rst:138
 msgid "*polarity*: 0 or 1, whether to wait for a low or high value"
 msgstr "*polarity*: 0 または 1。low または high の値を待つかどうか"
 
-#: ../../library/rp2.rst:128
+#: ../../library/rp2.rst:139
 msgid ""
 "*src*: one of: ``gpio`` (absolute pin), ``pin`` (pin relative to "
 "StateMachine's ``in_base`` argument), ``irq``"
@@ -16513,35 +16588,35 @@ msgstr ""
 "*src*: ``gpio`` (絶対的なピン番号)、 ``pin`` (ステートマシンの ``in_base`` 引数に"
 "対する相対的なピン番号)、 ``irq`` のいずれか"
 
-#: ../../library/rp2.rst:130
+#: ../../library/rp2.rst:141
 msgid "*index*: 0-31, the index for *src*"
 msgstr "*index*: 0-31。 *src* のインデックス"
 
-#: ../../library/rp2.rst:136
+#: ../../library/rp2.rst:147
 msgid "in_(src, bit_count)"
 msgstr ""
 
-#: ../../library/rp2.rst:133
+#: ../../library/rp2.rst:144
 msgid "Shift data in from *src* to ISR."
 msgstr "*src* から ISR にデータをシフトインする。"
 
-#: ../../library/rp2.rst:135
+#: ../../library/rp2.rst:146
 msgid "*src*: one of: ``pins``, ``x``, ``y``, ``null``, ``isr``, ``osr``"
 msgstr "*src*: ``pins``, ``x``, ``y``, ``null``, ``isr``, ``osr`` のいずれか"
 
-#: ../../library/rp2.rst:136
+#: ../../library/rp2.rst:147
 msgid "*bit_count*: number of bits to shift in (1-32)"
 msgstr "*bit_count*: シフトインするビット数(1-32)
 
-#: ../../library/rp2.rst:143
+#: ../../library/rp2.rst:154
 msgid "out(dest, bit_count)"
 msgstr ""
 
-#: ../../library/rp2.rst:139
+#: ../../library/rp2.rst:150
 msgid "Shift data out from OSR to *dest*."
 msgstr "OSR から *dest* にデータをシフトアウトする。"
 
-#: ../../library/rp2.rst:141
+#: ../../library/rp2.rst:152
 msgid ""
 "*dest*: one of: ``pins``, ``x``, ``y``, ``pindirs``, ``pc``, ``isr``, "
 "``exec``"
@@ -16549,15 +16624,15 @@ msgstr ""
 "*dest*: ``pins``, ``x``, ``y``, ``pindirs``, ``pc``, ``isr``, ``exec`` "
 "のいずれか"
 
-#: ../../library/rp2.rst:143
+#: ../../library/rp2.rst:154
 msgid "*bit_count*: number of bits to shift out (1-32)"
 msgstr "*bit_count*: シフトアウトするビット数(1-32)"
 
-#: ../../library/rp2.rst:158
+#: ../../library/rp2.rst:169
 msgid "push(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:146
+#: ../../library/rp2.rst:157
 msgid ""
 "Push ISR to the RX FIFO, then clear ISR to zero. This instruction takes "
 "the following forms:"
@@ -16565,31 +16640,31 @@ msgstr ""
 "ISR を RX FIFO にプッシュしてから、ISR をゼロにクリアする。"
 "この命令は次のような形をとります。"
 
-#: ../../library/rp2.rst:149
+#: ../../library/rp2.rst:160
 msgid "push()"
 msgstr ""
 
-#: ../../library/rp2.rst:150
+#: ../../library/rp2.rst:161
 msgid "push(block)"
 msgstr ""
 
-#: ../../library/rp2.rst:151
+#: ../../library/rp2.rst:162
 msgid "push(noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:152
+#: ../../library/rp2.rst:163
 msgid "push(iffull)"
 msgstr ""
 
-#: ../../library/rp2.rst:153
+#: ../../library/rp2.rst:164
 msgid "push(iffull, block)"
 msgstr ""
 
-#: ../../library/rp2.rst:154
+#: ../../library/rp2.rst:165
 msgid "push(iffull, noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:156
+#: ../../library/rp2.rst:167
 msgid ""
 "If ``block`` is used then the instruction stalls if the RX FIFO is full. "
 "The default is to block.  If ``iffull`` is used then it only pushes if "
@@ -16599,30 +16674,30 @@ msgstr ""
 "デフォルトでは block を指定したことになります。 ``iffull`` を指定すると、"
 "入力シフトカウントが閾値に達した場合にのみプッシュします。"
 
-#: ../../library/rp2.rst:173
+#: ../../library/rp2.rst:184
 msgid "pull(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:161
+#: ../../library/rp2.rst:172
 msgid ""
 "Pull from the TX FIFO into OSR. This instruction takes the following "
 "forms:"
 msgstr ""
 "TX FIFO から OSR にプルします。この命令は次のような形をとります:"
 
-#: ../../library/rp2.rst:164
+#: ../../library/rp2.rst:175
 msgid "pull()"
 msgstr ""
 
-#: ../../library/rp2.rst:165
+#: ../../library/rp2.rst:176
 msgid "pull(block)"
 msgstr ""
 
-#: ../../library/rp2.rst:166
+#: ../../library/rp2.rst:177
 msgid "pull(noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:167
+#: ../../library/rp2.rst:178
 msgid "pull(ifempty)"
 msgstr ""
 
@@ -16630,11 +16705,11 @@ msgstr ""
 msgid "pull(ifempty, block)"
 msgstr ""
 
-#: ../../library/rp2.rst:169
+#: ../../library/rp2.rst:180
 msgid "pull(ifempty, noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:171
+#: ../../library/rp2.rst:182
 msgid ""
 "If ``block`` is used then the instruction stalls if the TX FIFO is empty."
 " The default is to block.  If ``ifempty`` is used then it only pulls if "
@@ -16644,21 +16719,21 @@ msgstr ""
 "デフォルトでは block を指定したことになります。 "
 "``ifempty`` を指定した場合、出力シフトカウントが閾値に達した場合にのみプルします。"
 
-#: ../../library/rp2.rst:181
+#: ../../library/rp2.rst:192
 msgid "mov(dest, src)"
 msgstr ""
 
-#: ../../library/rp2.rst:176
+#: ../../library/rp2.rst:187
 msgid "Move into *dest* the value from *src*."
 msgstr "*src* の値を *dest* に移します。"
 
-#: ../../library/rp2.rst:178
+#: ../../library/rp2.rst:189
 msgid "*dest*: one of: ``pins``, ``x``, ``y``, ``exec``, ``pc``, ``isr``, ``osr``"
 msgstr ""
 "*dest*: "
 "``pins``, ``x``, ``y``, ``exec``, ``pc``, ``isr``, ``osr`` のいずれか"
 
-#: ../../library/rp2.rst:179
+#: ../../library/rp2.rst:190
 msgid ""
 "*src*: one of: ``pins``, ``x``, ``y``, ``null``, ``status``, ``isr``, "
 "``osr``; this argument can be optionally modified by wrapping it in "
@@ -16669,31 +16744,31 @@ msgstr ""
 "この引数は、オプションで ``invert()`` または ``reverse()`` でラップして"
 "変更できます(両方一緒にはできません)。"
 
-#: ../../library/rp2.rst:198
+#: ../../library/rp2.rst:209
 msgid "irq(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:184
+#: ../../library/rp2.rst:195
 msgid "Set or clear an IRQ flag. This instruction takes two forms:"
 msgstr "IRQ フラグを設定する。この命令は２つの形式をとります:""
 
-#: ../../library/rp2.rst:188
+#: ../../library/rp2.rst:199
 msgid "irq(index)"
 msgstr ""
 
-#: ../../library/rp2.rst:188 ../../library/rp2.rst:192
+#: ../../library/rp2.rst:199 ../../library/rp2.rst:203
 msgid "*index*: 0-7, or ``rel(0)`` to ``rel(7)``"
 msgstr "*index*: 0-7 または ``rel(0)`` から ``rel(7)``"
 
-#: ../../library/rp2.rst:192
+#: ../../library/rp2.rst:203
 msgid "irq(mode, index)"
 msgstr ""
 
-#: ../../library/rp2.rst:191
+#: ../../library/rp2.rst:202
 msgid "*mode*: one of: ``block``, ``clear``"
 msgstr "*mode*" ``block``, ``clear`` のいずれか"
 
-#: ../../library/rp2.rst:194
+#: ../../library/rp2.rst:205
 msgid ""
 "If ``block`` is used then the instruction stalls until the flag is "
 "cleared by another entity.  If ``clear`` is used then the flag is cleared"
@@ -16706,52 +16781,52 @@ msgstr ""
 "相対的な IRQ インデックスは、ステートマシンIDを IRQ インデックスに modulo-4 加算"
 "したものです。IRQ の 0-3 はプロセッサから見え、4-7 はステートマシンの内部にあります。"
 
-#: ../../library/rp2.rst:204
+#: ../../library/rp2.rst:215
 msgid "set(dest, data)"
 msgstr ""
 
-#: ../../library/rp2.rst:201
+#: ../../library/rp2.rst:212
 msgid "Set *dest* with the value *data*."
 msgstr "値 *data* を *dest* に設定します。"
 
-#: ../../library/rp2.rst:203
+#: ../../library/rp2.rst:214
 msgid "*dest*: ``pins``, ``x``, ``y``, ``pindirs``"
 msgstr "*dest*: ``pins``, ``x``, ``y``, ``pindirs`` のいずれか"
 
-#: ../../library/rp2.rst:204
+#: ../../library/rp2.rst:215
 msgid "*data*: value (0-31)"
 msgstr "*data*: 値 (0-31)"
 
-#: ../../library/rp2.rst:208
+#: ../../library/rp2.rst:219
 msgid "nop()"
 msgstr ""
 
-#: ../../library/rp2.rst:207
+#: ../../library/rp2.rst:218
 msgid ""
 "This is a pseudoinstruction that assembles to ``mov(y, y)`` and has no "
 "side effect."
 msgstr "これは ``mov(y, y)`` にアセンブルする擬似命令でサイド効果はありません。"
 
-#: ../../library/rp2.rst:214
+#: ../../library/rp2.rst:225
 msgid ".side(value)"
 msgstr ""
 
-#: ../../library/rp2.rst:211
+#: ../../library/rp2.rst:222
 msgid ""
 "This is a modifier which can be applied to any instruction, and is used "
 "to control side-set pin values."
 msgstr ""
 "これは任意の命令に適用できる修飾子で、サイドセットピンの値を制御するために使います。"
 
-#: ../../library/rp2.rst:214
+#: ../../library/rp2.rst:225
 msgid "*value*: the value (bits) to output on the side-set pins"
 msgstr "*value*: サイドセットピンに出力する値(ビット)"
 
-#: ../../library/rp2.rst:221
+#: ../../library/rp2.rst:232
 msgid ".delay(value)"
 msgstr ""
 
-#: ../../library/rp2.rst:217
+#: ../../library/rp2.rst:228
 msgid ""
 "This is a modifier which can be applied to any instruction, and specifies"
 " how many cycles to delay for after the instruction executes."
@@ -16759,18 +16834,18 @@ msgstr ""
 "これは任意の命令に適用できる修飾子で、その命令が実行された後に何サイクル遅らせるかを"
 "指定します。"
 
-#: ../../library/rp2.rst:220
+#: ../../library/rp2.rst:231
 msgid ""
 "*value*: cycles to delay, 0-31 (maximum value reduced if side-set pins "
 "are used)"
 msgstr ""
 "*value*: 遅らせるサイクル数。0-31 (サイドセットピンを併用している場合、最大値は減少します)"
 
-#: ../../library/rp2.rst:225
+#: ../../library/rp2.rst:236
 msgid "[value]"
 msgstr ""
 
-#: ../../library/rp2.rst:224
+#: ../../library/rp2.rst:235
 msgid "This is a modifier and is equivalent to ``.delay(value)``."
 msgstr "これは修飾子で、.delay(value)と同等です。"
 
