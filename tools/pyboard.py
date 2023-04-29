@@ -245,7 +245,7 @@ class ProcessPtyToTerminal:
         pty = m.group()
         # rtscts, dsrdtr params are to workaround pyserial bug:
         # http://stackoverflow.com/questions/34831131/pyserial-does-not-play-well-with-virtual-port
-        self.ser = serial.Serial(pty, interCharTimeout=1, rtscts=True, dsrdtr=True)
+        self.serial = serial.Serial(pty, interCharTimeout=1, rtscts=True, dsrdtr=True)
 
     def close(self):
         import signal
@@ -253,13 +253,13 @@ class ProcessPtyToTerminal:
         os.killpg(os.getpgid(self.subp.pid), signal.SIGTERM)
 
     def read(self, size=1):
-        return self.ser.read(size)
+        return self.serial.read(size)
 
     def write(self, data):
-        return self.ser.write(data)
+        return self.serial.write(data)
 
     def inWaiting(self):
-        return self.ser.inWaiting()
+        return self.serial.inWaiting()
 
 
 class Pyboard:
@@ -287,11 +287,15 @@ class Pyboard:
             for attempt in range(wait + 1):
                 try:
                     if os.name == "nt":
-                        # Windows does not set DTR or RTS by default
                         self.serial = serial.Serial(**serial_kwargs)
-                        self.serial.dtr = True
-                        self.serial.rts = False
                         self.serial.port = device
+                        portinfo = list(serial.tools.list_ports.grep(device))  # type: ignore
+                        if portinfo and portinfo[0].manufacturer != "Microsoft":
+                            # ESP8266/ESP32 boards use RTS/CTS for flashing and boot mode selection.
+                            # DTR False: to avoid using the reset button will hang the MCU in bootloader mode
+                            # RTS False: to prevent pulses on rts on serial.close() that would POWERON_RESET an ESPxx
+                            self.serial.dtr = False  # DTR False = gpio0 High = Normal boot
+                            self.serial.rts = False  # RTS False = EN High = MCU enabled
                         self.serial.open()
                     else:
                         self.serial = serial.Serial(device, **serial_kwargs)
