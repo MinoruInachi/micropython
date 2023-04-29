@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-21 22:44+0900\n"
-"PO-Revision-Date: 2023-03-21 23:47+0900\n"
+"POT-Creation-Date: 2023-04-29 11:38+0900\n"
+"PO-Revision-Date: 2023-04-29 12:39+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -185,7 +185,7 @@ msgid ""
 "Returns the string representation of the array, called as ``str(a)`` or "
 "``repr(a)``` (where ``a`` is an ``array``).  Returns the string "
 "``\"array(<type>, [<elements>])\"``, where ``<type>`` is the type code "
-"letter for the array and ``<elements>`` is a comma seperated list of the "
+"letter for the array and ``<elements>`` is a comma separated list of the "
 "elements of the array."
 msgstr ""
 "array の文字列表現を返すメソッドで、 ``str(a)`` または ``repr(a)`` (``a`` は "
@@ -359,7 +359,7 @@ msgstr ""
 msgid ""
 "Get or set configuration values of the BLE interface.  To get a value the"
 " parameter name should be quoted as a string, and just one parameter is "
-"queried at a time.  To set values use the keyword syntax, and one ore "
+"queried at a time.  To set values use the keyword syntax, and one or "
 "more parameter can be set at a time."
 msgstr ""
 "BLE インターフェイスの設定値を取得または設定します。値を取得するには、パラメーター名を"
@@ -617,15 +617,11 @@ msgid ""
 "        conn_handle, value_handle, char_data = data\n"
 "    elif event == _IRQ_GATTC_READ_DONE:\n"
 "        # A gattc_read() has completed.\n"
-"        # Note: The value_handle will be zero on btstack (but present on "
-"NimBLE).\n"
 "        # Note: Status will be zero on success, implementation-specific "
 "value otherwise.\n"
 "        conn_handle, value_handle, status = data\n"
 "    elif event == _IRQ_GATTC_WRITE_DONE:\n"
 "        # A gattc_write() has completed.\n"
-"        # Note: The value_handle will be zero on btstack (but present on "
-"NimBLE).\n"
 "        # Note: Status will be zero on success, implementation-specific "
 "value otherwise.\n"
 "        conn_handle, value_handle, status = data\n"
@@ -695,11 +691,11 @@ msgid ""
 "        conn_handle, action, passkey = data"
 msgstr ""
 
-#: ../../library/bluetooth.rst:248
+#: ../../library/bluetooth.rst:246
 msgid "The event codes are::"
 msgstr "イベントコードには次のものがあります::"
 
-#: ../../library/bluetooth.rst:250
+#: ../../library/bluetooth.rst:248
 msgid ""
 "from micropython import const\n"
 "_IRQ_CENTRAL_CONNECT = const(1)\n"
@@ -734,14 +730,14 @@ msgid ""
 "_IRQ_SET_SECRET = const(30)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:282
+#: ../../library/bluetooth.rst:280
 msgid ""
 "For the ``_IRQ_GATTS_READ_REQUEST`` event, the available return codes "
 "are::"
 msgstr ""
 "``_IRQ_GATTS_READ_REQUEST`` イベントで使えるリターンコードは次のとおりです::"
 
-#: ../../library/bluetooth.rst:284
+#: ../../library/bluetooth.rst:282
 msgid ""
 "_GATTS_NO_ERROR = const(0x00)\n"
 "_GATTS_ERROR_READ_NOT_PERMITTED = const(0x02)\n"
@@ -751,11 +747,11 @@ msgid ""
 "_GATTS_ERROR_INSUFFICIENT_ENCRYPTION = const(0x0f)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:291
+#: ../../library/bluetooth.rst:289
 msgid "For the ``_IRQ_PASSKEY_ACTION`` event, the available actions are::"
 msgstr "``_IRQ_PASSKEY_ACTION`` イベントで使えるアクションは次のとおりです::"
 
-#: ../../library/bluetooth.rst:293
+#: ../../library/bluetooth.rst:291
 msgid ""
 "_PASSKEY_ACTION_NONE = const(0)\n"
 "_PASSKEY_ACTION_INPUT = const(2)\n"
@@ -763,7 +759,7 @@ msgid ""
 "_PASSKEY_ACTION_NUMERIC_COMPARISON = const(4)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:298
+#: ../../library/bluetooth.rst:296
 msgid ""
 "In order to save space in the firmware, these constants are not included "
 "on the :mod:`bluetooth` module. Add the ones that you need from the list"
@@ -772,11 +768,11 @@ msgstr ""
 "ファームウェアのスペースを節約するために、これらの定数は :mod:`bluetooth` "
 "モジュールには含まれていません 。上記のリストから必要なものをプログラムに追加してください。"
 
-#: ../../library/bluetooth.rst:304
+#: ../../library/bluetooth.rst:302
 msgid "Broadcaster Role (Advertiser)"
 msgstr "ブロードキャスターロール(アドバタイザー)"
 
-#: ../../library/bluetooth.rst:308
+#: ../../library/bluetooth.rst:306
 msgid ""
 "Starts advertising at the specified interval (in **micro**\\ seconds). "
 "This interval will be rounded down to the nearest 625us. To stop "
@@ -786,7 +782,7 @@ msgstr ""
 "この間隔は、625us に最も近いところで切り捨てられます。アドバタイジングを"
 "停止するには *interval_us* を ``None`` に設定します。"
 
-#: ../../library/bluetooth.rst:312
+#: ../../library/bluetooth.rst:310
 msgid ""
 "*adv_data* and *resp_data* can be any type that implements the buffer "
 "protocol (e.g. ``bytes``, ``bytearray``, ``str``). *adv_data* is included"
@@ -796,7 +792,7 @@ msgstr ""
 "(``bytes``, ``bytearray``, ``str`` など)。 *adv_data* はすべての"
 "ブロードキャストに含まれ、 *resp_data* はアクティブスキャンへの返信として送信されます。"
 
-#: ../../library/bluetooth.rst:315
+#: ../../library/bluetooth.rst:313
 msgid ""
 "**Note:** if *adv_data* (or *resp_data*) is ``None``, then the data "
 "passed to the previous call to ``gap_advertise`` will be re-used. This "
@@ -810,26 +806,26 @@ msgstr ""
 "アドバタイジングを再開できます。アドバタイジングペイロードをクリアするには、"
 "空の ``bytes`` 、すなわち ``b''`` を渡します。"
 
-#: ../../library/bluetooth.rst:323
+#: ../../library/bluetooth.rst:321
 msgid "Observer Role (Scanner)"
 msgstr "オブザーバーロール(スキャナー)"
 
-#: ../../library/bluetooth.rst:327
+#: ../../library/bluetooth.rst:325
 msgid ""
 "Run a scan operation lasting for the specified duration (in **milli**\\ "
 "seconds)."
 msgstr ""
 "指定された期間(**ミリ** 秒単位)持続するスキャン操作を実行します。"
 
-#: ../../library/bluetooth.rst:329
+#: ../../library/bluetooth.rst:327
 msgid "To scan indefinitely, set *duration_ms* to ``0``."
 msgstr "無期限にスキャンするには *duration_ms* を ``0`` に設定します。"
 
-#: ../../library/bluetooth.rst:331
+#: ../../library/bluetooth.rst:329
 msgid "To stop scanning, set *duration_ms* to ``None``."
 msgstr "スキャンを停止するには *duration_ms* を ``None`` に設定します。"
 
-#: ../../library/bluetooth.rst:333
+#: ../../library/bluetooth.rst:331
 msgid ""
 "Use *interval_us* and *window_us* to optionally configure the duty cycle."
 " The scanner will run for *window_us* **micro**\\ seconds every "
@@ -843,7 +839,7 @@ msgstr ""
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
 "(バックグラウンドスキャン)。"
 
-#: ../../library/bluetooth.rst:339
+#: ../../library/bluetooth.rst:337
 msgid ""
 "For each scan result the ``_IRQ_SCAN_RESULT`` event will be raised, with "
 "event data ``(addr_type, addr, adv_type, rssi, adv_data)``."
@@ -851,15 +847,15 @@ msgstr ""
 "スキャン結果ごとに、``_IRQ_SCAN_RESULT`` イベントが発生します。"
 "イベントデータは ``(addr_type, addr, adv_type, rssi, adv_data)`` です。"
 
-#: ../../library/bluetooth.rst:344
+#: ../../library/bluetooth.rst:342
 msgid "``addr_type`` values indicate public or random addresses:"
 msgstr "``addr_type`` の値は PUBLIC または RANDOM アドレスであるかを示します:"
 
-#: ../../library/bluetooth.rst:343
+#: ../../library/bluetooth.rst:341
 msgid "0x00 - PUBLIC"
 msgstr ""
 
-#: ../../library/bluetooth.rst:344
+#: ../../library/bluetooth.rst:342
 msgid ""
 "0x01 - RANDOM (either static, RPA, or NRPA, the type is encoded in the "
 "address itself)"
@@ -867,27 +863,27 @@ msgstr ""
 "0x01 - RANDOM (RANDOM, RPA, NRPA のいずれか。どれであるかはアドレス自体にエンコード"
 "されています)"
 
-#: ../../library/bluetooth.rst:346
+#: ../../library/bluetooth.rst:344
 msgid "``adv_type`` values correspond to the Bluetooth Specification:"
 msgstr ""``adv_type`` の値は次の Bluetooth 仕様に対応しています:"
 
-#: ../../library/bluetooth.rst:348
+#: ../../library/bluetooth.rst:346
 msgid "0x00 - ADV_IND - connectable and scannable undirected advertising"
 msgstr "0x00 - ADV_IND - 接続/スキャン可能な無向アドバタイジング"
 
-#: ../../library/bluetooth.rst:349
+#: ../../library/bluetooth.rst:347
 msgid "0x01 - ADV_DIRECT_IND - connectable directed advertising"
 msgstr "0x01 - ADV_DIRECT_IND - 接続可能な有向アドバタイジング"
 
-#: ../../library/bluetooth.rst:350
+#: ../../library/bluetooth.rst:348
 msgid "0x02 - ADV_SCAN_IND - scannable undirected advertising"
 msgstr "0x02 - ADV_SCAN_IND - スキャン可能な無向アドバタイジング"
 
-#: ../../library/bluetooth.rst:351
+#: ../../library/bluetooth.rst:349
 msgid "0x03 - ADV_NONCONN_IND - non-connectable undirected advertising"
 msgstr "0x03 - ADV_NONCONN_IND - 接続不可能な無向アドバタイジング"
 
-#: ../../library/bluetooth.rst:352
+#: ../../library/bluetooth.rst:350
 msgid "0x04 - SCAN_RSP - scan response"
 msgstr "0x04 - SCAN_RSP - スキャン応答"
 
@@ -898,7 +894,7 @@ msgid ""
 msgstr ""
 "スキャンの応答を結果として受け取りたい場合は、 ``active`` を ``True`` にします。"
 
-#: ../../library/bluetooth.rst:356
+#: ../../library/bluetooth.rst:354
 msgid ""
 "When scanning is stopped (either due to the duration finishing or when "
 "explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised."
@@ -906,11 +902,11 @@ msgstr ""
 "スキャンが終了すると(終了時間になったか、明示的に停止した場合)、 "
 "``_IRQ_SCAN_DONE`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:361
+#: ../../library/bluetooth.rst:359
 msgid "Central Role"
 msgstr "セントラルロール"
 
-#: ../../library/bluetooth.rst:363
+#: ../../library/bluetooth.rst:361
 msgid ""
 "A central device can connect to peripherals that it has discovered using "
 "the observer role (see :meth:`gap_scan<BLE.gap_scan>`) or with a known "
@@ -919,7 +915,7 @@ msgstr ""
 "セントラルデバイスは、オブザーバーロール(:meth:`gap_scan<BLE.gap_scan>` を参照)"
 "を使うか、既知のアドレスで検出したペリフェラルに接続できます。"
 
-#: ../../library/bluetooth.rst:367
+#: ../../library/bluetooth.rst:365
 msgid "Connect to a peripheral."
 msgstr "ペリフェラルに接続します。"
 
@@ -929,7 +925,7 @@ msgstr ""
 "アドレスタイプの詳細については :meth:`gap_scan <BLE.gap_scan>` "
 "を参照してください。"
 
-#: ../../library/bluetooth.rst:371
+#: ../../library/bluetooth.rst:369
 msgid ""
 "To cancel an outstanding connection attempt early, call "
 "``gap_connect(None)``."
@@ -937,7 +933,7 @@ msgstr ""
 "未処理の接続試行を早期にキャンセルするには ``gap_connect(None)`` "
 "を呼び出してください。"
 
-#: ../../library/bluetooth.rst:374
+#: ../../library/bluetooth.rst:372
 msgid ""
 "On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised. If "
 "cancelling a connection attempt, the ``_IRQ_PERIPHERAL_DISCONNECT`` event"
@@ -946,7 +942,7 @@ msgstr ""
 "接続に成功すると ``_IRQ_PERIPHERAL_CONNECT`` イベントが発生します。"
 "接続の試行をキャンセルすると ``_IRQ_PERIPHERAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:378
+#: ../../library/bluetooth.rst:376
 msgid ""
 "The device will wait up to *scan_duration_ms* to receive an advertising "
 "payload from the device."
@@ -954,7 +950,7 @@ msgstr ""
 "デバイスからのアドバタイジングペイロードを受信するまで *scan_duration_ms* まで"
 "待機します。"
 
-#: ../../library/bluetooth.rst:381
+#: ../../library/bluetooth.rst:379
 msgid ""
 "The connection interval can be configured in **micro**\\ seconds using "
 "either or both of *min_conn_interval_us* and *max_conn_interval_us*. "
@@ -967,11 +963,11 @@ msgstr ""
 "通常 30000～50000 マイクロ秒の間でデフォルトの間隔が選択されます。"
 "間隔を短くするとスループットが向上しますが消費電力は増加します。"
 
-#: ../../library/bluetooth.rst:389
+#: ../../library/bluetooth.rst:387
 msgid "Peripheral Role"
 msgstr "ペリフェラルロール"
 
-#: ../../library/bluetooth.rst:391
+#: ../../library/bluetooth.rst:389
 msgid ""
 "A peripheral device is expected to send connectable advertisements (see "
 ":meth:`gap_advertise<BLE.gap_advertise>`). It will usually be acting as a"
@@ -984,18 +980,18 @@ msgstr ""
 "用いて最初に登録されたサービスとキャラクタリスティックを持つ GATT サーバとして"
 "動作します。"
 
-#: ../../library/bluetooth.rst:396
+#: ../../library/bluetooth.rst:394
 msgid ""
 "When a central connects, the ``_IRQ_CENTRAL_CONNECT`` event will be "
 "raised."
 msgstr ""
 "セントラルが接続すると ``_IRQ_CENTRAL_CONNECT`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:400
+#: ../../library/bluetooth.rst:398
 msgid "Central & Peripheral Roles"
 msgstr "セントラル＆ペリフェラルロール"
 
-#: ../../library/bluetooth.rst:404
+#: ../../library/bluetooth.rst:402
 msgid ""
 "Disconnect the specified connection handle. This can either be a central "
 "that has connected to this device (if acting as a peripheral) or a "
@@ -1006,7 +1002,7 @@ msgstr ""
 "接続したセントラル、または(セントラルとして動作している)このデバイスに以前に接続されていた"
 "ペリフェラルのいずれかになります。"
 
-#: ../../library/bluetooth.rst:409
+#: ../../library/bluetooth.rst:407
 msgid ""
 "On success, the ``_IRQ_PERIPHERAL_DISCONNECT`` or "
 "``_IRQ_CENTRAL_DISCONNECT`` event will be raised."
@@ -1014,7 +1010,7 @@ msgstr ""
 "切断に成功すると ``_IRQ_PERIPHERAL_DISCONNECT`` または "
 "``_IRQ_CENTRAL_DISCONNECT`` イベントが発生します。"
 
-#: ../../library/bluetooth.rst:412
+#: ../../library/bluetooth.rst:410
 msgid ""
 "Returns ``False`` if the connection handle wasn't connected, and ``True``"
 " otherwise."
@@ -1022,11 +1018,11 @@ msgstr ""
 "接続ハンドルが接続されていない場合は ``False`` を、そうでない場合は ``True`` "
 "を返します。"
 
-#: ../../library/bluetooth.rst:417
+#: ../../library/bluetooth.rst:415
 msgid "GATT Server"
 msgstr "GATT サーバー"
 
-#: ../../library/bluetooth.rst:419
+#: ../../library/bluetooth.rst:417
 msgid ""
 "A GATT server has a set of registered services. Each service may contain "
 "characteristics, which each have a value. Characteristics can also "
@@ -1037,7 +1033,7 @@ msgstr ""
 "各キャラクタリスティックは値を持ちます。キャラクタリスティックには、それ自体に値を"
 "持つディスクリプタを含めることもできます。"
 
-#: ../../library/bluetooth.rst:423
+#: ../../library/bluetooth.rst:421
 msgid ""
 "These values are stored locally, and are accessed by their \"value "
 "handle\" which is generated during service registration. They can also be"
@@ -1050,7 +1046,7 @@ msgstr ""
 "さらに、ペリフェラルは接続ハンドルを介して接続されたクライアントにキャラクタリスティックを"
 "「通知(notify)」できます。"
 
-#: ../../library/bluetooth.rst:428
+#: ../../library/bluetooth.rst:426
 msgid ""
 "A device in either central or peripheral roles may function as a GATT "
 "server, however in most cases it will be more common for a peripheral "
@@ -1059,7 +1055,7 @@ msgstr ""
 "セントラルまたはペリフェラルのいずれかのロールを持つデバイスが GATT サーバとして"
 "機能することもありますが、ほとんどの場合、ペリフェラルがサーバとして機能するのが一般的です。"
 
-#: ../../library/bluetooth.rst:432
+#: ../../library/bluetooth.rst:430
 msgid ""
 "Characteristics and descriptors have a default maximum size of 20 bytes. "
 "Anything written to them by a client will be truncated to this length. "
@@ -1075,14 +1071,14 @@ msgstr ""
 ":meth:`gatts_write<BLE.gatts_write>` を使います。"
 "たとえば ``gatts_write(char_handle, bytes(100))`` のようにします。"
 
-#: ../../library/bluetooth.rst:441
+#: ../../library/bluetooth.rst:439
 msgid ""
 "Configures the server with the specified services, replacing any existing"
 " services."
 msgstr ""
 "指定したサービスでサーバーを構成し、既存のサービスを置換します。"
 
-#: ../../library/bluetooth.rst:444
+#: ../../library/bluetooth.rst:442
 msgid ""
 "*services_definition* is a list of **services**, where each **service** "
 "is a two-element tuple containing a UUID and a list of "
@@ -1091,7 +1087,7 @@ msgstr ""
 "*services_definition* は **サービス** のリストであり、各 **サービス** は "
 "UUID と **キャラクタリスティック** のリストを含む２項目のタプルです。"
 
-#: ../../library/bluetooth.rst:447
+#: ../../library/bluetooth.rst:445
 msgid ""
 "Each **characteristic** is a two-or-three-element tuple containing a "
 "UUID, a **flags** value, and optionally a list of *descriptors*."
@@ -1099,14 +1095,14 @@ msgstr ""
 "各 **キャラクタリスティック** は、UUID、 **フラグ** 値、およびオプションの "
 "*ディスクリプタ* のリストを含む２または３項目のタプルです。"
 
-#: ../../library/bluetooth.rst:450
+#: ../../library/bluetooth.rst:448
 msgid ""
 "Each **descriptor** is a two-element tuple containing a UUID and a "
 "**flags** value."
 msgstr ""
 "各 **ディスクリプタ** は UUID と **フラグ** 値を含む２項目のタプルです。"
 
-#: ../../library/bluetooth.rst:453
+#: ../../library/bluetooth.rst:451
 msgid ""
 "The **flags** are a bitwise-OR combination of the flags defined below. "
 "These set both the behaviour of the characteristic (or descriptor) as "
@@ -1116,7 +1112,7 @@ msgstr ""
 "これらは、キャラクタリスティック(またはディスクリプタ)の振舞いおよびセキュリティと"
 "プライバシーの要件の両方を設定します。"
 
-#: ../../library/bluetooth.rst:457
+#: ../../library/bluetooth.rst:455
 msgid ""
 "The return value is a list (one element per service) of tuples (each "
 "element is a value handle). Characteristics and descriptor handles are "
@@ -1126,14 +1122,14 @@ msgstr ""
 "キャラクタリスティックとディスクリプタのハンドルは、定義された順序で同じタプルに"
 "フラット化されます。"
 
-#: ../../library/bluetooth.rst:461
+#: ../../library/bluetooth.rst:459
 msgid ""
 "The following example registers two services (Heart Rate, and Nordic "
 "UART)::"
 msgstr ""
 "次の例では、２つのサービス(心拍数と Nordic UART)を登録します。"
 
-#: ../../library/bluetooth.rst:463
+#: ../../library/bluetooth.rst:461
 msgid ""
 "HR_UUID = bluetooth.UUID(0x180D)\n"
 "HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | "
@@ -1149,7 +1145,7 @@ msgid ""
 "( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:473
+#: ../../library/bluetooth.rst:471
 msgid ""
 "The three value handles (``hr``, ``tx``, ``rx``) can be used with "
 ":meth:`gatts_read <BLE.gatts_read>`, :meth:`gatts_write "
@@ -1161,16 +1157,16 @@ msgstr ""
 "<BLE.gatts_write>`, :meth:`gatts_notify <BLE.gatts_notify>`, "
 ":meth:`gatts_indicate <BLE.gatts_indicate>` で使えます。"
 
-#: ../../library/bluetooth.rst:477
+#: ../../library/bluetooth.rst:475
 msgid "**Note:** Advertising must be stopped before registering services."
 msgstr ""
 "**注記:** サービスを登録する前に、アドバタイジングを停止する必要があります。"
 
-#: ../../library/bluetooth.rst:479
+#: ../../library/bluetooth.rst:477
 msgid "Available flags for characteristics and descriptors are::"
 msgstr "キャラクタリスティックとディスクリプタで使えるフラグは次のとおりです::"
 
-#: ../../library/bluetooth.rst:481
+#: ../../library/bluetooth.rst:479
 msgid ""
 "from micropython import const\n"
 "_FLAG_BROADCAST = const(0x0001)\n"
@@ -1190,14 +1186,14 @@ msgid ""
 "_FLAG_WRITE_AUTHORIZED = const(0x4000)"
 msgstr ""
 
-#: ../../library/bluetooth.rst:498
+#: ../../library/bluetooth.rst:496
 msgid ""
 "As for the IRQs above, any required constants should be added to your "
 "Python code."
 msgstr ""
 "先述の IRQ と同様に、必要な定数を Python コードに追加してください。"
 
-#: ../../library/bluetooth.rst:502
+#: ../../library/bluetooth.rst:500
 msgid ""
 "Reads the local value for this handle (which has either been written by "
 ":meth:`gatts_write <BLE.gatts_write>` or by a remote client)."
@@ -1205,12 +1201,12 @@ msgstr ""
 "このハンドルのためのローカル値(:meth:`gatts_write <BLE.gatts_write>` か"
 "リモートクライアントで書き込まれたもの)を読み取ります。"
 
-#: ../../library/bluetooth.rst:507
+#: ../../library/bluetooth.rst:505
 msgid "Writes the local value for this handle, which can be read by a client."
 msgstr ""
 "このハンドルのローカル値を書き込みます。これは、クライアントによって読み取ることができます。"
 
-#: ../../library/bluetooth.rst:509
+#: ../../library/bluetooth.rst:507
 msgid ""
 "If *send_update* is ``True``, then any subscribed clients will be "
 "notified (or indicated, depending on what they're subscribed to and which"
@@ -1220,25 +1216,25 @@ msgstr ""
 "この書き込みについて通知されます(またはサブスクライブしている内容と、キャラクタリスティックが"
 "サポートしている操作に応じてレスポンスを要求します)。
 
-#: ../../library/bluetooth.rst:515
+#: ../../library/bluetooth.rst:513
 msgid "Sends a notification request to a connected client."
 msgstr "接続されているクライアントにノーティフィケーション要求を送信します。"
 
-#: ../../library/bluetooth.rst:517
+#: ../../library/bluetooth.rst:515 ../../library/bluetooth.rst:528
 msgid ""
-"If *data* is not ``None``, then that value is sent to the client as part "
-"of the notification. The local value will not be modified."
+"If *data* is ``None`` (the default), then the current local value (as set"
+" with :meth:`gatts_write <BLE.gatts_write>`) will be sent."
+msgstr ""
+"*data* が ``None`` であれば(デフォルト)、現在のローカル値("
+":meth:`gatts_write <BLE.gatts_write>` で設定された値)が送信されます。"
+
+#: ../../library/bluetooth.rst:518
+msgid ""
+"Otherwise, if *data* is not ``None``, then that value is sent to the "
+"client as part of the notification. The local value will not be modified."
 msgstr ""
 "*data* が ``None`` でなければ、その値が通知の一部としてクライアントに送信されます。"
 "ローカル値は変更されません。"
-
-#: ../../library/bluetooth.rst:520
-msgid ""
-"Otherwise, if *data* is ``None``, then the current local value (as set "
-"with :meth:`gatts_write <BLE.gatts_write>`) will be sent."
-msgstr ""
-"*data* が ``None`` でなければ、現在のローカル値("
-":meth:`gatts_write <BLE.gatts_write>` で設定された値)が送信されます。"
 
 #: ../../library/bluetooth.rst:523
 msgid ""
@@ -1249,12 +1245,16 @@ msgstr ""
 "サブスクリプションステータスに関係なく送信されます。"
 
 #: ../../library/bluetooth.rst:528
+msgid "Sends a indication request to a connected client."
+msgstr "指示(indication)要求を接続中のクライアントに送信します。"
+
+#: ../../library/bluetooth.rst:531
 msgid ""
-"Sends an indication request containing the characteristic's current value"
-" to a connected client."
+"Otherwise, if *data* is not ``None``, then that value is sent to the "
+"client as part of the indication. The local value will not be modified."
 msgstr ""
-"キャラクタリスティックの現在の値を含む指示(indication)要求を接続中のクライアントに"
-"送信します。"
+"*data* が ``None`` でなければ、その値が指示の一部としてクライアントに送信されます。"
+"ローカル値は変更されません。"
 
 #: ../../library/bluetooth.rst:531
 msgid ""
@@ -2854,7 +2854,7 @@ msgid ""
 "\"CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE\" and  an ``OSError(-261)`` is "
 "raised if called on firmware that doesn't have the feature enabled. It is"
 " OK to call ``mark_app_valid_cancel_rollback`` on every boot and it is "
-"not necessary when booting firmare that was loaded using esptool."
+"not necessary when booting firmware that was loaded using esptool."
 msgstr ""
 "現在のブートが成功したことを示します。"
 "次のブート時の自動ロールバックを避けるために、新しいパーティションの最初のブート時に "
@@ -5302,7 +5302,7 @@ msgstr "クラス ADC -- アナログ-デジタル変換"
 
 #: ../../library/machine.ADC.rst:7
 msgid ""
-"The ADC class provides an interface to analog-to-digital convertors, and "
+"The ADC class provides an interface to analog-to-digital converters, and "
 "represents a single endpoint that can sample a continuous voltage and "
 "convert it to a discretised value."
 msgstr ""
@@ -5760,7 +5760,15 @@ msgstr "*sda* は SDA に使用するピンを指定するピンオブジェク�
 msgid "*freq* should be an integer which sets the maximum frequency for SCL."
 msgstr "*freq* は SCL の最大周波数を設定する整数です。"
 
-#: ../../library/machine.I2C.rst:66
+#: ../../library/machine.I2C.rst:65
+msgid ""
+"*timeout* is the maximum time in microseconds to allow for I2C "
+"transactions.  This parameter is not allowed on some ports."
+msgstr ""
+"*timeout* は、マイクロ秒単位の最大時間で、I2C のトランザクションに対応しています。"
+"このパラメータは、一部のポートでは使えません。"
+
+#: ../../library/machine.I2C.rst:68
 msgid ""
 "Note that some ports/boards will have default values of *scl* and *sda* "
 "that can be changed in this constructor.  Others will have fixed values "
@@ -5769,11 +5777,11 @@ msgstr ""
 "ポートやボードによっては、このコンストラクタで指定する *scl* と *sda* のデフォルト値を"
 "持っていることに注意してください。 *scl* と *sda* が固定で変更できないこともあります。"
 
-#: ../../library/machine.I2C.rst:73
+#: ../../library/machine.I2C.rst:75
 msgid "Construct a new software I2C object.  The parameters are:"
 msgstr "ソフトウェア I2C オブジェクトを新規に構築します。パラメータは次のとおりです:"
 
-#: ../../library/machine.I2C.rst:79
+#: ../../library/machine.I2C.rst:81
 msgid ""
 "*timeout* is the maximum time in microseconds to wait for clock "
 "stretching (SCL held low by another device on the bus), after which an "
@@ -5783,41 +5791,41 @@ msgstr ""
 "(バス上の相手のデバイスが SCL を LOW にしている状態)を待つ最大時間(マイクロ秒)です。"
 "この時間を経過すると ``OSError(ETIMEDOUT)`` 例外が発生します。"
 
-#: ../../library/machine.I2C.rst:84
+#: ../../library/machine.I2C.rst:86
 msgid "General Methods"
 msgstr "一般的なメソッド"
 
-#: ../../library/machine.I2C.rst:88
+#: ../../library/machine.I2C.rst:90
 msgid "Initialise the I2C bus with the given arguments:"
 msgstr "与えた引数で I2C バスを初期化します。"
 
-#: ../../library/machine.I2C.rst:90
+#: ../../library/machine.I2C.rst:92
 msgid "*scl* is a pin object for the SCL line"
 msgstr "*scl* は SCL ラインのピンオブジェクトです"
 
-#: ../../library/machine.I2C.rst:91
+#: ../../library/machine.I2C.rst:93
 msgid "*sda* is a pin object for the SDA line"
 msgstr "*sda* は SDA ラインのピンオブジェクトです"
 
-#: ../../library/machine.I2C.rst:92
+#: ../../library/machine.I2C.rst:94
 msgid "*freq* is the SCL clock rate"
 msgstr "*freq* は SCL のクロックレートです"
 
-#: ../../library/machine.I2C.rst:94
+#: ../../library/machine.I2C.rst:96
 msgid ""
 "In the case of hardware I2C the actual clock frequency may be lower than "
-"the requested frequency. This is dependant on the platform hardware. The "
+"the requested frequency. This is dependent on the platform hardware. The "
 "actual rate may be determined by printing the I2C object."
 msgstr ""
 "ハードウェアI2Cの場合、実際のクロック周波数は指定した周波数より低くなることがあります。"
 "これはプラットフォームハードウェアに依存します。実際の周波数は、I2C オブジェクトを"
 "プリントすることによって分かるかもしれません。"
 
-#: ../../library/machine.I2C.rst:100 ../../library/pyb.I2C.rst:85
+#: ../../library/machine.I2C.rst:102 ../../library/pyb.I2C.rst:85
 msgid "Turn off the I2C bus."
 msgstr "I2C バスをオフにします。"
 
-#: ../../library/machine.I2C.rst:106
+#: ../../library/machine.I2C.rst:108
 msgid ""
 "Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list "
 "of those that respond.  A device responds if it pulls the SDA line low "
@@ -5827,11 +5835,11 @@ msgstr ""
 "デバイスは、アドレス(書き込みビットを含む)がバスに送信された後に SDA ラインをローに"
 "引き下げると応答します。"
 
-#: ../../library/machine.I2C.rst:111
+#: ../../library/machine.I2C.rst:113
 msgid "Primitive I2C operations"
 msgstr "プリミティブ I2C 操作"
 
-#: ../../library/machine.I2C.rst:113
+#: ../../library/machine.I2C.rst:115
 msgid ""
 "The following methods implement the primitive I2C controller bus "
 "operations and can be combined to make any I2C transaction.  They are "
@@ -5842,25 +5850,25 @@ msgstr ""
 "トランザクションを作成するために組み合わせることができます。標準的なメソッド(下記参照)"
 "では足りない制御する必要があるなら、これらのメソッドを使います。"
 
-#: ../../library/machine.I2C.rst:117
+#: ../../library/machine.I2C.rst:119
 msgid "These methods are only available on the `machine.SoftI2C` class."
 msgstr "これらのメソッドは `machine.SoftI2C` クラスでのみ利用できます。"
 
-#: ../../library/machine.I2C.rst:121
+#: ../../library/machine.I2C.rst:123
 msgid ""
 "Generate a START condition on the bus (SDA transitions to low while SCL "
 "is high)."
 msgstr ""
 "バス上で START 条件を生成します(SCL がハイの間に SDA がローに遷移します)。"
 
-#: ../../library/machine.I2C.rst:125
+#: ../../library/machine.I2C.rst:127
 msgid ""
 "Generate a STOP condition on the bus (SDA transitions to high while SCL "
 "is high)."
 msgstr ""
 "バス上で STOP 条件を生成します(SCL がハイの間に SDA がハイに遷移します)。"
 
-#: ../../library/machine.I2C.rst:129
+#: ../../library/machine.I2C.rst:131
 msgid ""
 "Reads bytes from the bus and stores them into *buf*.  The number of bytes"
 " read is the length of *buf*.  An ACK will be sent on the bus after "
@@ -5875,7 +5883,7 @@ msgstr ""
 "ACK が送信されます(この場合、ペリフェラルは後の呼び出しでさらに bytes 型オブジェクトが"
 "読み取られると想定します)。"
 
-#: ../../library/machine.I2C.rst:137
+#: ../../library/machine.I2C.rst:139
 msgid ""
 "Write the bytes from *buf* to the bus.  Checks that an ACK is received "
 "after each byte and stops transmitting the remaining bytes if a NACK is "
@@ -5885,11 +5893,11 @@ msgstr ""
 "ことを確認し、NACK が受信された場合は残りのバイト列の送信を停止します。"
 "この関数は受信した ACK の数を返します。"
 
-#: ../../library/machine.I2C.rst:142
+#: ../../library/machine.I2C.rst:144
 msgid "Standard bus operations"
 msgstr "標準バスオペレーション"
 
-#: ../../library/machine.I2C.rst:144
+#: ../../library/machine.I2C.rst:146
 msgid ""
 "The following methods implement the standard I2C controller read and "
 "write operations that target a given peripheral device."
@@ -5897,7 +5905,7 @@ msgstr ""
 "以下のメソッドは、特定のペリフェラルデバイスをターゲットとした"
 "標準 I2C コントローラの読取り/書込み操作を実装しています。"
 
-#: ../../library/machine.I2C.rst:149
+#: ../../library/machine.I2C.rst:151
 msgid ""
 "Read *nbytes* from the peripheral specified by *addr*. If *stop* is true "
 "then a STOP condition is generated at the end of the transfer. Returns a "
@@ -5907,7 +5915,7 @@ msgstr ""
 "転送終了時に STOP 条件が生成されます。読み込んだデータを持つ `bytes` 型オブジェクトを"
 "返します。"
 
-#: ../../library/machine.I2C.rst:155
+#: ../../library/machine.I2C.rst:157
 msgid ""
 "Read into *buf* from the peripheral specified by *addr*. The number of "
 "bytes read will be the length of *buf*. If *stop* is true then a STOP "
@@ -5916,12 +5924,12 @@ msgstr ""
 "*addr* で指定されたペリフェラルから *buf* に読み込みます。読み取られるバイト数は *buf* "
 "の長さ分になります。 *stop* が True の場合、転送終了時にSTOP条件が生成されます。"
 
-#: ../../library/machine.I2C.rst:159 ../../library/machine.I2C.rst:206
-#: ../../library/machine.I2C.rst:215
+#: ../../library/machine.I2C.rst:161 ../../library/machine.I2C.rst:208
+#: ../../library/machine.I2C.rst:217
 msgid "The method returns ``None``."
 msgstr "このメソッドは ``None`` を返します。"
 
-#: ../../library/machine.I2C.rst:163
+#: ../../library/machine.I2C.rst:165
 msgid ""
 "Write the bytes from *buf* to the peripheral specified by *addr*.  If a "
 "NACK is received following the write of a byte from *buf* then the "
@@ -5935,7 +5943,7 @@ msgstr ""
 "が受信されたとしても、転送の終わりに STOP 条件が生成されます。この関数は受信した "
 "ACK の数を返します。"
 
-#: ../../library/machine.I2C.rst:171
+#: ../../library/machine.I2C.rst:173
 msgid ""
 "Write the bytes contained in *vector* to the peripheral specified by "
 "*addr*. *vector* should be a tuple or list of objects with the buffer "
@@ -5949,7 +5957,7 @@ msgstr ""
 "順次書き込みます。 *vector* 内のオブジェクトは長さが0バイトであるかもしれませんが、"
 "その場合には出力しません。"
 
-#: ../../library/machine.I2C.rst:177
+#: ../../library/machine.I2C.rst:179
 msgid ""
 "If a NACK is received following the write of a byte from one of the "
 "objects in *vector* then the remaining bytes, and any remaining objects, "
@@ -5962,11 +5970,11 @@ msgstr ""
 "が受信されても、転送の終わりに STOP 条件が生成されます。この関数は受信した ACK の数を"
 "返します。"
 
-#: ../../library/machine.I2C.rst:184
+#: ../../library/machine.I2C.rst:186
 msgid "Memory operations"
 msgstr "メモリ操作"
 
-#: ../../library/machine.I2C.rst:186
+#: ../../library/machine.I2C.rst:188
 msgid ""
 "Some I2C devices act as a memory device (or set of registers) that can be"
 " read from and written to.  In this case there are two addresses "
@@ -5978,7 +5986,7 @@ msgstr ""
 "この場合、I2C トランザクションに関連付けられた２つのアドレスがあります。ペリフェラルアドレスと"
 "メモリアドレスです。以下のメソッドは、そのようなデバイスと通信するための便利な機能です。"
 
-#: ../../library/machine.I2C.rst:193
+#: ../../library/machine.I2C.rst:195
 msgid ""
 "Read *nbytes* from the peripheral specified by *addr* starting from the "
 "memory address specified by *memaddr*. The argument *addrsize* specifies "
@@ -5988,7 +5996,7 @@ msgstr ""
 "*nbytes* 分を読み込みます。引数 *addrsize* はアドレスサイズをビット数で指定します。"
 "この関数は読み込んだデータを持つ `bytes` 型オブジェクトを返します。"
 
-#: ../../library/machine.I2C.rst:200
+#: ../../library/machine.I2C.rst:202
 msgid ""
 "Read into *buf* from the peripheral specified by *addr* starting from the"
 " memory address specified by *memaddr*.  The number of bytes read is the "
@@ -6001,7 +6009,7 @@ msgstr ""
 "アドレスサイズをビット数で指定します(ESP8266ではこの引数は認識されず、"
 "アドレスサイズは常に8ビットです)。"
 
-#: ../../library/machine.I2C.rst:210
+#: ../../library/machine.I2C.rst:212
 msgid ""
 "Write *buf* to the peripheral specified by *addr* starting from the "
 "memory address specified by *memaddr*. The argument *addrsize* specifies "
@@ -6239,7 +6247,7 @@ msgstr "``ibuf`` には内部バッファ長(バイト数)を指定します"
 #: ../../library/machine.I2S.rst:105
 msgid ""
 "For all ports, DMA runs continuously in the background and allows user "
-"applications to perform other operations while sample data is transfered "
+"applications to perform other operations while sample data is transferred "
 "between the internal buffer and the I2S peripheral unit. Increasing the "
 "size of the internal buffer has the potential to increase the time that "
 "user applications can perform non-I2S operations before underflow (e.g. "
@@ -7882,7 +7890,7 @@ msgstr ""
 #: ../../library/machine.SPI.rst:100
 msgid ""
 "In the case of hardware SPI the actual clock frequency may be lower than "
-"the requested baudrate. This is dependant on the platform hardware. The "
+"the requested baudrate. This is dependent on the platform hardware. The "
 "actual rate may be determined by printing the SPI object."
 msgstr ""
 "ハードウェア SPI の場合、実際のクロック周波数は要求されたボーレートより低いかも"
@@ -8311,7 +8319,7 @@ msgid ""
 "``callback`` - The callable to call upon expiration of the timer period. "
 "The callback must take one argument, which is passed the Timer object. "
 "The ``callback`` argument shall be specified. Otherwise an exception will"
-" occurr upon timer expiration: ``TypeError: 'NoneType' object isn't "
+" occur upon timer expiration: ``TypeError: 'NoneType' object isn't "
 "callable``"
 msgstr ""
 "``callback`` - タイマー期間が終了したときに呼び出されるコールバックです。"
@@ -9450,8 +9458,8 @@ msgid ""
 "the earliest possible time, given that it is also trying to be efficient,"
 " and that the following conditions hold:"
 msgstr ""
-"関数 *func* が「非常にすぐに」実行されるようにスケジュールします。この関数には、"
-"単一の引数として値 *arg* が渡されます。「非常にすぐに」とは、MicroPython ランタイムが"
+"関数 *func* が「早急に」実行されるようにスケジュールします。この関数には、"
+"単一の引数として値 *arg* が渡されます。「早急に」とは、MicroPython ランタイムが"
 "できるだけ早くに関数を実行すること、効率的にもしようとしていること、および次の条件が"
 "満たされるよう最善を尽くすことを意味します。"
 
@@ -10956,7 +10964,7 @@ msgid "Get the status of a file or directory."
 msgstr "ファイルまたはディレクトリのステータスを取得します。"
 
 #: ../../library/os.rst:89
-msgid "Get the status of a fileystem."
+msgid "Get the status of a filesystem."
 msgstr "ファイルシステムの状態を取得します。"
 
 #: ../../library/os.rst:91
@@ -12989,7 +12997,7 @@ msgstr ""
 #: ../../library/pyb.CAN.rst:274
 msgid ""
 "*brs* for CAN FD controllers, if set to True, the bitrate switching mode "
-"is enabled, in which the data phase is transmitted at a differet bitrate."
+"is enabled, in which the data phase is transmitted at a different bitrate."
 " See :meth:`CAN.init` for the data bit timing configuration parameters."
 msgstr ""
 
@@ -13658,7 +13666,7 @@ msgstr ""
 #: ../../library/pyb.I2C.rst:99
 msgid ""
 "The actual clock frequency may be lower than the requested frequency. "
-"This is dependant on the platform hardware. The actual rate may be "
+"This is dependent on the platform hardware. The actual rate may be "
 "determined by printing the I2C object."
 msgstr ""
 "実際のクロック周波数は、指定した周波数より低くなることがあります。これは、"
@@ -18622,9 +18630,9 @@ msgstr ""
 #: ../../library/sys.rst:48
 msgid ""
 "Enable tracing of bytecode execution.  For details see the `CPython "
-"documentaion <https://docs.python.org/3/library/sys.html#sys.settrace>`_."
+"documentation <https://docs.python.org/3/library/sys.html#sys.settrace>`_."
 msgstr ""
-"バイトコード実行のトレースを有効にします。詳細については `CPythonのドキュメント "
+"バイトコード実行のトレースを有効にします。詳細については `CPython のドキュメント "
 "<https://docs.python.org/ja/3/library/sys.html#sys.settrace>`_ を"
 "参照してください。"
 
@@ -19154,8 +19162,8 @@ msgid ""
 "ticks2``. However, values returned by `ticks_ms()`, etc. functions may "
 "wrap around, so directly using subtraction on them will produce incorrect"
 " result. That is why `ticks_diff()` is needed, it implements modular (or "
-"more specifically, ring) arithmetics to produce correct result even for "
-"wrap-around values (as long as they not too distant inbetween, see "
+"more specifically, ring) arithmetic to produce correct result even for "
+"wrap-around values (as long as they not too distant in between, see "
 "below). The function returns **signed** value in the range "
 "[*-TICKS_PERIOD/2* .. *TICKS_PERIOD/2-1*] (that's a typical range "
 "definition for two's-complement signed binary integers). If the result is"
@@ -19196,7 +19204,7 @@ msgid ""
 "avoid this mistake, just look at the clock regularly. Your application "
 "should do the same. \"Too long sleep\" metaphor also maps directly to "
 "application behaviour: don't let your application run any single task for"
-" too long. Run tasks in steps, and do time-keeping inbetween."
+" too long. Run tasks in steps, and do time-keeping in between."
 msgstr ""
 "上記の制約の形式的でない理論的根拠: 部屋に閉じ込められていて、普通の１２時間式の時計"
 "以外に時間の経過を調べる手段がないとします。ある時刻をチェックした後、１３時間経過する"
@@ -21221,7 +21229,7 @@ msgstr ""
 #: ../../library/zephyr.rst:34
 msgid ""
 "This function can only be accessed if ``CONFIG_THREAD_ANALYZER`` is "
-"configured for the port in ``zephyr/prj.conf``. For more infomation, see "
+"configured for the port in ``zephyr/prj.conf``. For more information, see "
 "documentation for Zephyr `thread analyzer "
 "<https://docs.zephyrproject.org/latest/guides/debug_tools/thread-"
 "analyzer.html#thread-analyzer>`_."
