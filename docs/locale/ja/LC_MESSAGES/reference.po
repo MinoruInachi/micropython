@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-29 11:38+0900\n"
-"PO-Revision-Date: 2023-04-29 12:45+0900\n"
+"PO-Revision-Date: 2023-05-01 00:08+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -6159,11 +6159,11 @@ msgstr "最後にサブ raw コード要素が再帰的に保存されます。"
 
 #: ../../reference/packages.rst:4
 msgid "Package management"
-msgstr ""
+msgstr "パッケージ管理"
 
 #: ../../reference/packages.rst:7
 msgid "Installing packages with ``mip``"
-msgstr ""
+msgstr "``mip`` によるパッケージのインストール"
 
 #: ../../reference/packages.rst:9
 msgid ""
@@ -6171,6 +6171,9 @@ msgid ""
 "packages from :term:`micropython-lib` and from third-party sites "
 "(including GitHub)."
 msgstr ""
+"ネットワークに対応したボードでは :term:`micropython-lib` および GitHub を含む"
+"サードパーティのサイトからパッケージをインストールできる ``mip`` モジュールが"
+"あります。"
 
 #: ../../reference/packages.rst:12
 msgid ""
@@ -6180,10 +6183,14 @@ msgid ""
 "automatically fetch compiled :term:`.mpy file` when downloading from "
 "micropython-lib."
 msgstr ""
+"``mip`` (\"mip installs packages\")は、Python の pip ツールとコンセプトが"
+"同じものですが、PyPI インデックスを使わず、デフォルトのインデックスとして "
+":term:`micropython-lib` を使います。 ``mip`` は micropython-lib から"
+"ダウンロードする際に、コンパイルされた :term:`.mpy ファイル` を自動的に取得します。"
 
 #: ../../reference/packages.rst:17
 msgid "The most common way to use ``mip`` is from the REPL::"
-msgstr ""
+msgstr "``mip`` を使う最も一般的な方法は REPL からです::"
 
 #: ../../reference/packages.rst:19
 msgid ""
@@ -6195,6 +6202,13 @@ msgid ""
 ">>> mip.install(\"pkgname\", mpy=False)  # Installs the source version "
 "(i.e. .py rather than .mpy files)"
 msgstr ""
+">>> import mip\n"
+">>> mip.install(\"pkgname\")  # \"pkgname\" (と依存するもの)の最新バージョンを"
+"インストール\n"
+">>> mip.install(\"pkgname\", version=\"x.y\")  # \"pkgname\" のバージョン "
+"x.y をインストール\n"
+">>> mip.install(\"pkgname\", mpy=False)  # ソース版 "
+"(つまり .mpy ではなく .py ファイル)をインストール"
 
 #: ../../reference/packages.rst:24
 msgid ""
@@ -6203,6 +6217,10 @@ msgid ""
 "override the destination using ``target``, but note that this path must "
 "be in ``sys.path`` to be able to subsequently import it.::"
 msgstr ""
+"``mip`` は ``/lib`` で終わる最初のエントリを ``sys.path`` から検索することにより、"
+"ファイルシステム上のインストール場所を適切に検出します。 ``target`` を使って"
+"インストール場所を上書きすることもできますが、後でインポートできるようにするには"
+"上書きしたパスが ``sys.path`` にあるようにしておく必要があります::"
 
 #: ../../reference/packages.rst:29
 msgid ""
@@ -6216,6 +6234,9 @@ msgid ""
 "can also install third-party libraries. The simplest way is to download a"
 " file directly::"
 msgstr ""
+"``mip`` は micropython-lib インデックスからパッケージをダウンロードするだけでなく、"
+"サードパーティのライブラリもインストールできます。最も簡単な方法は、直接ファイルを"
+"ダウンロードすることです::"
 
 #: ../../reference/packages.rst:35
 msgid ""
@@ -6229,12 +6250,16 @@ msgid ""
 "supported to set the destination path, but ``mpy`` and ``version`` are "
 "ignored."
 msgstr ""
+"ファイルを直接インストールする場合でも ``target`` 引数をサポートしていますが、 "
+"``mpy`` と ``version`` 引数は無視します。"
 
 #: ../../reference/packages.rst:41
 msgid ""
 "The URL can also start with ``github:`` as a simple way of pointing to "
 "content hosted on GitHub::"
 msgstr ""
+"URL は ``github:`` で始めることもでき、GitHub でホストされたコンテンツを指すための"
+"簡単な方法です::"
 
 #: ../../reference/packages.rst:44
 msgid ""
@@ -6242,6 +6267,9 @@ msgid ""
 ">>> mip.install(\"github:org/repo/path/foo.py\", version=\"branch-or-"
 "tag\")  # Optionally specify the branch or tag"
 msgstr ""
+">>> mip.install(\"github:org/repo/path/foo.py\")  # デフォルトブランチを使用\n"
+">>> mip.install(\"github:org/repo/path/foo.py\", version=\"branch-or-"
+"tag\")  # ブランチまたはタグを指定するオプション"
 
 #: ../../reference/packages.rst:47
 msgid ""
@@ -6249,10 +6277,12 @@ msgid ""
 "dependencies) can be downloaded by specifying the path to their "
 "``package.json``."
 msgstr ""
+"より複雑なパッケージ(つまり、複数のファイルまたは依存関係を持つパッケージ)は、"
+"その ``package.json`` へのパスを指定することでダウンロードできます。"
 
 #: ../../reference/packages.rst:53
 msgid "If no json file is specified, then \"package.json\" is implicitly added::"
-msgstr ""
+msgstr "json ファイルが指定されていない場合、 \"package.json\" が暗黙的に追加されます。"
 
 #: ../../reference/packages.rst:55
 msgid ""
@@ -6263,13 +6293,15 @@ msgstr ""
 
 #: ../../reference/packages.rst:61
 msgid "Using ``mip`` on the Unix port"
-msgstr ""
+msgstr "Unixポートでの ``mip`` の使い方"
 
 #: ../../reference/packages.rst:63
 msgid ""
 "On the Unix port, ``mip`` can be used at the REPL as above, and also by "
 "using ``-m``::"
 msgstr ""
+"Unix ポートでは上記のように REPL で ``mip`` を使えます。"
+"また ``-m`` でも使えます::"
 
 #: ../../reference/packages.rst:65
 msgid ""
@@ -6282,6 +6314,7 @@ msgid ""
 "The ``--target=path``, ``--no-mpy``, and ``--index`` arguments can be "
 "set::"
 msgstr ""
+"``--target=path`` 、 ``--no-mpy`` 、 ``--index`` 引数を指定できます。"
 
 #: ../../reference/packages.rst:70
 msgid ""
@@ -6292,7 +6325,7 @@ msgstr ""
 
 #: ../../reference/packages.rst:75
 msgid "Installing packages with ``mpremote``"
-msgstr ""
+msgstr "``mpremote`` を使ったパッケージのインストール"
 
 #: ../../reference/packages.rst:77
 msgid ""
@@ -6300,6 +6333,9 @@ msgid ""
 " and can be used from a host PC to install packages to a locally "
 "connected device (e.g. via USB or UART)::"
 msgstr ""
+":term:`mpremote` ツールには ``mip`` と同様の機能があり、"
+"ホストPCからローカルに(USB または UART などで)接続されたデバイスに"
+"パッケージをインストールするために使えます::"
 
 #: ../../reference/packages.rst:81
 msgid ""
@@ -6319,7 +6355,7 @@ msgstr ""
 
 #: ../../reference/packages.rst:94
 msgid "Installing packages manually"
-msgstr ""
+msgstr "手動でのパッケージのインストール"
 
 #: ../../reference/packages.rst:96
 msgid ""
@@ -6328,10 +6364,14 @@ msgid ""
 " USB Mass Storage, the :term:`mpremote` tool (e.g. ``mpremote fs cp "
 "path/to/package.py :package.py``), :term:`webrepl`, etc."
 msgstr ""
+"パッケージのインストールは、(.py または .mpy 形式のいずれかの)ファイルを手動で"
+"デバイスにコピーすることでも可能です。ボードによって、USB Mass Storage 、"
+":term:`mpremote` ツール(たとえば ``mpremote fs cp path/to/package.py "
+":package.py``)、 :term:`webrepl` などを介してコピーできます。"
 
 #: ../../reference/packages.rst:102
 msgid "Writing & publishing packages"
-msgstr ""
+msgstr "パッケージの作成と公開"
 
 #: ../../reference/packages.rst:104
 msgid ""
@@ -6340,6 +6380,10 @@ msgid ""
 "available via ``mip`` and ``mpremote`` and compiled to bytecode. See "
 "https://github.com/micropython/micropython-lib for more information."
 msgstr ""
+":term:`micropython-lib` に公開することは、MicroPython ユーザーに広くアクセス"
+"可能にする最も簡単な方法であり、 ``mip`` や ``mpremote`` から自動的に利用可能になり、"
+"バイトコードにコンパイルされます。詳細については "
+"https://github.com/micropython/micropython-lib を参照してください。"
 
 #: ../../reference/packages.rst:109
 msgid ""
@@ -6347,10 +6391,13 @@ msgid ""
 "``mpremote``, you need a static webserver (or GitHub) to host either a "
 "single .py file, or a package.json file alongside your .py files."
 msgstr ""
+"``mip`` または ``mpremote`` からダウンロードできる \"self-hosted\" パッケージを"
+"作成するには、静的Webサーバー(または GitHub)を用意して、単一の .py ファイル、"
+"または複数の .py ファイルと一緒にした package.json ファイルをホストする必要があります。"
 
 #: ../../reference/packages.rst:113
 msgid "A typical package.json for an example ``mlx90640`` library looks like::"
-msgstr ""
+msgstr "たとえば ``mlx90640`` ライブラリの典型的な package.json は次のようになります::"
 
 #: ../../reference/packages.rst:115
 msgid ""
@@ -6376,10 +6423,14 @@ msgid ""
 "It depends on ``collections-defaultdict`` and ``os-path`` which will be "
 "installed automatically."
 msgstr ""
+"この例では、2つのファイルが GitHubリポジトリ ``org/micropython-mlx90640`` で"
+"ホストされていて、デバイス上の ``mlx90640`` ディレクトリにインストールされます。"
+"依存関係にある ``collections-defaultdict`` と ``os-path`` は自動的に"
+"インストールされます。"
 
 #: ../../reference/packages.rst:133
 msgid "Freezing packages"
-msgstr ""
+msgstr "パッケージの凍結"
 
 #: ../../reference/packages.rst:135
 msgid ""
@@ -6388,6 +6439,10 @@ msgid ""
 "VM. For a :term:`.mpy file`, this conversion has been done already, but "
 "the bytecode still ends up in RAM."
 msgstr ""
+"Python のモジュールやパッケージをデバイスのファイルシステムからインポートすると、"
+"VMで実行できるように RAM 上で :term:`バイトコード <bytecode>` にコンパイルされます。 "
+":term:`.mpy ファイル` の場合、この変換はすでに行われていますが、"
+"それでもバイトコードは RAM 上にあります。"
 
 #: ../../reference/packages.rst:140
 msgid ""
@@ -6398,6 +6453,10 @@ msgid ""
 "(although importing is faster), but it can free up significant amounts of"
 " RAM for your program to use."
 msgstr ""
+"小メモリのデバイスや大規模なアプリケーションでは、バイトコードを ROM (フラッシュメモリ)"
+"から実行する方が有利です。これは、バイトコードを MicroPython ファームウェアに「凍結」"
+"してから、デバイスにフラッシュすることで実現できます。ランタイムパフォーマンスは同じです"
+"が(ただし、インポートはより高速です)、プログラムが使う RAM を大幅に解放できます。"
 
 #: ../../reference/packages.rst:147
 msgid ""
@@ -6405,6 +6464,9 @@ msgid ""
 "because you have to flash the firmware each time, but it can be still "
 "useful to freeze dependencies that don't change often."
 msgstr ""
+"このアプローチの欠点は、パッケージを変更たびにファームウェアをフラッシュしなければなら"
+"ないので開発がはるかに遅くなることですが、頻繁に変更されない依存パッケージを凍結する"
+"ことは依然として有用です。"
 
 #: ../../reference/packages.rst:151
 msgid ""
@@ -6412,6 +6474,8 @@ msgid ""
 "often as part of a custom board definition. See the :ref:`manifest` guide"
 " for more information."
 msgstr ""
+"マニフェストファイルを作成して、それをビルドで使うことで、通常はカスタムボード定義の"
+"一部として凍結を行います。詳細については :ref:`manifest` のガイドを参照してください。"
 
 #: ../../reference/pyboard.py.rst:4
 msgid "The pyboard.py tool"
