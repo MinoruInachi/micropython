@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-02 09:52+0900\n"
-"PO-Revision-Date: 2023-05-13 16:27+0900\n"
+"POT-Creation-Date: 2023-05-13 17:01+0900\n"
+"PO-Revision-Date: 2023-05-13 17:56+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -833,7 +833,7 @@ msgid ""
 "**milli**\\ seconds. The default interval and window are 1.28 seconds and"
 " 11.25 milliseconds respectively (background scanning)."
 msgstr ""
-"オプションでデューティサイクル(duty cycle)を設定するには *interval_us* と "
+"オプションでデューティ比(duty cycle)を設定するには *interval_us* と "
 "*window_us* を使います。スキャナは全体の *duration_ms* **ミリ**\\ 秒の間の "
 "*interval_us* **マイクロ**\\ 秒毎に *window_us* **マイクロ**\\ 秒間実行します。 "
 "*interval_us* と *window_us* のデフォルト値はそれぞれ 1.28 と 11.25 です"
@@ -3018,7 +3018,7 @@ msgid ""
 "per *idle_level*)."
 msgstr ""
 "伝送キャリア機能を有効にするには、 *tx_carrier* 引数に３項目の整数値のタプルを指定します。"
-"３項目はそれぞれキャリア周波数、デューイ比(``0`` から ``100`` で指定)、キャリアを適用"
+"３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
 #: ../../library/esp32.rst:217
@@ -3569,7 +3569,7 @@ msgid ""
 "reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_."
 msgstr ""
 "*rate*: (ESP32のみ、IDF>=4.3.0のみ) espnowパケットの送信速度を設定します。"
-`wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
+"`enum wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
 "idf/en/v4.4.1/esp32/ api-"
 "reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_ "
 "列挙値のいずれかに設定する必要があります。"
@@ -7963,7 +7963,8 @@ msgstr "このクラスはパルス幅変調出力を提供します。"
 msgid ""
 "from machine import PWM\n"
 "\n"
-"pwm = PWM(pin)          # create a PWM object on a pin\n"
+"pwm = PWM(pin, freq=50, duty_u16=8192)  # create a PWM object on a pin\n"
+"                                        # and set freq and duty\n"
 "pwm.duty_u16(32768)     # set duty to 50%\n"
 "\n"
 "# reinitialise with a period of 200us, duty of 5us\n"
@@ -7975,22 +7976,24 @@ msgid ""
 msgstr ""
 "from machine import PWM\n"
 "\n"
+"pwm = PWM(pin, freq=50, duty_u16=8192)  # ピンの PWM オブジェクトを作成し、\n"
+"                                        # 周波数とパルス幅を設定\n"
 "pwm = PWM(pin)          # 指定のピンの PWM オブジェクトを作成\n"
 "pwm.duty_u16(32768)     # パルス幅を 50% に設定\n"
 "\n"
 "# 200us の周期、デューティ比を 5us で再初期化\n"
 "pwm.init(freq=5000, duty_ns=5000)\n"
 "\n"
-"pwm.duty_ns(3000)       # 3us のパルス幅を設定\n"
+"pwm.duty_ns(3000)       # 3us のデューティ比を設定\n"
 "\n"
 "pwm.deinit()"
 
-#: ../../library/machine.PWM.rst:28
+#: ../../library/machine.PWM.rst:29
 msgid "Construct and return a new PWM object using the following parameters:"
 msgstr ""
 "次のパラメータを使って、新しい PWM オブジェクトを構築して返します:"
 
-#: ../../library/machine.PWM.rst:30
+#: ../../library/machine.PWM.rst:31
 msgid ""
 "*dest* is the entity on which the PWM is output, which is usually a "
 ":ref:`machine.Pin <machine.Pin>` object, but a port may allow other "
@@ -7999,33 +8002,38 @@ msgstr ""
 "*dest* は PWM が出力される実体であり、通常は :ref:`machine.Pin <machine.Pin>` "
 "オブジェクトですが、ポートによっては整数など他の値を使える場合があります。"
 
-#: ../../library/machine.PWM.rst:33
+#: ../../library/machine.PWM.rst:34
 msgid ""
 "*freq* should be an integer which sets the frequency in Hz for the PWM "
 "cycle."
 msgstr ""
 "*freq* は PWM サイクルの周波数を Hz 単位で設定する整数です。"
 
-#: ../../library/machine.PWM.rst:35
-msgid "*duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65535``."
-msgstr "*duty_u16* はパルス幅を ``duty_u16 / 65535`` の比率で設定します。"
-
 #: ../../library/machine.PWM.rst:36
+msgid "*duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65535``."
+msgstr "*duty_u16* はデューティ比を ``duty_u16 / 65535`` の比率で設定します。"
+
+#: ../../library/machine.PWM.rst:37
 msgid "*duty_ns* sets the pulse width in nanoseconds."
-msgstr "*duty_ns* はパルス幅をナノ秒単位で設定します。
+msgstr "*duty_ns* はデューティ比をナノ秒単位で設定します。
 
 #: ../../library/machine.PWM.rst:38
+msgid "*invert*  inverts the respective output if the value is True"
+msgstr "*invert* に True を指定すると、それぞれの出力を反転させます。"
+
+#: ../../library/machine.PWM.rst:40
 msgid ""
 "Setting *freq* may affect other PWM objects if the objects share the same"
 " underlying PWM generator (this is hardware specific). Only one of "
-"*duty_u16* and *duty_ns* should be specified at a time."
+"*duty_u16* and *duty_ns* should be specified at a time. *invert* is not "
+"available at all ports."
 msgstr ""
 "オブジェクトが同じ基盤の PWM ジェネレーターを共有している場合に "
 "*freq* を設定すると他の PWM オブジェクトに影響を与える可能性があります"
 "(これはハードウェアによります)。一度に指定する必要があるのは *duty_u16 * と "
-"*duty_ns* のいずれか１つだけです。"
+"*duty_ns* のいずれか１つだけです。 *invert* については指定できないポートがあります。"
 
-#: ../../library/machine.PWM.rst:47
+#: ../../library/machine.PWM.rst:50
 msgid ""
 "Modify settings for the PWM object.  See the above constructor for "
 "details about the parameters."
@@ -8033,19 +8041,19 @@ msgstr ""
 "PWM オブジェクトの設定を変更します。パラメータの詳細については、"
 "上記のコンストラクタを参照してください。"
 
-#: ../../library/machine.PWM.rst:52
+#: ../../library/machine.PWM.rst:55
 msgid "Disable the PWM output."
 msgstr "PWM 出力を無効にします。"
 
-#: ../../library/machine.PWM.rst:56
+#: ../../library/machine.PWM.rst:59
 msgid "Get or set the current frequency of the PWM output."
 msgstr "PWM 出力の現在の周波数を取得または設定します。"
 
-#: ../../library/machine.PWM.rst:58
+#: ../../library/machine.PWM.rst:61
 msgid "With no arguments the frequency in Hz is returned."
 msgstr "引数がない場合、Hz 単位の周波数が返されます。"
 
-#: ../../library/machine.PWM.rst:60
+#: ../../library/machine.PWM.rst:63
 msgid ""
 "With a single *value* argument the frequency is set to that value in Hz."
 "  The method may raise a ``ValueError`` if the frequency is outside the "
@@ -8054,46 +8062,46 @@ msgstr ""
 "単一 *value* 引数を指定すると、周波数が指定の値に Hz 単位で設定されます。 "
 "周波数が有効範​​囲外の場合、メソッドは ``ValueError`` 例外を発生します。"
 
-#: ../../library/machine.PWM.rst:65
+#: ../../library/machine.PWM.rst:68
 msgid ""
 "Get or set the current duty cycle of the PWM output, as an unsigned "
 "16-bit value in the range 0 to 65535 inclusive."
 msgstr ""
-"PWM 出力の現在のパルス幅を、0〜65535 の範囲の符号なし16ビット値として"
+"PWM 出力の現在のデューティ比を、0〜65535 の範囲の符号なし16ビット値として"
 "取得または設定します。"
 
-#: ../../library/machine.PWM.rst:68
+#: ../../library/machine.PWM.rst:71
 msgid "With no arguments the duty cycle is returned."
-msgstr "引数がない場合、パルス幅が返されます。"
+msgstr "引数がない場合、デューティ比が返されます。"
 
-#: ../../library/machine.PWM.rst:70
+#: ../../library/machine.PWM.rst:73
 msgid ""
 "With a single *value* argument the duty cycle is set to that value, "
 "measured as the ratio ``value / 65535``."
 msgstr ""
-"単一の *value* 引数を指定すると、パルス幅が ``value / 65535`` の比率"
+"単一の *value* 引数を指定すると、デューティ比が ``value / 65535`` の比率"
 "として測定されます。"
 
-#: ../../library/machine.PWM.rst:75
+#: ../../library/machine.PWM.rst:78
 msgid ""
 "Get or set the current pulse width of the PWM output, as a value in "
 "nanoseconds."
 msgstr ""
 "PWM 出力の現在のパルス幅をナノ秒単位の値として取得または設定します。"
 
-#: ../../library/machine.PWM.rst:77
+#: ../../library/machine.PWM.rst:80
 msgid "With no arguments the pulse width in nanoseconds is returned."
 msgstr "引数がない場合、ナノ秒単位のパルス幅が返されます。"
 
-#: ../../library/machine.PWM.rst:79
+#: ../../library/machine.PWM.rst:82
 msgid "With a single *value* argument the pulse width is set to that value."
 msgstr "単一の *value* 引数を指定すると、パルス幅が指定の値に設定されます。"
 
-#: ../../library/machine.PWM.rst:82
+#: ../../library/machine.PWM.rst:85
 msgid "Specific PWM class implementations"
 msgstr "特定の PWM クラス実装"
 
-#: ../../library/machine.PWM.rst:84
+#: ../../library/machine.PWM.rst:87
 msgid "The following concrete class(es) implement enhancements to the PWM class."
 msgstr "次の具象クラスは PWM クラスに拡張を実装しでいます。"
 
@@ -8101,11 +8109,11 @@ msgstr "次の具象クラスは PWM クラスに拡張を実装しでいます�
 msgid ":ref:`pyb.Timer for PyBoard <pyb.Timer>`"
 msgstr ":ref:`PyBoard の pyb.Timer <pyb.Timer>`"
 
-#: ../../library/machine.PWM.rst:82
+#: ../../library/machine.PWM.rst:92
 msgid "Limitations of PWM"
 msgstr "PWM の制限"
 
-#: ../../library/machine.PWM.rst:84
+#: ../../library/machine.PWM.rst:94
 msgid ""
 "Not all frequencies can be generated with absolute accuracy due to the "
 "discrete nature of the computing hardware.  Typically the PWM frequency "
@@ -8125,7 +8133,20 @@ msgstr ""
 "分周器が 266 に設定されている場合、PWM周波数は 80000000 / 266 = 300751.9 Hz "
 "になり、これも 300kHzにはなりません。"
 
-#: ../../library/machine.PWM.rst:93
+#: ../../library/machine.PWM.rst:103
+msgid ""
+"Some ports like the RP2040 one use a fractional divider, which allow a "
+"finer granularity of the frequency at higher frequencies by switching the"
+" PWM pulse duration between two adjacent values, such that the resulting "
+"average frequency is more close to the intended one, at the cost of "
+"spectral purity."
+msgstr ""
+"RP2040 のような一部のポートでは、分数ディバイダを使用しています。これにより、"
+"高い周波数での細かい粒度の周波数が実現できます。これは、PWM パルスの持続時間を"
+"隣接する2つの値の間で切り替えることにより、平均周波数を意図した周波数により"
+"近づけることができますが、その代わりにスペクトルの純度が低下します。"
+
+#: ../../library/machine.PWM.rst:108
 msgid ""
 "The duty cycle has the same discrete nature and its absolute accuracy is "
 "not achievable.  On most hardware platforms the duty will be applied at "
@@ -8133,10 +8154,10 @@ msgid ""
 "\"1/frequency\" before measuring the duty."
 msgstr ""
 "デューティ比も同様に離散的な性質を持っており、その絶対精度は達成できません。"
-"ほとんどのハードウェアプラットフォームでは、デューティは次の周波数期に適用されます。"
-"したがって、デューティを測定する前に「1/周波数」以上待つ必要があります。"
+"ほとんどのハードウェアプラットフォームではデューティ比は次の周波数期に適用されます。"
+"したがって、デューティ比を測定する前に「1/周波数」以上待つ必要があります。"
 
-#: ../../library/machine.PWM.rst:98
+#: ../../library/machine.PWM.rst:113
 msgid ""
 "The frequency and the duty cycle resolution are usually interdependent. "
 "The higher the PWM frequency the lower the duty resolution which is "
@@ -8145,23 +8166,23 @@ msgid ""
 "case, the lowest 8 bits of *duty_u16* are insignificant. So::"
 msgstr ""
 "周波数とデューティ比の分解能は通常、相互に依存しています。PWM 周波数が高いほど、"
-"使用可能なデューティ分解能は低くなり、その逆も同様です。たとえば、300kHz の PWM "
+"使用可能なデューティ比分解能は低くなり、その逆も同様です。たとえば、300kHz の PWM "
 "周波数は、予想される 16 ビットではなく、8 ビットのデューティ比分解能を持てます。"
 "この場合、 *duty_u16* の下位8ビットは重要ではありません。したがって、"
 
-#: ../../library/machine.PWM.rst:104
+#: ../../library/machine.PWM.rst:119
 msgid "pwm=PWM(Pin(13), freq=300_000, duty_u16=2**16//2)"
 msgstr ""
 
-#: ../../library/machine.PWM.rst:106
+#: ../../library/machine.PWM.rst:121
 msgid "and::"
 msgstr "と"
 
-#: ../../library/machine.PWM.rst:108
+#: ../../library/machine.PWM.rst:123
 msgid "pwm=PWM(Pin(13), freq=300_000, duty_u16=2**16//2 + 255)"
 msgstr ""
 
-#: ../../library/machine.PWM.rst:110
+#: ../../library/machine.PWM.rst:125
 #, python-format
 msgid "will generate PWM with the same 50% duty cycle."
 msgstr "は、同じ 50％ のデューティ比で PWM を生成します。"
@@ -12206,6 +12227,41 @@ msgstr ""
 #: ../../library/network.WLAN.rst:135
 msgid "Maximum transmit power in dBm (integer or float)"
 msgstr "最大信号強度(dBm 単位で整数または浮動小数点数で指定)"
+
+#: ../../library/network.WLAN.rst:136
+msgid "pm"
+msgstr ""
+
+#: ../../library/network.WLAN.rst:136
+msgid "WiFi Power Management setting (see below for allowed values)"
+msgstr "WiFi 電力管理設定(指定できる値は後述)"
+
+#: ../../library/network.WLAN.rst:146
+msgid ""
+"Allowed values for the ``WLAN.config(pm=...)`` network interface "
+"parameter:"
+msgstr ""
+"``WLAN.config(pm=...)`` ネットワークインタフェースパラメータに指定できる値:"
+
+#: ../../library/network.WLAN.rst:148
+msgid ""
+"``PM_PERFORMANCE``: enable WiFi power management to balance power savings"
+" and WiFi performance"
+msgstr ""
+"``PM_PERFORMANCE``: WiFi の電力管理を有効にし、電力の節約と WiFi の"
+"パフォーマンスをバランスさせます。"
+
+#: ../../library/network.WLAN.rst:150
+msgid ""
+"``PM_POWERSAVE``: enable WiFi power management with additional power "
+"savings and reduced WiFi performance"
+msgstr ""
+"``PM_POWERSAVE``: WiFi の電力管理を有効にし、電力節約を優先して、WiFi の"
+"パフォーマンス低下させます。"
+
+#: ../../library/network.WLAN.rst:152
+msgid "``PM_NONE``: disable wifi power management"
+msgstr "``PM_NONE``: WiFi の電力管理を無効にします。"
 
 #: ../../library/network.WLANWiPy.rst:5
 msgid "class WLANWiPy -- WiPy specific WiFi control"
