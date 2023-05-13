@@ -64,7 +64,7 @@ cpydiff:
 	# cd $(CPYDIFFDIR) && $(PYTHON) $(CPYDIFF)
 
 html: cpydiff
-	$(SPHINXBUILD) $(FORCE) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	MICROPY_VERSION=1.20ja $(SPHINXBUILD) $(FORCE) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
