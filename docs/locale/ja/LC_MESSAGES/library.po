@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2022,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2023,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-13 17:01+0900\n"
-"PO-Revision-Date: 2023-05-13 17:56+0900\n"
+"POT-Creation-Date: 2023-05-21 11:08+0900\n"
+"PO-Revision-Date: 2023-05-21 16:05+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3154,31 +3154,47 @@ msgstr ""
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:284
+#: ../../library/esp32.rst:282
+msgid ""
+"This class gives access to the Ultra Low Power (ULP) co-processor on the "
+"ESP32, ESP32-S2 and ESP32-S3 chips."
+msgstr ""
+"このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
+"(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
+
+#: ../../library/esp32.rst:287
+msgid ""
+"This class does not provide access to the RISCV ULP co-processor "
+"available on the ESP32-S2 and ESP32-S3 chips."
+msgstr ""
+"このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
+"コプロセッサにアクセスできません。"
+
+#: ../../library/esp32.rst:292
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:288
+#: ../../library/esp32.rst:296
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:292
+#: ../../library/esp32.rst:300
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:296
+#: ../../library/esp32.rst:304
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:305
+#: ../../library/esp32.rst:313
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:308
+#: ../../library/esp32.rst:316
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:310
+#: ../../library/esp32.rst:318
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -3192,7 +3208,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:317
+#: ../../library/esp32.rst:325
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -3201,14 +3217,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:322
+#: ../../library/esp32.rst:330
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:327
+#: ../../library/esp32.rst:335
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -3216,7 +3232,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:331
+#: ../../library/esp32.rst:339
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -3224,7 +3240,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:336
+#: ../../library/esp32.rst:344
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -3237,7 +3253,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:343
+#: ../../library/esp32.rst:351
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -3249,11 +3265,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:349
+#: ../../library/esp32.rst:357
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:353
+#: ../../library/esp32.rst:361
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -3453,10 +3469,10 @@ msgstr ""
 
 #: ../../library/espnow.rst:113
 msgid ""
-"Initialise or de-initialise the ESPNow communication protocol depending "
+"Initialise or de-initialise the ESP-NOW communication protocol depending "
 "on the value of the ``flag`` optional argument."
 msgstr ""
-"オプション引数 ``flag`` の値に応じて、ESPNow 通信プロトコルを初期化または終了処理します。"
+"オプション引数 ``flag`` の値に応じて、ESP-NOW 通信プロトコルを初期化または終了処理します。"
 
 #: ../../library/espnow.rst:118
 msgid "*flag*: Any python value which can be converted to a boolean type."
@@ -3464,10 +3480,10 @@ msgstr "*flag*: ブール型に変換可能な任意のPython値。"
 
 #: ../../library/espnow.rst:120
 msgid ""
-"``True``: Prepare the software and hardware for use of the ESPNow "
+"``True``: Prepare the software and hardware for use of the ESP-NOW "
 "communication protocol, including:"
 msgstr ""
-"``True``: ESPNow 通信プロトコルを使えるようにソフトウェアとハードウェアを"
+"``True``: ESP-NOW 通信プロトコルを使えるようにソフトウェアとハードウェアを"
 "準備します。具体的には次のことを行います。"
 
 #: ../../library/espnow.rst:123
@@ -3488,11 +3504,11 @@ msgstr "送受信双方のコールバック登録"
 
 #: ../../library/espnow.rst:128
 msgid ""
-"``False``: De-initialise the Espressif ESPNow software stack "
+"``False``: De-initialise the Espressif ESP-NOW software stack "
 "(esp_now_deinit()), disable callbacks, deallocate the recv data buffer "
 "and deregister all peers."
 msgstr ""
-"``False``: Espressif ESPNow ソフトウェアスタックの終了処理(esp_now_deinit())、"
+"``False``: Espressif ESP-NOW ソフトウェアスタックの終了処理(esp_now_deinit())、"
 "コールバック無効化、受信データバッファ解放、すべてのピアの登録解除をします。"
 
 #: ../../library/espnow.rst:132
@@ -3552,23 +3568,23 @@ msgstr ""
 #: ../../library/espnow.rst:162
 msgid ""
 "*timeout_ms*: (default=300,000) Default timeout (in milliseconds) for "
-"receiving ESPNOW messages. If *timeout_ms* is less than zero, then wait "
+"receiving ESPNow messages. If *timeout_ms* is less than zero, then wait "
 "forever. The timeout can also be provided as arg to "
 "`recv()`/`irecv()`/`recvinto()`."
 msgstr ""
-"*timeout_ms*: (デフォルト=300,000) ESPNOWメッセージを受信するためのデフォルトの"
+"*timeout_ms*: (デフォルト=300,000) ESPNowメッセージを受信するためのデフォルトの"
 "タイムアウト値(ミリ秒単位)。 *timeout_ms* が負の値の場合は無期限に待機します。"
 "タイムアウトは `recv()`/`irecv()`/`recvinto()` の引数としても指定できます。"
 
 #: ../../library/espnow.rst:167
 msgid ""
 "*rate*: (ESP32 only, IDF>=4.3.0 only) Set the transmission speed for "
-"espnow packets. Must be set to a number from the allowed numeric values "
+"ESPNow packets. Must be set to a number from the allowed numeric values "
 "in `enum wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
 "idf/en/v4.4.1/esp32/ api-"
 "reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_."
 msgstr ""
-"*rate*: (ESP32のみ、IDF>=4.3.0のみ) espnowパケットの送信速度を設定します。"
+"*rate*: (ESP32のみ、IDF>=4.3.0のみ) ESPNow パケットの送信速度を設定します。"
 "`enum wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
 "idf/en/v4.4.1/esp32/ api-"
 "reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_ "
@@ -3718,8 +3734,8 @@ msgstr "パラメータの値が不正な場合は ``ValueError()`` が発生。
 msgid ""
 "**Note**: A peer will respond with success if its wifi interface is "
 "`active()<network.WLAN.active>` and set to the same channel as the "
-"sender, regardless of whether it has initialised it's ESP-Now system or "
-"is actively listening for ESP-Now traffic (see the Espressif ESP-Now "
+"sender, regardless of whether it has initialised it's ESP-NOW system or "
+"is actively listening for ESP-NOW traffic (see the Espressif ESP-NOW "
 "docs)."
 msgstr ""
 "**注記:** ピアが ESP-NOW システムを初期化したか、ESP-NOW トラフィックをアクティブに"
@@ -3959,28 +3975,39 @@ msgstr "ピア管理"
 
 #: ../../library/espnow.rst:386
 msgid ""
-"The Espressif ESP-Now software requires that other devices (peers) must "
-"be *registered* before we can `send()<ESPNow.send()>` them messages. It "
-"is **not** necessary to *register* a peer to receive a message from that "
-"peer."
+"On ESP32 devices, the Espressif ESP-NOW software requires that other "
+"devices (peers) must be *registered* using `add_peer()` before we can "
+"`send()<ESPNow.send()>` them messages (this is *not* enforced on ESP8266 "
+"devices). It is **not** necessary to register a peer to receive an un-"
+"encrypted message from that peer."
 msgstr ""
-"Espressif ESP-Now ソフトウェアでは、メッセージを `send()<ESPNow.send()>` する"
-"前に相手のデバイス(ピア)を登録する必要があります。ピアからメッセージを受信する場合に、"
-"ピアを *登録* する必要は **ありません** 。"
+"ESP32デバイスでは、Espressif ESP-NOW ソフトウェアがメッセージを "
+"`send()<ESPNow.send()>` する前に相手のデバイス(ピア)を `add_peer()` で *登録* "
+"しておく必要があります(これは、ESP8266 デバイスでは強制 *されません* )。"
+"ピアから暗号化されていないメッセージを受信するのであれば、ピアの登録は *要りません* 。"
 
 #: ../../library/espnow.rst:392
 msgid ""
-"Set the Primary Master Key (PMK) which is used to encrypt the Local "
-"Master Keys (LMK) for encrypting ESPNow data traffic. If this is not set,"
-" a default PMK is used by the underlying Espressif esp_now software "
-"stack."
+"**Encrypted messages**: To receive an *encrypted* message, the receiving "
+"device must first register the sender and use the same encryption keys as"
+" the sender (PMK and LMK) (see `set_pmk()` and `add_peer()`."
 msgstr ""
-"ESPNow データトラフィックを暗号化するために使うローカルマスターキー(Local Master "
-"Key: LMK)を暗号化するためのプライマリーマスターキー(Primary Master Key: PMK)を"
-"設定します。これが設定されていない場合、基盤となる Espressif esp_now ソフトウェア"
-"スタックではデフォルトの PMK を使います。"
+"**暗号化されたメッセージ**: 暗号化されたメッセージを受信するには、"
+"受信側のデバイスがまず送信者を登録し、送信者と同じ暗号化キー(PMKとLMK)を"
+"使う必要があります(`set_pmk()` と `add_peer()` を参照。"
 
-#: ../../library/espnow.rst:396
+#: ../../library/espnow.rst:398
+msgid ""
+"Set the Primary Master Key (PMK) which is used to encrypt the Local "
+"Master Keys (LMK) for encrypting messages. If this is not set, a default "
+"PMK is used by the underlying Espressif ESP-NOW software stack."
+msgstr ""
+"メッセージ暗号化のためのローカルマスターキー(LMK: Local Master Key)を"
+"暗号化するのに使うプライマリマスターキー(PMK: Primary Master Key)を設定します。"
+"設定しない場合、Espressif ESP-NOW ソフトウェアスタックによってデフォルトの PMK "
+"が使われます。"
+
+#: ../../library/espnow.rst:402
 msgid ""
 "**Note:** messages will only be encrypted if *lmk* is also set in "
 "`ESPNow.add_peer()` (see `Security <https://docs.espressif.com/projects"
@@ -3993,7 +4020,7 @@ msgstr ""
 "/esp-idf/en/latest/ esp32/api-reference/network/esp_now.html#security>`_ "
 "を参照)。"
 
-#: ../../library/espnow.rst:404
+#: ../../library/espnow.rst:410
 msgid ""
 "*pmk*: Must be a byte string, bytearray or string of length "
 "`espnow.KEY_LEN` (16 bytes)."
@@ -4001,27 +4028,29 @@ msgstr ""
 "*pmk*: `espnow.KEY_LEN` (16バイト)の長さのバイト列、bytearray、または文字列"
 "である必要があります。"
 
-#: ../../library/espnow.rst:409 ../../library/espnow.rst:474
+#: ../../library/espnow.rst:415 ../../library/espnow.rst:481
 msgid "``None``"
 msgstr ""
 
-#: ../../library/espnow.rst:413
+#: ../../library/espnow.rst:419
 msgid "``ValueError()`` on invalid *pmk* values."
 msgstr "*pmk* 値が不正な場合、 ``ValueError(）`` が発生。"
 
-#: ../../library/espnow.rst:418
+#: ../../library/espnow.rst:424
 msgid ""
 "Add/register the provided *mac* address as a peer. Additional parameters "
-"may also be specified as positional or keyword arguments:"
+"may also be specified as positional or keyword arguments (any parameter "
+"set to ``None`` will be set to it's default value):"
 msgstr ""
 "指定した MAC アドレスをピアとして追加/登録します。"
-"追加のパラメータを位置引数またはキーワード引数として指定することもできます。"
+"追加のパラメータを位置引数またはキーワード引数として指定することもできます"
+"(パラメータに ``None`` を指定するとデフォルト値が適用されます)。"
 
-#: ../../library/espnow.rst:423
+#: ../../library/espnow.rst:430
 msgid "*mac*: The MAC address of the peer (as a 6-byte byte-string)."
 msgstr "*mac*: ピアのMACアドレス(6バイトのバイト列)。"
 
-#: ../../library/espnow.rst:425
+#: ../../library/espnow.rst:432
 msgid ""
 "*lmk*: The Local Master Key (LMK) key used to encrypt data transfers with"
 " this peer (unless the *encrypt* parameter is set to ``False``). Must be:"
@@ -4030,14 +4059,14 @@ msgstr ""
 "(*encrypt* パラメータが ``False`` に設定されていない場合に限ります)。"
 "次のいずれかである必要があります。"
 
-#: ../../library/espnow.rst:429
+#: ../../library/espnow.rst:436
 msgid ""
 "a byte-string or bytearray or string of length ``espnow.KEY_LEN`` (16 "
 "bytes), or"
 msgstr ""
 "長さが ``espnow.KEY_LEN`` (16バイト)のバイト列、bytearray、または文字列"
 
-#: ../../library/espnow.rst:432
+#: ../../library/espnow.rst:439
 msgid ""
 "any non ``True`` python value (default= ``b''``), signifying an *empty* "
 "key which will disable encryption."
@@ -4045,7 +4074,7 @@ msgstr ""
 "``True`` 以外の任意のPython値(デフォルト= ``b''``)。"
 "これは暗号化を無効にする空のキーを示します。"
 
-#: ../../library/espnow.rst:435
+#: ../../library/espnow.rst:442
 msgid ""
 "*channel*: The wifi channel (2.4GHz) to communicate with this peer. Must "
 "be an integer from 0 to 14. If channel is set to 0 the current channel of"
@@ -4055,7 +4084,7 @@ msgstr ""
 "0 から 14 までの整数でなければなりません。チャネルが 0 に設定されている場合、"
 "WiFi デバイスの現在のチャネルが使用されます。(デフォルト=0)"
 
-#: ../../library/espnow.rst:439
+#: ../../library/espnow.rst:446
 msgid ""
 "*ifidx*: (ESP32 only) Index of the wifi interface which will be used to "
 "send data to this peer. Must be an integer set to ``network.STA_IF`` (=0)"
@@ -4067,19 +4096,21 @@ msgstr ""
 "された整数でなければなりません。(デフォルト=0/``network.STA_IF``)。"
 "詳細については、後述の `ESPNow and Wifi Operation`_ を参照してください。"
 
-#: ../../library/espnow.rst:445
+#: ../../library/espnow.rst:452
 msgid ""
 "*encrypt*: (ESP32 only) If set to ``True`` data exchanged with this peer "
-"will be encrypted with the PMK and LMK. (default = ``False``)"
+"will be encrypted with the PMK and LMK. (default = ``True`` if *lmk* is "
+"set to a valid key, else ``False``)"
 msgstr ""
 "*encrypt*: (ESP32 のみ) このピアと交換されるデータが PMK と LMK で暗号化されるように"
-"するには ``True`` に設定します。(デフォルト=``False``)"
+"するには ``True`` に設定します。(*lmk* に適正値が指定されていればデフォルトは "
+"``True`` 、さもなければ ``False``)"
 
-#: ../../library/espnow.rst:449
+#: ../../library/espnow.rst:456
 msgid "**ESP8266**: Keyword args may not be used on the ESP8266."
 msgstr "**ESP8266**: ESP8266 ではキーワード引数を指定できません。"
 
-#: ../../library/espnow.rst:451
+#: ../../library/espnow.rst:458
 msgid ""
 "**Note:** The maximum number of peers which may be registered is 20 "
 "(`espnow.MAX_TOTAL_PEER_NUM`), with a maximum of 6 "
@@ -4097,13 +4128,13 @@ msgstr ""
 "/esp-idf/en/latest/esp32/api-reference/network/ "
 "esp_now.html#c.ESP_NOW_MAX_ENCRYPT_PEER_NUM>`_ を参照)。"
 
-#: ../../library/espnow.rst:462
+#: ../../library/espnow.rst:469
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` if *mac* is already registered."
 msgstr ""
 "*mac* がすでに登録されている場合、 ``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:464
+#: ../../library/espnow.rst:471
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` if too many peers are already "
 "registered."
@@ -4111,29 +4142,29 @@ msgstr ""
 "登録するピアが多すぎる場合、 ``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:466
+#: ../../library/espnow.rst:473
 msgid "``ValueError()`` on invalid keyword args or values."
 msgstr "キーワード引数または値が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:470
+#: ../../library/espnow.rst:477
 msgid "Deregister the peer associated with the provided *mac* address."
 msgstr "指定した *mac* アドレスに関連付けられたピアを登録解除します。"
 
-#: ../../library/espnow.rst:479 ../../library/espnow.rst:495
+#: ../../library/espnow.rst:486 ../../library/espnow.rst:502
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if *mac* is not registered."
 msgstr ""
 "*mac* が登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:481 ../../library/espnow.rst:497
+#: ../../library/espnow.rst:488 ../../library/espnow.rst:504
 msgid "``ValueError()`` on invalid *mac* values."
 msgstr "*mac* が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:485
+#: ../../library/espnow.rst:492
 msgid "Return information on a registered peer."
 msgstr "登録されているピアに関する情報を返します。"
 
-#: ../../library/espnow.rst:489
+#: ../../library/espnow.rst:496
 msgid ""
 "``(mac, lmk, channel, ifidx, encrypt)``: a tuple of the \"peer info\" "
 "associated with the given *mac* address."
@@ -4141,73 +4172,91 @@ msgstr ""
 "``(mac, lmk, channel, ifidx, encrypt)``: 指定した *mac* アドレスに"
 "関連付けられた「ピア情報」のタプル。"
 
-#: ../../library/espnow.rst:501
+#: ../../library/espnow.rst:508
 msgid "Return the number of registered peers:"
 msgstr "登録されているピア数を返します:"
 
-#: ../../library/espnow.rst:503
+#: ../../library/espnow.rst:510
 msgid "``(peer_num, encrypt_num)``: where"
 msgstr "``(peer_num, encrypt_num)``:"
 
-#: ../../library/espnow.rst:505
+#: ../../library/espnow.rst:512
 msgid "``peer_num`` is the number of peers which are registered, and"
 msgstr "``peer_num`` は登録されているピア数。"
 
-#: ../../library/espnow.rst:506
+#: ../../library/espnow.rst:513
 msgid "``encrypt_num`` is the number of encrypted peers."
 msgstr "``encrypt_num`` は暗号化されたピア数。"
 
-#: ../../library/espnow.rst:510
+#: ../../library/espnow.rst:517
 msgid ""
 "Return the \"peer info\" parameters for all the registered peers (as a "
 "tuple of tuples)."
 msgstr ""
 "登録されているすべてのピアの「ピア情報」パラメータを(タプルのタプルとして)返します"。
 
-#: ../../library/espnow.rst:516
+#: ../../library/espnow.rst:523
 msgid ""
 "Modify the parameters of the peer associated with the provided *mac* "
 "address. Parameters may be provided as positional or keyword arguments "
-"(see `ESPNow.add_peer()`)."
+"(see `ESPNow.add_peer()`). Any parameter that is not set (or set to "
+"``None``) will retain the existing value for that parameter."
 msgstr ""
 "指定した *msc* アドレスに関連付けられたピアのパラメータを更新します。"
 "パラメータは位置引数またはキーワード引数として指定できます"
-"(`ESPNow.add_peer()` を参照)。"
+"(`ESPNow.add_peer()` を参照)。パラメータを指定しない場合(もしくは ``None`` を
+"指定した場合)、既存のパラメータ値を返します。"
 
-#: ../../library/espnow.rst:521
+#: ../../library/espnow.rst:529
 msgid "Callback Methods"
 msgstr "コールバックメソッド"
 
-#: ../../library/espnow.rst:525
+#: ../../library/espnow.rst:533
 msgid ""
 "Set a callback function to be called *as soon as possible* after a "
 "message has been received from another ESPNow device. The callback "
-"function will be called with the `ESPNow` instance object as an argument,"
-" eg: ::"
+"function will be called with the `ESPNow` instance object as an argument."
+" For more reliable operation, it is recommended to read out as many "
+"messages as are available when the callback is invoked and to set the "
+"read timeout to zero, eg: ::"
 msgstr ""
 "別の ESPNow デバイスからメッセージを受信した直後に呼び出されるコールバック関数を"
 "設定します。コールバック関数は `ESPNow` のインスタンスオブジェクトを引数として"
-"呼び出されます。たとえば、次のように使います::"
+"呼び出されます。"
+"より信頼性の高い運用のために、コールバックが呼び出されたときに利用可能な限り多くの"
+"メッセージを読み込み、読み込みのタイムアウトをゼロに設定することをお勧めします。"
+"たとえば、次のように使います::"
 
-#: ../../library/espnow.rst:529
+#: ../../library/espnow.rst:539
 msgid ""
 "def recv_cb(e):\n"
-"    print(e.irecv(0))\n"
+"    while True:  # Read out all messages waiting in the buffer\n"
+"        mac, msg = e.irecv(0)  # Don't wait if no messages left\n"
+"        if mac is None:\n"
+"            return\n"
+"        print(mac, msg)\n"
 "e.irq(recv_cb)"
 msgstr ""
+"def recv_cb(e):\n"
+"    while True:  # バッファで待機しているすべてのメッセージを読み込む\n"
+"        mac, msg = e.irecv(0)  # メッセージが残っていなければ待たない\n"
+"        if mac is None:\n"
+"            return\n"
+"        print(mac, msg)\n"
+"e.irq(recv_cb)"
 
-#: ../../library/espnow.rst:533
+#: ../../library/espnow.rst:547
 msgid ""
 "The `irq()<ESPNow.irq()>` callback method is an alternative method for "
-"processing incoming espnow messages, especially if the data rate is "
-"moderate and the device is *not too busy* but there are some caveats:"
+"processing incoming messages, especially if the data rate is moderate and"
+" the device is *not too busy* but there are some caveats:"
 msgstr ""
 "`irq()<ESPNow.irq()>` コールバックメソッドは、"
 "主にデータレートが適度でデバイスがあまり忙しくない場合に、"
-"着信した espnow メッセージを処理するための代替方法ですが、"
+"着信したメッセージを処理するための代替方法ですが、"
 "いくつかの注意点があります:"
 
-#: ../../library/espnow.rst:537
+#: ../../library/espnow.rst:551
 msgid ""
 "The scheduler stack *can* overflow and callbacks will be missed if "
 "packets are arriving at a sufficient rate or if other MicroPython "
@@ -4224,7 +4273,7 @@ msgstr ""
 "このメソッドは、メッセージのバースト処理や高スループット、"
 "他のハードウェア操作に忙しいデバイスの処理に対しては、信頼性が低い場合があります。"
 
-#: ../../library/espnow.rst:544
+#: ../../library/espnow.rst:558
 msgid ""
 "For more information on *scheduled* function callbacks see: "
 "`micropython.schedule()<micropython.schedule>`."
@@ -4233,23 +4282,23 @@ msgstr ""
 "`micropython.schedule()<micropython.schedule>` "
 "を参照してください。"
 
-#: ../../library/espnow.rst:559
+#: ../../library/espnow.rst:573
 msgid ""
-"If the underlying Espressif ESPNow software stack returns an error code, "
-"the MicroPython ESPNow module will raise an ``OSError(errnum, "
+"If the underlying Espressif ESP-NOW software stack returns an error code,"
+" the MicroPython espnow module will raise an ``OSError(errnum, "
 "errstring)`` exception where ``errstring`` is set to the name of one of "
-"the error codes identified in the `Espressif ESP-Now docs "
+"the error codes identified in the `Espressif ESP-NOW docs "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/ api-"
 "reference/network/esp_now.html#api-reference>`_. For example::"
 msgstr ""
-"Espressif ESPNow ソフトウェアスタックがエラーコードを返した場合、"
-"MicroPython ESPNow モジュールは ``OSError(errnum, errstring)`` 例外を"
-"発生させます。ここで、 ``errstring`` は `Espressif ESP-Now ドキュメント "
+"Espressif ESP-NOW ソフトウェアスタックがエラーコードを返した場合、"
+"MicroPython espnow モジュールは ``OSError(errnum, errstring)`` 例外を"
+"発生させます。ここで、 ``errstring`` は `Espressif ESP-NOW ドキュメント "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/ api-"
 "reference/network/esp_now.html#api-reference>`_ にある"
 "エラーコードの名前に設定されます。次に例を示します::"
 
-#: ../../library/espnow.rst:567
+#: ../../library/espnow.rst:581
 msgid ""
 "try:\n"
 "    e.send(peer, 'Hello')\n"
@@ -4266,11 +4315,11 @@ msgid ""
 "        raise err"
 msgstr ""
 
-#: ../../library/espnow.rst:582
+#: ../../library/espnow.rst:596
 msgid "Wifi Signal Strength (RSSI) - (ESP32 only)"
 msgstr "Wifi 信号強度 (RSSI) - (ESP32 のみ)"
 
-#: ../../library/espnow.rst:584
+#: ../../library/espnow.rst:598
 msgid ""
 "The ESPNow object maintains a **peer device table** which contains the "
 "signal strength and timestamp of the last received message from all "
@@ -4285,33 +4334,33 @@ msgstr ""
 "ピアデバイスのネットワーク内でデバイスの近接性を追跡し、 *最も近い隣接デバイス* "
 "を特定するために使えます。この機能は ESP8266 デバイスでは使えません。"
 
-#: ../../library/espnow.rst:592
+#: ../../library/espnow.rst:606
 msgid ""
 "A reference to the **peer device table**: a dict of known peer devices "
 "and rssi values::"
 msgstr ""
 "**ピアデバイステーブル** への参照: 既知のピアデバイスと RSSI 値の辞書です。"
 
-#: ../../library/espnow.rst:595
+#: ../../library/espnow.rst:609
 msgid "{peer: [rssi, time_ms], ...}"
 msgstr ""
 
-#: ../../library/espnow.rst:597
+#: ../../library/espnow.rst:611
 msgid "where:"
 msgstr "ここでの各項目は次のとおりです:"
 
-#: ../../library/espnow.rst:599
+#: ../../library/espnow.rst:613
 msgid "``peer`` is the peer MAC address (as `bytes`);"
 msgstr "``peer`` はピアの MAC アドレス(`bytes`)です。"
 
-#: ../../library/espnow.rst:600
+#: ../../library/espnow.rst:614
 msgid ""
 "``rssi`` is the wifi signal strength in dBm (-127 to 0) of the last "
 "message received from the peer; and"
 msgstr ""
 "``rssi`` はピアからの最新の受信メッセージの wifi 信号強度です(dBm: -127 から 0 の範囲)。"
 
-#: ../../library/espnow.rst:602
+#: ../../library/espnow.rst:616
 msgid ""
 "``time_ms`` is the time the message was received (in milliseconds since "
 "system boot - wraps every 12 days)."
@@ -4319,14 +4368,14 @@ msgstr ""
 "``time_ms`` はメッセージの受信時刻です(システム起動からのミリ秒単位の経過時間、"
 "12日ごとにラップ)。"
 
-#: ../../library/espnow.rst:607
+#: ../../library/espnow.rst:621
 msgid ""
 ">>> e.peers_table\n"
 "{b'\\xaa\\xaa\\xaa\\xaa\\xaa\\xaa': [-31, 18372],\n"
 " b'\\xbb\\xbb\\xbb\\xbb\\xbb\\xbb': [-43, 12541]}"
 msgstr ""
 
-#: ../../library/espnow.rst:611
+#: ../../library/espnow.rst:625
 msgid ""
 "**Note**: the ``mac`` addresses returned by `recv()` are references to "
 "the ``peer`` key values in the **peer device table**."
@@ -4334,7 +4383,7 @@ msgstr ""
 "**注記**: `recv()` によって返される ``mac`` アドレスは、"
 "ピアデバイステーブルのピアキーの値への参照です。"
 
-#: ../../library/espnow.rst:614
+#: ../../library/espnow.rst:628
 msgid ""
 "**Note**: RSSI and timestamp values in the device table are updated only "
 "when the message is read by the application."
@@ -4342,11 +4391,11 @@ msgstr ""
 "**注記**: デバイステーブル内の RSSI とタイムスタンプの値は、アプリケーションによって"
 "メッセージが読み取られたときにのみ更新されます。"
 
-#: ../../library/espnow.rst:618
+#: ../../library/espnow.rst:632
 msgid "Supporting asyncio"
 msgstr "asyncio のサポート"
 
-#: ../../library/espnow.rst:620
+#: ../../library/espnow.rst:634
 msgid ""
 "A supplementary module (`aioespnow`) is available to provide "
 ":doc:`asyncio<uasyncio>` support."
@@ -4354,7 +4403,7 @@ msgstr ""
 "追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<uasyncio>` を"
 "サポートします。"
 
-#: ../../library/espnow.rst:623
+#: ../../library/espnow.rst:637
 msgid ""
 "**Note:** Asyncio support is available on all ESP32 targets as well as "
 "those ESP8266 boards which include the asyncio module (ie. ESP8266 "
@@ -4365,11 +4414,11 @@ msgstr ""
 "(すなわち、少なくとも2MBのフラッシュメモリを持つ ESP8266 デバイス)"
 "でも使えます。"
 
-#: ../../library/espnow.rst:627
+#: ../../library/espnow.rst:641
 msgid "A small async server example::"
 msgstr "次は小さな非同期サーバーの例です::"
 
-#: ../../library/espnow.rst:629
+#: ../../library/espnow.rst:643
 msgid ""
 "import network\n"
 "import aioespnow\n"
@@ -4413,7 +4462,7 @@ msgid ""
 "asyncio.run(main(e, peer, 120, 10))"
 msgstr ""
 
-#: ../../library/espnow.rst:673
+#: ../../library/espnow.rst:687
 msgid ""
 "The `AIOESPNow` class inherits all the methods of `ESPNow<espnow.ESPNow>`"
 " and extends the interface with the following async methods."
@@ -4421,7 +4470,7 @@ msgstr ""
 "`AIOESPNow` クラスは `ESPNow<espnow.ESPNow>` のすべてのメソッドを継承し、"
 "以下の非同期メソッドでインタフェースを拡張します。"
 
-#: ../../library/espnow.rst:678
+#: ../../library/espnow.rst:692
 msgid ""
 "Asyncio support for `ESPNow.recv()`. Note that this method does not take "
 "a timeout value as argument."
@@ -4429,7 +4478,7 @@ msgstr ""
 "`ESPNow.recv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:683
+#: ../../library/espnow.rst:697
 msgid ""
 "Asyncio support for `ESPNow.irecv()`. Note that this method does not take"
 " a timeout value as argument."
@@ -4437,11 +4486,11 @@ msgstr ""
 "`ESPNow.irecv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:689
+#: ../../library/espnow.rst:703
 msgid "Asyncio support for `ESPNow.send()`."
 msgstr "`ESPNow.send()` の Asyncio サポート。"
 
-#: ../../library/espnow.rst:693
+#: ../../library/espnow.rst:707
 msgid ""
 "`AIOESPNow` also supports reading incoming messages by asynchronous "
 "iteration using ``async for``; eg::"
@@ -4449,7 +4498,7 @@ msgstr ""
 "`AIOESPNow` は、非同期イテレーションを使って受信メッセージを読み取るための "
 "Async for もサポートしています。例えば次のようにして使います::"
 
-#: ../../library/espnow.rst:696
+#: ../../library/espnow.rst:710
 msgid ""
 "e = AIOESPNow()\n"
 "e.active(True)\n"
@@ -4461,31 +4510,31 @@ msgid ""
 "asyncio.run(recv_till_halt(e))"
 msgstr ""
 
-#: ../../library/espnow.rst:706
+#: ../../library/espnow.rst:720
 msgid "Broadcast and Multicast"
 msgstr "ブロードキャストとマルチキャスト"
 
-#: ../../library/espnow.rst:708
+#: ../../library/espnow.rst:722
 msgid ""
-"All active ESP-Now clients will receive messages sent to their MAC "
-"address and all devices (**except ESP8266 devices**) will also receive "
-"messages sent to the *broadcast* MAC address "
+"All active ESPNow clients will receive messages sent to their MAC address"
+" and all devices (**except ESP8266 devices**) will also receive messages "
+"sent to the *broadcast* MAC address "
 "(``b'\\xff\\xff\\xff\\xff\\xff\\xff'``) or any multicast MAC address."
 msgstr ""
-"すべてのアクティブな ESP-Now クライアントは、自身の MAC アドレス宛てに送信された"
+"すべてのアクティブな ESPNow クライアントは、自身の MAC アドレス宛てに送信された"
 "メッセージを受信します。また、(ESP8266 デバイスを除く)すべてのデバイスは "
 "*ブロードキャスト* MAC アドレス(``b'\\xff\\xff\\xff\\xff\\xff\\xff'``)"
 "またはマルチキャスト MAC アドレス宛てに送信されたメッセージも受信します。"
 
-#: ../../library/espnow.rst:713
+#: ../../library/espnow.rst:727
 msgid ""
-"All ESP-Now devices (including ESP8266 devices) can also send messages to"
-" the broadcast MAC address or any multicast MAC address."
+"All ESPNow devices (including ESP8266 devices) can also send messages to "
+"the broadcast MAC address or any multicast MAC address."
 msgstr ""
-"すべての ESP-Now デバイス(ESP8266デバイスを含む)は、ブロードキャスト MAC アドレス"
+"すべての ESPNow デバイス(ESP8266デバイスを含む)は、ブロードキャスト MAC アドレス"
 "または任意のマルチキャスト MAC アドレスにもメッセージを送信できます。"
 
-#: ../../library/espnow.rst:716
+#: ../../library/espnow.rst:730
 msgid ""
 "To `send()<ESPNow.send()>` a broadcast message, the broadcast (or "
 "multicast) MAC address must first be registered using "
@@ -4502,7 +4551,7 @@ msgstr ""
 "ブロードキャストアドレスまたはマルチキャストアドレス宛てに送信されたメッセージは"
 "暗号化できません。"
 
-#: ../../library/espnow.rst:723
+#: ../../library/espnow.rst:737
 msgid ""
 "**Note**: `ESPNow.send(None, msg)<ESPNow.send()>` will send to all "
 "registered peers *except* the broadcast address. To send a broadcast or "
@@ -4514,18 +4563,18 @@ msgstr ""
 "送信するには、ブロードキャスト(またはマルチキャスト) MAC アドレスをピアとして"
 "指定する必要があります。たとえば次のようにします::"
 
-#: ../../library/espnow.rst:728
+#: ../../library/espnow.rst:742
 msgid ""
 "bcast = b'\\xff' * 6\n"
 "e.add_peer(bcast)\n"
 "e.send(bcast, \"Hello World!\")"
 msgstr ""
 
-#: ../../library/espnow.rst:733
+#: ../../library/espnow.rst:747
 msgid "ESPNow and Wifi Operation"
 msgstr "ESPNow と Wifi 操作"
 
-#: ../../library/espnow.rst:735
+#: ../../library/espnow.rst:749
 msgid ""
 "ESPNow messages may be sent and received on any "
 "`active()<network.WLAN.active>` `WLAN<network.WLAN()>` interface "
@@ -4535,7 +4584,6 @@ msgid ""
 "Quickref <../esp32/quickref.html#networking>`__) the following things "
 "happen which affect ESPNow communications:"
 msgstr ""
-
 "ESPNow メッセージは、 `active()<network.WLAN.active>` にした "
 "任意の `WLAN<network.WLAN()>` インターフェース(``network.STA_IF`` "
 "または ``network.AP_IF``)で送受信できます。このインターフェースが Wifi "
@@ -4544,18 +4592,22 @@ msgstr ""
 "に接続すると(`ESP32 Quickref <../esp32/quickref.html#networking>`__ "
 "を)、次のようなことが起こり、ESPNow 通信に影響を与えます:"
 
-#: ../../library/espnow.rst:742
-msgid "Wifi Power-saving Mode is automatically activated and"
-msgstr "Wifi パワーセービングモードが自動的にアクティベートされる。"
+#: ../../library/espnow.rst:756
+msgid ""
+"Wifi Power-saving Mode (`network.WLAN.PM_PERFORMANCE`) is automatically "
+"activated and"
+msgstr ""
+"Wifi パワーセービングモード(`network.WLAN.PM_PERFORMANCE`)が自動的に"
+"アクティベートされる。"
 
-#: ../../library/espnow.rst:743
+#: ../../library/espnow.rst:758
 msgid ""
 "The radio on the esp device changes wifi ``channel`` to match the channel"
 " used by the Access Point."
 msgstr ""
 "esp デバイスの無線機が、アクセスポイントで使用されているチャンネルに合わせて変更される。"
 
-#: ../../library/espnow.rst:746
+#: ../../library/espnow.rst:761
 msgid ""
 "**Wifi Power-saving Mode:** (see `Espressif Docs "
 "<https://docs.espressif.com/ projects/esp-idf/en/latest/esp32/api-guides/"
@@ -4571,7 +4623,15 @@ msgstr ""
 "ESPNow メッセージの受信が信頼性に欠ける状態になります。"
 "これに対処する方法は次のいずれかです:"
 
-#: ../../library/espnow.rst:753
+#: ../../library/espnow.rst:768
+msgid "Disabling the power-saving mode on the STA_IF interface;"
+msgstr "STA_IF インタフェースでパワーセービングモードを無効化"
+
+#: ../../library/espnow.rst:770
+msgid "Use ``sta.config(pm=sta.PM_NONE)``"
+msgstr "``sta.config(pm=sta.PM_NONE)`` を使用"
+
+#: ../../library/espnow.rst:772
 msgid ""
 "Turning on the AP_IF interface, which will disable the power saving mode."
 " However, the device will then be advertising an active wifi access "
@@ -4581,45 +4641,45 @@ msgstr ""
 "ただし、デバイスはアクティブな Wifi アクセスポイントをアドバタインジングする"
 "ことになります。"
 
-#: ../../library/espnow.rst:756
+#: ../../library/espnow.rst:775
 msgid ""
 "You **may** also choose to send your messages via the AP_IF interface, "
 "but this is not necessary."
 msgstr ""
 "メッセージを AP_IF インターフェース経由で送信することもできますが、これは必須ではありません。"
 
-#: ../../library/espnow.rst:758
+#: ../../library/espnow.rst:777
 msgid "ESP8266 peers must send messages to this AP_IF interface (see below)."
 msgstr ""
 "ESP8266 のピアは、この AP_IF インターフェースにメッセージを送信する必要があります(後述)。"
 
-#: ../../library/espnow.rst:760
+#: ../../library/espnow.rst:779
 msgid "Configuring ESPNow clients to retry sending messages."
 msgstr "ESPNow クライアントのメッセージ送信のリトライ設定を行うこと。"
 
-#: ../../library/espnow.rst:762
+#: ../../library/espnow.rst:781
 msgid ""
 "**Receiving messages from an ESP8266 device:** Strangely, an ESP32 device"
-" connected to a wifi network using method 1 or 2 above, will receive ESP-"
-"Now messages sent to the STA_IF MAC address from another ESP32 device, "
-"but will **reject** messages from an ESP8266 device!!!. To receive "
+" connected to a wifi network using method 1 or 2 above, will receive "
+"ESPNow messages sent to the STA_IF MAC address from another ESP32 device,"
+" but will **reject** messages from an ESP8266 device!!!. To receive "
 "messages from an ESP8266 device, the AP_IF interface must be set to "
 "``active(True)`` **and** messages must be sent to the AP_IF MAC address."
 msgstr ""
 "**ESP8266 デバイスからのメッセージの受信:** 奇妙なことに、Wifi ネットワークに"
 "接続された ESP32 デバイス(上記の方法1または2を使用)は、別の ESP32 デバイスから "
-"STA_IF MAC アドレス宛てに送信されたESP-Nowメッセージを受信しますが、ESP8266 "
+"STA_IF MAC アドレス宛てに送信された ESPNow メッセージを受信しますが、ESP8266 "
 "デバイスからのメッセージは拒否します。ESP8266 デバイスからメッセージを受信するには、"
 "AP_IF インターフェースを ``active(True)`` に設定し、 **さらに** 、メッセージを"
 "AP_IF MAC アドレス宛てに送信する必要があります。"
 
-#: ../../library/espnow.rst:769
+#: ../../library/espnow.rst:788
 msgid ""
-"**Managing wifi channels:** Any other espnow devices wishing to "
+"**Managing wifi channels:** Any other ESPNow devices wishing to "
 "communicate with a device which is also connected to a Wifi Access Point "
-"MUST use the same channel. A common scenario is where one espnow device "
+"MUST use the same channel. A common scenario is where one ESPNow device "
 "is connected to a wifi router and acts as a proxy for messages from a "
-"group of sensors connected via espnow:"
+"group of sensors connected via ESPNow:"
 msgstr ""
 "**Wifi チャンネルの管理:** Wifi アクセスポイントに接続されているデバイスと"
 "通信したい他の ESPNow デバイスは、同じチャンネルを使う必要があります。"
@@ -4627,11 +4687,11 @@ msgstr ""
 "ESPNow を介して接続されたセンサーグループからのメッセージのプロキシとして"
 "機能することです:"
 
-#: ../../library/espnow.rst:775
+#: ../../library/espnow.rst:794
 msgid "**Proxy:** ::"
 msgstr "**プロキシ:** ::"
 
-#: ../../library/espnow.rst:777
+#: ../../library/espnow.rst:796
 msgid ""
 "import network, time, espnow\n"
 "\n"
@@ -4639,7 +4699,7 @@ msgid ""
 "sta.connect('myssid', 'mypassword')\n"
 "while not sta.isconnected():  # Wait until connected...\n"
 "    time.sleep(0.1)\n"
-"ap.active(True)         # Disable power-saving mode\n"
+"sta.config(pm=sta.PM_NONE)  # ..then disable power saving\n"
 "\n"
 "# Print the wifi channel used AFTER finished connecting to access point\n"
 "print(\"Proxy running on channel:\", sta.config(\"channel\"))\n"
@@ -4648,11 +4708,11 @@ msgid ""
 "    # Receive espnow messages and forward them to MQTT broker over wifi"
 msgstr ""
 
-#: ../../library/espnow.rst:791
+#: ../../library/espnow.rst:810
 msgid "**Sensor:** ::"
 msgstr "**センサー:** ::"
 
-#: ../../library/espnow.rst:793
+#: ../../library/espnow.rst:812
 msgid ""
 "import network, espnow\n"
 "\n"
@@ -4668,11 +4728,11 @@ msgid ""
 "    time.sleep(1)"
 msgstr ""
 
-#: ../../library/espnow.rst:805
+#: ../../library/espnow.rst:824
 msgid "Other issues to take care with when using ESPNow with wifi are:"
 msgstr "ESPNow を Wifi と併用する際に注意するべき他の問題は次のとおりです:"
 
-#: ../../library/espnow.rst:807
+#: ../../library/espnow.rst:826
 msgid ""
 "**Set WIFI to known state on startup:** MicroPython does not reset the "
 "wifi peripheral after a soft reset. This can lead to unexpected "
@@ -4686,7 +4746,7 @@ msgstr ""
 "起動時に所望の状態に設定する前に非アクティブにするようにしてください。"
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:813
+#: ../../library/espnow.rst:832
 msgid ""
 "import network, time\n"
 "\n"
@@ -4705,14 +4765,14 @@ msgid ""
 "sta, ap = wifi_reset()"
 msgstr ""
 
-#: ../../library/espnow.rst:828
+#: ../../library/espnow.rst:847
 msgid ""
 "Remember that a soft reset occurs every time you connect to the device "
 "REPL and when you type ``ctrl-D``."
 msgstr ""
 "ソフトリセットは、デバイスを REPL に接続したり、 ``ctrl-D`` を入力すると常に発生します。"
 
-#: ../../library/espnow.rst:831
+#: ../../library/espnow.rst:850
 msgid ""
 "**STA_IF and AP_IF always operate on the same channel:** the AP_IF will "
 "change channel when you connect to a wifi network; regardless of the "
@@ -4732,7 +4792,7 @@ msgstr ""
 "実際には、デバイス上には1つの Wifi 無線機しかなく、STA_IF と AP_IF の"
 "仮想デバイスで共有されています。"
 
-#: ../../library/espnow.rst:840
+#: ../../library/espnow.rst:859
 msgid ""
 "**Disable automatic channel assignment on your wifi router:** If the wifi"
 " router for your wifi network is configured to automatically assign the "
@@ -4754,12 +4814,12 @@ msgstr ""
 "デバイスを現在のチャンネルで期待されるピアを見つけることができない場合に Wifi チャンネルを"
 "再スキャンするように構成します。"
 
-#: ../../library/espnow.rst:850
+#: ../../library/espnow.rst:869
 msgid ""
 "**MicroPython re-scans wifi channels when trying to reconnect:** If the "
 "esp device is connected to a Wifi Access Point that goes down, "
 "MicroPython will automatically start scanning channels in an attempt to "
-"reconnect to the Access Point. This means espnow messages will be lost "
+"reconnect to the Access Point. This means ESPNow messages will be lost "
 "while scanning for the AP. This can be disabled by "
 "``sta.config(reconnects=0)``, which will also disable the automatic "
 "reconnection after losing connection."
@@ -4767,10 +4827,10 @@ msgstr ""
 "**MicroPython が再接続を試みる際の Wifi チャンネル再スキャン:** esp デバイスが"
 "停止したWifiアクセスポイントに接続されている場合、MicroPython はアクセスポイントに"
 "再接続しようとしてチャンネルをスキャンし始めます。これにより、AP をスキャンしている"
-"間は espnow メッセージが失われます。 ``sta.config(reconnects=0)`` によって"
+"間は ESPNow メッセージが失われます。 ``sta.config(reconnects=0)`` によって"
 "これを無効にできますが、接続が失われた後の自動再接続も無効になります。"
 
-#: ../../library/espnow.rst:857
+#: ../../library/espnow.rst:876
 msgid ""
 "Some versions of the ESP IDF only permit sending ESPNow packets from the "
 "STA_IF interface to peers which have been registered on the same wifi "
@@ -4779,15 +4839,15 @@ msgstr ""
 "一部の ESP IDF バージョンでは、STA_IF インタフェースからの ESPNow パケットの"
 "送信は、STA_IF と同じ Wifi チャンネルに登録されたピアに対してのみ許可されます。"
 
-#: ../../library/espnow.rst:861
+#: ../../library/espnow.rst:880
 msgid "ESPNOW: Peer channel is not equal to the home channel, send fail!"
 msgstr ""
 
-#: ../../library/espnow.rst:864
+#: ../../library/espnow.rst:883
 msgid "ESPNow and Sleep Modes"
 msgstr "ESPNow とスリープモード"
 
-#: ../../library/espnow.rst:866
+#: ../../library/espnow.rst:885
 msgid ""
 "The `machine.lightsleep([time_ms])<machine.lightsleep>` and "
 "`machine.deepsleep([time_ms])<machine.deepsleep>` functions can be used "
@@ -4815,11 +4875,11 @@ msgstr ""
 "に設定されている場合、どのスリープモードに入る前に両方のインターフェースを "
 "`active(False)<network.WLAN.active()>` に設定する必要があります。"
 
-#: ../../library/espnow.rst:879
+#: ../../library/espnow.rst:898
 msgid "**Example:** deep sleep::"
 msgstr "例：ディープスリープ::"
 
-#: ../../library/espnow.rst:881
+#: ../../library/espnow.rst:900
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -4839,11 +4899,11 @@ msgid ""
 "machine.deepsleep(10000)          # Sleep for 10 seconds then reboot"
 msgstr ""
 
-#: ../../library/espnow.rst:897
+#: ../../library/espnow.rst:916
 msgid "**Example:** light sleep::"
 msgstr "例：ライトスリープ::"
 
-#: ../../library/espnow.rst:899
+#: ../../library/espnow.rst:918
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -5931,11 +5991,27 @@ msgstr "このモジュールでは、Python オブジェクトと JSON デー�
 msgid "Serialise *obj* to a JSON string, writing it to the given *stream*."
 msgstr "*obj* を JSON 文字列にシリアル化し、指定されたストリームに書き込みます。"
 
-#: ../../library/json.rst:21
+#: ../../library/json.rst:19
+msgid ""
+"If specified, separators should be an ``(item_separator, key_separator)``"
+" tuple. The default is ``(', ', ': ')``. To get the most compact JSON "
+"representation, you should specify ``(',', ':')`` to eliminate "
+"whitespace."
+msgstr ""
+"separators を指定する場合、値は  ``(item_separator, key_separator)`` の"
+"タプルでなければなりません。デフォルトは ``(', ', ': ')`` です。"
+"最もコンパクトな JSON 表現を得るには  ``(',', ':')`` を指定して、"
+"空白を排除します。"
+
+#: ../../library/json.rst:25
 msgid "Return *obj* represented as a JSON string."
 msgstr "JSON 文字列で表される *obj* を返します。"
 
-#: ../../library/json.rst:25
+#: ../../library/json.rst:27
+msgid "The arguments have the same meaning as in `dump`."
+msgstr "引数は `dump` のものと同じ意味です。"
+
+#: ../../library/json.rst:31
 msgid ""
 "Parse the given *stream*, interpreting it as a JSON string and "
 "deserialising the data to a Python object.  The resulting object is "
@@ -5944,7 +6020,7 @@ msgstr ""
 "指定した *stream* を解析し、それを JSON 文字列として解釈し、データを Python "
 "オブジェクトにデシリアライズします。結果のオブジェクトが返されます。"
 
-#: ../../library/json.rst:29
+#: ../../library/json.rst:35
 msgid ""
 "Parsing continues until end-of-file is encountered. A :exc:`ValueError` "
 "is raised if the data in *stream* is not correctly formed."
@@ -5952,7 +6028,7 @@ msgstr ""
 "ファイルの終わりに達するまで解析が続きます。*stream* 内のデータが正しい形式になって"
 "いないと、 :exc:`ValueError` 例外が発生します。"
 
-#: ../../library/json.rst:34
+#: ../../library/json.rst:40
 msgid ""
 "Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if "
 "the string is not correctly formed."
@@ -18798,18 +18874,29 @@ msgid "a stalled instruction run using `StateMachine.exec()`"
 msgstr "`StateMachine.exec()` で実行してストールした命令"
 
 #: ../../library/rp2.StateMachine.rst:85
+msgid "Execute a single PIO instruction."
+msgstr "単一の PIO 命令を実行します。"
+
+#: ../../library/rp2.StateMachine.rst:87
 msgid ""
-"Execute a single PIO instruction. Uses `asm_pio_encode` to encode the "
-"instruction from the given string *instr*."
+"If *instr* is a string then uses `asm_pio_encode` to encode the "
+"instruction from the given string."
 msgstr ""
-"単一の PIO 命令を実行します。 与えた文字列 *instr* から命令にエンコードするのは "
-"`asm_pio_encode` を使ってください。"
+"*instr* が文字列の場合、 `asm_pio_encode` を使って文字列から命令にエンコード"
+"します。"
 
 #: ../../library/rp2.StateMachine.rst:92
+msgid ""
+"If *instr* is an integer then it is treated as an already encoded PIO "
+"machine code instruction to be executed."
+msgstr ""
+"*instr* が整数の場合、エンコード済の PIO 機械語命令として扱い、実行します。"
+
+#: ../../library/rp2.StateMachine.rst:99
 msgid "Pull a word from the state machine's RX FIFO."
 msgstr "ステートマシンの RX FIFO からワードをプルします。"
 
-#: ../../library/rp2.StateMachine.rst:94
+#: ../../library/rp2.StateMachine.rst:101
 msgid ""
 "If the FIFO is empty, it blocks until data arrives (i.e. the state "
 "machine pushes a word)."
@@ -18817,7 +18904,7 @@ msgstr ""
 "FIFO が空の場合、データが到着するまで(つまり、ステートマシンがワードをプッシュするまで)"
 "ブロックします。"
 
-#: ../../library/rp2.StateMachine.rst:97
+#: ../../library/rp2.StateMachine.rst:104
 msgid ""
 "The value is shifted right by *shift* bits before returning, i.e. the "
 "return value is ``word >> shift``."
@@ -18825,11 +18912,11 @@ msgstr ""
 "値は、戻る前に *shift* ビットだけ右にシフトされます。つまり、戻り値は "
 "``word >> shift`` となります。"
 
-#: ../../library/rp2.StateMachine.rst:102
+#: ../../library/rp2.StateMachine.rst:109
 msgid "Push words onto the state machine's TX FIFO."
 msgstr "ステートマシンの TX FIFO にワードをプッシュします。"
 
-#: ../../library/rp2.StateMachine.rst:104
+#: ../../library/rp2.StateMachine.rst:111
 msgid ""
 "*value* can be an integer, an array of type ``B``, ``H`` or ``I``, or a "
 "`bytearray`."
@@ -18837,7 +18924,7 @@ msgstr ""
 "*value* には、整数、型が ``B``, ``H``, ``I`` の配列、 `bytearray` のいずれかを"
 "指定できます。"
 
-#: ../../library/rp2.StateMachine.rst:107
+#: ../../library/rp2.StateMachine.rst:114
 msgid ""
 "This method will block until all words have been written to the FIFO.  If"
 " the FIFO is, or becomes, full, the method will block until the state "
@@ -18847,7 +18934,7 @@ msgstr ""
 "FIFOが満杯の場合、または満杯になった場合、このメソッドは、ステートマシンが"
 "書き込みを完了するのに十分なワードをプルするまでブロックされます。"
 
-#: ../../library/rp2.StateMachine.rst:111
+#: ../../library/rp2.StateMachine.rst:118
 msgid ""
 "Each word is first shifted left by *shift* bits, i.e. the state machine "
 "receives ``word << shift``."
@@ -18855,7 +18942,7 @@ msgstr ""
 "各ワードは最初に *shift* ビットだけ左にシフトされます。"
 "つまり、ステートマシンは ``word << shift`` を受け取ります。"
 
-#: ../../library/rp2.StateMachine.rst:116
+#: ../../library/rp2.StateMachine.rst:123
 msgid ""
 "Returns the number of words in the state machine's RX FIFO. A value of 0 "
 "indicates the FIFO is empty."
@@ -18863,7 +18950,7 @@ msgstr ""
 "ステートマシンの RX FIFO 内のワード数を返します。"
 "値が 0 であることは FIFO が空であることを示します。"
 
-#: ../../library/rp2.StateMachine.rst:119
+#: ../../library/rp2.StateMachine.rst:126
 msgid ""
 "Useful for checking if data is waiting to be read, before calling "
 "`StateMachine.get()`."
@@ -18871,7 +18958,7 @@ msgstr ""
 "`StateMachine.get()` を呼び出す前に、データの読取りを待機しているかを"
 "確認するのに利用できます。"
 
-#: ../../library/rp2.StateMachine.rst:124
+#: ../../library/rp2.StateMachine.rst:131
 msgid ""
 "Returns the number of words in the state machine's TX FIFO. A value of 0 "
 "indicates the FIFO is empty."
@@ -18879,7 +18966,7 @@ msgstr ""
 "ステートマシンの TX FIFO 内のワード数を返します。"
 "値が 0 であることは FIFO が空であることを示します。"
 
-#: ../../library/rp2.StateMachine.rst:127
+#: ../../library/rp2.StateMachine.rst:134
 msgid ""
 "Useful for checking if there is space to push another word using "
 "`StateMachine.put()`."
@@ -18887,7 +18974,7 @@ msgstr ""
 "`StateMachine.put()` を使ってワードをプッシュするスペースがあるかどうかを"
 "確認するのに利用できます。"
 
-#: ../../library/rp2.StateMachine.rst:132
+#: ../../library/rp2.StateMachine.rst:139
 msgid "Returns the IRQ object for the given StateMachine."
 msgstr "指定した StateMachine の IRQ オブジェクトを返します。"
 
@@ -19486,7 +19573,7 @@ msgstr ""
 
 #: ../../library/socket.rst:254
 msgid "**Note**: Not every port supports this method, see below."
-msgstr "**注記注**: すべてのポートがこのメソッドをサポートしているわけではありません。下記を参照してください。"
+msgstr "**注記**: すべてのポートがこのメソッドをサポートしているわけではありません。下記を参照してください。"
 
 #: ../../library/socket.rst:256
 msgid ""
@@ -20182,11 +20269,11 @@ msgstr ""
 
 #: ../../library/struct.rst:59
 msgid "Requires long support when used with values larger than 30 bits."
-msgstr ""
+msgstr "30ビット以上の値で使う場合は long のサポートが必要です。"
 
 #: ../../library/struct.rst:60
 msgid "Requires floating point support."
-msgstr ""
+msgstr "浮動小数点のサポートが必要です。"
 
 #: ../../library/struct.rst:65
 msgid "Whitespace is not supported in format strings."

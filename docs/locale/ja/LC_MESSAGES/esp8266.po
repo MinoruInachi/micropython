@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2022,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2023,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.19.1\n"
+"Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-29 11:38+0900\n"
-"PO-Revision-Date: 2023-04-29 11:39+0900\n"
+"POT-Creation-Date: 2023-05-21 11:08+0900\n"
+"PO-Revision-Date: 2023-05-21 18:49+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -384,8 +384,8 @@ msgstr "SSL/TLS の制限事項"
 #: ../../esp8266/general.rst:165
 msgid ""
 "ESP8266 uses `axTLS <http://axtls.sourceforge.net/>`_ library, which is "
-"one of the smallest TLS libraries with the compatible licensing. However,"
-" it also has some known issues/limitations:"
+"one of the smallest TLS libraries with compatible licensing. However, it "
+"also has some known issues/limitations:"
 msgstr ""
 "ESP8266 は `axTLS <http://axtls.sourceforge.net/>`_ ライブラリを使用します。"
 "これは互換性のあるライセンスを持つ最小の TLS ライブラリの１つです。ただし、既知の"
@@ -394,8 +394,9 @@ msgstr ""
 #: ../../esp8266/general.rst:169
 msgid ""
 "No support for Diffie-Hellman (DH) key exchange and Elliptic-curve "
-"cryptography (ECC). This means it can't work with sites which force the "
-"use of these features (it works ok with classic RSA certificates)."
+"cryptography (ECC). This means it can't work with sites which require the"
+" use of these features (it works ok with the typical sites that use RSA "
+"certificates)."
 msgstr ""
 "Diffie-Hellman (DH)鍵交換と楕円曲線暗号(ECC)のサポートはありません。"
 "つまり、これらの機能を使用するサイトでは動作しません(従来のRSA証明書"
@@ -414,8 +415,8 @@ msgstr ""
 
 #: ../../esp8266/general.rst:178
 msgid ""
-"Besides axTLS own limitations, the configuration used for MicroPython is "
-"highly optimized for code size, which leads to additional limitations "
+"Besides axTLS's own limitations, the configuration used for MicroPython "
+"is highly optimized for code size, which leads to additional limitations "
 "(these may be lifted in the future):"
 msgstr ""
 "axTLS 独自の制限の他に、MicroPython で使用される設定はコードサイズに高度に最適化"
@@ -431,11 +432,11 @@ msgstr ""
 
 #: ../../esp8266/general.rst:184
 msgid ""
-"Stored sessions are not supported (may allow faster repeated connections "
-"to the same site in some circumstances)."
+"Session Reuse is not enabled, which means every connection must undergo "
+"the full, expensive SSL handshake."
 msgstr ""
-"ストアドセッションはサポートされていません(場合によっては、同じサイトへの接続が"
-"高速になる可能性があります)。"
+"セッションの再利用が有効でないため、すべての接続がコストのかかる SSL ハンドシェイクを"
+"受けなければなりません。"
 
 #: ../../esp8266/general.rst:187
 msgid ""
@@ -456,8 +457,11 @@ msgid ""
 "accessing various REST APIs, which usually require much smaller messages."
 " The buffers size is on the order of 5KB, and is adjusted from time to "
 "time, taking as a reference being able to access https://google.com . The"
-" smaller buffer hower means that some sites can't be accessed using it, "
-"and it's not possible to stream large amounts of data."
+" smaller buffer however means that some sites can't be accessed using it,"
+" and it's not possible to stream large amounts of data. axTLS does have "
+"support for TLS's Max Fragment Size extension, but no HTTPS website does,"
+" so use of the extension is really only effective for local communication"
+" with other devices."
 msgstr ""
 "TLS 標準では、TLS レコードの最大長(TLS通信の単位、レコード全体を処理する前に"
 "バッファリングする必要があります)を 16KB と指定しています。これは利用可能な "
@@ -468,7 +472,9 @@ msgstr ""
 "バッファサイズは 5KB のオーダで、時々調整され、https://google.com にアクセス"
 "できるようになっています。バッファオーバーフローが小さいということは、一部の"
 "サイトにはアクセスできず、大量のデータをストリーミングすることができないという"
-"ことです。"
+"ことです。axTLS は TLS の Max Fragment Size 拡張をサポートしていますが、"
+"HTTPS の Web サイトで使うことはなく、拡張の利用は他のデバイスとのローカル通信にのみ"
+"有効です。"
 
 #: ../../esp8266/general.rst:205
 msgid ""
@@ -2229,7 +2235,7 @@ msgid ""
 "After a fresh install and boot the device configures itself as a WiFi "
 "access point (AP) that you can connect to.  The ESSID is of the form "
 "MicroPython-xxxxxx where the x's are replaced with part of the MAC "
-"address of your device (so will be the same everytime, and most likely "
+"address of your device (so will be the same every time, and most likely "
 "different for all ESP8266 chips).  The password for the WiFi is "
 "micropythoN (note the upper-case N).  Its IP address will be 192.168.4.1 "
 "once you connect to its network.  WiFi configuration will be discussed in"
