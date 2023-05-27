@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-13 17:01+0900\n"
-"PO-Revision-Date: 2023-05-13 22:37+0900\n"
+"POT-Creation-Date: 2023-05-28 00:37+0900\n"
+"PO-Revision-Date: 2023-05-28 01:46+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1913,44 +1913,49 @@ msgstr "uart 4 はピン D2/D5"
 msgid "uart 5 at pins SCL/SDA"
 msgstr "uart 5 はピン SCL/SDA"
 
-#: ../../samd/pinout.rst:86 ../../samd/pinout.rst:104 ../../samd/pinout.rst:121
-#: ../../samd/pinout.rst:217 ../../samd/pinout.rst:235
-#: ../../samd/pinout.rst:250
-msgid "or other combinations."
-msgstr "その他の組み合わせもあります。"
+#: ../../samd/pinout.rst:86
+msgid ""
+"or other combinations. For hardware flow control, tx must be at pad 0, rx"
+" at pad 1, rts at pad 2 and cts at pad 3. This applies for instance to "
+"UART 3 or UART 1 at the pins D13/D11/D10/D12 for rx/tx/rts/cts."
+msgstr ""
+"その他の組み合わせもあります。"
+"ハードウェアフロー制御にする場合、tx はパッド0、rx はパッド1、rts はパッド2、"
+"cts はパッド3でなければなりません。これは、たとえばピン D13/D11/D10/D12 を "
+"rx/tx/rts/cts にした UART 3 または UART 1 に適用されます。"
 
-#: ../../samd/pinout.rst:89
+#: ../../samd/pinout.rst:91
 msgid "SAMD21 I2C assignments"
 msgstr "SAMD21 の I2C 割当て"
 
-#: ../../samd/pinout.rst:90 ../../samd/pinout.rst:108 ../../samd/pinout.rst:221
+#: ../../samd/pinout.rst:92 ../../samd/pinout.rst:225
 msgid ""
 "The I2C devices and signals must be chosen according to the following "
 "rules:"
 msgstr ""
 "I2C デバイスと信号は、次のルールにしたがって選択する必要があります:"
 
-#: ../../samd/pinout.rst:92 ../../samd/pinout.rst:223
+#: ../../samd/pinout.rst:94 ../../samd/pinout.rst:227
 msgid "The SDA signal must be at a Pin with pad numbers 0."
 msgstr "SDA 信号は、パッド番号 0 のピンでなければなりません。"
 
-#: ../../samd/pinout.rst:93 ../../samd/pinout.rst:224
+#: ../../samd/pinout.rst:95 ../../samd/pinout.rst:228
 msgid "The SCL signal must be at a Pin with pad numbers 1."
 msgstr "SCL 信号は、パッド番号 1 のピンでなければなりません。"
 
-#: ../../samd/pinout.rst:97
+#: ../../samd/pinout.rst:99
 msgid "I2C 0 at Pin A3/A4"
 msgstr "I2C 0 はピン A3/A4"
 
-#: ../../samd/pinout.rst:98
+#: ../../samd/pinout.rst:100
 msgid "I2C 1 at pins D11/D13"
 msgstr "I2C 1 はピン D11/D13"
 
-#: ../../samd/pinout.rst:99
+#: ../../samd/pinout.rst:101
 msgid "I2C 2 at the pins D4/D3"
 msgstr "I2C 2 はピン D4/D3"
 
-#: ../../samd/pinout.rst:100
+#: ../../samd/pinout.rst:102
 msgid ""
 "I2C 3 at the pins SDA/SCL This is the default I2C device at the SDA/SCl "
 "labelled pin"
@@ -1958,56 +1963,61 @@ msgstr ""
 "I2C 3はピン SDA/SCL。これは SDA/SCL でラベル付けされているデフォルトの I2C "
 "デバイスです。"
 
-#: ../../samd/pinout.rst:101
+#: ../../samd/pinout.rst:103
 msgid "I2C 4 at the pins A1/A2"
 msgstr "I2C 4 はピン A1/A2"
 
-#: ../../samd/pinout.rst:102
+#: ../../samd/pinout.rst:104
 msgid "I2C 5 at the pins SDA/SCL,"
 msgstr "I2C 5 はピン SDA/SCL"
 
-#: ../../samd/pinout.rst:107
+#: ../../samd/pinout.rst:106 ../../samd/pinout.rst:123
+#: ../../samd/pinout.rst:239 ../../samd/pinout.rst:254
+msgid "or other combinations."
+msgstr "その他の組み合わせもあります。"
+
+#: ../../samd/pinout.rst:109
 msgid "SAMD21 SPI assignments"
 msgstr "SAMS21 の SPI 割当て"
 
-#: ../../samd/pinout.rst:108 ../../samd/pinout.rst:239
+#: ../../samd/pinout.rst:110 ../../samd/pinout.rst:243
 msgid ""
 "The SPI devices and signals must be chosen according to the following "
 "rules:"
 msgstr ""
 "SPI デバイスと信号は、次のルールにしたがって選択する必要があります:"
 
-#: ../../samd/pinout.rst:110
+#: ../../samd/pinout.rst:112
 msgid ""
 "The following pad number pairs are suitable for MOSI/SCK: 0/1, 2/3, 3/1, "
 "and 0/3."
 msgstr ""
 "MOSI/SCK には、次のパッド番号のペアが適しています: 0/1、2/3、3/1、0/3。"
 
-#: ../../samd/pinout.rst:111 ../../samd/pinout.rst:242
+#: ../../samd/pinout.rst:113 ../../samd/pinout.rst:246
 msgid ""
 "The MISO signal must be at a Pin with a different pad number than MOSI or"
 " SCK."
 msgstr ""
 "MISO 信号は、MOSI や SCK と異なるパッド番号のピンでなければなりません。"
 
-#: ../../samd/pinout.rst:115
+#: ../../samd/pinout.rst:117
 msgid "SPI 0 at pins D0/D4/D1"
 msgstr "SPI 0 はピン D0/D4/D1"
 
-#: ../../samd/pinout.rst:116
+#: ../../samd/pinout.rst:118
 msgid "SPI 1 at pins D11/D12/D13"
 msgstr "SPI 1 はピン D11/D12/D13"
 
-#: ../../samd/pinout.rst:117
+#: ../../samd/pinout.rst:119
 msgid "SPI 2 at pins D0/D4/D1"
 msgstr "SPI 2 はピン D0/D4/D1"
 
-#: ../../samd/pinout.rst:118
+#: ../../samd/pinout.rst:120
 msgid "SPI 3 at pins D11/D12/D13"
 msgstr "SPI 3 はピン D11/D12/D13"
 
-#: ../../samd/pinout.rst:119
+#: ../../samd/pinout.rst:121
 msgid ""
 "SPI 4 at Pin MOSI/MISO/SCK This is the default SPI device at the "
 "MOSI/MISO/SCK labelled pins."
@@ -2015,11 +2025,11 @@ msgstr ""
 "SPI 4 はピン MOSI/MISO/SCK。"
 "これは MOSI/MISO/SCK でラベル付けされているデフォルトの SPI デバイスです。"
 
-#: ../../samd/pinout.rst:125
+#: ../../samd/pinout.rst:127
 msgid "SAMD21 PWM assignments"
 msgstr "SAMD21 の PWM 割当て"
 
-#: ../../samd/pinout.rst:127
+#: ../../samd/pinout.rst:129
 msgid ""
 "The TCC/TC device numbers 0, 1 and 2 can be used for PWM. Device 0 has "
 "four channels, device 1 and 2 have two channels. So in total 3 different "
@@ -2029,276 +2039,276 @@ msgstr ""
 "デバイス1と2は2チャンネルです。そのため、合計で3種類のPWM周波数と、"
 "8種類のデューティサイクル値を使えます。"
 
-#: ../../samd/pinout.rst:131
+#: ../../samd/pinout.rst:133
 msgid ""
 "The DAC output for the Adafruit ItsyBitsy M0 Express board is available "
 "at the pin A0."
 msgstr ""
 "Adafruit ItsyBitsy M0 Express ボードの DAC 出力は、A0 ピンで利用できます。"
 
-#: ../../samd/pinout.rst:136
+#: ../../samd/pinout.rst:138
 msgid "Adafruit ItsyBitsy M4 Express pin assignment table"
 msgstr "Adafruit ItsyBitsy M4 Express のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
-#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
-#: ../../samd/pinout.rst:732
+#: ../../samd/pinout.rst:141 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:563 ../../samd/pinout.rst:618
+#: ../../samd/pinout.rst:736
 msgid "TC"
 msgstr ""
 
-#: ../../samd/pinout.rst:139 ../../samd/pinout.rst:268
-#: ../../samd/pinout.rst:559 ../../samd/pinout.rst:614
-#: ../../samd/pinout.rst:732
+#: ../../samd/pinout.rst:141 ../../samd/pinout.rst:272
+#: ../../samd/pinout.rst:563 ../../samd/pinout.rst:618
+#: ../../samd/pinout.rst:736
 msgid "PWM"
 msgstr ""
 
-#: ../../samd/pinout.rst:143 ../../samd/pinout.rst:272
-#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:396
-#: ../../samd/pinout.rst:506 ../../samd/pinout.rst:567
-#: ../../samd/pinout.rst:621 ../../samd/pinout.rst:735
+#: ../../samd/pinout.rst:145 ../../samd/pinout.rst:276
+#: ../../samd/pinout.rst:349 ../../samd/pinout.rst:400
+#: ../../samd/pinout.rst:510 ../../samd/pinout.rst:571
+#: ../../samd/pinout.rst:625 ../../samd/pinout.rst:739
 msgid "40"
 msgstr ""
 
-#: ../../samd/pinout.rst:144 ../../samd/pinout.rst:273
-#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:397
-#: ../../samd/pinout.rst:505 ../../samd/pinout.rst:568
-#: ../../samd/pinout.rst:622 ../../samd/pinout.rst:736
+#: ../../samd/pinout.rst:146 ../../samd/pinout.rst:277
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:401
+#: ../../samd/pinout.rst:509 ../../samd/pinout.rst:572
+#: ../../samd/pinout.rst:626 ../../samd/pinout.rst:740
 msgid "41"
 msgstr ""
 
-#: ../../samd/pinout.rst:146 ../../samd/pinout.rst:306
-#: ../../samd/pinout.rst:349 ../../samd/pinout.rst:421
-#: ../../samd/pinout.rst:455 ../../samd/pinout.rst:508
-#: ../../samd/pinout.rst:571 ../../samd/pinout.rst:629
-#: ../../samd/pinout.rst:742
+#: ../../samd/pinout.rst:148 ../../samd/pinout.rst:310
+#: ../../samd/pinout.rst:353 ../../samd/pinout.rst:425
+#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:575 ../../samd/pinout.rst:633
+#: ../../samd/pinout.rst:746
 msgid "PA06"
 msgstr ""
 
-#: ../../samd/pinout.rst:150 ../../samd/pinout.rst:293
-#: ../../samd/pinout.rst:375 ../../samd/pinout.rst:411
-#: ../../samd/pinout.rst:533 ../../samd/pinout.rst:579
-#: ../../samd/pinout.rst:693 ../../samd/pinout.rst:764
+#: ../../samd/pinout.rst:152 ../../samd/pinout.rst:297
+#: ../../samd/pinout.rst:379 ../../samd/pinout.rst:415
+#: ../../samd/pinout.rst:537 ../../samd/pinout.rst:583
+#: ../../samd/pinout.rst:697 ../../samd/pinout.rst:768
 msgid "54"
 msgstr ""
 
-#: ../../samd/pinout.rst:155 ../../samd/pinout.rst:283
-#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:407
-#: ../../samd/pinout.rst:513 ../../samd/pinout.rst:564
-#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:744
+#: ../../samd/pinout.rst:157 ../../samd/pinout.rst:287
+#: ../../samd/pinout.rst:369 ../../samd/pinout.rst:411
+#: ../../samd/pinout.rst:517 ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:642 ../../samd/pinout.rst:748
 msgid "PA20"
 msgstr ""
 
-#: ../../samd/pinout.rst:155 ../../samd/pinout.rst:164
-#: ../../samd/pinout.rst:283 ../../samd/pinout.rst:290
-#: ../../samd/pinout.rst:564 ../../samd/pinout.rst:587
-#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:647
-#: ../../samd/pinout.rst:680 ../../samd/pinout.rst:697
-#: ../../samd/pinout.rst:744 ../../samd/pinout.rst:753
+#: ../../samd/pinout.rst:157 ../../samd/pinout.rst:166
+#: ../../samd/pinout.rst:287 ../../samd/pinout.rst:294
+#: ../../samd/pinout.rst:568 ../../samd/pinout.rst:591
+#: ../../samd/pinout.rst:642 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:684 ../../samd/pinout.rst:701
+#: ../../samd/pinout.rst:748 ../../samd/pinout.rst:757
 msgid "1/4"
 msgstr ""
 
-#: ../../samd/pinout.rst:156 ../../samd/pinout.rst:163
-#: ../../samd/pinout.rst:284 ../../samd/pinout.rst:289
-#: ../../samd/pinout.rst:565 ../../samd/pinout.rst:588
-#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:650
-#: ../../samd/pinout.rst:681 ../../samd/pinout.rst:698
-#: ../../samd/pinout.rst:745 ../../samd/pinout.rst:754
+#: ../../samd/pinout.rst:158 ../../samd/pinout.rst:165
+#: ../../samd/pinout.rst:288 ../../samd/pinout.rst:293
+#: ../../samd/pinout.rst:569 ../../samd/pinout.rst:592
+#: ../../samd/pinout.rst:643 ../../samd/pinout.rst:654
+#: ../../samd/pinout.rst:685 ../../samd/pinout.rst:702
+#: ../../samd/pinout.rst:749 ../../samd/pinout.rst:758
 msgid "1/5"
 msgstr ""
 
-#: ../../samd/pinout.rst:157 ../../samd/pinout.rst:162
-#: ../../samd/pinout.rst:286 ../../samd/pinout.rst:288
-#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:594
-#: ../../samd/pinout.rst:649 ../../samd/pinout.rst:683
-#: ../../samd/pinout.rst:687 ../../samd/pinout.rst:752
-#: ../../samd/pinout.rst:760
+#: ../../samd/pinout.rst:159 ../../samd/pinout.rst:164
+#: ../../samd/pinout.rst:290 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:594 ../../samd/pinout.rst:598
+#: ../../samd/pinout.rst:653 ../../samd/pinout.rst:687
+#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:756
+#: ../../samd/pinout.rst:764
 msgid "1/7"
 msgstr ""
 
-#: ../../samd/pinout.rst:158 ../../samd/pinout.rst:166
-#: ../../samd/pinout.rst:285 ../../samd/pinout.rst:292
-#: ../../samd/pinout.rst:589 ../../samd/pinout.rst:593
-#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:648
-#: ../../samd/pinout.rst:682 ../../samd/pinout.rst:751
-#: ../../samd/pinout.rst:761
+#: ../../samd/pinout.rst:160 ../../samd/pinout.rst:168
+#: ../../samd/pinout.rst:289 ../../samd/pinout.rst:296
+#: ../../samd/pinout.rst:593 ../../samd/pinout.rst:597
+#: ../../samd/pinout.rst:644 ../../samd/pinout.rst:652
+#: ../../samd/pinout.rst:686 ../../samd/pinout.rst:755
+#: ../../samd/pinout.rst:765
 msgid "1/6"
 msgstr ""
 
-#: ../../samd/pinout.rst:159 ../../samd/pinout.rst:311
-#: ../../samd/pinout.rst:371 ../../samd/pinout.rst:400
-#: ../../samd/pinout.rst:499 ../../samd/pinout.rst:575
-#: ../../samd/pinout.rst:655 ../../samd/pinout.rst:739
+#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:315
+#: ../../samd/pinout.rst:375 ../../samd/pinout.rst:404
+#: ../../samd/pinout.rst:503 ../../samd/pinout.rst:579
+#: ../../samd/pinout.rst:659 ../../samd/pinout.rst:743
 msgid "34"
 msgstr ""
 
-#: ../../samd/pinout.rst:160 ../../samd/pinout.rst:295
-#: ../../samd/pinout.rst:372 ../../samd/pinout.rst:417
-#: ../../samd/pinout.rst:500 ../../samd/pinout.rst:576
-#: ../../samd/pinout.rst:656 ../../samd/pinout.rst:758
+#: ../../samd/pinout.rst:162 ../../samd/pinout.rst:299
+#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:421
+#: ../../samd/pinout.rst:504 ../../samd/pinout.rst:580
+#: ../../samd/pinout.rst:660 ../../samd/pinout.rst:762
 msgid "35"
 msgstr ""
 
-#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:287
-#: ../../samd/pinout.rst:374 ../../samd/pinout.rst:422
-#: ../../samd/pinout.rst:519 ../../samd/pinout.rst:597
-#: ../../samd/pinout.rst:690 ../../samd/pinout.rst:755
+#: ../../samd/pinout.rst:163 ../../samd/pinout.rst:291
+#: ../../samd/pinout.rst:378 ../../samd/pinout.rst:426
+#: ../../samd/pinout.rst:523 ../../samd/pinout.rst:601
+#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:759
 msgid "43"
 msgstr ""
 
-#: ../../samd/pinout.rst:161 ../../samd/pinout.rst:287
-#: ../../samd/pinout.rst:416 ../../samd/pinout.rst:751
+#: ../../samd/pinout.rst:163 ../../samd/pinout.rst:291
+#: ../../samd/pinout.rst:420 ../../samd/pinout.rst:755
 msgid "FLASH_CS"
 msgstr ""
 
-#: ../../samd/pinout.rst:162 ../../samd/pinout.rst:288
+#: ../../samd/pinout.rst:164 ../../samd/pinout.rst:292
 msgid "FLASH_HOLD"
 msgstr ""
 
-#: ../../samd/pinout.rst:165 ../../samd/pinout.rst:291
-#: ../../samd/pinout.rst:373 ../../samd/pinout.rst:420
-#: ../../samd/pinout.rst:520 ../../samd/pinout.rst:596
-#: ../../samd/pinout.rst:689 ../../samd/pinout.rst:778
+#: ../../samd/pinout.rst:167 ../../samd/pinout.rst:295
+#: ../../samd/pinout.rst:377 ../../samd/pinout.rst:424
+#: ../../samd/pinout.rst:524 ../../samd/pinout.rst:600
+#: ../../samd/pinout.rst:693 ../../samd/pinout.rst:782
 msgid "42"
 msgstr ""
 
-#: ../../samd/pinout.rst:166 ../../samd/pinout.rst:292
+#: ../../samd/pinout.rst:168 ../../samd/pinout.rst:296
 msgid "FLASH_WP"
 msgstr ""
 
-#: ../../samd/pinout.rst:167 ../../samd/pinout.rst:294
-#: ../../samd/pinout.rst:376 ../../samd/pinout.rst:410
-#: ../../samd/pinout.rst:535 ../../samd/pinout.rst:578
-#: ../../samd/pinout.rst:694 ../../samd/pinout.rst:757
+#: ../../samd/pinout.rst:169 ../../samd/pinout.rst:298
+#: ../../samd/pinout.rst:380 ../../samd/pinout.rst:414
+#: ../../samd/pinout.rst:539 ../../samd/pinout.rst:582
+#: ../../samd/pinout.rst:698 ../../samd/pinout.rst:761
 msgid "55"
 msgstr ""
 
-#: ../../samd/pinout.rst:170 ../../samd/pinout.rst:297
-#: ../../samd/pinout.rst:361 ../../samd/pinout.rst:416
-#: ../../samd/pinout.rst:529 ../../samd/pinout.rst:581
-#: ../../samd/pinout.rst:658 ../../samd/pinout.rst:740
+#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:301
+#: ../../samd/pinout.rst:365 ../../samd/pinout.rst:420
+#: ../../samd/pinout.rst:533 ../../samd/pinout.rst:585
+#: ../../samd/pinout.rst:662 ../../samd/pinout.rst:744
 msgid "PA13"
 msgstr ""
 
-#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
-#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:425
-#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:537
-#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:666
-#: ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:429
+#: ../../samd/pinout.rst:463 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:766
 msgid "30"
 msgstr ""
 
-#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
-#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:425
-#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:537
-#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:666
-#: ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:429
+#: ../../samd/pinout.rst:463 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:766
 msgid "PA30"
 msgstr ""
 
-#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
-#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:425
-#: ../../samd/pinout.rst:459 ../../samd/pinout.rst:537
-#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:666
-#: ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:429
+#: ../../samd/pinout.rst:463 ../../samd/pinout.rst:541
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:766
 msgid "SWCLK"
 msgstr ""
 
-#: ../../samd/pinout.rst:172 ../../samd/pinout.rst:299
-#: ../../samd/pinout.rst:583 ../../samd/pinout.rst:620
-#: ../../samd/pinout.rst:641 ../../samd/pinout.rst:647
-#: ../../samd/pinout.rst:666 ../../samd/pinout.rst:672
-#: ../../samd/pinout.rst:762
+#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:587 ../../samd/pinout.rst:624
+#: ../../samd/pinout.rst:645 ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:670 ../../samd/pinout.rst:676
+#: ../../samd/pinout.rst:766
 msgid "7/2"
 msgstr ""
 
-#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
-#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:426
-#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:538
-#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:667
-#: ../../samd/pinout.rst:763
+#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:304
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:430
+#: ../../samd/pinout.rst:464 ../../samd/pinout.rst:542
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:767
 msgid "31"
 msgstr ""
 
-#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
-#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:426
-#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:538
-#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:667
-#: ../../samd/pinout.rst:763
+#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:304
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:430
+#: ../../samd/pinout.rst:464 ../../samd/pinout.rst:542
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:767
 msgid "PA31"
 msgstr ""
 
-#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
-#: ../../samd/pinout.rst:352 ../../samd/pinout.rst:426
-#: ../../samd/pinout.rst:460 ../../samd/pinout.rst:538
-#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:667
-#: ../../samd/pinout.rst:763
+#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:304
+#: ../../samd/pinout.rst:356 ../../samd/pinout.rst:430
+#: ../../samd/pinout.rst:464 ../../samd/pinout.rst:542
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:767
 msgid "SWDIO"
 msgstr ""
 
-#: ../../samd/pinout.rst:173 ../../samd/pinout.rst:300
-#: ../../samd/pinout.rst:584 ../../samd/pinout.rst:619
-#: ../../samd/pinout.rst:633 ../../samd/pinout.rst:642
-#: ../../samd/pinout.rst:650 ../../samd/pinout.rst:667
-#: ../../samd/pinout.rst:763
+#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:304
+#: ../../samd/pinout.rst:588 ../../samd/pinout.rst:623
+#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:646
+#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:767
 msgid "7/3"
 msgstr ""
 
-#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:301
-#: ../../samd/pinout.rst:354 ../../samd/pinout.rst:427
-#: ../../samd/pinout.rst:461 ../../samd/pinout.rst:539
-#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:673
-#: ../../samd/pinout.rst:766
+#: ../../samd/pinout.rst:176 ../../samd/pinout.rst:305
+#: ../../samd/pinout.rst:358 ../../samd/pinout.rst:431
+#: ../../samd/pinout.rst:465 ../../samd/pinout.rst:543
+#: ../../samd/pinout.rst:589 ../../samd/pinout.rst:677
+#: ../../samd/pinout.rst:770
 msgid "PA24"
 msgstr ""
 
-#: ../../samd/pinout.rst:174 ../../samd/pinout.rst:301
-#: ../../samd/pinout.rst:354 ../../samd/pinout.rst:427
-#: ../../samd/pinout.rst:461 ../../samd/pinout.rst:539
-#: ../../samd/pinout.rst:585 ../../samd/pinout.rst:673
-#: ../../samd/pinout.rst:766
+#: ../../samd/pinout.rst:176 ../../samd/pinout.rst:305
+#: ../../samd/pinout.rst:358 ../../samd/pinout.rst:431
+#: ../../samd/pinout.rst:465 ../../samd/pinout.rst:543
+#: ../../samd/pinout.rst:589 ../../samd/pinout.rst:677
+#: ../../samd/pinout.rst:770
 msgid "USB_DM"
 msgstr ""
 
-#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:302
-#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:428
-#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:540
-#: ../../samd/pinout.rst:586 ../../samd/pinout.rst:674
-#: ../../samd/pinout.rst:767
+#: ../../samd/pinout.rst:177 ../../samd/pinout.rst:306
+#: ../../samd/pinout.rst:359 ../../samd/pinout.rst:432
+#: ../../samd/pinout.rst:466 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:678
+#: ../../samd/pinout.rst:771
 msgid "PA25"
 msgstr ""
 
-#: ../../samd/pinout.rst:175 ../../samd/pinout.rst:302
-#: ../../samd/pinout.rst:355 ../../samd/pinout.rst:428
-#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:540
-#: ../../samd/pinout.rst:586 ../../samd/pinout.rst:674
-#: ../../samd/pinout.rst:767
+#: ../../samd/pinout.rst:177 ../../samd/pinout.rst:306
+#: ../../samd/pinout.rst:359 ../../samd/pinout.rst:432
+#: ../../samd/pinout.rst:466 ../../samd/pinout.rst:544
+#: ../../samd/pinout.rst:590 ../../samd/pinout.rst:678
+#: ../../samd/pinout.rst:771
 msgid "USB_DP"
 msgstr ""
 
-#: ../../samd/pinout.rst:176 ../../samd/pinout.rst:282
-#: ../../samd/pinout.rst:359 ../../samd/pinout.rst:431
-#: ../../samd/pinout.rst:463 ../../samd/pinout.rst:526
-#: ../../samd/pinout.rst:573 ../../samd/pinout.rst:678
-#: ../../samd/pinout.rst:770
+#: ../../samd/pinout.rst:178 ../../samd/pinout.rst:286
+#: ../../samd/pinout.rst:363 ../../samd/pinout.rst:435
+#: ../../samd/pinout.rst:467 ../../samd/pinout.rst:530
+#: ../../samd/pinout.rst:577 ../../samd/pinout.rst:682
+#: ../../samd/pinout.rst:774
 msgid "PA03"
 msgstr ""
 
-#: ../../samd/pinout.rst:177 ../../samd/pinout.rst:309
-#: ../../samd/pinout.rst:369 ../../samd/pinout.rst:418
-#: ../../samd/pinout.rst:475 ../../samd/pinout.rst:531
-#: ../../samd/pinout.rst:595 ../../samd/pinout.rst:688
-#: ../../samd/pinout.rst:765
+#: ../../samd/pinout.rst:179 ../../samd/pinout.rst:313
+#: ../../samd/pinout.rst:373 ../../samd/pinout.rst:422
+#: ../../samd/pinout.rst:479 ../../samd/pinout.rst:535
+#: ../../samd/pinout.rst:599 ../../samd/pinout.rst:692
+#: ../../samd/pinout.rst:769
 msgid "PA27"
 msgstr ""
 
-#: ../../samd/pinout.rst:187
+#: ../../samd/pinout.rst:189
 msgid ""
 "*Pin Name* The name of a Pin which is expected argument to "
 "``machine.Pin(\"name\")``."
 msgstr ""
 "*ピン名* - ``machine.Pin(\"名前\")`` への引数として期待されるピンの名前。"
 
-#: ../../samd/pinout.rst:190
+#: ../../samd/pinout.rst:192
 msgid ""
 "*ADC* - The ADC0/1 channel assigned to the pin. When using ADC, different"
 " pins must not use the same ADC device and channel."
@@ -2306,7 +2316,7 @@ msgstr ""
 "*ADC* - ピンに割り当てられた ADC0/1 チャンネル。ADCを使う場合、異なるピンでは"
 "同じ ADC デバイスとチャンネルを使ってはなりません。"
 
-#: ../../samd/pinout.rst:195
+#: ../../samd/pinout.rst:197
 msgid ""
 "*TC* - These device are currently not assigned to Pin. the TC device pair"
 " 0/1 is used for ``ticks_us()``."
@@ -2314,7 +2324,7 @@ msgstr ""
 "*TC* - これらのデバイスは現在のところピンに割り当てられていません。"
 "TC デバイスペア 0/1 は ``ticks_us()`` 用に使われています。"
 
-#: ../../samd/pinout.rst:197
+#: ../../samd/pinout.rst:199
 msgid ""
 "*PWM* - Two columns with assignments of the TCC modules for PWM The cell "
 "content is device #/output #. Details below."
@@ -2322,92 +2332,96 @@ msgstr ""
 "*PWM* - この２つの列は、PWM 用 TCC モジュールの割当てです。"
 "セルの内容は、デバイス番号/出力番号です。詳細は後述します。"
 
-#: ../../samd/pinout.rst:201
+#: ../../samd/pinout.rst:203
 msgid "SAMD51 UART assignments"
 msgstr "SAMD51 の UART 割当て"
 
-#: ../../samd/pinout.rst:204
+#: ../../samd/pinout.rst:206
 msgid ""
 "The TX signal must be at a Pin with pad numbers 0, like Pin D1 with "
 "serial device 3."
 msgstr ""
 "TX 信号は、シリアルデバイス 3 の D1 ピンのように、パッド番号 0 のピンである必要があります。"
 
-#: ../../samd/pinout.rst:208
+#: ../../samd/pinout.rst:210
 msgid "Examples for Adafruit ItsyBitsy 4 Express:"
 msgstr "Adafruit ItsyBitsy 4 Expressの例です:"
 
-#: ../../samd/pinout.rst:210
+#: ../../samd/pinout.rst:212
 msgid "uart 0 at pins A4/A1"
 msgstr "uart 0 はピン A4/A1"
 
-#: ../../samd/pinout.rst:211
+#: ../../samd/pinout.rst:213
 msgid "uart 1 at pins D1/D0   This is the default UART at the RX/TX labelled pins"
 msgstr "uart 1 はピン D1/D0。これは RX/TX でラベル付けされているデフォルトの UART です。"
 
-#: ../../samd/pinout.rst:212
+#: ../../samd/pinout.rst:214
 msgid ""
 "uart 2 at pins SCL/SDA  This is the default I2C device at the SDA/SCl "
 "labelled pin"
 msgstr "uart 2 はピン SCL/SDA。これは SDA/SCL でラベル付けされているデフォルトの I2C "
 "デバイスです。""
 
-#: ../../samd/pinout.rst:213
+#: ../../samd/pinout.rst:215
 msgid "uart 3 at pins D0/D1"
 msgstr "uart 3 はピン D0/D1"
 
-#: ../../samd/pinout.rst:214
+#: ../../samd/pinout.rst:216
 msgid "uart 4 at pins SDA/SCL"
 msgstr "usrt 4 はピン SDA/SCL"
 
-#: ../../samd/pinout.rst:215
+#: ../../samd/pinout.rst:217
 msgid "uart 5 at pins D12/D13"
 msgstr "uart 5 はピン D12/D13"
 
-#: ../../samd/pinout.rst:220
+#: ../../samd/pinout.rst:219
+msgid ""
+"or other combinations. For hardware flow control, tx must be at pad 0, rx"
+" at pad 1, rts at pad 2 and cts at pad 3. This applies for instance to "
+"UART 5 at the pins D12/D13/D10/D11 for rx/tx/rts/cts."
+msgstr ""
+"その他の組み合わせもあります。"
+"ハードウェアフロー制御にする場合、tx はパッド0、rx はパッド1、rts はパッド2、"
+"cts はパッド3でなければなりません。これは、たとえばピン D12/D13/D10/D11 を "
+"rx/tx/rts/cts にした UART 5 に適用されます。"
+
+#: ../../samd/pinout.rst:224
 msgid "SAMD51 I2C assignments"
 msgstr "SAMD51 の I2C 割当て"
 
-#: ../../samd/pinout.rst:228
+#: ../../samd/pinout.rst:232
 msgid "I2C 0 at pins A3/A4"
 msgstr "I2C 0 はピン A3/A4"
 
-#: ../../samd/pinout.rst:229
+#: ../../samd/pinout.rst:233
 msgid "I2C 1 at pins D0/D1"
 msgstr "I2C 1 はピン D0/D1"
 
-#: ../../samd/pinout.rst:230
+#: ../../samd/pinout.rst:234
 msgid "I2C 2 at the pins SDA/SCL"
 msgstr "I2C 2 はピン SDA/SCL"
 
-#: ../../samd/pinout.rst:231
+#: ../../samd/pinout.rst:235
 msgid "I2C 3 at the pins D1/D0"
 msgstr "I2C 3 はピン D1/D0"
 
-#: ../../samd/pinout.rst:232
+#: ../../samd/pinout.rst:236
 msgid "I2C 4 at the pins A2/A3"
 msgstr "I2C 4 はピン A2/A3"
 
-#: ../../samd/pinout.rst:233
+#: ../../samd/pinout.rst:237
 msgid "I2C 5 at the pins D12/D13"
 msgstr "I2C 5 はピン D12/D13"
 
-#: ../../samd/pinout.rst:238
+#: ../../samd/pinout.rst:242
 msgid "SAMD51 SPI assignments"
 msgstr "SAMD51 の SPI 割当て"
 
-#: ../../samd/pinout.rst:239
-msgid ""
-"The SPI devices and signals must be chosen according to the following "
-"rules:"
-msgstr ""
-"SPIデバイスと信号は、次のルールにしたがって選択する必要があります:"
-
-#: ../../samd/pinout.rst:241
+#: ../../samd/pinout.rst:245
 msgid "The following pad number pairs are suitable for MOSI/SCK: 0/1 and 3/1."
 msgstr "MOSI/SCK には、次のパッド番号のペアが適しています: 0/1 と 3/1。"
 
-#: ../../samd/pinout.rst:246
+#: ../../samd/pinout.rst:250
 msgid ""
 "SPI 1 at Pin MOSI/MISO/SCK  This is the default SPI device at the "
 "MOSI/MISO/SCK labelled pins."
@@ -2415,19 +2429,19 @@ msgstr ""
 "SPI 1 は MOSI/MISO/SCK。"
 "これは MOSI/MISO/SCK でラベル付けされているデフォルトの SPI デバイスです。"
 
-#: ../../samd/pinout.rst:247
+#: ../../samd/pinout.rst:251
 msgid "SPI 3 at pins D13/D11/D12"
 msgstr "SPI 3 はピン D13/D11/D12"
 
-#: ../../samd/pinout.rst:248
+#: ../../samd/pinout.rst:252
 msgid "SPI 5 at pins D12/D3/D13"
 msgstr "SPI 5 はピン D12/D3/D13"
 
-#: ../../samd/pinout.rst:254
+#: ../../samd/pinout.rst:258
 msgid "SAMD51 PWM assignments"
 msgstr "SAMD51 の PWM 割当て"
 
-#: ../../samd/pinout.rst:256
+#: ../../samd/pinout.rst:260
 msgid ""
 "The TCC/PWM device numbers 0 through 4 can be used for PWM. Device 0 has "
 "six channels, device 1 has four channels, device 2 has three channels and"
@@ -2441,176 +2455,176 @@ msgstr ""
 "サイクル値を使えます。これらの数値は、すべてのボードに適用されるわけではないことに"
 "注意してください。"
 
-#: ../../samd/pinout.rst:262
+#: ../../samd/pinout.rst:266
 msgid ""
 "The DAC outputs for the Adafruit ItsyBitsy M4 Express board are available"
 " at the pins A0 and A1."
 msgstr ""
 "Adafruit ItsyBitsy M4 Express ボードの DAC 出力は、A0 と A1 ピンで使えます。"
 
-#: ../../samd/pinout.rst:265
+#: ../../samd/pinout.rst:269
 msgid "Adafruit Feather M4 Express pin assignment table"
 msgstr "Adafruit Feather M4 Express のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:275 ../../samd/pinout.rst:497
-#: ../../samd/pinout.rst:626 ../../samd/pinout.rst:776
+#: ../../samd/pinout.rst:279 ../../samd/pinout.rst:501
+#: ../../samd/pinout.rst:630 ../../samd/pinout.rst:780
 msgid "38"
 msgstr ""
 
-#: ../../samd/pinout.rst:275 ../../samd/pinout.rst:497
-#: ../../samd/pinout.rst:626 ../../samd/pinout.rst:776
+#: ../../samd/pinout.rst:279 ../../samd/pinout.rst:501
+#: ../../samd/pinout.rst:630 ../../samd/pinout.rst:780
 msgid "PB06"
 msgstr ""
 
-#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:532
-#: ../../samd/pinout.rst:692 ../../samd/pinout.rst:782
+#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:696 ../../samd/pinout.rst:786
 msgid "49"
 msgstr ""
 
-#: ../../samd/pinout.rst:276 ../../samd/pinout.rst:532
-#: ../../samd/pinout.rst:692 ../../samd/pinout.rst:782
+#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:536
+#: ../../samd/pinout.rst:696 ../../samd/pinout.rst:786
 msgid "PB17"
 msgstr ""
 
-#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:534
-#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:781
+#: ../../samd/pinout.rst:281 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:641 ../../samd/pinout.rst:785
 msgid "48"
 msgstr ""
 
-#: ../../samd/pinout.rst:277 ../../samd/pinout.rst:534
-#: ../../samd/pinout.rst:637 ../../samd/pinout.rst:781
+#: ../../samd/pinout.rst:281 ../../samd/pinout.rst:538
+#: ../../samd/pinout.rst:641 ../../samd/pinout.rst:785
 msgid "PB16"
 msgstr ""
 
-#: ../../samd/pinout.rst:280 ../../samd/pinout.rst:407
-#: ../../samd/pinout.rst:744
+#: ../../samd/pinout.rst:284 ../../samd/pinout.rst:411
+#: ../../samd/pinout.rst:748
 msgid "D6"
 msgstr ""
 
-#: ../../samd/pinout.rst:282 ../../samd/pinout.rst:573
+#: ../../samd/pinout.rst:286 ../../samd/pinout.rst:577
 msgid "AREF"
 msgstr ""
 
-#: ../../samd/pinout.rst:295 ../../samd/pinout.rst:421
+#: ../../samd/pinout.rst:299 ../../samd/pinout.rst:425
 msgid "NEOPIXEL"
 msgstr ""
 
-#: ../../samd/pinout.rst:303 ../../samd/pinout.rst:496
-#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:773
+#: ../../samd/pinout.rst:307 ../../samd/pinout.rst:500
+#: ../../samd/pinout.rst:620 ../../samd/pinout.rst:777
 msgid "33"
 msgstr ""
 
-#: ../../samd/pinout.rst:303 ../../samd/pinout.rst:496
-#: ../../samd/pinout.rst:616 ../../samd/pinout.rst:773
+#: ../../samd/pinout.rst:307 ../../samd/pinout.rst:500
+#: ../../samd/pinout.rst:620 ../../samd/pinout.rst:777
 msgid "PB01"
 msgstr ""
 
-#: ../../samd/pinout.rst:303
+#: ../../samd/pinout.rst:307
 msgid "VDIV"
 msgstr ""
 
-#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:495
-#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:772
+#: ../../samd/pinout.rst:314 ../../samd/pinout.rst:499
+#: ../../samd/pinout.rst:658 ../../samd/pinout.rst:776
 msgid "32"
 msgstr ""
 
-#: ../../samd/pinout.rst:310 ../../samd/pinout.rst:495
-#: ../../samd/pinout.rst:654 ../../samd/pinout.rst:772
+#: ../../samd/pinout.rst:314 ../../samd/pinout.rst:499
+#: ../../samd/pinout.rst:658 ../../samd/pinout.rst:776
 msgid "PB00"
 msgstr ""
 
-#: ../../samd/pinout.rst:312 ../../samd/pinout.rst:501
-#: ../../samd/pinout.rst:624 ../../samd/pinout.rst:774
+#: ../../samd/pinout.rst:316 ../../samd/pinout.rst:505
+#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:778
 msgid "36"
 msgstr ""
 
-#: ../../samd/pinout.rst:312 ../../samd/pinout.rst:501
-#: ../../samd/pinout.rst:624 ../../samd/pinout.rst:774
+#: ../../samd/pinout.rst:316 ../../samd/pinout.rst:505
+#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:778
 msgid "PB04"
 msgstr ""
 
-#: ../../samd/pinout.rst:313 ../../samd/pinout.rst:502
-#: ../../samd/pinout.rst:625 ../../samd/pinout.rst:775
+#: ../../samd/pinout.rst:317 ../../samd/pinout.rst:506
+#: ../../samd/pinout.rst:629 ../../samd/pinout.rst:779
 msgid "37"
 msgstr ""
 
-#: ../../samd/pinout.rst:313 ../../samd/pinout.rst:502
-#: ../../samd/pinout.rst:625 ../../samd/pinout.rst:775
+#: ../../samd/pinout.rst:317 ../../samd/pinout.rst:506
+#: ../../samd/pinout.rst:629 ../../samd/pinout.rst:779
 msgid "PB05"
 msgstr ""
 
-#: ../../samd/pinout.rst:314 ../../samd/pinout.rst:498
-#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:777
+#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:502
+#: ../../samd/pinout.rst:632 ../../samd/pinout.rst:781
 msgid "39"
 msgstr ""
 
-#: ../../samd/pinout.rst:314 ../../samd/pinout.rst:498
-#: ../../samd/pinout.rst:628 ../../samd/pinout.rst:777
+#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:502
+#: ../../samd/pinout.rst:632 ../../samd/pinout.rst:781
 msgid "PB07"
 msgstr ""
 
-#: ../../samd/pinout.rst:315 ../../samd/pinout.rst:515
-#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:756
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:519
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:760
 msgid "44"
 msgstr ""
 
-#: ../../samd/pinout.rst:315 ../../samd/pinout.rst:515
-#: ../../samd/pinout.rst:635 ../../samd/pinout.rst:756
+#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:519
+#: ../../samd/pinout.rst:639 ../../samd/pinout.rst:760
 msgid "PB12"
 msgstr ""
 
-#: ../../samd/pinout.rst:316 ../../samd/pinout.rst:516
-#: ../../samd/pinout.rst:636 ../../samd/pinout.rst:759
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:520
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:763
 msgid "45"
 msgstr ""
 
-#: ../../samd/pinout.rst:316 ../../samd/pinout.rst:516
-#: ../../samd/pinout.rst:636 ../../samd/pinout.rst:759
+#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:520
+#: ../../samd/pinout.rst:640 ../../samd/pinout.rst:763
 msgid "PB13"
 msgstr ""
 
-#: ../../samd/pinout.rst:317 ../../samd/pinout.rst:517
-#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:779
+#: ../../samd/pinout.rst:321 ../../samd/pinout.rst:521
+#: ../../samd/pinout.rst:695 ../../samd/pinout.rst:783
 msgid "46"
 msgstr ""
 
-#: ../../samd/pinout.rst:317 ../../samd/pinout.rst:517
-#: ../../samd/pinout.rst:691 ../../samd/pinout.rst:779
+#: ../../samd/pinout.rst:321 ../../samd/pinout.rst:521
+#: ../../samd/pinout.rst:695 ../../samd/pinout.rst:783
 msgid "PB14"
 msgstr ""
 
-#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:518
-#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:780
+#: ../../samd/pinout.rst:322 ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:784
 msgid "47"
 msgstr ""
 
-#: ../../samd/pinout.rst:318 ../../samd/pinout.rst:518
-#: ../../samd/pinout.rst:634 ../../samd/pinout.rst:780
+#: ../../samd/pinout.rst:322 ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:638 ../../samd/pinout.rst:784
 msgid "PB15"
 msgstr ""
 
-#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:536
-#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:783
+#: ../../samd/pinout.rst:323 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:703 ../../samd/pinout.rst:787
 msgid "62"
 msgstr ""
 
-#: ../../samd/pinout.rst:319 ../../samd/pinout.rst:536
-#: ../../samd/pinout.rst:699 ../../samd/pinout.rst:783
+#: ../../samd/pinout.rst:323 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:703 ../../samd/pinout.rst:787
 msgid "PB30"
 msgstr ""
 
-#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:546
-#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:784
+#: ../../samd/pinout.rst:324 ../../samd/pinout.rst:550
+#: ../../samd/pinout.rst:704 ../../samd/pinout.rst:788
 msgid "63"
 msgstr ""
 
-#: ../../samd/pinout.rst:320 ../../samd/pinout.rst:546
-#: ../../samd/pinout.rst:700 ../../samd/pinout.rst:784
+#: ../../samd/pinout.rst:324 ../../samd/pinout.rst:550
+#: ../../samd/pinout.rst:704 ../../samd/pinout.rst:788
 msgid "PB31"
 msgstr ""
 
-#: ../../samd/pinout.rst:323 ../../samd/pinout.rst:600
-#: ../../samd/pinout.rst:717 ../../samd/pinout.rst:787
+#: ../../samd/pinout.rst:327 ../../samd/pinout.rst:604
+#: ../../samd/pinout.rst:721 ../../samd/pinout.rst:791
 msgid ""
 "For the definition of the table columns see the explanation at the table "
 "for Adafruit ItsyBitsy M4 Express :ref:`samd51_pinout_table`."
@@ -2618,95 +2632,95 @@ msgstr ""
 "テーブルの列の定義については、Adafruit ItsyBitsy M4 Express "
 ":ref:`samd51_pinout_table` のピン割当てテーブルの説明を参照してください。"
 
-#: ../../samd/pinout.rst:326 ../../samd/pinout.rst:382
-#: ../../samd/pinout.rst:438 ../../samd/pinout.rst:482
-#: ../../samd/pinout.rst:603 ../../samd/pinout.rst:790
+#: ../../samd/pinout.rst:330 ../../samd/pinout.rst:386
+#: ../../samd/pinout.rst:442 ../../samd/pinout.rst:486
+#: ../../samd/pinout.rst:607 ../../samd/pinout.rst:794
 msgid "The default devices at the board are:"
 msgstr "ボードのデフォルトデバイスは次のとおりです:"
 
-#: ../../samd/pinout.rst:328
+#: ../../samd/pinout.rst:332
 msgid "UART 5 at pins D0/D1, labelled RX/TX"
 msgstr "UART 5 はピン D0/D1。RX/TX でラベル付けられています。"
 
-#: ../../samd/pinout.rst:329 ../../samd/pinout.rst:606
+#: ../../samd/pinout.rst:333 ../../samd/pinout.rst:610
 msgid "I2C 2 at pins PA12/PA13, labelled SDA/SCL"
 msgstr "I2C 2 はピン PA12/PA13。SDA/SCL でラベル付けられています。"
 
-#: ../../samd/pinout.rst:330
+#: ../../samd/pinout.rst:334
 msgid "SPI 1 at pins PA23/PA22/PA17, labelled MOSI, MISO and SCK"
 msgstr "SPI 1 はピン PA23/PA22/PA17。MOSI, MISO, SCK でラベル付けられています。"
 
-#: ../../samd/pinout.rst:331
+#: ../../samd/pinout.rst:335
 msgid "DAC output on pins PA02 and PA05, labelled A0 and A1"
 msgstr "DAC 出力はピン PA02 と PA05。A0 と A1 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:334
+#: ../../samd/pinout.rst:338
 msgid "SEEED XIAO pin assignment table"
 msgstr "SEEED XIAO のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:339 ../../samd/pinout.rst:621
+#: ../../samd/pinout.rst:343 ../../samd/pinout.rst:625
 msgid "A0_D0"
 msgstr ""
 
-#: ../../samd/pinout.rst:340 ../../samd/pinout.rst:622
+#: ../../samd/pinout.rst:344 ../../samd/pinout.rst:626
 msgid "A1_D1"
 msgstr ""
 
-#: ../../samd/pinout.rst:341 ../../samd/pinout.rst:623
+#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:627
 msgid "A2_D2"
 msgstr ""
 
-#: ../../samd/pinout.rst:342 ../../samd/pinout.rst:624
+#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:628
 msgid "A3_D3"
 msgstr ""
 
-#: ../../samd/pinout.rst:343 ../../samd/pinout.rst:625
+#: ../../samd/pinout.rst:347 ../../samd/pinout.rst:629
 msgid "A4_D4"
 msgstr ""
 
-#: ../../samd/pinout.rst:344 ../../samd/pinout.rst:626
+#: ../../samd/pinout.rst:348 ../../samd/pinout.rst:630
 msgid "A5_D5"
 msgstr ""
 
-#: ../../samd/pinout.rst:345 ../../samd/pinout.rst:627
+#: ../../samd/pinout.rst:349 ../../samd/pinout.rst:631
 msgid "A6_D6"
 msgstr ""
 
-#: ../../samd/pinout.rst:346 ../../samd/pinout.rst:628
+#: ../../samd/pinout.rst:350 ../../samd/pinout.rst:632
 msgid "A7_D7"
 msgstr ""
 
-#: ../../samd/pinout.rst:347 ../../samd/pinout.rst:629
+#: ../../samd/pinout.rst:351 ../../samd/pinout.rst:633
 msgid "A8_D8"
 msgstr ""
 
-#: ../../samd/pinout.rst:348
+#: ../../samd/pinout.rst:352
 msgid "A9_D9"
 msgstr ""
 
-#: ../../samd/pinout.rst:349
+#: ../../samd/pinout.rst:353
 msgid "A10_D10"
 msgstr ""
 
-#: ../../samd/pinout.rst:350
+#: ../../samd/pinout.rst:354
 msgid "RX_LED"
 msgstr ""
 
-#: ../../samd/pinout.rst:353
+#: ../../samd/pinout.rst:357
 msgid "TX_LED"
 msgstr ""
 
-#: ../../samd/pinout.rst:356
+#: ../../samd/pinout.rst:360
 msgid "USER_LED"
 msgstr ""
 
-#: ../../samd/pinout.rst:370 ../../samd/pinout.rst:432
-#: ../../samd/pinout.rst:476 ../../samd/pinout.rst:530
+#: ../../samd/pinout.rst:374 ../../samd/pinout.rst:436
+#: ../../samd/pinout.rst:480 ../../samd/pinout.rst:534
 msgid "PA28"
 msgstr ""
 
-#: ../../samd/pinout.rst:379 ../../samd/pinout.rst:435
-#: ../../samd/pinout.rst:479 ../../samd/pinout.rst:549
+#: ../../samd/pinout.rst:383 ../../samd/pinout.rst:439
+#: ../../samd/pinout.rst:483 ../../samd/pinout.rst:553
 msgid ""
 "For the definition of the table columns see the explanation at the table "
 "for Adafruit ItsyBitsy M0 Express :ref:`samd21_pinout_table`."
@@ -2714,252 +2728,252 @@ msgstr ""
 "テーブルの列の定義については、Adafruit ItsyBitsy M0 Express "
 ":ref:`samd21_pinout_table` のピン割当てテーブルの説明を参照してください。"
 
-#: ../../samd/pinout.rst:384
+#: ../../samd/pinout.rst:388
 msgid "UART 4 at pins PB08/PB09, labelled A6_D6/A7_D7"
 msgstr "UART 4 はピン PB08/PB09。A6_D6/A7_D7 でラベル付けられています。""
 
-#: ../../samd/pinout.rst:385
+#: ../../samd/pinout.rst:389
 msgid "I2C 2 at pins PA08/PA09, labelled A4_D4/A5_D5"
 msgstr "I2C 2 はピン PA08/PA09。A4_D4/A5_D5 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:386
+#: ../../samd/pinout.rst:390
 msgid "SPI 0 at pins PA06/PA05/PA07, labelled A10_D10, A9_D9 and A8_D8"
 msgstr "SPI 0はピン PA06/PA05/PA07。A10_D10, A9_D9, A8_D8 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:387
+#: ../../samd/pinout.rst:391
 msgid "DAC output on pin PA02, labelled A0_D0"
 msgstr "DAC 出力はピン PA02。A0_D0 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:390
+#: ../../samd/pinout.rst:394
 msgid "Adafruit Feather M0 Express pin assignment table"
 msgstr "Adafruit Feather M0 Express のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:410 ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:414 ../../samd/pinout.rst:621
 msgid "RX"
 msgstr ""
 
-#: ../../samd/pinout.rst:411 ../../samd/pinout.rst:618
+#: ../../samd/pinout.rst:415 ../../samd/pinout.rst:622
 msgid "TX"
 msgstr ""
 
-#: ../../samd/pinout.rst:417
+#: ../../samd/pinout.rst:421
 msgid "LED_RX"
 msgstr ""
 
-#: ../../samd/pinout.rst:418
+#: ../../samd/pinout.rst:422
 msgid "LED_TX"
 msgstr ""
 
-#: ../../samd/pinout.rst:440
+#: ../../samd/pinout.rst:444
 msgid "UART 5 at pins PB23/PB22, labelled RX/TX"
 msgstr "UART 5 はピン PB23/PB22。RX/TX でラベル付けられています。"
 
-#: ../../samd/pinout.rst:441
+#: ../../samd/pinout.rst:445
 msgid "I2C 3 at pins PA22/PA23, labelled SDA/SCL"
 msgstr "I2C 3 はピン PA22/PA23。SDA/SCL でラベル付けられています。"
 
-#: ../../samd/pinout.rst:442
+#: ../../samd/pinout.rst:446
 msgid "SPI 4 at pins PA10/PA12/PA11, labelled MOSI, MISO and SCK"
 msgstr "SPI 4 はピン PA10/PA12/PA11。MOSI, MISO, SCK でラベル付けられています。"
 
-#: ../../samd/pinout.rst:443
+#: ../../samd/pinout.rst:447
 msgid "DAC output on pin PA02, labelled A0"
 msgstr "DAC 出力はピン PA02。A0 でラベルで付けられています。"
 
-#: ../../samd/pinout.rst:446
+#: ../../samd/pinout.rst:450
 msgid "Adafruit Trinket M0 pin assignment table"
 msgstr "Adafruit Trinket M0 のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:458 ../../samd/pinout.rst:536
-#: ../../samd/pinout.rst:577
+#: ../../samd/pinout.rst:462 ../../samd/pinout.rst:540
+#: ../../samd/pinout.rst:581
 msgid "LED"
 msgstr ""
 
-#: ../../samd/pinout.rst:484
+#: ../../samd/pinout.rst:488
 msgid "UART 0 at pins PA07/PA06, labelled D3/D4"
 msgstr "UART 0 はピン PA07/PA06。D3/D4 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:485
+#: ../../samd/pinout.rst:489
 msgid "I2C 2 at pins PA08/PA09, labelled D0/D2"
 msgstr "I2C 2 はピン PA08/PA09。D0/D2 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:486
+#: ../../samd/pinout.rst:490
 msgid "SPI 0 at pins PA06/PA09/PA08, labelled D4, D2 and D0"
 msgstr "SPI 0 はピン PA06/PA09/PA08。D4, D2, D0 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:487
+#: ../../samd/pinout.rst:491
 msgid "DAC output on pin PA02, labelled D1"
 msgstr "DAC 出力はピン PA02。D1 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:490
+#: ../../samd/pinout.rst:494
 msgid "SAMD21 Xplained PRO pin assignment table"
 msgstr "SAMD21 Xplained PRO のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:495
+#: ../../samd/pinout.rst:499
 msgid "EXT1_PIN3"
 msgstr ""
 
-#: ../../samd/pinout.rst:496
+#: ../../samd/pinout.rst:500
 msgid "EXT1_PIN4"
 msgstr ""
 
-#: ../../samd/pinout.rst:497
+#: ../../samd/pinout.rst:501
 msgid "EXT1_PIN5"
 msgstr ""
 
-#: ../../samd/pinout.rst:498
+#: ../../samd/pinout.rst:502
 msgid "EXT1_PIN6"
 msgstr ""
 
-#: ../../samd/pinout.rst:499
+#: ../../samd/pinout.rst:503
 msgid "EXT1_PIN7"
 msgstr ""
 
-#: ../../samd/pinout.rst:500
+#: ../../samd/pinout.rst:504
 msgid "EXT1_PIN8"
 msgstr ""
 
-#: ../../samd/pinout.rst:501
+#: ../../samd/pinout.rst:505
 msgid "EXT1_PIN9"
 msgstr ""
 
-#: ../../samd/pinout.rst:502
+#: ../../samd/pinout.rst:506
 msgid "EXT1_PIN10"
 msgstr ""
 
-#: ../../samd/pinout.rst:503
+#: ../../samd/pinout.rst:507
 msgid "EXT1_PIN11"
 msgstr ""
 
-#: ../../samd/pinout.rst:504
+#: ../../samd/pinout.rst:508
 msgid "EXT1_PIN12"
 msgstr ""
 
-#: ../../samd/pinout.rst:505
+#: ../../samd/pinout.rst:509
 msgid "EXT1_PIN13"
 msgstr ""
 
-#: ../../samd/pinout.rst:506
+#: ../../samd/pinout.rst:510
 msgid "EXT1_PIN14"
 msgstr ""
 
-#: ../../samd/pinout.rst:507
+#: ../../samd/pinout.rst:511
 msgid "EXT1_PIN15"
 msgstr ""
 
-#: ../../samd/pinout.rst:508
+#: ../../samd/pinout.rst:512
 msgid "EXT1_PIN16"
 msgstr ""
 
-#: ../../samd/pinout.rst:509
+#: ../../samd/pinout.rst:513
 msgid "EXT1_PIN17"
 msgstr ""
 
-#: ../../samd/pinout.rst:510
+#: ../../samd/pinout.rst:514
 msgid "EXT1_PIN18"
 msgstr ""
 
-#: ../../samd/pinout.rst:511
+#: ../../samd/pinout.rst:515
 msgid "EXT2_PIN3"
 msgstr ""
 
-#: ../../samd/pinout.rst:512
+#: ../../samd/pinout.rst:516
 msgid "EXT2_PIN4"
 msgstr ""
 
-#: ../../samd/pinout.rst:513
+#: ../../samd/pinout.rst:517
 msgid "EXT2_PIN5"
 msgstr ""
 
-#: ../../samd/pinout.rst:514
+#: ../../samd/pinout.rst:518
 msgid "EXT2_PIN6"
 msgstr ""
 
-#: ../../samd/pinout.rst:515
+#: ../../samd/pinout.rst:519
 msgid "EXT2_PIN7"
 msgstr ""
 
-#: ../../samd/pinout.rst:516
+#: ../../samd/pinout.rst:520
 msgid "EXT2_PIN8"
 msgstr ""
 
-#: ../../samd/pinout.rst:517
+#: ../../samd/pinout.rst:521
 msgid "EXT2_PIN9"
 msgstr ""
 
-#: ../../samd/pinout.rst:518
+#: ../../samd/pinout.rst:522
 msgid "EXT2_PIN10"
 msgstr ""
 
-#: ../../samd/pinout.rst:519
+#: ../../samd/pinout.rst:523
 msgid "EXT2_PIN13"
 msgstr ""
 
-#: ../../samd/pinout.rst:520
+#: ../../samd/pinout.rst:524
 msgid "EXT2_PIN14"
 msgstr ""
 
-#: ../../samd/pinout.rst:521
+#: ../../samd/pinout.rst:525
 msgid "EXT2_PIN15"
 msgstr ""
 
-#: ../../samd/pinout.rst:522
+#: ../../samd/pinout.rst:526
 msgid "EXT2_PIN16"
 msgstr ""
 
-#: ../../samd/pinout.rst:523
+#: ../../samd/pinout.rst:527
 msgid "EXT2_PIN17"
 msgstr ""
 
-#: ../../samd/pinout.rst:524
+#: ../../samd/pinout.rst:528
 msgid "EXT2_PIN18"
 msgstr ""
 
-#: ../../samd/pinout.rst:525
+#: ../../samd/pinout.rst:529
 msgid "EXT3_PIN3"
 msgstr ""
 
-#: ../../samd/pinout.rst:526
+#: ../../samd/pinout.rst:530
 msgid "EXT3_PIN4"
 msgstr ""
 
-#: ../../samd/pinout.rst:527
+#: ../../samd/pinout.rst:531
 msgid "EXT3_PIN6"
 msgstr ""
 
-#: ../../samd/pinout.rst:528
+#: ../../samd/pinout.rst:532
 msgid "EXT3_PIN7"
 msgstr ""
 
-#: ../../samd/pinout.rst:529
+#: ../../samd/pinout.rst:533
 msgid "EXT3_PIN8"
 msgstr ""
 
-#: ../../samd/pinout.rst:530
+#: ../../samd/pinout.rst:534
 msgid "EXT3_PIN9"
 msgstr ""
 
-#: ../../samd/pinout.rst:531
+#: ../../samd/pinout.rst:535
 msgid "EXT3_PIN10"
 msgstr ""
 
-#: ../../samd/pinout.rst:532
+#: ../../samd/pinout.rst:536
 msgid "EXT3_PIN15"
 msgstr ""
 
-#: ../../samd/pinout.rst:533
+#: ../../samd/pinout.rst:537
 msgid "EXT3_PIN16"
 msgstr ""
 
-#: ../../samd/pinout.rst:534
+#: ../../samd/pinout.rst:538
 msgid "EXT3_PIN17"
 msgstr ""
 
-#: ../../samd/pinout.rst:535
+#: ../../samd/pinout.rst:539
 msgid "EXT3_PIN18"
 msgstr ""
 
-#: ../../samd/pinout.rst:552
+#: ../../samd/pinout.rst:556
 msgid ""
 "There are no pins labelled for default devices on this board. DAC output "
 "is on pin PA02, labelled EXT3_PIN3"
@@ -2967,615 +2981,615 @@ msgstr ""
 "このボードには、デフォルトデバイス用にラベル付けされたピンはありません。"
 "DAC 出力はピン PA02 にあり、EXT3_PIN3 でラベル付けされています。"
 
-#: ../../samd/pinout.rst:556
+#: ../../samd/pinout.rst:560
 msgid "Minisam M4 pin assignment table"
 msgstr "Minisam M4 のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:566
+#: ../../samd/pinout.rst:570
 msgid "A0_D9"
 msgstr ""
 
-#: ../../samd/pinout.rst:567
+#: ../../samd/pinout.rst:571
 msgid "A1_D10"
 msgstr ""
 
-#: ../../samd/pinout.rst:568
+#: ../../samd/pinout.rst:572
 msgid "A2_D11"
 msgstr ""
 
-#: ../../samd/pinout.rst:569
+#: ../../samd/pinout.rst:573
 msgid "A3_D12"
 msgstr ""
 
-#: ../../samd/pinout.rst:570
+#: ../../samd/pinout.rst:574
 msgid "A4_D13"
 msgstr ""
 
-#: ../../samd/pinout.rst:572
+#: ../../samd/pinout.rst:576
 msgid "A6_D2"
 msgstr ""
 
-#: ../../samd/pinout.rst:574
+#: ../../samd/pinout.rst:578
 msgid "BUTTON"
 msgstr ""
 
-#: ../../samd/pinout.rst:605
+#: ../../samd/pinout.rst:609
 msgid "UART 1 at pins PA16/PA17, labelled D0/D1"
 msgstr "UART 1 はピン PA16/PA17。D0/D1 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:607
+#: ../../samd/pinout.rst:611
 msgid "SPI 1 at pins PB22/PB23/PA01, labelled MOSI, MISO and SCK"
 msgstr "SPI 1 はピン PB22/PB23/PA01。MOSI, MISO, SCK でラベル付けられています。"
 
-#: ../../samd/pinout.rst:608
+#: ../../samd/pinout.rst:612
 msgid "DAC output on pins PA02 and PA05, labelled A0_D9 and A4_D13"
 msgstr "DAC 出力はピン PA02 と PA05。A0_D9 と A4_D13 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:611
+#: ../../samd/pinout.rst:615
 msgid "Seeed WIO Terminal pin assignment table"
 msgstr "Seeed WIO Terminal のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:616
+#: ../../samd/pinout.rst:620
 msgid "CS"
 msgstr ""
 
-#: ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:621
 msgid "59"
 msgstr ""
 
-#: ../../samd/pinout.rst:617
+#: ../../samd/pinout.rst:621
 msgid "PB27"
 msgstr ""
 
-#: ../../samd/pinout.rst:618
+#: ../../samd/pinout.rst:622
 msgid "58"
 msgstr ""
 
-#: ../../samd/pinout.rst:618
+#: ../../samd/pinout.rst:622
 msgid "PB26"
 msgstr ""
 
-#: ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:623
 msgid "79"
 msgstr ""
 
-#: ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:623
 msgid "PC15"
 msgstr ""
 
-#: ../../samd/pinout.rst:619
+#: ../../samd/pinout.rst:623
 msgid "3V3_ENABLE"
 msgstr ""
 
-#: ../../samd/pinout.rst:619 ../../samd/pinout.rst:633
-#: ../../samd/pinout.rst:646 ../../samd/pinout.rst:650
-#: ../../samd/pinout.rst:662
+#: ../../samd/pinout.rst:623 ../../samd/pinout.rst:637
+#: ../../samd/pinout.rst:650 ../../samd/pinout.rst:654
+#: ../../samd/pinout.rst:666
 msgid "6/3"
 msgstr ""
 
-#: ../../samd/pinout.rst:620
+#: ../../samd/pinout.rst:624
 msgid "78"
 msgstr ""
 
-#: ../../samd/pinout.rst:620
+#: ../../samd/pinout.rst:624
 msgid "PC14"
 msgstr ""
 
-#: ../../samd/pinout.rst:620
+#: ../../samd/pinout.rst:624
 msgid "5V_ENABLE"
 msgstr ""
 
-#: ../../samd/pinout.rst:620 ../../samd/pinout.rst:645
-#: ../../samd/pinout.rst:647 ../../samd/pinout.rst:663
-#: ../../samd/pinout.rst:672
+#: ../../samd/pinout.rst:624 ../../samd/pinout.rst:649
+#: ../../samd/pinout.rst:651 ../../samd/pinout.rst:667
+#: ../../samd/pinout.rst:676
 msgid "6/2"
 msgstr ""
 
-#: ../../samd/pinout.rst:630
+#: ../../samd/pinout.rst:634
 msgid "90"
 msgstr ""
 
-#: ../../samd/pinout.rst:630
+#: ../../samd/pinout.rst:634
 msgid "PC26"
 msgstr ""
 
-#: ../../samd/pinout.rst:630
+#: ../../samd/pinout.rst:634
 msgid "BUTTON_1"
 msgstr ""
 
-#: ../../samd/pinout.rst:631
+#: ../../samd/pinout.rst:635
 msgid "91"
 msgstr ""
 
-#: ../../samd/pinout.rst:631
+#: ../../samd/pinout.rst:635
 msgid "PC27"
 msgstr ""
 
-#: ../../samd/pinout.rst:631
+#: ../../samd/pinout.rst:635
 msgid "BUTTON_2"
 msgstr ""
 
-#: ../../samd/pinout.rst:632
+#: ../../samd/pinout.rst:636
 msgid "92"
 msgstr ""
 
-#: ../../samd/pinout.rst:632
+#: ../../samd/pinout.rst:636
 msgid "PC28"
 msgstr ""
 
-#: ../../samd/pinout.rst:632
+#: ../../samd/pinout.rst:636
 msgid "BUTTON_3"
 msgstr ""
 
-#: ../../samd/pinout.rst:633
+#: ../../samd/pinout.rst:637
 msgid "107"
 msgstr ""
 
-#: ../../samd/pinout.rst:633
+#: ../../samd/pinout.rst:637
 msgid "PD11"
 msgstr ""
 
-#: ../../samd/pinout.rst:633
+#: ../../samd/pinout.rst:637
 msgid "BUZZER"
 msgstr ""
 
-#: ../../samd/pinout.rst:634
+#: ../../samd/pinout.rst:638
 msgid "GPCLK0"
 msgstr ""
 
-#: ../../samd/pinout.rst:635
+#: ../../samd/pinout.rst:639
 msgid "GPCLK1"
 msgstr ""
 
-#: ../../samd/pinout.rst:636
+#: ../../samd/pinout.rst:640
 msgid "GPCLK2"
 msgstr ""
 
-#: ../../samd/pinout.rst:637
+#: ../../samd/pinout.rst:641
 msgid "I2C_BCLK"
 msgstr ""
 
-#: ../../samd/pinout.rst:638
+#: ../../samd/pinout.rst:642
 msgid "I2S_LRCLK"
 msgstr ""
 
-#: ../../samd/pinout.rst:639
+#: ../../samd/pinout.rst:643
 msgid "I2S_SDIN"
 msgstr ""
 
-#: ../../samd/pinout.rst:640
+#: ../../samd/pinout.rst:644
 msgid "I2S_SDOUT"
 msgstr ""
 
-#: ../../samd/pinout.rst:641
+#: ../../samd/pinout.rst:645
 msgid "50"
 msgstr ""
 
-#: ../../samd/pinout.rst:641
+#: ../../samd/pinout.rst:645
 msgid "PB18"
 msgstr ""
 
-#: ../../samd/pinout.rst:641
+#: ../../samd/pinout.rst:645
 msgid "LCD_MISO"
 msgstr ""
 
-#: ../../samd/pinout.rst:642
+#: ../../samd/pinout.rst:646
 msgid "51"
 msgstr ""
 
-#: ../../samd/pinout.rst:642
+#: ../../samd/pinout.rst:646
 msgid "PB19"
 msgstr ""
 
-#: ../../samd/pinout.rst:642
+#: ../../samd/pinout.rst:646
 msgid "LCD_MOSI"
 msgstr ""
 
-#: ../../samd/pinout.rst:643
+#: ../../samd/pinout.rst:647
 msgid "52"
 msgstr ""
 
-#: ../../samd/pinout.rst:643
+#: ../../samd/pinout.rst:647
 msgid "PB20"
 msgstr ""
 
-#: ../../samd/pinout.rst:643
+#: ../../samd/pinout.rst:647
 msgid "LCD_SCK"
 msgstr ""
 
-#: ../../samd/pinout.rst:644
+#: ../../samd/pinout.rst:648
 msgid "53"
 msgstr ""
 
-#: ../../samd/pinout.rst:644
+#: ../../samd/pinout.rst:648
 msgid "PB21"
 msgstr ""
 
-#: ../../samd/pinout.rst:644
+#: ../../samd/pinout.rst:648
 msgid "LCD_CS"
 msgstr ""
 
-#: ../../samd/pinout.rst:645
+#: ../../samd/pinout.rst:649
 msgid "70"
 msgstr ""
 
-#: ../../samd/pinout.rst:645
+#: ../../samd/pinout.rst:649
 msgid "PC06"
 msgstr ""
 
-#: ../../samd/pinout.rst:645
+#: ../../samd/pinout.rst:649
 msgid "LCD_D/C"
 msgstr ""
 
-#: ../../samd/pinout.rst:646
+#: ../../samd/pinout.rst:650
 msgid "71"
 msgstr ""
 
-#: ../../samd/pinout.rst:646
+#: ../../samd/pinout.rst:650
 msgid "PC07"
 msgstr ""
 
-#: ../../samd/pinout.rst:646
+#: ../../samd/pinout.rst:650
 msgid "LCD_RESET"
 msgstr ""
 
-#: ../../samd/pinout.rst:647
+#: ../../samd/pinout.rst:651
 msgid "74"
 msgstr ""
 
-#: ../../samd/pinout.rst:647
+#: ../../samd/pinout.rst:651
 msgid "PC10"
 msgstr ""
 
-#: ../../samd/pinout.rst:647
+#: ../../samd/pinout.rst:651
 msgid "LCD_XL"
 msgstr ""
 
-#: ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:652
 msgid "76"
 msgstr ""
 
-#: ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:652
 msgid "PC12"
 msgstr ""
 
-#: ../../samd/pinout.rst:648
+#: ../../samd/pinout.rst:652
 msgid "LCD_XR"
 msgstr ""
 
-#: ../../samd/pinout.rst:649
+#: ../../samd/pinout.rst:653
 msgid "77"
 msgstr ""
 
-#: ../../samd/pinout.rst:649
+#: ../../samd/pinout.rst:653
 msgid "PC13"
 msgstr ""
 
-#: ../../samd/pinout.rst:649
+#: ../../samd/pinout.rst:653
 msgid "LCD_YD"
 msgstr ""
 
-#: ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:654
 msgid "75"
 msgstr ""
 
-#: ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:654
 msgid "PC11"
 msgstr ""
 
-#: ../../samd/pinout.rst:650
+#: ../../samd/pinout.rst:654
 msgid "LCD_YU"
 msgstr ""
 
-#: ../../samd/pinout.rst:651
+#: ../../samd/pinout.rst:655
 msgid "LED_BLUE"
 msgstr ""
 
-#: ../../samd/pinout.rst:652
+#: ../../samd/pinout.rst:656
 msgid "69"
 msgstr ""
 
-#: ../../samd/pinout.rst:652
+#: ../../samd/pinout.rst:656
 msgid "PC05"
 msgstr ""
 
-#: ../../samd/pinout.rst:652
+#: ../../samd/pinout.rst:656
 msgid "LED_LCD"
 msgstr ""
 
-#: ../../samd/pinout.rst:653
+#: ../../samd/pinout.rst:657
 msgid "94"
 msgstr ""
 
-#: ../../samd/pinout.rst:653
+#: ../../samd/pinout.rst:657
 msgid "PC30"
 msgstr ""
 
-#: ../../samd/pinout.rst:653
+#: ../../samd/pinout.rst:657
 msgid "MIC"
 msgstr ""
 
-#: ../../samd/pinout.rst:657
+#: ../../samd/pinout.rst:661
 msgid "SCL0"
 msgstr ""
 
-#: ../../samd/pinout.rst:658
+#: ../../samd/pinout.rst:662
 msgid "SDA0"
 msgstr ""
 
-#: ../../samd/pinout.rst:659
+#: ../../samd/pinout.rst:663
 msgid "SCL1"
 msgstr ""
 
-#: ../../samd/pinout.rst:660
+#: ../../samd/pinout.rst:664
 msgid "SDA1"
 msgstr ""
 
-#: ../../samd/pinout.rst:661
+#: ../../samd/pinout.rst:665
 msgid "117"
 msgstr ""
 
-#: ../../samd/pinout.rst:661
+#: ../../samd/pinout.rst:665
 msgid "PD21"
 msgstr ""
 
-#: ../../samd/pinout.rst:661
+#: ../../samd/pinout.rst:665
 msgid "SD_DET"
 msgstr ""
 
-#: ../../samd/pinout.rst:662
+#: ../../samd/pinout.rst:666
 msgid "83"
 msgstr ""
 
-#: ../../samd/pinout.rst:662
+#: ../../samd/pinout.rst:666
 msgid "PC19"
 msgstr ""
 
-#: ../../samd/pinout.rst:662
+#: ../../samd/pinout.rst:666
 msgid "SD_CS"
 msgstr ""
 
-#: ../../samd/pinout.rst:663
+#: ../../samd/pinout.rst:667
 msgid "82"
 msgstr ""
 
-#: ../../samd/pinout.rst:663
+#: ../../samd/pinout.rst:667
 msgid "PC18"
 msgstr ""
 
-#: ../../samd/pinout.rst:663
+#: ../../samd/pinout.rst:667
 msgid "SD_MISO"
 msgstr ""
 
-#: ../../samd/pinout.rst:664
+#: ../../samd/pinout.rst:668
 msgid "80"
 msgstr ""
 
-#: ../../samd/pinout.rst:664
+#: ../../samd/pinout.rst:668
 msgid "PC16"
 msgstr ""
 
-#: ../../samd/pinout.rst:664
+#: ../../samd/pinout.rst:668
 msgid "SD_MOSI"
 msgstr ""
 
-#: ../../samd/pinout.rst:665
+#: ../../samd/pinout.rst:669
 msgid "81"
 msgstr ""
 
-#: ../../samd/pinout.rst:665
+#: ../../samd/pinout.rst:669
 msgid "PC17"
 msgstr ""
 
-#: ../../samd/pinout.rst:665
+#: ../../samd/pinout.rst:669
 msgid "SD_SCK"
 msgstr ""
 
-#: ../../samd/pinout.rst:668
+#: ../../samd/pinout.rst:672
 msgid "108"
 msgstr ""
 
-#: ../../samd/pinout.rst:668
+#: ../../samd/pinout.rst:672
 msgid "PD12"
 msgstr ""
 
-#: ../../samd/pinout.rst:668
+#: ../../samd/pinout.rst:672
 msgid "SWITCH_B"
 msgstr ""
 
-#: ../../samd/pinout.rst:669
+#: ../../samd/pinout.rst:673
 msgid "116"
 msgstr ""
 
-#: ../../samd/pinout.rst:669
+#: ../../samd/pinout.rst:673
 msgid "PD20"
 msgstr ""
 
-#: ../../samd/pinout.rst:669
+#: ../../samd/pinout.rst:673
 msgid "SWITCH_U"
 msgstr ""
 
-#: ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:674
 msgid "104"
 msgstr ""
 
-#: ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:674
 msgid "PD08"
 msgstr ""
 
-#: ../../samd/pinout.rst:670
+#: ../../samd/pinout.rst:674
 msgid "SWITCH_X"
 msgstr ""
 
-#: ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:675
 msgid "105"
 msgstr ""
 
-#: ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:675
 msgid "PD09"
 msgstr ""
 
-#: ../../samd/pinout.rst:671
+#: ../../samd/pinout.rst:675
 msgid "SWITCH_Y"
 msgstr ""
 
-#: ../../samd/pinout.rst:672
+#: ../../samd/pinout.rst:676
 msgid "106"
 msgstr ""
 
-#: ../../samd/pinout.rst:672
+#: ../../samd/pinout.rst:676
 msgid "PD10"
 msgstr ""
 
-#: ../../samd/pinout.rst:672
+#: ../../samd/pinout.rst:676
 msgid "SWITCH_Z"
 msgstr ""
 
-#: ../../samd/pinout.rst:695
+#: ../../samd/pinout.rst:699
 msgid "56"
 msgstr ""
 
-#: ../../samd/pinout.rst:695
+#: ../../samd/pinout.rst:699
 msgid "PB24"
 msgstr ""
 
-#: ../../samd/pinout.rst:696
+#: ../../samd/pinout.rst:700
 msgid "57"
 msgstr ""
 
-#: ../../samd/pinout.rst:696
+#: ../../samd/pinout.rst:700
 msgid "PB25"
 msgstr ""
 
-#: ../../samd/pinout.rst:697
+#: ../../samd/pinout.rst:701
 msgid "60"
 msgstr ""
 
-#: ../../samd/pinout.rst:697
+#: ../../samd/pinout.rst:701
 msgid "PB28"
 msgstr ""
 
-#: ../../samd/pinout.rst:698
+#: ../../samd/pinout.rst:702
 msgid "61"
 msgstr ""
 
-#: ../../samd/pinout.rst:698
+#: ../../samd/pinout.rst:702
 msgid "PB29"
 msgstr ""
 
-#: ../../samd/pinout.rst:701
+#: ../../samd/pinout.rst:705
 msgid "64"
 msgstr ""
 
-#: ../../samd/pinout.rst:701
+#: ../../samd/pinout.rst:705
 msgid "PC00"
 msgstr ""
 
-#: ../../samd/pinout.rst:702
+#: ../../samd/pinout.rst:706
 msgid "65"
 msgstr ""
 
-#: ../../samd/pinout.rst:702
+#: ../../samd/pinout.rst:706
 msgid "PC01"
 msgstr ""
 
-#: ../../samd/pinout.rst:703
+#: ../../samd/pinout.rst:707
 msgid "66"
 msgstr ""
 
-#: ../../samd/pinout.rst:703
+#: ../../samd/pinout.rst:707
 msgid "PC02"
 msgstr ""
 
-#: ../../samd/pinout.rst:704
+#: ../../samd/pinout.rst:708
 msgid "67"
 msgstr ""
 
-#: ../../samd/pinout.rst:704
+#: ../../samd/pinout.rst:708
 msgid "PC03"
 msgstr ""
 
-#: ../../samd/pinout.rst:705
+#: ../../samd/pinout.rst:709
 msgid "68"
 msgstr ""
 
-#: ../../samd/pinout.rst:705
+#: ../../samd/pinout.rst:709
 msgid "PC04"
 msgstr ""
 
-#: ../../samd/pinout.rst:706
+#: ../../samd/pinout.rst:710
 msgid "84"
 msgstr ""
 
-#: ../../samd/pinout.rst:706
+#: ../../samd/pinout.rst:710
 msgid "PC20"
 msgstr ""
 
-#: ../../samd/pinout.rst:707
+#: ../../samd/pinout.rst:711
 msgid "85"
 msgstr ""
 
-#: ../../samd/pinout.rst:707
+#: ../../samd/pinout.rst:711
 msgid "PC21"
 msgstr ""
 
-#: ../../samd/pinout.rst:708
+#: ../../samd/pinout.rst:712
 msgid "86"
 msgstr ""
 
-#: ../../samd/pinout.rst:708
+#: ../../samd/pinout.rst:712
 msgid "PC22"
 msgstr ""
 
-#: ../../samd/pinout.rst:709
+#: ../../samd/pinout.rst:713
 msgid "87"
 msgstr ""
 
-#: ../../samd/pinout.rst:709
+#: ../../samd/pinout.rst:713
 msgid "PC23"
 msgstr ""
 
-#: ../../samd/pinout.rst:710
+#: ../../samd/pinout.rst:714
 msgid "88"
 msgstr ""
 
-#: ../../samd/pinout.rst:710
+#: ../../samd/pinout.rst:714
 msgid "PC24"
 msgstr ""
 
-#: ../../samd/pinout.rst:711
+#: ../../samd/pinout.rst:715
 msgid "89"
 msgstr ""
 
-#: ../../samd/pinout.rst:711
+#: ../../samd/pinout.rst:715
 msgid "PC25"
 msgstr ""
 
-#: ../../samd/pinout.rst:712
+#: ../../samd/pinout.rst:716
 msgid "95"
 msgstr ""
 
-#: ../../samd/pinout.rst:712
+#: ../../samd/pinout.rst:716
 msgid "PC31"
 msgstr ""
 
-#: ../../samd/pinout.rst:713
+#: ../../samd/pinout.rst:717
 msgid "96"
 msgstr ""
 
-#: ../../samd/pinout.rst:713
+#: ../../samd/pinout.rst:717
 msgid "PD00"
 msgstr ""
 
-#: ../../samd/pinout.rst:714
+#: ../../samd/pinout.rst:718
 msgid "97"
 msgstr ""
 
-#: ../../samd/pinout.rst:714
+#: ../../samd/pinout.rst:718
 msgid "PD01"
 msgstr ""
 
-#: ../../samd/pinout.rst:720
+#: ../../samd/pinout.rst:724
 msgid ""
 "Default pin assignments: - UART 2 at pins PB27 and PB26, labelled RX and "
 "TX - I2C 4 at pins PA12 and PA13, labelled SCL0 and SDA0 - I2C 3 at pins "
@@ -3587,58 +3601,58 @@ msgstr ""
 "- I2C 3 はピン PA16 と PA17 (SCL1 と SDA1) "
 "- SPI 5はピン PB00, PB02, PB03 (MISO, MOSI, SCK)。"
 
-#: ../../samd/pinout.rst:726
+#: ../../samd/pinout.rst:730
 msgid "There seems to be no default pin assignment for this board."
 msgstr "このボードにデフォルトのピン割当てはないようです。"
 
-#: ../../samd/pinout.rst:729
+#: ../../samd/pinout.rst:733
 msgid "Sparkfun SAMD51 Thing Plus pin assignment table"
 msgstr "Sparkfun SAMD51 Thing Plus のピン割当てテーブル"
 
-#: ../../samd/pinout.rst:757
+#: ../../samd/pinout.rst:761
 msgid "RXD"
 msgstr ""
 
-#: ../../samd/pinout.rst:758
+#: ../../samd/pinout.rst:762
 msgid "RXLED"
 msgstr ""
 
-#: ../../samd/pinout.rst:764
+#: ../../samd/pinout.rst:768
 msgid "TXD"
 msgstr ""
 
-#: ../../samd/pinout.rst:765
+#: ../../samd/pinout.rst:769
 msgid "TXLED"
 msgstr ""
 
-#: ../../samd/pinout.rst:792
+#: ../../samd/pinout.rst:796
 msgid "UART 1 at pins PB23/PB22, labelled RXD/TXD"
 msgstr "UART 1 はピン PB23/PB22。RXD/TXD でラベル付けられています。"
 
-#: ../../samd/pinout.rst:793
+#: ../../samd/pinout.rst:797
 msgid "I2C 5 at pins PA22/PA23, labelled SDA/SCL"
 msgstr "I2C 5 はピン PA22/PA23。SDA/SCL でラベル付けられています。"
 
-#: ../../samd/pinout.rst:794
+#: ../../samd/pinout.rst:798
 msgid "SPI 4 at pins PB12/PB11/PB13, labelled MOSI, MISO and SCK"
 msgstr "SPI 4 はピン PB12/PB11/PB13。MOSI, MISO, SCK でラベル付けられています。"
 
-#: ../../samd/pinout.rst:795
+#: ../../samd/pinout.rst:799
 msgid "DAC output on pins PA02 and PA05, labelled A0 and A4"
 msgstr "DAC 出力はピン PA02 と PA05。A0 と A4 でラベル付けられています。"
 
-#: ../../samd/pinout.rst:798
+#: ../../samd/pinout.rst:802
 msgid "Scripts for creating the pin assignment tables"
 msgstr "ピン割当てテーブルを作成するスクリプト"
 
-#: ../../samd/pinout.rst:800
+#: ../../samd/pinout.rst:804
 msgid ""
 "The tables shown above were created with small a Python script running on"
 " the target board::"
 msgstr ""
 "上記の表は、小さな Python スクリプトをターゲットボード上で実行して作成しました::"
 
-#: ../../samd/pinout.rst:802
+#: ../../samd/pinout.rst:806
 #, python-format
 msgid ""
 "from samd import pininfo\n"
