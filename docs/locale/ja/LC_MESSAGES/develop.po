@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 11:08+0900\n"
-"PO-Revision-Date: 2023-05-21 11:08+0900\n"
+"POT-Creation-Date: 2023-06-11 07:52+0900\n"
+"PO-Revision-Date: 2023-06-11 07:52+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3291,9 +3291,6 @@ msgid ""
 "#define MICROPY_FLOAT_IMPL                      "
 "(MICROPY_FLOAT_IMPL_FLOAT)\n"
 "\n"
-"// Enable u-modules to be imported with their standard name, like sys.\n"
-"#define MICROPY_MODULE_WEAK_LINKS               (1)\n"
-"\n"
 "// Fine control over Python builtins, classes, modules, etc.\n"
 "#define MICROPY_PY_ASYNC_AWAIT                  (0)\n"
 "#define MICROPY_PY_BUILTINS_SET                 (0)\n"
@@ -3319,7 +3316,7 @@ msgid ""
 "#define MP_STATE_PORT MP_STATE_VM"
 msgstr ""
 
-#: ../../develop/porting.rst:181
+#: ../../develop/porting.rst:178
 msgid ""
 "This configuration file contains machine-specific configurations "
 "including aspects like if different MicroPython features should be "
@@ -3327,32 +3324,32 @@ msgid ""
 "``(0)`` disables the feature."
 msgstr ""
 
-#: ../../develop/porting.rst:185
+#: ../../develop/porting.rst:182
 msgid ""
 "Other configurations include type definitions, root pointers, board name,"
 " microcontroller name etc."
 msgstr ""
 
-#: ../../develop/porting.rst:188
+#: ../../develop/porting.rst:185
 msgid "Similarly, an minimal example ``mphalport.h`` file looks like this:"
 msgstr ""
 
-#: ../../develop/porting.rst:190
+#: ../../develop/porting.rst:187
 msgid "static inline void mp_hal_set_interrupt_char(char c) {}"
 msgstr ""
 
-#: ../../develop/porting.rst:195
+#: ../../develop/porting.rst:192
 msgid "Support for standard input/output"
 msgstr ""
 
-#: ../../develop/porting.rst:197
+#: ../../develop/porting.rst:194
 msgid ""
 "MicroPython requires at least a way to output characters, and to have a "
 "REPL it also requires a way to input characters. Functions for this can "
 "be implemented in the file ``mphalport.c``, for example:"
 msgstr ""
 
-#: ../../develop/porting.rst:201
+#: ../../develop/porting.rst:198
 msgid ""
 "#include <unistd.h>\n"
 "#include \"py/mpconfig.h\"\n"
@@ -3372,21 +3369,21 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/porting.rst:220
+#: ../../develop/porting.rst:217
 msgid ""
 "These input and output functions have to be modified depending on the "
 "specific board API. This example uses the standard input/output stream."
 msgstr ""
 
-#: ../../develop/porting.rst:224
+#: ../../develop/porting.rst:221
 msgid "Building and running"
 msgstr ""
 
-#: ../../develop/porting.rst:226
+#: ../../develop/porting.rst:223
 msgid "At this stage the directory of the new port should contain::"
 msgstr ""
 
-#: ../../develop/porting.rst:228
+#: ../../develop/porting.rst:225
 msgid ""
 "ports/example_port/\n"
 "├── main.c\n"
@@ -3396,13 +3393,13 @@ msgid ""
 "└── mphalport.h"
 msgstr ""
 
-#: ../../develop/porting.rst:235
+#: ../../develop/porting.rst:232
 msgid ""
 "The port can now be built by running ``make`` (or otherwise, depending on"
 " your system)."
 msgstr ""
 
-#: ../../develop/porting.rst:237
+#: ../../develop/porting.rst:234
 msgid ""
 "If you are using the default compiler settings in the Makefile given "
 "above then this will create an executable called ``build/firmware.elf`` "
@@ -3410,17 +3407,17 @@ msgid ""
 "first configure the terminal to raw mode:"
 msgstr ""
 
-#: ../../develop/porting.rst:241
+#: ../../develop/porting.rst:238
 msgid ""
 "$ stty raw opost -echo\n"
 "$ ./build/firmware.elf"
 msgstr ""
 
-#: ../../develop/porting.rst:246
+#: ../../develop/porting.rst:243
 msgid "That should give a MicroPython REPL.  You can then run commands like:"
 msgstr ""
 
-#: ../../develop/porting.rst:248
+#: ../../develop/porting.rst:245
 msgid ""
 "MicroPython v1.13 on 2021-01-01; example-board with unknown-cpu\n"
 ">>> import sys\n"
@@ -3429,21 +3426,21 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../develop/porting.rst:256
+#: ../../develop/porting.rst:253
 msgid "Use Ctrl-D to exit, and then run ``reset`` to reset the terminal."
 msgstr ""
 
-#: ../../develop/porting.rst:259
+#: ../../develop/porting.rst:256
 msgid "Adding a module to the port"
 msgstr ""
 
-#: ../../develop/porting.rst:261
+#: ../../develop/porting.rst:258
 msgid ""
 "To add a custom module like ``myport``, first add the module definition "
 "in a file ``modmyport.c``:"
 msgstr ""
 
-#: ../../develop/porting.rst:264
+#: ../../develop/porting.rst:261
 msgid ""
 "#include \"py/runtime.h\"\n"
 "\n"
@@ -3469,14 +3466,14 @@ msgid ""
 "MP_REGISTER_MODULE(MP_QSTR_myport, myport_module);"
 msgstr ""
 
-#: ../../develop/porting.rst:287
+#: ../../develop/porting.rst:284
 msgid ""
 "You will also need to edit the Makefile to add ``modmyport.c`` to the "
 "``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
 "qstrs are searched for in this new file), like this:"
 msgstr ""
 
-#: ../../develop/porting.rst:291
+#: ../../develop/porting.rst:288
 msgid ""
 "SRC_C = \\\n"
 "    main.c \\\n"
@@ -3487,13 +3484,13 @@ msgid ""
 "SRC_QSTR += modmyport.c"
 msgstr ""
 
-#: ../../develop/porting.rst:301
+#: ../../develop/porting.rst:298
 msgid ""
 "If all went correctly then, after rebuilding, you should be able to "
 "import the new module:"
 msgstr ""
 
-#: ../../develop/porting.rst:303
+#: ../../develop/porting.rst:300
 msgid ""
 ">>> import myport\n"
 ">>> myport.info()\n"

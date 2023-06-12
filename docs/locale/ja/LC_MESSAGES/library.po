@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-21 11:08+0900\n"
-"PO-Revision-Date: 2023-05-21 16:05+0900\n"
+"POT-Creation-Date: 2023-06-11 07:52+0900\n"
+"PO-Revision-Date: 2023-06-11 09:42+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -5520,24 +5520,26 @@ msgstr "この章の重要な要約"
 #: ../../library/index.rst:10
 msgid ""
 "MicroPython provides built-in modules that mirror the functionality of "
-"the Python standard library (e.g. :mod:`os`, :mod:`time`), as well as "
-"MicroPython-specific modules (e.g. :mod:`bluetooth`, :mod:`machine`)."
+"the :ref:`Python standard library <micropython_lib_python>` (e.g. "
+":mod:`os`, :mod:`time`), as well as :ref:`MicroPython-specific modules "
+"<micropython_lib_micropython>` (e.g. :mod:`bluetooth`, :mod:`machine`)."
 msgstr ""
-"MicroPython は、Python 標準ライブラリの機能を反映した組込みモジュール"
-"(例: :mod:`os`, :mod:`time`)と、MicroPython 固有のモジュール"
+"MicroPython は、 :ref:`Python 標準ライブラリ <micropython_lib_python>` "
+"の機能を反映した組込みモジュール(例: :mod:`os`, :mod:`time`)と、 "
+":ref:`MicroPython 固有のモジュール <micropython_lib_micropython>` "
 "(例: :mod:`bluetooth`, :mod:`machine`)を提供します。"
 
-#: ../../library/index.rst:13
+#: ../../library/index.rst:14
 msgid ""
-"Most standard library modules implement a subset of the functionality of "
-"the equivalent Python module, and in a few cases provide some "
-"MicroPython-specific extensions (e.g. :mod:`array`, :mod:`os`)"
+"Most Python standard library modules implement a subset of the "
+"functionality of the equivalent Python module, and in a few cases provide"
+" some MicroPython-specific extensions (e.g. :mod:`array`, :mod:`os`)"
 msgstr ""
-"ほとんどの標準ライブラリモジュールは、同等の Python モジュールにある機能のサブセットを"
-"実装しており、MicroPython 特有の拡張機能を提供しているものもあります"
+"ほとんどの Python 標準ライブラリモジュールは、同等の Python モジュールにある機能の"
+"サブセットを実装しており、MicroPython 特有の拡張機能を提供しているものもあります"
 "(例: :mod:`array`, :mod:`os`)。"
 
-#: ../../library/index.rst:16
+#: ../../library/index.rst:17
 msgid ""
 "Due to resource constraints or other limitations, some ports or firmware "
 "versions may not include all the functionality documented here."
@@ -5545,15 +5547,16 @@ msgstr ""
 "リソースの制約やその他の制限により、ポートやファームウェアのバージョンによっては、"
 "ここに記載されているすべての機能が含まれていない場合があります。"
 
-#: ../../library/index.rst:18
+#: ../../library/index.rst:19
 msgid ""
-"To allow for extensibility, the built-in modules can be extended from "
-"Python code loaded onto the device."
+"To allow for extensibility, some built-in modules can be :ref:`extended "
+"from Python code <micropython_lib_extending>` loaded onto the device "
+"filesystem."
 msgstr ""
-"拡張性を考慮して、組込みモジュールはデバイスにロードされた Python コードで"
-"拡張できます。"
+"拡張性を考慮して、組込みモジュールはデバイスのファイルシステムに配置した "
+":ref:`Python コードで機能追加できます <micropython_lib_extending>` 。"
 
-#: ../../library/index.rst:21
+#: ../../library/index.rst:23
 msgid ""
 "This chapter describes modules (function and class libraries) which are "
 "built into MicroPython. This documentation in general aspires to describe"
@@ -5569,7 +5572,7 @@ msgstr ""
 "組込みシステムへの各ポートには、利用可能な MicroPython ライブラリのサブセット"
 "しか含まれていないかもしれません。"
 
-#: ../../library/index.rst:28
+#: ../../library/index.rst:30
 msgid ""
 "With that in mind, please be warned that some functions/classes in a "
 "module (or even the entire module) described in this documentation **may "
@@ -5585,7 +5588,7 @@ msgstr ""
 "一般的な情報を得るには、特定の :term:`MicroPython ポート <MicroPython port>` "
 "に関連する情報を含む「一般的な情報」の章が最適です。"
 
-#: ../../library/index.rst:35
+#: ../../library/index.rst:37
 msgid ""
 "On some ports you are able to discover the available, built-in libraries "
 "that can be imported by entering the following at the :term:`REPL`::"
@@ -5593,11 +5596,11 @@ msgstr ""
 "いくつかのポートでは :term:`REPL` に次のように入力することで import できる、利用可能な"
 "組込みライブラリを検出できます::"
 
-#: ../../library/index.rst:38
+#: ../../library/index.rst:40
 msgid "help('modules')"
 msgstr ""
 
-#: ../../library/index.rst:40
+#: ../../library/index.rst:42
 msgid ""
 "Beyond the built-in libraries described in this documentation, many more "
 "modules from the Python standard library, as well as further MicroPython "
@@ -5607,11 +5610,11 @@ msgstr ""
 "多くのモジュール、さらに MicroPython の拡張もあります。それらは :term:`micropython-lib` "
 "で見つけられます。"
 
-#: ../../library/index.rst:45
+#: ../../library/index.rst:49
 msgid "Python standard libraries and micro-libraries"
 msgstr "Python 標準ライブラリとマイクロライブラリ"
 
-#: ../../library/index.rst:47
+#: ../../library/index.rst:51
 msgid ""
 "The following standard Python libraries have been \"micro-ified\" to fit "
 "in with the philosophy of MicroPython.  They provide the core "
@@ -5622,25 +5625,25 @@ msgstr ""
 "されています。これらは、そのモジュールの中核となる機能を提供し、標準の Python ライブラリを"
 "置き換えるものです。"
 
-#: ../../library/index.rst:81
+#: ../../library/index.rst:87
 msgid "MicroPython-specific libraries"
 msgstr "MicroPython 固有のライブラリ"
 
-#: ../../library/index.rst:83
+#: ../../library/index.rst:89
 msgid ""
 "Functionality specific to the MicroPython implementation is available in "
 "the following libraries."
 msgstr "MicroPython 処理系に固有の機能は、以下のライブラリで利用できます。"
 
-#: ../../library/index.rst:100
+#: ../../library/index.rst:105
 msgid "The following libraries provide drivers for hardware components."
 msgstr "次のライブラリはハードウェアコンポーネントのためのドライバとして提供します。"
 
-#: ../../library/index.rst:109
+#: ../../library/index.rst:114
 msgid "Port-specific libraries"
 msgstr "ポート固有のライブラリ"
 
-#: ../../library/index.rst:111
+#: ../../library/index.rst:116
 msgid ""
 "In some cases the following port/board-specific libraries have "
 "functions or classes similar to those in the :mod:`machine` library.  "
@@ -5652,7 +5655,7 @@ msgstr ""
 "ライブラリの方では、そのプラットフォームに固有のハードウェア機能が使えるように"
 "なっています。"
 
-#: ../../library/index.rst:116
+#: ../../library/index.rst:121
 msgid ""
 "To write portable code use functions and classes from the :mod:`machine` "
 "module. To access platform-specific hardware use the appropriate library, "
@@ -5663,66 +5666,75 @@ msgstr ""
 "ポート固有ライブラリを使ってください。たとえば Pyboard の場合は :mod:`pyb` "
 "を使います。"
 
-#: ../../library/index.rst:122
+#: ../../library/index.rst:127
 msgid "Libraries specific to the pyboard"
 msgstr "pyboard 固有のライブラリ"
 
-#: ../../library/index.rst:124
+#: ../../library/index.rst:129
 msgid "The following libraries are specific to the pyboard."
 msgstr "以下のライブラリは pyboard に固有のものです。"
 
-#: ../../library/index.rst:134
+#: ../../library/index.rst:140
 msgid "Libraries specific to the WiPy"
 msgstr "WiPy 固有のライブラリ"
 
-#: ../../library/index.rst:136
+#: ../../library/index.rst:142
 msgid "The following libraries and classes are specific to the WiPy."
 msgstr "以下のライブラリとクラスは WiPy に固有のものです。"
 
-#: ../../library/index.rst:147
+#: ../../library/index.rst:153
 msgid "Libraries specific to the ESP8266 and ESP32"
 msgstr "ESP8266 と ESP32 に固有のライブラリ"
 
-#: ../../library/index.rst:149
+#: ../../library/index.rst:155
 msgid "The following libraries are specific to the ESP8266 and ESP32."
 msgstr "以下のライブラリは ESP8266 と ESP32 に固有のものです。"
 
-#: ../../library/index.rst:159
+#: ../../library/index.rst:170
 msgid "Libraries specific to the RP2040"
 msgstr "RP2040 に固有のライブラリ"
 
-#: ../../library/index.rst:161
+#: ../../library/index.rst:172
 msgid ""
 "The following libraries are specific to the RP2040, as used in the "
 "Raspberry Pi Pico."
 msgstr ""
 "以下のライブラリは (Raspberry Pi Pico で使われている) RP2040 に固有のものです。"
 
-#: ../../library/index.rst:169
+#: ../../library/index.rst:180
 msgid "Libraries specific to Zephyr"
 msgstr "Zephyr に固有のライブラリ"
 
-#: ../../library/index.rst:171
+#: ../../library/index.rst:182
 msgid "The following libraries are specific to the Zephyr port."
 msgstr "以下のライブラリは Zephyr ポート に固有のものです。"
 
-#: ../../library/index.rst:180
+#: ../../library/index.rst:192
 msgid "Extending built-in libraries from Python"
 msgstr "Python での組込みライブラリの拡張"
 
-#: ../../library/index.rst:182
+#: ../../library/index.rst:194
 msgid ""
-"In most cases, the above modules are actually named ``umodule`` rather "
-"than ``module``, but MicroPython will alias any module prefixed with a "
-"``u`` to the non-``u`` version. However a file (or :term:`frozen module`)"
-" named ``module.py`` will take precedence over this alias."
+"A subset of the built-in modules are able to be extended by Python code "
+"by providing a module of the same name in the filesystem. This "
+"extensibility applies to the following Python standard library modules "
+"which are built-in to the firmware: ``array``, ``binascii``, "
+"``collections``, ``errno``, ``hashlib``, ``heapq``, ``io``, ``json``, "
+"``os``, ``platform``, ``random``, ``re``, ``select``, ``socket``, "
+"``ssl``, ``struct``, ``time`` ``zlib``, as well as the MicroPython-"
+"specific ``machine`` module. All other built-in modules cannot be "
+"extended from the filesystem."
 msgstr ""
-"ほとんどの場合、上記のモジュールの名前には接頭辞 ``u`` がついています(たとえばモジュール名が"
-"だとすると、それは実際には ``umodule`` というものになっています)が、MicroPython は"
-"接頭辞の無いものにエイリアスします。しかし ``module.py`` という名前のファイル(またはその "
-":term:`凍結モジュール <frozen module>`)は、このエイリアスよりも優先されます。"
+"組込みモジュールのサブセットは、ファイルシステムに同名のモジュールを配置することで、"
+"Python コードによる拡張が可能です。この拡張性は、ファームウェアに組み込まれている"
+"次の Python 標準ライブラリモジュールに適用されます: ``array``, ``binascii``, "
+"``collections``, ``errno``, ``hashlib``, ``heapq``, ``io``, ``json``, "
+"``os``, ``platform``, ``random``, ``re``, ``select``, ``socket``, "
+"``ssl``, ``struct``, ``time`` ``zlib`` および MicroPython 固有の "
+"``machine`` モジュール。他のすべての組み込みモジュールは、ファイルシステムから"
+"拡張できません。"
 
-#: ../../library/index.rst:187
+#: ../../library/index.rst:203
 msgid ""
 "This allows the user to provide an extended implementation of a built-in "
 "library (perhaps to provide additional CPython compatibility). The user-"
@@ -5736,25 +5748,79 @@ msgstr ""
 ":term:`micropython-lib` で広く使われています。詳しくは :ref:`packages` を"
 "参照してください。"
 
-#: ../../library/index.rst:193
+#: ../../library/index.rst:210
 msgid ""
-"This applies to both the Python standard libraries (e.g. ``os``, "
-"``time``, etc), but also the MicroPython libraries too (e.g. ``machine``,"
-" ``bluetooth``, etc). The main exception is the port-specific libraries "
-"(``pyb``, ``esp``, etc)."
+"In MicroPython v1.21.0 and higher, to prevent the filesystem module from "
+"importing itself, it can force an import of the built-in module it by "
+"temporarily clearing ``sys.path`` during the import. For example, to "
+"extend the ``time`` module from Python, a file named ``time.py`` on the "
+"filesystem would do the following::"
 msgstr ""
-"これは、Python の標準ライブラリ(例: ``os``, ``time`` など)だけでなく、"
-"MicroPythonのライブラリ(例: ``machine``, ``bluetooth`` など)にも適用されます。"
-"主な例外はポート固有のライブラリ(``pyb``, ``esp`` など)です。"
+"MicroPython v1.21.0 以降では、ファイルシステム上の拡張モジュールがそれ自体を"
+"インポートするのを防ぐために、インポート中に ``sys.path`` を一時的にクリアして、"
+"組込みモジュールの方のインポートを強制できます。たとえば、Python から ``time`` "
+"モジュールを、ファイルシステム上に ``time.py`` という名前のファイルで拡張する場合、"
+"次のようになります::"
 
-#: ../../library/index.rst:197
+#: ../../library/index.rst:216
 msgid ""
-"*Other than when you specifically want to force the use of the built-in "
-"module, we recommend always using* ``import module`` *rather than* "
-"``import umodule``."
+"_path = sys.path\n"
+"sys.path = ()\n"
+"try:\n"
+"  from time import *\n"
+"finally:\n"
+"  sys.path = _path\n"
+"  del _path\n"
+"\n"
+"def extra_method():\n"
+"  pass"
+msgstr ""
+
+#: ../../library/index.rst:227
+msgid ""
+"The result is that ``time.py`` contains all the globals of the built-in "
+"``time`` module, but adds ``extra_method``."
+msgstr ""
+"その結果、 ``time.py`` は組込みの ``time`` モジュールの全ての globals を"
+"含むとともに、 ``extra_method`` を追加します。"
+
+#: ../../library/index.rst:230
+msgid ""
+"In earlier versions of MicroPython, you can force an import of a built-in"
+" module by appending a ``u`` to the start of its name. For example, "
+"``import utime`` instead of ``import time``. For example, ``time.py`` on "
+"the filesystem could look like::"
+msgstr ""
+"MicroPython の以前のバージョンでは、組込みモジュールの名前の最初に u を付けることで、"
+"強制的にインポートできます。たとえば、 ``import time`` の代わりに ``import utime`` "
+"とします。たとえば、ファイルシステム上の ``time.py`` は次のようになります::"
+
+#: ../../library/index.rst:235
+msgid ""
+"from utime import *\n"
+"\n"
+"def extra_method():\n"
+"  pass"
+msgstr ""
+
+#: ../../library/index.rst:240
+msgid ""
+"This way is still supported, but the ``sys.path`` method described above "
+"is now preferred as the ``u``-prefix will be removed from the names of "
+"built-in modules in a future version of MicroPython."
+msgstr ""
+"この方法はまだサポートされていますが、MicroPython の将来のバージョンで"
+"組み込みモジュールの名前から ``u`` プレフィックスが削除されるため、上記の "
+"``sys.path`` 方式にすることが好ましいです。"
+
+#: ../../library/index.rst:244
+msgid ""
+"*Other than when it specifically needs to force the use of the built-in "
+"module, code should always use* ``import module`` *rather than* ``import "
+"umodule``."
 msgstr ""
 "*特に組込みモジュールを強制的に使いたい場合以外は、常に* ``import umodule`` "
-"*よりも* ``import module`` *の利用をお勧めします。*"
+"*よりも* ``import module`` *の利用を推奨します。*"
 
 #: ../../library/io.rst:2
 msgid ":mod:`io` -- input/output streams"
@@ -17535,11 +17601,11 @@ msgstr ""
 #: ../../library/random.rst:26
 msgid ""
 "The :func:`randrange`, :func:`randint` and :func:`choice` functions are "
-"only available if the ``MICROPY_PY_URANDOM_EXTRA_FUNCS`` configuration "
+"only available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration "
 "option is enabled."
 msgstr ""
 ":func:`randrange`, :func:`randint`, :func:`choice` 関数は、ビルド時に "
-"``MICROPY_PY_URANDOM_EXTRA_FUNCS`` 設定オプションを有効にした場合にのみ
+"``MICROPY_PY_RANDOM_EXTRA_FUNCS`` 設定オプションを有効にした場合にのみ
 "利用できます。"
 
 #: ../../library/random.rst:32
@@ -17601,10 +17667,10 @@ msgstr ""
 
 #: ../../library/random.rst:76
 msgid ""
-"The ``None`` case only works if ``MICROPY_PY_URANDOM_SEED_INIT_FUNC`` is "
+"The ``None`` case only works if ``MICROPY_PY_RANDOM_SEED_INIT_FUNC`` is "
 "enabled by the port, otherwise it raises ``ValueError``."
 msgstr ""
-"``None`` を与えるのは、 ``MICROPY_PY_URANDOM_SEED_INIT_FUNC`` ががポートで"
+"``None`` を与えるのは、 ``MICROPY_PY_RANDOM_SEED_INIT_FUNC`` ががポートで"
 "有効になっている場合のみ動作し、そうでない場合は ``ValueError`` が発生します。"
 
 #: ../../library/random.rst:81
@@ -23044,7 +23110,7 @@ msgstr ""
 #: ../../library/zephyr.DiskAccess.rst:35 ../../library/zephyr.FlashArea.rst:38
 msgid ""
 "These methods implement the simple and extended :ref:`block protocol "
-"<block-device-interface>` defined by :class:`uos.AbstractBlockDev`."
+"<block-device-interface>` defined by :class:`os.AbstractBlockDev`."
 msgstr ""
 
 #: ../../library/zephyr.FlashArea.rst:5

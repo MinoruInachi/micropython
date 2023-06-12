@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2022,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2023,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-29 11:38+0900\n"
-"PO-Revision-Date: 2023-04-29 12:49+0900\n"
+"POT-Creation-Date: 2023-06-11 07:52+0900\n"
+"PO-Revision-Date: 2023-06-12 23:10+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1470,16 +1470,12 @@ msgstr ""
 #: ../../renesas-ra/tutorial/using_peripheral.rst:15
 msgid ""
 "Especially `machine` module and class :ref:`machine.Pin <machine.Pin>` "
-"are very important for using peripherals. Note that prefix 'u' is added "
-"to the module for MicroPython, so you can see \"umachine\" in the list "
-"but you can use it like \"import machine\"."
+"are very important for using peripherals."
 msgstr ""
 "特に `machine` モジュールとクラス :ref:`machine.Pin <machine.Pin>` は"
-"ペリフェラルを使用する上で非常に重要です。MicroPython 用のモジュールには接頭辞 "
-"'u' が付くので、一覧に \"umachine\" と表示されますが、 \"import machine\" "
-"のように使うことができることに注意してください。"
+"ペリフェラルを使用する上で非常に重要です。
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:19
+#: ../../renesas-ra/tutorial/using_peripheral.rst:18
 msgid ""
 "Using \"from machine import Pin\", Pin name is available corresponding to"
 " the RA MCU's pin name which are Pin.cpu.P000 and 'P000'. In addition, "
@@ -1490,11 +1486,11 @@ msgstr ""
 "と 'P000' が利用できます。また、ボードに３つの LED と複数のスイッチがある場合には "
 "'LED1', 'LED2', 'SW1', 'SW2' を使うこともできます。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:25
+#: ../../renesas-ra/tutorial/using_peripheral.rst:24
 msgid "LED blinking"
 msgstr "LED の点滅"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:27
+#: ../../renesas-ra/tutorial/using_peripheral.rst:26
 msgid ""
 "As simple example, you can enter following program to blink LED1. Please "
 "enter key 4 times after the input of last time.sleep(1). ::"
@@ -1502,7 +1498,7 @@ msgstr ""
 "簡単な例として、LED1 を点滅させるには、次のようなプログラムを入力します。 "
 "time.sleep(1) を入力後、 ENTER キーを４回入力してください。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:30
+#: ../../renesas-ra/tutorial/using_peripheral.rst:29
 msgid ""
 "import time\n"
 "from machine import Pin\n"
@@ -1515,22 +1511,22 @@ msgid ""
 "    time.sleep(1)"
 msgstr ""
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:40
+#: ../../renesas-ra/tutorial/using_peripheral.rst:39
 msgid "You can see the LED1 blinking per 1 second."
 msgstr "LED1 が１秒ごとに点滅します。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:42
+#: ../../renesas-ra/tutorial/using_peripheral.rst:41
 msgid "If you want to stop the program, please enter CTRL-C. ::"
 msgstr "プログラムを停止したい場合は CTRL-C を入力してください。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:44
+#: ../../renesas-ra/tutorial/using_peripheral.rst:43
 msgid ""
 "Traceback (most recent call last):\n"
 "  File \"<stdin>\", line 5, in <module>\n"
 "KeyboardInterrupt:"
 msgstr ""
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:48
+#: ../../renesas-ra/tutorial/using_peripheral.rst:47
 msgid ""
 "This message is displayed, and the program stops. The message means the "
 "program was interrupted at line 5 \"while\" statement."
@@ -1538,7 +1534,7 @@ msgstr ""
 "次のメッセージが表示され、プログラムが停止します。"
 "このメッセージは、５行目の \"while\" 文のところでプログラムが中断されたことを意味します。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:51
+#: ../../renesas-ra/tutorial/using_peripheral.rst:50
 msgid ""
 "Using print(led1), you can confirm that LED1 is assigned to Pin.cpu.P106 "
 "on the board.::"
@@ -1546,11 +1542,11 @@ msgstr ""
 "print(led1) を使って、LED1 がボード上の Pin.cpu.P106 に割り当てられていることを"
 "確認できます。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:54
+#: ../../renesas-ra/tutorial/using_peripheral.rst:53
 msgid "Pin(Pin.cpu.P106, mode=Pin.OUT, pull=Pin.PULL_NONE, drive=Pin.LOW_POWER)"
 msgstr ""
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:56
+#: ../../renesas-ra/tutorial/using_peripheral.rst:55
 msgid ""
 "So you can get the same result if Pin(Pin.cpu.P106) is specified instead "
 "of Pin('LED1'). ::"
@@ -1558,7 +1554,7 @@ msgstr ""
 "そのため、 Pin('LED1') の代わりに Pin(Pin.cpu.P106) を指定しても"
 "同じ結果になります。"
 
-#: ../../renesas-ra/tutorial/using_peripheral.rst:59
+#: ../../renesas-ra/tutorial/using_peripheral.rst:58
 msgid ""
 "import time\n"
 "from machine import Pin\n"
