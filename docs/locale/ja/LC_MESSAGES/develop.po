@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-11 07:52+0900\n"
-"PO-Revision-Date: 2023-06-18 23:31+0900\n"
+"PO-Revision-Date: 2023-06-19 01:03+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3185,12 +3185,12 @@ msgid ""
 msgstr ""
 "最適化に関するユーザー視点でのより詳細な議論については、"
 "`MicroPython 性能の最大化 "
-"<https://docs.micropython.org/en/latest/reference/speed_python.html>`_ "
+"<https://micropython-docs-ja.readthedocs.io/ja/latest/reference/speed_python.html>`_ "
 "を参照してください。"
 
 #: ../../develop/porting.rst:4
 msgid "Porting MicroPython"
-msgstr ""
+msgstr "MicroPythonの移植"
 
 #: ../../develop/porting.rst:6
 msgid ""
@@ -3199,6 +3199,10 @@ msgid ""
 "`ports <https://github.com/micropython/micropython/tree/master/ports>`_ "
 "directory containing a subdirectory for each supported port."
 msgstr ""
+"MicroPython プロジェクトは、異なるマイクロコントローラファミリーと"
+"アーキテクチャへのいくつかのポートを含んでいます。プロジェクトのリポジトリには "
+"`ports <https://github.com/micropython/micropython/tree/master/ports>`_ "
+"ディレクトリがあり、サポートされている各ポートのサブディレクトリがあります。"
 
 #: ../../develop/porting.rst:10
 msgid ""
@@ -3206,6 +3210,8 @@ msgid ""
 "of which is a specific piece of hardware that that port can run on, e.g. "
 "a development kit or device."
 msgstr ""
+"ポートには通常、複数の「ボード」の定義が含まれており、それぞれのボードは、"
+"開発キットやデバイスなど、そのポートが実行可能な特定のハードウェアの一部です。"
 
 #: ../../develop/porting.rst:13
 msgid ""
@@ -3214,36 +3220,41 @@ msgid ""
 "is available as a simplified reference implementation of a MicroPython "
 "port.  It can run on both the host system and an STM32F4xx MCU."
 msgstr ""
+"`最小限ポート "
+"<https://github.com/micropython/micropython/tree/master/ports/minimal>`_ "
+"は、MicroPython ポートの簡略化されたリファレンス実装として利用可能です。"
+"これは、ホストシステムと STM32F4xx MCU の両方で実行できます。"
 
 #: ../../develop/porting.rst:17
 msgid "In general, starting a port requires:"
-msgstr ""
+msgstr "一般的に、移植を開始するには次のことが必要です:"
 
 #: ../../develop/porting.rst:19
 msgid "Setting up the toolchain (configuring Makefiles, etc)."
-msgstr ""
+msgstr "ツールチェーンのセットアップ(Makefile の設定など)。"
 
 #: ../../develop/porting.rst:20
 msgid "Implementing boot configuration and CPU initialization."
-msgstr ""
+msgstr "ブートコンフィギュレーションと CPU 初期化の実装。"
 
 #: ../../develop/porting.rst:21
 msgid ""
 "Initialising basic drivers required for development and debugging (e.g. "
 "GPIO, UART)."
 msgstr ""
+"開発やデバッグに必要な基本ドライバの初期化(例: GPIO、UART)。"
 
 #: ../../develop/porting.rst:22
 msgid "Performing the board-specific configurations."
-msgstr ""
+msgstr "ボード固有のコンフィギュレーションの実行。"
 
 #: ../../develop/porting.rst:23
 msgid "Implementing the port-specific modules."
-msgstr ""
+msgstr "ポート固有モジュールの実装。"
 
 #: ../../develop/porting.rst:26
 msgid "Minimal MicroPython firmware"
-msgstr ""
+msgstr "最小限のMicroPythonファームウェア"
 
 #: ../../develop/porting.rst:28
 msgid ""
@@ -3251,6 +3262,9 @@ msgid ""
 "integrating a minimal MicroPython interpreter.  For this walkthrough, "
 "create a subdirectory for the new port in the ``ports`` directory:"
 msgstr ""
+"新しいボードに MicroPython の移植を開始する最善の方法は、最小限の MicroPython "
+"インタプリタを統合することです。このウォークスルーのために、 ``ports`` ディレクトリに"
+"新しいポートのためのサブディレクトリを作成します:"
 
 #: ../../develop/porting.rst:32
 msgid ""
@@ -3263,6 +3277,8 @@ msgid ""
 "The basic MicroPython firmware is implemented in the main port file, e.g "
 "``main.c``:"
 msgstr ""
+"基本となる MicroPython ファームウェアは、メインポートファイル(例: ``main.c``)に"
+"実装します:"
 
 #: ../../develop/porting.rst:39
 msgid ""
@@ -3320,7 +3336,7 @@ msgstr ""
 
 #: ../../develop/porting.rst:90
 msgid "We also need a Makefile at this point for the port:"
-msgstr ""
+msgstr "また、この時点で移植用の Makefile が必要です:"
 
 #: ../../develop/porting.rst:92
 msgid ""
@@ -3365,11 +3381,11 @@ msgstr ""
 
 #: ../../develop/porting.rst:132
 msgid "Remember to use proper tabs to indent the Makefile."
-msgstr ""
+msgstr "Makefile のインデントには適切なタブを使うことを忘れないでください。"
 
 #: ../../develop/porting.rst:135
 msgid "MicroPython Configurations"
-msgstr ""
+msgstr "MicroPython の設定"
 
 #: ../../develop/porting.rst:137
 msgid ""
@@ -3378,10 +3394,13 @@ msgid ""
 "configurations are specified in ``mpconfigport.h`` and additional "
 "hardware-abstraction functions, such as time keeping, in ``mphalport.h``."
 msgstr ""
+"上記の最小限のコードを統合した後、次のステップはポート用の MicroPython 設定ファイルを"
+"作成することです。コンパイル時の設定は ``mpconfigport.h`` で、時間保持などの追加の"
+"ハードウェア抽象化関数は ``mphalport.h`` で設定します。"
 
 #: ../../develop/porting.rst:142
 msgid "The following is an example of an ``mpconfigport.h`` file:"
-msgstr ""
+msgstr "以下は ``mpconfigport.h`` ファイルの例です:"
 
 #: ../../develop/porting.rst:144
 msgid ""
@@ -3427,16 +3446,20 @@ msgid ""
 "enabled e.g. ``#define MICROPY_ENABLE_GC (1)``. Making this Setting "
 "``(0)`` disables the feature."
 msgstr ""
+"この設定ファイルには、異なる MicroPython の機能を有効にするかどうかなど、"
+"マシン固有の設定が含まれています。例えば、 ``#define MICROPY_ENABLE_GC (1)`` "
+"などです。この設定を ``(0)`` にすると、その機能は無効になります。"
 
 #: ../../develop/porting.rst:182
 msgid ""
 "Other configurations include type definitions, root pointers, board name,"
 " microcontroller name etc."
 msgstr ""
+"その他、型定義、ルートポインタ、ボード名、マイコン名などの設定も可能です。"
 
 #: ../../develop/porting.rst:185
 msgid "Similarly, an minimal example ``mphalport.h`` file looks like this:"
-msgstr ""
+msgstr "同様に、最小限のサンプルの ``mphalport.h`` ファイルは次のようになります:"
 
 #: ../../develop/porting.rst:187
 msgid "static inline void mp_hal_set_interrupt_char(char c) {}"
@@ -3444,7 +3467,7 @@ msgstr ""
 
 #: ../../develop/porting.rst:192
 msgid "Support for standard input/output"
-msgstr ""
+msgstr "標準入出力のサポート"
 
 #: ../../develop/porting.rst:194
 msgid ""
@@ -3452,6 +3475,9 @@ msgid ""
 "REPL it also requires a way to input characters. Functions for this can "
 "be implemented in the file ``mphalport.c``, for example:"
 msgstr ""
+"MicroPython は少なくとも文字を出力する方法を必要とし、REPL を持つためには文字を"
+"入力する方法も必要です。このための関数は、たとえば ``mphalport.c`` という"
+"ファイルに実装できます:"
 
 #: ../../develop/porting.rst:198
 msgid ""
@@ -3478,14 +3504,16 @@ msgid ""
 "These input and output functions have to be modified depending on the "
 "specific board API. This example uses the standard input/output stream."
 msgstr ""
+"これらの入出力関数は、特定のボード API に応じて変更する必要があります。"
+"この例では、標準的な入出力ストリームを使っています。"
 
 #: ../../develop/porting.rst:221
 msgid "Building and running"
-msgstr ""
+msgstr "ビルドと実行"
 
 #: ../../develop/porting.rst:223
 msgid "At this stage the directory of the new port should contain::"
-msgstr ""
+msgstr "この段階で、新しいポートのディレクトリには、次のものが含まれているはずです:"
 
 #: ../../develop/porting.rst:225
 msgid ""
@@ -3502,6 +3530,8 @@ msgid ""
 "The port can now be built by running ``make`` (or otherwise, depending on"
 " your system)."
 msgstr ""
+"これで、 ``make`` を実行することでポートをビルドできます"
+"(システムによっては、そうでない場合もあります)。"
 
 #: ../../develop/porting.rst:234
 msgid ""
@@ -3510,6 +3540,10 @@ msgid ""
 "which can be executed directly. To get a functional REPL you may need to "
 "first configure the terminal to raw mode:"
 msgstr ""
+"上記の Makefile のデフォルトのコンパイラ設定を使っている場合、 "
+"``build/firmware.elf`` という実行ファイルが作成され、直接実行することができます。"
+"機能的な REPL を得るためには、まずターミナルを raw モードに設定する必要が"
+"あるかもしれません:"
 
 #: ../../develop/porting.rst:238
 msgid ""
@@ -3520,6 +3554,8 @@ msgstr ""
 #: ../../develop/porting.rst:243
 msgid "That should give a MicroPython REPL.  You can then run commands like:"
 msgstr ""
+"これで MicroPython の REPL が表示されるはずです。"
+"そして、次のようなコマンドを実行できます:"
 
 #: ../../develop/porting.rst:245
 msgid ""
@@ -3533,16 +3569,19 @@ msgstr ""
 #: ../../develop/porting.rst:253
 msgid "Use Ctrl-D to exit, and then run ``reset`` to reset the terminal."
 msgstr ""
+"Ctrl-D で終了し、 ``reset`` を実行してターミナルをリセットします。"
 
 #: ../../develop/porting.rst:256
 msgid "Adding a module to the port"
-msgstr ""
+msgstr "ポートへのモジュール追加"
 
 #: ../../develop/porting.rst:258
 msgid ""
 "To add a custom module like ``myport``, first add the module definition "
 "in a file ``modmyport.c``:"
 msgstr ""
+"``myport`` のようなカスタムモジュールを追加するには、まず ``modmyport.c`` "
+"というファイルにモジュール定義を追加します:"
 
 #: ../../develop/porting.rst:261
 msgid ""
@@ -3576,6 +3615,9 @@ msgid ""
 "``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
 "qstrs are searched for in this new file), like this:"
 msgstr ""
+"また、Makefile を編集して、 ``SRC_C`` リストに ``modmyport.c`` を追加し、"
+"(qstr がこの新しいファイルで検索されるように) ``SRC_QSTR`` に同じファイルを"
+"加える新しい行を、次のように追加する必要があります:"
 
 #: ../../develop/porting.rst:288
 msgid ""
@@ -3593,6 +3635,7 @@ msgid ""
 "If all went correctly then, after rebuilding, you should be able to "
 "import the new module:"
 msgstr ""
+"すべてが正しく行われていれば、再構築後、新しいモジュールをインポートできるはずです:"
 
 #: ../../develop/porting.rst:300
 msgid ""
