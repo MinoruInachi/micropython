@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-11 07:52+0900\n"
-"PO-Revision-Date: 2023-06-11 07:52+0900\n"
+"PO-Revision-Date: 2023-06-18 23:31+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1858,51 +1858,61 @@ msgstr ""
 
 #: ../../develop/library.rst:4
 msgid "Implementing a Module"
-msgstr ""
+msgstr "モジュールの実装方法"
 
 #: ../../develop/library.rst:6
 msgid ""
 "This chapter details how to implement a core module in MicroPython. "
 "MicroPython modules can be one of the following:"
 msgstr ""
+"この章では、MicroPython でコアモジュールを実装する方法について説明します。"
+"MicroPython のモジュールは、以下のいずれかになります:"
 
 #: ../../develop/library.rst:9
 msgid ""
 "Built-in module: A general module that is be part of the MicroPython "
 "repository."
 msgstr ""
+"組込みモジュール: MicroPython リポジトリの一部である汎用モジュールです。
 
 #: ../../develop/library.rst:10
 msgid ""
 "User module: A module that is useful for your specific project that you "
 "maintain in your own repository or private codebase."
 msgstr ""
+"ユーザーモジュール: 特定のプロジェクトに役立つモジュールで、"
+"自分のリポジトリまたはプライベートコードベースで管理します。"
 
 #: ../../develop/library.rst:12
 msgid ""
 "Dynamic module: A module that can be deployed and imported at runtime to "
 "your device."
 msgstr ""
+"ダイナミックモジュール: 実行時にデバイスにデプロイしてインポートできるモジュールです。"
 
 #: ../../develop/library.rst:14
 msgid ""
 "A module in MicroPython can be implemented in one of the following "
 "locations:"
 msgstr ""
+"MicroPython のモジュールは次のいずれかの場所に実装できます:"
 
 #: ../../develop/library.rst:16
 msgid "py/: A core library that mirrors core CPython functionality."
 msgstr ""
+"py/: CPythonのコア機能を反映したコアライブラリです。"
 
 #: ../../develop/library.rst:17
 msgid ""
 "extmod/: A CPython or MicroPython-specific module that is shared across "
 "multiple ports."
 msgstr ""
+"extmod/: 複数のポートで共有される CPython または MicroPython 固有のモジュールです。"
 
 #: ../../develop/library.rst:18
 msgid "ports/<port>/: A port-specific module."
 msgstr ""
+"ports/<port>/: ポートに固有のモジュールです。"
 
 #: ../../develop/library.rst:21
 msgid ""
@@ -1911,10 +1921,14 @@ msgid ""
 "module. For details on port-specific modules, see "
 ":ref:`porting_to_a_board`."
 msgstr ""
+"この章では ``py/`` またはコアモジュールで実装されたモジュールについて説明します。"
+"外部モジュールの実装については :ref:`extendingmicropython` を参照してください。"
+"ポート専用モジュールの詳細については :ref:`porting_to_a_board` を参照してください。"
 
 #: ../../develop/library.rst:26
 msgid "Implementing a core module"
 msgstr ""
+"コアモジュールの実装方法"
 
 #: ../../develop/library.rst:28
 msgid ""
@@ -1922,6 +1936,9 @@ msgid ""
 "through import statements. An example is the ``gc`` module discussed in "
 ":ref:`memorymanagement`."
 msgstr ""
+"CPython と同様に、MicroPython にもコアとなる組込みモジュールがあり、"
+"import 文でアクセスできます。例として、 :ref:`memorymanagement` で取り上げた ``gc`` "
+"モジュールの場合について示します。"
 
 #: ../../develop/library.rst:31
 msgid ""
@@ -1935,6 +1952,8 @@ msgid ""
 "MicroPython has several other builtin standard/core modules like ``io``, "
 "``array`` etc. Adding a new core module involves several modifications."
 msgstr ""
+"MicroPython には、他にも ``io`` や ``array`` などの標準/コアモジュールがいくつか"
+"組み込まれています。新しいコアモジュールの追加にはいくつかの修正が必要です。"
 
 #: ../../develop/library.rst:40
 msgid ""
@@ -1942,6 +1961,9 @@ msgid ""
 " are adding a hypothetical new module ``subsystem`` in the file "
 "``modsubsystem.c``:"
 msgstr ""
+まず、 ``py/`` ディレクトリに C ファイルを作成します。"
+"この例では ``odsubsystem.c`` というファイルに、仮想的な新しいモジュール "
+"``subsystem`` を追加しています:"
 
 #: ../../develop/library.rst:43
 msgid ""
@@ -1981,12 +2003,17 @@ msgid ""
 "with ``mp_module_subsystem``.  The module is then registered with the "
 "wider system via the ``MP_REGISTER_MODULE`` macro."
 msgstr ""
+"実装は、モジュールに関連するすべての関数の定義を含み、関数を "
+"``mp_module_subsystem_globals_table`` のモジュールのグローバルテーブルに追加します。"
+"また、 ``mp_module_subsystem`` でモジュールオブジェクトを作成します。"
+"そして、 ``MP_REGISTER_MODULE`` マクロにより、モジュールはより広いシステムに登録されます。"
 
 #: ../../develop/library.rst:76
 msgid ""
 "After building and running the modified MicroPython, the module should "
 "now be importable:"
 msgstr ""
+"修正した MicroPython をビルドして実行すると、モジュールをインポートできるようになります:"
 
 #: ../../develop/library.rst:78
 msgid ""
@@ -2002,20 +2029,25 @@ msgid ""
 " extended to do anything.  Similarly, more functions can be added to this"
 " new module."
 msgstr ""
+"``info()`` 関数は現在のところ１つの数値を返すだけですが、"
+"他にも何かできるように拡張できます。同様にして、より多くの関数を"
+"この新しいモジュールに追加できます。"
 
 #: ../../develop/maps.rst:4
 msgid "Maps and Dictionaries"
-msgstr ""
+msgstr "マップと辞書"
 
 #: ../../develop/maps.rst:6
 msgid ""
 "MicroPython dictionaries and maps use techniques called open addressing "
 "and linear probing. This chapter details both of these methods."
 msgstr ""
+"MicroPython の辞書とマップは、オープンアドレッシングとリニアプロービングと"
+呼ばれる技法を使っています。この章では、この2つの手法の詳細を説明します。"
 
 #: ../../develop/maps.rst:10
 msgid "Open addressing"
-msgstr ""
+msgstr "オープンアドレッシング"
 
 #: ../../develop/maps.rst:12
 msgid ""
@@ -2024,6 +2056,9 @@ msgid ""
 "happen when two items happen to hash to the same slot or location. For "
 "example, given a hash setup as this:"
 msgstr ""
+"オープンアドレッシングは、衝突を解決するために使用されます。衝突は非常によく起こる現象で、"
+"2つのアイテムが偶然同じスロットや場所にハッシュされたときに起こります。"
+"たとえば、次のようなハッシュ設定があるとします:"
 
 #: ../../develop/maps.rst:17
 msgid ".. image:: develop/img/collision.png"
@@ -2038,10 +2073,15 @@ msgid ""
 "probing algorithms but MicroPython uses linear probing that is described "
 "in the next section."
 msgstr ""
+"スロット ``0`` を ``70`` で満たす要求があった場合、スロット ``0`` は空ではないので、"
+"オープンアドレッシングは、この要求をサービスするために、辞書内の次の利用可能なスロットを"
+"見つける。このように代替となる場所を逐次的に探すことを *プロービング* と呼びます。"
+"いくつかのシーケンスプロービングアルゴリズムがありますが、MicroPython は次の"
+"章で説明するリニアプロービングを採用しています。"
 
 #: ../../develop/maps.rst:24
 msgid "Linear probing"
-msgstr ""
+msgstr "リニアプロービング"
 
 #: ../../develop/maps.rst:26
 msgid ""
@@ -2052,6 +2092,11 @@ msgid ""
 "request will therefore be serviced by placing the item in the next free "
 "slot which is slot ``4`` in our example:"
 msgstr ""
+"リニアプロービングは、辞書で利用可能なアドレスやスロットを見つけるための方法の1つです。"
+"MicroPython では、オープンアドレッシングと一緒に使います。上記の要求を処理するために、"
+"他のプロービングアルゴリズムとは異なり、リニアプロービングはプローブ間の固定間隔を ``1`` と"
+"仮定しています。したがって、このリクエストは、次の空きスロット(この例ではスロット4)に"
+"アイテムを配置することで処理されることになります:"
 
 #: ../../develop/maps.rst:32
 msgid ".. image:: develop/img/linprob.png"
@@ -2070,6 +2115,13 @@ msgid ""
 "encounter a free slot. This is the general way of performing look-ups in "
 "hashes:"
 msgstr ""
+"辞書の項目を検索する場合にも、オープンアドレッシングとリニアプロービングという同じ"
+"方法が使われます。たとえば、データ項目 ``33`` を検索するとします。"
+"計算されたハッシュ値は 2 です。スロット2を見ると ``33`` が見つかり、この時点で ``True`` "
+"を返します。70を検索する場合は、挿入時に衝突が発生していたため、まったく異なります。"
+"したがって、ハッシュ値を計算すると、現在 ``44`` を保持している ``0`` になります。"
+"単純に ``False`` を返すのではなく、ポイント ``1`` から順に、アイテム70が見つかるか、"
+"空きスロットに出会うまで、順次検索を実行します。これがハッシュの検索を行う一般的な方法です:"
 
 #: ../../develop/maps.rst:41
 #, python-format
@@ -2096,6 +2148,27 @@ msgid ""
 "     return MP_OBJ_NULL;\n"
 "}"
 msgstr ""
+"// まだ見つかっていないため、このテーブルで検索を続ける\n"
+"pos = (pos + 1) % set->alloc;\n"
+"\n"
+"if (pos == start_pos) {\n"
+"    // 検索が開始位置に戻ったため、インデックスがテーブル内にない\n"
+"    if (lookup_kind & MP_MAP_LOOKUP_ADD_IF_NOT_FOUND) {\n"
+"        if (avail_slot != NULL) {\n"
+"            // 空いている枠があったので、そちらを使用する\n"
+"            set->used++;\n"
+"            *avail_slot = index;\n"
+"            return index;\n"
+"        } else {\n"
+"            // テーブルの空きがないので、それをリハッシュする\n"
+"            mp_set_rehash(set);\n"
+"            // 新しい要素の検索を再開する\n"
+"            start_pos = pos = hash % set->alloc;\n"
+"        }\n"
+"    }\n"
+"} else {\n"
+"     return MP_OBJ_NULL;\n"
+"}"
 
 #: ../../develop/memorymgt.rst:4
 msgid "Memory Management"
@@ -2956,7 +3029,7 @@ msgstr "外部 C ライブラリの取り込み"
 
 #: ../../develop/optimizations.rst:4
 msgid "Optimizations"
-msgstr ""
+msgstr "最適化"
 
 #: ../../develop/optimizations.rst:6
 msgid ""
@@ -2964,16 +3037,19 @@ msgid ""
 "efficient execution of programs. This chapter discusses some of these "
 "optimizations."
 msgstr ""
+"MicroPython は RAM を節約しつつ、プログラムの効率的な実行を保証するためにいくつかの"
+"最適化を使っています。この章では、これらの最適化のいくつかを説明します。"
 
 #: ../../develop/optimizations.rst:10
 msgid ""
 ":ref:`qstr` and :ref:`maps` details other optimizations on strings and "
 "dictionaries."
 msgstr ""
+":ref:`qstr` と :ref:`maps` では、文字列と辞書に関する最適化について別に詳しく説明します。"
 
 #: ../../develop/optimizations.rst:14
 msgid "Frozen bytecode"
-msgstr ""
+msgstr "凍結バイトコード"
 
 #: ../../develop/optimizations.rst:16
 msgid ""
@@ -2986,6 +3062,12 @@ msgid ""
 " be loaded into RAM, but it avoids the additional overhead of the parsing"
 " stage."
 msgstr ""
+"MicroPython がファイルシステムから Python コードをロードするとき、まずファイルを"
+"一時的なメモリ内表現にパースし、次に実行のためのバイトコードを生成する必要があります。"
+"これらは両方ともヒープ(RAM)に格納されています。このため、大量のメモリが使用される"
+"可能性があります。MicroPythonクロスコンパイラを使用すると、Python モジュールの"
+"コンパイル済みバイトコードを含む ``.mpy`` ファイルを生成することができます。"
+"この場合もRAMにロードされますが、解析ステージの追加オーバーヘッドを回避できます。"
 
 #: ../../develop/optimizations.rst:23
 msgid ""
@@ -2995,14 +3077,18 @@ msgid ""
 "ROM. This can lead to a significant memory saving, and reduce heap "
 "fragmentation."
 msgstr ""
+"さらなる最適化として、 ``.mpy`` ファイルからコンパイル済みのバイトコードを、"
+"ファームウェア のメインコンパイルプロセスの一部として、ファームウェアイメージに"
+"「凍結」できます。これは、バイトコードがROMから実行されることを意味します。"
+"これは、大幅なメモリ節約につながり、ヒープの断片化を軽減できます。"
 
 #: ../../develop/optimizations.rst:28
 msgid "See :ref:`manifest` for more information."
-msgstr ""
+msgstr "詳しくは :ref:`manifest` を参照してください。"
 
 #: ../../develop/optimizations.rst:31
 msgid "Variables"
-msgstr ""
+msgstr "変数"
 
 #: ../../develop/optimizations.rst:33
 msgid ""
@@ -3014,6 +3100,12 @@ msgid ""
 "  They are accessed directly by their offset within the Python stack, "
 "which is more efficient than a global lookup in a dict."
 msgstr ""
+"MicroPython はローカル変数とグローバル変数を異なる方法で処理します。"
+"グローバル変数は、ヒープ上に割り当てられたグローバル辞書に格納され、検索されます"
+"(各モジュールは、それ自身の独立した辞書を持っているので、別の名前空間であることに"
+"注意してください)。一方、ローカル変数は Python の値スタックに格納され、"
+"Ｃスタックやヒープ上に存在することもあります。ローカル変数は、Pythonスタック内の"
+"オフセットによって直接アクセスされ、dict でグローバルに検索するよりも効率的です。"
 
 #: ../../develop/optimizations.rst:40
 msgid ""
@@ -3021,6 +3113,8 @@ msgid ""
 "identifiers are stored in RAM. The shorter the identifier, the less "
 "memory is used."
 msgstr ""
+"グローバル変数名の長さは、識別子が RAM に保存されるため、RAM の使用量に影響します。"
+"識別子が短ければ短いほど、メモリ消費量は少なくなります。"
 
 #: ../../develop/optimizations.rst:43
 msgid ""
@@ -3029,6 +3123,9 @@ msgid ""
 " in a dictionary, hence saving some memory. These variables use "
 "``const()`` from the MicroPython library. Therefore:"
 msgstr ""
+"もうひとつは、アンダースコアで始まる ``const`` 変数は適切な定数として扱われ、"
+"辞書に割り当てられたり追加されたりしないので、メモリを節約できるという点です。"
+"これらの変数は、MicroPythonライブラリの ``const()`` を使います。つまり:"
 
 #: ../../develop/optimizations.rst:47
 msgid ""
@@ -3041,7 +3138,7 @@ msgstr ""
 
 #: ../../develop/optimizations.rst:55
 msgid "Compiles to:"
-msgstr ""
+msgstr "は、次のように解釈されます:"
 
 #: ../../develop/optimizations.rst:57
 msgid ""
@@ -3051,31 +3148,34 @@ msgstr ""
 
 #: ../../develop/optimizations.rst:63
 msgid "Allocation of memory"
-msgstr ""
+msgstr "メモリの割当て"
 
 #: ../../develop/optimizations.rst:65
 msgid ""
 "Most of the common MicroPython constructs are not allocated on the heap. "
 "However the following are:"
 msgstr ""
+"MicroPython の一般的な構成要素のほとんどは、ヒープに割り当てられません。"
+"しかし、以下のものは割り当てられます:"
 
 #: ../../develop/optimizations.rst:68
 msgid "Dynamic data structures like lists, mappings, etc;"
-msgstr ""
+msgstr "リスト、マッピングなどの動的なデータ構造"
 
 #: ../../develop/optimizations.rst:69
 msgid "Functions, classes and object instances;"
-msgstr ""
+msgstr "関数、クラス、オブジェクトインスタンス"
 
 #: ../../develop/optimizations.rst:70
 msgid "imports; and"
-msgstr ""
+msgstr "インポートしたもの"
 
 #: ../../develop/optimizations.rst:71
 msgid ""
 "First-time assignment of global variables (to create the slot in the "
 "global dict)."
 msgstr ""
+"グローバル変数の初回割り当て(グローバル辞書にスロットを作成するため)。"
 
 #: ../../develop/optimizations.rst:73
 msgid ""
@@ -3083,6 +3183,10 @@ msgid ""
 "optimization, see `Maximising MicroPython speed "
 "<https://docs.micropython.org/en/latest/reference/speed_python.html>`_"
 msgstr ""
+"最適化に関するユーザー視点でのより詳細な議論については、"
+"`MicroPython 性能の最大化 "
+"<https://docs.micropython.org/en/latest/reference/speed_python.html>`_ "
+"を参照してください。"
 
 #: ../../develop/porting.rst:4
 msgid "Porting MicroPython"
@@ -3500,7 +3604,7 @@ msgstr ""
 
 #: ../../develop/publiccapi.rst:4
 msgid "The public C API"
-msgstr ""
+msgstr "公開 C API"
 
 #: ../../develop/publiccapi.rst:6
 msgid ""
@@ -3508,10 +3612,13 @@ msgid ""
 " ``py/`` directory. Most of the important core runtime C APIs are exposed"
 " in ``runtime.h`` and ``obj.h``."
 msgstr ""
+"公開 C-API は ``py/`` ディレクトリにあるすべての C ヘッダーファイルで定義された関数で"
+"構成されています。重要なコアランタイム C API のほとんどは ``runtime.h`` と ``obj.h`` "
+"で公開されています。"
 
 #: ../../develop/publiccapi.rst:10
 msgid "The following is an example of public API functions from ``obj.h``:"
-msgstr ""
+msgstr "次にあげているものは ``obj.h`` のパブリックAPI関数の一例です:"
 
 #: ../../develop/publiccapi.rst:12
 msgid ""
@@ -3528,12 +3635,18 @@ msgid ""
 "Static inline functions in header files are fine too, such functions will"
 " be inlined in the code when used."
 msgstr ""
+"そのコアでは、ヘッダーファイル中の関数とマクロが公開 API を構成していて、"
+"MicroPython の非常に低レベルな詳細にアクセスするために使えます。"
+"ヘッダーファイル中の静的なインライン関数も問題なく、"
+"そのような関数は使用時にコードにインライン化されます。"
 
 #: ../../develop/publiccapi.rst:24
 msgid ""
 "Header files in the ``ports`` directory are only exposed to the "
 "functionality specific to a given port."
 msgstr ""
+"``ports`` ディレクトリにあるヘッダーファイルは、"
+"それがあるポートに固有の機能にのみ公開されます。"
 
 #: ../../develop/qstr.rst:4
 msgid "MicroPython string interning"
