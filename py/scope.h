@@ -32,6 +32,7 @@
 typedef enum {
     ID_INFO_KIND_UNDECIDED,
     ID_INFO_KIND_GLOBAL_IMPLICIT,
+    ID_INFO_KIND_GLOBAL_IMPLICIT_ASSIGNED,
     ID_INFO_KIND_GLOBAL_EXPLICIT,
     ID_INFO_KIND_LOCAL, // in a function f, written and only referenced by f
     ID_INFO_KIND_CELL,  // in a function f, read/written by children of f
@@ -49,7 +50,7 @@ typedef struct _id_info_t {
     uint8_t kind;
     uint8_t flags;
     // when it's an ID_INFO_KIND_LOCAL this is the unique number of the local
-    // whet it's an ID_INFO_KIND_CELL/FREE this is the unique number of the closed over variable
+    // when it's an ID_INFO_KIND_CELL/FREE this is the unique number of the closed over variable
     uint16_t local_num;
     qstr qst;
 } id_info_t;

@@ -20,7 +20,7 @@
 #define IOMUX_TABLE_UART \
     { IOMUXC_GPIO_10_LPUART1_TXD }, { IOMUXC_GPIO_09_LPUART1_RXD }, \
     { 0 }, { 0 }, \
-    { 0 }, { 0 }, \
+    { IOMUXC_GPIO_08_LPUART3_TXD }, { IOMUXC_GPIO_AD_07_LPUART3_RXD }, \
     { IOMUXC_GPIO_AD_02_LPUART4_TXD }, { IOMUXC_GPIO_AD_01_LPUART4_RXD },
 
 #define MICROPY_HW_SPI_INDEX { 1 }
@@ -54,6 +54,7 @@
 #define I2S_DMA_REQ_SRC_RX { 0, kDmaRequestMuxSai1Rx }
 #define I2S_DMA_REQ_SRC_TX { 0, kDmaRequestMuxSai1Tx }
 #define I2S_WM8960_RX_MODE  (1)
+#define I2S_AUDIO_PLL_CLOCK (2U)
 
 #define I2S_GPIO(_hwid, _fn, _mode, _pin, _iomux) \
     { \
@@ -74,6 +75,3 @@
         I2S_GPIO(1, WS, TX, GPIO_07, IOMUXC_GPIO_07_SAI1_TX_SYNC),  \
         I2S_GPIO(1, SD, TX, GPIO_04, IOMUXC_GPIO_04_SAI1_TX_DATA00),  \
     }
-
-#define MICROPY_BOARD_ROOT_POINTERS \
-    struct _machine_i2s_obj_t *machine_i2s_obj[MICROPY_HW_I2S_NUM];

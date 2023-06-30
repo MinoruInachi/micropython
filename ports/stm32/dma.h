@@ -28,7 +28,7 @@
 
 typedef struct _dma_descr_t dma_descr_t;
 
-#if defined(STM32F0) || defined(STM32F4) || defined(STM32F7) || defined(STM32H7)
+#if defined(STM32F0) || defined(STM32F4) || defined(STM32F7) || defined(STM32G0) || defined(STM32H5) || defined(STM32H7)
 
 extern const dma_descr_t dma_I2C_1_RX;
 extern const dma_descr_t dma_SPI_3_RX;
@@ -91,6 +91,20 @@ extern const dma_descr_t dma_SPI_1_RX;
 extern const dma_descr_t dma_I2C_3_TX;
 extern const dma_descr_t dma_SPI_1_TX;
 extern const dma_descr_t dma_I2C_3_RX;
+extern const dma_descr_t dma_DAC_1_TX;
+extern const dma_descr_t dma_SPI_2_RX;
+extern const dma_descr_t dma_I2C_2_TX;
+extern const dma_descr_t dma_DAC_2_TX;
+extern const dma_descr_t dma_SPI_2_TX;
+extern const dma_descr_t dma_I2C_2_RX;
+extern const dma_descr_t dma_I2C_1_TX;
+extern const dma_descr_t dma_I2C_1_RX;
+
+#elif defined(STM32L1)
+extern const dma_descr_t dma_SPI_1_RX;
+extern const dma_descr_t dma_SPI_3_TX;
+extern const dma_descr_t dma_SPI_1_TX;
+extern const dma_descr_t dma_SPI_3_RX;
 extern const dma_descr_t dma_DAC_1_TX;
 extern const dma_descr_t dma_SPI_2_RX;
 extern const dma_descr_t dma_I2C_2_TX;

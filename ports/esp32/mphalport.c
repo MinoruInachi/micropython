@@ -32,6 +32,7 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "esp_timer.h"
 
 #include "py/obj.h"
 #include "py/objstr.h"
@@ -88,6 +89,9 @@ uintptr_t mp_hal_stdio_poll(uintptr_t poll_flags) {
     if ((poll_flags & MP_STREAM_POLL_RD) && stdin_ringbuf.iget != stdin_ringbuf.iput) {
         ret |= MP_STREAM_POLL_RD;
     }
+    if (poll_flags & MP_STREAM_POLL_WR) {
+        ret |= MP_STREAM_POLL_WR;
+    }
     return ret;
 }
 
@@ -107,7 +111,7 @@ void mp_hal_stdout_tx_strn(const char *str, size_t len) {
     if (release_gil) {
         MP_THREAD_GIL_EXIT();
     }
-    #if CONFIG_USB_ENABLED
+    #if CONFIG_USB_OTG_SUPPORTED
     usb_tx_strn(str, len);
     #elif CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG
     usb_serial_jtag_tx_strn(str, len);
@@ -118,7 +122,7 @@ void mp_hal_stdout_tx_strn(const char *str, size_t len) {
     if (release_gil) {
         MP_THREAD_GIL_ENTER();
     }
-    mp_uos_dupterm_tx_strn(str, len);
+    mp_os_dupterm_tx_strn(str, len);
 }
 
 uint32_t mp_hal_ticks_ms(void) {
@@ -130,16 +134,16 @@ uint32_t mp_hal_ticks_us(void) {
 }
 
 void mp_hal_delay_ms(uint32_t ms) {
-    uint64_t us = ms * 1000;
+    uint64_t us = (uint64_t)ms * 1000ULL;
     uint64_t dt;
     uint64_t t0 = esp_timer_get_time();
     for (;;) {
         mp_handle_pending(true);
-        MICROPY_PY_USOCKET_EVENTS_HANDLER
+        MICROPY_PY_SOCKET_EVENTS_HANDLER
         MP_THREAD_GIL_EXIT();
         uint64_t t1 = esp_timer_get_time();
         dt = t1 - t0;
-        if (dt + portTICK_PERIOD_MS * 1000 >= us) {
+        if (dt + portTICK_PERIOD_MS * 1000ULL >= us) {
             // doing a vTaskDelay would take us beyond requested delay time
             taskYIELD();
             MP_THREAD_GIL_ENTER();

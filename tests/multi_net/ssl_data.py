@@ -1,7 +1,11 @@
 # Simple test creating an SSL connection and transferring some data
 # This test won't run under CPython because it requires key/cert
 
-import ubinascii as binascii, usocket as socket, ussl as ssl
+try:
+    import binascii, socket, ssl
+except ImportError:
+    print("SKIP")
+    raise SystemExit
 
 PORT = 8000
 
@@ -34,6 +38,7 @@ cert = binascii.unhexlify(
     b"e960ae3ebc247371b525caeb41bbcf34686015a44c50d226e66aef0a97a63874ca5944ef"
     b"979b57f0b3"
 )
+
 
 # Server
 def instance0():

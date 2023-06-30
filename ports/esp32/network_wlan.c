@@ -35,11 +35,12 @@
 
 #include "py/objlist.h"
 #include "py/runtime.h"
+#include "py/mphal.h"
+#include "extmod/modnetwork.h"
 #include "modnetwork.h"
 
 #include "esp_wifi.h"
 #include "esp_log.h"
-#include "mdns.h"
 
 #if MICROPY_PY_NETWORK_WLAN
 
@@ -47,9 +48,10 @@
 #error WIFI_MODE_STA and WIFI_MODE_AP are supposed to be bitfields!
 #endif
 
-STATIC const mp_obj_type_t wlan_if_type;
-STATIC const wlan_if_obj_t wlan_sta_obj = {{&wlan_if_type}, WIFI_IF_STA};
-STATIC const wlan_if_obj_t wlan_ap_obj = {{&wlan_if_type}, WIFI_IF_AP};
+typedef base_if_obj_t wlan_if_obj_t;
+
+STATIC wlan_if_obj_t wlan_sta_obj;
+STATIC wlan_if_obj_t wlan_ap_obj;
 
 // Set to "true" if esp_wifi_start() was called
 static bool wifi_started = false;
@@ -70,42 +72,26 @@ static bool mdns_initialised = false;
 #endif
 
 static uint8_t conf_wifi_sta_reconnects = 0;
-static uint8_t wifi_sta_reconnects;
+static volatile uint8_t wifi_sta_reconnects;
 
 // This function is called by the system-event task and so runs in a different
 // thread to the main MicroPython task.  It must not raise any Python exceptions.
-void network_wlan_event_handler(system_event_t *event) {
-    switch (event->event_id) {
-        case SYSTEM_EVENT_STA_START:
+static void network_wlan_wifi_event_handler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data) {
+    switch (event_id) {
+        case WIFI_EVENT_STA_START:
             ESP_LOGI("wifi", "STA_START");
             wifi_sta_reconnects = 0;
             break;
-        case SYSTEM_EVENT_STA_CONNECTED:
+
+        case WIFI_EVENT_STA_CONNECTED:
             ESP_LOGI("network", "CONNECTED");
             break;
-        case SYSTEM_EVENT_STA_GOT_IP:
-            ESP_LOGI("network", "GOT_IP");
-            wifi_sta_connected = true;
-            wifi_sta_disconn_reason = 0; // Success so clear error. (in case of new error will be replaced anyway)
-            #if MICROPY_HW_ENABLE_MDNS_QUERIES || MICROPY_HW_ENABLE_MDNS_RESPONDER
-            if (!mdns_initialised) {
-                mdns_init();
-                #if MICROPY_HW_ENABLE_MDNS_RESPONDER
-                const char *hostname = NULL;
-                if (tcpip_adapter_get_hostname(WIFI_IF_STA, &hostname) != ESP_OK || hostname == NULL) {
-                    hostname = "esp32";
-                }
-                mdns_hostname_set(hostname);
-                mdns_instance_name_set(hostname);
-                #endif
-                mdns_initialised = true;
-            }
-            #endif
-            break;
-        case SYSTEM_EVENT_STA_DISCONNECTED: {
+
+        case WIFI_EVENT_STA_DISCONNECTED: {
             // This is a workaround as ESP32 WiFi libs don't currently
             // auto-reassociate.
-            system_event_sta_disconnected_t *disconn = &event->event_info.disconnected;
+
+            wifi_event_sta_disconnected_t *disconn = event_data;
             char *message = "";
             wifi_sta_disconn_reason = disconn->reason;
             switch (disconn->reason) {
@@ -155,34 +141,74 @@ void network_wlan_event_handler(system_event_t *event) {
     }
 }
 
-STATIC void require_if(mp_obj_t wlan_if, int if_no) {
-    wlan_if_obj_t *self = MP_OBJ_TO_PTR(wlan_if);
-    if (self->if_id != if_no) {
-        mp_raise_msg(&mp_type_OSError, if_no == WIFI_IF_STA ? MP_ERROR_TEXT("STA required") : MP_ERROR_TEXT("AP required"));
+static void network_wlan_ip_event_handler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data) {
+    switch (event_id) {
+        case IP_EVENT_STA_GOT_IP:
+            ESP_LOGI("network", "GOT_IP");
+            wifi_sta_connected = true;
+            wifi_sta_disconn_reason = 0; // Success so clear error. (in case of new error will be replaced anyway)
+            #if MICROPY_HW_ENABLE_MDNS_QUERIES || MICROPY_HW_ENABLE_MDNS_RESPONDER
+            if (!mdns_initialised) {
+                mdns_init();
+                #if MICROPY_HW_ENABLE_MDNS_RESPONDER
+                mdns_hostname_set(mod_network_hostname);
+                mdns_instance_name_set(mod_network_hostname);
+                #endif
+                mdns_initialised = true;
+            }
+            #endif
+            break;
+
+        default:
+            break;
     }
 }
 
-STATIC mp_obj_t get_wlan(size_t n_args, const mp_obj_t *args) {
-    static int initialized = 0;
-    if (!initialized) {
+STATIC void require_if(mp_obj_t wlan_if, int if_no) {
+    wlan_if_obj_t *self = MP_OBJ_TO_PTR(wlan_if);
+    if (self->if_id != if_no) {
+        mp_raise_msg(&mp_type_OSError, if_no == ESP_IF_WIFI_STA ? MP_ERROR_TEXT("STA required") : MP_ERROR_TEXT("AP required"));
+    }
+}
+
+void esp_initialise_wifi(void) {
+    static int wifi_initialized = 0;
+    if (!wifi_initialized) {
+        esp_exceptions(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, network_wlan_wifi_event_handler, NULL, NULL));
+        esp_exceptions(esp_event_handler_instance_register(IP_EVENT, ESP_EVENT_ANY_ID, network_wlan_ip_event_handler, NULL, NULL));
+
+        wlan_sta_obj.base.type = &esp_network_wlan_type;
+        wlan_sta_obj.if_id = ESP_IF_WIFI_STA;
+        wlan_sta_obj.netif = esp_netif_create_default_wifi_sta();
+
+        wlan_ap_obj.base.type = &esp_network_wlan_type;
+        wlan_ap_obj.if_id = ESP_IF_WIFI_AP;
+        wlan_ap_obj.netif = esp_netif_create_default_wifi_ap();
+
         wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
         ESP_LOGD("modnetwork", "Initializing WiFi");
         esp_exceptions(esp_wifi_init(&cfg));
         esp_exceptions(esp_wifi_set_storage(WIFI_STORAGE_RAM));
-        ESP_LOGD("modnetwork", "Initialized");
-        initialized = 1;
-    }
 
-    int idx = (n_args > 0) ? mp_obj_get_int(args[0]) : WIFI_IF_STA;
-    if (idx == WIFI_IF_STA) {
+        ESP_LOGD("modnetwork", "Initialized");
+        wifi_initialized = 1;
+    }
+}
+
+STATIC mp_obj_t network_wlan_make_new(const mp_obj_type_t *type, size_t n_args, size_t n_kw, const mp_obj_t *args) {
+    mp_arg_check_num(n_args, n_kw, 0, 1, false);
+
+    esp_initialise_wifi();
+
+    int idx = (n_args > 0) ? mp_obj_get_int(args[0]) : ESP_IF_WIFI_STA;
+    if (idx == ESP_IF_WIFI_STA) {
         return MP_OBJ_FROM_PTR(&wlan_sta_obj);
-    } else if (idx == WIFI_IF_AP) {
+    } else if (idx == ESP_IF_WIFI_AP) {
         return MP_OBJ_FROM_PTR(&wlan_ap_obj);
     } else {
         mp_raise_ValueError(MP_ERROR_TEXT("invalid WLAN interface identifier"));
     }
 }
-MP_DEFINE_CONST_FUN_OBJ_VAR_BETWEEN(get_wlan_obj, 0, 1, get_wlan);
 
 STATIC mp_obj_t network_wlan_active(size_t n_args, const mp_obj_t *args) {
     wlan_if_obj_t *self = MP_OBJ_TO_PTR(args[0]);
@@ -194,7 +220,7 @@ STATIC mp_obj_t network_wlan_active(size_t n_args, const mp_obj_t *args) {
         esp_exceptions(esp_wifi_get_mode(&mode));
     }
 
-    int bit = (self->if_id == WIFI_IF_STA) ? WIFI_MODE_STA : WIFI_MODE_AP;
+    int bit = (self->if_id == ESP_IF_WIFI_STA) ? WIFI_MODE_STA : WIFI_MODE_AP;
 
     if (n_args > 1) {
         bool active = mp_obj_is_true(args[1]);
@@ -207,8 +233,14 @@ STATIC mp_obj_t network_wlan_active(size_t n_args, const mp_obj_t *args) {
         } else {
             esp_exceptions(esp_wifi_set_mode(mode));
             if (!wifi_started) {
+                // WIFI_EVENT_STA_START must be received before esp_wifi_connect() can be called.
+                // Use the `wifi_sta_reconnects` variable to detect that event.
+                wifi_sta_reconnects = 1;
                 esp_exceptions(esp_wifi_start());
                 wifi_started = true;
+                while (wifi_sta_reconnects != 0) {
+                    MICROPY_EVENT_POLL_HOOK;
+                }
             }
         }
     }
@@ -218,7 +250,7 @@ STATIC mp_obj_t network_wlan_active(size_t n_args, const mp_obj_t *args) {
 STATIC MP_DEFINE_CONST_FUN_OBJ_VAR_BETWEEN(network_wlan_active_obj, 1, 2, network_wlan_active);
 
 STATIC mp_obj_t network_wlan_connect(size_t n_args, const mp_obj_t *pos_args, mp_map_t *kw_args) {
-    enum { ARG_ssid, ARG_password, ARG_bssid };
+    enum { ARG_ssid, ARG_key, ARG_bssid };
     static const mp_arg_t allowed_args[] = {
         { MP_QSTR_, MP_ARG_OBJ, {.u_obj = mp_const_none} },
         { MP_QSTR_, MP_ARG_OBJ, {.u_obj = mp_const_none} },
@@ -239,8 +271,8 @@ STATIC mp_obj_t network_wlan_connect(size_t n_args, const mp_obj_t *pos_args, mp
             p = mp_obj_str_get_data(args[ARG_ssid].u_obj, &len);
             memcpy(wifi_sta_config.sta.ssid, p, MIN(len, sizeof(wifi_sta_config.sta.ssid)));
         }
-        if (args[ARG_password].u_obj != mp_const_none) {
-            p = mp_obj_str_get_data(args[ARG_password].u_obj, &len);
+        if (args[ARG_key].u_obj != mp_const_none) {
+            p = mp_obj_str_get_data(args[ARG_key].u_obj, &len);
             memcpy(wifi_sta_config.sta.password, p, MIN(len, sizeof(wifi_sta_config.sta.password)));
         }
         if (args[ARG_bssid].u_obj != mp_const_none) {
@@ -253,6 +285,8 @@ STATIC mp_obj_t network_wlan_connect(size_t n_args, const mp_obj_t *pos_args, mp
         }
         esp_exceptions(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_sta_config));
     }
+
+    esp_exceptions(esp_netif_set_hostname(wlan_sta_obj.netif, mod_network_hostname));
 
     wifi_sta_reconnects = 0;
     // connect to the WiFi AP
@@ -275,7 +309,7 @@ STATIC MP_DEFINE_CONST_FUN_OBJ_1(network_wlan_disconnect_obj, network_wlan_disco
 STATIC mp_obj_t network_wlan_status(size_t n_args, const mp_obj_t *args) {
     wlan_if_obj_t *self = MP_OBJ_TO_PTR(args[0]);
     if (n_args == 1) {
-        if (self->if_id == WIFI_IF_STA) {
+        if (self->if_id == ESP_IF_WIFI_STA) {
             // Case of no arg is only for the STA interface
             if (wifi_sta_connected) {
                 // Happy path, connected with IP
@@ -300,7 +334,7 @@ STATIC mp_obj_t network_wlan_status(size_t n_args, const mp_obj_t *args) {
     switch ((uintptr_t)args[1]) {
         case (uintptr_t)MP_OBJ_NEW_QSTR(MP_QSTR_stations): {
             // return list of connected stations, only if in soft-AP mode
-            require_if(args[0], WIFI_IF_AP);
+            require_if(args[0], ESP_IF_WIFI_AP);
             wifi_sta_list_t station_list;
             esp_exceptions(esp_wifi_ap_get_sta_list(&station_list));
             wifi_sta_info_t *stations = (wifi_sta_info_t *)station_list.sta;
@@ -314,7 +348,7 @@ STATIC mp_obj_t network_wlan_status(size_t n_args, const mp_obj_t *args) {
         }
         case (uintptr_t)MP_OBJ_NEW_QSTR(MP_QSTR_rssi): {
             // return signal of AP, only in STA mode
-            require_if(args[0], WIFI_IF_STA);
+            require_if(args[0], ESP_IF_WIFI_STA);
 
             wifi_ap_record_t info;
             esp_exceptions(esp_wifi_sta_get_ap_info(&info));
@@ -345,6 +379,12 @@ STATIC mp_obj_t network_wlan_scan(mp_obj_t self_in) {
     if (status == 0) {
         uint16_t count = 0;
         esp_exceptions(esp_wifi_scan_get_ap_num(&count));
+        if (count == 0) {
+            // esp_wifi_scan_get_ap_records must be called to free internal buffers from the scan.
+            // But it returns an error if wifi_ap_records==NULL.  So allocate at least 1 AP entry.
+            // esp_wifi_scan_get_ap_records will then return the actual number of APs in count.
+            count = 1;
+        }
         wifi_ap_record_t *wifi_ap_records = calloc(count, sizeof(wifi_ap_record_t));
         esp_exceptions(esp_wifi_scan_get_ap_records(&count, wifi_ap_records));
         for (uint16_t i = 0; i < count; i++) {
@@ -367,7 +407,7 @@ STATIC MP_DEFINE_CONST_FUN_OBJ_1(network_wlan_scan_obj, network_wlan_scan);
 
 STATIC mp_obj_t network_wlan_isconnected(mp_obj_t self_in) {
     wlan_if_obj_t *self = MP_OBJ_TO_PTR(self_in);
-    if (self->if_id == WIFI_IF_STA) {
+    if (self->if_id == ESP_IF_WIFI_STA) {
         return mp_obj_new_bool(wifi_sta_connected);
     } else {
         wifi_sta_list_t sta;
@@ -384,7 +424,7 @@ STATIC mp_obj_t network_wlan_config(size_t n_args, const mp_obj_t *args, mp_map_
 
     wlan_if_obj_t *self = MP_OBJ_TO_PTR(args[0]);
 
-    bool is_wifi = self->if_id == WIFI_IF_AP || self->if_id == WIFI_IF_STA;
+    bool is_wifi = self->if_id == ESP_IF_WIFI_AP || self->if_id == ESP_IF_WIFI_STA;
 
     wifi_config_t cfg;
     if (is_wifi) {
@@ -410,8 +450,9 @@ STATIC mp_obj_t network_wlan_config(size_t n_args, const mp_obj_t *args, mp_map_
                         esp_exceptions(esp_wifi_set_mac(self->if_id, bufinfo.buf));
                         break;
                     }
+                    case MP_QSTR_ssid:
                     case MP_QSTR_essid: {
-                        req_if = WIFI_IF_AP;
+                        req_if = ESP_IF_WIFI_AP;
                         size_t len;
                         const char *s = mp_obj_str_get_data(kwargs->table[i].value, &len);
                         len = MIN(len, sizeof(cfg.ap.ssid));
@@ -420,17 +461,19 @@ STATIC mp_obj_t network_wlan_config(size_t n_args, const mp_obj_t *args, mp_map_
                         break;
                     }
                     case MP_QSTR_hidden: {
-                        req_if = WIFI_IF_AP;
+                        req_if = ESP_IF_WIFI_AP;
                         cfg.ap.ssid_hidden = mp_obj_is_true(kwargs->table[i].value);
                         break;
                     }
+                    case MP_QSTR_security:
                     case MP_QSTR_authmode: {
-                        req_if = WIFI_IF_AP;
+                        req_if = ESP_IF_WIFI_AP;
                         cfg.ap.authmode = mp_obj_get_int(kwargs->table[i].value);
                         break;
                     }
+                    case MP_QSTR_key:
                     case MP_QSTR_password: {
-                        req_if = WIFI_IF_AP;
+                        req_if = ESP_IF_WIFI_AP;
                         size_t len;
                         const char *s = mp_obj_str_get_data(kwargs->table[i].value, &len);
                         len = MIN(len, sizeof(cfg.ap.password) - 1);
@@ -439,26 +482,59 @@ STATIC mp_obj_t network_wlan_config(size_t n_args, const mp_obj_t *args, mp_map_
                         break;
                     }
                     case MP_QSTR_channel: {
-                        req_if = WIFI_IF_AP;
-                        cfg.ap.channel = mp_obj_get_int(kwargs->table[i].value);
+                        uint8_t primary;
+                        wifi_second_chan_t secondary;
+                        // Get the current value of secondary
+                        esp_exceptions(esp_wifi_get_channel(&primary, &secondary));
+                        primary = mp_obj_get_int(kwargs->table[i].value);
+                        esp_err_t err = esp_wifi_set_channel(primary, secondary);
+                        if (err == ESP_ERR_INVALID_ARG) {
+                            // May need to swap secondary channel above to below or below to above
+                            secondary = (
+                                (secondary == WIFI_SECOND_CHAN_ABOVE)
+                                ? WIFI_SECOND_CHAN_BELOW
+                                : (secondary == WIFI_SECOND_CHAN_BELOW)
+                                    ? WIFI_SECOND_CHAN_ABOVE
+                                    : WIFI_SECOND_CHAN_NONE);
+                            esp_exceptions(esp_wifi_set_channel(primary, secondary));
+                        }
                         break;
                     }
+                    case MP_QSTR_hostname:
                     case MP_QSTR_dhcp_hostname: {
-                        const char *s = mp_obj_str_get_str(kwargs->table[i].value);
-                        esp_exceptions(tcpip_adapter_set_hostname(self->if_id, s));
+                        // TODO: Deprecated. Use network.hostname(name) instead.
+                        size_t len;
+                        const char *str = mp_obj_str_get_data(kwargs->table[i].value, &len);
+                        if (len >= MICROPY_PY_NETWORK_HOSTNAME_MAX_LEN) {
+                            mp_raise_ValueError(NULL);
+                        }
+                        strcpy(mod_network_hostname, str);
                         break;
                     }
                     case MP_QSTR_max_clients: {
-                        req_if = WIFI_IF_AP;
+                        req_if = ESP_IF_WIFI_AP;
                         cfg.ap.max_connection = mp_obj_get_int(kwargs->table[i].value);
                         break;
                     }
                     case MP_QSTR_reconnects: {
                         int reconnects = mp_obj_get_int(kwargs->table[i].value);
-                        req_if = WIFI_IF_STA;
+                        req_if = ESP_IF_WIFI_STA;
                         // parameter reconnects == -1 means to retry forever.
                         // here means conf_wifi_sta_reconnects == 0 to retry forever.
                         conf_wifi_sta_reconnects = (reconnects == -1) ? 0 : reconnects + 1;
+                        break;
+                    }
+                    case MP_QSTR_txpower: {
+                        int8_t power = (mp_obj_get_float(kwargs->table[i].value) * 4);
+                        esp_exceptions(esp_wifi_set_max_tx_power(power));
+                        break;
+                    }
+                    case MP_QSTR_protocol: {
+                        esp_exceptions(esp_wifi_set_protocol(self->if_id, mp_obj_get_int(kwargs->table[i].value)));
+                        break;
+                    }
+                    case MP_QSTR_pm: {
+                        esp_exceptions(esp_wifi_set_ps(mp_obj_get_int(kwargs->table[i].value)));
                         break;
                     }
                     default:
@@ -490,42 +566,48 @@ STATIC mp_obj_t network_wlan_config(size_t n_args, const mp_obj_t *args, mp_map_
         case MP_QSTR_mac: {
             uint8_t mac[6];
             switch (self->if_id) {
-                case WIFI_IF_AP: // fallthrough intentional
-                case WIFI_IF_STA:
+                case ESP_IF_WIFI_AP: // fallthrough intentional
+                case ESP_IF_WIFI_STA:
                     esp_exceptions(esp_wifi_get_mac(self->if_id, mac));
                     return mp_obj_new_bytes(mac, sizeof(mac));
                 default:
                     goto unknown;
             }
         }
+        case MP_QSTR_ssid:
         case MP_QSTR_essid:
             switch (self->if_id) {
-                case WIFI_IF_STA:
+                case ESP_IF_WIFI_STA:
                     val = mp_obj_new_str((char *)cfg.sta.ssid, strlen((char *)cfg.sta.ssid));
                     break;
-                case WIFI_IF_AP:
+                case ESP_IF_WIFI_AP:
                     val = mp_obj_new_str((char *)cfg.ap.ssid, cfg.ap.ssid_len);
                     break;
                 default:
-                    req_if = WIFI_IF_AP;
+                    req_if = ESP_IF_WIFI_AP;
             }
             break;
         case MP_QSTR_hidden:
-            req_if = WIFI_IF_AP;
+            req_if = ESP_IF_WIFI_AP;
             val = mp_obj_new_bool(cfg.ap.ssid_hidden);
             break;
+        case MP_QSTR_security:
         case MP_QSTR_authmode:
-            req_if = WIFI_IF_AP;
+            req_if = ESP_IF_WIFI_AP;
             val = MP_OBJ_NEW_SMALL_INT(cfg.ap.authmode);
             break;
-        case MP_QSTR_channel:
-            req_if = WIFI_IF_AP;
-            val = MP_OBJ_NEW_SMALL_INT(cfg.ap.channel);
+        case MP_QSTR_channel: {
+            uint8_t channel;
+            wifi_second_chan_t second;
+            esp_exceptions(esp_wifi_get_channel(&channel, &second));
+            val = MP_OBJ_NEW_SMALL_INT(channel);
             break;
+        }
+        case MP_QSTR_hostname:
         case MP_QSTR_dhcp_hostname: {
-            const char *s;
-            esp_exceptions(tcpip_adapter_get_hostname(self->if_id, &s));
-            val = mp_obj_new_str(s, strlen(s));
+            // TODO: Deprecated. Use network.hostname() instead.
+            req_if = ESP_IF_WIFI_STA;
+            val = mp_obj_new_str(mod_network_hostname, strlen(mod_network_hostname));
             break;
         }
         case MP_QSTR_max_clients: {
@@ -533,10 +615,28 @@ STATIC mp_obj_t network_wlan_config(size_t n_args, const mp_obj_t *args, mp_map_
             break;
         }
         case MP_QSTR_reconnects:
-            req_if = WIFI_IF_STA;
+            req_if = ESP_IF_WIFI_STA;
             int rec = conf_wifi_sta_reconnects - 1;
             val = MP_OBJ_NEW_SMALL_INT(rec);
             break;
+        case MP_QSTR_txpower: {
+            int8_t power;
+            esp_exceptions(esp_wifi_get_max_tx_power(&power));
+            val = mp_obj_new_float(power * 0.25);
+            break;
+        }
+        case MP_QSTR_protocol: {
+            uint8_t protocol_bitmap;
+            esp_exceptions(esp_wifi_get_protocol(self->if_id, &protocol_bitmap));
+            val = MP_OBJ_NEW_SMALL_INT(protocol_bitmap);
+            break;
+        }
+        case MP_QSTR_pm: {
+            wifi_ps_type_t ps_type;
+            esp_exceptions(esp_wifi_get_ps(&ps_type));
+            val = MP_OBJ_NEW_SMALL_INT(ps_type);
+            break;
+        }
         default:
             goto unknown;
     }
@@ -561,14 +661,21 @@ STATIC const mp_rom_map_elem_t wlan_if_locals_dict_table[] = {
     { MP_ROM_QSTR(MP_QSTR_scan), MP_ROM_PTR(&network_wlan_scan_obj) },
     { MP_ROM_QSTR(MP_QSTR_isconnected), MP_ROM_PTR(&network_wlan_isconnected_obj) },
     { MP_ROM_QSTR(MP_QSTR_config), MP_ROM_PTR(&network_wlan_config_obj) },
-    { MP_ROM_QSTR(MP_QSTR_ifconfig), MP_ROM_PTR(&esp_ifconfig_obj) },
+    { MP_ROM_QSTR(MP_QSTR_ifconfig), MP_ROM_PTR(&esp_network_ifconfig_obj) },
+
+    // Constants
+    { MP_ROM_QSTR(MP_QSTR_PM_NONE), MP_ROM_INT(WIFI_PS_NONE) },
+    { MP_ROM_QSTR(MP_QSTR_PM_PERFORMANCE), MP_ROM_INT(WIFI_PS_MIN_MODEM) },
+    { MP_ROM_QSTR(MP_QSTR_PM_POWERSAVE), MP_ROM_INT(WIFI_PS_MAX_MODEM) },
 };
 STATIC MP_DEFINE_CONST_DICT(wlan_if_locals_dict, wlan_if_locals_dict_table);
 
-STATIC const mp_obj_type_t wlan_if_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_WLAN,
-    .locals_dict = (mp_obj_t)&wlan_if_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    esp_network_wlan_type,
+    MP_QSTR_WLAN,
+    MP_TYPE_FLAG_NONE,
+    make_new, network_wlan_make_new,
+    locals_dict, &wlan_if_locals_dict
+    );
 
 #endif // MICROPY_PY_NETWORK_WLAN

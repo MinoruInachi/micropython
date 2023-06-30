@@ -112,7 +112,8 @@ with an underscore as in ``_COLS``: this symbol is not visible outside the
 module so will not occupy RAM.
 
 The argument to ``const()`` may be anything which, at compile time, evaluates
-to an integer e.g. ``0x100`` or ``1 << 8``. It can even include other const
+to a constant e.g. ``0x100``, ``1 << 8`` or ``(True, "string", b"bytes")``
+(see section below for details).  It can even include other const
 symbols that have already been defined, e.g. ``1 << BIT``.
 
 **Constant data structures**
@@ -263,7 +264,7 @@ were a string.
 
 **Runtime compiler execution**
 
-The Python funcitons `eval` and `exec` invoke the compiler at runtime, which
+The Python functions `eval` and `exec` invoke the compiler at runtime, which
 requires significant amounts of RAM. Note that the ``pickle`` library from
 `micropython-lib` employs `exec`. It may be more RAM efficient to use the
 `json` library for object serialisation.
@@ -391,6 +392,8 @@ Symbol Meaning
    F   float
    B   byte code
    M   module
+   S   string or bytes
+   A   bytearray
 ====== =================
 
 Each letter represents a single block of memory, a block being 16 bytes. So each
@@ -400,7 +403,7 @@ Control of garbage collection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A GC can be demanded at any time by issuing `gc.collect()`. It is advantageous
-to do this at intervals, firstly to pre-empt fragmentation and secondly for
+to do this at intervals, firstly to preempt fragmentation and secondly for
 performance. A GC can take several milliseconds but is quicker when there is
 little work to do (about 1ms on the Pyboard). An explicit call can minimise that
 delay while ensuring it occurs at points in the program when it is acceptable.

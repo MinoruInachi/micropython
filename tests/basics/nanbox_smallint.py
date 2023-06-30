@@ -1,6 +1,10 @@
 # Test creating small integers without heap allocation in nan-boxing mode.
 
-import micropython
+try:
+    import micropython
+except ImportError:
+    print("SKIP")
+    raise SystemExit
 
 try:
     # Test for nan-box build by allocating a float while heap is locked.
@@ -9,6 +13,7 @@ try:
     float(123)
     micropython.heap_unlock()
 except:
+    micropython.heap_unlock()
     print("SKIP")
     raise SystemExit
 

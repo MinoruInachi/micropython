@@ -16,3 +16,5 @@ MicroPython documentation and references
     wipy/quickref.rst
     unix/quickref.rst
     zephyr/quickref.rst
+    renesas-ra/quickref.rst
+    samd/quickref.rst

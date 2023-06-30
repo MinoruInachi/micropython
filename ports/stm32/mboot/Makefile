@@ -1,12 +1,16 @@
-# Select the board to build for: if not given on the command line,
-# then default to PYBV10.
+# Select the board to build for:
+ifdef BOARD_DIR
+# Custom board path - remove trailing slash and get the final component of
+# the path as the board name.
+BOARD ?= $(notdir $(BOARD_DIR:/=))
+else
+# If not given on the command line, then default to PYBV10.
 BOARD ?= PYBV10
+BOARD_DIR ?= $(abspath ../boards/$(BOARD))
+endif
 
 # If the build directory is not given, make it reflect the board name.
 BUILD ?= build-$(BOARD)
-
-# Allow the directory containing the board configuration to be specified
-BOARD_DIR ?= $(abspath ../boards/$(BOARD))
 
 # Set USE_MBOOT to 1 so that TEXT0_ADDR gets set properly for those boards
 # that can be built with or without mboot.
@@ -58,7 +62,7 @@ INC += -I../$(USBDEV_DIR)/core/inc -I../$(USBDEV_DIR)/class/inc
 # the compiler does not optimise these functions in terms of themselves.
 CFLAGS_BUILTIN ?= -ffreestanding -fno-builtin -fno-lto
 
-CFLAGS = $(INC) -Wall -Wpointer-arith -Wdouble-promotion -Wfloat-conversion -Werror -std=gnu99 -nostdlib $(CFLAGS_MOD) $(CFLAGS_EXTRA)
+CFLAGS += $(INC) -Wall -Wpointer-arith -Wdouble-promotion -Wfloat-conversion -Werror -std=gnu99 -nostdlib $(CFLAGS_EXTRA)
 CFLAGS += -D$(CMSIS_MCU)
 CFLAGS += $(CFLAGS_MCU_$(MCU_SERIES))
 CFLAGS += $(COPT)
@@ -75,8 +79,8 @@ CFLAGS += -DMICROPY_HW_STM32WB_FLASH_SYNCRONISATION=0
 CFLAGS += -DBOOTLOADER_DFU_USB_VID=$(BOOTLOADER_DFU_USB_VID) -DBOOTLOADER_DFU_USB_PID=$(BOOTLOADER_DFU_USB_PID)
 
 MBOOT_LD_FILES ?= stm32_memory.ld stm32_sections.ld
-LDFLAGS = -nostdlib -L . $(addprefix -T,$(MBOOT_LD_FILES)) -Map=$(@:.elf=.map) --cref
-LIBS = $(shell $(CC) $(CFLAGS) -print-libgcc-file-name)
+LDFLAGS += -nostdlib -L . $(addprefix -T,$(MBOOT_LD_FILES)) -Map=$(@:.elf=.map) --cref
+LIBS += $(shell $(CC) $(CFLAGS) -print-libgcc-file-name)
 
 # Remove uncalled code from the final image.
 CFLAGS += -fdata-sections -ffunction-sections
@@ -130,7 +134,12 @@ SRC_C += \
 SRC_O += \
 	$(STARTUP_FILE) \
 	$(SYSTEM_FILE) \
-	ports/stm32/resethandler.o \
+
+ifeq ($(MCU_SERIES),$(filter $(MCU_SERIES),f0 g0 l0))
+SRC_O += ports/stm32/resethandler_m0.o
+else
+SRC_O += ports/stm32/resethandler.o
+endif
 
 ifeq ($(MBOOT_ENABLE_PACKING), 1)
 
@@ -143,12 +152,14 @@ endif
 
 $(BUILD)/$(STM32LIB_HAL_BASE)/Src/stm32$(MCU_SERIES)xx_ll_usb.o: CFLAGS += -Wno-attributes
 SRC_HAL += $(addprefix $(STM32LIB_HAL_BASE)/Src/stm32$(MCU_SERIES)xx_,\
+	hal.c \
 	hal_cortex.c \
 	hal_dma.c \
 	hal_flash.c \
 	hal_flash_ex.c \
 	hal_pcd.c \
 	hal_pcd_ex.c \
+	hal_pwr_ex.c \
 	hal_rcc.c \
 	hal_rcc_ex.c \
 	ll_usb.c \
@@ -213,6 +224,7 @@ PREFIX_FILE = ../boards/stm32f4xx_prefix.c
 BOARD_PINS = $(BOARD_DIR)/pins.csv
 HEADER_BUILD = $(BUILD)/genhdr
 GEN_QSTRDEFS_GENERATED = $(HEADER_BUILD)/qstrdefs.generated.h
+GEN_ROOT_POINTERS = $(HEADER_BUILD)/root_pointers.h
 GEN_PINS_SRC = $(BUILD)/pins_$(BOARD).c
 GEN_PINS_HDR = $(HEADER_BUILD)/pins.h
 GEN_PINS_QSTR = $(HEADER_BUILD)/pins_qstr.h
@@ -220,12 +232,15 @@ GEN_PINS_AF_CONST = $(HEADER_BUILD)/pins_af_const.h
 GEN_PINS_AF_DEFS = $(HEADER_BUILD)/pins_af_defs.h
 GEN_PINS_AF_PY = $(BUILD)/pins_af.py
 
-$(OBJ): $(GEN_QSTRDEFS_GENERATED) $(GEN_PINS_AF_DEFS)
+$(OBJ): $(GEN_QSTRDEFS_GENERATED) $(GEN_ROOT_POINTERS) $(GEN_PINS_AF_DEFS)
 
 $(HEADER_BUILD):
 	$(MKDIR) -p $(BUILD)/genhdr
 
 $(GEN_QSTRDEFS_GENERATED): | $(HEADER_BUILD)
+	$(Q)echo "// empty" > $@
+
+$(GEN_ROOT_POINTERS): | $(HEADER_BUILD)
 	$(Q)echo "// empty" > $@
 
 $(GEN_PINS_AF_DEFS): $(BOARD_PINS) $(MAKE_PINS) ../$(AF_FILE) $(PREFIX_FILE) | $(HEADER_BUILD)

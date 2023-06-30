@@ -31,7 +31,7 @@ for both classic and FD CAN controllers, unless otherwise stated.
 Constructors
 ------------
 
-.. class:: pyb.CAN(bus, ...)
+.. class:: CAN(bus, ...)
 
    Construct a CAN object on the given bus.  *bus* can be 1-2, or ``'YA'`` or ``'YB'``.
    With no additional parameters, the CAN object is created but not
@@ -252,7 +252,7 @@ Methods
    For example::
 
         buf = bytearray(8)
-        lst = [0, 0, 0, memoryview(buf)]
+        lst = [0, 0, 0, 0, memoryview(buf)]
         # No heap memory is allocated in the following call
         can.recv(0, lst)
 
@@ -272,7 +272,7 @@ Methods
      - *fdf* for CAN FD controllers, if set to True, the frame will have an FD
        frame format, which supports data payloads up to 64 bytes.
      - *brs* for CAN FD controllers, if set to True, the bitrate switching mode
-       is enabled, in which the data phase is transmitted at a differet bitrate.
+       is enabled, in which the data phase is transmitted at a different bitrate.
        See :meth:`CAN.init` for the data bit timing configuration parameters.
 
      If timeout is 0 the message is placed in a buffer in one of three hardware

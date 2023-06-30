@@ -1,10 +1,6 @@
 # test sys module
 
-try:
-    import usys as sys
-except ImportError:
-    import sys
-
+import sys
 print(sys.__name__)
 print(type(sys.path))
 print(type(sys.argv))
@@ -22,8 +18,8 @@ except AttributeError:
     # Effectively skip subtests
     print(True)
 
-if hasattr(sys.implementation, 'mpy'):
-    print(type(sys.implementation.mpy))
+if hasattr(sys.implementation, '_mpy'):
+    print(type(sys.implementation._mpy))
 else:
     # Effectively skip subtests
     print(int)

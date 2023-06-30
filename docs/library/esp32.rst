@@ -18,6 +18,11 @@ Functions
     Configure whether or not a touch will wake the device from sleep.
     *wake* should be a boolean value.
 
+.. function:: wake_on_ulp(wake)
+
+    Configure whether or not the Ultra-Low-Power co-processor can wake the
+    device from sleep. *wake* should be a boolean value.
+
 .. function:: wake_on_ext0(pin, level)
 
     Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
@@ -38,10 +43,6 @@ Functions
 .. function:: raw_temperature()
 
     Read the raw value of the internal temperature sensor, returning an integer.
-
-.. function:: hall_sensor()
-
-    Read the raw value of the internal Hall sensor, returning an integer.
 
 .. function:: idf_heap_info(capabilities)
 
@@ -121,7 +122,7 @@ methods to enable over-the-air (OTA) updates.
     and  an ``OSError(-261)`` is raised if called on firmware that doesn't have the
     feature enabled.
     It is OK to call ``mark_app_valid_cancel_rollback`` on every boot and it is not
-    necessary when booting firmare that was loaded using esptool.
+    necessary when booting firmware that was loaded using esptool.
 
 Constants
 ~~~~~~~~~
@@ -273,6 +274,14 @@ For more details see Espressif's `ESP-IDF RMT documentation.
 
 Ultra-Low-Power co-processor
 ----------------------------
+
+This class gives access to the Ultra Low Power (ULP) co-processor on the ESP32,
+ESP32-S2 and ESP32-S3 chips.
+
+.. warning::
+
+    This class does not provide access to the RISCV ULP co-processor available
+    on the ESP32-S2 and ESP32-S3 chips.
 
 .. class:: ULP()
 

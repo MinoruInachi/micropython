@@ -38,6 +38,7 @@ The basic MicroPython firmware is implemented in the main port file, e.g ``main.
 
 .. code-block:: c
 
+   #include "py/builtin.h"
    #include "py/compile.h"
    #include "py/gc.h"
    #include "py/mperrno.h"
@@ -95,10 +96,11 @@ We also need a Makefile at this point for the port:
 
    # Include py core make definitions.
    include $(TOP)/py/py.mk
+   include $(TOP)/extmod/extmod.mk
 
    # Set CFLAGS and libraries.
-   CFLAGS = -I. -I$(BUILD) -I$(TOP)
-   LIBS = -lm
+   CFLAGS += -I. -I$(BUILD) -I$(TOP)
+   LIBS += -lm
 
    # Define the required source files.
    SRC_C = \
@@ -108,6 +110,9 @@ We also need a Makefile at this point for the port:
        shared/runtime/gchelper_generic.c \
        shared/runtime/pyexec.c \
        shared/runtime/stdout_helpers.c \
+
+   # Define source files containung qstrs.
+   SRC_QSTR += shared/readline/readline.c shared/runtime/pyexec.c
 
    # Define the required object files.
    OBJ = $(PY_CORE_O) $(addprefix $(BUILD)/, $(SRC_C:.c=.o))
@@ -146,9 +151,6 @@ The following is an example of an ``mpconfigport.h`` file:
    #define MICROPY_ERROR_REPORTING                 (MICROPY_ERROR_REPORTING_TERSE)
    #define MICROPY_FLOAT_IMPL                      (MICROPY_FLOAT_IMPL_FLOAT)
 
-   // Enable u-modules to be imported with their standard name, like sys.
-   #define MICROPY_MODULE_WEAK_LINKS               (1)
-
    // Fine control over Python builtins, classes, modules, etc.
    #define MICROPY_PY_ASYNC_AWAIT                  (0)
    #define MICROPY_PY_BUILTINS_SET                 (0)
@@ -172,9 +174,6 @@ The following is an example of an ``mpconfigport.h`` file:
    #define MICROPY_HW_MCU_NAME   "unknown-cpu"
 
    #define MP_STATE_PORT MP_STATE_VM
-
-   #define MICROPY_PORT_ROOT_POINTERS \
-       const char *readline_hist[8];
 
 This configuration file contains machine-specific configurations including aspects like if different
 MicroPython features should be enabled e.g. ``#define MICROPY_ENABLE_GC (1)``. Making this Setting
@@ -280,12 +279,7 @@ To add a custom module like ``myport``, first add the module definition in a fil
        .globals = (mp_obj_dict_t *)&myport_module_globals,
    };
 
-   MP_REGISTER_MODULE(MP_QSTR_myport, myport_module, 1);
-
-Note: the "1" as the third argument in ``MP_REGISTER_MODULE`` enables this new module
-unconditionally. To allow it to be conditionally enabled, replace the "1" by
-``MICROPY_PY_MYPORT`` and then add ``#define MICROPY_PY_MYPORT (1)`` in ``mpconfigport.h``
-accordingly.
+   MP_REGISTER_MODULE(MP_QSTR_myport, myport_module);
 
 You will also need to edit the Makefile to add ``modmyport.c`` to the ``SRC_C`` list, and
 a new line adding the same file to ``SRC_QSTR`` (so qstrs are searched for in this new file),

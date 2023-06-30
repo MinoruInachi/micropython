@@ -28,22 +28,24 @@
 #define MICROPY_PY_ALL_SPECIAL_METHODS (1)
 #define MICROPY_PY_REVERSE_SPECIAL_METHODS (1)
 #define MICROPY_PY_ARRAY_SLICE_ASSIGN (1)
+#define MICROPY_PY_BUILTINS_BYTES_HEX (1)
 #define MICROPY_PY_BUILTINS_FROZENSET (1)
 #define MICROPY_PY_BUILTINS_MEMORYVIEW (1)
 #define MICROPY_PY_BUILTINS_POW3    (1)
 #define MICROPY_PY_IO               (1)
 #define MICROPY_PY_SYS_EXIT         (1)
 #define MICROPY_PY_SYS_MAXSIZE      (1)
-#define MICROPY_PY_UERRNO           (1)
-#define MICROPY_PY_UBINASCII        (1)
-#define MICROPY_PY_URANDOM          (1)
+#define MICROPY_PY_SYS_PLATFORM     "qemu-arm"
+#define MICROPY_PY_ERRNO            (1)
+#define MICROPY_PY_BINASCII         (1)
+#define MICROPY_PY_RANDOM           (1)
 #define MICROPY_PY_UCTYPES          (1)
-#define MICROPY_PY_UZLIB            (1)
-#define MICROPY_PY_UJSON            (1)
-#define MICROPY_PY_UOS              (1)
-#define MICROPY_PY_URE              (1)
-#define MICROPY_PY_UHEAPQ           (1)
-#define MICROPY_PY_UHASHLIB         (1)
+#define MICROPY_PY_ZLIB             (1)
+#define MICROPY_PY_JSON             (1)
+#define MICROPY_PY_OS               (1)
+#define MICROPY_PY_RE               (1)
+#define MICROPY_PY_HEAPQ            (1)
+#define MICROPY_PY_HASHLIB          (1)
 #define MICROPY_PY_MACHINE          (1)
 #define MICROPY_PY_MICROPYTHON_MEM_INFO (1)
 #define MICROPY_USE_INTERNAL_PRINTF (1)
@@ -59,10 +61,6 @@
 typedef int32_t mp_int_t; // must be pointer size
 typedef uint32_t mp_uint_t; // must be pointer size
 typedef long mp_off_t;
-
-// extra built in names to add to the global namespace
-#define MICROPY_PORT_BUILTINS \
-    { MP_ROM_QSTR(MP_QSTR_open), MP_ROM_PTR(&mp_builtin_open_obj) },
 
 // We need to provide a declaration/definition of alloca()
 #include <alloca.h>

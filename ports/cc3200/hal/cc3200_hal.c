@@ -49,7 +49,7 @@
 #include "pybuart.h"
 #include "utils.h"
 #include "irq.h"
-#include "moduos.h"
+#include "modos.h"
 
 #ifdef USE_FREERTOS
 #include "FreeRTOS.h"
@@ -195,3 +195,5 @@ static void hal_TickInit (void) {
     MAP_SysTickEnable();
 }
 #endif
+
+MP_REGISTER_ROOT_POINTER(struct _os_term_dup_obj_t *os_term_dup_obj);

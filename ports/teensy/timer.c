@@ -209,7 +209,7 @@ STATIC void pyb_timer_print(const mp_print_t *print, mp_obj_t self_in, mp_print_
 ///
 /// Keyword arguments:
 ///
-///   - `freq` - specifies the periodic frequency of the timer. You migh also
+///   - `freq` - specifies the periodic frequency of the timer. You might also
 ///              view this as the frequency with which the timer goes through
 ///              one complete cycle.
 ///
@@ -388,7 +388,7 @@ STATIC MP_DEFINE_CONST_FUN_OBJ_1(pyb_timer_deinit_obj, pyb_timer_deinit);
 /// If only a channel number is passed, then a previously initialized channel
 /// object is returned (or `None` if there is no previous channel).
 ///
-/// Othwerwise, a TimerChannel object is initialized and returned.
+/// Otherwise, a TimerChannel object is initialized and returned.
 ///
 /// Each channel can be configured to perform pwm, output compare, or
 /// input capture. All channels share the same underlying timer, which means
@@ -425,7 +425,7 @@ STATIC MP_DEFINE_CONST_FUN_OBJ_1(pyb_timer_deinit_obj, pyb_timer_deinit);
 ///
 ///   - `polarity` can be one of:
 ///     - `Timer.HIGH` - output is active high
-///     - `Timer.LOW` - output is acive low
+///     - `Timer.LOW` - output is active low
 ///
 /// Optional keyword arguments for Timer.IC modes:
 ///
@@ -746,13 +746,14 @@ STATIC const mp_rom_map_elem_t pyb_timer_locals_dict_table[] = {
 };
 STATIC MP_DEFINE_CONST_DICT(pyb_timer_locals_dict, pyb_timer_locals_dict_table);
 
-const mp_obj_type_t pyb_timer_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_Timer,
-    .print = pyb_timer_print,
-    .make_new = pyb_timer_make_new,
-    .locals_dict = (mp_obj_t)&pyb_timer_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    pyb_timer_type,
+    MP_QSTR_Timer,
+    MP_TYPE_FLAG_NONE,
+    make_new, pyb_timer_make_new,
+    print, pyb_timer_print,
+    locals_dict, &pyb_timer_locals_dict
+    );
 
 /// \moduleref pyb
 /// \class TimerChannel - setup a channel for a timer.
@@ -889,12 +890,13 @@ STATIC const mp_rom_map_elem_t pyb_timer_channel_locals_dict_table[] = {
 };
 STATIC MP_DEFINE_CONST_DICT(pyb_timer_channel_locals_dict, pyb_timer_channel_locals_dict_table);
 
-STATIC const mp_obj_type_t pyb_timer_channel_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_TimerChannel,
-    .print = pyb_timer_channel_print,
-    .locals_dict = (mp_obj_t)&pyb_timer_channel_locals_dict,
-};
+STATIC MP_DEFINE_CONST_OBJ_TYPE(
+    pyb_timer_channel_type,
+    MP_QSTR_TimerChannel,
+    MP_TYPE_FLAG_NONE,
+    print, pyb_timer_channel_print,
+    locals_dict, &pyb_timer_channel_locals_dict
+    );
 
 STATIC bool ftm_handle_irq_callback(pyb_timer_obj_t *self, mp_uint_t channel, mp_obj_t callback) {
     // execute callback if it's set

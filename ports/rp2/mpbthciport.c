@@ -50,11 +50,6 @@ void mp_bluetooth_hci_init(void) {
     events_task_is_scheduled = false;
 }
 
-STATIC void mp_bluetooth_hci_start_polling(void) {
-    events_task_is_scheduled = false;
-    mp_bluetooth_hci_poll_now();
-}
-
 static int64_t mp_bluetooth_hci_timer_callback(alarm_id_t id, void *user_data) {
     poll_timer_id = 0;
     mp_bluetooth_hci_poll_now();
@@ -62,6 +57,9 @@ static int64_t mp_bluetooth_hci_timer_callback(alarm_id_t id, void *user_data) {
 }
 
 void mp_bluetooth_hci_poll_in_ms(uint32_t ms) {
+    if (poll_timer_id != 0) {
+        cancel_alarm(poll_timer_id);
+    }
     poll_timer_id = add_alarm_in_ms(ms, mp_bluetooth_hci_timer_callback, NULL, true);
 }
 
@@ -70,7 +68,7 @@ void mp_bluetooth_hci_poll_in_ms(uint32_t ms) {
 STATIC mp_obj_t run_events_scheduled_task(mp_obj_t none_in) {
     (void)none_in;
     events_task_is_scheduled = false;
-    // This will process all buffered HCI UART data, and run any callouts or events.
+    // This will process all HCI data, and run any callouts or events.
     mp_bluetooth_hci_poll();
     return mp_const_none;
 }
@@ -88,7 +86,14 @@ void mp_bluetooth_hci_poll_now(void) {
     }
 }
 
+#if defined(MICROPY_HW_BLE_UART_ID)
+
 mp_obj_t mp_bthci_uart;
+
+STATIC void mp_bluetooth_hci_start_polling(void) {
+    events_task_is_scheduled = false;
+    mp_bluetooth_hci_poll_now();
+}
 
 int mp_bluetooth_hci_uart_init(uint32_t port, uint32_t baudrate) {
     debug_printf("mp_bluetooth_hci_uart_init\n");
@@ -100,8 +105,10 @@ int mp_bluetooth_hci_uart_init(uint32_t port, uint32_t baudrate) {
         MP_OBJ_NEW_QSTR(MP_QSTR_timeout), MP_OBJ_NEW_SMALL_INT(1000),
     };
 
-    mp_bthci_uart = machine_uart_type.make_new((mp_obj_t)&machine_uart_type, 2, 2, args);
-    MP_STATE_PORT(mp_bthci_uart) = mp_bthci_uart;
+    // This is a statically-allocated UART (see machine_uart.c), and doesn't
+    // contain any heap pointers other than the ringbufs (which are already
+    // root pointers), so no need to track this as a root pointer.
+    mp_bthci_uart = MP_OBJ_TYPE_GET_SLOT(&machine_uart_type, make_new)((mp_obj_t)&machine_uart_type, 2, 2, args);
 
     // Start the HCI polling to process any initial events/packets.
     mp_bluetooth_hci_start_polling();
@@ -119,14 +126,9 @@ int mp_bluetooth_hci_uart_deinit(void) {
     return 0;
 }
 
-int mp_bluetooth_hci_uart_set_baudrate(uint32_t baudrate) {
-    debug_printf("mp_bluetooth_hci_uart_set_baudrate(%lu)\n", baudrate);
-    return 0;
-}
-
 int mp_bluetooth_hci_uart_any(void) {
     int errcode = 0;
-    const mp_stream_p_t *proto = (mp_stream_p_t *)machine_uart_type.protocol;
+    const mp_stream_p_t *proto = (mp_stream_p_t *)MP_OBJ_TYPE_GET_SLOT(&machine_uart_type, protocol);
 
     mp_uint_t ret = proto->ioctl(mp_bthci_uart, MP_STREAM_POLL, MP_STREAM_POLL_RD, &errcode);
     if (errcode != 0) {
@@ -140,7 +142,7 @@ int mp_bluetooth_hci_uart_write(const uint8_t *buf, size_t len) {
     debug_printf("mp_bluetooth_hci_uart_write\n");
 
     int errcode = 0;
-    const mp_stream_p_t *proto = (mp_stream_p_t *)machine_uart_type.protocol;
+    const mp_stream_p_t *proto = (mp_stream_p_t *)MP_OBJ_TYPE_GET_SLOT(&machine_uart_type, protocol);
 
     mp_bluetooth_hci_controller_wakeup();
 
@@ -157,7 +159,7 @@ int mp_bluetooth_hci_uart_readchar(void) {
     if (mp_bluetooth_hci_uart_any()) {
         int errcode = 0;
         uint8_t buf = 0;
-        const mp_stream_p_t *proto = (mp_stream_p_t *)machine_uart_type.protocol;
+        const mp_stream_p_t *proto = (mp_stream_p_t *)MP_OBJ_TYPE_GET_SLOT(&machine_uart_type, protocol);
         if (proto->read(mp_bthci_uart, (void *)&buf, 1, &errcode) < 0) {
             error_printf("mp_bluetooth_hci_uart_readchar: failed to read UART %d\n", errcode);
             return -1;
@@ -168,6 +170,13 @@ int mp_bluetooth_hci_uart_readchar(void) {
         return -1;
     }
 }
+
+int mp_bluetooth_hci_uart_set_baudrate(uint32_t baudrate) {
+    debug_printf("mp_bluetooth_hci_uart_set_baudrate(%lu)\n", baudrate);
+    return 0;
+}
+
+#endif // defined(MICROPY_HW_BLE_UART_ID)
 
 // Default (weak) implementation of the HCI controller interface.
 // A driver (e.g. cywbt43.c) can override these for controller-specific

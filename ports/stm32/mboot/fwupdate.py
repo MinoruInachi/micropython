@@ -3,7 +3,7 @@
 
 from micropython import const
 import struct, time
-import uzlib, machine, stm
+import zlib, machine, stm
 
 # Constants to be used with update_mpy
 VFS_FAT = 1
@@ -36,7 +36,7 @@ def dfu_read(filename):
     if hdr == b"Dfu":
         pass
     elif hdr == b"\x1f\x8b\x08":
-        f = uzlib.DecompIO(f, 16 + 15)
+        f = zlib.DecompIO(f, 16 + 15)
     else:
         print("Invalid firmware", filename)
         return None
@@ -225,19 +225,19 @@ def _create_element(kind, body):
     return bytes([kind, len(body)]) + body
 
 
-def update_mpy(
+def update_app_elements(
     filename, fs_base, fs_len, fs_type=VFS_FAT, fs_blocksize=0, status_addr=None, addr_64bit=False
 ):
     # Check firmware is of .dfu or .dfu.gz type
     try:
         with open(filename, "rb") as f:
-            hdr = uzlib.DecompIO(f, 16 + 15).read(6)
+            hdr = zlib.DecompIO(f, 16 + 15).read(6)
     except Exception:
         with open(filename, "rb") as f:
             hdr = f.read(6)
     if hdr != b"DfuSe\x01":
         print("Firmware must be a .dfu(.gz) file.")
-        return
+        return ()
 
     if fs_type in (VFS_LFS1, VFS_LFS2) and not fs_blocksize:
         raise Exception("littlefs requires fs_blocksize parameter")
@@ -252,8 +252,14 @@ def update_mpy(
         _ELEM_TYPE_FSLOAD, struct.pack("<B", mount_point) + bytes(filename, "ascii")
     )
     if status_addr is not None:
-        # mboot will write 0 to status_addr on succes, or a negative number on failure
+        # mboot will write 0 to status_addr on success, or a negative number on failure
         machine.mem32[status_addr] = 1
         elems += _create_element(_ELEM_TYPE_STATUS, struct.pack("<L", status_addr))
     elems += _create_element(_ELEM_TYPE_END, b"")
-    machine.bootloader(elems)
+    return elems
+
+
+def update_mpy(*args, **kwargs):
+    elems = update_app_elements(*args, **kwargs)
+    if elems:
+        machine.bootloader(elems)

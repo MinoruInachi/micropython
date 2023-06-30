@@ -58,17 +58,19 @@ enum {
 };
 
 // Pin mapping dictionaries
-const mp_obj_type_t machine_pin_cpu_pins_obj_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_cpu,
-    .locals_dict = (mp_obj_t)&machine_pin_cpu_pins_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    machine_pin_cpu_pins_obj_type,
+    MP_QSTR_cpu,
+    MP_TYPE_FLAG_NONE,
+    locals_dict, &machine_pin_cpu_pins_locals_dict
+    );
 
-const mp_obj_type_t machine_pin_board_pins_obj_type = {
-    { &mp_type_type },
-    .name = MP_QSTR_board,
-    .locals_dict = (mp_obj_t)&machine_pin_board_pins_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    machine_pin_board_pins_obj_type,
+    MP_QSTR_board,
+    MP_TYPE_FLAG_NONE,
+    locals_dict, &machine_pin_board_pins_locals_dict
+    );
 
 STATIC const mp_irq_methods_t machine_pin_irq_methods;
 
@@ -147,6 +149,16 @@ void GPIO5_Combined_16_31_IRQHandler(void) {
     call_handler(gpiobases[5], 5, 16);
 }
 
+#if defined(MIMXRT117x_SERIES)
+void GPIO6_Combined_0_15_IRQHandler(void) {
+    call_handler(gpiobases[6], 6, 0);
+}
+
+void GPIO6_Combined_16_31_IRQHandler(void) {
+    call_handler(gpiobases[6], 6, 16);
+}
+#endif
+
 // Deinit all pin IRQ handlers.
 void machine_pin_irq_deinit(void) {
     for (int i = 0; i < ARRAY_SIZE(MP_STATE_PORT(machine_pin_irq_objects)); ++i) {
@@ -162,15 +174,17 @@ void machine_pin_irq_deinit(void) {
 // Simplified mode setting used by the extmod modules
 void machine_pin_set_mode(const machine_pin_obj_t *self, uint8_t mode) {
     gpio_pin_config_t pin_config = {kGPIO_DigitalInput, 1, kGPIO_NoIntmode};
+    uint32_t pad_config;
 
     pin_config.direction = (mode == PIN_MODE_IN ? kGPIO_DigitalInput : kGPIO_DigitalOutput);
-    GPIO_PinInit(self->gpio, self->pin, &pin_config);
     if (mode == PIN_MODE_OPEN_DRAIN) {
-        uint32_t pad_config = *(uint32_t *)self->configRegister;
-        pad_config |= IOMUXC_SW_PAD_CTL_PAD_ODE(0b1) | IOMUXC_SW_PAD_CTL_PAD_DSE(0b110);
-        IOMUXC_SetPinMux(self->muxRegister, PIN_AF_MODE_ALT5, 0, 0, self->configRegister, 1U);  // Software Input On Field: Input Path is determined by functionality
-        IOMUXC_SetPinConfig(self->muxRegister, PIN_AF_MODE_ALT5, 0, 0, self->configRegister, pad_config);
+        pad_config = pin_generate_config(PIN_PULL_UP_22K, mode, PIN_DRIVE_3, self->configRegister);
+    } else {
+        pad_config = pin_generate_config(PIN_PULL_DISABLED, mode, PIN_DRIVE_3, self->configRegister);
     }
+    IOMUXC_SetPinConfig(self->muxRegister, PIN_AF_MODE_ALT5, 0, 0, self->configRegister, pad_config);
+    IOMUXC_SetPinMux(self->muxRegister, PIN_AF_MODE_ALT5, 0, 0, self->configRegister, 1U);
+    GPIO_PinInit(self->gpio, self->pin, &pin_config);
 }
 
 STATIC mp_obj_t machine_pin_obj_call(mp_obj_t self_in, mp_uint_t n_args, mp_uint_t n_kw, const mp_obj_t *args) {
@@ -283,6 +297,14 @@ STATIC mp_obj_t machine_pin_on(mp_obj_t self_in) {
 }
 STATIC MP_DEFINE_CONST_FUN_OBJ_1(machine_pin_on_obj, machine_pin_on);
 
+// pin.toggle()
+STATIC mp_obj_t machine_pin_toggle(mp_obj_t self_in) {
+    machine_pin_obj_t *self = self_in;
+    mp_hal_pin_toggle(self);
+    return mp_const_none;
+}
+STATIC MP_DEFINE_CONST_FUN_OBJ_1(machine_pin_toggle_obj, machine_pin_toggle);
+
 // pin.value([value])
 STATIC mp_obj_t machine_pin_value(size_t n_args, const mp_obj_t *args) {
     return machine_pin_obj_call(args[0], (n_args - 1), 0, args + 1);
@@ -364,6 +386,7 @@ STATIC const mp_rom_map_elem_t machine_pin_locals_dict_table[] = {
     { MP_ROM_QSTR(MP_QSTR_on),      MP_ROM_PTR(&machine_pin_on_obj) },
     { MP_ROM_QSTR(MP_QSTR_low),     MP_ROM_PTR(&machine_pin_off_obj) },
     { MP_ROM_QSTR(MP_QSTR_high),    MP_ROM_PTR(&machine_pin_on_obj) },
+    { MP_ROM_QSTR(MP_QSTR_toggle),  MP_ROM_PTR(&machine_pin_toggle_obj) },
     { MP_ROM_QSTR(MP_QSTR_value),   MP_ROM_PTR(&machine_pin_value_obj) },
     { MP_ROM_QSTR(MP_QSTR_init),    MP_ROM_PTR(&machine_pin_init_obj) },
     { MP_ROM_QSTR(MP_QSTR_irq),     MP_ROM_PTR(&machine_pin_irq_obj) },
@@ -396,7 +419,6 @@ STATIC const mp_rom_map_elem_t machine_pin_locals_dict_table[] = {
 };
 STATIC MP_DEFINE_CONST_DICT(machine_pin_locals_dict, machine_pin_locals_dict_table);
 
-
 STATIC mp_uint_t machine_pin_ioctl(mp_obj_t self_in, mp_uint_t request, uintptr_t arg, int *errcode) {
     (void)errcode;
     machine_pin_obj_t *self = self_in;
@@ -417,24 +439,26 @@ STATIC const mp_pin_p_t machine_pin_obj_protocol = {
     .ioctl = machine_pin_ioctl,
 };
 
-const mp_obj_type_t machine_pin_type = {
-    {&mp_type_type},
-    .name = MP_QSTR_Pin,
-    .print = machine_pin_obj_print,
-    .call = machine_pin_obj_call,
-    .make_new = mp_pin_make_new,
-    .protocol = &machine_pin_obj_protocol,
-    .locals_dict = (mp_obj_dict_t *)&machine_pin_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    machine_pin_type,
+    MP_QSTR_Pin,
+    MP_TYPE_FLAG_NONE,
+    make_new, mp_pin_make_new,
+    print, machine_pin_obj_print,
+    call, machine_pin_obj_call,
+    protocol, &machine_pin_obj_protocol,
+    locals_dict, &machine_pin_locals_dict
+    );
 
 // FIXME: Create actual pin_af type!!!
-const mp_obj_type_t machine_pin_af_type = {
-    {&mp_type_type},
-    .name = MP_QSTR_PinAF,
-    .print = machine_pin_obj_print,
-    .make_new = mp_pin_make_new,
-    .locals_dict = (mp_obj_dict_t *)&machine_pin_locals_dict,
-};
+MP_DEFINE_CONST_OBJ_TYPE(
+    machine_pin_af_type,
+    MP_QSTR_PinAF,
+    MP_TYPE_FLAG_NONE,
+    make_new, mp_pin_make_new,
+    print, machine_pin_obj_print,
+    locals_dict, &machine_pin_locals_dict
+    );
 
 STATIC mp_uint_t machine_pin_irq_trigger(mp_obj_t self_in, mp_uint_t new_trigger) {
     machine_pin_obj_t *self = MP_OBJ_TO_PTR(self_in);
@@ -469,3 +493,5 @@ STATIC const mp_irq_methods_t machine_pin_irq_methods = {
     .trigger = machine_pin_irq_trigger,
     .info = machine_pin_irq_info,
 };
+
+MP_REGISTER_ROOT_POINTER(void *machine_pin_irq_objects[MICROPY_HW_NUM_PIN_IRQS]);
