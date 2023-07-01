@@ -6,6 +6,7 @@ set(MICROPY_OOFATFS_DIR "${MICROPY_DIR}/lib/oofatfs")
 set(MICROPY_SOURCE_EXTMOD
     ${MICROPY_DIR}/shared/libc/abort_.c
     ${MICROPY_DIR}/shared/libc/printf.c
+    ${MICROPY_EXTMOD_DIR}/btstack/modbluetooth_btstack.c
     ${MICROPY_EXTMOD_DIR}/machine_bitstream.c
     ${MICROPY_EXTMOD_DIR}/machine_i2c.c
     ${MICROPY_EXTMOD_DIR}/machine_mem.c
@@ -18,7 +19,7 @@ set(MICROPY_SOURCE_EXTMOD
     ${MICROPY_EXTMOD_DIR}/modlwip.c
     ${MICROPY_EXTMOD_DIR}/modnetwork.c
     ${MICROPY_EXTMOD_DIR}/modonewire.c
-    ${MICROPY_EXTMOD_DIR}/moduasyncio.c
+    ${MICROPY_EXTMOD_DIR}/modasyncio.c
     ${MICROPY_EXTMOD_DIR}/modbinascii.c
     ${MICROPY_EXTMOD_DIR}/modcryptolib.c
     ${MICROPY_EXTMOD_DIR}/moductypes.c

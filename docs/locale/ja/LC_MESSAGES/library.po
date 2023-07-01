@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-11 07:52+0900\n"
-"PO-Revision-Date: 2023-06-18 23:58+0900\n"
+"POT-Creation-Date: 2023-07-01 09:54+0900\n"
+"PO-Revision-Date: 2023-07-01 11:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -202,6 +202,522 @@ msgid ""
 msgstr ""
 "**注記:** ``__repr__`` を直接呼び出すことはできず (``a.__repr__()`` は失敗します)、 "
 "``__dict__`` にも存在しませんが、 ``str(a)`` と ``repr(a)`` は両方とも動作します。"
+
+#: ../../library/asyncio.rst:2
+msgid ":mod:`asyncio` --- asynchronous I/O scheduler"
+msgstr ":mod:`asyncio` --- 非同期 I/O スケジューラ"
+
+#: ../../library/asyncio.rst:7
+msgid ""
+"|see_cpython_module| `asyncio "
+"<https://docs.python.org/3.8/library/asyncio.html>`_"
+msgstr ""
+"|see_cpython_module| `asyncio "
+"<https://docs.python.org/ja/3.8/library/asyncio.html>`_"
+
+#: ../../library/asyncio.rst:12
+msgid ""
+"import asyncio\n"
+"\n"
+"async def blink(led, period_ms):\n"
+"    while True:\n"
+"        led.on()\n"
+"        await asyncio.sleep_ms(5)\n"
+"        led.off()\n"
+"        await asyncio.sleep_ms(period_ms)\n"
+"\n"
+"async def main(led1, led2):\n"
+"    asyncio.create_task(blink(led1, 700))\n"
+"    asyncio.create_task(blink(led2, 400))\n"
+"    await asyncio.sleep_ms(10_000)\n"
+"\n"
+"# Running on a pyboard\n"
+"from pyb import LED\n"
+"asyncio.run(main(LED(1), LED(2)))\n"
+"\n"
+"# Running on a generic board\n"
+"from machine import Pin\n"
+"asyncio.run(main(Pin(1), Pin(2)))"
+msgstr ""
+"import asyncio\n"
+"\n"
+"async def blink(led, period_ms):\n"
+"    while True:\n"
+"        led.on()\n"
+"        await asyncio.sleep_ms(5)\n"
+"        led.off()\n"
+"        await asyncio.sleep_ms(period_ms)\n"
+"\n"
+"async def main(led1, led2):\n"
+"    asyncio.create_task(blink(led1, 700))\n"
+"    asyncio.create_task(blink(led2, 400))\n"
+"    await asyncio.sleep_ms(10_000)\n"
+"\n"
+"# pyboard での実行\n"
+"from pyb import LED\n"
+"asyncio.run(main(LED(1), LED(2)))\n"
+"\n"
+"# 一般的なボードでの実行\n"
+"from machine import Pin\n"
+"asyncio.run(main(Pin(1), Pin(2)))"
+
+#: ../../library/asyncio.rst:35
+msgid "Core functions"
+msgstr "コア関数"
+
+#: ../../library/asyncio.rst:39
+msgid "Create a new task from the given coroutine and schedule it to run."
+msgstr "指定したコルーチンから新しいタスクを作成し、実行をスケジューリングします。"
+
+#: ../../library/asyncio.rst:41
+msgid "Returns the corresponding `Task` object."
+msgstr "対応する `Task` オブジェクトを返します。"
+
+#: ../../library/asyncio.rst:45
+msgid "Return the `Task` object associated with the currently running task."
+msgstr "現在実行中のタスクに関連付けられている `Task` オブジェクトを返します。"
+
+#: ../../library/asyncio.rst:49
+msgid "Create a new task from the given coroutine and run it until it completes."
+msgstr "指定したコルーチンから新しいタスクを作成し、完了するまで実行します。"
+
+#: ../../library/asyncio.rst:51
+msgid "Returns the value returned by *coro*."
+msgstr "コルーチン *coro* の戻り値を返します。"
+
+#: ../../library/asyncio.rst:55
+msgid "Sleep for *t* seconds (can be a float)."
+msgstr "*t* 秒間スリープします(float値も指定できます)。"
+
+#: ../../library/asyncio.rst:57 ../../library/asyncio.rst:79
+#: ../../library/asyncio.rst:94 ../../library/asyncio.rst:140
+#: ../../library/asyncio.rst:163 ../../library/asyncio.rst:184
+#: ../../library/asyncio.rst:204 ../../library/asyncio.rst:214
+#: ../../library/asyncio.rst:235 ../../library/asyncio.rst:241
+#: ../../library/asyncio.rst:257 ../../library/asyncio.rst:263
+#: ../../library/asyncio.rst:275 ../../library/asyncio.rst:290
+msgid "This is a coroutine."
+msgstr "これはコルーチンです。"
+
+#: ../../library/asyncio.rst:61
+msgid "Sleep for *t* milliseconds."
+msgstr "*t* ミリ秒間スリープします。"
+
+#: ../../library/asyncio.rst:63 ../../library/asyncio.rst:85
+msgid "This is a coroutine, and a MicroPython extension."
+msgstr "これはコルーチンであり、MicroPython 拡張機能です。"
+
+#: ../../library/asyncio.rst:66
+msgid "Additional functions"
+msgstr "追加関数"
+
+#: ../../library/asyncio.rst:70
+msgid ""
+"Wait for the *awaitable* to complete, but cancel it if it takes longer "
+"than *timeout* seconds.  If *awaitable* is not a task then a task will be"
+" created from it."
+msgstr ""
+"*awaitable* が完了するまで待ちますが、 *timeout* 秒を超えた場合はキャンセルします。 "
+"*awaitable* がタスクでない場合、それからタスクが作成されます。 "
+
+#: ../../library/asyncio.rst:74
+msgid ""
+"If a timeout occurs, it cancels the task and raises "
+"``asyncio.TimeoutError``: this should be trapped by the caller.  The "
+"task receives ``asyncio.CancelledError`` which may be ignored or trapped"
+" using ``try...except`` or ``try...finally`` to run cleanup code."
+msgstr ""
+"タイムアウトが起きると、タスクはキャンセルされ、例外 ``asyncio.TimeoutError`` "
+"が発生します: この例外を呼んだ側で捕らえるようにしてください。"
+"タスクは ``asyncio.CancelledError`` を受け取りますが、これは無視するか、 "
+"``try...except`` や ``try...finally`` を使って捉えて、クリーンアップコードを"
+"実行してください。"
+
+#: ../../library/asyncio.rst:79
+msgid "Returns the return value of *awaitable*."
+msgstr "*awaitable* の戻り値を返します。"
+
+#: ../../library/asyncio.rst:85
+msgid "Similar to `wait_for` but *timeout* is an integer in milliseconds."
+msgstr "`wait_for` と同様ですが、 *timeout* にはミリ秒単位の整数で指定します。"
+
+#: ../../library/asyncio.rst:91
+msgid ""
+"Run all *awaitables* concurrently.  Any *awaitables* that are not tasks "
+"are promoted to tasks."
+msgstr ""
+"すべての *awaitables* を同時に実行します。タスクではないすべての *awaitables* は"
+"タスクに昇格します。"
+
+#: ../../library/asyncio.rst:94
+msgid "Returns a list of return values of all *awaitables*."
+msgstr "すべての *awaitables* の戻り値のリストを返します。"
+
+#: ../../library/asyncio.rst:99
+msgid "class Task"
+msgstr "クラス Task"
+
+#: ../../library/asyncio.rst:103
+msgid ""
+"This object wraps a coroutine into a running task.  Tasks can be waited "
+"on using ``await task``, which will wait for the task to complete and "
+"return the return value of the task."
+msgstr ""
+"このオブジェクトは、コルーチンを実行タスクにラップします。"
+"タスクは ``await task`` を使って実行終了を待機できます。 "
+"``await task`` はタスクの戻り値を返します。"
+
+#: ../../library/asyncio.rst:107
+msgid ""
+"Tasks should not be created directly, rather use `create_task` to create "
+"them."
+msgstr ""
+"タスクのオブジェクトは直接作成するのではなく、 `create_task` を使って"
+"作成してください。"
+
+#: ../../library/asyncio.rst:111
+msgid ""
+"Cancel the task by injecting ``asyncio.CancelledError`` into it.  The "
+"task may ignore this exception.  Cleanup code may be run by trapping it, "
+"or via ``try ... finally``."
+msgstr ""
+"タスクに ``asyncio.CancelledError`` 例外を発生させることにより、タスクを"
+"キャンセルします。タスクはこの例外を無視できます。この例外を捉えるか、 "
+"``try...finally`` を使ってクリーンアップコードを実行するようにもできます。"
+
+#: ../../library/asyncio.rst:116
+msgid "class Event"
+msgstr "クラス Event"
+
+#: ../../library/asyncio.rst:120
+msgid ""
+"Create a new event which can be used to synchronise tasks.  Events start "
+"in the cleared state."
+msgstr ""
+"タスクの同期に使う新しいイベントを作成します。イベントはクリアされた状態で開始します。"
+
+#: ../../library/asyncio.rst:125
+msgid "Returns ``True`` if the event is set, ``False`` otherwise."
+msgstr ""
+"イベントが設定されていれば ``True`` を返し、さもなければ ``False`` を返します。"
+
+#: ../../library/asyncio.rst:129
+msgid "Set the event.  Any tasks waiting on the event will be scheduled to run."
+msgstr ""
+"イベントを設定します。イベントを待機しているタスクはすべて実行するようにスケジュールされます。"
+
+#: ../../library/asyncio.rst:131
+msgid ""
+"Note: This must be called from within a task. It is not safe to call this"
+" from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`."
+msgstr ""
+"注記: これはタスク内から呼び出す必要があります。これを IRQ、スケジューラコールバック、"
+"その他のスレッドから呼び出すことは安全ではありません。 `ThreadSafeFlag` を参照して"
+"ください。"
+
+#: ../../library/asyncio.rst:136
+msgid "Clear the event."
+msgstr "イベントをクリアします。"
+
+#: ../../library/asyncio.rst:140
+msgid ""
+"Wait for the event to be set.  If the event is already set then it "
+"returns immediately."
+msgstr ""
+"イベントが設定されるのを待ちます。イベントがすでに設定されている場合は、すぐに戻ります。"
+
+#: ../../library/asyncio.rst:146
+msgid "class ThreadSafeFlag"
+msgstr "クラス ThreadSafeFlag"
+
+#: ../../library/asyncio.rst:150
+msgid ""
+"Create a new flag which can be used to synchronise a task with code "
+"running outside the asyncio loop, such as other threads, IRQs, or "
+"scheduler callbacks.  Flags start in the cleared state.  The class does "
+"not currently work under the Unix build of MicroPython."
+msgstr ""
+"他のスレッド、IRQ、スケジューラコールバックなど、asyncio ループの外部で動作している"
+"コードのタスクを同期するために使えるフラグを新規作成します。フラグはクリアされた状態で"
+"始まります。このクラスは、現在のところ MicroPython の Unix ビルドでは動作しません。"
+
+#: ../../library/asyncio.rst:157
+msgid ""
+"Set the flag.  If there is a task waiting on the flag, it will be "
+"scheduled to run."
+msgstr ""
+"フラグを設定します。フラグを待機しているタスクがある場合、そのタスクが実行されるよう"
+"スケジュールされます。"
+
+#: ../../library/asyncio.rst:162
+msgid ""
+"Clear the flag. This may be used to ensure that a possibly previously-set"
+" flag is clear before waiting for it."
+msgstr ""
+"フラグをクリアします。これは、以前に設定した可能性のあるフラグについて、"
+"それを待機する前に確実にクリアするために使います。"
+
+#: ../../library/asyncio.rst:167
+msgid ""
+"Wait for the flag to be set.  If the flag is already set then it returns "
+"immediately.  The flag is automatically reset upon return from ``wait``."
+msgstr ""
+"フラグが設定されるのを待ちます。フラグがすでに設定されている場合はすぐに戻ります。"
+"このフラグは ``wait`` から戻ったときに自動的にリセットされます。"
+
+#: ../../library/asyncio.rst:170
+msgid "A flag may only be waited on by a single task at a time."
+msgstr "フラグは、一度に1つのタスクでのみ待機できます。"
+
+#: ../../library/asyncio.rst:175
+msgid "class Lock"
+msgstr "クラス Lock"
+
+#: ../../library/asyncio.rst:179
+msgid ""
+"Create a new lock which can be used to coordinate tasks.  Locks start in "
+"the unlocked state."
+msgstr ""
+"タスクの調整に使用できる新しいロックを作成します。ロックは解除状態から始まります。"
+
+#: ../../library/asyncio.rst:182
+msgid ""
+"In addition to the methods below, locks can be used in an ``async with`` "
+"statement."
+msgstr ""
+"以下のメソッドに加えて、 ``async with`` ステートメントでロックを使用できます。"
+
+#: ../../library/asyncio.rst:186
+msgid "Returns ``True`` if the lock is locked, otherwise ``False``."
+msgstr ""
+"ロックされていれば ``True`` を返し、さもなければ ``False`` を返します。"
+
+#: ../../library/asyncio.rst:190
+msgid ""
+"Wait for the lock to be in the unlocked state and then lock it in an "
+"atomic way.  Only one task can acquire the lock at any one time."
+msgstr ""
+"ロックが解除状態になるのを待ってから、アトミックな手段でロックします。"
+"一度に1つのタスクのみがロックを取得できます。"
+
+#: ../../library/asyncio.rst:197
+msgid ""
+"Release the lock.  If any tasks are waiting on the lock then the next one"
+" in the queue is scheduled to run and the lock remains locked.  "
+"Otherwise, no tasks are waiting an the lock becomes unlocked."
+msgstr ""
+"ロックを解除します。ロックで待機しているタスクがある場合、キュー内の次のタスクが"
+"実行されるようスケジュールされ、ロックされたままになります。待機中のタスクが無い場合は、"
+"ロックが解除されます。"
+
+#: ../../library/asyncio.rst:202
+msgid "TCP stream connections"
+msgstr "TCP ストリーム接続"
+
+#: ../../library/asyncio.rst:206
+msgid ""
+"Open a TCP connection to the given *host* and *port*.  The *host* address"
+" will be resolved using `socket.getaddrinfo`, which is currently a "
+"blocking call."
+msgstr ""
+"指定したホスト *host* とポート *port* への TCP 接続を開きます。 "
+"*host* のアドレスは `socket.getaddrinfo` を使って解決されます。"
+"この解決は現在のところブロッキング呼出しです。"
+
+#: ../../library/asyncio.rst:209
+msgid ""
+"Returns a pair of streams: a reader and a writer stream. Will raise a "
+"socket-specific ``OSError`` if the host could not be resolved or if the "
+"connection could not be made."
+msgstr ""
+"ストリームのペア、読み取りストリームと書き込みストリームを返します。"
+"ホストを解決できなかった場合、または接続を確立できなかった場合は、
+"ソケット特有の ``OSError`` 例外を発生します。"
+
+#: ../../library/asyncio.rst:217
+msgid ""
+"Start a TCP server on the given *host* and *port*.  The *callback* will "
+"be called with incoming, accepted connections, and be passed 2 arguments:"
+" reader and writer streams for the connection."
+msgstr ""
+"指定したホスト *host* とポート *port* で TCP サーバを始動します。"
+"コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
+"(読み取りストリームと書き込みストリーム)で呼び出されます。"
+
+#: ../../library/asyncio.rst:221
+msgid "Returns a `Server` object."
+msgstr "`Server` オブジェクトを返します。"
+
+#: ../../library/asyncio.rst:227
+msgid ""
+"This represents a TCP stream connection.  To minimise code this class "
+"implements both a reader and a writer, and both ``StreamReader`` and "
+"``StreamWriter`` alias to this class."
+msgstr ""
+"これは TCP ストリーム接続を表します。コードを最小限に抑えるために、"
+"このクラスには読み取りと書き込みの両方を実装しています。
+"StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
+
+#: ../../library/asyncio.rst:233
+msgid ""
+"Get extra information about the stream, given by *v*.  The valid values "
+"for *v* are: ``peername``."
+msgstr ""
+"*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
+"``peername`` です。"
+
+#: ../../library/asyncio.rst:238
+msgid "Close the stream."
+msgstr "ストリームをクローズします。"
+
+#: ../../library/asyncio.rst:242
+msgid "Wait for the stream to close."
+msgstr "ストリームがクローズするまで待ちます。"
+
+#: ../../library/asyncio.rst:248
+msgid ""
+"Read up to *n* bytes and return them.  If *n* is not provided or -1 then "
+"read all bytes until EOF.  The returned value will be an empty bytes "
+"object if EOF is encountered before any bytes are read."
+msgstr ""
+"最大 *n* バイトを読み取って返します。"
+"*n* が指定されていないか、または -1 の場合、EOF まで全てのバイトを読み込みます。"
+"バイト列を読み込む前に EOF に達した場合、戻り値は空のバイト列オブジェクトになります。
+
+#: ../../library/asyncio.rst:256
+msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
+msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
+
+#: ../../library/asyncio.rst:258
+msgid "Return the number of bytes read into *buf*."
+msgstr "戻り値は *buf* に読み込んだバイト数です。"
+
+#: ../../library/asyncio.rst:264
+msgid "Read exactly *n* bytes and return them as a bytes object."
+msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
+
+#: ../../library/asyncio.rst:266
+msgid ""
+"Raises an ``EOFError`` exception if the stream ends before reading *n* "
+"bytes."
+msgstr ""
+"*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
+
+#: ../../library/asyncio.rst:272
+msgid "Read a line and return it."
+msgstr "1行を読み取って返して返します。"
+
+#: ../../library/asyncio.rst:278
+msgid ""
+"Accumulated *buf* to the output buffer.  The data is only flushed when "
+"`Stream.drain` is called.  It is recommended to call `Stream.drain` "
+"immediately after calling this function."
+msgstr ""
+"*buf* を出力バッファに蓄積します。蓄積したデータは `Stream.drain` を呼び出した"
+"ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
+"呼び出すことを勧めます。"
+
+#: ../../library/asyncio.rst:284
+msgid "Drain (write) all buffered output data out to the stream."
+msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
+
+#: ../../library/asyncio.rst:290
+msgid ""
+"This represents the server class returned from `start_server`.  It can be"
+" used in an ``async with`` statement to close the server upon exit."
+msgstr ""
+"これは `start_server` から返されるサーバークラスを表します。 "
+"終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
+
+#: ../../library/asyncio.rst:295
+msgid "Close the server."
+msgstr "サーバーをクローズします。"
+
+#: ../../library/asyncio.rst:299
+msgid "Wait for the server to close."
+msgstr "サーバーがクローズするまで待ちます。"
+
+#: ../../library/asyncio.rst:304
+msgid "Event Loop"
+msgstr "イベントループ"
+
+#: ../../library/asyncio.rst:308
+msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
+msgstr ""
+"タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
+
+#: ../../library/asyncio.rst:312
+msgid "Reset the event loop and return it."
+msgstr "イベントループをリセットして返します。"
+
+#: ../../library/asyncio.rst:314
+msgid ""
+"Note: since MicroPython only has a single event loop this function just "
+"resets the loop's state, it does not create a new one."
+msgstr ""
+"注記: MicroPython には1つのイベントループしかないので、この関数は"
+"ループの状態をリセットするだけで、新しいループを作ることはありません。"
+
+#: ../../library/asyncio.rst:319
+msgid ""
+"This represents the object which schedules and runs tasks.  It cannot be "
+"created, use `get_event_loop` instead."
+msgstr ""
+"これはタスクをスケジュールして実行するオブジェクトを表します。"
+"このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
+
+#: ../../library/asyncio.rst:324
+msgid "Create a task from the given *coro* and return the new `Task` object."
+msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
+
+#: ../../library/asyncio.rst:328
+msgid "Run the event loop until `stop()` is called."
+msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
+
+#: ../../library/asyncio.rst:332
+msgid ""
+"Run the given *awaitable* until it completes.  If *awaitable* is not a "
+"task then it will be promoted to one."
+msgstr ""
+"完了するまで、指定した *awaitable* を実行します。 "
+"*awaitable* がタスクでない場合は、タスクに昇格します。"
+
+#: ../../library/asyncio.rst:337
+msgid "Stop the event loop."
+msgstr "イベントループを停止します。"
+
+#: ../../library/asyncio.rst:341
+msgid "Close the event loop."
+msgstr "イベントループをクローズします。"
+
+#: ../../library/asyncio.rst:345
+msgid ""
+"Set the exception handler to call when a Task raises an exception that is"
+" not caught.  The *handler* should accept two arguments: ``(loop, "
+"context)``."
+msgstr ""
+"捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
+"*handler* は２つの引数 ``(loop, context)`` をとります。"
+
+#: ../../library/asyncio.rst:350
+msgid ""
+"Get the current exception handler.  Returns the handler, or ``None`` if "
+"no custom handler is set."
+msgstr ""
+"現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
+
+#: ../../library/asyncio.rst:355
+msgid "The default exception handler that is called."
+msgstr "デフォルトの例外ハンドラ。"
+
+#: ../../library/asyncio.rst:359
+msgid ""
+"Call the current exception handler.  The argument *context* is passed "
+"through and is a dictionary containing keys: ``'message'``, "
+"``'exception'``, ``'future'``."
+msgstr ""
+"現在の例外ハンドラを呼び出します。引数 *context* が渡されます。これはキー "
+"``'message'``, ``'exception'``, ``'future'`` を持つ辞書です。"
 
 #: ../../library/binascii.rst:2
 msgid ":mod:`binascii` -- binary/ASCII conversions"
@@ -1782,7 +2298,7 @@ msgstr "このモジュールは、有名な BerkelyDB ライブラリ、バー�
 #: ../../library/machine.Signal.rst:19 ../../library/pyb.ADC.rst:164
 #: ../../library/pyb.I2C.rst:13 ../../library/pyb.Switch.rst:18
 #: ../../library/pyb.rst:51 ../../library/pyb.rst:64 ../../library/re.rst:96
-#: ../../library/uasyncio.rst:10
+#: ../../library/asyncio.rst:10
 msgid "Example::"
 msgstr "サンプルコード:"
 
@@ -2720,12 +3236,6 @@ msgstr ""
 
 #: ../../library/esp32.rst:49
 msgid ""
-"Read the raw value of the internal Hall sensor, returning an integer."
-msgstr ""
-"内部ホールセンサーの素の値を読み、整数を返します。"
-
-#: ../../library/esp32.rst:53
-msgid ""
 "Returns information about the ESP-IDF heap memory regions. One of them "
 "contains the MicroPython heap and the others are used by ESP-IDF, e.g., "
 "for network buffers and other data. This data is useful to get a sense of"
@@ -2744,7 +3254,7 @@ msgstr ""
 "返される情報は Python のアロケーション失敗のトラブルシューティングには"
 "役に立ちませんので、代わりに `micropython.mem_info()` を使ってください。"
 
-#: ../../library/esp32.rst:61
+#: ../../library/esp32.rst:57
 msgid ""
 "The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` "
 "values but the two most useful ones are predefined as `esp32.HEAP_DATA` "
@@ -2756,7 +3266,7 @@ msgstr ""
 "`esp32.HEAP_DATA` はデータヒープ領域用であり、 "
 "`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
 
-#: ../../library/esp32.rst:65
+#: ../../library/esp32.rst:61
 msgid ""
 "The return value is a list of 4-tuples, where each 4-tuple corresponds to"
 " one heap and contains: the total bytes, the free bytes, the largest free"
@@ -2766,11 +3276,11 @@ msgstr ""
 "タプルの各項目は、合計バイト数、空きバイト数、最大空きブロック数、"
 "時間経過にともなう最小空きブロック数を意味します。"
 
-#: ../../library/esp32.rst:69
+#: ../../library/esp32.rst:65
 msgid "Example after booting::"
 msgstr "ブート後の例::"
 
-#: ../../library/esp32.rst:71
+#: ../../library/esp32.rst:67
 msgid ""
 ">>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)\n"
 "[(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512,"
@@ -2778,11 +3288,11 @@ msgid ""
 " (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]"
 msgstr ""
 
-#: ../../library/esp32.rst:76
+#: ../../library/esp32.rst:72
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:78
+#: ../../library/esp32.rst:74
 msgid ""
 "This class gives access to the partitions in the device's flash memory "
 "and includes methods to enable over-the-air (OTA) updates."
@@ -2790,7 +3300,7 @@ msgstr ""
 "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 "加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:83
+#: ../../library/esp32.rst:79
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -2801,7 +3311,7 @@ msgstr ""
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。 "
 "*block_size* は個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:89
+#: ../../library/esp32.rst:85
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
@@ -2812,18 +3322,18 @@ msgstr ""
 "注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
 "は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:93
+#: ../../library/esp32.rst:89
 msgid ""
 "*block_size* specifies the byte size of an individual block used by the "
 "returned objects."
 msgstr ""
 "*block_size* は、返されるオブジェクトが使う個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:98
+#: ../../library/esp32.rst:94
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:106 ../../library/pyb.Flash.rst:44
+#: ../../library/esp32.rst:102 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`os.AbstractBlockDev`."
@@ -2831,11 +3341,11 @@ msgstr ""
 "これらのメソッドは :class:`os.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:112
+#: ../../library/esp32.rst:108
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:116
+#: ../../library/esp32.rst:112
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object. Typical usage is "
@@ -2846,7 +3356,7 @@ msgstr ""
 "返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
 "これは現在更新中のパーティションの次のパーティションを返します。"
 
-#: ../../library/esp32.rst:122
+#: ../../library/esp32.rst:118
 msgid ""
 "Signals that the current boot is considered successful. Calling "
 "``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
@@ -2867,7 +3377,7 @@ msgstr ""
 "呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
 "場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:137
+#: ../../library/esp32.rst:133
 msgid ""
 "Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
 " is the partition that will be booted at the next reset and ``RUNNING`` "
@@ -2877,7 +3387,7 @@ msgstr ""
 "``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
 "は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:144
+#: ../../library/esp32.rst:140
 msgid ""
 "Used in `Partition.find` to specify the partition type: ``APP`` is for "
 "bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
@@ -2889,15 +3399,15 @@ msgstr ""
 "``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
 "パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
 
-#: ../../library/esp32.rst:151
+#: ../../library/esp32.rst:147
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:156
+#: ../../library/esp32.rst:152
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:158
+#: ../../library/esp32.rst:154
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -2909,7 +3419,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:163
+#: ../../library/esp32.rst:159
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -2939,7 +3449,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:175
+#: ../../library/esp32.rst:171
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -2951,7 +3461,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:181
+#: ../../library/esp32.rst:177
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (0-32,768) number. There are "
@@ -2961,7 +3471,7 @@ msgstr ""
 "数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
 "分周器を使えます。"
 
-#: ../../library/esp32.rst:185
+#: ../../library/esp32.rst:181
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -2972,7 +3482,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:189
+#: ../../library/esp32.rst:186
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -2982,7 +3492,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:194
+#: ../../library/esp32.rst:190
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -2991,7 +3501,7 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:201
+#: ../../library/esp32.rst:197
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -3010,7 +3520,7 @@ msgstr ""
 "ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
 "が低電圧を意味します。"
 
-#: ../../library/esp32.rst:210
+#: ../../library/esp32.rst:206
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -3021,7 +3531,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:217
+#: ../../library/esp32.rst:213
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -3029,7 +3539,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:222
+#: ../../library/esp32.rst:218
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -3037,7 +3547,7 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:227
+#: ../../library/esp32.rst:223
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
@@ -3049,7 +3559,7 @@ msgstr ""
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
 
-#: ../../library/esp32.rst:234
+#: ../../library/esp32.rst:230
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
@@ -3062,11 +3572,11 @@ msgstr ""
 "ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
 "転送を停止します。"
 
-#: ../../library/esp32.rst:241
+#: ../../library/esp32.rst:237
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
 msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:243
+#: ../../library/esp32.rst:239
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -3076,7 +3586,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:247
+#: ../../library/esp32.rst:243
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -3084,7 +3594,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:250
+#: ../../library/esp32.rst:246
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -3092,7 +3602,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:253
+#: ../../library/esp32.rst:249
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and 32767 units. Output levels are any value that can "
@@ -3103,7 +3613,7 @@ msgstr ""
 "1から32767の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:258
+#: ../../library/esp32.rst:254
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -3112,7 +3622,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:261
+#: ../../library/esp32.rst:257
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -3125,7 +3635,7 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:269
+#: ../../library/esp32.rst:265
 msgid ""
 "Select which RMT channel is used by the `machine.bitstream` "
 "implementation. *value* can be ``None`` or a valid RMT channel number.  "
@@ -3135,7 +3645,7 @@ msgstr ""
 "*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
 "デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
 
-#: ../../library/esp32.rst:273
+#: ../../library/esp32.rst:269
 msgid ""
 "Passing in ``None`` disables the use of RMT and instead selects a bit-"
 "banging implementation for `machine.bitstream`."
@@ -3143,18 +3653,18 @@ msgstr ""
 "``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
 "ビットバング実装が選択されます。"
 
-#: ../../library/esp32.rst:276
+#: ../../library/esp32.rst:272
 msgid ""
 "Passing in no argument will not change the channel.  This function "
 "returns the current channel number."
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:280
+#: ../../library/esp32.rst:276
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:282
+#: ../../library/esp32.rst:278
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -3162,7 +3672,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:287
+#: ../../library/esp32.rst:283
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -3170,31 +3680,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:292
+#: ../../library/esp32.rst:288
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:296
+#: ../../library/esp32.rst:292
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:300
+#: ../../library/esp32.rst:296
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:304
+#: ../../library/esp32.rst:300
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:313
+#: ../../library/esp32.rst:309
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:316
+#: ../../library/esp32.rst:312
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:318
+#: ../../library/esp32.rst:314
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -3208,7 +3718,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:325
+#: ../../library/esp32.rst:321
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -3217,14 +3727,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:330
+#: ../../library/esp32.rst:326
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:335
+#: ../../library/esp32.rst:331
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -3232,7 +3742,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:339
+#: ../../library/esp32.rst:335
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -3240,7 +3750,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:344
+#: ../../library/esp32.rst:340
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -3253,7 +3763,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:351
+#: ../../library/esp32.rst:347
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -3265,11 +3775,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:357
+#: ../../library/esp32.rst:353
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:361
+#: ../../library/esp32.rst:357
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -4398,9 +4908,9 @@ msgstr "asyncio のサポート"
 #: ../../library/espnow.rst:634
 msgid ""
 "A supplementary module (`aioespnow`) is available to provide "
-":doc:`asyncio<uasyncio>` support."
+":doc:`asyncio<asyncio>` support."
 msgstr ""
-"追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<uasyncio>` を"
+"追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<asyncio>` を"
 "サポートします。"
 
 #: ../../library/espnow.rst:637
@@ -4422,7 +4932,7 @@ msgstr "次は小さな非同期サーバーの例です::"
 msgid ""
 "import network\n"
 "import aioespnow\n"
-"import uasyncio as asyncio\n"
+"import asyncio\n"
 "\n"
 "# A WLAN interface must be active to send()/recv()\n"
 "network.WLAN(network.STA_IF).active(True)\n"
@@ -7880,7 +8390,7 @@ msgid "non-blocking"
 msgstr "ノンブロッキング"
 
 #: ../../library/machine.I2S.rst:50
-msgid "uasyncio"
+msgid "asyncio"
 msgstr "非同期 I/O"
 
 #: ../../library/machine.I2S.rst:52
@@ -7911,16 +8421,16 @@ msgid ""
 msgstr ""
 
 #: ../../library/machine.I2S.rst:66
-msgid "uasyncio::"
+msgid "asyncio::"
 msgstr "非同期 I/O"
 
 #: ../../library/machine.I2S.rst:68
 msgid ""
-"swriter = uasyncio.StreamWriter(audio_out)\n"
+"swriter = asyncio.StreamWriter(audio_out)\n"
 "swriter.write(buf)\n"
 "await swriter.drain()\n"
 "\n"
-"sreader = uasyncio.StreamReader(audio_in)\n"
+"sreader = asyncio.StreamReader(audio_in)\n"
 "num_read = await sreader.readinto(buf)"
 msgstr ""
 
@@ -10794,15 +11304,13 @@ msgstr ""
 
 #: ../../library/machine.WDT.rst:28
 msgid ""
-"Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a "
-"timeout cannot be specified, it is determined by the underlying system. "
-"On rp2040 devices, the maximum timeout is 8388 ms."
+"Notes: On the esp8266 a timeout cannot be specified, it is determined by "
+"the underlying system. On rp2040 devices, the maximum timeout is 8388 ms."
 msgstr ""
-"注記: esp32 では最小タイムアウト値が 1 秒になっています。"
-"esp8266 ではタイムアウト値が指定できす、基盤システムによって決定されます。"
+"注記: esp8266 ではタイムアウト値が指定できす、基盤システムによって決定されます。"
 "rp2040 デバイスでは最大タイムアウト値が 8388 ms になっています。"
 
-#: ../../library/machine.WDT.rst:37
+#: ../../library/machine.WDT.rst:36
 msgid ""
 "Feed the WDT to prevent it from resetting the system. The application "
 "should place this call in a sensible place ensuring that the WDT is only "
@@ -19844,45 +20352,22 @@ msgstr ""
 
 #: ../../library/ssl.rst:18
 msgid ""
-"Takes a `stream` *sock* (usually socket.socket instance of "
-"``SOCK_STREAM`` type), and returns an instance of ssl.SSLSocket, which "
-"wraps the underlying stream in an SSL context. Returned object has the "
-"usual `stream` interface methods like ``read()``, ``write()``, etc. "
-"A server-side SSL socket should be created from a normal socket "
-"returned from :meth:`~socket.socket.accept()` on a non-SSL listening "
-"server socket."
+"Wrap the given *sock* and return a new wrapped-socket object.  The "
+"implementation of this function is to first create an `SSLContext` and "
+"then call the `SSLContext.wrap_socket` method on that context object.  "
+"The arguments *sock*, *server_side* and *server_hostname* are passed "
+"through unchanged to the method call.  The argument *do_handshake* is "
+"passed through as *do_handshake_on_connect*.  The remaining arguments "
+"have the following behaviour:"
 msgstr ""
-"`stream` *sock* (通常は ``SOCK_STREAM`` タイプの socket.socket インスタンス)を"
-"引数としてとり、SSL コンテキストで基本となるストリームをラップした ssl.SSLSocket "
-"インスタンスを返します。返されるオブジェクトには ``read()``, ``write()`` のような"
-"通常の `stream` インスタンスのインタフェースメソッドをがあります。"
-"サーバー側の SSL ソケットは、非 SSL リスニングサーバーソケットの "
-":meth:`~socket.socket.accept()` から返される通常のソケットから作成する"
-"必要があります。"
+"指定した *sock* をラップし、新しいラップ済ソケットオブジェクトを返します。"
+"この関数内ではまず `SSLContext` を作成し、そのコンテキストオブジェクト上で "
+"`SSLContext.wrap_socket` メソッドを呼び出しています。"
+"引数 *sock*, *server_side*, *server_hostname* は呼び出すメソッドに"
+"そのまま渡されます。引数 *do_handshake* は *do_handshake_on_connect* "
+"として渡されます。残りの引数は次のように動作します:"
 
 #: ../../library/ssl.rst:24
-msgid ""
-"*do_handshake* determines whether the handshake is done as part of the "
-"``wrap_socket`` or whether it is deferred to be done as part of the "
-"initial reads or writes (there is no ``do_handshake`` method as in "
-"CPython). For blocking sockets doing the handshake immediately is "
-"standard. For non-blocking sockets (i.e. when the *sock* passed into "
-"``wrap_socket`` is in non-blocking mode) the handshake should generally "
-"be deferred because otherwise ``wrap_socket`` blocks until it completes. "
-"Note that in AXTLS the handshake can be deferred until the first read or "
-"write but it then blocks until completion."
-msgstr ""
-"*do_handshake* は、ハンドシェイクが ``wrap_socket`` の一部として実行されるか、"
-"最初の読み書きの一部として実行するよう延期するかを決定します(CPython にあるような "
-"``do_handshake`` メソッドはありません)。ブロッキングソケットの場合はハンドシェイクを"
-"すぐに実行するのが標準です。"
-"非ブロッキングソケットの場合(つまり ``wrap_socket`` に渡した *sock* が"
-"非ブロッキングモードの場合)、ハンドシェイクは一般的に延期すべきです。"
-"さもなければ ``wrap_socket`` がハンドシェイクの完了までブロックするからです。"
-"AXTLS では、ハンドシェイクは最初の読み書きまで延期できますが、その後は完了する"
-"までブロックされることに注意してください。"
-
-#: ../../library/ssl.rst:34
 msgid ""
 "*cert_reqs* determines whether the peer (server or client) must present a"
 " valid certificate. Note that for mbedtls based ports, ``ssl.CERT_NONE`` "
@@ -19893,7 +20378,7 @@ msgstr ""
 "指定します。 mbedtls ベースのポートでは ``ssl.CERT_NONE`` と ``ssl.CERT_OPTIONAL`` "
 "が証明書を検証せず、 ``ssl.CERT_REQUIRED`` だけが証明書を検証します。"
 
-#: ../../library/ssl.rst:38
+#: ../../library/ssl.rst:28
 msgid ""
 "*cadata* is a bytes object containing the CA certificate chain (in DER "
 "format) that will validate the peer's certificate.  Currently only a "
@@ -19903,7 +20388,74 @@ msgstr ""
 "バイト列オブジェクトにしたものです。現在のところ、単一のDERエンコードされた"
 "証明書のみをサポートします。"
 
-#: ../../library/ssl.rst:41
+#: ../../library/ssl.rst:31
+msgid ""
+"Depending on the underlying module implementation in a particular "
+":term:`MicroPython port`, some or all keyword arguments above may be not "
+"supported."
+msgstr ""
+"特定の :term:`MicroPython ポート <MicroPython port>` のモジュールの"
+"実装によっては、 上記のキーワード引数の一部またはすべてがサポートされていない"
+"可能性があります。"
+
+#: ../../library/ssl.rst:35
+msgid "class SSLContext"
+msgstr "クラス SSLContext"
+
+#: ../../library/ssl.rst:39
+msgid ""
+"Create a new SSLContext instance.  The *protocol* argument must be one of"
+" the ``PROTOCOL_*`` constants."
+msgstr ""
+"新しい SSLContext のインスタンスを作成します。 *protocol* 引数は "
+"``PROTOCOL_*`` 定数のいずれかでなければなりません。"
+
+#: ../../library/ssl.rst:44
+msgid ""
+"Takes a `stream` *sock* (usually socket.socket instance of "
+"``SOCK_STREAM`` type), and returns an instance of ssl.SSLSocket, wrapping"
+" the underlying stream. The returned object has the usual `stream` "
+"interface methods like ``read()``, ``write()``, etc."
+msgstr ""
+"`stream` *sock* (通常は ``SOCK_STREAM`` タイプの socket.socket インスタンス)を"
+"引数としてとり、基本となるストリームをラップした ssl.SSLSocket インスタンスを返します。"
+"返されるオブジェクトには ``read()``, ``write()`` のような"
+"通常の `stream` インスタンスのインタフェースメソッドがあります。"
+
+#: ../../library/ssl.rst:49
+msgid ""
+"*server_side* selects whether the wrapped socket is on the server or "
+"client side. A server-side SSL socket should be created from a normal "
+"socket returned from :meth:`~socket.socket.accept()` on a non-SSL "
+"listening server socket."
+msgstr ""
+"*server_side* にはラップするソケットがサーバ側かクライアント側かを指定します。"
+"サーバー側の SSL ソケットは、非 SSL リスニングサーバーソケットの "
+":meth:`~socket.socket.accept()` から返される通常のソケットから作成する"
+"必要があります。"
+
+#: ../../library/ssl.rst:53
+msgid ""
+"*do_handshake_on_connect* determines whether the handshake is done as "
+"part of the ``wrap_socket`` or whether it is deferred to be done as part "
+"of the initial reads or writes For blocking sockets doing the handshake "
+"immediately is standard. For non-blocking sockets (i.e. when the *sock* "
+"passed into ``wrap_socket`` is in non-blocking mode) the handshake should"
+" generally be deferred because otherwise ``wrap_socket`` blocks until it "
+"completes. Note that in AXTLS the handshake can be deferred until the "
+"first read or write but it then blocks until completion."
+msgstr ""
+"*do_handshake_on_connect* は、ハンドシェイクが ``wrap_socket`` の一部として"
+"実行されるか、最初の読み書きの一部として実行するよう延期するかを決定します。"
+"ブロッキングソケットの場合はハンドシェイクを"
+"すぐに実行するのが標準です。"
+"非ブロッキングソケットの場合(つまり ``wrap_socket`` に渡した *sock* が"
+"非ブロッキングモードの場合)、ハンドシェイクは一般的に延期すべきです。"
+"さもなければ ``wrap_socket`` がハンドシェイクの完了までブロックするからです。"
+"AXTLS では、ハンドシェイクは最初の読み書きまで延期できますが、その後は完了する"
+"までブロックされることに注意してください。"
+
+#: ../../library/ssl.rst:61
 msgid ""
 "*server_hostname* is for use as a client, and sets the hostname to check "
 "against the received server certificate.  It also sets the name for "
@@ -19914,17 +20466,7 @@ msgstr ""
 "照合するためのホスト名を指定します。また、これはサーバー名表示(SNI: "
 "Server Name Indication)としても使われ、サーバーが適切な証明書を提示できるようにします。"
 
-#: ../../library/ssl.rst:45
-msgid ""
-"Depending on the underlying module implementation in a particular "
-":term:`MicroPython port`, some or all keyword arguments above may be not "
-"supported."
-msgstr ""
-"特定の :term:`MicroPython ポート <MicroPython port>` のモジュールの"
-"実装によっては、 上記のキーワード引数の一部またはすべてがサポートされていない"
-"可能性があります。"
-
-#: ../../library/ssl.rst:50
+#: ../../library/ssl.rst:67
 msgid ""
 "Some implementations of ``ssl`` module do NOT validate server "
 "certificates, which makes an SSL connection established prone to man-in-"
@@ -19933,7 +20475,7 @@ msgstr ""
 "``ssl`` モジュールの実装によってはサーバー証明書の検証が行われないため、"
 "中間者攻撃を受けやすい SSL 接続になってしまいます。"
 
-#: ../../library/ssl.rst:53
+#: ../../library/ssl.rst:70
 msgid ""
 "CPython's ``wrap_socket`` returns an ``SSLSocket`` object which has "
 "methods typical for sockets, such as ``send``, ``recv``, etc. "
@@ -19945,14 +20487,29 @@ msgstr ""
 "メソッドがあります。MicroPython の ``wrap_socket`` は CPython の "
 "``SSLObject`` に類似のオブジェクトを返しますが、ソケットメソッドはありません。"
 
-#: ../../library/ssl.rst:63
+#: ../../library/ssl.rst:77
+msgid ""
+"Set or get the behaviour for verification of peer certificates.  Must be "
+"one of the ``CERT_*`` constants."
+msgstr ""
+"ピア証明書の検証の動作を設定/取得します。 ``CERT_*`` 定数のいずれかにしなければなりません。"
+
+#: ../../library/ssl.rst:85
 msgid "This exception does NOT exist. Instead its base class, OSError, is used."
 msgstr ""
 "この例外は存在しません。代わりにベースクラスの OSError が使われます。"
 
-#: ../../library/ssl.rst:72
-msgid "Supported values for *cert_reqs* parameter."
-msgstr "*cert_reqs* パラメーターでサポートされる値です。"
+#: ../../library/ssl.rst:93
+msgid "Supported values for the *protocol* parameter."
+msgstr "*protocol* パラメーターでサポートされる値です。"
+
+#: ../../library/ssl.rst:99
+msgid ""
+"Supported values for *cert_reqs* parameter, and the "
+":attr:`SSLContext.verify_mode` attribute."
+msgstr ""
+"*cert_reqs* パラメーターと ":attr:`SSLContext.verify_mode` 属性で"
+"サポートされる値です。"
 
 #: ../../library/stm.rst:4
 msgid ":mod:`stm` --- functionality specific to STM32 MCUs"
@@ -21166,522 +21723,6 @@ msgid ""
 msgstr ""
 "`time()` と似ていますが、エポックからのナノ秒を整数で返します(たいていは"
 "長整数となるので、ヒープ上に確保されます)。"
-
-#: ../../library/uasyncio.rst:2
-msgid ":mod:`uasyncio` --- asynchronous I/O scheduler"
-msgstr ":mod:`uasyncio` --- 非同期 I/O スケジューラ"
-
-#: ../../library/uasyncio.rst:7
-msgid ""
-"|see_cpython_module| `asyncio "
-"<https://docs.python.org/3.8/library/asyncio.html>`_"
-msgstr ""
-"|see_cpython_module| `asyncio "
-"<https://docs.python.org/ja/3.8/library/asyncio.html>`_"
-
-#: ../../library/uasyncio.rst:12
-msgid ""
-"import uasyncio\n"
-"\n"
-"async def blink(led, period_ms):\n"
-"    while True:\n"
-"        led.on()\n"
-"        await uasyncio.sleep_ms(5)\n"
-"        led.off()\n"
-"        await uasyncio.sleep_ms(period_ms)\n"
-"\n"
-"async def main(led1, led2):\n"
-"    uasyncio.create_task(blink(led1, 700))\n"
-"    uasyncio.create_task(blink(led2, 400))\n"
-"    await uasyncio.sleep_ms(10_000)\n"
-"\n"
-"# Running on a pyboard\n"
-"from pyb import LED\n"
-"uasyncio.run(main(LED(1), LED(2)))\n"
-"\n"
-"# Running on a generic board\n"
-"from machine import Pin\n"
-"uasyncio.run(main(Pin(1), Pin(2)))"
-msgstr ""
-"import uasyncio\n"
-"\n"
-"async def blink(led, period_ms):\n"
-"    while True:\n"
-"        led.on()\n"
-"        await uasyncio.sleep_ms(5)\n"
-"        led.off()\n"
-"        await uasyncio.sleep_ms(period_ms)\n"
-"\n"
-"async def main(led1, led2):\n"
-"    uasyncio.create_task(blink(led1, 700))\n"
-"    uasyncio.create_task(blink(led2, 400))\n"
-"    await uasyncio.sleep_ms(10_000)\n"
-"\n"
-"# pyboard での実行\n"
-"from pyb import LED\n"
-"uasyncio.run(main(LED(1), LED(2)))\n"
-"\n"
-"# 一般的なボードでの実行\n"
-"from machine import Pin\n"
-"uasyncio.run(main(Pin(1), Pin(2)))"
-
-#: ../../library/uasyncio.rst:35
-msgid "Core functions"
-msgstr "コア関数"
-
-#: ../../library/uasyncio.rst:39
-msgid "Create a new task from the given coroutine and schedule it to run."
-msgstr "指定したコルーチンから新しいタスクを作成し、実行をスケジューリングします。"
-
-#: ../../library/uasyncio.rst:41
-msgid "Returns the corresponding `Task` object."
-msgstr "対応する `Task` オブジェクトを返します。"
-
-#: ../../library/uasyncio.rst:45
-msgid "Return the `Task` object associated with the currently running task."
-msgstr "現在実行中のタスクに関連付けられている `Task` オブジェクトを返します。"
-
-#: ../../library/uasyncio.rst:49
-msgid "Create a new task from the given coroutine and run it until it completes."
-msgstr "指定したコルーチンから新しいタスクを作成し、完了するまで実行します。"
-
-#: ../../library/uasyncio.rst:51
-msgid "Returns the value returned by *coro*."
-msgstr "コルーチン *coro* の戻り値を返します。"
-
-#: ../../library/uasyncio.rst:55
-msgid "Sleep for *t* seconds (can be a float)."
-msgstr "*t* 秒間スリープします(float値も指定できます)。"
-
-#: ../../library/uasyncio.rst:57 ../../library/uasyncio.rst:79
-#: ../../library/uasyncio.rst:94 ../../library/uasyncio.rst:140
-#: ../../library/uasyncio.rst:163 ../../library/uasyncio.rst:184
-#: ../../library/uasyncio.rst:204 ../../library/uasyncio.rst:214
-#: ../../library/uasyncio.rst:235 ../../library/uasyncio.rst:241
-#: ../../library/uasyncio.rst:257 ../../library/uasyncio.rst:263
-#: ../../library/uasyncio.rst:275 ../../library/uasyncio.rst:290
-msgid "This is a coroutine."
-msgstr "これはコルーチンです。"
-
-#: ../../library/uasyncio.rst:61
-msgid "Sleep for *t* milliseconds."
-msgstr "*t* ミリ秒間スリープします。"
-
-#: ../../library/uasyncio.rst:63 ../../library/uasyncio.rst:85
-msgid "This is a coroutine, and a MicroPython extension."
-msgstr "これはコルーチンであり、MicroPython 拡張機能です。"
-
-#: ../../library/uasyncio.rst:66
-msgid "Additional functions"
-msgstr "追加関数"
-
-#: ../../library/uasyncio.rst:70
-msgid ""
-"Wait for the *awaitable* to complete, but cancel it if it takes longer "
-"than *timeout* seconds.  If *awaitable* is not a task then a task will be"
-" created from it."
-msgstr ""
-"*awaitable* が完了するまで待ちますが、 *timeout* 秒を超えた場合はキャンセルします。 "
-"*awaitable* がタスクでない場合、それからタスクが作成されます。 "
-
-#: ../../library/uasyncio.rst:74
-msgid ""
-"If a timeout occurs, it cancels the task and raises "
-"``uasyncio.TimeoutError``: this should be trapped by the caller.  The "
-"task receives ``uasyncio.CancelledError`` which may be ignored or trapped"
-" using ``try...except`` or ``try...finally`` to run cleanup code."
-msgstr ""
-"タイムアウトが起きると、タスクはキャンセルされ、例外 ``uasyncio.TimeoutError`` "
-"が発生します: この例外を呼んだ側で捕らえるようにしてください。"
-"タスクは ``uasyncio.CancelledError`` を受け取りますが、これは無視するか、 "
-"``try...except`` や ``try...finally`` を使って捉えて、クリーンアップコードを"
-"実行してください。"
-
-#: ../../library/uasyncio.rst:79
-msgid "Returns the return value of *awaitable*."
-msgstr "*awaitable* の戻り値を返します。"
-
-#: ../../library/uasyncio.rst:85
-msgid "Similar to `wait_for` but *timeout* is an integer in milliseconds."
-msgstr "`wait_for` と同様ですが、 *timeout* にはミリ秒単位の整数で指定します。"
-
-#: ../../library/uasyncio.rst:91
-msgid ""
-"Run all *awaitables* concurrently.  Any *awaitables* that are not tasks "
-"are promoted to tasks."
-msgstr ""
-"すべての *awaitables* を同時に実行します。タスクではないすべての *awaitables* は"
-"タスクに昇格します。"
-
-#: ../../library/uasyncio.rst:94
-msgid "Returns a list of return values of all *awaitables*."
-msgstr "すべての *awaitables* の戻り値のリストを返します。"
-
-#: ../../library/uasyncio.rst:99
-msgid "class Task"
-msgstr "クラス Task"
-
-#: ../../library/uasyncio.rst:103
-msgid ""
-"This object wraps a coroutine into a running task.  Tasks can be waited "
-"on using ``await task``, which will wait for the task to complete and "
-"return the return value of the task."
-msgstr ""
-"このオブジェクトは、コルーチンを実行タスクにラップします。"
-"タスクは ``await task`` を使って実行終了を待機できます。 "
-"``await task`` はタスクの戻り値を返します。"
-
-#: ../../library/uasyncio.rst:107
-msgid ""
-"Tasks should not be created directly, rather use `create_task` to create "
-"them."
-msgstr ""
-"タスクのオブジェクトは直接作成するのではなく、 `create_task` を使って"
-"作成してください。"
-
-#: ../../library/uasyncio.rst:111
-msgid ""
-"Cancel the task by injecting ``asyncio.CancelledError`` into it.  The "
-"task may ignore this exception.  Cleanup code may be run by trapping it, "
-"or via ``try ... finally``."
-msgstr ""
-"タスクに ``asyncio.CancelledError`` 例外を発生させることにより、タスクを"
-"キャンセルします。タスクはこの例外を無視できます。この例外を捉えるか、 "
-"``try...finally`` を使ってクリーンアップコードを実行するようにもできます。"
-
-#: ../../library/uasyncio.rst:116
-msgid "class Event"
-msgstr "クラス Event"
-
-#: ../../library/uasyncio.rst:120
-msgid ""
-"Create a new event which can be used to synchronise tasks.  Events start "
-"in the cleared state."
-msgstr ""
-"タスクの同期に使う新しいイベントを作成します。イベントはクリアされた状態で開始します。"
-
-#: ../../library/uasyncio.rst:125
-msgid "Returns ``True`` if the event is set, ``False`` otherwise."
-msgstr ""
-"イベントが設定されていれば ``True`` を返し、さもなければ ``False`` を返します。"
-
-#: ../../library/uasyncio.rst:129
-msgid "Set the event.  Any tasks waiting on the event will be scheduled to run."
-msgstr ""
-"イベントを設定します。イベントを待機しているタスクはすべて実行するようにスケジュールされます。"
-
-#: ../../library/uasyncio.rst:131
-msgid ""
-"Note: This must be called from within a task. It is not safe to call this"
-" from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`."
-msgstr ""
-"注記: これはタスク内から呼び出す必要があります。これを IRQ、スケジューラコールバック、"
-"その他のスレッドから呼び出すことは安全ではありません。 `ThreadSafeFlag` を参照して"
-"ください。"
-
-#: ../../library/uasyncio.rst:136
-msgid "Clear the event."
-msgstr "イベントをクリアします。"
-
-#: ../../library/uasyncio.rst:140
-msgid ""
-"Wait for the event to be set.  If the event is already set then it "
-"returns immediately."
-msgstr ""
-"イベントが設定されるのを待ちます。イベントがすでに設定されている場合は、すぐに戻ります。"
-
-#: ../../library/uasyncio.rst:146
-msgid "class ThreadSafeFlag"
-msgstr "クラス ThreadSafeFlag"
-
-#: ../../library/uasyncio.rst:150
-msgid ""
-"Create a new flag which can be used to synchronise a task with code "
-"running outside the uasyncio loop, such as other threads, IRQs, or "
-"scheduler callbacks.  Flags start in the cleared state.  The class does "
-"not currently work under the Unix build of MicroPython."
-msgstr ""
-"他のスレッド、IRQ、スケジューラコールバックなど、asyncio ループの外部で動作している"
-"コードのタスクを同期するために使えるフラグを新規作成します。フラグはクリアされた状態で"
-"始まります。このクラスは、現在のところ MicroPython の Unix ビルドでは動作しません。"
-
-#: ../../library/uasyncio.rst:157
-msgid ""
-"Set the flag.  If there is a task waiting on the flag, it will be "
-"scheduled to run."
-msgstr ""
-"フラグを設定します。フラグを待機しているタスクがある場合、そのタスクが実行されるよう"
-"スケジュールされます。"
-
-#: ../../library/uasyncio.rst:162
-msgid ""
-"Clear the flag. This may be used to ensure that a possibly previously-set"
-" flag is clear before waiting for it."
-msgstr ""
-"フラグをクリアします。これは、以前に設定した可能性のあるフラグについて、"
-"それを待機する前に確実にクリアするために使います。"
-
-#: ../../library/uasyncio.rst:167
-msgid ""
-"Wait for the flag to be set.  If the flag is already set then it returns "
-"immediately.  The flag is automatically reset upon return from ``wait``."
-msgstr ""
-"フラグが設定されるのを待ちます。フラグがすでに設定されている場合はすぐに戻ります。"
-"このフラグは ``wait`` から戻ったときに自動的にリセットされます。"
-
-#: ../../library/uasyncio.rst:170
-msgid "A flag may only be waited on by a single task at a time."
-msgstr "フラグは、一度に1つのタスクでのみ待機できます。"
-
-#: ../../library/uasyncio.rst:175
-msgid "class Lock"
-msgstr "クラス Lock"
-
-#: ../../library/uasyncio.rst:179
-msgid ""
-"Create a new lock which can be used to coordinate tasks.  Locks start in "
-"the unlocked state."
-msgstr ""
-"タスクの調整に使用できる新しいロックを作成します。ロックは解除状態から始まります。"
-
-#: ../../library/uasyncio.rst:182
-msgid ""
-"In addition to the methods below, locks can be used in an ``async with`` "
-"statement."
-msgstr ""
-"以下のメソッドに加えて、 ``async with`` ステートメントでロックを使用できます。"
-
-#: ../../library/uasyncio.rst:186
-msgid "Returns ``True`` if the lock is locked, otherwise ``False``."
-msgstr ""
-"ロックされていれば ``True`` を返し、さもなければ ``False`` を返します。"
-
-#: ../../library/uasyncio.rst:190
-msgid ""
-"Wait for the lock to be in the unlocked state and then lock it in an "
-"atomic way.  Only one task can acquire the lock at any one time."
-msgstr ""
-"ロックが解除状態になるのを待ってから、アトミックな手段でロックします。"
-"一度に1つのタスクのみがロックを取得できます。"
-
-#: ../../library/uasyncio.rst:197
-msgid ""
-"Release the lock.  If any tasks are waiting on the lock then the next one"
-" in the queue is scheduled to run and the lock remains locked.  "
-"Otherwise, no tasks are waiting an the lock becomes unlocked."
-msgstr ""
-"ロックを解除します。ロックで待機しているタスクがある場合、キュー内の次のタスクが"
-"実行されるようスケジュールされ、ロックされたままになります。待機中のタスクが無い場合は、"
-"ロックが解除されます。"
-
-#: ../../library/uasyncio.rst:202
-msgid "TCP stream connections"
-msgstr "TCP ストリーム接続"
-
-#: ../../library/uasyncio.rst:206
-msgid ""
-"Open a TCP connection to the given *host* and *port*.  The *host* address"
-" will be resolved using `socket.getaddrinfo`, which is currently a "
-"blocking call."
-msgstr ""
-"指定したホスト *host* とポート *port* への TCP 接続を開きます。 "
-"*host* のアドレスは `socket.getaddrinfo` を使って解決されます。"
-"この解決は現在のところブロッキング呼出しです。"
-
-#: ../../library/uasyncio.rst:209
-msgid ""
-"Returns a pair of streams: a reader and a writer stream. Will raise a "
-"socket-specific ``OSError`` if the host could not be resolved or if the "
-"connection could not be made."
-msgstr ""
-"ストリームのペア、読み取りストリームと書き込みストリームを返します。"
-"ホストを解決できなかった場合、または接続を確立できなかった場合は、
-"ソケット特有の ``OSError`` 例外を発生します。"
-
-#: ../../library/uasyncio.rst:217
-msgid ""
-"Start a TCP server on the given *host* and *port*.  The *callback* will "
-"be called with incoming, accepted connections, and be passed 2 arguments:"
-" reader and writer streams for the connection."
-msgstr ""
-"指定したホスト *host* とポート *port* で TCP サーバを始動します。"
-"コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
-"(読み取りストリームと書き込みストリーム)で呼び出されます。"
-
-#: ../../library/uasyncio.rst:221
-msgid "Returns a `Server` object."
-msgstr "`Server` オブジェクトを返します。"
-
-#: ../../library/uasyncio.rst:227
-msgid ""
-"This represents a TCP stream connection.  To minimise code this class "
-"implements both a reader and a writer, and both ``StreamReader`` and "
-"``StreamWriter`` alias to this class."
-msgstr ""
-"これは TCP ストリーム接続を表します。コードを最小限に抑えるために、"
-"このクラスには読み取りと書き込みの両方を実装しています。
-"StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
-
-#: ../../library/uasyncio.rst:233
-msgid ""
-"Get extra information about the stream, given by *v*.  The valid values "
-"for *v* are: ``peername``."
-msgstr ""
-"*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
-"``peername`` です。"
-
-#: ../../library/uasyncio.rst:238
-msgid "Close the stream."
-msgstr "ストリームをクローズします。"
-
-#: ../../library/uasyncio.rst:242
-msgid "Wait for the stream to close."
-msgstr "ストリームがクローズするまで待ちます。"
-
-#: ../../library/uasyncio.rst:248
-msgid ""
-"Read up to *n* bytes and return them.  If *n* is not provided or -1 then "
-"read all bytes until EOF.  The returned value will be an empty bytes "
-"object if EOF is encountered before any bytes are read."
-msgstr ""
-"最大 *n* バイトを読み取って返します。"
-"*n* が指定されていないか、または -1 の場合、EOF まで全てのバイトを読み込みます。"
-"バイト列を読み込む前に EOF に達した場合、戻り値は空のバイト列オブジェクトになります。
-
-#: ../../library/uasyncio.rst:256
-msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
-msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
-
-#: ../../library/uasyncio.rst:258
-msgid "Return the number of bytes read into *buf*."
-msgstr "戻り値は *buf* に読み込んだバイト数です。"
-
-#: ../../library/uasyncio.rst:264
-msgid "Read exactly *n* bytes and return them as a bytes object."
-msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
-
-#: ../../library/uasyncio.rst:266
-msgid ""
-"Raises an ``EOFError`` exception if the stream ends before reading *n* "
-"bytes."
-msgstr ""
-"*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
-
-#: ../../library/uasyncio.rst:272
-msgid "Read a line and return it."
-msgstr "1行を読み取って返して返します。"
-
-#: ../../library/uasyncio.rst:278
-msgid ""
-"Accumulated *buf* to the output buffer.  The data is only flushed when "
-"`Stream.drain` is called.  It is recommended to call `Stream.drain` "
-"immediately after calling this function."
-msgstr ""
-"*buf* を出力バッファに蓄積します。蓄積したデータは `Stream.drain` を呼び出した"
-"ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
-"呼び出すことを勧めます。"
-
-#: ../../library/uasyncio.rst:284
-msgid "Drain (write) all buffered output data out to the stream."
-msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
-
-#: ../../library/uasyncio.rst:290
-msgid ""
-"This represents the server class returned from `start_server`.  It can be"
-" used in an ``async with`` statement to close the server upon exit."
-msgstr ""
-"これは `start_server` から返されるサーバークラスを表します。 "
-"終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
-
-#: ../../library/uasyncio.rst:295
-msgid "Close the server."
-msgstr "サーバーをクローズします。"
-
-#: ../../library/uasyncio.rst:299
-msgid "Wait for the server to close."
-msgstr "サーバーがクローズするまで待ちます。"
-
-#: ../../library/uasyncio.rst:304
-msgid "Event Loop"
-msgstr "イベントループ"
-
-#: ../../library/uasyncio.rst:308
-msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
-msgstr ""
-"タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
-
-#: ../../library/uasyncio.rst:312
-msgid "Reset the event loop and return it."
-msgstr "イベントループをリセットして返します。"
-
-#: ../../library/uasyncio.rst:314
-msgid ""
-"Note: since MicroPython only has a single event loop this function just "
-"resets the loop's state, it does not create a new one."
-msgstr ""
-"注記: MicroPython には1つのイベントループしかないので、この関数は"
-"ループの状態をリセットするだけで、新しいループを作ることはありません。"
-
-#: ../../library/uasyncio.rst:319
-msgid ""
-"This represents the object which schedules and runs tasks.  It cannot be "
-"created, use `get_event_loop` instead."
-msgstr ""
-"これはタスクをスケジュールして実行するオブジェクトを表します。"
-"このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
-
-#: ../../library/uasyncio.rst:324
-msgid "Create a task from the given *coro* and return the new `Task` object."
-msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
-
-#: ../../library/uasyncio.rst:328
-msgid "Run the event loop until `stop()` is called."
-msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
-
-#: ../../library/uasyncio.rst:332
-msgid ""
-"Run the given *awaitable* until it completes.  If *awaitable* is not a "
-"task then it will be promoted to one."
-msgstr ""
-"完了するまで、指定した *awaitable* を実行します。 "
-"*awaitable* がタスクでない場合は、タスクに昇格します。"
-
-#: ../../library/uasyncio.rst:337
-msgid "Stop the event loop."
-msgstr "イベントループを停止します。"
-
-#: ../../library/uasyncio.rst:341
-msgid "Close the event loop."
-msgstr "イベントループをクローズします。"
-
-#: ../../library/uasyncio.rst:345
-msgid ""
-"Set the exception handler to call when a Task raises an exception that is"
-" not caught.  The *handler* should accept two arguments: ``(loop, "
-"context)``."
-msgstr ""
-"捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
-"*handler* は２つの引数 ``(loop, context)`` をとります。"
-
-#: ../../library/uasyncio.rst:350
-msgid ""
-"Get the current exception handler.  Returns the handler, or ``None`` if "
-"no custom handler is set."
-msgstr ""
-"現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
-
-#: ../../library/uasyncio.rst:355
-msgid "The default exception handler that is called."
-msgstr "デフォルトの例外ハンドラ。"
-
-#: ../../library/uasyncio.rst:359
-msgid ""
-"Call the current exception handler.  The argument *context* is passed "
-"through and is a dictionary containing keys: ``'message'``, "
-"``'exception'``, ``'future'``."
-msgstr ""
-"現在の例外ハンドラを呼び出します。引数 *context* が渡されます。これはキー "
-"``'message'``, ``'exception'``, ``'future'`` を持つ辞書です。"
 
 #: ../../library/uctypes.rst:2
 msgid ":mod:`uctypes` -- access binary data in a structured way"

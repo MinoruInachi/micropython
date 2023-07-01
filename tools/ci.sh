@@ -115,33 +115,11 @@ function ci_cc3200_build {
 ########################################################################################
 # ports/esp32
 
-function ci_esp32_setup_helper {
+function ci_esp32_idf50_setup {
     pip3 install pyelftools
     git clone https://github.com/espressif/esp-idf.git
-    git -C esp-idf checkout $1
-    git -C esp-idf submodule update --init \
-        components/bt/host/nimble/nimble \
-        components/esp_wifi \
-        components/esptool_py/esptool \
-        components/lwip/lwip \
-        components/mbedtls/mbedtls
-    if [ -d esp-idf/components/bt/controller/esp32 ]; then
-        git -C esp-idf submodule update --init \
-            components/bt/controller/lib_esp32 \
-            components/bt/controller/lib_esp32c3_family
-    else
-        git -C esp-idf submodule update --init \
-            components/bt/controller/lib
-    fi
+    git -C esp-idf checkout v5.0.2
     ./esp-idf/install.sh
-}
-
-function ci_esp32_idf402_setup {
-    ci_esp32_setup_helper v4.0.2
-}
-
-function ci_esp32_idf44_setup {
-    ci_esp32_setup_helper v4.4
 }
 
 function ci_esp32_build {
@@ -151,15 +129,9 @@ function ci_esp32_build {
     make ${MAKEOPTS} -C ports/esp32 \
         USER_C_MODULES=../../../examples/usercmodule/micropython.cmake \
         FROZEN_MANIFEST=$(pwd)/ports/esp32/boards/manifest_test.py
-    if [ -d $IDF_PATH/components/esp32c3 ]; then
-        make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_C3
-    fi
-    if [ -d $IDF_PATH/components/esp32s2 ]; then
-        make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_S2
-    fi
-    if [ -d $IDF_PATH/components/esp32s3 ]; then
-        make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_S3
-    fi
+    make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_C3
+    make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_S2
+    make ${MAKEOPTS} -C ports/esp32 BOARD=GENERIC_S3
 
     # Test building native .mpy with xtensawin architecture.
     ci_native_mpy_modules_build xtensawin
@@ -300,8 +272,8 @@ function ci_rp2_build {
     make ${MAKEOPTS} -C mpy-cross
     make ${MAKEOPTS} -C ports/rp2 submodules
     make ${MAKEOPTS} -C ports/rp2
-    make ${MAKEOPTS} -C ports/rp2 clean
-    make ${MAKEOPTS} -C ports/rp2 USER_C_MODULES=../../examples/usercmodule/micropython.cmake
+    make ${MAKEOPTS} -C ports/rp2 BOARD=PICO_W submodules
+    make ${MAKEOPTS} -C ports/rp2 BOARD=PICO_W USER_C_MODULES=../../examples/usercmodule/micropython.cmake
     make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO submodules
     make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO
 
@@ -358,6 +330,7 @@ function ci_stm32_nucleo_build {
 
     # Test building various MCU families, some with additional options.
     make ${MAKEOPTS} -C ports/stm32 BOARD=NUCLEO_F091RC
+    make ${MAKEOPTS} -C ports/stm32 BOARD=STM32H573I_DK
     make ${MAKEOPTS} -C ports/stm32 BOARD=NUCLEO_H743ZI COPT=-O2 CFLAGS_EXTRA='-DMICROPY_PY_THREAD=1'
     make ${MAKEOPTS} -C ports/stm32 BOARD=NUCLEO_L073RZ
     make ${MAKEOPTS} -C ports/stm32 BOARD=NUCLEO_L476RG DEBUG=1
