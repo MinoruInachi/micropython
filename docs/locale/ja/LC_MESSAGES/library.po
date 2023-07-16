@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-01 09:54+0900\n"
-"PO-Revision-Date: 2023-07-16 12:30+0900\n"
+"PO-Revision-Date: 2023-07-16 17:56+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -16809,11 +16809,11 @@ msgstr ""
 
 #: ../../library/pyb.RTC.rst:22
 msgid "Create an RTC object."
-msgstr ""
+msgstr "RTC オブジェクトを作成します。"
 
 #: ../../library/pyb.RTC.rst:30
 msgid "Get or set the date and time of the RTC."
-msgstr ""
+msgstr "RTC の日付と時刻を取得または設定します。"
 
 #: ../../library/pyb.RTC.rst:32
 msgid ""
@@ -16821,10 +16821,13 @@ msgid ""
 "and time.  With 1 argument (being an 8-tuple) it sets the date and time "
 "(and ``subseconds`` is reset to 255)."
 msgstr ""
+"引数を指定しない場合、このメソッドは現在の日付と時刻を8つの要素からなるタプルで返します。"
+"1つの引数(8項目からなるタプル)を指定した場合、その日付と時刻を設定します"
+"(サブセカンドは255にリセットされます)。"
 
 #: ../../library/pyb.RTC.rst:36
 msgid "The 8-tuple has the following format:"
-msgstr ""
+msgstr "8項目のタプルの形式は次のとおりです:"
 
 #: ../../library/pyb.RTC.rst:38
 msgid "(year, month, day, weekday, hours, minutes, seconds, subseconds)"
@@ -16832,11 +16835,11 @@ msgstr ""
 
 #: ../../library/pyb.RTC.rst:40
 msgid "``weekday`` is 1-7 for Monday through Sunday."
-msgstr ""
+msgstr "``weekday`` は月曜日から日曜日までを1から7の値で表します。"
 
 #: ../../library/pyb.RTC.rst:42
 msgid "``subseconds`` counts down from 255 to 0"
-msgstr ""
+msgstr "``subseconds`` は255から0にカウントダウンします。"
 
 #: ../../library/pyb.RTC.rst:46
 msgid ""
@@ -16844,36 +16847,41 @@ msgid ""
 "milliseconds.  This trigger can wake the pyboard from both the sleep "
 "states: :meth:`pyb.stop` and :meth:`pyb.standby`."
 msgstr ""
+"RTCの起床タイマーを ``timeout`` ミリ秒ごとに繰り返しトリガーするように設定します。"
+"このトリガーにより、pyboard はスリープ状態、:meth:`pyb.stop` と :meth:`pyb.standby` "
+"の両方から起床できます。"
 
 #: ../../library/pyb.RTC.rst:50
 msgid "If ``timeout`` is ``None`` then the wakeup timer is disabled."
-msgstr ""
+msgstr "``timeout`` が ``None`` の場合、起床タイマーは無効になります。"
 
 #: ../../library/pyb.RTC.rst:52
 msgid ""
 "If ``callback`` is given then it is executed at every trigger of the "
 "wakeup timer.  ``callback`` must take exactly one argument."
 msgstr ""
+"``callback`` を指定した場合、起床タイマーの各トリガー時に実行されます。 "
+"``callback`` は正確に1つの引数を取る必要があります。"
 
 #: ../../library/pyb.RTC.rst:57
 msgid "Get information about the startup time and reset source."
-msgstr ""
+msgstr "起動時間とリセットソースに関する情報を取得します。"
 
 #: ../../library/pyb.RTC.rst:59
 msgid "The lower 0xffff are the number of milliseconds the RTC took to start up."
-msgstr ""
+msgstr "下位の 0xffff は RTC の起動にかかったミリ秒数を示します。"
 
 #: ../../library/pyb.RTC.rst:61
 msgid "Bit 0x10000 is set if a power-on reset occurred."
-msgstr ""
+msgstr "ビット 0x10000 がセットされている場合、電源オンリセットが発生しました。"
 
 #: ../../library/pyb.RTC.rst:62
 msgid "Bit 0x20000 is set if an external reset occurred"
-msgstr ""
+msgstr "ビット 0x20000 がセットされている場合、外部リセットが発生しました。"
 
 #: ../../library/pyb.RTC.rst:66
 msgid "Get or set RTC calibration."
-msgstr ""
+msgstr "RTC の校正値を取得または設定します。"
 
 #: ../../library/pyb.RTC.rst:68
 msgid ""
@@ -16881,6 +16889,9 @@ msgid ""
 "value, which is an integer in the range [-511 : 512].  With one argument "
 "it sets the RTC calibration."
 msgstr ""
+"引数を指定しない場合、 ``calibration()`` メソッドは現在の校正値を返します。"
+"校正値は [-511 : 512] の範囲の整数です。"
+"１つの引数を指定した場合、RTCの校正値を設定します。"
 
 #: ../../library/pyb.RTC.rst:72
 msgid ""
@@ -16891,22 +16902,32 @@ msgid ""
 " clock it slowed by negative values. The usable calibration range is: "
 "(-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm"
 msgstr ""
+"RTC スムーズ校正機構は、32秒間(2^20 クロックティックに相当)にわたって 32768 Hz "
+"のクロックから指定されたクロックティック数を加算または減算することにより、RTC "
+"クロックの速度を調整します。追加される各クロックティックは、クロックを 1/ 2^20 または "
+"0.954 ppm で高速化します。同様に、負の値で RTC クロックを減速させます。"
+"使用可能な校正範囲は (-511 * 0.954) ~= -487.5 ppm から (512 * 0.954) ~= 488.5 ppm "
+"までです。"
 
 #: ../../library/pyb.SPI.rst:5
 msgid "class SPI -- a controller-driven serial protocol"
-msgstr ""
+msgstr "クラス SPI -- コントローラ駆動のシリアルプロトコル"
 
 #: ../../library/pyb.SPI.rst:7
 msgid ""
 "SPI is a serial protocol that is driven by a controller.  At the physical"
 " level there are 3 lines: SCK, MOSI, MISO."
 msgstr ""
+"SPI はコントローラにより駆動するシリアルプロトコルです。"
+"物理レベルでは３つのライン、SCK, MOSI, MISO があります。"
 
 #: ../../library/pyb.SPI.rst:10
 msgid ""
 "See usage model of I2C; SPI is very similar.  Main difference is "
 "parameters to init the SPI bus::"
 msgstr ""
+"I2C の利用モデルを参照してください。SPI も非常に似ています。"
+"主な違いは、SPI バスを初期化するためのパラメータです::"
 
 #: ../../library/pyb.SPI.rst:13
 msgid ""
@@ -16922,10 +16943,16 @@ msgid ""
 "Phase can be 0 or 1 to sample data on the first or second clock edge "
 "respectively.  Crc can be None for no CRC, or a polynomial specifier."
 msgstr ""
+"必要なパラメータはモードのみで、SPI.CONTROLLER または SPI.PERIPHERAL を指定します。"
+"polarity は 0 または 1 で、アイドル状態のクロックラインのレベルを表します。"
+"phaseは 0 または 1 で、データを最初のクロックエッジまたは2つ目のクロックエッジで"
+"サンプリングするかを表します。"
+"crc に None を指定した場合は CRC を使わないこととなり、値を指定した場合は CRC の"
+"多項式指定になります。"
 
 #: ../../library/pyb.SPI.rst:21
 msgid "Additional methods for SPI::"
-msgstr ""
+msgstr "SPIの追加のメソッド::"
 
 #: ../../library/pyb.SPI.rst:23
 msgid ""
@@ -16944,58 +16971,78 @@ msgid ""
 " if any).  If extra arguments are given, the bus is initialised. See "
 "``init`` for parameters of initialisation."
 msgstr ""
+"指定バスの SPI オブジェクトを作成します。"
+"``bus`` は 1 または 2、または 'X' または 'Y' で指定できます。"
+"追加のパラメータがない場合、SPI オブジェクトは作成されますが、初期化は行われません"
+"(前回のバスの初期化設定があれば適用されます)。"
+"追加の引数が与えられた場合、バスが初期化されます。"
+"初期化のパラメータについては ``init`` を参照してください。"
 
 #: ../../library/pyb.SPI.rst:39
 msgid "The physical pins of the SPI buses are:"
-msgstr ""
+msgstr "SPIバスの物理ピンは次のとおりです:"
 
 #: ../../library/pyb.SPI.rst:41
 msgid ""
 "``SPI(1)`` is on the X position: ``(NSS, SCK, MISO, MOSI) = (X5, X6, X7, "
 "X8) = (PA4, PA5, PA6, PA7)``"
 msgstr ""
+"``SPI(1)`` は X 位置となります: ``(NSS, SCK, MISO, MOSI) = (X5, X6, X7, "
+"X8) = (PA4, PA5, PA6, PA7)``"
 
 #: ../../library/pyb.SPI.rst:42
 msgid ""
 "``SPI(2)`` is on the Y position: ``(NSS, SCK, MISO, MOSI) = (Y5, Y6, Y7, "
 "Y8) = (PB12, PB13, PB14, PB15)``"
 msgstr ""
+"``SPI(2)`` は Y 位置となります: ``(NSS, SCK, MISO, MOSI) = (Y5, Y6, Y7, "
+"Y8) = (PB12, PB13, PB14, PB15)``"
 
 #: ../../library/pyb.SPI.rst:44
 msgid ""
 "At the moment, the NSS pin is not used by the SPI driver and is free for "
 "other use."
 msgstr ""
+"現時点で、SPI ドライバーでは NSS ピンは使われておらず、他の目的で自由に使えます。"
 
 #: ../../library/pyb.SPI.rst:58
 msgid "``mode`` must be either ``SPI.CONTROLLER`` or ``SPI.PERIPHERAL``."
 msgstr ""
+"``mode`` は ``SPI.CONTROLLER`` または ``SPI.PERIPHERAL`` のいずれかである"
+"必要があります。"
 
 #: ../../library/pyb.SPI.rst:59
 msgid "``baudrate`` is the SCK clock rate (only sensible for a controller)."
-msgstr ""
+msgstr "``baudrate`` は SCK クロックレートです(コントローラの場合のみ有効)。"
 
 #: ../../library/pyb.SPI.rst:60
 msgid ""
 "``prescaler`` is the prescaler to use to derive SCK from the APB bus "
 "frequency; use of ``prescaler`` overrides ``baudrate``."
 msgstr ""
+"``prescaler`` は APB バス周波数から SCK を導出するために使用するプリスケーラです。 "
+"``prescaler`` の指定は ``baudrate`` 指定をオーバーライドします。"
 
 #: ../../library/pyb.SPI.rst:65
 msgid ""
 "``bits`` can be 8 or 16, and is the number of bits in each transferred "
 "word."
 msgstr ""
+"``bits`` は 8 または 16 で、各転送ワードのビット数を指定します。"
 
 #: ../../library/pyb.SPI.rst:67
 msgid ""
 "``ti`` True indicates Texas Instruments, as opposed to Motorola, signal "
 "conventions."
 msgstr ""
+"``ti`` が Trueの場合、Texas Instruments の信号規約を示します。"
+"そうでない場合は、モトローラの信号規約を示します。"
 
 #: ../../library/pyb.SPI.rst:68
 msgid "``crc`` can be None for no CRC, or a polynomial specifier."
 msgstr ""
+"crc に None を指定した場合は CRC を使わないこととなり、値を指定した場合は CRC の"
+"多項式指定になります。"
 
 #: ../../library/pyb.SPI.rst:70
 msgid ""
@@ -17006,35 +17053,48 @@ msgid ""
 "  For precise control over the SPI clock frequency, specify ``prescaler``"
 " instead of ``baudrate``."
 msgstr ""
+"SPI クロック周波数は常に要求したボーレートになるとは限りません。"
+"ハードウェアは、APBバス周波数(:meth:`pyb.freq` を参照)をプリスケーラで除算した値の"
+"ボーレートのみをサポートします。プリスケーラは 2, 4, 8, 16, 32, 64, 128, 256 "
+"でなければなりません。SPI(1) は AHB2 にあり、SPI(2)は AHB1 にあります。"
+"SPI クロック周波数を正確に制御するには ``baudrate`` の代わりに ``prescaler`` を"
+"指定してください。"
 
 #: ../../library/pyb.SPI.rst:77
 msgid ""
 "Printing the SPI object will show you the computed baudrate and the "
 "chosen prescaler."
 msgstr ""
+"SPI オブジェクトをプリントすると、計算されたボーレートと選択したプリスケーラが表示されます。"
 
 #: ../../library/pyb.SPI.rst:84
 msgid ""
 "``recv`` can be an integer, which is the number of bytes to receive, or a"
 " mutable buffer, which will be filled with received bytes."
 msgstr ""
+"``recv`` には整数または可変バッファを指定します。"
+"整数の場合は受信するバイト数の指定になります。"
+"可変バッファの場合、そのバッファが受信したバイトで埋められます。
 
 #: ../../library/pyb.SPI.rst:86 ../../library/pyb.SPI.rst:108
 #: ../../library/pyb.USB_HID.rst:30 ../../library/pyb.USB_VCP.rst:98
 msgid "``timeout`` is the timeout in milliseconds to wait for the receive."
 msgstr ""
+"``timeout`` は受信を待機するタイムアウト時間をミリ秒単位で指定します。"
 
 #: ../../library/pyb.SPI.rst:95 ../../library/pyb.SPI.rst:104
 msgid "``send`` is the data to send (an integer to send, or a buffer object)."
 msgstr ""
+"``send`` は送信するデータです(送信する整数か、バッファオブジェクト)。"
 
 #: ../../library/pyb.SPI.rst:96 ../../library/pyb.USB_VCP.rst:108
 msgid "``timeout`` is the timeout in milliseconds to wait for the send."
 msgstr ""
+"``timeout`` は送信を待機するタイムアウト時間をミリ秒単位で指定します。"
 
 #: ../../library/pyb.SPI.rst:102
 msgid "Send and receive data on the bus at the same time:"
-msgstr ""
+msgstr "バス上で同時にデータを送受信します:"
 
 #: ../../library/pyb.SPI.rst:105
 msgid ""
@@ -17042,18 +17102,22 @@ msgid ""
 " can be the same as ``send``, or omitted.  If omitted, a new buffer will "
 "be created."
 msgstr ""
+"``recv`` は受信したバイトで埋められる可変バッファです。"
+"``recv`` は ``send`` と同じものを使えますし、省略することもできます。"
+"省略した場合、新しいバッファが作成されます。"
 
 #: ../../library/pyb.SPI.rst:110
 msgid "Return value: the buffer with the received bytes."
-msgstr ""
+msgstr "戻り値: 受信したバイトで埋められたバッファ。"
 
 #: ../../library/pyb.SPI.rst:118
 msgid "for initialising the SPI bus to controller or peripheral mode"
 msgstr ""
+"SPI バスをコントローラモードまたはペリフェラルモードに初期化するために使います"
 
 #: ../../library/pyb.SPI.rst:123
 msgid "set the first bit to be the least or most significant bit"
-msgstr ""
+msgstr "先頭ビットを最下位ビット(LSB)または最上位ビット(MSB)に設定します。"
 
 #: ../../library/pyb.Servo.rst:5
 msgid "class Servo -- 3-wire hobby servo driver"
@@ -17176,7 +17240,7 @@ msgstr ""
 
 #: ../../library/pyb.Switch.rst:5
 msgid "class Switch -- switch object"
-msgstr "class Switch -- スイッチオブジェクト"
+msgstr "クラス Switch -- スイッチオブジェクト"
 
 #: ../../library/pyb.Switch.rst:7
 msgid "A Switch object is used to control a push-button switch."
