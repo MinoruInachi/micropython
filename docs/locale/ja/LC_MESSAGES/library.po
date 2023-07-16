@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-01 09:54+0900\n"
-"PO-Revision-Date: 2023-07-01 11:45+0900\n"
+"PO-Revision-Date: 2023-07-16 12:30+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -13012,7 +13012,7 @@ msgstr ""
 
 #: ../../library/network.WLANWiPy.rst:67 ../../library/pyb.Pin.rst:247
 msgid "or::"
-msgstr ""
+msgstr "または次のようにします::"
 
 #: ../../library/network.WLANWiPy.rst:69
 msgid ""
@@ -15410,17 +15410,19 @@ msgstr ""
 
 #: ../../library/pyb.DAC.rst:5
 msgid "class DAC -- digital to analog conversion"
-msgstr ""
+msgstr "クラス DAC -- デジタル-アナログ変換"
 
 #: ../../library/pyb.DAC.rst:7
 msgid ""
 "The DAC is used to output analog values (a specific voltage) on pin X5 or"
 " pin X6. The voltage will be between 0 and 3.3V."
 msgstr ""
+"DACは、ピン X5 またはピン X6 にアナログ値(特定の電圧)を出力するために使います。"
+"電圧は 0～3.3V の範囲になります。"
 
 #: ../../library/pyb.DAC.rst:10
 msgid "*This module will undergo changes to the API.*"
-msgstr ""
+msgstr "*このモジュールは API を変更する予定です。*"
 
 #: ../../library/pyb.DAC.rst:14
 msgid ""
@@ -15432,10 +15434,17 @@ msgid ""
 "dac = DAC(1, bits=12)   # use 12 bit resolution\n"
 "dac.write(4095)         # output maximum value, 3.3V"
 msgstr ""
+"from pyb import DAC\n"
+"\n"
+"dac = DAC(1)            # ピン X5 の DAC 1 を作成\n"
+"dac.write(128)          # DAC に値を書出し(X5 を 1.65V にする)\n"
+"\n"
+"dac = DAC(1, bits=12)   # 12 ビット分解能を使用\n"
+"dac.write(4095)         # 最大値 3.3V を書出し"
 
 #: ../../library/pyb.DAC.rst:22
 msgid "To output a continuous sine-wave::"
-msgstr ""
+msgstr ""サイン波を継続して出力するには次のようにします:"
 
 #: ../../library/pyb.DAC.rst:24
 msgid ""
@@ -15451,10 +15460,21 @@ msgid ""
 "dac = DAC(1)\n"
 "dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)"
 msgstr ""
+"import math\n"
+"from pyb import DAC\n"
+"\n"
+"# 正弦波を含むバッファを作成\n"
+"buf = bytearray(100)\n"
+"for i in range(len(buf)):\n"
+"    buf[i] = 128 + int(127 * math.sin(2 * math.pi * i / len(buf)))\n"
+"\n"
+"# 正弦波を 400Hz で出力\n"
+"dac = DAC(1)\n"
+"dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)"
 
 #: ../../library/pyb.DAC.rst:36
 msgid "To output a continuous sine-wave at 12-bit resolution::"
-msgstr ""
+msgstr "12ビットの分解能で正弦波を連続して出力するには次のようにします:"
 
 #: ../../library/pyb.DAC.rst:38
 msgid ""
@@ -15470,16 +15490,29 @@ msgid ""
 "dac = DAC(1, bits=12)\n"
 "dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)"
 msgstr ""
+"import math\n"
+"from array import array\n"
+"from pyb import DAC\n"
+"\n"
+"# 半ワードサンプルを使って、正弦波を含むバッファを作成\n"
+"buf = array('H', 2048 + int(2047 * math.sin(2 * math.pi * i / 128)) for i"
+" in range(128))\n"
+"\n"
+"# 正弦波を 400Hz で出力\n"
+"dac = DAC(1, bits=12)\n"
+"dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)"
 
 #: ../../library/pyb.DAC.rst:54
 msgid "Construct a new DAC object."
-msgstr ""
+msgstr "新しい DAC オブジェクトを作成します。"
 
 #: ../../library/pyb.DAC.rst:56
 msgid ""
 "``port`` can be a pin object, or an integer (1 or 2). DAC(1) is on pin X5"
 " and DAC(2) is on pin X6."
 msgstr ""
+"``port`` には、ピンオブジェクト、または整数(1 または 2)を指定できます。"
+"DAC(1) は X5 ピン、DAC(2) は X6 ピンです。"
 
 #: ../../library/pyb.DAC.rst:59
 msgid ""
@@ -15487,6 +15520,8 @@ msgid ""
 " maximum value for the write and write_timed methods will be "
 "2\\*\\*``bits``-1."
 msgstr ""
+"``bits`` は分解能を指定する整数で、8 または 12 です。"
+"write と write_timed メソッドの最大値は 2\\*\\*``bits``-1 となります。"
 
 #: ../../library/pyb.DAC.rst:63
 msgid ""
@@ -15497,6 +15532,11 @@ msgid ""
 ":meth:`DAC.write`), ``False`` to disable buffering completely, or "
 "``True`` to enable output buffering."
 msgstr ""
+"*buffering* パラメーターは、DAC オペアンプ出力バッファーの動作を選択します。"
+"デフォルトは ``None`` です(:meth:`DAC.noise`, :meth:`DAC.triangle`, "
+":meth:`DAC.write_timed` ではバッファリングが有効、 :meth:`DAC.write` では無効)。"
+"バッファリングを完全に無効にするには ``False`` 、出力バッファリングを有効にするには "
+"``True`` を指定します。"
 
 #: ../../library/pyb.DAC.rst:70
 msgid ""
@@ -15506,6 +15546,11 @@ msgid ""
 "less than 1.5MΩ.  Using the buffer incurs a penalty in accuracy, "
 "especially near the extremes of range."
 msgstr ""
+"バッファリングが有効な場合、DAC ピンは 5KΩ までの負荷を駆動できます。"
+"それ以外の場合、出力インピーダンスは最大 15KΩ です: "
+"その結果、バッファリングなしで 1% の精度を達成するには、適用される負荷が 1.5MΩ "
+"未満である必要があります。バッファを使うと、特にレンジの極値付近で、"
+"精度にペナルティが生じます。"
 
 #: ../../library/pyb.DAC.rst:81
 msgid ""
@@ -15513,23 +15558,31 @@ msgid ""
 "``None``, ``False`` or ``True``; see above constructor for the meaning of"
 " this parameter."
 msgstr ""
+"DAC を再初期化します。 *bits* には 8 または 12 を指定できます。 "
+"*buffering* には ``None``, ``False``, ``True`` を指定できます。"
+"このパラメータの意味については、上記のコンストラクタを参照してください。"
 
 #: ../../library/pyb.DAC.rst:87
 msgid "De-initialise the DAC making its pin available for other uses."
-msgstr ""
+msgstr "DAC を解除し、そのピンを他の用途で使えるようにします。"
 
 #: ../../library/pyb.DAC.rst:91
 msgid ""
 "Generate a pseudo-random noise signal.  A new random sample is written to"
 " the DAC output at the given frequency."
 msgstr ""
+"擬似ランダムノイズ信号を生成します。"
+"新しいランダムサンプルが、指定した周波数で DAC 出力に書き込まれます。"
 
 #: ../../library/pyb.DAC.rst:96
 msgid ""
 "Generate a triangle wave.  The value on the DAC output changes at the "
-"given frequency, and the frequency of the repeating triangle wave itself "
-"is 2048 times smaller."
+"given frequency and ramps through the full 12-bit range (up and down). "
+"Therefore the frequency of the repeating triangle wave itself is 8192 "
+"times smaller."
 msgstr ""
+"三角波を生成します。DAC 出力の値は指定した周波数で変化し、12ビットのフルレンジで"
+"上下します。したがって、三角波の繰り返し自体の周波数は8192分割になります。"
 
 #: ../../library/pyb.DAC.rst:102
 msgid ""
@@ -15537,6 +15590,8 @@ msgid ""
 "value is 2\\*\\*``bits``-1, where ``bits`` is set when creating the DAC "
 "object or by using the ``init`` method."
 msgstr ""
+"DAC 出力へ直接アクセスします。最小値は 0 です。最大値は 2\\*\\*``bits``-1 です。"
+"ここでの *bits* は DAC オブジェクトの作成時または init メソッドで設定したものです。"
 
 #: ../../library/pyb.DAC.rst:108
 msgid ""
@@ -15544,6 +15599,9 @@ msgid ""
 "treated as an array of bytes in 8-bit mode, and an array of unsigned "
 "half-words (array typecode 'H') in 12-bit mode."
 msgstr ""
+"DMA 転送を使って RAM から DAC へのバーストを開始します。"
+"入力データは 8 ビットモードではバイトの配列として扱われ、"
+"12 ビットモードでは符号なし半ワード(配列タイプコード 'H')の配列として扱われます。"
 
 #: ../../library/pyb.DAC.rst:112
 msgid ""
@@ -15552,14 +15610,17 @@ msgid ""
 "object which is used to trigger the DAC sample.  Valid timers are 2, 4, "
 "5, 6, 7 and 8."
 msgstr ""
+"``freq`` には Timer(6) を使って DAC サンプルを書き出す周波数を指定する整数です。"
+"または、既に初期化されたタイマーオブジェクトを指定することもでき、DAC サンプルを"
+"トリガーするために使います。有効なタイマーは 2、4、5、6、7、8 です。"
 
 #: ../../library/pyb.DAC.rst:117
 msgid "``mode`` can be ``DAC.NORMAL`` or ``DAC.CIRCULAR``."
-msgstr ""
+msgstr "``mode`` は ``DAC.NORMAL`` または ``DAC.CIRCULAR`` です。
 
 #: ../../library/pyb.DAC.rst:119
 msgid "Example using both DACs at the same time::"
-msgstr ""
+msgstr "２つの DAC を同時に使用する例::"
 
 #: ../../library/pyb.DAC.rst:121
 msgid ""
@@ -15571,7 +15632,7 @@ msgstr ""
 
 #: ../../library/pyb.DAC.rst:131
 msgid "NORMAL mode does a single transmission of the waveform in the data buffer,"
-msgstr ""
+msgstr "NORMAL モードでは、データバッファ内の波形を1回だけ送信します。"
 
 #: ../../library/pyb.DAC.rst:135
 msgid ""
@@ -15579,16 +15640,20 @@ msgid ""
 " wraps around to the start of the data buffer every time it reaches the "
 "end of the table."
 msgstr ""
+"CIRCULAR モードは、データバッファ内の波形を送信し、テーブルの最後に到達するたびに"
+"データバッファの最初に折り返します。"
 
 #: ../../library/pyb.ExtInt.rst:5
 msgid "class ExtInt -- configure I/O pins to interrupt on external events"
-msgstr ""
+msgstr "クラス ExtInt -- 外部イベントによる割込みに対する I/O ピン設定"
 
 #: ../../library/pyb.ExtInt.rst:7
 msgid ""
 "There are a total of 22 interrupt lines. 16 of these can come from GPIO "
 "pins and the remaining 6 are from internal sources."
 msgstr ""
+"合計22本の割り込みラインがあります。このうち16本は GPIO ピンから、残りの6本は"
+"内部ソースから割り込むことができます。"
 
 #: ../../library/pyb.ExtInt.rst:10
 msgid ""
@@ -15596,6 +15661,9 @@ msgid ""
 "from an arbitrary port. So line 0 can map to Px0 where x is A, B, C, ... "
 "and line 1 can map to Px1 where x is A, B, C, ... ::"
 msgstr ""
+"ライン0から15までは、任意のポートから対応するラインにマッピングできます。"
+"つまり、0番線は Px0 (x は A, B, C, ...)に、1番線は Px1 (x は A, B, C, ...)"
+"にマッピングできます。"
 
 #: ../../library/pyb.ExtInt.rst:14
 msgid ""
@@ -15606,6 +15674,7 @@ msgstr ""
 #: ../../library/pyb.ExtInt.rst:17
 msgid "Note: ExtInt will automatically configure the gpio line as an input. ::"
 msgstr ""
+"注記: ExtInt は自動的に gpio ラインを入力として設定します。"
 
 #: ../../library/pyb.ExtInt.rst:19
 msgid ""
@@ -15621,22 +15690,31 @@ msgid ""
 "http://www.eng.utah.edu/~cs5780/debouncing.pdf for a detailed "
 "explanation, along with various techniques for debouncing."
 msgstr ""
+"これで、X1 ピンに立ち下がりエッジが見られるたびにコールバックが呼び出されます。"
+"注意: 機械的な押しボタンには「バウンス」があり、スイッチを押したり離したりすると"
+"複数のエッジが発生することがよくあります。 "
+"http://www.eng.utah.edu/~cs5780/debouncing.pdf にデバウンスの様々な"
+"テクニックとともに詳細な説明があります。"
 
 #: ../../library/pyb.ExtInt.rst:27
 msgid "Trying to register 2 callbacks onto the same pin will throw an exception."
-msgstr ""
+msgstr "同じピンに2つのコールバックを登録しようとすると例外が発生します。"
 
 #: ../../library/pyb.ExtInt.rst:29
 msgid ""
 "If pin is passed as an integer, then it is assumed to map to one of the "
 "internal interrupt sources, and must be in the range 16 through 22."
 msgstr ""
+"pin が整数として渡された場合、内部割り込みソースの1つにマップされると仮定されます。"
+"pin は16から22の範囲でなければなりません。"
 
 #: ../../library/pyb.ExtInt.rst:32
 msgid ""
 "All other pin objects go through the pin mapper to come up with one of "
 "the gpio pins. ::"
 msgstr ""
+"それ以外のすべての pin オブジェクトは、ピンマッパーを経由してgpioピンの1つに"
+"割り当てられます。"
 
 #: ../../library/pyb.ExtInt.rst:35
 msgid "extint = pyb.ExtInt(pin, mode, pull, callback)"
@@ -15648,18 +15726,24 @@ msgid ""
 "pyb.ExtInt.IRQ_RISING_FALLING, pyb.ExtInt.EVT_RISING, "
 "pyb.ExtInt.EVT_FALLING, and pyb.ExtInt.EVT_RISING_FALLING."
 msgstr ""
+"有効なモードは pyb.ExtInt.IRQ_RISING, pyb.ExtInt.IRQ_FALLING, "
+"pyb.ExtInt.IRQ_RISING_FALLING, pyb.ExtInt.EVT_RISING, "
+"pyb.ExtInt.EVT_FALLING, pyb.ExtInt.EVT_RISING_FALLING です。"
 
 #: ../../library/pyb.ExtInt.rst:41
 msgid ""
 "Only the IRQ_xxx modes have been tested. The EVT_xxx modes have something"
 " to do with sleep mode and the WFE instruction."
 msgstr ""
+"IRQ_xxx モードのみがテストされています。"
+"EVT_xxx モードはスリープモードと WFE 命令に関係します。"
 
 #: ../../library/pyb.ExtInt.rst:44
 msgid ""
 "Valid pull values are pyb.Pin.PULL_UP, pyb.Pin.PULL_DOWN, "
 "pyb.Pin.PULL_NONE."
 msgstr ""
+"有効なプル値は pyb.Pin.PULL_UP, pyb.Pin.PULL_DOWN, pyb.Pin.PULL_NONE です。"
 
 #: ../../library/pyb.ExtInt.rst:46
 msgid ""
@@ -15667,16 +15751,19 @@ msgid ""
 " can also use this code. See extint.h for the available functions and "
 "usrsw.h for an example of using this."
 msgstr ""
+"EXTI 割り込みラインを必要とするドライバもこのコードを使えるように、C API も用意されて"
+"います。使用可能な関数については extint.h を、使用例については usrsw.h を参照してください。"
 
 #: ../../library/pyb.ExtInt.rst:56
 msgid "Create an ExtInt object:"
-msgstr ""
+msgstr "ExtInt オブジェクトを作成します:"
 
 #: ../../library/pyb.ExtInt.rst:58
 msgid ""
 "``pin`` is the pin on which to enable the interrupt (can be a pin object "
 "or any valid pin name)."
 msgstr ""
+"``pin`` は割り込みを有効にするピンです(ピンオブジェクトまたは有効なピン名)。"
 
 #: ../../library/pyb.ExtInt.rst:59
 msgid ""
@@ -15684,6 +15771,10 @@ msgid ""
 "edge; - ``ExtInt.IRQ_FALLING`` - trigger on a falling edge; - "
 "``ExtInt.IRQ_RISING_FALLING`` - trigger on a rising or falling edge."
 msgstr ""
+"``mode`` は次のいずれかです: "
+"- ``ExtInt.IRQ_RISING`` - 立上がりエッジでトリガー。 "
+"- ``ExtInt.IRQ_FALLING`` - 立下がりエッジでトリガー。 "
+"- ``ExtInt.IRQ_RISING_FALLING`` - 立上がりまたは立下がりエッジでトリガー。"
 
 #: ../../library/pyb.ExtInt.rst:63
 msgid ""
@@ -15691,6 +15782,9 @@ msgid ""
 "resistors; - ``pyb.Pin.PULL_UP`` - enable the pull-up resistor; - "
 "``pyb.Pin.PULL_DOWN`` - enable the pull-down resistor."
 msgstr ""
+"``pull`` は次のいずれかです: "
+"- pyb.Pin.PULL_NONE - プルアップまたはプルダウン抵抗を使わない。 "
+"- pyb.Pin.PULL_UP - プルアップ抵抗を有効にする。"
 
 #: ../../library/pyb.ExtInt.rst:67
 msgid ""
@@ -15698,44 +15792,50 @@ msgid ""
 "callback function must accept exactly 1 argument, which is the line that "
 "triggered the interrupt."
 msgstr ""
+"``callback`` は、割込みがトリガーされたときに呼び出す関数です。"
+"コールバック関数は、割り込みがトリガーされたラインをただ１つの引数として"
+"受け取らなければなりません。"
 
 #: ../../library/pyb.ExtInt.rst:73 ../../library/pyb.Pin.rst:73
 msgid "Class methods"
-msgstr ""
+msgstr "クラスメソッド"
 
 #: ../../library/pyb.ExtInt.rst:77
 msgid "Dump the values of the EXTI registers."
 msgstr ""
+"EXTI レジスタの値をダンプします。"
 
 #: ../../library/pyb.ExtInt.rst:85
 msgid ""
 "Disable the interrupt associated with the ExtInt object. This could be "
 "useful for debouncing."
 msgstr ""
+"ExtInt オブジェクトに関連付けられている割込みを無効にします。"
+"これはデバウンスに便利です。"
 
 #: ../../library/pyb.ExtInt.rst:90
 msgid "Enable a disabled interrupt."
-msgstr ""
+msgstr "無効にした割り込みを有効にします。"
 
 #: ../../library/pyb.ExtInt.rst:94
 msgid "Return the line number that the pin is mapped to."
-msgstr ""
+msgstr "ピンがマップされているライン番号を返します。"
 
 #: ../../library/pyb.ExtInt.rst:98
 msgid "Trigger the callback from software."
-msgstr ""
+msgstr "ソフトウェアからコールバックをトリガーします。"
 
 #: ../../library/pyb.ExtInt.rst:106
 msgid "interrupt on a falling edge"
-msgstr ""
+msgstr "立下がりエッジで割込み
 
 #: ../../library/pyb.ExtInt.rst:110
 msgid "interrupt on a rising edge"
-msgstr ""
+msgstr "立上がりエッジでの割込み"
 
 #: ../../library/pyb.ExtInt.rst:114
 msgid "interrupt on a rising or falling edge"
-msgstr ""
+msgstr "立上がりエッジまたは立下がりエッジでの割込み"
 
 #: ../../library/pyb.Flash.rst:5 ../../library/rp2.Flash.rst:5
 msgid "class Flash -- access to built-in flash storage"
@@ -16282,14 +16382,18 @@ msgid ""
 " mode of the pin (input, output, etc) and methods to get and set the "
 "digital logic level. For analog control of a pin, see the ADC class."
 msgstr ""
+"Pin はI/Oピンを制御するための基本オブジェクトです。"
+"ピンのモード(入出力など)を設定するメソッドと、デジタルロジックレベルを"
+"取得および設定するメソッドを持っています。ピンのアナログ制御については、"
+"ADCクラスを参照してください。"
 
 #: ../../library/pyb.Pin.rst:11
 msgid "Usage Model:"
-msgstr ""
+msgstr "使用モデル:"
 
 #: ../../library/pyb.Pin.rst:13
 msgid "All Board Pins are predefined as pyb.Pin.board.Name::"
-msgstr ""
+msgstr "ボード上のすべてのピンは pyb.Pin.board.Name として事前に定義されています::"
 
 #: ../../library/pyb.Pin.rst:15
 msgid ""
@@ -16305,10 +16409,13 @@ msgid ""
 "followed by the pin number. On the PYBv1.0, ``pyb.Pin.board.X1`` and "
 "``pyb.Pin.cpu.A0`` are the same pin."
 msgstr ""
+"ボードのピンに対応する CPU ピンは pyb.Pin.cpu.Name として利用できます。"
+"CPU ピンの場合、名前はポート文字の後にピン番号が続きます。PYBv1.0では、"
+"pyb.Pin.board.X1 と pyb.Pin.cpu.A0 は同じピンです。"
 
 #: ../../library/pyb.Pin.rst:24
 msgid "You can also use strings::"
-msgstr ""
+msgstr "文字列も使えます::"
 
 #: ../../library/pyb.Pin.rst:26
 msgid "g = pyb.Pin('X1', pyb.Pin.OUT_PP)"
@@ -16316,7 +16423,7 @@ msgstr ""
 
 #: ../../library/pyb.Pin.rst:28
 msgid "Users can add their own names::"
-msgstr ""
+msgstr "独自の名前を付けられます::"
 
 #: ../../library/pyb.Pin.rst:30
 msgid ""
@@ -16327,7 +16434,7 @@ msgstr ""
 
 #: ../../library/pyb.Pin.rst:34
 msgid "and can query mappings::"
-msgstr ""
+msgstr "名前がどのピンにマッピングさえているか問い合わせられます::"
 
 #: ../../library/pyb.Pin.rst:36
 msgid "pin = pyb.Pin(\"LeftMotorDir\")"
@@ -16335,7 +16442,7 @@ msgstr ""
 
 #: ../../library/pyb.Pin.rst:38
 msgid "Users can also add their own mapping function::"
-msgstr ""
+msgstr "独自のマッピング関数も追加できます::"
 
 #: ../../library/pyb.Pin.rst:40
 msgid ""
@@ -16351,114 +16458,125 @@ msgid ""
 "So, if you were to call: ``pyb.Pin(\"LeftMotorDir\", pyb.Pin.OUT_PP)`` "
 "then ``\"LeftMotorDir\"`` is passed directly to the mapper function."
 msgstr ""
+"つまり、 ``pyb.Pin(\"LeftMotorDir\", pyb.Pin.OUT_PP)`` を呼び出した場合、 "
+"``\"LeftMotorDir\"`` は直接マッパー関数に渡されます。"
 
 #: ../../library/pyb.Pin.rst:49
 msgid ""
 "To summarise, the following order determines how things get mapped into "
 "an ordinal pin number:"
 msgstr ""
+"要約すると、以下の順序でどのように順序ピン番号にマッピングされるかが決まります:"
 
 #: ../../library/pyb.Pin.rst:52
 msgid "Directly specify a pin object"
-msgstr ""
+msgstr "直接のピンオブジェクト指定
 
 #: ../../library/pyb.Pin.rst:53
 msgid "User supplied mapping function"
-msgstr ""
+msgstr "ユーザー提供のマッピング関数"
 
 #: ../../library/pyb.Pin.rst:54
 msgid "User supplied mapping (object must be usable as a dictionary key)"
-msgstr ""
+msgstr "ユーザー提供のマッピング(オブジェクトは辞書キーとして使用可能でなければならない)"
 
 #: ../../library/pyb.Pin.rst:55
 msgid "Supply a string which matches a board pin"
-msgstr ""
+msgstr "ボードピンと一致する文字列指定"
 
 #: ../../library/pyb.Pin.rst:56
 msgid "Supply a string which matches a CPU port/pin"
-msgstr ""
+msgstr "CPU ポート/ピンにマッチする文字列指定"
 
 #: ../../library/pyb.Pin.rst:58
 msgid ""
 "You can set ``pyb.Pin.debug(True)`` to get some debug information about "
 "how a particular object gets mapped to a pin."
 msgstr ""
+"``pyb.Pin.debug(True)`` を設定すると、特定のオブジェクトがどのようにピンに"
+"マッピングされるかについてのデバッグ情報を得られます。"
 
 #: ../../library/pyb.Pin.rst:61
 msgid ""
 "All pin objects go through the pin mapper to come up with one of the gpio"
 " pins."
 msgstr ""
+"すべてのピンオブジェクトはピンマッパーを経由して、gpio ピンのいずれかにマッピングされます。"
 
 #: ../../library/pyb.Pin.rst:69
 msgid ""
 "Create a new Pin object associated with the id.  If additional arguments "
 "are given, they are used to initialise the pin.  See :meth:`pin.init`."
 msgstr ""
+"id に関連付けられた新しいPinオブジェクトを作成します。"
+"追加の引数が指定されている場合、それらはピンの初期化に使用されます。"
+"初期化の引数については :meth:`pin.init` を参照してください。"
 
 #: ../../library/pyb.Pin.rst:77
 msgid "Get or set the debugging state (``True`` or ``False`` for on or off)."
 msgstr ""
+"デバッグ状態を取得または設定します"
+"(オンかオフかによって ``True`` または ``False`` を指定)。"
 
 #: ../../library/pyb.Pin.rst:81
 msgid "Get or set the pin mapper dictionary."
-msgstr ""
+msgstr "ピンマッパー辞書を取得または設定します。"
 
 #: ../../library/pyb.Pin.rst:85
 msgid "Get or set the pin mapper function."
-msgstr ""
+msgstr "ピンマッパー関数を取得または設定します。"
 
 #: ../../library/pyb.Pin.rst:93
 msgid "Initialise the pin:"
-msgstr ""
+msgstr "ピンを初期化します:"
 
 #: ../../library/pyb.Pin.rst:95
 msgid "*mode* can be one of:"
-msgstr ""
+msgstr "*mode* には次のいずれかの値を指定できます:"
 
 #: ../../library/pyb.Pin.rst:97
 msgid "``Pin.IN`` - configure the pin for input;"
-msgstr ""
+msgstr "``Pin.IN`` - ピンを入力用に設定します。"
 
 #: ../../library/pyb.Pin.rst:98
 msgid "``Pin.OUT_PP`` - configure the pin for output, with push-pull control;"
-msgstr ""
+msgstr "``Pin.OUT_PP`` - ピンを出力用に設定し、プッシュプル制御を持つように設定します。"
 
 #: ../../library/pyb.Pin.rst:99
 msgid "``Pin.OUT_OD`` - configure the pin for output, with open-drain control;"
-msgstr ""
+msgstr "``Pin.OUT_OD`` - ピンを出力用に設定し、オープンドレイン制御を持つように設定します。"
 
 #: ../../library/pyb.Pin.rst:100
 msgid "``Pin.ALT`` - configure the pin for alternate function, input or output;"
-msgstr ""
+msgstr "``Pin.ALT`` - ピンを代替機能用に設定します。入力または出力として使用できます。"
 
 #: ../../library/pyb.Pin.rst:101
 msgid "``Pin.AF_PP`` - configure the pin for alternate function, push-pull;"
-msgstr ""
+msgstr "``Pin.AF_PP`` - ピンを代替機能用に設定し、プッシュプル制御を持つように設定します。"
 
 #: ../../library/pyb.Pin.rst:102
 msgid "``Pin.AF_OD`` - configure the pin for alternate function, open-drain;"
-msgstr ""
+msgstr "``Pin.AF_OD`` - ピンを代替機能用に設定し、オープンドレイン制御を持つように設定します。"
 
 #: ../../library/pyb.Pin.rst:103
 msgid "``Pin.ANALOG`` - configure the pin for analog."
-msgstr ""
+msgstr "``Pin.ANALOG`` - ピンをアナログ用に設定します。"
 
 #: ../../library/pyb.Pin.rst:105
 msgid "*pull* can be one of:"
-msgstr ""
+msgstr "*pull* には次のいずれかの値を指定できます:"
 
 #: ../../library/pyb.Pin.rst:107
 msgid "``Pin.PULL_NONE`` - no pull up or down resistors;"
-msgstr ""
+msgstr "``Pin.PULL_NONE`` - プルアップまたはプルダウン抵抗なし。"
 
 #: ../../library/pyb.Pin.rst:108
 msgid "``Pin.PULL_UP`` - enable the pull-up resistor;"
-msgstr ""
+msgstr "``Pin.PULL_UP`` - プルアップ抵抗を有効にします。"
 
 #: ../../library/pyb.Pin.rst:109
 msgid "``Pin.PULL_DOWN`` - enable the pull-down resistor."
-msgstr ""
+msgstr "``Pin.PULL_DOWN`` - プルダウン抵抗を有効にします。"
 
 #: ../../library/pyb.Pin.rst:111
 msgid ""
@@ -16466,12 +16584,16 @@ msgid ""
 "enabled, that pin has an effective 40k Ohm resistor pulling it to 3V3 or "
 "GND respectively (except pin Y5 which has 11k Ohm resistors)."
 msgstr ""
+"ピンの ``Pin.PULL_UP`` または ``Pin.PULL_DOWN`` のプルモードが有効になっている場合、"
+"そのピンは 3V3 または GND に対して効果的な40kオームの抵抗があります(ただし、ピン Y5 は11k"
+"オームの抵抗になります)。"
 
 #: ../../library/pyb.Pin.rst:115
 msgid ""
 "*value* if not None will set the port output value before enabling the "
 "pin."
 msgstr ""
+"*value* が None でない場合、ピンを有効にする前にポートの出力値を設定します。"
 
 #: ../../library/pyb.Pin.rst:117
 msgid ""
@@ -16480,18 +16602,21 @@ msgid ""
 "associated with a pin. This arg was previously called *af* which can "
 "still be used if needed."
 msgstr ""
+"*alt* は、 *mode* が ``Pin.ALT``, ``Pin.AF_PP``, ``Pin.AF_OD`` のいずれかの"
+"場合に適用されます。ピンに関連付けられた代替機能のインデックスまたは名前を設定します。"
+"この引数は以前は *af* と呼ばれていましたが、必要に応じて引き続き利用できます。"
 
 #: ../../library/pyb.Pin.rst:121
 msgid "Returns: ``None``."
-msgstr ""
+msgstr "戻り値: ``None``"
 
 #: ../../library/pyb.Pin.rst:125
 msgid "Get or set the digital logic level of the pin:"
-msgstr ""
+msgstr "ピンのデジタルロジックレベルを取得または設定します:"
 
 #: ../../library/pyb.Pin.rst:127
 msgid "With no argument, return 0 or 1 depending on the logic level of the pin."
-msgstr ""
+msgstr "引数なしの場合、ピンのロジックレベルに応じて0または1を返します。"
 
 #: ../../library/pyb.Pin.rst:128
 msgid ""
@@ -16499,10 +16624,13 @@ msgid ""
 "anything that converts to a boolean.  If it converts to ``True``, the pin"
 " is set high, otherwise it is set low."
 msgstr ""
+"``value`` を指定した場合、ピンのロジックレベルを設定します。 "
+"``value`` にはブール値に変換できるものなら何でも指定できます。 "
+"``True`` に変換できる場合、ピンは High に設定され、それ以外の場合は Low に設定されます。"
 
 #: ../../library/pyb.Pin.rst:134
 msgid "Return a string describing the pin object."
-msgstr ""
+msgstr "ピンオブジェクトに関する文字列を返します。"
 
 #: ../../library/pyb.Pin.rst:138
 msgid ""
@@ -16510,14 +16638,16 @@ msgid ""
 "integer returned will match one of the allowed constants for the af "
 "argument to the init function."
 msgstr ""
+"ピンの現在の設定された代替機能を返します。返される整数は、init 関数の af 引数に"
+"指定できる定数の1つに対応します。"
 
 #: ../../library/pyb.Pin.rst:144
 msgid "Returns an array of alternate functions available for this pin."
-msgstr ""
+msgstr "このピンで利用可能な代替機能の配列を返します。"
 
 #: ../../library/pyb.Pin.rst:148
 msgid "Returns the base address of the GPIO block associated with this pin."
-msgstr ""
+msgstr "このピンに関連付けられたGPIOブロックのベースアドレスを返します。"
 
 #: ../../library/pyb.Pin.rst:152
 msgid ""
@@ -16525,22 +16655,24 @@ msgid ""
 "will match one of the allowed constants for the mode argument to the init"
 " function."
 msgstr ""
+"ピンの現在の設定されたモードを返します。返される整数は、init 関数の mode 引数に指定できる"
+"定数の1つに対応します。"
 
 #: ../../library/pyb.Pin.rst:158
 msgid "Get the pin name."
-msgstr ""
+msgstr "ピンの名前を取得します。"
 
 #: ../../library/pyb.Pin.rst:162
 msgid "Returns the cpu and board names for this pin."
-msgstr ""
+msgstr "このピンに対する CPU とボード名を返します。"
 
 #: ../../library/pyb.Pin.rst:166
 msgid "Get the pin number."
-msgstr ""
+msgstr "ピン番号を取得します。"
 
 #: ../../library/pyb.Pin.rst:170
 msgid "Get the pin port."
-msgstr ""
+msgstr "ピンのポートを取得します。"
 
 #: ../../library/pyb.Pin.rst:174
 msgid ""
@@ -16548,50 +16680,52 @@ msgid ""
 "will match one of the allowed constants for the pull argument to the init"
 " function."
 msgstr ""
+"ピンの現在の設定されたプルアップ/プルダウンを返します。"
+"返される整数は、init 関数の pull 引数に指定できる定数の1つに対応します。"
 
 #: ../../library/pyb.Pin.rst:183
 msgid "initialise the pin to alternate-function mode for input or output"
-msgstr ""
+msgstr "ピンを代替機能モードに初期化し、入力または出力として設定します。"
 
 #: ../../library/pyb.Pin.rst:187
 msgid "initialise the pin to alternate-function mode with an open-drain drive"
-msgstr ""
+msgstr "ピンを代替機能モードに初期化し、オープンドレイン駆動として設定します。"
 
 #: ../../library/pyb.Pin.rst:191
 msgid "initialise the pin to alternate-function mode with a push-pull drive"
-msgstr ""
+msgstr "ピンを代替機能モードに初期化し、プッシュプル駆動として設定します。"
 
 #: ../../library/pyb.Pin.rst:195
 msgid "initialise the pin to analog mode"
-msgstr ""
+msgstr "ピンをアナログモードに初期化します。"
 
 #: ../../library/pyb.Pin.rst:199
 msgid "initialise the pin to input mode"
-msgstr ""
+msgstr "ピンを入力モードに初期化します。"
 
 #: ../../library/pyb.Pin.rst:203
 msgid "initialise the pin to output mode with an open-drain drive"
-msgstr ""
+msgstr "ピンを出力モードに初期化し、オープンドレイン駆動として設定します。"
 
 #: ../../library/pyb.Pin.rst:207
 msgid "initialise the pin to output mode with a push-pull drive"
-msgstr ""
+msgstr "ピンを出力モードに初期化し、プッシュプル駆動として設定します。"
 
 #: ../../library/pyb.Pin.rst:211
 msgid "enable the pull-down resistor on the pin"
-msgstr ""
+msgstr "ピンのプルダウン抵抗を有効にします。"
 
 #: ../../library/pyb.Pin.rst:215
 msgid "don't enable any pull up or down resistors on the pin"
-msgstr ""
+msgstr "ピンのプルアップまたはプルダウン抵抗を有効にしません。"
 
 #: ../../library/pyb.Pin.rst:219
 msgid "enable the pull-up resistor on the pin"
-msgstr ""
+msgstr "ピンのプルアップ抵抗を有効にします。"
 
 #: ../../library/pyb.Pin.rst:222
 msgid "class PinAF -- Pin Alternate Functions"
-msgstr ""
+msgstr "クラス PinAF -- ピンの代替機能"
 
 #: ../../library/pyb.Pin.rst:224
 msgid ""
@@ -16599,6 +16733,9 @@ msgid ""
 "a variety of functions (GPIO, I2C SDA, etc). Each PinAF object represents"
 " a particular function for a pin."
 msgstr ""
+"Pin は、マイクロプロセッサ上の物理的なピンを表します。"
+"各ピンはさまざまな機能(GPIO, I2C SDA など)を持てます。"
+"各 PinAF オブジェクトは、ピンの特定の機能を表します。"
 
 #: ../../library/pyb.Pin.rst:230
 msgid ""
@@ -16611,10 +16748,11 @@ msgid ""
 "x3_af will now contain an array of PinAF objects which are available on "
 "pin X3."
 msgstr ""
+"x3_af には、ピン X3 で利用可能な PinAF オブジェクトの配列が含まれます。"
 
 #: ../../library/pyb.Pin.rst:237
 msgid "For the pyboard, x3_af would contain:"
-msgstr ""
+msgstr "Pyboard の場合、x3_af には次のものが含まれます:"
 
 #: ../../library/pyb.Pin.rst:237
 msgid "[Pin.AF1_TIM2, Pin.AF2_TIM5, Pin.AF3_TIM9, Pin.AF7_USART2]"
@@ -16626,10 +16764,12 @@ msgid ""
 "automatically, but sometimes the same function is available on multiple "
 "pins, and having more control is desired."
 msgstr ""
+"通常、各ペリフェラルは代替機能を自動的に設定しますが、同じ機能が複数のピンで"
+"利用可能な場合や、より細かな制御が必要な場合もあります。"
 
 #: ../../library/pyb.Pin.rst:243
 msgid "To configure X3 to expose TIM2_CH3, you could use::"
-msgstr ""
+msgstr "X3 を TIM2_CH3 で公開するように設定するには、次のようにします::"
 
 #: ../../library/pyb.Pin.rst:245
 msgid "pin = pyb.Pin(pyb.Pin.board.X3, mode=pyb.Pin.ALT, alt=pyb.Pin.AF1_TIM2)"
@@ -16641,15 +16781,15 @@ msgstr ""
 
 #: ../../library/pyb.Pin.rst:256
 msgid "Return a string describing the alternate function."
-msgstr ""
+msgstr "代替機能の説明を返します。"
 
 #: ../../library/pyb.Pin.rst:260
 msgid "Return the alternate function index."
-msgstr ""
+msgstr "代替機能のインデックスを返します。"
 
 #: ../../library/pyb.Pin.rst:264
 msgid "Return the name of the alternate function."
-msgstr ""
+msgstr "代替機能の名前を返します。"
 
 #: ../../library/pyb.Pin.rst:268
 msgid ""
@@ -16657,6 +16797,8 @@ msgid ""
 "alternate function. For example, if the alternate function were TIM2_CH3 "
 "this would return stm.TIM2"
 msgstr ""
+"この代替機能に割り当てられたペリフェラルに関してのベースレジスタを返します。"
+"たとえば、代替機能が TIM2_CH3 である場合、これは stm.TIM2 を返します。"
 
 #: ../../library/pyb.RTC.rst:12
 msgid ""
