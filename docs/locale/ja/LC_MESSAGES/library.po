@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-01 09:54+0900\n"
-"PO-Revision-Date: 2023-07-16 17:56+0900\n"
+"POT-Creation-Date: 2023-07-22 10:55+0900\n"
+"PO-Revision-Date: 2023-07-23 00:32+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -56,9 +56,10 @@ msgstr ""
 "``L``, ``q``, ``Q``, ``f``, ``d`` (最後の２つは浮動小数点サポートに依存します)。"
 
 #: ../../library/array.rst:14 ../../library/collections.rst:13
-#: ../../library/cryptolib.rst:8 ../../library/io.rst:87
-#: ../../library/machine.rst:249 ../../library/pyb.rst:302
-#: ../../library/rp2.rst:76 ../../library/zephyr.rst:46
+#: ../../library/cryptolib.rst:8 ../../library/deflate.rst:23
+#: ../../library/gzip.rst:47 ../../library/io.rst:87
+#: ../../library/machine.rst:249 ../../library/pyb.rst:311
+#: ../../library/rp2.rst:239 ../../library/zephyr.rst:46
 msgid "Classes"
 msgstr "クラス"
 
@@ -735,16 +736,16 @@ msgstr ""
 "このモジュールは、バイナリデータと ASCII 形式のさまざまなエンコーディングとの"
 "間の変換(両方向)を実装します。"
 
-#: ../../library/binascii.rst:13 ../../library/btree.rst:77
+#: ../../library/binascii.rst:13 ../../library/btree.rst:78
 #: ../../library/cmath.rst:16 ../../library/esp.rst:13
-#: ../../library/esp32.rst:14 ../../library/gc.rst:10
+#: ../../library/esp32.rst:14 ../../library/gc.rst:10 ../../library/gzip.rst:32
 #: ../../library/heapq.rst:16 ../../library/io.rst:78 ../../library/json.rst:13
 #: ../../library/math.rst:18 ../../library/micropython.rst:8
 #: ../../library/re.rst:110 ../../library/select.rst:13
 #: ../../library/socket.rst:67 ../../library/ssl.rst:14
-#: ../../library/struct.rst:21 ../../library/sys.rst:10
+#: ../../library/struct.rst:68 ../../library/sys.rst:10
 #: ../../library/time.rst:37 ../../library/wipy.rst:12
-#: ../../library/zephyr.rst:12 ../../library/zlib.rst:15
+#: ../../library/zephyr.rst:12 ../../library/zlib.rst:34
 msgid "Functions"
 msgstr "関数"
 
@@ -2558,21 +2559,22 @@ msgstr ""
 "できます。 flags の値はビットOR(|)演算を使って複数指定できます。"
 
 #: ../../library/btree.rst:150 ../../library/cmath.rst:55
-#: ../../library/errno.rst:13 ../../library/esp32.rst:132
-#: ../../library/esp32.rst:300 ../../library/espnow.rst:548
-#: ../../library/framebuf.rst:152 ../../library/lcd160cr.rst:380
-#: ../../library/machine.I2S.rst:148 ../../library/machine.Pin.rst:242
-#: ../../library/machine.RTC.rst:79 ../../library/machine.SPI.rst:139
-#: ../../library/machine.Timer.rst:84 ../../library/machine.TimerWiPy.rst:154
-#: ../../library/machine.UART.rst:207 ../../library/machine.rst:226
-#: ../../library/math.rst:177 ../../library/network.WLANWiPy.rst:145
+#: ../../library/deflate.rst:63 ../../library/errno.rst:13
+#: ../../library/esp32.rst:128 ../../library/esp32.rst:304
+#: ../../library/espnow.rst:562 ../../library/framebuf.rst:152
+#: ../../library/lcd160cr.rst:380 ../../library/machine.I2S.rst:148
+#: ../../library/machine.Pin.rst:242 ../../library/machine.RTC.rst:79
+#: ../../library/machine.SPI.rst:139 ../../library/machine.Timer.rst:84
+#: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:207
+#: ../../library/machine.rst:226 ../../library/math.rst:177
+#: ../../library/network.WLAN.rst:140 ../../library/network.WLANWiPy.rst:145
 #: ../../library/pyb.CAN.rst:321 ../../library/pyb.DAC.rst:127
 #: ../../library/pyb.ExtInt.rst:102 ../../library/pyb.I2C.rst:161
 #: ../../library/pyb.Pin.rst:179 ../../library/pyb.SPI.rst:113
 #: ../../library/pyb.Timer.rst:286 ../../library/pyb.UART.rst:178
 #: ../../library/pyb.USB_VCP.rst:124 ../../library/pyb.rst:302
 #: ../../library/rp2.PIO.rst:66 ../../library/socket.rst:126
-#: ../../library/ssl.rst:66 ../../library/sys.rst:56
+#: ../../library/ssl.rst:88 ../../library/sys.rst:56
 msgid "Constants"
 msgstr "定数"
 
@@ -2917,6 +2919,359 @@ msgstr ""
 #: ../../library/cryptolib.rst:40
 msgid "Like `encrypt()`, but for decryption."
 msgstr "`encrypt()` に似ていますが、複合化するメソッドです。"
+
+#: ../../library/deflate.rst:2
+msgid ":mod:`deflate` -- deflate compression & decompression"
+msgstr ":mod:`deflate` -- DEFLATE 圧縮と展開"
+
+#: ../../library/deflate.rst:7 ../../library/zlib.rst:9
+msgid ""
+"This module allows compression and decompression of binary data with the "
+"`DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ (commonly "
+"used in the zlib library and gzip archiver)."
+msgstr ""
+"このモジュールは `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ "
+"アルゴリズム(zlib ライブラリや gzip アーカイバで使われている)を使ってバイナリデータの"
+"圧縮と展開を行えます。"
+
+#: ../../library/deflate.rst:11 ../../library/gzip.rst:18
+#: ../../library/zlib.rst:18
+msgid "**Availability:**"
+msgstr "**利用可能性:**"
+
+#: ../../library/deflate.rst:13
+msgid "Added in MicroPython v1.21."
+msgstr "MicroPython v1.21 で追加。"
+
+#: ../../library/deflate.rst:15
+msgid ""
+"Decompression: Enabled via the ``MICROPY_PY_DEFLATE`` build option, on by"
+" default on ports with the \"extra features\" level or higher (which is "
+"most boards)."
+msgstr ""
+"展開: ``MICROPY_PY_DEFLATE`` ビルドオプションで有効化。"
+"デフォルトで \"extra features\" レベル以上のポートには有効になっています"
+"(これはほとんどのボードに該当します)。"
+
+#: ../../library/deflate.rst:18
+msgid ""
+"Compression: Enabled via the ``MICROPY_PY_DEFLATE_COMPRESS`` build "
+"option, on by default on ports with the \"full features\" level or higher"
+" (generally this means you need to build your own firmware to enable "
+"this)."
+msgstr ""
+"圧縮: ``MICROPY_PY_DEFLATE_COMPRESS`` ビルドオプションで有効化。"
+"デフォルトで \"full features\" レベル以上のポートには有効になっています"
+"(一般的に、これを有効にするには独自のファームウェアをビルドする必要があります)。"
+
+#: ../../library/deflate.rst:27
+msgid ""
+"This class can be used to wrap a *stream* which is any :term:`stream-like"
+" <stream>` object such as a file, socket, or stream (including "
+":class:`io.BytesIO`). It is itself a stream and implements the standard "
+"read/readinto/write/close methods."
+msgstr ""
+"このクラスは、ファイル、ソケット、(:class:`io.BytesIO` を含む)ストリームのような"
+"任意の :term:`ストリーム風 <stream>` オブジェクトをラップするために使えます。"
+"このクラスはストリームそのものであり、標準の read/readinto/write/close メソッドを"
+"実装しています。"
+
+#: ../../library/deflate.rst:32
+msgid ""
+"The *stream* must be a blocking stream. Non-blocking streams are "
+"currently not supported."
+msgstr ""
+"*ストリーム* はブロッキングストリームである必要があります。ノンブロッキングストリームは"
+"現在サポートされていません。"
+
+#: ../../library/deflate.rst:35
+msgid ""
+"The *format* can be set to any of the constants defined below, and "
+"defaults to ``AUTO`` which for decompressing will auto-detect gzip or "
+"zlib streams, and for compressing it will generate a raw stream."
+msgstr ""
+"フォーマットは以下で定義された定数のいずれかに設定できますが、デフォルトでは "
+"``AUTO`` となります。この場合、展開では gzip または zlib ストリームを自動検出し、"
+"圧縮では生のストリームを生成します。"
+
+#: ../../library/deflate.rst:39
+msgid ""
+"The *wbits* parameter sets the base-2 logarithm of the DEFLATE dictionary"
+" window size. So for example, setting *wbits* to ``10`` sets the window "
+"size to 1024 bytes. Valid values are ``5`` to ``15`` inclusive "
+"(corresponding to window sizes of 32 to 32k bytes)."
+msgstr ""
+"*wbits* パラメータは DEFLATE 辞書ウィンドウサイズの底2対数を設定します。"
+"たとえば、 *wbits* を10に設定するとウィンドウサイズが1024バイトになります。"
+"有効な値は5から15までの範囲です(対応するウィンドウサイズは32バイトから32kバイトまでです)。"
+
+#: ../../library/deflate.rst:44
+msgid ""
+"If *wbits* is set to ``0`` (the default), then a window size of 256 bytes"
+" will be used (corresponding to *wbits* set to ``8``), except when "
+":ref:`decompressing a zlib stream <deflate_wbits_zlib>`."
+msgstr ""
+"*wbits* が ``0`` に設定されている場合(デフォルト)、ウィンドウサイズとして256バイトが"
+"適用されます(これは *wbits* を8に設定した場合に該当します)。ただし、 "
+":ref:`zlib ストリームを展開 <deflate_wbits_zlib>` する場合は例外です。"
+
+#: ../../library/deflate.rst:48
+msgid ""
+"See the :ref:`window size <deflate_wbits>` notes below for more "
+"information about the window size, zlib, and gzip streams."
+msgstr ""
+"ウィンドウサイズ、zlib、gzip ストリームに関する詳細な情報については、"
+"後述する :ref:`ウィンドウサイズ <deflate_wbits>` の注釈を参照してください。"
+
+#: ../../library/deflate.rst:51
+msgid ""
+"If *close* is set to ``True`` then the underlying stream will be closed "
+"automatically when the :class:`deflate.DeflateIO` stream is closed. This "
+"is useful if you want to return a :class:`deflate.DeflateIO` stream that "
+"wraps another stream and not have the caller need to know about managing "
+"the underlying stream."
+msgstr ""
+"*close* が ``True`` に設定されている場合、 :class:`deflate.DeflateIO` "
+"ストリームが閉じられるときに基になるストリームも自動的に閉じられます。"
+"これは、別のストリームをラップする :class:`deflate.DeflateIO` ストリームを"
+"返し、呼出し元が基になるストリームを管理する必要がない場合に便利です。"
+
+#: ../../library/deflate.rst:57
+msgid ""
+"If compression is enabled, a given :class:`deflate.DeflateIO` instance "
+"supports both reading and writing. For example, a bidirectional stream "
+"like a socket can be wrapped, which allows for compression/decompression "
+"in both directions."
+msgstr ""
+"圧縮が有効にされている場合、指定された :class:`deflate.DeflateIO` インスタンスは"
+"読み取りと書き込みの両方をサポートします。たとえば、ソケットのような双方向ストリームを"
+"ラップでき、両方向の圧縮/展開が可能になります。
+
+#: ../../library/deflate.rst:70
+msgid "Supported values for the *format* parameter."
+msgstr "*format* パラメータに指定できる値。"
+
+#: ../../library/deflate.rst:73 ../../library/gzip.rst:72
+#: ../../library/wm8960.rst:316
+msgid "Examples"
+msgstr "サンプルコード"
+
+#: ../../library/deflate.rst:75
+msgid ""
+"A typical use case for :class:`deflate.DeflateIO` is to read or write a "
+"compressed file from storage:"
+msgstr ""
+":class:`deflate.DeflateIO` の典型的な使用例は、圧縮されたファイルを"
+"ストレージから読み取ったり書き込んだりすることです:"
+
+#: ../../library/deflate.rst:78
+msgid ""
+"import deflate\n"
+"\n"
+"# Writing a zlib-compressed stream (uses the default window size of 256 "
+"bytes).\n"
+"with open(\"data.gz\", \"wb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.ZLIB) as d:\n"
+"        # Use d.write(...) etc\n"
+"\n"
+"# Reading a zlib-compressed stream (auto-detect window size).\n"
+"with open(\"data.z\", \"rb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.ZLIB) as d:\n"
+"        # Use d.read(), d.readinto(), etc."
+msgstr ""
+"import deflate\n"
+"\n"
+"# zlib 圧縮したストリームの書出し(デフォルトウィンドウサイズ256バイトを使用)。\n"
+"with open(\"data.gz\", \"wb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.ZLIB) as d:\n"
+"        # Use d.write(...) etc\n"
+"\n"
+"# zlib 圧縮したストリームの読込み(ウィンドウサイズを自動検出)。\n"
+"with open(\"data.z\", \"rb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.ZLIB) as d:\n"
+"        # d.read(), d.readinto() などを使用。"
+
+#: ../../library/deflate.rst:92
+msgid ""
+"Because :class:`deflate.DeflateIO` is a stream, it can be used for "
+"example with :meth:`json.dump` and :meth:`json.load` (and any other "
+"places streams can be used):"
+msgstr ""
+":class:`deflate.DeflateIO` はストリームなので、たとえば :meth:`json.dump` や "
+":meth:`json.load` (およびストリームで使えるもの)と一緒に使えます:"
+
+#: ../../library/deflate.rst:96
+msgid ""
+"import deflate, json\n"
+"\n"
+"# Write a dictionary as JSON in gzip format, with a\n"
+"# small (64 byte) window size.\n"
+"config = { ... }\n"
+"with open(\"config.gz\", \"wb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.GZIP, 6) as f:\n"
+"        json.dump(config, f)\n"
+"\n"
+"# Read back that dictionary.\n"
+"with open(\"config.gz\", \"rb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.GZIP, 6) as f:\n"
+"        config = json.load(f)"
+msgstr ""
+"import deflate, json\n"
+"\n"
+"# 辞書を JSON として gzip フォーマットで書き出し。\n"
+"# ウィンドウサイズは small (64 byte)。\n"
+"config = { ... }\n"
+"with open(\"config.gz\", \"wb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.GZIP, 6) as f:\n"
+"        json.dump(config, f)\n"
+"\n"
+"# 辞書に読み戻し。\n"
+"with open(\"config.gz\", \"rb\") as f:\n"
+"    with deflate.DeflateIO(f, deflate.GZIP, 6) as f:\n"
+"        config = json.load(f)"
+
+#: ../../library/deflate.rst:112
+msgid ""
+"If your source data is not in a stream format, you can use "
+":class:`io.BytesIO` to turn it into a stream suitable for use with "
+":class:`deflate.DeflateIO`:"
+msgstr ""
+"元のデータがストリーム形式でない場合、 :class:`io.BytesIO` を使ってストリーム形式に"
+"変換し、 :class:`deflate.DeflateIO` で使えるようにできます:"
+
+#: ../../library/deflate.rst:115
+msgid ""
+"import deflate, io\n"
+"\n"
+"# Decompress a bytes/bytearray value.\n"
+"compressed_data = get_data_z()\n"
+"with deflate.DeflateIO(io.BytesIO(compressed_data), deflate.ZLIB) as d:\n"
+"    decompressed_data = d.read()\n"
+"\n"
+"# Compress a bytes/bytearray value.\n"
+"uncompressed_data = get_data()\n"
+"stream = io.BytesIO()\n"
+"with deflate.DeflateIO(stream, deflate.ZLIB) as d:\n"
+"    d.write(uncompressed_data)\n"
+"compressed_data = stream.getvalue()"
+msgstr ""
+"import deflate, io\n"
+"\n"
+"# bytes/bytearray 値を展開。\n"
+"compressed_data = get_data_z()\n"
+"with deflate.DeflateIO(io.BytesIO(compressed_data), deflate.ZLIB) as d:\n"
+"    decompressed_data = d.read()\n"
+"\n"
+"# bytes/bytearray 値を圧縮。\n"
+"uncompressed_data = get_data()\n"
+"stream = io.BytesIO()\n"
+"with deflate.DeflateIO(stream, deflate.ZLIB) as d:\n"
+"    d.write(uncompressed_data)\n"
+"compressed_data = stream.getvalue()"
+
+#: ../../library/deflate.rst:134
+msgid "Deflate window size"
+msgstr "DEFLATE のウィンドウサイズ"
+
+#: ../../library/deflate.rst:136
+msgid ""
+"The window size limits how far back in the stream the (de)compressor can "
+"reference. Increasing the window size will improve compression, but will "
+"require more memory."
+msgstr ""
+"ウィンドウサイズは、圧縮/解凍器がストリーム内でどれだけ以前のデータに遡れるかを"
+"制限します。ウィンドウサイズを増やすと圧縮が改善されますが、より多くのメモリが必要に"
+"なります。"
+
+#: ../../library/deflate.rst:140
+msgid ""
+"However, just because a given window size is used for compression, this "
+"does not mean that the stream will require the same size window for "
+"decompression, as the stream may not reference data as far back as the "
+"window allows (for example, if the length of the input is smaller than "
+"the window size)."
+msgstr ""
+"ただし、圧縮に特定のウィンドウサイズが使われたからと言って、同じサイズのウィンドウが"
+"展開にも必要とされるわけではありません。ストリームがウィンドウが許容する範囲よりも"
+"以前のデータを参照しない場合もあります(たとえば、入力の長さがウィンドウサイズより"
+"小さい場合など)。"
+
+#: ../../library/deflate.rst:145
+msgid ""
+"If the decompressor uses a smaller window size than necessary for the "
+"input data stream, it will fail mid-way through decompression with "
+":exc:`OSError`."
+msgstr ""
+"展開に必要なウィンドウサイズよりも小さいウィンドウサイズを展開器が使うと、"
+":exc:`OSError` が発生し、展開の途中で失敗します。"
+
+#: ../../library/deflate.rst:150
+msgid ""
+"The zlib format includes a header which specifies the window size used to"
+" compress the data (which due to the above, may be larger than the size "
+"required for the decompressor)."
+msgstr ""
+"zlib フォーマットには、データの圧縮に使ったウィンドウサイズを指定するヘッダーが"
+"含まれています(前述の理由により、展開器に必要なサイズよりも大きい場合もあります)。"
+
+#: ../../library/deflate.rst:154
+msgid ""
+"If this header value is lower than the specified *wbits* value, then the "
+"header value will be used instead in order to reduce the memory "
+"allocation size. If the *wbits* parameter is zero (the default), then the"
+" header value will only be used if it is less than the maximum value of "
+"``15`` (which is default value used by most compressors [#f1]_)."
+msgstr ""
+"このヘッダーの値が指定した *wbits* 値よりも小さい場合、メモリの割り当てサイズを"
+"減らすためにヘッダーの値を代わりに使います。 *wbits* パラメータがゼロ(デフォルト)の場合、"
+"ヘッダーの値は、最大値である15よりも小さい場合にのみ使います(これはほとんどの圧縮器で"
+"デフォルトで使われる値です [#f1]_)。"
+
+#: ../../library/deflate.rst:160
+msgid ""
+"In other words, if the source zlib stream has been compressed with a "
+"custom window size (i.e. less than ``15``), then using the default "
+"*wbits* parameter of zero will decompress any such stream."
+msgstr ""
+"言い換えれば、元の zlib ストリームがカスタムウィンドウサイズで圧縮されている場合"
+"(つまり15より小さい場合)、デフォルトの *wbits* パラメータ0を適用してストリームを"
+"展開します。"
+
+#: ../../library/deflate.rst:164
+msgid ""
+"The gzip file format does not include the window size in the header. "
+"Additionally, most compressor libraries (including CPython's "
+"implementation of :class:`gzip.GzipFile`) will default to the maximum "
+"possible window size. This makes it difficult to decompress most gzip "
+"streams on MicroPython unless your board has a lot of free RAM."
+msgstr ""
+"gzip ファイルフォーマットにはヘッダーにウィンドウサイズが含まれていません。"
+"さらに、ほとんどの圧縮器ライブラリ(CPython の :class:`gzip.GzipFile` "
+"の実装を含む)は、通常最大のウィンドウサイズをデフォルトで使います。"
+"このため、MicroPython 上でほとんどの gzip ストリームを展開するのが難しく"
+"なります(ボードに十分な空きRAMがある場合を除きます)。"
+
+#: ../../library/deflate.rst:170
+msgid ""
+"If you control the source of the compressed data, then prefer to use the "
+"zlib format, with a window size that is suitable for your target device."
+msgstr ""
+"圧縮データのソースを制御できる場合、ターゲットデバイスに適したウィンドウサイズを持つ "
+"zlib フォーマットの利用をお勧めします。"
+
+#: ../../library/deflate.rst:174
+msgid "Footnotes"
+msgstr "脚注"
+
+#: ../../library/deflate.rst:175
+msgid ""
+"The assumption here is that if the header value is the default used by "
+"most compressors, then nothing is known about the likely required window "
+"size and we should ignore it."
+msgstr ""
+"ここでの前提条件は、もしヘッダーの値がほとんどの圧縮器でデフォルトとして使われる値であれば、"
+"解凍において必要なウィンドウサイズに関する情報が何も分かっていないということであり、"
+"それを無視すべきだということです。"
 
 #: ../../library/errno.rst:2
 msgid ":mod:`errno` -- system error codes"
@@ -5831,7 +6186,6 @@ msgstr "割り当てられているヒープ RAM のバイト数を返します�
 #: ../../library/socket.rst:349 ../../library/sys.rst:25
 #: ../../library/sys.rst:36 ../../library/sys.rst:69
 #: ../../library/sys.rst:138 ../../library/time.rst:224
-#: ../../library/zlib.rst:34
 msgid "Difference to CPython"
 msgstr "CPython との違い"
 
@@ -5886,6 +6240,198 @@ msgid ""
 msgstr ""
 "この関数は、MicroPython の拡張機能です。CPython も同様の機能 ``set_threshold()`` "
 "を持っていますが、GCの実装が異なるため、シグネチャとセマンティクスが異なります。"
+
+#: ../../library/gzip.rst:2
+msgid ":mod:`gzip` -- gzip compression & decompression"
+msgstr ":mod:`gzip` -- gzip 圧縮器 & 展開器"
+
+#: ../../library/gzip.rst:7
+msgid "|see_cpython_module| :mod:`python:gzip`."
+msgstr ""
+
+#: ../../library/gzip.rst:9
+msgid ""
+"This module allows compression and decompression of binary data with the "
+"`DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ used by the "
+"gzip file format."
+msgstr ""
+"このモジュールは、gzip ファイルフォーマットで使われている "
+"`DEFLATE アルゴリズム <https://en.wikipedia.org/wiki/DEFLATE>`_ "
+"によりバイナリデータの圧縮と展開を可能にします。"
+
+#: ../../library/gzip.rst:13 ../../library/zlib.rst:13
+msgid ""
+"Prefer to use :class:`deflate.DeflateIO` instead of the functions in this"
+" module as it provides a streaming interface to compression and "
+"decompression which is convenient and more memory efficient when working "
+"with reading or writing compressed data to a file, socket, or stream."
+msgstr ""
+":class:`deflate.DeflateIO` を、このモジュールの関数の代わりに使うことをお勧めします。"
+"このクラスは、ファイル、ソケット、ストリームに対し、圧縮したデータを読み書きするのに便利で、"
+"メモリ効率が良い圧縮/展開ストリーミングインターフェースを提供します。"
+
+#: ../../library/gzip.rst:20
+msgid ""
+"This module is **not present by default** in official MicroPython "
+"firmware releases as it duplicates functionality available in the "
+":mod:`deflate <deflate>` module."
+msgstr ""
+"このモジュールは、公式の MicroPython ファームウェアリリースにはデフォルトで"
+"含まれていません。これは ":mod:`deflate <deflate>` モジュールで利用可能な"
+"機能と重複しているためです。"
+
+#: ../../library/gzip.rst:24
+msgid ""
+"A copy of this module can be installed (or frozen) from :term"
+":`micropython-lib` (`source <https://github.com/micropython/micropython-"
+"lib/blob/master/python-stdlib/gzip/gzip.py>`_). See :ref:`packages` for "
+"more information. This documentation describes that module."
+msgstr ""
+"このモジュールのコピーは "
+":term:`micropython-lib` (`ソース <https://github.com/micropython/micropython-"
+"lib/blob/master/python-stdlib/gzip/gzip.py>`_)からインストール"
+"(または凍結)できます。詳細については :ref:`packages` を参照してください。"
+"このドキュメントはそのモジュールについて説明しています。"
+
+#: ../../library/gzip.rst:28 ../../library/zlib.rst:30
+msgid ""
+"Compression support will only be available if compression support is "
+"enabled in the built-in :mod:`deflate <deflate>` module."
+msgstr ""
+"圧縮サポートは、組込みの :mod:`deflate` モジュールで圧縮サポートが有効になっている"
+"場合にのみ利用可能です。"
+
+#: ../../library/gzip.rst:36
+msgid "Wrapper around built-in :func:`open` returning a GzipFile instance."
+msgstr "組込みの :func:`open` をラップしたもので、GzipFile インスタンスを返します。"
+
+#: ../../library/gzip.rst:40 ../../library/zlib.rst:38
+msgid "Decompresses *data* into a bytes object."
+msgstr "*data* を bytes オブジェクトに展開します。"
+
+#: ../../library/gzip.rst:44 ../../library/zlib.rst:58
+msgid "Compresses *data* into a bytes object."
+msgstr "*data* を bytes オブジェクトに圧縮します。"
+
+#: ../../library/gzip.rst:51
+msgid ""
+"This class can be used to wrap a *fileobj* which is any :term:`stream-"
+"like <stream>` object such as a file, socket, or stream (including "
+":class:`io.BytesIO`). It is itself a stream and implements the standard "
+"read/readinto/write/close methods."
+msgstr ""
+"このクラスは、ファイル、ソケット、ストリーム(:class:`io.BytesIO` を含む)などの "
+":term:`ストリームライク <stream>` なオブジェクトである *fileobj* をラップする"
+"ために使えます。このクラス自体もストリームであり、標準の "
+"read/readinto/write/close メソッドを実装しています。"
+
+#: ../../library/gzip.rst:56
+msgid ""
+"When the *mode* argument is ``\"rb\"``, reads from the GzipFile instance "
+"will decompress the data in the underlying stream and return decompressed"
+" data."
+msgstr ""
+"*mode* 引数が ``\"rb\"`` の場合、GzipFile インスタンスから読み込むと、"
+"基になるストリームのデータを展開し、展開済みデータを返します。"
+
+#: ../../library/gzip.rst:59
+msgid ""
+"If compression support is enabled then the *mode* argument can be set to "
+"``\"wb\"``, and writes to the GzipFile instance will be compressed and "
+"written to the underlying stream."
+msgstr ""
+"圧縮サポートが有効になっている場合、 *mode* 引数を ``\"wb\"`` に設定でき、"
+"GzipFile インスタンスへの書き出しは圧縮され、基になるストリームに書き出されます。"
+
+#: ../../library/gzip.rst:63
+msgid ""
+"By default the GzipFile class will read and write data using the gzip "
+"file format, including a header and footer with checksum and a window "
+"size of 512 bytes."
+msgstr ""
+"デフォルトで、GzipFile クラスは gzip ファイルフォーマットを使ってデータを読み書きします。"
+"これにはチェックサムとウィンドウサイズが512バイトのヘッダーとフッターが含まれます。"
+
+#: ../../library/gzip.rst:67
+msgid ""
+"The **file**, **compresslevel**, and **mtime** arguments are not "
+"supported. **fileobj** and **mode** must always be specified as keyword "
+"arguments."
+msgstr ""
+"**file**, **compresslevel**, **mtime** 引数はサポートされていません。 "
+"**fileobj** と **mode** は常にキーワード引数として指定する必要があります。"
+
+#: ../../library/gzip.rst:74
+msgid ""
+"A typical use case for :class:`gzip.GzipFile` is to read or write a "
+"compressed file from storage:"
+msgstr ""
+":class:`gzip.GzipFile` のよくある使い方は、ストレージから圧縮されたファイルを"
+"読み書きすることです:"
+
+#: ../../library/gzip.rst:77
+msgid ""
+"import gzip\n"
+"\n"
+"# Reading:\n"
+"with open(\"data.gz\", \"rb\") as f:\n"
+"    with gzip.GzipFile(fileobj=f, mode=\"rb\") as g:\n"
+"        # Use g.read(), g.readinto(), etc.\n"
+"\n"
+" # Same, but using gzip.open:\n"
+"with gzip.open(\"data.gz\", \"rb\") as f:\n"
+"     # Use f.read(), f.readinto(), etc.\n"
+"\n"
+"# Writing:\n"
+"with open(\"data.gz\", \"wb\") as f:\n"
+"    with gzip.GzipFile(fileobj=f, mode=\"wb\") as g:\n"
+"        # Use g.write(...) etc\n"
+"\n"
+"# Same, but using gzip.open:\n"
+"with gzip.open(\"data.gz\", \"wb\") as f:\n"
+"    # Use f.write(...) etc\n"
+"\n"
+"# Write a dictionary as JSON in gzip format, with a\n"
+"# small (64 byte) window size.\n"
+"config = { ... }\n"
+"with gzip.open(\"config.gz\", \"wb\") as f:\n"
+"    json.dump(config, f)"
+msgstr ""
+"import gzip\n"
+"\n"
+"# 読込み:\n"
+"with open(\"data.gz\", \"rb\") as f:\n"
+"    with gzip.GzipFile(fileobj=f, mode=\"rb\") as g:\n"
+"        # g.read(), g.readinto() などを使用。\n"
+"\n"
+"# 同じ。ただし gzip.open を利用:\n"
+"with gzip.open(\"data.gz\", \"rb\") as f:\n"
+"     # Use f.read(), f.readinto(), etc.\n"
+"\n"
+"# 書出し:\n"
+"with open(\"data.gz\", \"wb\") as f:\n"
+"    with gzip.GzipFile(fileobj=f, mode=\"wb\") as g:\n"
+"        # Use g.write(...) etc\n"
+"\n"
+"# 同じ。ただし gzip.open を利用:\n"
+"with gzip.open(\"data.gz\", \"wb\") as f:\n"
+"    # Use f.write(...) etc\n"
+"\n"
+"# 辞書を JSON として gzip フォーマットで書き出し。\n"
+"# ウィンドウサイズは small (64 byte)。\n"
+"config = { ... }\n"
+"with gzip.open(\"config.gz\", \"wb\") as f:\n"
+"    json.dump(config, f)"
+
+#: ../../library/gzip.rst:105
+msgid ""
+"For guidance on working with gzip sources and choosing the window size "
+"see the note at the :ref:`end of the deflate documentation "
+"<deflate_wbits>`."
+msgstr ""
+"gzip のソースとウィンドウサイズの選択に関する指針については、 "
+":ref:`deflate ドキュメントの最後 <deflate_wbits>` "
+"にある注釈を参照してください。"
 
 #: ../../library/hashlib.rst:2
 msgid ":mod:`hashlib` -- hashing algorithms"
@@ -13391,7 +13937,7 @@ msgstr ""
 
 #: ../../library/os.rst:134
 msgid "The function returns the previous stream-like object in the given slot."
-msgstr "この関数は、指定したスロットの前のストリームオブジェクトを返します。"
+msgstr "この関数は、指定したスロットの前のストリームライク風オブジェクトを返します。"
 
 #: ../../library/os.rst:137
 msgid "Filesystem mounting"
@@ -23533,56 +24079,138 @@ msgid "Altitude, in meters."
 msgstr ""
 
 #: ../../library/zlib.rst:2
-msgid ":mod:`zlib` -- zlib decompression"
-msgstr ":mod:`zlib` -- zlib 展開"
+msgid ":mod:`zlib` -- zlib compression & decompression"
+msgstr ":mod:`zlib` -- zlib 圧縮器 & 展開器"
 
 #: ../../library/zlib.rst:7
 msgid "|see_cpython_module| :mod:`python:zlib`."
 msgstr ""
 
-#: ../../library/zlib.rst:9
+#: ../../library/zlib.rst:20
 msgid ""
-"This module allows to decompress binary data compressed with `DEFLATE "
-"algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ (commonly used in "
-"zlib library and gzip archiver). Compression is not yet implemented."
+"From MicroPython v1.21 onwards, this module may not be present by default"
+" on all MicroPython firmware as it duplicates functionality available in "
+"the :mod:`deflate <deflate>` module."
 msgstr ""
-"このモジュールは `DEFLATE アルゴリズム <https://ja.wikipedia.org/wiki/Deflate>`_ "
-"(一般に zlib ライブラリや gzip で使われている)で圧縮されたバイナリデータを展開することを"
-"可能にします。圧縮はまだ実装されていません。"
+"MicroPython v1.21 以降、このモジュールはデフォルトで全ての MicroPython "
+"ファームウェアに含まれているとは限りません。これは :mod:`deflate <deflate>` "
+"モジュールで利用可能な機能と重複しているためです。"
 
-#: ../../library/zlib.rst:19
+#: ../../library/zlib.rst:24
 msgid ""
-"Return decompressed *data* as bytes. *wbits* is DEFLATE dictionary window"
-" size used during compression (8-15, the dictionary size is power of 2 of"
-" that value). Additionally, if value is positive, *data* is assumed to be"
-" zlib stream (with zlib header). Otherwise, if it's negative, it's "
-"assumed to be raw DEFLATE stream. *bufsize* parameter is for "
-"compatibility with CPython and is ignored."
+"A copy of this module can be installed (or frozen) from :term"
+":`micropython-lib` (`source <https://github.com/micropython/micropython-"
+"lib/blob/master/python-stdlib/zlib/zlib.py>`_). See :ref:`packages` for "
+"more information. This documentation describes that module."
 msgstr ""
-"展開した *data* をbytes 型オブジェクトで返します。 *wbits* は圧縮中に使用される "
-"DEFLATE 辞書ウィンドウのサイズです(8-15、辞書サイズはその値の2のべき乗です)。"
-"さらに、値が正の場合、 *data* は zlib ストリーム(zlib ヘッダー付き)であると"
-"見なされます。値が負の場合は生の DEFLATE ストリームであるとみなされます。 "
-"*bufsize* パラメータは CPython との互換性のためのものであり、無視されます。"
+"このモジュールのコピーは "
+":term:`micropython-lib` (`ソース <https://github.com/micropython/micropython-"
+"lib/blob/master/python-stdlib/zlib/zlib.py>`_)からインストール"
+"(または凍結)できます。詳細については :ref:`packages` を参照してください。"
+"このドキュメントはそのモジュールについて説明しています。"
 
 #: ../../library/zlib.rst:28
 msgid ""
-"Create a `stream` wrapper which allows transparent decompression of "
-"compressed data in another *stream*. This allows to process compressed "
-"streams with data larger than available heap size. In addition to values "
-"described in :func:`decompress`, *wbits* may take values 24..31 (16 + "
-"8..15), meaning that input stream has gzip header."
+"Requires the built-in :mod:`deflate <deflate>` module (available since "
+"MicroPython v1.21)"
 msgstr ""
-"圧縮されたデータの透過的な展開を別の *stream* でできるようにする `stream` ラッパーを"
-"作成します。これにより、利用可能なヒープサイズよりも大きいデータで圧縮ストリームを処理"
-"できます。 :func:`decompress` で説明されている値に加えて、 *wbits* は値 24..31 "
-"(16 + 8..15) を取ることができ、これは入力ストリームが gzip ヘッダを持っていることを"
-"意味します。"
+"組込みの :mod:`deflate <deflate>` モジュール(MicroPython v1.21 以降で利用可能)が"
+"必要です。"
 
-#: ../../library/zlib.rst:37
+#: ../../library/zlib.rst:40
 msgid ""
-"This class is MicroPython extension. It's included on provisional basis "
-"and may be changed considerably or removed in later versions."
+"The *wbits* parameter works the same way as for :meth:`zlib.compress` "
+"with the following additional valid values:"
 msgstr ""
-"この関数は MicroPython の拡張です。これは暫定的に入れられているもので、かなり変更"
-"される可能性がありますし、後のバージョンでは削除されるかもしれません。"
+"*wbits* パラメータは、 :meth:`zlib.compress` と同様に動作しますが、"
+"次の追加の有効な値があります。"
+
+#: ../../library/zlib.rst:43
+msgid ""
+"``0``: Automatically determine the window size from the zlib header "
+"(*data* must be in zlib format)."
+msgstr ""
+"``0``: zlib ヘッダーからウィンドウサイズを自動的に決定します(*data* は zlib "
+"フォーマットである必要があります)。"
+
+#: ../../library/zlib.rst:45
+msgid "``35`` to ``47``: Auto-detect either the zlib or gzip format."
+msgstr "``35`` から ``47``: zlib または gzip フォーマットを自動検出します。"
+
+#: ../../library/zlib.rst:47
+msgid ""
+"As for :meth:`zlib.compress`, see the :mod:`CPython documentation for "
+"zlib <python:zlib>` for more information about the *wbits* parameter. As "
+"for :meth:`zlib.compress`, MicroPython also supports smaller window sizes"
+" than CPython. See more :ref:`MicroPython-specific details "
+"<deflate_wbits>` in the :mod:`deflate <deflate>` module documentation."
+msgstr ""
+":meth:`zlib.compress` と同様に、 *wbits* パラメータに関する詳細については "
+":mod:`CPython の zlib ドキュメント <python:zlib>` を参照してください。"
+":meth:`zlib.compress` と同様に、MicroPython は CPython よりも"
+"小さいウィンドウサイズもサポートしています。"
+"詳細については、 :mod:`deflate <deflate>` モジュールのドキュメントで "
+":ref:`MicroPython 固有の詳細 <deflate_wbits>` を確認してください。"
+
+#: ../../library/zlib.rst:53
+msgid ""
+"If the data to be decompressed requires a larger window size, it will "
+"fail during decompression."
+msgstr ""
+"展開するデータがより大きなウィンドウサイズを必要とする場合、展開の際に失敗します。"
+
+#: ../../library/zlib.rst:60
+msgid ""
+"*wbits* allows you to configure the DEFLATE dictionary window size and "
+"the output format. The window size allows you to trade-off memory usage "
+"for compression level. A larger window size will allow the compressor to "
+"reference fragments further back in the input. The output formats are "
+"\"raw\" DEFLATE (no header/footer), zlib, and gzip, where the latter two "
+"include a header and checksum."
+msgstr ""
+"*wbits* は、DEFLATE 辞書のウィンドウサイズと出力形式を設定できます。"
+"ウィンドウサイズは、メモリ使用量と圧縮レベルのトレードオフを行うために使用されます。"
+"より大きなウィンドウサイズは、圧縮器が入力のさらに以前のフラグメントを参照できるようにします。"
+"出力形式には、ヘッダーとチェックサムが含まれる zlib, gzip、およびヘッダー/フッターの"
+"ない「生」の DEFLATE があります。"
+
+#: ../../library/zlib.rst:67
+msgid ""
+"The low four bits of the absolute value of *wbits* set the base-2 "
+"logarithm of the DEFLATE dictionary window size. So for example, "
+"``wbits=10``, ``wbits=-10``, and ``wbits=26`` all set the window size to "
+"1024 bytes. Valid window sizes are ``5`` to ``15`` inclusive "
+"(corresponding to 32 to 32k bytes)."
+msgstr ""
+"*wbits* の絶対値の下位4ビットは、DEFLATE 辞書のウィンドウサイズの2進対数を表します。"
+"たとえば ``wbits=10``, ``wbits=-10``, ``wbits=26`` はすべてウィンドウサイズを"
+"1024バイトに設定します。有効なウィンドウサイズは ``5`` から ``15`` までの範囲です"
+"(32バイトから32kバイトに相当)。"
+
+#: ../../library/zlib.rst:72
+msgid ""
+"Negative values of *wbits* between ``-5`` and ``-15`` correspond to "
+"\"raw\" output mode, positive values between ``5`` and ``15`` correspond "
+"to zlib output mode, and positive values between ``21`` and ``31`` "
+"correspond to gzip output mode."
+msgstr ""
+"*wbits* の ``-5`` から ``-15`` の負の値は「生」出力モードに対応し、 "
+"``5`` から ``15`` までの正の値は zlib 出力モードに、 ``21`` から ``31`` "
+"までの正の値は gzip 出力モードに対応します。"
+
+#: ../../library/zlib.rst:77
+msgid ""
+"See the :mod:`CPython documentation for zlib <python:zlib>` for more "
+"information about the *wbits* parameter. Note that MicroPython allows for"
+" smaller window sizes, which is useful when memory is constrained while "
+"still achieving a reasonable level of compression. It also speeds up the "
+"compressor. See more :ref:`MicroPython-specific details <deflate_wbits>` "
+"in the :mod:`deflate <deflate>` module documentation."
+msgstr ""
+"*wbits* パラメータに関する詳細については "
+":mod:`CPython の zlib ドキュメント <python:zlib>` を参照してください。"
+"MicroPython では、メモリ制約がある場合でも適度な圧縮レベルを達成できるように、"
+"より小さなウィンドウサイズを使えます。これは圧縮器の処理を高速化することにも役立ちます。 "
+"詳しくは :mod:`deflate <deflate>` モジュールのドキュメントにある "
+":ref:`MicroPython 固有の詳細 <deflate_wbits>` を参照してください。"
+
