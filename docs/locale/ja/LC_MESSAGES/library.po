@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 10:55+0900\n"
-"PO-Revision-Date: 2023-07-23 00:32+0900\n"
+"POT-Creation-Date: 2023-09-22 23:11+0900\n"
+"PO-Revision-Date: 2023-09-23 21:27+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3007,15 +3007,36 @@ msgstr ""
 
 #: ../../library/deflate.rst:44
 msgid ""
-"If *wbits* is set to ``0`` (the default), then a window size of 256 bytes"
-" will be used (corresponding to *wbits* set to ``8``), except when "
-":ref:`decompressing a zlib stream <deflate_wbits_zlib>`."
+"If *wbits* is set to ``0`` (the default), then for compression a window "
+"size of 256 bytes will be used (as if *wbits* was set to 8). For "
+"decompression, it depends on the format:"
 msgstr ""
-"*wbits* が ``0`` に設定されている場合(デフォルト)、ウィンドウサイズとして256バイトが"
-"適用されます(これは *wbits* を8に設定した場合に該当します)。ただし、 "
-":ref:`zlib ストリームを展開 <deflate_wbits_zlib>` する場合は例外です。"
+"*wbits* が ``0`` (デフォルト)に設定されている場合、"
+"(*wbits* が 8 に設定されているかのように)圧縮には256バイトの"
+"ウィンドウサイズが適用されます。展開に関しては、フォーマットに依存します:"
 
 #: ../../library/deflate.rst:48
+msgid "``RAW`` will use 256 bytes (corresponding to *wbits* set to 8)."
+msgstr ""
+"``RAW`` の場合、(*wbits* が 8 に設定されているかのように)256バイトが適用されます。"
+
+#: ../../library/deflate.rst:49
+msgid ""
+"``ZLIB`` (or ``AUTO`` with zlib detected) will use the value from the "
+"zlib header."
+msgstr ""
+"``ZLIB`` (または zlib が検出された場合の ``AUTO``)の場合、"
+"zlib ヘッダからの値が適用されます。"
+
+#: ../../library/deflate.rst:51
+msgid ""
+"``GZIP`` (or ``AUTO`` with gzip detected) will use 32 kilobytes "
+"(corresponding to *wbits* set to 15)."
+msgstr ""
+"``GZIP`` (または gzip が検出された場合の ``AUTO``)の場合、"
+"(*wbits* が 15 に設定されているかのように)32キロバイトが適用されます。
+
+#: ../../library/deflate.rst:54
 msgid ""
 "See the :ref:`window size <deflate_wbits>` notes below for more "
 "information about the window size, zlib, and gzip streams."
@@ -3023,7 +3044,7 @@ msgstr ""
 "ウィンドウサイズ、zlib、gzip ストリームに関する詳細な情報については、"
 "後述する :ref:`ウィンドウサイズ <deflate_wbits>` の注釈を参照してください。"
 
-#: ../../library/deflate.rst:51
+#: ../../library/deflate.rst:57
 msgid ""
 "If *close* is set to ``True`` then the underlying stream will be closed "
 "automatically when the :class:`deflate.DeflateIO` stream is closed. This "
@@ -3036,7 +3057,7 @@ msgstr ""
 "これは、別のストリームをラップする :class:`deflate.DeflateIO` ストリームを"
 "返し、呼出し元が基になるストリームを管理する必要がない場合に便利です。"
 
-#: ../../library/deflate.rst:57
+#: ../../library/deflate.rst:63
 msgid ""
 "If compression is enabled, a given :class:`deflate.DeflateIO` instance "
 "supports both reading and writing. For example, a bidirectional stream "
@@ -3047,16 +3068,16 @@ msgstr ""
 "読み取りと書き込みの両方をサポートします。たとえば、ソケットのような双方向ストリームを"
 "ラップでき、両方向の圧縮/展開が可能になります。
 
-#: ../../library/deflate.rst:70
+#: ../../library/deflate.rst:76
 msgid "Supported values for the *format* parameter."
 msgstr "*format* パラメータに指定できる値。"
 
-#: ../../library/deflate.rst:73 ../../library/gzip.rst:72
+#: ../../library/deflate.rst:79 ../../library/gzip.rst:72
 #: ../../library/wm8960.rst:316
 msgid "Examples"
 msgstr "サンプルコード"
 
-#: ../../library/deflate.rst:75
+#: ../../library/deflate.rst:81
 msgid ""
 "A typical use case for :class:`deflate.DeflateIO` is to read or write a "
 "compressed file from storage:"
@@ -3064,7 +3085,7 @@ msgstr ""
 ":class:`deflate.DeflateIO` の典型的な使用例は、圧縮されたファイルを"
 "ストレージから読み取ったり書き込んだりすることです:"
 
-#: ../../library/deflate.rst:78
+#: ../../library/deflate.rst:84
 msgid ""
 "import deflate\n"
 "\n"
@@ -3091,7 +3112,7 @@ msgstr ""
 "    with deflate.DeflateIO(f, deflate.ZLIB) as d:\n"
 "        # d.read(), d.readinto() などを使用。"
 
-#: ../../library/deflate.rst:92
+#: ../../library/deflate.rst:98
 msgid ""
 "Because :class:`deflate.DeflateIO` is a stream, it can be used for "
 "example with :meth:`json.dump` and :meth:`json.load` (and any other "
@@ -3100,7 +3121,7 @@ msgstr ""
 ":class:`deflate.DeflateIO` はストリームなので、たとえば :meth:`json.dump` や "
 ":meth:`json.load` (およびストリームで使えるもの)と一緒に使えます:"
 
-#: ../../library/deflate.rst:96
+#: ../../library/deflate.rst:102
 msgid ""
 "import deflate, json\n"
 "\n"
@@ -3130,7 +3151,7 @@ msgstr ""
 "    with deflate.DeflateIO(f, deflate.GZIP, 6) as f:\n"
 "        config = json.load(f)"
 
-#: ../../library/deflate.rst:112
+#: ../../library/deflate.rst:118
 msgid ""
 "If your source data is not in a stream format, you can use "
 ":class:`io.BytesIO` to turn it into a stream suitable for use with "
@@ -3139,7 +3160,7 @@ msgstr ""
 "元のデータがストリーム形式でない場合、 :class:`io.BytesIO` を使ってストリーム形式に"
 "変換し、 :class:`deflate.DeflateIO` で使えるようにできます:"
 
-#: ../../library/deflate.rst:115
+#: ../../library/deflate.rst:121
 msgid ""
 "import deflate, io\n"
 "\n"
@@ -3169,109 +3190,102 @@ msgstr ""
 "    d.write(uncompressed_data)\n"
 "compressed_data = stream.getvalue()"
 
-#: ../../library/deflate.rst:134
+#: ../../library/deflate.rst:140
 msgid "Deflate window size"
 msgstr "DEFLATE のウィンドウサイズ"
 
-#: ../../library/deflate.rst:136
+#: ../../library/deflate.rst:142
 msgid ""
 "The window size limits how far back in the stream the (de)compressor can "
 "reference. Increasing the window size will improve compression, but will "
-"require more memory."
+"require more memory and make the compressor slower."
 msgstr ""
-"ウィンドウサイズは、圧縮/解凍器がストリーム内でどれだけ以前のデータに遡れるかを"
+"ウィンドウサイズは、圧縮/展開器がストリーム内でどれだけ以前のデータに遡れるかを"
 "制限します。ウィンドウサイズを増やすと圧縮が改善されますが、より多くのメモリが必要に"
-"なります。"
+"なり、処理速度も低下します。"
 
-#: ../../library/deflate.rst:140
+#: ../../library/deflate.rst:146
 msgid ""
-"However, just because a given window size is used for compression, this "
-"does not mean that the stream will require the same size window for "
-"decompression, as the stream may not reference data as far back as the "
-"window allows (for example, if the length of the input is smaller than "
-"the window size)."
+"If an input stream was compressed a given window size, then `DeflateIO` "
+"using a smaller window size will fail mid-way during decompression with "
+":exc:`OSError`, but only if a back-reference actually refers back further"
+" than the decompressor's window size. This means it may be possible to "
+"decompress with a smaller window size. For example, this would trivially "
+"be the case if the original uncompressed data is shorter than the window "
+"size."
 msgstr ""
-"ただし、圧縮に特定のウィンドウサイズが使われたからと言って、同じサイズのウィンドウが"
-"展開にも必要とされるわけではありません。ストリームがウィンドウが許容する範囲よりも"
-"以前のデータを参照しない場合もあります(たとえば、入力の長さがウィンドウサイズより"
-"小さい場合など)。"
-
-#: ../../library/deflate.rst:145
-msgid ""
-"If the decompressor uses a smaller window size than necessary for the "
-"input data stream, it will fail mid-way through decompression with "
-":exc:`OSError`."
-msgstr ""
-"展開に必要なウィンドウサイズよりも小さいウィンドウサイズを展開器が使うと、"
-":exc:`OSError` が発生し、展開の途中で失敗します。"
-
-#: ../../library/deflate.rst:150
-msgid ""
-"The zlib format includes a header which specifies the window size used to"
-" compress the data (which due to the above, may be larger than the size "
-"required for the decompressor)."
-msgstr ""
-"zlib フォーマットには、データの圧縮に使ったウィンドウサイズを指定するヘッダーが"
-"含まれています(前述の理由により、展開器に必要なサイズよりも大きい場合もあります)。"
+"入力ストリームを指定のウィンドウサイズで圧縮した場合、それより小さなウィンドウサイズを"
+"使う `DeflateIO` は、実際に展開のウィンドウサイズよりも遡って参照している場合に限って、 "
+"展開途中で :exc:`OSError` により失敗します。"
+"これは、より小さなウィンドウサイズで展開できる可能性があることを意味します。"
+"たとえば、元の非圧縮データがウィンドウサイズよりも小さい場合が、これに該当する"
+"自明なケースです。"
 
 #: ../../library/deflate.rst:154
-msgid ""
-"If this header value is lower than the specified *wbits* value, then the "
-"header value will be used instead in order to reduce the memory "
-"allocation size. If the *wbits* parameter is zero (the default), then the"
-" header value will only be used if it is less than the maximum value of "
-"``15`` (which is default value used by most compressors [#f1]_)."
-msgstr ""
-"このヘッダーの値が指定した *wbits* 値よりも小さい場合、メモリの割り当てサイズを"
-"減らすためにヘッダーの値を代わりに使います。 *wbits* パラメータがゼロ(デフォルト)の場合、"
-"ヘッダーの値は、最大値である15よりも小さい場合にのみ使います(これはほとんどの圧縮器で"
-"デフォルトで使われる値です [#f1]_)。"
+msgid "Decompression"
+msgstr "展開"
 
-#: ../../library/deflate.rst:160
+#: ../../library/deflate.rst:156
 msgid ""
-"In other words, if the source zlib stream has been compressed with a "
-"custom window size (i.e. less than ``15``), then using the default "
-"*wbits* parameter of zero will decompress any such stream."
+"The zlib format includes a header which specifies the window size that "
+"was used to compress the data. This indicates the maximum window size "
+"required to decompress this stream. If this header value is less than the"
+" specified *wbits* value (or if *wbits* is unset), then the header value "
+"will be used."
 msgstr ""
-"言い換えれば、元の zlib ストリームがカスタムウィンドウサイズで圧縮されている場合"
-"(つまり15より小さい場合)、デフォルトの *wbits* パラメータ0を適用してストリームを"
-"展開します。"
+"zlib フォーマットには、データを圧縮するのに使ったウィンドウサイズを指定するヘッダが"
+"含まれています。これは、このストリームを展開するのに必要な最大のウィンドウサイズを"
+"示します。このヘッダの値が指定された *wbits* 値よりも小さい場合(または *wbits* が"
+"設定されていない場合)、ヘッダの値を適用します。"
 
-#: ../../library/deflate.rst:164
+#: ../../library/deflate.rst:161
 msgid ""
-"The gzip file format does not include the window size in the header. "
-"Additionally, most compressor libraries (including CPython's "
-"implementation of :class:`gzip.GzipFile`) will default to the maximum "
-"possible window size. This makes it difficult to decompress most gzip "
-"streams on MicroPython unless your board has a lot of free RAM."
+"The gzip format does not include the window size in the header, and "
+"assumes that all gzip compressors (e.g. the ``gzip`` utility, or "
+"CPython's implementation of :class:`gzip.GzipFile`) use the maximum "
+"window size of 32kiB. For this reason, if the *wbits* parameter is not "
+"set, the decompressor will use a 32 kiB window size (corresponding to "
+"*wbits* set to 15). This means that to be able to decompress an arbitrary"
+" gzip stream, you must have at least this much RAM available. If you "
+"control the source data, consider instead using the zlib format with a "
+"smaller window size."
 msgstr ""
-"gzip ファイルフォーマットにはヘッダーにウィンドウサイズが含まれていません。"
-"さらに、ほとんどの圧縮器ライブラリ(CPython の :class:`gzip.GzipFile` "
-"の実装を含む)は、通常最大のウィンドウサイズをデフォルトで使います。"
-"このため、MicroPython 上でほとんどの gzip ストリームを展開するのが難しく"
-"なります(ボードに十分な空きRAMがある場合を除きます)。"
+"gzip フォーマットには、ヘッダにウィンドウサイズが含まれておらず、すべての gzip 圧縮器"
+"(たとえば gzip ユーティリティや CPython の :class:`gzip.GzipFile` の処理系など)"
+"は 32kiB の最大ウィンドウサイズを使うと仮定しています。そのため、 *wbits* パラメータが"
+"設定されていない場合、展開器は(*wbits* に15が設定されているかのように) 32kiB の"
+"ウィンドウサイズを使います。これは、任意の gzip ストリームを展開するために、少なくとも"
+"この程度のRAMが使える必要があることを意味します。ソースデータを決める権限を有している"
+"のであれば、ウィンドウサイズが小さい zlib フォーマットを代わりに使うことを"
+"検討してください。"
 
 #: ../../library/deflate.rst:170
 msgid ""
-"If you control the source of the compressed data, then prefer to use the "
-"zlib format, with a window size that is suitable for your target device."
+"The raw format has no header and therefore does not include any "
+"information about the window size. If *wbits* is not set, then it will "
+"default to a window size of 256 bytes, which may not be large enough for "
+"a given stream. Therefore it is recommended that you should always "
+"explicitly set *wbits* if using the raw format."
 msgstr ""
-"圧縮データのソースを制御できる場合、ターゲットデバイスに適したウィンドウサイズを持つ "
-"zlib フォーマットの利用をお勧めします。"
+"raw フォーマットにはヘッダがないため、ウィンドウサイズに関する情報は含まれていません。 "
+"*wbits* が設定されていない場合、ウィンドウサイズは256バイトにデフォルトで設定され、"
+"特定のストリームには十分な大きさでないかもしれません。そのため、raw フォーマットを"
+"使う場合は常に明示的に *wbits* を設定することをお勧めします。"
 
-#: ../../library/deflate.rst:174
-msgid "Footnotes"
-msgstr "脚注"
+#: ../../library/deflate.rst:177
+msgid "Compression"
+msgstr "圧縮"
 
-#: ../../library/deflate.rst:175
+#: ../../library/deflate.rst:179
 msgid ""
-"The assumption here is that if the header value is the default used by "
-"most compressors, then nothing is known about the likely required window "
-"size and we should ignore it."
+"For compression, MicroPython will default to a window size of 256 bytes "
+"for all formats. This provides a reasonable amount of compression with "
+"minimal memory usage and fast compression time, and will generate output "
+"that will work with any decompressor."
 msgstr ""
-"ここでの前提条件は、もしヘッダーの値がほとんどの圧縮器でデフォルトとして使われる値であれば、"
-"解凍において必要なウィンドウサイズに関する情報が何も分かっていないということであり、"
-"それを無視すべきだということです。"
+"MicroPython の場合、圧縮のすべてのフォーマットに対してデフォルトでウィンドウサイズを"
+"256バイトに設定します。これは、最小のメモリ使用量と高速な圧縮時間で、どの展開器でも"
+"動作する出力を生成します。"
 
 #: ../../library/errno.rst:2
 msgid ":mod:`errno` -- system error codes"
@@ -3596,9 +3610,7 @@ msgid ""
 "for network buffers and other data. This data is useful to get a sense of"
 " how much memory is available to ESP-IDF and the networking stack in "
 "particular. It may shed some light on situations where ESP-IDF operations"
-" fail due to allocation failures. The information returned is *not* "
-"useful to troubleshoot Python allocation failures, use "
-"`micropython.mem_info()` instead."
+" fail due to allocation failures."
 msgstr ""
 "ESP-IDF ヒープメモリ領域の情報を返します。"
 "MicroPython はヒープメモリ領域の１つを使っており、他は ESP-IDF が"
@@ -3606,10 +3618,8 @@ msgstr ""
 "この情報は特に ESP-IDF とネットワークスタックで利用可能なメモリ量を"
 "把握するのに役立ちます。また、アロケーションの失敗により ESP-IDF の"
 "操作が失敗した場合の状況を知ることができるかもしれません。"
-"返される情報は Python のアロケーション失敗のトラブルシューティングには"
-"役に立ちませんので、代わりに `micropython.mem_info()` を使ってください。"
 
-#: ../../library/esp32.rst:57
+#: ../../library/esp32.rst:55
 msgid ""
 "The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` "
 "values but the two most useful ones are predefined as `esp32.HEAP_DATA` "
@@ -3621,7 +3631,7 @@ msgstr ""
 "`esp32.HEAP_DATA` はデータヒープ領域用であり、 "
 "`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
 
-#: ../../library/esp32.rst:61
+#: ../../library/esp32.rst:59
 msgid ""
 "The return value is a list of 4-tuples, where each 4-tuple corresponds to"
 " one heap and contains: the total bytes, the free bytes, the largest free"
@@ -3631,11 +3641,11 @@ msgstr ""
 "タプルの各項目は、合計バイト数、空きバイト数、最大空きブロック数、"
 "時間経過にともなう最小空きブロック数を意味します。"
 
-#: ../../library/esp32.rst:65
+#: ../../library/esp32.rst:63
 msgid "Example after booting::"
 msgstr "ブート後の例::"
 
-#: ../../library/esp32.rst:67
+#: ../../library/esp32.rst:65
 msgid ""
 ">>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)\n"
 "[(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512,"
@@ -3643,11 +3653,44 @@ msgid ""
 " (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]"
 msgstr ""
 
-#: ../../library/esp32.rst:72
+#: ../../library/esp32.rst:69
+msgid ""
+"Free IDF heap memory in the `esp32.HEAP_DATA` region is available to be "
+"automatically added to the MicroPython heap to prevent a MicroPython "
+"allocation from failing. However, the information returned here is "
+"otherwise *not* useful to troubleshoot Python allocation failures. "
+":func:`micropython.mem_info()` and :func:`gc.mem_free()` should be used "
+"instead:"
+msgstr ""
+"`esp32.HEAP_DATA` 領域中の空き IDF ヒープメモリは、MicroPython のアロケーションが"
+"失敗するのを防ぐよう自動的に MicroPython ヒープに追加できるようになっています。"
+"ただし、ここで返される情報はそれ以外の Python アロケーション失敗のトラブルシューティング"
+"には *役立ちません* 。代わりに :func:`micropython.mem_info()` および "
+":func:`gc.mem_free()` を使ってください:"
+
+#: ../../library/esp32.rst:76
+msgid ""
+"The \"max new split\" value in :func:`micropython.mem_info()` output "
+"corresponds to the largest free block of ESP-IDF heap that could be "
+"automatically added on demand to the MicroPython heap."
+msgstr ""
+":func:`micropython.mem_info()` の出力にある \"max new split\" 値は、"
+"ESP-IDF ヒープの最大の空きブロックに対応し、必要に応じて MicroPython ヒープに"
+"自動的に追加できるものです。"
+
+#: ../../library/esp32.rst:80
+msgid ""
+"The result of :func:`gc.mem_free()` is the total of the current \"free\" "
+"and \"max new split\" values printed by :func:`micropython.mem_info()`."
+msgstr ""
+":func:`gc.mem_free()` の結果は、 :func:`micropython.mem_info()` によって"
+"表示される現在の \"free\" と \"max new split\" の値の合計です。"
+
+#: ../../library/esp32.rst:85
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:74
+#: ../../library/esp32.rst:87
 msgid ""
 "This class gives access to the partitions in the device's flash memory "
 "and includes methods to enable over-the-air (OTA) updates."
@@ -3655,7 +3698,7 @@ msgstr ""
 "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 "加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:79
+#: ../../library/esp32.rst:92
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -3666,7 +3709,7 @@ msgstr ""
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。 "
 "*block_size* は個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:85
+#: ../../library/esp32.rst:98
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
@@ -3677,18 +3720,18 @@ msgstr ""
 "注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
 "は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:89
+#: ../../library/esp32.rst:102
 msgid ""
 "*block_size* specifies the byte size of an individual block used by the "
 "returned objects."
 msgstr ""
 "*block_size* は、返されるオブジェクトが使う個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:94
+#: ../../library/esp32.rst:107
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:102 ../../library/pyb.Flash.rst:44
+#: ../../library/esp32.rst:115 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`os.AbstractBlockDev`."
@@ -3696,11 +3739,23 @@ msgstr ""
 "これらのメソッドは :class:`os.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:108
+#: ../../library/esp32.rst:121
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:112
+#: ../../library/esp32.rst:123
+msgid ""
+"Do not enter :func:`deepsleep<machine.deepsleep>` after changing the OTA "
+"boot partition, without first performing a hard "
+":func:`reset<machine.reset>` or power cycle. This ensures the bootloader "
+"will validate the new image before booting."
+msgstr ""
+"OTA ブートパーティションを変更した後、ハード :func:`reset<machine.reset>` "
+"または電源の入れ直しをせずに :func:`deepsleep<machine.deepsleep>` に"
+"入らないでください。そうしておけば、ブートローダーが新しいイメージをブートする"
+"前に新しいイメージの検証を行います。"
+
+#: ../../library/esp32.rst:130
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object. Typical usage is "
@@ -3711,7 +3766,7 @@ msgstr ""
 "返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
 "これは現在更新中のパーティションの次のパーティションを返します。"
 
-#: ../../library/esp32.rst:118
+#: ../../library/esp32.rst:136
 msgid ""
 "Signals that the current boot is considered successful. Calling "
 "``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
@@ -3732,7 +3787,7 @@ msgstr ""
 "呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
 "場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:133
+#: ../../library/esp32.rst:151
 msgid ""
 "Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
 " is the partition that will be booted at the next reset and ``RUNNING`` "
@@ -3742,7 +3797,7 @@ msgstr ""
 "``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
 "は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:140
+#: ../../library/esp32.rst:158
 msgid ""
 "Used in `Partition.find` to specify the partition type: ``APP`` is for "
 "bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
@@ -3754,15 +3809,15 @@ msgstr ""
 "``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
 "パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
 
-#: ../../library/esp32.rst:147
+#: ../../library/esp32.rst:165
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:152
+#: ../../library/esp32.rst:170
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:154
+#: ../../library/esp32.rst:172
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -3774,7 +3829,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:159
+#: ../../library/esp32.rst:177
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -3804,7 +3859,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:171
+#: ../../library/esp32.rst:189
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -3816,7 +3871,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:177
+#: ../../library/esp32.rst:195
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (0-32,768) number. There are "
@@ -3826,7 +3881,7 @@ msgstr ""
 "数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
 "分周器を使えます。"
 
-#: ../../library/esp32.rst:181
+#: ../../library/esp32.rst:199
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -3837,7 +3892,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:186
+#: ../../library/esp32.rst:204
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -3847,7 +3902,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:190
+#: ../../library/esp32.rst:208
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -3856,7 +3911,7 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:197
+#: ../../library/esp32.rst:215
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -3875,7 +3930,7 @@ msgstr ""
 "ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
 "が低電圧を意味します。"
 
-#: ../../library/esp32.rst:206
+#: ../../library/esp32.rst:224
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -3886,7 +3941,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:213
+#: ../../library/esp32.rst:231
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -3894,7 +3949,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:218
+#: ../../library/esp32.rst:236
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -3902,7 +3957,7 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:223
+#: ../../library/esp32.rst:241
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
@@ -3914,7 +3969,7 @@ msgstr ""
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
 
-#: ../../library/esp32.rst:230
+#: ../../library/esp32.rst:248
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
@@ -3927,11 +3982,11 @@ msgstr ""
 "ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
 "転送を停止します。"
 
-#: ../../library/esp32.rst:237
+#: ../../library/esp32.rst:255
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
 msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:239
+#: ../../library/esp32.rst:257
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -3941,7 +3996,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:243
+#: ../../library/esp32.rst:261
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -3949,7 +4004,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:246
+#: ../../library/esp32.rst:264
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -3957,7 +4012,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:249
+#: ../../library/esp32.rst:267
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and 32767 units. Output levels are any value that can "
@@ -3968,7 +4023,7 @@ msgstr ""
 "1から32767の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:254
+#: ../../library/esp32.rst:272
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -3977,7 +4032,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:257
+#: ../../library/esp32.rst:275
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -3990,7 +4045,7 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:265
+#: ../../library/esp32.rst:283
 msgid ""
 "Select which RMT channel is used by the `machine.bitstream` "
 "implementation. *value* can be ``None`` or a valid RMT channel number.  "
@@ -4000,7 +4055,7 @@ msgstr ""
 "*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
 "デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
 
-#: ../../library/esp32.rst:269
+#: ../../library/esp32.rst:287
 msgid ""
 "Passing in ``None`` disables the use of RMT and instead selects a bit-"
 "banging implementation for `machine.bitstream`."
@@ -4008,18 +4063,18 @@ msgstr ""
 "``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
 "ビットバング実装が選択されます。"
 
-#: ../../library/esp32.rst:272
+#: ../../library/esp32.rst:290
 msgid ""
 "Passing in no argument will not change the channel.  This function "
 "returns the current channel number."
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:276
+#: ../../library/esp32.rst:294
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:278
+#: ../../library/esp32.rst:296
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -4027,7 +4082,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:283
+#: ../../library/esp32.rst:301
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -4035,31 +4090,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:288
+#: ../../library/esp32.rst:306
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:292
+#: ../../library/esp32.rst:310
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:296
+#: ../../library/esp32.rst:314
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:300
+#: ../../library/esp32.rst:318
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:309
+#: ../../library/esp32.rst:327
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:312
+#: ../../library/esp32.rst:330
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:314
+#: ../../library/esp32.rst:332
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -4073,7 +4128,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:321
+#: ../../library/esp32.rst:339
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -4082,14 +4137,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:326
+#: ../../library/esp32.rst:344
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:331
+#: ../../library/esp32.rst:349
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -4097,7 +4152,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:335
+#: ../../library/esp32.rst:353
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -4105,7 +4160,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:340
+#: ../../library/esp32.rst:358
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -4118,7 +4173,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:347
+#: ../../library/esp32.rst:365
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -4130,11 +4185,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:353
+#: ../../library/esp32.rst:371
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:357
+#: ../../library/esp32.rst:375
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -6174,8 +6229,8 @@ msgid "Run a garbage collection."
 msgstr "ガベージコレクションを実行します。"
 
 #: ../../library/gc.rst:27
-msgid "Return the number of bytes of heap RAM that are allocated."
-msgstr "割り当てられているヒープ RAM のバイト数を返します。"
+msgid "Return the number of bytes of heap RAM that are allocated by Python code."
+msgstr "Python コードによって割り当てられているヒープ RAM のバイト数を返します。"
 
 #: ../../library/gc.rst:29 ../../library/gc.rst:39 ../../library/gc.rst:61
 #: ../../library/binascii.rst:19 ../../library/io.rst:15
@@ -6195,10 +6250,11 @@ msgstr "この関数は、MicroPythonの拡張機能です。"
 
 #: ../../library/gc.rst:36
 msgid ""
-"Return the number of bytes of available heap RAM, or -1 if this amount is"
-" not known."
+"Return the number of bytes of heap RAM that is available for Python code "
+"to allocate, or -1 if this amount is not known."
 msgstr ""
-"使用可能なヒープ RAM のバイト数を返します。この量がわからない場合は -1 を返します。"
+"Python 使用可能なコードが割り当てられるヒープ RAM のバイト数を返します。"
+"この量がわからない場合は -1 を返します。"
 
 #: ../../library/gc.rst:46
 msgid ""
@@ -12369,22 +12425,18 @@ msgid ""
 "This module is only included by default on the ESP8266, ESP32 and RP2 "
 "ports. On STM32 / Pyboard and others, you can either install the "
 "``neopixel`` package using :term:`mip`, or you can download the module "
-"directly from <https://raw.githubusercontent.com/micropython/micropython-"
-"lib/master/micropython/drivers/led/neopixel/neopixel.py>`_ and copy it to"
-" the filesystem."
+"directly from :term:`micropython-lib` and copy it to the filesystem."
 msgstr ""
 "このモジュールは ESP8266、ESP32、RP2 のポートにのみデフォルトで含まれています。"
 "STM32 / Pyboard などでは :term:`mip` を使って ``neopixel`` パッケージを"
-"インストールするか、 直接 "
-"<https://raw.githubusercontent.com/micropython/micropython-"
-"lib/master/micropython/drivers/led/neopixel/neopixel.py> からモジュールを"
+"インストールするか、 直接 :term:`micropython-lib` からモジュールを"
 "ダウンロードして、ファイルシステムにコピーしてください。"
 
-#: ../../library/neopixel.rst:17
+#: ../../library/neopixel.rst:15
 msgid "class NeoPixel"
 msgstr "クラス NeoPixel"
 
-#: ../../library/neopixel.rst:19
+#: ../../library/neopixel.rst:17
 msgid ""
 "This class stores pixel data for a WS2812 LED strip connected to a pin. "
 "The application should set pixel data and then call "
@@ -12394,7 +12446,7 @@ msgstr ""
 "アプリケーションは、ピクセルデータを設定し、ストリップを更新する準備ができたら、 "
 ":meth:`NeoPixel.write` を呼び出す必要があります。"
 
-#: ../../library/neopixel.rst:25
+#: ../../library/neopixel.rst:23
 msgid ""
 "import neopixel\n"
 "\n"
@@ -12422,50 +12474,50 @@ msgstr ""
 "# ストリップを更新\n"
 "n.write()"
 
-#: ../../library/neopixel.rst:43
+#: ../../library/neopixel.rst:41
 msgid "Construct an NeoPixel object.  The parameters are:"
 msgstr "NeoPixel オブジェクトを構築します。パラメータは次のとおりです:"
 
-#: ../../library/neopixel.rst:45
+#: ../../library/neopixel.rst:42
 msgid "*pin* is a machine.Pin instance."
 msgstr "*pin* は machine.Pin のインスタンスです。"
 
-#: ../../library/neopixel.rst:46
+#: ../../library/neopixel.rst:44
 msgid "*n* is the number of LEDs in the strip."
 msgstr "*n* はストリップにある LED の数です。"
 
-#: ../../library/neopixel.rst:47
+#: ../../library/neopixel.rst:45
 msgid "*bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs."
 msgstr "*bpp* は RGB LED の場合で 3、RGBW LED の場合で 4 です。"
 
-#: ../../library/neopixel.rst:48
+#: ../../library/neopixel.rst:46
 msgid "*timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz)."
 msgstr "*timing* は 40kKHz で 0、800kHz で 1 です(たいていは 800kHz)。"
 
-#: ../../library/neopixel.rst:55
+#: ../../library/neopixel.rst:53
 msgid ""
 "Sets the value of all pixels to the specified *pixel* value (i.e. an "
 "RGB/RGBW tuple)."
 msgstr ""
 "指定した *pixel* 値(すなわち RGB/RGBW のタプル)を、すべてのピクセルの値に設定します。"
 
-#: ../../library/neopixel.rst:60
+#: ../../library/neopixel.rst:58
 msgid "Returns the number of LEDs in the strip."
 msgstr "ストリップにある LED の数を返します。"
 
-#: ../../library/neopixel.rst:64
+#: ../../library/neopixel.rst:62
 msgid "Set the pixel at *index* to the value, which is an RGB/RGBW tuple."
 msgstr "*index* で指定したピクセルに値(RGB/RGBW のタプル)を設定します。"
 
-#: ../../library/neopixel.rst:68
+#: ../../library/neopixel.rst:66
 msgid "Returns the pixel at *index* as an RGB/RGBW tuple."
 msgstr "*index* で指定したピクセルの値(RGB/RGBW のタプル)を返します。"
 
-#: ../../library/neopixel.rst:71
+#: ../../library/neopixel.rst:69
 msgid "Output methods"
 msgstr "出力メソッド"
 
-#: ../../library/neopixel.rst:75
+#: ../../library/neopixel.rst:73
 msgid "Writes the current pixel data to the strip."
 msgstr "現在のピクセルデータをストリップに書き出します。"
 
@@ -12764,10 +12816,10 @@ msgstr "デフォルトのコード ``\"XX\"`` は、 ``\"XX\"`` リージョン
 #: ../../library/network.rst:174
 msgid ""
 "Get or set the hostname that will identify this device on the network. It"
-" is applied to all interfaces."
+" will be used by all interfaces."
 msgstr ""
 "ネットワーク上でこのデバイスを識別するために使うホスト名を取得または設定します。"
-"これはすべてのインターフェイスに適用されます。"
+"これはすべてのインターフェイスで使われます。"
 
 #: ../../library/network.rst:179
 msgid "This hostname is used for:"
@@ -12791,14 +12843,27 @@ msgstr ""
 "パラメータを指定せずに関数を呼び出した場合、現在のホスト名が返されます。"
 
 #: ../../library/network.rst:185
+msgid ""
+"A change in hostname is typically only applied during connection. For "
+"DHCP this is because the hostname is part of the DHCP client request, and"
+" the implementation of mDNS in most ports only initialises the hostname "
+"once during connection. For this reason, you must set the hostname before"
+" activating/connecting your network interfaces."
+msgstr ""
+"ホスト名の変更は通常、接続中にのみ適用されます。DHCP の場合、ホスト名は DHCP "
+"クライアントリクエストの一部であり、ほとんどのポートでの mDNS の実装は接続中に"
+"一度だけホスト名を初期化します。そのため、ネットワークインターフェイスを"
+"アクティブ化/接続する前にホスト名を設定する必要があります。"
+
+#: ../../library/network.rst:191
 msgid "The default hostname is typically the name of the board."
 msgstr "デフォルトのホスト名は通常、ボードの名前になります。"
 
-#: ../../library/network.rst:189
+#: ../../library/network.rst:195
 msgid "Get or set the PHY mode."
 msgstr "PHY モードを取得または設定します。"
 
-#: ../../library/network.rst:191
+#: ../../library/network.rst:197
 msgid ""
 "If the *mode* parameter is provided, the PHY mode will be set to this "
 "value. If the function is called without parameters, it returns the "
@@ -12807,23 +12872,23 @@ msgstr ""
 "*mode* パラメータを指定した場合、この値に PHY モードを設定します。"
 "パラメータなしで関数を呼び出すと、現在の PHY モードが返されます。"
 
-#: ../../library/network.rst:198
+#: ../../library/network.rst:204
 msgid "The possible modes are defined as constants:"
 msgstr "指定可能なモードは定数として定義されています:"
 
-#: ../../library/network.rst:196
+#: ../../library/network.rst:202
 msgid "``MODE_11B`` -- IEEE 802.11b,"
 msgstr ""
 
-#: ../../library/network.rst:197
+#: ../../library/network.rst:203
 msgid "``MODE_11G`` -- IEEE 802.11g,"
 msgstr ""
 
-#: ../../library/network.rst:198
+#: ../../library/network.rst:204
 msgid "``MODE_11N`` -- IEEE 802.11n."
 msgstr ""
 
-#: ../../library/network.rst:200
+#: ../../library/network.rst:206
 msgid "Availability: ESP8266."
 msgstr "可用性: ESP8266。"
 
@@ -14315,6 +14380,77 @@ msgstr ""
 "受け付けられる他の操作の戻り値は、成功した場合は 0 を返し、"
 "失敗した場合はゼロ以外を返します。失敗した場合の戻り値は ``OSError`` "
 "の errno コードです。"
+
+#: ../../library/platform.rst:2
+msgid ":mod:`platform` -- access to underlying platform’s identifying data"
+msgstr ":mod:`platform` -- 基盤プラットフォームの識別データへのアクセス"
+
+#: ../../library/platform.rst:7
+msgid "|see_cpython_module| :mod:`python:platform`."
+msgstr ""
+
+#: ../../library/platform.rst:9
+msgid ""
+"This module tries to retrieve as much platform-identifying data as "
+"possible. It makes this information available via function APIs."
+msgstr ""
+"このモジュールは、プラットフォームを識別するデータを可能な限り取得しようとします。"
+"この情報は関数APIを介して利用可能になります。"
+
+#: ../../library/platform.rst:17
+msgid ""
+"Returns a string identifying the underlying platform. This string is "
+"composed of several substrings in the following order, delimited by "
+"dashes (``-``):"
+msgstr ""
+"基盤となるプラットフォームを識別する文字列を返します。"
+"この文字列は、複数のダッシュ(``-``)で区切った部分文字列が次の順序で並んだものです。"
+
+#: ../../library/platform.rst:20
+msgid "the name of the platform system (e.g. Unix, Windows or MicroPython)"
+msgstr "プラットフォームシステムの名前(例: Unix、Windows、MicroPython)"
+
+#: ../../library/platform.rst:21
+msgid "the MicroPython version"
+msgstr "MicroPythonのバージョン"
+
+#: ../../library/platform.rst:22
+msgid "the architecture of the platform"
+msgstr "プラットフォームのアーキテクチャ"
+
+#: ../../library/platform.rst:23
+msgid "the version of the underlying platform"
+msgstr "基盤となるプラットフォームのバージョン"
+
+#: ../../library/platform.rst:24
+msgid ""
+"the concatenation of the name of the libc that MicroPython is linked to "
+"and its corresponding version."
+msgstr ""
+"MicroPython がリンクしている libc の名前とそれに対応するバージョンを連結したもの。"
+
+#: ../../library/platform.rst:27
+msgid ""
+"For example, this could be ``\"MicroPython-1.20.0-xtensa-IDFv4.2.4-with-"
+"newlib3.0.0\"``."
+msgstr ""
+"たとえば、これは ``\"MicroPython-1.20.0-xtensa-IDFv4.2.4-with-newlib3.0.0\"`` "
+"のようになるかもしれません。"
+
+#: ../../library/platform.rst:32
+msgid "Returns a string identifying the compiler used for compiling MicroPython."
+msgstr ""
+"MicroPython をコンパイルする際に使ったコンパイラを識別する文字列を返します。"
+
+#: ../../library/platform.rst:36
+msgid ""
+"Returns a tuple of strings *(lib, version)*, where *lib* is the name of "
+"the libc that MicroPython is linked to, and *version* the corresponding "
+"version of this libc."
+msgstr ""
+"*(lib, version)* という2つの文字列からなるタプルを返します。"
+"ここで、 *lib* は MicroPython がリンクされている libc の名前であり、 "
+"*version* はこの libc の対応するバージョンです。"
 
 #: ../../library/pyb.rst:2
 msgid ":mod:`pyb` --- functions related to the board"
@@ -21422,6 +21558,82 @@ msgstr "SYS チャンネルで HCI コマンドを実行します。実行は同
 #: ../../library/stm.rst:104
 msgid "Returns a bytes object with the result of the SYS command."
 msgstr "SYS コマンドの結果をバイト列オブジェクトで返します。"
+
+#: ../../library/stm.rst:107
+msgid "Functions specific to STM32WLxx MCUs"
+msgstr "STM32WLxx MCU に固有の関数"
+
+#: ../../library/stm.rst:109
+msgid ""
+"These functions are available on STM32WLxx microcontrollers, and interact"
+" with the integrated \"SUBGHZ\" radio modem peripheral."
+msgstr ""
+"これらの関数は STM32WLxx マイクロコントローラで利用でき、"
+"統合されている \"SUBGHZ\" 無線モデムペリフェラルと相互に連携します。"
+
+#: ../../library/stm.rst:114
+msgid ""
+"Sets the internal SPI CS pin attached to the radio peripheral. The "
+"``level`` argument is active-low: a truthy value means \"CS pin high\" "
+"and de-asserts the signal, a falsey value means \"CS pin low\" and "
+"asserts the signal."
+msgstr ""
+"無線ペリフェラルに接続された内部 SPI CS ピンを設定します。 "
+"``level`` 引数は有効/無効です。"
+"真の値は「CSピンを高」にし、シグナルを非アサート化し、"
+"偽の値は「CSピンを低」にし、シグナルをアサート化します。"
+
+#: ../../library/stm.rst:118
+msgid ""
+"The internal-only SPI bus corresponding to this CS signal can be "
+"instantiated using :ref:`machine.SPI()<machine.SPI>` ``id`` value "
+"``\"SUBGHZ\"``."
+msgstr ""
+"この CS シグナルに対応する内部専用の SPI バスは、 "
+":ref:`machine.SPI()<machine.SPI>` の ``id`` 値を "
+"``\"SUBGHZ\"`` としてインスタンス化できます。"
+
+#: ../../library/stm.rst:123
+msgid ""
+"Sets the internal SUBGHZ radio interrupt handler to the provided "
+"function. The handler function is called as a \"hard\" interrupt in "
+"response to radio peripheral interrupts. See :ref:`isr_rules` for more "
+"information about interrupt handlers in MicroPython."
+msgstr ""
+"指定した関数を内部の SUBGHZ 無線の割り込みハンドラとして設定します。"
+"無線ペリフェラルの割り込みに応答して、ハンドラ関数は「ハード」割り込み"
+"として呼び出されます。MicroPython の割り込みハンドラについての詳細は "
+":ref:`isr_rules` を参照してください。"
+
+#: ../../library/stm.rst:128
+msgid ""
+"Calling this function with the handler argument set to None disables the "
+"IRQ."
+msgstr ""
+"handler 引数を None にしてこの関数を呼び出すと、IRQ が無効になります。"
+
+#: ../../library/stm.rst:130
+msgid ""
+"Due to a hardware limitation, each time this IRQ fires MicroPython "
+"disables it before calling the handler. In order to receive another "
+"interrupt, Python code should call ``subghz_irq()`` to set the handler "
+"again. This has the side effect of re-enabling the IRQ."
+msgstr ""
+"ハードウェアの制約により、この IRQ が発生するたびに MicroPython はハンドラを"
+"呼び出す前に IRQ を無効にします。別の割り込みを受信するために、Python コードは"
+"再び ``subghz_irq()`` を呼び出してハンドラを設定する必要があります。"
+"これにより IRQ が再度有効になる副作用があります。"
+
+#: ../../library/stm.rst:137
+msgid ""
+"Return a ``bool`` corresponding to the internal \"RFBUSYS\" signal from "
+"the radio peripheral. Before sending a new command to the radio over SPI "
+"then this function should be polled until it returns ``False``, to "
+"confirm the busy signal is de-asserted."
+msgstr ""
+"無線ペリフェラルからの内部の \"RFBUSYS\" シグナルに対応するブール値を返します。"
+"新しいコマンドを SPI 経由で無線送信する前に、この関数が ``False`` を返すまでポーリング"
+"する必要があります。これにより、ビジーシグナルが非アサート化されていることを確認します。"
 
 #: ../../library/struct.rst:2
 msgid ":mod:`struct` -- pack and unpack primitive data types"

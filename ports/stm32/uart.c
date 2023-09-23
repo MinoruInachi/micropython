@@ -491,9 +491,15 @@ bool uart_init(pyb_uart_obj_t *uart_obj,
         #if defined(MICROPY_HW_UART10_TX) && defined(MICROPY_HW_UART10_RX)
         case PYB_UART_10:
             uart_unit = 10;
+            #if defined(UART10)
             UARTx = UART10;
             irqn = UART10_IRQn;
             __HAL_RCC_UART10_CLK_ENABLE();
+            #else
+            UARTx = USART10;
+            irqn = USART10_IRQn;
+            __HAL_RCC_USART10_CLK_ENABLE();
+            #endif
             pins[0] = MICROPY_HW_UART10_TX;
             pins[1] = MICROPY_HW_UART10_RX;
             break;
@@ -771,6 +777,13 @@ void uart_deinit(pyb_uart_obj_t *self) {
         __HAL_RCC_UART10_RELEASE_RESET();
         __HAL_RCC_UART10_CLK_DISABLE();
     #endif
+    #if defined(USART10)
+    } else if (self->uart_id == 10) {
+        HAL_NVIC_DisableIRQ(USART10_IRQn);
+        __HAL_RCC_USART10_FORCE_RESET();
+        __HAL_RCC_USART10_RELEASE_RESET();
+        __HAL_RCC_USART10_CLK_DISABLE();
+    #endif
     #if defined(LPUART1)
     } else if (self->uart_id == PYB_LPUART_1) {
         #if defined(STM32G0)
@@ -886,7 +899,7 @@ uint32_t uart_get_source_freq(pyb_uart_obj_t *self) {
         #if defined(UART9)
         || self->uart_id == 9
         #endif
-        #if defined(UART10)
+        #if defined(UART10) || defined(USART10)
         || self->uart_id == 10
         #endif
         ) {
@@ -1052,12 +1065,20 @@ size_t uart_tx_data(pyb_uart_obj_t *self, const void *src_in, size_t num_chars, 
         // the overall timeout rather than the character timeout.
         timeout = self->timeout;
     } else {
+        #if defined(STM32G4)
+        // With using UART FIFO, the timeout should be long enough that FIFO becomes empty.
+        // Since previous data transfer may be ongoing, the timeout must be multiplied
+        // timeout_char by FIFO size + 1.
+        // STM32G4 has 8 words FIFO.
+        timeout = (8 + 1) * self->timeout_char;
+        #else
         // The timeout specified here is for waiting for the TX data register to
         // become empty (ie between chars), as well as for the final char to be
         // completely transferred.  The default value for timeout_char is long
         // enough for 1 char, but we need to double it to wait for the last char
         // to be transferred to the data register, and then to be transmitted.
         timeout = 2 * self->timeout_char;
+        #endif
     }
 
     const uint8_t *src = (const uint8_t *)src_in;

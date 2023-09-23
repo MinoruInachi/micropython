@@ -68,6 +68,9 @@
 #define MICROPY_PY_THREAD_GIL               (1)
 #define MICROPY_PY_THREAD_GIL_VM_DIVISOR    (32)
 
+#define MICROPY_GC_SPLIT_HEAP               (1)
+#define MICROPY_GC_SPLIT_HEAP_AUTO          (1)
+
 // extended modules
 #ifndef MICROPY_ESPNOW
 #define MICROPY_ESPNOW                      (1)
@@ -136,11 +139,9 @@
 #define MICROPY_HW_SOFTSPI_MAX_BAUDRATE     (esp_rom_get_cpu_ticks_per_us() * 1000000 / 200) // roughly
 #define MICROPY_PY_SSL                      (1)
 #define MICROPY_SSL_MBEDTLS                 (1)
-#define MICROPY_PY_SSL_FINALISER            (1)
 #define MICROPY_PY_WEBSOCKET                (1)
 #define MICROPY_PY_WEBREPL                  (1)
 #define MICROPY_PY_ONEWIRE                  (1)
-#define MICROPY_PY_PLATFORM                 (1)
 #define MICROPY_PY_SOCKET_EVENTS            (MICROPY_PY_WEBREPL)
 #define MICROPY_PY_BLUETOOTH_RANDOM_ADDR    (1)
 #define MICROPY_PY_BLUETOOTH_DEFAULT_GAP_NAME ("ESP32")

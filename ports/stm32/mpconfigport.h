@@ -92,7 +92,6 @@
 #endif
 
 // extended modules
-#define MICROPY_PY_SSL_FINALISER    (MICROPY_PY_SSL)
 #define MICROPY_PY_HASHLIB_MD5      (MICROPY_PY_SSL)
 #define MICROPY_PY_HASHLIB_SHA1     (MICROPY_PY_SSL)
 #define MICROPY_PY_CRYPTOLIB        (MICROPY_PY_SSL)
@@ -136,9 +135,6 @@
 #endif
 #ifndef MICROPY_PY_ONEWIRE
 #define MICROPY_PY_ONEWIRE          (1)
-#endif
-#ifndef MICROPY_PY_PLATFORM
-#define MICROPY_PY_PLATFORM         (1)
 #endif
 
 // fatfs configuration used in ffconf.h
