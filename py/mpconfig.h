@@ -26,22 +26,32 @@
 #ifndef MICROPY_INCLUDED_PY_MPCONFIG_H
 #define MICROPY_INCLUDED_PY_MPCONFIG_H
 
-// Current version of MicroPython
+// Current version of MicroPython. This is used by sys.implementation.version
+// as well as a fallback to generate MICROPY_GIT_TAG if the git repo or tags
+// are unavailable.
 #define MICROPY_VERSION_MAJOR 1
-#define MICROPY_VERSION_MINOR 20
+#define MICROPY_VERSION_MINOR 22
 #define MICROPY_VERSION_MICRO 0
+#define MICROPY_VERSION_PRERELEASE 1
 
-// Combined version as a 32-bit number for convenience
-#define MICROPY_VERSION ( \
-    MICROPY_VERSION_MAJOR << 16 \
-        | MICROPY_VERSION_MINOR << 8 \
-        | MICROPY_VERSION_MICRO)
+// Combined version as a 32-bit number for convenience to allow version
+// comparison. Doesn't include prerelease state.
+// e.g. #if MICROPY_VERSION < MICROPY_MAKE_VERSION(1, 22, 0)
+#define MICROPY_MAKE_VERSION(major, minor, patch) (major << 16 | minor << 8 | patch)
+#define MICROPY_VERSION MICROPY_MAKE_VERSION(MICROPY_VERSION_MAJOR, MICROPY_VERSION_MINOR, MICROPY_VERSION_MICRO)
 
-// String version
-#define MICROPY_VERSION_STRING \
+// String version. This is only used directly for platform.platform and
+// os.uname().release. All other version info available in the firmware (e.g.
+// the REPL banner) comes from MICROPY_GIT_TAG.
+#define MICROPY_VERSION_STRING_BASE \
     MP_STRINGIFY(MICROPY_VERSION_MAJOR) "." \
     MP_STRINGIFY(MICROPY_VERSION_MINOR) "." \
     MP_STRINGIFY(MICROPY_VERSION_MICRO)
+#if MICROPY_VERSION_PRERELEASE
+#define MICROPY_VERSION_STRING MICROPY_VERSION_STRING_BASE "-preview"
+#else
+#define MICROPY_VERSION_STRING MICROPY_VERSION_STRING_BASE
+#endif
 
 // This file contains default configuration settings for MicroPython.
 // You can override any of the options below using mpconfigport.h file
@@ -1136,7 +1146,7 @@ typedef double mp_float_t;
 #define MICROPY_PY_BUILTINS_RANGE_BINOP (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EVERYTHING)
 #endif
 
-// Support for callling next() with second argument
+// Support for calling next() with second argument
 #ifndef MICROPY_PY_BUILTINS_NEXT2
 #define MICROPY_PY_BUILTINS_NEXT2 (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EVERYTHING)
 #endif
@@ -1155,13 +1165,13 @@ typedef double mp_float_t;
 #define MICROPY_PY_ALL_SPECIAL_METHODS (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES)
 #endif
 
-// Whether to support all inplace arithmetic operarion methods
+// Whether to support all inplace arithmetic operation methods
 // (__imul__, etc.)
 #ifndef MICROPY_PY_ALL_INPLACE_SPECIAL_METHODS
 #define MICROPY_PY_ALL_INPLACE_SPECIAL_METHODS (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EVERYTHING)
 #endif
 
-// Whether to support reverse arithmetic operarion methods
+// Whether to support reverse arithmetic operation methods
 // (__radd__, etc.). Additionally gated by
 // MICROPY_PY_ALL_SPECIAL_METHODS.
 #ifndef MICROPY_PY_REVERSE_SPECIAL_METHODS

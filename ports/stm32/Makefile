@@ -404,6 +404,7 @@ HAL_SRC_C += $(addprefix $(STM32LIB_HAL_BASE)/Src/stm32$(MCU_SERIES)xx_,\
 	hal_tim.c \
 	hal_tim_ex.c \
 	hal_uart.c \
+	ll_rcc.c \
 	ll_utils.c \
 	)
 
@@ -663,7 +664,7 @@ SRC_QSTR += $(SRC_C) $(SRC_CXX) $(SHARED_SRC_C)
 # SRC_QSTR
 SRC_QSTR_AUTO_DEPS += $(GEN_CDCINF_HEADER)
 
-# Making OBJ use an order-only depenedency on the generated pins.h file
+# Making OBJ use an order-only dependency on the generated pins.h file
 # has the side effect of making the pins.h file before we actually compile
 # any of the objects. The normal dependency generation will deal with the
 # case when pins.h is modified. But when it doesn't exist, we don't know
