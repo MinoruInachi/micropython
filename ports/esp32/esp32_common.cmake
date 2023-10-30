@@ -66,12 +66,9 @@ list(APPEND MICROPY_SOURCE_PORT
     machine_timer.c
     machine_pin.c
     machine_touchpad.c
-    machine_adc.c
     machine_adcblock.c
     machine_dac.c
     machine_i2c.c
-    machine_i2s.c
-    machine_uart.c
     modmachine.c
     network_common.c
     network_lan.c
@@ -86,7 +83,6 @@ list(APPEND MICROPY_SOURCE_PORT
     esp32_ulp.c
     modesp32.c
     machine_hw_spi.c
-    machine_wdt.c
     mpthreadport.c
     machine_rtc.c
     machine_sdcard.c

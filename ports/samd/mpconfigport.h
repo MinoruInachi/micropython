@@ -96,6 +96,8 @@
 #ifndef MICROPY_PY_MACHINE_ADC
 #define MICROPY_PY_MACHINE_ADC              (1)
 #endif
+#define MICROPY_PY_MACHINE_ADC_INCLUDEFILE  "ports/samd/machine_adc.c"
+#define MICROPY_PY_MACHINE_ADC_DEINIT       (1)
 #ifndef MICROPY_PY_MACHINE_DAC
 #define MICROPY_PY_MACHINE_DAC              (1)
 #endif
@@ -114,6 +116,8 @@
 #ifndef MICROPY_PY_MACHINE_UART
 #define MICROPY_PY_MACHINE_UART             (1)
 #endif
+#define MICROPY_PY_MACHINE_UART_INCLUDEFILE "ports/samd/machine_uart.c"
+#define MICROPY_PY_MACHINE_UART_SENDBREAK   (1)
 #define MICROPY_PY_MACHINE_TIMER            (1)
 #define MICROPY_SOFT_TIMER_TICKS_MS         systick_ms
 #define MICROPY_PY_OS_DUPTERM               (3)
@@ -127,6 +131,9 @@
 #endif
 #define MICROPY_PY_MACHINE_PIN_MAKE_NEW     mp_pin_make_new
 #define MICROPY_PY_MACHINE_DHT_READINTO     (1)
+#define MICROPY_PY_MACHINE_WDT              (1)
+#define MICROPY_PY_MACHINE_WDT_INCLUDEFILE  "ports/samd/machine_wdt.c"
+#define MICROPY_PY_MACHINE_WDT_TIMEOUT_MS   (1)
 #define MICROPY_PY_ONEWIRE                  (1)
 #define MICROPY_PY_PLATFORM                 (1)
 #define MICROPY_PLATFORM_VERSION            "ASF4"

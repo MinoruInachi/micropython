@@ -2,8 +2,10 @@
 # and provides rules to build 3rd-party components for extmod modules.
 
 SRC_EXTMOD_C += \
+	extmod/machine_adc.c \
 	extmod/machine_bitstream.c \
 	extmod/machine_i2c.c \
+	extmod/machine_i2s.c \
 	extmod/machine_mem.c \
 	extmod/machine_pinbase.c \
 	extmod/machine_pulse.c \
@@ -11,6 +13,8 @@ SRC_EXTMOD_C += \
 	extmod/machine_signal.c \
 	extmod/machine_spi.c \
 	extmod/machine_timer.c \
+	extmod/machine_uart.c \
+	extmod/machine_wdt.c \
 	extmod/modasyncio.c \
 	extmod/modbinascii.c \
 	extmod/modbluetooth.c \

@@ -319,11 +319,9 @@ SRC_C += \
 	uart.c \
 	gccollect.c \
 	help.c \
-	machine_adc.c \
 	machine_dac.c \
 	machine_i2c.c \
 	machine_spi.c \
-	machine_uart.c \
 	machine_pin.c \
 	machine_rtc.c \
 	machine_sdcard.c \
