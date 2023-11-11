@@ -3,6 +3,7 @@
 
 SRC_EXTMOD_C += \
 	extmod/machine_adc.c \
+	extmod/machine_adc_block.c \
 	extmod/machine_bitstream.c \
 	extmod/machine_i2c.c \
 	extmod/machine_i2s.c \
@@ -106,7 +107,7 @@ SRC_THIRDPARTY_C += $(addprefix $(LITTLEFS_DIR)/,\
 	lfs2_util.c \
 	)
 
-$(BUILD)/$(LITTLEFS_DIR)/lfs2.o: CFLAGS += -Wno-missing-field-initializers
+$(BUILD)/$(LITTLEFS_DIR)/lfs2.o: CFLAGS += -Wno-shadow
 endif
 
 ################################################################################

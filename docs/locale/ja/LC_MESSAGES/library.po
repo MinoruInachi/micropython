@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-30 22:28+0900\n"
-"PO-Revision-Date: 2023-10-30 22:34+0900\n"
+"POT-Creation-Date: 2023-11-11 23:11+0900\n"
+"PO-Revision-Date: 2023-11-11 23:31+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -3874,12 +3874,12 @@ msgstr ""
 #: ../../library/esp32.rst:195
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
-"by multiplying the resolution by a 15-bit (0-32,768) number. There are "
-"eight channels (0-7) and each can have a different clock divider."
+"by multiplying the resolution by a 15-bit (1-``PULSE_MAX``) number. There"
+" are eight channels (0-7) and each can have a different clock divider."
 msgstr ""
-"``clock_div`` は8ビット(0-255)の分周器で、各パルスは、分解能に15ビット(0-32,768)の"
-"数値を乗算することで定義できます。8つのチャネル(0-7)があり、それぞれ異なるクロック"
-"分周器を使えます。"
+"``clock_div`` は8ビット(0-255)の分周器で、各パルスは、分解能に15ビット"
+"(1-``PULSE_MAX``)の数値を乗算することで定義できます。"
+"8つのチャネル(0-7)があり、それぞれ異なるクロック分周器を使えます。"
 
 #: ../../library/esp32.rst:199
 msgid ""
@@ -4015,12 +4015,12 @@ msgstr ""
 #: ../../library/esp32.rst:267
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
-"above), between 1 and 32767 units. Output levels are any value that can "
-"be converted to a boolean, with ``True`` representing high voltage and "
-"``False`` representing low."
+"above), between 1 and ``PULSE_MAX`` units. Output levels are any value "
+"that can be converted to a boolean, with ``True`` representing high "
+"voltage and ``False`` representing low."
 msgstr ""
 "パルス幅は整数単位で指定するチャネルの分解能(上記のとおり)であり、"
-"1から32767の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
+"1から ``PULSE_MAX`` の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
 #: ../../library/esp32.rst:272
@@ -4070,11 +4070,15 @@ msgid ""
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:294
+#: ../../library/esp32.rst:298
+msgid "Maximum integer that can be set for a pulse duration."
+msgstr "パルス幅に設定できる最大整数値。"
+
+#: ../../library/esp32.rst:301
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:296
+#: ../../library/esp32.rst:303
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -4082,7 +4086,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:301
+#: ../../library/esp32.rst:308
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -4090,31 +4094,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:306
+#: ../../library/esp32.rst:313
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:310
+#: ../../library/esp32.rst:317
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:314
+#: ../../library/esp32.rst:321
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:318
+#: ../../library/esp32.rst:325
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:327
+#: ../../library/esp32.rst:334
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:330
+#: ../../library/esp32.rst:337
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:332
+#: ../../library/esp32.rst:339
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -4128,7 +4132,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:339
+#: ../../library/esp32.rst:346
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -4137,14 +4141,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:344
+#: ../../library/esp32.rst:351
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:349
+#: ../../library/esp32.rst:356
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -4152,7 +4156,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:353
+#: ../../library/esp32.rst:360
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -4160,7 +4164,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:358
+#: ../../library/esp32.rst:365
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -4173,7 +4177,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:365
+#: ../../library/esp32.rst:372
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -4185,11 +4189,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:371
+#: ../../library/esp32.rst:378
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:375
+#: ../../library/esp32.rst:382
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -8361,6 +8365,14 @@ msgid ""
 msgstr ""
 "*channel* と *source* の両方を指定した場合、それらは一緒に接続され、サンプリング"
 "できるようになります。"
+
+#: ../../library/machine.ADCBlock.rst:60
+msgid ""
+"Any additional keyword arguments are used to configure the returned ADC "
+"object, via its :meth:`init <machine.ADC.init>` method."
+msgstr ""
+"追加のキーワード引数は、 :meth:`init <machine.ADC.init>` メソッドで返された"
+"ADCオブジェクトを構成するために使います。"
 
 #: ../../library/machine.ADCWiPy.rst:5
 msgid "class ADCWiPy -- analog to digital conversion"

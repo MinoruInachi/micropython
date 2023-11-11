@@ -115,6 +115,9 @@ STATIC mp_obj_t machine_sleep_helper(wake_type_t wake_type, size_t n_args, const
 
     mp_int_t expiry = args[ARG_sleep_ms].u_int;
 
+    // First, disable any previously set wake-up source
+    esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_ALL);
+
     if (expiry != 0) {
         esp_sleep_enable_timer_wakeup(((uint64_t)expiry) * 1000);
     }
@@ -309,7 +312,9 @@ STATIC const mp_rom_map_elem_t machine_module_globals_table[] = {
     #if MICROPY_PY_MACHINE_ADC
     { MP_ROM_QSTR(MP_QSTR_ADC), MP_ROM_PTR(&machine_adc_type) },
     #endif
-    { MP_ROM_QSTR(MP_QSTR_ADCBlock), MP_ROM_PTR(&machine_adcblock_type) },
+    #if MICROPY_PY_MACHINE_ADC_BLOCK
+    { MP_ROM_QSTR(MP_QSTR_ADCBlock), MP_ROM_PTR(&machine_adc_block_type) },
+    #endif
     #if MICROPY_PY_MACHINE_DAC
     { MP_ROM_QSTR(MP_QSTR_DAC), MP_ROM_PTR(&machine_dac_type) },
     #endif

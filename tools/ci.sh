@@ -15,17 +15,16 @@ function ci_gcc_arm_setup {
 }
 
 ########################################################################################
-# code formatting
+# c code formatting
 
-function ci_code_formatting_setup {
+function ci_c_code_formatting_setup {
     sudo apt-get install uncrustify
-    pip3 install black
     uncrustify --version
-    black --version
 }
 
-function ci_code_formatting_run {
-    tools/codeformat.py -v
+function ci_c_code_formatting_run {
+    # Only run on C files. The ruff rule runs separately on Python.
+    tools/codeformat.py -v -c
 }
 
 ########################################################################################
@@ -354,19 +353,6 @@ function ci_stm32_nucleo_build {
     tail -n +2 $BOARD_WB55/mboot_keys.h > $BOARD_WB55/mboot_keys_no_sk.h
     python3 ports/stm32/mboot/mboot_pack_dfu.py -k $BOARD_WB55/mboot_keys_no_sk.h unpack-dfu $BUILD_WB55/firmware.pack.dfu $BUILD_WB55/firmware.unpack_no_sk.dfu
     diff $BUILD_WB55/firmware.unpack.dfu $BUILD_WB55/firmware.unpack_no_sk.dfu
-}
-
-########################################################################################
-# ports/teensy
-
-function ci_teensy_setup {
-    ci_gcc_arm_setup
-}
-
-function ci_teensy_build {
-    make ${MAKEOPTS} -C mpy-cross
-    make ${MAKEOPTS} -C ports/teensy submodules
-    make ${MAKEOPTS} -C ports/teensy
 }
 
 ########################################################################################
