@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath("."))
 # The MICROPY_VERSION env var should be "vX.Y.Z" (or unset).
 micropy_version = os.getenv("MICROPY_VERSION") or "latest"
 micropy_all_versions = (os.getenv("MICROPY_ALL_VERSIONS") or "latest").split(",")
-url_pattern = "%s/en/%%s" % (os.getenv("MICROPY_URL_PREFIX") or "/",)
+url_pattern = "%s/ja/%%s" % (os.getenv("MICROPY_URL_PREFIX") or "/",)
 
 # The members of the html_context dict are available inside topindex.html
 html_context = {
@@ -122,7 +122,7 @@ pygments_style = "sphinx"
 # of rst_prolog, so we follow. Absolute paths below mean "from the base
 # of the doctree".
 rst_epilog = """
-.. include:: /templates/replace.inc
+.. include:: /templates/replace-ja.inc
 """
 
 # -- Options for HTML output ----------------------------------------------
@@ -130,7 +130,7 @@ rst_epilog = """
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
+if True:  #not on_rtd:  # only import and set the theme if we're building docs locally
     try:
         import sphinx_rtd_theme
 
@@ -182,7 +182,7 @@ html_css_files = [
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = "%d %b %Y"
+html_last_updated_fmt = '%Y年%-m月%-d日'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
@@ -193,7 +193,7 @@ html_last_updated_fmt = "%d %b %Y"
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {"index": "topindex.html"}
+html_additional_pages = {"index": "topindex-ja.html"}
 
 # If false, no module index is generated.
 # html_domain_indices = True
