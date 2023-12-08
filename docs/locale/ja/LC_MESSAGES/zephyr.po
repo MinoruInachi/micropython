@@ -10,18 +10,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-11 07:52+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2023-11-11 23:11+0900\n"
+"PO-Revision-Date: 2023-12-19 12:18+0900\n"
+"Last-Translator: Minoru Inachi\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.13.1\n"
 
 #: ../../zephyr/general.rst:4
 msgid "General information about the Zephyr port"
-msgstr ""
+msgstr "Zephyr ポートに関する一般情報"
 
 #: ../../zephyr/general.rst:6
 msgid ""
@@ -30,10 +31,15 @@ msgid ""
 "building a small, scalable, real-time operating system (RTOS) optimized "
 "for resource-constrained devices, across multiple architectures."
 msgstr ""
+"Zephyr プロジェクトは Linux Foundation 主催の共同プロジェクトです。"
+"このプロジェクトは、"開発者とユーザが一体となって、小型でスケーラブルなリアルタイム・"
+"オペレーティングシステム(RTOS)を構築するオープンソースの共同作業です。"
+"Zephyr OS はリソースに制約のあるデバイスに最適化されていて、複数の"
+"アーキテクチャをサポートしています。"
 
 #: ../../zephyr/general.rst:12
 msgid "Multitude of boards"
-msgstr ""
+msgstr "多数のボードのサポート"
 
 #: ../../zephyr/general.rst:14
 msgid ""
@@ -46,16 +52,26 @@ msgid ""
 "reference materials for your board handy to look up various aspects of "
 "your board functioning."
 msgstr ""
+"Zephyr OSでサポートされているモジュールやボードは様々なソースから提供されています。"
+"Zephyrでサポートされているすべてのボード(UART コンソールのような標準的なレベルの"
+"機能をサポートしている)は MicroPython で動作するはずです(ただし、すべてのボードが"
+"テストされたわけではありません)。このドキュメントでは、FRDM-K64f ボードをポートの"
+"リファレンスボードとして使っています。他のボードをお持ちの場合は、ボードの機能に"
+"関する様々な側面を調べるために、ボードのデータシート、回路図、その他の参考資料が"
+"手元にあることを確認してください。"
 
 #: ../../zephyr/general.rst:22
 msgid ""
 "For a full list of Zephyr supported boards click `here (external link) "
 "<https://docs.zephyrproject.org/latest/boards/index.html#boards>`_"
 msgstr ""
+"Zephyr に対応したボードの一覧は `こちら(外部リンク) "
+"<https://docs.zephyrproject.org/latest/boards/index.html#boards>`_ "
+"にあります。"
 
 #: ../../zephyr/quickref.rst:4
 msgid "Quick reference for the Zephyr port"
-msgstr ""
+msgstr "Zephyr ポートのクイックリファレンス"
 
 #: ../../zephyr/quickref.rst:6
 msgid ""
@@ -63,22 +79,26 @@ msgid ""
 "working with this port please consider reading the following sections "
 "first:"
 msgstr ""
+"以下は Zephyr ポートのクイックリファレンスです。"
+"このポートを初めて使う場合は、まず次の章を参照してください:"
 
 #: ../../zephyr/quickref.rst:15
 msgid "Running MicroPython"
-msgstr ""
+msgstr "MicroPython の実行"
 
 #: ../../zephyr/quickref.rst:17
 msgid "See the corresponding section of the tutorial: :ref:`intro`."
 msgstr ""
+"次のチュートリアルの該当セクションを参照してください: "
+":ref:`intro_zephyr`"
 
 #: ../../zephyr/quickref.rst:20
 msgid "Delay and timing"
-msgstr ""
+msgstr "遅延とタイミング"
 
 #: ../../zephyr/quickref.rst:22
 msgid "Use the :mod:`time <time>` module::"
-msgstr ""
+msgstr ":mod:`time <time>` モジュールを使います::"
 
 #: ../../zephyr/quickref.rst:24
 msgid ""
@@ -90,14 +110,21 @@ msgid ""
 "start = time.ticks_ms()     # get millisecond counter\n"
 "delta = time.ticks_diff(time.ticks_ms(), start) # compute time difference"
 msgstr ""
+"import time\n"
+"\n"
+"time.sleep(1)           # 1秒間、一時停止する\n"
+"time.sleep_ms(500)      # 500ミリ秒間、一時停止する\n"
+"time.sleep_us(10)       # 10マイクロ秒間、一時停止する\n"
+"start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
+"delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
 
 #: ../../zephyr/quickref.rst:33
 msgid "Pins and GPIO"
-msgstr ""
+msgstr "ピンと GPIO"
 
 #: ../../zephyr/quickref.rst:35
 msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
-msgstr ""
+msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
 
 #: ../../zephyr/quickref.rst:37
 msgid ""
@@ -127,14 +154,36 @@ msgid ""
 "switch.irq(lambda t: print(\"SW2 changed\"))          # enable an "
 "interrupt when switch state is changed"
 msgstr ""
+"from machine import Pin\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.IN)   # GPIO1 の入力ピンを作成\n"
+"print(pin)                          # ピンのポートと番号を表示\n"
+"\n"
+"pin.init(Pin.OUT, Pin.PULL_UP, value=1)     # ピンを再初期化\n"
+"\n"
+"pin.value(1)                        # ピンを high に設定\n"
+"pin.value(0)                        # ピンを low low に設定\n"
+"\n"
+"pin.on()                            # ピンを high に設定\n"
+"pin.off()                           # ピンを low に設定\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.IN)   # GPIO1 の入力ピンを作成\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.OUT, value=1)         # 作成時にピンを high に設定\n"
+"\n"
+"pin = Pin((\"GPIO_1\", 21), Pin.IN, Pin.PULL_UP)      # 内部プルアップ抵抗を有効化\n"
+"\n"
+"switch = Pin((\"GPIO_2\", 6), Pin.IN)                 # スイッチ用の入力ピンを作成\n"
+"switch.irq(lambda t: print(\"SW2 changed\"))          # スイッチの状態の変更時に割り込みを有効化"
 
 #: ../../zephyr/quickref.rst:60
 msgid "Hardware I2C bus"
-msgstr ""
+msgstr "ハードウェア I2C バス"
 
 #: ../../zephyr/quickref.rst:62
 msgid "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class::"
 msgstr ""
+"ハードウェア I2C には :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。"
 
 #: ../../zephyr/quickref.rst:64
 msgid ""
@@ -156,14 +205,30 @@ msgid ""
 "buf = bytearray(8)                  # create buffer of size 8\n"
 "i2c.writeto(0x1D, b'abcd')          # write buf to slave 0x1D"
 msgstr ""
+"from machine import I2C\n"
+"\n"
+"i2c = I2C(\"I2C_0\")          # I2C バスを構築\n"
+"print(i2c)                  # デバイス名を表示\n"
+"\n"
+"i2c.scan()                  # 利用可能な I2C スレーブのデバイスをスキャン\n"
+"\n"
+"i2c.readfrom(0x1D, 4)                # スレーブ 0x1D から 4 バイト読み込み\n"
+"i2c.readfrom_mem(0x1D, 0x0D, 1)      # スレーブ 0x1D のスレーブメモリー 0x0D から 1 バイト読み込み\n"
+"\n"
+"i2c.writeto(0x1D, b'abcd')           # アドレス 0x1D のスレーブに書き込み\n"
+"i2c.writeto_mem(0x1D, 0x0D, b'ab')   # スレーブ 0x1D のスレーブメモリー 0x0D に書き込み\n"
+"\n"
+"buf = bytearray(8)                  # サイズ 8 のバッファを作成\n"
+"i2c.writeto(0x1D, b'abcd')          # スレーブ 0x1D に buf を書き込み"
 
 #: ../../zephyr/quickref.rst:81
 msgid "Hardware SPI bus"
-msgstr ""
+msgstr "ハードウェア SPI バス"
 
 #: ../../zephyr/quickref.rst:83
 msgid "Hardware SPI is accessed via the :ref:`machine.SPI <machine.SPI>` class::"
 msgstr ""
+":ref:`machine.SPI <machine.SPI>` クラスを介してアクセスします::"
 
 #: ../../zephyr/quickref.rst:85
 msgid ""
@@ -196,16 +261,42 @@ msgid ""
 "spi.write_readinto(buf, buf)        # write buf to MOSI and read back "
 "into the buf"
 msgstr ""
+"from machine import SPI\n"
+"\n"
+"spi = SPI(\"SPI_0\")          # デフォルトの設定で SPI バスを構築\n"
+"spi.init(baudrate=100000, polarity=0, phase=0, bits=8, firstbit=SPI.MSB) "
+"# 設定\n"
+"\n"
+"# SPI バス構築と設定を一緒に行うことで、上と同等のことを実現\n"
+"spi = SPI(\"SPI_0\", baudrate=100000, polarity=0, phase=0, bits=8, "
+"firstbit=SPI.MSB)\n"
+"print(spi)                  # デバイス名とバス設定を表示\n"
+"\n"
+"spi.read(4)                 # MISO で 4 バイトを読み込み\n"
+"spi.read(4, write=0xF)      # 4 バイト読み込み、その間 MOSI に 0xF を書き出し\n"
+"\n"
+"buf = bytearray(8)          # サイズ 8 のバッファを作成\n"
+"spi.readinto(buf)           # バッファに読み込み(バッファサイズ分のバイト数だけ読み込み)\n"
+"spi.readinto(buf, 0xF)      # MOSI に 0xF に書き出しながらバッファに読み込み\n"
+"\n"
+"spi.write(b'abcd')          # MOSI に4バイト書き出し\n"
+"\n"
+"buf = bytearray(4)                  # サイズ 4 のバッファを作成\n"
+"spi.write_readinto(b'abcd', buf)    # MOSI への書き出しと MISO からのバッファへの読み込み\n"
+"spi.write_readinto(buf, buf)        # MOSI への buf の書き出しと buf への読み込み"
 
 #: ../../zephyr/quickref.rst:108 ../../zephyr/tutorial/storage.rst:12
 msgid "Disk Access"
-msgstr ""
+msgstr "ディスクアクセス"
 
 #: ../../zephyr/quickref.rst:110
 msgid ""
 "Use the :ref:`zephyr.DiskAccess <zephyr.DiskAccess>` class to support "
 "filesystem::"
 msgstr ""
+"ディスクのファイルシステムをサポートするには "
+":ref:`zephyr.DiskAccess <zephyr.DiskAccess>` "
+"クラスを使います::"
 
 #: ../../zephyr/quickref.rst:112
 msgid ""
@@ -225,16 +316,30 @@ msgid ""
 "    f.write('Hello world')                  # write to the file\n"
 "print(open('/sd/hello.txt').read())      # print contents of the file"
 msgstr ""
+"import os\n"
+"from zephyr import DiskAccess\n"
+"\n"
+"block_dev = DiskAccess('SDHC')      # SDカード用のブロックデバイスオブジェクトを作成\n"
+"os.VfsFat.mkfs(block_dev)           # ディスクストレージブロックを用いて FAT ファイルシステムオブジェクトを作成\n"
+"os.mount(block_dev, '/sd')          # SD カード用のサブディレクトリにファイルシステムをマウント\n"
+"\n"
+"# マウントしたファイルシステムでは、普通にファイル操作が可能\n"
+"with open('/sd/hello.txt','w') as f:     # ディレクトリ中に新しいファイルをオープン\n"
+"    f.write('Hello world')                  # ファイルに書き出し\n"
+"print(open('/sd/hello.txt').read())      # ファイルの内容を表示"
 
 #: ../../zephyr/quickref.rst:125 ../../zephyr/tutorial/storage.rst:35
 msgid "Flash Area"
-msgstr ""
+msgstr "フラッシュ領域"
 
 #: ../../zephyr/quickref.rst:127
 msgid ""
 "Use the :ref:`zephyr.FlashArea <zephyr.FlashArea>` class to support "
 "filesystem::"
 msgstr ""
+"フラッシュ領域のファイルシステムをサポートするには "
+":ref:`zephyr.FlashArea <zephyr.FlashArea>` "
+"クラスを使います。"
 
 #: ../../zephyr/quickref.rst:129
 msgid ""
@@ -254,16 +359,29 @@ msgid ""
 "    f.write('Hello world')                  # write to the file\n"
 "print(open('/flash/hello.txt').read())      # print contents of the file"
 msgstr ""
+"import os\n"
+"from zephyr import FlashArea\n"
+"\n"
+"block_dev = FlashArea(4, 4096)      # frdm-k64f フラッシュスクラッチパーティションにブロックデバイスオブジェクトを作成\n"
+"os.VfsLfs2.mkfs(block_dev)          # フラッシュブロックデバイスを使って、lfs2フォーマットでファイルシステムを作成\n"
+"os.mount(block_dev, '/flash')       # フラッシュ用のサブディレクトリにファイルシステムをマウント\n"
+"\n"
+"# マウントしたファイルシステムでは、普通にファイル操作が可能\n"
+"with open('/flash/hello.txt','w') as f:     # ディレクトリ中に新しいファイルをオープン\n"
+"    f.write('Hello world')                  # ファイルに書き出し\n"
+"print(open('/flash/hello.txt').read())      # ファイルの内容を表示"
 
 #: ../../zephyr/quickref.rst:142
 msgid "Sensor"
-msgstr ""
+msgstr "センサー"
 
 #: ../../zephyr/quickref.rst:144
 msgid ""
 "Use the :ref:`zsensor.Sensor <zsensor.Sensor>` class to access sensor "
 "data::"
 msgstr ""
+"センサーデータにアクセスするには "
+":ref:`zsensor.Sensor <zsensor.Sensor>` クラスを使います::"
 
 #: ../../zephyr/quickref.rst:146
 msgid ""
@@ -286,36 +404,50 @@ msgid ""
 "accel.get_int(zsensor.ACCEL_X)    # print measurement integer value only "
 "for accelerometer X-axis sensor channel"
 msgstr ""
+"import zsensor\n"
+"from zsensor import Sensor\n"
+"\n"
+"accel = Sensor(\"FXOX8700\")    # 加速度センサーのセンサーオブジェクトを作成\n"
+"\n"
+"accel.measure()               # 加速度センサーから読み込んだ計測データを取得\n"
+"\n"
+"# 以下は measure() で取得した値を表示\n"
+"accel.get_float(zsensor.ACCEL_X)  # 加速度センサーのX軸センサーチャンネル計測値を float で表示\n"
+"accel.get_millis(zsensor.ACCEL_Y) # 加速度センサーのY軸センサーチャンネル計測値を100万分の1単位で表示\n"
+"accel.get_micro(zsensor.ACCEL_Z)  # 加速度センサーのY軸センサーチャンネル計測値を1000分の1単位で表示\n"
+"accel.get_int(zsensor.ACCEL_X)    # 加速度センサーのX軸センサーチャンネル計測値を int で表示"
 
 #: ../../zephyr/tutorial/index.rst:4
 msgid "MicroPython tutorial for the Zephyr port"
-msgstr ""
+msgstr "Zephyr ポート用 MicroPython チュートリアル"
 
 #: ../../zephyr/tutorial/index.rst:6
 msgid "This tutorial is intended to get you started with the Zephyr port."
-msgstr ""
+msgstr "このチュートリアルは Zephyr ポートを使い始めるためのものです。"
 
 #: ../../zephyr/tutorial/intro.rst:4
 msgid "Getting started with MicroPython on the Zephyr port"
-msgstr ""
+msgstr "Zephyr ポートでの MicroPython の始め方"
 
 #: ../../zephyr/tutorial/intro.rst:6
 msgid "Let’s get started!"
-msgstr ""
+msgstr "始めましょう！"
 
 #: ../../zephyr/tutorial/intro.rst:9
 msgid "Requirements"
-msgstr ""
+msgstr "必要なもの"
 
 #: ../../zephyr/tutorial/intro.rst:11
 msgid ""
 "To use the MicroPython Zephyr port, you will need a Zephyr supported "
 "board (for a list of acceptable boards see :ref:`zephyr_general`)."
 msgstr ""
+"MicroPython の Zephyr ポートを使うには、Zephyr がサポートするボードが必要です"
+"(使用可能なボードのリストについては ":ref:`zephyr_general` を参照してください)。"
 
 #: ../../zephyr/tutorial/intro.rst:15
 msgid "Powering up"
-msgstr ""
+msgstr "電源を入れる"
 
 #: ../../zephyr/tutorial/intro.rst:17
 msgid ""
@@ -324,10 +456,13 @@ msgid ""
 "it directly. Please refer to the documentation for your board for further"
 " details."
 msgstr ""
+"ボードに USB コネクターが付いている場合、PC に接続するとほとんどにおいて、"
+"このコネクターから電源が供給されます。そうでない場合は、直接電源を供給する"
+"必要があります。詳細についてはボードのマニュアルを参照してください。"
 
 #: ../../zephyr/tutorial/intro.rst:23
 msgid "Getting and deploying the firmware"
-msgstr ""
+msgstr "ファームウェアの入手と配備"
 
 #: ../../zephyr/tutorial/intro.rst:25
 msgid ""
@@ -339,20 +474,28 @@ msgid ""
 "If you would like to work on development, you may follow the daily builds"
 " on git."
 msgstr ""
+"最初に行う必要があるのは、 `MicroPython リポジトリ "
+"<https://github.com/micropython/micropython.git>`_ をクローンするか、 "
+"`MicroPython のダウンロードページ <http://micropython.org/download>`_ "
+"からファームウェアをダウンロードすることです。MicroPython のエンドユーザーであれば、"
+"安定したファームウェアビルドから始めることをお勧めします。開発に取り組みたい場合は、"
+"git 上のデイリービルドをフォローできます。"
 
 #: ../../zephyr/tutorial/intro.rst:30
 msgid ""
 "Next, follow the Zephyr port readme document (``ports/zephyr/README.md``)"
 " to build and run the application on your board."
 msgstr ""
+"次に、Zephyr ポートの readme ドキュメント(``ports/zephyr/README.md``)に"
+"したがってアプリケーションをビルドし、ボード上で実行します。"
 
 #: ../../zephyr/tutorial/pins.rst:4
 msgid "GPIO Pins"
-msgstr ""
+msgstr "GPIO ピン"
 
 #: ../../zephyr/tutorial/pins.rst:6
 msgid "Use :ref:`machine.Pin <machine.Pin>` to control I/O pins."
-msgstr ""
+msgstr "I/O ピンの制御には :ref:`machine.Pin <machine.Pin>` を使います。"
 
 #: ../../zephyr/tutorial/pins.rst:8
 msgid ""
@@ -360,6 +503,9 @@ msgid ""
 "``(\\\"GPIO_x\\\", pin#)`` for the ``id`` value. For example to "
 "initialize a pin for the red LED on a FRDM-k64 board::"
 msgstr ""
+"Zephyr においてピンの初期化は、その ``id`` 値のためのポートとピン番号のタプル "
+"``(\\\"GPIO_x\\\", pin#)`` で行います。
+"たとえば、FRDM-k64 ボードの赤色LED用のピンを初期化する場合には次のようにします::"
 
 #: ../../zephyr/tutorial/pins.rst:11
 msgid "LED = Pin((\"GPIO_1\", 22), Pin.OUT)"
@@ -370,22 +516,24 @@ msgid ""
 "Reference your board's datasheet or Zephyr documentation for pin numbers,"
 " see below for more examples."
 msgstr ""
+"ピン番号については、ボードのデータシートまたは Zephyr のドキュメンテーションを"
+"参照してください。"
 
 #: ../../zephyr/tutorial/pins.rst:15
 msgid "Pin Formatting"
-msgstr ""
+msgstr "ピンのフォーマット"
 
 #: ../../zephyr/tutorial/pins.rst:18
 msgid "Board"
-msgstr ""
+msgstr "ボード"
 
 #: ../../zephyr/tutorial/pins.rst:19
 msgid "Pin"
-msgstr ""
+msgstr "ピン"
 
 #: ../../zephyr/tutorial/pins.rst:20
 msgid "Format"
-msgstr ""
+msgstr "フォーマット"
 
 #: ../../zephyr/tutorial/pins.rst:21
 msgid "frdm_k64f"
@@ -433,6 +581,9 @@ msgid ""
 "`machine.Pin.irq() <machine.Pin.irq>`. To respond to Pin change IRQs "
 "run::"
 msgstr ""
+"Zephyr ポートは `machine.Pin.irq() <machine.Pin.irq>` を"
+"使ったピンの割り込み処理もサポートしています。ピンの変更 IRQ に応答するには"
+"次のようにします::"
 
 #: ../../zephyr/tutorial/pins.rst:37
 msgid ""
@@ -451,10 +602,21 @@ msgid ""
 "while True:                                 # wait\n"
 "    pass"
 msgstr ""
+"from machine import Pin\n"
+"\n"
+"SW2 = Pin((\"GPIO_2\", 6), Pin.IN)            # スイッチ２用のピンオブジェクトを作成\n"
+"SW3 = Pin((\"GPIO_0\", 4), Pin.IN)            # スイッチ３用のピンオブジェクトを作成\n"
+"\n"
+"SW2.irq(lambda t: print(\"SW2 changed\"))     # SW2 の状態が変更されたときに(IRQの変更をトリガーしたときに)メッセージを表示\n"
+"state is changed (triggers change IRQ)\n"
+"SW3.irq(lambda t: print(\"SW3 changed\"))     # SW3 の状態が変更されたときに(IRQの変更をトリガーしたときに)メッセージを表示\n"
+"\n"
+"while True:                                 # 待機\n"
+"    pass"
 
 #: ../../zephyr/tutorial/repl.rst:2
 msgid "Getting a MicroPython REPL prompt"
-msgstr ""
+msgstr "MicroPython REPL プロンプトの始め方"
 
 #: ../../zephyr/tutorial/repl.rst:4
 msgid ""
@@ -463,10 +625,13 @@ msgid ""
 "Zephyr. It is recommended to use REPL to test out your code and run "
 "commands."
 msgstr ""
+"REPL は Read Evaluate Print Loop の略で、Zephyr ボードでアクセスできる"
+"対話的な MicroPython プロンプトに与えられた名前です。"
+"コードのテストやコマンドの実行には REPL の利用ををお勧めします。"
 
 #: ../../zephyr/tutorial/repl.rst:9
 msgid "REPL over the serial port"
-msgstr ""
+msgstr "シリアルポート経由の REPL"
 
 #: ../../zephyr/tutorial/repl.rst:11
 msgid ""
@@ -475,12 +640,20 @@ msgid ""
 "115200. If your board has a USB-serial converter on it then you should be"
 " able to access the REPL directly from your PC."
 msgstr ""
+"REPL は ``zephyr,console`` デバイスツリーノードによりボードに指定された UART "
+"シリアルペリフェラルで使えます。REPL のボーレートは 115200 です。ボードに USB "
+"シリアルコンバータが搭載されている場合は、PCから REPL に直接アクセスできます。"
 
 #: ../../zephyr/tutorial/repl.rst:16
 msgid ""
 "To access the prompt over USB-serial you will need to use a terminal "
 "emulator program. For a Linux or Mac machine, open a terminal and run::"
 msgstr ""
+"USB シリアル経由のプロンプトにアクセスするには、ターミナルエミュレータ"
+"プログラムを使用する必要があります。Linux または Mac の場合は、"
+"ターミナルを開いて次を実行してください"
+"(訳註: Mac の場合はデバイスファイル名が異なります。たいていは ``/dev/tty.usb〜`` "
+"という名前が付いています)::"
 
 #: ../../zephyr/tutorial/repl.rst:19
 msgid "screen /dev/ttyACM0 115200"
@@ -495,10 +668,16 @@ msgid ""
 "software, such as puTTY and connect via a serial session using the proper"
 " COM port."
 msgstr ""
+"``screen`` の代わりに ``picocom`` や ``minicom`` を試すこともできます。 "
+"``ttyACM`` には ``/dev/ttyACM1`` かそれ以上の番号を使う必要があるかもしれません。"
+"このデバイスにアクセスするには、追加のパーミッションが必要な場合があります"
+"(``uucp`` や ``dialout`` グループ、sudo を使うなど)。Windows の場合は、"
+"puTTY などのターミナルソフトを入手し、適切な COM ポートを使ってシリアルセッションで"
+"接続します。"
 
 #: ../../zephyr/tutorial/repl.rst:28
 msgid "Using the REPL"
-msgstr ""
+msgstr "REPL の使い方"
 
 #: ../../zephyr/tutorial/repl.rst:30
 msgid ""
@@ -506,6 +685,9 @@ msgid ""
 " blank screen with a flashing cursor. Press Enter (or reset the board) "
 "and you should be presented with the following text::"
 msgstr ""
+"シリアルプログラム(PuTTY、screen、picocom など)を開くと、カーソルが点滅する空白の"
+"画面が表示されます。Enterキーを押すと(またはボードをリセットすると)、以下のような"
+"テキストが表示されます::"
 
 #: ../../zephyr/tutorial/repl.rst:34
 msgid ""
@@ -518,7 +700,7 @@ msgstr ""
 
 #: ../../zephyr/tutorial/repl.rst:39
 msgid "Now you can try running MicroPython code directly on your board."
-msgstr ""
+msgstr "これで、MicroPython コードをボード上で直接実行してみることができます。"
 
 #: ../../zephyr/tutorial/repl.rst:41
 msgid ""
@@ -526,10 +708,12 @@ msgid ""
 "after you press the Enter key. If there is an error with the text that "
 "you enter then an error message is printed."
 msgstr ""
+"``>>>`` で示されるプロンプトに入力したものは、Enter キーを押した後に実行されます。"
+"入力したテキストにエラーがある場合は、エラーメッセージが出力されます。"
 
 #: ../../zephyr/tutorial/repl.rst:45
 msgid "Start by typing the following at the prompt to make sure it is working::"
-msgstr ""
+msgstr "まず、プロンプトに次のように入力し、動作していることを確認してください::"
 
 #: ../../zephyr/tutorial/repl.rst:47
 msgid ""
@@ -542,6 +726,8 @@ msgid ""
 "If you already know some python you can now try some basic commands here."
 " For example::"
 msgstr ""
+"すでに python を知っているなら、ここでいくつかの基本的なコマンドを試せます。"
+"たとえば、次を試してみてください::"
 
 #: ../../zephyr/tutorial/repl.rst:53
 msgid ""
@@ -556,6 +742,7 @@ msgstr ""
 #: ../../zephyr/tutorial/repl.rst:60
 msgid "If your board has an LED, you can blink it using the following code::"
 msgstr ""
+"ボードにLEDがあれば、以下のコードで点滅させることができます::"
 
 #: ../../zephyr/tutorial/repl.rst:62
 msgid ""
@@ -577,10 +764,13 @@ msgid ""
 "where *x* starts from 0). You will need to adjust it for another board "
 "using the board's reference materials."
 msgstr ""
+"上記のコードでは、FRDM-K64F ボードの LED を使っています(ポートB、ピン21; "
+"Zephyrの規約ではポートは \"GPIO_x\" で識別され、 *x* は0から始まります)。"
+"他のボードでは、そのボードのリファレンス資料を使って調整する必要があります。"
 
 #: ../../zephyr/tutorial/storage.rst:4
 msgid "Filesystems and Storage"
-msgstr ""
+msgstr "ファイルシステムとストレージ"
 
 #: ../../zephyr/tutorial/storage.rst:6
 msgid ""
@@ -588,6 +778,9 @@ msgid ""
 " backed by either Zephyr DiskAccess or FlashArea (flash map) APIs "
 "depending on which the board supports."
 msgstr ""
+"ストレージモジュールは FAT および littlefs フォーマットの仮想ファイルシステムを"
+"サポートし、ボードがサポートする Zephyr DiskAccess または FlashArea "
+"(フラッシュマップ) APIによって支えられています。"
 
 #: ../../zephyr/tutorial/storage.rst:9
 msgid ""
@@ -595,6 +788,9 @@ msgid ""
 "<https://docs.micropython.org/en/latest/library/os.html?highlight=os"
 "#filesystem-mounting>`_."
 msgstr ""
+"`ファイルシステムのマウント "
+"<https://micropython-docs-ja.readthedocs.io/ja/latest/library/os.html"
+"?highlight=os#filesystem-mounting>`_ を参照してください。"
 
 #: ../../zephyr/tutorial/storage.rst:14
 msgid ""
@@ -604,6 +800,10 @@ msgid ""
 "<https://docs.zephyrproject.org/latest/reference/storage/disk/access.html>`_"
 " and implements the `os.AbstractBlockDev` protocol."
 msgstr ""
+":ref:`zephyr.DiskAccess <zephyr.DiskAccess>` クラスは、SD カードなどの"
+"ストレージデバイスにアクセスするのに使えます。このクラスは `Zephyr ディスクアクセス API "
+"<https://docs.zephyrproject.org/latest/reference/storage/disk/access.html>`_ "
+"を使い、 `os.AbstractBlockDev` プロトコルを実装しています。"
 
 #: ../../zephyr/tutorial/storage.rst:18
 msgid ""
@@ -612,10 +812,14 @@ msgid ""
 "boot. Use the disk driver interface and a file system to access SD cards "
 "via disk access (see below)."
 msgstr ""
+"SD カードコントローラで使う場合、SD カードはブート時に存在し、取り外されていない"
+"必要があります。SDカードはブート時にファイルシステムによって自動検出され、初期化されます。"
+"ディスクアクセス経由で SD カードにアクセスするには、ディスクドライバインターフェイスと"
+"ファイルシステムを使います(下記参照)。"
 
 #: ../../zephyr/tutorial/storage.rst:22
 msgid "Example usage of FatFS with an SD card on the mimxrt1050_evk board::"
-msgstr ""
+msgstr "mimxrt1050_evk ボード上の SD カードによる FatFS の使用例::"
 
 #: ../../zephyr/tutorial/storage.rst:24
 msgid ""
@@ -632,6 +836,14 @@ msgid ""
 "    f.write('Hello world')              # write to the file\n"
 "print(open('/sd/hello.txt').read())     # print contents of the file"
 msgstr ""
+"import os\n"
+"from zephyr import DiskAccess\n"
+"bdev = zephyr.DiskAccess('SDHC')        # DiskAccess を使ってブロックデバイスオブジェクトを作成\n"
+"os.VfsFat.mkfs(bdev)                    # ディスクストレージブロックを使って FAT ファイルシステムを作成\n"
+"os.mount(bdev, '/sd')                   # SD カード用のサブディレクトリにファイルシステムをマウント\n"
+"with open('/sd/hello.txt','w') as f:    # マウントしたディレクトリに新規ファイルをオープン\n"
+"    f.write('Hello world')              # ファイルに書き出し\n"
+"print(open('/sd/hello.txt').read())     # ファイルの内容を表示"
 
 #: ../../zephyr/tutorial/storage.rst:37
 msgid ""
@@ -640,6 +852,9 @@ msgid ""
 "configurations. To store persistent data on the device, using a higher-"
 "level filesystem API is recommended (see below)."
 msgstr ""
+":ref:`zephyr.FlashArea` クラスは、低レベルのストレージシステムの実装や"
+"ファイルシステム構成のカスタム化に使えます。デバイス上に永続的なデータを保存"
+"するには、より高レベルのファイルシステムAPIを使用することを推奨します(下記参照)。"
 
 #: ../../zephyr/tutorial/storage.rst:41
 msgid ""
@@ -647,12 +862,16 @@ msgid ""
 "<https://docs.zephyrproject.org/latest/reference/storage/flash_map/flash_map.html#>`_"
 " and implements the `os.AbstractBlockDev` protocol."
 msgstr ""
+"このクラスは `Zephyr Flash map API "
+"<https://docs.zephyrproject.org/latest/reference/storage/flash_map/flash_map.html#>`_"
+" を使用し、 `os.AbstractBlockDev` プロトコルを実装しています。"
 
 #: ../../zephyr/tutorial/storage.rst:44
 msgid ""
 "Example usage with the internal flash on the reel_board or the "
 "rv32m1_vega_ri5cy board::"
 msgstr ""
+"次に示すのは reel_board または rv32m1_vega_ri5cy ボードの内蔵フラッシュでの使用例です::"
 
 #: ../../zephyr/tutorial/storage.rst:46
 msgid ""
@@ -669,6 +888,14 @@ msgid ""
 "    f.write('Hello world')                  # write to the file\n"
 "print(open('/flash/hello.txt').read())      # print contents of the file"
 msgstr ""
+"import os\n"
+"from zephyr import FlashArea\n"
+"bdev = FlashArea(FlashArea.STORAGE, 4096)   # FlashArea を使ってブロックデバイスオブジェクトを作成\n"
+"os.VfsLfs2.mkfs(bdev)                       # フラッシュエリアブロックを使って Little ファイルシステムを作成\n"
+"os.mount(bdev, '/flash')                    # フラッシュストレージ用のサブディレクトリにファイルシステムをマウント\n"
+"with open('/flash/hello.txt','w') as f:     # マウントしたディレクトリに新規ファイルをオープン\n"
+"    f.write('Hello world')                  # ファイルに書き出し\n"
+"print(open('/flash/hello.txt').read())      # ファイルの内容を表示"
 
 #: ../../zephyr/tutorial/storage.rst:55
 msgid ""
@@ -676,4 +903,6 @@ msgid ""
 "spills into the default flash storage partition, use the scratch "
 "partition by replacing ``FlashArea.STORAGE`` with the integer value 4."
 msgstr ""
-
+"frdm_k64f のように、MicroPython アプリケーションがデフォルトのフラッシュ"
+"ストレージパーティションを超えてしまうボードでは、 ``FlashArea.STORAGE`` を"
+"整数値 4 に置き換えてスクラッチパーティションを使うようにします。"

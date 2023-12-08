@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-11 23:11+0900\n"
-"PO-Revision-Date: 2023-11-11 23:31+0900\n"
+"PO-Revision-Date: 2023-12-08 12:55+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -24153,17 +24153,19 @@ msgstr ""
 
 #: ../../library/zephyr.rst:4
 msgid ":mod:`zephyr` --- functionality specific to the Zephyr port"
-msgstr ""
+msgstr ":mod:`zephyr` --- Zephyr ポート固有の機能"
 
 #: ../../library/zephyr.rst:9
 msgid ""
 "The ``zephyr`` module contains functions and classes specific to the "
 "Zephyr port."
 msgstr ""
+"``zephyr`` モジュールには、Zephyr ポートに特有の関数とクラスが含まれています。"
 
 #: ../../library/zephyr.rst:16
 msgid "Returns true if the current thread is a preemptible thread."
 msgstr ""
+"現在のスレッドがプリエンプト可能なスレッドである場合に真を返します。"
 
 #: ../../library/zephyr.rst:18
 msgid ""
@@ -24171,18 +24173,24 @@ msgid ""
 "(low priority levels), which therefore, can be supplanted as soon as a "
 "higher or equal priority thread becomes ready."
 msgstr ""
+"Zephyrのプリエンプト可能なスレッドとは、負の値でない優先度(低い優先度レベル)を"
+"持つスレッドであり、より高い優先度または同等の優先度のスレッドがレディ状態になり次第、"
+"そのスレッドに取って代わることができる。"
 
 #: ../../library/zephyr.rst:23
 msgid ""
 "Returns the thread id of the current thread, which is used to reference "
 "the thread."
 msgstr ""
+"スレッドを参照するために使われる、現在のスレッドのスレッドIDを返します。"
 
 #: ../../library/zephyr.rst:27
 msgid ""
 "Runs the Zephyr debug thread analyzer on the current thread and prints "
 "stack size statistics in the format:"
 msgstr ""
+"現在のスレッドで Zephyr デバッグスレッドアナライザを実行し、スタックサイズの統計情報を"
+"表示します:"
 
 #: ../../library/zephyr.rst:29
 msgid ""
@@ -24196,6 +24204,8 @@ msgid ""
 "*CPU utilization is only printed if runtime statistics are configured via"
 " the ``CONFIG_THREAD_RUNTIME_STATS`` kconfig*"
 msgstr ""
+"*CPU使用率は、``CONFIG_THREAD_RUNTIME_STATS`` kconfig でランタイム統計が"
+"設定されている場合にのみ表示されます。*"
 
 #: ../../library/zephyr.rst:34
 msgid ""
@@ -24205,6 +24215,12 @@ msgid ""
 "<https://docs.zephyrproject.org/latest/guides/debug_tools/thread-"
 "analyzer.html#thread-analyzer>`_."
 msgstr ""
+"この関数は、 ``zephyr/prj.conf`` でポートに対して ``CONFIG_THREAD_ANALYZER`` "
+"が設定されている場合にのみアクセスできます。詳細については、Zephyrのドキュメントにある "
+"`スレッドアナライザ "
+"<https://docs.zephyrproject.org/latest/guides/debug_tools/thread-"
+"analyzer.html#thread-analyzer>`_ "
+"を参照してください。"
 
 #: ../../library/zephyr.rst:40
 msgid ""
@@ -24212,6 +24228,9 @@ msgid ""
 "accessed if ``CONFIG_SHELL_BACKEND_SERIAL`` is configured for the port in"
 " ``zephyr/prj.conf``."
 msgstr ""
+"与えられたコマンドを UART バックエンドで実行します。"
+"この関数は、 ``zephyr/prj.conf`` でポートに ``CONFIG_SHELL_BACKEND_SERIAL`` "
+"が設定されている場合にのみアクセスできます。"
 
 #: ../../library/zephyr.rst:43
 msgid ""
@@ -24219,20 +24238,27 @@ msgid ""
 "`shell commands "
 "<https://docs.zephyrproject.org/latest/reference/shell/index.html?highlight=shell_execute_cmd#commands>`_."
 msgstr ""
+"使用可能なコマンドの一覧は、Zephyr のドキュメントにある "
+"シェルコマンド "
+"<https://docs.zephyrproject.org/latest/reference/shell/index.html?highlight=shell_execute_cmd#commands>`_ "
+"を参照してください。"
 
 #: ../../library/zephyr.rst:55
 msgid "Additional Modules"
-msgstr ""
+msgstr "追加モジュール"
 
 #: ../../library/zephyr.DiskAccess.rst:5
 msgid "class DiskAccess -- access to disk storage"
-msgstr ""
+msgstr "クラス DiskAccess -- ディスクストレージへのアクセス"
 
 #: ../../library/zephyr.DiskAccess.rst:7
 msgid ""
 "Uses `Zephyr Disk Access API "
 "<https://docs.zephyrproject.org/latest/reference/storage/disk/access.html>`_."
 msgstr ""
+"Zephyr Disk Access API "
+"<https://docs.zephyrproject.org/latest/reference/storage/disk/access.html>`_ "
+"を使います。"
 
 #: ../../library/zephyr.DiskAccess.rst:9
 msgid ""
@@ -24241,6 +24267,9 @@ msgid ""
 "devices are automatically detected and initialized on boot using Zephyr "
 "devicetree data."
 msgstr ""
+"このクラスは、SDカードコントローラのサポートやSPI経由でのSDカードとのインターフェイス"
+"など、ボード上のストレージデバイスへのアクセスを可能にします。ディスクデバイスは起動時に"
+"自動的に検出され、Zephyr devicetree データを使って初期化されます。"
 
 #: ../../library/zephyr.DiskAccess.rst:13
 msgid ""
@@ -24250,6 +24279,11 @@ msgid ""
 "many blocks as necessary to fill the buffer, so the number of sectors to "
 "read is found by dividing the buffer length by block size of the disk."
 msgstr ""
+"Zephyr ディスクアクセスクラスは、ディスク名、バッファ、開始ディスクブロック、"
+"読み込むセクタ数を指定すると、ディスクデバイスとアクセス可能なメモリバッファ間の"
+"データ転送を可能にします。MicroPython はバッファを満たすのに必要な数のブロックを"
+"読み込むので、読み込むセクタ数はバッファの長さをディスクのブロックサイズで割ることで"
+"求められます。"
 
 #: ../../library/zephyr.DiskAccess.rst:22
 msgid ""
@@ -24258,16 +24292,22 @@ msgid ""
 "``SDHC``. See board documentation and devicetree for usable disk names "
 "for your board (ex. RT boards use style USDHC#)."
 msgstr ""
+"特定のディスクのディスクメモリーにアクセスするためのオブジェクトを取得します。"
+"mimxrt1050_evk で SDカードにアクセスする場合、 ``disk_name`` は ``SDHC`` になります。"
+"ボードの使用可能なディスク名については、ボードのドキュメントと devicetree を"
+"参照してください(例: RT ボードはスタイル USDHC# を使用)。"
 
 #: ../../library/zephyr.DiskAccess.rst:35 ../../library/zephyr.FlashArea.rst:38
 msgid ""
 "These methods implement the simple and extended :ref:`block protocol "
 "<block-device-interface>` defined by :class:`os.AbstractBlockDev`."
 msgstr ""
+"これらのメソッドは :class:`os.AbstractBlockDev` で定義されているシンプルで"
+"拡張された :ref:`ブロックプロトコル <block-device-interface>` を実装しています。"
 
 #: ../../library/zephyr.FlashArea.rst:5
 msgid "class FlashArea -- access to built-in flash storage"
-msgstr ""
+msgstr "クラス FlashArea -- 内蔵フラッシュストレージへのアクセス"
 
 #: ../../library/zephyr.FlashArea.rst:7
 msgid ""
@@ -24275,6 +24315,9 @@ msgid ""
 "<https://docs.zephyrproject.org/latest/reference/storage/flash_map/flash_map.html"
 "#flash-map>`_."
 msgstr ""
+"`Zephyr flash map API "
+"<https://docs.zephyrproject.org/latest/reference/storage/flash_map/flash_map.html"
+"#flash-map>`_ を使います。"
 
 #: ../../library/zephyr.FlashArea.rst:9
 msgid ""
@@ -24286,12 +24329,21 @@ msgid ""
 "from the device tree is used; however, fixed flash partitioning is not "
 "enforced in MicroPython because MCUBoot is not enabled."
 msgstr ""
+"このクラスは、デバイスのフラッシュパーティションデータへのアクセスを許可します。"
+"フラッシュ領域構造体は、グローバルに一意な ID 番号、パーティションがある"
+"フラッシュデバイスの名前、開始オフセット(パーティションごとのフラッシュメモリの"
+"開始アドレスに関連して表される)、デバイスが表すパーティションのサイズで構成されます。"
+"固定フラッシュパーティションでは、デバイスツリーからのデータが使われます。"
+"しかし、MicroPython では MCUBoot が有効になっていないので、固定フラッシュ"
+"パーティションは強制されません。"
 
 #: ../../library/zephyr.FlashArea.rst:20
 msgid ""
 "Gets an object for accessing flash memory at partition specified by "
 "``id`` and with block size of ``block_size``."
 msgstr ""
+"``id`` で指定され、ブロック・サイズが ``block_size`` であるパーティションの"
+"フラッシュメモリにアクセスするためのオブジェクトを取得します。"
 
 #: ../../library/zephyr.FlashArea.rst:22
 msgid ""
@@ -24305,10 +24357,18 @@ msgid ""
 "partitions can be accessed by ID integer values 1, 2, 3, and 4, "
 "respectively."
 msgstr ""
+"``id`` 値は、devicetree で定義された固定フラッシュパーティションに対応する整数です。"
+"一般的に使用されるパーティションは、ブート時に ``FLASH_AREA_LABEL_EXISTS(storage)`` "
+"が真を返した場合に ``FlashArea.STORAGE`` として定義される指定されたフラッシュ"
+"ストレージ領域です。Zephyr の devicetree 固定フラッシュパーティションは、 "
+"``boot_partition``, ``slot0_partition``, ``slot1_partition``, "
+"``scratch_partition`` です。MicroPython では MCUBoot はデフォルトで有効に"
+"なっていないので、これらの固定パーティションはそれぞれIDの整数値 1, 2, 3, 4 "
+"でアクセスできます。"
 
 #: ../../library/zephyr.zsensor.rst:4
 msgid ":mod:`zsensor` --- Zephyr sensor bindings"
-msgstr ""
+msgstr ":mod:`zsensor` --- Zephyr センサーバインディング"
 
 #: ../../library/zephyr.zsensor.rst:9
 msgid "The ``zsensor`` module contains a class for using sensors with Zephyr."
@@ -24316,7 +24376,7 @@ msgstr ""
 
 #: ../../library/zephyr.zsensor.rst:14
 msgid "class Sensor --- sensor control for the Zephyr port"
-msgstr ""
+msgstr "クラス Sensor --- Zephyr ポート用のセンサー制御"
 
 #: ../../library/zephyr.zsensor.rst:16
 msgid ""
@@ -24324,6 +24384,11 @@ msgid ""
 "documentation for sensor usage here: `Sensors "
 "<https://docs.zephyrproject.org/latest/reference/peripherals/sensor.html?highlight=sensor#sensors>`_."
 msgstr ""
+"このクラスは、ボード上のセンサーからデータにアクセスするのに使います。"
+"センサーの使用方法については、Zephyr のドキュメンテーションの "
+"`センサー "
+"<https://docs.zephyrproject.org/latest/reference/peripherals/sensor.html?highlight=sensor#sensors>`_ "
+"を参照してください。"
 
 #: ../../library/zephyr.zsensor.rst:20
 msgid ""
@@ -24333,6 +24398,11 @@ msgid ""
 "property or different properties a sensor can measure. See `Channels`_ "
 "below for defined sensor channels."
 msgstr ""
+"各ボードのために Zephyr devicetree でセンサーが定義されています。"
+"特定のセンサーが測定できる数量は、センサーチャンネルと呼ばれます。"
+"センサーは、1つのプロパティの異なる軸またはセンサーが測定できる異なる"
+"プロパティを表すために、複数のチャンネルを持つことがあります。"
+"定義されたセンサーチャネルについては、後述の `Channels`_ を参照してください。"
 
 #: ../../library/zephyr.zsensor.rst:30
 msgid ""
@@ -24340,6 +24410,8 @@ msgid ""
 "the device name for the accelerometer in the FRDM-k64f board is "
 "\"FXOS8700\"."
 msgstr ""
+"デバイス名は、ボードの devicetree で定義されています。たとえば、FRDM-k64f "
+"ボードの加速度センサーのデバイス名は「FXOS8700」です。"
 
 #: ../../library/zephyr.zsensor.rst:38
 msgid ""
@@ -24348,92 +24420,102 @@ msgid ""
 "useful value, a pair of (integer part of value, fractional part of value "
 "in 1-millionths). Returns none if successful or OSError value if failure."
 msgstr ""
+"Zephyr の sensor_sample_fetch を使ってセンサーデバイスから測定サンプルを取得し、"
+"それを有用な値として内部のドライバーバッファに格納します。この値は (値の整数部, "
+"値の小数部を百万倍した整数)というペアです。成功した場合は None を返し、失敗した場合は "
+"OSError になります。"
 
 #: ../../library/zephyr.zsensor.rst:45
 msgid "Returns the value of the sensor measurement sample as a float."
-msgstr ""
+msgstr "計測したセンサー値を float で返します。"
 
 #: ../../library/zephyr.zsensor.rst:49
 msgid ""
 "Returns the value of the sensor measurement sample in millionths. (Ex. "
 "value of ``(1, 500000)`` returns as ``1500000``)"
 msgstr ""
+"計測したセンサー値を100万倍した値を返します。(例: 値が "
+"``(1, 500000)`` であれば ``1500000`` を返します)"
 
 #: ../../library/zephyr.zsensor.rst:54
 msgid ""
 "Returns the value of sensor measurement sample in thousandths. (Ex. value"
 " of ``(1, 500000)`` returns as ``1500``)"
 msgstr ""
+"計測したセンサー値を1000倍した値を返します。(例: 値が "
+"``(1, 500000)`` であれば ``1500`` を返します)"
 
 #: ../../library/zephyr.zsensor.rst:59
 msgid ""
 "Returns only the integer value of the measurement sample. (Ex. value of "
 "``(1, 500000)`` returns as ``1``)"
 msgstr ""
+"計測したセンサー値の整数部だけを返します。(例: 値が "
+"``(1, 500000)`` であれば ``1`` を返します)"
 
 #: ../../library/zephyr.zsensor.rst:63
 msgid "Channels"
-msgstr ""
+msgstr "チャンネル"
 
 #: ../../library/zephyr.zsensor.rst:67
 msgid "Acceleration on the X axis, in m/s^2."
-msgstr ""
+msgstr "X軸の加速度(m/s^2)。"
 
 #: ../../library/zephyr.zsensor.rst:71
 msgid "Acceleration on the Y axis, in m/s^2."
-msgstr ""
+msgstr "Y軸の加速度(m/s^2)。"
 
 #: ../../library/zephyr.zsensor.rst:75
 msgid "Acceleration on the Z axis, in m/s^2."
-msgstr ""
+msgstr "Z軸の加速度(m/s^2)。"
 
 #: ../../library/zephyr.zsensor.rst:79
 msgid "Angular velocity around the X axis, in radians/s."
-msgstr ""
+msgstr "X軸の角速度(radians/s)。"
 
 #: ../../library/zephyr.zsensor.rst:83
 msgid "Angular velocity around the Y axis, in radians/s."
-msgstr ""
+msgstr "Y軸の角速度(radians/s)。"
 
 #: ../../library/zephyr.zsensor.rst:87
 msgid "Angular velocity around the Z axis, in radians/s."
-msgstr ""
+msgstr "Z軸の角速度(radians/s)。"
 
 #: ../../library/zephyr.zsensor.rst:91
 msgid "Magnetic field on the X axis, in Gauss."
-msgstr ""
+msgstr "X軸の角速度(radians/s)。"
 
 #: ../../library/zephyr.zsensor.rst:95
 msgid "Magnetic field on the Y axis, in Gauss."
-msgstr ""
+msgstr "Y軸の磁場(ガウス)。"
 
 #: ../../library/zephyr.zsensor.rst:99
 msgid "Magnetic field on the Z axis, in Gauss."
-msgstr ""
+msgstr "Z軸の磁場(ガウス)。"
 
 #: ../../library/zephyr.zsensor.rst:103
 msgid "Device die temperature in degrees Celsius."
-msgstr ""
+msgstr "デバイスのダイ温度(摂氏)。"
 
 #: ../../library/zephyr.zsensor.rst:107
 msgid "Pressure in kilopascal."
-msgstr ""
+msgstr "気圧(キロパスカル)。"
 
 #: ../../library/zephyr.zsensor.rst:111
 msgid "Proximity. Dimensionless. A value of 1 indicates that an object is close."
-msgstr ""
+msgstr "近接度。無次元。値が1の場合、物体が近いことを示します。"
 
 #: ../../library/zephyr.zsensor.rst:115
 msgid "Humidity, in percent."
-msgstr ""
+msgstr "湿度(パーセント)。"
 
 #: ../../library/zephyr.zsensor.rst:119
 msgid "Illuminance in visible spectrum, in lux."
-msgstr ""
+msgstr "可視スペクトル内の照度(ルクス)。"
 
 #: ../../library/zephyr.zsensor.rst:123
 msgid "Altitude, in meters."
-msgstr ""
+msgstr "高度(メートル)。"
 
 #: ../../library/zlib.rst:2
 msgid ":mod:`zlib` -- zlib compression & decompression"
