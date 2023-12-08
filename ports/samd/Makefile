@@ -55,6 +55,7 @@ INC += -I$(TOP)/lib/asf4/$(MCU_SERIES_LOWER)/hpl/tc
 INC += -I$(TOP)/lib/asf4/$(MCU_SERIES_LOWER)/include
 INC += -I$(TOP)/lib/asf4/$(MCU_SERIES_LOWER)/include/pio
 INC += -I$(TOP)/lib/tinyusb/src
+INC += -I$(TOP)/shared/tinyusb/
 
 MAKE_PINS = boards/make-pins.py
 BOARD_PINS = $(BOARD_DIR)/pins.csv
@@ -107,7 +108,6 @@ SRC_C += \
 	machine_rtc.c \
 	machine_spi.c \
 	main.c \
-	modmachine.c \
 	modsamd.c \
 	mphalport.c \
 	pendsv.c \
@@ -117,7 +117,7 @@ SRC_C += \
 	samd_qspiflash.c \
 	samd_soc.c \
 	samd_spiflash.c \
-	tusb_port.c \
+	usbd.c \
 
 SHARED_SRC_C += \
 	drivers/dht/dht.c \
@@ -133,7 +133,8 @@ SHARED_SRC_C += \
 	shared/runtime/sys_stdio_mphal.c \
 	shared/timeutils/timeutils.c \
 	shared/tinyusb/mp_cdc_common.c \
-	shared/tinyusb/mp_usbd.c
+	shared/tinyusb/mp_usbd.c \
+	shared/tinyusb/mp_usbd_descriptor.c \
 
 ASF4_SRC_C += $(addprefix lib/asf4/$(MCU_SERIES_LOWER)/,\
 	hal/src/hal_atomic.c \
@@ -141,35 +142,8 @@ ASF4_SRC_C += $(addprefix lib/asf4/$(MCU_SERIES_LOWER)/,\
 	hpl/nvmctrl/hpl_nvmctrl.c \
 	)
 
-LIBM_SRC_C += $(addprefix lib/libm/,\
-	acoshf.c \
-	asinfacosf.c \
-	asinhf.c \
-	atan2f.c \
-	atanf.c \
-	atanhf.c \
-	ef_rem_pio2.c \
-	ef_sqrt.c \
-	erf_lgamma.c \
-	fmodf.c \
-	kf_cos.c \
-	kf_rem_pio2.c \
-	kf_sin.c \
-	kf_tan.c \
-	log1pf.c \
-	math.c \
-	nearbyintf.c \
-	roundf.c \
-	sf_cos.c \
-	sf_erf.c \
-	sf_frexp.c \
-	sf_ldexp.c \
-	sf_modf.c \
-	sf_sin.c \
-	sf_tan.c \
-	wf_lgamma.c \
-	wf_tgamma.c \
-	)
+LIBM_SRC_C += $(SRC_LIB_LIBM_C)
+LIBM_SRC_C += $(SRC_LIB_LIBM_SQRT_SW_C)
 
 TINYUSB_SRC_C += $(addprefix lib/tinyusb/src/,\
 	class/cdc/cdc_device.c \

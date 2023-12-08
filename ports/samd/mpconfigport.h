@@ -62,6 +62,18 @@
 #define MICROPY_HW_ENABLE_USBDEV            (1)
 #define MICROPY_HW_USB_CDC_1200BPS_TOUCH    (1)
 
+#if MICROPY_HW_ENABLE_USBDEV
+// Enable USB-CDC serial port
+#ifndef MICROPY_HW_USB_CDC
+#define MICROPY_HW_USB_CDC (1)
+#endif
+// SAMD unique ID is 16 bytes (hex string == 32)
+#ifndef MICROPY_HW_USB_DESC_STR_MAX
+#define MICROPY_HW_USB_DESC_STR_MAX (32)
+#endif
+
+#endif
+
 // Control over Python builtins
 #define MICROPY_PY_BUILTINS_BYTES_HEX       (1)
 #define MICROPY_PY_BUILTINS_MEMORYVIEW      (1)
@@ -81,6 +93,10 @@
 #define MICROPY_PY_TIME_TIME_TIME_NS        (1)
 #define MICROPY_PY_TIME_INCLUDEFILE         "ports/samd/modtime.c"
 #define MICROPY_PY_MACHINE                  (1)
+#define MICROPY_PY_MACHINE_INCLUDEFILE      "ports/samd/modmachine.c"
+#define MICROPY_PY_MACHINE_BARE_METAL_FUNCS (1)
+#define MICROPY_PY_MACHINE_BOOTLOADER       (1)
+#define MICROPY_PY_MACHINE_DISABLE_IRQ_ENABLE_IRQ (1)
 #define MICROPY_PY_OS                       (1)
 #define MICROPY_PY_OS_INCLUDEFILE           "ports/samd/modos.c"
 #define MICROPY_READER_VFS                  (1)
@@ -141,6 +157,15 @@
 
 #define MP_STATE_PORT MP_STATE_VM
 
+// Miscellaneous settings
+
+#ifndef MICROPY_HW_USB_VID
+#define MICROPY_HW_USB_VID (0xf055)
+#endif
+#ifndef MICROPY_HW_USB_PID
+#define MICROPY_HW_USB_PID (0x9802)
+#endif
+
 // Additional entries for use with pendsv_schedule_dispatch.
 #ifndef MICROPY_BOARD_PENDSV_ENTRIES
 #define MICROPY_BOARD_PENDSV_ENTRIES
@@ -152,18 +177,6 @@
 #endif  // !defined(MICROPY_HW_MCUFLASH) ....
 
 // Miscellaneous settings
-__attribute__((always_inline)) static inline void enable_irq(uint32_t state) {
-    __set_PRIMASK(state);
-}
-
-__attribute__((always_inline)) static inline uint32_t disable_irq(void) {
-    uint32_t state = __get_PRIMASK();
-    __disable_irq();
-    return state;
-}
-
-#define MICROPY_BEGIN_ATOMIC_SECTION()     disable_irq()
-#define MICROPY_END_ATOMIC_SECTION(state)  enable_irq(state)
 
 #define MICROPY_EVENT_POLL_HOOK \
     do { \
