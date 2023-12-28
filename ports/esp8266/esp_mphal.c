@@ -94,8 +94,14 @@ void mp_hal_debug_str(const char *str) {
 }
 #endif
 
-void mp_hal_stdout_tx_strn(const char *str, uint32_t len) {
-    mp_os_dupterm_tx_strn(str, len);
+mp_uint_t mp_hal_stdout_tx_strn(const char *str, uint32_t len) {
+    int dupterm_res = mp_os_dupterm_tx_strn(str, len);
+    if (dupterm_res < 0) {
+        // no outputs, nothing was written
+        return 0;
+    } else {
+        return dupterm_res;
+    }
 }
 
 void mp_hal_debug_tx_strn_cooked(void *env, const char *str, uint32_t len) {
@@ -132,33 +138,6 @@ void MP_FASTCODE(mp_hal_signal_input)(void) {
     #if MICROPY_REPL_EVENT_DRIVEN
     system_os_post(UART_TASK_ID, 0, 0);
     #endif
-}
-
-STATIC void dupterm_task_handler(os_event_t *evt) {
-    static byte lock;
-    if (lock) {
-        return;
-    }
-    lock = 1;
-    while (1) {
-        int c = mp_os_dupterm_rx_chr();
-        if (c < 0) {
-            break;
-        }
-        ringbuf_put(&stdin_ringbuf, c);
-    }
-    mp_hal_signal_input();
-    lock = 0;
-}
-
-STATIC os_event_t dupterm_evt_queue[4];
-
-void dupterm_task_init() {
-    system_os_task(dupterm_task_handler, DUPTERM_TASK_ID, dupterm_evt_queue, MP_ARRAY_SIZE(dupterm_evt_queue));
-}
-
-void mp_hal_signal_dupterm_input(void) {
-    system_os_post(DUPTERM_TASK_ID, 0, 0);
 }
 
 // this bit is unused in the Xtensa PS register

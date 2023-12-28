@@ -6,6 +6,9 @@ else
     MAKEOPTS="-j$(sysctl -n hw.ncpu)"
 fi
 
+# Ensure known OPEN_MAX (NO_FILES) limit.
+ulimit -n 1024
+
 ########################################################################################
 # general helper functions
 
@@ -119,7 +122,7 @@ function ci_cc3200_build {
 # ports/esp32
 
 # GitHub tag of ESP-IDF to use for CI (note: must be a tag or a branch)
-IDF_VER=v5.0.2
+IDF_VER=v5.0.4
 
 export IDF_CCACHE_ENABLE=1
 
