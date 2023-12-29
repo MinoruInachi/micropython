@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 23:11+0900\n"
-"PO-Revision-Date: 2023-12-08 12:55+0900\n"
+"POT-Creation-Date: 2023-12-29 08:42+0900\n"
+"PO-Revision-Date: 2023-12-29 10:32+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -519,13 +519,18 @@ msgstr "TCP ストリーム接続"
 msgid ""
 "Open a TCP connection to the given *host* and *port*.  The *host* address"
 " will be resolved using `socket.getaddrinfo`, which is currently a "
-"blocking call."
+"blocking call. If *ssl* is a `ssl.SSLContext` object, this context is "
+"used to create the transport; if *ssl* is ``True``, a default context is "
+"used."
 msgstr ""
 "指定したホスト *host* とポート *port* への TCP 接続を開きます。 "
-"*host* のアドレスは `socket.getaddrinfo` を使って解決されます。"
-"この解決は現在のところブロッキング呼出しです。"
+"*host* のアドレスは、現在のところブロッキング呼出しで行われる "
+"`socket.getaddrinfo` を使って解決されます。 "
+"*ssl* が `ssl.SSLContext` オブジェクトであれば、このコンテキストが"
+"トランスポートを作成するのに使われます。 *ssl* が ``True`` であれば、"
+"デフォルトのコンテキストが使われます。"
 
-#: ../../library/asyncio.rst:209
+#: ../../library/asyncio.rst:211
 msgid ""
 "Returns a pair of streams: a reader and a writer stream. Will raise a "
 "socket-specific ``OSError`` if the host could not be resolved or if the "
@@ -535,7 +540,7 @@ msgstr ""
 "ホストを解決できなかった場合、または接続を確立できなかった場合は、
 "ソケット特有の ``OSError`` 例外を発生します。"
 
-#: ../../library/asyncio.rst:217
+#: ../../library/asyncio.rst:219
 msgid ""
 "Start a TCP server on the given *host* and *port*.  The *callback* will "
 "be called with incoming, accepted connections, and be passed 2 arguments:"
@@ -545,11 +550,19 @@ msgstr ""
 "コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
 "(読み取りストリームと書き込みストリーム)で呼び出されます。"
 
-#: ../../library/asyncio.rst:221
+#: ../../library/asyncio.rst:223
+msgid ""
+"If *ssl* is a `ssl.SSLContext` object, this context is used to create the"
+" transport."
+msgstr ""
+"*ssl* が `ssl.SSLContext` オブジェクトであれば、このコンテキストが"
+"トランスポートを作成するのに使われます。"
+
+#: ../../library/asyncio.rst:225
 msgid "Returns a `Server` object."
 msgstr "`Server` オブジェクトを返します。"
 
-#: ../../library/asyncio.rst:227
+#: ../../library/asyncio.rst:231
 msgid ""
 "This represents a TCP stream connection.  To minimise code this class "
 "implements both a reader and a writer, and both ``StreamReader`` and "
@@ -559,7 +572,7 @@ msgstr ""
 "このクラスには読み取りと書き込みの両方を実装しています。
 "StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
 
-#: ../../library/asyncio.rst:233
+#: ../../library/asyncio.rst:237
 msgid ""
 "Get extra information about the stream, given by *v*.  The valid values "
 "for *v* are: ``peername``."
@@ -567,15 +580,15 @@ msgstr ""
 "*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
 "``peername`` です。"
 
-#: ../../library/asyncio.rst:238
+#: ../../library/asyncio.rst:242
 msgid "Close the stream."
 msgstr "ストリームをクローズします。"
 
-#: ../../library/asyncio.rst:242
+#: ../../library/asyncio.rst:246
 msgid "Wait for the stream to close."
 msgstr "ストリームがクローズするまで待ちます。"
 
-#: ../../library/asyncio.rst:248
+#: ../../library/asyncio.rst:252
 msgid ""
 "Read up to *n* bytes and return them.  If *n* is not provided or -1 then "
 "read all bytes until EOF.  The returned value will be an empty bytes "
@@ -585,30 +598,30 @@ msgstr ""
 "*n* が指定されていないか、または -1 の場合、EOF まで全てのバイトを読み込みます。"
 "バイト列を読み込む前に EOF に達した場合、戻り値は空のバイト列オブジェクトになります。
 
-#: ../../library/asyncio.rst:256
+#: ../../library/asyncio.rst:260
 msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
 msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
 
-#: ../../library/asyncio.rst:258
+#: ../../library/asyncio.rst:262
 msgid "Return the number of bytes read into *buf*."
 msgstr "戻り値は *buf* に読み込んだバイト数です。"
 
-#: ../../library/asyncio.rst:264
+#: ../../library/asyncio.rst:268
 msgid "Read exactly *n* bytes and return them as a bytes object."
 msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
 
-#: ../../library/asyncio.rst:266
+#: ../../library/asyncio.rst:270
 msgid ""
 "Raises an ``EOFError`` exception if the stream ends before reading *n* "
 "bytes."
 msgstr ""
 "*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
 
-#: ../../library/asyncio.rst:272
+#: ../../library/asyncio.rst:276
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/asyncio.rst:278
+#: ../../library/asyncio.rst:282
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -618,11 +631,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/asyncio.rst:284
+#: ../../library/asyncio.rst:288
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/asyncio.rst:290
+#: ../../library/asyncio.rst:294
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -630,28 +643,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/asyncio.rst:295
+#: ../../library/asyncio.rst:299
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/asyncio.rst:299
+#: ../../library/asyncio.rst:303
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/asyncio.rst:304
+#: ../../library/asyncio.rst:308
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/asyncio.rst:308
+#: ../../library/asyncio.rst:312
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/asyncio.rst:312
+#: ../../library/asyncio.rst:316
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/asyncio.rst:314
+#: ../../library/asyncio.rst:318
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -659,7 +672,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/asyncio.rst:319
+#: ../../library/asyncio.rst:323
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -667,11 +680,11 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/asyncio.rst:324
+#: ../../library/asyncio.rst:328
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/asyncio.rst:328
+#: ../../library/asyncio.rst:332
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
@@ -683,15 +696,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/asyncio.rst:337
+#: ../../library/asyncio.rst:341
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/asyncio.rst:341
+#: ../../library/asyncio.rst:345
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/asyncio.rst:345
+#: ../../library/asyncio.rst:349
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -700,18 +713,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/asyncio.rst:350
+#: ../../library/asyncio.rst:354
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/asyncio.rst:355
+#: ../../library/asyncio.rst:359
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/asyncio.rst:359
+#: ../../library/asyncio.rst:363
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "
@@ -741,10 +754,10 @@ msgstr ""
 #: ../../library/esp32.rst:14 ../../library/gc.rst:10 ../../library/gzip.rst:32
 #: ../../library/heapq.rst:16 ../../library/io.rst:78 ../../library/json.rst:13
 #: ../../library/math.rst:18 ../../library/micropython.rst:8
-#: ../../library/re.rst:110 ../../library/select.rst:13
-#: ../../library/socket.rst:67 ../../library/ssl.rst:14
-#: ../../library/struct.rst:68 ../../library/sys.rst:10
-#: ../../library/time.rst:37 ../../library/wipy.rst:12
+#: ../../library/platform.rst:13 ../../library/re.rst:110
+#: ../../library/select.rst:13 ../../library/socket.rst:67
+#: ../../library/ssl.rst:14 ../../library/struct.rst:68
+#: ../../library/sys.rst:10 ../../library/time.rst:37 ../../library/wipy.rst:12
 #: ../../library/zephyr.rst:12 ../../library/zlib.rst:34
 msgid "Functions"
 msgstr "関数"
@@ -2559,22 +2572,23 @@ msgstr ""
 "できます。 flags の値はビットOR(|)演算を使って複数指定できます。"
 
 #: ../../library/btree.rst:150 ../../library/cmath.rst:55
-#: ../../library/deflate.rst:63 ../../library/errno.rst:13
-#: ../../library/esp32.rst:128 ../../library/esp32.rst:304
-#: ../../library/espnow.rst:562 ../../library/framebuf.rst:152
-#: ../../library/lcd160cr.rst:380 ../../library/machine.I2S.rst:148
-#: ../../library/machine.Pin.rst:242 ../../library/machine.RTC.rst:79
-#: ../../library/machine.SPI.rst:139 ../../library/machine.Timer.rst:84
-#: ../../library/machine.TimerWiPy.rst:154 ../../library/machine.UART.rst:207
-#: ../../library/machine.rst:226 ../../library/math.rst:177
-#: ../../library/network.WLAN.rst:140 ../../library/network.WLANWiPy.rst:145
-#: ../../library/pyb.CAN.rst:321 ../../library/pyb.DAC.rst:127
-#: ../../library/pyb.ExtInt.rst:102 ../../library/pyb.I2C.rst:161
-#: ../../library/pyb.Pin.rst:179 ../../library/pyb.SPI.rst:113
-#: ../../library/pyb.Timer.rst:286 ../../library/pyb.UART.rst:178
-#: ../../library/pyb.USB_VCP.rst:124 ../../library/pyb.rst:302
-#: ../../library/rp2.PIO.rst:66 ../../library/socket.rst:126
-#: ../../library/ssl.rst:88 ../../library/sys.rst:56
+#: ../../library/deflate.rst:69 ../../library/errno.rst:13
+#: ../../library/esp32.rst:146 ../../library/esp32.rst:294
+#: ../../library/esp32.rst:329 ../../library/espnow.rst:562
+#: ../../library/framebuf.rst:152 ../../library/lcd160cr.rst:380
+#: ../../library/machine.I2S.rst:148 ../../library/machine.Pin.rst:242
+#: ../../library/machine.RTC.rst:79 ../../library/machine.SPI.rst:139
+#: ../../library/machine.Timer.rst:84 ../../library/machine.TimerWiPy.rst:154
+#: ../../library/machine.UART.rst:207 ../../library/machine.rst:226
+#: ../../library/math.rst:177 ../../library/network.WLAN.rst:140
+#: ../../library/network.WLANWiPy.rst:145 ../../library/pyb.CAN.rst:321
+#: ../../library/pyb.DAC.rst:127 ../../library/pyb.ExtInt.rst:102
+#: ../../library/pyb.I2C.rst:161 ../../library/pyb.Pin.rst:179
+#: ../../library/pyb.SPI.rst:113 ../../library/pyb.Timer.rst:286
+#: ../../library/pyb.UART.rst:178 ../../library/pyb.USB_VCP.rst:124
+#: ../../library/pyb.rst:302 ../../library/rp2.PIO.rst:66
+#: ../../library/socket.rst:126 ../../library/ssl.rst:121
+#: ../../library/sys.rst:56
 msgid "Constants"
 msgstr "定数"
 
@@ -2634,8 +2648,8 @@ msgstr ""
 msgid "The *slice* builtin is the type that slice objects have."
 msgstr "*slice* 組込み型は、スライスオブジェクトが持つデータ型です。"
 
-#: ../../library/builtins.rst:155 ../../library/espnow.rst:557
-#: ../../library/ssl.rst:59
+#: ../../library/builtins.rst:155 ../../library/espnow.rst:571
+#: ../../library/ssl.rst:114
 msgid "Exceptions"
 msgstr "例外"
 
@@ -6237,14 +6251,14 @@ msgid "Return the number of bytes of heap RAM that are allocated by Python code.
 msgstr "Python コードによって割り当てられているヒープ RAM のバイト数を返します。"
 
 #: ../../library/gc.rst:29 ../../library/gc.rst:39 ../../library/gc.rst:61
-#: ../../library/binascii.rst:19 ../../library/io.rst:15
-#: ../../library/io.rst:128 ../../library/select.rst:79
+#: ../../library/io.rst:15 ../../library/io.rst:118 ../../library/select.rst:79
 #: ../../library/select.rst:96 ../../library/socket.rst:12
-#: ../../library/socket.rst:109 ../../library/socket.rst:278
+#: ../../library/socket.rst:96 ../../library/socket.rst:278
 #: ../../library/socket.rst:302 ../../library/socket.rst:308
-#: ../../library/socket.rst:349 ../../library/sys.rst:25
-#: ../../library/sys.rst:36 ../../library/sys.rst:69
-#: ../../library/sys.rst:138 ../../library/time.rst:224
+#: ../../library/socket.rst:349 ../../library/ssl.rst:48
+#: ../../library/struct.rst:62 ../../library/sys.rst:25
+#: ../../library/sys.rst:36 ../../library/sys.rst:80 ../../library/sys.rst:120
+#: ../../library/sys.rst:171 ../../library/time.rst:233
 msgid "Difference to CPython"
 msgstr "CPython との違い"
 
@@ -21445,6 +21459,52 @@ msgstr ""
 
 #: ../../library/ssl.rst:44
 msgid ""
+"Load a private key and the corresponding certificate.  The *certfile* is "
+"a string with the file path of the certificate.  The *keyfile* is a "
+"string with the file path of the private key."
+msgstr ""
+"秘密鍵とそれに対応する証明書をロードします。 "
+"*certfile* は証明書のファイルパスを示す文字列です。 "
+"*keyfile* は秘密鍵のファイルパスを示す文字列です。"
+
+#: ../../library/ssl.rst:51
+msgid ""
+"MicroPython extension: *certfile* and *keyfile* can be bytes objects "
+"instead of strings, in which case they are interpreted as the actual "
+"certificate/key data."
+msgstr ""
+"MicroPythonの拡張機能: *certfile* および *keyfile* には、文字列の代わりに"
+"バイト列オブジェクトで指定でき、その場合は実際の証明書/秘密鍵データとして解釈されます。"
+
+#: ../../library/ssl.rst:56
+msgid ""
+"Load the CA certificate chain that will validate the peer's certificate. "
+"*cafile* is the file path of the CA certificates.  *cadata* is a bytes "
+"object containing the CA certificates.  Only one of these arguments "
+"should be provided."
+msgstr ""
+"ピアの証明書を検証するための CA 証明書チェーンをロードします。 "
+"*cafile* は CA 証明書のファイルパスです。 "
+"*cadata* は CA 証明書を含むバイト列オブジェクトです。"
+"これらの引数のうち、どちらか一方だけを指定してください。"
+
+#: ../../library/ssl.rst:62
+msgid "Get a list of enabled ciphers, returned as a list of strings."
+msgstr "有効な暗号スイートのリストを取得し、それを文字列のリストとして返します。"
+
+#: ../../library/ssl.rst:66
+msgid ""
+"Set the available ciphers for sockets created with this context.  "
+"*ciphers* should be a list of strings in the `IANA cipher suite format "
+"<https://wiki.mozilla.org/Security/Cipher_Suites>`_ ."
+msgstr ""
+"このコンテキストで作成されたソケットに対して利用可能な暗号スイートを設定します。 "
+"*ciphers* には `IANA の暗号スイート形式 "
+"<https://wiki.mozilla.org/Security/Cipher_Suites>`_ "
+"である文字列のリストを指定してください。"
+
+#: ../../library/ssl.rst:71
+msgid ""
 "Takes a `stream` *sock* (usually socket.socket instance of "
 "``SOCK_STREAM`` type), and returns an instance of ssl.SSLSocket, wrapping"
 " the underlying stream. The returned object has the usual `stream` "
@@ -21455,7 +21515,7 @@ msgstr ""
 "返されるオブジェクトには ``read()``, ``write()`` のような"
 "通常の `stream` インスタンスのインタフェースメソッドがあります。"
 
-#: ../../library/ssl.rst:49
+#: ../../library/ssl.rst:76
 msgid ""
 "*server_side* selects whether the wrapped socket is on the server or "
 "client side. A server-side SSL socket should be created from a normal "
@@ -21467,7 +21527,7 @@ msgstr ""
 ":meth:`~socket.socket.accept()` から返される通常のソケットから作成する"
 "必要があります。"
 
-#: ../../library/ssl.rst:53
+#: ../../library/ssl.rst:80
 msgid ""
 "*do_handshake_on_connect* determines whether the handshake is done as "
 "part of the ``wrap_socket`` or whether it is deferred to be done as part "
@@ -21488,7 +21548,7 @@ msgstr ""
 "AXTLS では、ハンドシェイクは最初の読み書きまで延期できますが、その後は完了する"
 "までブロックされることに注意してください。"
 
-#: ../../library/ssl.rst:61
+#: ../../library/ssl.rst:88
 msgid ""
 "*server_hostname* is for use as a client, and sets the hostname to check "
 "against the received server certificate.  It also sets the name for "
@@ -21499,7 +21559,7 @@ msgstr ""
 "照合するためのホスト名を指定します。また、これはサーバー名表示(SNI: "
 "Server Name Indication)としても使われ、サーバーが適切な証明書を提示できるようにします。"
 
-#: ../../library/ssl.rst:67
+#: ../../library/ssl.rst:94
 msgid ""
 "Some implementations of ``ssl`` module do NOT validate server "
 "certificates, which makes an SSL connection established prone to man-in-"
@@ -21508,7 +21568,7 @@ msgstr ""
 "``ssl`` モジュールの実装によってはサーバー証明書の検証が行われないため、"
 "中間者攻撃を受けやすい SSL 接続になってしまいます。"
 
-#: ../../library/ssl.rst:70
+#: ../../library/ssl.rst:97
 msgid ""
 "CPython's ``wrap_socket`` returns an ``SSLSocket`` object which has "
 "methods typical for sockets, such as ``send``, ``recv``, etc. "
@@ -21520,23 +21580,34 @@ msgstr ""
 "メソッドがあります。MicroPython の ``wrap_socket`` は CPython の "
 "``SSLObject`` に類似のオブジェクトを返しますが、ソケットメソッドはありません。"
 
-#: ../../library/ssl.rst:77
+#: ../../library/ssl.rst:104
 msgid ""
 "Set or get the behaviour for verification of peer certificates.  Must be "
 "one of the ``CERT_*`` constants."
 msgstr ""
 "ピア証明書の検証の動作を設定/取得します。 ``CERT_*`` 定数のいずれかにしなければなりません。"
 
-#: ../../library/ssl.rst:85
+#: ../../library/ssl.rst:109
+msgid ""
+"``ssl.CERT_REQUIRED`` requires the device's date/time to be properly set,"
+" e.g. using `mpremote rtc --set <mpremote_command_rtc>` or ``ntptime``, "
+"and ``server_hostname`` must be specified when on the client side."
+msgstr ""
+"``ssl.CERT_REQUIRED`` には、デバイスの日付/時刻が適切に設定されている必要があります。"
+"たとえば `mpremote rtc --set <mpremote_command_rtc>` や ``ntptime`` を"
+"使って設定できます。また、クライアント側の場合は ``server_hostname`` が"
+"指定されている必要があります。"
+
+#: ../../library/ssl.rst:118
 msgid "This exception does NOT exist. Instead its base class, OSError, is used."
 msgstr ""
 "この例外は存在しません。代わりにベースクラスの OSError が使われます。"
 
-#: ../../library/ssl.rst:93
+#: ../../library/ssl.rst:126
 msgid "Supported values for the *protocol* parameter."
 msgstr "*protocol* パラメーターでサポートされる値です。"
 
-#: ../../library/ssl.rst:99
+#: ../../library/ssl.rst:132
 msgid ""
 "Supported values for *cert_reqs* parameter, and the "
 ":attr:`SSLContext.verify_mode` attribute."
