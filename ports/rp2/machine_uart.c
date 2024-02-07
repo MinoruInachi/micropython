@@ -194,7 +194,7 @@ STATIC inline void uart_service_interrupt(machine_uart_obj_t *self) {
     }
     if (uart_get_hw(self->uart)->mis & UART_UARTMIS_TXMIS_BITS) { // tx interrupt?
         // clear all interrupt bits but rx
-        uart_get_hw(self->uart)->icr = UART_UARTICR_BITS & (~UART_UARTICR_RXIC_BITS);
+        uart_get_hw(self->uart)->icr = UART_UARTICR_BITS & ~(UART_UARTICR_RXIC_BITS | UART_UARTICR_RTIC_BITS);
         uart_fill_tx_fifo(self);
     }
 }
@@ -483,7 +483,7 @@ STATIC mp_uint_t mp_machine_uart_read(mp_obj_t self_in, void *buf_in, mp_uint_t 
                     return i;
                 }
             }
-            mp_event_wait_ms(timeout - elapsed);
+            mp_event_handle_nowait();
         }
         *dest++ = ringbuf_get(&(self->read_buffer));
         start = mp_hal_ticks_ms(); // Inter-character timeout
@@ -559,7 +559,7 @@ STATIC mp_uint_t mp_machine_uart_ioctl(mp_obj_t self_in, mp_uint_t request, uint
             if (now >= timeout) {
                 break;
             }
-            mp_event_wait_ms((timeout - now) / 1000);
+            mp_event_handle_nowait();
         }
         *errcode = MP_ETIMEDOUT;
         ret = MP_STREAM_ERROR;

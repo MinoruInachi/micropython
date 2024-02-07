@@ -30,9 +30,9 @@
 // as well as a fallback to generate MICROPY_GIT_TAG if the git repo or tags
 // are unavailable.
 #define MICROPY_VERSION_MAJOR 1
-#define MICROPY_VERSION_MINOR 22
+#define MICROPY_VERSION_MINOR 23
 #define MICROPY_VERSION_MICRO 0
-#define MICROPY_VERSION_PRERELEASE 0
+#define MICROPY_VERSION_PRERELEASE 1
 
 // Combined version as a 32-bit number for convenience to allow version
 // comparison. Doesn't include prerelease state.
@@ -290,10 +290,12 @@
 
 // Number of bytes used to store qstr hash
 #ifndef MICROPY_QSTR_BYTES_IN_HASH
-#if MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_CORE_FEATURES
+#if MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES
 #define MICROPY_QSTR_BYTES_IN_HASH (2)
-#else
+#elif MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_CORE_FEATURES
 #define MICROPY_QSTR_BYTES_IN_HASH (1)
+#else
+#define MICROPY_QSTR_BYTES_IN_HASH (0)
 #endif
 #endif
 
@@ -1740,6 +1742,11 @@ typedef double mp_float_t;
 // Whether to add finaliser code to ssl objects
 #ifndef MICROPY_PY_SSL_FINALISER
 #define MICROPY_PY_SSL_FINALISER (MICROPY_ENABLE_FINALISER)
+#endif
+
+// Whether to provide the "vfs" module
+#ifndef MICROPY_PY_VFS
+#define MICROPY_PY_VFS (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES && MICROPY_VFS)
 #endif
 
 #ifndef MICROPY_PY_WEBSOCKET

@@ -86,7 +86,7 @@ STATIC const uint32_t rp2_dma_ctrl_field_count = MP_ARRAY_SIZE(rp2_dma_ctrl_fiel
 STATIC uint32_t rp2_dma_register_value_from_obj(mp_obj_t o, int reg_type) {
     if (reg_type == REG_TYPE_ADDR_READ || reg_type == REG_TYPE_ADDR_WRITE) {
         mp_buffer_info_t buf_info;
-        mp_uint_t flags = MP_BUFFER_READ;
+        mp_uint_t flags = (reg_type == REG_TYPE_ADDR_READ) ? MP_BUFFER_READ : MP_BUFFER_WRITE;
         if (mp_get_buffer(o, &buf_info, flags)) {
             return (uint32_t)buf_info.buf;
         }
@@ -98,18 +98,16 @@ STATIC uint32_t rp2_dma_register_value_from_obj(mp_obj_t o, int reg_type) {
 STATIC void rp2_dma_irq_handler(void) {
     // Main IRQ handler
     uint32_t irq_bits = dma_hw->ints0;
-    dma_hw->ints0 = 0xffff;
 
     for (int i = 0; i < NUM_DMA_CHANNELS; i++) {
         if (irq_bits & (1u << i)) {
             mp_irq_obj_t *handler = MP_STATE_PORT(rp2_dma_irq_obj[i]);
             if (handler) {
+                // An rp2.DMA IRQ handler is registered for this channel, so handle it.
+                dma_channel_acknowledge_irq0(i);
                 rp2_dma_obj_t *self = (rp2_dma_obj_t *)handler->parent;
                 self->irq_flag = 1;
                 mp_irq_handler(handler);
-            } else {
-                // We got an interrupt with no handler. Disable the channel
-                dma_channel_set_irq0_enabled(i, false);
             }
         }
     }
@@ -389,6 +387,9 @@ STATIC mp_obj_t rp2_dma_irq(size_t n_args, const mp_obj_t *pos_args, mp_map_t *k
     if (irq == NULL) {
         irq = mp_irq_new(&rp2_dma_irq_methods, MP_OBJ_FROM_PTR(self));
         MP_STATE_PORT(rp2_dma_irq_obj[self->channel]) = irq;
+
+        // Clear any existing IRQs on this DMA channel, they are not for us.
+        dma_channel_acknowledge_irq0(self->channel);
     }
 
     if (n_args > 1 || kw_args->used != 0) {
@@ -457,12 +458,11 @@ MP_DEFINE_CONST_OBJ_TYPE(
 void rp2_dma_init(void) {
     // Set up interrupts.
     memset(MP_STATE_PORT(rp2_dma_irq_obj), 0, sizeof(MP_STATE_PORT(rp2_dma_irq_obj)));
-    irq_set_exclusive_handler(DMA_IRQ_0, rp2_dma_irq_handler);
+    irq_add_shared_handler(DMA_IRQ_0, rp2_dma_irq_handler, PICO_SHARED_IRQ_HANDLER_DEFAULT_ORDER_PRIORITY);
 }
 
 void rp2_dma_deinit(void) {
-    // Disable and clear interrupts.
-    irq_set_mask_enabled(1u << DMA_IRQ_0, false);
+    // Remove our interrupt handler.
     irq_remove_handler(DMA_IRQ_0, rp2_dma_irq_handler);
 }
 
