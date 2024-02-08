@@ -3,15 +3,15 @@
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 08:42+0900\n"
-"PO-Revision-Date: 2023-12-29 10:32+0900\n"
+"POT-Creation-Date: 2024-02-07 21:14+0900\n"
+"PO-Revision-Date: 2024-02-07 21:57+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1325,7 +1325,7 @@ msgstr ""
 #: ../../library/bluetooth.rst:313
 msgid ""
 "**Note:** if *adv_data* (or *resp_data*) is ``None``, then the data "
-"passed to the previous call to ``gap_advertise`` will be re-used. This "
+"passed to the previous call to ``gap_advertise`` will be reused. This "
 "allows a broadcaster to resume advertising with just "
 "``gap_advertise(interval_us)``. To clear the advertising payload pass an "
 "empty ``bytes``, i.e. ``b''``."
@@ -3748,9 +3748,9 @@ msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプ�
 #: ../../library/esp32.rst:115 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
-"interface>` block protocol defined by :class:`os.AbstractBlockDev`."
+"interface>` block protocol defined by :class:`vfs.AbstractBlockDev`."
 msgstr ""
-"これらのメソッドは :class:`os.AbstractBlockDev` によって定義されたシンプルで"
+"これらのメソッドは :class:`vfs.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
 #: ../../library/esp32.rst:121
@@ -10103,19 +10103,19 @@ msgstr ""
 #: ../../library/machine.SD.rst:22
 msgid ""
 "from machine import SD\n"
-"import os\n"
+"import vfs\n"
 "# clk cmd and dat0 pins must be passed along with\n"
 "# their respective alternate functions\n"
 "sd = machine.SD(pins=('GP10', 'GP11', 'GP15'))\n"
-"os.mount(sd, '/sd')\n"
+"vfs.mount(sd, '/sd')\n"
 "# do normal file operations"
 msgstr ""
 "from machine import SD\n"
-"import os\n"
+"import vfs\n"
 "# clk cmd ピンと dat0 ピンはそれぞれの代替機能と\m"
 "# 一緒に渡す必要があります\n"
 "sd = machine.SD(pins=('GP10', 'GP11', 'GP15'))\n"
-"os.mount(sd, '/sd')\n"
+"vfs.mount(sd, '/sd')\n"
 "# 通常のファイル操作を実行"
 
 #: ../../library/machine.SD.rst:35
@@ -10185,16 +10185,16 @@ msgstr ""
 msgid ""
 "This class provides access to SD or MMC storage cards using either a "
 "dedicated SD/MMC interface hardware or through an SPI channel. The class "
-"implements the block protocol defined by :class:`os.AbstractBlockDev`. "
+"implements the block protocol defined by :class:`vfs.AbstractBlockDev`. "
 "This allows the mounting of an SD card to be as simple as::"
 msgstr ""
 "このクラスは、専用の SD/MMC インターフェイスハードウェアか、SPI チャネルを介しての、"
 "SD または MMC ストレージカードへのアクセスを提供します。このクラスは "
-":class:`os.AbstractBlockDev` で定義されたブロックプロトコルを実装しています。"
+":class:`vfs.AbstractBlockDev` で定義されたブロックプロトコルを実装しています。"
 "これにより、SD カードのマウントが次のように簡単になります。"
 
 #: ../../library/machine.SDCard.rst:33
-msgid "os.mount(machine.SDCard(), \"/sd\")"
+msgid "vfs.mount(machine.SDCard(), \"/sd\")"
 msgstr ""
 
 #: ../../library/machine.SDCard.rst:35
@@ -14028,381 +14028,43 @@ msgstr ""
 msgid "The function returns the previous stream-like object in the given slot."
 msgstr "この関数は、指定したスロットの前のストリームライク風オブジェクトを返します。"
 
-#: ../../library/os.rst:137
+#: ../../library/os.rst:137 ../../library/vfs.rst:11
 msgid "Filesystem mounting"
 msgstr "ファイルシステムのマウント"
 
 #: ../../library/os.rst:139
 msgid ""
-"Some ports provide a Virtual Filesystem (VFS) and the ability to mount "
-"multiple \"real\" filesystems within this VFS.  Filesystem objects can be"
-" mounted at either the root of the VFS, or at a subdirectory that lives "
-"in the root.  This allows dynamic and flexible configuration of the "
-"filesystem that is seen by Python programs.  Ports that have this "
-"functionality provide the :func:`mount` and :func:`umount` functions, and"
-" possibly various filesystem implementations represented by VFS classes."
+"The following functions and classes have been moved to the :mod:`vfs` "
+"module. They are provided in this module only for backwards compatibility"
+" and will be removed in version 2 of MicroPython."
 msgstr ""
-"いくつかのポートは仮想ファイルシステム(VFS)を提供し、この VFS 内に複数の「実」"
-"ファイルシステムをマウントする機能を備えています。ファイルシステムオブジェクトは、"
-"VFS のルート、またはルートに存在するサブディレクトリにマウントできます。これにより、"
-"Python プログラムで見られるファイルシステムの動的で柔軟な設定が可能になります。"
-"この機能を持つポートは :func:`mount` と :func:`umount` 関数、そしておそらく VFS "
-"クラスで表されるさまざまなファイルシステムの実装を提供します。"
+"次の関数やクラスは :mod:`vfs` モジュールに移動しました。"
+"このモジュールでは、後方互換性のために提供されており、"
+"MicroPython のバージョン2では削除されます。"
+
+#: ../../library/os.rst:145
+msgid "See `vfs.mount`."
+msgstr "`vfs.mount` を参照。"
 
 #: ../../library/os.rst:149
-msgid ""
-"Mount the filesystem object *fsobj* at the location in the VFS given by "
-"the *mount_point* string.  *fsobj* can be a a VFS object that has a "
-"``mount()`` method, or a block device.  If it's a block device then the "
-"filesystem type is automatically detected (an exception is raised if no "
-"filesystem was recognised).  *mount_point* may be ``'/'`` to mount "
-"*fsobj* at the root, or ``'/<name>'`` to mount it at a subdirectory under"
-" the root."
-msgstr ""
-"ファイルシステムオブジェクト *fsobj* を *mount_point* 文字列で指定した VFS 内の"
-"場所にマウントします。 *fsobj* には ``mount()`` メソッドを持つ VFS オブジェクト、"
-"またはブロックデバイスを指定できます。ブロックデバイスであればファイルシステムタイプ"
-"が自動的に検出されます(ファイルシステムが認識されない場合は例外が発生します)。 "
-"*mount_point* が ``'/'`` であれば *fsobj* をルートににマウントし、"
-"``'/<name>'`` であればルート配下のサブディレクトリにマウントします。"
+msgid "See `vfs.umount`."
+msgstr "`vfs.umount` を参照。"
 
-#: ../../library/os.rst:156
-msgid "If *readonly* is ``True`` then the filesystem is mounted read-only."
-msgstr "*readonly* が ``True`` であればファイルシステムが読み取り専用でマウントされています。"
+#: ../../library/os.rst:153
+msgid "See `vfs.VfsFat`."
+msgstr "`vfs.VfsFat` を参照。"
 
-#: ../../library/os.rst:158
-msgid ""
-"During the mount process the method ``mount()`` is called on the "
-"filesystem object."
-msgstr ""
-"マウント処理では、ファイルシステムオブジェクトに対してメソッド ``mount()`` "
-"呼出します。"
+#: ../../library/os.rst:157
+msgid "See `vfs.VfsLfs1`."
+msgstr "`vfs.VfsLfs1` を参照。"
 
 #: ../../library/os.rst:161
-msgid "Will raise ``OSError(EPERM)`` if *mount_point* is already mounted."
-msgstr "*mount_point* に既にマウントされていれば ``OSError(EPERM)`` 例外が発生します。"
+msgid "See `vfs.VfsLfs2`."
+msgstr "`vfs.VfsLfs2` を参照。"
 
 #: ../../library/os.rst:165
-msgid ""
-"Unmount a filesystem. *mount_point* can be a string naming the mount "
-"location, or a previously-mounted filesystem object.  During the unmount "
-"process the method ``umount()`` is called on the filesystem object."
-msgstr ""
-"ファイルシステムをアンマウントします。 *mount_point* には、マウント場所を指定する"
-"文字列、または以前にマウントされたファイルシステムオブジェクトを指定できます。"
-"アンマウント処理では、ファイルシステムオブジェクトに対してメソッド ``unmount()`` "
-"呼出します。"
-
-#: ../../library/os.rst:169
-msgid "Will raise ``OSError(EINVAL)`` if *mount_point* is not found."
-msgstr ""*mount_point* が見つからなければ ``OSError(EINVAL)`` 例外が発生します。"
-
-#: ../../library/os.rst:173
-msgid ""
-"Create a filesystem object that uses the FAT filesystem format.  Storage "
-"of the FAT filesystem is provided by *block_dev*. Objects created by this"
-" constructor can be mounted using :func:`mount`."
-msgstr ""
-"FAT ファイルシステムのフォーマットを使うファイルシステムオブジェクトを作成します。"
-"FAT ファイルシステムのストレージは *block_dev* によって提供されます。この"
-"コンストラクタによって作成されたオブジェクトは :func:`mount` を使ってマウント"
-"できます。"
-
-#: ../../library/os.rst:179
-msgid "Build a FAT filesystem on *block_dev*."
-msgstr "*block_dev* に FAT ファイルシステムを構築します。"
-
-#: ../../library/os.rst:183
-msgid ""
-"Create a filesystem object that uses the `littlefs v1 filesystem "
-"format`_. Storage of the littlefs filesystem is provided by *block_dev*, "
-"which must support the :ref:`extended interface <block-device-"
-"interface>`. Objects created by this constructor can be mounted using "
-":func:`mount`."
-msgstr ""
-"`littlefs v1 filesystem format`_ を使うファイルシステムオブジェクトを作成します。"
-"littlefs ファイルシステムのストレージは *block_dev* によって提供されます。 "
-"*block_dev* は :ref:`extended interface <block-device-interface>` "
-"をサポートしている必要があります。このコンストラクタによって作成されたオブジェクトは "
-":func:`mount` を使ってマウントできます。"
-
-#: ../../library/os.rst:188 ../../library/os.rst:212
-msgid "See :ref:`filesystem` for more information."
-msgstr "詳しくは :ref:`filesystem` を参照してください。"
-
-#: ../../library/os.rst:192
-msgid "Build a Lfs1 filesystem on *block_dev*."
-msgstr "*block_dev* に Lfs1 ファイルシステムを構築します。"
-
-#: ../../library/os.rst:194
-msgid ""
-"There are reports of littlefs v1 failing in certain situations, for "
-"details see `littlefs issue 347`_."
-msgstr ""
-"特定の状況で littlefs v1 が失敗するという報告があります。詳細については "
-"`littlefs issue 347`_ を参照してください。"
-
-#: ../../library/os.rst:199
-msgid ""
-"Create a filesystem object that uses the `littlefs v2 filesystem "
-"format`_. Storage of the littlefs filesystem is provided by *block_dev*, "
-"which must support the :ref:`extended interface <block-device-"
-"interface>`. Objects created by this constructor can be mounted using "
-":func:`mount`."
-msgstr ""
-"`littlefs v2 filesystem format`_ を使うファイルシステムオブジェクトを作成します。"
-"littlefs ファイルシステムのストレージは *block_dev* によって提供されます。 "
-"*block_dev* は :ref:`extended interface <block-device-interface>` "
-"をサポートしている必要があります。このコンストラクタによって作成されたオブジェクトは "
-":func:`mount` を使ってマウントできます。"
-
-#: ../../library/os.rst:204
-msgid ""
-"The *mtime* argument enables modification timestamps for files, stored "
-"using littlefs attributes.  This option can be disabled or enabled "
-"differently each mount time and timestamps will only be added or updated "
-"if *mtime* is enabled, otherwise the timestamps will remain untouched.  "
-"Littlefs v2 filesystems without timestamps will work without reformatting"
-" and timestamps will be added transparently to existing files once they "
-"are opened for writing.  When *mtime* is enabled `os.stat` on files "
-"without timestamps will return 0 for the timestamp."
-msgstr ""
-"*mtime* 引数はファイルの更新タイムスタンプを有効にします。このオプションはマウント毎に"
-"有効/無効にでき、 *mtime* が有効な場合にのみタイムスタンプが追加/更新されます。 "
-"*mtime* が無効であれば、タイムスタンプが追加/更新されないままとなります。"
-"タイムスタンプのない Littlefs v2 ファイルシステムは、再フォーマットしなくても動作し、"
-"既存のファイルをオープンして書き込みを行うと、タイムスタンプは透過的に追加されます。 "
-"*mtime* が有効になっている場合、タイムスタンプのないファイルに対して `os.stat` を"
-"行った際のタイムスタンプの値は 0 になります。"
-
-#: ../../library/os.rst:216
-msgid "Build a Lfs2 filesystem on *block_dev*."
-msgstr "*block_dev* に Lfs2 ファイルシステムを構築します。"
-
-#: ../../library/os.rst:218
-msgid ""
-"There are reports of littlefs v2 failing in certain situations, for "
-"details see `littlefs issue 295`_."
-msgstr ""
-"特定の状況で littlefs v2 が失敗するという報告があります。詳細については "
-"`littlefs issue 295`_ を参照してください。"
-
-#: ../../library/os.rst:227
-msgid "Block devices"
-msgstr "ブロックデバイス"
-
-#: ../../library/os.rst:229
-msgid ""
-"A block device is an object which implements the block protocol. This "
-"enables a device to support MicroPython filesystems. The physical "
-"hardware is represented by a user defined class. The "
-":class:`AbstractBlockDev` class is a template for the design of such a "
-"class: MicroPython does not actually provide that class, but an actual "
-"block device class must implement the methods described below."
-msgstr ""
-"ブロックデバイスは、ブロックプロトコルを実装するオブジェクトです。"
-"これによりデバイスが MicroPython ファイルシステムをサポートできるようになります。"
-"物理ハードウェアはユーザー定義のクラスによって表されます。 "
-":class:`AbstractBlockDev` クラスはそのようなクラスを定義するためのテンプレートです。"
-"MicroPython が提供していないブロックデバイスクラスを自作する場合は後述のメソッドを"
-"実装する必要があります。"
-
-#: ../../library/os.rst:235
-msgid ""
-"A concrete implementation of this class will usually allow access to the "
-"memory-like functionality of a piece of hardware (like flash memory). A "
-"block device can be formatted to any supported filesystem and mounted "
-"using ``os`` methods."
-msgstr ""
-"このクラスの具象サブクラスでは通常(フラッシュメモリのような)ハードウェアの一部に"
-"メモリのような機能へのアクセスが許可されます。ブロックデバイスはサポートされている"
-"ファイルシステムでフォーマットでき、 ``os`` のメソッドを使ってマウントできます。"
-
-#: ../../library/os.rst:240
-msgid ""
-"See :ref:`filesystem` for example implementations of block devices using "
-"the two variants of the block protocol described below."
-msgstr ""
-"後述する２種類のブロックプロトコルを使ったブロックデバイスの実装例については "
-":ref:`filesystem` を参照してください。"
-
-#: ../../library/os.rst:246
-msgid "Simple and extended interface"
-msgstr "シンプルインタフェースと拡張インタフェース"
-
-#: ../../library/os.rst:248
-msgid ""
-"There are two compatible signatures for the ``readblocks`` and "
-"``writeblocks`` methods (see below), in order to support a variety of use"
-" cases.  A given block device may implement one form or the other, or "
-"both at the same time. The second form (with the offset parameter) is "
-"referred to as the \"extended interface\"."
-msgstr ""
-"さまざまなユースケースをサポートするために、 ``readblocks`` や ``writeblocks`` "
-"メソッドには２つの互換性のあるシグネチャがあります(以下を参照)。"
-"与えられたブロックデバイスは、どちらか一方、または両方を実装しています。"
-"２番目の形式(offset 引数のあるもの)は「拡張インタフェース」といいます。"
-
-#: ../../library/os.rst:253
-msgid ""
-"Some filesystems (such as littlefs) that require more control over write "
-"operations, for example writing to sub-block regions without erasing, may"
-" require that the block device supports the extended interface."
-msgstr ""
-"書き込み操作をより細かく制御する必要のある一部のファイルシステム(littlefs など)では、"
-"たとえば、消去せずにサブブロック領域に書き込む場合、ブロックデバイスが拡張インターフェイスを"
-"サポートしている必要がある場合があります。"
-
-#: ../../library/os.rst:259
-msgid ""
-"Construct a block device object.  The parameters to the constructor are "
-"dependent on the specific block device."
-msgstr ""
-"ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
-"ブロックデバイスに依存します。"
-
-#: ../../library/os.rst:265
-msgid ""
-"The first form reads aligned, multiples of blocks. "
-"Starting at the block given by the index *block_num*, read blocks from "
-"the device into *buf* (an array of bytes). The number of blocks to read "
-"is given by the length of *buf*, which will be a multiple of the block "
-"size."
-msgstr ""
-"最初の形式は、整列した複数のブロックを読み取ります。インデックス *block_num* で"
-"指定したブロックを開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
-"読み込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数になります。"
-
-#: ../../library/os.rst:271
-msgid ""
-"The second form allows reading at arbitrary locations within a block, "
-"and arbitrary lengths. Starting at block index *block_num*, and byte "
-"offset within that block of *offset*, read bytes from the device into "
-"*buf* (an array of bytes). The number of bytes to read is given by "
-"the length of *buf*."
-msgstr ""
-"２番目の形式では、ブロック内の任意の場所、任意の長さで読み取ることができます。"
-"ブロックインデックス *block_num* とブロック内のバイトオフセット *offset* "
-"を開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
-"読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
-
-#: ../../library/os.rst:280
-msgid ""
-"The first form writes aligned, multiples of blocks, and requires that the "
-"blocks that are written to be first erased (if necessary) by this method. "
-"Starting at the block given by the index *block_num*, write blocks from "
-"*buf* (an array of bytes) to the device. The number of blocks to write is"
-" given by the length of *buf*, which will be a multiple of the block "
-"size."
-msgstr ""
-"最初の形式は、整列した複数のブロックを書き込みます。"
-"書き込む前には、対象のブロックが（必要に応じて）消去されます。"
-"インデックス *block_num* で指定したブロックに *buf* (バイトの配列)からブロックを"
-"書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
-"なります。"
-
-#: ../../library/os.rst:287
-msgid ""
-"The second form allows writing at arbitrary locations within a block, "
-"and arbitrary lengths.  Only the bytes being written should be changed, "
-"and the caller of this method must ensure that the relevant blocks are "
-"erased via a prior ``ioctl`` call. "
-"Starting at block index *block_num*, and byte offset within that block "
-"of *offset*, write bytes from *buf* (an array of bytes) to the device. "
-"The number of bytes to write is given by the length of *buf*."
-msgstr ""
-"２番目の形式では、ブロック内の任意の場所に、任意の長さで書き込むことができます。"
-"書き込むバイトのみを変更する必要があり、このメソッドの呼び出し元は、関連する"
-"ブロックが事前の ``ioctl`` 呼び出しによって消去されることを保証する必要があります。"
-"ブロックインデックス *block_num* とそのブロック内のバイトオフセット *offset* "
-"を開始点として、 *buf* （バイト配列）からデバイスに書き込みます。"
-"書き込むバイト数は *buf* の長さで指定されます。"
-
-#: ../../library/os.rst:295
-msgid ""
-"Note that implementations must never implicitly erase blocks if the offset "
-"argument is specified, even if it is zero."
-msgstr ""
-"offset 引数が指定されている場合、たとえゼロであっても、実装がブロックを暗黙的に"
-"消去してはならないことに注意してください。"
-
-#: ../../library/os.rst:300
-msgid ""
-"Control the block device and query its parameters.  The operation to "
-"perform is given by *op* which is one of the following integers:"
-msgstr ""
-"ブロックデバイスの制御とパラメータ問い合わせをおこないます。実行する操作は *op* に"
-"次の整数のうちの１つで指定します。"
-
-#: ../../library/os.rst:303
-msgid "1 -- initialise the device (*arg* is unused)"
-msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
-
-#: ../../library/os.rst:304
-msgid "2 -- shutdown the device (*arg* is unused)"
-msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
-
-#: ../../library/os.rst:305
-msgid "3 -- sync the device (*arg* is unused)"
-msgstr "3 -- デバイスを同期します(*arg* は未使用)"
-
-#: ../../library/os.rst:306
-msgid ""
-"4 -- get a count of the number of blocks, should return an integer (*arg*"
-" is unused)"
-msgstr "4 -- ブロック数を取得し、整数で返します(*arg* は未使用)"
-
-#: ../../library/os.rst:308
-msgid ""
-"5 -- get the number of bytes in a block, should return an integer, or "
-"``None`` in which case the default value of 512 is used (*arg* is unused)"
-msgstr ""
-"5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
-"の 512 が使われます(*arg* は未使用)"
-
-#: ../../library/os.rst:311
-msgid ""
-"6 -- erase a block, *arg* is the block number to erase"
-msgstr ""
-"6 -- ブロックを消去します。 *arg* は消去するブロック数です"
-
-#: ../../library/os.rst:313
-msgid ""
-"As a minimum ``ioctl(4, ...)`` must be intercepted; for littlefs "
-"``ioctl(6, ...)`` must also be intercepted. The need for others is "
-"hardware dependent."
-msgstr ""
-"少なくとも ``ioctl(4, ...)`` が受け付けられる必要があります。"
-"littlefs については ``ioctl(6, ...)`` も受け付けられる必要があります。"
-"その他の操作が受け付けられるかはハードウェアに依存します。"
-
-#: ../../library/os.rst:317
-msgid ""
-"Prior to any call to ``writeblocks(block, ...)`` littlefs issues "
-"``ioctl(6, block)``. This enables a device driver to erase the block "
-"prior to a write if the hardware requires it. Alternatively a driver "
-"might intercept ``ioctl(6, block)`` and return 0 (success). In this case "
-"the driver assumes responsibility for detecting the need for erasure."
-msgstr ""
-"littlefs は ``writeblocks(block, ...)`` の呼び出しの前に ``ioctl(6, block)`` "
-"を発行します。これによりハードウェアが要求するなら、デバイスドライバは書き込みの前に"
-"ブロックを消去できます。あるいは、ドライバが ``ioctl(6, block)`` を捉えて 0 (成功)を"
-"返すようにするかもしれません。この場合、ドライバは消去の必要性を検出する責任を負います。"
-
-#: ../../library/os.rst:323
-msgid ""
-"Unless otherwise stated ``ioctl(op, arg)`` can return ``None``. "
-"Consequently an implementation can ignore unused values of ``op``. Where "
-"``op`` is intercepted, the return value for operations 4 and 5 are as "
-"detailed above. Other operations should return 0 on success and non-zero "
-"for failure, with the value returned being an ``OSError`` errno code."
-msgstr ""
-"特に記載のない限り ``ioctl(op, arg)`` は ``None`` を返します。"
-"したがって処理系は ``op`` の未使用値を無視できます。"
-"``op`` が受け付けられる場合、操作 4 と 5 の戻り値は上記のとおりです。"
-"受け付けられる他の操作の戻り値は、成功した場合は 0 を返し、"
-"失敗した場合はゼロ以外を返します。失敗した場合の戻り値は ``OSError`` "
-"の errno コードです。"
+msgid "See `vfs.VfsPosix`."
+msgstr "`vfs.VfsPosix` を参照。"
 
 #: ../../library/platform.rst:2
 msgid ":mod:`platform` -- access to underlying platform’s identifying data"
@@ -14832,22 +14494,22 @@ msgstr "boot.py の中からこの関数を呼び出すことだけが理にか�
 #: ../../library/pyb.rst:215
 msgid ""
 "This function is deprecated. Mounting and unmounting devices should be "
-"performed by :meth:`os.mount` and :meth:`os.umount` instead."
+"performed by :meth:`os.mount` and :meth:`vfs.umount` instead."
 msgstr ""
 "この関数は非推奨です。デバイスのマウントとマウント解除には、代わりに "
-":meth:`os.mount` と :meth:`os.umount` を使ってください。"
+":meth:`os.mount` と :meth:`vfs.umount` を使ってください。"
 
 #: ../../library/pyb.rst:218
 msgid ""
 "Mount a block device and make it available as part of the filesystem. "
 "``device`` must be an object that provides the block protocol. (The "
-"following is also deprecated. See :class:`os.AbstractBlockDev` for the "
+"following is also deprecated. See :class:`vfs.AbstractBlockDev` for the "
 "correct way to create a block device.)"
 msgstr ""
 "ブロックデバイスをマウントしてファイルシステムの一部として利用できるようにします。 "
 "``device`` はブロックプロトコルを提供するオブジェクトでなければなりません。"
 "(以下も非推奨です。ブロックデバイスを作成する正しい方法については "
-":class:`os.AbstractBlockDev` を参照してください。）"
+":class:`vfs.AbstractBlockDev` を参照してください。）"
 
 #: ../../library/pyb.rst:223
 msgid "``readblocks(self, blocknum, buf)``"
@@ -20233,9 +19895,9 @@ msgstr "SPI フラッシュメモリにアクセスするためのシンゲル�
 #: ../../library/rp2.Flash.rst:33
 msgid ""
 "These methods implement the simple and extended :ref:`block protocol "
-"<block-device-interface>` defined by :class:`os.AbstractBlockDev`."
+"<block-device-interface>` defined by :class:`vfs.AbstractBlockDev`."
 msgstr ""
-"これらのメソッドは :class:`os.AbstractBlockDev` で定義されている"
+"これらのメソッドは :class:`vfs.AbstractBlockDev` で定義されている"
 "シンプルで拡張された :ref:`ブロックプロトコル <block-device-interface>` "
 "を実装しています。"
 
@@ -20390,7 +20052,7 @@ msgstr "指定したプログラム *program* を実行するようにステー�
 msgid ""
 "The program is added to the instruction memory of this PIO instance. If "
 "the instruction memory already contains this program, then its offset is "
-"re-used so as to save on instruction memory."
+"reused so as to save on instruction memory."
 msgstr ""
 "プログラムは、この PIO インスタンスの命令メモリに追加されます。"
 "命令メモリがこのプログラムをすでに含んでいる場合、そのオフセットは"
@@ -22224,8 +21886,8 @@ msgid "*name* - string \"micropython\""
 msgstr "*name* - 文字列 \"micropython\""
 
 #: ../../library/sys.rst:72
-msgid "*version* - tuple (major, minor, micro), e.g. (1, 7, 0)"
-msgstr "*version* - タプル (major, minor, micro)。例: (1, 7, 0)"
+msgid "*version* - tuple (major, minor, micro, releaselevel), e.g. (1, 22, 0, '')"
+msgstr "*version* - タプル (major, minor, micro, releaselevel)。例: (1, 22, 0, '')"
 
 #: ../../library/sys.rst:73
 msgid "*_machine* - string describing the underlying machine"
@@ -23535,6 +23197,400 @@ msgstr ""
 "(たとえば、数メガバイトの配列を中央に持つネイティブデータ構造にアクセスする場合などは、"
 "人為的な分割せざろうえないケースです)。"
 
+#: ../../library/vfs.rst:2
+msgid ":mod:`vfs` -- virtual filesystem control"
+msgstr ":mod:`vfs` -- 仮想ファイルシステム制御"
+
+#: ../../library/vfs.rst:7
+msgid ""
+"The ``vfs`` module contains functions for creating filesystem objects and"
+" mounting/unmounting them in the Virtual Filesystem."
+msgstr ""
+"``vfs`` モジュールには、仮想ファイルシステム内のファイルシステムオブジェクトを作成し、"
+"マウント／アンマウントするための関数が含まれています。"
+
+#: ../../library/vfs.rst:13
+msgid ""
+"Some ports provide a Virtual Filesystem (VFS) and the ability to mount "
+"multiple \"real\" filesystems within this VFS.  Filesystem objects can be"
+" mounted at either the root of the VFS, or at a subdirectory that lives "
+"in the root.  This allows dynamic and flexible configuration of the "
+"filesystem that is seen by Python programs.  Ports that have this "
+"functionality provide the :func:`mount` and :func:`umount` functions, and"
+" possibly various filesystem implementations represented by VFS classes."
+msgstr ""
+"いくつかのポートは仮想ファイルシステム(VFS)を提供し、この VFS 内に複数の「実」"
+"ファイルシステムをマウントする機能を備えています。ファイルシステムオブジェクトは、"
+"VFS のルート、またはルートに存在するサブディレクトリにマウントできます。これにより、"
+"Python プログラムで見られるファイルシステムの動的で柔軟な設定が可能になります。"
+"この機能を持つポートは :func:`mount` と :func:`umount` 関数、そしておそらく VFS "
+"クラスで表されるさまざまなファイルシステムの実装を提供します。"
+
+#: ../../library/vfs.rst:23
+msgid ""
+"Mount the filesystem object *fsobj* at the location in the VFS given by "
+"the *mount_point* string.  *fsobj* can be a a VFS object that has a "
+"``mount()`` method, or a block device.  If it's a block device then the "
+"filesystem type is automatically detected (an exception is raised if no "
+"filesystem was recognised).  *mount_point* may be ``'/'`` to mount "
+"*fsobj* at the root, or ``'/<name>'`` to mount it at a subdirectory under"
+" the root."
+msgstr ""
+"ファイルシステムオブジェクト *fsobj* を *mount_point* 文字列で指定した VFS 内の"
+"場所にマウントします。 *fsobj* には ``mount()`` メソッドを持つ VFS オブジェクト、"
+"またはブロックデバイスを指定できます。ブロックデバイスであればファイルシステムタイプ"
+"が自動的に検出されます(ファイルシステムが認識されない場合は例外が発生します)。 "
+"*mount_point* が ``'/'`` であれば *fsobj* をルートににマウントし、"
+"``'/<name>'`` であればルート配下のサブディレクトリにマウントします。"
+
+#: ../../library/vfs.rst:30
+msgid "If *readonly* is ``True`` then the filesystem is mounted read-only."
+msgstr "*readonly* が ``True`` であればファイルシステムが読み取り専用でマウントされています。"
+
+#: ../../library/vfs.rst:32
+msgid ""
+"During the mount process the method ``mount()`` is called on the "
+"filesystem object."
+msgstr ""
+"マウント処理では、ファイルシステムオブジェクトに対してメソッド ``mount()`` "
+"呼出します。"
+
+#: ../../library/vfs.rst:35
+msgid "Will raise ``OSError(EPERM)`` if *mount_point* is already mounted."
+msgstr "*mount_point* に既にマウントされていれば ``OSError(EPERM)`` 例外が発生します。"
+
+#: ../../library/vfs.rst:39
+msgid ""
+"Unmount a filesystem. *mount_point* can be a string naming the mount "
+"location, or a previously-mounted filesystem object.  During the unmount "
+"process the method ``umount()`` is called on the filesystem object."
+msgstr ""
+"ファイルシステムをアンマウントします。 *mount_point* には、マウント場所を指定する"
+"文字列、または以前にマウントされたファイルシステムオブジェクトを指定できます。"
+"アンマウント処理では、ファイルシステムオブジェクトに対してメソッド ``unmount()`` "
+"呼出します。"
+
+#: ../../library/vfs.rst:43
+msgid "Will raise ``OSError(EINVAL)`` if *mount_point* is not found."
+msgstr "*mount_point* が見つからなければ ``OSError(EINVAL)`` 例外が発生します。"
+
+#: ../../library/vfs.rst:47
+msgid ""
+"Create a filesystem object that uses the FAT filesystem format.  Storage "
+"of the FAT filesystem is provided by *block_dev*. Objects created by this"
+" constructor can be mounted using :func:`mount`."
+msgstr ""
+"FAT ファイルシステムのフォーマットを使うファイルシステムオブジェクトを作成します。"
+"FAT ファイルシステムのストレージは *block_dev* によって提供されます。この"
+"コンストラクタによって作成されたオブジェクトは :func:`mount` を使ってマウント"
+"できます。"
+
+#: ../../library/vfs.rst:53
+msgid "Build a FAT filesystem on *block_dev*."
+msgstr "*block_dev* に FAT ファイルシステムを構築します。"
+
+#: ../../library/vfs.rst:57
+msgid ""
+"Create a filesystem object that uses the `littlefs v1 filesystem "
+"format`_. Storage of the littlefs filesystem is provided by *block_dev*, "
+"which must support the :ref:`extended interface <block-device-"
+"interface>`. Objects created by this constructor can be mounted using "
+":func:`mount`."
+msgstr ""
+"`littlefs v1 filesystem format`_ を使うファイルシステムオブジェクトを作成します。"
+"littlefs ファイルシステムのストレージは *block_dev* によって提供されます。 "
+"*block_dev* は :ref:`extended interface <block-device-interface>` "
+"をサポートしている必要があります。このコンストラクタによって作成されたオブジェクトは "
+":func:`mount` を使ってマウントできます。"
+
+#: ../../library/vfs.rst:62 ../../library/vfs.rst:86
+msgid "See :ref:`filesystem` for more information."
+msgstr "詳しくは :ref:`filesystem` を参照してください。"
+
+#: ../../library/vfs.rst:66
+msgid "Build a Lfs1 filesystem on *block_dev*."
+msgstr "*block_dev* に Lfs1 ファイルシステムを構築します。"
+
+#: ../../library/vfs.rst:68
+msgid ""
+"There are reports of littlefs v1 failing in certain situations, for "
+"details see `littlefs issue 347`_."
+msgstr ""
+"特定の状況で littlefs v1 が失敗するという報告があります。詳細については "
+"`littlefs issue 347`_ を参照してください。"
+
+#: ../../library/vfs.rst:73
+msgid ""
+"Create a filesystem object that uses the `littlefs v2 filesystem "
+"format`_. Storage of the littlefs filesystem is provided by *block_dev*, "
+"which must support the :ref:`extended interface <block-device-"
+"interface>`. Objects created by this constructor can be mounted using "
+":func:`mount`."
+msgstr ""
+"`littlefs v2 filesystem format`_ を使うファイルシステムオブジェクトを作成します。"
+"littlefs ファイルシステムのストレージは *block_dev* によって提供されます。 "
+"*block_dev* は :ref:`extended interface <block-device-interface>` "
+"をサポートしている必要があります。このコンストラクタによって作成されたオブジェクトは "
+":func:`mount` を使ってマウントできます。"
+
+#: ../../library/vfs.rst:78
+msgid ""
+"The *mtime* argument enables modification timestamps for files, stored "
+"using littlefs attributes.  This option can be disabled or enabled "
+"differently each mount time and timestamps will only be added or updated "
+"if *mtime* is enabled, otherwise the timestamps will remain untouched.  "
+"Littlefs v2 filesystems without timestamps will work without reformatting"
+" and timestamps will be added transparently to existing files once they "
+"are opened for writing.  When *mtime* is enabled `os.stat` on files "
+"without timestamps will return 0 for the timestamp."
+msgstr ""
+"*mtime* 引数はファイルの更新タイムスタンプを有効にします。このオプションはマウント毎に"
+"有効/無効にでき、 *mtime* が有効な場合にのみタイムスタンプが追加/更新されます。 "
+"*mtime* が無効であれば、タイムスタンプが追加/更新されないままとなります。"
+"タイムスタンプのない Littlefs v2 ファイルシステムは、再フォーマットしなくても動作し、"
+"既存のファイルをオープンして書き込みを行うと、タイムスタンプは透過的に追加されます。 "
+"*mtime* が有効になっている場合、タイムスタンプのないファイルに対して `os.stat` を"
+"行った際のタイムスタンプの値は 0 になります。"
+
+#: ../../library/vfs.rst:90
+msgid "Build a Lfs2 filesystem on *block_dev*."
+msgstr "*block_dev* に Lfs2 ファイルシステムを構築します。"
+
+#: ../../library/vfs.rst:92
+msgid ""
+"There are reports of littlefs v2 failing in certain situations, for "
+"details see `littlefs issue 295`_."
+msgstr ""
+"特定の状況で littlefs v2 が失敗するという報告があります。詳細については "
+"`littlefs issue 295`_ を参照してください。"
+
+#: ../../library/vfs.rst:97
+msgid ""
+"Create a filesystem object that accesses the host POSIX filesystem. If "
+"*root* is specified then it should be a path in the host filesystem to "
+"use as the root of the ``VfsPosix`` object.  Otherwise the current "
+"directory of the host filesystem is used."
+msgstr ""
+"ホストの POSIX ファイルシステムにアクセスするファイルシステムオブジェクトを作成します。 "
+"*root* を指定した場合、それは ``VfsPosix`` オブジェクトのルートとして使用する"
+"ホストファイルシステム内のパスである必要があります。それ以外の場合、"
+"ホストファイルシステムの現在のディレクトリが適用されます。"
+
+#: ../../library/vfs.rst:108
+msgid "Block devices"
+msgstr "ブロックデバイス"
+
+#: ../../library/vfs.rst:110
+msgid ""
+"A block device is an object which implements the block protocol. This "
+"enables a device to support MicroPython filesystems. The physical "
+"hardware is represented by a user defined class. The "
+":class:`AbstractBlockDev` class is a template for the design of such a "
+"class: MicroPython does not actually provide that class, but an actual "
+"block device class must implement the methods described below."
+msgstr ""
+"ブロックデバイスは、ブロックプロトコルを実装するオブジェクトです。"
+"これによりデバイスが MicroPython ファイルシステムをサポートできるようになります。"
+"物理ハードウェアはユーザー定義のクラスによって表されます。 "
+":class:`AbstractBlockDev` クラスはそのようなクラスを定義するためのテンプレートです。"
+"MicroPython が提供していないブロックデバイスクラスを自作する場合は後述のメソッドを"
+"実装する必要があります。"
+
+#: ../../library/vfs.rst:116
+msgid ""
+"A concrete implementation of this class will usually allow access to the "
+"memory-like functionality of a piece of hardware (like flash memory). A "
+"block device can be formatted to any supported filesystem and mounted "
+"using ``os`` methods."
+msgstr ""
+"このクラスの具象サブクラスでは通常(フラッシュメモリのような)ハードウェアの一部に"
+"メモリのような機能へのアクセスが許可されます。ブロックデバイスはサポートされている"
+"ファイルシステムでフォーマットでき、 ``os`` のメソッドを使ってマウントできます。"
+
+#: ../../library/vfs.rst:121
+msgid ""
+"See :ref:`filesystem` for example implementations of block devices using "
+"the two variants of the block protocol described below."
+msgstr ""
+"後述する２種類のブロックプロトコルを使ったブロックデバイスの実装例については "
+":ref:`filesystem` を参照してください。"
+
+#: ../../library/vfs.rst:127
+msgid "Simple and extended interface"
+msgstr "シンプルインタフェースと拡張インタフェース"
+
+#: ../../library/vfs.rst:129
+msgid ""
+"There are two compatible signatures for the ``readblocks`` and "
+"``writeblocks`` methods (see below), in order to support a variety of use"
+" cases.  A given block device may implement one form or the other, or "
+"both at the same time. The second form (with the offset parameter) is "
+"referred to as the \"extended interface\"."
+msgstr ""
+"さまざまなユースケースをサポートするために、 ``readblocks`` や ``writeblocks`` "
+"メソッドには２つの互換性のあるシグネチャがあります(以下を参照)。"
+"与えられたブロックデバイスは、どちらか一方、または両方を実装しています。"
+"２番目の形式(offset 引数のあるもの)は「拡張インタフェース」といいます。"
+
+#: ../../library/vfs.rst:134
+msgid ""
+"Some filesystems (such as littlefs) that require more control over write "
+"operations, for example writing to sub-block regions without erasing, may"
+" require that the block device supports the extended interface."
+msgstr ""
+"書き込み操作をより細かく制御する必要のある一部のファイルシステム(littlefs など)では、"
+"たとえば、消去せずにサブブロック領域に書き込む場合、ブロックデバイスが拡張インターフェイスを"
+"サポートしている必要がある場合があります。"
+
+#: ../../library/vfs.rst:140
+msgid ""
+"Construct a block device object.  The parameters to the constructor are "
+"dependent on the specific block device."
+msgstr ""
+"ブロックデバイスオブジェクトを構築します。コンストラクタへのパラメータは、特定の"
+"ブロックデバイスに依存します。"
+
+#: ../../library/vfs.rst:146
+msgid ""
+"The first form reads aligned, multiples of blocks. Starting at the block "
+"given by the index *block_num*, read blocks from the device into *buf* "
+"(an array of bytes). The number of blocks to read is given by the length "
+"of *buf*, which will be a multiple of the block size."
+msgstr ""
+"最初の形式は、整列した複数のブロックを読み取ります。インデックス *block_num* で"
+"指定したブロックを開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
+"読み込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数になります。"
+
+#: ../../library/vfs.rst:152
+msgid ""
+"The second form allows reading at arbitrary locations within a block, "
+"and arbitrary lengths. Starting at block index *block_num*, and byte "
+"offset within that block of *offset*, read bytes from the device into "
+"*buf* (an array of bytes). The number of bytes to read is given by "
+"the length of *buf*."
+msgstr ""
+"２番目の形式では、ブロック内の任意の場所、任意の長さで読み取ることができます。"
+"ブロックインデックス *block_num* とブロック内のバイトオフセット *offset* "
+"を開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
+"読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
+
+#: ../../library/vfs.rst:161
+msgid ""
+"The first form writes aligned, multiples of blocks, and requires that the"
+" blocks that are written to be first erased (if necessary) by this "
+"method. Starting at the block given by the index *block_num*, write "
+"blocks from *buf* (an array of bytes) to the device. The number of blocks"
+" to write is given by the length of *buf*, which will be a multiple of "
+"the block size."
+msgstr ""
+"最初の形式は、整列した複数のブロックを書き込みます。"
+"書き込む前には、対象のブロックが（必要に応じて）消去されます。"
+"インデックス *block_num* で指定したブロックに *buf* (バイトの配列)からブロックを"
+"書き込みます。書き込むブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
+"なります。"
+
+#: ../../library/vfs.rst:168
+msgid ""
+"The second form allows writing at arbitrary locations within a block, and"
+" arbitrary lengths.  Only the bytes being written should be changed, and "
+"the caller of this method must ensure that the relevant blocks are erased"
+" via a prior ``ioctl`` call. Starting at block index *block_num*, and "
+"byte offset within that block of *offset*, write bytes from *buf* (an "
+"array of bytes) to the device. The number of bytes to write is given by "
+"the length of *buf*."
+msgstr ""
+"２番目の形式では、ブロック内の任意の場所に、任意の長さで書き込むことができます。"
+"書き込むバイトのみを変更する必要があり、このメソッドの呼び出し元は、関連する"
+"ブロックが事前の ``ioctl`` 呼び出しによって消去されることを保証する必要があります。"
+"ブロックインデックス *block_num* とそのブロック内のバイトオフセット *offset* "
+"を開始点として、 *buf* （バイト配列）からデバイスに書き込みます。"
+"書き込むバイト数は *buf* の長さで指定されます。"
+
+#: ../../library/vfs.rst:176
+msgid ""
+"Note that implementations must never implicitly erase blocks if the "
+"offset argument is specified, even if it is zero."
+msgstr ""
+"offset 引数が指定されている場合、たとえゼロであっても、実装がブロックを暗黙的に"
+"消去してはならないことに注意してください。"
+
+#: ../../library/vfs.rst:181
+msgid ""
+"Control the block device and query its parameters.  The operation to "
+"perform is given by *op* which is one of the following integers:"
+msgstr ""
+"ブロックデバイスの制御とパラメータ問い合わせをおこないます。実行する操作は *op* に"
+"次の整数のうちの１つで指定します。"
+
+#: ../../library/vfs.rst:184
+msgid "1 -- initialise the device (*arg* is unused)"
+msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
+
+#: ../../library/vfs.rst:185
+msgid "2 -- shutdown the device (*arg* is unused)"
+msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
+
+#: ../../library/vfs.rst:186
+msgid "3 -- sync the device (*arg* is unused)"
+msgstr "3 -- デバイスを同期します(*arg* は未使用)"
+
+#: ../../library/vfs.rst:187
+msgid ""
+"4 -- get a count of the number of blocks, should return an integer (*arg*"
+" is unused)"
+msgstr ""
+"4 -- ブロック数を取得し、整数で返します(*arg* は未使用)"
+
+#: ../../library/vfs.rst:189
+msgid ""
+"5 -- get the number of bytes in a block, should return an integer, or "
+"``None`` in which case the default value of 512 is used (*arg* is unused)"
+msgstr ""
+"5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
+"の 512 が使われます(*arg* は未使用)"
+
+#: ../../library/vfs.rst:192
+msgid "6 -- erase a block, *arg* is the block number to erase"
+msgstr "6 -- ブロックを消去します。 *arg* は消去するブロック数です"
+
+#: ../../library/vfs.rst:194
+msgid ""
+"As a minimum ``ioctl(4, ...)`` must be intercepted; for littlefs "
+"``ioctl(6, ...)`` must also be intercepted. The need for others is "
+"hardware dependent."
+msgstr ""
+"少なくとも ``ioctl(4, ...)`` が受け付けられる必要があります。"
+"littlefs については ``ioctl(6, ...)`` も受け付けられる必要があります。"
+"その他の操作が受け付けられるかはハードウェアに依存します。"
+
+#: ../../library/vfs.rst:198
+msgid ""
+"Prior to any call to ``writeblocks(block, ...)`` littlefs issues "
+"``ioctl(6, block)``. This enables a device driver to erase the block "
+"prior to a write if the hardware requires it. Alternatively a driver "
+"might intercept ``ioctl(6, block)`` and return 0 (success). In this case "
+"the driver assumes responsibility for detecting the need for erasure."
+msgstr ""
+"littlefs は ``writeblocks(block, ...)`` の呼び出しの前に ``ioctl(6, block)`` "
+"を発行します。これによりハードウェアが要求するなら、デバイスドライバは書き込みの前に"
+"ブロックを消去できます。あるいは、ドライバが ``ioctl(6, block)`` を捉えて 0 (成功)を"
+"返すようにするかもしれません。この場合、ドライバは消去の必要性を検出する責任を負います。"
+
+#: ../../library/vfs.rst:204
+msgid ""
+"Unless otherwise stated ``ioctl(op, arg)`` can return ``None``. "
+"Consequently an implementation can ignore unused values of ``op``. Where "
+"``op`` is intercepted, the return value for operations 4 and 5 are as "
+"detailed above. Other operations should return 0 on success and non-zero "
+"for failure, with the value returned being an ``OSError`` errno code."
+msgstr ""
+"特に記載のない限り ``ioctl(op, arg)`` は ``None`` を返します。"
+"したがって処理系は ``op`` の未使用値を無視できます。"
+"``op`` が受け付けられる場合、操作 4 と 5 の戻り値は上記のとおりです。"
+"受け付けられる他の操作の戻り値は、成功した場合は 0 を返し、"
+"失敗した場合はゼロ以外を返します。失敗した場合の戻り値は ``OSError`` "
+"の errno コードです。"
+
 #: ../../library/wipy.rst:3
 msgid ":mod:`wipy` -- WiPy specific features"
 msgstr ""
@@ -24371,9 +24427,9 @@ msgstr ""
 #: ../../library/zephyr.DiskAccess.rst:35 ../../library/zephyr.FlashArea.rst:38
 msgid ""
 "These methods implement the simple and extended :ref:`block protocol "
-"<block-device-interface>` defined by :class:`os.AbstractBlockDev`."
+"<block-device-interface>` defined by :class:`vfs.AbstractBlockDev`."
 msgstr ""
-"これらのメソッドは :class:`os.AbstractBlockDev` で定義されているシンプルで"
+"これらのメソッドは :class:`vfs.AbstractBlockDev` で定義されているシンプルで"
 "拡張された :ref:`ブロックプロトコル <block-device-interface>` を実装しています。"
 
 #: ../../library/zephyr.FlashArea.rst:5

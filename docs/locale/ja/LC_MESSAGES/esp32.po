@@ -3,15 +3,15 @@
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 08:42+0900\n"
-"PO-Revision-Date: 2023-12-29 09:03+0900\n"
+"POT-Creation-Date: 2024-02-07 21:14+0900\n"
+"PO-Revision-Date: 2024-02-07 21:54+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1659,25 +1659,25 @@ msgstr ":ref:`machine.SDCard <machine.SDCard>` を参照::"
 
 #: ../../esp32/quickref.rst:653
 msgid ""
-"import machine, os\n"
+"import machine, os, vfs\n"
 "\n"
 "# Slot 2 uses pins sck=18, cs=5, miso=19, mosi=23\n"
 "sd = machine.SDCard(slot=2)\n"
-"os.mount(sd, '/sd')  # mount\n"
+"vfs.mount(sd, '/sd') # mount\n"
 "\n"
 "os.listdir('/sd')    # list directory contents\n"
 "\n"
-"os.umount('/sd')     # eject"
+"vfs.umount('/sd')    # eject"
 msgstr ""
-"import machine, os\n"
+"import machine, os, vfs\n"
 "\n"
 "# スロット 2 はピン sck=18, cs=5, miso=19, mosi=23 を使用\n"
 "sd = machine.SDCard(slot=2)\n"
-"os.mount(sd, '/sd')  # マウント\n"
+"vfs.mount(sd, '/sd') # マウント\n"
 "\n"
 "os.listdir('/sd')    # ディレクトリ内容の一覧\n"
 "\n"
-"os.umount('/sd')     # 取出し"
+"vfs.umount('/sd')    # 取出し"
 
 #: ../../esp32/quickref.rst:664
 msgid "RMT"

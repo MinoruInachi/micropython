@@ -2,7 +2,7 @@
 
 Core language
 =============
-Generated Sun 25 Dec 2022 09:32:55 UTC
+Generated Wed 07 Feb 2024 12:13:19 UTC
 
 .. _cpydiff_core_fstring_concat:
 
@@ -84,35 +84,25 @@ Sample code::
 
 .. _cpydiff_core_fstring_repr:
 
-f-strings don't support the !r, !s, and !a conversions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+f-strings don't support !a conversions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Cause:** MicroPython is optimised for code space.
+**Cause:** MicropPython does not implement ascii()
 
-**Workaround:** Use repr(), str(), and ascii() explictly.
+**Workaround:** None
 
 Sample code::
 
     
-    
-    class X:
-        def __repr__(self):
-            return "repr"
-    
-        def __str__(self):
-            return "str"
-    
-    
-    print(f"{X()!r}")
-    print(f"{X()!s}")
+    f"{'unicode text'!a}"
 
 +-------------+----------------------------------------+
 | CPy output: | uPy output:                            |
 +-------------+----------------------------------------+
-| ::          | ::                                     |
+|             | ::                                     |
 |             |                                        |
-|     repr    |     Traceback (most recent call last): |
-|     str     |       File "<stdin>", line 17          |
+|             |     Traceback (most recent call last): |
+|             |       File "<stdin>", line 8           |
 |             |     SyntaxError: invalid syntax        |
 +-------------+----------------------------------------+
 
@@ -280,13 +270,13 @@ Sample code::
     except Exception as e:
         print(e)
 
-+---------------------------------------------------+------------------------------------------------------------+
-| CPy output:                                       | uPy output:                                                |
-+---------------------------------------------------+------------------------------------------------------------+
-| ::                                                | ::                                                         |
-|                                                   |                                                            |
-|     append() takes exactly one argument (0 given) |     function takes 2 positional arguments but 1 were given |
-+---------------------------------------------------+------------------------------------------------------------+
++--------------------------------------------------------+------------------------------------------------------------+
+| CPy output:                                            | uPy output:                                                |
++--------------------------------------------------------+------------------------------------------------------------+
+| ::                                                     | ::                                                         |
+|                                                        |                                                            |
+|     list.append() takes exactly one argument (0 given) |     function takes 2 positional arguments but 1 were given |
++--------------------------------------------------------+------------------------------------------------------------+
 
 .. _cpydiff_core_function_moduleattr:
 
@@ -415,13 +405,13 @@ Sample code::
     
     test()
 
-+----------------+------------------------------------------------------------------------------------------------+
-| CPy output:    | uPy output:                                                                                    |
-+----------------+------------------------------------------------------------------------------------------------+
-| ::             | ::                                                                                             |
-|                |                                                                                                |
-|     {'val': 2} |     {'test': <function test at 0x7fe5f4006240>, '__name__': '__main__', '__file__': '<stdin>'} |
-+----------------+------------------------------------------------------------------------------------------------+
++----------------+---------------------------------------------------------------------------------------------+
+| CPy output:    | uPy output:                                                                                 |
++----------------+---------------------------------------------------------------------------------------------+
+| ::             | ::                                                                                          |
+|                |                                                                                             |
+|     {'val': 2} |     {'test': <function test at 0x16000e260>, '__name__': '__main__', '__file__': '<stdin>'} |
++----------------+---------------------------------------------------------------------------------------------+
 
 .. _cpydiff_core_locals_eval:
 
@@ -485,7 +475,7 @@ Sample code::
 __path__ attribute of a package has a different type (single string instead of list of strings) in MicroPython
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Cause:** MicroPython does't support namespace packages split across filesystem. Beyond that, MicroPython's import system is highly optimized for minimal memory usage.
+**Cause:** MicroPython doesn't support namespace packages split across filesystem. Beyond that, MicroPython's import system is highly optimized for minimal memory usage.
 
 **Workaround:** Details of import handling is inherently implementation dependent. Don't rely on such details in portable applications.
 
@@ -495,53 +485,18 @@ Sample code::
     
     print(modules.__path__)
 
-+--------------------------------------------------------------+------------------------------+
-| CPy output:                                                  | uPy output:                  |
-+--------------------------------------------------------------+------------------------------+
-| ::                                                           | ::                           |
-|                                                              |                              |
-|     ['/Users/inachi/work/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff/modules |
-+--------------------------------------------------------------+------------------------------+
-
-.. _cpydiff_core_import_prereg:
-
-Failed to load modules are still registered as loaded
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** To make module handling more efficient, it's not wrapped with exception handling.
-
-**Workaround:** Test modules before production use; during development, use ``del sys.modules["name"]``, or just soft or hard reset the board.
-
-Sample code::
-
-    import sys
-    
-    try:
-        from modules import foo
-    except NameError as e:
-        print(e)
-    try:
-        from modules import foo
-    
-        print("Should not get here")
-    except NameError as e:
-        print(e)
-
-+-------------------------------+------------------------------+
-| CPy output:                   | uPy output:                  |
-+-------------------------------+------------------------------+
-| ::                            | ::                           |
-|                               |                              |
-|     foo                       |     foo                      |
-|     name 'xxx' is not defined |     name 'xxx' isn't defined |
-|     foo                       |     Should not get here      |
-|     name 'xxx' is not defined |                              |
-+-------------------------------+------------------------------+
++------------------------------------------------------------------------+------------------------------+
+| CPy output:                                                            | uPy output:                  |
++------------------------------------------------------------------------+------------------------------+
+| ::                                                                     | ::                           |
+|                                                                        |                              |
+|     ['/Volumes/bufext/work/mpy/tmp/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff/modules |
++------------------------------------------------------------------------+------------------------------+
 
 .. _cpydiff_core_import_split_ns_pkgs:
 
-MicroPython does't support namespace packages split across filesystem.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MicroPython doesn't support namespace packages split across filesystem.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Cause:** MicroPython's import system is highly optimized for simplicity, minimal memory usage, and minimal filesystem search overhead.
 

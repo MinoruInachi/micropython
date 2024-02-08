@@ -2,7 +2,41 @@
 
 Modules
 =======
-Generated Sun 25 Dec 2022 09:32:55 UTC
+Generated Wed 07 Feb 2024 12:13:19 UTC
+
+.. Preamble section inserted into generated output
+
+Positional-only Parameters
+--------------------------
+
+To save code size, many functions that accept keyword arguments in CPython only accept positional arguments in MicroPython.
+
+MicroPython marks positional-only parameters in the same way as CPython, by inserting a ``/`` to mark the end of the positional parameters. Any function whose signature ends in ``/`` takes *only* positional arguments. For more details, see `PEP 570 <https://peps.python.org/pep-0570/>`_.
+
+Example
+~~~~~~~
+
+For example, in CPython 3.4 this is the signature of the constructor ``socket.socket``::
+
+    socket.socket(family=AF_INET, type=SOCK_STREAM, proto=0, fileno=None)
+
+However, the signature documented in :func:`MicroPython<socket.socket>` is::
+
+    socket(af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /)
+
+The ``/`` at the end of the parameters indicates that they are all positional-only in MicroPython. The following code works in CPython but not in most MicroPython ports::
+
+    import socket
+    s = socket.socket(type=socket.SOCK_DGRAM)
+
+MicroPython will raise an exception::
+
+    TypeError: function doesn't take keyword arguments
+
+The following code will work in both CPython and MicroPython::
+
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 array
 -----
@@ -296,7 +330,7 @@ Sample code::
 +--------------------------+--------------------------------------------+
 | ::                       | ::                                         |
 |                          |                                            |
-|     11041704701311572346 |     Traceback (most recent call last):     |
+|     10504416032882596038 |     Traceback (most recent call last):     |
 |                          |       File "<stdin>", line 11, in <module> |
 |                          |     ValueError: bits must be 32 or less    |
 +--------------------------+--------------------------------------------+

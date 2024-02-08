@@ -2,7 +2,7 @@
 
 Syntax
 ======
-Generated Sun 25 Dec 2022 09:32:55 UTC
+Generated Wed 07 Feb 2024 12:13:19 UTC
 
 .. _cpydiff_syntax_arg_unpacking:
 
@@ -58,14 +58,15 @@ Sample code::
 
     print([i := -1 for i in range(4)])
 
-+-------------------------------------------------------------------------------------------+----------------------+
-| CPy output:                                                                               | uPy output:          |
-+-------------------------------------------------------------------------------------------+----------------------+
-| ::                                                                                        | ::                   |
-|                                                                                           |                      |
-|       File "<stdin>", line 7                                                              |     [-1, -1, -1, -1] |
-|     SyntaxError: assignment expression cannot rebind comprehension iteration variable 'i' |                      |
-+-------------------------------------------------------------------------------------------+----------------------+
++-------------------------------------------------------------------------------------------+-------------------------------------------------+
+| CPy output:                                                                               | uPy output:                                     |
++-------------------------------------------------------------------------------------------+-------------------------------------------------+
+| ::                                                                                        | ::                                              |
+|                                                                                           |                                                 |
+|       File "<stdin>", line 7                                                              |     Traceback (most recent call last):          |
+|     SyntaxError: assignment expression cannot rebind comprehension iteration variable 'i' |       File "<stdin>", line 7, in <listcomp>     |
+|                                                                                           |     SyntaxError: identifier redefined as global |
++-------------------------------------------------------------------------------------------+-------------------------------------------------+
 
 Spaces
 ------
@@ -90,15 +91,19 @@ Sample code::
     except SyntaxError:
         print("Should have worked")
 
-+-------------+------------------------+
-| CPy output: | uPy output:            |
-+-------------+------------------------+
-| ::          | ::                     |
-|             |                        |
-|     0       |     Should have worked |
-|     1       |     Should have worked |
-|     1       |     Should have worked |
-+-------------+------------------------+
++--------------------------------------------------------+------------------------+
+| CPy output:                                            | uPy output:            |
++--------------------------------------------------------+------------------------+
+| ::                                                     | ::                     |
+|                                                        |                        |
+|     0                                                  |     Should have worked |
+|     1                                                  |     Should have worked |
+|     1                                                  |     Should have worked |
+|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
+|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
+|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
+|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
++--------------------------------------------------------+------------------------+
 
 Unicode
 -------

@@ -73,6 +73,7 @@ Changes
 
 Introduction of a new module :mod:`vfs`.  The following functions and
 classes have moved out of :mod:`os` to :mod:`vfs`:
+
 - `os.mount`
 - `os.umount`
 - `os.VfsFat`

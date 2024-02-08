@@ -3,15 +3,15 @@
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-30 22:28+0900\n"
-"PO-Revision-Date: 2023-10-30 23:14+0900\n"
+"POT-Creation-Date: 2024-02-07 21:14+0900\n"
+"PO-Revision-Date: 2024-02-08 00:18+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1911,7 +1911,7 @@ msgstr ""
 
 #: ../../../reference/constrained.rst:214
 msgid ""
-"The first creates a buffer on each pass whereas the second re-uses a pre-"
+"The first creates a buffer on each pass whereas the second reuses a pre-"
 "allocated buffer; this is both faster and more efficient in terms of "
 "memory fragmentation."
 msgstr ""
@@ -2558,9 +2558,9 @@ msgstr "ブロックデバイス"
 #: ../../reference/filesystem.rst:42
 msgid ""
 "A block device is an instance of a class that implements the "
-":class:`os.AbstractBlockDev` protocol."
+":class:`vfs.AbstractBlockDev` protocol."
 msgstr ""
-"ブロックデバイスは :class:`os.AbstractBlockDev` プロトコルを実装した"
+"ブロックデバイスは :class:`vfs.AbstractBlockDev` プロトコルを実装した"
 "クラスのインスタンスです。"
 
 #: ../../reference/filesystem.rst:46
@@ -2703,23 +2703,23 @@ msgstr "次のように使えます::"
 
 #: ../../reference/filesystem.rst:111
 msgid ""
-"import os\n"
+"import vfs\n"
 "\n"
 "bdev = RAMBlockDev(512, 50)\n"
-"os.VfsFat.mkfs(bdev)\n"
-"os.mount(bdev, '/ramdisk')"
+"vfs.VfsFat.mkfs(bdev)\n"
+"vfs.mount(bdev, '/ramdisk')"
 msgstr ""
 
 #: ../../reference/filesystem.rst:117
 msgid ""
 "An example of a block device that supports both the simple and extended "
 "interface (i.e. both signatures and behaviours of the "
-":meth:`os.AbstractBlockDev.readblocks` and "
-":meth:`os.AbstractBlockDev.writeblocks` methods) is::"
+":meth:`vfs.AbstractBlockDev.readblocks` and "
+":meth:`vfs.AbstractBlockDev.writeblocks` methods) is::"
 msgstr ""
 "次に示すのは、シンプルインタフェースと拡張インタフェースの両方(つまり、 "
-":meth:`os.AbstractBlockDev.readblocks` と "
-":meth:`os.AbstractBlockDev.writeblocks` メソッドのシグネチャと振舞いの両方)を"
+":meth:`vfs.AbstractBlockDev.readblocks` と "
+":meth:`vfs.AbstractBlockDev.writeblocks` メソッドのシグネチャと振舞いの両方)を"
 "サポートするブロックデバイスの例です::"
 
 #: ../../reference/filesystem.rst:122
@@ -2783,18 +2783,18 @@ msgstr ""
 #: ../../reference/filesystem.rst:150
 msgid ""
 "As it supports the extended interface, it can be used with "
-":class:`littlefs <os.VfsLfs2>`::"
+":class:`littlefs <vfs.VfsLfs2>`::"
 msgstr ""
-"拡張インタフェースをサポートすると、 :class:`littlefs <os.VfsLfs2>` "
+"拡張インタフェースをサポートすると、 :class:`littlefs <vfs.VfsLfs2>` "
 "で使えます。"
 
 #: ../../reference/filesystem.rst:153
 msgid ""
-"import os\n"
+"import vfs\n"
 "\n"
 "bdev = RAMBlockDev(512, 50)\n"
-"os.VfsLfs2.mkfs(bdev)\n"
-"os.mount(bdev, '/ramdisk')"
+"vfs.VfsLfs2.mkfs(bdev)\n"
+"vfs.mount(bdev, '/ramdisk')"
 msgstr ""
 
 #: ../../reference/filesystem.rst:159
@@ -2819,12 +2819,12 @@ msgstr "ファイルシステム"
 #: ../../reference/filesystem.rst:169
 msgid ""
 "MicroPython ports can provide implementations of :class:`FAT "
-"<os.VfsFat>`, :class:`littlefs v1 <os.VfsLfs1>` and :class:`littlefs v2"
-" <os.VfsLfs2>`."
+"<vfs.VfsFat>`, :class:`littlefs v1 <vfs.VfsLfs1>` and :class:`littlefs v2"
+" <vfs.VfsLfs2>`."
 msgstr ""
-"MicroPython のポートは :class:`FAT <os.VfsFat>`, "
-":class:`littlefs v1 <os.VfsLfs1>`, "
-":class:`littlefs v2 <os.VfsLfs2>` の実装を提供できます。"
+"MicroPython のポートは :class:`FAT <vfs.VfsFat>`, "
+":class:`littlefs v1 <vfs.VfsLfs1>`, "
+":class:`littlefs v2 <vfs.VfsLfs2>` の実装を提供できます。"
 
 #: ../../reference/filesystem.rst:172
 msgid ""
@@ -2905,29 +2905,29 @@ msgstr ""
 #: ../../reference/filesystem.rst:199
 msgid ""
 "# ESP8266 and ESP32\n"
-"import os\n"
-"os.umount('/')\n"
-"os.VfsFat.mkfs(bdev)\n"
-"os.mount(bdev, '/')\n"
+"import vfs\n"
+"vfs.umount('/')\n"
+"vfs.VfsFat.mkfs(bdev)\n"
+"vfs.mount(bdev, '/')\n"
 "\n"
 "# STM32\n"
-"import os, pyb\n"
-"os.umount('/flash')\n"
-"os.VfsFat.mkfs(pyb.Flash(start=0))\n"
-"os.mount(pyb.Flash(start=0), '/flash')\n"
+"import os, vfs, pyb\n"
+"vfs.umount('/flash')\n"
+"vfs.VfsFat.mkfs(pyb.Flash(start=0))\n"
+"vfs.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 msgstr ""
 "# ESP8266 や ESP32\n"
-"import os\n"
-"os.umount('/')\n"
-"os.VfsFat.mkfs(bdev)\n"
-"os.mount(bdev, '/')\n"
+"import vfs\n"
+"vfs.umount('/')\n"
+"vfs.VfsFat.mkfs(bdev)\n"
+"vfs.mount(bdev, '/')\n"
 "\n"
 "# STM32\n"
-"import os, pyb\n"
-"os.umount('/flash')\n"
-"os.VfsFat.mkfs(pyb.Flash(start=0))\n"
-"os.mount(pyb.Flash(start=0), '/flash')\n"
+"import os, vfs, pyb\n"
+"vfs.umount('/flash')\n"
+"vfs.VfsFat.mkfs(pyb.Flash(start=0))\n"
+"vfs.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 
 #: ../../reference/filesystem.rst:213
@@ -2958,29 +2958,29 @@ msgstr "littlefs v2 を使用してフラッシュ全体をフォーマットす
 #: ../../reference/filesystem.rst:224
 msgid ""
 "# ESP8266 and ESP32\n"
-"import os\n"
-"os.umount('/')\n"
-"os.VfsLfs2.mkfs(bdev)\n"
-"os.mount(bdev, '/')\n"
+"import vfs\n"
+"vfs.umount('/')\n"
+"vfs.VfsLfs2.mkfs(bdev)\n"
+"vfs.mount(bdev, '/')\n"
 "\n"
 "# STM32\n"
-"import os, pyb\n"
-"os.umount('/flash')\n"
-"os.VfsLfs2.mkfs(pyb.Flash(start=0))\n"
-"os.mount(pyb.Flash(start=0), '/flash')\n"
+"import os, vfs, pyb\n"
+"vfs.umount('/flash')\n"
+"vfs.VfsLfs2.mkfs(pyb.Flash(start=0))\n"
+"vfs.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 msgstr ""
 "# ESP8266 や ESP32\n"
-"import os\n"
-"os.umount('/')\n"
-"os.VfsLfs2.mkfs(bdev)\n"
-"os.mount(bdev, '/')\n"
+"import vfs\n"
+"vfs.umount('/')\n"
+"vfs.VfsLfs2.mkfs(bdev)\n"
+"vfs.mount(bdev, '/')\n"
 "\n"
 "# STM32\n"
-"import os, pyb\n"
-"os.umount('/flash')\n"
-"os.VfsLfs2.mkfs(pyb.Flash(start=0))\n"
-"os.mount(pyb.Flash(start=0), '/flash')\n"
+"import os, vfs, pyb\n"
+"vfs.umount('/flash')\n"
+"vfs.VfsLfs2.mkfs(pyb.Flash(start=0))\n"
+"vfs.mount(pyb.Flash(start=0), '/flash')\n"
 "os.chdir('/flash')"
 
 #: ../../reference/filesystem.rst:237
@@ -3040,14 +3040,14 @@ msgstr ""
 
 #: ../../reference/filesystem.rst:267
 msgid ""
-"import os, pyb\n"
-"os.umount('/flash')\n"
+"import os, vfs, pyb\n"
+"vfs.umount('/flash')\n"
 "p1 = pyb.Flash(start=0, len=256*1024)\n"
 "p2 = pyb.Flash(start=256*1024)\n"
-"os.VfsFat.mkfs(p1)\n"
-"os.VfsLfs2.mkfs(p2)\n"
-"os.mount(p1, '/flash')\n"
-"os.mount(p2, '/data')\n"
+"vfs.VfsFat.mkfs(p1)\n"
+"vfs.VfsLfs2.mkfs(p2)\n"
+"vfs.mount(p1, '/flash')\n"
+"vfs.mount(p2, '/data')\n"
 "os.chdir('/flash')"
 msgstr ""
 
@@ -3072,9 +3072,9 @@ msgstr ""
 
 #: ../../reference/filesystem.rst:285
 msgid ""
-"import os, pyb\n"
+"import vfs, pyb\n"
 "p2 = pyb.Flash(start=256*1024)\n"
-"os.mount(p2, '/data')"
+"vfs.mount(p2, '/data')"
 msgstr ""
 
 #: ../../reference/filesystem.rst:289
@@ -3103,9 +3103,9 @@ msgstr ""
 
 #: ../../reference/filesystem.rst:300
 msgid ""
-"import esp32, os\n"
+"import esp32, vfs\n"
 "p = esp32.Partition.find(esp32.Partition.TYPE_DATA, label='foo')\n"
-"os.mount(p, '/foo')"
+"vfs.mount(p, '/foo')"
 msgstr ""
 
 #: ../../../reference/glossary.rst:2
@@ -5231,7 +5231,6 @@ msgstr "変更点"
 
 #: ../../reference/micropython2_migration.rst:38
 #: ../../reference/micropython2_migration.rst:56
-#: ../../reference/micropython2_migration.rst:74
 msgid "*None yet*"
 msgstr "*未稿*"
 
@@ -5261,7 +5260,7 @@ msgstr ""
 
 #: ../../reference/micropython2_migration.rst:59
 msgid "CPython compatibility"
-msgstr ""
+msgstr "CPython との互換性"
 
 #: ../../reference/micropython2_migration.rst:64
 msgid ""
@@ -5280,6 +5279,14 @@ msgid ""
 msgstr ""
 "これにより、CPython と MicroPython の両方で動作するコードの作成が容易になり、"
 "開発とテストに役立ちます。"
+
+#: ../../reference/micropython2_migration.rst:74
+msgid ""
+"Introduction of a new module :mod:`vfs`.  The following functions and "
+"classes have moved out of :mod:`os` to :mod:`vfs`:"
+msgstr ""
+"新しいモジュール :mod:`vfs` の導入。"
+"次の関数やクラスが :mod:`os` から :mod:`vfs` に移動しました:"
 
 #: ../../reference/mpremote.rst:4
 msgid "MicroPython remote control: mpremote"
