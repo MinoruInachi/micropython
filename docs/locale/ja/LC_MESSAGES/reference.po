@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 21:14+0900\n"
-"PO-Revision-Date: 2024-02-08 00:18+0900\n"
+"POT-Creation-Date: 2024-02-09 22:24+0900\n"
+"PO-Revision-Date: 2024-02-10 00:57+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -4840,6 +4840,29 @@ msgstr ""
 ":func:`micropython.opt_level` を参照してください。"
 
 #: ../../reference/manifest.rst:100
+msgid "Register the path to an external named *library*."
+msgstr "外部ライブラリへのパスを *library* に指定した名前で登録します。"
+
+#: ../../reference/manifest.rst:102
+msgid ""
+"The path *library_path* will be automatically searched when using "
+"`require`. By default the added library is added to the end of the list "
+"of libraries to search.  Pass ``True`` to *prepend* to add it to the "
+"start of the list."
+msgstr ""
+"*library_path* は `require` 使用時に自動的に検索されます。"
+"追加したライブラリはデフォルトで検索ライブラリリストの末尾に追加されます。"
+"先頭に追加したい場合は *prepend* に ``True`` を指定します。"
+
+#: ../../reference/manifest.rst:106
+msgid ""
+"Additionally, the added library can be explicitly requested by using "
+"``require(\"name\", library=\"library\")``."
+msgstr ""
+"また、追加したライブラリは ``require(\"name\", library=\"library\")`` "
+"という形式で明示的に呼び出すこともできます。"
+
+#: ../../reference/manifest.rst:111
 msgid ""
 "This is equivalent to copying the \"package_path\" directory to the "
 "device (except as frozen code)."
@@ -4847,7 +4870,7 @@ msgstr ""
 "これは \"package_path\" ディレクトリをデバイスにコピーするのと同等です(ただし、"
 "凍結されたコードになります)。"
 
-#: ../../reference/manifest.rst:103
+#: ../../reference/manifest.rst:114
 msgid ""
 "In the simplest case, to freeze a package \"foo\" in the current "
 "directory:"
@@ -4855,11 +4878,11 @@ msgstr ""
 "最も単純な場合で、現在のディレクトリにあるパッケージ  \"foo\" を凍結するには"
 "次のようにします。"
 
-#: ../../reference/manifest.rst:105
+#: ../../reference/manifest.rst:116
 msgid "package(\"foo\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:109
+#: ../../reference/manifest.rst:120
 msgid ""
 "will recursively include all .py files in foo, and will be frozen as "
 "``foo/**/*.py``."
@@ -4867,7 +4890,7 @@ msgstr ""
 "これにより foo 内のすべての .py ファイルが再帰的に含まれ、 "
 "``foo/**/*.py`` として凍結されます。"
 
-#: ../../reference/manifest.rst:112
+#: ../../reference/manifest.rst:123
 msgid ""
 "If the package isn't in the same directory as the manifest file, use "
 "``base_path``:"
@@ -4875,15 +4898,15 @@ msgstr ""
 "マニフェストファイルと同じディレクトリにパッケージがない場合は "
 "``base_path`` を使ってください:"
 
-#: ../../reference/manifest.rst:114
+#: ../../reference/manifest.rst:125
 msgid "package(\"foo\", base_path=\"path/to/libraries\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:118 ../../reference/manifest.rst:139
+#: ../../reference/manifest.rst:129 ../../reference/manifest.rst:150
 msgid "You can use the variables above, such as ``$(PORT_DIR)`` in ``base_path``."
 msgstr "``base_path`` では ``$(PORT_DIR)`` などの変数を使えます。"
 
-#: ../../reference/manifest.rst:120
+#: ../../reference/manifest.rst:131
 msgid ""
 "To restrict to certain files in the package use ``files`` (note: paths "
 "should be relative to the package): ``package(\"foo\", "
@@ -4893,27 +4916,27 @@ msgstr ""
 "パスはパッケージに対して相対的である必要があります)。"
 "たとえば ``package(\"foo\", files=[\"bar/baz.py\"])`` のように指定します。"
 
-#: ../../reference/manifest.rst:125
+#: ../../reference/manifest.rst:136
 msgid "Include a single Python file as a module."
 msgstr "単一の Python ファイルをモジュールとして取り込みます。"
 
-#: ../../reference/manifest.rst:127
+#: ../../reference/manifest.rst:138
 msgid "If the file is in the current directory:"
 msgstr "ファイルが現在のディレクトリにある場合:"
 
-#: ../../reference/manifest.rst:129
+#: ../../reference/manifest.rst:140
 msgid "module(\"foo.py\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:133
+#: ../../reference/manifest.rst:144
 msgid "Otherwise use base_path to locate the file:"
 msgstr "それ以外の場合は base_path を指定してファイルを検索します。"
 
-#: ../../reference/manifest.rst:135
+#: ../../reference/manifest.rst:146
 msgid "module(\"foo.py\", base_path=\"src/drivers\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:143
+#: ../../reference/manifest.rst:154
 msgid ""
 "Require a package by name (and its dependencies) from :term:`micropython-"
 "lib`."
@@ -4921,19 +4944,21 @@ msgstr ""
 ":term:`micropython-lib` から名前(およびその依存関係)によって"
 "パッケージを要求します。"
 
-#: ../../reference/manifest.rst:145
+#: ../../reference/manifest.rst:156
 msgid ""
-"Optionally specify unix_ffi=True to use a module from the unix-ffi "
-"directory."
+"Optionally specify *library* (a string) to reference a package from a "
+"library that has been previously registered with `add_library`. Otherwise"
+" the list of library paths will be used."
 msgstr ""
-"オプションで unix_ffi=True を指定して、unix-ffi ディレクトリからモジュールを"
-"使えるようにできます。"
+"オプションで *library* (文字列)を指定すると、以前に `add_library` で登録した"
+"ライブラリからパッケージを参照します。それ以外の場合は、ライブラリパスのリストが適用"
+"使用されます。"
 
-#: ../../reference/manifest.rst:149
+#: ../../reference/manifest.rst:162
 msgid "Include another manifest."
 msgstr "別のマニフェストを取り込みます。"
 
-#: ../../reference/manifest.rst:151
+#: ../../reference/manifest.rst:164
 msgid ""
 "Typically a manifest used for compiling firmware will need to include the"
 " port manifest, which might include frozen modules that are required for "
@@ -4943,18 +4968,18 @@ msgstr ""
 "必要があります。ポートマニフェストには、ボードの動作に必要な凍結モジュールを定義して"
 "います。"
 
-#: ../../reference/manifest.rst:155
+#: ../../reference/manifest.rst:168
 msgid ""
 "The *manifest* argument can be a string (filename) or an iterable of "
 "strings."
 msgstr ""
 "*manifest* 引数には文字列(ファイル名)または文字列のイテラブルを指定します。"
 
-#: ../../reference/manifest.rst:158
+#: ../../reference/manifest.rst:171
 msgid "Relative paths are resolved with respect to the current manifest file."
 msgstr "相対パスは、現在のマニフェストファイルを基準に解決されます。"
 
-#: ../../reference/manifest.rst:160
+#: ../../reference/manifest.rst:173
 msgid ""
 "If the path is to a directory, then it implicitly includes the "
 "manifest.py file inside that directory."
@@ -4962,24 +4987,24 @@ msgstr ""
 "パスがディレクトリである場合、そのディレクトリ内の manifest.py ファイルを"
 "暗黙的に取り込みます。"
 
-#: ../../reference/manifest.rst:163
+#: ../../reference/manifest.rst:176
 msgid ""
 "You can use the variables above, such as ``$(PORT_DIR)`` in "
 "``manifest_path``."
 msgstr ""
 "``manifest_path`` 内では ``$(PORT_DIR)`` などの変数を使えます。"
 
-#: ../../reference/manifest.rst:167
+#: ../../reference/manifest.rst:180
 msgid ""
 "Define metadata for this manifest file. This is useful for manifests for "
 "micropython-lib packages."
 msgstr ""
 
-#: ../../reference/manifest.rst:171
+#: ../../reference/manifest.rst:184
 msgid "Low-level functions"
 msgstr "低レベル関数"
 
-#: ../../reference/manifest.rst:173
+#: ../../reference/manifest.rst:186
 msgid ""
 "These functions are documented for completeness, but with the exception "
 "of ``freeze_as_str`` all functionality can be accessed via the high-level"
@@ -4988,7 +5013,7 @@ msgstr ""
 "これらの関数は完全性のためにドキュメント化してますが、 ``freeze_as_str`` を除く"
 "すべての機能は高レベル関数を介してアクセスできます。"
 
-#: ../../reference/manifest.rst:178
+#: ../../reference/manifest.rst:191
 msgid ""
 "Freeze the input specified by *path*, automatically determining its type."
 "  A ``.py`` script will be compiled to a ``.mpy`` first then frozen, and "
@@ -4998,7 +5023,7 @@ msgstr ""
 "``.py`` スクリプトは最初に ``.mpy`` にコンパイルしてから凍結し、 "
 "``.mpy`` ファイルは直接凍結します。"
 
-#: ../../reference/manifest.rst:182
+#: ../../reference/manifest.rst:195
 msgid ""
 "*path* must be a directory, which is the base directory to begin "
 "searching for files.  When importing the resulting frozen modules, the "
@@ -5009,15 +5034,15 @@ msgstr ""
 "ディレクトリです。凍結されたモジュールをインポートする際、モジュール名は *path* の"
 "後から始まります。つまり、モジュール名には *path* が含まれません。"
 
-#: ../../reference/manifest.rst:187
+#: ../../reference/manifest.rst:200
 msgid "If *path* is relative, it is resolved to the current ``manifest.py``."
 msgstr "*path* が相対パスの場合、現在の ``manifest.py`` を基準に解決されます。"
 
-#: ../../reference/manifest.rst:189
+#: ../../reference/manifest.rst:202
 msgid "If *script* is None, all files in *path* will be frozen."
 msgstr "*script* が None の場合、 *path* 内のすべてのファイルを凍結します。"
 
-#: ../../reference/manifest.rst:191
+#: ../../reference/manifest.rst:204
 msgid ""
 "If *script* is an iterable then ``freeze()`` is called on all items of "
 "the iterable (with the same *path* and *opt* passed through)."
@@ -5025,7 +5050,7 @@ msgstr ""
 "*script* がイテラブルなオブジェクトである場合、イテラブルのすべての項目について "
 "``freeze()`` を呼び出します(*path* と *opt* が渡されます)。"
 
-#: ../../reference/manifest.rst:194
+#: ../../reference/manifest.rst:207
 msgid ""
 "If *script* is a string then it specifies the file or directory to "
 "freeze, and can include extra directories before the file or last "
@@ -5037,7 +5062,7 @@ msgstr ""
 "凍結するファイルまたはディレクトリは *path* 内で検索されます。"
 "*script* がディレクトリである場合、そのディレクトリ内のすべてのファイルを凍結します。"
 
-#: ../../reference/manifest.rst:199
+#: ../../reference/manifest.rst:212
 msgid ""
 "*opt* is the optimisation level to pass to mpy-cross when compiling "
 "``.py`` to ``.mpy``.  These levels are described in "
@@ -5046,7 +5071,7 @@ msgstr ""
 "*opt* は ``.py`` から ``.mpy`` へのコンパイル時に mpy-cross に渡す最適化レベルです。"
 "レベルについての説明は :func:`micropython.opt_level` にあります。"
 
-#: ../../reference/manifest.rst:204
+#: ../../reference/manifest.rst:217
 msgid ""
 "Freeze the given *path* and all ``.py`` scripts within it as a string, "
 "which will be compiled upon import."
@@ -5054,7 +5079,7 @@ msgstr ""
 "指定した *path* とその中にあるすべての ``.py`` スクリプトを文字列として凍結します。"
 "この文字列として凍結したものはインポート時にコンパイルされます。"
 
-#: ../../reference/manifest.rst:209
+#: ../../reference/manifest.rst:222
 msgid ""
 "Freeze the input by first compiling the ``.py`` scripts to ``.mpy`` "
 "files, then freezing the resulting ``.mpy`` files.  See ``freeze()`` for "
@@ -5064,7 +5089,7 @@ msgstr ""
 "結果の ``.mpy`` ファイルを凍結することで、入力を凍結します。"
 "引数に関する詳細は ``freeze()`` を参照してください。"
 
-#: ../../reference/manifest.rst:215
+#: ../../reference/manifest.rst:228
 msgid ""
 "Freeze the input, which must be ``.mpy`` files that are frozen directly. "
 "See ``freeze()`` for further details on the arguments."
@@ -5072,11 +5097,11 @@ msgstr ""
 "コンパイル済の ``.mpy`` ファイルでなければならない入力を凍結します。"
 "引数に関する詳細は ``freeze()`` を参照してください。"
 
-#: ../../reference/manifest.rst:219 ../../reference/mpremote.rst:245
+#: ../../reference/manifest.rst:232 ../../reference/mpremote.rst:483
 msgid "Examples"
 msgstr "サンプル"
 
-#: ../../reference/manifest.rst:221
+#: ../../reference/manifest.rst:234
 msgid ""
 "To freeze a single file from the current directory which will be "
 "available as ``import mydriver``, use:"
@@ -5084,11 +5109,11 @@ msgstr ""
 "現在のディレクトリから単一のファイルをインポート可能なモジュールとして凍結するには"
 "次のようにします:"
 
-#: ../../reference/manifest.rst:224
+#: ../../reference/manifest.rst:237
 msgid "module(\"mydriver.py\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:228
+#: ../../reference/manifest.rst:241
 msgid ""
 "To freeze a directory of files in a subdirectory \"mydriver\" of the "
 "current directory which will be available as ``import mydriver``, use:"
@@ -5096,26 +5121,26 @@ msgstr ""
 "現在のディレクトリのサブディレクトリ \"mydriver\" のファイルを"
 "インポート可能なモジュールとして凍結するには次のようにします:"
 
-#: ../../reference/manifest.rst:231
+#: ../../reference/manifest.rst:244
 msgid "package(\"mydriver\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:235
+#: ../../reference/manifest.rst:248
 msgid "To freeze the \"hmac\" library from :term:`micropython-lib`, use:"
 msgstr ":term:`micropython-lib` の \"hmac\" ライブラリを凍結するには次のようにします:"
 
-#: ../../reference/manifest.rst:237
+#: ../../reference/manifest.rst:250
 msgid "require(\"hmac\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:241
+#: ../../reference/manifest.rst:254
 msgid ""
 "A more complete example of a custom ``manifest.py`` file for the "
 "``PYBD_SF2`` board is:"
 msgstr ""
 "``PYBD_SF2`` ボードのカスタム ``manifest.py`` ファイルの例を次に示します:"
 
-#: ../../reference/manifest.rst:244
+#: ../../reference/manifest.rst:257
 msgid ""
 "# Include the board's default manifest.\n"
 "include(\"$(BOARD_DIR)/manifest.py\")\n"
@@ -5131,17 +5156,17 @@ msgstr ""
 "# micropython-lib から aiorepl を追加\n"
 "require(\"aiorepl\")"
 
-#: ../../reference/manifest.rst:253
+#: ../../reference/manifest.rst:266
 msgid "Then the board can be compiled with"
 msgstr "このファイルを使って、次のようにしてボードをビルドできます。"
 
-#: ../../reference/manifest.rst:255
+#: ../../reference/manifest.rst:268
 msgid ""
 "$ cd ports/stm32\n"
 "$ make BOARD=PYBD_SF2 FROZEN_MANIFEST=~/src/myproject/manifest.py"
 msgstr ""
 
-#: ../../reference/manifest.rst:260
+#: ../../reference/manifest.rst:273
 msgid ""
 "Note that most boards do not have their own ``manifest.py``, rather they "
 "use the port one directly, in which case your manifest should just "
