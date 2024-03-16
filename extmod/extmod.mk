@@ -15,6 +15,7 @@ SRC_EXTMOD_C += \
 	extmod/machine_spi.c \
 	extmod/machine_timer.c \
 	extmod/machine_uart.c \
+	extmod/machine_usb_device.c \
 	extmod/machine_wdt.c \
 	extmod/modasyncio.c \
 	extmod/modbinascii.c \
@@ -30,6 +31,9 @@ SRC_EXTMOD_C += \
 	extmod/modmachine.c \
 	extmod/modnetwork.c \
 	extmod/modonewire.c \
+	extmod/modopenamp.c \
+	extmod/modopenamp_remoteproc.c \
+	extmod/modopenamp_remoteproc_store.c \
 	extmod/modos.c \
 	extmod/modplatform.c\
 	extmod/modrandom.c \
@@ -514,3 +518,58 @@ include $(TOP)/extmod/btstack/btstack.mk
 endif
 
 endif
+
+################################################################################
+# openamp
+
+ifeq ($(MICROPY_PY_OPENAMP),1)
+OPENAMP_DIR = lib/open-amp
+LIBMETAL_DIR = lib/libmetal
+GIT_SUBMODULES += $(LIBMETAL_DIR) $(OPENAMP_DIR)
+include $(TOP)/extmod/libmetal/libmetal.mk
+
+INC += -I$(TOP)/$(OPENAMP_DIR)
+CFLAGS += -DMICROPY_PY_OPENAMP=1
+
+ifeq ($(MICROPY_PY_OPENAMP_REMOTEPROC),1)
+CFLAGS += -DMICROPY_PY_OPENAMP_REMOTEPROC=1
+endif
+
+CFLAGS_THIRDPARTY += \
+    -I$(BUILD)/openamp \
+    -I$(TOP)/$(OPENAMP_DIR) \
+    -I$(TOP)/$(OPENAMP_DIR)/lib/include/ \
+    -DMETAL_INTERNAL \
+    -DVIRTIO_DRIVER_ONLY \
+    -DNO_ATOMIC_64_SUPPORT \
+    -DRPMSG_BUFFER_SIZE=512 \
+
+# OpenAMP's source files.
+SRC_OPENAMP_C += $(addprefix $(OPENAMP_DIR)/lib/,\
+	rpmsg/rpmsg.c \
+	rpmsg/rpmsg_virtio.c \
+	virtio/virtio.c \
+	virtio/virtqueue.c \
+	virtio_mmio/virtio_mmio_drv.c \
+	)
+
+# OpenAMP's remoteproc source files.
+ifeq ($(MICROPY_PY_OPENAMP_REMOTEPROC),1)
+SRC_OPENAMP_C += $(addprefix $(OPENAMP_DIR)/lib/remoteproc/,\
+	elf_loader.c \
+	remoteproc.c \
+	remoteproc_virtio.c \
+	rsc_table_parser.c \
+	)
+endif # MICROPY_PY_OPENAMP_REMOTEPROC
+
+# Disable compiler warnings in OpenAMP (variables used only for assert).
+$(BUILD)/$(OPENAMP_DIR)/lib/rpmsg/rpmsg_virtio.o: CFLAGS += -Wno-unused-but-set-variable
+$(BUILD)/$(OPENAMP_DIR)/lib/virtio_mmio/virtio_mmio_drv.o: CFLAGS += -Wno-unused-but-set-variable
+
+# We need to have generated libmetal before compiling OpenAMP.
+$(addprefix $(BUILD)/, $(SRC_OPENAMP_C:.c=.o)): $(BUILD)/openamp/metal/config.h
+
+SRC_THIRDPARTY_C += $(SRC_LIBMETAL_C) $(SRC_OPENAMP_C)
+
+endif # MICROPY_PY_OPENAMP
