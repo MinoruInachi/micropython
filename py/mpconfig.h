@@ -446,6 +446,11 @@
 #define MICROPY_DYNAMIC_COMPILER (0)
 #endif
 
+// Whether the compiler allows compiling top-level await expressions
+#ifndef MICROPY_COMP_ALLOW_TOP_LEVEL_AWAIT
+#define MICROPY_COMP_ALLOW_TOP_LEVEL_AWAIT (0)
+#endif
+
 // Whether to enable constant folding; eg 1+2 rewritten as 3
 #ifndef MICROPY_COMP_CONST_FOLDING
 #define MICROPY_COMP_CONST_FOLDING (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_CORE_FEATURES)
@@ -828,6 +833,15 @@ typedef double mp_float_t;
 
 #ifndef MICROPY_PY_BUILTINS_COMPLEX
 #define MICROPY_PY_BUILTINS_COMPLEX (MICROPY_PY_BUILTINS_FLOAT)
+#endif
+
+// Whether to use the native _Float16 for 16-bit float support
+#ifndef MICROPY_FLOAT_USE_NATIVE_FLT16
+#ifdef __FLT16_MAX__
+#define MICROPY_FLOAT_USE_NATIVE_FLT16 (1)
+#else
+#define MICROPY_FLOAT_USE_NATIVE_FLT16 (0)
+#endif
 #endif
 
 // Whether to provide a high-quality hash for float and complex numbers.
@@ -1301,6 +1315,16 @@ typedef double mp_float_t;
 // Whether to provide "collections.deque" type
 #ifndef MICROPY_PY_COLLECTIONS_DEQUE
 #define MICROPY_PY_COLLECTIONS_DEQUE (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES)
+#endif
+
+// Whether "collections.deque" supports iteration
+#ifndef MICROPY_PY_COLLECTIONS_DEQUE_ITER
+#define MICROPY_PY_COLLECTIONS_DEQUE_ITER (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES)
+#endif
+
+// Whether "collections.deque" supports subscription
+#ifndef MICROPY_PY_COLLECTIONS_DEQUE_SUBSCR
+#define MICROPY_PY_COLLECTIONS_DEQUE_SUBSCR (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES)
 #endif
 
 // Whether to provide "collections.OrderedDict" type
