@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 10:08+0900\n"
-"PO-Revision-Date: 2024-03-16 19:22+0900\n"
+"POT-Creation-Date: 2024-03-23 11:02+0900\n"
+"PO-Revision-Date: 2024-03-24 00:46+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -862,7 +862,8 @@ msgstr "クラス BLE"
 
 #: ../../library/bluetooth.rst:26 ../../library/bluetooth.rst:758
 #: ../../library/espnow.rst:97 ../../library/machine.I2S.rst:83
-#: ../../library/wm8960.rst:21 ../../library/zephyr.zsensor.rst:26
+#: ../../library/rp2.DMA.rst:69 ../../library/wm8960.rst:21
+#: ../../library/zephyr.zsensor.rst:26
 msgid "Constructor"
 msgstr "コンストラクタ"
 
@@ -2512,11 +2513,11 @@ msgstr ""
 #: ../../library/pyb.Switch.rst:32 ../../library/pyb.Timer.rst:63
 #: ../../library/pyb.Timer.rst:248 ../../library/pyb.UART.rst:85
 #: ../../library/pyb.USB_HID.rst:22 ../../library/pyb.USB_VCP.rst:22
-#: ../../library/rp2.Flash.rst:25 ../../library/rp2.PIO.rst:28
-#: ../../library/rp2.StateMachine.rst:27 ../../library/select.rst:32
-#: ../../library/socket.rst:180 ../../library/wm8960.rst:182
-#: ../../library/zephyr.DiskAccess.rst:27 ../../library/zephyr.FlashArea.rst:30
-#: ../../library/zephyr.zsensor.rst:34
+#: ../../library/rp2.DMA.rst:76 ../../library/rp2.Flash.rst:25
+#: ../../library/rp2.PIO.rst:28 ../../library/rp2.StateMachine.rst:27
+#: ../../library/select.rst:32 ../../library/socket.rst:180
+#: ../../library/wm8960.rst:182 ../../library/zephyr.DiskAccess.rst:27
+#: ../../library/zephyr.FlashArea.rst:30 ../../library/zephyr.zsensor.rst:34
 msgid "Methods"
 msgstr "メソッド"
 
@@ -2760,51 +2761,85 @@ msgid ""
 "appends and pops from either side of the deque.  New deques are created "
 "using the following arguments:"
 msgstr ""
-"deques (両端キュー)は、O(1) (処理時間がデータ量に非依存)をサポートするリストの"
+"deque (両端キュー)は、O(1) (処理時間がデータ量に非依存)をサポートするリストの"
 "ようなコンテナであり、両端キューのどちらかの側から追加やポップできます。次の引数を"
-"使用して新しい deques オブジェクトが作成されます。"
+"使用して新しい deque オブジェクトが作成されます。"
 
 #: ../../library/collections.rst:21
-msgid "*iterable* must be the empty tuple, and the new deque is created empty."
-msgstr "*iterable* は空のタプルでなければならず、新しい両端キューが空で作成されます。"
+msgid ""
+"*iterable* is an iterable used to populate the deque when it is created."
+"  It can be an empty tuple or list to create a deque that is initially "
+"empty."
+msgstr ""
+"*iterable* は deque を作成するときに deque を満たすために使うイテラブルです。"
+"初めに空の dequeを 作成するには、空のタプルやリストを指定します。"
 
-#: ../../library/collections.rst:23
+#: ../../library/collections.rst:25
 msgid ""
 "*maxlen* must be specified and the deque will be bounded to this maximum "
 "length.  Once the deque is full, any new items added will discard items "
 "from the opposite end."
 msgstr ""
-"*maxlen* を指定する必要があり、両端キューはこの最大長にバインドされます。両端キュー"
-"がいっぱいになると、追加された新しいアイテムは反対側のアイテムを破棄します。"
-
-#: ../../library/collections.rst:27
-msgid "The optional *flags* can be 1 to check for overflow when adding items."
-msgstr "オプションの flags を 1 にすると、項目を追加するときにオーバーフローをチェックするようになります。"
+"*maxlen* を指定する必要があり、deque はこの最大長にバインドされます。"
+"deque がいっぱいになると、追加された新しいアイテムは反対側のアイテムを破棄します。"
 
 #: ../../library/collections.rst:29
-msgid ""
-"As well as supporting `bool` and `len`, deque objects have the following "
-"methods:"
+msgid "The optional *flags* can be 1 to check for overflow when adding items."
 msgstr ""
-"`bool` や `len` をサポートする他に、deque オブジェクトには次のメソッドがあります:"
+"オプションの flags を 1 にすると、項目を追加するときにオーバーフローをチェックする"
+"ようになります。"
 
-#: ../../library/collections.rst:34
+#: ../../library/collections.rst:31
 msgid ""
-"Add *x* to the right side of the deque. Raises IndexError if overflow "
-"checking is enabled and there is no more room left."
+"Deque objects support `bool`, `len`, iteration and subscript load and "
+"store. They also have the following methods:"
 msgstr ""
-"両端キューの右側に *x* を追加します。オーバーフローチェックが有効で、もう余地が"
-"ない場合には IndexError を発生させます。"
+"deque オブジェクトは `bool`, `len`,  反復、添字によるロードとストアをサポート"
+"します。その他にも次のメソッドがあります:"
 
-#: ../../library/collections.rst:39
+#: ../../library/collections.rst:36
+msgid ""
+"Add *x* to the right side of the deque. Raises ``IndexError`` if overflow"
+" checking is enabled and there is no more room in the queue."
+msgstr ""
+"deque の右側に *x* を追加します。オーバーフローチェックが有効になっており、"
+"キューにもう空きがない場合には ``IndexError`` が発生します。"
+
+#: ../../library/collections.rst:42
+msgid ""
+"Add *x* to the left side of the deque. Raises ``IndexError`` if overflow "
+"checking is enabled and there is no more room in the queue."
+msgstr ""
+"deque の左側に *x* を追加します。オーバーフローチェックが有効になっており、"
+"キューにもう空きがない場合には ``IndexError`` が発生します。"
+
+#: ../../library/collections.rst:48
+msgid ""
+"Remove and return an item from the right side of the deque. Raises "
+"``IndexError`` if no items are present."
+msgstr ""
+"deque の右側から項目を削除して返します。"
+"項目が存在しない場合には ``IndexError`` が発生します。"
+
+#: ../../library/collections.rst:53
 msgid ""
 "Remove and return an item from the left side of the deque. Raises "
-"IndexError if no items are present."
+"``IndexError`` if no items are present."
 msgstr ""
-"両端キューの左側から項目を削除して返します。項目が存在しない場合は IndexError "
-"を発生させます。"
+"deque の左側から項目を削除して返します。項目が存在しない場合は ``IndexError`` "
+"が発生します。"
 
-#: ../../library/collections.rst:44
+#: ../../library/collections.rst:58
+msgid ""
+"Extend the deque by appending all the items from *iterable* to the right "
+"of the deque. Raises ``IndexError`` if overflow checking is enabled and "
+"there is no more room in the deque."
+msgstr ""
+"イテラブルから取得したすべてのアイテムを deque の右側に追加して deque を拡張します。"
+"オーバーフローチェックが有効になっており、deque にもう空きがない場合には "
+"``IndexError`` が発生します。"
+
+#: ../../library/collections.rst:65
 msgid ""
 "This is factory function to create a new namedtuple type with a specific "
 "name and set of fields. A namedtuple is a subclass of tuple which allows "
@@ -2821,7 +2856,7 @@ msgstr ""
 "スペースで区切られたフィールドを持つ文字列にすることもできます(これはあまり効率的"
 "ではありません)。使用例::"
 
-#: ../../library/collections.rst:52
+#: ../../library/collections.rst:73
 msgid ""
 "from collections import namedtuple\n"
 "\n"
@@ -2832,7 +2867,7 @@ msgid ""
 "assert t2.name == t2[1]"
 msgstr ""
 
-#: ../../library/collections.rst:62
+#: ../../library/collections.rst:83
 msgid ""
 "``dict`` type subclass which remembers and preserves the order of keys "
 "added. When ordered dict is iterated over, keys/items are returned in the"
@@ -2841,7 +2876,7 @@ msgstr ""
 "追加されたキーの順番を記憶して保持する ``dect`` 型のサブクラスです。"
 "順序付けされた辞書を反復すると、キー/項目を追加された順番で返します。"
 
-#: ../../library/collections.rst:66
+#: ../../library/collections.rst:87
 msgid ""
 "from collections import OrderedDict\n"
 "\n"
@@ -2855,11 +2890,11 @@ msgid ""
 "    print(k, v)"
 msgstr ""
 
-#: ../../library/collections.rst:77
+#: ../../library/collections.rst:98
 msgid "Output::"
 msgstr "出力::"
 
-#: ../../library/collections.rst:79
+#: ../../library/collections.rst:100
 msgid ""
 "z 1\n"
 "a 2\n"
@@ -3091,7 +3126,7 @@ msgid "Supported values for the *format* parameter."
 msgstr "*format* パラメータに指定できる値。"
 
 #: ../../library/deflate.rst:79 ../../library/gzip.rst:72
-#: ../../library/wm8960.rst:316
+#: ../../library/rp2.DMA.rst:18 ../../library/wm8960.rst:316
 msgid "Examples"
 msgstr "サンプルコード"
 
@@ -3442,54 +3477,129 @@ msgid "Read the memory offset at which the user flash space begins."
 msgstr "ユーザフラッシュスペースが始まるメモリオフセットを取得します。"
 
 #: ../../library/esp.rst:67
-msgid "Turn esp os debugging messages on or off."
-msgstr "esp os デバッグメッセージのON/OFFを設定します。"
+msgid "This is the ESP8266 form of this function."
+msgstr "これは ESP8266 の形式です。"
 
 #: ../../library/esp.rst:69
 msgid ""
-"The *level* parameter sets the threshold for the log messages for all esp"
-" components. The log levels are defined as constants:"
+"Change the level of OS serial debug log messages. On boot, OS serial "
+"debug log messages are disabled."
 msgstr ""
-"*level* パラメータは、すべての esp コンポーネントのログメッセージのための閾値を"
-"設定します。ログレベルは、定数として定義されています:"
+"OS シリアルデバッグログのレベルを変更します。"
+"OS ブート時、OS シリアルデバッグログメッセージは無効化されています。"
 
 #: ../../library/esp.rst:72
+msgid ""
+"``uart_no`` is the number of the UART peripheral which should receive OS-"
+"level output, or ``None`` to disable OS serial debug log messages."
+msgstr ""
+"``uart_no`` は、OS レベル出力を受信する UART ペリフェラル番号です。 "
+"``None`` を指定すると、OS シリアルデバッグログメッセージを無効化します。"
+
+#: ../../library/esp.rst:78
+msgid "This is the ESP32 form of this function."
+msgstr "これは ESP32 の形式です。"
+
+#: ../../library/esp.rst:80
+msgid ""
+"Change the level of OS serial debug log messages. On boot, OS serial "
+"debug log messages are limited to Error output only."
+msgstr ""
+"OS シリアルデバッグログのレベルを変更します。"
+"OS ブート時、OS シリアルデバッグログメッセージはエラー出力のみに限定されています。"
+
+#: ../../library/esp.rst:83
+msgid ""
+"The behaviour of this function depends on the arguments passed to it. The"
+" following combinations are supported:"
+msgstr ""
+"この関数の動作は、それに渡される引数に依存します。"
+"次の組み合わせがサポートされています:"
+
+#: ../../library/esp.rst:86
+msgid ""
+"``osdebug(None)`` restores the default OS debug log message level "
+"(``LOG_ERROR``)."
+msgstr ""
+"``osdebug(None)`` は、デフォルトの OS デバッグログメッセージレベル"
+"(``LOG_ERROR``)を復元します。"
+
+#: ../../library/esp.rst:89
+msgid ""
+"``osdebug(0)`` enables all available OS debug log messages (in the "
+"default build configuration this is ``LOG_INFO``)."
+msgstr ""
+"``osdebug(0)`` は、すべての利用可能なOSデバッグログメッセージを有効にします"
+"(デフォルトのビルド構成では ``LOG_INFO`` です)。"
+
+#: ../../library/esp.rst:101
+msgid "``osdebug(0, level)`` sets the OS debug log message level to the"
+msgstr ""
+"``osdebug(0, level)`` は、OS デバッグログメッセージレベルを指定された値に設定します。"
+
+#: ../../library/esp.rst:93
+msgid "specified value. The log levels are defined as constants:"
+msgstr "ログレベルは定数として定義されています:"
+
+#: ../../library/esp.rst:95
 msgid "``LOG_NONE`` -- No log output"
 msgstr "``LOG_NONE`` -- ログを出力しない"
 
-#: ../../library/esp.rst:73
+#: ../../library/esp.rst:96
 msgid ""
 "``LOG_ERROR`` -- Critical errors, software module can not recover on its "
 "own"
 msgstr ""
 "``LOG_ERROR`` -- 重大なエラー、ソフトウェアモジュールが自力で回復できない場合"
 
-#: ../../library/esp.rst:74
+#: ../../library/esp.rst:97
 msgid ""
 "``LOG_WARN`` -- Error conditions from which recovery measures have been "
 "taken"
 msgstr ""
 "``LOG_WARN`` -- 回復措置がとられたエラー状態"
 
-#: ../../library/esp.rst:75
+#: ../../library/esp.rst:98
 msgid "``LOG_INFO`` -- Information messages which describe normal flow of events"
 msgstr "``LOG_INFO`` -- 正常なイベントの流れを記述する情報メッセージ"
 
-#: ../../library/esp.rst:76
+#: ../../library/esp.rst:99
 msgid ""
 "``LOG_DEBUG`` -- Extra information which is not necessary for normal use "
 "(values, pointers, sizes, etc)"
 msgstr ""
 "``LOG_DEBUG`` -- 通常の利用には必要のない余分な情報(値、ポインタ、サイズなど)"
 
-#: ../../library/esp.rst:77
+#: ../../library/esp.rst:100
 msgid ""
 "``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent "
 "messages which can potentially flood the output"
 msgstr ""
 "``LOG_VERBOSE`` -- デバッグ情報の大きな塊、あるいは出力があふれる可能性のあるメッセージを頻繁に出力"
 
-#: ../../library/esp.rst:84
+#: ../../library/esp.rst:103
+msgid ""
+"``LOG_DEBUG`` and ``LOG_VERBOSE`` are not compiled into the MicroPython "
+"binary by default, to save size. A custom build with a modified "
+"\"``sdkconfig``\" source file is needed to see any output at these log "
+"levels."
+msgstr ""
+"デフォルトでは MicroPython バイナリのサイズを節約するために "
+"``LOG_DEBUG`` と ``LOG_VERBOSE`` は組み込まれていません。
+"これらのログレベルでの出力を得るには、変更した ""``sdkconfig``\" ソースファイルを"
+"使ったカスタムビルドが必要です。"
+
+#: ../../library/esp.rst:108
+msgid ""
+"Log output on ESP32 is automatically suspended in \"Raw REPL\" mode, to "
+"prevent communications issues. This means OS level logging is never seen "
+"when using ``mpremote run`` and similar tools."
+msgstr ""
+"ESP32 上のログ出力は \"Raw REPL\" モードで自動的に中断されます。"
+"これは通信の問題を防ぐためです。これは、mpremote run などのツールを使う際に、"
+"OS レベルのログが表示されないことを意味します。"
+
+#: ../../library/esp.rst:116
 msgid ""
 "Set the location that native code will be placed for execution after it "
 "is compiled.  Native code is emitted when the ``@micropython.native``, "
@@ -12085,7 +12195,7 @@ msgid ""
 "``IndexError``."
 msgstr ""
 "特定のインデックスのために組み込みの文字列値を提供するようフォールバックするには、"
-"サブスクリプトのルックアップが ``None`` を返すか、 ``KeyError`` を発生させるか、 "
+"添字によるルックアップが ``None`` を返すか、 ``KeyError`` を発生させるか、 "
 "``IndexError`` を発生させるかのいずれかです。"
 
 #: ../../library/machine.USBDevice.rst:103
@@ -19732,7 +19842,7 @@ msgid ""
 "Chooses and returns one item at random from *sequence* (tuple, list or "
 "any object that supports the subscript operation)."
 msgstr ""
-"*sequence* (タプル、リスト、または添え字操作をサポートする任意のオブジェクト)から"
+"*sequence* (タプル、リスト、または添字操作をサポートする任意のオブジェクト)から"
 "ランダムに１つの項目を選択して返します。"
 
 #: ../../library/re.rst:2
@@ -20719,6 +20829,624 @@ msgstr ""
 msgid "This is a modifier and is equivalent to ``.delay(value)``."
 msgstr "これは修飾子で、.delay(value)と同等です。"
 
+#: ../../library/rp2.DMA.rst:5
+msgid "class DMA -- access to the RP2040's DMA controller"
+msgstr "クラス DMA -- RP2040 の DMA コントローラーへのアクセス"
+
+#: ../../library/rp2.DMA.rst:7
+msgid ""
+"The :class:`DMA` class offers access to the RP2040's Direct Memory Access"
+" (DMA) controller, providing the ability move data between memory blocks "
+"and/or IO registers. The DMA controller has its own, separate read and "
+"write bus master connections onto the bus fabric and each DMA channel can"
+" independently read data from one address and write it back to another "
+"address, optionally incrementing one or both pointers, allowing it to "
+"perform transfers on behalf of the processor while the processor carries "
+"out other tasks or enters a low power state. The RP2040's DMA controller "
+"has 12 independent DMA channels that can run concurrently. For full "
+"details of the RP2040's DMA system see section 2.5 of the `RP2040 "
+"Datasheet "
+"<https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf>`_."
+msgstr ""
+":class:`DMA` クラスは、RP2040 の Direct Memory Access (DMA)コントローラへの"
+"アクセスを提供し、メモリブロックや IO レジスタ間でデータを移動する機能を提供します。"
+"DMA コントローラには、バスファブリック(bus fabric)への独自の読取りと"
+"書出しバスマスタ接続があり、各 DMA チャネルは独立して1つのアドレスからデータを読み取り、"
+"別のアドレスに書き込むことができます。オプションで１つまたは両方のポインタを"
+"インクリメントすることができ、プロセッサの代わりに転送を実行し、プロセッサが"
+"他のタスクを実行するか、低電力状態に入る間に転送を実行できます。RP2040 の DMA "
+"コントローラには、同時に実行できる12個の独立した DMA チャネルがあります。"
+"RP2040 の DMAシステムの詳細については "
+"`RP2040 データシート "
+"<https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf>`_ "
+"の2.5章を参照してください。"
+
+#: ../../library/rp2.DMA.rst:20
+msgid ""
+"The simplest use of the DMA controller is to move data from one block of "
+"memory to another. This can be accomplished with the following code::"
+msgstr ""
+"DMA コントローラーの最もシンプルな使用方法は、メモリの１つのブロックから別のブロックに"
+"データを移動することです。これは次のコードで実行できます::"
+
+#: ../../library/rp2.DMA.rst:23
+msgid ""
+"a = bytearray(32*1024)\n"
+"b = bytearray(32*1024)\n"
+"d = rp2.DMA()\n"
+"c = d.pack_ctrl()  # Just use the default control value.\n"
+"# The count is in 'transfers', which defaults to four-byte words, so "
+"divide length by 4\n"
+"d.config(read=a, write=b, count=len(a)//4, ctrl=c, trigger=True)\n"
+"# Wait for completion\n"
+"while d.active():\n"
+"    pass"
+msgstr ""
+"a = bytearray(32*1024)\n"
+"b = bytearray(32*1024)\n"
+"d = rp2.DMA()\n"
+"c = d.pack_ctrl()  # デフォルトの制御値を使用。\n"
+"# カウントは「転送」単位であり、デフォルトでは4バイトのワードなので長さを4で割る。\n"
+"d.config(read=a, write=b, count=len(a)//4, ctrl=c, trigger=True)\n"
+"# 完了を待つ\n"
+"while d.active():\n"
+"    pass"
+
+#: ../../library/rp2.DMA.rst:33
+msgid ""
+"Note that while this example sits in an idle loop while it waits for the "
+"transfer to complete, the program could just as well do some useful work "
+"in this time instead."
+msgstr ""
+"この例では転送が完了するのを待機していますが、"
+"プログラムはこの時に待機する代わりに有用な作業を行うこともできます。"
+
+#: ../../library/rp2.DMA.rst:36
+msgid ""
+"Another, perhaps more common use of the DMA controller is to transfer "
+"between memory and an IO peripheral. In this situation the address of the"
+" IO register does not change for each transfer but the memory address "
+"needs to be incremented. It is also necessary to control the pace of the "
+"transfer so as to not write data before it can be accepted by a "
+"peripheral or read it before the data is ready, and this can be "
+"controlled with the ``treq_sel`` field of the DMA channel's control "
+"register. The various fields of the control register for each DMA channel"
+" can be packed using the :meth:`DMA.pack_ctrl()` method and unpacked "
+"using the :meth:`DMA.unpack_ctrl()` static method. Code to transfer data "
+"from a byte array to the TX FIFO of a PIO state machine, one byte at a "
+"time, looks like this::"
+msgstr ""
+"もう1つ、おそらくより一般的なDMAコントローラの使用方法は、メモリと IO ペリフェラル間の"
+"転送です。この場合、各転送のたびに IO レジスタのアドレスは変更されませんが、"
+"メモリアドレスを増やす必要があります。また、転送のペースを制御する必要があります。"
+"つまり、ペリフェラルがデータを受け入れる前にデータを書き出せないようにし、"
+"データが準備される前に読み込めないようにする必要があります。これは、DMA "
+"チャネルの制御レジスタの ``treq_sel`` フィールドで制御できます。各 DMA チャネルの"
+"制御レジスタのさまざまなフィールドは :meth:`DMA.pack_ctrl()` メソッドを使って"
+"パックし、 :meth:`DMA.unpack_ctrl()` 静的メソッドを使ってアンパックできます。"
+"バイト配列から PIO ステートマシンの TX FIFO にデータを1バイトずつ転送するコードは"
+"次のようになります::"
+
+#: ../../library/rp2.DMA.rst:46
+msgid ""
+"# pio_num is index of the PIO block being used, sm_num is the state "
+"machine in that block.\n"
+"# my_state_machine is an rp2.PIO() instance.\n"
+"DATA_REQUEST_INDEX = (pio_num << 3) + sm_num\n"
+"\n"
+"src_data = bytearray(1024)\n"
+"d = rp2.DMA()\n"
+"\n"
+"# Transfer bytes, rather than words, don't increment the write address "
+"and pace the transfer.\n"
+"c = d.pack_ctrl(size=0, inc_write=False, treq_sel=DATA_REQUEST_INDEX)\n"
+"\n"
+"d.config(\n"
+"    read=src_data,\n"
+"    write=my_state_machine,\n"
+"    count=len(src_data),\n"
+"    ctrl=c,\n"
+"    trigger=True\n"
+")"
+msgstr ""
+"# pio_num は使用している PIO ブロックのインデックス、sm_num はそのブロック内のステートマシン。\n"
+"# my_state_machine は rp2.PIO() インスタンス。\n"
+"DATA_REQUEST_INDEX = (pio_num << 3) + sm_num\n"
+"\n"
+"src_data = bytearray(1024)\n"
+"d = rp2.DMA()\n"
+"\n"
+"# ワードではなくバイトを転送し、書出しアドレスをインクリメントせず、転送のペースを制御。\n"
+"c = d.pack_ctrl(size=0, inc_write=False, treq_sel=DATA_REQUEST_INDEX)\n"
+"\n"
+"d.config(\n"
+"    read=src_data,\n"
+"    write=my_state_machine,\n"
+"    count=len(src_data),\n"
+"    ctrl=c,\n"
+"    trigger=True\n"
+")"
+
+#: ../../library/rp2.DMA.rst:64
+msgid ""
+"Note that in this example the value given for the write address is just "
+"the PIO state machine to which we are sending the data. This works "
+"because PIO state machines present the buffer protocol, allowing direct "
+"access to their data FIFO registers."
+msgstr ""
+"この例では、書出しアドレスに指定された値は、データを送信する PIO ステートマシンだけです。"
+"これは、PIO ステートマシンがバッファプロトコルを提供し、そのデータ FIFO レジスタに"
+"直接アクセスできるためです。"
+
+#: ../../library/rp2.DMA.rst:73
+msgid "Claim one of the DMA controller channels for exclusive use."
+msgstr ""
+"DMA コントローラーチャネルの１つの排他的な利用を要求します。"
+
+#: ../../library/rp2.DMA.rst:80
+msgid ""
+"Configure the DMA registers for the channel and optionally start the "
+"transfer. Parameters are:"
+msgstr ""
+"チャネルの DMA レジスタを設定し、オプションで転送を開始します。"
+"パラメータは以下のとおりです:"
+
+#: ../../library/rp2.DMA.rst:83
+msgid ""
+"*read*: The address from which the DMA controller will start reading data"
+" or an object that will provide data to be read. It can be an integer or "
+"any object that supports the buffer protocol."
+msgstr ""
+"*read*: DMA コントローラーがデータの読み込みを開始するアドレス、"
+"または読み込むデータを提供するオブジェクト。"
+"整数またはバッファプロトコルをサポートする任意のオブジェクトを指定できます。"
+
+#: ../../library/rp2.DMA.rst:86
+msgid ""
+"*write*: The address to which the DMA controller will start writing or an"
+" object into which data will be written. It can be an integer or any "
+"object that supports the buffer protocol."
+msgstr ""
+"*write*: DMA コントローラーが書き出しを開始するアドレス、"
+"またはデータが書き出されるオブジェクト。"
+"整数またはバッファプロトコルをサポートする任意のオブジェクトを指定できます。"
+
+#: ../../library/rp2.DMA.rst:89
+msgid ""
+"*count*: The number of bus transfers that will execute before this "
+"channel stops. Note that this is the number of transfers, not the number "
+"of bytes. If the transfers are 2 or 4 bytes wide then the total amount of"
+" data moved (and thus the size of required buffer) needs to be multiplied"
+" accordingly."
+msgstr ""
+"*count*: このチャネルが停止する前に実行されるバス転送の数。"
+"これは転送の数であり、バイト数ではありません。"
+"転送が2または4バイト幅である場合、移動されるデータの合計量"
+"(つまり必要なバッファのサイズ)はそれに応じて乗算する必要があります。"
+
+#: ../../library/rp2.DMA.rst:93
+msgid ""
+"*ctrl*: The value for the DMA control register. This is an integer value "
+"that is typically packed using the :meth:`DMA.pack_ctrl()`."
+msgstr ""
+"*ctrl*: DMA 制御レジスタの値。これは通常 :meth:`DMA.pack_ctrl()` "
+"を使ってパックした整数値です。"
+
+#: ../../library/rp2.DMA.rst:95
+msgid "*trigger*: Optionally commence the transfer immediately."
+msgstr "*trigger*: オプションで転送をすぐに開始します。"
+
+#: ../../library/rp2.DMA.rst:99
+msgid "Returns the IRQ object for this DMA channel and optionally configures it."
+msgstr "この DMA チャネルの IRQ オブジェクトを返し、オプションで構築します。"
+
+#: ../../library/rp2.DMA.rst:103
+msgid ""
+"Release the claim on the underlying DMA channel and free the interrupt "
+"handler. The :class:`DMA` object can not be used after this operation."
+msgstr ""
+"基礎となる DMA チャネルの所有権を解放し、割り込みハンドラを解放します。"
+"この操作後、 :class:`DMA` オブジェクトは使えなくなります。"
+
+#: ../../library/rp2.DMA.rst:108
+msgid ""
+"Pack the values provided in the keyword arguments into the named fields "
+"of a new control register value. Any field that is not provided will be "
+"set to a default value. The default will either be taken from the "
+"provided ``default`` value, or if that is not given, a default suitable "
+"for the current channel; setting this to the current value of the "
+"`DMA.ctrl` attribute provides an easy way to override a subset of the "
+"fields."
+msgstr ""
+"キーワード引数で指定した値を新しい制御レジスタ値の名前付きフィールドにパックします。"
+"指定していないフィールドはデフォルト値に設定されます。"
+"デフォルト値は、決めてある ``デフォルト`` 値から取得されるか、"
+"それも無い場合は現在のチャネルに適したデフォルト値になります。"
+"この値を `DMA.ctrl` 属性の現在の値に設定することで、フィールドのサブセットを"
+"簡単にオーバーライドできます。"
+
+#: ../../library/rp2.DMA.rst:114
+msgid ""
+"The keys for the keyword arguments can be any key returned by the "
+":meth:`DMA.unpack_ctrl()` method. The writable values are:"
+msgstr ""
+"キーワード引数のキーは :meth:`DMA.unpack_ctrl()` メソッドによって"
+"返されるキーである可能性があります。書出し可能な値は以下の通りです:"
+
+#: ../../library/rp2.DMA.rst:117
+msgid "*enable*: ``bool`` Set to enable the channel (default: ``True``)."
+msgstr "*enable*: ``bool`` チャネルを有効にするかを設定(デフォルト: ``True``)。"
+
+#: ../../library/rp2.DMA.rst:119
+msgid ""
+"*high_pri*: ``bool`` Make this channel's bus traffic high priority "
+"(default: ``False``)."
+msgstr ""
+"*high_pri*: ``bool`` このチャネルのバストラフィックを高優先度にする"
+"(デフォルト: ``False``)。"
+
+#: ../../library/rp2.DMA.rst:121
+msgid "*size*: ``int`` Transfer size: 0=byte, 1=half word, 2=word (default: 2)."
+msgstr "*size*: ``int`` 転送サイズ: 0=バイト、1=ハーフワード、2=ワード(デフォルト: 2)。"
+
+#: ../../library/rp2.DMA.rst:123
+msgid ""
+"*inc_read*: ``bool`` Increment the read address after each transfer "
+"(default: ``True``)."
+msgstr ""
+"*inc_read*: ``bool`` 各転送後に読み取りアドレスをインクリメント(デフォルト: ``Tru``)。"
+
+#: ../../library/rp2.DMA.rst:125
+msgid ""
+"*inc_write*: ``bool`` Increment the write address after each transfer "
+"(default: ``True``)."
+msgstr ""
+"*inc_write*: ``bool`` 各転送後に書き出しアドレスを増やす(デフォル: ``True``)。"
+
+#: ../../library/rp2.DMA.rst:127
+msgid ""
+"*ring_size*: ``int`` If non-zero, only the bottom ``ring_size`` bits of "
+"one address register will change when an address is incremented, causing "
+"the address to wrap at the next ``1 << ring_size`` byte boundary. Which "
+"address is wrapped is controlled by the ``ring_sel`` flag. A zero value "
+"disables address wrapping."
+msgstr ""
+"*ring_size*: ``int`` ゼロでない場合、アドレスがインクリメントされるときに"
+"１つのアドレスレジスタの下位 ``ring_size`` ビットのみが変更され、"
+"次の ``1 << ring_size`` バイトの境界でアドレスがラップされます。"
+"どのアドレスがラップされるかは ``ring_sel`` フラグで制御されます。"
+"値がゼロの場合はアドレスのラップを無効にします。"
+
+#: ../../library/rp2.DMA.rst:133
+msgid ""
+"*ring_sel*: ``bool`` Set to ``False`` to have the ``ring_size`` apply to "
+"the read address or ``True`` to apply to the write address."
+msgstr ""
+"*ring_sel*: ``bool`` リングサイズを読み込みアドレスに適用するか、"
+"書き出しアドレスに適用するかを指定。 ``False`` を指定すると、"
+"リングサイズが読み込みアドレスに適用します。 "
+"``True`` を指定すると、書き出しアドレスに適用します。"
+
+#: ../../library/rp2.DMA.rst:136
+msgid ""
+"*chain_to*: ``int`` The channel number for a channel to trigger after "
+"this transfer completes. Setting this value to this DMA object's own "
+"channel number disables chaining (this is the default)."
+msgstr ""
+"*chain_to*: ``int`` この転送が完了した後にトリガーするチャネルのチャネル番号。"
+"この値をこの DMA オブジェクトの自身のチャネル番号に設定すると、チェイニングが"
+"無効になります(これがデフォルト)。"
+
+#: ../../library/rp2.DMA.rst:140
+msgid ""
+"*treq_sel*: ``int`` Select a Transfer Request signal. See section 2.5.3 "
+"in the RP2040 datasheet for details."
+msgstr ""
+"*treq_sel*: ``int`` 転送リクエスト信号を選択します。"
+"詳細については、RP2040 データシートの2.5.3章を参照してください。"
+
+#: ../../library/rp2.DMA.rst:143
+msgid ""
+"*irq_quiet*: ``bool`` Do not generate interrupt at the end of each "
+"transfer. Interrupts will instead be generated when a zero value is "
+"written to the trigger register, which will halt a sequence of chained "
+"transfers (default: ``True``)."
+msgstr ""
+"*irq_quiet*: ``bool`` 各転送の終了時に割り込みを生成させない。"
+"代わりに、トリガーレジスタにゼロ値が書き込まれると割り込みが生成され、"
+"チェインされた転送シーケンスが停止します(デフォルト: ``True``)。"
+
+#: ../../library/rp2.DMA.rst:148
+msgid ""
+"*bswap*: ``bool`` If set to true, bytes in words or half-words will be "
+"reversed before writing (default: ``True``)."
+msgstr ""
+"*bswap*: ``bool`` ``True`` を指定すると、ワードやハーフワードのバイトを書き込む前に"
+"逆順になります(デフォルト: ``True``)。"
+
+#: ../../library/rp2.DMA.rst:151
+msgid ""
+"*sniff_en*: ``bool`` Set to ``True`` to allow data to be accessed by the "
+"chips sniff hardware (default: ``False``)."
+msgstr ""
+"*sniff_en*: ``bool`` データがチップのスニフハードウェアによってアクセス可能に"
+"なるようにする(デフォルト: ``False``)。"
+
+#: ../../library/rp2.DMA.rst:154
+msgid ""
+"*write_err*: ``bool`` Setting this to ``True`` will clear a previously "
+"reported write error."
+msgstr ""
+"*write_err*: ``bool`` ``True`` を指定すると、以前に報告された書き出しエラーが"
+"クリアされます。"
+
+#: ../../library/rp2.DMA.rst:157
+msgid ""
+"*read_err*: ``bool`` Setting this to ``True`` will clear a previously "
+"reported read error."
+msgstr ""
+"*read_err*: ``bool`` ``True`` を指定すると、以前に報告された読み込みエラーが"
+"クリアされます。"
+
+#: ../../library/rp2.DMA.rst:160
+msgid ""
+"See the description of the ``CH0_CTRL_TRIG`` register in section 2.5.7 of"
+" the RP2040 datasheet for details of all of these fields."
+msgstr ""
+"これらのフィールドの詳細については、RP2040 データシートの2.5.7章の "
+"``CH0_CTRL_TRIG`` レジスタの説明を参照してください。"
+
+#: ../../library/rp2.DMA.rst:165
+msgid ""
+"Unpack a value for a DMA channel control register into a dictionary with "
+"key/value pairs for each of the fields in the control register.  *value* "
+"is the ``ctrl`` register value to unpack."
+msgstr ""
+"DMA チャネル制御レジスタの値を辞書に展開し、制御レジスタの各フィールドに対する"
+"キー/値のペアを返します。 *value* は展開する ``ctrl`` レジスタの値です。"
+
+#: ../../library/rp2.DMA.rst:169
+msgid ""
+"This method will return values for all the keys that can be passed to "
+"``DMA.pack_ctrl``. In addition, it will also return the read-only flags "
+"in the control register: ``busy``, which goes high when a transfer starts"
+" and low when it ends, and ``ahb_err``, which is the logical OR of the "
+"``read_err`` and ``write_err`` flags. These values will be ignored when "
+"packing, so that the dictionary created by unpacking a control register "
+"can be used directly as the keyword arguments for packing."
+msgstr ""
+"このメソッドは ``DMA.pack_ctrl`` に渡すことができるすべてのキーの値を返します。"
+"さらに、制御レジスタの読み取り専用フラグも返します: "
+"``busy`` は転送が開始すると high になり、 終了するとlowになります。"
+"``ahb_err`` は ``read_err`` と ``write_err`` フラグの論理和です。"
+"これらの値はパッキング時に無視されるため、制御レジスタを展開して作成された辞書は、"
+"直接パッキング用のキーワード引数として使えます。"
+
+#: ../../library/rp2.DMA.rst:178
+msgid "Gets or sets whether the DMA channel is currently running."
+msgstr "DMA チャネルが現在実行中かどうかを取得または設定します。"
+
+#: ../../library/rp2.DMA.rst:187
+msgid "Attributes"
+msgstr "属性"
+
+#: ../../library/rp2.DMA.rst:191
+msgid ""
+"This attribute reflects the address from which the next bus transfer will"
+" read. It may be written with either an integer or an object that "
+"supports the buffer protocol and doing so has immediate effect."
+msgstr ""
+"次のバス転送が読み取るアドレスを反映する属性。"
+"整数またはバッファプロトコルをサポートするオブジェクトで書き出すことができ、"
+"即時に効果があります。"
+
+#: ../../library/rp2.DMA.rst:197
+msgid ""
+"This attribute reflects the address to which the next bus transfer will "
+"write.  It may be written with either an integer or an object that "
+"supports the buffer protocol and doing so has immediate effect."
+msgstr ""
+"次のバス転送が書き込むアドレスを反映する属性。"
+"整数またはバッファプロトコルをサポートするオブジェクトで書き出すことができ、"
+"即時に効果があります。"
+
+#: ../../library/rp2.DMA.rst:203
+msgid ""
+"Reading this attribute will return the number of remaining bus transfers "
+"in the *current* transfer sequence. Writing this attribute sets the total"
+" number of transfers to be the *next* transfer sequence."
+msgstr ""
+"この属性を読み取ると、現在の転送シーケンスでの残りのバス転送の数が返されます。"
+"この属性に書き出すと、次の転送シーケンスの合計転送数が設定されます。"
+
+#: ../../library/rp2.DMA.rst:209
+msgid ""
+"This attribute reflects DMA channel control register. It is typically "
+"written with an integer packed using the :meth:`DMA.pack_ctrl()` method. "
+"The returned register value can be unpacked using the "
+":meth:`DMA.unpack_ctrl()` method."
+msgstr ""
+"この属性は DMA チャネルの制御レジスタを反映します。"
+"通常 :meth:`DMA.pack_ctrl()` メソッドを使ってパックした整数で書き出します。"
+"返されたレジスタ値は :meth:`DMA.unpack_ctrl()` メソッドを使ってアンパックできます。"
+
+#: ../../library/rp2.DMA.rst:215
+msgid ""
+"The channel number of the DMA channel. This can be passed in the "
+"``chain_to`` argument of `DMA.pack_ctrl()` on another channel to allow "
+"DMA chaining."
+msgstr ""
+"DMA チャネルのチャネル番号。これは `DMA.pack_ctrl()` の ``chain_to`` 引数に"
+"別のチャネルのチャネル番号を渡すことで、DMA チェイニングを許可できます。"
+
+#: ../../library/rp2.DMA.rst:220
+msgid ""
+"This attribute is an array-like object that allows direct access to the "
+"DMA channel's registers. The index is by word, rather than by byte, so "
+"the register indices are the register address offsets divided by 4. See "
+"the RP2040 data sheet for register details."
+msgstr ""
+"この属性は、DMA チャネルのレジスタに直接アクセスを可能にする配列のようなオブジェクトです。"
+"インデックスはバイトではなくワード単位であり、レジスタのインデックスはレジスタアドレスの"
+"オフセットを4で割ったものです。レジスタの詳細については、RP2040 データシートを"
+"参照してください。"
+
+#: ../../library/rp2.DMA.rst:226
+msgid "Chaining and trigger register access"
+msgstr "チェイニングとトリガーレジスタのアクセス"
+
+#: ../../library/rp2.DMA.rst:228
+msgid ""
+"The DMA controller in the RP2040 offers a couple advanced features to "
+"allow one DMA channel to initiate a transfer on another channel. One is "
+"the use of the ``chain_to`` value in the control register and the other "
+"is writing to one of the DMA channel's registers that has a trigger "
+"effect. When coupled with the ability to have one DMA channel write "
+"directly to the `DMA.registers` of another channel, this allows for "
+"complex transactions to be performed without any CPU intervention."
+msgstr ""
+"RP2040 の DMAコントローラーには、１つの DMA チャネルが別のチャネルで転送を"
+"開始するためのいくつかの高度な機能があります。１つは制御レジスタ内の ``chain_to`` 値の"
+"使用であり、もう１つはトリガ効果を持つ DMA チャネルのレジスタに書き込むことです。"
+"これらの機能は、１つの DMA チャネルが別のチャネルの `DMA.registers` に"
+"直接書き込むことができる能力と組み合わされると、CPU の介入なしに複雑なトランザクションを"
+"実行できるようになります。"
+
+#: ../../library/rp2.DMA.rst:235
+msgid ""
+"Below is an example of using both chaining and register triggering to "
+"implement gathering of multiple blocks of data into a single destination."
+" Full details of these features can be found in section 2.5 of the RP2040"
+" data sheet and the code below is a Pythonic version of the example in "
+"sub-section 2.5.6.2."
+msgstr ""
+"以下は、チェイニングとレジスタトリガーを両方使用して、複数のデータブロックを"
+"単一の転送先に収集する実装例です。これらの機能の詳細については、"
+"RP2040 データシートの2.5章を参照してください。以下のコードは、2.5.6.2章の例の "
+"Python 版です。"
+
+#: ../../library/rp2.DMA.rst:240
+msgid ""
+"from rp2 import DMA\n"
+"from uctypes import addressof\n"
+"from array import array\n"
+"\n"
+"def gather_strings(string_list, buf):\n"
+"    # We use two DMA channels. The first sends lengths and source "
+"addresses from the gather\n"
+"    # list to the registers of the second. The second copies the data "
+"itself.\n"
+"    gather_dma = DMA()\n"
+"    buffer_dma = DMA()\n"
+"\n"
+"    # Pack up length/address pairs to be sent to the registers.\n"
+"    gather_list = array(\"I\")\n"
+"\n"
+"    for s in string_list:\n"
+"        gather_list.append(len(s))\n"
+"        gather_list.append(addressof(s))\n"
+"\n"
+"    gather_list.append(0)\n"
+"    gather_list.append(0)\n"
+"\n"
+"    # When writing to the registers of the second DMA channel, we need to"
+" wrap the\n"
+"    # write address on an 8-byte (1<<3 bytes) boundary. We write to the "
+"``TRANS_COUNT``\n"
+"    # and ``READ_ADD_TRIG`` registers in the last register alias "
+"(registers 14 and 15).\n"
+"    gather_ctrl = gather_dma.pack_ctrl(ring_size=3, ring_sel=True)\n"
+"    gather_dma.config(\n"
+"        read=gather_list, write=buffer_dma.registers[14:16],\n"
+"        count=2, ctrl=gather_ctrl\n"
+"    )\n"
+"\n"
+"    # When copying the data, the transfer size is single bytes, and when "
+"completed we need\n"
+"    # to chain back to the start another gather DMA transaction.\n"
+"    buffer_ctrl = buffer_dma.pack_ctrl(size=0, "
+"chain_to=gather_dma.channel)\n"
+"    # The read and count values will be set by the other DMA channel.\n"
+"    buffer_dma.config(write=buf, ctrl=buffer_ctrl)\n"
+"\n"
+"    # Set the transfer in motion.\n"
+"    gather_dma.active(1)\n"
+"\n"
+"    # Wait until all the register values have been sent\n"
+"    end_address = addressof(gather_list) + 4 * len(gather_list)\n"
+"    while gather_dma.read != end_address:\n"
+"        pass\n"
+"\n"
+"input = [\"This is \", \"a \", \"test\", \" of the scatter\", \" "
+"gather\", \" process\"]\n"
+"output = bytearray(64)\n"
+"\n"
+"print(output)\n"
+"gather_strings(input, output)\n"
+"print(output)"
+msgstr ""
+"from rp2 import DMA\n"
+"from uctypes import addressof\n"
+"from array import array\n"
+"\n"
+"def gather_strings(string_list, buf):\n"
+"    # 2つのDMAチャネルを使用します。最初のチャネルは、ギャザーリストから長さと\n"
+"    # ソースアドレスを取得して、2番目のチャネルのレジスタに送信します。\n"
+"    # 2番目のチャネルはデータそのものをコピーします。\n"
+"    gather_dma = DMA()\n"
+"    buffer_dma = DMA()\n"
+"\n"
+"    # 長さとアドレスのペアをレジスタに送信するためにパックします。\n"
+"    gather_list = array(\"I\")\n"
+"\n"
+"    for s in string_list:\n"
+"        gather_list.append(len(s))\n"
+"        gather_list.append(addressof(s))\n"
+"\n"
+"    gather_list.append(0)\n"
+"    gather_list.append(0)\n"
+"\n"
+"    # 2番目の DMA チャネルのレジスタに書き込む際には、書き込みアドレスを8バイト\n"
+"    # (1<<3 バイト)の境界にラップする必要があります。レジスタエイリアスの最後の\n"
+"    # レジスタの ``TRANS_COUNT`` と ``READ_ADD_TRIG`` レジスタ(レジスタ\n"
+"    # 14と15)に書き出します。\n"
+"    gather_ctrl = gather_dma.pack_ctrl(ring_size=3, ring_sel=True)\n"
+"    gather_dma.config(\n"
+"        read=gather_list, write=buffer_dma.registers[14:16],\n"
+"        count=2, ctrl=gather_ctrl\n"
+"    )\n"
+"\n"
+"    # データをコピーする際、転送サイズは1バイトであり、完了したら別のギャザー DMA \n"
+"    # トランザクションを開始するためにチェインする必要があります。\n"
+"    buffer_ctrl = buffer_dma.pack_ctrl(size=0, "
+"chain_to=gather_dma.channel)\n"
+"    # 読込み値とカウント値は、他の DMA チャネルによって設定されます。\n"
+"    buffer_dma.config(write=buf, ctrl=buffer_ctrl)\n"
+"\n"
+"    # 転送を開始。\n"
+"    gather_dma.active(1)\n"
+"\n"
+"    # すべてのレジスタ値が送信されるまで待機\n"
+"    end_address = addressof(gather_list) + 4 * len(gather_list)\n"
+"    while gather_dma.read != end_address:\n"
+"        pass\n"
+"\n"
+"input = [\"This is \", \"a \", \"test\", \" of the scatter\", \" "
+"gather\", \" process\"]\n"
+"output = bytearray(64)\n"
+"\n"
+"print(output)\n"
+"gather_strings(input, output)\n"
+"print(output)"
+
+#: ../../library/rp2.DMA.rst:292
+msgid ""
+"This example idles while waiting for the transfer to complete; "
+"alternatively it could set an interrupt handler and return immediately."
+msgstr ""
+"この例では、転送が完了するのを待ってアイドル状態になりますが、"
+"代わりに割り込みハンドラを設定してすぐに返すこともできます。"
+
 #: ../../library/rp2.Flash.rst:7
 msgid "This class gives access to the SPI flash memory."
 msgstr "このクラスは SPI フラッシュメモリーへのアクセスを提供します。"
@@ -21097,6 +21825,22 @@ msgstr ""
 #: ../../library/rp2.StateMachine.rst:139
 msgid "Returns the IRQ object for the given StateMachine."
 msgstr "指定した StateMachine の IRQ オブジェクトを返します。"
+
+#: ../../library/rp2.StateMachine.rst:144
+msgid "Buffer protocol"
+msgstr "バッファプロトコル"
+
+#: ../../library/rp2.StateMachine.rst:146
+msgid ""
+"The StateMachine class supports the `buffer protocol`, allowing direct "
+"access to the transmit and receive FIFOs for each state machine. This is "
+"primarily in order to allow StateMachine objects to be passed directly as"
+" the read or write parameters when configuring a `rp2.DMA()` channel."
+msgstr ""
+"StateMachine クラスは `buffer protocol` をサポートしており、各ステートマシンの"
+"送信および受信 FIFO に直接アクセスできます。これは主に `rp2.DMA()` チャネルを"
+"構成する際に、StateMachine オブジェクトを直接読み込みまたは書き出しパラメータ"
+"として渡すことを可能にするためです。"
 
 #: ../../library/select.rst:2
 msgid ":mod:`select` -- wait for events on a set of streams"
@@ -22149,7 +22893,7 @@ msgid ""
 "Use subscript notation ``[...]`` to index these objects with the address "
 "of interest."
 msgstr ""
-"これらのオブジェクトにインデックスを付けるには、添え字表記 ``[...]`` を使って、"
+"これらのオブジェクトにインデックスを付けるには、添字表記 ``[...]`` を使って、"
 "目的のアドレスを指定します。"
 
 #: ../../library/stm.rst:32
@@ -22530,62 +23274,71 @@ msgid "unsigned long long"
 msgstr ""
 
 #: ../../library/struct.rst:48
-msgid "f"
+msgid "e"
 msgstr ""
 
 #: ../../library/struct.rst:48
-msgid "float"
+msgid "n/a (half-float)"
 msgstr ""
 
 #: ../../library/struct.rst:48 ../../library/struct.rst:50
+#: ../../library/struct.rst:52
 msgid "float (`2<fn>`)"
 msgstr ""
 
 #: ../../library/struct.rst:50
-msgid "d"
+msgid "f"
 msgstr ""
 
 #: ../../library/struct.rst:50
+msgid "float"
+msgstr ""
+
+#: ../../library/struct.rst:52
+msgid "d"
+msgstr ""
+
+#: ../../library/struct.rst:52
 msgid "double"
 msgstr ""
 
-#: ../../library/struct.rst:52
+#: ../../library/struct.rst:54
 msgid "s"
 msgstr ""
 
-#: ../../library/struct.rst:52
+#: ../../library/struct.rst:54
 msgid "char[]"
 msgstr ""
 
-#: ../../library/struct.rst:52
+#: ../../library/struct.rst:54
 msgid "bytes"
 msgstr ""
 
-#: ../../library/struct.rst:54
+#: ../../library/struct.rst:56
 msgid "P"
 msgstr ""
 
-#: ../../library/struct.rst:54
+#: ../../library/struct.rst:56
 msgid "void *"
 msgstr ""
 
-#: ../../library/struct.rst:59
+#: ../../library/struct.rst:61
 msgid "Requires long support when used with values larger than 30 bits."
 msgstr "30ビット以上の値で使う場合は long のサポートが必要です。"
 
-#: ../../library/struct.rst:60
+#: ../../library/struct.rst:62
 msgid "Requires floating point support."
 msgstr "浮動小数点のサポートが必要です。"
 
-#: ../../library/struct.rst:65
+#: ../../library/struct.rst:67
 msgid "Whitespace is not supported in format strings."
 msgstr "フォーマット文字列中に空白文字は使えません。"
 
-#: ../../library/struct.rst:72
+#: ../../library/struct.rst:74
 msgid "Return the number of bytes needed to store the given *fmt*."
 msgstr "指定した *fmt* で格納するために必要なバイト数を返します。"
 
-#: ../../library/struct.rst:76
+#: ../../library/struct.rst:78
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt*. The"
 " return value is a bytes object encoding the values."
@@ -22593,7 +23346,7 @@ msgstr ""
 "フォーマット文字列 *fmt* にしたがって、値 *v1*、*v2*、... をパックします。戻り値は、"
 "値をエンコードしたバイト列オブジェクトです。"
 
-#: ../../library/struct.rst:81
+#: ../../library/struct.rst:83
 msgid ""
 "Pack the values *v1*, *v2*, ... according to the format string *fmt* into"
 " a *buffer* starting at *offset*. *offset* may be negative to count from "
@@ -22603,7 +23356,7 @@ msgstr ""
 "*buffer* の開始オフセット *offset* に格納します。 *offset* が負の場合は *buffer* "
 "の最後からのオフセットになります。"
 
-#: ../../library/struct.rst:87
+#: ../../library/struct.rst:89
 msgid ""
 "Unpack from the *data* according to the format string *fmt*. The return "
 "value is a tuple of the unpacked values."
@@ -22611,7 +23364,7 @@ msgstr ""
 "フォーマット文字列 *fmt* にしたがって *data* からアンパックします。"
 "戻り値はアンパックした値のタプルです。"
 
-#: ../../library/struct.rst:92
+#: ../../library/struct.rst:94
 msgid ""
 "Unpack from the *data* starting at *offset* according to the format "
 "string *fmt*. *offset* may be negative to count from the end of *data*. "
