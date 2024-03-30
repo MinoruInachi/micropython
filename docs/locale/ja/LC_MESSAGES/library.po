@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-23 11:02+0900\n"
-"PO-Revision-Date: 2024-03-24 00:46+0900\n"
+"POT-Creation-Date: 2024-03-30 17:22+0900\n"
+"PO-Revision-Date: 2024-03-30 17:39+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -10185,7 +10185,39 @@ msgid ""
 msgstr ""
 "``wake`` は、この割り込みがシステムを起床できるスリープモードを指定します。"
 
-#: ../../library/machine.RTC.rst:83
+#: ../../library/machine.RTC.rst:80
+msgid ""
+"``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is"
+" any object which supports the buffer protocol (including `bytes`, "
+"`bytearray`, `memoryview` and `array.array`). ``RTC.memory()`` reads RTC "
+"memory and returns a `bytes` object."
+msgstr ""
+"``RTC.memory(data)`` は *data* を RTC メモリに書き込みます。"
+"ここで *data* はバッファプロトコルをサポートする任意のオブジェクトです"
+"(`bytes`, `bytearray`, `memoryview`, `array.array` など)。 "
+"``RTC.memory()`` は RTC メモリを読み込み、 `bytes` オブジェクトを返します。"
+
+#: ../../library/machine.RTC.rst:85
+msgid ""
+"Data written to RTC user memory is persistent across restarts, including "
+"`machine.soft_reset()` and `machine.deepsleep()`."
+msgstr ""
+"RTC ユーザーメモリに書き込んだデータは、 `machine.soft_reset()` や "
+"`machine.deepsleep()` などで再起動したときも保持されます。"
+
+#: ../../library/machine.RTC.rst:88
+msgid ""
+"The maximum length of RTC user memory is 2048 bytes by default on esp32, "
+"and 492 bytes on esp8266."
+msgstr ""
+"RTC ユーザーメモリの最大長は、esp32 ではデフォルトで 2048 バイト、"
+"esp8266 では 492 バイトです。"
+
+#: ../../library/machine.RTC.rst:91
+msgid "Availability: esp32, esp8266 ports."
+msgstr "可用性: esp32、esp8266 ポート。"
+
+#: ../../library/machine.RTC.rst:98
 msgid "irq trigger source"
 msgstr "irq トリガーソース"
 
