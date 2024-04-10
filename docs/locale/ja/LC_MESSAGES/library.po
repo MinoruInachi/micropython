@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-30 17:22+0900\n"
-"PO-Revision-Date: 2024-03-30 17:39+0900\n"
+"PO-Revision-Date: 2024-04-10 23:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -7335,11 +7335,11 @@ msgstr ""
 
 #: ../../library/lcd160cr.rst:2
 msgid ":mod:`lcd160cr` --- control of LCD160CR display"
-msgstr ""
+msgstr ":mod:`lcd160cr` --- LCD160CR ディスプレイの制御"
 
 #: ../../library/lcd160cr.rst:7
 msgid "This module provides control of the MicroPython LCD160CR display."
-msgstr ""
+msgstr ""このモジュールは、Pyboard 用 LCD160CR ディスプレイの制御を担います。"
 
 msgid ""
 ".. image:: http://micropython.org/resources/LCD160CRv10-persp.jpg\n"
@@ -7348,7 +7348,7 @@ msgstr ""
 
 #: ../../library/lcd160cr.rst:13
 msgid "Further resources are available via the following links:"
-msgstr ""
+msgstr "詳しくは次のリンク先を参照してください:"
 
 #: ../../library/lcd160cr.rst:15
 msgid ""
@@ -7356,6 +7356,9 @@ msgid ""
 "<http://micropython.org/resources/LCD160CRv10-refmanual.pdf>`_ (100KiB "
 "PDF)"
 msgstr ""
+"`LCD160CRv1.0 リファレンスマニュアル "
+"<http://micropython.org/resources/LCD160CRv10-refmanual.pdf>`_ (100KiB "
+"PDF)"
 
 #: ../../library/lcd160cr.rst:16
 msgid ""
@@ -7363,10 +7366,13 @@ msgid ""
 "<http://micropython.org/resources/LCD160CRv10-schematics.pdf>`_ (1.6MiB "
 "PDF)"
 msgstr ""
+"`LCD160CRv1.0 回路図 "
+"<http://micropython.org/resources/LCD160CRv10-schematics.pdf>`_ (1.6MiB "
+"PDF)"
 
 #: ../../library/lcd160cr.rst:19
 msgid "class LCD160CR"
-msgstr ""
+msgstr "クラス LCD160CR"
 
 #: ../../library/lcd160cr.rst:21
 msgid ""
@@ -7374,6 +7380,9 @@ msgid ""
 "instance of this class and use its methods to draw to the LCD and get the"
 " status of the touch panel."
 msgstr ""
+"LCD160CR クラスはディスプレイへのインターフェースを提供します。"
+"このクラスのインスタンスを作成することで、そのメソッドを使って LCD に描画したり、"
+"タッチパネルの状態を取得したりできます。"
 
 #: ../../library/lcd160cr.rst:27
 msgid ""
@@ -7390,7 +7399,7 @@ msgstr ""
 
 #: ../../library/lcd160cr.rst:42
 msgid "Construct an LCD160CR object.  The parameters are:"
-msgstr ""
+msgstr "LCD160CR オブジェクトを構築します。パラメータは次のとおりです:"
 
 #: ../../library/lcd160cr.rst:44
 msgid ""
@@ -7401,22 +7410,27 @@ msgid ""
 "used when the display is connected to the right or left side of the "
 "pyboard, respectively."
 msgstr ""
+"*connect* は、LCD ディスプレイをボードに取り付ける位置指定する文字列です。"
+"有効な値は \"X\", \"Y\", \"XY\", \"YX\" のいずれかです。\"X\" は、"
+"ディスプレイをXスキンの位置に取り付ける場合、\"Y\" はYスキンの位置に取り付ける"
+"場合に指定します。\"XY\" と \"YX\" は、それぞれディスプレイが pyboard の"
+"右側または左側に取り付ける場合に指定します。"
 
 #: ../../library/lcd160cr.rst:50
 msgid "*pwr* is a Pin object connected to the LCD's power/enabled pin."
-msgstr ""
+msgstr "*pwr* は LCD の電源/有効化ピンに接続された Pin オブジェクトです。"
 
 #: ../../library/lcd160cr.rst:51
 msgid "*i2c* is an I2C object connected to the LCD's I2C interface."
-msgstr ""
+msgstr "*i2c* は LCD の I2C インタフェースに接続された I2C オブジェクトです。"
 
 #: ../../library/lcd160cr.rst:52
 msgid "*spi* is an SPI object connected to the LCD's SPI interface."
-msgstr ""
+msgstr "*spi* は LCD の SPI インタフェースに接続された SPI オブジェクトです。"
 
 #: ../../library/lcd160cr.rst:53
 msgid "*i2c_addr* is the I2C address of the display."
-msgstr ""
+msgstr "*i2c_addr* はディスプレイの I2C アドレスです。"
 
 #: ../../library/lcd160cr.rst:55
 msgid ""
@@ -7426,34 +7440,46 @@ msgid ""
 "created based on the value of *connect*.  This allows to override the "
 "default interface to the display if needed."
 msgstr ""
+"有効な *connect* を指定するか、 *pwr*, *i2c*, *spi* のすべてを指定する"
+"必要があります。有効な *connect* が指定された場合、パラメータとして渡されない "
+"*pwr*, *i2c*, *spi* は *connect* の値に基づいて作成されます(つまり ``None``)。"
+"これにより、必要に応じてディスプレイへのデフォルトインタフェースをオーバーライドできます。"
 
 #: ../../library/lcd160cr.rst:61
 msgid "The default values are:"
-msgstr ""
+msgstr "デフォルト値は次のとおりです:"
 
 #: ../../library/lcd160cr.rst:63
 msgid ""
 "\"X\" is for the X-skin and uses: ``pwr=Pin(\"X4\")``, "
 "``i2c=I2C(\"X\")``, ``spi=SPI(\"X\")``"
 msgstr ""
+"\"X\" はXスキン用であり、次のようになります: "
+"``pwr=Pin("X4"), i2c=I2C("X"), spi=SPI("X")``"
 
 #: ../../library/lcd160cr.rst:65
 msgid ""
 "\"Y\" is for the Y-skin and uses: ``pwr=Pin(\"Y4\")``, "
 "``i2c=I2C(\"Y\")``, ``spi=SPI(\"Y\")``"
 msgstr ""
+"\"Y\" はYスキン用であり、次のようになります: "
+"``pwr=Pin("Y4"), i2c=I2C("Y"), spi=SPI("Y")``"
 
 #: ../../library/lcd160cr.rst:67
 msgid ""
 "\"XY\" is for the right-side and uses: ``pwr=Pin(\"X4\")``, "
 "``i2c=I2C(\"Y\")``, ``spi=SPI(\"X\")``"
 msgstr ""
+"\"XY\" は右側用であり、次のようになります: "
+"``pwr=Pin("X4"), i2c=I2C("Y"), spi=SPI("X")``"
 
 #: ../../library/lcd160cr.rst:69
 msgid ""
 "\"YX\" is for the left-side and uses: ``pwr=Pin(\"Y4\")``, "
 "``i2c=I2C(\"X\")``, ``spi=SPI(\"Y\")``"
 msgstr ""
+"\"YX\" は左側用であり、次のようになります: "
+"``pwr=Pin("Y4"), i2c=I2C("X"), spi=SPI("Y")``"
 
 #: ../../library/lcd160cr.rst:72
 msgid ""
@@ -7461,10 +7487,13 @@ msgid ""
 "<http://micropython.org/resources/LCD160CRv10-positions.jpg>`_ for how "
 "the display can be connected to the pyboard."
 msgstr ""
+"pyboard へのディスプレイの取り付け方法については、 `この画像 "
+"<http://micropython.org/resources/LCD160CRv10-positions.jpg>`_ "
+"を参照してください。"
 
 #: ../../library/lcd160cr.rst:76
 msgid "Static methods"
-msgstr ""
+msgstr "静的メソッド"
 
 #: ../../library/lcd160cr.rst:80
 msgid ""
@@ -7473,18 +7502,22 @@ msgid ""
 ":meth:`LCD160CR.set_text_color`) pen color (see :meth:`LCD160CR.set_pen`)"
 " and draw individual pixels."
 msgstr ""
+"指定した RGB カラー値を表す16ビット整数を返します。"
+"16ビットの値はフォントの色の設定(:meth:`LCD160CR.set_text_color` を参照)、"
+"ペンの色の設定(:meth:`LCD160CR.set_pen` を参照)、個々のピクセルの描画に"
+"使えます。"
 
 #: ../../library/lcd160cr.rst:87
 msgid "Clip the given line data.  This is for internal use."
-msgstr ""
+msgstr "指定したラインデータをクリップします。これは内部使用のためのものです。"
 
 #: ../../library/lcd160cr.rst:90
 msgid "Instance members"
-msgstr ""
+msgstr "インスタンスメンバー"
 
 #: ../../library/lcd160cr.rst:92
 msgid "The following instance members are publicly accessible."
-msgstr ""
+msgstr "次のインスタンスメンバーが公開されています。"
 
 #: ../../library/lcd160cr.rst:97
 msgid ""
@@ -7492,36 +7525,45 @@ msgid ""
 "members are updated when calling :meth:`LCD160CR.set_orient` and should "
 "be considered read-only."
 msgstr ""
+"ディスプレイの幅と高さを示すピクセル数です。"
+"これらのメンバーは :meth:`LCD160CR.set_orient` を呼び出すと更新され、"
+"読み取り専用として考える必要があります。"
 
 #: ../../library/lcd160cr.rst:102
 msgid "Setup commands"
-msgstr ""
+msgstr "設定コマンド"
 
 #: ../../library/lcd160cr.rst:106
 msgid ""
 "Turn the display on or off, depending on the given value of *on*: 0 or "
 "``False`` will turn the display off, and 1 or ``True`` will turn it on."
 msgstr ""
+"*on* の値に応じて、ディスプレイをオンまたはオフにします。"
+"0 または ``False`` はディスプレイをオフにし、1 または ``True`` はオンにします。"
 
 #: ../../library/lcd160cr.rst:111
 msgid ""
 "Set the orientation of the display.  The *orient* parameter can be one of"
 " `PORTRAIT`, `LANDSCAPE`, `PORTRAIT_UPSIDEDOWN`, `LANDSCAPE_UPSIDEDOWN`."
 msgstr ""
+"ディスプレイの向きを設定します。 *orient* パラメータに指定できるのは `PORTRAIT`, "
+"`LANDSCAPE`, `PORTRAIT_UPSIDEDOWN`, `LANDSCAPE_UPSIDEDOWN` のいずれかです。"
 
 #: ../../library/lcd160cr.rst:116
 msgid "Set the brightness of the display, between 0 and 31."
-msgstr ""
+msgstr "ディスプレイの明るさを0から31の間で設定します。"
 
 #: ../../library/lcd160cr.rst:120
 msgid ""
 "Set the I2C address of the display.  The *addr* value must have the lower"
 " 2 bits cleared."
 msgstr ""
+"ディスプレイの I2C アドレスを設定します。 *addr* の値は下位2ビットがクリアされている"
+"必要があります。"
 
 #: ../../library/lcd160cr.rst:125
 msgid "Set the baudrate of the UART interface."
-msgstr ""
+msgstr "UART インタフェースのボーレートを設定します。"
 
 #: ../../library/lcd160cr.rst:129
 msgid ""
@@ -7529,6 +7571,9 @@ msgid ""
 " a logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, "
 "`STARTUP_DECO_INFO`."
 msgstr ""
+"ディスプレイの起動時の装飾を設定します。 "
+"*value* パラメータは `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, "
+"`STARTUP_DECO_INFO` の論理和とすることができます。"
 
 #: ../../library/lcd160cr.rst:134
 msgid ""
@@ -7536,6 +7581,8 @@ msgid ""
 "power up: initial decoration, orientation, brightness, UART baud rate, "
 "I2C address."
 msgstr ""
+"初期の装飾、向き、明るさ、UART のボーレート、I2C アドレスをフラッシュに保存し、"
+"再起動や電源オン時に戻します。"
 
 #: ../../library/lcd160cr.rst:138 ../../library/neopixel.rst:49
 msgid "Pixel access methods"
@@ -7543,17 +7590,19 @@ msgstr "ピクセルにアクセスするメソッド"
 
 #: ../../library/lcd160cr.rst:140
 msgid "The following methods manipulate individual pixels on the display."
-msgstr ""
+msgstr "次のメソッドは、ディスプレイ上の個々のピクセルを操作します。"
 
 #: ../../library/lcd160cr.rst:144
 msgid ""
 "Set the specified pixel to the given color.  The color should be a 16-bit"
 " integer and can be created by :meth:`LCD160CR.rgb`."
 msgstr ""
+"指定のピクセルを与えた色に設定します。色は16ビットの整数である必要があり、"
+":meth:`LCD160CR.rgb` で作成できます。"
 
 #: ../../library/lcd160cr.rst:149
 msgid "Get the 16-bit value of the specified pixel."
-msgstr ""
+msgstr "指定のピクセルの16ビット値を取得します。"
 
 #: ../../library/lcd160cr.rst:153
 msgid ""
@@ -7562,6 +7611,10 @@ msgid ""
 "dummy byte and should be ignored, and subsequent bytes represent the "
 "pixels in the line starting at coordinate *(x, y)*."
 msgstr ""
+"指定したバッファにピクセルのラインを取得するための低レベルメソッドです。"
+"*n* 個のピクセルを読み取るには、 *buf* の長さが *2*n+1* バイトである必要があります。"
+"最初のバイトはダミーバイトであり、無視されるべきであり、その後のバイトは、座標 *(x, y)* "
+"から始まる行のピクセルを表します。"
 
 #: ../../library/lcd160cr.rst:160
 msgid ""
@@ -7572,36 +7625,47 @@ msgid ""
 "  *buf* should be large enough to hold ``2*w*h`` bytes.  If it's smaller "
 "then only the initial horizontal lines will be stored."
 msgstr ""
+"画面の内容を指定したバッファにダンプします。パラメータ *x* と *y* は開始座標を指定し、"
+" *w* と *h* は領域のサイズを指定します。 *w* または *h* が ``None`` の場合、"
+"それらは、与えられた *x* と *y* の値から取得された画面のサイズから最大値を取ります。 "
+"*buf* は ``2*w*h`` バイトを保持できる大きさである必要があります。"
+"それより小さい場合、開始座標から格納できる分だけの水平ラインが格納されます。"
 
 #: ../../library/lcd160cr.rst:169
 msgid "Load the entire screen from the given buffer."
-msgstr ""
+msgstr "指定されたバッファから画面全体をロードします。"
 
 #: ../../library/lcd160cr.rst:174
 msgid ""
 "To draw text one sets the position, color and font, and then uses "
 "`LCD160CR.write` to draw the text."
 msgstr ""
+"テキストを描画するには、位置、色、フォントを設定し、"
+"次に `LCD160CR.write` を使ってテキストを描画します。"
 
 #: ../../library/lcd160cr.rst:179
 msgid ""
 "Set the position for text output using :meth:`LCD160CR.write`.  The "
 "position is the upper-left corner of the text."
 msgstr ""
+":meth:`LCD160CR.write` によるテキストの出力の位置を設定します。"
+"設定する位置はテキストの左上隅になります。"
 
 #: ../../library/lcd160cr.rst:184
 msgid "Set the foreground and background color of the text."
-msgstr ""
+msgstr "テキストの前景色と背景色を設定します。"
 
 #: ../../library/lcd160cr.rst:188
 msgid ""
 "Set the font for the text.  Subsequent calls to `write` will use the "
 "newly configured font.  The parameters are:"
 msgstr ""
+"テキストのフォントを設定します。これ以降の `write` の呼出しでは、"
+"新しく設定したフォントが適用されます。パラメータは次の通りです:"
 
 #: ../../library/lcd160cr.rst:191
 msgid "*font* is the font family to use, valid values are 0, 1, 2, 3."
-msgstr ""
+msgstr "*font* は適用するフォントファミリーで、有効な値は 0, 1, 2, 3 です。"
 
 #: ../../library/lcd160cr.rst:192
 msgid ""
@@ -7609,6 +7673,8 @@ msgid ""
 " drawn as a square with side length equal to *scale + 1*.  The value can "
 "be between 0 and 63."
 msgstr ""
+"*scale* は各文字のピクセルスケーリング値で、ピクセルが *scale + 1* の"
+"辺となる正方形として描画されます。値は 0 から 63 の間です。"
 
 #: ../../library/lcd160cr.rst:195
 msgid ""
@@ -7618,18 +7684,25 @@ msgid ""
 "for the vertical direction.  For example, a *bold* value of 5 will "
 "overdraw 1 pixel in both the horizontal and vertical directions."
 msgstr ""
+"*bold* は 各文字のピクセルをオーバードローするピクセル数を制御し、"
+"太字の効果を作ります。 *bold* の下位2ビットは水平方向にオーバードローする"
+"ピクセル数であり、次の2ビットは垂直方向です。たとえば *bold* の値が5の場合、"
+"水平方向と垂直方向の両方で1ピクセルがオーバードローされます。"
 
 #: ../../library/lcd160cr.rst:200
 msgid ""
 "*trans* can be either 0 or 1 and if set to 1 the characters will be drawn"
 " with a transparent background."
 msgstr ""
+"*trans* は 0 または 1 であり、1 に設定すると文字が透明な背景で描画されます。"
 
 #: ../../library/lcd160cr.rst:202
 msgid ""
 "*scroll* can be either 0 or 1 and if set to 1 the display will do a soft "
 "scroll if the text moves to the next line."
 msgstr ""
+"*scroll* は 0 または 1 であり、1 に設定するとテキストが次の行に移動するときに"
+"ディスプレイがソフトスクロールを行います。"
 
 #: ../../library/lcd160cr.rst:207
 msgid ""
@@ -7637,24 +7710,28 @@ msgid ""
 " text is written the position is automatically incremented.  The display "
 "supports basic VT100 control codes such as newline and backspace."
 msgstr ""
+"現在の位置、色、フォントを適用してディスプレイにテキストを書き出します。"
+"テキストを書き出すと、位置が自動的に増分されます。ディスプレイは"
+"改行やバックスペースなどの基本的な VT100 制御コードをサポートしています。"
 
 #: ../../library/lcd160cr.rst:214
 msgid ""
 "Primitive drawing commands use a foreground and background color set by "
 "the `set_pen` method."
 msgstr ""
+"基本的な描画コマンドは `set_pen` メソッドで設定された前景色と背景色を使います。"
 
 #: ../../library/lcd160cr.rst:219
 msgid "Set the line and fill color for primitive shapes."
-msgstr ""
+msgstr "基本描画のための線(line)と塗りつぶし(fill)の色を設定します。"
 
 #: ../../library/lcd160cr.rst:223
 msgid "Erase the entire display to the pen fill color."
-msgstr ""
+msgstr "表示全体をペンの塗りつぶし色で消去します。"
 
 #: ../../library/lcd160cr.rst:227
 msgid "Draw a single pixel at the given location using the pen line color."
-msgstr ""
+msgstr "指定した位置に、ペンの線の色を使って単一のピクセルを描画します。"
 
 #: ../../library/lcd160cr.rst:233
 msgid ""
@@ -7663,10 +7740,14 @@ msgid ""
 "method draws the outline and interior, while the other methods just draw "
 "one or the other."
 msgstr ""
+"指定の位置とサイズで矩形を描画し、枠線にペンの線の色、"
+"内部にペンの塗りつぶし色を適用します。 "
+"`rect` メソッドは枠線と内部を描画しますが、"
+"他のメソッドは枠線か内部のどちらか一方を描画します。"
 
 #: ../../library/lcd160cr.rst:240
 msgid "Draw a line between the given coordinates using the pen line color."
-msgstr ""
+msgstr "指定した２つの座標間にペンの線の色を使って線を描画します。"
 
 #: ../../library/lcd160cr.rst:248
 msgid ""
@@ -7674,6 +7755,9 @@ msgid ""
 "coordinates.  They are faster than the clipping versions and can be used "
 "when you know that the coordinates are within the display."
 msgstr ""
+"これらのメソッドは上記のようになりますが、入力座標にクリッピングを行いません。"
+"クリッピングバージョンよりも高速であり、座標が表示領域内にあることがわかっている"
+"場合に使えます。"
 
 #: ../../library/lcd160cr.rst:254
 msgid ""
@@ -7681,18 +7765,21 @@ msgid ""
 "buffer of bytes, with each successive pair of bytes corresponding to "
 "coordinate pairs (x, y)."
 msgstr ""
+"ペンの線の色を適用して点のシーケンスを描画します。"
+"データはバイトのバッファである必要があり、連続する2つのバイトが"
+"座標ペア (x, y) に対応しています。"
 
 #: ../../library/lcd160cr.rst:260
 msgid "Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots."
-msgstr ""
+msgstr ":meth:`LCD160CR.poly_dot` に類似していますが、点の間に線を描画します。"
 
 #: ../../library/lcd160cr.rst:263
 msgid "Touch screen methods"
-msgstr ""
+msgstr "タッチ画面メソッド"
 
 #: ../../library/lcd160cr.rst:267
 msgid "Configure the touch panel:"
-msgstr ""
+msgstr "タッチパネルを設定します:"
 
 #: ../../library/lcd160cr.rst:269
 msgid ""
@@ -7700,12 +7787,17 @@ msgid ""
 "the resistive touch sensor.  This requires the user to touch various "
 "parts of the screen."
 msgstr ""
+"*calib* が ``True`` の場合、この呼出しは抵抗膜方式タッチセンサーの"
+"タッチキャリブレーションを起動します。これにより、ユーザーは画面の"
+"さまざまな部分にタッチする必要があります。"
 
 #: ../../library/lcd160cr.rst:272
 msgid ""
 "If *save* is ``True`` then the touch parameters will be saved to NVRAM to"
 " persist across reset/power up."
 msgstr ""
+"*save* が ``True`` の場合、タッチパラメータはリセット/電源オン時に"
+"保持されるように NVRAM に保存されます。"
 
 #: ../../library/lcd160cr.rst:274
 msgid ""
@@ -7714,12 +7806,17 @@ msgid ""
 " feature is disabled.  If *irq* is ``None`` (the default value) then no "
 "change is made to this setting."
 msgstr ""
+"*irq* が ``True`` の場合、タッチフォースが検出されるとディスプレイが IRQ ラインを "
+"low にpull(pull)ように構成されます。 *irq* が ``False`` の場合、この機能は"
+"無効になります。 *irq* が ``None`` (デフォルト値)の場合、この設定は変更されません。"
 
 #: ../../library/lcd160cr.rst:281
 msgid ""
 "Returns a boolean: ``True`` if there is currently a touch force on the "
 "screen, ``False`` otherwise."
 msgstr ""
+"ブール値を返します: 画面に現在タッチフォースがある場合は ``True`` 、"
+"それ以外の場合は ``False`` 。"
 
 #: ../../library/lcd160cr.rst:286
 msgid ""
@@ -7727,14 +7824,18 @@ msgid ""
 "force on the screen then *active* is 1, otherwise it is 0.  The *x* and "
 "*y* values indicate the position of the current or most recent touch."
 msgstr ""
+"3項目のタプルを返します: *(active, x, y)* 。"
+"画面にタッチフォースがある場合、 *active* は 1 になり、"
+"それ以外の場合は 0 になります。 *x* と *y* の値は、"
+"現在または直近のタッチの位置を示します。"
 
 #: ../../library/lcd160cr.rst:291
 msgid "Advanced commands"
-msgstr ""
+msgstr "高度なコマンド"
 
 #: ../../library/lcd160cr.rst:295
 msgid "Set the window that SPI data is written to."
-msgstr ""
+msgstr "SPI データが書き込まれるウィンドウを設定します。"
 
 #: ../../library/lcd160cr.rst:299
 msgid ""
@@ -7743,6 +7844,10 @@ msgid ""
 " by :meth:`LCD160CR.set_spi_win`. The method returns an SPI object which "
 "can be used to write the pixel data."
 msgstr ""
+"SPI バス上で RGB ピクセルデータを受け入れるようにディスプレイを準備し、 "
+":meth:`LCD160CR.set_spi_win` で設定されたウィンドウの左上隅に"
+"最初のバイトが送られるよう位置をリセットします。このメソッドは SPI "
+"オブジェクトを返しますが、これを使ってピクセルデータを書き出せます。"
 
 #: ../../library/lcd160cr.rst:304
 msgid ""
@@ -7752,6 +7857,11 @@ msgid ""
 "of the window specified by :meth:`LCD160CR.set_spi_win` it will wrap "
 "around to the top-left corner of that window."
 msgstr ""
+"ピクセルは16ビットの RGB 値として送信され、5-6-5 形式である必要があります。"
+"データが送信されると、送信先カウンタが増加し、データは任意のサイズのチャンクで"
+"送信できます。送信先カウンタが :meth:`LCD160CR.set_spi_win` で"
+"指定されたウィンドウの終わりに達すると、そのウィンドウの左上隅に"
+"ラップアラウンドします。"
 
 #: ../../library/lcd160cr.rst:311
 msgid ""
@@ -7760,6 +7870,9 @@ msgid ""
 " to the area specified by :meth:`LCD160CR.set_spi_win`, starting from the"
 " top-left corner."
 msgstr ""
+"指定したバッファをディスプレイに表示します。 *buf* はピクセルの16ビットRGB値を含む"
+"バイト配列である必要があり、それらは :meth:`LCD160CR.set_spi_win` で"
+"指定された領域に書き込まれ、左上隅から開始されます。"
 
 #: ../../library/lcd160cr.rst:315
 msgid ""
@@ -7768,26 +7881,34 @@ msgid ""
 "improve performance of animations when compared to drawing directly to "
 "the screen."
 msgstr ""
+"フレームバッファを構築し、基本描画を提供するのに "
+"`framebuf <framebuf.html>`_ モジュールが使えます。"
+"フレームバッファを使用すると、画面に直接描画する場合と比べて"
+"アニメーションのパフォーマンスが向上します。"
 
 #: ../../library/lcd160cr.rst:321
 msgid ""
 "Turn scrolling on or off.  This controls globally whether any window "
 "regions will scroll."
 msgstr ""
+"スクロールをオンまたはオフにします。これは、ウィンドウ領域がスクロールされるかどうかを"
+"グローバルに制御します。"
 
 #: ../../library/lcd160cr.rst:326
 msgid "Configure a window region for scrolling:"
-msgstr ""
+msgstr "スクロール用のウィンドウ領域を設定します:"
 
 #: ../../library/lcd160cr.rst:328
 msgid ""
 "*win* is the window id to configure.  There are 0..7 standard windows for"
 " general purpose use.  Window 8 is the text scroll window (the ticker)."
 msgstr ""
+"*win* は設定するウィンドウIDです。一般的な用途には0から7までの標準ウィンドウがあります。"
+"ウィンドウ8はテキストスクロールウィンドウ(ティッカー)です。"
 
 #: ../../library/lcd160cr.rst:330
 msgid "*x*, *y*, *w*, *h* specify the location of the window in the display."
-msgstr ""
+msgstr "*x*, *y*, *w*, *h* は、ウィンドウの表示内での位置を指定します。"
 
 #: ../../library/lcd160cr.rst:331
 msgid ""
@@ -7797,42 +7918,51 @@ msgid ""
 "is shifted *S % 256* pixel every frame, and 1 meaning that the window is "
 "shifted 1 pixel every *S* frames."
 msgstr ""
+"*vec* はスクロールの方向と速度を指定します: "
+"これは ``0bF.ddSSSSSSSSSSSS`` という形式の16ビット値で、 *dd* は +x, +y, -x, -y "
+"のスクロールに対応する 0, 1, 2, 3 です。 *F* は速度形式を設定し、0 はウィンドウが"
+"1フレームごとに *S % 256* ピクセルシフトされ、1 はウィンドウが S フレームごとに"
+"1ピクセルシフトされることを意味します。"
 
 #: ../../library/lcd160cr.rst:336
 msgid "*pat* is a 16-bit pattern mask for the background."
-msgstr ""
+msgstr "*pat* は背景の16ビットパターンマスクです。"
 
 #: ../../library/lcd160cr.rst:337
 msgid "*fill* is the fill color."
-msgstr ""
+msgstr "*fill* は塗りつぶしの色です。"
 
 #: ../../library/lcd160cr.rst:338
 msgid "*color* is the extra color, either of the text or pattern foreground."
-msgstr ""
+msgstr "*color* は、テキストまたはパターンの前景色です。"
 
 #: ../../library/lcd160cr.rst:342
 msgid "Set a single parameter of a scrolling window region:"
-msgstr ""
+msgstr "スクロールウィンドウ領域の単一のパラメータを設定します:"
 
 #: ../../library/lcd160cr.rst:344
 msgid "*win* is the window id, 0..8."
-msgstr ""
+msgstr "*win* はウィンドウIDで、0から8までです。"
 
 #: ../../library/lcd160cr.rst:345
 msgid ""
 "*param* is the parameter number to configure, 0..7, and corresponds to "
 "the parameters in the `set_scroll_win` method."
 msgstr ""
+"*param* は設定するパラメータ番号で、0から7までで、 `set_scroll_win` "
+"メソッドのパラメータに対応します。"
 
 #: ../../library/lcd160cr.rst:347
 msgid "*value* is the value to set."
-msgstr ""
+msgstr "*value* は設定する値です。"
 
 #: ../../library/lcd160cr.rst:351
 msgid ""
 "Set the string for scrolling in window 8.  The parameter *s* must be a "
 "string with length 32 or less."
 msgstr ""
+"ウィンドウ 8 でのスクロール用の文字列を設定します。"
+"パラメータ *s* は、長さが32以下の文字列でなければなりません。"
 
 #: ../../library/lcd160cr.rst:356
 msgid ""
@@ -7842,6 +7972,11 @@ msgid ""
 "components, YCbCr4:2:2. The origin of the JPEG is set by "
 ":meth:`LCD160CR.set_pos`."
 msgstr ""
+"JPEG を表示します。 *buf* には完全な JPEG データが含まれている必要があります。"
+"JPEGデータには EXIF 情報が含まれていてはなりません。次のエンコーディングが"
+"サポートされています: Baseline DCT, Huffman coding, 8 bits per sample, 3 color "
+"components, YCbCr4:2:2 。JPEG の原点は :meth:`LCD160CR.set_pos` "
+"で設定します。"
 
 #: ../../library/lcd160cr.rst:364
 msgid ""
@@ -7851,6 +7986,10 @@ msgid ""
 "transferred to the display using one or more calls to the `jpeg_data` "
 "command."
 msgstr ""
+"複数のバッファに分割されたデータから JPEG を表示します。"
+"最初に `jpeg_start` で JPEG の合計バイト数を指定して"
+"開始する必要があります。次に、このバイト数のデータを1回以上の "
+"`jpeg_data` コマンド呼出しでディスプレイに転送する必要があります。"
 
 #: ../../library/lcd160cr.rst:371
 msgid ""
@@ -7858,20 +7997,25 @@ msgid ""
 "timer.  Subsequent calls will feed the watchdog.  The timeout is roughly "
 "30 seconds."
 msgstr ""
+"このメソッドの最初の呼出しは、ディスプレイの内部ウォッチドッグタイマーを開始します。"
+"その後の呼出しでは、ウォッチドッグにデータを供給します。タイムアウトはおおよそ30秒です。"
 
 #: ../../library/lcd160cr.rst:377
 msgid "Reset the display."
-msgstr ""
+msgstr "ディスプレイをリセットします。"
 
 #: ../../library/lcd160cr.rst:387
 msgid "Orientations of the display, used by :meth:`LCD160CR.set_orient`."
 msgstr ""
+"metg:`LCD160CR.set_orient` で使うディスプレイの向き。"
 
 #: ../../library/lcd160cr.rst:393
 msgid ""
 "Types of start-up decoration, can be OR'ed together, used by "
 ":meth:`LCD160CR.set_startup_deco`."
 msgstr ""
+":meth:`LCD160CR.set_startup_deco` で使う、起動時の装飾の種類。"
+"OR 演算子で組み合わせることができます。"
 
 #: ../../library/machine.rst:2
 msgid ":mod:`machine` --- functions related to the hardware"
@@ -16556,7 +16700,7 @@ msgstr ""
 #: ../../library/pyb.SPI.rst:82 ../../library/pyb.USB_HID.rst:26
 #: ../../library/pyb.USB_VCP.rst:94
 msgid "Receive data on the bus:"
-msgstr ""
+msgstr "バス上のデータを受信します:"
 
 #: ../../library/pyb.CAN.rst:229
 msgid "*fifo* is an integer, which is the FIFO to receive on"
@@ -19593,7 +19737,7 @@ msgstr ""
 
 #: ../../library/pyb.USB_HID.rst:5
 msgid "class USB_HID -- USB Human Interface Device (HID)"
-msgstr ""
+msgstr "クラス USB_HID -- USB ヒューマンインタフェースデバイス(HID)"
 
 #: ../../library/pyb.USB_HID.rst:7
 msgid ""
@@ -19601,36 +19745,45 @@ msgid ""
 " Interface Device (HID) interface.  It can be used to emulate a "
 "peripheral such as a mouse or keyboard."
 msgstr ""
+"USB_HID クラスは、USB ヒューマンインタフェースデバイス(HID)インターフェースを"
+"表すオブジェクトの作成を可能にします。これを使ってマウスやキーボードなどの"
+"ペリフェラルをエミュレートできます。"
 
 #: ../../library/pyb.USB_HID.rst:11
 msgid ""
 "Before you can use this class, you need to use :meth:`pyb.usb_mode()` to "
 "set the USB mode to include the HID interface."
 msgstr ""
+"このクラスを使う前に :meth:`pyb.usb_mode()` 使って、"
+"USB モードに HID インターフェースを含める必要があります。"
 
 #: ../../library/pyb.USB_HID.rst:18
 msgid "Create a new USB_HID object."
-msgstr ""
+msgstr "新しい USB_HID オブジェクトを作成します。"
 
 #: ../../library/pyb.USB_HID.rst:28 ../../library/pyb.USB_VCP.rst:89
 msgid ""
 "``data`` can be an integer, which is the number of bytes to receive, or a"
 " mutable buffer, which will be filled with received bytes."
 msgstr ""
+"``data`` が整数である場合、受信するバイト数を表します。"
+"さもなければ、受信したバイトを格納する可変バッファを指定します。"
 
 #: ../../library/pyb.USB_HID.rst:32 ../../library/pyb.USB_VCP.rst:93
 msgid ""
 "Return value: if ``data`` is an integer then a new buffer of the bytes "
 "received, otherwise the number of bytes read into ``data`` is returned."
 msgstr ""
+"戻り値: ``data`` が整数の場合、受信したバイトの新しいバッファが返されます。"
+"それ以外の場合は *data* に読み込まれたバイト数が返されます。"
 
 #: ../../library/pyb.USB_HID.rst:37
 msgid "Send data over the USB HID interface:"
-msgstr ""
+msgstr "USB HID インターフェースを介してデータを送信します:"
 
 #: ../../library/pyb.USB_HID.rst:39
 msgid "``data`` is the data to send (a tuple/list of integers, or a bytearray)."
-msgstr ""
+msgstr "``data`` は送信するデータです(整数のタプル/リスト、または bytearray)。"
 
 #: ../../library/pyb.USB_VCP.rst:5
 msgid "class USB_VCP -- USB virtual comm port"
