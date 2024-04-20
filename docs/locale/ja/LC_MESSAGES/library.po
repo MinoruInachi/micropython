@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-30 17:22+0900\n"
-"PO-Revision-Date: 2024-04-10 23:45+0900\n"
+"POT-Creation-Date: 2024-04-20 17:31+0900\n"
+"PO-Revision-Date: 2024-04-20 18:26+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -12439,34 +12439,55 @@ msgstr "``3``: ACK ステージ"
 msgid ""
 "Second argument is a memoryview to read the USB control request data for "
 "this stage. The memoryview is only valid until the callback function "
-"returns."
+"returns. Data in this memoryview will be the same across each of the "
+"three stages of a single transfer."
 msgstr ""
 "第2引数は、このステージの USB コントロールリクエストデータを読み取るための"
 "メモリビューです。メモリビューは、コールバック関数が戻るまでの間のみ有効です。"
+"このメモリビュー内のデータは、単一転送の3つのステージで同一です。"
 
-#: ../../library/machine.USBDevice.rst:135
+#: ../../library/machine.USBDevice.rst:136
+msgid ""
+"A successful transfer consists of this callback being called in sequence "
+"for the three stages. Generally speaking, if a device wants to do "
+"something in response to a control request then it's best to wait until "
+"the ACK stage to confirm the host controller completed the transfer as "
+"expected."
+msgstr ""
+"成功した転送は、このコールバックが3つのステージに対して順次呼び出されることで成り立ちます。"
+"一般的に、デバイスが制御要求に応答して何かを行う場合、ホストコントローラーが転送を"
+"期待通りに完了したことを確認するために、ACKステージまで待つのが最善です。"
+
+#: ../../library/machine.USBDevice.rst:142
 msgid "The callback should return one of the following values:"
 msgstr "コールバックは、次のいずれかの値を返す必要があります:"
 
-#: ../../library/machine.USBDevice.rst:137
-msgid "``False`` to stall the endpoint and reject the transfer."
-msgstr "エンドポイントをスタールして転送を拒否するためには ``False`` を返します。"
+#: ../../library/machine.USBDevice.rst:144
+msgid ""
+"``False`` to stall the endpoint and reject the transfer. It won't proceed"
+" to any remaining stages."
+msgstr ""
+"エンドポイントをストールして転送を拒否するためには ``False`` を返します。"
+"これにより残りのステージには進まなくなります。"
 
-#: ../../library/machine.USBDevice.rst:138
+#: ../../library/machine.USBDevice.rst:146
 msgid "``True`` to continue the transfer to the next stage."
 msgstr "次のステージに転送を継続するためには ``True`` を返します。"
 
-#: ../../library/machine.USBDevice.rst:139
+#: ../../library/machine.USBDevice.rst:147
 msgid ""
-"A buffer object to provide data for this stage of the transfer. This "
-"should be a writable buffer for an ``OUT`` direction transfer, or a "
-"readable buffer with data for an ``IN`` direction transfer."
+"A buffer object can be returned at the SETUP stage when the transfer will"
+" send or receive additional data. Typically this is the case when the "
+"``wLength`` field in the request has a non-zero value. This should be a "
+"writable buffer for an ``OUT`` direction transfer, or a readable buffer "
+"with data for an ``IN`` direction transfer."
 msgstr ""
-"転送のこのステージのデータを提供するためのバッファオブジェクトを返します。"
-"これは、OUT 方向の転送用の書き込み可能なバッファ、または IN 方向の転送用の"
-"データを持つ読み取り可能なバッファである必要があります。"
+"転送が追加のデータを送信または受信する場合、SETUP ステージでバッファオブジェクトを"
+"返せます。これはリクエストの ``wLength`` フィールドがゼロ以外の値を持つ場合に"
+"発生します。 ``OUT`` 方向の転送の場合は書き込み可能なバッファである必要がありますし、 "
+"``IN`` 方向の転送の場合はデータを持つ読み取り可能なバッファである必要があります。"
 
-#: ../../library/machine.USBDevice.rst:143
+#: ../../library/machine.USBDevice.rst:153
 msgid ""
 "``xfer_cb`` - This callback is called whenever a non-control transfer "
 "submitted by calling :func:`USBDevice.submit_xfer` completes."
@@ -12474,19 +12495,19 @@ msgstr ""
 "``xfer_cb`` - このコールバックは :func:`USBDevice.submit_xfer` を"
 "呼び出して送信された非制御転送が完了するたびに呼び出されます。"
 
-#: ../../library/machine.USBDevice.rst:146
+#: ../../library/machine.USBDevice.rst:156
 msgid "The callback has three arguments:"
 msgstr "コールバックには3つの引数があります:"
 
-#: ../../library/machine.USBDevice.rst:148
+#: ../../library/machine.USBDevice.rst:158
 msgid "The Endpoint number for the completed transfer."
 msgstr "完了した転送のエンドポイント番号。"
 
-#: ../../library/machine.USBDevice.rst:149
+#: ../../library/machine.USBDevice.rst:159
 msgid "Result value: ``True`` if the transfer succeeded, ``False`` otherwise."
 msgstr "結果値: 転送が成功した場合は ``True`` 、それ以外は ``False`` 。"
 
-#: ../../library/machine.USBDevice.rst:151
+#: ../../library/machine.USBDevice.rst:161
 msgid ""
 "Number of bytes successfully transferred. In the case of a \"short\" "
 "transfer, The result is ``True`` and ``xferred_bytes`` will be smaller "
@@ -12495,7 +12516,7 @@ msgstr ""
 "成功したバイト数。 \"short\" 転送の場合、結果は ``True`` であり、 "
 "``xferred_bytes`` は転送のために提出されたバッファの長さよりも小さくなります。"
 
-#: ../../library/machine.USBDevice.rst:156
+#: ../../library/machine.USBDevice.rst:166
 msgid ""
 "If a bus reset occurs (see :func:`USBDevice.reset`), ``xfer_cb`` is not "
 "called for any transfers that have not already completed."
@@ -12503,7 +12524,7 @@ msgstr ""
 "バスのリセットが発生した場合(:func:`USBDevice.reset` を参照)、 "
 "``xfer_cb`` がまだ完了していない転送に対しては呼び出されません。"
 
-#: ../../library/machine.USBDevice.rst:162
+#: ../../library/machine.USBDevice.rst:172
 msgid ""
 "Returns the current active state of this runtime USB device as a boolean."
 " The runtime USB device is \"active\" when it is available to interact "
@@ -12513,7 +12534,7 @@ msgstr ""
 "USB ランタイムデバイスは、ホストとのやり取りが可能な場合に「アクティブ」ですが、"
 "USB ホストが実際に存在していることを意味するわけではありません。"
 
-#: ../../library/machine.USBDevice.rst:167
+#: ../../library/machine.USBDevice.rst:177
 msgid ""
 "If the optional ``value`` argument is set to a truthy value, then the USB"
 " device will be activated."
@@ -12521,7 +12542,7 @@ msgstr ""
 "オプションの ``value`` 引数が真の値に設定されている場合、"
 "USBデバイスはアクティブになります。"
 
-#: ../../library/machine.USBDevice.rst:170
+#: ../../library/machine.USBDevice.rst:180
 msgid ""
 "If the optional ``value`` argument is set to a falsey value, then the USB"
 " device is deactivated. While the USB device is deactivated, it will not "
@@ -12531,7 +12552,7 @@ msgstr ""
 "USB デバイスは非アクティブになります。USBデバイスが非アクティブの間は、"
 "USB ホストによって検出されません。"
 
-#: ../../library/machine.USBDevice.rst:174
+#: ../../library/machine.USBDevice.rst:184
 msgid ""
 "To simulate a disconnect and a reconnect of the USB device, call "
 "``active(False)`` followed by ``active(True)``. This may be necessary if "
@@ -12543,7 +12564,7 @@ msgstr ""
 "構成が変更された場合、すなわちホストが新しいデバイスを認識した場合に、"
 "必要な場合があります。"
 
-#: ../../library/machine.USBDevice.rst:181
+#: ../../library/machine.USBDevice.rst:191
 msgid ""
 "This attribute holds the current built-in driver configuration, and must "
 "be set to one of the ``USBDevice.BUILTIN_`` named constants defined on "
@@ -12552,11 +12573,11 @@ msgstr ""
 "この属性は、現在の組み込みドライバー構成を保持し、このオブジェクトで定義された "
 "``USBDevice.BUILTIN_`` 名前付き定数のいずれかに設定する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:184
+#: ../../library/machine.USBDevice.rst:194
 msgid "By default it holds the value :data:`USBDevice.BUILTIN_NONE`."
 msgstr "デフォルトでは :data:`USBDevice.BUILTIN_NONE` の値が保持されます。"
 
-#: ../../library/machine.USBDevice.rst:186
+#: ../../library/machine.USBDevice.rst:196
 msgid ""
 "Runtime USB device must be inactive when setting this field. Call the "
 ":func:`USBDevice.active` function to deactivate before setting if "
@@ -12566,7 +12587,7 @@ msgstr ""
 "なりません。設定が必要な場合(設定後に再度アクティブにする)には、"
 "設定する前に :func:`USBDevice.active` 関数を呼び出して非アクティブにしてください。"
 
-#: ../../library/machine.USBDevice.rst:190
+#: ../../library/machine.USBDevice.rst:200
 msgid ""
 "If this value is set to any value other than "
 ":data:`USBDevice.BUILTIN_NONE` then the following restrictions apply to "
@@ -12575,7 +12596,7 @@ msgstr ""
 "この値が :data:`USBDevice.BUILTIN_NONE` 以外の値に設定されている場合、"
 "次の制限が :func:`USBDevice.config` の引数に適用されます:"
 
-#: ../../library/machine.USBDevice.rst:193
+#: ../../library/machine.USBDevice.rst:203
 msgid ""
 "``desc_cfg`` should begin with the built-in USB interface descriptor data"
 " accessible via :data:`USBDevice.builtin_driver` attribute ``desc_cfg``. "
@@ -12590,7 +12611,7 @@ msgstr ""
 "``itf_max``, ``str_max``, ``ep_max`` で定義された最大組込み値を開始として、"
 "インタフェース、文字列、エンドポイント番号を使用する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:200
+#: ../../library/machine.USBDevice.rst:210
 msgid ""
 "The ``bNumInterfaces`` field in the built-in configuration descriptor "
 "will also need to be updated if any new interfaces are appended to the "
@@ -12599,7 +12620,7 @@ msgstr ""
 "``desc_cfg`` の末尾に新しいインターフェースが追加された場合、"
 "組込み構成記述子内の ``bNumInterfaces`` フィールドも更新する必要があります。 "
 
-#: ../../library/machine.USBDevice.rst:204
+#: ../../library/machine.USBDevice.rst:214
 msgid ""
 "``desc_strs`` should either be ``None`` or a list/dictionary where index "
 "values less than ``USBDevice.builtin_driver.str_max`` are missing or have"
@@ -12613,7 +12634,7 @@ msgstr ""
 "予約されます。これらのインデックスのいずれかに異なる文字列を配置すると、"
 "組込みドライバーのその文字列がオーバーライドされます。"
 
-#: ../../library/machine.USBDevice.rst:212
+#: ../../library/machine.USBDevice.rst:222
 msgid ""
 "Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be an "
 "object implementing the buffer interface, with read access for ``IN`` "
@@ -12624,7 +12645,7 @@ msgstr ""
 "``OUT`` エンドポイントに対して書き込みアクセスを持つバッファインタフェースを"
 "実装するオブジェクトでなければなりません。"
 
-#: ../../library/machine.USBDevice.rst:216
+#: ../../library/machine.USBDevice.rst:226
 msgid ""
 "``ep`` cannot be the control Endpoint number 0. Control transfers are "
 "built up through successive executions of ``control_xfer_cb``, see above."
@@ -12632,7 +12653,7 @@ msgstr ""
 "``ep`` は制御エンドポイント番号0にすることはできません。"
 "制御転送は ``control_xfer_cb`` を連続して実行することによって構築されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:220
+#: ../../library/machine.USBDevice.rst:230
 msgid ""
 "Returns ``True`` if successful, ``False`` if the transfer could not be "
 "queued (as USB device is not configured by host, or because another "
@@ -12642,15 +12663,15 @@ msgstr ""
 "``False`` を返します(USB デバイスがホストによって構成されていないか、"
 "このエンドポイントに別の転送がキューに入れられているため)。"
 
-#: ../../library/machine.USBDevice.rst:224
+#: ../../library/machine.USBDevice.rst:234
 msgid ""
 "When the USB host completes the transfer, the ``xfer_cb`` callback is "
 "called (see above)."
 msgstr ""
 "USB ホストが転送を完了すると ``xfer_cb`` コールバックが呼び出されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:227
-#: ../../library/machine.USBDevice.rst:246
+#: ../../library/machine.USBDevice.rst:237
+#: ../../library/machine.USBDevice.rst:256
 msgid ""
 "Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not "
 "active."
@@ -12658,16 +12679,16 @@ msgstr ""
 "USB デバイスがアクティブでない場合 ``OSError`` が発生し、"
 "理由として ``MP_EINVAL`` が指定されます。"
 
-#: ../../library/machine.USBDevice.rst:232
+#: ../../library/machine.USBDevice.rst:242
 msgid "Calling this function gets or sets the STALL state of a device endpoint."
 msgstr ""
 "この関数を呼び出すと、デバイスのエンドポイントの STALL 状態を取得または設定します。"
 
-#: ../../library/machine.USBDevice.rst:234
+#: ../../library/machine.USBDevice.rst:244
 msgid "``ep`` is the number of the endpoint."
 msgstr "``ep`` はエンドポイントの番号です。"
 
-#: ../../library/machine.USBDevice.rst:236
+#: ../../library/machine.USBDevice.rst:246
 msgid ""
 "If the optional ``stall`` parameter is set, this is a boolean flag for "
 "the STALL state."
@@ -12675,14 +12696,14 @@ msgstr ""
 "オプションの ``stall`` パラメータが設定されている場合、これは ``STALL`` "
 "状態のブールフラグです。"
 
-#: ../../library/machine.USBDevice.rst:239
+#: ../../library/machine.USBDevice.rst:249
 msgid ""
 "The return value is the current stall state of the endpoint (before any "
 "change made by this function)."
 msgstr ""
 "戻り値は、この関数によって行われた変更前のエンドポイントの現在の stall 状態です。"
 
-#: ../../library/machine.USBDevice.rst:242
+#: ../../library/machine.USBDevice.rst:252
 msgid ""
 "An endpoint that is set to STALL may remain stalled until this function "
 "is called again, or STALL may be cleared automatically by the USB host."
@@ -12690,7 +12711,7 @@ msgstr ""
 "STALL に設定されたエンドポイントは、この関数が再度呼び出されるか、"
 "USBホストによって自動的にクリアされるまで、STALL のままである可能性があります。"
 
-#: ../../library/machine.USBDevice.rst:258
+#: ../../library/machine.USBDevice.rst:268
 msgid ""
 "These constant objects hold the built-in descriptor data which is "
 "compiled into the MicroPython firmware. ``USBDevice.BUILTIN_NONE`` and "
@@ -12703,7 +12724,7 @@ msgstr ""
 "``USBDevice.BUILTIN_DEFAULT`` は常に存在します。ファームウェアのビルド構成と"
 "実際の組み込みドライバによって、追加のオブジェクトが存在する場合があります。"
 
-#: ../../library/machine.USBDevice.rst:263
+#: ../../library/machine.USBDevice.rst:273
 msgid ""
 "Currently at most one of ``USBDevice.BUILTIN_CDC``, "
 "``USBDevice.BUILTIN_MSC`` and ``USBDevice.BUILTIN_CDC_MSC`` is defined "
@@ -12719,7 +12740,7 @@ msgstr ""
 "定義されています。将来的には、複数の組み込みドライバ構成のうちの1つを"
 "選択するサポートが追加されるかもしれません。"
 
-#: ../../library/machine.USBDevice.rst:271
+#: ../../library/machine.USBDevice.rst:281
 msgid ""
 "These values are assigned to :data:`USBDevice.builtin_driver` to get/set "
 "the built-in configuration."
@@ -12727,18 +12748,18 @@ msgstr ""
 "これらの値は、組み込み構成を取得/設定するために "
 ":data:`USBDevice.builtin_driver` に割り当てられます。"
 
-#: ../../library/machine.USBDevice.rst:274
+#: ../../library/machine.USBDevice.rst:284
 msgid "Each object contains the following read-only fields:"
 msgstr "各オブジェクトには、次の読み取り専用フィールドが含まれています:"
 
-#: ../../library/machine.USBDevice.rst:276
+#: ../../library/machine.USBDevice.rst:286
 msgid ""
 "``itf_max`` - One more than the highest bInterfaceNumber value used in "
 "the built-in configuration descriptor."
 msgstr ""
 "``itf_max`` - 組込み構成記述子で使用されるbInterfaceNumber値の最大値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:278
+#: ../../library/machine.USBDevice.rst:288
 msgid ""
 "``ep_max`` - One more than the highest bEndpointAddress value used in the"
 " built-in configuration descriptor. Does not include any ``IN`` flag bit "
@@ -12747,21 +12768,21 @@ msgstr ""
 "``ep_max`` - 組込み構成記述子で使用される bEndpointAddress 値の最大値より"
 "1大きい値。 ``IN`` フラグビット(0x80)は含まれません。"
 
-#: ../../library/machine.USBDevice.rst:281
+#: ../../library/machine.USBDevice.rst:291
 msgid ""
 "``str_max`` - One more than the highest string descriptor index value "
 "used by any built-in descriptor."
 msgstr ""
 "``str_max`` - 任意の組込み記述子で使用される最大の文字列記述子インデックス値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:283
+#: ../../library/machine.USBDevice.rst:293
 msgid ""
 "``desc_dev`` - ``bytes`` object containing the built-in USB device "
 "descriptor."
 msgstr ""
 "``desc_dev`` - 組込み USB デバイス記述子を含むbytesオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:285
+#: ../../library/machine.USBDevice.rst:295
 msgid ""
 "``desc_cfg`` - ``bytes`` object containing the complete built-in USB "
 "configuration descriptor."
@@ -18610,7 +18631,7 @@ msgstr "先頭ビットを最下位ビット(LSB)または最上位ビット(MSB
 
 #: ../../library/pyb.Servo.rst:5
 msgid "class Servo -- 3-wire hobby servo driver"
-msgstr ""
+msgstr "クラス Servo -- 3線ホビー用サーボドライバー"
 
 #: ../../library/pyb.Servo.rst:7
 msgid ""
@@ -18619,6 +18640,10 @@ msgid ""
 "can be plugged in: pins X1 through X4 are the signal pins, and next to "
 "them are 4 sets of power and ground pins."
 msgstr ""
+"Servo オブジェクトは、3本のワイヤー(グラウンド、電源、信号)で接続される"
+"標準的なホビー用サーボモーターを制御します。pyboard 上には、このようなモーターを"
+"接続できるの4つの場所があります: ピン X1 から X4 は信号ピンであり、"
+"その隣には電源とグラウンドの4つのセットのピンがあります。"
 
 #: ../../library/pyb.Servo.rst:14
 msgid ""
@@ -18634,6 +18659,17 @@ msgid ""
 "s1.angle(-60, 1500)\n"
 "s2.angle(30, 1500)"
 msgstr ""
+"import pyb\n"
+"\n"
+"s1 = pyb.Servo(1)   # X1 のサーボオブジェクトを作成\n"
+"s2 = pyb.Servo(2)   # x2 のサーボオブジェクトを作成\n"
+"\n"
+"s1.angle(45)        # サーボ1を45度に移動\n"
+"s2.angle(0)         # サーバ2を0度に移動\n"
+"\n"
+"# サーボ1とサーボ2を同期させて、それぞれを1500ミリ秒かけて移動\n"
+"s1.angle(-60, 1500)\n"
+"s2.angle(30, 1500)"
 
 #: ../../library/pyb.Servo.rst:26
 msgid ""
@@ -18641,24 +18677,29 @@ msgid ""
 "Timer(5) for Servo control, or your own purposes, but not both at the "
 "same time."
 msgstr ""
+"Servo オブジェクトは PWM 出力を生成するために Timer(5) を使います。"
+"Timer(5) を Servo 制御に 使うか、他の目的のために使うことはできますが、"
+"両方の目的のために同時に使うことはできません。"
 
 #: ../../library/pyb.Servo.rst:35
 msgid ""
 "Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through"
 " X4."
 msgstr ""
+"サーボオブジェクトを作成します。 ``id`` は1から4までで、それぞれ X1 から X4 の"
+"ピンに対応します。"
 
 #: ../../library/pyb.Servo.rst:43
 msgid "If no arguments are given, this function returns the current angle."
-msgstr ""
+msgstr "引数が指定されない場合、この関数は現在の角度を返します。"
 
 #: ../../library/pyb.Servo.rst:45
 msgid "If arguments are given, this function sets the angle of the servo:"
-msgstr ""
+msgstr "引数が指定された場合、この関数はサーボの角度を設定します:"
 
 #: ../../library/pyb.Servo.rst:47
 msgid "``angle`` is the angle to move to in degrees."
-msgstr ""
+msgstr "``angle`` は度数で移動する角度です。"
 
 #: ../../library/pyb.Servo.rst:48
 msgid ""
@@ -18666,66 +18707,75 @@ msgid ""
 "angle.  If omitted, then the servo moves as quickly as possible to its "
 "new position."
 msgstr ""
+"``time`` は指定された角度に到達するためにかかるミリ秒数です。"
+"省略した場合、サーボは新しい位置にできるだけ速く移動します。"
 
 #: ../../library/pyb.Servo.rst:54
 msgid "If no arguments are given, this function returns the current speed."
-msgstr ""
+msgstr "引数を指定しない場合、この関数は現在の速度を返します:"
 
 #: ../../library/pyb.Servo.rst:56
 msgid "If arguments are given, this function sets the speed of the servo:"
-msgstr ""
+msgstr "引数を指定した場合、この関数はサーボの速度を設定します:"
 
 #: ../../library/pyb.Servo.rst:58
 msgid "``speed`` is the speed to change to, between -100 and 100."
-msgstr ""
+msgstr "``speed`` は -100 から 100 の間の速度です。"
 
 #: ../../library/pyb.Servo.rst:59
 msgid ""
 "``time`` is the number of milliseconds to take to get to the specified "
 "speed.  If omitted, then the servo accelerates as quickly as possible."
 msgstr ""
+"``time`` は指定された速度に到達するためにかかるミリ秒数です。"
+"省略した場合、サーボはできるだけ速く加速します。"
 
 #: ../../library/pyb.Servo.rst:64
 msgid ""
 "If no arguments are given, this function returns the current raw pulse-"
 "width value."
 msgstr ""
+"引数を指定しない場合、この関数は現在の生のパルス幅値を返します。"
 
 #: ../../library/pyb.Servo.rst:67
 msgid "If an argument is given, this function sets the raw pulse-width value."
 msgstr ""
+"引数を指定した場合、この関数は生のパルス幅値を設定します。
 
 #: ../../library/pyb.Servo.rst:71
 msgid ""
 "If no arguments are given, this function returns the current calibration "
 "data, as a 5-tuple."
 msgstr ""
+"引数を指定しない場合、この関数は現在のキャリブレーションデータを、5つの項目を持つ"
+"タプルで返します。"
 
 #: ../../library/pyb.Servo.rst:74
 msgid "If arguments are given, this function sets the timing calibration:"
-msgstr ""
+msgstr "引数を指定した場合、この関数はタイミングのキャリブレーションを設定します:"
 
 #: ../../library/pyb.Servo.rst:76
 msgid "``pulse_min`` is the minimum allowed pulse width."
-msgstr ""
+msgstr "``pulse_min`` は許容される最小パルス幅です。"
 
 #: ../../library/pyb.Servo.rst:77
 msgid "``pulse_max`` is the maximum allowed pulse width."
-msgstr ""
+msgstr "``pulse_max`` は許容される最大パルス幅です。"
 
 #: ../../library/pyb.Servo.rst:78
 msgid ""
 "``pulse_centre`` is the pulse width corresponding to the centre/zero "
 "position."
 msgstr ""
+"``pulse_centre`` は中央/ゼロ位置に対応するパルス幅です。"
 
 #: ../../library/pyb.Servo.rst:79
 msgid "``pulse_angle_90`` is the pulse width corresponding to 90 degrees."
-msgstr ""
+msgstr "``pulse_angle_90`` は90度に対応するパルス幅です。"
 
 #: ../../library/pyb.Servo.rst:80
 msgid "``pulse_speed_100`` is the pulse width corresponding to a speed of 100."
-msgstr ""
+msgstr "``pulse_speed_100`` は速度100に対応するパルス幅です。"
 
 #: ../../library/pyb.Switch.rst:5
 msgid "class Switch -- switch object"
