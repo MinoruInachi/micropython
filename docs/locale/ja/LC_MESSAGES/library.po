@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-20 17:31+0900\n"
-"PO-Revision-Date: 2024-04-20 18:26+0900\n"
+"POT-Creation-Date: 2024-05-18 09:21+0900\n"
+"PO-Revision-Date: 2024-05-18 11:13+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -437,14 +437,13 @@ msgstr "クラス ThreadSafeFlag"
 msgid ""
 "Create a new flag which can be used to synchronise a task with code "
 "running outside the asyncio loop, such as other threads, IRQs, or "
-"scheduler callbacks.  Flags start in the cleared state.  The class does "
-"not currently work under the Unix build of MicroPython."
+"scheduler callbacks.  Flags start in the cleared state."
 msgstr ""
 "他のスレッド、IRQ、スケジューラコールバックなど、asyncio ループの外部で動作している"
 "コードのタスクを同期するために使えるフラグを新規作成します。フラグはクリアされた状態で"
-"始まります。このクラスは、現在のところ MicroPython の Unix ビルドでは動作しません。"
+"始まります。"
 
-#: ../../library/asyncio.rst:157
+#: ../../library/asyncio.rst:156
 msgid ""
 "Set the flag.  If there is a task waiting on the flag, it will be "
 "scheduled to run."
@@ -452,7 +451,7 @@ msgstr ""
 "フラグを設定します。フラグを待機しているタスクがある場合、そのタスクが実行されるよう"
 "スケジュールされます。"
 
-#: ../../library/asyncio.rst:162
+#: ../../library/asyncio.rst:161
 msgid ""
 "Clear the flag. This may be used to ensure that a possibly previously-set"
 " flag is clear before waiting for it."
@@ -460,7 +459,7 @@ msgstr ""
 "フラグをクリアします。これは、以前に設定した可能性のあるフラグについて、"
 "それを待機する前に確実にクリアするために使います。"
 
-#: ../../library/asyncio.rst:167
+#: ../../library/asyncio.rst:166
 msgid ""
 "Wait for the flag to be set.  If the flag is already set then it returns "
 "immediately.  The flag is automatically reset upon return from ``wait``."
@@ -468,34 +467,34 @@ msgstr ""
 "フラグが設定されるのを待ちます。フラグがすでに設定されている場合はすぐに戻ります。"
 "このフラグは ``wait`` から戻ったときに自動的にリセットされます。"
 
-#: ../../library/asyncio.rst:170
+#: ../../library/asyncio.rst:169
 msgid "A flag may only be waited on by a single task at a time."
 msgstr "フラグは、一度に1つのタスクでのみ待機できます。"
 
-#: ../../library/asyncio.rst:175
+#: ../../library/asyncio.rst:174
 msgid "class Lock"
 msgstr "クラス Lock"
 
-#: ../../library/asyncio.rst:179
+#: ../../library/asyncio.rst:178
 msgid ""
 "Create a new lock which can be used to coordinate tasks.  Locks start in "
 "the unlocked state."
 msgstr ""
 "タスクの調整に使用できる新しいロックを作成します。ロックは解除状態から始まります。"
 
-#: ../../library/asyncio.rst:182
+#: ../../library/asyncio.rst:181
 msgid ""
 "In addition to the methods below, locks can be used in an ``async with`` "
 "statement."
 msgstr ""
 "以下のメソッドに加えて、 ``async with`` ステートメントでロックを使用できます。"
 
-#: ../../library/asyncio.rst:186
+#: ../../library/asyncio.rst:185
 msgid "Returns ``True`` if the lock is locked, otherwise ``False``."
 msgstr ""
 "ロックされていれば ``True`` を返し、さもなければ ``False`` を返します。"
 
-#: ../../library/asyncio.rst:190
+#: ../../library/asyncio.rst:189
 msgid ""
 "Wait for the lock to be in the unlocked state and then lock it in an "
 "atomic way.  Only one task can acquire the lock at any one time."
@@ -503,7 +502,7 @@ msgstr ""
 "ロックが解除状態になるのを待ってから、アトミックな手段でロックします。"
 "一度に1つのタスクのみがロックを取得できます。"
 
-#: ../../library/asyncio.rst:197
+#: ../../library/asyncio.rst:196
 msgid ""
 "Release the lock.  If any tasks are waiting on the lock then the next one"
 " in the queue is scheduled to run and the lock remains locked.  "
@@ -513,11 +512,11 @@ msgstr ""
 "実行されるようスケジュールされ、ロックされたままになります。待機中のタスクが無い場合は、"
 "ロックが解除されます。"
 
-#: ../../library/asyncio.rst:202
+#: ../../library/asyncio.rst:201
 msgid "TCP stream connections"
 msgstr "TCP ストリーム接続"
 
-#: ../../library/asyncio.rst:206
+#: ../../library/asyncio.rst:205
 msgid ""
 "Open a TCP connection to the given *host* and *port*.  The *host* address"
 " will be resolved using `socket.getaddrinfo`, which is currently a "
@@ -532,7 +531,7 @@ msgstr ""
 "トランスポートを作成するのに使われます。 *ssl* が ``True`` であれば、"
 "デフォルトのコンテキストが使われます。"
 
-#: ../../library/asyncio.rst:211
+#: ../../library/asyncio.rst:210
 msgid ""
 "Returns a pair of streams: a reader and a writer stream. Will raise a "
 "socket-specific ``OSError`` if the host could not be resolved or if the "
@@ -542,7 +541,7 @@ msgstr ""
 "ホストを解決できなかった場合、または接続を確立できなかった場合は、
 "ソケット特有の ``OSError`` 例外を発生します。"
 
-#: ../../library/asyncio.rst:219
+#: ../../library/asyncio.rst:218
 msgid ""
 "Start a TCP server on the given *host* and *port*.  The *callback* will "
 "be called with incoming, accepted connections, and be passed 2 arguments:"
@@ -552,7 +551,7 @@ msgstr ""
 "コールバック *callback* は、受信、接続の受入れ、接続時の２つの引数の引き渡し"
 "(読み取りストリームと書き込みストリーム)で呼び出されます。"
 
-#: ../../library/asyncio.rst:223
+#: ../../library/asyncio.rst:222
 msgid ""
 "If *ssl* is a `ssl.SSLContext` object, this context is used to create the"
 " transport."
@@ -560,11 +559,11 @@ msgstr ""
 "*ssl* が `ssl.SSLContext` オブジェクトであれば、このコンテキストが"
 "トランスポートを作成するのに使われます。"
 
-#: ../../library/asyncio.rst:225
+#: ../../library/asyncio.rst:224
 msgid "Returns a `Server` object."
 msgstr "`Server` オブジェクトを返します。"
 
-#: ../../library/asyncio.rst:231
+#: ../../library/asyncio.rst:230
 msgid ""
 "This represents a TCP stream connection.  To minimise code this class "
 "implements both a reader and a writer, and both ``StreamReader`` and "
@@ -574,7 +573,7 @@ msgstr ""
 "このクラスには読み取りと書き込みの両方を実装しています。
 "StreamReader と StreamWriter は両方ともこのクラスの別名となっています。"
 
-#: ../../library/asyncio.rst:237
+#: ../../library/asyncio.rst:236
 msgid ""
 "Get extra information about the stream, given by *v*.  The valid values "
 "for *v* are: ``peername``."
@@ -582,15 +581,15 @@ msgstr ""
 "*v* で指定したストリームに関する追加情報を取得します。 *v* の有効な値は "
 "``peername`` です。"
 
-#: ../../library/asyncio.rst:242
+#: ../../library/asyncio.rst:241
 msgid "Close the stream."
 msgstr "ストリームをクローズします。"
 
-#: ../../library/asyncio.rst:246
+#: ../../library/asyncio.rst:245
 msgid "Wait for the stream to close."
 msgstr "ストリームがクローズするまで待ちます。"
 
-#: ../../library/asyncio.rst:252
+#: ../../library/asyncio.rst:251
 msgid ""
 "Read up to *n* bytes and return them.  If *n* is not provided or -1 then "
 "read all bytes until EOF.  The returned value will be an empty bytes "
@@ -600,30 +599,30 @@ msgstr ""
 "*n* が指定されていないか、または -1 の場合、EOF まで全てのバイトを読み込みます。"
 "バイト列を読み込む前に EOF に達した場合、戻り値は空のバイト列オブジェクトになります。
 
-#: ../../library/asyncio.rst:260
+#: ../../library/asyncio.rst:259
 msgid "Read up to n bytes into *buf* with n being equal to the length of *buf*."
 msgstr "*buf* に最大 n バイトを読み込みます。n は *buf* の長さと同じです。"
 
-#: ../../library/asyncio.rst:262
+#: ../../library/asyncio.rst:261
 msgid "Return the number of bytes read into *buf*."
 msgstr "戻り値は *buf* に読み込んだバイト数です。"
 
-#: ../../library/asyncio.rst:268
+#: ../../library/asyncio.rst:267
 msgid "Read exactly *n* bytes and return them as a bytes object."
 msgstr "正確に *n* バイトを読み込んで、バイト列オブジェクトとして返します。"
 
-#: ../../library/asyncio.rst:270
+#: ../../library/asyncio.rst:269
 msgid ""
 "Raises an ``EOFError`` exception if the stream ends before reading *n* "
 "bytes."
 msgstr ""
 "*n* バイトを読み込む前にストリームが終了すると ``EOFError`` 例外が発生します。"
 
-#: ../../library/asyncio.rst:276
+#: ../../library/asyncio.rst:275
 msgid "Read a line and return it."
 msgstr "1行を読み取って返して返します。"
 
-#: ../../library/asyncio.rst:282
+#: ../../library/asyncio.rst:281
 msgid ""
 "Accumulated *buf* to the output buffer.  The data is only flushed when "
 "`Stream.drain` is called.  It is recommended to call `Stream.drain` "
@@ -633,11 +632,11 @@ msgstr ""
 "ときにのみフラッシュされます。この関数を呼び出した直後には `Stream.drain` を"
 "呼び出すことを勧めます。"
 
-#: ../../library/asyncio.rst:288
+#: ../../library/asyncio.rst:287
 msgid "Drain (write) all buffered output data out to the stream."
 msgstr "バッファリングされたすべての出力データをストリームに排出(書き込み)します。"
 
-#: ../../library/asyncio.rst:294
+#: ../../library/asyncio.rst:293
 msgid ""
 "This represents the server class returned from `start_server`.  It can be"
 " used in an ``async with`` statement to close the server upon exit."
@@ -645,28 +644,28 @@ msgstr ""
 "これは `start_server` から返されるサーバークラスを表します。 "
 "終了時にサーバーを閉じるには ``async with`` ステートメントが使えます。"
 
-#: ../../library/asyncio.rst:299
+#: ../../library/asyncio.rst:298
 msgid "Close the server."
 msgstr "サーバーをクローズします。"
 
-#: ../../library/asyncio.rst:303
+#: ../../library/asyncio.rst:302
 msgid "Wait for the server to close."
 msgstr "サーバーがクローズするまで待ちます。"
 
-#: ../../library/asyncio.rst:308
+#: ../../library/asyncio.rst:307
 msgid "Event Loop"
 msgstr "イベントループ"
 
-#: ../../library/asyncio.rst:312
+#: ../../library/asyncio.rst:311
 msgid "Return the event loop used to schedule and run tasks.  See `Loop`."
 msgstr ""
 "タスクのスケジュールと実行に使うイベントループを返します。 `Loop` を参照してください。"
 
-#: ../../library/asyncio.rst:316
+#: ../../library/asyncio.rst:315
 msgid "Reset the event loop and return it."
 msgstr "イベントループをリセットして返します。"
 
-#: ../../library/asyncio.rst:318
+#: ../../library/asyncio.rst:317
 msgid ""
 "Note: since MicroPython only has a single event loop this function just "
 "resets the loop's state, it does not create a new one."
@@ -674,7 +673,7 @@ msgstr ""
 "注記: MicroPython には1つのイベントループしかないので、この関数は"
 "ループの状態をリセットするだけで、新しいループを作ることはありません。"
 
-#: ../../library/asyncio.rst:323
+#: ../../library/asyncio.rst:322
 msgid ""
 "This represents the object which schedules and runs tasks.  It cannot be "
 "created, use `get_event_loop` instead."
@@ -682,15 +681,15 @@ msgstr ""
 "これはタスクをスケジュールして実行するオブジェクトを表します。"
 "このオブジェクトは直接作成できないので、代わりに `get_event_loop` を使ってください。"
 
-#: ../../library/asyncio.rst:328
+#: ../../library/asyncio.rst:327
 msgid "Create a task from the given *coro* and return the new `Task` object."
 msgstr "指定したコルーチン *coro* からタスクを作成し、新しい `Task` オブジェクトを返します。"
 
-#: ../../library/asyncio.rst:332
+#: ../../library/asyncio.rst:331
 msgid "Run the event loop until `stop()` is called."
 msgstr "`stop()` が呼ばれるまでイベントループを実行します。"
 
-#: ../../library/asyncio.rst:332
+#: ../../library/asyncio.rst:335
 msgid ""
 "Run the given *awaitable* until it completes.  If *awaitable* is not a "
 "task then it will be promoted to one."
@@ -698,15 +697,15 @@ msgstr ""
 "完了するまで、指定した *awaitable* を実行します。 "
 "*awaitable* がタスクでない場合は、タスクに昇格します。"
 
-#: ../../library/asyncio.rst:341
+#: ../../library/asyncio.rst:340
 msgid "Stop the event loop."
 msgstr "イベントループを停止します。"
 
-#: ../../library/asyncio.rst:345
+#: ../../library/asyncio.rst:344
 msgid "Close the event loop."
 msgstr "イベントループをクローズします。"
 
-#: ../../library/asyncio.rst:349
+#: ../../library/asyncio.rst:348
 msgid ""
 "Set the exception handler to call when a Task raises an exception that is"
 " not caught.  The *handler* should accept two arguments: ``(loop, "
@@ -715,18 +714,18 @@ msgstr ""
 "捕捉されない例外をタスクが発生させたときに呼び出される例外ハンドラを設定します。 "
 "*handler* は２つの引数 ``(loop, context)`` をとります。"
 
-#: ../../library/asyncio.rst:354
+#: ../../library/asyncio.rst:353
 msgid ""
 "Get the current exception handler.  Returns the handler, or ``None`` if "
 "no custom handler is set."
 msgstr ""
 "現在の例外ハンドラを取得します。カスタム例外ハンドラを設定していない場合は ``None`` を返します。"
 
-#: ../../library/asyncio.rst:359
+#: ../../library/asyncio.rst:358
 msgid "The default exception handler that is called."
 msgstr "デフォルトの例外ハンドラ。"
 
-#: ../../library/asyncio.rst:363
+#: ../../library/asyncio.rst:362
 msgid ""
 "Call the current exception handler.  The argument *context* is passed "
 "through and is a dictionary containing keys: ``'message'``, "
@@ -12180,31 +12179,26 @@ msgstr ""
 #: ../../library/machine.USBDevice.rst:10
 msgid ""
 "USBDevice provides a low-level Python API for implementing USB device "
-"functions using Python code. This low-level API assumes familiarity with "
-"the USB standard. It's not recommended to use this API directly, instead "
-"install the high-level usbd module from micropython-lib."
+"functions using Python code."
 msgstr ""
 "USBDevice は、Python コードで USB デバイス機能を実装するための低レベル Python API "
-"を提供します。この低レベル API は、USB 標準に精通していることを前提としています。"
-"この API を直接使うことは推奨しません。代わりに micropython-lib から高レベルの "
-"usbd モジュールをインストールしてください。"
+"を提供します。"
 
-#: ../../library/machine.USBDevice.rst:15
+#: ../../library/machine.USBDevice.rst:13
 msgid ""
-"This functionality is very new and the high-level usbd module is not yet "
-"merged into micropython-lib. It can be found `here on GitHub "
-"<https://github.com/micropython/micropython-lib/pull/558>`_."
+"This low-level API assumes familiarity with the USB standard. There are "
+"high-level `usb driver modules in micropython-lib`_ which provide a "
+"simpler interface and more built-in functionality."
 msgstr ""
-"この機能は非常に新しいものであり、高レベルの usbd モジュールはまだ "
-"micropython-lib に統合されていません。"
-"`GitHub のこちら <https://github.com/micropython/micropython-lib/pull/558>`_ "
-"から入手してください。"
+"この低レベル API は、USB 標準に精通していることを前提としています。"
+"高レベル API である `usb driver modules in micropython-lib`_ があり、"
+"より簡単なインターフェースとより多くの組み込み機能を提供しています。"
 
-#: ../../library/machine.USBDevice.rst:20
+#: ../../library/machine.USBDevice.rst:18
 msgid "Terminology"
 msgstr "用語"
 
-#: ../../library/machine.USBDevice.rst:22
+#: ../../library/machine.USBDevice.rst:20
 msgid ""
 "A \"Runtime\" USB device interface or driver is one which is defined "
 "using this Python API after MicroPython initially starts up."
@@ -12212,7 +12206,7 @@ msgstr ""
 "「ランタイム」 - USB デバイスインタフェースまたはドライバーは、MicroPython の"
 "初期スタートアップの後、この Python API を使って定義されるものです。"
 
-#: ../../library/machine.USBDevice.rst:25
+#: ../../library/machine.USBDevice.rst:23
 msgid ""
 "A \"Built-in\" USB device interface or driver is one that is compiled "
 "into the MicroPython firmware, and is always available. Examples are USB-"
@@ -12224,11 +12218,11 @@ msgstr ""
 "有効になっている USB-CDC (シリアルポート)があります。"
 "組み込み USB-MSC (マスストレージ)は一部のポートでオプションとして利用できます。"
 
-#: ../../library/machine.USBDevice.rst:31
+#: ../../library/machine.USBDevice.rst:29
 msgid "Lifecycle"
 msgstr "ライフサイクル"
 
-#: ../../library/machine.USBDevice.rst:33
+#: ../../library/machine.USBDevice.rst:31
 msgid ""
 "Managing a runtime USB interface can be tricky, especially if you are "
 "communicating with MicroPython over a built-in USB-CDC serial port that's"
@@ -12238,7 +12232,7 @@ msgstr ""
 "特に同じ USB デバイスの一部である組込み USB-CDC シリアルポートを介して "
 "MicroPython と通信している場合がそうです。"
 
-#: ../../library/machine.USBDevice.rst:37
+#: ../../library/machine.USBDevice.rst:35
 msgid ""
 "A MicroPython soft reset will always clear all runtime USB interfaces, "
 "which results in the entire USB device disconnecting from the host. If "
@@ -12249,7 +12243,7 @@ msgstr ""
 "結果として USB デバイス全体がホストから切断されます。MicroPython が組込み "
 "USB-CDC シリアルポートも提供している場合、これはソフトリセット後に再び現れます。"
 
-#: ../../library/machine.USBDevice.rst:42
+#: ../../library/machine.USBDevice.rst:40
 msgid ""
 "This means some functions (like ``mpremote run``) that target the USB-CDC"
 " serial port will immediately fail if a runtime USB interface is active, "
@@ -12263,7 +12257,7 @@ msgstr ""
 "ソフトリセット後はもはやランタイム USB インタフェースが存在しないため、2回目の試行で"
 "操作が成功するはずです。"
 
-#: ../../library/machine.USBDevice.rst:48
+#: ../../library/machine.USBDevice.rst:46
 msgid ""
 "To configure a runtime USB device on every boot, it's recommended to "
 "place the configuration code in the ``boot.py`` file on the :ref:`device "
@@ -12277,7 +12271,7 @@ msgstr ""
 "サブシステムが初期化される前(および ``main.py`` の前に)に実行されます。"
 "したがって、ボードを即座にランタイム USB デバイスで起動できます。"
 
-#: ../../library/machine.USBDevice.rst:54
+#: ../../library/machine.USBDevice.rst:52
 msgid ""
 "For development or debugging, it may be convenient to connect a hardware "
 "serial REPL and disable the built-in USB-CDC serial port entirely. Not "
@@ -12291,11 +12285,11 @@ msgstr ""
 "カスタムビルドは ``#define MICROPY_HW_USB_CDC (0)`` と "
 "``#define MICROPY_HW_ENABLE_UART_REPL (1)`` で構成する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:65
+#: ../../library/machine.USBDevice.rst:63
 msgid "Construct a USBDevice object."
 msgstr "USBDevice オブジェクトを構築します。"
 
-#: ../../library/machine.USBDevice.rst:67
+#: ../../library/machine.USBDevice.rst:65
 msgid ""
 "This object is a singleton, each call to this constructor returns the "
 "same object reference."
@@ -12303,7 +12297,7 @@ msgstr ""
 "このオブジェクトはシンゲルトンです。このコンストラクタを呼び出すたびに同じオフジェクト"
 "への参照を返します。"
 
-#: ../../library/machine.USBDevice.rst:75
+#: ../../library/machine.USBDevice.rst:73
 msgid ""
 "Configures the ``USBDevice`` singleton object with the USB runtime device"
 " state and callback functions:"
@@ -12311,7 +12305,7 @@ msgstr ""
 "``USBDevice`` のシンゲルトンオブジェクトを USB ランタイムデバイスの状態と"
 "コールバック関数で構成します:"
 
-#: ../../library/machine.USBDevice.rst:78
+#: ../../library/machine.USBDevice.rst:76
 msgid ""
 "``desc_dev`` - A bytes-like object containing the new USB device "
 "descriptor."
@@ -12319,7 +12313,7 @@ msgstr ""
 "``desc_dev`` - 新しい USB デバイス記述子(USB Device Descriptor)の"
 "値を含むバイト列ライクなオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:81
+#: ../../library/machine.USBDevice.rst:79
 msgid ""
 "``desc_cfg`` - A bytes-like object containing the new USB configuration "
 "descriptor."
@@ -12327,13 +12321,13 @@ msgstr ""
 "``desc_cfg`` - 新しい USB 構成記述子(USB Configuration Descriptor)を"
 "含むバイト列ライクなオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:101
+#: ../../library/machine.USBDevice.rst:99
 msgid "``desc_strs`` - Optional object holding strings or bytes objects"
 msgstr ""
 "``desc_strs`` - USB 文字列記述子(USB String Descriptor)を含む文字列または"
 "バイト列オブジェクトの値を持つオプションのオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:85
+#: ../../library/machine.USBDevice.rst:83
 msgid ""
 "containing USB string descriptor values. Can be a list, a dict, or any "
 "object which supports subscript indexing with integer keys (USB string "
@@ -12342,7 +12336,7 @@ msgstr ""
 "リスト、辞書、整数型のキー(USB 文字列記述子インデックス)を持つ任意のオブジェクトを"
 "指定できます。"
 
-#: ../../library/machine.USBDevice.rst:89
+#: ../../library/machine.USBDevice.rst:87
 msgid ""
 "Strings are an optional USB feature, and this parameter can be unset "
 "(default) if no strings are referenced in the device and configuration "
@@ -12351,7 +12345,7 @@ msgstr ""
 "文字列はオプションの USB 特性であり、デバイス記述子と構成記述子で参照されていない場合、"
 "または組込み文字列のみを使用する場合、このパラメータを設定解除できます(デフォルト)。"
 
-#: ../../library/machine.USBDevice.rst:93
+#: ../../library/machine.USBDevice.rst:91
 msgid ""
 "Apart from index 0, all the string values should be plain ASCII. Index 0 "
 "is the special \"languages\" USB descriptor, represented as a bytes "
@@ -12364,7 +12358,7 @@ msgstr ""
 "フォーマットを持つバイト列オブジェクトとして表されます。デフォルトの \"English\" "
 "言語記述子を使うためには、インデックス 0 で ``None`` を返す必要があります。"
 
-#: ../../library/machine.USBDevice.rst:99
+#: ../../library/machine.USBDevice.rst:97
 msgid ""
 "To fall back to providing a built-in string value for a given index, a "
 "subscript lookup can return ``None``, raise ``KeyError``, or raise "
@@ -12374,7 +12368,7 @@ msgstr ""
 "添字によるルックアップが ``None`` を返すか、 ``KeyError`` を発生させるか、 "
 "``IndexError`` を発生させるかのいずれかです。"
 
-#: ../../library/machine.USBDevice.rst:103
+#: ../../library/machine.USBDevice.rst:101
 msgid ""
 "``open_itf_cb`` - This callback is called once for each interface or "
 "Interface Association Descriptor in response to a Set Configuration "
@@ -12385,7 +12379,7 @@ msgstr ""
 "リクエストに応答して、USB デバイスがホストに利用可能になる直前の最終段階で、"
 "各インターフェースまたはインターフェース関連記述子ごとに1回呼び出されます。"
 
-#: ../../library/machine.USBDevice.rst:108
+#: ../../library/machine.USBDevice.rst:107
 msgid ""
 "The callback takes a single argument, which is a memoryview of the "
 "interface or IAD descriptor that the host is accepting (including all "
@@ -12398,7 +12392,7 @@ msgstr ""
 "これは、この関数に個別の引数として提供された同じ ``desc_cfg`` オブジェクトへの"
 "ビューです。メモリビューは、コールバック関数が戻るまでの間のみ有効です。"
 
-#: ../../library/machine.USBDevice.rst:115
+#: ../../library/machine.USBDevice.rst:113
 msgid ""
 "``reset_cb`` - This callback is called when the USB host performs a bus "
 "reset. The callback takes no arguments. Any in-progress transfers will "
@@ -12411,7 +12405,7 @@ msgstr ""
 "USB ホストはたいてい、ディスクリプタコールバックおよびその後 ``open_itf_cb()`` "
 "を呼び出すことによってUSBデバイスを再列挙します。"
 
-#: ../../library/machine.USBDevice.rst:121
+#: ../../library/machine.USBDevice.rst:119
 msgid ""
 "``control_xfer_cb`` - This callback is called one or more times for each "
 "USB control transfer (device Endpoint 0). It takes two arguments."
@@ -12419,23 +12413,23 @@ msgstr ""
 "``control_xfer_cb`` - このコールバックは、各 USB コントロール転送"
 "(デバイスエンドポイント 0)ごとに1回以上呼び出されます。2つの引数を取ります。"
 
-#: ../../library/machine.USBDevice.rst:125
+#: ../../library/machine.USBDevice.rst:123
 msgid "The first argument is the control transfer stage. It is one of:"
 msgstr "第１引数は、コントロール転送のステージです。次のいずれかです:"
 
-#: ../../library/machine.USBDevice.rst:127
+#: ../../library/machine.USBDevice.rst:125
 msgid "``1`` for SETUP stage."
 msgstr "``1``: SETUP ステージ"
 
-#: ../../library/machine.USBDevice.rst:128
+#: ../../library/machine.USBDevice.rst:126
 msgid "``2`` for DATA stage."
 msgstr "``2``: DATA ステージ"
 
-#: ../../library/machine.USBDevice.rst:129
+#: ../../library/machine.USBDevice.rst:127
 msgid "``3`` for ACK stage."
 msgstr "``3``: ACK ステージ"
 
-#: ../../library/machine.USBDevice.rst:131
+#: ../../library/machine.USBDevice.rst:129
 msgid ""
 "Second argument is a memoryview to read the USB control request data for "
 "this stage. The memoryview is only valid until the callback function "
@@ -12446,7 +12440,7 @@ msgstr ""
 "メモリビューです。メモリビューは、コールバック関数が戻るまでの間のみ有効です。"
 "このメモリビュー内のデータは、単一転送の3つのステージで同一です。"
 
-#: ../../library/machine.USBDevice.rst:136
+#: ../../library/machine.USBDevice.rst:134
 msgid ""
 "A successful transfer consists of this callback being called in sequence "
 "for the three stages. Generally speaking, if a device wants to do "
@@ -12458,11 +12452,11 @@ msgstr ""
 "一般的に、デバイスが制御要求に応答して何かを行う場合、ホストコントローラーが転送を"
 "期待通りに完了したことを確認するために、ACKステージまで待つのが最善です。"
 
-#: ../../library/machine.USBDevice.rst:142
+#: ../../library/machine.USBDevice.rst:140
 msgid "The callback should return one of the following values:"
 msgstr "コールバックは、次のいずれかの値を返す必要があります:"
 
-#: ../../library/machine.USBDevice.rst:144
+#: ../../library/machine.USBDevice.rst:142
 msgid ""
 "``False`` to stall the endpoint and reject the transfer. It won't proceed"
 " to any remaining stages."
@@ -12470,11 +12464,11 @@ msgstr ""
 "エンドポイントをストールして転送を拒否するためには ``False`` を返します。"
 "これにより残りのステージには進まなくなります。"
 
-#: ../../library/machine.USBDevice.rst:146
+#: ../../library/machine.USBDevice.rst:144
 msgid "``True`` to continue the transfer to the next stage."
 msgstr "次のステージに転送を継続するためには ``True`` を返します。"
 
-#: ../../library/machine.USBDevice.rst:147
+#: ../../library/machine.USBDevice.rst:145
 msgid ""
 "A buffer object can be returned at the SETUP stage when the transfer will"
 " send or receive additional data. Typically this is the case when the "
@@ -12487,7 +12481,7 @@ msgstr ""
 "発生します。 ``OUT`` 方向の転送の場合は書き込み可能なバッファである必要がありますし、 "
 "``IN`` 方向の転送の場合はデータを持つ読み取り可能なバッファである必要があります。"
 
-#: ../../library/machine.USBDevice.rst:153
+#: ../../library/machine.USBDevice.rst:151
 msgid ""
 "``xfer_cb`` - This callback is called whenever a non-control transfer "
 "submitted by calling :func:`USBDevice.submit_xfer` completes."
@@ -12495,19 +12489,19 @@ msgstr ""
 "``xfer_cb`` - このコールバックは :func:`USBDevice.submit_xfer` を"
 "呼び出して送信された非制御転送が完了するたびに呼び出されます。"
 
-#: ../../library/machine.USBDevice.rst:156
+#: ../../library/machine.USBDevice.rst:154
 msgid "The callback has three arguments:"
 msgstr "コールバックには3つの引数があります:"
 
-#: ../../library/machine.USBDevice.rst:158
+#: ../../library/machine.USBDevice.rst:156
 msgid "The Endpoint number for the completed transfer."
 msgstr "完了した転送のエンドポイント番号。"
 
-#: ../../library/machine.USBDevice.rst:159
+#: ../../library/machine.USBDevice.rst:157
 msgid "Result value: ``True`` if the transfer succeeded, ``False`` otherwise."
 msgstr "結果値: 転送が成功した場合は ``True`` 、それ以外は ``False`` 。"
 
-#: ../../library/machine.USBDevice.rst:161
+#: ../../library/machine.USBDevice.rst:159
 msgid ""
 "Number of bytes successfully transferred. In the case of a \"short\" "
 "transfer, The result is ``True`` and ``xferred_bytes`` will be smaller "
@@ -12516,7 +12510,7 @@ msgstr ""
 "成功したバイト数。 \"short\" 転送の場合、結果は ``True`` であり、 "
 "``xferred_bytes`` は転送のために提出されたバッファの長さよりも小さくなります。"
 
-#: ../../library/machine.USBDevice.rst:166
+#: ../../library/machine.USBDevice.rst:164
 msgid ""
 "If a bus reset occurs (see :func:`USBDevice.reset`), ``xfer_cb`` is not "
 "called for any transfers that have not already completed."
@@ -12524,7 +12518,7 @@ msgstr ""
 "バスのリセットが発生した場合(:func:`USBDevice.reset` を参照)、 "
 "``xfer_cb`` がまだ完了していない転送に対しては呼び出されません。"
 
-#: ../../library/machine.USBDevice.rst:172
+#: ../../library/machine.USBDevice.rst:170
 msgid ""
 "Returns the current active state of this runtime USB device as a boolean."
 " The runtime USB device is \"active\" when it is available to interact "
@@ -12534,7 +12528,7 @@ msgstr ""
 "USB ランタイムデバイスは、ホストとのやり取りが可能な場合に「アクティブ」ですが、"
 "USB ホストが実際に存在していることを意味するわけではありません。"
 
-#: ../../library/machine.USBDevice.rst:177
+#: ../../library/machine.USBDevice.rst:175
 msgid ""
 "If the optional ``value`` argument is set to a truthy value, then the USB"
 " device will be activated."
@@ -12542,7 +12536,7 @@ msgstr ""
 "オプションの ``value`` 引数が真の値に設定されている場合、"
 "USBデバイスはアクティブになります。"
 
-#: ../../library/machine.USBDevice.rst:180
+#: ../../library/machine.USBDevice.rst:178
 msgid ""
 "If the optional ``value`` argument is set to a falsey value, then the USB"
 " device is deactivated. While the USB device is deactivated, it will not "
@@ -12552,7 +12546,7 @@ msgstr ""
 "USB デバイスは非アクティブになります。USBデバイスが非アクティブの間は、"
 "USB ホストによって検出されません。"
 
-#: ../../library/machine.USBDevice.rst:184
+#: ../../library/machine.USBDevice.rst:182
 msgid ""
 "To simulate a disconnect and a reconnect of the USB device, call "
 "``active(False)`` followed by ``active(True)``. This may be necessary if "
@@ -12564,7 +12558,7 @@ msgstr ""
 "構成が変更された場合、すなわちホストが新しいデバイスを認識した場合に、"
 "必要な場合があります。"
 
-#: ../../library/machine.USBDevice.rst:191
+#: ../../library/machine.USBDevice.rst:189
 msgid ""
 "This attribute holds the current built-in driver configuration, and must "
 "be set to one of the ``USBDevice.BUILTIN_`` named constants defined on "
@@ -12573,11 +12567,11 @@ msgstr ""
 "この属性は、現在の組み込みドライバー構成を保持し、このオブジェクトで定義された "
 "``USBDevice.BUILTIN_`` 名前付き定数のいずれかに設定する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:194
+#: ../../library/machine.USBDevice.rst:192
 msgid "By default it holds the value :data:`USBDevice.BUILTIN_NONE`."
 msgstr "デフォルトでは :data:`USBDevice.BUILTIN_NONE` の値が保持されます。"
 
-#: ../../library/machine.USBDevice.rst:196
+#: ../../library/machine.USBDevice.rst:194
 msgid ""
 "Runtime USB device must be inactive when setting this field. Call the "
 ":func:`USBDevice.active` function to deactivate before setting if "
@@ -12587,7 +12581,7 @@ msgstr ""
 "なりません。設定が必要な場合(設定後に再度アクティブにする)には、"
 "設定する前に :func:`USBDevice.active` 関数を呼び出して非アクティブにしてください。"
 
-#: ../../library/machine.USBDevice.rst:200
+#: ../../library/machine.USBDevice.rst:198
 msgid ""
 "If this value is set to any value other than "
 ":data:`USBDevice.BUILTIN_NONE` then the following restrictions apply to "
@@ -12596,7 +12590,7 @@ msgstr ""
 "この値が :data:`USBDevice.BUILTIN_NONE` 以外の値に設定されている場合、"
 "次の制限が :func:`USBDevice.config` の引数に適用されます:"
 
-#: ../../library/machine.USBDevice.rst:203
+#: ../../library/machine.USBDevice.rst:201
 msgid ""
 "``desc_cfg`` should begin with the built-in USB interface descriptor data"
 " accessible via :data:`USBDevice.builtin_driver` attribute ``desc_cfg``. "
@@ -12611,7 +12605,7 @@ msgstr ""
 "``itf_max``, ``str_max``, ``ep_max`` で定義された最大組込み値を開始として、"
 "インタフェース、文字列、エンドポイント番号を使用する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:210
+#: ../../library/machine.USBDevice.rst:208
 msgid ""
 "The ``bNumInterfaces`` field in the built-in configuration descriptor "
 "will also need to be updated if any new interfaces are appended to the "
@@ -12620,7 +12614,7 @@ msgstr ""
 "``desc_cfg`` の末尾に新しいインターフェースが追加された場合、"
 "組込み構成記述子内の ``bNumInterfaces`` フィールドも更新する必要があります。 "
 
-#: ../../library/machine.USBDevice.rst:214
+#: ../../library/machine.USBDevice.rst:212
 msgid ""
 "``desc_strs`` should either be ``None`` or a list/dictionary where index "
 "values less than ``USBDevice.builtin_driver.str_max`` are missing or have"
@@ -12634,7 +12628,7 @@ msgstr ""
 "予約されます。これらのインデックスのいずれかに異なる文字列を配置すると、"
 "組込みドライバーのその文字列がオーバーライドされます。"
 
-#: ../../library/machine.USBDevice.rst:222
+#: ../../library/machine.USBDevice.rst:220
 msgid ""
 "Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be an "
 "object implementing the buffer interface, with read access for ``IN`` "
@@ -12645,7 +12639,7 @@ msgstr ""
 "``OUT`` エンドポイントに対して書き込みアクセスを持つバッファインタフェースを"
 "実装するオブジェクトでなければなりません。"
 
-#: ../../library/machine.USBDevice.rst:226
+#: ../../library/machine.USBDevice.rst:224
 msgid ""
 "``ep`` cannot be the control Endpoint number 0. Control transfers are "
 "built up through successive executions of ``control_xfer_cb``, see above."
@@ -12653,7 +12647,7 @@ msgstr ""
 "``ep`` は制御エンドポイント番号0にすることはできません。"
 "制御転送は ``control_xfer_cb`` を連続して実行することによって構築されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:230
+#: ../../library/machine.USBDevice.rst:228
 msgid ""
 "Returns ``True`` if successful, ``False`` if the transfer could not be "
 "queued (as USB device is not configured by host, or because another "
@@ -12663,15 +12657,15 @@ msgstr ""
 "``False`` を返します(USB デバイスがホストによって構成されていないか、"
 "このエンドポイントに別の転送がキューに入れられているため)。"
 
-#: ../../library/machine.USBDevice.rst:234
+#: ../../library/machine.USBDevice.rst:232
 msgid ""
 "When the USB host completes the transfer, the ``xfer_cb`` callback is "
 "called (see above)."
 msgstr ""
 "USB ホストが転送を完了すると ``xfer_cb`` コールバックが呼び出されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:237
-#: ../../library/machine.USBDevice.rst:256
+#: ../../library/machine.USBDevice.rst:235
+#: ../../library/machine.USBDevice.rst:254
 msgid ""
 "Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not "
 "active."
@@ -12679,16 +12673,16 @@ msgstr ""
 "USB デバイスがアクティブでない場合 ``OSError`` が発生し、"
 "理由として ``MP_EINVAL`` が指定されます。"
 
-#: ../../library/machine.USBDevice.rst:242
+#: ../../library/machine.USBDevice.rst:240
 msgid "Calling this function gets or sets the STALL state of a device endpoint."
 msgstr ""
 "この関数を呼び出すと、デバイスのエンドポイントの STALL 状態を取得または設定します。"
 
-#: ../../library/machine.USBDevice.rst:244
+#: ../../library/machine.USBDevice.rst:242
 msgid "``ep`` is the number of the endpoint."
 msgstr "``ep`` はエンドポイントの番号です。"
 
-#: ../../library/machine.USBDevice.rst:246
+#: ../../library/machine.USBDevice.rst:244
 msgid ""
 "If the optional ``stall`` parameter is set, this is a boolean flag for "
 "the STALL state."
@@ -12696,14 +12690,14 @@ msgstr ""
 "オプションの ``stall`` パラメータが設定されている場合、これは ``STALL`` "
 "状態のブールフラグです。"
 
-#: ../../library/machine.USBDevice.rst:249
+#: ../../library/machine.USBDevice.rst:247
 msgid ""
 "The return value is the current stall state of the endpoint (before any "
 "change made by this function)."
 msgstr ""
 "戻り値は、この関数によって行われた変更前のエンドポイントの現在の stall 状態です。"
 
-#: ../../library/machine.USBDevice.rst:252
+#: ../../library/machine.USBDevice.rst:250
 msgid ""
 "An endpoint that is set to STALL may remain stalled until this function "
 "is called again, or STALL may be cleared automatically by the USB host."
@@ -12711,7 +12705,7 @@ msgstr ""
 "STALL に設定されたエンドポイントは、この関数が再度呼び出されるか、"
 "USBホストによって自動的にクリアされるまで、STALL のままである可能性があります。"
 
-#: ../../library/machine.USBDevice.rst:268
+#: ../../library/machine.USBDevice.rst:266
 msgid ""
 "These constant objects hold the built-in descriptor data which is "
 "compiled into the MicroPython firmware. ``USBDevice.BUILTIN_NONE`` and "
@@ -12724,7 +12718,7 @@ msgstr ""
 "``USBDevice.BUILTIN_DEFAULT`` は常に存在します。ファームウェアのビルド構成と"
 "実際の組み込みドライバによって、追加のオブジェクトが存在する場合があります。"
 
-#: ../../library/machine.USBDevice.rst:273
+#: ../../library/machine.USBDevice.rst:271
 msgid ""
 "Currently at most one of ``USBDevice.BUILTIN_CDC``, "
 "``USBDevice.BUILTIN_MSC`` and ``USBDevice.BUILTIN_CDC_MSC`` is defined "
@@ -12740,7 +12734,7 @@ msgstr ""
 "定義されています。将来的には、複数の組み込みドライバ構成のうちの1つを"
 "選択するサポートが追加されるかもしれません。"
 
-#: ../../library/machine.USBDevice.rst:281
+#: ../../library/machine.USBDevice.rst:279
 msgid ""
 "These values are assigned to :data:`USBDevice.builtin_driver` to get/set "
 "the built-in configuration."
@@ -12748,18 +12742,18 @@ msgstr ""
 "これらの値は、組み込み構成を取得/設定するために "
 ":data:`USBDevice.builtin_driver` に割り当てられます。"
 
-#: ../../library/machine.USBDevice.rst:284
+#: ../../library/machine.USBDevice.rst:282
 msgid "Each object contains the following read-only fields:"
 msgstr "各オブジェクトには、次の読み取り専用フィールドが含まれています:"
 
-#: ../../library/machine.USBDevice.rst:286
+#: ../../library/machine.USBDevice.rst:284
 msgid ""
 "``itf_max`` - One more than the highest bInterfaceNumber value used in "
 "the built-in configuration descriptor."
 msgstr ""
 "``itf_max`` - 組込み構成記述子で使用されるbInterfaceNumber値の最大値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:288
+#: ../../library/machine.USBDevice.rst:286
 msgid ""
 "``ep_max`` - One more than the highest bEndpointAddress value used in the"
 " built-in configuration descriptor. Does not include any ``IN`` flag bit "
@@ -12768,21 +12762,21 @@ msgstr ""
 "``ep_max`` - 組込み構成記述子で使用される bEndpointAddress 値の最大値より"
 "1大きい値。 ``IN`` フラグビット(0x80)は含まれません。"
 
-#: ../../library/machine.USBDevice.rst:291
+#: ../../library/machine.USBDevice.rst:289
 msgid ""
 "``str_max`` - One more than the highest string descriptor index value "
 "used by any built-in descriptor."
 msgstr ""
 "``str_max`` - 任意の組込み記述子で使用される最大の文字列記述子インデックス値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:293
+#: ../../library/machine.USBDevice.rst:291
 msgid ""
 "``desc_dev`` - ``bytes`` object containing the built-in USB device "
 "descriptor."
 msgstr ""
 "``desc_dev`` - 組込み USB デバイス記述子を含むbytesオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:295
+#: ../../library/machine.USBDevice.rst:293
 msgid ""
 "``desc_cfg`` - ``bytes`` object containing the complete built-in USB "
 "configuration descriptor."
