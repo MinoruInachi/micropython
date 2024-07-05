@@ -2,16 +2,16 @@
 
 Core language
 =============
-Generated Wed 07 Feb 2024 12:13:19 UTC
+Generated Fri 05 Jul 2024 06:33:57 UTC
 
 .. _cpydiff_core_fstring_concat:
 
-f-strings don't support concatenation with adjacent literals if the adjacent literals contain braces or are f-strings
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+f-strings don't support concatenation with adjacent literals if the adjacent literals contain braces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Cause:** MicroPython is optimised for code space.
 
-**Workaround:** Use the + operator between literal strings when either or both are f-strings
+**Workaround:** Use the + operator between literal strings when they are not both f-strings
 
 Sample code::
 
@@ -21,19 +21,18 @@ Sample code::
     print(f"{x}" "ab")  # works
     print("a{}a" f"{x}")  # fails
     print(f"{x}" "a{}b")  # fails
-    print(f"{x}" f"{y}")  # fails
 
-+-------------+----------------------------------------+
-| CPy output: | uPy output:                            |
-+-------------+----------------------------------------+
-| ::          | ::                                     |
-|             |                                        |
-|     aa1     |     Traceback (most recent call last): |
-|     1ab     |       File "<stdin>", line 13          |
-|     a{}a1   |     SyntaxError: invalid syntax        |
-|     1a{}b   |                                        |
-|     12      |                                        |
-+-------------+----------------------------------------+
++-------------+--------------------------------------------+
+| CPy output: | uPy output:                                |
++-------------+--------------------------------------------+
+| ::          | ::                                         |
+|             |                                            |
+|     aa1     |     aa1                                    |
+|     1ab     |     1ab                                    |
+|     a{}a1   |     Traceback (most recent call last):     |
+|     1a{}b   |       File "<stdin>", line 11, in <module> |
+|             |     IndexError: tuple index out of range   |
++-------------+--------------------------------------------+
 
 .. _cpydiff_core_fstring_parser:
 
@@ -59,28 +58,6 @@ Sample code::
 |     hello ] world |       File "<stdin>", line 9           |
 |                   |     SyntaxError: invalid syntax        |
 +-------------------+----------------------------------------+
-
-.. _cpydiff_core_fstring_raw:
-
-Raw f-strings are not supported
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** MicroPython is optimised for code space.
-
-Sample code::
-
-    
-    rf"hello"
-
-+-------------+--------------------------------------------------+
-| CPy output: | uPy output:                                      |
-+-------------+--------------------------------------------------+
-|             | ::                                               |
-|             |                                                  |
-|             |     Traceback (most recent call last):           |
-|             |       File "<stdin>", line 8                     |
-|             |     SyntaxError: raw f-strings are not supported |
-+-------------+--------------------------------------------------+
 
 .. _cpydiff_core_fstring_repr:
 
@@ -169,6 +146,50 @@ Sample code::
 |             |               |
 |     Foo     |     (1, 2, 3) |
 +-------------+---------------+
+
+.. _cpydiff_core_class_name_mangling:
+
+Private Class Members name mangling is not implemented
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** The MicroPython compiler does not implement name mangling for private class members.
+
+**Workaround:** Avoid using or having a collision with global names, by adding a unique prefix to the private class member name manually.
+
+Sample code::
+
+    
+    
+    def __print_string(string):
+        print(string)
+    
+    
+    class Foo:
+        def __init__(self, string):
+            self.string = string
+    
+        def do_print(self):
+            __print_string(self.string)
+    
+    
+    example_string = "Example String to print."
+    
+    class_item = Foo(example_string)
+    print(class_item.string)
+    
+    class_item.do_print()
+
++------------------------------------------------------------------------------------------+------------------------------+
+| CPy output:                                                                              | uPy output:                  |
++------------------------------------------------------------------------------------------+------------------------------+
+| ::                                                                                       | ::                           |
+|                                                                                          |                              |
+|     Example String to print.                                                             |     Example String to print. |
+|     Traceback (most recent call last):                                                   |     Example String to print. |
+|       File "<stdin>", line 26, in <module>                                               |                              |
+|       File "<stdin>", line 18, in do_print                                               |                              |
+|     NameError: name '_Foo__print_string' is not defined. Did you mean: '__print_string'? |                              |
++------------------------------------------------------------------------------------------+------------------------------+
 
 .. _cpydiff_core_class_supermultiple:
 
@@ -410,7 +431,7 @@ Sample code::
 +----------------+---------------------------------------------------------------------------------------------+
 | ::             | ::                                                                                          |
 |                |                                                                                             |
-|     {'val': 2} |     {'test': <function test at 0x16000e260>, '__name__': '__main__', '__file__': '<stdin>'} |
+|     {'val': 2} |     {'test': <function test at 0x13800e260>, '__name__': '__main__', '__file__': '<stdin>'} |
 +----------------+---------------------------------------------------------------------------------------------+
 
 .. _cpydiff_core_locals_eval:
@@ -485,13 +506,13 @@ Sample code::
     
     print(modules.__path__)
 
-+------------------------------------------------------------------------+------------------------------+
-| CPy output:                                                            | uPy output:                  |
-+------------------------------------------------------------------------+------------------------------+
-| ::                                                                     | ::                           |
-|                                                                        |                              |
-|     ['/Volumes/bufext/work/mpy/tmp/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff/modules |
-+------------------------------------------------------------------------+------------------------------+
++------------------------------------------------------------------------------+------------------------------+
+| CPy output:                                                                  | uPy output:                  |
++------------------------------------------------------------------------------+------------------------------+
+| ::                                                                           | ::                           |
+|                                                                              |                              |
+|     ['/Volumes/bufext/work/mpy/cardputer/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff/modules |
++------------------------------------------------------------------------------+------------------------------+
 
 .. _cpydiff_core_import_split_ns_pkgs:
 

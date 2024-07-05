@@ -2,7 +2,7 @@
 
 Modules
 =======
-Generated Wed 07 Feb 2024 12:13:19 UTC
+Generated Fri 05 Jul 2024 06:33:57 UTC
 
 .. Preamble section inserted into generated output
 
@@ -189,33 +189,6 @@ Sample code::
 |             |     TypeError: function takes 1 positional arguments but 2 were given |
 +-------------+-----------------------------------------------------------------------+
 
-deque
------
-
-.. _cpydiff_modules_deque:
-
-Deque not implemented
-~~~~~~~~~~~~~~~~~~~~~
-
-**Workaround:** Use regular lists. micropython-lib has implementation of collections.deque.
-
-Sample code::
-
-    import collections
-    
-    D = collections.deque()
-    print(D)
-
-+---------------+-----------------------------------------------------------------+
-| CPy output:   | uPy output:                                                     |
-+---------------+-----------------------------------------------------------------+
-| ::            | ::                                                              |
-|               |                                                                 |
-|     deque([]) |     Traceback (most recent call last):                          |
-|               |       File "<stdin>", line 9, in <module>                       |
-|               |     TypeError: function missing 2 required positional arguments |
-+---------------+-----------------------------------------------------------------+
-
 json
 ----
 
@@ -330,7 +303,7 @@ Sample code::
 +--------------------------+--------------------------------------------+
 | ::                       | ::                                         |
 |                          |                                            |
-|     10504416032882596038 |     Traceback (most recent call last):     |
+|     14669065511843755481 |     Traceback (most recent call last):     |
 |                          |       File "<stdin>", line 11, in <module> |
 |                          |     ValueError: bits must be 32 or less    |
 +--------------------------+--------------------------------------------+
@@ -358,7 +331,7 @@ Sample code::
 +-----------------------------------------------+-----------------------------------------------------------------+
 | ::                                            | ::                                                              |
 |                                               |                                                                 |
-|     x=340282366920938463463374607431768211455 |     Traceback (most recent call last):                          |
+|     x=340282366920938463463374607431768211456 |     Traceback (most recent call last):                          |
 |                                               |       File "<stdin>", line 11, in <module>                      |
 |                                               |     OverflowError: overflow converting long int to machine word |
 +-----------------------------------------------+-----------------------------------------------------------------+

@@ -2,7 +2,7 @@
 
 Builtin types
 =============
-Generated Wed 07 Feb 2024 12:13:19 UTC
+Generated Fri 05 Jul 2024 06:33:57 UTC
 
 Exception
 ---------
@@ -373,6 +373,37 @@ Sample code::
 |             |     TypeError: unsupported types for __radd__: 'int', 'int' |
 +-------------+-------------------------------------------------------------+
 
+.. _cpydiff_types_int_to_bytes:
+
+``to_bytes`` method doesn't implement signed parameter.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** The ``signed`` keyword-only parameter is not implemented for ``int.to_bytes()``.
+
+When the integer is negative, MicroPython behaves the same as CPython ``int.to_bytes(..., signed=True)``
+
+When the integer is non-negative, MicroPython behaves the same as CPython ``int.to_bytes(..., signed=False)``.
+
+(The difference is subtle, but in CPython a positive integer converted with ``signed=True`` may require one byte more in the output length, in order to fit the 0 sign bit.)
+
+**Workaround:** Take care when calling ``to_bytes()`` on an integer value which may be negative.
+
+Sample code::
+
+    
+    x = -1
+    print(x.to_bytes(1, "big"))
+
++-----------------------------------------------------------+-------------+
+| CPy output:                                               | uPy output: |
++-----------------------------------------------------------+-------------+
+| ::                                                        | ::          |
+|                                                           |             |
+|     Traceback (most recent call last):                    |     b'\xff' |
+|       File "<stdin>", line 16, in <module>                |             |
+|     OverflowError: can't convert negative int to unsigned |             |
++-----------------------------------------------------------+-------------+
+
 list
 ----
 
@@ -446,6 +477,37 @@ Sample code::
 |                  |       File "<stdin>", line 8, in <module> |
 |                  |     NotImplementedError:                  |
 +------------------+-------------------------------------------+
+
+memoryview
+----------
+
+.. _cpydiff_types_memoryview_invalid:
+
+memoryview can become invalid if its target is resized
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** CPython prevents a ``bytearray`` or ``io.bytesIO`` object from changing size while there is a ``memoryview`` object that references it. MicroPython requires the programmer to manually ensure that an object is not resized while any ``memoryview`` references it.
+
+In the worst case scenario, resizing an object which is the target of a memoryview can cause the memoryview(s) to reference invalid freed memory (a use-after-free bug) and corrupt the MicroPython runtime.
+
+**Workaround:** Do not change the size of any ``bytearray`` or ``io.bytesIO`` object that has a ``memoryview`` assigned to it.
+
+Sample code::
+
+    b = bytearray(b"abcdefg")
+    m = memoryview(b)
+    b.extend(b"hijklmnop")
+    print(b, bytes(m))
+
++----------------------------------------------------------------------+-----------------------------------------------+
+| CPy output:                                                          | uPy output:                                   |
++----------------------------------------------------------------------+-----------------------------------------------+
+| ::                                                                   | ::                                            |
+|                                                                      |                                               |
+|     Traceback (most recent call last):                               |     bytearray(b'abcdefghijklmnop') b'abcdefg' |
+|       File "<stdin>", line 11, in <module>                           |                                               |
+|     BufferError: Existing exports of data: object cannot be re-sized |                                               |
++----------------------------------------------------------------------+-----------------------------------------------+
 
 str
 ---

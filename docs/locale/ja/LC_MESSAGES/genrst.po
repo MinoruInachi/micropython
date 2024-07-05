@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 21:14+0900\n"
-"PO-Revision-Date: 2024-02-09 00:09+0900\n"
+"POT-Creation-Date: 2024-07-05 15:39+0900\n"
+"PO-Revision-Date: 2024-07-05 18:07+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -400,6 +400,68 @@ msgid ""
 "TypeError: unsupported types for __radd__: 'int', 'int'"
 msgstr ""
 
+#: ../../genrst/builtin_types.rst:379
+msgid "``to_bytes`` method doesn't implement signed parameter."
+msgstr "``to_bytes`` メソッドは signed パラメータを実装していない。"
+
+#: ../../genrst/builtin_types.rst:381
+msgid ""
+"**Cause:** The ``signed`` keyword-only parameter is not implemented for "
+"``int.to_bytes()``."
+msgstr ""
+"**原因:** ``int.to_bytes()`` 用にキーワード専用パラメータ ``signed`` が"
+"未実装。"
+
+#: ../../genrst/builtin_types.rst:383
+msgid ""
+"When the integer is negative, MicroPython behaves the same as CPython "
+"``int.to_bytes(..., signed=True)``"
+msgstr ""
+"整数が負の場合、MicroPython は CPython の ``int.to_bytes(..., signed=True)`` "
+"と同じ動作をします。"
+
+#: ../../genrst/builtin_types.rst:385
+msgid ""
+"When the integer is non-negative, MicroPython behaves the same as CPython"
+" ``int.to_bytes(..., signed=False)``."
+msgstr ""
+"整数が正の場合、MicroPythonは CPython の ``int.to_bytes(..., signed=False)`` "
+"と同じ動作をします。"
+
+#: ../../genrst/builtin_types.rst:387
+msgid ""
+"(The difference is subtle, but in CPython a positive integer converted "
+"with ``signed=True`` may require one byte more in the output length, in "
+"order to fit the 0 sign bit.)"
+msgstr ""
+"(微妙な違いではありますが、CPython では ``signed=True`` を指定して正の整数を"
+"変換する場合、符号ビット0を収めるために出力長が1バイト多くなることがあります。)"
+
+#: ../../genrst/builtin_types.rst:389
+msgid ""
+"**Workaround:** Take care when calling ``to_bytes()`` on an integer value"
+" which may be negative."
+msgstr ""
+"**回避策:** 負の値になる可能性がある整数値に対して ``to_bytes()`` を呼び出す際には"
+"注意してください。"
+
+#: ../../genrst/builtin_types.rst:394
+msgid ""
+"x = -1\n"
+"print(x.to_bytes(1, \"big\"))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:402
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 16, in <module>\n"
+"OverflowError: can't convert negative int to unsigned"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:402
+msgid "b'\\xff'"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:377
 msgid "list"
 msgstr ""
@@ -476,6 +538,62 @@ msgstr ""
 
 #: ../../genrst/builtin_types.rst:445
 msgid "[5, 2, 6, 4]"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:482
+msgid "memoryview"
+msgstr "メモリービュー"
+
+#: ../../genrst/builtin_types.rst:487
+msgid "memoryview can become invalid if its target is resized"
+msgstr "memoryview のターゲットのリサイズは無効になる可能性がある"
+
+#: ../../genrst/builtin_types.rst:489
+msgid ""
+"**Cause:** CPython prevents a ``bytearray`` or ``io.bytesIO`` object from"
+" changing size while there is a ``memoryview`` object that references it."
+" MicroPython requires the programmer to manually ensure that an object is"
+" not resized while any ``memoryview`` references it."
+msgstr ""
+"**原因:** CPythonは、memoryview オブジェクトが参照している間に ``bytearray`` や "
+"``io.bytesIO`` オブジェクトのサイズ変更を防ぎます。MicroPythonでは、オブジェクトが "
+"memoryview で参照されている間にプログラマーが手動でリサイズしないようにする必要があります。"
+
+#: ../../genrst/builtin_types.rst:491
+msgid ""
+"In the worst case scenario, resizing an object which is the target of a "
+"memoryview can cause the memoryview(s) to reference invalid freed memory "
+"(a use-after-free bug) and corrupt the MicroPython runtime."
+msgstr ""
+"最悪のケースでは、memoryview のターゲットとなるオブジェクトをリサイズすると、"
+"memoryview が無効な解放されたメモリを参照する可能性があり(解放後使用バグ)、"
+"MicroPython のランタイムを破損させることがあります。"
+
+#: ../../genrst/builtin_types.rst:493
+msgid ""
+"**Workaround:** Do not change the size of any ``bytearray`` or "
+"``io.bytesIO`` object that has a ``memoryview`` assigned to it."
+msgstr ""
+"**回避策:** memoryview が割り当てられている ``bytearray`` または "
+"``io.bytesIO`` オブジェクトのサイズを変更しないでください。"
+
+#: ../../genrst/builtin_types.rst:497
+msgid ""
+"b = bytearray(b\"abcdefg\")\n"
+"m = memoryview(b)\n"
+"b.extend(b\"hijklmnop\")\n"
+"print(b, bytes(m))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:507
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"BufferError: Existing exports of data: object cannot be re-sized"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:507
+msgid "bytearray(b'abcdefghijklmnop') b'abcdefg'"
 msgstr ""
 
 #: ../../genrst/builtin_types.rst:451
@@ -633,9 +751,9 @@ msgstr "コア言語"
 #: ../../genrst/core_language.rst:10
 msgid ""
 "f-strings don't support concatenation with adjacent literals if the "
-"adjacent literals contain braces or are f-strings"
+"adjacent literals contain braces"
 msgstr ""
-"f-string は、隣接するリテラルが中括弧を含むかf-stringである場合、隣接するリテラル"
+"f-string は、隣接するリテラルが中括弧を含んでいる場合、隣接するリテラル"
 "との連結をサポートしない。"
 
 #: ../../genrst/core_language.rst:12 ../../genrst/core_language.rst:43
@@ -646,11 +764,10 @@ msgstr "**原因:** MicroPython はコードスペースに最適化されてい
 
 #: ../../genrst/core_language.rst:14
 msgid ""
-"**Workaround:** Use the + operator between literal strings when either or"
-" both are f-strings"
+"**Workaround:** Use the + operator between literal strings when they are "
+"not both f-strings"
 msgstr ""
-"**回避策:** どちらか一方または両方がf-stringの場合、リテラル文字列の間に + 演算子を"
-"使う。"
+"**回避策:** 両方が f-string でない場合、リテラル文字列の間に + 演算子を使う。"
 
 #: ../../genrst/core_language.rst:41
 msgid ""
@@ -760,6 +877,64 @@ msgstr ""
 
 #: ../../genrst/core_language.rst:170
 msgid "(1, 2, 3)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:153
+msgid "Private Class Members name mangling is not implemented"
+msgstr "プライベートなクラスメンバーの名前のマングリングは未実装"
+
+#: ../../genrst/core_language.rst:155
+msgid ""
+"**Cause:** The MicroPython compiler does not implement name mangling for "
+"private class members."
+msgstr ""
+"**原因:** MicroPython コンパイラはプライベートクラスメンバーの名前のマングリングを"
+"実装していない。"
+
+#: ../../genrst/core_language.rst:157
+msgid ""
+"**Workaround:** Avoid using or having a collision with global names, by "
+"adding a unique prefix to the private class member name manually."
+msgstr ""
+"**回避策:** グローバル名との衝突を避けるため、手動でプライベートクラスメンバー名に"
+"一意のプレフィックスを追加してください。"
+
+#: ../../genrst/core_language.rst:163
+msgid ""
+"def __print_string(string):\n"
+"    print(string)\n"
+"\n"
+"\n"
+"class Foo:\n"
+"    def __init__(self, string):\n"
+"        self.string = string\n"
+"\n"
+"    def do_print(self):\n"
+"        __print_string(self.string)\n"
+"\n"
+"\n"
+"example_string = \"Example String to print.\"\n"
+"\n"
+"class_item = Foo(example_string)\n"
+"print(class_item.string)\n"
+"\n"
+"class_item.do_print()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:187
+msgid ""
+"Example String to print.\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 26, in <module>\n"
+"  File \"<stdin>\", line 18, in do_print\n"
+"NameError: name '_Foo__print_string' is not defined. Did you mean: "
+"'__print_string'?"
+msgstr ""
+
+#: ../../genrst/core_language.rst:187
+msgid ""
+"Example String to print.\n"
+"Example String to print."
 msgstr ""
 
 #: ../../genrst/core_language.rst:176
@@ -1124,7 +1299,7 @@ msgstr ""
 
 #: ../../genrst/core_language.rst:478
 msgid ""
-"**Cause:** MicroPython does't support namespace packages split across "
+"**Cause:** MicroPython doesn't support namespace packages split across "
 "filesystem. Beyond that, MicroPython's import system is highly optimized "
 "for minimal memory usage."
 msgstr ""
@@ -1156,7 +1331,7 @@ msgid "../tests/cpydiff/modules"
 msgstr ""
 
 #: ../../genrst/core_language.rst:499
-msgid "MicroPython does't support namespace packages split across filesystem."
+msgid "MicroPython doesn't support namespace packages split across filesystem."
 msgstr "MicroPythonはファイルシステムをまたぐ名前空間パッケージには対応していない。"
 
 #: ../../genrst/core_language.rst:501

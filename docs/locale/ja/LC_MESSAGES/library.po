@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 09:21+0900\n"
-"PO-Revision-Date: 2024-05-18 11:13+0900\n"
+"POT-Creation-Date: 2024-07-05 15:39+0900\n"
+"PO-Revision-Date: 2024-07-05 16:44+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2648,20 +2648,30 @@ msgstr ""
 "MicroPython では `byteorder` は位置パラメータでなければなりません(位置"
 "パラメータとすることは CPython でも可能です)。"
 
-#: ../../library/builtins.rst:135
+#: ../../library/builtins.rst:85
+msgid ""
+"The optional ``signed`` kwarg from CPython is not supported. MicroPython "
+"currently converts negative integers as signed, and positive as unsigned."
+" (:ref:`Details <cpydiff_types_int_to_bytes>`.)"
+msgstr ""
+"CPython にあるオプションの ``signed`` キーワード引数はサポートしていません。"
+"MicroPython は、現在のところ負の整数は符号付き、正の整数は符号なしとして変換します。"
+" (:ref:`詳細 <cpydiff_types_int_to_bytes>`.)"
+
+#: ../../library/builtins.rst:139
 msgid "The *slice* builtin is the type that slice objects have."
 msgstr "*slice* 組込み型は、スライスオブジェクトが持つデータ型です。"
 
-#: ../../library/builtins.rst:155 ../../library/espnow.rst:571
+#: ../../library/builtins.rst:159 ../../library/espnow.rst:571
 #: ../../library/ssl.rst:114
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/builtins.rst:187
+#: ../../library/builtins.rst:191
 msgid "|see_cpython| `python:SystemExit`."
 msgstr ""
 
-#: ../../library/builtins.rst:191
+#: ../../library/builtins.rst:195
 msgid "|see_cpython| `python:TypeError`."
 msgstr ""
 
@@ -12630,6 +12640,18 @@ msgstr ""
 
 #: ../../library/machine.USBDevice.rst:220
 msgid ""
+"Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature is "
+"enabled by the host. This has to be enabled in the USB attributes, and on"
+" the host. Returns ``True`` if remote wakeup was enabled and active and "
+"the host was woken up."
+msgstr ""
+"ホストがサスペンドモードにあり、リモートウェイクアップ機能がホストによって有効に"
+"されている場合、ホストを起動します。これはUSB属性で有効にし、ホスト側でも有効にする"
+"必要があります。リモートウェイクアップが有効でアクティブであり、ホストが起動された場合は "
+"``True`` を返します。"
+
+#: ../../library/machine.USBDevice.rst:227
+msgid ""
 "Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be an "
 "object implementing the buffer interface, with read access for ``IN`` "
 "endpoints and write access for ``OUT`` endpoints."
@@ -12639,7 +12661,7 @@ msgstr ""
 "``OUT`` エンドポイントに対して書き込みアクセスを持つバッファインタフェースを"
 "実装するオブジェクトでなければなりません。"
 
-#: ../../library/machine.USBDevice.rst:224
+#: ../../library/machine.USBDevice.rst:231
 msgid ""
 "``ep`` cannot be the control Endpoint number 0. Control transfers are "
 "built up through successive executions of ``control_xfer_cb``, see above."
@@ -12647,7 +12669,7 @@ msgstr ""
 "``ep`` は制御エンドポイント番号0にすることはできません。"
 "制御転送は ``control_xfer_cb`` を連続して実行することによって構築されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:228
+#: ../../library/machine.USBDevice.rst:235
 msgid ""
 "Returns ``True`` if successful, ``False`` if the transfer could not be "
 "queued (as USB device is not configured by host, or because another "
@@ -12657,15 +12679,15 @@ msgstr ""
 "``False`` を返します(USB デバイスがホストによって構成されていないか、"
 "このエンドポイントに別の転送がキューに入れられているため)。"
 
-#: ../../library/machine.USBDevice.rst:232
+#: ../../library/machine.USBDevice.rst:239
 msgid ""
 "When the USB host completes the transfer, the ``xfer_cb`` callback is "
 "called (see above)."
 msgstr ""
 "USB ホストが転送を完了すると ``xfer_cb`` コールバックが呼び出されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:235
-#: ../../library/machine.USBDevice.rst:254
+#: ../../library/machine.USBDevice.rst:242
+#: ../../library/machine.USBDevice.rst:261
 msgid ""
 "Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not "
 "active."
@@ -12673,16 +12695,16 @@ msgstr ""
 "USB デバイスがアクティブでない場合 ``OSError`` が発生し、"
 "理由として ``MP_EINVAL`` が指定されます。"
 
-#: ../../library/machine.USBDevice.rst:240
+#: ../../library/machine.USBDevice.rst:247
 msgid "Calling this function gets or sets the STALL state of a device endpoint."
 msgstr ""
 "この関数を呼び出すと、デバイスのエンドポイントの STALL 状態を取得または設定します。"
 
-#: ../../library/machine.USBDevice.rst:242
+#: ../../library/machine.USBDevice.rst:249
 msgid "``ep`` is the number of the endpoint."
 msgstr "``ep`` はエンドポイントの番号です。"
 
-#: ../../library/machine.USBDevice.rst:244
+#: ../../library/machine.USBDevice.rst:251
 msgid ""
 "If the optional ``stall`` parameter is set, this is a boolean flag for "
 "the STALL state."
@@ -12690,14 +12712,14 @@ msgstr ""
 "オプションの ``stall`` パラメータが設定されている場合、これは ``STALL`` "
 "状態のブールフラグです。"
 
-#: ../../library/machine.USBDevice.rst:247
+#: ../../library/machine.USBDevice.rst:254
 msgid ""
 "The return value is the current stall state of the endpoint (before any "
 "change made by this function)."
 msgstr ""
 "戻り値は、この関数によって行われた変更前のエンドポイントの現在の stall 状態です。"
 
-#: ../../library/machine.USBDevice.rst:250
+#: ../../library/machine.USBDevice.rst:257
 msgid ""
 "An endpoint that is set to STALL may remain stalled until this function "
 "is called again, or STALL may be cleared automatically by the USB host."
@@ -12705,7 +12727,7 @@ msgstr ""
 "STALL に設定されたエンドポイントは、この関数が再度呼び出されるか、"
 "USBホストによって自動的にクリアされるまで、STALL のままである可能性があります。"
 
-#: ../../library/machine.USBDevice.rst:266
+#: ../../library/machine.USBDevice.rst:273
 msgid ""
 "These constant objects hold the built-in descriptor data which is "
 "compiled into the MicroPython firmware. ``USBDevice.BUILTIN_NONE`` and "
@@ -12718,7 +12740,7 @@ msgstr ""
 "``USBDevice.BUILTIN_DEFAULT`` は常に存在します。ファームウェアのビルド構成と"
 "実際の組み込みドライバによって、追加のオブジェクトが存在する場合があります。"
 
-#: ../../library/machine.USBDevice.rst:271
+#: ../../library/machine.USBDevice.rst:278
 msgid ""
 "Currently at most one of ``USBDevice.BUILTIN_CDC``, "
 "``USBDevice.BUILTIN_MSC`` and ``USBDevice.BUILTIN_CDC_MSC`` is defined "
@@ -12734,7 +12756,7 @@ msgstr ""
 "定義されています。将来的には、複数の組み込みドライバ構成のうちの1つを"
 "選択するサポートが追加されるかもしれません。"
 
-#: ../../library/machine.USBDevice.rst:279
+#: ../../library/machine.USBDevice.rst:286
 msgid ""
 "These values are assigned to :data:`USBDevice.builtin_driver` to get/set "
 "the built-in configuration."
@@ -12742,18 +12764,18 @@ msgstr ""
 "これらの値は、組み込み構成を取得/設定するために "
 ":data:`USBDevice.builtin_driver` に割り当てられます。"
 
-#: ../../library/machine.USBDevice.rst:282
+#: ../../library/machine.USBDevice.rst:289
 msgid "Each object contains the following read-only fields:"
 msgstr "各オブジェクトには、次の読み取り専用フィールドが含まれています:"
 
-#: ../../library/machine.USBDevice.rst:284
+#: ../../library/machine.USBDevice.rst:291
 msgid ""
 "``itf_max`` - One more than the highest bInterfaceNumber value used in "
 "the built-in configuration descriptor."
 msgstr ""
 "``itf_max`` - 組込み構成記述子で使用されるbInterfaceNumber値の最大値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:286
+#: ../../library/machine.USBDevice.rst:293
 msgid ""
 "``ep_max`` - One more than the highest bEndpointAddress value used in the"
 " built-in configuration descriptor. Does not include any ``IN`` flag bit "
@@ -12762,21 +12784,21 @@ msgstr ""
 "``ep_max`` - 組込み構成記述子で使用される bEndpointAddress 値の最大値より"
 "1大きい値。 ``IN`` フラグビット(0x80)は含まれません。"
 
-#: ../../library/machine.USBDevice.rst:289
+#: ../../library/machine.USBDevice.rst:296
 msgid ""
 "``str_max`` - One more than the highest string descriptor index value "
 "used by any built-in descriptor."
 msgstr ""
 "``str_max`` - 任意の組込み記述子で使用される最大の文字列記述子インデックス値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:291
+#: ../../library/machine.USBDevice.rst:298
 msgid ""
 "``desc_dev`` - ``bytes`` object containing the built-in USB device "
 "descriptor."
 msgstr ""
 "``desc_dev`` - 組込み USB デバイス記述子を含むbytesオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:293
+#: ../../library/machine.USBDevice.rst:300
 msgid ""
 "``desc_cfg`` - ``bytes`` object containing the complete built-in USB "
 "configuration descriptor."
@@ -13471,7 +13493,7 @@ msgid ""
 "    print(\"Waiting for connection...\")\n"
 "    while not nic.isconnected():\n"
 "        time.sleep(1)\n"
-"print(nic.ifconfig())\n"
+"print(nic.ipconfig(\"addr4\"))\n"
 "\n"
 "# now use socket as usual\n"
 "import socket\n"
@@ -13492,7 +13514,7 @@ msgstr ""
 "    print(\"Waiting for connection...\")\n"
 "    while not nic.isconnected():\n"
 "        time.sleep(1)\n"
-"print(nic.ifconfig())\n"
+"print(nic.ipconfig(\"addr4\"))\n"
 "\n"
 "# これで通常どおり socket を使えるようになる\n"
 "import socket\n"
@@ -13838,14 +13860,14 @@ msgstr ""
 msgid ""
 "import network\n"
 "nic = network.LAN(0)\n"
-"print(nic.ifconfig())\n"
+"print(nic.ipconfig(\"addr4\"))\n"
 "\n"
 "# now use socket as usual\n"
 "..."
 msgstr ""
 "import network\n"
 "nic = network.LAN(0)\n"
-"print(nic.ifconfig())\n"
+"print(nic.ipconfig(\"addr4\"))\n"
 "\n"
 "# ここから普通にソケットを利用\n"
 "..."
@@ -14020,14 +14042,14 @@ msgstr ""
 msgid ""
 "import network\n"
 "nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)\n"
-"print(nic.ifconfig())\n"
+"print(nic.ipconfig(\"addr4\"))\n"
 "\n"
 "# now use socket as usual\n"
 "..."
 msgstr ""
 "import network\n"
 "nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)\n"
-"print(nic.ifconfig())\n"
+"print(nic.ipconfig(\"addr4\"))\n"
 "\n"
 "# これで通常どおりソケットを使えるようになる\n"
 "..."
@@ -14320,15 +14342,16 @@ msgstr ""
 msgid ""
 "Get or set general network interface parameters. These methods allow to "
 "work with additional parameters beyond standard IP configuration (as "
-"dealt with by `WLAN.ifconfig()`). These include network-specific and "
+"dealt with by `AbstractNIC.ipconfig()`). These include network-specific and "
 "hardware-specific parameters. For setting parameters, keyword argument "
 "syntax should be used, multiple parameters can be set at once. For "
 "querying, parameters name should be quoted as a string, and only one "
 "parameter can be queries at time::"
 msgstr ""
 "一般的なネットワークインターフェースパラメータを取得または設定します。これらのメソッドは、"
-"(`WLAN.ifconfig()` で扱われるように)標準の IP 設定以外の追加のパラメータを扱うことを"
-"可能にします 。これらには、ネットワーク固有およびハードウェア固有のパラメータが含まれています。"
+"(`AbstractNIC.ipconfig()` で扱われるように)標準の IP 設定以外の追加パラメータの"
+"扱いを可能にします。これらには、ネットワーク固有およびハードウェア固有のパラメータが"
+"含まれています。"
 "パラメータを設定するには、キーワード引数の構文を使用する必要があり、複数のパラメータを"
 "一度に設定できます。問合せを実行する場合、パラメータ名は文字列として引用符で囲みます。"
 "一度に問合せできるパラメータは1つだけです。"
@@ -14490,7 +14513,7 @@ msgid ""
 "wlan.connect('your-ssid', auth=(WLAN.WPA2, 'your-key'))\n"
 "while not wlan.isconnected():\n"
 "    time.sleep_ms(50)\n"
-"print(wlan.ifconfig())\n"
+"print(wlan.ipconfig(\"addr4\"))\n"
 "\n"
 "# now use socket as usual\n"
 "..."

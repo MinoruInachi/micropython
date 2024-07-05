@@ -2,7 +2,7 @@
 
 Syntax
 ======
-Generated Wed 07 Feb 2024 12:13:19 UTC
+Generated Fri 05 Jul 2024 06:33:57 UTC
 
 .. _cpydiff_syntax_arg_unpacking:
 
