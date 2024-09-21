@@ -425,6 +425,7 @@ endif()
 list(APPEND MICROPY_SOURCE_QSTR
     ${MICROPY_SOURCE_EXTMOD}
     ${MICROPY_SOURCE_USERMOD}
+    ${MICROPY_SOURCE_BOARD}
 )
 
 # Define mpy-cross flags
@@ -443,6 +444,7 @@ target_sources(${MICROPY_TARGET} PRIVATE
     ${MICROPY_SOURCE_LIB}
     ${MICROPY_SOURCE_DRIVERS}
     ${MICROPY_SOURCE_PORT}
+    ${MICROPY_SOURCE_BOARD}
 )
 
 target_link_libraries(${MICROPY_TARGET} micropy_lib_mbedtls)
@@ -493,6 +495,7 @@ set_source_files_properties(
 )
 
 target_compile_definitions(${MICROPY_TARGET} PRIVATE
+    ${MICROPY_DEF_BOARD}
     FFCONF_H=\"${MICROPY_OOFATFS_DIR}/ffconf.h\"
     LFS1_NO_MALLOC LFS1_NO_DEBUG LFS1_NO_WARN LFS1_NO_ERROR LFS1_NO_ASSERT
     LFS2_NO_MALLOC LFS2_NO_DEBUG LFS2_NO_WARN LFS2_NO_ERROR LFS2_NO_ASSERT

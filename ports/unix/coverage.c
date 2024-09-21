@@ -7,6 +7,7 @@
 #include "py/objint.h"
 #include "py/objstr.h"
 #include "py/runtime.h"
+#include "py/stackctrl.h"
 #include "py/gc.h"
 #include "py/repl.h"
 #include "py/mpz.h"
@@ -691,6 +692,24 @@ static mp_obj_t extra_coverage(void) {
         ringbuf.iget = 0;
         ringbuf_put(&ringbuf, 0xaa);
         mp_printf(&mp_plat_print, "%d\n", ringbuf_get16(&ringbuf));
+
+        // ringbuf_put_bytes() / ringbuf_get_bytes() functions.
+        ringbuf.iput = 0;
+        ringbuf.iget = 0;
+        uint8_t *put = (uint8_t *)"abc123";
+        uint8_t get[7] = {0};
+        mp_printf(&mp_plat_print, "%d\n", ringbuf_put_bytes(&ringbuf, put, 7));
+        mp_printf(&mp_plat_print, "%d\n", ringbuf_get_bytes(&ringbuf, get, 7));
+        mp_printf(&mp_plat_print, "%s\n", get);
+        // Prefill ringbuffer.
+        for (size_t i = 0; i < sizeof(buf) - 3; ++i) {
+            ringbuf_put(&ringbuf, i);
+        }
+        // Should fail - too full.
+        mp_printf(&mp_plat_print, "%d\n", ringbuf_put_bytes(&ringbuf, put, 7));
+        // Should fail - buffer too big.
+        uint8_t large[sizeof(buf) + 5] = {0};
+        mp_printf(&mp_plat_print, "%d\n", ringbuf_put_bytes(&ringbuf, large, sizeof(large)));
     }
 
     // pairheap
@@ -737,6 +756,32 @@ static mp_obj_t extra_coverage(void) {
 
         // mp_obj_is_int accepts small int and object ints
         mp_printf(&mp_plat_print, "%d %d\n", mp_obj_is_int(MP_OBJ_NEW_SMALL_INT(1)), mp_obj_is_int(mp_obj_new_int_from_ll(1)));
+    }
+
+    // Legacy stackctrl.h API, this has been replaced by cstack.h
+    {
+        mp_printf(&mp_plat_print, "# stackctrl\n");
+        char *old_stack_top = MP_STATE_THREAD(stack_top);
+        size_t old_stack_limit = 0;
+        size_t new_stack_limit = SIZE_MAX;
+        #if MICROPY_STACK_CHECK
+        old_stack_limit = MP_STATE_THREAD(stack_limit);
+        MP_STACK_CHECK();
+        #endif
+
+        mp_stack_ctrl_init(); // Will set stack top incorrectly
+        mp_stack_set_top(old_stack_top); // ... and restore it
+
+        #if MICROPY_STACK_CHECK
+        mp_stack_set_limit(MP_STATE_THREAD(stack_limit));
+        MP_STACK_CHECK();
+        new_stack_limit = MP_STATE_THREAD(stack_limit);
+        #endif
+
+        // Nothing should have changed
+        mp_printf(&mp_plat_print, "%d %d\n",
+            old_stack_top == MP_STATE_THREAD(stack_top),
+            MICROPY_STACK_CHECK == 0 || old_stack_limit == new_stack_limit);
     }
 
     mp_printf(&mp_plat_print, "# end coverage.c\n");

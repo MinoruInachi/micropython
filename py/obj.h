@@ -843,6 +843,7 @@ extern const mp_obj_type_t mp_type_bound_meth;
 extern const mp_obj_type_t mp_type_property;
 extern const mp_obj_type_t mp_type_stringio;
 extern const mp_obj_type_t mp_type_bytesio;
+extern const mp_obj_type_t mp_type_ringio;
 extern const mp_obj_type_t mp_type_reversed;
 extern const mp_obj_type_t mp_type_polymorph_iter;
 #if MICROPY_ENABLE_FINALISER
@@ -1258,7 +1259,7 @@ bool mp_seq_cmp_bytes(mp_uint_t op, const byte *data1, size_t len1, const byte *
 bool mp_seq_cmp_objs(mp_uint_t op, const mp_obj_t *items1, size_t len1, const mp_obj_t *items2, size_t len2);
 mp_obj_t mp_seq_index_obj(const mp_obj_t *items, size_t len, size_t n_args, const mp_obj_t *args);
 mp_obj_t mp_seq_count_obj(const mp_obj_t *items, size_t len, mp_obj_t value);
-mp_obj_t mp_seq_extract_slice(size_t len, const mp_obj_t *seq, mp_bound_slice_t *indexes);
+mp_obj_t mp_seq_extract_slice(const mp_obj_t *seq, mp_bound_slice_t *indexes);
 
 // Helper to clear stale pointers from allocated, but unused memory, to preclude GC problems
 #define mp_seq_clear(start, len, alloc_len, item_sz) memset((byte *)(start) + (len) * (item_sz), 0, ((alloc_len) - (len)) * (item_sz))
@@ -1273,6 +1274,8 @@ mp_obj_t mp_seq_extract_slice(size_t len, const mp_obj_t *seq, mp_bound_slice_t 
     memmove(((char *)dest) + (beg + slice_len) * (item_sz), ((char *)dest) + (end) * (item_sz), ((dest_len) + (len_adj) - ((beg) + (slice_len))) * (item_sz)); \
     memmove(((char *)dest) + (beg) * (item_sz), slice, slice_len * (item_sz));
 
+#if !MICROPY_PREVIEW_VERSION_2
+
 // Provide translation for legacy API
 #define MP_OBJ_IS_SMALL_INT mp_obj_is_small_int
 #define MP_OBJ_IS_QSTR mp_obj_is_qstr
@@ -1284,5 +1287,7 @@ mp_obj_t mp_seq_extract_slice(size_t len, const mp_obj_t *seq, mp_bound_slice_t 
 #define MP_OBJ_IS_FUN mp_obj_is_fun
 #define MP_MAP_SLOT_IS_FILLED mp_map_slot_is_filled
 #define MP_SET_SLOT_IS_FILLED mp_set_slot_is_filled
+
+#endif
 
 #endif // MICROPY_INCLUDED_PY_OBJ_H

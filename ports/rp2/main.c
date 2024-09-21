@@ -27,11 +27,11 @@
 #include <stdio.h>
 
 #include "py/compile.h"
+#include "py/cstack.h"
 #include "py/runtime.h"
 #include "py/gc.h"
 #include "py/mperrno.h"
 #include "py/mphal.h"
-#include "py/stackctrl.h"
 #include "extmod/modbluetooth.h"
 #include "extmod/modnetwork.h"
 #include "shared/readline/readline.h"
@@ -80,6 +80,12 @@ int main(int argc, char **argv) {
     pendsv_init();
     soft_timer_init();
 
+    // Set the MCU frequency and as a side effect the peripheral clock to 48 MHz.
+    set_sys_clock_khz(125000, false);
+
+    // Hook for setting up anything that needs to be super early in the bootup process.
+    MICROPY_BOARD_STARTUP();
+
     #if MICROPY_HW_ENABLE_UART_REPL
     bi_decl(bi_program_feature("UART REPL"))
     setup_default_uart();
@@ -114,8 +120,7 @@ int main(int argc, char **argv) {
     mp_hal_time_ns_set_from_rtc();
 
     // Initialise stack extents and GC heap.
-    mp_stack_set_top(&__StackTop);
-    mp_stack_set_limit(&__StackTop - &__StackBottom - 256);
+    mp_cstack_init_with_top(&__StackTop, &__StackTop - &__StackBottom);
     gc_init(&__GcHeapStart, &__GcHeapEnd);
 
     #if MICROPY_PY_LWIP
@@ -149,6 +154,9 @@ int main(int argc, char **argv) {
         cyw43_wifi_ap_set_password(&cyw43_state, 8, (const uint8_t *)"picoW123");
     }
     #endif
+
+    // Hook for setting up anything that can wait until after other hardware features are initialised.
+    MICROPY_BOARD_EARLY_INIT();
 
     for (;;) {
 
@@ -211,9 +219,14 @@ int main(int argc, char **argv) {
 
     soft_reset_exit:
         mp_printf(MP_PYTHON_PRINTER, "MPY: soft reboot\n");
+
+        // Hook for resetting anything immediately following a soft reset command.
+        MICROPY_BOARD_START_SOFT_RESET();
+
         #if MICROPY_PY_NETWORK
         mod_network_deinit();
         #endif
+        machine_i2s_deinit_all();
         rp2_dma_deinit();
         rp2_pio_deinit();
         #if MICROPY_PY_BLUETOOTH
@@ -221,6 +234,7 @@ int main(int argc, char **argv) {
         #endif
         machine_pwm_deinit_all();
         machine_pin_deinit();
+        machine_uart_deinit_all();
         #if MICROPY_PY_THREAD
         mp_thread_deinit();
         #endif
@@ -229,8 +243,15 @@ int main(int argc, char **argv) {
         mp_usbd_deinit();
         #endif
 
+        // Hook for resetting anything right at the end of a soft reset command.
+        MICROPY_BOARD_END_SOFT_RESET();
+
         gc_sweep_all();
         mp_deinit();
+        #if MICROPY_HW_ENABLE_UART_REPL
+        setup_default_uart();
+        mp_uart_init();
+        #endif
     }
 
     return 0;
