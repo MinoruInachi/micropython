@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-21 17:56+0900\n"
-"PO-Revision-Date: 2024-09-22 11:43+0900\n"
+"PO-Revision-Date: 2024-09-22 21:15+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -6382,9 +6382,9 @@ msgstr "Python コードによって割り当てられているヒープ RAM の
 #: ../../library/socket.rst:96 ../../library/socket.rst:278
 #: ../../library/socket.rst:302 ../../library/socket.rst:308
 #: ../../library/socket.rst:349 ../../library/ssl.rst:48
-#: ../../library/struct.rst:62 ../../library/sys.rst:25
-#: ../../library/sys.rst:36 ../../library/sys.rst:80 ../../library/sys.rst:120
-#: ../../library/sys.rst:171 ../../library/time.rst:233
+#: ../../library/struct.rst:64 ../../library/sys.rst:25
+#: ../../library/sys.rst:36 ../../library/sys.rst:83 ../../library/sys.rst:123
+#: ../../library/sys.rst:174 ../../library/time.rst:233
 msgid "Difference to CPython"
 msgstr "CPython との違い"
 
@@ -24318,7 +24318,15 @@ msgstr ""
 "このオブジェクトは、MicroPython を他の Python 実装と区別する推奨手段です(しかし、"
 "最小限のポートには存在しないことに注意してください)。"
 
-#: ../../library/sys.rst:83
+#: ../../library/sys.rst:80
+msgid ""
+"Starting with version 1.22.0-preview, the fourth node *releaselevel* in "
+"*implementation.version* is either an empty string or ``\"preview\"``."
+msgstr ""
+"バージョン 1.22.0-preview 以降、 *implementation.version* の４番目の項目 "
+"*releaselevel* は空文字列または ``\"preview\"`` になります。"
+
+#: ../../library/sys.rst:86
 msgid ""
 "CPython mandates more attributes for this object, but the actual useful "
 "bare minimum is implemented in MicroPython."
@@ -24326,7 +24334,7 @@ msgstr ""
 "CPython ではこのオブジェクトにもっと多くの属性がありますが、MicroPython では実際に"
 "有用となる最低限のものだけを実装しています。"
 
-#: ../../library/sys.rst:88
+#: ../../library/sys.rst:91
 msgid ""
 "Maximum value which a native integer type can hold on the current "
 "platform, or maximum value representable by MicroPython integer type, if "
@@ -24337,7 +24345,7 @@ msgstr ""
 "最大値より小さい場合は MicroPython 整数型で表現可能な最大値(MicroPython ポートで "
 "長整数をサポートしないとした場合)。"
 
-#: ../../library/sys.rst:93
+#: ../../library/sys.rst:96
 msgid ""
 "This attribute is useful for detecting \"bitness\" of a platform (32-bit "
 "vs 64-bit, etc.). It's recommended to not compare this attribute to some "
@@ -24347,7 +24355,7 @@ msgstr ""
 "便利です。この属性をある値と直接比較するのよりも、その属性のビット数をカウントする"
 "ことをお勧めします。"
 
-#: ../../library/sys.rst:97
+#: ../../library/sys.rst:100
 msgid ""
 "bits = 0\n"
 "v = sys.maxsize\n"
@@ -24377,7 +24385,7 @@ msgstr ""
 "    # (たとえば31)になる可能性があるので、 \"> 16\", \"> 32\", \"> 64\" の\n"
 "    # の比較スタイルを使用してください。"
 
-#: ../../library/sys.rst:113
+#: ../../library/sys.rst:116
 msgid ""
 "Dictionary of loaded modules. On some ports, it may not include builtin "
 "modules."
@@ -24385,11 +24393,11 @@ msgstr ""
 "読み込まれたモジュールの辞書。一部のポートでは、組込みモジュールが含まれていない"
 "可能性があります。"
 
-#: ../../library/sys.rst:118
+#: ../../library/sys.rst:121
 msgid "A mutable list of directories to search for imported modules."
 msgstr "import するモジュールを検索するディレクトリの変更可能なリスト。"
 
-#: ../../library/sys.rst:123
+#: ../../library/sys.rst:126
 msgid ""
 "On MicroPython, an entry with the value ``\".frozen\"`` will indicate "
 "that import should search :term:`frozen modules <frozen module>` at that "
@@ -24402,7 +24410,7 @@ msgstr ""
 "凍結モジュールが見つからなければ、 ``.frozen`` というディレクトリを *探さず* 、"
 "代わりに ``sys.path`` の次のエントリで検索を続行します。"
 
-#: ../../library/sys.rst:130
+#: ../../library/sys.rst:133
 msgid ""
 "The platform that MicroPython is running on. For OS/RTOS ports, this is "
 "usually an identifier of the OS, e.g. ``\"linux\"``. For baremetal ports "
@@ -24420,7 +24428,7 @@ msgstr ""
 "実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
-#: ../../library/sys.rst:140
+#: ../../library/sys.rst:143
 msgid ""
 "Mutable attributes holding strings, which are used for the REPL prompt.  "
 "The defaults give the standard Python prompt of ``>>>`` and ``...``."
@@ -24428,19 +24436,19 @@ msgstr ""
 "REPL プロンプトに使う文字列を保持する変更可能属性です。"
 "デフォルトでは、標準的な Python プロンプトである ``>>>`` や ``...`` を表示します。"
 
-#: ../../library/sys.rst:145
+#: ../../library/sys.rst:148
 msgid "Standard error `stream`."
 msgstr "標準エラーの `stream` 。"
 
-#: ../../library/sys.rst:149
+#: ../../library/sys.rst:152
 msgid "Standard input `stream`."
 msgstr "標準入力の `stream` 。"
 
-#: ../../library/sys.rst:153
+#: ../../library/sys.rst:156
 msgid "Standard output `stream`."
 msgstr "標準出力の `stream` 。"
 
-#: ../../library/sys.rst:157
+#: ../../library/sys.rst:160
 msgid ""
 "A mutable attribute holding an integer value which is the maximum number "
 "of traceback entries to store in an exception.  Set to 0 to disable "
@@ -24449,22 +24457,22 @@ msgstr ""
 "例外に格納するトレースバックエントリの最大数を整数値で保持する変更可能属性です。"
 "0 を設定すると、トレースバックの追加を無効にします。デフォルトは 1000 です。"
 
-#: ../../library/sys.rst:161
+#: ../../library/sys.rst:164
 msgid "Note: this is not available on all ports."
 msgstr "注記: これはすべてのポートで使用できるわけではありません。"
 
-#: ../../library/sys.rst:165
+#: ../../library/sys.rst:168
 msgid "Python language version that this implementation conforms to, as a string."
 msgstr "この処理系が準拠する Python 言語バージョンを表す文字列。"
 
-#: ../../library/sys.rst:169
+#: ../../library/sys.rst:172
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
 "この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
-#: ../../library/sys.rst:174
+#: ../../library/sys.rst:177
 msgid ""
 "Only the first three version numbers (major, minor, micro) are supported "
 "and they can be referenced only by index, not by name."
