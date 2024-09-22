@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 15:39+0900\n"
-"PO-Revision-Date: 2024-07-05 15:47+0900\n"
+"POT-Creation-Date: 2024-09-21 17:56+0900\n"
+"PO-Revision-Date: 2024-09-21 18:15+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2470,6 +2470,24 @@ msgstr ""
 
 #: ../../esp32/tutorial/peripheral_access.rst:35
 msgid ""
+"The specific addresses will be different on different ESP32 models. For "
+"example, ESP32-S3 uses these values:"
+msgstr ""
+"一部のアドレスは ESP32 モジュールによって異なります。たとえば "
+"ESP32-S3 では次の値を使います。"
+
+#: ../../esp32/tutorial/peripheral_access.rst:38
+msgid ""
+"DR_REG_DPORT_BASE = const(0x600C_0000)\n"
+"DPORT_PERIP_CLK_EN0_REG = const(DR_REG_DPORT_BASE + 0x0018)\n"
+"DPORT_PERIP_RST_EN0_REG = const(DR_REG_DPORT_BASE + 0x0020)\n"
+"DPORT_PWM0_CLK_EN = const(1 << 17)\n"
+"MCPWM0 = const(0x6001_E000 + 0x0004)\n"
+"..."
+msgstr ""
+
+#: ../../esp32/tutorial/peripheral_access.rst:47
+msgid ""
 "Note that before a peripheral can be used its clock must be enabled and "
 "it must be taken out of reset.  In the above example the following "
 "registers are used for this:"
@@ -2477,12 +2495,12 @@ msgstr ""
 "ペリフェラルを使う前には、そのクロックを有効にし、リセットを解除する必要があります。"
 "上記の例では、以下のレジスタがこのために使用されています。"
 
-#: ../../esp32/tutorial/peripheral_access.rst:39
+#: ../../esp32/tutorial/peripheral_access.rst:51
 msgid "``DPORT_PERI_CLK_EN_REG``: used to enable a peripheral clock"
 msgstr ""
 "``DPORT_PERI_CLK_EN_REG``: ペリフェラルクロックを有効にするために使われています"
 
-#: ../../esp32/tutorial/peripheral_access.rst:41
+#: ../../esp32/tutorial/peripheral_access.rst:53
 msgid ""
 "``DPORT_PERI_RST_EN_REG``: used to reset (or take out of reset) a "
 "peripheral"
@@ -2490,7 +2508,7 @@ msgstr ""
 "``DPORT_PERI_RST_EN_REG``: ペリフェラルのリセット(またはリセットの無効化)に"
 "使われています"
 
-#: ../../esp32/tutorial/peripheral_access.rst:43
+#: ../../esp32/tutorial/peripheral_access.rst:55
 msgid ""
 "The MCPWM0 peripheral is in bit position 17 of the above two registers, "
 "hence the value of ``DPORT_PWM0_CLK_EN``."
@@ -2498,11 +2516,11 @@ msgstr ""
 "MCPWM0 ペリフェラルは上記２つのレジスタの第17ビット、
 "すなわち ``DPORT_PWM0_CLK_EN`` の値になります。"
 
-#: ../../esp32/tutorial/peripheral_access.rst:47
+#: ../../esp32/tutorial/peripheral_access.rst:59
 msgid "Synchronous access to pins directly via registers"
 msgstr "レジスタを介したピンへの直接同期アクセス"
 
-#: ../../esp32/tutorial/peripheral_access.rst:49
+#: ../../esp32/tutorial/peripheral_access.rst:61
 msgid ""
 "The following code shows how to access pins directly via registers.  It "
 "has been tested on a generic ESP32 board.  It configures pins 16, 17, 32 "
@@ -2514,7 +2532,7 @@ msgstr ""
 "コードは、ピン 16, 17, 32, 33 をレジスタを介して出力モードに設定し、"
 "ピンの出力値をレジスタを介して切り替えます。ピン 16 と 17 は同時に切り替わります。"
 
-#: ../../esp32/tutorial/peripheral_access.rst:54
+#: ../../esp32/tutorial/peripheral_access.rst:66
 msgid ""
 "from micropython import const\n"
 "from machine import mem32, Pin\n"
@@ -2626,31 +2644,31 @@ msgstr ""
 "    mem32[GPIO_OUT_REG] = mem32[GPIO_OUT_REG] & ~(M16 | M17)\n"
 "    mem32[GPIO_OUT1_REG] = mem32[GPIO_OUT1_REG] & ~(M32 | M33)"
 
-#: ../../esp32/tutorial/peripheral_access.rst:111
+#: ../../esp32/tutorial/peripheral_access.rst:123
 #: ../../esp32/tutorial/pwm.rst:32
 msgid "Output is::"
 msgstr "以下のような出力が得られます::"
 
-#: ../../esp32/tutorial/peripheral_access.rst:113
+#: ../../esp32/tutorial/peripheral_access.rst:125
 msgid ""
 "0x0 0x0\n"
 "0x30000 0x3\n"
 "0x0 0x0"
 msgstr ""
 
-#: ../../esp32/tutorial/peripheral_access.rst:117
+#: ../../esp32/tutorial/peripheral_access.rst:129
 msgid "Pins 16 and 17 are switched synchronously:"
 msgstr ""ピン 16 と 17 は同時に切り替わります:"
 
-#: ../../esp32/tutorial/peripheral_access.rst:120
+#: ../../esp32/tutorial/peripheral_access.rst:132
 msgid ".. image:: esp32/tutorial/img/mem32_gpio_output.jpg"
 msgstr ""
 
-#: ../../esp32/tutorial/peripheral_access.rst:121
+#: ../../esp32/tutorial/peripheral_access.rst:133
 msgid "Same image on pins 32 and 33."
 msgstr "ピン 32 と 33 も同様です。"
 
-#: ../../esp32/tutorial/peripheral_access.rst:123
+#: ../../esp32/tutorial/peripheral_access.rst:135
 msgid ""
 "Note that pins 34-36 and 39 are inputs only. Also pins 1 and 3 are Tx, Rx"
 " of the REPL UART, pins 6-11 are connected to the built-in SPI flash."
