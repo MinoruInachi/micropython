@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-21 17:56+0900\n"
-"PO-Revision-Date: 2024-09-22 21:15+0900\n"
+"PO-Revision-Date: 2024-10-05 21:53+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -26029,7 +26029,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:4
 msgid ":mod:`WM8960` -- Driver for the WM8960 codec"
-msgstr ""
+msgstr ":mod:`WM8960` -- WM8960 コーデック用ドライバ"
 
 #: ../../library/wm8960.rst:6
 msgid ""
@@ -26038,6 +26038,10 @@ msgid ""
 "series of MCUs.  Very little has been added, and just a few API related "
 "names were changed or added to cope with the naming style of MicroPython."
 msgstr ""
+"このドライバは、WM8960コーデックチップを制御するためのものです。"
+"これは NXP/Freescale が i.MX RT シリーズの MCU 向けに提供したCコードを"
+"Pythonに変換したものです。追加された内容はほとんどありませんが、MicroPython の"
+"命名スタイルに合わせるためにAPIに関連する名前をいくつか変更/追加しています。"
 
 #: ../../library/wm8960.rst:11
 msgid ""
@@ -26045,6 +26049,9 @@ msgid ""
 " modes of the codec.  It does not do the audio data processing for the "
 "codec.  That is the task of a separate driver."
 msgstr ""
+"このドライバの主な目的は、コーデックの初期化と動作モードの設定です。"
+"コーデックのオーディオデータ処理は、このドライバでは行いません。"
+"それは別のドライバの役割となります。"
 
 #: ../../library/wm8960.rst:15
 msgid ""
@@ -26053,22 +26060,29 @@ msgid ""
 "in the system. For the I2C interface, SCL and SDA have to be connected, "
 "and of course GND and Vcc.  The I2C default address is ``0x1A``."
 msgstr ""
+"WM8960 は、オーディオインターフェースに加えて I2C インターフェースをサポートしています。"
+"接続は使用するインターフェースやシステム内のデバイス数によって異なります。"
+"I2Cインターフェースの場合、SCL と SDA が接続される必要があり、もちろん GND と Vcc も"
+"接続する必要があります。I2Cのデフォルトアドレスは0x1Aです。"
 
 #: ../../library/wm8960.rst:25
 msgid ""
 "Create a WM8960 driver object, initialize the device with default "
 "settings and return the WM8960 object."
 msgstr ""
+"WM8960 ドライバオブジェクトを作成し、デバイスをデフォルト設定で初期化して "
+"WM8960 オブジェクトを返します。"
 
 #: ../../library/wm8960.rst:28
 msgid ""
 "Only the first two arguments are mandatory. All others are optional. The "
 "arguments are:"
 msgstr ""
+"最初の２つの引数のみが必須です。それ以外の引数はオプションです。引数は次のとおりです:"
 
 #: ../../library/wm8960.rst:30
 msgid "*i2c* is the I2C bus object."
-msgstr ""
+msgstr "*i2c* は、I2C バスオブジェクトです。"
 
 #: ../../library/wm8960.rst:31
 msgid ""
@@ -26076,38 +26090,53 @@ msgid ""
 "11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 96000, 192000 and"
 " 384000.  Note that not every I2S hardware will support all values."
 msgstr ""
+"*sample_rate* はオーディオのサンプルレートです。"
+"指定できる値は 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, "
+"48000, 96000, 192000, 384000 です。"
+"ただし、すべての I2S ハードウェアがこれらのすべての値をサポートするわけではありません。"
 
 #: ../../library/wm8960.rst:34
 msgid ""
 "*bits* is the number of bits per audio word. Acceptable value are 16, 20,"
 " 24, and 32."
 msgstr ""
+"*bits* はオーディオワードごとのビット数です。指定できる値は 16, 20, 24, 32 です。"
 
 #: ../../library/wm8960.rst:36
 msgid "*swap* swaps the left & right channel, if set; see below for options."
 msgstr ""
+"swap* を指定した場合、左右のチャンネルを入れ替えます。"
+"指定できる値については後述します。"
 
 #: ../../library/wm8960.rst:37
 msgid "*route* Setting the audio path in the codec; see below for options."
 msgstr ""
+"*route* は、コーデック内のオーディオパスの設定です。"
+"指定できる値については後述します。"
 
 #: ../../library/wm8960.rst:38
 msgid ""
 "*left_input* sets the audio source for the left input channel; see below "
 "for options."
 msgstr ""
+"*left_input* は左入力チャンネルのオーディオソースを設定します。"
+"指定できる値については後述します。"
 
 #: ../../library/wm8960.rst:40
 msgid ""
 "*right_input* sets the audio source for the right input channel; see "
 "below for options."
 msgstr ""
+"*right_input* は右入力チャンネルのオーディオソースを設定します。"
+"指定できる値については後述します。"
 
 #: ../../library/wm8960.rst:42
 msgid ""
 "*play_source* sets the audio target for the output audio; see below for "
 "options."
 msgstr ""
+"*play_source* は出力オーディオのターゲットを設定します。"
+"指定できる値については後述します。"
 
 #: ../../library/wm8960.rst:44
 msgid ""
@@ -26115,12 +26144,17 @@ msgid ""
 "\"sysclk\" is directly taken from the MCLK input or derived from it using"
 " an internal PLL. It is usually not required to change this."
 msgstr ""
+"*sysclk_source* は、内部マスタークロックである \"sysclk\" を MCLK 入力から"
+"直接取得するか、内部 PLL を使って導出するかを制御します。"
+"通常、これを変更する必要はありません。"
 
 #: ../../library/wm8960.rst:47
 msgid ""
 "*mclk_freq* sets the mclk frequency applied to the MCLK pin of the codec."
 " If not set, default values are used."
 msgstr ""
+"*mclk_freq* は、コーデックの MCLK ピンに適用される mclk 周波数を設定します。"
+"設定しない場合、デフォルト値が適用されます。"
 
 #: ../../library/wm8960.rst:49
 msgid ""
@@ -26128,26 +26162,34 @@ msgid ""
 " setting is ``False``.  When set to ``False``, *sample_rate* and *bits* "
 "are controlled by the MCU."
 msgstr ""
+"*primary* は、WM8960 をプライマリまたはセカンダリデバイスとして動作させるかを"
+"指定します。デフォルトは ``False`` です。 ``False`` の場合、 *sample_rate* "
+"と *bits* は MCU によって制御されます。"
 
 #: ../../library/wm8960.rst:52
 msgid ""
 "*adc_sync* sets which input is used for the ADC sync signal. The default "
 "is using the DACLRC pin."
 msgstr ""
+"*adc_sync* は、ADC 同期信号に使う入力を設定します。"
+"デフォルトでは DACLRC ピンを使います。"
 
 #: ../../library/wm8960.rst:54
 msgid ""
 "*protocol* sets the communication protocol. The default is I2S. See below"
 " for all options."
 msgstr ""
+"*protocol* は通信プロトコルを指定します。デフォルトは I2S です。"
+"指定できる値については後述します。"
 
 #: ../../library/wm8960.rst:56
 msgid "*i2c_address* sets the I2C address of the WM8960, with default ``0x1A``."
 msgstr ""
+"*i2c_address* は、WM8960 の I2C アドレスを指定します。デフォルトは ``0x1A`` です。"
 
 #: ../../library/wm8960.rst:58
 msgid "If *mclk_freq* is not set the following default values are used:"
-msgstr ""
+msgstr "*mclk_freq* を指定しない場合、次のデフォルト値が適用されます:"
 
 #: ../../library/wm8960.rst:60
 msgid ""
@@ -26155,31 +26197,36 @@ msgid ""
 " and 11015 Hz, and 12.288 Mhz for sample rates < 48000, otherwise "
 "sample_rate * 256."
 msgstr ""
+"sysclk_source == SYSCLK_PLL の場合: サンプルレートが 44100, 22050, 11025 Hz "
+"のときは 11.2896 MHz、サンプルレートが 48000 未満のときは 12.288 MHz、"
+"それ以外の場合は sample_rate * 256 になります。"
 
 #: ../../library/wm8960.rst:63
 msgid "sysclk_source == SYSCLK_MCLK: sample_rate * 256."
-msgstr ""
+msgstr "sysclk_source == SYSCLK_MCLKの場合: sample_rate * 256 になります。"
 
 #: ../../library/wm8960.rst:65
 msgid ""
 "If the MCLK signal is applied using, for example,. a separate oscillator,"
 " it must be specified for proper operation."
 msgstr ""
+"別のオシレーターなどを使って MCLK 信号が適用される場合、"
+"正しい動作のためにはその周波数を指定する必要があります。"
 
 #: ../../library/wm8960.rst:69
 msgid "Tables of parameter constants"
-msgstr ""
+msgstr "引数に指定できる値の表"
 
 #: ../../library/wm8960.rst:71
 msgid "**Swap Parameter**"
-msgstr ""
+msgstr "**スワップ パラメーター**"
 
 #: ../../library/wm8960.rst:76 ../../library/wm8960.rst:88
 #: ../../library/wm8960.rst:102 ../../library/wm8960.rst:117
 #: ../../library/wm8960.rst:130 ../../library/wm8960.rst:141
 #: ../../library/wm8960.rst:161 ../../library/wm8960.rst:174
 msgid "Value"
-msgstr ""
+msgstr "値"
 
 #: ../../library/wm8960.rst:76 ../../library/wm8960.rst:88
 #: ../../library/wm8960.rst:102 ../../library/wm8960.rst:117
@@ -26187,7 +26234,7 @@ msgstr ""
 #: ../../library/wm8960.rst:161 ../../library/wm8960.rst:174
 #: ../../library/wm8960.rst:214
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: ../../library/wm8960.rst:78
 msgid "SWAP_NONE"
@@ -26203,7 +26250,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:83
 msgid "**Protocol Parameter**"
-msgstr ""
+msgstr "**引数 protocol**"
 
 #: ../../library/wm8960.rst:90
 msgid "BUS_I2S"
@@ -26227,11 +26274,11 @@ msgstr ""
 
 #: ../../library/wm8960.rst:97
 msgid "**Input Source Parameter**"
-msgstr ""
+msgstr "**入力ソース パラメーター**"
 
 #: ../../library/wm8960.rst:102
 msgid "Type"
-msgstr ""
+msgstr "方式"
 
 #: ../../library/wm8960.rst:104
 msgid "INPUT_CLOSED"
@@ -26243,7 +26290,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:105
 msgid "Single ended"
-msgstr ""
+msgstr "シングルエンド信号"
 
 #: ../../library/wm8960.rst:106
 msgid "INPUT_MIC2"
@@ -26251,7 +26298,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:106 ../../library/wm8960.rst:107
 msgid "Differential"
-msgstr ""
+msgstr "差動信号"
 
 #: ../../library/wm8960.rst:107
 msgid "INPUT_MIC3"
@@ -26267,7 +26314,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:112
 msgid "**Route Parameter**"
-msgstr ""
+msgstr "**ルート パラメーター**"
 
 #: ../../library/wm8960.rst:119
 msgid "ROUTE_BYPASS"
@@ -26287,7 +26334,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:125
 msgid "**Master Clock Source Parameter**"
-msgstr ""
+msgstr "**マスタークロックソース パラメーター**"
 
 #: ../../library/wm8960.rst:132
 msgid "SYSCLK_MCLK"
@@ -26299,7 +26346,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:136
 msgid "**Module Names**"
-msgstr ""
+msgstr "**モジュール名**"
 
 #: ../../library/wm8960.rst:143 ../../library/wm8960.rst:216
 msgid "MODULE_ADC"
@@ -26347,7 +26394,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:156
 msgid "**Play Channel Names**"
-msgstr ""
+msgstr "**再生チャンネル名**"
 
 #: ../../library/wm8960.rst:163
 msgid "PLAY_HEADPHONE_LEFT"
@@ -26367,7 +26414,7 @@ msgstr ""
 
 #: ../../library/wm8960.rst:169
 msgid "**adc_sync Parameters**"
-msgstr ""
+msgstr "**adc_sync パラメーター**"
 
 #: ../../library/wm8960.rst:176
 msgid "SYNC_ADC"
@@ -26382,26 +26429,29 @@ msgid ""
 "In addition to initialization, the driver provides some useful methods "
 "for controlling its operation:"
 msgstr ""
+"初期化に加えて、このドライバは操作を制御するためのいくつかの便利なメソッドを提供します。"
 
 #: ../../library/wm8960.rst:189
 msgid ""
 "Specify the source for the left input.  The input source names are listed"
 " above."
 msgstr ""
+"左入力のソースを指定します。入力ソース名は上記に記載されています。"
 
 #: ../../library/wm8960.rst:193
 msgid ""
 "Specify the source for the right input.  The input source names are "
 "listed above."
 msgstr ""
+"右入力のソースを指定します。入力ソース名は上記に記載されています。"
 
 #: ../../library/wm8960.rst:197
 msgid "Sets or gets the volume of a certain module."
-msgstr ""
+msgstr "特定のモジュールの音量を設定または取得します。"
 
 #: ../../library/wm8960.rst:199
 msgid "If no volume values are supplied, the actual volume tuple is returned."
-msgstr ""
+msgstr "音量値が指定されていない場合、現在の音量のタプルを返します。"
 
 #: ../../library/wm8960.rst:201
 msgid ""
@@ -26411,14 +26461,18 @@ msgid ""
 "supplied, it is used for both channels.  The value range is normalized to"
 " 0.0-100.0 with a logarithmic scale."
 msgstr ""
+"１つまたは２つの値を指定した場合、特定のモジュールの音量を設定します。"
+"２つの値を指定した場合、最初の値は左チャンネルに、2番目の値は右チャンネルに適用します。"
+"１つの値しか指定しない場合、両方のチャンネルに同じ値が使用されます。"
+"値の範囲は、対数スケールで 0.0〜100.0 に正規化されます。"
 
 #: ../../library/wm8960.rst:207
 msgid "For a list of suitable modules and db/step, see the table below."
-msgstr ""
+msgstr "適切なモジュールおよび db/step のリストについては、次の表を参照してください。"
 
 #: ../../library/wm8960.rst:209
 msgid "**Module Names and dB steps**"
-msgstr ""
+msgstr "モジュール名と dB step"
 
 #: ../../library/wm8960.rst:214
 msgid "dB/Step"
@@ -26441,6 +26495,8 @@ msgid ""
 "Mute or unmute the output. If *mute* is True, the output is muted, if "
 "``False`` it is unmuted."
 msgstr ""
+"出力をミュートまたはミュート解除します。 *mute* が True の場合は出力をミュートし、 "
+"``False`` の場合はミュート解除します。"
 
 #: ../../library/wm8960.rst:228
 msgid ""
@@ -26448,18 +26504,25 @@ msgid ""
 "time for the transition is defined by *ramp*, which is either "
 "``MUTE_FAST`` or ``MUTE_SLOW``."
 msgstr ""
+"*soft* を True にした場合、ミュートはソフトな遷移で行われます。"
+"遷移の時間は *ramp* で指定し、 ``MUTE_FAST`` または ``MUTE_SLOW`` を選択できます。"
 
 #: ../../library/wm8960.rst:233
 msgid ""
 "Set the audio data route.  For the parameter value/names, see the table "
 "above."
 msgstr ""
+"オーディオデータのルートを設定します。"
+"パラメータ値/名前については、上記の表を参照してください。"
 
 #: ../../library/wm8960.rst:237
 msgid ""
 "Enable or disable a module, with *active* being ``False`` or ``True``.  "
 "For the list of module names, see the table above."
 msgstr ""
+"モジュールを有効または無効にします。 "
+"*active* には ``False`` または ``True`` を指定します。"
+"モジュール名のリストについては、上記の表を参照してください。"
 
 #: ../../library/wm8960.rst:240
 msgid ""
@@ -26467,20 +26530,27 @@ msgid ""
 "`WM8960.mono` method.  The first enables output 3, while the "
 "`WM8960.mono` method sends a mono mix to the left and right output."
 msgstr ""
+"``MODULE_MONO_OUT`` を有効にすることは、 `WM8960.mono` メソッドとは"
+"異なることに注意してください。前者は出力3を有効にし、 `WM8960.mono` "
+"メソッドはモノラルミックスを左と右の出力に送ります。"
 
 #: ../../library/wm8960.rst:246
 msgid "Enable a module.  For the list of module names, see the table above."
 msgstr ""
+"モジュールを有効にします。モジュール名のリストについては、上記の表を参照してください。"
 
 #: ../../library/wm8960.rst:250
 msgid "Disable a module.  For the list of module names, see the table above."
 msgstr ""
+"モジュールを無効にします。モジュール名のリストについては、上記の表を参照してください。"
 
 #: ../../library/wm8960.rst:254
 msgid ""
 "Enable Stereo 3D expansion.  *level* is a number between 0 and 15. A value"
 " of 0 disables the expansion."
 msgstr ""
+"ステレオ3D拡張を有効にします。 *level* は 0 から 15 の数値で、0 を指定すると"
+"拡張が無効になります。"
 
 #: ../../library/wm8960.rst:259
 msgid ""
@@ -26488,92 +26558,102 @@ msgid ""
 "channel.  This is different from enabling the ``MODULE_MONO_MIX``, which "
 "enables output 3."
 msgstr ""
+"*active* が ``True`` の場合、モノラルミックスが左と右の出力チャンネルに送られます。"
+"これは ``MODULE_MONO_MIX`` を有効にすることとは異なり、後者は出力3を有効にします。"
 
 #: ../../library/wm8960.rst:265
 msgid "Enables or disables ALC mode.  Parameters are:"
 msgstr ""
+"ALCモードを有効または無効にします。パラメータは次のとおりです:"
 
 #: ../../library/wm8960.rst:267
 msgid "*channel* enables and sets the channel for ALC. The parameter values are:"
 msgstr ""
+"*channel* は ALC を有効にし、チャンネルを設定します。パラメータの値は次のとおりです:"
 
 #: ../../library/wm8960.rst:269
 msgid "ALC_OFF:   Switch ALC off"
-msgstr ""
+msgstr "ALC_OFF: ALC をオフ"
 
 #: ../../library/wm8960.rst:270
 msgid "ALS_RIGHT:  Use the right input channel"
-msgstr ""
+msgstr "ALC_RIGHT: 右入力チャンネルを使用"
 
 #: ../../library/wm8960.rst:271
 msgid "ALC_LEFT:   Use the left input channel"
-msgstr ""
+msgstr "ALC_LEFT: 左入力チャンネルを使用"
 
 #: ../../library/wm8960.rst:272
 msgid "ALC_STEREO: Use both input channels."
-msgstr ""
+msgstr "ALC_STEREO: 両方の入力チャンネルを使用"
 
 #: ../../library/wm8960.rst:274
 msgid "*mode* sets the ALC mode. Input values are:"
-msgstr ""
+msgstr "*mode* は ALC モードを設定します。入力値は次のとおりです:"
 
 #: ../../library/wm8960.rst:276
 msgid "ALC_MODE:   act as ALC"
-msgstr ""
+msgstr "ALC_MODE: ALC として動作"
 
 #: ../../library/wm8960.rst:277
 msgid "ALC_LIMITER: act as limiter."
-msgstr ""
+msgstr "ALC_LIMITER: リミッターとして動作"
 
 #: ../../library/wm8960.rst:281
 msgid ""
 "Set the target level, highest and lowest gain levels and the noise gate "
 "as dB level. Permitted ranges are:"
 msgstr ""
+"ターゲットレベル、最大および最小のゲインレベル、ノイズゲートを dB レベルで設定します。"
+"許可される範囲は次のとおりです:"
 
 #: ../../library/wm8960.rst:284
 msgid "*target*: -22.5 to -1.5 dB"
-msgstr ""
+msgstr "*target*: -22.5 dB から -1.5 dB"
 
 #: ../../library/wm8960.rst:285
 msgid "*max_gain*: -12 to 30 dB"
-msgstr ""
+msgstr "*max_gain*: -12 dB から 30 dB"
 
 #: ../../library/wm8960.rst:286
 msgid "*min_gain*: -17 to 25 dB"
-msgstr ""
+msgstr "*min_gain*: -17 dB から 25 dB"
 
 #: ../../library/wm8960.rst:287
 msgid "*noise_gate*: -78 to -30 dB"
-msgstr ""
+msgstr "*noise_gate*: -78 dB から -30 dB"
 
 #: ../../library/wm8960.rst:289
 msgid ""
 "Excess values are limited to the permitted ranges.  A value of -78 or "
 "less for *noise_gate* disables the noise gate function."
 msgstr ""
+"超過した値は許可された範囲に制限されます。 *noise_gate* の値が -78 dB以下の場合、"
+"ノイズゲート機能は無効になります。"
 
 #: ../../library/wm8960.rst:294
 msgid ""
 "Set the dynamic characteristic of ALC.  The times are given as "
 "millisecond values.  Permitted ranges are:"
 msgstr ""
+"ALC のダイナミック特性を設定します。"
+"時間はミリ秒単位で指定します。指定できる範囲は次のとおりです:"
 
 #: ../../library/wm8960.rst:297
 msgid "*attack*: 6 to 6140"
-msgstr ""
+msgstr "*attack*: 6 から 6140"
 
 #: ../../library/wm8960.rst:298
 msgid "*decay*: 24 to 24580"
-msgstr ""
+msgstr "*decay*: 24 から 24580"
 
 #: ../../library/wm8960.rst:299
 msgid "*hold*: 0 to 43000"
-msgstr ""
+msgstr "*hold*: 0 から 43000"
 
 #: ../../library/wm8960.rst:301
 msgid "Excess values are limited within the permitted ranges."
-msgstr ""
+msgstr "超過した値は許可された範囲内に制限されます。"
 
 #: ../../library/wm8960.rst:305
 msgid ""
@@ -26582,18 +26662,22 @@ msgid ""
 "32000, 44100 and 48000.  For other sample rates, the filter setting is "
 "silently ignored."
 msgstr ""
+"再生用のディーミファシスフィルタを有効または無効にします。 "
+"*active* には ``False`` または ``True`` を指定します。"
+"このフィルタは、32000, 44100, 48000 のサンプルレートに対してのみ適用されます。"
+"他のサンプルレートの場合、フィルタ設定は無視されます。"
 
 #: ../../library/wm8960.rst:312
 msgid "Disable all modules."
-msgstr ""
+msgstr "すべてのモジュールを無効にします。"
 
 #: ../../library/wm8960.rst:316
 msgid "Examples"
-msgstr ""
+msgstr "使用例"
 
 #: ../../library/wm8960.rst:318
 msgid "Run WM8960 in secondary mode (default)::"
-msgstr ""
+msgstr "セカンダリーモード(デフォルト)で WM8960 を動作::"
 
 #: ../../library/wm8960.rst:320
 msgid ""
@@ -26607,10 +26691,19 @@ msgid ""
 "wm=wm8960.WM8960(i2c, 32000, left_input=wm8960.INPUT_MIC1)\n"
 "wm.set_volume(wm8960.MODULE_HEADPHONE, 100)"
 msgstr ""
+"# Micro_python WM8960 コーデックドライバ\n"
+"#\n"
+"# デフォルト設定を使ってドライバをスレーブモードに設定\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, 32000, left_input=wm8960.INPUT_MIC1)\n"
+"wm.set_volume(wm8960.MODULE_HEADPHONE, 100)"
 
 #: ../../library/wm8960.rst:331
 msgid "Run WM8960 in primary mode::"
-msgstr ""
+msgstr "プライマリーモード(デフォルト)で WM8960 を動作::"
 
 #: ../../library/wm8960.rst:333
 msgid ""
@@ -26624,10 +26717,19 @@ msgid ""
 "i2c = I2C(0)\n"
 "wm=wm8960.WM8960(i2c, 44100, primary=True, bits=16)"
 msgstr ""
+"# Micro_python WM8960 コーデックドライバ\n"
+"#\n"
+"# 特定のオーディオフォーマット設定を使ってドライバをマスターモードに設定\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, 44100, primary=True, bits=16)"
 
 #: ../../library/wm8960.rst:344
 msgid "Run WM8960 on a MIMXRT10xx_DEV board in secondary mode (default)::"
-msgstr ""
+msgstr "セカンダリーモード(デフォルト)で MIMXRT10xx_DEV ボード上の WM8960 を動作::"
 
 #: ../../library/wm8960.rst:346
 msgid ""
@@ -26646,12 +26748,28 @@ msgid ""
 "    swap=wm8960.SWAP_INPUT,\n"
 "    sysclk_source=wm8960.SYSCLK_MCLK)"
 msgstr ""
+"# Micro_python WM8960 コーデックドライバ\n"
+"#\n"
+"# デフォルト設定を使ってドライバをスレーブモードに設定すると、入力チャンネルが\n"
+"# 入れ替わり、右入力に接続された MIMXRT Dev ボードのマイクが左オーディオ\n"
+"# チャンネルに割り当てられます。\n"
+"\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, sample_rate=16_000,\n"
+"    adc_sync=wm8960.SYNC_DAC,\n"
+"    swap=wm8960.SWAP_INPUT,\n"
+"    sysclk_source=wm8960.SYSCLK_MCLK)"
 
 #: ../../library/wm8960.rst:361
 msgid ""
 "Record with a Sparkfun WM8960 breakout board with Teensy in secondary "
 "mode (default)::"
 msgstr ""
+"セカンダリーモード(デフォルト)で Teensy と Sparkfun WM8960 ブレイクアウトボード"
+"による録音::"
 
 #: ../../library/wm8960.rst:363
 msgid ""
@@ -26673,12 +26791,31 @@ msgid ""
 "    left_input=wm8960.INPUT_MIC1,\n"
 "    right_input=wm8960.INPUT_CLOSED)"
 msgstr ""
+"# Micro_python WM8960 コーデックドライバ\n"
+"#\n"
+"# ブレイクアウトボードは固定の24MHz MCLKを使っています。したがって、内部 PLLを\n"
+"# sysclk として使用する必要があります。これはマスターオーディオクロックです。\n"
+"# Sparkfun ボードには、RX および TX 用の WS ピンがボード上で接続されています。\n"
+"# したがって、adc_sync は sync_adc に設定する必要があり、これにより ADCLRC \n"
+"# ピンが入力として構成されます。\n"
+"#\n"
+"from machine import Pin, I2C\n"
+"import wm8960\n"
+"i2c = I2C(0)\n"
+"wm=wm8960.WM8960(i2c, sample_rate=16_000,\n"
+"    adc_sync=wm8960.SYNC_ADC,\n"
+"    sysclk_source=wm8960.SYSCLK_PLL,\n"
+"    mclk_freq=24_000_000,\n"
+"    left_input=wm8960.INPUT_MIC1,\n"
+"    right_input=wm8960.INPUT_CLOSED)"
 
 #: ../../library/wm8960.rst:382
 msgid ""
 "Play with a Sparkfun WM8960 breakout board with Teensy in secondary mode "
 "(default)::"
 msgstr ""
+"セカンダリーモード(デフォルト)で Teensy と Sparkfun WM8960 ブレイクアウトボード"
+"による再生::"
 
 #: ../../library/wm8960.rst:384
 msgid ""
@@ -26697,6 +26834,20 @@ msgid ""
 "    mclk_freq=24_000_000)\n"
 "wm.set_volume(wm8960.MODULE_HEADPHONE, 100)"
 msgstr ""
+"# ブレイクアウトボードは固定の24MHz MCLKを使っています。したがって、内部 PLLを\n"
+"# sysclk として使用する必要があります。これはマスターオーディオクロックです。\n"
+"# Sparkfun ボードには、RX および TX 用の WS ピンがボード上で接続されています。\n"
+"# したがって、adc_sync は sync_adc に設定する必要があり、これにより ADCLRC \n"
+"# ピンが入力として構成されます。\n"
+"\n"
+"from machine import I2C\n"
+"i2c=I2C(0)\n"
+"import wm8960\n"
+"wm=wm8960.WM8960(i2c, sample_rate=44_100,\n"
+"    adc_sync=wm8960.SYNC_ADC,\n"
+"    sysclk_source=wm8960.SYSCLK_PLL,\n"
+"    mclk_freq=24_000_000)\n"
+"wm.set_volume(wm8960.MODULE_HEADPHONE, 100)"
 
 #: ../../library/zephyr.rst:4
 msgid ":mod:`zephyr` --- functionality specific to the Zephyr port"
