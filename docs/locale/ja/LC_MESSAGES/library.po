@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-21 17:56+0900\n"
-"PO-Revision-Date: 2024-10-05 21:53+0900\n"
+"POT-Creation-Date: 2024-10-28 22:22+0900\n"
+"PO-Revision-Date: 2024-10-28 22:40+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -12107,11 +12107,11 @@ msgstr ""
 
 #: ../../library/machine.UART.rst:163
 msgid ""
-"For the rp2, esp8266 and nrf ports the call returns while the last byte "
-"is sent. If required, a one character wait time has to be added in the "
+"For the esp8266 and nrf ports the call returns while the last byte is "
+"sent. If required, a one character wait time has to be added in the "
 "calling script."
 msgstr ""
-"rp2, esp8266, nrf ポートでは、最後のバイトが送信される間に呼出しが返されます。"
+"esp8266 と nrf ポートでは、最後のバイトが送信される間に呼出しが返されます。"
 "必要に応じて、呼出し側のスクリプトに１文字の待ち時間を追加してください。"
 
 #: ../../library/machine.UART.rst:166 ../../library/machine.UART.rst:179
@@ -12134,11 +12134,11 @@ msgstr ""
 
 #: ../../library/machine.UART.rst:175
 msgid ""
-"For the rp2, esp8266 and nrf ports the call may return ``True`` even if "
-"the last byte of a transfer is still being sent. If required, a one "
-"character wait time has to be added in the calling script."
+"For the esp8266 and nrf ports the call may return ``True`` even if the "
+"last byte of a transfer is still being sent. If required, a one character"
+" wait time has to be added in the calling script."
 msgstr ""
-"rp2, esp8266, nrf ポートでは、転送の最後のバイトがまだ送信中であっても、この呼出しが "
+"esp8266 と nrf ポートでは、転送の最後のバイトがまだ送信中であっても、この呼出しが "
 "``True`` を返すかもしれません。必要に応じて、呼出し側のスクリプトに１文字の待ち時間を"
 "追加してください。"
 
@@ -22325,11 +22325,31 @@ msgid "Raises a ``ValueError`` if any other argument is provided."
 msgstr "他の番号の引数が指定されている場合は ``ValueError`` が発生します。"
 
 #: ../../library/rp2.PIO.rst:32
+msgid "Query and optionally set the current GPIO base for this PIO instance."
+msgstr ""
+"この PIO インスタンスの現在の GPIO ベースを照会します。オプションで設定もできます。"
+
+#: ../../library/rp2.PIO.rst:34
+msgid ""
+"If an argument is given then it must be a pin (or integer corresponding "
+"to a pin number), restricted to either GPIO0 or GPIO16.  The GPIO base "
+"will then be set to that pin.  Setting the GPIO base must be done before "
+"any programs are added or state machines created."
+msgstr ""
+"引数を指定する場合、それはピン(またはピン番号に対応する整数)でなければならず、"
+"GPIO0 または GPIO16 のいずれかに制限されます。その後、GPIO ベースは"
+"そのピンに設定されます。GPIO ベースの設定は、プログラムを追加したり、ステートマシンを"
+"作成したりする前に行う必要があります。"
+
+#: ../../library/rp2.PIO.rst:39
+msgid "Returns the current GPIO base pin."
+msgstr "現在の GPIO ベースピンを返します。"
+
+#: ../../library/rp2.PIO.rst:43
 msgid "Add the *program* to the instruction memory of this PIO instance."
 msgstr "この PIO インスタンスの命令メモリにプログラム *program* を追加します。"
 
-
-#: ../../library/rp2.PIO.rst:34
+#: ../../library/rp2.PIO.rst:45
 msgid ""
 "The amount of memory available for programs on each PIO instance is "
 "limited. If there isn't enough space left in the PIO's program memory "
@@ -22339,19 +22359,19 @@ msgstr ""
 "PIOのプログラムメモリに十分なスペースが残っていない場合、このメソッドは "
 "``OSError(ENOMEM)`` を発生します。"
 
-#: ../../library/rp2.PIO.rst:40
+#: ../../library/rp2.PIO.rst:51
 msgid "Remove *program* from the instruction memory of this PIO instance."
 msgstr "この PIO インスタンスの命令メモリからプログラム *program* を削除します。"
 
-#: ../../library/rp2.PIO.rst:42
+#: ../../library/rp2.PIO.rst:53
 msgid "If no program is provided, it removes all programs."
 msgstr "プログラムを指定しない場合は、すべてのプログラムを削除します。"
 
-#: ../../library/rp2.PIO.rst:44
+#: ../../library/rp2.PIO.rst:55
 msgid "It is not an error to remove a program which has already been removed."
 msgstr "すでに削除されているプログラムを削除してもエラーにはなりません。"
 
-#: ../../library/rp2.PIO.rst:48
+#: ../../library/rp2.PIO.rst:59
 msgid ""
 "Gets the state machine numbered *id*. On the RP2040, each PIO instance "
 "has four state machines, numbered 0 to 3."
@@ -22359,25 +22379,25 @@ msgstr ""
 "*id* で指定した番号のステートマシンを取得します。RP2040 には各 PIO インスタンスに "
 "0 から 3 までの番号が付けられた４つのステートマシンがあります。"
 
-#: ../../library/rp2.PIO.rst:51
+#: ../../library/rp2.PIO.rst:62
 msgid "Optionally initialize it with a *program*: see `StateMachine.init`."
 msgstr ""
 "引数 *program* を指定すると、指定のプログラムでステートマシンを初期化します。 "
 "`StateMachine.init` を参照してください。"
 
-#: ../../library/rp2.PIO.rst:58
+#: ../../library/rp2.PIO.rst:69
 msgid "Returns the IRQ object for this PIO instance."
 msgstr "この PIO インスタンスの IRQ オブジェクトを返します。"
 
-#: ../../library/rp2.PIO.rst:60
+#: ../../library/rp2.PIO.rst:71
 msgid "MicroPython only uses IRQ 0 on each PIO instance. IRQ 1 is not available."
 msgstr "MicroPython は、各 PIO インスタンスで IRQ0 のみを使います。IRQ1 は使えません。"
 
-#: ../../library/rp2.PIO.rst:62 ../../library/rp2.StateMachine.rst:134
+#: ../../library/rp2.PIO.rst:73 ../../library/rp2.StateMachine.rst:141
 msgid "Optionally configure it."
 msgstr "IRQ インスタンスは指定の引数で構成されます。"
 
-#: ../../library/rp2.PIO.rst:73
+#: ../../library/rp2.PIO.rst:84
 msgid ""
 "These constants are used for the *out_init*, *set_init*, and "
 "*sideset_init* arguments to `asm_pio`."
@@ -22385,7 +22405,7 @@ msgstr ""
 "これらの定数は `asm_pio` の引数 *out_init*, *set_init*, *sideset_init* "
 "で使います。"
 
-#: ../../library/rp2.PIO.rst:79
+#: ../../library/rp2.PIO.rst:90
 msgid ""
 "These constants are used for the *in_shiftdir* and *out_shiftdir* "
 "arguments to `asm_pio` or `StateMachine.init`."
@@ -22393,11 +22413,11 @@ msgstr ""
 "これらの定数は `asm_pio` または `StateMachine.init` の引数 *in_shiftdir* と "
 "*out_shiftdir* で使います。"
 
-#: ../../library/rp2.PIO.rst:86
+#: ../../library/rp2.PIO.rst:97
 msgid "These constants are used for the *fifo_join* argument to `asm_pio`."
 msgstr "これらの定数は `asm_pio` の引数 *fifo_join* で使います。"
 
-#: ../../library/rp2.PIO.rst:93
+#: ../../library/rp2.PIO.rst:104
 msgid "These constants are used for the *trigger* argument to `PIO.irq`."
 msgstr "これらの定数は `PIO.irq` の引数 *trigger* で使います。"
 
