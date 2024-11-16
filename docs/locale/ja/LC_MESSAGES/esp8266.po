@@ -1,18 +1,19 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2023,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-05 15:39+0900\n"
-"PO-Revision-Date: 2024-07-05 15:52+0900\n"
+"POT-Creation-Date: 2024-11-16 09:55+0900\n"
+"PO-Revision-Date: 2024-11-16 10:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -587,14 +588,14 @@ msgid "Networking"
 msgstr "ネットワーキング"
 
 #: ../../esp8266/quickref.rst:52
-msgid "The :mod:`network` module::"
-msgstr ":mod:`network` モジュール::"
+msgid "The :class:`network.WLAN` class in the :mod:`network` module::"
+msgstr ":mod:`network` モジュールの :class:`network.WLAN` クラス::"
 
 #: ../../esp8266/quickref.rst:54
 msgid ""
 "import network\n"
 "\n"
-"wlan = network.WLAN(network.STA_IF) # create station interface\n"
+"wlan = network.WLAN(network.WLAN.IF_STA) # create station interface\n"
 "wlan.active(True)       # activate the interface\n"
 "wlan.scan()             # scan for access points\n"
 "wlan.isconnected()      # check if the station is connected to an AP\n"
@@ -602,13 +603,13 @@ msgid ""
 "wlan.config('mac')      # get the interface's MAC address\n"
 "wlan.ipconfig('addr4')  # get the interface's IPv4 addresses\n"
 "\n"
-"ap = network.WLAN(network.AP_IF) # create access-point interface\n"
+"ap = network.WLAN(network.WLAN.IF_AP) # create access-point interface\n"
 "ap.active(True)         # activate the interface\n"
 "ap.config(ssid='ESP-AP') # set the SSID of the access point"
 msgstr ""
 "import network\n"
 "\n"
-"wlan = network.WLAN(network.STA_IF) # ステーションインタフェースを作成\n"
+"wlan = network.WLAN(network.WLAN.IF_STA) # ステーションインタフェースを作成\n"
 "wlan.active(True)       # インタフェースをアクティブ化\n"
 "wlan.scan()             # アクセスポイントをスキャン\n"
 "wlan.isconnected()      # ステーションが AP に繋がったかをチェック\n"
@@ -616,7 +617,7 @@ msgstr ""
 "wlan.config('mac')      # インタフェースの MAC アドレスを取得\n"
 "wlan.ipconfig('addr4')  # インタフェースの IPv4 アドレスを取得\n"
 "\n"
-"ap = network.WLAN(network.AP_IF) # アクセスポイントインタフェースを作成\n"
+"ap = network.WLAN(network.WLAN.IF_AP) # アクセスポイントインタフェースを作成\n"
 "ap.active(True)         # インタフェースをアクティブ化\n"
 "ap.config(ssid='ESP-AP') # アクセスポイントの SSID を設定"
 
@@ -628,7 +629,7 @@ msgstr "ローカルの WiFi ネットワークに接続するには、次の関
 msgid ""
 "def do_connect():\n"
 "    import network\n"
-"    wlan = network.WLAN(network.STA_IF)\n"
+"    wlan = network.WLAN(network.WLAN.IF_STA)\n"
 "    wlan.active(True)\n"
 "    if not wlan.isconnected():\n"
 "        print('connecting to network...')\n"
@@ -2591,28 +2592,30 @@ msgstr "ネットワークの基礎"
 
 #: ../../esp8266/tutorial/network_basics.rst:4
 msgid ""
-"The network module is used to configure the WiFi connection.  There are "
-"two WiFi interfaces, one for the station (when the ESP8266 connects to a "
-"router) and one for the access point (for other devices to connect to the"
-" ESP8266).  Create instances of these objects using::"
+"The :class:`network.WLAN` class in the :mod:`network` module is used to "
+"configure the WiFi connection.  There are two WiFi interfaces, one for "
+"the station (when the ESP8266 connects to a router) and one for the "
+"access point (for other devices to connect to the ESP8266).  Create "
+"instances of these objects using::"
 msgstr ""
-"network モジュールは、WiFi 接続を設定するために使用されます。ステーション用"
+":mod:`network`  モジュールの :class:`network.WLAN` クラスは、"
+"WiFi 接続を設定するために使用されます。ステーション用"
 "(ESP8266がルータに接続する場合)とアクセスポイント用(ESP8266に接続する他の"
 "デバイス用)の2つの WiFi インタフェースがあります。これらのオブジェクトの"
 "インスタンスを作成するには次のようにします::"
 
-#: ../../esp8266/tutorial/network_basics.rst:9
+#: ../../esp8266/tutorial/network_basics.rst:10
 msgid ""
 ">>> import network\n"
-">>> sta_if = network.WLAN(network.STA_IF)\n"
-">>> ap_if = network.WLAN(network.AP_IF)"
+">>> sta_if = network.WLAN(network.WLAN.IF_STA)\n"
+">>> ap_if = network.WLAN(network.WLAN.IF_AP)"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:13
+#: ../../esp8266/tutorial/network_basics.rst:14
 msgid "You can check if the interfaces are active by::"
 msgstr "インターフェイスがアクティブかどうかは、次の方法で確認できます::"
 
-#: ../../esp8266/tutorial/network_basics.rst:15
+#: ../../esp8266/tutorial/network_basics.rst:16
 msgid ""
 ">>> sta_if.active()\n"
 "False\n"
@@ -2620,25 +2623,25 @@ msgid ""
 "True"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:20
+#: ../../esp8266/tutorial/network_basics.rst:21
 msgid "You can also check the network settings of the interface by::"
 msgstr "また、次の方法でインタフェースのネットワーク設定を確認することもできます::"
 
-#: ../../esp8266/tutorial/network_basics.rst:22
+#: ../../esp8266/tutorial/network_basics.rst:23
 msgid ""
 ">>> ap_if.ipconfig('addr4')\n"
 "('192.168.4.1', '255.255.255.0')"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:25
+#: ../../esp8266/tutorial/network_basics.rst:26
 msgid "The returned values are: IP address and netmask."
 msgstr "戻り値は、IPアドレスとネットマスクです。"
 
-#: ../../esp8266/tutorial/network_basics.rst:28
+#: ../../esp8266/tutorial/network_basics.rst:29
 msgid "Configuration of the WiFi"
 msgstr "WiFi の設定"
 
-#: ../../esp8266/tutorial/network_basics.rst:30
+#: ../../esp8266/tutorial/network_basics.rst:31
 msgid ""
 "Upon a fresh install the ESP8266 is configured in access point mode, so "
 "the AP_IF interface is active and the STA_IF interface is inactive.  You "
@@ -2650,49 +2653,49 @@ msgstr ""
 "STA_IF インターフェイスを使って、自分のネットワークに接続するようにモジュールを"
 "設定できます。"
 
-#: ../../esp8266/tutorial/network_basics.rst:34
+#: ../../esp8266/tutorial/network_basics.rst:35
 msgid "First activate the station interface::"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:36
+#: ../../esp8266/tutorial/network_basics.rst:37
 msgid ">>> sta_if.active(True)"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:38
+#: ../../esp8266/tutorial/network_basics.rst:39
 msgid "Then connect to your WiFi network::"
 msgstr "最初にステーションインターフェイスを有効にします::"
 
-#: ../../esp8266/tutorial/network_basics.rst:40
+#: ../../esp8266/tutorial/network_basics.rst:41
 msgid ">>> sta_if.connect('<your SSID>', '<your key>')"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:42
+#: ../../esp8266/tutorial/network_basics.rst:43
 msgid "To check if the connection is established use::"
 msgstr "次に、WiFiネットワークに接続します::"
 
-#: ../../esp8266/tutorial/network_basics.rst:44
+#: ../../esp8266/tutorial/network_basics.rst:45
 msgid ">>> sta_if.isconnected()"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:46
+#: ../../esp8266/tutorial/network_basics.rst:47
 msgid "Once established you can check the IP address::"
 msgstr "接続が確立されているかどうかを確認するには次のようにします::"
 
-#: ../../esp8266/tutorial/network_basics.rst:48
+#: ../../esp8266/tutorial/network_basics.rst:49
 msgid ""
 ">>> sta_if.ipconfig('addr4')\n"
 "('192.168.0.2', '255.255.255.0')"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:51
+#: ../../esp8266/tutorial/network_basics.rst:52
 msgid "You can then disable the access-point interface if you no longer need it::"
 msgstr "アクセスポイントインターフェイスが不要になったら、アクセスポイントインターフェイスを無効にすることができます::"
 
-#: ../../esp8266/tutorial/network_basics.rst:53
+#: ../../esp8266/tutorial/network_basics.rst:54
 msgid ">>> ap_if.active(False)"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:55
+#: ../../esp8266/tutorial/network_basics.rst:56
 msgid ""
 "Here is a function you can run (or put in your boot.py file) to "
 "automatically connect to your WiFi network::"
@@ -2700,11 +2703,11 @@ msgstr ""
 "以下は WiFi ネットワークに自動的に接続するために実行する関数です"
 "(boot.py ファイルに入れておくこともできます)::"
 
-#: ../../esp8266/tutorial/network_basics.rst:58
+#: ../../esp8266/tutorial/network_basics.rst:59
 msgid ""
 "def do_connect():\n"
 "    import network\n"
-"    sta_if = network.WLAN(network.STA_IF)\n"
+"    sta_if = network.WLAN(network.WLAN.IF_STA)\n"
 "    if not sta_if.isconnected():\n"
 "        print('connecting to network...')\n"
 "        sta_if.active(True)\n"
@@ -2714,11 +2717,11 @@ msgid ""
 "    print('network config:', sta_if.ipconfig('addr4'))"
 msgstr ""
 
-#: ../../esp8266/tutorial/network_basics.rst:70
+#: ../../esp8266/tutorial/network_basics.rst:71
 msgid "Sockets"
 msgstr "ソケット"
 
-#: ../../esp8266/tutorial/network_basics.rst:72
+#: ../../esp8266/tutorial/network_basics.rst:73
 msgid ""
 "Once the WiFi is set up the way to access the network is by using "
 "sockets. A socket represents an endpoint on a network device, and when "
@@ -2737,7 +2740,7 @@ msgstr ""
 "整数です。IP アドレスとポート番号を指定すると、リモートデバイスに接続して通話を"
 "開始できます。"
 
-#: ../../esp8266/tutorial/network_basics.rst:80
+#: ../../esp8266/tutorial/network_basics.rst:81
 msgid ""
 "The next part of the tutorial discusses how to use sockets to do some "
 "common and useful network tasks."
