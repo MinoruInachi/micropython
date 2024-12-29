@@ -19,10 +19,10 @@ QSTR_DEFS = qstrdefsport.h
 MICROPY_ROM_TEXT_COMPRESSION ?= 1
 
 ifeq ($(QEMU_ARCH),arm)
-FROZEN_MANIFEST ?= "freeze('test-frzmpy')"
+FROZEN_MANIFEST ?= "require('unittest'); freeze('test-frzmpy')"
 endif
 ifeq ($(QEMU_ARCH),riscv32)
-FROZEN_MANIFEST ?= "freeze('test-frzmpy', ('frozen_const.py', 'frozen_viper.py', 'native_frozen_align.py'))"
+FROZEN_MANIFEST ?= "require('unittest'); freeze('test-frzmpy', ('frozen_const.py', 'frozen_viper.py', 'native_frozen_align.py'))"
 endif
 
 # include py core make definitions
@@ -167,6 +167,12 @@ run: $(BUILD)/firmware.elf
 test: $(BUILD)/firmware.elf
 	$(eval DIRNAME=ports/$(notdir $(CURDIR)))
 	cd $(TOP)/tests && ./run-tests.py -t execpty:"$(QEMU_SYSTEM) $(QEMU_ARGS) -serial pty -kernel ../$(DIRNAME)/$<" $(RUN_TESTS_ARGS) $(RUN_TESTS_EXTRA)
+
+.PHONY: test_natmod
+test_natmod: $(BUILD)/firmware.elf
+	$(eval DIRNAME=ports/$(notdir $(CURDIR)))
+	# "btree" cannot build against Picolibc right now.
+	cd $(TOP)/tests && ./run-natmodtests.py -p -d execpty:"$(QEMU_SYSTEM) $(QEMU_ARGS) -serial pty -kernel ../$(DIRNAME)/$<" $(RUN_NATMODTESTS_ARGS) extmod/{deflate,framebuf,heapq,random_basic,re}*.py
 
 $(BUILD)/firmware.elf: $(LDSCRIPT) $(OBJ)
 	$(Q)$(CC) $(LDFLAGS) -o $@ $(OBJ) $(LIBS)
