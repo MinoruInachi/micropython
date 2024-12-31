@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-16 09:55+0900\n"
-"PO-Revision-Date: 2024-11-16 10:45+0900\n"
+"POT-Creation-Date: 2024-12-29 14:37+0900\n"
+"PO-Revision-Date: 2024-12-30 00:57+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -205,89 +205,18 @@ msgid "Boot process"
 msgstr "ブートプロセス"
 
 #: ../../esp8266/general.rst:77
-msgid ""
-"On boot, MicroPython EPS8266 port executes ``_boot.py`` script from "
-"internal frozen modules. It mounts filesystem in FlashROM, or if it's not"
-" available, performs first-time setup of the module and creates the "
-"filesystem. This part of the boot process is considered fixed, and not "
-"available for customization for end users (even if you build from source,"
-" please refrain from changes to it; customization of early boot process "
-"is available only to advanced users and developers, who can diagnose "
-"themselves any issues arising from modifying the standard process)."
-msgstr ""
-"起動時、MicroPython EPS8266 ポートは内部のフリーズされたモジュールから ``_boot.py`` "
-"スクリプトを実行します。FlashROM にファイルシステムをマウントするか、マウントでき"
-"なければ、モジュールの初回セットアップを実行してファイルシステムを作成します。"
-"ブートプロセスのこの部分は固定されていると見なされ、エンドユーザーのカスタマイズには"
-"使用できません(たとえソースからビルドしても、変更を控えてください; 初期ブートプロセスの"
-"カスタマイズは、上級ユーザーや開発者だけ、標準的なプロセスを変更することによって生じる"
-"問題を自分で診断できる方だけが行うようにしてください)。"
+msgid "See :doc:`/reference/reset_boot`."
+msgstr ":doc:`/reference/reset_boot` を参照してください。"
 
-#: ../../esp8266/general.rst:86
-msgid ""
-"Once the filesystem is mounted, ``boot.py`` is executed from it. The "
-"standard version of this file is created during first-time module set up "
-"and has commands to start a WebREPL daemon (disabled by default, "
-"configurable with ``webrepl_setup`` module), etc. This file is "
-"customizable by end users (for example, you may want to set some "
-"parameters or add other services which should be run on a module start-"
-"up). But keep in mind that incorrect modifications to boot.py may still "
-"lead to boot loops or lock ups, requiring to reflash a module from "
-"scratch. (In particular, it's recommended that you use either "
-"``webrepl_setup`` module or manual editing to configure WebREPL, but not "
-"both)."
-msgstr ""
-"ファイルシステムがマウントされると、 ``boot.py`` がファイルシステムから実行"
-"されます。このファイルの標準バージョンは、初めてモジュールをセットアップするときに"
-"作成され、WebREPL デーモンを起動するコマンド(デフォルトでは無効、 "
-"``webrepl_setup`` モジュールで設定可能)などがあります。このファイルは"
-"エンドユーザーがカスタマイズできます(たとえば、いくつかのパラメータを設定するか、"
-"モジュールの起動時に実行する必要がある他のサービスを追加します)。しかし、 "
-"``boot.py`` を誤って変更すると、ブートループや障害につながる可能性があり、"
-"モジュールを最初から再フラッシュすることになるかもしれないことに注意してください。"
-"(特に、 ``webrepl_setup`` モジュール使用、WebREPL 設定の手編集のどちらかを"
-"使用することをお勧めしますが、両方を使用することはお勧めしません)。"
-
-#: ../../esp8266/general.rst:98
-msgid ""
-"As a final step of boot procedure, ``main.py`` is executed from "
-"filesystem, if exists. This file is a hook to start up a user application"
-" each time on boot (instead of going to REPL). For small test "
-"applications, you may name them directly as ``main.py``, and upload to "
-"module, but instead it's recommended to keep your application(s) in "
-"separate files, and have just the following in ``main.py``::"
-msgstr ""
-"ブート手順の最終ステップとして、 ``main.py`` がファイルシステムから実行されます"
-"(存在する場合)。このファイルは、ブート時に毎回(REPL に行くのではなく)ユーザー"
-"アプリケーションを起動するためのフックです。小規模なテストアプリケーションでは、"
-"モジュールに ``main.py`` と直に名前を付けてアップロードすることもできますが、"
-"アプリケーションを別々のファイルに保存し、 ``main.py`` で次のようにすることを"
-"お勧めします。"
-
-#: ../../esp8266/general.rst:105
-msgid ""
-"import my_app\n"
-"my_app.main()"
-msgstr ""
-
-#: ../../esp8266/general.rst:108
-msgid ""
-"This will allow to keep the structure of your application clear, as well "
-"as allow to install multiple applications on a board, and switch among "
-"them."
-msgstr ""
-"これにより、アプリケーションの構造を明確に保ち、ボード上に複数の"
-"アプリケーションをインストールし、それらの間で切り替えることができます。"
-
-#: ../../esp8266/general.rst:113
+#: ../../esp8266/general.rst:80
 msgid "Known Issues"
 msgstr "既知の問題"
 
-#: ../../esp8266/general.rst:116
+#: ../../esp8266/general.rst:83
 msgid "Real-time clock"
 msgstr "リアルタイムクロック"
 
-#: ../../esp8266/general.rst:118
+#: ../../esp8266/general.rst:85
 msgid ""
 "RTC in ESP8266 has very bad accuracy, drift may be seconds per minute. As"
 " a workaround, to measure short enough intervals you can use "
@@ -299,7 +228,7 @@ msgstr ""
 "使用できます。また、実時間とするには、含まれている ``ntptime.py`` モジュールを"
 "使用してネットから同期してください。"
 
-#: ../../esp8266/general.rst:123
+#: ../../esp8266/general.rst:90
 msgid ""
 "Due to limitations of the ESP8266 chip the internal real-time clock (RTC)"
 " will overflow every 7:45h.  If a long-term working RTC time is required "
@@ -311,15 +240,15 @@ msgstr ""
 "``localtime()`` を7時間以内に少なくとも1回は呼び出す必要があります。"
 "そのようにすると、MicroPython がオーバーフローを処理します。"
 
-#: ../../esp8266/general.rst:129
+#: ../../esp8266/general.rst:96
 msgid "Simultaneous operation of STA_IF and AP_IF"
 msgstr "STA_IF と AP_IF の同時利用"
 
-#: ../../esp8266/general.rst:131
+#: ../../esp8266/general.rst:98
 msgid "Simultaneous operation of STA_IF and AP_IF interfaces is supported."
 msgstr "STA_IF と AP_IF インターフェースの同時利用がサポートされています。"
 
-#: ../../esp8266/general.rst:133
+#: ../../esp8266/general.rst:100
 msgid ""
 "However, due to restrictions of the hardware, there may be performance "
 "issues in the AP_IF, if the STA_IF is not connected and searching. An "
@@ -331,11 +260,11 @@ msgstr ""
 "このようなインターフェースの挙動を管理する必要があります。たとえば AP_IF のみを"
 "使う環境では STA_IF を無効にするなどです。"
 
-#: ../../esp8266/general.rst:139
+#: ../../esp8266/general.rst:106
 msgid "Sockets and WiFi buffers overflow"
 msgstr "ソケットと WiFi バッファのオーバーフロー"
 
-#: ../../esp8266/general.rst:141
+#: ../../esp8266/general.rst:108
 msgid ""
 "Socket instances remain active until they are explicitly closed. This has"
 " two consequences. Firstly they occupy RAM, so an application which opens"
@@ -354,7 +283,7 @@ msgstr ""
 "発生します。これは、WiFiスタックの入力キューをオーバーフローさせ、デッドロックを"
 "招く可能性があります。唯一の回復方法は、ハードリセットすることです。"
 
-#: ../../esp8266/general.rst:149
+#: ../../esp8266/general.rst:116
 msgid ""
 "The above may also happen after an application terminates and quits to "
 "the REPL for any reason including an exception. Subsequent arrival of "
@@ -369,7 +298,7 @@ msgstr ""
 "終了するかどうかにかかわらず、どんな場合でも閉じなければなりません。たとえば、"
 "try/finally を使用します。"
 
-#: ../../esp8266/general.rst:155
+#: ../../esp8266/general.rst:122
 msgid ""
 "sock = socket(...)\n"
 "try:\n"
@@ -378,11 +307,11 @@ msgid ""
 "    sock.close()"
 msgstr ""
 
-#: ../../esp8266/general.rst:163
+#: ../../esp8266/general.rst:130
 msgid "SSL/TLS limitations"
 msgstr "SSL/TLS の制限事項"
 
-#: ../../esp8266/general.rst:165
+#: ../../esp8266/general.rst:132
 msgid ""
 "ESP8266 uses `axTLS <http://axtls.sourceforge.net/>`_ library, which is "
 "one of the smallest TLS libraries with compatible licensing. However, it "
@@ -392,7 +321,7 @@ msgstr ""
 "これは互換性のあるライセンスを持つ最小の TLS ライブラリの１つです。ただし、既知の"
 "問題や制限事項もあります:"
 
-#: ../../esp8266/general.rst:169
+#: ../../esp8266/general.rst:136
 msgid ""
 "No support for Diffie-Hellman (DH) key exchange and Elliptic-curve "
 "cryptography (ECC). This means it can't work with sites which require the"
@@ -403,7 +332,7 @@ msgstr ""
 "つまり、これらの機能を使用するサイトでは動作しません(従来のRSA証明書"
 "では正常に動作します)。"
 
-#: ../../esp8266/general.rst:173
+#: ../../esp8266/general.rst:140
 msgid ""
 "Half-duplex communication nature. axTLS uses a single buffer for both "
 "sending and receiving, which leads to considerable memory saving and "
@@ -414,7 +343,7 @@ msgstr ""
 "メモリの節約につながり、HTTP などのプロトコルでうまく機能します。しかし、"
 "古典的な要求応答モデルにしたがわないプロトコルには問題があるかもしれません。"
 
-#: ../../esp8266/general.rst:178
+#: ../../esp8266/general.rst:145
 msgid ""
 "Besides axTLS's own limitations, the configuration used for MicroPython "
 "is highly optimized for code size, which leads to additional limitations "
@@ -423,7 +352,7 @@ msgstr ""
 "axTLS 独自の制限の他に、MicroPython で使用される設定はコードサイズに高度に最適化"
 "されているため、さらなる制限があります(これらは将来的に解消される可能性があります)。"
 
-#: ../../esp8266/general.rst:182
+#: ../../esp8266/general.rst:149
 msgid ""
 "Optimized RSA algorithms are not enabled, which may lead to slow SSL "
 "handshakes."
@@ -431,7 +360,7 @@ msgstr ""
 "最適化された RSA アルゴリズムが有効になっていないため、SSL ハンドシェイクが"
 "遅くなる可能性があります。"
 
-#: ../../esp8266/general.rst:184
+#: ../../esp8266/general.rst:151
 msgid ""
 "Session Reuse is not enabled, which means every connection must undergo "
 "the full, expensive SSL handshake."
@@ -439,7 +368,7 @@ msgstr ""
 "セッションの再利用が有効でないため、すべての接続がコストのかかる SSL ハンドシェイクを"
 "受けなければなりません。"
 
-#: ../../esp8266/general.rst:187
+#: ../../esp8266/general.rst:154
 msgid ""
 "Besides axTLS specific limitations described above, there's another "
 "generic limitation with usage of TLS on the low-memory devices:"
@@ -447,7 +376,7 @@ msgstr ""
 "上記の axTLS 固有の制限の他に、低メモリデバイスでの TLS の使用には別の一般的な"
 "制限があります:"
 
-#: ../../esp8266/general.rst:190
+#: ../../esp8266/general.rst:157
 msgid ""
 "The TLS standard specifies the maximum length of the TLS record (unit of "
 "TLS communication, the entire record must be buffered before it can be "
@@ -477,7 +406,7 @@ msgstr ""
 "HTTPS の Web サイトで使うことはなく、拡張の利用は他のデバイスとのローカル通信にのみ"
 "有効です。"
 
-#: ../../esp8266/general.rst:205
+#: ../../esp8266/general.rst:172
 msgid ""
 "There are also some not implemented features specifically in "
 "MicroPython's ``ssl`` module based on axTLS:"
@@ -485,14 +414,14 @@ msgstr ""
 "また、AxTLS を基にした　MicroPython の ``ssl`` のモジュールには実装されていない"
 "機能もあります。"
 
-#: ../../esp8266/general.rst:208
+#: ../../esp8266/general.rst:175
 msgid ""
 "Certificates are not validated (this may make connections susceptible to "
 "man-in-the-middle attacks)."
 msgstr ""
 "証明書は検証されません(これにより、中間者攻撃に接続が影響を受ける可能性があります)。"
 
-#: ../../esp8266/general.rst:210
+#: ../../esp8266/general.rst:177
 msgid ""
 "There is no support for client certificates (scheduled to be fixed in "
 "1.9.4 release)."
@@ -823,16 +752,16 @@ msgstr ""
 #: ../../esp8266/quickref.rst:166
 msgid ""
 "If there are no objects in any of the dupterm slots when the REPL is "
-"started (on hard or soft reset) then UART(0) is automatically attached. "
-"Without this, the only way to recover a board without a REPL would be to "
-"completely erase and reflash (which would install the default boot.py "
-"which attaches the REPL)."
+"started (on :doc:`hard or soft reset </reference/reset_boot>`) then "
+"UART(0) is automatically attached. Without this, the only way to recover "
+"a board without a REPL would be to completely erase and reflash (which "
+"would install the default boot.py which attaches the REPL)."
 msgstr ""
-"(ハードリセットまたはソフトリセットでの) REPL の起動時に、どの dupterm スロット"
-"にもオブジェクトがない場合は、UART(0) に自動的にアタッチします。"
-"これが失敗する場合、REPL のないボードを回復する唯一の手段は、完全に消去して"
-"フラッシュすることです(REPL を アタッチするデフォルトの boot.py も再インストール"
-"することになります)。"
+"(:doc:`ハードリセットまたはソフトリセット </reference/reset_boot>` での) "
+"REPL の起動時に、どの dupterm スロットにもオブジェクトがない場合は、"
+"UART(0) に自動的にアタッチします。これが失敗する場合、REPL のないボードを"
+"回復する唯一の手段は、完全に消去してフラッシュすることです(REPL を アタッチする"
+"デフォルトの boot.py も再インストールすることになります)。"
 
 #: ../../esp8266/quickref.rst:172
 msgid "To detach the REPL from UART0, use::"
@@ -1077,8 +1006,11 @@ msgid ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
-"time\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # set a specific date and\n"
+"                                             # time, eg. 2017/8/23 "
+"1:12:48\n"
+"                                             # the day-of-week value is "
+"ignored\n"
 "rtc.datetime() # get date and time\n"
 "\n"
 "# synchronize with ntp\n"
@@ -1090,7 +1022,9 @@ msgstr ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # 指定の日時を設定\n"
+"                                             # 2017/8/23 1:12:48\n"
+"                                             # 曜日の値は無視される\n"
 "rtc.datetime() # 日時を取得"
 "\n"
 "# ntp で時刻同期するには wifi への接続が必要\n"

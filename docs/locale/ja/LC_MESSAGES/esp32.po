@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-16 09:55+0900\n"
-"PO-Revision-Date: 2024-11-16 10:27+0900\n"
+"POT-Creation-Date: 2024-12-29 14:37+0900\n"
+"PO-Revision-Date: 2024-12-29 15:43+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1518,24 +1518,30 @@ msgid ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and time\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # set a specific date and\n"
+"                                             # time, eg. 2017/8/23 "
+"1:12:48\n"
+"                                             # the day-of-week value is "
+"ignored\n"
 "rtc.datetime() # get date and time"
 msgstr ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # 指定の日時を設定\n"
+"                                             # 2017/8/23 1:12:48\n"
+"                                             # 曜日の値は無視される\n"
 "rtc.datetime() # 日時を取得"
 
-#: ../../esp32/quickref.rst:584
+#: ../../esp32/quickref.rst:586
 msgid "WDT (Watchdog timer)"
 msgstr "WDT (ウォッチドッグタイマー)"
 
-#: ../../esp32/quickref.rst:586
+#: ../../esp32/quickref.rst:588
 msgid "See :ref:`machine.WDT <machine.WDT>`. ::"
 msgstr ":ref:`machine.WDT <machine.WDT>` を参照::"
 
-#: ../../esp32/quickref.rst:588
+#: ../../esp32/quickref.rst:590
 msgid ""
 "from machine import WDT\n"
 "\n"
@@ -1549,15 +1555,15 @@ msgstr ""
 "wdt = WDT(timeout=5000)\n"
 "wdt.feed()"
 
-#: ../../esp32/quickref.rst:597
+#: ../../esp32/quickref.rst:599
 msgid "Deep-sleep mode"
 msgstr "ディープスリープモード"
 
-#: ../../esp32/quickref.rst:599
+#: ../../esp32/quickref.rst:601
 msgid "The following code can be used to sleep, wake and check the reset cause::"
 msgstr "次のコードで、スリープ、起床、リセット原因のチェックが行えます::"
 
-#: ../../esp32/quickref.rst:601
+#: ../../esp32/quickref.rst:603
 msgid "import machine\n"
 "\n"
 "# check if the device woke from a deep sleep\n"
@@ -1576,15 +1582,15 @@ msgstr ""
 "# 10秒間のディープスリープに入る\n"
 "machine.deepsleep(10000)"
 
-#: ../../esp32/quickref.rst:612
+#: ../../esp32/quickref.rst:614
 msgid "Calling ``deepsleep()`` without an argument will put the device to sleep indefinitely"
 msgstr "``deepsleep()`` を引数なしで呼び出すと、デバイスは無期限にスリープします"
 
-#: ../../esp32/quickref.rst:613
+#: ../../esp32/quickref.rst:615
 msgid "A software reset does not change the reset cause"
 msgstr "ソフトウェアリセットによってリセットの原因が変わることはありません"
 
-#: ../../esp32/quickref.rst:616
+#: ../../esp32/quickref.rst:618
 msgid ""
 "Some ESP32 pins (0, 2, 4, 12-15, 25-27, 32-39) are connected to the RTC "
 "during deep-sleep and can be used to wake the device with the "
@@ -1597,7 +1603,7 @@ msgstr ""
 "するのに使えます。出力可能な RTC ピン(34-39 を除くすべて)は、ディープスリープに"
 "入るときにもプルアップまたはプルダウン抵抗の構成を保持します。"
 
-#: ../../esp32/quickref.rst:622
+#: ../../esp32/quickref.rst:624
 msgid ""
 "If the pull resistors are not actively required during deep-sleep and are"
 " likely to cause current leakage (for example a pull-up resistor is "
@@ -1608,7 +1614,7 @@ msgstr ""
 "場合(例えば、プルアップ抵抗がスイッチを介してグランドに接続されている場合)、"
 "ディープスリープモードに入る前に電力を節約するためにそれらを無効にする必要があります。"
 
-#: ../../esp32/quickref.rst:627
+#: ../../esp32/quickref.rst:629
 msgid ""
 "from machine import Pin, deepsleep\n"
 "\n"
@@ -1628,7 +1634,7 @@ msgstr ""
 "pin.init(pull=None)\n"
 "machine.deepsleep(10000)"
 
-#: ../../esp32/quickref.rst:636
+#: ../../esp32/quickref.rst:638
 msgid ""
 "Output-configured RTC pins will also retain their output direction and "
 "level in deep-sleep if pad hold is enabled with the ``hold=True`` "
@@ -1638,7 +1644,7 @@ msgstr ""
 "出力設定された RTC ピンもディープスリープ時にその出力方向とレベルを保持"
 "するようになります。"
 
-#: ../../esp32/quickref.rst:640
+#: ../../esp32/quickref.rst:642
 msgid ""
 "Non-RTC GPIO pins will be disconnected by default on entering deep-sleep."
 " Configuration of non-RTC pins - including output level - can be retained"
@@ -1649,7 +1655,7 @@ msgstr ""
 "ピンのパッドホールドを有効にし、ディープスリープ中に GPIO パッドホールドを有効にすると、"
 "出力レベルを含む RTC 以外のピンの設定を保持できます。"
 
-#: ../../esp32/quickref.rst:644
+#: ../../esp32/quickref.rst:646
 msgid ""
 "from machine import Pin, deepsleep\n"
 "import esp32\n"
@@ -1675,7 +1681,7 @@ msgstr ""
 "# 10秒スリープさせる\n"
 "deepsleep(10000)"
 
-#: ../../esp32/quickref.rst:656
+#: ../../esp32/quickref.rst:658
 msgid ""
 "The pin configuration - including the pad hold - will be retained on wake"
 " from sleep. See :ref:`Pins_and_GPIO` above for a further discussion of "
@@ -1684,15 +1690,15 @@ msgstr ""
 "スリープからの復帰時には、パッドホールドを含むピンコンフィギュレーションが保持されます。"
 "パッドホールドの詳細については、上記の :ref:`Pins_and_GPIO` を参照してください。"
 
-#: ../../esp32/quickref.rst:660
+#: ../../esp32/quickref.rst:662
 msgid "SD card"
 msgstr "SD カード"
 
-#: ../../esp32/quickref.rst:662
+#: ../../esp32/quickref.rst:664
 msgid "See :ref:`machine.SDCard <machine.SDCard>`. ::"
 msgstr ":ref:`machine.SDCard <machine.SDCard>` を参照::"
 
-#: ../../esp32/quickref.rst:664
+#: ../../esp32/quickref.rst:666
 msgid ""
 "import machine, os, vfs\n"
 "\n"
@@ -1714,11 +1720,11 @@ msgstr ""
 "\n"
 "vfs.umount('/sd')    # 取出し"
 
-#: ../../esp32/quickref.rst:675
+#: ../../esp32/quickref.rst:677
 msgid "RMT"
 msgstr ""
 
-#: ../../esp32/quickref.rst:677
+#: ../../esp32/quickref.rst:679
 msgid ""
 "The RMT is ESP32-specific and allows generation of accurate digital "
 "pulses with 12.5ns resolution.  See :ref:`esp32.RMT <esp32.RMT>` for "
@@ -1728,7 +1734,7 @@ msgstr ""
 "詳細については :ref:`esp32.RMT <esp32.RMT>` を参照してください。"
 "使い方は次のとおりです。"
 
-#: ../../esp32/quickref.rst:680
+#: ../../esp32/quickref.rst:682
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -1748,15 +1754,15 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../esp32/quickref.rst:689
+#: ../../esp32/quickref.rst:691
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../esp32/quickref.rst:691
+#: ../../esp32/quickref.rst:693
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../esp32/quickref.rst:693
+#: ../../esp32/quickref.rst:695
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -1780,11 +1786,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../esp32/quickref.rst:704
+#: ../../esp32/quickref.rst:706
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
 
-#: ../../esp32/quickref.rst:706
+#: ../../esp32/quickref.rst:708
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -1795,7 +1801,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../esp32/quickref.rst:714
+#: ../../esp32/quickref.rst:716
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the "
@@ -1805,15 +1811,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../esp32/quickref.rst:719
+#: ../../esp32/quickref.rst:721
 msgid "NeoPixel and APA106 driver"
 msgstr "NeoPixel/APA106 ドライバー"
 
-#: ../../esp32/quickref.rst:712
+#: ../../esp32/quickref.rst:714
 msgid "Use the ``neopixel`` and ``apa106`` modules::"
 msgstr "``neopixel`` と ``apa106`` モジュールを使います::"
 
-#: ../../esp32/quickref.rst:723
+#: ../../esp32/quickref.rst:725
 msgid ""
 "from machine import Pin\n"
 "from neopixel import NeoPixel\n"
@@ -1833,21 +1839,21 @@ msgstr ""
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../esp32/quickref.rst:733
+#: ../../esp32/quickref.rst:735
 msgid ""
 "The APA106 driver extends NeoPixel, but internally uses a different "
 "colour order::"
 msgstr ""
 "APA106 ドライバーは NeoPixel を継承していますが、内部的には異なる色順を使っています::"
 
-#: ../../esp32/quickref.rst:735
+#: ../../esp32/quickref.rst:737
 msgid ""
 "from apa106 import APA106\n"
 "ap = APA106(pin, 8)\n"
 "r, g, b = ap[0]"
 msgstr ""
 
-#: ../../esp32/quickref.rst:740
+#: ../../esp32/quickref.rst:742
 msgid ""
 "By default ``NeoPixel`` is configured to control the more popular "
 "*800kHz* units. It is possible to use alternative timing to control other"
@@ -1858,7 +1864,7 @@ msgstr ""
 "設定されています。NeoPixel オブジェクトを作成する際に ``timing=0`` を渡すことで、"
 "他のデバイス(よくあるのは 400kHz)を制御するために代替のタイミングを使えます。"
 
-#: ../../esp32/quickref.rst:745
+#: ../../esp32/quickref.rst:747
 msgid ""
 "For low-level driving of a NeoPixel see `machine.bitstream`. This low-"
 "level driver uses an RMT channel by default.  To configure this see "
@@ -1868,22 +1874,26 @@ msgstr ""
 "この低レベルドライバは、デフォルトで RMT チャンネルを使います。"
 "この設定については `RMT.bitstream_channel` を参照してください。"
 
-#: ../../esp32/quickref.rst:749
+#: ../../esp32/quickref.rst:751
 msgid ""
 "APA102 (DotStar) uses a different driver as it has an additional clock "
 "pin."
 msgstr ""
 "APA102 (DotStar)はクロック端子が追加されているため、別のドライバーを使います。"
 
-#: ../../esp32/quickref.rst:752
+#: ../../esp32/quickref.rst:754
 msgid "Capacitive touch"
 msgstr "静電容量タッチ"
 
-#: ../../esp32/quickref.rst:754
-msgid "Use the ``TouchPad`` class in the ``machine`` module::"
-msgstr "``machine`` モジュールの ``TouchPad`` クラスを使います::"
-
 #: ../../esp32/quickref.rst:756
+msgid ""
+"ESP32, ESP32-S2 and ESP32-S3 support capacitive touch via the "
+"``TouchPad`` class in the ``machine`` module::"
+msgstr ""
+"ESP32, ESP32-S2, ESP32-S3 では ``machine`` モジュールの ``TouchPad`` "
+"クラスを使った静電容量方式タッチをサポートします::"
+
+#: ../../esp32/quickref.rst:759
 msgid ""
 "from machine import TouchPad, Pin\n"
 "\n"
@@ -1895,33 +1905,58 @@ msgstr ""
 "t = TouchPad(Pin(14))\n"
 "t.read()              # タッチすると小さい数値を返す"
 
-#: ../../esp32/quickref.rst:761
+#: ../../esp32/quickref.rst:764
 msgid ""
-"``TouchPad.read`` returns a value relative to the capacitive variation. "
-"Small numbers (typically in the *tens*) are common when a pin is touched,"
-" larger numbers (above *one thousand*) when no touch is present. However "
-"the values are *relative* and can vary depending on the board and "
-"surrounding composition so some calibration may be required."
+"``TouchPad.read`` returns a value proportional to the capacitance between"
+" the pin and the board's Ground connection. On ESP32 the number becomes "
+"smaller when the pin (or connected touch pad) is touched, on ESP32-S2 and"
+" ESP32-S3 the number becomes larger when the pin is touched."
 msgstr ""
-"``TouchPad.read`` は容量変化に関連した値を返します。ピンにタッチすると小さい数字"
-"(通常は数十の値)となり、タッチしていない場合は大きい数字(1000を超える)となるのが"
-"一般的です。ただし、これらの値は相対的なもので、ボードと周囲の構成によって変わる"
-"可能性があるため、ある程度の調整が必要となるでしょう。"
 
-#: ../../esp32/quickref.rst:766
-msgid ""
-"There are ten capacitive touch-enabled pins that can be used on the ESP32: "
-"0, 2, 4, 12, 13 14, 15, 27, 32, 33. Trying to assign to any other pins "
-"will result in a ``ValueError``."
-msgstr ""
-"ESP32 で使える静電容量タッチ対応ピンは 0, 2, 4, 12, 13 14, 15, 27, 32, 33 の"
-"10本です。この他のピンに割り当てようとすると ``ValueError`` になります。"
+"``TouchPad.read`` はピンとボードのグランド接続間の静電容量に比例する値を返します。"
+"ESP32 では、ピン(または接続されたタッチパッド)に触れるとその値が小さくなり、"
+"ESP32-S2やESP32-S3では、ピンに触れるとその値が大きくなります。"
 
 #: ../../esp32/quickref.rst:769
+msgid ""
+"In all cases, a touch causes a significant change in the return value. "
+"Note the returned values are *relative* and can vary depending on the "
+"board and surrounding environment so some calibration (i.e. comparison to"
+" a baseline or rolling average) may be required."
+msgstr ""
+"いずれの場合でも、タッチによって返される値に大きな変化が生じます。"
+"ただし、返される値は *相対的* なもので、ボードや周囲の環境によって異なる場合があるため、"
+"キャリブレーション(基準値や移動平均との比較など)が必要になる場合があります。"
+
+#: ../../esp32/quickref.rst:775
+msgid "Chip"
+msgstr "マイコン"
+
+#: ../../esp32/quickref.rst:775
+msgid "Touch-enabled pins"
+msgstr "タッチをサポートするピン"
+
+#: ../../esp32/quickref.rst:777
+msgid "0, 2, 4, 12, 13, 14, 15, 27, 32, 33"
+msgstr ""
+
+#: ../../esp32/quickref.rst:778 ../../esp32/quickref.rst:779
+msgid "1 to 14 inclusive"
+msgstr "1 から 14 の間"
+
+#: ../../esp32/quickref.rst:779
+msgid "ESP32-S3"
+msgstr ""
+
+#: ../../esp32/quickref.rst:782
+msgid "Trying to assign to any other pins will result in a ``ValueError``."
+msgstr "他のピンに割り当てようとすると ``ValueError`` が発生します。"
+
+#: ../../esp32/quickref.rst:784
 msgid "Note that TouchPads can be used to wake an ESP32 from sleep::"
 msgstr "TouchPad を使ってESP32をスリープから復帰させることもできます::"
 
-#: ../../esp32/quickref.rst:771
+#: ../../esp32/quickref.rst:786
 msgid ""
 "import machine\n"
 "from machine import TouchPad, Pin\n"
@@ -1941,7 +1976,7 @@ msgstr ""
 "esp32.wake_on_touch(True)\n"
 "machine.lightsleep()        # タッチされる MCU をスリープさせる"
 
-#: ../../esp32/quickref.rst:780
+#: ../../esp32/quickref.rst:795
 msgid ""
 "For more details on touchpads refer to `Espressif Touch Sensor "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html>`_."
@@ -1950,15 +1985,15 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html>`_ "
 "を参照してください。"
 
-#: ../../esp32/quickref.rst:785
+#: ../../esp32/quickref.rst:800
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../esp32/quickref.rst:787
+#: ../../esp32/quickref.rst:802
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../esp32/quickref.rst:789
+#: ../../esp32/quickref.rst:804
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -1986,11 +2021,11 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../esp32/quickref.rst:803
+#: ../../esp32/quickref.rst:818
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../esp32/quickref.rst:805
+#: ../../esp32/quickref.rst:820
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP32 port. Download web client from "
@@ -2003,12 +2038,12 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../esp32/quickref.rst:810
+#: ../../esp32/quickref.rst:825
 msgid ""
 "import webrepl_setup"
 msgstr ""
 
-#: ../../esp32/quickref.rst:812
+#: ../../esp32/quickref.rst:827
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -2017,7 +2052,7 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../esp32/quickref.rst:816
+#: ../../esp32/quickref.rst:831
 msgid ""
 "import webrepl\n"
 "webrepl.start()\n"
@@ -2031,7 +2066,7 @@ msgstr ""
 "# もしくは指定のパスワードでスタート\n"
 "webrepl.start(password='mypass')"
 
-#: ../../esp32/quickref.rst:822
+#: ../../esp32/quickref.rst:837
 msgid ""
 "The WebREPL daemon listens on all active interfaces, which can be STA or AP.  "
 "This allows you to connect to the ESP32 via a router (the STA interface) or "
@@ -2041,7 +2076,7 @@ msgstr ""
 "これにより、ルータ(STA インターフェイス)を介してでも、またはアクセスポイントに接続している"
 "ときでも直接 ESP32 に接続できます。"
 
-#: ../../esp32/quickref.rst:826
+#: ../../esp32/quickref.rst:841
 msgid ""
 "In addition to terminal/command prompt access, WebREPL also has provision "
 "for file transfer (both upload and download).  The web client has buttons for "
@@ -2053,7 +2088,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../esp32/quickref.rst:831
+#: ../../esp32/quickref.rst:846
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to an ESP32 board."
@@ -2861,4 +2896,58 @@ msgid ""
 "pwm.init(freq=500, duty=256)"
 msgstr ""
 
+#: ../../esp32/tutorial/reset.rst:2
+msgid "Factory reset"
+msgstr "工場出荷時リセット"
 
+#: ../../esp32/tutorial/reset.rst:4
+msgid ""
+"If something unexpected happens and your ESP32-based board no longer "
+"boots MicroPython, then you may have to factory reset it. For more "
+"details, see :ref:`soft_bricking`."
+msgstr ""
+"予期しない事態が発生して、ESP32 ベースのボードが MicroPython を起動しなくなった場合、"
+"工場出荷時リセットが必要になることがあります。詳細については :ref:`soft_bricking` "
+"を確認してください。"
+
+#: ../../esp32/tutorial/reset.rst:8
+msgid ""
+"Factory resetting the MicroPython esp32 port involves fully erasing the "
+"flash and resetting the flash memory, so you will need to re-flash the "
+"MicroPython firmware afterwards and copy any Python files to the "
+"filesystem again."
+msgstr ""
+"MicroPython の ESP32 ポートを工場出荷時リセットするには、フラッシュを完全に消去し、"
+"フラッシュメモリをリセットする必要があります。その後、MicroPython のファームウェアを"
+"再度フラッシュし、Pythonファイルを再びファイルシステムにコピーする必要があります。"
+
+#: ../../esp32/tutorial/reset.rst:12
+msgid ""
+"You will need the Espressif `esptool`_ installed on your system. This is "
+"the same tool that you may have used to initially install MicroPython on "
+"your board (see :ref:`installation instructions <esp32_flashing>`)."
+msgstr ""
+"システムに Espressif の `esptool`_ がインストールされている必要があります。"
+"このツールは、最初に MicroPython をボードにインストールする際に使ったものと"
+"同じです(:ref:`インストール手順 <esp32_flashing>` を参照)。"
+
+#: ../../esp32/tutorial/reset.rst:15
+msgid ""
+"Find the serial port name of your board, and then use esptool to erase "
+"the entire flash contents::"
+msgstr ""
+"ボードのシリアルポート名を特定し、次のコマンドを使ってフラッシュ全体を消去します::"
+
+#: ../../esp32/tutorial/reset.rst:18
+msgid "esptool.py -p PORTNAME erase_flash"
+msgstr "esptool.py -p シリアルポート名 erase_flash""
+
+#: ../../esp32/tutorial/reset.rst:20
+msgid ""
+"Use esptool to flash the MicroPython file to your board again. If needed,"
+" this file and flashing instructions can be found on the `MicroPython "
+"downloads page`_."
+msgstr ""
+"その後、esptool を使って MicroPython ファイルを再びボードにフラッシュしてください。"
+"このファイルとフラッシュ手順が必要な場合は、 `MicroPython "
+"downloads page`_ で確認できます。"

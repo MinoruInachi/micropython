@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-16 09:55+0900\n"
-"PO-Revision-Date: 2024-11-16 11:09+0900\n"
+"POT-Creation-Date: 2024-12-29 14:37+0900\n"
+"PO-Revision-Date: 2024-12-30 15:06+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -810,6 +810,15 @@ msgstr ""
 #: ../../library/bluetooth.rst:1
 msgid ":mod:`bluetooth` --- low-level Bluetooth"
 msgstr ":mod:`bluetooth` --- 低レベル Bluetooth"
+
+#: ../../library/binascii.rst:42
+msgid ""
+"Compute CRC-32, the 32-bit checksum of *data*, starting with an initial "
+"CRC of *value*. The default initial CRC is zero. The algorithm is "
+"consistent with the ZIP file checksum."
+msgstr ""
+"データ *data* の32ビットチェックサムである CRC-32 を、指定した初期CRC値から計算します。"
+"デフォルトの初期CRC値はゼロです。このアルゴリズムはZIPファイルのチェックサムと互換性があります。"
 
 #: ../../library/bluetooth.rst:7
 msgid ""
@@ -2074,7 +2083,7 @@ msgstr ""
 
 #: ../../library/bluetooth.rst:665
 msgid ""
-"On successful connection, the the ``_IRQ_L2CAP_CONNECT`` event will be "
+"On successful connection, the ``_IRQ_L2CAP_CONNECT`` event will be "
 "raised, allowing the client to obtain the CID and the local and remote "
 "(peer) MTU."
 msgstr ""
@@ -2669,11 +2678,35 @@ msgstr "*slice* 組込み型は、スライスオブジェクトが持つデー�
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/builtins.rst:191
+#: ../../library/builtins.rst:173
+msgid "|see_cpython| `python:KeyboardInterrupt`."
+msgstr ""
+
+#: ../../library/builtins.rst:175
+msgid "See also in the context of :ref:`soft_bricking`."
+msgstr ":ref:`soft_bricking` の記載も参照してください。"
+
+#: ../../library/builtins.rst:195
 msgid "|see_cpython| `python:SystemExit`."
 msgstr ""
 
-#: ../../library/builtins.rst:195
+#: ../../library/builtins.rst:197
+msgid ""
+"On non-embedded ports (i.e. Windows and Unix), an unhandled "
+"``SystemExit`` exits the MicroPython process in a similar way to CPython."
+msgstr ""
+"組込み系ではないポート(WindowsやUnixなど)では、処理されない ``SystemExit`` が発生すると、"
+"CPython と同様にMicroPythonプロセスが終了します。"
+
+#: ../../library/builtins.rst:200
+msgid ""
+"On embedded ports, an unhandled ``SystemExit`` currently causes a "
+":ref:`soft_reset` of MicroPython."
+msgstr ""
+"一方、組込み系のポートでは、現在のところ処理されない ``SystemExit`` が発生すると "
+"MicroPython の :ref:`soft_reset` が行われます。"
+
+#: ../../library/builtins.rst:205
 msgid "|see_cpython| `python:TypeError`."
 msgstr ""
 
@@ -3001,7 +3034,7 @@ msgstr ""
 #: ../../library/deflate.rst:11 ../../library/gzip.rst:18
 #: ../../library/zlib.rst:18
 msgid "**Availability:**"
-msgstr "**利用可能性:**"
+msgstr "**対応ポート:**"
 
 #: ../../library/deflate.rst:13
 msgid "Added in MicroPython v1.21."
@@ -5141,13 +5174,17 @@ msgstr ""
 msgid ""
 "*channel*: The wifi channel (2.4GHz) to communicate with this peer. Must "
 "be an integer from 0 to 14. If channel is set to 0 the current channel of"
-" the wifi device will be used. (default=0)"
+" the wifi device will be used, if channel is set to another value then "
+"this must match the channel currently configured on the interface (see "
+":func:`WLAN.config`). (default=0)"
 msgstr ""
-"*channel*: このピアと通信するための WiFi チャンネル(2.4GHz)。"
-"0 から 14 までの整数でなければなりません。チャネルが 0 に設定されている場合、"
-"WiFi デバイスの現在のチャネルが使用されます。(デフォルト=0)"
+"*channel*: このピアと通信するための WiFi チャンネル(2.4GHz)を指定します。"
+"0から14までの整数で指定する必要があります。チャンネルが0に設定されている場合は "
+"WiFi デバイスの現在のチャネルが使われます。それ以外の値を設定する場合、"
+"値はインタフェースに現在設定されているチャンネルと一致している必要があります"
+"(詳細は :func:`WLAN.config` を参照)。(デフォルト=0)"
 
-#: ../../library/espnow.rst:446
+#: ../../library/espnow.rst:448
 msgid ""
 "*ifidx*: (ESP32 only) Index of the wifi interface which will be used to "
 "send data to this peer. Must be an integer set to ``network.WLAN.IF_STA``"
@@ -5161,7 +5198,7 @@ msgstr ""
 "された整数でなければなりません。(デフォルト=0/``network.WLAN.IF_STA``)。"
 "詳細については、後述の `ESPNow and Wifi Operation`_ を参照してください。"
 
-#: ../../library/espnow.rst:452
+#: ../../library/espnow.rst:454
 msgid ""
 "*encrypt*: (ESP32 only) If set to ``True`` data exchanged with this peer "
 "will be encrypted with the PMK and LMK. (default = ``True`` if *lmk* is "
@@ -5171,11 +5208,11 @@ msgstr ""
 "するには ``True`` に設定します。(*lmk* に適正値が指定されていればデフォルトは "
 "``True`` 、さもなければ ``False``)"
 
-#: ../../library/espnow.rst:456
+#: ../../library/espnow.rst:458
 msgid "**ESP8266**: Keyword args may not be used on the ESP8266."
 msgstr "**ESP8266**: ESP8266 ではキーワード引数を指定できません。"
 
-#: ../../library/espnow.rst:458
+#: ../../library/espnow.rst:460
 msgid ""
 "**Note:** The maximum number of peers which may be registered is 20 "
 "(`espnow.MAX_TOTAL_PEER_NUM`), with a maximum of 6 "
@@ -5193,13 +5230,13 @@ msgstr ""
 "/esp-idf/en/latest/esp32/api-reference/network/ "
 "esp_now.html#c.ESP_NOW_MAX_ENCRYPT_PEER_NUM>`_ を参照)。"
 
-#: ../../library/espnow.rst:469
+#: ../../library/espnow.rst:471
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` if *mac* is already registered."
 msgstr ""
 "*mac* がすでに登録されている場合、 ``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:471
+#: ../../library/espnow.rst:473
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` if too many peers are already "
 "registered."
@@ -5207,29 +5244,37 @@ msgstr ""
 "登録するピアが多すぎる場合、 ``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:473
+#: ../../library/espnow.rst:475
+msgid ""
+"``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` if a channel value was set that"
+" doesn't match the channel currently configured for this interface."
+msgstr ""
+"チャンネル値がこのインターフェースに現在設定されているチャンネルと一致していない場合、"
+"``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` が発生。"
+
+#: ../../library/espnow.rst:478
 msgid "``ValueError()`` on invalid keyword args or values."
 msgstr "キーワード引数または値が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:477
+#: ../../library/espnow.rst:482
 msgid "Deregister the peer associated with the provided *mac* address."
 msgstr "指定した *mac* アドレスに関連付けられたピアを登録解除します。"
 
-#: ../../library/espnow.rst:486 ../../library/espnow.rst:502
+#: ../../library/espnow.rst:491 ../../library/espnow.rst:507
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if *mac* is not registered."
 msgstr ""
 "*mac* が登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:488 ../../library/espnow.rst:504
+#: ../../library/espnow.rst:493 ../../library/espnow.rst:509
 msgid "``ValueError()`` on invalid *mac* values."
 msgstr "*mac* が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:492
+#: ../../library/espnow.rst:497
 msgid "Return information on a registered peer."
 msgstr "登録されているピアに関する情報を返します。"
 
-#: ../../library/espnow.rst:496
+#: ../../library/espnow.rst:501
 msgid ""
 "``(mac, lmk, channel, ifidx, encrypt)``: a tuple of the \"peer info\" "
 "associated with the given *mac* address."
@@ -5237,30 +5282,30 @@ msgstr ""
 "``(mac, lmk, channel, ifidx, encrypt)``: 指定した *mac* アドレスに"
 "関連付けられた「ピア情報」のタプル。"
 
-#: ../../library/espnow.rst:508
+#: ../../library/espnow.rst:513
 msgid "Return the number of registered peers:"
 msgstr "登録されているピア数を返します:"
 
-#: ../../library/espnow.rst:510
+#: ../../library/espnow.rst:515
 msgid "``(peer_num, encrypt_num)``: where"
 msgstr "``(peer_num, encrypt_num)``:"
 
-#: ../../library/espnow.rst:512
+#: ../../library/espnow.rst:517
 msgid "``peer_num`` is the number of peers which are registered, and"
 msgstr "``peer_num`` は登録されているピア数。"
 
-#: ../../library/espnow.rst:513
+#: ../../library/espnow.rst:518
 msgid "``encrypt_num`` is the number of encrypted peers."
 msgstr "``encrypt_num`` は暗号化されたピア数。"
 
-#: ../../library/espnow.rst:517
+#: ../../library/espnow.rst:522
 msgid ""
 "Return the \"peer info\" parameters for all the registered peers (as a "
 "tuple of tuples)."
 msgstr ""
 "登録されているすべてのピアの「ピア情報」パラメータを(タプルのタプルとして)返します"。
 
-#: ../../library/espnow.rst:523
+#: ../../library/espnow.rst:528
 msgid ""
 "Modify the parameters of the peer associated with the provided *mac* "
 "address. Parameters may be provided as positional or keyword arguments "
@@ -5272,11 +5317,11 @@ msgstr ""
 "(`ESPNow.add_peer()` を参照)。パラメータを指定しない場合(もしくは ``None`` を
 "指定した場合)、既存のパラメータ値を返します。"
 
-#: ../../library/espnow.rst:529
+#: ../../library/espnow.rst:534
 msgid "Callback Methods"
 msgstr "コールバックメソッド"
 
-#: ../../library/espnow.rst:533
+#: ../../library/espnow.rst:538
 msgid ""
 "Set a callback function to be called *as soon as possible* after a "
 "message has been received from another ESPNow device. The callback "
@@ -5292,7 +5337,7 @@ msgstr ""
 "メッセージを読み込み、読み込みのタイムアウトをゼロに設定することをお勧めします。"
 "たとえば、次のように使います::"
 
-#: ../../library/espnow.rst:539
+#: ../../library/espnow.rst:544
 msgid ""
 "def recv_cb(e):\n"
 "    while True:  # Read out all messages waiting in the buffer\n"
@@ -5310,7 +5355,7 @@ msgstr ""
 "        print(mac, msg)\n"
 "e.irq(recv_cb)"
 
-#: ../../library/espnow.rst:547
+#: ../../library/espnow.rst:552
 msgid ""
 "The `irq()<ESPNow.irq()>` callback method is an alternative method for "
 "processing incoming messages, especially if the data rate is moderate and"
@@ -5321,7 +5366,7 @@ msgstr ""
 "着信したメッセージを処理するための代替方法ですが、"
 "いくつかの注意点があります:"
 
-#: ../../library/espnow.rst:551
+#: ../../library/espnow.rst:556
 msgid ""
 "The scheduler stack *can* overflow and callbacks will be missed if "
 "packets are arriving at a sufficient rate or if other MicroPython "
@@ -5338,7 +5383,7 @@ msgstr ""
 "このメソッドは、メッセージのバースト処理や高スループット、"
 "他のハードウェア操作に忙しいデバイスの処理に対しては、信頼性が低い場合があります。"
 
-#: ../../library/espnow.rst:558
+#: ../../library/espnow.rst:563
 msgid ""
 "For more information on *scheduled* function callbacks see: "
 "`micropython.schedule()<micropython.schedule>`."
@@ -5347,7 +5392,7 @@ msgstr ""
 "`micropython.schedule()<micropython.schedule>` "
 "を参照してください。"
 
-#: ../../library/espnow.rst:573
+#: ../../library/espnow.rst:578
 msgid ""
 "If the underlying Espressif ESP-NOW software stack returns an error code,"
 " the MicroPython espnow module will raise an ``OSError(errnum, "
@@ -5363,7 +5408,7 @@ msgstr ""
 "reference/network/esp_now.html#api-reference>`_ にある"
 "エラーコードの名前に設定されます。次に例を示します::"
 
-#: ../../library/espnow.rst:581
+#: ../../library/espnow.rst:586
 msgid ""
 "try:\n"
 "    e.send(peer, 'Hello')\n"
@@ -5380,11 +5425,11 @@ msgid ""
 "        raise err"
 msgstr ""
 
-#: ../../library/espnow.rst:596
+#: ../../library/espnow.rst:601
 msgid "Wifi Signal Strength (RSSI) - (ESP32 only)"
 msgstr "Wifi 信号強度 (RSSI) - (ESP32 のみ)"
 
-#: ../../library/espnow.rst:598
+#: ../../library/espnow.rst:603
 msgid ""
 "The ESPNow object maintains a **peer device table** which contains the "
 "signal strength and timestamp of the last received message from all "
@@ -5399,33 +5444,33 @@ msgstr ""
 "ピアデバイスのネットワーク内でデバイスの近接性を追跡し、 *最も近い隣接デバイス* "
 "を特定するために使えます。この機能は ESP8266 デバイスでは使えません。"
 
-#: ../../library/espnow.rst:606
+#: ../../library/espnow.rst:611
 msgid ""
 "A reference to the **peer device table**: a dict of known peer devices "
 "and rssi values::"
 msgstr ""
 "**ピアデバイステーブル** への参照: 既知のピアデバイスと RSSI 値の辞書です。"
 
-#: ../../library/espnow.rst:609
+#: ../../library/espnow.rst:614
 msgid "{peer: [rssi, time_ms], ...}"
 msgstr ""
 
-#: ../../library/espnow.rst:611
+#: ../../library/espnow.rst:616
 msgid "where:"
 msgstr "ここでの各項目は次のとおりです:"
 
-#: ../../library/espnow.rst:613
+#: ../../library/espnow.rst:618
 msgid "``peer`` is the peer MAC address (as `bytes`);"
 msgstr "``peer`` はピアの MAC アドレス(`bytes`)です。"
 
-#: ../../library/espnow.rst:614
+#: ../../library/espnow.rst:619
 msgid ""
 "``rssi`` is the wifi signal strength in dBm (-127 to 0) of the last "
 "message received from the peer; and"
 msgstr ""
 "``rssi`` はピアからの最新の受信メッセージの wifi 信号強度です(dBm: -127 から 0 の範囲)。"
 
-#: ../../library/espnow.rst:616
+#: ../../library/espnow.rst:621
 msgid ""
 "``time_ms`` is the time the message was received (in milliseconds since "
 "system boot - wraps every 12 days)."
@@ -5433,14 +5478,14 @@ msgstr ""
 "``time_ms`` はメッセージの受信時刻です(システム起動からのミリ秒単位の経過時間、"
 "12日ごとにラップ)。"
 
-#: ../../library/espnow.rst:621
+#: ../../library/espnow.rst:626
 msgid ""
 ">>> e.peers_table\n"
 "{b'\\xaa\\xaa\\xaa\\xaa\\xaa\\xaa': [-31, 18372],\n"
 " b'\\xbb\\xbb\\xbb\\xbb\\xbb\\xbb': [-43, 12541]}"
 msgstr ""
 
-#: ../../library/espnow.rst:625
+#: ../../library/espnow.rst:630
 msgid ""
 "**Note**: the ``mac`` addresses returned by `recv()` are references to "
 "the ``peer`` key values in the **peer device table**."
@@ -5448,7 +5493,7 @@ msgstr ""
 "**注記**: `recv()` によって返される ``mac`` アドレスは、"
 "ピアデバイステーブルのピアキーの値への参照です。"
 
-#: ../../library/espnow.rst:628
+#: ../../library/espnow.rst:633
 msgid ""
 "**Note**: RSSI and timestamp values in the device table are updated only "
 "when the message is read by the application."
@@ -5456,11 +5501,11 @@ msgstr ""
 "**注記**: デバイステーブル内の RSSI とタイムスタンプの値は、アプリケーションによって"
 "メッセージが読み取られたときにのみ更新されます。"
 
-#: ../../library/espnow.rst:632
+#: ../../library/espnow.rst:637
 msgid "Supporting asyncio"
 msgstr "asyncio のサポート"
 
-#: ../../library/espnow.rst:634
+#: ../../library/espnow.rst:639
 msgid ""
 "A supplementary module (`aioespnow`) is available to provide "
 ":doc:`asyncio<asyncio>` support."
@@ -5468,7 +5513,7 @@ msgstr ""
 "追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<asyncio>` を"
 "サポートします。"
 
-#: ../../library/espnow.rst:637
+#: ../../library/espnow.rst:642
 msgid ""
 "**Note:** Asyncio support is available on all ESP32 targets as well as "
 "those ESP8266 boards which include the asyncio module (ie. ESP8266 "
@@ -5479,11 +5524,11 @@ msgstr ""
 "(すなわち、少なくとも2MBのフラッシュメモリを持つ ESP8266 デバイス)"
 "でも使えます。"
 
-#: ../../library/espnow.rst:641
+#: ../../library/espnow.rst:646
 msgid "A small async server example::"
 msgstr "次は小さな非同期サーバーの例です::"
 
-#: ../../library/espnow.rst:643
+#: ../../library/espnow.rst:648
 msgid ""
 "import network\n"
 "import aioespnow\n"
@@ -5527,7 +5572,7 @@ msgid ""
 "asyncio.run(main(e, peer, 120, 10))"
 msgstr ""
 
-#: ../../library/espnow.rst:687
+#: ../../library/espnow.rst:692
 msgid ""
 "The `AIOESPNow` class inherits all the methods of `ESPNow<espnow.ESPNow>`"
 " and extends the interface with the following async methods."
@@ -5535,7 +5580,7 @@ msgstr ""
 "`AIOESPNow` クラスは `ESPNow<espnow.ESPNow>` のすべてのメソッドを継承し、"
 "以下の非同期メソッドでインタフェースを拡張します。"
 
-#: ../../library/espnow.rst:692
+#: ../../library/espnow.rst:697
 msgid ""
 "Asyncio support for `ESPNow.recv()`. Note that this method does not take "
 "a timeout value as argument."
@@ -5543,7 +5588,7 @@ msgstr ""
 "`ESPNow.recv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:697
+#: ../../library/espnow.rst:702
 msgid ""
 "Asyncio support for `ESPNow.irecv()`. Note that this method does not take"
 " a timeout value as argument."
@@ -5551,11 +5596,11 @@ msgstr ""
 "`ESPNow.irecv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:703
+#: ../../library/espnow.rst:708
 msgid "Asyncio support for `ESPNow.send()`."
 msgstr "`ESPNow.send()` の Asyncio サポート。"
 
-#: ../../library/espnow.rst:707
+#: ../../library/espnow.rst:712
 msgid ""
 "`AIOESPNow` also supports reading incoming messages by asynchronous "
 "iteration using ``async for``; eg::"
@@ -5563,7 +5608,7 @@ msgstr ""
 "`AIOESPNow` は、非同期イテレーションを使って受信メッセージを読み取るための "
 "Async for もサポートしています。例えば次のようにして使います::"
 
-#: ../../library/espnow.rst:710
+#: ../../library/espnow.rst:715
 msgid ""
 "e = AIOESPNow()\n"
 "e.active(True)\n"
@@ -5575,11 +5620,11 @@ msgid ""
 "asyncio.run(recv_till_halt(e))"
 msgstr ""
 
-#: ../../library/espnow.rst:720
+#: ../../library/espnow.rst:725
 msgid "Broadcast and Multicast"
 msgstr "ブロードキャストとマルチキャスト"
 
-#: ../../library/espnow.rst:722
+#: ../../library/espnow.rst:727
 msgid ""
 "All active ESPNow clients will receive messages sent to their MAC address"
 " and all devices (**except ESP8266 devices**) will also receive messages "
@@ -5591,7 +5636,7 @@ msgstr ""
 "*ブロードキャスト* MAC アドレス(``b'\\xff\\xff\\xff\\xff\\xff\\xff'``)"
 "またはマルチキャスト MAC アドレス宛てに送信されたメッセージも受信します。"
 
-#: ../../library/espnow.rst:727
+#: ../../library/espnow.rst:732
 msgid ""
 "All ESPNow devices (including ESP8266 devices) can also send messages to "
 "the broadcast MAC address or any multicast MAC address."
@@ -5599,7 +5644,7 @@ msgstr ""
 "すべての ESPNow デバイス(ESP8266デバイスを含む)は、ブロードキャスト MAC アドレス"
 "または任意のマルチキャスト MAC アドレスにもメッセージを送信できます。"
 
-#: ../../library/espnow.rst:730
+#: ../../library/espnow.rst:735
 msgid ""
 "To `send()<ESPNow.send()>` a broadcast message, the broadcast (or "
 "multicast) MAC address must first be registered using "
@@ -5616,7 +5661,7 @@ msgstr ""
 "ブロードキャストアドレスまたはマルチキャストアドレス宛てに送信されたメッセージは"
 "暗号化できません。"
 
-#: ../../library/espnow.rst:737
+#: ../../library/espnow.rst:742
 msgid ""
 "**Note**: `ESPNow.send(None, msg)<ESPNow.send()>` will send to all "
 "registered peers *except* the broadcast address. To send a broadcast or "
@@ -5628,18 +5673,18 @@ msgstr ""
 "送信するには、ブロードキャスト(またはマルチキャスト) MAC アドレスをピアとして"
 "指定する必要があります。たとえば次のようにします::"
 
-#: ../../library/espnow.rst:742
+#: ../../library/espnow.rst:747
 msgid ""
 "bcast = b'\\xff' * 6\n"
 "e.add_peer(bcast)\n"
 "e.send(bcast, \"Hello World!\")"
 msgstr ""
 
-#: ../../library/espnow.rst:747
+#: ../../library/espnow.rst:752
 msgid "ESPNow and Wifi Operation"
 msgstr "ESPNow と Wifi 操作"
 
-#: ../../library/espnow.rst:749
+#: ../../library/espnow.rst:754
 msgid ""
 "ESPNow messages may be sent and received on any "
 "`active()<network.WLAN.active>` `WLAN<network.WLAN()>` interface "
@@ -5657,7 +5702,7 @@ msgstr ""
 "に接続すると(`ESP32 Quickref <../esp32/quickref.html#networking>`__ "
 "を)、次のようなことが起こり、ESPNow 通信に影響を与えます:"
 
-#: ../../library/espnow.rst:756
+#: ../../library/espnow.rst:761
 msgid ""
 "Wifi Power-saving Mode (`network.WLAN.PM_PERFORMANCE`) is automatically "
 "activated and"
@@ -5665,14 +5710,14 @@ msgstr ""
 "Wifi パワーセービングモード(`network.WLAN.PM_PERFORMANCE`)が自動的に"
 "アクティベートされる。"
 
-#: ../../library/espnow.rst:758
+#: ../../library/espnow.rst:763
 msgid ""
 "The radio on the esp device changes wifi ``channel`` to match the channel"
 " used by the Access Point."
 msgstr ""
 "esp デバイスの無線機が、アクセスポイントで使用されているチャンネルに合わせて変更される。"
 
-#: ../../library/espnow.rst:761
+#: ../../library/espnow.rst:766
 msgid ""
 "**Wifi Power-saving Mode:** (see `Espressif Docs "
 "<https://docs.espressif.com/ projects/esp-idf/en/latest/esp32/api-guides/"
@@ -5688,15 +5733,15 @@ msgstr ""
 "ESPNow メッセージの受信が信頼性に欠ける状態になります。"
 "これに対処する方法は次のいずれかです:"
 
-#: ../../library/espnow.rst:768
+#: ../../library/espnow.rst:773
 msgid "Disabling the power-saving mode on the STA_IF interface;"
 msgstr "STA_IF インタフェースでパワーセービングモードを無効化"
 
-#: ../../library/espnow.rst:770
+#: ../../library/espnow.rst:775
 msgid "Use ``sta.config(pm=sta.PM_NONE)``"
 msgstr "``sta.config(pm=sta.PM_NONE)`` を使用"
 
-#: ../../library/espnow.rst:772
+#: ../../library/espnow.rst:777
 msgid ""
 "Turning on the AP_IF interface, which will disable the power saving mode."
 " However, the device will then be advertising an active wifi access "
@@ -5706,23 +5751,23 @@ msgstr ""
 "ただし、デバイスはアクティブな Wifi アクセスポイントをアドバタインジングする"
 "ことになります。"
 
-#: ../../library/espnow.rst:775
+#: ../../library/espnow.rst:780
 msgid ""
 "You **may** also choose to send your messages via the AP_IF interface, "
 "but this is not necessary."
 msgstr ""
 "メッセージを AP_IF インターフェース経由で送信することもできますが、これは必須ではありません。"
 
-#: ../../library/espnow.rst:777
+#: ../../library/espnow.rst:782
 msgid "ESP8266 peers must send messages to this AP_IF interface (see below)."
 msgstr ""
 "ESP8266 のピアは、この AP_IF インターフェースにメッセージを送信する必要があります(後述)。"
 
-#: ../../library/espnow.rst:779
+#: ../../library/espnow.rst:784
 msgid "Configuring ESPNow clients to retry sending messages."
 msgstr "ESPNow クライアントのメッセージ送信のリトライ設定を行うこと。"
 
-#: ../../library/espnow.rst:781
+#: ../../library/espnow.rst:786
 msgid ""
 "**Receiving messages from an ESP8266 device:** Strangely, an ESP32 device"
 " connected to a wifi network using method 1 or 2 above, will receive "
@@ -5738,7 +5783,7 @@ msgstr ""
 "AP_IF インターフェースを ``active(True)`` に設定し、 **さらに** 、メッセージを"
 "AP_IF MAC アドレス宛てに送信する必要があります。"
 
-#: ../../library/espnow.rst:788
+#: ../../library/espnow.rst:793
 msgid ""
 "**Managing wifi channels:** Any other ESPNow devices wishing to "
 "communicate with a device which is also connected to a Wifi Access Point "
@@ -5752,11 +5797,11 @@ msgstr ""
 "ESPNow を介して接続されたセンサーグループからのメッセージのプロキシとして"
 "機能することです:"
 
-#: ../../library/espnow.rst:794
+#: ../../library/espnow.rst:799
 msgid "**Proxy:** ::"
 msgstr "**プロキシ:** ::"
 
-#: ../../library/espnow.rst:796
+#: ../../library/espnow.rst:801
 msgid ""
 "import network, time, espnow\n"
 "\n"
@@ -5773,11 +5818,11 @@ msgid ""
 "    # Receive espnow messages and forward them to MQTT broker over wifi"
 msgstr ""
 
-#: ../../library/espnow.rst:810
+#: ../../library/espnow.rst:815
 msgid "**Sensor:** ::"
 msgstr "**センサー:** ::"
 
-#: ../../library/espnow.rst:812
+#: ../../library/espnow.rst:817
 msgid ""
 "import network, espnow\n"
 "\n"
@@ -5793,11 +5838,11 @@ msgid ""
 "    time.sleep(1)"
 msgstr ""
 
-#: ../../library/espnow.rst:824
+#: ../../library/espnow.rst:829
 msgid "Other issues to take care with when using ESPNow with wifi are:"
 msgstr "ESPNow を Wifi と併用する際に注意するべき他の問題は次のとおりです:"
 
-#: ../../library/espnow.rst:826
+#: ../../library/espnow.rst:831
 msgid ""
 "**Set WIFI to known state on startup:** MicroPython does not reset the "
 "wifi peripheral after a soft reset. This can lead to unexpected "
@@ -5811,7 +5856,7 @@ msgstr ""
 "起動時に所望の状態に設定する前に非アクティブにするようにしてください。"
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:832
+#: ../../library/espnow.rst:837
 msgid ""
 "import network, time\n"
 "\n"
@@ -5830,14 +5875,14 @@ msgid ""
 "sta, ap = wifi_reset()"
 msgstr ""
 
-#: ../../library/espnow.rst:847
+#: ../../library/espnow.rst:852
 msgid ""
 "Remember that a soft reset occurs every time you connect to the device "
 "REPL and when you type ``ctrl-D``."
 msgstr ""
 "ソフトリセットは、デバイスを REPL に接続したり、 ``ctrl-D`` を入力すると常に発生します。"
 
-#: ../../library/espnow.rst:850
+#: ../../library/espnow.rst:855
 msgid ""
 "**STA_IF and AP_IF always operate on the same channel:** the AP_IF will "
 "change channel when you connect to a wifi network; regardless of the "
@@ -5857,7 +5902,7 @@ msgstr ""
 "実際には、デバイス上には1つの Wifi 無線機しかなく、STA_IF と AP_IF の"
 "仮想デバイスで共有されています。"
 
-#: ../../library/espnow.rst:859
+#: ../../library/espnow.rst:864
 msgid ""
 "**Disable automatic channel assignment on your wifi router:** If the wifi"
 " router for your wifi network is configured to automatically assign the "
@@ -5879,7 +5924,7 @@ msgstr ""
 "デバイスを現在のチャンネルで期待されるピアを見つけることができない場合に Wifi チャンネルを"
 "再スキャンするように構成します。"
 
-#: ../../library/espnow.rst:869
+#: ../../library/espnow.rst:874
 msgid ""
 "**MicroPython re-scans wifi channels when trying to reconnect:** If the "
 "esp device is connected to a Wifi Access Point that goes down, "
@@ -5895,7 +5940,7 @@ msgstr ""
 "間は ESPNow メッセージが失われます。 ``sta.config(reconnects=0)`` によって"
 "これを無効にできますが、接続が失われた後の自動再接続も無効になります。"
 
-#: ../../library/espnow.rst:876
+#: ../../library/espnow.rst:881
 msgid ""
 "Some versions of the ESP IDF only permit sending ESPNow packets from the "
 "STA_IF interface to peers which have been registered on the same wifi "
@@ -5904,15 +5949,15 @@ msgstr ""
 "一部の ESP IDF バージョンでは、STA_IF インタフェースからの ESPNow パケットの"
 "送信は、STA_IF と同じ Wifi チャンネルに登録されたピアに対してのみ許可されます。"
 
-#: ../../library/espnow.rst:880
+#: ../../library/espnow.rst:885
 msgid "ESPNOW: Peer channel is not equal to the home channel, send fail!"
 msgstr ""
 
-#: ../../library/espnow.rst:883
+#: ../../library/espnow.rst:888
 msgid "ESPNow and Sleep Modes"
 msgstr "ESPNow とスリープモード"
 
-#: ../../library/espnow.rst:885
+#: ../../library/espnow.rst:890
 msgid ""
 "The `machine.lightsleep([time_ms])<machine.lightsleep>` and "
 "`machine.deepsleep([time_ms])<machine.deepsleep>` functions can be used "
@@ -5940,11 +5985,11 @@ msgstr ""
 "に設定されている場合、どのスリープモードに入る前に両方のインターフェースを "
 "`active(False)<network.WLAN.active()>` に設定する必要があります。"
 
-#: ../../library/espnow.rst:898
+#: ../../library/espnow.rst:903
 msgid "**Example:** deep sleep::"
 msgstr "例：ディープスリープ::"
 
-#: ../../library/espnow.rst:900
+#: ../../library/espnow.rst:905
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -5964,11 +6009,11 @@ msgid ""
 "machine.deepsleep(10000)          # Sleep for 10 seconds then reboot"
 msgstr ""
 
-#: ../../library/espnow.rst:916
+#: ../../library/espnow.rst:921
 msgid "**Example:** light sleep::"
 msgstr "例：ライトスリープ::"
 
-#: ../../library/espnow.rst:918
+#: ../../library/espnow.rst:923
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -8122,22 +8167,21 @@ msgstr "リセット関連の関数"
 
 #: ../../library/machine.rst:65
 msgid ""
-"Resets the device in a manner similar to pushing the external RESET "
-"button."
+":ref:`Hard resets <hard_reset>` the device in a manner similar to pushing"
+" the external RESET button."
 msgstr ""
-"外部 RESET ボタンを押すのと同じようにデバイスをリセットします。"
+"外部 RESET ボタンを押すのと同じようにデバイスを :ref:`ハードリセット <hard_reset>` "
+"します。"
 
 #: ../../library/machine.rst:70
 msgid ""
-"Performs a soft reset of the interpreter, deleting all Python objects and "
-"resetting the Python heap.  It tries to retain the method by which the user "
-"is connected to the MicroPython REPL (eg serial, USB, Wifi)."
+"Performs a :ref:`soft reset <soft_reset>` of the interpreter, deleting "
+"all Python objects and resetting the Python heap."
 msgstr ""
-"インタープリタのソフトリセットを実行します。すべての Python オブジェクトを削除し、"
-"Python のヒープをリセットします。MicroPython REPL への接続"
-"(シリアル、USB、Wifi など)はそのまま維持が試みられます。"
+"インタープリタの :ref:`ソフトリセット <soft_reset>` を実行します。"
+"すべての Python オブジェクトを削除し、Python のヒープをリセットします。"
 
-#: ../../library/machine.rst:76
+#: ../../library/machine.rst:75
 msgid ""
 "Get the reset cause. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -8145,7 +8189,7 @@ msgstr ""
 "リセット原因を取得します。戻り値については :ref:`定数 <machine_constants>` を"
 "参照してください。"
 
-#: ../../library/machine.rst:80
+#: ../../library/machine.rst:79
 msgid ""
 "Reset the device and enter its bootloader.  This is typically used to put"
 " the device into a state where it can be programmed with new firmware."
@@ -8153,7 +8197,7 @@ msgstr ""
 "デバイスをリセットし、ブートローダに入ります。これは通常、デバイスを新しい"
 "ファームウェアでプログラム可能な状態にするために使います。"
 
-#: ../../library/machine.rst:83
+#: ../../library/machine.rst:82
 msgid ""
 "Some ports support passing in an optional *value* argument which can "
 "control which bootloader to enter, what to pass to it, or other things."
@@ -8161,11 +8205,11 @@ msgstr ""
 "一部のポートでは、オプションの *value* 引数を渡すことができ、"
 "どのブートローダに入るか、何を渡すかなどを制御できます。"
 
-#: ../../library/machine.rst:87 ../../library/pyb.rst:97
+#: ../../library/machine.rst:86 ../../library/pyb.rst:97
 msgid "Interrupt related functions"
 msgstr "割り込み関連の関数"
 
-#: ../../library/machine.rst:89
+#: ../../library/machine.rst:88
 msgid ""
 "The following functions allow control over interrupts.  Some systems "
 "require interrupts to operate correctly so disabling them for long "
@@ -8180,7 +8224,7 @@ msgstr ""
 "コア機能が損なわれることがあります。割り込みは最小限の時間だけ無効にし、"
 "その後は以前の状態に戻してください。たとえば次のようにします::"
 
-#: ../../library/machine.rst:95
+#: ../../library/machine.rst:94
 msgid ""
 "import machine\n"
 "\n"
@@ -8202,7 +8246,7 @@ msgstr ""
 "# 割り込みを有効にする\n"
 "machine.enable_irq(state)"
 
-#: ../../library/machine.rst:108
+#: ../../library/machine.rst:107
 msgid ""
 "Disable interrupt requests. Returns the previous IRQ state which should "
 "be considered an opaque value. This return value should be passed to the "
@@ -8213,7 +8257,7 @@ msgstr ""
 "値とみなす必要があります。この戻り値は `disable_irq()` を呼び出す前の"
 "元の状態に割り込みを復元するために `enable_irq()` 関数に渡す必要があります。"
 
-#: ../../library/machine.rst:115
+#: ../../library/machine.rst:114
 msgid ""
 "Re-enable interrupt requests. The *state* parameter should be the value "
 "that was returned from the most recent call to the `disable_irq()` "
@@ -8222,7 +8266,7 @@ msgstr ""
 "割り込み要求を再度有効にします。 *state* パラメータは `disable_irq()` 関数の"
 "最も最近の呼び出しから返された値である必要があります。"
 
-#: ../../library/machine.rst:120 ../../library/pyb.rst:115
+#: ../../library/machine.rst:119 ../../library/pyb.rst:115
 msgid "Power related functions"
 msgstr "電力関連の関数"
 
@@ -8230,14 +8274,14 @@ msgstr "電力関連の関数"
 msgid "Returns the CPU frequency in hertz."
 msgstr "CPU周波数をヘルツ単位で返します。"
 
-#: ../../library/machine.rst:126
+#: ../../library/machine.rst:125
 msgid ""
 "On some ports this can also be used to set the CPU frequency by passing "
 "in *hz*."
 msgstr ""
 "一部のポートでは *hz* を指定することで CPU の周波数を設定できます。"
 
-#: ../../library/machine.rst:130
+#: ../../library/machine.rst:129
 msgid ""
 "Gates the clock to the CPU, useful to reduce power consumption at any "
 "time during short or long periods. Peripherals continue working and "
@@ -8248,7 +8292,7 @@ msgstr ""
 "ペリフェラルは動作を継続できるようになっており、任意の割り込みが発生した際、"
 ""または CPU が停止してから最大1ミリ秒後に実行を再開します。"
 
-#: ../../library/machine.rst:135
+#: ../../library/machine.rst:134
 msgid ""
 "It is recommended to call this function inside any tight loop that is "
 "continuously checking for an external change (i.e. polling). This will "
@@ -8261,18 +8305,18 @@ msgstr ""
 "できます。さらに消費電力を削減するには :func:`lightsleep`, "
 ":func:`time.sleep()`, :func:`time.sleep_ms()` 関数を参照してください。"
 
-#: ../../library/machine.rst:143
+#: ../../library/machine.rst:142
 msgid ""
 "This function is deprecated, use :func:`lightsleep()` instead with no "
 "arguments."
 msgstr ""
 "この関数は廃止予定です。代わりに :func:`lightsleep()` を引数なしで使ってください。"
 
-#: ../../library/machine.rst:148
+#: ../../library/machine.rst:147
 msgid "Stops execution in an attempt to enter a low power state."
 msgstr "実行を停止して、低電力状態に入ります。"
 
-#: ../../library/machine.rst:150
+#: ../../library/machine.rst:149
 msgid ""
 "If *time_ms* is specified then this will be the maximum time in milliseconds that "
 "the sleep will last for.  Otherwise the sleep can last indefinitely."
@@ -8280,7 +8324,7 @@ msgstr ""
 "*time_ms* が指定されている場合、これはスリープが続く最大ミリ秒単位の時間になります。"
 "指定しなければスリープが無期限に続くようになります。"
 
-#: ../../library/machine.rst:153
+#: ../../library/machine.rst:152
 msgid ""
 "With or without a timeout, execution may resume at any time if there are "
 "events that require processing.  Such events, or wake sources, should be "
@@ -8290,7 +8334,7 @@ msgstr ""
 "そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
 "スリープ前に設定する必要があります。"
 
-#: ../../library/machine.rst:157
+#: ../../library/machine.rst:156
 msgid ""
 "The precise behaviour and power-saving capabilities of lightsleep and deepsleep is "
 "highly dependent on the underlying hardware, but the general properties are:"
@@ -8298,7 +8342,7 @@ msgstr ""
 "ライトスリープ(lightsleep)とディープスリープ(deepsleep)の正確な動作と省電力機能は、"
 "基盤となるハードウェアに大きく依存しますが、一般的な特性は次のとおりです。"
 
-#: ../../library/machine.rst:160
+#: ../../library/machine.rst:159
 msgid ""
 "A lightsleep has full RAM and state retention.  Upon wake execution is resumed "
 "from the point where the sleep was requested, with all subsystems operational."
@@ -8306,7 +8350,7 @@ msgstr ""
 "ライトスリープには RAM と状態の完全な保持があります。スリープ解除が要求された時点から実行が"
 "再開され、すべてのサブシステムが動作可能になります。"
 
-#: ../../library/machine.rst:163
+#: ../../library/machine.rst:162
 msgid ""
 "A deepsleep may not retain RAM or any other state of the system (for example "
 "peripherals or network interfaces).  Upon wake execution is resumed from the main "
@@ -8319,7 +8363,7 @@ msgstr ""
 "から実行が再開されます。 `reset_cause()` 関数は `machine.DEEPSLEEP` を返します。"
 "これは他のリセットとディープスリープからの起床を区別するのに使えます。"
 
-#: ../../library/machine.rst:171
+#: ../../library/machine.rst:170
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -8327,15 +8371,15 @@ msgstr ""
 "起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
 "を参照してください。"
 
-#: ../../library/machine.rst:173
+#: ../../library/machine.rst:172
 msgid "Availability: ESP32, WiPy."
 msgstr "対応ポート: ESP32、WiPy。"
 
-#: ../../library/machine.rst:170 ../../library/pyb.rst:187
+#: ../../library/machine.rst:175 ../../library/pyb.rst:187
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../library/machine.rst:180
+#: ../../library/machine.rst:179
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -8348,7 +8392,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../library/machine.rst:187
+#: ../../library/machine.rst:186
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -8358,7 +8402,7 @@ msgstr ""
 "*pulse_level* 引数には、低パルスを計時する場合に 0、高パルスを計時する"
 "場合に 1 を指定します。"
 
-#: ../../library/machine.rst:191
+#: ../../library/machine.rst:190
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -8371,7 +8415,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../library/machine.rst:196
+#: ../../library/machine.rst:195
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -8382,7 +8426,7 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../library/machine.rst:203
+#: ../../library/machine.rst:202
 msgid ""
 "Transmits *data* by bit-banging the specified *pin*. The *encoding* "
 "argument specifies how the bits are encoded, and *timing* is an encoding-"
@@ -8392,11 +8436,11 @@ msgstr ""
 "引数 *encoding* には、ビットのエンコード方法を指定し、 *timing* には"
 "エンコードに応じたタイミングを指定します。"
 
-#: ../../library/machine.rst:207
+#: ../../library/machine.rst:206
 msgid "The supported encodings are:"
 msgstr "サポートされているエンコーディングは次のとおりです:"
 
-#: ../../library/machine.rst:209
+#: ../../library/machine.rst:208
 msgid ""
 "``0`` for \"high low\" pulse duration modulation. This will transmit 0 "
 "and 1 bits as timed pulses, starting with the most significant bit. The "
@@ -8411,7 +8455,7 @@ msgstr ""
 "ナノ秒の4項目タプルでなければなりません。"
 "たとえば ``(400, 850, 800, 450)`` は 800kHz の WS2812 RGB LED のタイミング仕様です。"
 
-#: ../../library/machine.rst:216
+#: ../../library/machine.rst:215
 msgid ""
 "The accuracy of the timing varies between ports. On Cortex M0 at 48MHz, "
 "it is at best +/- 120ns, however on faster MCUs (ESP8266, ESP32, STM32, "
@@ -8421,7 +8465,7 @@ msgstr ""
 "せいぜい +/-120ns 程度ですが、より高速なMCU(ESP8266, ESP32, STM32, Pyboard）では "
 "+/-30ns 程度になります。"
 
-#: ../../library/machine.rst:220
+#: ../../library/machine.rst:219
 msgid ""
 "For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel` module "
 "for a higher-level API."
@@ -8429,7 +8473,7 @@ msgstr ""
 "WS2812/NeoPixel ストリップの制御については、上位の API である :mod:`neopixel` "
 "モジュールを参照してください。"
 
-#: ../../library/machine.rst:225
+#: ../../library/machine.rst:224
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
@@ -10314,20 +10358,37 @@ msgid "Initialise the RTC. Datetime is a tuple of the form:"
 msgstr "RTC を初期化します。datetime は次の形式のタプルです。"
 
 #: ../../library/machine.RTC.rst:45
-msgid ""
-"``(year, month, day[, hour[, minute[, second[, microsecond[, "
-"tzinfo]]]]])``"
+msgid "``(year, month, day, hour, minute, second, microsecond, tzinfo)``"
 msgstr ""
 
-#: ../../library/machine.RTC.rst:49
+#: ../../library/machine.RTC.rst:47
+msgid ""
+"All eight arguments must be present. The ``microsecond`` and ``tzinfo`` "
+"values are currently ignored but might be used in the future."
+msgstr ""
+"すべての8つの引数を指定する必要があります。"
+"現在のところ ``microsecond`` と ``tzinfo`` の値は無視されますが、"
+"将来的に使用される可能性があります。"
+
+#: ../../library/machine.RTC.rst:50
+msgid ""
+"Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on the "
+"stm32 and renesas-ra ports just (re-)starts the RTC and does not accept "
+"arguments."
+msgstr ""
+"対応ポート: CC3200, ESP32, MIMXRT, SAMD。"
+"stm32 および renesas-ra ポートの rtc.init() メソッドは、RTC を(再)起動するだけであり、"
+"引数を受け付けません。"
+
+#: ../../library/machine.RTC.rst:56
 msgid "Get get the current datetime tuple."
 msgstr "現在の日時タプルを取得します。"
 
-#: ../../library/machine.RTC.rst:53
+#: ../../library/machine.RTC.rst:62
 msgid "Resets the RTC to the time of January 1, 2015 and starts running it again."
 msgstr "RTC を2015年1月1日の時刻にリセットして、実行を再開します。"
 
-#: ../../library/machine.RTC.rst:57
+#: ../../library/machine.RTC.rst:66
 msgid ""
 "Set the RTC alarm. Time might be either a millisecond value to program "
 "the alarm to current time + time_in_ms in the future, or a datetimetuple."
@@ -10338,34 +10399,42 @@ msgstr ""
 "ミリ秒数、あるいは日時タプルのどちらかを指定します。time の指定がミリ秒の場合、"
 "repeat に True を設定すると、アラームを定期的に行うようになります。"
 
-#: ../../library/machine.RTC.rst:63
+#: ../../library/machine.RTC.rst:72
 msgid "Get the number of milliseconds left before the alarm expires."
 msgstr "アラームが期限切れになるまでの残りミリ秒数を取得します。"
 
-#: ../../library/machine.RTC.rst:67
+#: ../../library/machine.RTC.rst:76
 msgid "Cancel a running alarm."
 msgstr "作動中のアラームをキャンセルします。"
 
-#: ../../library/machine.RTC.rst:71
+#: ../../library/machine.RTC.rst:78
+msgid ""
+"The mimxrt port also exposes this function as ``RTC.cancel(alarm_id=0)``,"
+" but this is scheduled to be removed in MicroPython 2.0."
+msgstr ""
+"mimxrt ポートでは、この機能が RTC.cancel(alarm_id=0) としても提供されていますが、"
+"これは MicroPython 2.0 で削除される予定です。"
+
+#: ../../library/machine.RTC.rst:83
 msgid "Create an irq object triggered by a real time clock alarm."
 msgstr "リアルタイムクロックのアラームによってトリガーされる irq オブジェクトを作成します。"
 
-#: ../../library/machine.RTC.rst:73
+#: ../../library/machine.RTC.rst:85
 msgid "``trigger`` must be ``RTC.ALARM0``"
 msgstr "``trigger`` は ``RTC.ALARM0`` でなければなりません "
 
-#: ../../library/machine.RTC.rst:74
+#: ../../library/machine.RTC.rst:86
 msgid "``handler`` is the function to be called when the callback is triggered."
 msgstr "``handler`` はコールバックがトリガーされたときに呼び出される関数です。"
 
-#: ../../library/machine.RTC.rst:75
+#: ../../library/machine.RTC.rst:87
 msgid ""
 "``wake`` specifies the sleep mode from where this interrupt can wake up "
 "the system."
 msgstr ""
 "``wake`` は、この割り込みがシステムを起床できるスリープモードを指定します。"
 
-#: ../../library/machine.RTC.rst:80
+#: ../../library/machine.RTC.rst:92
 msgid ""
 "``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is"
 " any object which supports the buffer protocol (including `bytes`, "
@@ -10377,15 +10446,15 @@ msgstr ""
 "(`bytes`, `bytearray`, `memoryview`, `array.array` など)。 "
 "``RTC.memory()`` は RTC メモリを読み込み、 `bytes` オブジェクトを返します。"
 
-#: ../../library/machine.RTC.rst:85
+#: ../../library/machine.RTC.rst:97
 msgid ""
 "Data written to RTC user memory is persistent across restarts, including "
-"`machine.soft_reset()` and `machine.deepsleep()`."
+":ref:`soft_reset` and `machine.deepsleep()`."
 msgstr ""
-"RTC ユーザーメモリに書き込んだデータは、 `machine.soft_reset()` や "
-"`machine.deepsleep()` などで再起動したときも保持されます。"
+"RTC ユーザーメモリに書き込んだデータは :ref:`soft_reset` や `machine.deepsleep()` "
+"などで再起動したときも保持されます。"
 
-#: ../../library/machine.RTC.rst:88
+#: ../../library/machine.RTC.rst:100
 msgid ""
 "The maximum length of RTC user memory is 2048 bytes by default on esp32, "
 "and 492 bytes on esp8266."
@@ -10393,11 +10462,11 @@ msgstr ""
 "RTC ユーザーメモリの最大長は、esp32 ではデフォルトで 2048 バイト、"
 "esp8266 では 492 バイトです。"
 
-#: ../../library/machine.RTC.rst:91
+#: ../../library/machine.RTC.rst:103
 msgid "Availability: esp32, esp8266 ports."
 msgstr "対応ポート: esp32、esp8266 ポート。"
 
-#: ../../library/machine.RTC.rst:98
+#: ../../library/machine.RTC.rst:110
 msgid "irq trigger source"
 msgstr "irq トリガーソース"
 
@@ -11616,7 +11685,7 @@ msgstr "さもなければ、TimerChannel オブジェクトを初期化して�
 
 #: ../../library/machine.TimerWiPy.rst:74
 msgid ""
-"The operating mode is is the one configured to the Timer object that was "
+"The operating mode is the one configured to the Timer object that was "
 "used to create the channel."
 msgstr ""
 
@@ -12335,12 +12404,15 @@ msgstr "クラス USBDevice -- USB デバイスドライバー"
 
 #: ../../library/machine.USBDevice.rst:7
 msgid ""
-"``machine.USBDevice`` is currently only supported on the rp2 and samd "
-"ports."
+"``machine.USBDevice`` is currently only supported for esp32, rp2 and samd"
+" ports. Native USB support is also required, and not every board supports"
+" native USB."
 msgstr ""
-"``machine.USBDevice`` は現在のところ rp2 と samd ポートのみでサポートしています。"
+"``machine.USBDevice`` は現在のところ esp32, rp2, samd ポートのみでサポートしています。"
+"ネイティブの USB サポートが必要となりますが、すべてのボードがネイティブで USB をサポート"
+"しているわけではありません。"
 
-#: ../../library/machine.USBDevice.rst:10
+#: ../../library/machine.USBDevice.rst:11
 msgid ""
 "USBDevice provides a low-level Python API for implementing USB device "
 "functions using Python code."
@@ -12348,7 +12420,7 @@ msgstr ""
 "USBDevice は、Python コードで USB デバイス機能を実装するための低レベル Python API "
 "を提供します。"
 
-#: ../../library/machine.USBDevice.rst:13
+#: ../../library/machine.USBDevice.rst:14
 msgid ""
 "This low-level API assumes familiarity with the USB standard. There are "
 "high-level `usb driver modules in micropython-lib`_ which provide a "
@@ -12358,11 +12430,11 @@ msgstr ""
 "高レベル API である `usb driver modules in micropython-lib`_ があり、"
 "より簡単なインターフェースとより多くの組み込み機能を提供しています。"
 
-#: ../../library/machine.USBDevice.rst:18
+#: ../../library/machine.USBDevice.rst:19
 msgid "Terminology"
 msgstr "用語"
 
-#: ../../library/machine.USBDevice.rst:20
+#: ../../library/machine.USBDevice.rst:21
 msgid ""
 "A \"Runtime\" USB device interface or driver is one which is defined "
 "using this Python API after MicroPython initially starts up."
@@ -12370,7 +12442,7 @@ msgstr ""
 "「ランタイム」 - USB デバイスインタフェースまたはドライバーは、MicroPython の"
 "初期スタートアップの後、この Python API を使って定義されるものです。"
 
-#: ../../library/machine.USBDevice.rst:23
+#: ../../library/machine.USBDevice.rst:24
 msgid ""
 "A \"Built-in\" USB device interface or driver is one that is compiled "
 "into the MicroPython firmware, and is always available. Examples are USB-"
@@ -12382,11 +12454,11 @@ msgstr ""
 "有効になっている USB-CDC (シリアルポート)があります。"
 "組み込み USB-MSC (マスストレージ)は一部のポートでオプションとして利用できます。"
 
-#: ../../library/machine.USBDevice.rst:29
+#: ../../library/machine.USBDevice.rst:30
 msgid "Lifecycle"
 msgstr "ライフサイクル"
 
-#: ../../library/machine.USBDevice.rst:31
+#: ../../library/machine.USBDevice.rst:32
 msgid ""
 "Managing a runtime USB interface can be tricky, especially if you are "
 "communicating with MicroPython over a built-in USB-CDC serial port that's"
@@ -12396,18 +12468,19 @@ msgstr ""
 "特に同じ USB デバイスの一部である組込み USB-CDC シリアルポートを介して "
 "MicroPython と通信している場合がそうです。"
 
-#: ../../library/machine.USBDevice.rst:35
+#: ../../library/machine.USBDevice.rst:36
 msgid ""
-"A MicroPython soft reset will always clear all runtime USB interfaces, "
-"which results in the entire USB device disconnecting from the host. If "
-"MicroPython is also providing a built-in USB-CDC serial port then this "
-"will re-appear after the soft reset."
+"A MicroPython :ref:`soft reset <soft_reset>` will always clear all "
+"runtime USB interfaces, which results in the entire USB device "
+"disconnecting from the host. If MicroPython is also providing a built-in "
+"USB-CDC serial port then this will re-appear after the soft reset."
 msgstr ""
-"MicroPython のソフトリセットは常にすべてのランタイム USB インタフェースをクリアし、"
-"結果として USB デバイス全体がホストから切断されます。MicroPython が組込み "
-"USB-CDC シリアルポートも提供している場合、これはソフトリセット後に再び現れます。"
+"MicroPython の :ref:`ソフトリセット <soft_reset>` は常にすべてのランタイム "
+"USB インタフェースをクリアし、結果として USB デバイス全体がホストから切断されます。"
+"MicroPython が組み込みの USB-CDC シリアルポートも提供している場合、"
+"これはソフトリセット後に再び現れます。"
 
-#: ../../library/machine.USBDevice.rst:40
+#: ../../library/machine.USBDevice.rst:41
 msgid ""
 "This means some functions (like ``mpremote run``) that target the USB-CDC"
 " serial port will immediately fail if a runtime USB interface is active, "
@@ -12421,21 +12494,21 @@ msgstr ""
 "ソフトリセット後はもはやランタイム USB インタフェースが存在しないため、2回目の試行で"
 "操作が成功するはずです。"
 
-#: ../../library/machine.USBDevice.rst:46
+#: ../../library/machine.USBDevice.rst:47
 msgid ""
 "To configure a runtime USB device on every boot, it's recommended to "
-"place the configuration code in the ``boot.py`` file on the :ref:`device "
-"VFS <filesystem>`. On each reset this file is executed before the USB "
-"subsystem is initialised (and before ``main.py``), so it allows the board"
-" to come up with the runtime USB device immediately."
+"place the configuration code in the :ref:`boot.py` file on the "
+":ref:`device VFS <filesystem>`. On each reset this file is executed "
+"before the USB subsystem is initialised (and before :ref:`main.py`), so "
+"it allows the board to come up with the runtime USB device immediately."
 msgstr ""
 "起動時にランタイム USB デバイスを設定するには、構成コードを "
-":ref:`デバイスの VFS <filesystem>` 上の "``boot.py`` ファイルに"
+":ref:`デバイスの VFS <filesystem>` 上の :ref:`boot.py` ファイルに"
 "配置することが推奨されます。各リセット時にこのファイルは USB "
-"サブシステムが初期化される前(および ``main.py`` の前に)に実行されます。"
+"サブシステムが初期化される前(および :ref:`main.py` の前に)に実行されます。"
 "したがって、ボードを即座にランタイム USB デバイスで起動できます。"
 
-#: ../../library/machine.USBDevice.rst:52
+#: ../../library/machine.USBDevice.rst:53
 msgid ""
 "For development or debugging, it may be convenient to connect a hardware "
 "serial REPL and disable the built-in USB-CDC serial port entirely. Not "
@@ -12449,11 +12522,11 @@ msgstr ""
 "カスタムビルドは ``#define MICROPY_HW_USB_CDC (0)`` と "
 "``#define MICROPY_HW_ENABLE_UART_REPL (1)`` で構成する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:63
+#: ../../library/machine.USBDevice.rst:64
 msgid "Construct a USBDevice object."
 msgstr "USBDevice オブジェクトを構築します。"
 
-#: ../../library/machine.USBDevice.rst:65
+#: ../../library/machine.USBDevice.rst:66
 msgid ""
 "This object is a singleton, each call to this constructor returns the "
 "same object reference."
@@ -12461,7 +12534,7 @@ msgstr ""
 "このオブジェクトはシンゲルトンです。このコンストラクタを呼び出すたびに同じオフジェクト"
 "への参照を返します。"
 
-#: ../../library/machine.USBDevice.rst:73
+#: ../../library/machine.USBDevice.rst:74
 msgid ""
 "Configures the ``USBDevice`` singleton object with the USB runtime device"
 " state and callback functions:"
@@ -12469,7 +12542,7 @@ msgstr ""
 "``USBDevice`` のシンゲルトンオブジェクトを USB ランタイムデバイスの状態と"
 "コールバック関数で構成します:"
 
-#: ../../library/machine.USBDevice.rst:76
+#: ../../library/machine.USBDevice.rst:77
 msgid ""
 "``desc_dev`` - A bytes-like object containing the new USB device "
 "descriptor."
@@ -12477,7 +12550,7 @@ msgstr ""
 "``desc_dev`` - 新しい USB デバイス記述子(USB Device Descriptor)の"
 "値を含むバイト列ライクなオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:79
+#: ../../library/machine.USBDevice.rst:80
 msgid ""
 "``desc_cfg`` - A bytes-like object containing the new USB configuration "
 "descriptor."
@@ -12485,13 +12558,13 @@ msgstr ""
 "``desc_cfg`` - 新しい USB 構成記述子(USB Configuration Descriptor)を"
 "含むバイト列ライクなオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:99
+#: ../../library/machine.USBDevice.rst:100
 msgid "``desc_strs`` - Optional object holding strings or bytes objects"
 msgstr ""
 "``desc_strs`` - USB 文字列記述子(USB String Descriptor)を含む文字列または"
 "バイト列オブジェクトの値を持つオプションのオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:83
+#: ../../library/machine.USBDevice.rst:84
 msgid ""
 "containing USB string descriptor values. Can be a list, a dict, or any "
 "object which supports subscript indexing with integer keys (USB string "
@@ -12500,7 +12573,7 @@ msgstr ""
 "リスト、辞書、整数型のキー(USB 文字列記述子インデックス)を持つ任意のオブジェクトを"
 "指定できます。"
 
-#: ../../library/machine.USBDevice.rst:87
+#: ../../library/machine.USBDevice.rst:88
 msgid ""
 "Strings are an optional USB feature, and this parameter can be unset "
 "(default) if no strings are referenced in the device and configuration "
@@ -12509,7 +12582,7 @@ msgstr ""
 "文字列はオプションの USB 特性であり、デバイス記述子と構成記述子で参照されていない場合、"
 "または組込み文字列のみを使用する場合、このパラメータを設定解除できます(デフォルト)。"
 
-#: ../../library/machine.USBDevice.rst:91
+#: ../../library/machine.USBDevice.rst:92
 msgid ""
 "Apart from index 0, all the string values should be plain ASCII. Index 0 "
 "is the special \"languages\" USB descriptor, represented as a bytes "
@@ -12522,7 +12595,7 @@ msgstr ""
 "フォーマットを持つバイト列オブジェクトとして表されます。デフォルトの \"English\" "
 "言語記述子を使うためには、インデックス 0 で ``None`` を返す必要があります。"
 
-#: ../../library/machine.USBDevice.rst:97
+#: ../../library/machine.USBDevice.rst:98
 msgid ""
 "To fall back to providing a built-in string value for a given index, a "
 "subscript lookup can return ``None``, raise ``KeyError``, or raise "
@@ -12532,7 +12605,7 @@ msgstr ""
 "添字によるルックアップが ``None`` を返すか、 ``KeyError`` を発生させるか、 "
 "``IndexError`` を発生させるかのいずれかです。"
 
-#: ../../library/machine.USBDevice.rst:101
+#: ../../library/machine.USBDevice.rst:102
 msgid ""
 "``open_itf_cb`` - This callback is called once for each interface or "
 "Interface Association Descriptor in response to a Set Configuration "
@@ -12541,9 +12614,9 @@ msgid ""
 msgstr ""
 "``open_itf_cb`` - このコールバックは、USB ホストからの Set Configuration "
 "リクエストに応答して、USB デバイスがホストに利用可能になる直前の最終段階で、"
-"各インターフェースまたはインターフェース関連記述子ごとに1回呼び出されます。"
+"各インタフェースまたはインタフェース関連記述子ごとに1回呼び出されます。"
 
-#: ../../library/machine.USBDevice.rst:107
+#: ../../library/machine.USBDevice.rst:108
 msgid ""
 "The callback takes a single argument, which is a memoryview of the "
 "interface or IAD descriptor that the host is accepting (including all "
@@ -12551,12 +12624,12 @@ msgid ""
 "that was provided as a separate argument to this function. The memoryview"
 " is only valid until the callback function returns."
 msgstr ""
-"このコールバックは、ホストが受け入れているインターフェースまたは IAD 記述子の"
+"このコールバックは、ホストが受け入れているインタフェースまたは IAD 記述子の"
 "メモリビュー(関連するすべての記述子を含む)を単一の引数として取ります。"
 "これは、この関数に個別の引数として提供された同じ ``desc_cfg`` オブジェクトへの"
 "ビューです。メモリビューは、コールバック関数が戻るまでの間のみ有効です。"
 
-#: ../../library/machine.USBDevice.rst:113
+#: ../../library/machine.USBDevice.rst:114
 msgid ""
 "``reset_cb`` - This callback is called when the USB host performs a bus "
 "reset. The callback takes no arguments. Any in-progress transfers will "
@@ -12569,7 +12642,7 @@ msgstr ""
 "USB ホストはたいてい、ディスクリプタコールバックおよびその後 ``open_itf_cb()`` "
 "を呼び出すことによってUSBデバイスを再列挙します。"
 
-#: ../../library/machine.USBDevice.rst:119
+#: ../../library/machine.USBDevice.rst:120
 msgid ""
 "``control_xfer_cb`` - This callback is called one or more times for each "
 "USB control transfer (device Endpoint 0). It takes two arguments."
@@ -12577,23 +12650,23 @@ msgstr ""
 "``control_xfer_cb`` - このコールバックは、各 USB コントロール転送"
 "(デバイスエンドポイント 0)ごとに1回以上呼び出されます。2つの引数を取ります。"
 
-#: ../../library/machine.USBDevice.rst:123
+#: ../../library/machine.USBDevice.rst:124
 msgid "The first argument is the control transfer stage. It is one of:"
 msgstr "第１引数は、コントロール転送のステージです。次のいずれかです:"
 
-#: ../../library/machine.USBDevice.rst:125
+#: ../../library/machine.USBDevice.rst:126
 msgid "``1`` for SETUP stage."
 msgstr "``1``: SETUP ステージ"
 
-#: ../../library/machine.USBDevice.rst:126
+#: ../../library/machine.USBDevice.rst:127
 msgid "``2`` for DATA stage."
 msgstr "``2``: DATA ステージ"
 
-#: ../../library/machine.USBDevice.rst:127
+#: ../../library/machine.USBDevice.rst:128
 msgid "``3`` for ACK stage."
 msgstr "``3``: ACK ステージ"
 
-#: ../../library/machine.USBDevice.rst:129
+#: ../../library/machine.USBDevice.rst:130
 msgid ""
 "Second argument is a memoryview to read the USB control request data for "
 "this stage. The memoryview is only valid until the callback function "
@@ -12604,7 +12677,7 @@ msgstr ""
 "メモリビューです。メモリビューは、コールバック関数が戻るまでの間のみ有効です。"
 "このメモリビュー内のデータは、単一転送の3つのステージで同一です。"
 
-#: ../../library/machine.USBDevice.rst:134
+#: ../../library/machine.USBDevice.rst:135
 msgid ""
 "A successful transfer consists of this callback being called in sequence "
 "for the three stages. Generally speaking, if a device wants to do "
@@ -12616,11 +12689,11 @@ msgstr ""
 "一般的に、デバイスが制御要求に応答して何かを行う場合、ホストコントローラーが転送を"
 "期待通りに完了したことを確認するために、ACKステージまで待つのが最善です。"
 
-#: ../../library/machine.USBDevice.rst:140
+#: ../../library/machine.USBDevice.rst:141
 msgid "The callback should return one of the following values:"
 msgstr "コールバックは、次のいずれかの値を返す必要があります:"
 
-#: ../../library/machine.USBDevice.rst:142
+#: ../../library/machine.USBDevice.rst:143
 msgid ""
 "``False`` to stall the endpoint and reject the transfer. It won't proceed"
 " to any remaining stages."
@@ -12628,11 +12701,11 @@ msgstr ""
 "エンドポイントをストールして転送を拒否するためには ``False`` を返します。"
 "これにより残りのステージには進まなくなります。"
 
-#: ../../library/machine.USBDevice.rst:144
+#: ../../library/machine.USBDevice.rst:145
 msgid "``True`` to continue the transfer to the next stage."
 msgstr "次のステージに転送を継続するためには ``True`` を返します。"
 
-#: ../../library/machine.USBDevice.rst:145
+#: ../../library/machine.USBDevice.rst:146
 msgid ""
 "A buffer object can be returned at the SETUP stage when the transfer will"
 " send or receive additional data. Typically this is the case when the "
@@ -12645,7 +12718,7 @@ msgstr ""
 "発生します。 ``OUT`` 方向の転送の場合は書き込み可能なバッファである必要がありますし、 "
 "``IN`` 方向の転送の場合はデータを持つ読み取り可能なバッファである必要があります。"
 
-#: ../../library/machine.USBDevice.rst:151
+#: ../../library/machine.USBDevice.rst:152
 msgid ""
 "``xfer_cb`` - This callback is called whenever a non-control transfer "
 "submitted by calling :func:`USBDevice.submit_xfer` completes."
@@ -12653,19 +12726,19 @@ msgstr ""
 "``xfer_cb`` - このコールバックは :func:`USBDevice.submit_xfer` を"
 "呼び出して送信された非制御転送が完了するたびに呼び出されます。"
 
-#: ../../library/machine.USBDevice.rst:154
+#: ../../library/machine.USBDevice.rst:155
 msgid "The callback has three arguments:"
 msgstr "コールバックには3つの引数があります:"
 
-#: ../../library/machine.USBDevice.rst:156
+#: ../../library/machine.USBDevice.rst:157
 msgid "The Endpoint number for the completed transfer."
 msgstr "完了した転送のエンドポイント番号。"
 
-#: ../../library/machine.USBDevice.rst:157
+#: ../../library/machine.USBDevice.rst:158
 msgid "Result value: ``True`` if the transfer succeeded, ``False`` otherwise."
 msgstr "結果値: 転送が成功した場合は ``True`` 、それ以外は ``False`` 。"
 
-#: ../../library/machine.USBDevice.rst:159
+#: ../../library/machine.USBDevice.rst:160
 msgid ""
 "Number of bytes successfully transferred. In the case of a \"short\" "
 "transfer, The result is ``True`` and ``xferred_bytes`` will be smaller "
@@ -12674,7 +12747,7 @@ msgstr ""
 "成功したバイト数。 \"short\" 転送の場合、結果は ``True`` であり、 "
 "``xferred_bytes`` は転送のために提出されたバッファの長さよりも小さくなります。"
 
-#: ../../library/machine.USBDevice.rst:164
+#: ../../library/machine.USBDevice.rst:165
 msgid ""
 "If a bus reset occurs (see :func:`USBDevice.reset`), ``xfer_cb`` is not "
 "called for any transfers that have not already completed."
@@ -12682,7 +12755,7 @@ msgstr ""
 "バスのリセットが発生した場合(:func:`USBDevice.reset` を参照)、 "
 "``xfer_cb`` がまだ完了していない転送に対しては呼び出されません。"
 
-#: ../../library/machine.USBDevice.rst:170
+#: ../../library/machine.USBDevice.rst:171
 msgid ""
 "Returns the current active state of this runtime USB device as a boolean."
 " The runtime USB device is \"active\" when it is available to interact "
@@ -12692,7 +12765,7 @@ msgstr ""
 "USB ランタイムデバイスは、ホストとのやり取りが可能な場合に「アクティブ」ですが、"
 "USB ホストが実際に存在していることを意味するわけではありません。"
 
-#: ../../library/machine.USBDevice.rst:175
+#: ../../library/machine.USBDevice.rst:176
 msgid ""
 "If the optional ``value`` argument is set to a truthy value, then the USB"
 " device will be activated."
@@ -12700,7 +12773,7 @@ msgstr ""
 "オプションの ``value`` 引数が真の値に設定されている場合、"
 "USBデバイスはアクティブになります。"
 
-#: ../../library/machine.USBDevice.rst:178
+#: ../../library/machine.USBDevice.rst:179
 msgid ""
 "If the optional ``value`` argument is set to a falsey value, then the USB"
 " device is deactivated. While the USB device is deactivated, it will not "
@@ -12710,7 +12783,7 @@ msgstr ""
 "USB デバイスは非アクティブになります。USBデバイスが非アクティブの間は、"
 "USB ホストによって検出されません。"
 
-#: ../../library/machine.USBDevice.rst:182
+#: ../../library/machine.USBDevice.rst:183
 msgid ""
 "To simulate a disconnect and a reconnect of the USB device, call "
 "``active(False)`` followed by ``active(True)``. This may be necessary if "
@@ -12722,7 +12795,7 @@ msgstr ""
 "構成が変更された場合、すなわちホストが新しいデバイスを認識した場合に、"
 "必要な場合があります。"
 
-#: ../../library/machine.USBDevice.rst:189
+#: ../../library/machine.USBDevice.rst:190
 msgid ""
 "This attribute holds the current built-in driver configuration, and must "
 "be set to one of the ``USBDevice.BUILTIN_`` named constants defined on "
@@ -12731,11 +12804,11 @@ msgstr ""
 "この属性は、現在の組み込みドライバー構成を保持し、このオブジェクトで定義された "
 "``USBDevice.BUILTIN_`` 名前付き定数のいずれかに設定する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:192
+#: ../../library/machine.USBDevice.rst:193
 msgid "By default it holds the value :data:`USBDevice.BUILTIN_NONE`."
 msgstr "デフォルトでは :data:`USBDevice.BUILTIN_NONE` の値が保持されます。"
 
-#: ../../library/machine.USBDevice.rst:194
+#: ../../library/machine.USBDevice.rst:195
 msgid ""
 "Runtime USB device must be inactive when setting this field. Call the "
 ":func:`USBDevice.active` function to deactivate before setting if "
@@ -12745,7 +12818,7 @@ msgstr ""
 "なりません。設定が必要な場合(設定後に再度アクティブにする)には、"
 "設定する前に :func:`USBDevice.active` 関数を呼び出して非アクティブにしてください。"
 
-#: ../../library/machine.USBDevice.rst:198
+#: ../../library/machine.USBDevice.rst:199
 msgid ""
 "If this value is set to any value other than "
 ":data:`USBDevice.BUILTIN_NONE` then the following restrictions apply to "
@@ -12754,7 +12827,7 @@ msgstr ""
 "この値が :data:`USBDevice.BUILTIN_NONE` 以外の値に設定されている場合、"
 "次の制限が :func:`USBDevice.config` の引数に適用されます:"
 
-#: ../../library/machine.USBDevice.rst:201
+#: ../../library/machine.USBDevice.rst:202
 msgid ""
 "``desc_cfg`` should begin with the built-in USB interface descriptor data"
 " accessible via :data:`USBDevice.builtin_driver` attribute ``desc_cfg``. "
@@ -12769,7 +12842,7 @@ msgstr ""
 "``itf_max``, ``str_max``, ``ep_max`` で定義された最大組込み値を開始として、"
 "インタフェース、文字列、エンドポイント番号を使用する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:208
+#: ../../library/machine.USBDevice.rst:209
 msgid ""
 "The ``bNumInterfaces`` field in the built-in configuration descriptor "
 "will also need to be updated if any new interfaces are appended to the "
@@ -12778,7 +12851,7 @@ msgstr ""
 "``desc_cfg`` の末尾に新しいインターフェースが追加された場合、"
 "組込み構成記述子内の ``bNumInterfaces`` フィールドも更新する必要があります。 "
 
-#: ../../library/machine.USBDevice.rst:212
+#: ../../library/machine.USBDevice.rst:213
 msgid ""
 "``desc_strs`` should either be ``None`` or a list/dictionary where index "
 "values less than ``USBDevice.builtin_driver.str_max`` are missing or have"
@@ -12792,7 +12865,7 @@ msgstr ""
 "予約されます。これらのインデックスのいずれかに異なる文字列を配置すると、"
 "組込みドライバーのその文字列がオーバーライドされます。"
 
-#: ../../library/machine.USBDevice.rst:220
+#: ../../library/machine.USBDevice.rst:221
 msgid ""
 "Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature is "
 "enabled by the host. This has to be enabled in the USB attributes, and on"
@@ -12804,7 +12877,7 @@ msgstr ""
 "必要があります。リモートウェイクアップが有効でアクティブであり、ホストが起動された場合は "
 "``True`` を返します。"
 
-#: ../../library/machine.USBDevice.rst:227
+#: ../../library/machine.USBDevice.rst:228
 msgid ""
 "Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be an "
 "object implementing the buffer interface, with read access for ``IN`` "
@@ -12815,7 +12888,7 @@ msgstr ""
 "``OUT`` エンドポイントに対して書き込みアクセスを持つバッファインタフェースを"
 "実装するオブジェクトでなければなりません。"
 
-#: ../../library/machine.USBDevice.rst:231
+#: ../../library/machine.USBDevice.rst:232
 msgid ""
 "``ep`` cannot be the control Endpoint number 0. Control transfers are "
 "built up through successive executions of ``control_xfer_cb``, see above."
@@ -12823,7 +12896,7 @@ msgstr ""
 "``ep`` は制御エンドポイント番号0にすることはできません。"
 "制御転送は ``control_xfer_cb`` を連続して実行することによって構築されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:235
+#: ../../library/machine.USBDevice.rst:236
 msgid ""
 "Returns ``True`` if successful, ``False`` if the transfer could not be "
 "queued (as USB device is not configured by host, or because another "
@@ -12833,15 +12906,15 @@ msgstr ""
 "``False`` を返します(USB デバイスがホストによって構成されていないか、"
 "このエンドポイントに別の転送がキューに入れられているため)。"
 
-#: ../../library/machine.USBDevice.rst:239
+#: ../../library/machine.USBDevice.rst:240
 msgid ""
 "When the USB host completes the transfer, the ``xfer_cb`` callback is "
 "called (see above)."
 msgstr ""
 "USB ホストが転送を完了すると ``xfer_cb`` コールバックが呼び出されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:242
-#: ../../library/machine.USBDevice.rst:261
+#: ../../library/machine.USBDevice.rst:243
+#: ../../library/machine.USBDevice.rst:262
 msgid ""
 "Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not "
 "active."
@@ -12849,16 +12922,16 @@ msgstr ""
 "USB デバイスがアクティブでない場合 ``OSError`` が発生し、"
 "理由として ``MP_EINVAL`` が指定されます。"
 
-#: ../../library/machine.USBDevice.rst:247
+#: ../../library/machine.USBDevice.rst:248
 msgid "Calling this function gets or sets the STALL state of a device endpoint."
 msgstr ""
 "この関数を呼び出すと、デバイスのエンドポイントの STALL 状態を取得または設定します。"
 
-#: ../../library/machine.USBDevice.rst:249
+#: ../../library/machine.USBDevice.rst:250
 msgid "``ep`` is the number of the endpoint."
 msgstr "``ep`` はエンドポイントの番号です。"
 
-#: ../../library/machine.USBDevice.rst:251
+#: ../../library/machine.USBDevice.rst:252
 msgid ""
 "If the optional ``stall`` parameter is set, this is a boolean flag for "
 "the STALL state."
@@ -12866,14 +12939,14 @@ msgstr ""
 "オプションの ``stall`` パラメータが設定されている場合、これは ``STALL`` "
 "状態のブールフラグです。"
 
-#: ../../library/machine.USBDevice.rst:254
+#: ../../library/machine.USBDevice.rst:255
 msgid ""
 "The return value is the current stall state of the endpoint (before any "
 "change made by this function)."
 msgstr ""
 "戻り値は、この関数によって行われた変更前のエンドポイントの現在の stall 状態です。"
 
-#: ../../library/machine.USBDevice.rst:257
+#: ../../library/machine.USBDevice.rst:258
 msgid ""
 "An endpoint that is set to STALL may remain stalled until this function "
 "is called again, or STALL may be cleared automatically by the USB host."
@@ -12881,7 +12954,7 @@ msgstr ""
 "STALL に設定されたエンドポイントは、この関数が再度呼び出されるか、"
 "USBホストによって自動的にクリアされるまで、STALL のままである可能性があります。"
 
-#: ../../library/machine.USBDevice.rst:273
+#: ../../library/machine.USBDevice.rst:274
 msgid ""
 "These constant objects hold the built-in descriptor data which is "
 "compiled into the MicroPython firmware. ``USBDevice.BUILTIN_NONE`` and "
@@ -12894,7 +12967,7 @@ msgstr ""
 "``USBDevice.BUILTIN_DEFAULT`` は常に存在します。ファームウェアのビルド構成と"
 "実際の組み込みドライバによって、追加のオブジェクトが存在する場合があります。"
 
-#: ../../library/machine.USBDevice.rst:278
+#: ../../library/machine.USBDevice.rst:279
 msgid ""
 "Currently at most one of ``USBDevice.BUILTIN_CDC``, "
 "``USBDevice.BUILTIN_MSC`` and ``USBDevice.BUILTIN_CDC_MSC`` is defined "
@@ -12910,7 +12983,7 @@ msgstr ""
 "定義されています。将来的には、複数の組み込みドライバ構成のうちの1つを"
 "選択するサポートが追加されるかもしれません。"
 
-#: ../../library/machine.USBDevice.rst:286
+#: ../../library/machine.USBDevice.rst:287
 msgid ""
 "These values are assigned to :data:`USBDevice.builtin_driver` to get/set "
 "the built-in configuration."
@@ -12918,18 +12991,18 @@ msgstr ""
 "これらの値は、組み込み構成を取得/設定するために "
 ":data:`USBDevice.builtin_driver` に割り当てられます。"
 
-#: ../../library/machine.USBDevice.rst:289
+#: ../../library/machine.USBDevice.rst:290
 msgid "Each object contains the following read-only fields:"
 msgstr "各オブジェクトには、次の読み取り専用フィールドが含まれています:"
 
-#: ../../library/machine.USBDevice.rst:291
+#: ../../library/machine.USBDevice.rst:292
 msgid ""
 "``itf_max`` - One more than the highest bInterfaceNumber value used in "
 "the built-in configuration descriptor."
 msgstr ""
 "``itf_max`` - 組込み構成記述子で使用されるbInterfaceNumber値の最大値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:293
+#: ../../library/machine.USBDevice.rst:294
 msgid ""
 "``ep_max`` - One more than the highest bEndpointAddress value used in the"
 " built-in configuration descriptor. Does not include any ``IN`` flag bit "
@@ -12938,21 +13011,21 @@ msgstr ""
 "``ep_max`` - 組込み構成記述子で使用される bEndpointAddress 値の最大値より"
 "1大きい値。 ``IN`` フラグビット(0x80)は含まれません。"
 
-#: ../../library/machine.USBDevice.rst:296
+#: ../../library/machine.USBDevice.rst:297
 msgid ""
 "``str_max`` - One more than the highest string descriptor index value "
 "used by any built-in descriptor."
 msgstr ""
 "``str_max`` - 任意の組込み記述子で使用される最大の文字列記述子インデックス値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:298
+#: ../../library/machine.USBDevice.rst:299
 msgid ""
 "``desc_dev`` - ``bytes`` object containing the built-in USB device "
 "descriptor."
 msgstr ""
 "``desc_dev`` - 組込み USB デバイス記述子を含むbytesオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:300
+#: ../../library/machine.USBDevice.rst:301
 msgid ""
 "``desc_cfg`` - ``bytes`` object containing the complete built-in USB "
 "configuration descriptor."
@@ -14978,8 +15051,11 @@ msgid "channel"
 msgstr ""
 
 #: ../../library/network.WLAN.rst:129
-msgid "WiFi channel (integer)"
-msgstr "WiFi チャンネル(整数)"
+msgid ""
+"WiFi channel (integer). Depending on the port this may only be supported "
+"on the AP interface."
+msgstr ""
+"WiFi チャンネル(整数)。ポートによっては、AP インタフェースでのみサポートとなっている。"
 
 #: ../../library/network.WLAN.rst:130
 msgid "hidden"
@@ -16139,12 +16215,13 @@ msgstr ""
 #: ../../library/pyb.rst:150
 msgid ""
 "Note that if you change the frequency while the USB is enabled then the "
-"USB may become unreliable.  It is best to change the frequency in "
-"boot.py, before the USB peripheral is started.  Also note that sysclk "
-"frequencies below 36MHz do not allow the USB to function correctly."
+"USB may become unreliable. It is best to change the frequency in "
+":ref:`boot.py`, before the USB peripheral is started. Also note that "
+"sysclk frequencies below 36MHz do not allow the USB to function "
+"correctly."
 msgstr ""
 "USB が有効になっている間に周波数を変更すると、USB の信頼性が低下する可能性があります。"
-"USB 周辺機器を起動する前に、boot.py で周波数を変更するのが最善です。また、sysclk の"
+"USB 周辺機器を起動する前に :ref:`boot.py` で周波数を変更するのが最善です。また、sysclk の"
 "周波数が 36MHz より低いと、USB は正しく機能しません。"
 
 #: ../../library/pyb.rst:157
@@ -16222,18 +16299,18 @@ msgstr "ボードについてのたくさんの情報を表示します。"
 
 #: ../../library/pyb.rst:208
 msgid ""
-"Set the filename of the main script to run after boot.py is finished.  If"
-" this function is not called then the default file main.py will be "
-"executed."
+"Set the filename of the main script to run after :ref:`boot.py` is "
+"finished. If this function is not called then the default file "
+":ref:`main.py` will be executed."
 msgstr ""
-"boot.py が完了した後に実行するメインスクリプトのファイル名を設定します。"
-"この関数が呼び出されないと、デフォルトのファイル main.py が実行されます。"
+":ref:`boot.py` が完了した後に実行するメインスクリプトのファイル名を設定します。"
+"この関数が呼び出されないと、デフォルトのファイル :ref:`main.py` が実行されます。"
 
-#: ../../library/pyb.rst:211
+#: ../../library/pyb.rst:212
 msgid "It only makes sense to call this function from within boot.py."
 msgstr "boot.py の中からこの関数を呼び出すことだけが理にかなっています。"
 
-#: ../../library/pyb.rst:215
+#: ../../library/pyb.rst:216
 msgid ""
 "This function is deprecated. Mounting and unmounting devices should be "
 "performed by :meth:`os.mount` and :meth:`vfs.umount` instead."
@@ -16241,7 +16318,7 @@ msgstr ""
 "この関数は非推奨です。デバイスのマウントとマウント解除には、代わりに "
 ":meth:`os.mount` と :meth:`vfs.umount` を使ってください。"
 
-#: ../../library/pyb.rst:218
+#: ../../library/pyb.rst:219
 msgid ""
 "Mount a block device and make it available as part of the filesystem. "
 "``device`` must be an object that provides the block protocol. (The "
@@ -16253,23 +16330,23 @@ msgstr ""
 "(以下も非推奨です。ブロックデバイスを作成する正しい方法については "
 ":class:`vfs.AbstractBlockDev` を参照してください。）"
 
-#: ../../library/pyb.rst:223
+#: ../../library/pyb.rst:224
 msgid "``readblocks(self, blocknum, buf)``"
 msgstr ""
 
-#: ../../library/pyb.rst:224
+#: ../../library/pyb.rst:225
 msgid "``writeblocks(self, blocknum, buf)`` (optional)"
 msgstr "``writeblocks(self, blocknum, buf)`` (オプション)"
 
-#: ../../library/pyb.rst:225
+#: ../../library/pyb.rst:226
 msgid "``count(self)``"
 msgstr ""
 
-#: ../../library/pyb.rst:226
+#: ../../library/pyb.rst:227
 msgid "``sync(self)`` (optional)"
 msgstr "``sync(self)`` (オプション)"
 
-#: ../../library/pyb.rst:228
+#: ../../library/pyb.rst:229
 msgid ""
 "``readblocks`` and ``writeblocks`` should copy data between ``buf`` and "
 "the block device, starting from block number ``blocknum`` on the device. "
@@ -16282,7 +16359,7 @@ msgstr ""
 " 512 の倍数の長さを持つ bytearray です。 ``writeblocks`` が定義されていなければ、"
 "デバイスは読み取り専用でマウントされます。これら2つの関数の戻り値は無視されます。"
 
-#: ../../library/pyb.rst:234
+#: ../../library/pyb.rst:235
 msgid ""
 "``count`` should return the number of blocks available on the device. "
 "``sync``, if implemented, should sync the data on the device."
@@ -16290,7 +16367,7 @@ msgstr ""
 "``count`` はデバイスで利用可能なブロック数を返します。"
 "``sync``  が実装されている場合、この関数はデバイス上のデータを同期します。"
 
-#: ../../library/pyb.rst:237
+#: ../../library/pyb.rst:238
 msgid ""
 "The parameter ``mountpoint`` is the location in the root of the "
 "filesystem to mount the device.  It must begin with a forward-slash."
@@ -16298,7 +16375,7 @@ msgstr ""
 "パラメータ ``mountpoint`` は、デバイスをマウントするためのファイルシステムの"
 "ルート内の場所です。それはスラッシュ記号で始まらなければなりません。"
 
-#: ../../library/pyb.rst:240
+#: ../../library/pyb.rst:241
 msgid ""
 "If ``readonly`` is ``True``, then the device is mounted read-only, "
 "otherwise it is mounted read-write."
@@ -16306,7 +16383,7 @@ msgstr ""
 "``readonly`` が ``True`` であれば、デバイスは読み取り専用でマウントされ、"
 "それ以外の場合は、読み書きができるようマウントされます。"
 
-#: ../../library/pyb.rst:243
+#: ../../library/pyb.rst:244
 msgid ""
 "If ``mkfs`` is ``True``, then a new filesystem is created if one does not"
 " already exist."
@@ -16314,27 +16391,27 @@ msgstr ""
 "``mkfs`` が ``True`` である場合、ファイルシステムが存在しない場合は、新しい"
 "ファイルシステムが作成されます。"
 
-#: ../../library/pyb.rst:248
+#: ../../library/pyb.rst:249
 msgid "Get or set the UART object where the REPL is repeated on."
 msgstr "REPL が繰り返される UART オブジェクトを取得または設定します。"
 
-#: ../../library/pyb.rst:252
+#: ../../library/pyb.rst:253
 msgid "Return a 30-bit hardware generated random number."
 msgstr "30ビットのハードウェア生成乱数を返します。"
 
-#: ../../library/pyb.rst:256
+#: ../../library/pyb.rst:257
 msgid "Sync all file systems."
 msgstr "すべてのファイルシステムを同期します。"
 
-#: ../../library/pyb.rst:260
+#: ../../library/pyb.rst:261
 msgid "Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU."
 msgstr "MCU の一意な ID である12バイト(96ビット)の文字列を返します。"
 
-#: ../../library/pyb.rst:264
+#: ../../library/pyb.rst:265
 msgid "If called with no arguments, return the current USB mode as a string."
 msgstr "引数なしで呼び出された場合は、現在の USB モードを文字列として返します。"
 
-#: ../../library/pyb.rst:266
+#: ../../library/pyb.rst:267
 msgid ""
 "If called with *modestr* provided, attempts to configure the USB mode. "
 "The following values of *modestr* are understood:"
@@ -16342,27 +16419,27 @@ msgstr ""
 "*modestr* を指定して呼び出した場合、USB モードの設定を試みます。 "
 "*modestr* の値には次のものがあります:"
 
-#: ../../library/pyb.rst:271
+#: ../../library/pyb.rst:272
 msgid "``None``: disables USB"
 msgstr "``None``: USB を無効化"
 
-#: ../../library/pyb.rst:272
+#: ../../library/pyb.rst:273
 msgid "``'VCP'``: enable with VCP (Virtual COM Port) interface"
 msgstr "``'VCP'``: VCP (仮想 COM ポート)インタフェースを有効化"
 
-#: ../../library/pyb.rst:273
+#: ../../library/pyb.rst:274
 msgid "``'MSC'``: enable with MSC (mass storage device class) interface"
 msgstr "``'MSC'``: MSC (マスストレージデバイスクラス)インタフェースを有効化"
 
-#: ../../library/pyb.rst:274
+#: ../../library/pyb.rst:275
 msgid "``'VCP+MSC'``: enable with VCP and MSC"
 msgstr "``'VCP+MSC'``: VCP と MSC を有効化"
 
-#: ../../library/pyb.rst:275
+#: ../../library/pyb.rst:276
 msgid "``'VCP+HID'``: enable with VCP and HID (human interface device)"
 msgstr "``'VCP+HID'``: VCP と HID (ヒューマンインタフェースデバイス)を有効化"
 
-#: ../../library/pyb.rst:276
+#: ../../library/pyb.rst:277
 msgid ""
 "For backwards compatibility, ``'CDC'`` is understood to mean ``'VCP'`` "
 "(and similarly for ``'CDC+MSC'`` and ``'CDC+HID'``)."
@@ -16370,7 +16447,7 @@ msgstr ""
 "後方互換性のために、 ``'CDC'`` は ``'VCP'`` を意味すると解釈されます"
 "(``'CDC+MSC'`` と ``'CDC+HID'`` も同様です)。"
 
-#: ../../library/pyb.rst:279
+#: ../../library/pyb.rst:280
 msgid ""
 "The *port* parameter should be an integer (0, 1, ...) and selects which "
 "USB port to use if the board supports multiple ports.  A value of -1 uses"
@@ -16380,7 +16457,7 @@ msgstr ""
 "している場合に使う USB ポートを選択します。値が -1 である場合は、デフォルトまたは"
 "自動的に選択された USB ポートを使います。"
 
-#: ../../library/pyb.rst:283
+#: ../../library/pyb.rst:284
 msgid ""
 "The *vid* and *pid* parameters allow you to specify the VID (vendor id) "
 "and PID (product id).  A *pid* value of -1 will select a PID based on the"
@@ -16389,7 +16466,7 @@ msgstr ""
 "*vid* と *pid* パラメータは、VID (ベンダID)と PID (プロダクトID)を指定します。 "
 "*pid* の値が -1 である場合は *modestr* の値に基づいて PID を選択します。"
 
-#: ../../library/pyb.rst:287
+#: ../../library/pyb.rst:288
 msgid ""
 "If enabling MSC mode, the *msc* parameter can be used to specify a list "
 "of SCSI LUNs to expose on the mass storage interface.  For example "
@@ -16399,7 +16476,7 @@ msgstr ""
 "公開する SCSI LUN のリストを指定できます。たとえば "
 "``msc=(pyb.Flash(), pyb.SDCard())`` と指定します。"
 
-#: ../../library/pyb.rst:291
+#: ../../library/pyb.rst:292
 msgid ""
 "If enabling HID mode, you may also specify the HID details by passing the"
 " *hid* keyword parameter.  It takes a tuple of (subclass, protocol, max "
@@ -16414,7 +16491,7 @@ msgstr ""
 "マウスに適切な値を設定します。USB キーボードに適したタプルである "
 "``pyb.hid_keyboard`` 定数もあります。"
 
-#: ../../library/pyb.rst:298
+#: ../../library/pyb.rst:299
 msgid ""
 "The *high_speed* parameter, when set to ``True``, enables USB HS mode if "
 "it is supported by the hardware."
@@ -16422,7 +16499,7 @@ msgstr ""
 "*high_speed* パラメータを ``True`` に設定すると、ハードウェアでサポートされていれば "
 "USB HS モードが有効になります。"
 
-#: ../../library/pyb.rst:307
+#: ../../library/pyb.rst:308
 msgid ""
 "A tuple of (subclass, protocol, max packet length, polling interval, "
 "report descriptor) to set appropriate values for a USB mouse or keyboard."
@@ -19803,7 +19880,7 @@ msgstr "``callback`` - TimerChannel.callback() と同様です。"
 #: ../../library/pyb.Timer.rst:165
 msgid ""
 "``pin`` None (the default) or a Pin object. If specified (and not None) "
-"this will cause the alternate function of the the indicated pin to be "
+"this will cause the alternate function of the indicated pin to be "
 "configured for this timer channel. An error will be raised if the pin "
 "doesn't support any alternate functions for this timer channel."
 msgstr ""
@@ -24240,14 +24317,23 @@ msgstr ""
 #: ../../library/sys.rst:14
 msgid ""
 "Terminate current program with a given exit code. Underlyingly, this "
-"function raise as `SystemExit` exception. If an argument is given, its "
+"function raises as `SystemExit` exception. If an argument is given, its "
 "value given as an argument to `SystemExit`."
 msgstr ""
 "与えた終了コードで現在のプログラムを終了します。基本的に、この関数は "
 "`SystemExit` 例外を起こします。引数を与えた場合、その値は `SystemExit` "
 "に引数として与えられます。"
 
-#: ../../library/sys.rst:20
+#: ../../library/sys.rst:18
+msgid ""
+"On embedded ports (i.e. all ports but Windows and Unix), an unhandled "
+"`SystemExit` currently causes a :ref:`soft_reset` of MicroPython."
+msgstr ""
+"組込み系のポート(すなわち Windows と Unix 以外のすべてのポート)では、現在のところ"
+"処理されない `SystemExit` が発生すると、MicroPython の :ref:`soft_reset` "
+"が発生します。"
+
+#: ../../library/sys.rst:23
 msgid ""
 "Register *func* to be called upon termination.  *func* must be a callable"
 " that takes no arguments, or ``None`` to disable the call.  The "
@@ -24259,7 +24345,7 @@ msgstr ""
 "この ``atexit`` 関数は、この関数で以前に設定した値を返します。初回の呼び出しでは "
 "``None`` を返します。"
 
-#: ../../library/sys.rst:28
+#: ../../library/sys.rst:31
 msgid ""
 "This function is a MicroPython extension intended to provide similar "
 "functionality to the :mod:`atexit` module in CPython."
@@ -24267,7 +24353,7 @@ msgstr ""
 "この関数は、CPython の :mod:`atexit` モジュールと似た機能を提供することを目的とした "
 "MicroPython の拡張機能です。"
 
-#: ../../library/sys.rst:33
+#: ../../library/sys.rst:36
 msgid ""
 "Print exception with a traceback to a file-like object *file* (or "
 "`sys.stdout` by default)."
@@ -24275,7 +24361,7 @@ msgstr ""
 "例外をトレースバック付きでファイルライクなオブジェクト *file* (または"
 "デフォルトの `sys.stdout`)に出力します。"
 
-#: ../../library/sys.rst:39
+#: ../../library/sys.rst:42
 msgid ""
 "This is simplified version of a function which appears in the "
 "``traceback`` module in CPython. Unlike ``traceback.print_exception()``, "
@@ -24290,7 +24376,7 @@ msgstr ""
 "パラメータでなければなりません。この他の引数はサポートされていません。"
 "CPython 互換の ``traceback`` モジュールは `micropython-lib` にあります。"
 
-#: ../../library/sys.rst:48
+#: ../../library/sys.rst:51
 msgid ""
 "Enable tracing of bytecode execution.  For details see the `CPython "
 "documentation <https://docs.python.org/3/library/sys.html#sys.settrace>`_."
@@ -24299,7 +24385,7 @@ msgstr ""
 "<https://docs.python.org/ja/3/library/sys.html#sys.settrace>`_ を"
 "参照してください。"
 
-#: ../../library/sys.rst:51
+#: ../../library/sys.rst:54
 msgid ""
 "This function requires a custom MicroPython build as it is typically not "
 "present in pre-built firmware (due to it affecting performance).  The "
@@ -24309,38 +24395,38 @@ msgstr ""
 "組み込まれていません。そのような場合に利用できるようにするには、MicroPython の"
 "カスタムビルドが必要です。関連する設定オプションは *MICROPY_PY_SYS_SETTRACE* です。"
 
-#: ../../library/sys.rst:60
+#: ../../library/sys.rst:63
 msgid "A mutable list of arguments the current program was started with."
 msgstr "現在のプログラム開始時の引数の変更可能なリスト。"
 
-#: ../../library/sys.rst:64
+#: ../../library/sys.rst:67
 msgid "The byte order of the system (``\"little\"`` or ``\"big\"``)."
 msgstr "システムのバイト順(``\"little\"`` または ``\"big\"``)。"
 
-#: ../../library/sys.rst:68
+#: ../../library/sys.rst:71
 msgid ""
 "Object with information about the current Python implementation. For "
 "MicroPython, it has following attributes:"
 msgstr ""
 "現在の Python 処理系に関する情報を持つオブジェクト。MicroPython では次の属性を持ちます:"
 
-#: ../../library/sys.rst:71
+#: ../../library/sys.rst:74
 msgid "*name* - string \"micropython\""
 msgstr "*name* - 文字列 \"micropython\""
 
-#: ../../library/sys.rst:72
+#: ../../library/sys.rst:75
 msgid "*version* - tuple (major, minor, micro, releaselevel), e.g. (1, 22, 0, '')"
 msgstr "*version* - タプル (major, minor, micro, releaselevel)。例: (1, 22, 0, '')"
 
-#: ../../library/sys.rst:73
+#: ../../library/sys.rst:76
 msgid "*_machine* - string describing the underlying machine"
 msgstr "*_machine* - 基盤マシンを説明する文字列"
 
-#: ../../library/sys.rst:74
+#: ../../library/sys.rst:77
 msgid "*_mpy* - supported mpy file-format version (optional attribute)"
 msgstr "*_mpy* - サポートしている mpy ファイルフォーマットバージョン(オプション属性)"
 
-#: ../../library/sys.rst:76
+#: ../../library/sys.rst:79
 msgid ""
 "This object is the recommended way to distinguish MicroPython from other "
 "Python implementations (note that it still may not exist in the very "
@@ -24349,7 +24435,7 @@ msgstr ""
 "このオブジェクトは、MicroPython を他の Python 実装と区別する推奨手段です(しかし、"
 "最小限のポートには存在しないことに注意してください)。"
 
-#: ../../library/sys.rst:80
+#: ../../library/sys.rst:83
 msgid ""
 "Starting with version 1.22.0-preview, the fourth node *releaselevel* in "
 "*implementation.version* is either an empty string or ``\"preview\"``."
@@ -24357,7 +24443,7 @@ msgstr ""
 "バージョン 1.22.0-preview 以降、 *implementation.version* の４番目の項目 "
 "*releaselevel* は空文字列または ``\"preview\"`` になります。"
 
-#: ../../library/sys.rst:86
+#: ../../library/sys.rst:89
 msgid ""
 "CPython mandates more attributes for this object, but the actual useful "
 "bare minimum is implemented in MicroPython."
@@ -24365,7 +24451,7 @@ msgstr ""
 "CPython ではこのオブジェクトにもっと多くの属性がありますが、MicroPython では実際に"
 "有用となる最低限のものだけを実装しています。"
 
-#: ../../library/sys.rst:91
+#: ../../library/sys.rst:94
 msgid ""
 "Maximum value which a native integer type can hold on the current "
 "platform, or maximum value representable by MicroPython integer type, if "
@@ -24376,7 +24462,7 @@ msgstr ""
 "最大値より小さい場合は MicroPython 整数型で表現可能な最大値(MicroPython ポートで "
 "長整数をサポートしないとした場合)。"
 
-#: ../../library/sys.rst:96
+#: ../../library/sys.rst:99
 msgid ""
 "This attribute is useful for detecting \"bitness\" of a platform (32-bit "
 "vs 64-bit, etc.). It's recommended to not compare this attribute to some "
@@ -24386,7 +24472,7 @@ msgstr ""
 "便利です。この属性をある値と直接比較するのよりも、その属性のビット数をカウントする"
 "ことをお勧めします。"
 
-#: ../../library/sys.rst:100
+#: ../../library/sys.rst:103
 msgid ""
 "bits = 0\n"
 "v = sys.maxsize\n"
@@ -24416,7 +24502,7 @@ msgstr ""
 "    # (たとえば31)になる可能性があるので、 \"> 16\", \"> 32\", \"> 64\" の\n"
 "    # の比較スタイルを使用してください。"
 
-#: ../../library/sys.rst:116
+#: ../../library/sys.rst:119
 msgid ""
 "Dictionary of loaded modules. On some ports, it may not include builtin "
 "modules."
@@ -24424,11 +24510,11 @@ msgstr ""
 "読み込まれたモジュールの辞書。一部のポートでは、組込みモジュールが含まれていない"
 "可能性があります。"
 
-#: ../../library/sys.rst:121
+#: ../../library/sys.rst:124
 msgid "A mutable list of directories to search for imported modules."
 msgstr "import するモジュールを検索するディレクトリの変更可能なリスト。"
 
-#: ../../library/sys.rst:126
+#: ../../library/sys.rst:129
 msgid ""
 "On MicroPython, an entry with the value ``\".frozen\"`` will indicate "
 "that import should search :term:`frozen modules <frozen module>` at that "
@@ -24441,7 +24527,7 @@ msgstr ""
 "凍結モジュールが見つからなければ、 ``.frozen`` というディレクトリを *探さず* 、"
 "代わりに ``sys.path`` の次のエントリで検索を続行します。"
 
-#: ../../library/sys.rst:133
+#: ../../library/sys.rst:136
 msgid ""
 "The platform that MicroPython is running on. For OS/RTOS ports, this is "
 "usually an identifier of the OS, e.g. ``\"linux\"``. For baremetal ports "
@@ -24459,7 +24545,7 @@ msgstr ""
 "実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
-#: ../../library/sys.rst:143
+#: ../../library/sys.rst:146
 msgid ""
 "Mutable attributes holding strings, which are used for the REPL prompt.  "
 "The defaults give the standard Python prompt of ``>>>`` and ``...``."
@@ -24467,19 +24553,19 @@ msgstr ""
 "REPL プロンプトに使う文字列を保持する変更可能属性です。"
 "デフォルトでは、標準的な Python プロンプトである ``>>>`` や ``...`` を表示します。"
 
-#: ../../library/sys.rst:148
+#: ../../library/sys.rst:151
 msgid "Standard error `stream`."
 msgstr "標準エラーの `stream` 。"
 
-#: ../../library/sys.rst:152
+#: ../../library/sys.rst:155
 msgid "Standard input `stream`."
 msgstr "標準入力の `stream` 。"
 
-#: ../../library/sys.rst:156
+#: ../../library/sys.rst:159
 msgid "Standard output `stream`."
 msgstr "標準出力の `stream` 。"
 
-#: ../../library/sys.rst:160
+#: ../../library/sys.rst:163
 msgid ""
 "A mutable attribute holding an integer value which is the maximum number "
 "of traceback entries to store in an exception.  Set to 0 to disable "
@@ -24488,22 +24574,22 @@ msgstr ""
 "例外に格納するトレースバックエントリの最大数を整数値で保持する変更可能属性です。"
 "0 を設定すると、トレースバックの追加を無効にします。デフォルトは 1000 です。"
 
-#: ../../library/sys.rst:164
+#: ../../library/sys.rst:167
 msgid "Note: this is not available on all ports."
 msgstr "注記: これはすべてのポートで使用できるわけではありません。"
 
-#: ../../library/sys.rst:168
+#: ../../library/sys.rst:171
 msgid "Python language version that this implementation conforms to, as a string."
 msgstr "この処理系が準拠する Python 言語バージョンを表す文字列。"
 
-#: ../../library/sys.rst:172
+#: ../../library/sys.rst:175
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
 "この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
-#: ../../library/sys.rst:177
+#: ../../library/sys.rst:180
 msgid ""
 "Only the first three version numbers (major, minor, micro) are supported "
 "and they can be referenced only by index, not by name."

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-16 09:55+0900\n"
-"PO-Revision-Date: 2024-11-16 11:14+0900\n"
+"POT-Creation-Date: 2024-12-29 14:37+0900\n"
+"PO-Revision-Date: 2024-12-31 09:41+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -4692,7 +4692,7 @@ msgstr ""
 
 #: ../../reference/manifest.rst:29
 msgid ""
-"The way to list the Python files to be be frozen into the firmware is via"
+"The way to list the Python files to be frozen into the firmware is via"
 " a \"manifest\", which is a Python file that will be interpreted by the "
 "build process. Typically you would write a manifest file as part of a "
 "board definition, but you can also write a stand-alone manifest file and "
@@ -6285,11 +6285,11 @@ msgstr ""
 
 #: ../../reference/mpremote.rst:550
 msgid ""
-"Connect to the device without triggering a soft reset and execute the "
-"``print_state_info()`` function (e.g. to find out information about the "
-"current program state), then trigger a soft reset."
+"Connect to the device without triggering a :ref:`soft reset <soft_reset>`"
+" and execute the ``print_state_info()`` function (e.g. to find out "
+"information about the current program state), then trigger a soft reset."
 msgstr ""
-"ソフトリセットすることなくデバイスに接続し、 ``print_state_info()`` 関数"
+":ref:`ソフトリセット <soft_reset>` することなくデバイスに接続し、 ``print_state_info()`` 関数"
 "(例: 現在のプログラム状態に関する情報を調べる)を実行し、その後にソフトリセットします。"
 
 #: ../../reference/mpremote.rst:554
@@ -7880,20 +7880,20 @@ msgstr ""
 "ように貼り付けたテキストがコンパイルされます。Ctrl+Dキーを押すと、ペーストモードを"
 "終了し、コンパイルを開始します。"
 
-#: ../../../reference/repl.rst:147
+#: ../../../reference/repl.rst:149
 msgid "Soft reset"
 msgstr "ソフトリセット"
 
-#: ../../../reference/repl.rst:149
+#: ../../../reference/repl.rst:151
 msgid ""
-"A soft reset will reset the python interpreter, but tries not to reset "
-"the method by which you're connected to the MicroPython board (USB-"
+"A :ref:`soft_reset` will reset the python interpreter, but tries not to "
+"reset the method by which you're connected to the MicroPython board (USB-"
 "serial, or Wifi)."
 msgstr ""
-"ソフトリセットは python インタプリタをリセットしますが、MicroPython ボード"
+":ref:`soft_reset` は python インタプリタをリセットしますが、MicroPython ボード"
 "に接続している手段(USBシリアル、または無線LAN)をリセットしないよう試みます。"
 
-#: ../../../reference/repl.rst:152
+#: ../../../reference/repl.rst:154
 msgid ""
 "You can perform a soft reset from the REPL by pressing Ctrl-D, or from "
 "your python code by executing: ::"
@@ -7901,11 +7901,11 @@ msgstr ""
 "ソフトリセットは Ctrl-D を押すことで起こせます。python コード中からも次を実行"
 "することでソフトリセットを起こせます。"
 
-#: ../../../reference/repl.rst:155
+#: ../../../reference/repl.rst:157
 msgid "machine.soft_reset()"
 msgstr ""
 
-#: ../../../reference/repl.rst:157
+#: ../../../reference/repl.rst:159
 msgid ""
 "For example, if you reset your MicroPython board, and you execute a dir()"
 " command, you'd see something like this:"
@@ -7913,11 +7913,11 @@ msgstr ""
 "たとえば MicroPython ボードをリセットし、dir() 命令を実行すると、次のようになる"
 "でしょう。"
 
-#: ../../../reference/repl.rst:163
+#: ../../../reference/repl.rst:165
 msgid "Now create some variables and repeat the dir() command:"
 msgstr "ここで、いくつかの変数の作成と dir() 命令を繰り返します。"
 
-#: ../../../reference/repl.rst:172
+#: ../../../reference/repl.rst:174
 msgid ""
 "Now if you enter Ctrl-D, and repeat the dir() command, you'll see that "
 "your variables no longer exist:"
@@ -7925,7 +7925,7 @@ msgstr ""
 "ここで Ctrl-D を押して、再度 dir() を行ってみれば、変数がもはや存在しないことが"
 "わかります。"
 
-#: ../../../reference/repl.rst:175
+#: ../../../reference/repl.rst:177
 msgid ""
 "MPY: sync filesystems\n"
 "MPY: soft reboot\n"
@@ -7937,11 +7937,19 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../../reference/repl.rst:186
+#: ../../reference/repl.rst:187
+msgid ""
+"For more information about reset types and the startup process, see "
+":doc:`/reference/reset_boot`."
+msgstr ""
+"リセットの種類とスタートアップ処理について詳しくは "
+":doc:`/reference/reset_boot` を参照してください。"
+
+#: ../../../reference/repl.rst:191
 msgid "The special variable _ (underscore)"
 msgstr "特殊変数 _ (下線)"
 
-#: ../../../reference/repl.rst:188
+#: ../../../reference/repl.rst:193
 msgid ""
 "When you use the REPL, you may perform computations and see the results. "
 "MicroPython stores the results of the previous statement in the variable "
@@ -7949,15 +7957,15 @@ msgid ""
 "variable. For example:"
 msgstr ""
 "REPL を使っているときには、計算を実行した結果を使いたいことがあります。"
-"MicroPython は、前の文の結果を変数 _　(下線)に格納します。ですから、"
+"MicroPython は、前の文の結果を変数 _ (下線)に格納します。ですから、"
 "変数に結果を保存するために、アンダースコアが使えます。たとえば"
 "次のように使えます。"
 
-#: ../../../reference/repl.rst:200
+#: ../../../reference/repl.rst:207
 msgid "Raw mode and raw-paste mode"
 msgstr "raw モードと raw ペーストモード"
 
-#: ../../../reference/repl.rst:202
+#: ../../../reference/repl.rst:209
 msgid ""
 "Raw mode (also called raw REPL) is not something that a person would "
 "normally use. It is intended for programmatic use and essentially behaves"
@@ -7967,7 +7975,7 @@ msgstr ""
 "これはプログラムで使うよう意図されていて、本質的にはエコーが無効になった"
 "ペーストモードのように動作します。オプションでフロー制御もできます。"
 
-#: ../../../reference/repl.rst:205
+#: ../../../reference/repl.rst:213
 msgid ""
 "Raw mode is entered using Ctrl-A. You then send your python code, "
 "followed by a Ctrl-D. The Ctrl-D will be acknowledged by 'OK' and then "
@@ -7980,7 +7988,7 @@ msgstr ""
 "任意の出力(またはエラー)が戻ってきます。Ctrl-B を入力すると、raw "
 "モードを終了して、通常の(フレンドリーな) REPL に戻ります。"
 
-#: ../../reference/repl.rst:211
+#: ../../reference/repl.rst:218
 msgid ""
 "Raw-paste mode is an additional mode within the raw REPL that includes "
 "flow control, and which compiles code as it receives it. This makes it "
@@ -7993,24 +8001,24 @@ msgstr ""
 "(標準の raw モードとは異なり)コンパイル前のコードの冗長なコピーを保存しなくてもよいため、"
 "受信時の RAM の使用量も少なくなります。"
 
-#: ../../reference/repl.rst:217
+#: ../../reference/repl.rst:224
 msgid "Raw-paste mode uses the following protocol:"
 msgstr ""
 "raw ペーストモードでは、以下のプロトコルを使用します。"
 
-#: ../../reference/repl.rst:219
+#: ../../reference/repl.rst:226
 msgid "Enter raw REPL as usual via ctrl-A."
 msgstr "ctrl-A で通常の raw REPL に入ります。"
 
-#: ../../reference/repl.rst:221
+#: ../../reference/repl.rst:228
 msgid "Write 3 bytes: ``b\"\\x05A\\x01\"`` (ie ctrl-E then \"A\" then ctrl-A)."
 msgstr "次の3バイトを書き込みます: ``b\"\\x05A\\x01\"`` (ctrl-E、"A "、ctrl-A)。"
 
-#: ../../reference/repl.rst:223
+#: ../../reference/repl.rst:230
 msgid "Read 2 bytes to determine if the device entered raw-paste mode:"
 msgstr "2バイト読み込んで、デバイスが raw ペースト モードになったかどうかを確認します:"
 
-#: ../../reference/repl.rst:225
+#: ../../reference/repl.rst:232
 msgid ""
 "If the result is ``b\"R\\x00\"`` then the device understands the command "
 "but doesn't support raw paste."
@@ -8018,7 +8026,7 @@ msgstr ""
 "結果が ``b\"R\\x00\"`` の場合、デバイスはコマンドを理解していますが、"
 "raw ペーストをサポートしていません。"
 
-#: ../../reference/repl.rst:228
+#: ../../reference/repl.rst:235
 msgid ""
 "If the result is ``b\"R\\x01\"`` then the device does support raw paste "
 "and has entered this mode."
@@ -8026,17 +8034,17 @@ msgstr ""
 "結果が ``b\"R\\x01\"`` の場合、デバイスは raw ペーストをサポートしていて、"
 "このモードに入っています。"
 
-#: ../../reference/repl.rst:231
+#: ../../reference/repl.rst:238
 msgid ""
 "Otherwise the result should be ``b\"ra\"`` and the device doesn't support"
 " raw paste and the string ``b\"w REPL; CTRL-B to exit\\r\\n>\"`` should "
 "be read and discarded."
 msgstr ""
-"上記のいずれでもなければ結果は　``b\"ra\"`` となるはずで、デバイスは raw ペーストを"
+"上記のいずれでもなければ結果は ``b\"ra\"`` となるはずで、デバイスは raw ペーストを"
 "サポートしていません。この場合は、後続のバイト列 "
 "``b\"w REPL; CTRL-B to exit\\r\\n>\"`` を読み取って破棄してください。"
 
-#: ../../reference/repl.rst:235
+#: ../../reference/repl.rst:242
 msgid ""
 "If the device is in raw-paste mode then continue, otherwise fallback to "
 "standard raw mode."
@@ -8044,7 +8052,7 @@ msgstr ""
 "デバイスが raw ペーストモードになったら続行し、そうでない場合は標準の raw モードに"
 "フォールバックします。"
 
-#: ../../reference/repl.rst:238
+#: ../../reference/repl.rst:245
 msgid ""
 "Read 2 bytes, this is the flow control window-size-increment (in bytes) "
 "stored as a 16-bit unsigned little endian integer.  The initial value for"
@@ -8054,11 +8062,11 @@ msgstr ""
 "window-size-increment (バイト単位)です。remaining-window-size 変数の"
 "ための初期値はこの数に設定されるべきです。"
 
-#: ../../reference/repl.rst:242
+#: ../../reference/repl.rst:249
 msgid "Write out the code to the device:"
 msgstr "デバイスにコードを書き出します。"
 
-#: ../../reference/repl.rst:244
+#: ../../reference/repl.rst:251
 msgid ""
 "While there are bytes to send, write up to the remaining-window-size "
 "worth of bytes, and decrease the remaining-window-size by the number of "
@@ -8067,7 +8075,7 @@ msgstr ""
 "送信するバイトがある間に remaining-window-size のバイト数分まで書き込んで、"
 "書き込んだバイト数分だけ remaining-window-size を減少させます。"
 
-#: ../../reference/repl.rst:248
+#: ../../reference/repl.rst:255
 msgid ""
 "If the remaining-window-size is 0, or there is a byte waiting to read, "
 "read 1 byte.  If this byte is ``b\"\\x01\"`` then increase the remaining-"
@@ -8088,7 +8096,7 @@ msgstr ""
 "対処する必要はありません。reamining-window-size が0より大きい限り、"
 "デバイスは受信バイトを消費し続けます。)"
 
-#: ../../reference/repl.rst:257
+#: ../../reference/repl.rst:264
 msgid ""
 "When all code has been written to the device, write ``b\"\\x04\"`` to "
 "indicate end-of-data."
@@ -8096,7 +8104,7 @@ msgstr ""
 "すべてのコードがデバイスに書き込まれたら、データの終了を示すために ``b\"\\x04\"`` "
 "を書き込みます。"
 
-#: ../../reference/repl.rst:260
+#: ../../reference/repl.rst:267
 msgid ""
 "Read from the device until ``b\"\\x04\"`` is received.  At this point the"
 " device has received and compiled all of the code that was sent and is "
@@ -8105,7 +8113,7 @@ msgstr ""
 "``b\"\\x04\"`` が受信されるまでデバイスから読み出します。この時点でデバイスは、"
 "送信されたコードを全て受信してコンパイルし、実行しています。"
 
-#: ../../reference/repl.rst:263
+#: ../../reference/repl.rst:270
 msgid ""
 "The device outputs any characters produced by the executing code.  When "
 "(if) the code finishes ``b\"\\x04\"`` will be output, followed by any "
@@ -8117,32 +8125,32 @@ msgstr ""
 "再び ``b\"\\x04\"`` が出力されます。その後、標準の raw REPLに戻り "
 "``b\">\"`` を出力します。
 
-#: ../../reference/repl.rst:268
+#: ../../reference/repl.rst:275
 msgid ""
 "For example, starting at a new line at the normal (friendly) REPL, if you"
 " write::"
 msgstr ""
 "たとえば、通常の(対話的な) REPL で書き始めるとすると、次のようになります::"
 
-#: ../../reference/repl.rst:270
+#: ../../reference/repl.rst:277
 msgid "b\"\\x01\\x05A\\x01print(123)\\x04\""
 msgstr ""
 
-#: ../../reference/repl.rst:272
+#: ../../reference/repl.rst:279
 msgid "Then the device will respond with something like::"
 msgstr "こうすると、デバイスは次のような反応をします::"
 
-#: ../../reference/repl.rst:274
+#: ../../reference/repl.rst:281
 msgid ""
 "b\"\\r\\nraw REPL; CTRL-B to "
 "exit\\r\\n>R\\x01\\x80\\x00\\x01\\x04123\\r\\n\\x04\\x04>\""
 msgstr ""
 
-#: ../../reference/repl.rst:276
+#: ../../reference/repl.rst:283
 msgid "Broken down over time this looks like::"
 msgstr "デバイスとの入出力を詳しく書くと次のようになります::"
 
-#: ../../reference/repl.rst:278
+#: ../../reference/repl.rst:285
 msgid ""
 "# Step 1: enter raw REPL\n"
 "write: b\"\\x01\"\n"
@@ -8174,7 +8182,7 @@ msgstr ""
 "# ステップ9: コードを実行した結果を読み込む\n"
 "read: b\"123\\r\\n\\x04\\x04>\""
 
-#: ../../reference/repl.rst:293
+#: ../../reference/repl.rst:300
 msgid ""
 "In this case the flow control window-size-increment is 128 and there are "
 "two windows worth of data immediately available at the start, one from "
@@ -8189,13 +8197,621 @@ msgstr ""
 "``b\"\\x01\"`` 値からです。つまり、フロー制御文字の着信を待ったり"
 "チェックしたりする前に、最大256バイトまで書き込めるということです。"
 
-#: ../../reference/repl.rst:299
+#: ../../reference/repl.rst:306
 msgid ""
 "The ``tools/pyboard.py`` program uses the raw REPL, including raw-paste "
 "mode, to execute Python code on a MicroPython-enabled board."
 msgstr ""
 "``tools/pyboard.py`` プログラムは MicroPython ボード上の python ファイルを"
 "実行するために、raw REPL と raw ペーストモードを使っています。"
+
+#: ../../reference/reset_boot.rst:2
+msgid "Reset and Boot Sequence"
+msgstr "リセットとブートシーケンス"
+
+#: ../../reference/reset_boot.rst:4
+msgid ""
+"A device running MicroPython follows a particular boot sequence to start "
+"up and initialise itself after a reset."
+msgstr ""
+"MicroPython を実行しているデバイスは、リセット後の起動と初期化において特定の"
+"ブートシーケンスにしたがいます。"
+
+#: ../../reference/reset_boot.rst:10
+msgid "Hard reset"
+msgstr "ハードリセット"
+
+#: ../../reference/reset_boot.rst:12
+msgid ""
+"Booting from hard reset is what happens when a board is first powered up,"
+" a cold boot. This is a complete reset of the MCU hardware."
+msgstr ""
+"ハードリセットからの起動は、ボードに初めて電源が投入されたときに発生するコールドブートです。"
+"これは MCU ハードウェアの完全なリセットです。"
+
+#: ../../reference/reset_boot.rst:15
+msgid ""
+"The MicroPython port code initialises all essential hardware (including "
+"embedded clocks and power regulators, internal serial UART, etc), and "
+"then starts the MicroPython environment. Existing :doc:`RTC "
+"</library/machine.RTC>` configuration may be retained after a hard reset,"
+" but all other hardware state is cleared."
+msgstr ""
+"MicroPython ポートのコードは、すべての主要なハードウェア(組込みのクロックと電源レギュレータ、"
+"内部シリアル UART などを含む)を初期化し、MicroPython 環境を起動します。"
+"既存の :doc:`RTC </library/machine.RTC>` 設定はハードリセット後も保持される場合が"
+"ありますが、その他のハードウェア状態はすべてクリアされます。"
+
+#: ../../reference/reset_boot.rst:21
+msgid ""
+"The same hard reset boot sequence can be triggered by a number of events "
+"such as:"
+msgstr ""
+"同じハードリセットのブートシーケンスが、次のようなさまざまなイベントによってトリガーされる"
+"可能性があります。"
+
+#: ../../reference/reset_boot.rst:23
+msgid "Python code executing :func:`machine.reset()`."
+msgstr "Python コードが :func:`machine.reset()` を実行する場合。"
+
+#: ../../reference/reset_boot.rst:24
+msgid "User presses a physical Reset button on the board (where applicable)."
+msgstr "ボード上に物理的なリセットボタンがあり、ユーザーがそれを押した場合。
+
+#: ../../reference/reset_boot.rst:25
+msgid "Waking from deep sleep (on most ports)."
+msgstr "(ほとんどのポートで)ディープスリープから復帰した場合。"
+
+#: ../../reference/reset_boot.rst:26
+msgid "MCU hardware watchdog reset."
+msgstr "MCU のハードウェアウォッチドッグリセットがかかった場合。"
+
+#: ../../reference/reset_boot.rst:27
+msgid "MCU hardware brown out detector."
+msgstr "MCU のハードウェアブラウンアウトが検出された場合。"
+
+#: ../../reference/reset_boot.rst:29
+msgid ""
+"The details of hardware-specific reset triggers depend on the port and "
+"associated hardware. The :func:`machine.reset_cause()` function can be "
+"used to further determine the cause of a reset."
+msgstr ""
+"ハードウェア固有のリセットトリガーの詳細は、ポートと関連するハードウェアによって異なります。 "
+":func:`machine.reset_cause()` 関数を使うと、リセットの原因をさらに特定できます。"
+
+#: ../../reference/reset_boot.rst:36
+msgid "Soft Reset"
+msgstr "ソフトリセット"
+
+#: ../../reference/reset_boot.rst:38
+msgid ""
+"When MicroPython is already running, it's possible to trigger a soft "
+"reset by :ref:`typing Ctrl-D in the REPL <repl_soft_reset>` or executing "
+":func:`machine.soft_reset()`."
+msgstr ""
+"MicroPython がすでに実行されている場合、 :ref:`REPL で Ctrl-D を入力する <repl_soft_reset>` "
+"か、 :func:`machine.soft_reset()` を実行することでソフトリセットをトリガーできます。"
+
+#: ../../reference/reset_boot.rst:42
+msgid ""
+"A soft reset clears the Python interpreter, frees all Python memory, and "
+"starts the MicroPython environment again."
+msgstr ""
+"ソフトリセットは Python インタープリターをクリアし、すべての Python メモリを解放し、"
+"MicroPython 環境を再び起動します。"
+
+#: ../../reference/reset_boot.rst:45
+msgid "State which is cleared by a soft reset includes:"
+msgstr "ソフトリセットによってクリアされる状態には次のものがあります:"
+
+#: ../../reference/reset_boot.rst:47
+msgid "All Python variables, objects, imported modules, etc."
+msgstr "すべての Python 変数、オブジェクト、インポートされたモジュールなど。"
+
+#: ../../reference/reset_boot.rst:48
+msgid ""
+"Most peripherals configured using the :doc:`machine module "
+"</library/machine>`. There are very limited exceptions, for example "
+":doc:`machine.Pin </library/machine.Pin>` modes (i.e. if a pin is input "
+"or output, high or low) are not reset on most ports. More advanced "
+"configuration such as :func:`Pin.irq()` is always reset."
+msgstr ""
+":doc:`machine モジュール </library/machine>` を使って有効化した"
+"ペリフェラルのほとんど。非常に限られた例外はあります。たとえば "
+":doc:`machine.Pin </library/machine.Pin>` のモード"
+"(ピンが入力か出力か、high か low か)は、ほとんどのポートではリセットされません。 "
+":func:`Pin.irq()` などのような、より高度な設定は常にリセットされます。"
+
+#: ../../reference/reset_boot.rst:53
+msgid "Bluetooth."
+msgstr ""
+
+#: ../../reference/reset_boot.rst:54
+msgid ""
+"Network sockets. Open TCP sockets are closed cleanly with respect to the "
+"other party."
+msgstr ""
+"ネットワークソケット。開いている TCP ソケットは、相手側に対して正常に閉じられます。"
+
+#: ../../reference/reset_boot.rst:55
+msgid "Open files. The filesystem is left in a valid state."
+msgstr "開いているファイル。ファイルシステムは有効な状態のままです。"
+
+#: ../../reference/reset_boot.rst:57
+msgid "Some system state remains the same after a soft reset, including:"
+msgstr "ソフトリセット後も、次のような一部のシステム状態は変わりません:"
+
+#: ../../reference/reset_boot.rst:59
+msgid ""
+"Any existing network connections (Ethernet, Wi-Fi, etc) remain active at "
+"the IP Network layer. Querying the :doc:`network interface from code "
+"</library/network>` may indicate the network interface is still active "
+"with a configured IP address, etc."
+msgstr ""
+"既存のネットワーク接続(イーサネット、Wi-Fi など)は、IP ネットワーク層でアクティブ"
+"なままです。 :doc:`コードからネットワークインタフェース </library/network>` "
+"を照会すると、構成された IP アドレスなどでネットワークインタフェースがまだ"
+"アクティブであることがわかります。"
+
+#: ../../reference/reset_boot.rst:63
+msgid ""
+"An active :doc:`REPL <repl>` appears continuous before and after soft "
+"reset, except in some unusual cases:"
+msgstr ""
+"アクティブな :doc:`REPL <repl>` は、いくつかの例外的な場合を除き、"
+"ソフトリセットの前後で継続して表示されます。"
+
+#: ../../reference/reset_boot.rst:66
+msgid ""
+"If the :ref:`machine.USBDevice <machine.USBDevice>` class has been used "
+"to create a custom USB interface then any built-in USB serial device will"
+" appear to disconnect and reconnect as the custom USB interface must be "
+"cleared during reset."
+msgstr ""
+":ref:`machine.USBDevice <machine.USBDevice>` クラスを使ってカスタム USB "
+"インタフェースを作成した場合、リセット中にカスタム USB インターフェイスをクリアする"
+"必要があるため、内蔵の USB シリアルデバイスは切断されて再接続されるように見えます。"
+
+#: ../../reference/reset_boot.rst:70
+msgid ""
+"A serial UART REPL will restore its default hardware configuration (baud "
+"rate, etc)."
+msgstr ""
+"シリアル UART REPL は、デフォルトのハードウェア構成((ボーレートなど))を復元します。"
+
+#: ../../reference/reset_boot.rst:73
+msgid "CPU clock speed is usually not changed by a soft reset."
+msgstr "CPU クロック速度は通常、ソフト リセットによって変更されません。"
+
+#: ../../reference/reset_boot.rst:74
+msgid ""
+":doc:`RTC </library/machine.RTC>` configuration (i.e. setting of the "
+"current time) is not changed by soft reset."
+msgstr ""
+":doc:`RTC </library/machine.RTC>` 構成(つまり、現在の時刻の設定)は"
+"ソフトリセットによって変更されません。"
+
+#: ../../reference/reset_boot.rst:80
+msgid "Boot Sequence"
+msgstr "ブートシーケンス"
+
+#: ../../reference/reset_boot.rst:82
+msgid ""
+"When MicroPython boots following either a hard or soft reset, it follows "
+"this boot sequence in order:"
+msgstr ""
+"MicroPython は、ハードリセットまたはソフトリセットの後のブートにおいて、"
+"次のブートシーケンスの順番にしたがいます。"
+
+#: ../../reference/reset_boot.rst:86
+msgid "_boot.py"
+msgstr ""
+
+#: ../../reference/reset_boot.rst:88
+msgid ""
+"This is an internal script :doc:`frozen into the MicroPython firmware "
+"<manifest>`. It is provided by MicroPython on many ports to do essential "
+"initialisation."
+msgstr ""
+"これは :doc:`MicroPython ファームウェアに凍結された <manifest>` 内部スクリプトです。"
+"これは、重要な初期化を行うために、多くのポートで MicroPython によって提供されます。"
+
+#: ../../reference/reset_boot.rst:92
+msgid ""
+"For example, on most ports ``_boot.py`` will detect the first boot of a "
+"new device and format the :doc:`internal flash filesystem <filesystem>` "
+"ready for use."
+msgstr ""
+"たとえば、ほとんどのポートで ``_boot.py`` は新しいデバイスの最初のブートを検出し、 "
+":doc:`内部フラッシュのファイルシステム <filesystem>` をフォーマットして使える"
+"状態にします。"
+
+#: ../../reference/reset_boot.rst:96
+msgid ""
+"Unless you're creating a custom MicroPython build or adding a new port "
+"then you probably don't need to worry about ``_boot.py``. It's best not "
+"to change the contents unless you really know what you're doing."
+msgstr ""
+"カスタム MicroPython ビルドを作成したり、新しいポートを追加したりするのでなければ、"
+"おそらく ``_boot.py`` について心配する必要はありません。何をしているのか本当に"
+"わかっているのでなければ、内容を変更しない方がよいでしょう。"
+
+#: ../../reference/reset_boot.rst:103
+msgid "boot.py"
+msgstr ""
+
+#: ../../reference/reset_boot.rst:105
+msgid ""
+"A file named ``boot.py`` can be copied to the board's internal "
+":ref:`filesystem <filesystem>` using :doc:`mpremote <mpremote>`."
+msgstr ""
+":doc:`mpremote <mpremote>` を使って、 ``boot.py`` という名前のファイルを"
+"ボード内部の :ref:`ファイルシステム <filesystem>` にコピーできます。"
+
+#: ../../reference/reset_boot.rst:108
+msgid ""
+"If ``boot.py`` is found then it is executed. You can add code in "
+"``boot.py`` to perform custom one-off initialisation (for example, to "
+"configure the board's hardware)."
+msgstr ""
+"``boot.py`` が見つかると、それを実行します。 ``boot.py`` には、カスタムの"
+"１回限りの初期化コードを追加できます(ボードのハードウェアを設定するなど)。
+
+#: ../../reference/reset_boot.rst:112
+msgid ""
+"A common practice is to configure a board's network connection in "
+"``boot.py`` so that it's always available after reset for use with the "
+":doc:`REPL <repl>`, :doc:`mpremote <mpremote>`, etc."
+msgstr ""
+"一般的な方法は、ボードのネットワーク接続を ``boot.py`` で設定して、 "
+":doc:`REPL <repl>` や :doc:`mpremote <mpremote>` などで使える"
+"ように、リセット後に常に利用可能にしておくことです。"
+
+#: ../../reference/reset_boot.rst:116
+msgid "boot.py should always exit and not run indefinitely."
+msgstr "boot.py は常に終了するようにすべきで、無期限に実行されるようにはしないでください。"
+
+#: ../../reference/reset_boot.rst:118
+msgid ""
+"Depending on the port, some hardware initialisation is delayed until "
+"after ``boot.py`` exits. This includes initialising USB on the stm32 port"
+" and all ports which support :ref:`machine.USBDevice "
+"<machine.USBDevice>`. On these ports, output printed from ``boot.py`` may"
+" not be visible on the built-in USB serial port until after ``boot.py`` "
+"finishes running."
+msgstr ""
+"ポートによっては、一部のハードウェアの初期化が ``boot.py`` の終了後まで遅延されます。"
+"これには、stm32 ポートおよび :ref:`machine.USBDevice <machine.USBDevice>` を"
+"サポートするすべてのポートでの USB の初期化が含まれます。これらのポートで ``boot.py`` "
+"から印字した出力は ``boot.py`` の実行が終了するまで、内蔵 USB シリアル ポートに"
+"表示されない場合があります。"
+
+#: ../../reference/reset_boot.rst:124
+msgid ""
+"The purpose of this late initialisation is so that it's possible to pre-"
+"configure particular hardware in ``boot.py``, and then have it start with"
+" the correct configuration."
+msgstr ""
+"この遅い初期化の目的は、``boot.py`` で特定のハードウェアを事前に構成し、"
+"正しい構成で起動できるようにすることです。"
+
+#: ../../reference/reset_boot.rst:128
+msgid ""
+"It is sometimes simpler to not have a ``boot.py`` file and place any "
+"initialisation code at the top of ``main.py`` instead."
+msgstr ""
+"``boot.py`` ファイルを作成せず、代わりに初期化コードを ``main.py`` の先頭に"
+"配置する方が簡単な場合もあります。"
+
+#: ../../reference/reset_boot.rst:134
+msgid "main.py"
+msgstr ""
+
+#: ../../reference/reset_boot.rst:136
+msgid ""
+"Similar to ``boot.py``, a file named ``main.py`` can be copied to the "
+"board's internal :ref:`filesystem <filesystem>`. If found then it is "
+"executed next in the startup process."
+msgstr ""
+"``boot.py`` と同様に ``main.py`` という名前のファイルをボードの"
+"内部 :ref:`ファイルシステム <filesystem>` にコピーできます。"
+"このファイルが見つかった場合は、起動プロセスの次の段階で実行されます。"
+
+#: ../../reference/reset_boot.rst:140
+msgid ""
+"``main.py`` is for any Python code that you want to run each time your "
+"device starts."
+msgstr ""
+"``main.py`` はデバイスの起動時に毎回実行する Python コード用です。"
+
+#: ../../reference/reset_boot.rst:143
+msgid "Some tips for ``main.py`` usage:"
+msgstr "``main.py`` 使用上のヒント:"
+
+#: ../../reference/reset_boot.rst:145
+msgid ""
+"``main.py`` doesn't have to exit, feel free to put an infinite ``while "
+"True`` loop in there."
+msgstr ""
+"``main.py`` は終了する必要がないので、そこに無限ループ ``while True`` を"
+"入れてもかまいません。"
+
+#: ../../reference/reset_boot.rst:147
+msgid ""
+"For complex Python applications then you don't need to put all your code "
+"in ``main.py``. ``main.py`` can be a simple entry point that imports your"
+" application and starts execution::"
+msgstr ""
+"複雑な Python アプリケーションの場合、すべてのコードを ``main.py`` に配置する必要は"
+"ありません。 ``main.py`` は、アプリケーションをインポートして実行を開始する単純な"
+"エントリ ポイントにきます。"
+
+#: ../../reference/reset_boot.rst:151
+msgid ""
+"import my_app\n"
+"my_app.main()"
+msgstr ""
+
+#: ../../reference/reset_boot.rst:154
+msgid ""
+"This can help keep the structure of your application clear. It also makes"
+" it easy to install multiple applications on a board and switch among "
+"them."
+msgstr ""
+"これにより、アプリケーションの構造を明確に保つことができます。また、ボードに複数の"
+"アプリケーションをインストールし、それらのアプリケーションを切り替えることも"
+"簡単になります。"
+
+#: ../../reference/reset_boot.rst:156
+msgid ""
+"It's good practice when writing robust apps to wrap code in ``main.py`` "
+"with an exception handler to take appropriate action if the code crashes."
+" For example::"
+msgstr ""
+"堅牢なアプリを作成するときは、コードがクラッシュした場合に適切なアクションを実行するために、"
+"例外ハンドラーで ``main.py`` の中のコードをラップすることをお勧めします。例::"
+
+#: ../../reference/reset_boot.rst:159
+msgid ""
+"import machine, sys\n"
+"import my_app\n"
+"try:\n"
+"    my_app.main()\n"
+"except Exception as e:\n"
+"    print(\"Fatal error in main:\")\n"
+"    sys.print_exception(e)\n"
+"\n"
+"# Following a normal Exception or main() exiting, reset the board.\n"
+"# Following a non-Exception error such as KeyboardInterrupt (Ctrl-C),\n"
+"# this code will drop to a REPL. Place machine.reset() in a finally\n"
+"# block to always reset, instead.\n"
+"machine.reset()"
+msgstr ""
+"import machine, sys\n"
+"import my_app\n"
+"try:\n"
+"    my_app.main()\n"
+"except Exception as e:\n"
+"    print(\"Fatal error in main:\")\n"
+"    sys.print_exception(e)\n"
+"\n"
+"# 通常の例外や main() の終了後に、ボードをリセットします。\n"
+"# KeyboardInterrupt（Ctrl-C）などの例外以外のエラーが発生した場合、このコードは\n"
+"# REPL (読み取り-評価-出力ループ)に移行します。常にリセットを行いたい場合は、\n"
+"# finally ブロック内に machine.reset() を配置してください。\n"
+"machine.reset()"
+
+#: ../../reference/reset_boot.rst:173
+msgid ""
+"Otherwise MicroPython will drop to the REPL following any crash or if "
+"main exits (see below)."
+msgstr ""
+"さもなければ、クラッシュ後または main が終了した場合に MicroPython は REPL に"
+"戻ります(後の記載を参照)。"
+
+#: ../../reference/reset_boot.rst:176
+msgid ""
+"Any global variables that were set in ``boot.py`` will still be set in "
+"the global context of ``main.py``."
+msgstr ""
+"``boot.py`` で設定されたグローバル変数は ``main.py`` のグローバルコンテキストでも"
+"引き続き有効です。"
+
+#: ../../reference/reset_boot.rst:179
+msgid ""
+"To fully optimise flash usage and memory consumption, you can copy :doc"
+":`pre-compiled <mpyfiles>` ``main.mpy`` and/or ``boot.mpy`` files to the "
+"filesystem, or even :doc:`freeze <manifest>` them into the firmware build"
+" instead."
+msgstr ""
+"フラッシュの使用とメモリ消費を完全に最適化するには、 :doc:`事前にコンパイルした "
+"<mpyfiles>` ``main.mpy`` や ``boot.mpy`` ファイルをファイルシステムにコピーするか、"
+"代わりにファームウェアビルドに :doc:`凍結 <manifest>` することもできます。"
+
+#: ../../reference/reset_boot.rst:183
+msgid ""
+"``main.py`` execution is skipped when a soft reset is initiated from "
+":ref:`raw REPL mode <raw_repl>` (for example, when :doc:`mpremote "
+"<mpremote>` or another program is interacting directly with MicroPython)."
+msgstr ""
+":ref:`raw REPL モード <raw_repl>` からソフトリセットが開始されると、"
+"``main.py`` の実行はスキップされます(たとえば :doc:`mpremote <mpremote>` "
+"または別のプログラムが MicroPython と直接対話している場合など)。"
+
+#: ../../reference/reset_boot.rst:188
+msgid "Interactive Interpreter (REPL)"
+msgstr "対話型インタープリタ (REPL)"
+
+#: ../../reference/reset_boot.rst:190
+msgid ""
+"If ``main.py`` is not found, or if ``main.py`` exits, then :doc:`repl` "
+"will start immediately."
+msgstr ""
+"``main.py`` が見つからない場合、または ``main.py`` が終了すると、 "
+":doc:`repl` が直ちに始動します。"
+
+#: ../../reference/reset_boot.rst:193
+msgid ""
+"Even if ``main.py`` contains an infinite loop, typing Ctrl-C on the REPL "
+"serial port will inject a `KeyboardInterrupt`. If no exception handler "
+"catches it then ``main.py`` will exit and the REPL will start."
+msgstr ""
+"``main.py`` の中に無限ループがある場合でも、REPL シリアルポートで Ctrl-C を入力すると、 "
+"`KeyboardInterrupt` (キーボード割込み)が挿入されます。例外ハンドラがそれをキャッチ"
+"しない場合は ``main.py`` が終了し、REPL が始動します。"
+
+#: ../../reference/reset_boot.rst:197
+msgid ""
+"Any global variables that were set in ``boot.py`` and ``main.py`` will "
+"still be set in the global context of the REPL."
+msgstr ""
+"``boot.py`` と ``main.py`` で設定したグローバル変数は、REPL のグローバルコンテキスト"
+"でも引き続き有効です。"
+
+#: ../../reference/reset_boot.rst:200
+msgid ""
+"The REPL continues executing until Python code triggers a hard or soft "
+"reset."
+msgstr ""
+"REPL は、Python コードがハードリセットまたはソフトリセットをトリガーするまで実行を続けます。"
+
+#: ../../reference/reset_boot.rst:205
+msgid "Soft Bricking (failure to boot)"
+msgstr "ソフトブリッキング(起動失敗)"
+
+#: ../../reference/reset_boot.rst:207
+msgid ""
+"It is rare but possible for MicroPython to become unresponsive during "
+"startup, a state sometimes called \"soft bricked\". For example:"
+msgstr ""
+"まれではありますが、起動時に MicroPython が応答しなくなる可能性があります。"
+"この状態は「ソフトブリック」と呼ばれることもあります。例:"
+
+#: ../../reference/reset_boot.rst:210
+msgid ""
+"If ``boot.py`` execution gets stuck and the native USB serial port never "
+"initialises."
+msgstr ""
+"``boot.py`` の実行が立ち往生し、ネイティブ USB シリアル ポートが初期化されなくなる場合。"
+
+#: ../../reference/reset_boot.rst:212
+msgid "If Python code reconfigures the REPL interface, making it inaccessible."
+msgstr "Python コードが REPL インタフェースを再構成し、アクセスできなくなる場合。"
+
+#: ../../reference/reset_boot.rst:214
+msgid "Rest assured, recovery is possible!"
+msgstr "安心してください、回復は可能です!"
+
+#: ../../reference/reset_boot.rst:217
+msgid "KeyboardInterrupt"
+msgstr "KeyboardInterrupt (キーボード割込み)"
+
+#: ../../reference/reset_boot.rst:219
+msgid ""
+"In many cases, opening the REPL serial port and typing ``Ctrl-C`` will "
+"inject `KeyboardInterrupt` and may cause the running script to exit and a"
+" REPL to start. From the REPL, you can use :func:`os.remove()` to remove "
+"the misbehaving Python file::"
+msgstr ""
+"多くの場合、REPL シリアル ポートを開いて ``Ctrl-C`` を入力すると、 "
+"`KeyboardInterrupt` (キーボード割込み)が発生し、実行中のスクリプトを終了して、"
+"REPL が起動することがあります。REPL から :func:`os.remove()` を使って、"
+"動作がおかしい Python ファイルを削除できます。"
+
+#: ../../reference/reset_boot.rst:224
+msgid ""
+"import os\n"
+"os.remove('main.py')"
+msgstr ""
+
+#: ../../reference/reset_boot.rst:227
+msgid "To confirm which files are still present in the internal filesystem::"
+msgstr "内部ファイルシステムにまだ存在するファイルを確認するには次のようにします::"
+
+#: ../../reference/reset_boot.rst:229
+msgid ""
+"import os\n"
+"os.listdir()"
+msgstr ""
+
+#: ../../reference/reset_boot.rst:233
+msgid "Safe Mode and Factory Reset"
+msgstr "セーフモードと工場出荷時設定へのリセット"
+
+#: ../../reference/reset_boot.rst:235
+msgid ""
+"If you're unable to easily access the REPL then you may need to perform "
+"one of two processes:"
+msgstr ""
+"REPL に簡単にアクセスできない場合は、次の２つの処理のいずれかを実行する必要があります。"
+
+#: ../../reference/reset_boot.rst:238
+msgid ""
+"\"Safe mode\" boot, which skips ``boot.py`` and ``main.py`` and "
+"immediately starts a REPL, allowing you to clean up. This is only "
+"supported on some ports."
+msgstr ""
+"「セーフ モード」ブートでは、 ``boot.py`` と ``main.py`` をスキップして、"
+"直ちに REPL を始動し、クリーンアップを行えます。これは一部のポートでのみサポートされています。"
+
+#: ../../reference/reset_boot.rst:240
+msgid ""
+"Factory Reset to erase the entire contents of the flash filesystem. This "
+"may also be necessary if the internal flash filesystem has become "
+"corrupted somehow."
+msgstr ""
+"フラッシュファイルシステムの内容全体を消去するには、工場出荷時設定へのリセットを実行します。"
+"内部フラッシュ ファイルシステムが何らかの理由で破損した場合にも、この操作が必要になることが"
+"あります。"
+
+#: ../../reference/reset_boot.rst:244
+msgid "The specific process(es) are different on each port:"
+msgstr "具体的な処理はポートごとに異なります:"
+
+#: ../../reference/reset_boot.rst:246
+msgid ":doc:`pyboard and stm32 port instructions </pyboard/tutorial/reset>`"
+msgstr ":doc:`pyboard と stm32 ポートでの手順 </pyboard/tutorial/reset>`"
+
+#: ../../reference/reset_boot.rst:247
+msgid ":doc:`esp32 port instructions </esp32/tutorial/reset>`"
+msgstr ":doc:`esp32 ポートでの手順 </esp32/tutorial/reset>`"
+
+#: ../../reference/reset_boot.rst:248
+msgid ":doc:`renesas-ra port instructions </renesas-ra/tutorial/reset>`"
+msgstr ":doc:`renesas-ra ポートでの手順 </renesas-ra/tutorial/reset>`"
+
+#: ../../reference/reset_boot.rst:249
+msgid ":doc:`rp2 port instructions </rp2/tutorial/reset>`"
+msgstr ":doc:`rp2 ポートでの手順 </rp2/tutorial/reset>`"
+
+#: ../../reference/reset_boot.rst:250
+msgid ":doc:`wipy port instructions </wipy/tutorial/reset>`"
+msgstr ":doc:`wipy ポートでの手順 </wipy/tutorial/reset>`"
+
+#: ../../reference/reset_boot.rst:252
+msgid ""
+"For ports without specific instructions linked above, the factory reset "
+"process involves erasing the board's entire flash and then flashing "
+"MicroPython again from scratch. Usually this will involve the same "
+"tool(s) that were originally used to install MicroPython. Consult the "
+"installation docs for your board, or ask on the `GitHub Discussions`_ if "
+"you're not sure."
+msgstr ""
+"上記にリンクされた特定の手順がないポートの場合、工場出荷時設定へのリセット プロセスでは、"
+"ボードのフラッシュ全体を消去し、MicroPython を最初から再度フラッシュする必要があります。"
+"通常、これには MicroPython のインストールに最初に使用したのと同じツールを使います。"
+"不明な場合は、ボードのインストールドキュメントを参照するか、 `GitHub Discussions`_ "
+"で質問してください。"
+
+#: ../../reference/reset_boot.rst:258
+msgid ""
+"Re-flashing the MicroPython firmware without erasing the entire flash "
+"first will usually not recover from soft bricking, as a firmware update "
+"usually preserves the contents of the filesystem."
+msgstr ""
+"フラッシュ全体を消去せずにMicroPythonファームウェアを再フラッシュしても、"
+"通常はソフトブリックから回復できません。これは、ファームウェアを更新しても、"
+"ファイルシステムの内容がたいてい保持されるためです。"
 
 #: ../../../reference/speed_python.rst:2
 msgid "Maximising MicroPython speed"

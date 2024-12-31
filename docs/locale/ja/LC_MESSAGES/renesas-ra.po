@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2023,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
@@ -10,13 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 21:14+0900\n"
-"PO-Revision-Date: 2024-02-08 00:20+0900\n"
+"POT-Creation-Date: 2024-12-29 14:37+0900\n"
+"PO-Revision-Date: 2024-12-31 10:00+0900\n"
 "Last-Translator: Minoru Inachi\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.13.1\n"
 
 #: ../../renesas-ra/general.rst:4
 msgid "General information about Renesas RA port"
@@ -605,17 +606,19 @@ msgid ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
-"time\n"
-"                                             # time, eg 2017/8/23 1:12:48"
-"\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # set a specific date and\n"
+"                                             # time, eg. 2017/8/23 "
+"1:12:48\n"
+"                                             # the day-of-week value is "
+"ignored\n"
 "rtc.datetime() # get date and time"
 msgstr ""
 "from machine import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定\n"
-"                                             # 日時 2017/8/23 1:12:48\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # 指定の日時を設定\n"
+"                                             # 2017/8/23 1:12:48\n"
+"                                             # 曜日の値は無視される\n"
 "rtc.datetime() # 日時を取得"
 
 #: ../../renesas-ra/quickref.rst:215
@@ -1214,11 +1217,15 @@ msgstr "boot.py : システムの起動時に最初に実行されます"
 msgid "main.py : executed after boot.py completes"
 msgstr "main.py : boot.py が完了した後に実行されます"
 
-#: ../../renesas-ra/tutorial/program_in_flash.rst:32
+#: ../../renesas-ra/tutorial/program_in_flash.rst:31
+msgid "See :doc:`/reference/reset_boot` for more information."
+msgstr "詳しくは :doc:`/reference/reset_boot` を参照してください。"
+
+#: ../../renesas-ra/tutorial/program_in_flash.rst:34
 msgid "Write a program in the internal file system"
 msgstr "内部ファイルシステムへのプログラムの書込み"
 
-#: ../../renesas-ra/tutorial/program_in_flash.rst:34
+#: ../../renesas-ra/tutorial/program_in_flash.rst:36
 msgid ""
 "You can write a program in main.py which is executed automatically when "
 "the MicroPython starts. For example, you can write LED blinking program "
@@ -1227,7 +1234,7 @@ msgstr ""
 "MicroPython の起動時に自動的に実行されるプログラムを main.py に記述できます。"
 "たとえば、以下のようなLED点滅のプログラムを書くことができます。"
 
-#: ../../renesas-ra/tutorial/program_in_flash.rst:38
+#: ../../renesas-ra/tutorial/program_in_flash.rst:40
 msgid ""
 "import os\n"
 "os.getcwd()\n"
@@ -1247,7 +1254,7 @@ msgid ""
 "f.close()"
 msgstr ""
 
-#: ../../renesas-ra/tutorial/program_in_flash.rst:55
+#: ../../renesas-ra/tutorial/program_in_flash.rst:57
 msgid ""
 "Entering CTRL-D for software reset, the MicroPython reboots, displays "
 "following messages::"
@@ -1255,13 +1262,13 @@ msgstr ""
 "CTRL-D でソフトウェアリセットを入力すると、MicroPython が再起動し、"
 "次のメッセージが表示されます::"
 
-#: ../../renesas-ra/tutorial/program_in_flash.rst:58
+#: ../../renesas-ra/tutorial/program_in_flash.rst:60
 msgid ""
 "MPY: sync filesystems\n"
 "MPY: soft reboot"
 msgstr ""
 
-#: ../../renesas-ra/tutorial/program_in_flash.rst:61
+#: ../../renesas-ra/tutorial/program_in_flash.rst:63
 msgid ""
 "and main.py is executed and LED1 blinks per 1 second. If you want to stop"
 " the program, please enter CTRL-C."
@@ -1308,35 +1315,47 @@ msgstr ""
 "を実行できます。これによりセッションが終了し、ボードに接続するために使用したプログラム"
 "(PuTTY、screen など)が切断されます。"
 
-#: ../../renesas-ra/tutorial/reset.rst:24
+#: ../../renesas-ra/tutorial/reset.rst:23
+msgid "For more details, see :doc:`/reference/reset_boot`."
+msgstr "詳しくは :doc:`/reference/reset_boot` を参照してください。"
+
+#: ../../renesas-ra/tutorial/reset.rst:26
 msgid "boot mode"
 msgstr "ブートモード"
 
-#: ../../renesas-ra/tutorial/reset.rst:26
+#: ../../renesas-ra/tutorial/reset.rst:28
 msgid "There are 3 boot modes:"
 msgstr "３つのブートモードがあります:"
 
-#: ../../renesas-ra/tutorial/reset.rst:28
+#: ../../renesas-ra/tutorial/reset.rst:30
 msgid "normal boot mode"
 msgstr "ノーマルブートモード"
 
-#: ../../renesas-ra/tutorial/reset.rst:29
+#: ../../renesas-ra/tutorial/reset.rst:31
 msgid "safe boot mode"
 msgstr "セーフブートモード"
 
-#: ../../renesas-ra/tutorial/reset.rst:30
+#: ../../renesas-ra/tutorial/reset.rst:32
 msgid "factory filesystem boot mode"
 msgstr "工場出荷時ファイルシステムブートモード"
 
-#: ../../renesas-ra/tutorial/reset.rst:32
-msgid "boot.py and main.py are executed on \"normal boot mode\"."
-msgstr "boot.py と main.py は「ノーマルブートモード」で実行されます。"
-
 #: ../../renesas-ra/tutorial/reset.rst:34
+msgid ""
+"boot.py and main.py are executed on \"normal boot mode\". See "
+":ref:`boot_sequence`."
+msgstr ""
+"boot.py と main.py は「ノーマルブートモード」で実行されます。 "
+":ref:`boot_sequence` を参照。"
+
+#: ../../renesas-ra/tutorial/reset.rst:36
+msgid "The other modes can be used to recover from :ref:`soft_bricking`:"
+msgstr "その他のモードは :ref:`soft_bricking` からの回復のために利用できます:"
+
+#: ../../renesas-ra/tutorial/reset.rst:38
 msgid "boot.py and main.py are *NOT* executed on \"safe boot mode\"."
 msgstr "boot.py と main.py は「セーフブートモード」で実行 *されません* 。"
 
-#: ../../renesas-ra/tutorial/reset.rst:36
+#: ../../renesas-ra/tutorial/reset.rst:40
 msgid ""
 "The file system of internal flash is initialized and *all files are "
 "erased* on \"factory filesystem boot mode\"."
@@ -1344,7 +1363,7 @@ msgstr ""
 "「工場出荷時ファイルシステムブートモード」では、内蔵フラッシュのファイルシステムが"
 "初期化され、すべてのファイルが消去されます。"
 
-#: ../../renesas-ra/tutorial/reset.rst:38
+#: ../../renesas-ra/tutorial/reset.rst:42
 msgid ""
 "For changing boot mode, please push the RESET button with pressing USER "
 "SW1 on the board:"
@@ -1352,19 +1371,19 @@ msgstr ""
 "ブートモードを変更するには、ボード上の USER SW1 を押しながら RESET ボタンを"
 "押してください:"
 
-#: ../../renesas-ra/tutorial/reset.rst:41
+#: ../../renesas-ra/tutorial/reset.rst:45
 msgid ""
 "For normal boot mode, release the USER SW1 after LED1 flashes 4 times or "
 "more"
 msgstr ""
 "ノーマルブートモードにする場合、LED1 が４回以上点滅した後、USER SW1を離します。"
 
-#: ../../renesas-ra/tutorial/reset.rst:43
+#: ../../renesas-ra/tutorial/reset.rst:47
 msgid "For safe boot mode, release the USER SW1 after LED1 flashes 2 times"
 msgstr ""
 "セーフブートモードにする場合、LED1 が２回点滅した後、USER SW1を離します。"
 
-#: ../../renesas-ra/tutorial/reset.rst:45
+#: ../../renesas-ra/tutorial/reset.rst:49
 msgid ""
 "For factory file system boot mode, release the USER SW1 after LED1 "
 "flashes 3 times."
@@ -1372,42 +1391,15 @@ msgstr ""
 "工場出荷時ファイルシステムブートモードの場合、LED1 が３回点滅した後に USER SW1 "
 "を離します。"
 
-#: ../../renesas-ra/tutorial/reset.rst:47
+#: ../../renesas-ra/tutorial/reset.rst:51
 msgid ""
 "You have created the main.py which executes LED1 blinking in the previous"
 " part. If you change the boot mode to safe boot mode, the MicroPython "
-"starts without the execution of main.py. Then you can remove the main.py "
-"by following command or change the boot mode to factory file system boot "
-"mode.::"
+"starts without the execution of main.py."
 msgstr ""
 "前章で、LED1 点滅を実行する main.py を作成しました。"
 "ブートモードをセーフブートモードに変更すると、main.py が実行されずに MicroPython "
-"が起動します。そこで、次のコマンドで main.py を削除してください。"
-
-#: ../../renesas-ra/tutorial/reset.rst:52
-msgid ""
-"import os\n"
-"os.remove('main.py')"
-msgstr ""
-
-#: ../../renesas-ra/tutorial/reset.rst:55
-msgid "or change the boot mode to factory file system boot mode."
-msgstr ""
-"または、ブートモードを工場出荷時ファイルシステムブートモードに変更してください。"
-
-#: ../../renesas-ra/tutorial/reset.rst:57
-msgid ""
-"You can confirm that the initialized file system that there are only "
-"boot.py and main.py files.::"
-msgstr ""
-"ファイルシステムが初期化され、boot.py と main.py のファイルだけが存在することを"
-"確認できます。"
-
-#: ../../renesas-ra/tutorial/reset.rst:59
-msgid ""
-"import os\n"
-"os.listdir()"
-msgstr ""
+"が起動します。"
 
 #: ../../renesas-ra/tutorial/troubleshooting.rst:4
 msgid "Trouble Shooting"

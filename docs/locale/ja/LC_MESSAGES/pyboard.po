@@ -1,22 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2022,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroPython 1.19.1\n"
+"Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 21:14+0900\n"
-"PO-Revision-Date: 2024-02-08 00:03+0900\n"
+"POT-Creation-Date: 2024-12-29 14:37+0900\n"
+"PO-Revision-Date: 2024-12-30 17:29+0900\n"
 "Last-Translator: Minoru Inachi\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.13.1\n"
 
 #: ../../../pyboard/general.rst:4
 msgid "General information about the pyboard"
@@ -584,14 +586,19 @@ msgid ""
 "from pyb import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # set a specific date and "
-"time\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # set a specific date and\n"
+"                                             # time, eg. 2017/8/23 "
+"1:12:48\n"
+"                                             # the day-of-week value is "
+"ignored\n"
 "rtc.datetime() # get date and time"
 msgstr ""
 "from pyb import RTC\n"
 "\n"
 "rtc = RTC()\n"
-"rtc.datetime((2017, 8, 23, 1, 12, 48, 0, 0)) # 指定の日時を設定します\n"
+"rtc.datetime((2017, 8, 23, 0, 1, 12, 48, 0)) # 指定の日時を設定\n"
+"                                             # 2017/8/23 1:12:48\n"
+"                                             # 曜日の値は無視される\n"
 "rtc.datetime() # 日時を得ます"
 
 #: ../../../pyboard/quickref.rst:145
@@ -2885,7 +2892,11 @@ msgstr ""
 "ファイルシステムに問題がある場合は、工場出荷時リセットを試せます。これはファイル"
 "システムを元の状態に復元します。"
 
-#: ../../../pyboard/tutorial/reset.rst:14
+#: ../../pyboard/tutorial/reset.rst:13
+msgid "For more information, see :doc:`/reference/reset_boot`."
+msgstr "詳しくは :doc:`/reference/reset_boot` を参照してください。"
+
+#: ../../../pyboard/tutorial/reset.rst:16
 msgid "Safe mode"
 msgstr "セーフモード"
 
@@ -2893,48 +2904,48 @@ msgstr "セーフモード"
 msgid "To enter safe mode, do the following steps:"
 msgstr "セーフモードに入るのには次の手順を行います:"
 
-#: ../../../pyboard/tutorial/reset.rst:18
-#: ../../../pyboard/tutorial/reset.rst:49
+#: ../../../pyboard/tutorial/reset.rst:20
+#: ../../../pyboard/tutorial/reset.rst:51
 msgid "Connect the pyboard to USB so it powers up."
 msgstr "pyboard を USB に繋いで電源を入れます。"
 
-#: ../../../pyboard/tutorial/reset.rst:19
-#: ../../../pyboard/tutorial/reset.rst:50
+#: ../../../pyboard/tutorial/reset.rst:21
+#: ../../../pyboard/tutorial/reset.rst:52
 #: ../../../pyboard/tutorial/usb_mouse.rst:84
 msgid "Hold down the USR switch."
 msgstr "USR スイッチを押し続けます。"
 
-#: ../../../pyboard/tutorial/reset.rst:20
-#: ../../../pyboard/tutorial/reset.rst:51
+#: ../../../pyboard/tutorial/reset.rst:22
+#: ../../../pyboard/tutorial/reset.rst:53
 #: ../../../pyboard/tutorial/usb_mouse.rst:85
 msgid "While still holding down USR, press and release the RST switch."
 msgstr "USR を押しながら、RST スイッチを押して放します。"
 
-#: ../../../pyboard/tutorial/reset.rst:21
-#: ../../../pyboard/tutorial/reset.rst:52
+#: ../../../pyboard/tutorial/reset.rst:23
+#: ../../../pyboard/tutorial/reset.rst:54
 #: ../../../pyboard/tutorial/usb_mouse.rst:86
 msgid "The LEDs will then cycle green to orange to green+orange and back again."
 msgstr "その後、LED が緑からオレンジ、緑+オレンジへ、そして元に戻るということを繰り返します。"
 
-#: ../../../pyboard/tutorial/reset.rst:22
-#: ../../../pyboard/tutorial/usb_mouse.rst:87
+#: ../../../pyboard/tutorial/reset.rst:24
+#: ../../../pyboard/tutorial/usb_mouse.rst:89
 msgid ""
 "Keep holding down USR until *only the orange LED is lit*, and then let go"
 " of the USR switch."
 msgstr ""
 "*オレンジの LED だけが点灯* するまで USR を押し続け、USR スイッチを放します。"
 
-#: ../../../pyboard/tutorial/reset.rst:24
+#: ../../../pyboard/tutorial/reset.rst:26
 #: ../../../pyboard/tutorial/usb_mouse.rst:89
 msgid "The orange LED should flash quickly 4 times, and then turn off."
 msgstr "オレンジの LED はすばやく４回点滅してから消灯します。"
 
-#: ../../../pyboard/tutorial/reset.rst:25
+#: ../../../pyboard/tutorial/reset.rst:27
 #: ../../../pyboard/tutorial/usb_mouse.rst:90
 msgid "You are now in safe mode."
 msgstr "これでセーフモードになりました。"
 
-#: ../../../pyboard/tutorial/reset.rst:27
+#: ../../../pyboard/tutorial/reset.rst:29
 msgid ""
 "In safe mode, the ``boot.py`` and ``main.py`` files are not executed, and"
 " so the pyboard boots up with default settings.  This means you now have "
@@ -2946,18 +2957,18 @@ msgstr ""
 "ドライブが現れるはずです)、問題を修正するために ``boot.py`` と ``main.py`` を"
 "編集できます。"
 
-#: ../../../pyboard/tutorial/reset.rst:32
+#: ../../../pyboard/tutorial/reset.rst:34
 msgid ""
 "Entering safe mode is temporary, and does not make any changes to the "
 "files on the pyboard."
 msgstr ""
 "セーフモードへの移行は一時的なもので、pyboard 上のファイルは維持されます。"
 
-#: ../../../pyboard/tutorial/reset.rst:36
+#: ../../../pyboard/tutorial/reset.rst:38
 msgid "Factory reset the filesystem"
 msgstr "ファイルシステムの工場出荷時リセット"
 
-#: ../../../pyboard/tutorial/reset.rst:38
+#: ../../../pyboard/tutorial/reset.rst:40
 msgid ""
 "If you pyboard's filesystem gets corrupted (for example, you forgot to "
 "eject/unmount it), or you have some code in ``boot.py`` or ``main.py`` "
@@ -2967,7 +2978,7 @@ msgstr ""
 "または ``boot.py`` か　``main.py`` で救えないコードがある場合、ファイルシステムを"
 "リセットすることができます。"
 
-#: ../../../pyboard/tutorial/reset.rst:42
+#: ../../../pyboard/tutorial/reset.rst:44
 msgid ""
 "Resetting the filesystem deletes all files on the internal pyboard "
 "storage (not the SD card), and restores the files ``boot.py``, "
@@ -2978,7 +2989,7 @@ msgstr ""
 "すべてのファイルを削除し、ファイル ``boot.py``, ``main.py``, ``README.txt``, "
 "``pybcdc.inf`` を元の状態に復元します。"
 
-#: ../../../pyboard/tutorial/reset.rst:46
+#: ../../../pyboard/tutorial/reset.rst:48
 msgid ""
 "To do a factory reset of the filesystem you follow a similar procedure as"
 " you did to enter safe mode, but release USR on green+orange:"
@@ -2986,14 +2997,14 @@ msgstr ""
 "ファイルシステムを工場出荷時の状態に戻すには、セーフモードを入力したのと同じ手順に"
 "したがいますが、緑+オレンジ で USR を放します。"
 
-#: ../../../pyboard/tutorial/reset.rst:53
+#: ../../../pyboard/tutorial/reset.rst:55
 msgid ""
 "Keep holding down USR until *both the green and orange LEDs are lit*, and"
 " then let go of the USR switch."
 msgstr ""
 "*緑とオレンジの両方の LED が点灯* するまで USR を押し続け、USR スイッチを放します。"
 
-#: ../../../pyboard/tutorial/reset.rst:55
+#: ../../../pyboard/tutorial/reset.rst:57
 msgid "The green and orange LEDs should flash quickly 4 times."
 msgstr "緑とオレンジの LED がすばやく４回点滅します。"
 
@@ -3001,19 +3012,19 @@ msgstr "緑とオレンジの LED がすばやく４回点滅します。"
 msgid "The red LED will turn on (so red, green and orange are now on)."
 msgstr "赤い LED が点灯します(そして、赤、緑、オレンジが点灯します）。"
 
-#: ../../../pyboard/tutorial/reset.rst:57
+#: ../../../pyboard/tutorial/reset.rst:59
 msgid "The pyboard is now resetting the filesystem (this takes a few seconds)."
 msgstr "pyboard はファイルシステムをリセットします(これには数秒かかります)。"
 
-#: ../../../pyboard/tutorial/reset.rst:58
+#: ../../../pyboard/tutorial/reset.rst:60
 msgid "The LEDs all turn off."
 msgstr "LED がすべて消灯します。"
 
-#: ../../../pyboard/tutorial/reset.rst:59
+#: ../../../pyboard/tutorial/reset.rst:61
 msgid "You now have a reset filesystem, and are in safe mode."
 msgstr "これで、ファイルシステムがリセットされ、セーフモードになりました。"
 
-#: ../../../pyboard/tutorial/reset.rst:60
+#: ../../../pyboard/tutorial/reset.rst:62
 msgid "Press and release the RST switch to boot normally."
 msgstr "通常どおりブートするには RSTスイッチを押して放します。"
 
