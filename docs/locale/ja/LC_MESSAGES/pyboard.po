@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-29 14:37+0900\n"
-"PO-Revision-Date: 2024-12-30 17:29+0900\n"
+"PO-Revision-Date: 2025-01-05 00:12+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3146,22 +3146,22 @@ msgstr ""
 #: ../../../pyboard/tutorial/script.rst:50
 msgid ""
 "`boot.py <http://micropython.org/resources/fresh-pyboard/boot.py>`_ -- "
-"this script is executed when the pyboard boots up.  It sets"
+"the various configuration options for the pyboard."
 msgstr ""
 "`boot.py <http://micropython.org/resources/fresh-pyboard/boot.py>`_ -- "
-"このスクリプトは pyboard が起動すると実行されます。"
+"pyboard 用のさまざまな設定オプション。"
 
-#: ../../../pyboard/tutorial/script.rst:50
-msgid "up various configuration options for the pyboard."
-msgstr "これは pyboard のさまざまな設定オプションを設定します。"
+#: ../../pyboard/tutorial/script.rst:50
+msgid "It is executed when the pyboard boots up."
+msgstr "pyboard の起動時に実行されます。"
 
 #: ../../../pyboard/tutorial/script.rst:53
 msgid ""
 "`main.py <http://micropython.org/resources/fresh-pyboard/main.py>`_ -- "
-"this is the main script that will contain your Python program."
+"the Python program to be run."
 msgstr ""
 "`main.py <http://micropython.org/resources/fresh-pyboard/main.py>`_ -- "
-"これは Python プログラムを含むメインスクリプトです。"
+"実行する Python プログラム。"
 
 #: ../../../pyboard/tutorial/script.rst:53
 msgid "It is executed after ``boot.py``."
@@ -3170,26 +3170,26 @@ msgstr "``boot.py`` の後に実行されます。"
 #: ../../../pyboard/tutorial/script.rst:56
 msgid ""
 "`README.txt <http://micropython.org/resources/fresh-pyboard/README.txt>`_"
-" -- this contains some very basic information about getting"
+" -- basic information about getting started with the pyboard."
 msgstr ""
 "`README.txt <http://micropython.org/resources/fresh-pyboard/README.txt>`_"
-" -- これには pyboard を使い始めるにあたっての"
+" -- pyboard を使い始めるにあたっての基本情報。"
 
 #: ../../../pyboard/tutorial/script.rst:56
-msgid "started with the pyboard."
-msgstr "ごく基本的な情報が載っています。"
+msgid "This provides pointers for new users and can be safely deleted."
+msgstr "これは新規ユーザーへの指針となるもので、安全に削除できます。"
 
 #: ../../../pyboard/tutorial/script.rst:59
 msgid ""
 "`pybcdc.inf <http://micropython.org/resources/fresh-pyboard/pybcdc.inf>`_"
-" -- this is a Windows driver file to configure the serial USB"
+" -- the Windows driver file to configure the serial USB device."
 msgstr ""
 "`pybcdc.inf <http://micropython.org/resources/fresh-pyboard/pybcdc.inf>`_"
-" -- これは、シリアル USB デバイスを設定するための Windows ドライバー"
+" -- シリアル USB デバイスを設定するための Windows ドライバーファイル。"
 
 #: ../../../pyboard/tutorial/script.rst:59
-msgid "device.  More about this in the next tutorial."
-msgstr "ファイルです。これについては、次のチュートリアルで詳しく説明します。"
+msgid "More about this in the next tutorial."
+msgstr "これについては、次のチュートリアルで詳しく説明します。"
 
 #: ../../../pyboard/tutorial/script.rst:62
 msgid "Editing ``main.py``"
@@ -3613,7 +3613,7 @@ msgstr ""
 "もちろん、上記の値を特定のサーボモーターに合わせて変更します。"
 
 #: ../../../pyboard/tutorial/switch.rst:4
-msgid "Switch, callbacks and interrupts"
+msgid "Switches, callbacks and interrupts"
 msgstr "スイッチ、コールバック、割り込み"
 
 #: ../../../pyboard/tutorial/switch.rst:6
@@ -4186,34 +4186,38 @@ msgstr "手動でマウスイベントを送信する"
 msgid ""
 "To get the py-mouse to do anything we need to send mouse events to the "
 "PC. We will first do this manually using the REPL prompt.  Connect to "
-"your pyboard using your serial program and type the following::"
+"your pyboard using your serial program and type the following (no need to"
+" type the ``#`` and text following it)::"
 msgstr ""
 "py マウスに何かをさせるには、マウスイベントを PC に送る必要があります。最初に "
-"REPL プロンプトを使って手動で行います。シリアルプログラムを使用して pyboard に"
-"接続し、次のように入力します::"
+"REPL プロンプトを使って手動で行います。シリアルプログラムを使って pyboard に"
+"接続し、次のように入力します(``#`` 以降を入力する必要はありません)::"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:44
+#: ../../../pyboard/tutorial/usb_mouse.rst:45
 msgid ""
 ">>> hid = pyb.USB_HID()\n"
-">>> hid.send((0, 10, 0, 0))"
+">>> hid.send((0, 100, 0, 0)) # (button status, x-direction, y-direction, "
+"scroll)"
 msgstr ""
+">>> hid = pyb.USB_HID()\n"
+">>> hid.send((0, 100, 0, 0)) # (ボタンの状態、x方向、y方向、スクロール)"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:47
+#: ../../../pyboard/tutorial/usb_mouse.rst:48
 msgid ""
-"Your mouse should move 10 pixels to the right!  In the command above you "
-"are sending 4 pieces of information: button status, x, y and scroll.  The"
-" number 10 is telling the PC that the mouse moved 10 pixels in the x "
-"direction."
+"Your mouse should move 100 pixels to the right!  In the command above you"
+" are sending 4 pieces of information: **button status**, **x-direction**,"
+" **y-direction**, and **scroll**.  The number 100 is telling the PC that "
+"the mouse moved 100 pixels in the x direction."
 msgstr ""
-"あなたのマウスは10ピクセル右に移動するはずです！　上のコマンドでは、ボタンステータス、"
-"x、y、スクロールの４つの情報を送信しています。数字 10 は、マウスが x 方向に 10 "
-"ピクセル移動することを PC に伝えています。"
+"あなたのマウスは100ピクセル右に移動するはずです！　上のコマンドでは **ボタン状態** 、 "
+"**x方向** 、 **y方向** 、 **スクロール** の４つの情報を送信しています。"
+"数字 100 は、マウスが x 方向に 100 ピクセル移動することを PC に伝えています。"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:51
+#: ../../../pyboard/tutorial/usb_mouse.rst:52
 msgid "Let's make the mouse oscillate left and right::"
 msgstr "マウスを左右に振動させてみましょう::"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:53
+#: ../../../pyboard/tutorial/usb_mouse.rst:54
 msgid ""
 ">>> import math\n"
 ">>> def osc(n, d):\n"
@@ -4224,7 +4228,7 @@ msgid ""
 ">>> osc(100, 50)"
 msgstr ""
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:61
+#: ../../../pyboard/tutorial/usb_mouse.rst:62
 msgid ""
 "The first argument to the function ``osc`` is the number of mouse events "
 "to send, and the second argument is the delay (in milliseconds) between "
@@ -4233,15 +4237,15 @@ msgstr ""
 "関数 ``osc`` 第１引数は送信するマウスイベントの数であり、第２引数はイベント間の遅延"
 "(ミリ秒単位)です。違う値に変えて遊んでみてください。"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:65
+#: ../../../pyboard/tutorial/usb_mouse.rst:66
 msgid "**Exercise: make the mouse go around in a circle.**"
 msgstr "**練習問題: マウスを円状に回してください。**"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:68
+#: ../../../pyboard/tutorial/usb_mouse.rst:69
 msgid "Making a mouse with the accelerometer"
 msgstr "加速度センサーでマウス操作する"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:70
+#: ../../../pyboard/tutorial/usb_mouse.rst:71
 msgid ""
 "Now lets make the mouse move based on the angle of the pyboard, using the"
 " accelerometer.  The following code can be typed directly at the REPL "
@@ -4253,7 +4257,7 @@ msgstr ""
 "できます。ここでは、セーフモードに入る方法を学習するために ``main.py`` にコードを"
 "入れることにします。"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:75
+#: ../../../pyboard/tutorial/usb_mouse.rst:76
 msgid ""
 "At the moment the pyboard is acting as a serial USB device and an HID (a "
 "mouse). So you cannot access the filesystem to edit your ``main.py`` "
@@ -4263,7 +4267,7 @@ msgstr ""
 "したがって、ファイルシステムにアクセスして ``main.py`` ファイルを編集することは"
 "できません。"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:78
+#: ../../../pyboard/tutorial/usb_mouse.rst:79
 msgid ""
 "You also can't edit your ``boot.py`` to get out of HID-mode and back to "
 "normal mode with a USB drive..."
@@ -4271,7 +4275,7 @@ msgstr ""
 "また、 ``boot.py`` も編集できないので、HID モードから抜け出して、USB ドライブが"
 "使える通常のモードに戻ることもできません..."
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:81
+#: ../../../pyboard/tutorial/usb_mouse.rst:82
 msgid ""
 "To get around this we need to go into *safe mode*.  This was described in"
 " the [safe mode tutorial](tut-reset), but we repeat the instructions "
@@ -4281,7 +4285,7 @@ msgstr ""
 "[セーフモードのチュートリアル](tut-reset)に説明されていますが、ここでも"
 "手順を示しておきます:"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:92
+#: ../../../pyboard/tutorial/usb_mouse.rst:93
 msgid ""
 "In safe mode, the ``boot.py`` and ``main.py`` files are not executed, and"
 " so the pyboard boots up with default settings.  This means you now have "
@@ -4295,11 +4299,11 @@ msgstr ""
 "(``main.py`` の編集を終えてから HID モードに戻したいので、``boot.py`` は"
 "そのままの状態にしておきます。)"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:98
+#: ../../../pyboard/tutorial/usb_mouse.rst:99
 msgid "In ``main.py`` put the following code::"
 msgstr "``main.py`` に次のコードを書き込みます::"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:100
+#: ../../../pyboard/tutorial/usb_mouse.rst:101
 msgid ""
 "import pyb\n"
 "\n"
@@ -4312,7 +4316,7 @@ msgid ""
 "    pyb.delay(20)"
 msgstr ""
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:110
+#: ../../../pyboard/tutorial/usb_mouse.rst:111
 msgid ""
 "Save your file, eject/unmount your pyboard drive, and reset it using the "
 "RST switch.  It should now act as a mouse, and the angle of the board "
@@ -4323,11 +4327,11 @@ msgstr ""
 "使ってリセットします。これでマウスとして機能し、ボードの角度によってマウスが動きます。"
 "それを試してみて、さらにマウスを静かにできるかを確かめてください！"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:114
+#: ../../../pyboard/tutorial/usb_mouse.rst:115
 msgid "Press the USR switch to stop the mouse motion."
 msgstr "マウスの動きを止めるには、USR スイッチを押します。"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:116
+#: ../../../pyboard/tutorial/usb_mouse.rst:117
 msgid ""
 "You'll note that the y-axis is inverted.  That's easy to fix: just put a "
 "minus sign in front of the y-coordinate in the ``hid.send()`` line above."
@@ -4335,11 +4339,11 @@ msgstr ""
 "y軸は反転していることに気づくでしょう。これは簡単に修正できます: "
 "上記のコードの ``hid.send()`` のy座標の前にマイナス記号を付けるだけです。"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:120
+#: ../../../pyboard/tutorial/usb_mouse.rst:121
 msgid "Restoring your pyboard to normal"
 msgstr "pyboardを通常の状態に戻す"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:122
+#: ../../../pyboard/tutorial/usb_mouse.rst:123
 msgid ""
 "If you leave your pyboard as-is, it'll behave as a mouse every time you "
 "plug it in.  You probably want to change it back to normal.  To do this "
@@ -4353,11 +4357,11 @@ msgstr ""
 "``boot.py`` ファイルの ``VCP+HID`` 設定の行をコメントアウト(該当行の先頭に # を"
 "置きます)。それは次のようになります::"
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:128
+#: ../../../pyboard/tutorial/usb_mouse.rst:129
 msgid "#pyb.usb_mode('VCP+HID') # act as a serial device and a mouse"
 msgstr ""
 
-#: ../../../pyboard/tutorial/usb_mouse.rst:130
+#: ../../../pyboard/tutorial/usb_mouse.rst:131
 msgid ""
 "Save your file, eject/unmount the drive, and reset the pyboard.  It is "
 "now back to normal operating mode."
