@@ -87,6 +87,7 @@
 #endif
 #elif PICO_RISCV
 #define MICROPY_EMIT_RV32                       (1)
+#define MICROPY_EMIT_INLINE_RV32                (1)
 #endif
 
 // Optimisations
@@ -210,6 +211,10 @@
 #endif
 #ifndef MICROPY_PY_WEBREPL
 #define MICROPY_PY_WEBREPL              (1)
+#endif
+
+#ifndef MICROPY_PY_NETWORK_PPP_LWIP
+#define MICROPY_PY_NETWORK_PPP_LWIP     (0)
 #endif
 #endif
 

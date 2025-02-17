@@ -29,6 +29,7 @@ SRC_EXTMOD_C += \
 	extmod/modjson.c \
 	extmod/modlwip.c \
 	extmod/modmachine.c \
+	extmod/modmarshal.c \
 	extmod/modnetwork.c \
 	extmod/modonewire.c \
 	extmod/modopenamp.c \
@@ -294,6 +295,7 @@ SRC_THIRDPARTY_C += $(addprefix $(MBEDTLS_DIR)/library/,\
 	pkcs12.c \
 	pkcs5.c \
 	pkparse.c \
+	pk_ecc.c \
 	pk_wrap.c \
 	pkwrite.c \
 	platform.c \

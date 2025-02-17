@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 14:37+0900\n"
-"PO-Revision-Date: 2024-12-29 15:43+0900\n"
+"POT-Creation-Date: 2025-02-16 10:19+0900\n"
+"PO-Revision-Date: 2025-02-16 19:37+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -430,19 +430,35 @@ msgstr ""
 "n は再接続の回数です(0 は再試行しないことを意味し、-1 は永遠に再接続を試みる"
 "デフォルトの動作になります)。"
 
-#: ../../esp32/quickref.rst:125
+#: ../../esp32/quickref.rst:127
 msgid "LAN"
 msgstr ""
 
-#: ../../esp32/quickref.rst:127
-msgid ""
-"To use the wired interfaces via :class:`network.LAN` one has to specify "
-"the pins and mode ::"
-msgstr ""
-":class:`network.LAN` による有線インターフェースを利用するには、"
-"ピンとモードを指定する必要があります ::"
-
 #: ../../esp32/quickref.rst:130
+msgid "Built-in MAC (original ESP32)"
+msgstr "内蔵 MAC (オリジナル ESP32)
+
+#: ../../esp32/quickref.rst:132
+msgid ""
+"The original ESP32 SoC has a built-in Ethernet MAC. Using this MAC "
+"requires an external Ethernet PHY to be wired to the chip's EMAC pins. "
+"Most of the EMAC pin assignments are fixed, consult the ESP32 datasheet "
+"for details."
+msgstr ""
+"オリジナルの ESP32 SoC には内蔵の Ethernet MAC があります。"
+"この MAC を使うには、外部の Ethernet PHY をチップの EMAC ピンに"
+"接続する必要があります。EMAC ピンの大部分は固定されているため、"
+"詳細については ESP32 のデータシートを参照してください。"
+
+#: ../../esp32/quickref.rst:136
+msgid ""
+"If the PHY is connected, the internal Ethernet MAC can be configured via "
+"the :class:`network.LAN` constructor::"
+msgstr ""
+"PHY が接続されている場合、内蔵 Ethernet MAC は :class:`network.LAN` の"
+"コンストラクタで設定できます。"
+
+#: ../../esp32/quickref.rst:139
 msgid ""
 "import network\n"
 "\n"
@@ -457,62 +473,99 @@ msgstr ""
 "lan.active(True)                      # インタフェースをアクティブ化\n"
 "lan.ipconfig('addr4')                 # インタフェースの IPv4 アドレスを取得"
 
-#: ../../esp32/quickref.rst:137
-msgid ""
-"The keyword arguments for the constructor defining the PHY type and "
-"interface are:"
-msgstr ""
-"PHY タイプとインタフェースを定義するコンストラクタのキーワード引数は次のとおりです:"
-
-#: ../../esp32/quickref.rst:139
-msgid "mdc=pin-object    # set the mdc and mdio pins."
-msgstr "mdc=pin-object    # mdc と mdio ピンを設定。"
-
-#: ../../esp32/quickref.rst:140
-msgid "mdio=pin-object"
-msgstr ""
-
-#: ../../esp32/quickref.rst:142
-msgid "reset=pin-object  # set the reset pin of the PHY device."
-msgstr "reset=pin-object  # PHY デバイスのリセットピンを設定。"
-
-#: ../../esp32/quickref.rst:142
-msgid ""
-"power=pin-object  # set the pin which switches the power of the PHY "
-"device."
-msgstr ""
-"power=pin-object  # PHY デバイスの電源を切り換えるピンを設定。"
-
-#: ../../esp32/quickref.rst:143
-msgid ""
-"phy_type=<type>   # Select the PHY device type. Supported devices are "
-"PHY_LAN8710, PHY_LAN8720, PH_IP101, PHY_RTL8201, PHY_DP83848 and "
-"PHY_KSZ8041"
-msgstr ""
-"phy_type=<type>   # PHYデバイスの種類を選択。サポートされているデバイスは、"
-"PHY_LAN8710, PHY_LAN8720, PH_IP101, PHY_RTL8201, PHY_DP83848, PHY_KSZ8041。"
-
-#: ../../esp32/quickref.rst:145
-msgid "phy_addr=number   # The address number of the PHY device."
-msgstr "phy_addr=number   # PHY デバイスのアドレス番号。"
-
-#: ../../esp32/quickref.rst:146
-msgid ""
-"ref_clk_mode=mode # Defines, whether the ref_clk at the ESP32 is an input"
-" or output. Suitable values are Pin.IN and Pin.OUT."
-msgstr ""
-"ref_clk_mode=mode # ESP32 の ref_clk が入力であるか出力であるかを定義。"
-"適切な値は Pin.IN と Pin.OUT。"
+#: ../../esp32/quickref.rst:146 ../../esp32/quickref.rst:219
+msgid "Required keyword arguments for the constructor:"
+msgstr "コンストラクタの必須キーワード引数は次のとおりです:"
 
 #: ../../esp32/quickref.rst:148
-msgid "ref_clk=pin-object  # defines the Pin used for ref_clk."
-msgstr "ref_clk=pin-object  # ref_clkに使用するピンを定義。"
+msgid ""
+"``mdc`` and ``mdio`` - :class:`machine.Pin` objects (or integers) "
+"specifying the MDC and MDIO pins."
+msgstr ""
+"``mdc`` と ``mdio`` - MDC と MDIO ピンを指定する "
+":class:`machine.Pin` オブジェクト(または整数値)。"
 
 #: ../../esp32/quickref.rst:150
-msgid "These are working configurations for LAN interfaces of popular boards::"
-msgstr "次のコードは、一般的なボードの LAN インタフェースで動作する設定です::"
+msgid ""
+"``phy_type`` - Select the PHY device type. Supported devices are "
+"``PHY_LAN8710``, ``PHY_LAN8720``, ``PHY_IP101``, ``PHY_RTL8201``, "
+"``PHY_DP83848``, ``PHY_KSZ8041`` and ``PHY_KSZ8081``. These values are "
+"all constants defined in the ``network`` module."
+msgstr ""
+"``phy_type`` - PHY デバイス種別を指定。サポートしているデバイスは "
+"``PHY_LAN8710``, ``PHY_LAN8720``, ``PHY_IP101``, ``PHY_RTL8201``, "
+"``PHY_DP83848``, ``PHY_KSZ8041``, ``PHY_KSZ8081`` 。これらの値はすべて "
+"``network`` モジュールに定義されている定数。"
 
-#: ../../esp32/quickref.rst:152
+#: ../../esp32/quickref.rst:154
+msgid ""
+"``phy_addr`` - The address number of the PHY device. Must be an integer "
+"in the range 0x00 to 0x1f, inclusive. Common values are ``0`` and ``1``."
+msgstr ""
+"``phy_addr`` - PHY デバイスのアドレス番号。0x00 から 0x1f までの範囲の整数値。"
+"一般的によく使われるのは ``0`` と ``1`` 。"
+
+#: ../../esp32/quickref.rst:157 ../../esp32/quickref.rst:234
+msgid ""
+"All of the above keyword arguments must be present to configure the "
+"interface."
+msgstr ""
+"インタフェースを設定するには、上記のすべてのキーワード引数を指定する必要があります。"
+
+#: ../../esp32/quickref.rst:159
+msgid "Optional keyword arguments:"
+msgstr "オプションのキーワード引数は次のとおりです:"
+
+#: ../../esp32/quickref.rst:161
+msgid ""
+"``reset`` - :class:`machine.Pin` object (or integer) specifying the PHY "
+"reset pin."
+msgstr ""
+"``reset`` - PHY のリセットピンを指定する :class:`machine.Pin` オブジェクト"
+"(または 整数値)。"
+
+#: ../../esp32/quickref.rst:162
+msgid ""
+"``power`` - :class:`machine.Pin` object (or integer) specifying a pin "
+"which switches the power of the PHY device."
+msgstr ""
+"``power`` - PHY デバイスの電源を切り換えるピンを指定する "
+":class:`machine.Pin` オブジェクト(または 整数値)。"
+
+#: ../../esp32/quickref.rst:164
+msgid ""
+"``ref_clk`` - :class:`machine.Pin` object (or integer) specifying the pin"
+" used for the EMAC ``ref_clk`` signal. If not specified, the board "
+"default is used (typically GPIO 0, but may be different if a particular "
+"board has Ethernet.)"
+msgstr ""
+"``ref_clk`` - EMAC ``ref_clk`` 信号で使うピンを指定する "
+":class:`machine.Pin` オブジェクト(または 整数値)。"
+"指定しない場合は、ボードのデフォルト値が適用されます"
+"(たいていは GPIO 0 ですが、Ethernet を搭載した"
+"一部のボードでは異なる可能性があります)。"
+
+#: ../../esp32/quickref.rst:167
+msgid ""
+"``ref_clk_mode`` - Defines whether the EMAC ``ref_clk`` pin of the ESP32 "
+"should be an input or an output. Suitable values are ``machine.Pin.IN`` "
+"and ``machine.Pin.OUT``. If not specified, the board default is used "
+"(typically input, but may be different if a particular board has "
+"Ethernet.)"
+msgstr ""
+"``ref_clk_mode`` - ESP32 の EMAC ``ref_clk`` ピンを入力または出力として設定します。"
+"適切な値は ``machine.Pin.IN`` または ``machine.Pin.OUT`` です。"
+"指定しない場合は、ボードのデフォルト値が適用されます(たいていは入力ですが、Ethernet "
+"を搭載した一部のボードでは異なる可能性があります)。"
+
+#: ../../esp32/quickref.rst:172
+msgid ""
+"These are working configurations for LAN interfaces of some popular ESP32"
+" boards::"
+msgstr ""
+"次のコードは、いくつかの人気のあるESP32ボードの LAN インタフェースで動作する設定です::"
+
+#: ../../esp32/quickref.rst:172
 msgid ""
 "# Olimex ESP32-GATEWAY: power controlled by Pin(5)\n"
 "# Olimex ESP32 PoE and ESP32-PoE ISO: power controlled by Pin(12)\n"
@@ -561,6 +614,140 @@ msgstr ""
 "\n"
 "lan = network.LAN(id=0, mdc=Pin(23), mdio=Pin(18), power=Pin(5),\n"
 "                  phy_type=network.PHY_IP101, phy_addr=1)"
+
+#: ../../esp32/quickref.rst:201
+msgid "SPI Ethernet Interface"
+msgstr "SPI Ethernet インタフェース"
+
+#: ../../esp32/quickref.rst:203
+msgid ""
+"All ESP32 SoCs support external SPI Ethernet interface chips. These are "
+"Ethernet interfaces that connect via a SPI bus, rather than an Ethernet "
+"RMII interface."
+msgstr ""
+"すべての ESP32 SoC は、外部の SPI Ethernet インタフェースチップをサポートしています。"
+"これらの Ethernet インターフェースは、Ethernet RMII インターフェースではなく、"
+"SPI バスを介して接続されます。"
+
+#: ../../esp32/quickref.rst:206
+msgid ""
+"The only exception is the ESP32 ``d2wd`` variant, where this feature is "
+"disabled to save code size."
+msgstr ""
+"唯一の例外は ESP32 ``d2wd`` バリアントですが、この機能はコードサイズを節約するために"
+"無効化されています。"
+
+#: ../../esp32/quickref.rst:209
+msgid ""
+"SPI Ethernet uses the same :class:`network.LAN` constructor, with a "
+"different set of keyword arguments::"
+msgstr ""
+"SPI Ethernet は、 :class:`network.LAN` コンストラクタを使いますが、"
+"異なるキーワード引数のセットが必要です。"
+
+#: ../../esp32/quickref.rst:212
+msgid ""
+"import machine, network\n"
+"\n"
+"spi = machine.SPI(1, sck=SCK_PIN, mosi=MOSI_PIN, miso=MISO_PIN)\n"
+"lan = network.LAN(spi=spi, cs=CS_PIN, ...)   # Set the pin and mode "
+"configuration\n"
+"lan.active(True)                             # activate the interface\n"
+"lan.ipconfig('addr4')                        # get the interface's IPv4 "
+"addresses"
+msgstr ""
+
+#: ../../esp32/quickref.rst:221
+msgid ""
+"``spi`` - Should be a :class:`machine.SPI` object configured for this "
+"connection. Note that any clock speed configured on the SPI object is "
+"ignored, the SPI Ethernet clock speed is configured at compile time."
+msgstr ""
+"``spi`` - この接続用に設定する :class:`machine.SPI` オブジェクト。"
+"なお、SPI オブジェクトで設定されたクロック速度は無視され、SPI Ethernet の"
+"クロック速度はコンパイル時に設定されます。"
+
+#: ../../esp32/quickref.rst:224
+msgid ""
+"``cs`` - :class:`machine.Pin` object (or integer) specifying the CS pin "
+"connected to the interface."
+msgstr ""
+"``cs`` - インタフェースに接続する CS ピンを指定する "
+":class:`machine.Pin` オブジェクト(または 整数値)。"
+
+#: ../../esp32/quickref.rst:226
+msgid ""
+"``int`` - :class:`machine.Pin` object (or integer) specifying the INT pin"
+" connected to the interface."
+msgstr ""
+"``int`` - インタフェースに接続する INT ピンを指定する "
+":class:`machine.Pin` オブジェクト(または 整数値)。"
+
+#: ../../esp32/quickref.rst:228
+msgid ""
+"``phy_type`` - Select the SPI Ethernet interface type. Supported devices "
+"are ``PHY_KSZ8851SNL``, ``PHY_DM9051``, ``PHY_W5500``. These values are "
+"all constants defined in the ``network`` module."
+msgstr ""
+"``phy_type`` - SPI Ethernet インタフェースの種別を指定。サポートしているデバイスは "
+"``PHY_KSZ8851SNL``, ``PHY_DM9051``, ``PHY_W5500`` 。"
+"これらの値はすべて ``network`` モジュールに定義されている定数。"
+
+#: ../../esp32/quickref.rst:231
+msgid ""
+"``phy_addr`` - The address number of the PHY device. Must be an integer "
+"in the range 0x00 to 0x1f, inclusive. This is usually ``0`` for SPI "
+"Ethernet devices."
+msgstr ""
+"``phy_addr`` - PHY デバイスのアドレス番号。0x00 から 0x1f までの範囲の整数値。"
+"SPI Ethernet デバイスで一般的によく使われるのは ``0`` 。"
+
+#: ../../esp32/quickref.rst:236
+msgid "Optional keyword arguments for the constructor:"
+msgstr "コンストラクタのオプションキーワード引数は次のとおりです:"
+
+#: ../../esp32/quickref.rst:238
+msgid ""
+"``reset`` - :class:`machine.Pin` object (or integer) specifying the SPI "
+"Ethernet interface reset pin."
+msgstr ""
+"``reset`` - SPI Ethernet インタフェースのリセットピンを指定する "
+":class:`machine.Pin` オブジェクト(または 整数値)。"
+
+#: ../../esp32/quickref.rst:240
+msgid ""
+"``power`` - :class:`machine.Pin` object (or integer) specifying a pin "
+"which switches the power of the SPI Ethernet interface."
+msgstr ""
+"``power`` - SPI Ethernet インタフェースの電源を切り換えるピンを指定する "
+":class:`machine.Pin` オブジェクト(または 整数値)。"
+
+#: ../../esp32/quickref.rst:243
+msgid ""
+"Here is a sample configuration for a WIZNet W5500 chip connected to pins "
+"on an ESP32-S3 development board::"
+msgstr ""
+"次のコードは、WIZNet W5500 チップを ESP32-S3 開発ボードのピンに接続する"
+"設定例です。"
+
+#: ../../esp32/quickref.rst:246
+msgid ""
+"import machine, network\n"
+"from machine import Pin, SPI\n"
+"\n"
+"spi = SPI(1, sck=Pin(12), mosi=Pin(13), miso=Pin(14))\n"
+"lan = network.LAN(spi=spi, phy_type=network.PHY_W5500, phy_addr=0,\n"
+"                  cs=Pin(10), int=Pin(11))"
+msgstr ""
+
+#: ../../esp32/quickref.rst:253
+msgid ""
+"WIZnet W5500 Ethernet is also supported on some other MicroPython ports, "
+"but using a :ref:`different software interface <network.WIZNET5K>`."
+msgstr ""
+"WIZnet W5500 Ethernet は、他のいくつかの MicroPython ポートでもサポート"
+"していますが、 :ref:`異なるソフトウェアインターフェース <network.WIZNET5K>` を"
+"使います。"
 
 #: ../../esp32/quickref.rst:176
 msgid "Delay and timing"
@@ -2199,247 +2386,215 @@ msgstr "ファームウェアの入手"
 msgid ""
 "The first thing you need to do is download the most recent MicroPython "
 "firmware .bin file to load onto your ESP32 device. You can download it "
-"from the `MicroPython downloads page "
-"<https://micropython.org/download#esp32>`_. From here, you have 3 main "
-"choices:"
+"from the `MicroPython download page`_. Search for your particular board "
+"on this page."
 msgstr ""
 "まず、最新の MicroPython ファームウェアの .bin ファイルをダウンロードして、"
 "ESP32 デバイスにロードします。ファームウェアは "
-"`MicroPython ダウンロードページ <http://micropython.org/download#esp32>`_ "
-"からダウンロードできます。ここには、3つの主要な選択肢があります:"
+"`MicroPython download page`_ からダウンロードできます。"
+"このページでお使いのボードを検索してみてください。"
 
-#: ../../esp32/tutorial/intro.rst:42
-msgid "Stable firmware builds"
-msgstr "安定ビルド版ファームウェア"
-
-#: ../../esp32/tutorial/intro.rst:43
-msgid "Daily firmware builds"
-msgstr "日次ビルド版ファームウェア"
-
-#: ../../esp32/tutorial/intro.rst:44
-msgid "Daily firmware builds with SPIRAM support"
-msgstr "SPRAM サポート付き毎日ビルド版ファームウェア"
-
-#: ../../esp32/tutorial/intro.rst:46
+#: ../../esp32/tutorial/intro.rst:41
 msgid ""
-"If you are just starting with MicroPython, the best bet is to go for "
-"the Stable firmware builds. If you are an advanced, experienced MicroPython "
-"ESP32 user who would like to follow development closely and help with "
-"testing new features, there are daily builds.  If your board has SPIRAM "
-"support you can use either the standard firmware or the firmware with SPIRAM "
-"support, and in the latter case you will have access to more RAM for Python "
-"objects."
+"If you don't see your specific board on the download page, then it's very"
+" likely that one of the generic firmwares will work. These are listed at "
+"the top of the download page and have names matching the onboard "
+"Espressif chip (i.e. `ESP32 / WROOM`_, `ESP32-C3`_, `ESP32-S3`_, etc)."
 msgstr ""
-"MicroPython を使い始めたばかりの方には、安定版ファームウェアビルドをお勧めします。"
-"経験豊富で経験豊かな MicroPython ESP32 ユーザーで、開発が続けられている新機能を"
-"テストしたい場合は、毎日ビルド版があります。ボードが SPIRAM をサポートしているなら、"
-"標準のファームウェアか SPIRAM をサポートしているファームウェアのどちらかを使えます。"
-"後者を使うと Python オブジェクトのためにより多くの RAM が使えるようになります。"
+"ダウンロードページに特定のボードが見つからない場合、高い確率で汎用ファームウェアの"
+"いずれかが動作します。これらはダウンロードページの上部にリストされていて、"
+"ボード上の Espressif チップの名前(例: `ESP32 / WROOM`_, `ESP32-C3`_, "
+"`ESP32-S3`_ など)に対応しています。"
 
-#: ../../esp32/tutorial/intro.rst:54
+#: ../../esp32/tutorial/intro.rst:47
+msgid ""
+"However, you may need to double check with the vendor you purchased the "
+"board from."
+msgstr ""
+"ただし、購入元のベンダーに確認することをおすすめします。"
+
+#: ../../esp32/tutorial/intro.rst:50
+msgid "From here, you have a choice to make:"
+msgstr "ここから、次のいずれかを選択できます:"
+
+#: ../../esp32/tutorial/intro.rst:52
+msgid "Download a stable firmware release."
+msgstr "安定版ファームウェアリリースをダウンロードする。"
+
+#: ../../esp32/tutorial/intro.rst:53
+msgid "Download a daily firmware \"Preview\" build."
+msgstr "毎日更新される「プレビュー」ビルドをダウンロードする。"
+
+#: ../../esp32/tutorial/intro.rst:55
+msgid ""
+"If you are just starting with MicroPython, the best bet is to go for the "
+"stable Release firmware builds. If you are an advanced, experienced "
+"MicroPython ESP32 user who would like to follow development closely and "
+"help with testing new features, then you may find the Preview builds "
+"useful."
+msgstr ""
+"MicroPython を始めたばかりなら、安定版リリースのファームウェアを選ぶのが最適です。"
+"一方で、MicroPython ESP32 に精通し、開発の進捗を追いながら新機能のテストに"
+"協力したい場合は、プレビュービルドが役立つかもしれません。"
+
+#: ../../esp32/tutorial/intro.rst:63
 msgid "Deploying the firmware"
 msgstr "ファームウェアの配備"
 
-#: ../../esp32/tutorial/intro.rst:56
+#: ../../esp32/tutorial/intro.rst:65
 msgid ""
-"Once you have the MicroPython firmware you need to load "
-"it onto your ESP32 device. There are two main steps to do this: first "
-"you need to put your device in bootloader mode, and second you need to "
-"copy across the firmware.  The exact procedure for these steps is highly "
-"dependent on the particular board and you will need to refer to its "
-"documentation for details."
+"Once you have the MicroPython firmware you need to load it onto your "
+"ESP32 device. There are two main steps to do this: first you need to put "
+"your device in bootloader mode, and second you need to copy across the "
+"firmware. The exact procedure for these steps is highly dependent on the "
+"particular board."
 msgstr ""
 "MicroPython ファームウェアを取得したら、ESP32 デバイスにロードする必要があります。"
 "これを行うには、主に２つのステップがあります。まず、デバイスをブートローダモードにし、"
 "次にファームウェアをコピーする必要があります。これらの手順の正確な手順は、特定のボード"
-"に大きく依存します。詳細については、そのドキュメントを参照する必要があります。"
+"に大きく依存します。
 
-#: ../../esp32/tutorial/intro.rst:62
+#: ../../esp32/tutorial/intro.rst:70
 msgid ""
-"Fortunately, most boards have a USB connector, a USB-serial converter, "
-"and the DTR and RTS pins wired in a special way then deploying the "
-"firmware should be easy as all steps can be done automatically.  Boards "
-"that have such features include the Adafruit Feather HUZZAH32, M5Stack, "
-"Wemos LOLIN32, and TinyPICO boards, along with the Espressif DevKitC, "
-"PICO-KIT, WROVER-KIT dev-kits."
+"Detailed steps can be found on the same `MicroPython download page`_ for "
+"your board. It's recommended that you follow the steps on the download "
+"page, as they are customised for your particular board."
 msgstr ""
-"幸い、ほとんどのボードは USB コネクタ、USB シリアルコンバータを備え、DTR ピンと RTS "
-"ピンが特別な方法で配線されていて、すべてのステップを自動的に行うことができるため、"
-"ファームウェアの展開は簡単です。このような機能を備えたボードには、Espressif 社の "
-"DevKitC, PICO-KIT, WROVER-KIT dev-kits の他にも Adafruit Feather HUZZAH32, "
-"M5Stack, Wemos LOLIN32, TinyPICO ボードがあります。"
+"詳細な手順は `MicroPython download page`_ にある、お使いのボード専用の説明を"
+"参照してください。ダウンロードページの手順は、各ボードに最適化されているため、"
+"それにしたがうことを推奨します。"
 
-#: ../../esp32/tutorial/intro.rst:68
-msgid ""
-"For best results it is recommended to first erase the entire flash of "
-"your device before putting on new MicroPython firmware."
-msgstr ""
-"最良の結果を得るために、新しい MicroPython ファームウェアをインストールする前に、"
-"まずデバイスのフラッシュ全体を消去することをお勧めします。"
-
-#: ../../esp32/tutorial/intro.rst:71
-msgid ""
-"Currently we only support esptool.py to copy across the firmware.  You "
-"can find this tool here: `<https://github.com/espressif/esptool/>`__, or "
-"install it using pip::"
-msgstr ""
-"現在のところはファームウェアをコピーする方法として esptool.py のみをサポートしています。"
-"このツールは `<https://github.com/espressif/esptool/>`__ "
-"からダウンロードするか、pip を使用してインストールしてください::"
-
-#: ../../esp32/tutorial/intro.rst:75
-msgid "pip install esptool"
-msgstr ""
-
-#: ../../esp32/tutorial/intro.rst:77
-msgid ""
-"Versions starting with 1.3 support both Python 2.7 and Python 3.4 (or "
-"newer). An older version (at least 1.2.1 is needed) works fine but will "
-"require Python 2.7."
-msgstr ""
-"1.3 で始まるバージョンは、Python 2.7 と Python 3.4 (またはそれより新しい"
-"バージョン)の両方をサポートしています。古いバージョンでも正常に動作しますが"
-"(少なくとも 1.2.1 が必要)、Python 2.7 が必要です。"
-
-#: ../../esp32/tutorial/intro.rst:81
-msgid "Using esptool.py you can erase the flash with the command::"
-msgstr "esptool.py を使用すると、次のコマンドでフラッシュを消去できます::"
-
-#: ../../esp32/tutorial/intro.rst:83
-msgid "esptool.py --port /dev/ttyUSB0 erase_flash"
-msgstr ""
-
-#: ../../esp32/tutorial/intro.rst:85
-msgid "And then deploy the new firmware using::"
-msgstr "消去したら、次の方法で新しいファームウェアを導入します::"
-
-#: ../../esp32/tutorial/intro.rst:87
-msgid "esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 esp32-20180511-v1.9.4.bin"
-msgstr ""
-
-#: ../../esp32/tutorial/intro.rst:91
-msgid ""
-"You might need to change the \"port\" setting to something else relevant "
-"for your PC"
-msgstr ""
-"PC により、 \"port \" 指定を別のものに変更する必要があります"
-
-#: ../../esp32/tutorial/intro.rst:93
-msgid ""
-"You may need to reduce the baudrate if you get errors when flashing "
-"(eg down to 115200 by adding ``--baud 115200`` into the command)"
-msgstr ""
-"フラッシュ時にエラーが発生した場合はボーレートを下げる必要があります"
-"(たとえば 115200 に下げるには、コマンドに ``--baud 115200`` を追加で指定します)"
-
-#: ../../esp32/tutorial/intro.rst:95
-msgid ""
-"For some boards with a particular FlashROM configuration you may need "
-"to change the flash mode (eg by adding ``-fm dio`` into the command)"
-msgstr ""
-"特定の FlashROM 設定を持つボードでは、フラッシュモードを変更する必要があります"
-"(たとえばコマンドに ``-fm dio`` を追加で指定するなど）"
-
-#: ../../esp32/tutorial/intro.rst:97
-msgid "The filename of the firmware should match the file that you have"
-msgstr "ファームウェアのファイル名もダウンロードしたファイルの名前に変える必要があります"
-
-#: ../../esp32/tutorial/intro.rst:99
+#: ../../esp32/tutorial/intro.rst:74
 msgid ""
 "If the above commands run without error then MicroPython should be "
-"installed on your board!"
+"installed on your board! Skip ahead to :ref:`esp32_serial_prompt`."
 msgstr ""
-"上記のコマンドがエラーなしで実行されれば、MicroPython がボードにインストール"
-"されたことになります！"
-
-#: ../../esp32/tutorial/intro.rst:103
-msgid "Serial prompt"
-msgstr "シリアルプロンプト"
-
-#: ../../esp32/tutorial/intro.rst:105
-msgid ""
-"Once you have the firmware on the device you can access the REPL (Python "
-"prompt) over UART0 (GPIO1=TX, GPIO3=RX), which might be connected to a "
-"USB-serial converter, depending on your board.  The baudrate is 115200."
-msgstr ""
-"デバイスにファームウェアをインストールしたら、ボードに応じて UART 0 (GPIO1 = TX, "
-"GPIO3 = RX)上の REPL (Python プロンプト)にアクセスできます(USB シリアルコンバータ"
-"に接続されている可能性があります)。ボーレートは 115200 です。"
-
-#: ../../esp32/tutorial/intro.rst:109
-msgid ""
-"From here you can now follow the ESP8266 tutorial, because these two Espressif "
-"chips are very similar when it comes to using MicroPython on them.  The ESP8266 "
-"tutorial is found at :ref:`esp8266_tutorial` (but skip the Introduction section)."
-msgstr ""
-"ここまでできたならば、後は ESP8266 チュートリアルにしたがって進めることができます。これら"
-"２つの Espressif 社チップは、MicroPython を使用することに関しては非常に似ているからです。"
-"ESP8266 チュートリアルは :ref:`esp8266_tutorial` にあります"
-"(「ESP8266でのMicroPythonの使い方」の章はスキップしてください)。"
+"上記の手順にあるコマンドがエラーなく実行されれば、MicroPython がボードに正常に"
+"インストールされたはずです！ :ref:`esp32_serial_prompt` "
+"の章へ進んでください。"
 
 #: ../../esp32/tutorial/intro.rst:114
 msgid "Troubleshooting installation problems"
 msgstr "インストールの問題のトラブルシューティング"
 
-#: ../../esp32/tutorial/intro.rst:116
+#: ../../esp32/tutorial/intro.rst:82
 msgid ""
 "If you experience problems during flashing or with running firmware "
-"immediately after it, here are troubleshooting recommendations:"
+"immediately after flashing, here are some troubleshooting "
+"recommendations:"
 msgstr ""
-"フラッシュ中またはファームウェアの実行直後に問題が発生した場合は、次の推奨事項を"
-"参照してください:"
+"フラッシュ中またはフラッシュ直後のファームウェア実行で問題が発生した場合は、"
+"次の推奨事項を参照してください:"
 
-#: ../../esp32/tutorial/intro.rst:119
+#: ../../esp32/tutorial/intro.rst:85
 msgid ""
-"Be aware of and try to exclude hardware problems.  There are 2 common "
-"problems: bad power source quality, and worn-out/defective FlashROM. "
-"Speaking of power source, not just raw amperage is important, but also "
-"low ripple and noise/EMI in general.  The most reliable and convenient "
-"power source is a USB port."
+"Esptool will try to detect the serial port where your ESP32 is connected."
+" If this doesn't work, or you have multiple serial ports, then you may "
+"need to manually specify the port by adding the ``--port`` option to the "
+"start of the ``esptool.py`` command line. For example, ``esptool.py "
+"--port /dev/ttyUSB0 <rest of line>`` for Linux or ``esptool --port COM4 "
+"<rest of line>`` for Windows."
 msgstr ""
-"ハードウェア上の問題がないかを調べ、取り除いてください。発生しやすい問題は２つあります。"
-"電源品質が悪いことと FlashROM の寿命/欠陥です。電源と言えば、素のアンペア数だけでなく、"
-"一般的に低リップルやノイズ/EMIも重要です。最も信頼性が高く便利な電源はUSBポートです。"
+"esptool は ESP32 が接続されているシリアルポートを自動検出しようとします。"
+"これがうまくいかない場合や、複数のシリアルポートがある場合は "
+"``esptool.py`` コマンドラインのはじめのほうに ``--port`` "
+"オプションを追加して、手動でポートを指定する必要があります。"
+"たとえば Linux では ``esptool.py --port /dev/ttyUSB0 <残りのコマンドライン>`` "
+"などとなり、Windows では ``esptool --port COM4 <残りのコマンドライン>`` などと"
+"なります。"
 
-#: ../../esp32/tutorial/intro.rst:125
+#: ../../esp32/tutorial/intro.rst:91
 msgid ""
-"The flashing instructions above use flashing speed of 460800 baud, which "
-"is good compromise between speed and stability. However, depending on "
-"your module/board, USB-UART converter, cables, host OS, etc., the above "
-"baud rate may be too high and lead to errors. Try a more common 115200 "
-"baud rate instead in such cases."
+"If the board isn't responding to esptool at all, it may need to be "
+"manually reset into the bootloader download mode. Look for a button "
+"marked \"BOOT\" or \"IO0\" on your board and a second button marked "
+"\"RESET\" or \"RST\". If you have both buttons, try these steps:"
 msgstr ""
-"上記のフラッシュ手順は、速度と安定性の間の良好な妥協点である 460800 ボーのフラッシュ"
-"速度を使っています。ただし、モジュール/ボード、USB-UARTコンバータ、ケーブル、ホスト "
-"OS などによっては、上記ボーレートでも速すぎてエラーにつながる可能性があります。"
-"そのような場合には、より一般的な 115200 ボーレートを試してください。"
+"ボードが esptool にまったく応答しない場合、手動でブートローダーダウンロードモードに"
+"リセットする必要があるかもしれません。ボード上に \"BOOT\" または \"IO0\" と"
+"書かれたボタン、および "RESET" または "RST" と書かれたボタンを探してください。"
+"両方のボタンがある場合は、次の手順を試してください。"
 
-#: ../../esp32/tutorial/intro.rst:131
-msgid ""
-"To catch incorrect flash content (e.g. from a defective sector on a "
-"chip), add ``--verify`` switch to the commands above."
-msgstr ""
-"フラッシュの内容の不正(たとえば、チップ上の欠陥セクタなど)を検出するには、 "
-"上記のコマンドに ``--verify`` オプションを加えてください。"
+#: ../../esp32/tutorial/intro.rst:96
+msgid "Press \"BOOT\" (or \"IO0\") and hold it down."
+msgstr "\"BOOT\" (または \"IO0\")ボタンを押し続けます。"
 
-#: ../../esp32/tutorial/intro.rst:134
-msgid ""
-"If you still experience problems with flashing the firmware please "
-"refer to esptool.py project page, https://github.com/espressif/esptool "
-"for additional documentation and a bug tracker where you can report "
-"problems."
-msgstr ""
-"ファームウェアをフラッシュしても問題が解決しない場合、問題を報告するために "
-"esptool.py プロジェクトページ https://github.com/espressif/esptool にある"
-"情報やバグトラッカーを参照してください。"
+#: ../../esp32/tutorial/intro.rst:97
+msgid "Press \"RESET\" (or \"RST\") and immediately release it."
+msgstr "\"RESET\" (または \"RST\")ボタンを押して、すぐに離します。"
 
-#: ../../esp32/tutorial/intro.rst:138
+#: ../../esp32/tutorial/intro.rst:98
+msgid "Release \"BOOT\" (or \"IO0\")."
+msgstr "\"BOOT\" (または \"IO0\")ボタンを離します。"
+
+#: ../../esp32/tutorial/intro.rst:99
+msgid "Re-run the flashing steps from the download page."
+msgstr "ダウンロードページの手順に従って、再度フラッシュ処理を実行してください。"
+
+#: ../../esp32/tutorial/intro.rst:101
 msgid ""
-"If you are able to flash the firmware but the ``--verify`` option returns "
-"errors even after multiple retries the you may have a defective FlashROM chip."
+"If your board doesn't have these buttons, consult the board "
+"manufacturer's documentation about entering bootloader download mode."
 msgstr ""
-"ファームウェアをフラッシュできた場合でも、 ``--verify`` オプションが何度試してもエラーを"
-"返す場合は、欠陥のある FlashROM チップである可能性があります。"
+"ボードにこれらのボタンがない場合は、ブートローダーダウンロードモードに入る"
+"方法について、ボードメーカーのドキュメントを確認してください。"
+
+#: ../../esp32/tutorial/intro.rst:103
+msgid ""
+"If you get errors part-way through the flashing process then try reducing"
+" the speed of data transfer by removing the ``--baud 460800`` argument."
+msgstr ""
+"ファームウェアの書き込み中にエラーが発生する場合は、データ転送速度を下げてみてください。"
+"具体的には、コマンド引数から ``--baud 460800`` のオプションを削除してみてください。"
+
+#: ../../esp32/tutorial/intro.rst:105
+msgid ""
+"Hardware problems can cause flashing to fail. There are two common "
+"problems: bad power source quality, and defective hardware (especially "
+"very low cost unbranded development boards). Speaking of power source, "
+"not just raw amperage is important, but also low ripple and noise/EMI in "
+"general. The most reliable and convenient power source is a USB port."
+msgstr ""
+"ハードウェアの問題はフラッシュ失敗の原因となり得ます。"
+"原因としてよくあるのは、次の２つです。"
+"電源の品質が悪い場合とハードウェアの欠陥(特に、格安のノーブランド開発ボード など)です。"
+"電源については、単に電流量(アンペア数)だけでなく、ローリップル(low ripple)や
+"ノイズ/EMI も重要です。最も安定して便利な電源は USBポート です。"
+
+#: ../../esp32/tutorial/intro.rst:110
+msgid ""
+"If you still experience problems with flashing the firmware then please "
+"also refer to the `esptool Troubleshooting documentation`_."
+msgstr ""
+"ファームウェアのフラッシュに問題が発生し続ける場合は "
+"`esptool Troubleshooting documentation`_ も参照してください。"
+
+#: ../../esp32/tutorial/intro.rst:116
+msgid "Serial prompt"
+msgstr "シリアルプロンプト"
+
+#: ../../esp32/tutorial/intro.rst:118
+msgid ""
+"Once you have the firmware on the device you can access the REPL (Python "
+"prompt) over either UART0, which might be connected to a USB-serial "
+"converter depending on your board, or the chip's built-in USB device. The"
+" baudrate is 115200."
+msgstr ""
+"デバイスにファームウェアをインストールしたら、UART 0 上で REPL (Python プロンプト)に"
+"アクセスできます。ボードにより、USB シリアルコンバータを介して接続するか、チップに内蔵の"
+"USB デバイスで接続します。ボーレートは 115200 です。"
+
+#: ../../esp32/tutorial/intro.rst:122
+msgid ""
+"From here you can now follow the ESP8266 tutorial, because these two "
+"Espressif chips are very similar when it comes to using MicroPython on "
+"them.  The ESP8266 tutorial is found at :ref:`esp8266_tutorial` (but skip"
+" the Introduction section)."
+msgstr ""
+"ここまでできたならば、後は ESP8266 チュートリアルにしたがって進めることができます。これら"
+"２つの Espressif 社チップは、MicroPython を使用することに関しては非常に似ているからです。"
+"ESP8266 チュートリアルは :ref:`esp8266_tutorial` にあります"
+"(「ESP8266でのMicroPythonの使い方」の章はスキップしてください)。"
 
 #: ../../esp32/tutorial/peripheral_access.rst:2
 msgid "Accessing peripherals directly via registers"

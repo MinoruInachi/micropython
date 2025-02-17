@@ -29,7 +29,6 @@
 // Board specific definitions
 #include "mpconfigboard.h"
 #include "fsl_common.h"
-#include "lib/nxp_driver/sdk/CMSIS/Include/core_cm7.h"
 
 uint32_t trng_random_u32(void);
 
@@ -116,6 +115,7 @@ uint32_t trng_random_u32(void);
 #define MICROPY_PY_MACHINE_UART_SENDBREAK   (1)
 #define MICROPY_PY_MACHINE_UART_IRQ         (1)
 #define MICROPY_PY_ONEWIRE                  (1)
+#define MICROPY_PY_MACHINE_BOOTLOADER       (1)
 
 // fatfs configuration used in ffconf.h
 #define MICROPY_FATFS_ENABLE_LFN            (2)
@@ -151,7 +151,15 @@ uint32_t trng_random_u32(void);
 #endif
 
 #define MICROPY_HW_ENABLE_USBDEV            (1)
+// Enable USB-CDC serial port
+#ifndef MICROPY_HW_USB_CDC
 #define MICROPY_HW_USB_CDC                  (1)
+#define MICROPY_HW_USB_CDC_1200BPS_TOUCH    (1)
+#endif
+// Enable USB Mass Storage with FatFS filesystem.
+#ifndef MICROPY_HW_USB_MSC
+#define MICROPY_HW_USB_MSC                  (0)
+#endif
 
 // Hooks to add builtins
 

@@ -24,6 +24,7 @@ set(MICROPY_SOURCE_EXTMOD
     ${MICROPY_EXTMOD_DIR}/modframebuf.c
     ${MICROPY_EXTMOD_DIR}/modlwip.c
     ${MICROPY_EXTMOD_DIR}/modmachine.c
+    ${MICROPY_EXTMOD_DIR}/modmarshal.c
     ${MICROPY_EXTMOD_DIR}/modnetwork.c
     ${MICROPY_EXTMOD_DIR}/modonewire.c
     ${MICROPY_EXTMOD_DIR}/modasyncio.c
@@ -219,6 +220,7 @@ if(MICROPY_SSL_MBEDTLS)
         ${MICROPY_LIB_MBEDTLS_DIR}/library/pkcs12.c
         ${MICROPY_LIB_MBEDTLS_DIR}/library/pkcs5.c
         ${MICROPY_LIB_MBEDTLS_DIR}/library/pkparse.c
+        ${MICROPY_LIB_MBEDTLS_DIR}/library/pk_ecc.c
         ${MICROPY_LIB_MBEDTLS_DIR}/library/pk_wrap.c
         ${MICROPY_LIB_MBEDTLS_DIR}/library/pkwrite.c
         ${MICROPY_LIB_MBEDTLS_DIR}/library/platform.c

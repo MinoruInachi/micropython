@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 14:37+0900\n"
-"PO-Revision-Date: 2024-12-31 09:41+0900\n"
+"POT-Creation-Date: 2025-02-16 10:19+0900\n"
+"PO-Revision-Date: 2025-02-17 12:25+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -4095,25 +4095,45 @@ msgstr ""
 "発生しないため、診断が難しい場合があります。この問題を回避する方法は、後の "
 ":ref:`クリティカルセクション <Critical>` で説明します。"
 
-#: ../../../reference/isr_rules.rst:173
+#: ../../reference/isr_rules.rst:173
 msgid ""
 "It is important to be clear about what constitutes the modification of an"
-" object. An alteration to a built-in type such as a dictionary is "
-"problematic. Altering the contents of an array or bytearray is not. This "
-"is because bytes or words are written as a single machine code "
-"instruction which is not interruptible: in the parlance of real time "
-"programming the write is atomic. A user defined object might instantiate "
-"an integer, array or bytearray. It is valid for both the main loop and "
-"the ISR to alter the contents of these."
+" object. Altering the contents of an array or bytearray is safe. This is "
+"because bytes or words are written as a single machine code instruction "
+"which is not interruptible: in the parlance of real time programming the "
+"write is atomic. The same is true of updating a dictionary item because "
+"items are machine words, being integers or pointers to objects. A user "
+"defined object might instantiate an array or bytearray. It is valid for "
+"both the main loop and the ISR to alter the contents of these."
 msgstr ""
-"オブジェクトの修正内容を明確にしておくことは重要です。辞書などの組み込み型の変更は"
-"問題があります。array または bytearray の内容を変更することは問題ありません。"
+"オブジェクトの変更が何を意味するのか明確にすることが重要です。"
+"array や bytearray の内容を変更することは安全です。"
 "これは、バイトまたはワードが中断されない単一のマシンコード命令で書き込まれるからです。"
-"リアルタイムプログラミングの用語で、書き込みはアトミックです。ユーザ定義オブジェクトは、"
-"整数、array、bytearray をインスタンス化することがあります。メインループと ISR "
-"の両方がこれらの内容を変更することは有効です。"
+"リアルタイムプログラミングの観点では、この書き込みはアトミック(不可分)であると言えます。"
+"同様に、辞書の要素を更新することも安全です。辞書の要素は、整数またはオブジェクトへの"
+"ポインタであり、マシンワード単位で格納されるためです。"
+"また、ユーザー定義オブジェクトが array や bytearray を含んでいる場合、"
+"メインループとハードウェア割り込みハンドラ(ISR)の両方でその内容を変更することは有効です。"
 
-#: ../../../reference/isr_rules.rst:179
+#: ../../reference/isr_rules.rst:179
+msgid ""
+"The hazard arises when the structure of an object is altered, notably in "
+"the case of dictionaries. Adding or deleting keys can trigger a rehash. "
+"If a hard ISR runs while a rehash is in progress and attempts to access "
+"an item, a crash may occur. Internally globals are implemented as a "
+"dictionary. Consequently the main program should create all necessary "
+"globals before starting a process that generates hard interrupts. "
+"Application code should also avoid deleting globals."
+msgstr ""
+"しかし、オブジェクトの構造を変更する場合には注意が必要です。"
+"特に辞書のキーを追加・削除するとリハッシュが発生し、"
+"リハッシュの最中にハード ISR が発生して辞書にアクセスするとクラッシュの原因になります。"
+"また、グローバル変数は内部的に辞書として実装されているため、メインプログラムは"
+"ハードウェア割り込みを発生させる処理を開始する前に、必要なグローバル変数を"
+"すべて作成しておくべきです。さらに、実行中にグローバル変数を削除"
+"しないようにすることも重要です。"
+
+#: ../../../reference/isr_rules.rst:185
 msgid ""
 "MicroPython supports integers of arbitrary precision. Values between "
 "2**30 -1 and -2**30 will be stored in a single machine word. Larger "
@@ -4127,11 +4147,11 @@ msgstr ""
 "したがって、長い整数への変更はアトミックとはみなされません。変数の値が変わると"
 "メモリ割り当てが試みられる可能性があるため、ISR での長い整数の使用は安全ではありません。"
 
-#: ../../../reference/isr_rules.rst:185
+#: ../../../reference/isr_rules.rst:191
 msgid "Overcoming the float limitation"
 msgstr "浮動小数点の制限を克服する"
 
-#: ../../../reference/isr_rules.rst:187
+#: ../../../reference/isr_rules.rst:193
 msgid ""
 "In general it is best to avoid using floats in ISR code: hardware devices"
 " normally handle integers and conversion to floats is normally done in "
@@ -4149,11 +4169,11 @@ msgstr ""
 "これは、プロセッサが浮動小数点値を機械語に格納するためです。浮動小数点数の配列を使用して "
 "ISR とメインプログラムコード間で値を共有できます。"
 
-#: ../../../reference/isr_rules.rst:194
+#: ../../../reference/isr_rules.rst:200
 msgid "Using micropython.schedule"
 msgstr "micropython.schedule の利用"
 
-#: ../../../reference/isr_rules.rst:196
+#: ../../../reference/isr_rules.rst:202
 msgid ""
 "This function enables an ISR to schedule a callback for execution \"very "
 "soon\". The callback is queued for execution which will take place at a "
@@ -4168,7 +4188,7 @@ msgstr ""
 "コールバックは、メインプログラムが Python オブジェクトの更新を完了した時点で実行"
 "されることも保証されているため、コールバックは部分的に更新されたオブジェクトに遭遇しません。"
 
-#: ../../../reference/isr_rules.rst:201
+#: ../../../reference/isr_rules.rst:207
 msgid ""
 "Typical usage is to handle sensor hardware. The ISR acquires data from "
 "the hardware and enables it to issue a further interrupt. It then "
@@ -4178,7 +4198,7 @@ msgstr ""
 "データを取得し、さらに割り込みを発行することができます。その後、データを"
 "処理するコールバックをスケジュールします。"
 
-#: ../../../reference/isr_rules.rst:204
+#: ../../../reference/isr_rules.rst:210
 msgid ""
 "Scheduled callbacks should comply with the principles of interrupt "
 "handler design outlined below. This is to avoid problems resulting from "
@@ -4189,7 +4209,7 @@ msgstr ""
 "したがう必要があります。これは、I/O アクティビティおよびメインプログラムループを"
 "先取りするコードで発生する可能性のある共有データの変更に起因する問題を回避するためです。"
 
-#: ../../../reference/isr_rules.rst:208
+#: ../../../reference/isr_rules.rst:214
 msgid ""
 "Execution time needs to be considered in relation to the frequency with "
 "which interrupts can occur. If an interrupt occurs while the previous "
@@ -4204,7 +4224,7 @@ msgstr ""
 "割り込みの繰り返し率は、制約のないキューの増加と最終的な失敗のリスクを持ち "
 "``RuntimeError`` ます。"
 
-#: ../../../reference/isr_rules.rst:213
+#: ../../../reference/isr_rules.rst:219
 msgid ""
 "If the callback to be passed to `schedule()` is a bound method, consider "
 "the note in \"Creation of Python objects\"."
@@ -4212,11 +4232,11 @@ msgstr ""
 "`schedule()` に渡されるコールバックが結合メソッド(bound method)の場合は、"
 "「Pythonオブジェクトの作成」の注意を考慮してください。"
 
-#: ../../../reference/isr_rules.rst:217
+#: ../../../reference/isr_rules.rst:223
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../../reference/isr_rules.rst:219
+#: ../../../reference/isr_rules.rst:225
 msgid ""
 "If an ISR raises an exception it will not propagate to the main loop. The"
 " interrupt will be disabled unless the exception is handled by the ISR "
@@ -4225,11 +4245,11 @@ msgstr ""
 "ISR が例外を発生させると、メインループには伝播しません。例外が ISR コードによって"
 "処理されない限り、割り込みは無効になります。"
 
-#: ../../reference/isr_rules.rst:223
+#: ../../reference/isr_rules.rst:229
 msgid "Interfacing to asyncio"
 msgstr "asyncio とのインタフェース"
 
-#: ../../reference/isr_rules.rst:225
+#: ../../reference/isr_rules.rst:231
 msgid ""
 "When an ISR runs it can preempt the `asyncio` scheduler. If the ISR "
 "performs a `asyncio` operation the scheduler's operation can be "
@@ -4249,7 +4269,7 @@ msgstr ""
 "安全にやりとりする方法は、 `asyncio.ThreadSafeFlag` によって同期が行われる"
 "コルーチンを実装することです。次の図は、割り込みに応答してタスクを生成しているところです:"
 
-#: ../../reference/isr_rules.rst:233
+#: ../../reference/isr_rules.rst:239
 msgid ""
 "tsf = asyncio.ThreadSafeFlag()\n"
 "\n"
@@ -4262,7 +4282,7 @@ msgid ""
 "        asyncio.create_task(bar())"
 msgstr ""
 
-#: ../../reference/isr_rules.rst:245
+#: ../../reference/isr_rules.rst:251
 msgid ""
 "In this example there will be a variable amount of latency between the "
 "execution of the ISR and the execution of ``foo()``. This is inherent to "
@@ -4273,11 +4293,11 @@ msgstr ""
 "これは協調スケジューリングに固有のものです。最大遅延時間はアプリケーションと"
 "プラットフォームに依存しますが、通常数十ミリ秒の単位で測定されるでしょう。"
 
-#: ../../../reference/isr_rules.rst:250
+#: ../../../reference/isr_rules.rst:256
 msgid "General issues"
 msgstr "一般的な問題"
 
-#: ../../../reference/isr_rules.rst:252
+#: ../../../reference/isr_rules.rst:258
 msgid ""
 "This is merely a brief introduction to the subject of real time "
 "programming. Beginners should note that design errors in real time "
@@ -4293,11 +4313,11 @@ msgstr ""
 "初期設計の権利を取得し、問題が発生する前に予測することが重要です。割り込みハンドラと"
 "メインプログラムは、次の問題を認識して設計する必要があります。"
 
-#: ../../../reference/isr_rules.rst:261
+#: ../../../reference/isr_rules.rst:267
 msgid "Interrupt handler design"
 msgstr "割り込みハンドラの設計"
 
-#: ../../../reference/isr_rules.rst:263
+#: ../../../reference/isr_rules.rst:269
 msgid ""
 "As mentioned above, ISR's should be designed to be as simple as possible."
 " They should always return in a short, predictable period of time. This "
@@ -4315,7 +4335,7 @@ msgstr ""
 "診断するのが難しい原因となり得る。ISR 実行時間の意味を理解するためには、割り込み"
 "優先順位の基本的な把握が必要です。"
 
-#: ../../../reference/isr_rules.rst:269
+#: ../../../reference/isr_rules.rst:275
 msgid ""
 "Interrupts are organised according to a priority scheme. ISR code may "
 "itself be interrupted by a higher priority interrupt. This has "
@@ -4339,7 +4359,7 @@ msgstr ""
 "です。2番目の割り込みは最初の割り込みの終了時に処理されます。しかし、着信割り込みの"
 "レートがISRのサービス能力を一貫して超えている場合、結果は幸いなことではありません。"
 
-#: ../../../reference/isr_rules.rst:277
+#: ../../../reference/isr_rules.rst:283
 msgid ""
 "Consequently looping constructs should be avoided or minimised. I/O to "
 "devices other than to the interrupting device should normally be avoided:"
@@ -4363,7 +4383,7 @@ msgstr ""
 "そのようなアクセスに要する時間を計算または測定し、アプリケーションへの影響を評価する"
 "必要があります。"
 
-#: ../../../reference/isr_rules.rst:285
+#: ../../../reference/isr_rules.rst:291
 msgid ""
 "There is usually a need to share data between the ISR and the main loop. "
 "This may be done either through global variables or via class or instance"
@@ -4381,7 +4401,7 @@ msgstr ""
 "一部にアクセスしたときに割り込みが発生する場合を考慮する必要があります。これは矛盾を"
 "引き起こす可能性があります。"
 
-#: ../../../reference/isr_rules.rst:291
+#: ../../../reference/isr_rules.rst:297
 msgid ""
 "Consider the following design. An ISR stores incoming data in a "
 "bytearray, then adds the number of bytes received to an integer "
@@ -4400,7 +4420,7 @@ msgstr ""
 "バッファに入れ、受信した番号を更新しますが、メインプログラムは既に番号を読み取って"
 "いるため、最初に受信したデータを処理します。新しく到着したバイトは失われます。"
 
-#: ../../../reference/isr_rules.rst:298
+#: ../../../reference/isr_rules.rst:304
 msgid ""
 "There are various ways of avoiding this hazard, the simplest being to use"
 " a circular buffer. If it is not possible to use a structure with "
@@ -4410,11 +4430,11 @@ msgstr ""
 "ことです。固有のスレッド安全性を持つ構造体を使用することができない場合は、他の方法を"
 "以下で説明します。"
 
-#: ../../../reference/isr_rules.rst:302
+#: ../../../reference/isr_rules.rst:308
 msgid "Reentrancy"
 msgstr "リエントラント性"
 
-#: ../../../reference/isr_rules.rst:304
+#: ../../../reference/isr_rules.rst:310
 msgid ""
 "A potential hazard may occur if a function or method is shared between "
 "the main program and one or more ISR's or between multiple ISR's. The "
@@ -4429,11 +4449,11 @@ msgstr ""
 "関数はリエントラントになるように設計する必要があります。これがどのように行われるかは、"
 "このチュートリアルの範囲を超えた高度なトピックです。"
 
-#: ../../../reference/isr_rules.rst:312
+#: ../../../reference/isr_rules.rst:318
 msgid "Critical sections"
 msgstr "クリティカルセクション"
 
-#: ../../../reference/isr_rules.rst:314
+#: ../../../reference/isr_rules.rst:320
 msgid ""
 "An example of a critical section of code is one which accesses more than "
 "one variable which can be affected by an ISR. If the interrupt happens to"
@@ -4454,7 +4474,7 @@ msgstr ""
 "１つの方法は、セクションの開始前に ``pyb.disable_irq()`` を発行し、最後に "
 "``pyb.enable_irq()`` を発行することです。このアプローチの例を次に示します:"
 
-#: ../../../reference/isr_rules.rst:321
+#: ../../../reference/isr_rules.rst:327
 msgid ""
 "import pyb, micropython, array\n"
 "micropython.alloc_emergency_exception_buf(100)\n"
@@ -4489,7 +4509,7 @@ msgid ""
 "tim4.callback(None)"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:355
+#: ../../../reference/isr_rules.rst:361
 msgid ""
 "A critical section can comprise a single line of code and a single "
 "variable. Consider the following code fragment."
@@ -4497,7 +4517,7 @@ msgstr ""
 "クリティカルセクションは、1行のコードと1つの変数で構成できます。"
 "以下のコード断片を考えてみましょう。"
 
-#: ../../../reference/isr_rules.rst:357
+#: ../../../reference/isr_rules.rst:363
 msgid ""
 "count = 0\n"
 "def cb(): # An interrupt callback\n"
@@ -4508,7 +4528,7 @@ msgid ""
 "        count += 1"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:367
+#: ../../../reference/isr_rules.rst:373
 msgid ""
 "This example illustrates a subtle source of bugs. The line ``count += 1``"
 " in the main loop carries a specific race condition hazard known as a "
@@ -4527,7 +4547,7 @@ msgstr ""
 "よってその変更が上書きされます。実際のシステムでは、これはまれな、予期しない障害に"
 "つながる可能性があります。"
 
-#: ../../../reference/isr_rules.rst:373
+#: ../../../reference/isr_rules.rst:379
 msgid ""
 "As mentioned above, care should be taken if an instance of a Python built"
 " in type is modified in the main code and that instance is accessed in an"
@@ -4540,7 +4560,7 @@ msgstr ""
 "ISR の実行時にインスタンスが有効な状態にあることを確認するためのクリティカルセクション"
 "とみなす必要があります。"
 
-#: ../../../reference/isr_rules.rst:377
+#: ../../../reference/isr_rules.rst:383
 msgid ""
 "Particular care needs to be taken if a dataset is shared between "
 "different ISR's. The hazard here is that the higher priority interrupt "
@@ -4555,7 +4575,7 @@ msgstr ""
 "オブジェクトを使用することがあることに注意する以外にも、この紹介の範囲を超えた"
 "高度なトピックです。"
 
-#: ../../../reference/isr_rules.rst:382
+#: ../../../reference/isr_rules.rst:388
 msgid ""
 "Disabling interrupts for the duration of a critical section is the usual "
 "and simplest way to proceed, but it disables all interrupts rather than "
@@ -4575,7 +4595,7 @@ msgstr ""
 "遅すぎとなる可能性があります。ISR と同様に、メインコードのクリティカルセクションは、"
 "短く、予測可能な期間を持つようにする必要があります。"
 
-#: ../../../reference/isr_rules.rst:389
+#: ../../../reference/isr_rules.rst:395
 msgid ""
 "An approach to dealing with critical sections which radically reduces the"
 " time for which interrupts are disabled is to use an object termed a "
@@ -4600,11 +4620,11 @@ msgstr ""
 "mutex コードは割り込みを無効にしますが、８つのマシン語命令の間のみ有効です。
 "このアプローチの利点は、他の割り込みにはほとんど影響がないことです。"
 
-#: ../../../reference/isr_rules.rst:399
+#: ../../../reference/isr_rules.rst:405
 msgid "Interrupts and the REPL"
 msgstr "割り込みと REPL"
 
-#: ../../../reference/isr_rules.rst:401
+#: ../../../reference/isr_rules.rst:407
 msgid ""
 "Interrupt handlers, such as those associated with timers, can continue to"
 " run after a program terminates.  This may produce unexpected results "
@@ -4616,7 +4636,7 @@ msgstr ""
 "予想される場合に、予期しない結果が生じることがあります。"
 "次は pyboardの場合 の例です:"
 
-#: ../../../reference/isr_rules.rst:406
+#: ../../../reference/isr_rules.rst:412
 msgid ""
 "def bar():\n"
 "    foo = pyb.Timer(2, freq=4, callback=lambda t: print('.', end=''))\n"
@@ -4624,7 +4644,7 @@ msgid ""
 "bar()"
 msgstr ""
 
-#: ../../../reference/isr_rules.rst:413
+#: ../../../reference/isr_rules.rst:419
 msgid ""
 "This continues to run until the timer is explicitly disabled or the board"
 " is reset with ``ctrl D``."
@@ -8974,11 +8994,31 @@ msgstr ""
 "読み取りデータ用に新しいバッファを割り当てる ``read()`` メソッドを提供し、"
 "既存のバッファにデータを読み取る ``readinto()`` メソッドも提供します。"
 
-#: ../../../reference/speed_python.rst:73
+#: ../../reference/speed_python.rst:74
+msgid "Some useful classes for creating reusable buffer objects:"
+msgstr "再利用可能なバッファオブジェクトを作成するための便利なクラスがあります:"
+
+#: ../../reference/speed_python.rst:76
+msgid ":class:`bytearray`"
+msgstr ""
+
+#: ../../reference/speed_python.rst:77
+msgid ":mod:`array` (:ref:`discussed below<speed_arrays>`)"
+msgstr ""
+
+#: ../../reference/speed_python.rst:78
+msgid ":class:`io.StringIO` and :class:`io.BytesIO`"
+msgstr ":class:`io.StringIO` と :class:`io.BytesIO`"
+
+#: ../../reference/speed_python.rst:79
+msgid ":class:`micropython.RingIO`"
+msgstr ""
+
+#: ../../../reference/speed_python.rst:82
 msgid "Floating point"
 msgstr "浮動小数点"
 
-#: ../../../reference/speed_python.rst:75
+#: ../../../reference/speed_python.rst:84
 msgid ""
 "Some MicroPython ports allocate floating point numbers on heap. Some "
 "other ports may lack dedicated floating-point coprocessor, and perform "
@@ -8996,27 +9036,31 @@ msgstr ""
 "ADC の読み値を整数値として１回の配列で取得し、その後で信号処理のためにそれらを"
 "浮動小数点数に変換します。"
 
-#: ../../../reference/speed_python.rst:84
+#: ../../../reference/speed_python.rst:95
 msgid "Arrays"
 msgstr "配列"
 
-#: ../../../reference/speed_python.rst:86
+#: ../../reference/speed_python.rst:97
 msgid ""
 "Consider the use of the various types of array classes as an alternative "
-"to lists. The `array` module supports various element types with 8-bit "
-"elements supported by Python's built in `bytes` and `bytearray` classes. "
-"These data structures all store elements in contiguous memory locations. "
-"Once again to avoid memory allocation in critical code these should be "
-"pre-allocated and passed as arguments or as bound objects."
+"to lists. The :mod:`array` module supports various element types with "
+"8-bit elements supported by Python's built in `bytes` and `bytearray` "
+"classes. These data structures all store elements in contiguous memory "
+"locations. Once again to avoid memory allocation in critical code these "
+"should be pre-allocated and passed as arguments or as bound objects."
 msgstr ""
 "リストに代わるものとして、さまざまなタイプの配列クラスの利用を検討してください。"
-"`array` モジュールは、Python の組み込みクラス `bytes` や `bytearray` クラスで"
+":mod:`array` モジュールは、Python の組み込みクラス `bytes` や `bytearray` クラスで"
 "サポートされている８ビット要素を含むさまざまな要素型をサポートしています。これらの"
 "データ構造はすべて、隣接するメモリ位置に要素を格納しています。クリティカルコードでの"
 "メモリ割り当てを避けるために、これらは事前に割り当てられ、引数またはバインドされた"
 "オブジェクトとして渡されるべきです。"
 
-#: ../../../reference/speed_python.rst:92
+#: ../../reference/speed_python.rst:104
+msgid "Memoryviews"
+msgstr "memoryviews"
+
+#: ../../../reference/speed_python.rst:106
 msgid ""
 "When passing slices of objects such as `bytearray` instances, Python "
 "creates a copy which involves allocation of the size proportional to the "
@@ -9036,7 +9080,7 @@ msgstr ""
 "割り込みサービスルーチンでは実行できません。また、スライス構文の ``a:b`` では、 "
 "``slice(a, b)`` オブジェクトをインスタンス化することで、さらに割り当てを行います。"
 
-#: ../../../reference/speed_python.rst:100
+#: ../../../reference/speed_python.rst:114
 msgid ""
 "ba = bytearray(10000)  # big array\n"
 "func(ba[30:2000])      # a copy is passed, ~2K new allocation\n"
@@ -9048,7 +9092,7 @@ msgstr ""
 "mv = memoryview(ba)    # 小さなオブジェクトが割り当てられます\n"
 "func(mv[30:2000])      # メモリのポインターが渡されます"
 
-#: ../../../reference/speed_python.rst:107
+#: ../../../reference/speed_python.rst:121
 msgid ""
 "A `memoryview` can only be applied to objects supporting the buffer "
 "protocol - this includes arrays but not lists. Small caveat is that while"
@@ -9068,7 +9112,7 @@ msgstr ""
 "こうすることで、長命の memoryview を作成して、10K が GC からブロックされたままになる"
 "ようなことがなくなります。"
 
-#: ../../../reference/speed_python.rst:115
+#: ../../../reference/speed_python.rst:129
 msgid ""
 "Nonetheless, `memoryview` is indispensable for advanced preallocated "
 "buffer management. ``readinto()`` method discussed above puts data at the"
@@ -9081,11 +9125,49 @@ msgstr ""
 "バッファ全体を埋めます。既存のバッファの途中にデータを配置する必要がある場合はどうしますか？ "
 "バッファの必要なセクションにメモリビューを作成してそれを ``readinto()`` に渡すだけです。"
 
-#: ../../../reference/speed_python.rst:122
+#: ../../reference/speed_python.rst:136
+msgid "Strings vs Bytes"
+msgstr "文字列とバイト列"
+
+#: ../../reference/speed_python.rst:138
+msgid ""
+"MicroPython uses :ref:`string interning <qstr>` to save space when there "
+"are multiple identical strings. Each time a new string is allocated at "
+"runtime (for example, when two other strings are concatenated), "
+"MicroPython checks whether the new string can be interned to save RAM."
+msgstr ""
+"MicroPython は :ref:`文字列の隔離化 <qstr>` を使って、同一の文字列が"
+"複数存在する場合にメモリを節約します。ランタイムで新しい文字列が確保されるたび"
+"(たとえば、2つの文字列を連結したときなど)、MicroPython は新しい文字列を"
+"隔離化できるかを確認し、RAM を節約します。"
+
+#: ../../reference/speed_python.rst:143
+msgid ""
+"If you have code which performs performance-critical string operations "
+"then consider using :class:`bytes` objects and literals (i.e. "
+"``b\"abc\"``). This skips the interning check, and can be several times "
+"faster than performing the same operations with string objects."
+msgstr ""
+"パフォーマンスが重要な文字列操作を行うコードでは :class:`bytes` オブジェクトや"
+"リテラル(例: b\"abc\")の利用を検討してください。これにより隔離化の"
+"チェックをスキップでき、文字列オブジェクトを使用する場合と比べて"
+"数倍高速になることがあります。"
+
+#: ../../reference/speed_python.rst:148
+msgid ""
+"The fastest performance will always be achieved by avoiding new object "
+"creation entirely, for example with a reusable :ref:`buffer as described "
+"above<speed_buffers>`."
+msgstr ""
+"最も高速なパフォーマンスを得るには、新しいオブジェクトの作成を完全に避けることが"
+"理想的です。たとえば、前述の "
+":ref:`再利用可能なバッファ <speed_buffers>` を利用するなどです。"
+
+#: ../../../reference/speed_python.rst:153
 msgid "Identifying the slowest section of code"
 msgstr "コードの最も遅い部分を特定する"
 
-#: ../../../reference/speed_python.rst:124
+#: ../../../reference/speed_python.rst:155
 msgid ""
 "This is a process known as profiling and is covered in textbooks and (for"
 " standard Python) supported by various software tools. For the type of "
@@ -9101,7 +9183,7 @@ msgstr ""
 "賢明に使うことで特定できます。コードの実行時間は、ms, us, または CPU サイクルで"
 "測定できます。"
 
-#: ../../../reference/speed_python.rst:131
+#: ../../../reference/speed_python.rst:162
 msgid ""
 "The following enables any function or method to be timed by adding an "
 "``@timed_function`` decorator:"
@@ -9109,7 +9191,7 @@ msgstr ""
 "以下を ``@timed_function`` デコレータとして任意の関数またはメソッドに追加する"
 "ことで、実行時間の計測が可能になります。"
 
-#: ../../../reference/speed_python.rst:134
+#: ../../../reference/speed_python.rst:165
 msgid ""
 "def timed_function(f, *args, **kwargs):\n"
 "    myname = str(f).split(' ')[1]\n"
@@ -9122,15 +9204,15 @@ msgid ""
 "    return new_func"
 msgstr ""
 
-#: ../../../reference/speed_python.rst:147
+#: ../../../reference/speed_python.rst:178
 msgid "MicroPython code improvements"
 msgstr "MicroPython コードの改良"
 
-#: ../../../reference/speed_python.rst:150
+#: ../../../reference/speed_python.rst:181
 msgid "The const() declaration"
 msgstr "const() 宣言"
 
-#: ../../../reference/speed_python.rst:152
+#: ../../../reference/speed_python.rst:183
 msgid ""
 "MicroPython provides a ``const()`` declaration. This works in a similar "
 "way to ``#define`` in C in that when the code is compiled to bytecode the"
@@ -9144,11 +9226,11 @@ msgstr ""
 "置換します。これにより、実行時の辞書検索が回避されます。 ``const()`` の引数は"
 "コンパイル時に整数値に評価されるものであれば何でもありです(``0x100`` や ``1 << 8`` など)。"
 
-#: ../../../reference/speed_python.rst:161
+#: ../../../reference/speed_python.rst:192
 msgid "Caching object references"
 msgstr "オブジェクト参照のキャッシュ"
 
-#: ../../../reference/speed_python.rst:163
+#: ../../../reference/speed_python.rst:194
 msgid ""
 "Where a function or method repeatedly accesses objects performance is "
 "improved by caching the object in a local variable:"
@@ -9156,7 +9238,7 @@ msgstr ""
 "関数またはメソッドが繰り返しオブジェクトにアクセスする場合、オブジェクトをローカル"
 "変数にキャッシュすることでパフォーマンスが向上します。"
 
-#: ../../../reference/speed_python.rst:166
+#: ../../../reference/speed_python.rst:197
 msgid ""
 "class foo(object):\n"
 "    def __init__(self):\n"
@@ -9174,7 +9256,7 @@ msgstr ""
 "        fb = obj_display.framebuffer\n"
 "        # ２つのオブジェクト用いた反復処理"
 
-#: ../../../reference/speed_python.rst:176
+#: ../../../reference/speed_python.rst:207
 msgid ""
 "This avoids the need repeatedly to look up ``self.ba`` and "
 "``obj_display.framebuffer`` in the body of the method ``bar()``."
@@ -9182,11 +9264,11 @@ msgstr ""
 "これは ``bar()`` メソッド本体で ``self.ba`` と ``obj_display.framebuffer`` "
 "を繰り返し探す必要性を回避します。"
 
-#: ../../../reference/speed_python.rst:182
+#: ../../../reference/speed_python.rst:213
 msgid "Controlling garbage collection"
 msgstr "ガベージコレクションを制御する"
 
-#: ../../../reference/speed_python.rst:184
+#: ../../../reference/speed_python.rst:215
 msgid ""
 "When memory allocation is required, MicroPython attempts to locate an "
 "adequately sized block on the heap. This may fail, usually because the "
@@ -9202,7 +9284,7 @@ msgstr ""
 "使っているメモリを回収し、割り当てが再試行されます。このプロセスには数ミリ秒"
 "かかることがあります。"
 
-#: ../../../reference/speed_python.rst:191
+#: ../../../reference/speed_python.rst:222
 msgid ""
 "There may be benefits in pre-empting this by periodically issuing "
 "`gc.collect()`. Firstly doing a collection before it is actually required"
@@ -9222,11 +9304,11 @@ msgstr ""
 "ヒープ内の断片化を減らすことができます。重大な断片化は、回復不可能な割り当ての"
 "失敗につながる可能性があります。"
 
-#: ../../../reference/speed_python.rst:200
+#: ../../../reference/speed_python.rst:231
 msgid "The Native code emitter"
 msgstr "ネイティブコードエミッター"
 
-#: ../../../reference/speed_python.rst:202
+#: ../../../reference/speed_python.rst:233
 msgid ""
 "This causes the MicroPython compiler to emit native CPU opcodes rather "
 "than bytecode. It covers the bulk of the MicroPython functionality, so "
@@ -9237,7 +9319,7 @@ msgstr ""
 "発行します。MicroPython の機能の大部分をカバーしているので、ほとんどの機能は調整を"
 "必要としません(ただし下記参照)。これは関数デコレータによって呼び出されます。"
 
-#: ../../../reference/speed_python.rst:206
+#: ../../../reference/speed_python.rst:237
 msgid ""
 "@micropython.native\n"
 "def foo(self, arg):\n"
@@ -9249,27 +9331,27 @@ msgstr ""
 "    buf = self.linebuf # オブジェクトをキャッシュ\n"
 "    # コード"
 
-#: ../../../reference/speed_python.rst:213
+#: ../../../reference/speed_python.rst:244
 msgid ""
 "There are certain limitations in the current implementation of the native"
 " code emitter."
 msgstr ""
 "ネイティブコードエミッターの現在の実装には一定の制限があります。"
 
-#: ../../../reference/speed_python.rst:215
+#: ../../../reference/speed_python.rst:246
 msgid "Context managers are not supported (the ``with`` statement)."
 msgstr ""
 "コンテキストマネージャはサポートされていません(``with`` ステートメント)。
 
-#: ../../../reference/speed_python.rst:216
+#: ../../../reference/speed_python.rst:247
 msgid "Generators are not supported."
 msgstr "ジェネレータはサポートされていません。"
 
-#: ../../../reference/speed_python.rst:217
+#: ../../../reference/speed_python.rst:248
 msgid "If ``raise`` is used an argument must be supplied."
 msgstr "``raise`` を使う場合は、引数を指定する必要があります。"
 
-#: ../../../reference/speed_python.rst:219
+#: ../../../reference/speed_python.rst:250
 msgid ""
 "The trade-off for the improved performance (roughly twice as fast as "
 "bytecode) is an increase in compiled code size."
@@ -9277,11 +9359,11 @@ msgstr ""
 "パフォーマンスの向上(バイトコードの約2倍の速さ)とのトレードオフは、"
 "コンパイルされたコードサイズの増加です。"
 
-#: ../../../reference/speed_python.rst:223
+#: ../../../reference/speed_python.rst:254
 msgid "The Viper code emitter"
 msgstr "バイパーコードエミッター"
 
-#: ../../../reference/speed_python.rst:225
+#: ../../../reference/speed_python.rst:256
 msgid ""
 "The optimisations discussed above involve standards-compliant Python "
 "code. The Viper code emitter is not fully compliant. It supports special "
@@ -9295,7 +9377,7 @@ msgstr ""
 "整数には機械語のワードを使うため、整数の処理も非準拠です: 32ビットハードウェアの"
 "算術は 2**32 の範囲で実行します。"
 
-#: ../../../reference/speed_python.rst:230
+#: ../../../reference/speed_python.rst:261
 msgid ""
 "Like the Native emitter Viper produces machine instructions but further "
 "optimisations are performed, substantially increasing performance "
@@ -9306,7 +9388,7 @@ msgstr ""
 "さらに最適化が行われ、特に整数演算とビット操作のパフォーマンスが大幅に向上します。"
 "バイパーはデコレータを使って呼び出されます:"
 
-#: ../../../reference/speed_python.rst:234
+#: ../../../reference/speed_python.rst:265
 msgid ""
 "@micropython.viper\n"
 "def foo(self, arg: int) -> int:\n"
@@ -9316,7 +9398,7 @@ msgstr ""
 "def foo(self, arg: int) -> int:\n"
 "    # コード"
 
-#: ../../../reference/speed_python.rst:240
+#: ../../../reference/speed_python.rst:271
 msgid ""
 "As the above fragment illustrates it is beneficial to use Python type "
 "hints to assist the Viper optimiser. Type hints provide information on "
@@ -9338,42 +9420,42 @@ msgstr ""
 "型ヒントとして使うために提供しています。そのような関数が ``0xffffffff`` を返す場合、"
 "Python は結果を -1 ではなく、2**32 -1 として解釈します。"
 
-#: ../../../reference/speed_python.rst:248
+#: ../../../reference/speed_python.rst:279
 msgid ""
 "In addition to the restrictions imposed by the native emitter the "
 "following constraints apply:"
 msgstr ""
 "バイパーでは、ネイティブエミッターの制限に加えて以下の制限が適用されます:"
 
-#: ../../../reference/speed_python.rst:250
+#: ../../../reference/speed_python.rst:281
 msgid "Default argument values are not permitted."
 msgstr "デフォルトの引数値は許可されていません。"
 
-#: ../../../reference/speed_python.rst:251
+#: ../../../reference/speed_python.rst:282
 msgid "Floating point may be used but is not optimised."
 msgstr "浮動小数点は使えますが、最適化されません。"
 
-#: ../../../reference/speed_python.rst:253
+#: ../../../reference/speed_python.rst:284
 msgid "Viper provides pointer types to assist the optimiser. These comprise"
 msgstr "バイパーは最適化を支援するためのポインタ型を提供します。次のものがあります。"
 
-#: ../../../reference/speed_python.rst:255
+#: ../../../reference/speed_python.rst:286
 msgid "``ptr`` Pointer to an object."
 msgstr "``ptr`` オブジェクトのポインター"
 
-#: ../../../reference/speed_python.rst:256
+#: ../../../reference/speed_python.rst:287
 msgid "``ptr8`` Points to a byte."
 msgstr "``ptr8`` バイトを指すポインター"
 
-#: ../../../reference/speed_python.rst:257
+#: ../../../reference/speed_python.rst:288
 msgid "``ptr16`` Points to a 16 bit half-word."
 msgstr "``ptr16`` 16ビット、半ワードを指すポインター"
 
-#: ../../../reference/speed_python.rst:258
+#: ../../../reference/speed_python.rst:289
 msgid "``ptr32`` Points to a 32 bit machine word."
 msgstr "``ptr32`` 32ビットマシンワードを指すポインター"
 
-#: ../../../reference/speed_python.rst:260
+#: ../../../reference/speed_python.rst:291
 msgid ""
 "The concept of a pointer may be unfamiliar to Python programmers. It has "
 "similarities to a Python `memoryview` object in that it provides direct "
@@ -9395,11 +9477,11 @@ msgstr ""
 "ことです。ポインターを使用したプログラミングは危険です。境界チェックは実行されず、"
 "コンパイラはバッファオーバーランエラーを防ぐために何もしません。"
 
-#: ../../../reference/speed_python.rst:269
+#: ../../../reference/speed_python.rst:300
 msgid "Typical usage is to cache variables:"
 msgstr "典型的な使い方は変数をキャッシュすることです:"
 
-#: ../../../reference/speed_python.rst:279
+#: ../../../reference/speed_python.rst:302
 msgid ""
 "@micropython.viper\n"
 "def foo(self, arg: int) -> int:\n"
@@ -9416,7 +9498,7 @@ msgstr ""
 "        bar = buf[x] # ポインターでデータ項目にアクセス\n"
 "        # 以下省略"
 
-#: ../../../reference/speed_python.rst:280
+#: ../../../reference/speed_python.rst:311
 msgid ""
 "In this instance the compiler \"knows\" that ``buf`` is the address of an"
 " array of bytes; it can emit code to rapidly compute the address of "
@@ -9431,7 +9513,7 @@ msgstr ""
 "数マイクロ秒かかることがあるため、これらはクリティカルなタイミングループではなく関数の"
 "開始時に実行する必要があります。キャストの規則は次のとおりです:"
 
-#: ../../../reference/speed_python.rst:286
+#: ../../../reference/speed_python.rst:317
 msgid ""
 "Casting operators are currently: ``int``, ``bool``, ``uint``, ``ptr``, "
 "``ptr8``, ``ptr16`` and ``ptr32``."
@@ -9439,17 +9521,17 @@ msgstr ""
 "キャスト演算子には現在のところ ``int``, ``bool``, ``uint``, ``ptr``, ``ptr8``, "
 "``ptr16``, ``ptr32`` があります。"
 
-#: ../../../reference/speed_python.rst:287
+#: ../../../reference/speed_python.rst:318
 msgid "The result of a cast will be a native Viper variable."
 msgstr ""
 "キャストの結果は、ネイティブのバイパー変数になります。"
 
-#: ../../../reference/speed_python.rst:288
+#: ../../../reference/speed_python.rst:319
 msgid "Arguments to a cast can be a Python object or a native Viper variable."
 msgstr ""
 "キャストの引数には、Python オブジェクトまたはネイティブのバイパー変数を指定できます。"
 
-#: ../../../reference/speed_python.rst:289
+#: ../../../reference/speed_python.rst:320
 msgid ""
 "If argument is a native Viper variable, then cast is a no-op (i.e. costs "
 "nothing at runtime) that just changes the type (e.g. from ``uint`` to "
@@ -9459,7 +9541,7 @@ msgstr ""
 "``ptr8``)、キャストは何もしない(実行時にコストはかからない)ので、このポインターで"
 "ストア/ロードできるようになります。"
 
-#: ../../../reference/speed_python.rst:292
+#: ../../../reference/speed_python.rst:323
 msgid ""
 "If the argument is a Python object and the cast is ``int`` or ``uint``, "
 "then the Python object must be of integral type and the value of that "
@@ -9468,7 +9550,7 @@ msgstr ""
 "引数が Python オブジェクトであり、キャストが ``int`` または ``uint`` である場合、"
 "Python オブジェクトは整数型でなければならず、その整数オブジェクトの値が返されます。"
 
-#: ../../../reference/speed_python.rst:294
+#: ../../../reference/speed_python.rst:325
 msgid ""
 "The argument to a bool cast must be integral type (boolean or integer); "
 "when used as a return type the viper function will return True or False "
@@ -9477,7 +9559,7 @@ msgstr ""
 "bool キャストへの引数は整数型(ブール値または整数)でなければなりません。"
 "戻り値の型として使われた場合、バイパー関数は True または False オブジェクトを返します。"
 
-#: ../../../reference/speed_python.rst:296
+#: ../../../reference/speed_python.rst:327
 msgid ""
 "If the argument is a Python object and the cast is ``ptr``, ``ptr``, "
 "``ptr16`` or ``ptr32``, then the Python object must either have the "
@@ -9490,21 +9572,21 @@ msgstr ""
 "ポインタを返す場合)、整数型のものでなければなりません(この場合、その整数オブジェクトの"
 "値が返されます)。"
 
-#: ../../reference/speed_python.rst:301
+#: ../../reference/speed_python.rst:332
 msgid ""
 "Writing to a pointer which points to a read-only object will lead to "
 "undefined behaviour."
 msgstr ""
 "読取り専用オブジェクトを指すポインターへの書込みは、未定義の動作になります。"
 
-#: ../../../reference/speed_python.rst:303
+#: ../../../reference/speed_python.rst:334
 msgid ""
 "The following example illustrates the use of a ``ptr16`` cast to toggle "
 "pin X1 ``n`` times:"
 msgstr ""
 "次はピン X1 を ``n`` 回切り替えるために ``ptr16`` キャストを使った例を示しています。
 
-#: ../../../reference/speed_python.rst:305
+#: ../../../reference/speed_python.rst:336
 msgid ""
 "BIT0 = const(1)\n"
 "@micropython.viper\n"
@@ -9514,7 +9596,7 @@ msgid ""
 "        odr[0] ^= BIT0"
 msgstr ""
 
-#: ../../../reference/speed_python.rst:314
+#: ../../../reference/speed_python.rst:345
 msgid ""
 "A detailed technical description of the three code emitters may be found "
 "on Kickstarter here `Note 1 "
@@ -9529,11 +9611,11 @@ msgstr ""
 "`Note 2 <https://www.kickstarter.com/projects/214379695/micro-python-python-for-microcontrollers/posts/665145>`_ "
 "にあります。"
 
-#: ../../../reference/speed_python.rst:319
+#: ../../../reference/speed_python.rst:350
 msgid "Accessing hardware directly"
 msgstr "ハードウェアに直接アクセスする"
 
-#: ../../../reference/speed_python.rst:323
+#: ../../../reference/speed_python.rst:354
 msgid ""
 "Code examples in this section are given for the Pyboard. The techniques "
 "described however may be applied to other MicroPython ports too."
@@ -9541,7 +9623,7 @@ msgstr ""
 "この章のコード例は pyboard 用です。ただし、ここで説明した手法は他の MicroPython "
 "ポートにも適用できます。"
 
-#: ../../../reference/speed_python.rst:326
+#: ../../../reference/speed_python.rst:357
 msgid ""
 "This comes into the category of more advanced programming and involves "
 "some knowledge of the target MCU. Consider the example of toggling an "
@@ -9551,11 +9633,11 @@ msgstr ""
 "pyboard で出力ピンを切り替える例を考えてみましょう。標準的なアプローチは、次のように"
 "書くことです。"
 
-#: ../../../reference/speed_python.rst:333
+#: ../../../reference/speed_python.rst:361
 msgid "mypin.value(mypin.value() ^ 1) # mypin was instantiated as an output pin"
 msgstr "mypin.value(mypin.value() ^ 1) # mypin は出力ピンとしてインスタンス化したもの"
 
-#: ../../../reference/speed_python.rst:334
+#: ../../../reference/speed_python.rst:365
 msgid ""
 "This involves the overhead of two calls to the :class:`~machine.Pin` "
 "instance's :meth:`~machine.Pin.value()` method. This overhead can be "
@@ -9572,7 +9654,7 @@ msgstr ""
 "定数のセットを提供します。緑色のLEDに対応するピン ``P4`` (CPU ピン ``A14``)の"
 "高速トグルは、次のように実行できます。"
 
-#: ../../../<rst_epilog>:1
+#: ../../reference/speed_python.rst:372
 msgid ""
 "import machine\n"
 "import stm\n"
@@ -9580,4 +9662,3 @@ msgid ""
 "BIT14 = const(1 << 14)\n"
 "machine.mem16[stm.GPIOA + stm.GPIO_ODR] ^= BIT14"
 msgstr ""
-

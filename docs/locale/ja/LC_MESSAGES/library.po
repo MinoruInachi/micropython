@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 14:37+0900\n"
-"PO-Revision-Date: 2024-12-30 15:06+0900\n"
+"POT-Creation-Date: 2025-02-16 10:19+0900\n"
+"PO-Revision-Date: 2025-02-17 01:11+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -74,18 +74,29 @@ msgstr ""
 "与えたデータ型の要素を持つ配列を作成します。配列の初期値は *iterable* に与えます。"
 "これを与えない場合は空の配列が作成されます。"
 
-#: ../../library/array.rst:24
+#: ../../library/array.rst:22
+msgid ""
+"In addition to the methods below, array objects also implement the buffer"
+" protocol. This means the contents of the entire array can be accessed as"
+" raw bytes via a `memoryview` or other interfaces which use this "
+"protocol."
+msgstr ""
+"以下のメソッドに加えて、array オブジェクト は バッファプロトコル も実装しています。"
+"これにより `memoryview` やその他の バッファプロトコルを利用するインターフェースを"
+"介して、配列全体の内容を生のバイトデータとしてアクセスすることが可能です。"
+
+#: ../../library/array.rst:28
 msgid "Append new element *val* to the end of array, growing it."
 msgstr "配列の最後に新しい要素 *val* を追加します。"
 
-#: ../../library/array.rst:28
+#: ../../library/array.rst:32
 msgid ""
 "Append new elements as contained in *iterable* to the end of array, "
 "growing it."
 msgstr ""
 "配列の最後に *iterable* に含まれる新しい要素を追加します。"
 
-#: ../../library/array.rst:33
+#: ../../library/array.rst:37
 msgid ""
 "Indexed read of the array, called as ``a[index]`` (where ``a`` is an "
 "``array``). Returns a value if *index* is an ``int`` and an ``array`` if "
@@ -97,7 +108,7 @@ msgstr ""
 "配列を返します。負のインデックスは末尾から数えます。インデックスが範囲外の場合は "
 "``IndexError`` が発生します。"
 
-#: ../../library/array.rst:38
+#: ../../library/array.rst:42
 msgid ""
 "**Note:** ``__getitem__`` cannot be called directly "
 "(``a.__getitem__(index)`` fails) and is not present in ``__dict__``, "
@@ -107,7 +118,7 @@ msgstr ""
 "(``a.__getitem__(index)`` は失敗します)、 ``__dict__`` にも存在しませんが、 "
 "``a[index]`` は動作します。"
 
-#: ../../library/array.rst:43
+#: ../../library/array.rst:47
 msgid ""
 "Indexed write into the array, called as ``a[index] = value`` (where ``a``"
 " is an ``array``). ``value`` is a single value if *index* is an ``int`` "
@@ -119,7 +130,7 @@ msgstr ""
 "がスライスの場合は配列になります。負のインデックスは末尾から数えます。インデックスが範囲外の"
 "場合は ``IndexError`` が発生します。"
 
-#: ../../library/array.rst:47
+#: ../../library/array.rst:51
 msgid ""
 "**Note:** ``__setitem__`` cannot be called directly "
 "(``a.__setitem__(index, value)`` fails) and is not present in "
@@ -129,7 +140,7 @@ msgstr ""
 "(``a.__setitem__(index, value)`` は失敗します)、 ``__dict__`` にも"
 "存在しませんが、 ``a[index] = value`` は動作します。"
 
-#: ../../library/array.rst:52
+#: ../../library/array.rst:56
 msgid ""
 "Returns the number of items in the array, called as ``len(a)`` (where "
 "``a`` is an ``array``)."
@@ -137,7 +148,7 @@ msgstr ""
 "配列の中の項目の数を返すメソッドで、 ``len(a)`` (``a`` は ``array``)の形で"
 "呼び出します。"
 
-#: ../../library/array.rst:54
+#: ../../library/array.rst:58
 msgid ""
 "**Note:** ``__len__`` cannot be called directly (``a.__len__()`` fails) "
 "and the method is not present in ``__dict__``, however ``len(a)`` does "
@@ -147,7 +158,7 @@ msgstr ""
 "(``a.__len__()`` は失敗します)、このメソッドは ``__dict__`` にも存在しませんが、 "
 "``len(a)`` は動作します。"
 
-#: ../../library/array.rst:59
+#: ../../library/array.rst:63
 msgid ""
 "Return a new ``array`` that is the concatenation of the array with "
 "*other*, called as ``a + other`` (where ``a`` and *other* are both "
@@ -156,7 +167,7 @@ msgstr ""
 "array と *other* を連結した新しい ``array`` を返すメソッドで(``a`` と *other* は"
 "共に ``array``)、 ``a + other`` の形で呼び出します。
 
-#: ../../library/array.rst:62
+#: ../../library/array.rst:66
 msgid ""
 "**Note:** ``__add__`` cannot be called directly (``a.__add__(other)`` "
 "fails) and is not present in ``__dict__``, however ``a + other`` does "
@@ -165,7 +176,7 @@ msgstr ""
 "**注記:** ``__add__`` を直接呼ぶことはできず (``a.__add__(other)`` は失敗します)、 "
 "``__dict__`` にも存在しませんが、 ``a + other`` は動作します。"
 
-#: ../../library/array.rst:67
+#: ../../library/array.rst:71
 msgid ""
 "Concatenates the array with *other* in-place, called as ``a += other`` "
 "(where ``a`` and *other* are both ``arrays``).  Equivalent to "
@@ -174,7 +185,7 @@ msgstr ""
 "array に *other* を連結するメソッドで(``a`` と *other* は共に ``array``)、"
 "``a += other`` の形で呼び出します。 ``extend(other)`` と同等です。"
 
-#: ../../library/array.rst:70
+#: ../../library/array.rst:74
 msgid ""
 "**Note:** ``__iadd__`` cannot be called directly (``a.__iadd__(other)`` "
 "fails) and is not present in ``__dict__``, however ``a += other`` does "
@@ -183,7 +194,7 @@ msgstr ""
 "**注記:** ``__iadd__`` を直接呼び出すことはできず (``a.__iadd__(other)`` は"
 "失敗します)、 ``__dict__`` にも存在しませんが、 ``a += other`` は動作します。"
 
-#: ../../library/array.rst:75
+#: ../../library/array.rst:79
 msgid ""
 "Returns the string representation of the array, called as ``str(a)`` or "
 "``repr(a)``` (where ``a`` is an ``array``).  Returns the string "
@@ -197,7 +208,7 @@ msgstr ""
 "``<type>`` は array の型コード文字、 ``<elements>`` は array の要素をカンマで"
 "区切ったリストです。"
 
-#: ../../library/array.rst:80
+#: ../../library/array.rst:84
 msgid ""
 "**Note:** ``__repr__`` cannot be called directly (``a.__repr__()`` fails)"
 " and is not present in ``__dict__``, however ``str(a)`` and ``repr(a)`` "
@@ -2639,11 +2650,15 @@ msgstr ""
 msgid "Functions and types"
 msgstr "関数とデータ型"
 
-#: ../../library/builtins.rst:24
+#: ../../library/builtins.rst:22
+msgid "|see_cpython| `python:bytearray`."
+msgstr ""
+
+#: ../../library/builtins.rst:26
 msgid "|see_cpython| `python:bytes`."
 msgstr ""
 
-#: ../../library/builtins.rst:38
+#: ../../library/builtins.rst:40
 msgid ""
 "The argument *name* should be a string, and this function deletes the "
 "named attribute from the object given by *obj*."
@@ -2651,7 +2666,7 @@ msgstr ""
 "引数 *name* は文字列でなければならず、この関数は *obj* で与えたオブジェクトから、"
 "指定された名前の属性を削除します。"
 
-#: ../../library/builtins.rst:77 ../../library/builtins.rst:82
+#: ../../library/builtins.rst:79 ../../library/builtins.rst:84
 msgid ""
 "In MicroPython, `byteorder` parameter must be positional (this is "
 "compatible with CPython)."
@@ -2659,7 +2674,7 @@ msgstr ""
 "MicroPython では `byteorder` は位置パラメータでなければなりません(位置"
 "パラメータとすることは CPython でも可能です)。"
 
-#: ../../library/builtins.rst:85
+#: ../../library/builtins.rst:87
 msgid ""
 "The optional ``signed`` kwarg from CPython is not supported. MicroPython "
 "currently converts negative integers as signed, and positive as unsigned."
@@ -2669,28 +2684,32 @@ msgstr ""
 "MicroPython は、現在のところ負の整数は符号付き、正の整数は符号なしとして変換します。"
 " (:ref:`詳細 <cpydiff_types_int_to_bytes>`.)"
 
-#: ../../library/builtins.rst:139
+#: ../../library/builtins.rst:109
+msgid "|see_cpython| `python:memoryview`."
+msgstr ""
+
+#: ../../library/builtins.rst:143
 msgid "The *slice* builtin is the type that slice objects have."
 msgstr "*slice* 組込み型は、スライスオブジェクトが持つデータ型です。"
 
-#: ../../library/builtins.rst:159 ../../library/espnow.rst:571
+#: ../../library/builtins.rst:163 ../../library/espnow.rst:578
 #: ../../library/ssl.rst:114
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/builtins.rst:173
+#: ../../library/builtins.rst:177
 msgid "|see_cpython| `python:KeyboardInterrupt`."
 msgstr ""
 
-#: ../../library/builtins.rst:175
+#: ../../library/builtins.rst:179
 msgid "See also in the context of :ref:`soft_bricking`."
 msgstr ":ref:`soft_bricking` の記載も参照してください。"
 
-#: ../../library/builtins.rst:195
+#: ../../library/builtins.rst:199
 msgid "|see_cpython| `python:SystemExit`."
 msgstr ""
 
-#: ../../library/builtins.rst:197
+#: ../../library/builtins.rst:201
 msgid ""
 "On non-embedded ports (i.e. Windows and Unix), an unhandled "
 "``SystemExit`` exits the MicroPython process in a similar way to CPython."
@@ -2698,7 +2717,7 @@ msgstr ""
 "組込み系ではないポート(WindowsやUnixなど)では、処理されない ``SystemExit`` が発生すると、"
 "CPython と同様にMicroPythonプロセスが終了します。"
 
-#: ../../library/builtins.rst:200
+#: ../../library/builtins.rst:204
 msgid ""
 "On embedded ports, an unhandled ``SystemExit`` currently causes a "
 ":ref:`soft_reset` of MicroPython."
@@ -2706,7 +2725,7 @@ msgstr ""
 "一方、組込み系のポートでは、現在のところ処理されない ``SystemExit`` が発生すると "
 "MicroPython の :ref:`soft_reset` が行われます。"
 
-#: ../../library/builtins.rst:205
+#: ../../library/builtins.rst:209
 msgid "|see_cpython| `python:TypeError`."
 msgstr ""
 
@@ -4674,37 +4693,41 @@ msgstr ""
 
 #: ../../library/espnow.rst:167
 msgid ""
-"*rate*: (ESP32 only, IDF>=4.3.0 only) Set the transmission speed for "
-"ESPNow packets. Must be set to a number from the allowed numeric values "
-"in `enum wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
-"idf/en/v4.4.1/esp32/ api-"
-"reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_."
+"*rate*: (ESP32 only) Set the transmission speed for ESPNow packets. Must "
+"be set to a number from the allowed numeric values in `enum "
+"wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
+"idf/en/v5.2.3/esp32/ api-"
+"reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_. This "
+"parameter is actually *write-only* due to ESP-IDF not providing any means"
+" for querying the radio interface's rate parameter."
 msgstr ""
-"*rate*: (ESP32のみ、IDF>=4.3.0のみ) ESPNow パケットの送信速度を設定します。"
+"*rate*: (ESP32のみ) ESPNow パケットの送信速度を設定します。"
 "`enum wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
 "idf/en/v4.4.1/esp32/ api-"
 "reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_ "
-"列挙値のいずれかに設定する必要があります。"
+"列挙値のいずれかに設定する必要があります。このパラメータは実際には *書き込み専用* です。"
+"これは ESP-IDF が無線インターフェースのレートパラメータを取得する手段を提供"
+"していないためです。"
 
-#: ../../library/espnow.rst:175
+#: ../../library/espnow.rst:177
 msgid "``None`` or the value of the parameter being queried."
 msgstr "パラメータ値の取得の場合はその値、そうでない場合は ``None`` を返します。"
 
-#: ../../library/espnow.rst:179 ../../library/espnow.rst:236
-#: ../../library/espnow.rst:277 ../../library/espnow.rst:461
-#: ../../library/espnow.rst:478 ../../library/espnow.rst:494
+#: ../../library/espnow.rst:181 ../../library/espnow.rst:238
+#: ../../library/espnow.rst:279 ../../library/espnow.rst:472
+#: ../../library/espnow.rst:492 ../../library/espnow.rst:508
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_INIT\")`` if not initialised."
 msgstr "初期化されない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_INIT\")`` が発生。"
 
-#: ../../library/espnow.rst:180
+#: ../../library/espnow.rst:182
 msgid "``ValueError()`` on invalid configuration options or values."
 msgstr "無効な設定オプションまたは値が指定された場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:183
+#: ../../library/espnow.rst:185
 msgid "Sending and Receiving Data"
 msgstr "データの送受信"
 
-#: ../../library/espnow.rst:185
+#: ../../library/espnow.rst:187
 msgid ""
 "A wifi interface (``network.WLAN.IF_STA`` or ``network.WLAN.IF_AP``) must"
 " be `active()<network.WLAN.active>` before messages can be sent or "
@@ -4716,7 +4739,7 @@ msgstr ""
 "ありますが、WLAN インタフェースを接続したり設定する必要はありません。 "
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:190
+#: ../../library/espnow.rst:192
 msgid ""
 "import network\n"
 "\n"
@@ -4730,7 +4753,7 @@ msgstr ""
 "sta.active(True)\n"
 "sta.disconnect()    # ESP8266 用"
 
-#: ../../library/espnow.rst:196
+#: ../../library/espnow.rst:198
 msgid ""
 "**Note:** The ESP8266 has a *feature* that causes it to automatically "
 "reconnect to the last wifi Access Point when set "
@@ -4747,7 +4770,7 @@ msgstr ""
 "の後に `disconnect()<network.WLAN.disconnect>` を呼び出すことで、"
 "これを回避できます。"
 
-#: ../../library/espnow.rst:206
+#: ../../library/espnow.rst:208
 msgid ""
 "Send the data contained in ``msg`` to the peer with given network ``mac``"
 " address. In the second form, ``mac=None`` and ``sync=True``. The peer "
@@ -4758,7 +4781,7 @@ msgstr ""
 "2番目の形式では、 ``mac=None`` と ``sync=True`` になります。ピアは、メッセージを"
 "送信する前に `ESPNow.add_peer()<ESPNow.add_peer()>` で登録しておく必要があります。"
 
-#: ../../library/espnow.rst:213
+#: ../../library/espnow.rst:215
 msgid ""
 "*mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or "
 "``None``. If *mac* is ``None`` (ESP32 only) the message will be sent to "
@@ -4768,32 +4791,32 @@ msgstr ""
 "*mac* が ``None`` の場合(ESP32 のみ)、ブロードキャストまたはマルチキャスト MAC "
 "アドレスを除くすべての登録されたピアにメッセージを送信します。"
 
-#: ../../library/espnow.rst:218
+#: ../../library/espnow.rst:220
 msgid ""
 "*msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250) bytes "
 "long."
 msgstr ""
 "*msg*: 最大長が ``espnow.MAX_DATA_LEN`` (250)である文字列またはバイト列。"
 
-#: ../../library/espnow.rst:221
+#: ../../library/espnow.rst:223
 msgid "*sync*:"
 msgstr ""
 
-#: ../../library/espnow.rst:223
+#: ../../library/espnow.rst:225
 msgid ""
 "``True``: (default) send ``msg`` to the peer(s) and wait for a response "
 "(or not)."
 msgstr ""
 "``True``: (デフォルト) メッセージをピアに送信し、応答を待機します(応答がない場合もあり)。
 
-#: ../../library/espnow.rst:226
+#: ../../library/espnow.rst:228
 msgid ""
 "``False`` send ``msg`` and return immediately. Responses from the peers "
 "will be discarded."
 msgstr ""
 "``False``: メッセージを送信し、すぐに返信します。ピアからの応答は破棄されます。"
 
-#: ../../library/espnow.rst:231
+#: ../../library/espnow.rst:233
 msgid ""
 "``True`` if ``sync=False`` or if ``sync=True`` and *all* peers respond, "
 "else ``False``."
@@ -4801,12 +4824,12 @@ msgstr ""
 "``sync=False`` または ``sync=True`` かつすべてのピアから応答があった場合は "
 "``True`` 、さもなければ ``False`` 。"
 
-#: ../../library/espnow.rst:237
+#: ../../library/espnow.rst:239
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if peer is not registered."
 msgstr ""
 "ピアが登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` が発生。"
 
-#: ../../library/espnow.rst:238
+#: ../../library/espnow.rst:240
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` the wifi interface is not "
 "`active()<network.WLAN.active>`."
@@ -4814,7 +4837,7 @@ msgstr ""
 "wifi インタフェース が `active()<network.WLAN.active>` でなければ、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` が発生。"
 
-#: ../../library/espnow.rst:240
+#: ../../library/espnow.rst:242
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_NO_MEM\")`` internal ESP-NOW buffers are "
 "full."
@@ -4822,11 +4845,11 @@ msgstr ""
 "内部の ESP-NOW バッファが一杯になると、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_NO_MEM\")`` が発生。"
 
-#: ../../library/espnow.rst:242
+#: ../../library/espnow.rst:244
 msgid "``ValueError()`` on invalid values for the parameters."
 msgstr "パラメータの値が不正な場合は ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:244
+#: ../../library/espnow.rst:246
 msgid ""
 "**Note**: A peer will respond with success if its wifi interface is "
 "`active()<network.WLAN.active>` and set to the same channel as the "
@@ -4840,7 +4863,7 @@ msgstr ""
 "同じチャンネルに設定されていれば、ピアは成功で応答します(Espressif の ESP-NOW "
 "ドキュメントを参照)。"
 
-#: ../../library/espnow.rst:251
+#: ../../library/espnow.rst:253
 msgid ""
 "Wait for an incoming message and return the ``mac`` address of the peer "
 "and the message. **Note**: It is **not** necessary to register a peer "
@@ -4851,23 +4874,23 @@ msgstr ""
 "**注記**: ピアからメッセージを受信するために、"
 "(`add_peer()<ESPNow.add_peer()>` を使って)ピアを登録しておく必要はありません。"
 
-#: ../../library/espnow.rst:257
+#: ../../library/espnow.rst:259
 msgid "*timeout_ms*: (Optional): May have the following values."
 msgstr "*timeout_ms*: (オプション): 次の値を指定できます。"
 
-#: ../../library/espnow.rst:259
+#: ../../library/espnow.rst:261
 msgid "``0``: No timeout. Return immediately if no data is available;"
 msgstr "``0``: タイムアウトなし。受信可能なデータがない場合はすぐに戻ります。"
 
-#: ../../library/espnow.rst:260
+#: ../../library/espnow.rst:262
 msgid "``> 0``: Specify a timeout value in milliseconds;"
 msgstr "``> 0``: ミリ秒単位のタイムアウト値を指定します。"
 
-#: ../../library/espnow.rst:261
+#: ../../library/espnow.rst:263
 msgid "``< 0``: Do not timeout, ie. wait forever for new messages; or"
 msgstr "``< 0``: タイムアウトしない、すなわち新しいメッセージを受信するまで永遠に待機します。"
 
-#: ../../library/espnow.rst:262
+#: ../../library/espnow.rst:264
 msgid ""
 "``None`` (or not provided): Use the default timeout value set with "
 "`ESPNow.config()`."
@@ -4875,26 +4898,26 @@ msgstr ""
 "``None`` (または指定なし): `ESPNow.config()` で設定したデフォルトの"
 "タイムアウト値を使用します。"
 
-#: ../../library/espnow.rst:267
+#: ../../library/espnow.rst:269
 msgid "``(None, None)`` if timeout is reached before a message is received, or"
 msgstr "メッセージを受信する前にタイムアウトが発生した場合は ``(None、None)`` が返ります。"
 
-#: ../../library/espnow.rst:269
+#: ../../library/espnow.rst:271
 msgid "``[mac, msg]``: where:"
 msgstr "``[mac、msg]`` は次のものです:"
 
-#: ../../library/espnow.rst:271
+#: ../../library/espnow.rst:273
 msgid ""
 "``mac`` is a bytestring containing the address of the device which sent "
 "the message, and"
 msgstr ""
 "``mac`` はメッセージを送信したデバイスのアドレスを含むバイト列"
 
-#: ../../library/espnow.rst:273
+#: ../../library/espnow.rst:275
 msgid "``msg`` is a bytestring containing the message."
 msgstr "``msg`` はメッセージを含むバイト列
 
-#: ../../library/espnow.rst:278
+#: ../../library/espnow.rst:280
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` if the wifi interface is not "
 "`active()<network.WLAN.active>`."
@@ -4902,11 +4925,11 @@ msgstr ""
 "wifi インタフェースが `active()<network.WLAN.active>` されていない場合、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` が発生。"
 
-#: ../../library/espnow.rst:280
+#: ../../library/espnow.rst:282
 msgid "``ValueError()`` on invalid *timeout_ms* values."
 msgstr "*timeout_ms* の値が無効な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:282
+#: ../../library/espnow.rst:284
 msgid ""
 "`ESPNow.recv()` will allocate new storage for the returned list and the "
 "``peer`` and ``msg`` bytestrings. This can lead to memory fragmentation "
@@ -4918,7 +4941,7 @@ msgstr ""
 "引き起こす可能性があります。メモリに優しい代替手段として `ESPNow.irecv()` を"
 "参照してください。"
 
-#: ../../library/espnow.rst:290
+#: ../../library/espnow.rst:292
 msgid ""
 "Works like `ESPNow.recv()` but will reuse internal bytearrays to store "
 "the return values: ``[mac, msg]``, so that no new memory is allocated on "
@@ -4931,7 +4954,7 @@ msgstr ""
 msgid "*timeout_ms*: (Optional) Timeout in milliseconds (see `ESPNow.recv()`)."
 msgstr "*timeout_ms*: (オプション) ミリ秒単位のタイムアウト値(`ESPNow.recv()` を参照)。"
 
-#: ../../library/espnow.rst:300
+#: ../../library/espnow.rst:302
 msgid ""
 "As for `ESPNow.recv()`, except that ``msg`` is a bytearray, instead of a "
 "bytestring. On the ESP8266, ``mac`` will also be a bytearray."
@@ -4939,11 +4962,11 @@ msgstr ""
 "`ESPNow.recv()` と違い、 ``msg`` はバイト列ではなく bytearray です。"
 "ESP8266 では ``mac`` も bytearray になります。"
 
-#: ../../library/espnow.rst:305 ../../library/espnow.rst:340
+#: ../../library/espnow.rst:307 ../../library/espnow.rst:342
 msgid "See `ESPNow.recv()`."
 msgstr "`ESPNow.recv()` を参照。"
 
-#: ../../library/espnow.rst:307
+#: ../../library/espnow.rst:309
 msgid ""
 "**Note:** You may also read messages by iterating over the ESPNow object,"
 " which will use the `irecv()` method for alloc-free reads, eg: ::"
@@ -4952,7 +4975,7 @@ msgstr ""
 "この方法では、メモリ割当て/解放の対策として `irecv()` メソッドを使っています。"
 "たとえば次のように使います::"
 
-#: ../../library/espnow.rst:310
+#: ../../library/espnow.rst:312
 msgid ""
 "import espnow\n"
 "e = espnow.ESPNow(); e.active(True)\n"
@@ -4962,7 +4985,7 @@ msgid ""
 "        break"
 msgstr ""
 
-#: ../../library/espnow.rst:319
+#: ../../library/espnow.rst:321
 msgid ""
 "Wait for an incoming message and return the length of the message in "
 "bytes. This is the low-level method used by both `recv()<ESPNow.recv()>` "
@@ -4971,7 +4994,7 @@ msgstr ""
 "送信されてくるメッセージを待機し、メッセージの長さをバイト数で返します。"
 "これは `recv()<ESPNow.recv()>` と `irecv()` の両方で使われる低レベルメソッドです。"
 
-#: ../../library/espnow.rst:325
+#: ../../library/espnow.rst:327
 msgid ""
 "*data*: A list of at least two elements, ``[peer, msg]``. ``msg`` must be"
 " a bytearray large enough to hold the message (250 bytes). On the "
@@ -4985,7 +5008,7 @@ msgstr ""
 "これらの bytearray には、送信元の MAC アドレスとメッセージが格納されます"
 "(後述の ESP32 についての注記を参照)。"
 
-#: ../../library/espnow.rst:335
+#: ../../library/espnow.rst:337
 msgid ""
 "Length of message in bytes or 0 if *timeout_ms* is reached before a "
 "message is received."
@@ -4993,11 +5016,11 @@ msgstr ""
 "メッセージのバイト数。メッセージが受信される前に *timeout_ms* が経過した場合は 0 "
 "を返します。"
 
-#: ../../library/espnow.rst:342
+#: ../../library/espnow.rst:344
 msgid "**Note:** On the ESP32:"
 msgstr "**注記:** ESP32の場合:"
 
-#: ../../library/espnow.rst:344
+#: ../../library/espnow.rst:346
 msgid ""
 "It is unnecessary to provide a bytearray in the first element of the "
 "``data`` list because it will be replaced by a reference to a unique "
@@ -5007,7 +5030,7 @@ msgstr ""
 "これは、**ピアデバイステーブル** (`ESPNow.peers_table` を参照)内の"
 "一意のピアアドレスへの参照に置換されます。"
 
-#: ../../library/espnow.rst:347
+#: ../../library/espnow.rst:349
 msgid ""
 "If the list is at least 4 elements long, the rssi and timestamp values "
 "will be saved as the 3rd and 4th elements."
@@ -5015,18 +5038,18 @@ msgstr ""
 "リストが少なくとも4つの要素である場合、rssi およびタイムスタンプ値が3番目および4番目"
 "の要素として保存されます。"
 
-#: ../../library/espnow.rst:352
+#: ../../library/espnow.rst:354
 msgid "Check if data is available to be read with `ESPNow.recv()`."
 msgstr "`ESPNow.recv()` で読み取れるデータがあるかをチェックします。"
 
-#: ../../library/espnow.rst:354
+#: ../../library/espnow.rst:356
 msgid ""
 "For more sophisticated querying of available characters use "
 "`select.poll()`::"
 msgstr ""
 "より高度な文字のクエリングには、`select.poll()` を使ってください::"
 
-#: ../../library/espnow.rst:356
+#: ../../library/espnow.rst:358
 msgid ""
 "import select\n"
 "import espnow\n"
@@ -5037,19 +5060,19 @@ msgid ""
 "poll.poll(timeout)"
 msgstr ""
 
-#: ../../library/espnow.rst:366
+#: ../../library/espnow.rst:368
 msgid "``True`` if data is available to be read, else ``False``."
 msgstr "データが読み取れる場合は ``True`` 、そうでない場合は ``False`` を返します。"
 
-#: ../../library/espnow.rst:372
+#: ../../library/espnow.rst:374
 msgid "A 5-tuple containing the number of packets sent/received/lost:"
 msgstr "送信/受信/損失したパケット数を持つ、次の5要素のタプルを返します:"
 
-#: ../../library/espnow.rst:374
+#: ../../library/espnow.rst:376
 msgid "``(tx_pkts, tx_responses, tx_failures, rx_packets, rx_dropped_packets)``"
 msgstr ""
 
-#: ../../library/espnow.rst:376
+#: ../../library/espnow.rst:378
 msgid ""
 "Incoming packets are *dropped* when the recv buffers are full. To reduce "
 "packet loss, increase the ``rxbuf`` config parameters and ensure you are "
@@ -5058,18 +5081,18 @@ msgstr ""
 "受信バッファが一杯になると、着信パケットが *破棄* されます。パケット損失を減らすには、 "
 "``rxbuf`` 構成パラメータを増やし、できるだけ速くメッセージを読み取るようにしてください。"
 
-#: ../../library/espnow.rst:380
+#: ../../library/espnow.rst:382
 msgid ""
 "**Note**: Dropped packets will still be acknowledged to the sender as "
 "received."
 msgstr ""
 "**注記**: パケットが破棄されても、送信側としては受信されたとみなします。"
 
-#: ../../library/espnow.rst:384
+#: ../../library/espnow.rst:386
 msgid "Peer Management"
 msgstr "ピア管理"
 
-#: ../../library/espnow.rst:386
+#: ../../library/espnow.rst:388
 msgid ""
 "On ESP32 devices, the Espressif ESP-NOW software requires that other "
 "devices (peers) must be *registered* using `add_peer()` before we can "
@@ -5082,7 +5105,7 @@ msgstr ""
 "しておく必要があります(これは、ESP8266 デバイスでは強制 *されません* )。"
 "ピアから暗号化されていないメッセージを受信するのであれば、ピアの登録は *要りません* 。"
 
-#: ../../library/espnow.rst:392
+#: ../../library/espnow.rst:394
 msgid ""
 "**Encrypted messages**: To receive an *encrypted* message, the receiving "
 "device must first register the sender and use the same encryption keys as"
@@ -5092,7 +5115,7 @@ msgstr ""
 "受信側のデバイスがまず送信者を登録し、送信者と同じ暗号化キー(PMKとLMK)を"
 "使う必要があります(`set_pmk()` と `add_peer()` を参照。"
 
-#: ../../library/espnow.rst:398
+#: ../../library/espnow.rst:400
 msgid ""
 "Set the Primary Master Key (PMK) which is used to encrypt the Local "
 "Master Keys (LMK) for encrypting messages. If this is not set, a default "
@@ -5103,7 +5126,7 @@ msgstr ""
 "設定しない場合、Espressif ESP-NOW ソフトウェアスタックによってデフォルトの PMK "
 "が使われます。"
 
-#: ../../library/espnow.rst:402
+#: ../../library/espnow.rst:404
 msgid ""
 "**Note:** messages will only be encrypted if *lmk* is also set in "
 "`ESPNow.add_peer()` (see `Security <https://docs.espressif.com/projects"
@@ -5116,7 +5139,7 @@ msgstr ""
 "/esp-idf/en/latest/ esp32/api-reference/network/esp_now.html#security>`_ "
 "を参照)。"
 
-#: ../../library/espnow.rst:410
+#: ../../library/espnow.rst:412
 msgid ""
 "*pmk*: Must be a byte string, bytearray or string of length "
 "`espnow.KEY_LEN` (16 bytes)."
@@ -5124,15 +5147,15 @@ msgstr ""
 "*pmk*: `espnow.KEY_LEN` (16バイト)の長さのバイト列、bytearray、または文字列"
 "である必要があります。"
 
-#: ../../library/espnow.rst:415 ../../library/espnow.rst:481
+#: ../../library/espnow.rst:417 ../../library/espnow.rst:483
 msgid "``None``"
 msgstr ""
 
-#: ../../library/espnow.rst:419
+#: ../../library/espnow.rst:421
 msgid "``ValueError()`` on invalid *pmk* values."
 msgstr "*pmk* 値が不正な場合、 ``ValueError(）`` が発生。"
 
-#: ../../library/espnow.rst:424
+#: ../../library/espnow.rst:426
 msgid ""
 "Add/register the provided *mac* address as a peer. Additional parameters "
 "may also be specified as positional or keyword arguments (any parameter "
@@ -5142,11 +5165,11 @@ msgstr ""
 "追加のパラメータを位置引数またはキーワード引数として指定することもできます"
 "(パラメータに ``None`` を指定するとデフォルト値が適用されます)。"
 
-#: ../../library/espnow.rst:430
+#: ../../library/espnow.rst:432
 msgid "*mac*: The MAC address of the peer (as a 6-byte byte-string)."
 msgstr "*mac*: ピアのMACアドレス(6バイトのバイト列)。"
 
-#: ../../library/espnow.rst:432
+#: ../../library/espnow.rst:434
 msgid ""
 "*lmk*: The Local Master Key (LMK) key used to encrypt data transfers with"
 " this peer (unless the *encrypt* parameter is set to ``False``). Must be:"
@@ -5155,14 +5178,14 @@ msgstr ""
 "(*encrypt* パラメータが ``False`` に設定されていない場合に限ります)。"
 "次のいずれかである必要があります。"
 
-#: ../../library/espnow.rst:436
+#: ../../library/espnow.rst:438
 msgid ""
 "a byte-string or bytearray or string of length ``espnow.KEY_LEN`` (16 "
 "bytes), or"
 msgstr ""
 "長さが ``espnow.KEY_LEN`` (16バイト)のバイト列、bytearray、または文字列"
 
-#: ../../library/espnow.rst:439
+#: ../../library/espnow.rst:441
 msgid ""
 "any non ``True`` python value (default= ``b''``), signifying an *empty* "
 "key which will disable encryption."
@@ -5170,7 +5193,7 @@ msgstr ""
 "``True`` 以外の任意のPython値(デフォルト= ``b''``)。"
 "これは暗号化を無効にする空のキーを示します。"
 
-#: ../../library/espnow.rst:442
+#: ../../library/espnow.rst:444
 msgid ""
 "*channel*: The wifi channel (2.4GHz) to communicate with this peer. Must "
 "be an integer from 0 to 14. If channel is set to 0 the current channel of"
@@ -5184,7 +5207,7 @@ msgstr ""
 "値はインタフェースに現在設定されているチャンネルと一致している必要があります"
 "(詳細は :func:`WLAN.config` を参照)。(デフォルト=0)"
 
-#: ../../library/espnow.rst:448
+#: ../../library/espnow.rst:450
 msgid ""
 "*ifidx*: (ESP32 only) Index of the wifi interface which will be used to "
 "send data to this peer. Must be an integer set to ``network.WLAN.IF_STA``"
@@ -5198,7 +5221,7 @@ msgstr ""
 "された整数でなければなりません。(デフォルト=0/``network.WLAN.IF_STA``)。"
 "詳細については、後述の `ESPNow and Wifi Operation`_ を参照してください。"
 
-#: ../../library/espnow.rst:454
+#: ../../library/espnow.rst:456
 msgid ""
 "*encrypt*: (ESP32 only) If set to ``True`` data exchanged with this peer "
 "will be encrypted with the PMK and LMK. (default = ``True`` if *lmk* is "
@@ -5208,11 +5231,11 @@ msgstr ""
 "するには ``True`` に設定します。(*lmk* に適正値が指定されていればデフォルトは "
 "``True`` 、さもなければ ``False``)"
 
-#: ../../library/espnow.rst:458
+#: ../../library/espnow.rst:460
 msgid "**ESP8266**: Keyword args may not be used on the ESP8266."
 msgstr "**ESP8266**: ESP8266 ではキーワード引数を指定できません。"
 
-#: ../../library/espnow.rst:460
+#: ../../library/espnow.rst:462
 msgid ""
 "**Note:** The maximum number of peers which may be registered is 20 "
 "(`espnow.MAX_TOTAL_PEER_NUM`), with a maximum of 6 "
@@ -5230,13 +5253,13 @@ msgstr ""
 "/esp-idf/en/latest/esp32/api-reference/network/ "
 "esp_now.html#c.ESP_NOW_MAX_ENCRYPT_PEER_NUM>`_ を参照)。"
 
-#: ../../library/espnow.rst:471
+#: ../../library/espnow.rst:473
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` if *mac* is already registered."
 msgstr ""
 "*mac* がすでに登録されている場合、 ``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:473
+#: ../../library/espnow.rst:475
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` if too many peers are already "
 "registered."
@@ -5244,7 +5267,7 @@ msgstr ""
 "登録するピアが多すぎる場合、 ``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:475
+#: ../../library/espnow.rst:477
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` if a channel value was set that"
 " doesn't match the channel currently configured for this interface."
@@ -5252,29 +5275,29 @@ msgstr ""
 "チャンネル値がこのインターフェースに現在設定されているチャンネルと一致していない場合、"
 "``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` が発生。"
 
-#: ../../library/espnow.rst:478
+#: ../../library/espnow.rst:480
 msgid "``ValueError()`` on invalid keyword args or values."
 msgstr "キーワード引数または値が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:482
+#: ../../library/espnow.rst:484
 msgid "Deregister the peer associated with the provided *mac* address."
 msgstr "指定した *mac* アドレスに関連付けられたピアを登録解除します。"
 
-#: ../../library/espnow.rst:491 ../../library/espnow.rst:507
+#: ../../library/espnow.rst:493 ../../library/espnow.rst:509
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if *mac* is not registered."
 msgstr ""
 "*mac* が登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:493 ../../library/espnow.rst:509
+#: ../../library/espnow.rst:495 ../../library/espnow.rst:511
 msgid "``ValueError()`` on invalid *mac* values."
 msgstr "*mac* が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:497
+#: ../../library/espnow.rst:499
 msgid "Return information on a registered peer."
 msgstr "登録されているピアに関する情報を返します。"
 
-#: ../../library/espnow.rst:501
+#: ../../library/espnow.rst:503
 msgid ""
 "``(mac, lmk, channel, ifidx, encrypt)``: a tuple of the \"peer info\" "
 "associated with the given *mac* address."
@@ -5282,30 +5305,30 @@ msgstr ""
 "``(mac, lmk, channel, ifidx, encrypt)``: 指定した *mac* アドレスに"
 "関連付けられた「ピア情報」のタプル。"
 
-#: ../../library/espnow.rst:513
+#: ../../library/espnow.rst:515
 msgid "Return the number of registered peers:"
 msgstr "登録されているピア数を返します:"
 
-#: ../../library/espnow.rst:515
+#: ../../library/espnow.rst:517
 msgid "``(peer_num, encrypt_num)``: where"
 msgstr "``(peer_num, encrypt_num)``:"
 
-#: ../../library/espnow.rst:517
+#: ../../library/espnow.rst:519
 msgid "``peer_num`` is the number of peers which are registered, and"
 msgstr "``peer_num`` は登録されているピア数。"
 
-#: ../../library/espnow.rst:518
+#: ../../library/espnow.rst:520
 msgid "``encrypt_num`` is the number of encrypted peers."
 msgstr "``encrypt_num`` は暗号化されたピア数。"
 
-#: ../../library/espnow.rst:522
+#: ../../library/espnow.rst:524
 msgid ""
 "Return the \"peer info\" parameters for all the registered peers (as a "
 "tuple of tuples)."
 msgstr ""
 "登録されているすべてのピアの「ピア情報」パラメータを(タプルのタプルとして)返します"。
 
-#: ../../library/espnow.rst:528
+#: ../../library/espnow.rst:530
 msgid ""
 "Modify the parameters of the peer associated with the provided *mac* "
 "address. Parameters may be provided as positional or keyword arguments "
@@ -5317,11 +5340,11 @@ msgstr ""
 "(`ESPNow.add_peer()` を参照)。パラメータを指定しない場合(もしくは ``None`` を
 "指定した場合)、既存のパラメータ値を返します。"
 
-#: ../../library/espnow.rst:534
+#: ../../library/espnow.rst:536
 msgid "Callback Methods"
 msgstr "コールバックメソッド"
 
-#: ../../library/espnow.rst:538
+#: ../../library/espnow.rst:540
 msgid ""
 "Set a callback function to be called *as soon as possible* after a "
 "message has been received from another ESPNow device. The callback "
@@ -5337,7 +5360,7 @@ msgstr ""
 "メッセージを読み込み、読み込みのタイムアウトをゼロに設定することをお勧めします。"
 "たとえば、次のように使います::"
 
-#: ../../library/espnow.rst:544
+#: ../../library/espnow.rst:546
 msgid ""
 "def recv_cb(e):\n"
 "    while True:  # Read out all messages waiting in the buffer\n"
@@ -5355,7 +5378,7 @@ msgstr ""
 "        print(mac, msg)\n"
 "e.irq(recv_cb)"
 
-#: ../../library/espnow.rst:552
+#: ../../library/espnow.rst:554
 msgid ""
 "The `irq()<ESPNow.irq()>` callback method is an alternative method for "
 "processing incoming messages, especially if the data rate is moderate and"
@@ -5366,7 +5389,7 @@ msgstr ""
 "着信したメッセージを処理するための代替方法ですが、"
 "いくつかの注意点があります:"
 
-#: ../../library/espnow.rst:556
+#: ../../library/espnow.rst:558
 msgid ""
 "The scheduler stack *can* overflow and callbacks will be missed if "
 "packets are arriving at a sufficient rate or if other MicroPython "
@@ -5383,7 +5406,7 @@ msgstr ""
 "このメソッドは、メッセージのバースト処理や高スループット、"
 "他のハードウェア操作に忙しいデバイスの処理に対しては、信頼性が低い場合があります。"
 
-#: ../../library/espnow.rst:563
+#: ../../library/espnow.rst:565
 msgid ""
 "For more information on *scheduled* function callbacks see: "
 "`micropython.schedule()<micropython.schedule>`."
@@ -5392,7 +5415,7 @@ msgstr ""
 "`micropython.schedule()<micropython.schedule>` "
 "を参照してください。"
 
-#: ../../library/espnow.rst:578
+#: ../../library/espnow.rst:580
 msgid ""
 "If the underlying Espressif ESP-NOW software stack returns an error code,"
 " the MicroPython espnow module will raise an ``OSError(errnum, "
@@ -5408,7 +5431,7 @@ msgstr ""
 "reference/network/esp_now.html#api-reference>`_ にある"
 "エラーコードの名前に設定されます。次に例を示します::"
 
-#: ../../library/espnow.rst:586
+#: ../../library/espnow.rst:588
 msgid ""
 "try:\n"
 "    e.send(peer, 'Hello')\n"
@@ -5425,11 +5448,11 @@ msgid ""
 "        raise err"
 msgstr ""
 
-#: ../../library/espnow.rst:601
+#: ../../library/espnow.rst:603
 msgid "Wifi Signal Strength (RSSI) - (ESP32 only)"
 msgstr "Wifi 信号強度 (RSSI) - (ESP32 のみ)"
 
-#: ../../library/espnow.rst:603
+#: ../../library/espnow.rst:605
 msgid ""
 "The ESPNow object maintains a **peer device table** which contains the "
 "signal strength and timestamp of the last received message from all "
@@ -5444,33 +5467,33 @@ msgstr ""
 "ピアデバイスのネットワーク内でデバイスの近接性を追跡し、 *最も近い隣接デバイス* "
 "を特定するために使えます。この機能は ESP8266 デバイスでは使えません。"
 
-#: ../../library/espnow.rst:611
+#: ../../library/espnow.rst:613
 msgid ""
 "A reference to the **peer device table**: a dict of known peer devices "
 "and rssi values::"
 msgstr ""
 "**ピアデバイステーブル** への参照: 既知のピアデバイスと RSSI 値の辞書です。"
 
-#: ../../library/espnow.rst:614
+#: ../../library/espnow.rst:616
 msgid "{peer: [rssi, time_ms], ...}"
 msgstr ""
 
-#: ../../library/espnow.rst:616
+#: ../../library/espnow.rst:618
 msgid "where:"
 msgstr "ここでの各項目は次のとおりです:"
 
-#: ../../library/espnow.rst:618
+#: ../../library/espnow.rst:620
 msgid "``peer`` is the peer MAC address (as `bytes`);"
 msgstr "``peer`` はピアの MAC アドレス(`bytes`)です。"
 
-#: ../../library/espnow.rst:619
+#: ../../library/espnow.rst:621
 msgid ""
 "``rssi`` is the wifi signal strength in dBm (-127 to 0) of the last "
 "message received from the peer; and"
 msgstr ""
 "``rssi`` はピアからの最新の受信メッセージの wifi 信号強度です(dBm: -127 から 0 の範囲)。"
 
-#: ../../library/espnow.rst:621
+#: ../../library/espnow.rst:623
 msgid ""
 "``time_ms`` is the time the message was received (in milliseconds since "
 "system boot - wraps every 12 days)."
@@ -5478,14 +5501,14 @@ msgstr ""
 "``time_ms`` はメッセージの受信時刻です(システム起動からのミリ秒単位の経過時間、"
 "12日ごとにラップ)。"
 
-#: ../../library/espnow.rst:626
+#: ../../library/espnow.rst:628
 msgid ""
 ">>> e.peers_table\n"
 "{b'\\xaa\\xaa\\xaa\\xaa\\xaa\\xaa': [-31, 18372],\n"
 " b'\\xbb\\xbb\\xbb\\xbb\\xbb\\xbb': [-43, 12541]}"
 msgstr ""
 
-#: ../../library/espnow.rst:630
+#: ../../library/espnow.rst:632
 msgid ""
 "**Note**: the ``mac`` addresses returned by `recv()` are references to "
 "the ``peer`` key values in the **peer device table**."
@@ -5493,7 +5516,7 @@ msgstr ""
 "**注記**: `recv()` によって返される ``mac`` アドレスは、"
 "ピアデバイステーブルのピアキーの値への参照です。"
 
-#: ../../library/espnow.rst:633
+#: ../../library/espnow.rst:635
 msgid ""
 "**Note**: RSSI and timestamp values in the device table are updated only "
 "when the message is read by the application."
@@ -5501,11 +5524,11 @@ msgstr ""
 "**注記**: デバイステーブル内の RSSI とタイムスタンプの値は、アプリケーションによって"
 "メッセージが読み取られたときにのみ更新されます。"
 
-#: ../../library/espnow.rst:637
+#: ../../library/espnow.rst:639
 msgid "Supporting asyncio"
 msgstr "asyncio のサポート"
 
-#: ../../library/espnow.rst:639
+#: ../../library/espnow.rst:641
 msgid ""
 "A supplementary module (`aioespnow`) is available to provide "
 ":doc:`asyncio<asyncio>` support."
@@ -5513,7 +5536,7 @@ msgstr ""
 "追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<asyncio>` を"
 "サポートします。"
 
-#: ../../library/espnow.rst:642
+#: ../../library/espnow.rst:644
 msgid ""
 "**Note:** Asyncio support is available on all ESP32 targets as well as "
 "those ESP8266 boards which include the asyncio module (ie. ESP8266 "
@@ -5524,11 +5547,11 @@ msgstr ""
 "(すなわち、少なくとも2MBのフラッシュメモリを持つ ESP8266 デバイス)"
 "でも使えます。"
 
-#: ../../library/espnow.rst:646
+#: ../../library/espnow.rst:648
 msgid "A small async server example::"
 msgstr "次は小さな非同期サーバーの例です::"
 
-#: ../../library/espnow.rst:648
+#: ../../library/espnow.rst:650
 msgid ""
 "import network\n"
 "import aioespnow\n"
@@ -5572,7 +5595,7 @@ msgid ""
 "asyncio.run(main(e, peer, 120, 10))"
 msgstr ""
 
-#: ../../library/espnow.rst:692
+#: ../../library/espnow.rst:694
 msgid ""
 "The `AIOESPNow` class inherits all the methods of `ESPNow<espnow.ESPNow>`"
 " and extends the interface with the following async methods."
@@ -5580,7 +5603,7 @@ msgstr ""
 "`AIOESPNow` クラスは `ESPNow<espnow.ESPNow>` のすべてのメソッドを継承し、"
 "以下の非同期メソッドでインタフェースを拡張します。"
 
-#: ../../library/espnow.rst:697
+#: ../../library/espnow.rst:699
 msgid ""
 "Asyncio support for `ESPNow.recv()`. Note that this method does not take "
 "a timeout value as argument."
@@ -5588,7 +5611,7 @@ msgstr ""
 "`ESPNow.recv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:702
+#: ../../library/espnow.rst:704
 msgid ""
 "Asyncio support for `ESPNow.irecv()`. Note that this method does not take"
 " a timeout value as argument."
@@ -5596,11 +5619,11 @@ msgstr ""
 "`ESPNow.irecv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:708
+#: ../../library/espnow.rst:710
 msgid "Asyncio support for `ESPNow.send()`."
 msgstr "`ESPNow.send()` の Asyncio サポート。"
 
-#: ../../library/espnow.rst:712
+#: ../../library/espnow.rst:714
 msgid ""
 "`AIOESPNow` also supports reading incoming messages by asynchronous "
 "iteration using ``async for``; eg::"
@@ -5608,7 +5631,7 @@ msgstr ""
 "`AIOESPNow` は、非同期イテレーションを使って受信メッセージを読み取るための "
 "Async for もサポートしています。例えば次のようにして使います::"
 
-#: ../../library/espnow.rst:715
+#: ../../library/espnow.rst:717
 msgid ""
 "e = AIOESPNow()\n"
 "e.active(True)\n"
@@ -5620,11 +5643,11 @@ msgid ""
 "asyncio.run(recv_till_halt(e))"
 msgstr ""
 
-#: ../../library/espnow.rst:725
+#: ../../library/espnow.rst:727
 msgid "Broadcast and Multicast"
 msgstr "ブロードキャストとマルチキャスト"
 
-#: ../../library/espnow.rst:727
+#: ../../library/espnow.rst:729
 msgid ""
 "All active ESPNow clients will receive messages sent to their MAC address"
 " and all devices (**except ESP8266 devices**) will also receive messages "
@@ -5636,7 +5659,7 @@ msgstr ""
 "*ブロードキャスト* MAC アドレス(``b'\\xff\\xff\\xff\\xff\\xff\\xff'``)"
 "またはマルチキャスト MAC アドレス宛てに送信されたメッセージも受信します。"
 
-#: ../../library/espnow.rst:732
+#: ../../library/espnow.rst:734
 msgid ""
 "All ESPNow devices (including ESP8266 devices) can also send messages to "
 "the broadcast MAC address or any multicast MAC address."
@@ -5644,7 +5667,7 @@ msgstr ""
 "すべての ESPNow デバイス(ESP8266デバイスを含む)は、ブロードキャスト MAC アドレス"
 "または任意のマルチキャスト MAC アドレスにもメッセージを送信できます。"
 
-#: ../../library/espnow.rst:735
+#: ../../library/espnow.rst:737
 msgid ""
 "To `send()<ESPNow.send()>` a broadcast message, the broadcast (or "
 "multicast) MAC address must first be registered using "
@@ -5661,7 +5684,7 @@ msgstr ""
 "ブロードキャストアドレスまたはマルチキャストアドレス宛てに送信されたメッセージは"
 "暗号化できません。"
 
-#: ../../library/espnow.rst:742
+#: ../../library/espnow.rst:744
 msgid ""
 "**Note**: `ESPNow.send(None, msg)<ESPNow.send()>` will send to all "
 "registered peers *except* the broadcast address. To send a broadcast or "
@@ -5673,18 +5696,18 @@ msgstr ""
 "送信するには、ブロードキャスト(またはマルチキャスト) MAC アドレスをピアとして"
 "指定する必要があります。たとえば次のようにします::"
 
-#: ../../library/espnow.rst:747
+#: ../../library/espnow.rst:749
 msgid ""
 "bcast = b'\\xff' * 6\n"
 "e.add_peer(bcast)\n"
 "e.send(bcast, \"Hello World!\")"
 msgstr ""
 
-#: ../../library/espnow.rst:752
+#: ../../library/espnow.rst:754
 msgid "ESPNow and Wifi Operation"
 msgstr "ESPNow と Wifi 操作"
 
-#: ../../library/espnow.rst:754
+#: ../../library/espnow.rst:756
 msgid ""
 "ESPNow messages may be sent and received on any "
 "`active()<network.WLAN.active>` `WLAN<network.WLAN()>` interface "
@@ -5702,7 +5725,7 @@ msgstr ""
 "に接続すると(`ESP32 Quickref <../esp32/quickref.html#networking>`__ "
 "を)、次のようなことが起こり、ESPNow 通信に影響を与えます:"
 
-#: ../../library/espnow.rst:761
+#: ../../library/espnow.rst:763
 msgid ""
 "Wifi Power-saving Mode (`network.WLAN.PM_PERFORMANCE`) is automatically "
 "activated and"
@@ -5710,14 +5733,14 @@ msgstr ""
 "Wifi パワーセービングモード(`network.WLAN.PM_PERFORMANCE`)が自動的に"
 "アクティベートされる。"
 
-#: ../../library/espnow.rst:763
+#: ../../library/espnow.rst:765
 msgid ""
 "The radio on the esp device changes wifi ``channel`` to match the channel"
 " used by the Access Point."
 msgstr ""
 "esp デバイスの無線機が、アクセスポイントで使用されているチャンネルに合わせて変更される。"
 
-#: ../../library/espnow.rst:766
+#: ../../library/espnow.rst:768
 msgid ""
 "**Wifi Power-saving Mode:** (see `Espressif Docs "
 "<https://docs.espressif.com/ projects/esp-idf/en/latest/esp32/api-guides/"
@@ -5733,7 +5756,7 @@ msgstr ""
 "ESPNow メッセージの受信が信頼性に欠ける状態になります。"
 "これに対処する方法は次のいずれかです:"
 
-#: ../../library/espnow.rst:773
+#: ../../library/espnow.rst:775
 msgid "Disabling the power-saving mode on the STA_IF interface;"
 msgstr "STA_IF インタフェースでパワーセービングモードを無効化"
 
@@ -5741,7 +5764,7 @@ msgstr "STA_IF インタフェースでパワーセービングモードを無�
 msgid "Use ``sta.config(pm=sta.PM_NONE)``"
 msgstr "``sta.config(pm=sta.PM_NONE)`` を使用"
 
-#: ../../library/espnow.rst:777
+#: ../../library/espnow.rst:779
 msgid ""
 "Turning on the AP_IF interface, which will disable the power saving mode."
 " However, the device will then be advertising an active wifi access "
@@ -5751,23 +5774,23 @@ msgstr ""
 "ただし、デバイスはアクティブな Wifi アクセスポイントをアドバタインジングする"
 "ことになります。"
 
-#: ../../library/espnow.rst:780
+#: ../../library/espnow.rst:782
 msgid ""
 "You **may** also choose to send your messages via the AP_IF interface, "
 "but this is not necessary."
 msgstr ""
 "メッセージを AP_IF インターフェース経由で送信することもできますが、これは必須ではありません。"
 
-#: ../../library/espnow.rst:782
+#: ../../library/espnow.rst:784
 msgid "ESP8266 peers must send messages to this AP_IF interface (see below)."
 msgstr ""
 "ESP8266 のピアは、この AP_IF インターフェースにメッセージを送信する必要があります(後述)。"
 
-#: ../../library/espnow.rst:784
+#: ../../library/espnow.rst:786
 msgid "Configuring ESPNow clients to retry sending messages."
 msgstr "ESPNow クライアントのメッセージ送信のリトライ設定を行うこと。"
 
-#: ../../library/espnow.rst:786
+#: ../../library/espnow.rst:788
 msgid ""
 "**Receiving messages from an ESP8266 device:** Strangely, an ESP32 device"
 " connected to a wifi network using method 1 or 2 above, will receive "
@@ -5783,7 +5806,7 @@ msgstr ""
 "AP_IF インターフェースを ``active(True)`` に設定し、 **さらに** 、メッセージを"
 "AP_IF MAC アドレス宛てに送信する必要があります。"
 
-#: ../../library/espnow.rst:793
+#: ../../library/espnow.rst:795
 msgid ""
 "**Managing wifi channels:** Any other ESPNow devices wishing to "
 "communicate with a device which is also connected to a Wifi Access Point "
@@ -5797,11 +5820,11 @@ msgstr ""
 "ESPNow を介して接続されたセンサーグループからのメッセージのプロキシとして"
 "機能することです:"
 
-#: ../../library/espnow.rst:799
+#: ../../library/espnow.rst:801
 msgid "**Proxy:** ::"
 msgstr "**プロキシ:** ::"
 
-#: ../../library/espnow.rst:801
+#: ../../library/espnow.rst:803
 msgid ""
 "import network, time, espnow\n"
 "\n"
@@ -5818,11 +5841,11 @@ msgid ""
 "    # Receive espnow messages and forward them to MQTT broker over wifi"
 msgstr ""
 
-#: ../../library/espnow.rst:815
+#: ../../library/espnow.rst:817
 msgid "**Sensor:** ::"
 msgstr "**センサー:** ::"
 
-#: ../../library/espnow.rst:817
+#: ../../library/espnow.rst:819
 msgid ""
 "import network, espnow\n"
 "\n"
@@ -5838,11 +5861,11 @@ msgid ""
 "    time.sleep(1)"
 msgstr ""
 
-#: ../../library/espnow.rst:829
+#: ../../library/espnow.rst:831
 msgid "Other issues to take care with when using ESPNow with wifi are:"
 msgstr "ESPNow を Wifi と併用する際に注意するべき他の問題は次のとおりです:"
 
-#: ../../library/espnow.rst:831
+#: ../../library/espnow.rst:833
 msgid ""
 "**Set WIFI to known state on startup:** MicroPython does not reset the "
 "wifi peripheral after a soft reset. This can lead to unexpected "
@@ -5856,7 +5879,7 @@ msgstr ""
 "起動時に所望の状態に設定する前に非アクティブにするようにしてください。"
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:837
+#: ../../library/espnow.rst:839
 msgid ""
 "import network, time\n"
 "\n"
@@ -5875,14 +5898,14 @@ msgid ""
 "sta, ap = wifi_reset()"
 msgstr ""
 
-#: ../../library/espnow.rst:852
+#: ../../library/espnow.rst:854
 msgid ""
 "Remember that a soft reset occurs every time you connect to the device "
 "REPL and when you type ``ctrl-D``."
 msgstr ""
 "ソフトリセットは、デバイスを REPL に接続したり、 ``ctrl-D`` を入力すると常に発生します。"
 
-#: ../../library/espnow.rst:855
+#: ../../library/espnow.rst:857
 msgid ""
 "**STA_IF and AP_IF always operate on the same channel:** the AP_IF will "
 "change channel when you connect to a wifi network; regardless of the "
@@ -5902,7 +5925,7 @@ msgstr ""
 "実際には、デバイス上には1つの Wifi 無線機しかなく、STA_IF と AP_IF の"
 "仮想デバイスで共有されています。"
 
-#: ../../library/espnow.rst:864
+#: ../../library/espnow.rst:866
 msgid ""
 "**Disable automatic channel assignment on your wifi router:** If the wifi"
 " router for your wifi network is configured to automatically assign the "
@@ -5924,7 +5947,7 @@ msgstr ""
 "デバイスを現在のチャンネルで期待されるピアを見つけることができない場合に Wifi チャンネルを"
 "再スキャンするように構成します。"
 
-#: ../../library/espnow.rst:874
+#: ../../library/espnow.rst:876
 msgid ""
 "**MicroPython re-scans wifi channels when trying to reconnect:** If the "
 "esp device is connected to a Wifi Access Point that goes down, "
@@ -5940,7 +5963,7 @@ msgstr ""
 "間は ESPNow メッセージが失われます。 ``sta.config(reconnects=0)`` によって"
 "これを無効にできますが、接続が失われた後の自動再接続も無効になります。"
 
-#: ../../library/espnow.rst:881
+#: ../../library/espnow.rst:883
 msgid ""
 "Some versions of the ESP IDF only permit sending ESPNow packets from the "
 "STA_IF interface to peers which have been registered on the same wifi "
@@ -5949,15 +5972,15 @@ msgstr ""
 "一部の ESP IDF バージョンでは、STA_IF インタフェースからの ESPNow パケットの"
 "送信は、STA_IF と同じ Wifi チャンネルに登録されたピアに対してのみ許可されます。"
 
-#: ../../library/espnow.rst:885
+#: ../../library/espnow.rst:887
 msgid "ESPNOW: Peer channel is not equal to the home channel, send fail!"
 msgstr ""
 
-#: ../../library/espnow.rst:888
+#: ../../library/espnow.rst:890
 msgid "ESPNow and Sleep Modes"
 msgstr "ESPNow とスリープモード"
 
-#: ../../library/espnow.rst:890
+#: ../../library/espnow.rst:892
 msgid ""
 "The `machine.lightsleep([time_ms])<machine.lightsleep>` and "
 "`machine.deepsleep([time_ms])<machine.deepsleep>` functions can be used "
@@ -5985,7 +6008,7 @@ msgstr ""
 "に設定されている場合、どのスリープモードに入る前に両方のインターフェースを "
 "`active(False)<network.WLAN.active()>` に設定する必要があります。"
 
-#: ../../library/espnow.rst:903
+#: ../../library/espnow.rst:905
 msgid "**Example:** deep sleep::"
 msgstr "例：ディープスリープ::"
 
@@ -6009,11 +6032,11 @@ msgid ""
 "machine.deepsleep(10000)          # Sleep for 10 seconds then reboot"
 msgstr ""
 
-#: ../../library/espnow.rst:921
+#: ../../library/espnow.rst:923
 msgid "**Example:** light sleep::"
 msgstr "例：ライトスリープ::"
 
-#: ../../library/espnow.rst:923
+#: ../../library/espnow.rst:925
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -13090,6 +13113,50 @@ msgstr ""
 "呼出しを適切な場所に配置して、すべてが正しく機能していることを確認した後に WDT "
 "にのみフィードが供給されるようにする必要があります。"
 
+#: ../../library/marshal.rst:2
+msgid ":mod:`marshal` -- Python object serialization"
+msgstr ":mod:`marshal` -- Python オブジェクト整列化"
+
+#: ../../library/marshal.rst:7
+msgid "|see_cpython_module| :mod:`python:marshal`."
+msgstr ""
+
+#: ../../library/marshal.rst:9
+msgid ""
+"This module implements conversion between Python objects and a binary "
+"format. The format is specific to MicroPython but does not depend on the "
+"machine architecture, so the data can be transferred and used on a "
+"different MicroPython instance, as long as the version of the binary data"
+" matches (it's currently versioned as the mpy file version, see "
+":ref:`mpy_files`)."
+msgstr ""
+"このモジュールは、Python オブジェクトとバイナリフォーマットとの間での変換を実装しています。"
+"このフォーマットは MicroPython 固有のものですが、マシンアーキテクチャには依存しないため、"
+"バイナリデータのバージョンが一致していれば、異なる MicroPython インスタンス間で"
+"データを転送して使用できます(現状、 :ref:`mpy_files` に説明のある mpy ファイル"
+"バージョンとしてバージョン管理されています)。"
+
+#: ../../library/marshal.rst:20
+msgid ""
+"Convert the given *value* to binary format and return a corresponding "
+"``bytes`` object."
+msgstr ""
+"指定した *value* をバイナリ形式に変換し、対応する ``bytes`` オブジェクトを返します。"
+
+#: ../../library/marshal.rst:23
+msgid ""
+"Currently, code objects are the only supported values that can be "
+"converted."
+msgstr ""
+"現在のところ、変換できるのはコードオブジェクトのみです。"
+
+#: ../../library/marshal.rst:27
+msgid ""
+"Convert the given bytes-like *data* to its corresponding Python object, "
+"and return it."
+msgstr ""
+"指定した bytes ライクな *data* を対応する Python オブジェクト に変換し、それを返します。"
+
 #: ../../library/math.rst:2
 msgid ":mod:`math` -- mathematical functions"
 msgstr ":mod:`math` -- 数学関数"
@@ -14369,6 +14436,10 @@ msgstr ""
 "このクラスは、イーサネットインターフェースを制御できます。"
 "PHY ハードウェア種別はボードに依存します。"
 
+#: ../../library/network.LAN.rst:9
+msgid "Example usage, for a board with built-in LAN support::"
+msgstr "内蔵の LAN サポートのあるボードでの使用例"
+
 #: ../../library/network.LAN.rst:11
 msgid ""
 "import network\n"
@@ -14424,12 +14495,12 @@ msgstr ""
 #: ../../library/network.LAN.rst:34
 msgid ""
 "*ref_clk_mode* specifies, whether the data clock is provided by the "
-"Ethernet controller or the PYH interface. The default value is the one "
+"Ethernet controller or the PHY interface. The default value is the one "
 "that matches the board. If set to ``LAN.OUT`` or ``Pin.OUT`` or ``True``,"
 " the clock is driven by the Ethernet controller, if set to ``LAN.IN`` or "
 "``Pin.IN`` or ``False``, the clock is driven by the PHY interface."
 msgstr ""
-"*ref_clk_mode* は、データクロックをイーサネットコントローラと PYH インタフェースの"
+"*ref_clk_mode* は、データクロックをイーサネットコントローラと PHY インタフェースの"
 "どちらから供給するかを指定します。デフォルト値は、ボードにマッチしたものです。 "
 "``LAN.OUT`` または ``Pin.OUT`` または ``True`` に設定すると、クロックは"
 "イーサネットコントローラから駆動され、 ``LAN.IN`` または ``Pin.IN`` または "
@@ -14443,7 +14514,15 @@ msgstr "たとえば、Seeed Arch Mix ボードでは次のように使います
 msgid "nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)"
 msgstr ""
 
-#: ../../library/network.LAN.rst:49
+#: ../../library/network.LAN.rst:44
+msgid ""
+"On esp32 port the constructor requires different arguments. See "
+":ref:`esp32 port reference <esp32_network_lan>`."
+msgstr ""
+"ESP32 ポートでは、コンストラクタに必要な引数が異なります。"
+"詳しくは :ref:`ESP32 ポートのリファレンス <esp32_network_lan>` を参照してください。"
+
+#: ../../library/network.LAN.rst:52
 msgid ""
 "With a parameter, it sets the interface active if *state* is true, "
 "otherwise it sets it inactive. Without a parameter, it returns the state."
@@ -14451,7 +14530,7 @@ msgstr ""
 "パラメータありの場合、 *state* が True の場合はインタフェースを有効化し、"
 "それ以外の場合は無効化します。パラメータなしの場合は状態を返します。"
 
-#: ../../library/network.LAN.rst:55 ../../library/network.WIZNET5K.rst:56
+#: ../../library/network.LAN.rst:58
 msgid ""
 "Returns ``True`` if the physical Ethernet link is connected and up. "
 "Returns ``False`` otherwise."
@@ -14459,22 +14538,22 @@ msgstr ""
 "物理的なイーサネットリンクが接続され、かつアップしている場合、 ``True`` を返します。"
 "それ以外の場合は ``False`` を返します。"
 
-#: ../../library/network.LAN.rst:60
+#: ../../library/network.LAN.rst:63
 msgid "Returns the LAN status."
 msgstr "LAN 状態えお返します。"
 
-#: ../../library/network.LAN.rst:64 ../../library/network.WIZNET5K.rst:61
+#: ../../library/network.LAN.rst:67
 msgid "Get/set IP address, subnet mask, gateway and DNS."
 msgstr "IP アドレス、サブネットマスク、ゲートウェイ、DNS を取得・設定します。"
 
-#: ../../library/network.LAN.rst:66 ../../library/network.WIZNET5K.rst:63
+#: ../../library/network.LAN.rst:69
 msgid ""
 "When called with no arguments, this method returns a 4-tuple with the "
 "above information."
 msgstr ""
 "引数なしで呼び出した場合、このメソッドは上記の情報を持つ４項目のタプルを返します。"
 
-#: ../../library/network.LAN.rst:68 ../../library/network.WIZNET5K.rst:65
+#: ../../library/network.LAN.rst:71
 msgid ""
 "To set the above values, pass a 4-tuple with the required information.  "
 "For example::"
@@ -14482,7 +14561,7 @@ msgstr ""
 "上記の値を設定するには、必要な情報を持つ４項目のタプルを引数に渡します。"
 "たとえば次のようにします::"
 
-#: ../../library/network.LAN.rst:74
+#: ../../library/network.LAN.rst:77
 msgid ""
 "Sets or gets parameters of the LAN interface. The only parameter that can"
 " be retrieved is the MAC address, using::"
@@ -14490,31 +14569,31 @@ msgstr ""
 "LAN インタフェースのパラメータを設定または取得します。取得できるパラメータは、MAC "
 "アドレスのみです。たとえば次のように使います::"
 
-#: ../../library/network.LAN.rst:77
+#: ../../library/network.LAN.rst:80
 msgid "mac = LAN.config(\"mac\")"
 msgstr ""
 
-#: ../../library/network.LAN.rst:79
+#: ../../library/network.LAN.rst:82
 msgid "The parameters that can be set are:"
 msgstr "設定可能なパラメータは次のとおりです:"
 
-#: ../../library/network.LAN.rst:81
+#: ../../library/network.LAN.rst:84
 msgid "``trace=n`` sets trace levels; suitable values are:"
 msgstr "``trace=n`` はトレースレベルを設定します:"
 
-#: ../../library/network.LAN.rst:83
+#: ../../library/network.LAN.rst:86
 msgid "2: trace TX"
 msgstr "2: TX をトレース"
 
-#: ../../library/network.LAN.rst:84
+#: ../../library/network.LAN.rst:87
 msgid "4: trace RX"
 msgstr "4: RX をトレース"
 
-#: ../../library/network.LAN.rst:85
+#: ../../library/network.LAN.rst:88
 msgid "8: full trace"
 msgstr "8: フルトレース"
 
-#: ../../library/network.LAN.rst:87
+#: ../../library/network.LAN.rst:90
 msgid ""
 "``low_power=bool`` sets or clears low power mode, valid values being "
 "``False`` or ``True``."
@@ -14522,11 +14601,11 @@ msgstr ""
 "``low_power=bool`` は低電力モードを設定または解除します。"
 "有効な値は ``False`` または ``True`` です。"
 
-#: ../../library/network.LAN.rst:92
+#: ../../library/network.LAN.rst:95
 msgid "Specific LAN class implementations"
 msgstr "特定の LAN クラスの実装"
 
-#: ../../library/network.LAN.rst:94
+#: ../../library/network.LAN.rst:97
 msgid ""
 "On the mimxrt port, suitable values for the *phy_type* constructor "
 "argument are: ``PHY_KSZ8081``, ``PHY_DP83825``, ``PHY_DP83848``, "
@@ -14543,13 +14622,23 @@ msgstr "クラス PPP -- シリアル PPP を介したネットワーク接続�
 #: ../../library/network.PPP.rst:7
 msgid ""
 "This class allows you to create a network connection over a serial port "
-"using the PPP protocol.  It is only available on selected ports and "
-"boards."
+"using the PPP protocol."
 msgstr ""
 "このクラスは PPP プロトコルを使ってシリアルポート経由でのネットワーク接続を作成します。"
-"これは特定のポートおよびボードでのみ利用可能です。"
 
-#: ../../library/network.PPP.rst:12
+#: ../../library/network.PPP.rst:10
+msgid ""
+"Currently only the esp32 port has PPP support enabled in the default "
+"firmware build. PPP support can be enabled in custom builds of the stm32 "
+"and rp2 ports by enabling networking support and setting "
+"``MICROPY_PY_NETWORK_PPP_LWIP`` to 1."
+msgstr ""
+"現在のところ PPP サポートは、デフォルトのファームウェアビルドでは ESP32 ポートのみ"
+"有効になっています。STM32 および RP2 ポートのカスタムビルドでは、"
+"ネットワーキングサポートを有効にし、 ``MICROPY_PY_NETWORK_PPP_LWIP`` を 1 に"
+"設定することで PPP サポートを有効にできます。"
+
+#: ../../library/network.PPP.rst:15
 msgid ""
 "import network\n"
 "\n"
@@ -14579,11 +14668,11 @@ msgstr ""
 "\n"
 "ppp.disconnect()"
 
-#: ../../library/network.PPP.rst:31
+#: ../../library/network.PPP.rst:36
 msgid "Create a PPP driver object."
 msgstr "PPP ドライバーオブジェクトを作成します。"
 
-#: ../../library/network.PPP.rst:35
+#: ../../library/network.PPP.rst:40
 msgid ""
 "*stream* is any object that supports the stream protocol, but is most "
 "commonly a :class:`machine.UART` instance.  This stream object must have "
@@ -14595,11 +14684,11 @@ msgstr ""
 "このストリームオブジェクトには ``irq()`` メソッドと ``IRQ_RXIDLE`` "
 "定数が必要で、これらは `PPP.connect` で使われます。"
 
-#: ../../library/network.PPP.rst:44
+#: ../../library/network.PPP.rst:49
 msgid "Initiate a PPP connection with the given parameters:"
 msgstr "指定されたパラメータで PPP 接続を開始します。"
 
-#: ../../library/network.PPP.rst:46
+#: ../../library/network.PPP.rst:51
 msgid ""
 "*security* is the type of security, either ``PPP.SEC_NONE``, "
 "``PPP.SEC_PAP``, or ``PPP.SEC_CHAP``."
@@ -14607,15 +14696,15 @@ msgstr ""
 "*security* はセキュリティの種類で、 ``PPP.SEC_NONE``, ``PPP.SEC_PAP``, "
 "``PPP.SEC_CHAP`` のいずれかを指定します。"
 
-#: ../../library/network.PPP.rst:48
+#: ../../library/network.PPP.rst:53
 msgid "*user* is an optional user name to use with the security mode."
 msgstr "*user* はセキュリティモードで使用する任意のユーザー名です。"
 
-#: ../../library/network.PPP.rst:49
+#: ../../library/network.PPP.rst:54
 msgid "*key* is an optional password to use with the security mode."
 msgstr "*key* はセキュリティモードで使用する任意のパスワードです。"
 
-#: ../../library/network.PPP.rst:51
+#: ../../library/network.PPP.rst:56
 msgid ""
 "When this method is called the underlying stream has its interrupt "
 "configured to call `PPP.poll` via ``stream.irq(ppp.poll, "
@@ -14627,18 +14716,18 @@ msgstr ""
 "呼び出されます。これにより、ストリームにデータが入るたびにストリームが"
 "ポーリングされ、データが PPP スタックに渡されることが保証されます。"
 
-#: ../../library/network.PPP.rst:56
+#: ../../library/network.PPP.rst:61
 msgid "The connection proceeds asynchronously, in the background."
 msgstr "接続は非同期にバックグラウンドで進行します。"
 
-#: ../../library/network.PPP.rst:60
+#: ../../library/network.PPP.rst:65
 msgid ""
 "Terminate the connection.  This must be called to cleanly close the PPP "
 "connection."
 msgstr ""
 "接続を終了します。PPP 接続を正常に閉じるには、このメソッドを呼び出す必要があります。"
 
-#: ../../library/network.PPP.rst:64
+#: ../../library/network.PPP.rst:69
 msgid ""
 "Returns ``True`` if the PPP link is connected and up. Returns ``False`` "
 "otherwise."
@@ -14646,11 +14735,11 @@ msgstr ""
 "PPP リンクが接続されており、確立されている場合は ``True`` を返します。"
 "そうでない場合は ``False`` を返します。"
 
-#: ../../library/network.PPP.rst:69
+#: ../../library/network.PPP.rst:74
 msgid "Returns the PPP status."
 msgstr "PPP のステータスを返します。"
 
-#: ../../library/network.PPP.rst:73
+#: ../../library/network.PPP.rst:78
 msgid ""
 "Sets or gets parameters of the PPP interface. The only parameter that can"
 " be retrieved and set is the underlying stream, using::"
@@ -14659,21 +14748,21 @@ msgstr ""
 "設定または取得可能な唯一のパラメータは基盤となるストリームです。"
 "次のように使います::"
 
-#: ../../library/network.PPP.rst:76
+#: ../../library/network.PPP.rst:81
 msgid ""
 "stream = PPP.config(\"stream\")\n"
 "PPP.config(stream=stream)"
 msgstr ""
 
-#: ../../library/network.PPP.rst:82
+#: ../../library/network.PPP.rst:87
 msgid "See `AbstractNIC.ipconfig`."
 msgstr "`AbstractNIC.ipconfig` を参照。"
 
-#: ../../library/network.PPP.rst:86
+#: ../../library/network.PPP.rst:91
 msgid "See `AbstractNIC.ifconfig`."
 msgstr "`AbstractNIC.ifconfig` を参照。"
 
-#: ../../library/network.PPP.rst:90
+#: ../../library/network.PPP.rst:95
 msgid ""
 "Poll the underlying stream for data, and pass it up the PPP stack. This "
 "is called automatically if the stream is a UART with a RXIDLE interrupt, "
@@ -14683,7 +14772,7 @@ msgstr ""
 "ストリームが RXIDLE 割り込みを持つ UART の場合、これが自動的に呼び出されるため、"
 "通常は手動で呼び出す必要はありません。"
 
-#: ../../library/network.PPP.rst:101
+#: ../../library/network.PPP.rst:106
 msgid "The type of connection security."
 msgstr "接続セキュリティの種類。"
 
@@ -14702,7 +14791,16 @@ msgstr ""
 "イーサネットアダプタを制御できます。ファームウェアでサポートされている特定の"
 "チップセットは、コンパイル時の MICROPY_PY_NETWORK_WIZNET5K オプションで選択されます。"
 
-#: ../../library/network.WIZNET5K.rst:14
+#: ../../library/network.WIZNET5K.rst:12
+msgid ""
+"The esp32 port also supports WIZnet W5500 chipsets, but this port uses "
+"the :ref:`network.LAN interface <esp32_spi_ethernet>`."
+msgstr ""
+"ESP32 ポートでも WIZnet W5500 チップセットをサポートしていますが、"
+"このポートでは :ref:`network.LAN インターフェース  <esp32_spi_ethernet>` "
+"を使います。"
+
+#: ../../library/network.WIZNET5K.rst:17
 msgid ""
 "import network\n"
 "nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)\n"
@@ -14718,38 +14816,38 @@ msgstr ""
 "# これで通常どおりソケットを使えるようになる\n"
 "..."
 
-#: ../../library/network.WIZNET5K.rst:21
+#: ../../library/network.WIZNET5K.rst:24
 msgid ""
 "For this example to work the WIZnet5x00 module must have the following "
 "connections:"
 msgstr ""
 "この例が機能するためには WIZnet5x00 モジュールを次のように配線することが必要になります。"
 
-#: ../../library/network.WIZNET5K.rst:23
+#: ../../library/network.WIZNET5K.rst:26
 msgid "MOSI connected to X8"
 msgstr "MOSI を X8 に配線"
 
-#: ../../library/network.WIZNET5K.rst:24
+#: ../../library/network.WIZNET5K.rst:27
 msgid "MISO connected to X7"
 msgstr "MISO を X7 に配線"
 
-#: ../../library/network.WIZNET5K.rst:25
+#: ../../library/network.WIZNET5K.rst:28
 msgid "SCLK connected to X6"
 msgstr "SCLK を X7 に配線"
 
-#: ../../library/network.WIZNET5K.rst:26
+#: ../../library/network.WIZNET5K.rst:29
 msgid "nSS connected to X5"
 msgstr "nSS を X5 に配線"
 
-#: ../../library/network.WIZNET5K.rst:27
+#: ../../library/network.WIZNET5K.rst:30
 msgid "nRESET connected to X4"
 msgstr "nRESET を X4 に配線"
 
-#: ../../library/network.WIZNET5K.rst:29
+#: ../../library/network.WIZNET5K.rst:32
 msgid "It is possible to use other SPI buses and other pins for nSS and nRESET."
 msgstr "他の SPI バスを使うことや、nSS, nRESET に他のピンを使うことも可能です。"
 
-#: ../../library/network.WIZNET5K.rst:36
+#: ../../library/network.WIZNET5K.rst:39
 msgid ""
 "Create a WIZNET5K driver object, initialise the WIZnet5x00 module using "
 "the given SPI bus and pins, and return the WIZNET5K object."
@@ -14757,7 +14855,7 @@ msgstr ""
 "WIZNET5K ドライバーオブジェクトを作成し、指定した SPI バスとピンを使って WIZnet5x00 "
 "モジュールを初期化し、WIZNET5K オブジェクトを返します。"
 
-#: ../../library/network.WIZNET5K.rst:41
+#: ../../library/network.WIZNET5K.rst:44
 msgid ""
 "*spi* is an :ref:`SPI object <pyb.SPI>` which is the SPI bus that the "
 "WIZnet5x00 is connected to (the MOSI, MISO and SCLK pins)."
@@ -14765,21 +14863,21 @@ msgstr ""
 "*spi* は WIZnet5x00 が接続されている SPI バス(MOSI, MISO, CLK ピン)の "
 ":ref:`SPI オブジェクト <pyb.SPI>` です。"
 
-#: ../../library/network.WIZNET5K.rst:43
+#: ../../library/network.WIZNET5K.rst:46
 msgid ""
 "*pin_cs* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "WIZnet5x00 nSS pin."
 msgstr ""
 "*pin_cs* は WIZnet5x00 nSS ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
-#: ../../library/network.WIZNET5K.rst:44
+#: ../../library/network.WIZNET5K.rst:47
 msgid ""
 "*pin_rst* is a :ref:`Pin object <pyb.Pin>` which is connected to the "
 "WIZnet5x00 nRESET pin."
 msgstr ""
 "*pin_rst* は WIZnet5x00 nRESET ピンが接続されている :ref:`Pin オブジェクト <pyb.Pin>` です。"
 
-#: ../../library/network.WIZNET5K.rst:46
+#: ../../library/network.WIZNET5K.rst:49
 msgid ""
 "All of these objects will be initialised by the driver, so there is no "
 "need to initialise them yourself.  For example, you can use::"
@@ -14787,11 +14885,11 @@ msgstr ""
 "これらのオブジェクトはすべてドライバによって初期化されるため、"
 "自分で初期化する必要はありません。たとえば、次のように使えます。"
 
-#: ../../library/network.WIZNET5K.rst:49
+#: ../../library/network.WIZNET5K.rst:52
 msgid "nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)"
 msgstr ""
 
-#: ../../library/network.WIZNET5K.rst:54
+#: ../../library/network.WIZNET5K.rst:57
 msgid ""
 "This class implements most methods from `AbstractNIC <AbstractNIC>`, "
 "which are documented there. Additional methods are:"
@@ -14800,7 +14898,7 @@ msgstr ""
 "それらメソッドについては AbstractNIC のドキュメントを参照してください。"
 "追加のメソッドは次のとおりです。"
 
-#: ../../library/network.WIZNET5K.rst:58
+#: ../../library/network.WIZNET5K.rst:61
 msgid "Dump the WIZnet5x00 registers.  Useful for debugging."
 msgstr "WIZnet5x00 のレジスタをダンプします。デバッグ用です。"
 
@@ -17057,71 +17155,83 @@ msgstr ""
 msgid ""
 "*baudrate* if a baudrate other than 0 is provided, this function will try"
 " to automatically calculate the CAN nominal bit time (overriding "
-"*prescaler*, *bs1* and *bs2*) that satisfies both the baudrate and the "
-"desired *sample_point*."
+"*prescaler*, *bs1* and *bs2*) that satisfies both the *baudrate* (within "
+".1%) and the desired *sample_point* (to the nearest 1%). For more precise"
+" control over the CAN timing, set the *prescaler*, *bs1* and *bs2* "
+"parameters directly."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:71
+#: ../../library/pyb.CAN.rst:72
 msgid ""
-"*sample_point* given in a percentage of the nominal bit time, the "
 "*sample_point* specifies the position of the bit sample with respect to "
-"the whole nominal bit time. The default *sample_point* is 75%."
+"the whole nominal bit time, expressed as an integer percentage of the "
+"nominal bit time. The default *sample_point* is 75%. This parameter is "
+"ignored unless *baudrate* is set."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:73
+#: ../../library/pyb.CAN.rst:75
 msgid ""
 "*num_filter_banks* for classic CAN, this is the number of banks that will"
 " be assigned to CAN(1), the rest of the 28 are assigned to CAN(2)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:75
+#: ../../library/pyb.CAN.rst:78
+msgid ""
+"The remaining parameters are only present on boards with CAN FD support, "
+"and configure the optional CAN FD Bit Rate Switch (BRS) feature:"
+msgstr ""
+
+#: ../../library/pyb.CAN.rst:81
 msgid ""
 "*brs_prescaler* is the value by which the CAN FD input clock is divided "
 "to generate the data bit time quanta. The prescaler can be a value "
 "between 1 and 32 inclusive."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:77
+#: ../../library/pyb.CAN.rst:83
 msgid ""
 "*brs_sjw* is the resynchronisation jump width in units of time quanta for"
 " data bits; it can be a value between 1 and 16 inclusive"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:79
+#: ../../library/pyb.CAN.rst:85
 msgid ""
 "*brs_bs1* defines the location of the sample point in units of the time "
 "quanta for data bits; it can be a value between 1 and 32 inclusive"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:81
+#: ../../library/pyb.CAN.rst:87
 msgid ""
 "*brs_bs2* defines the location of the transmit point in units of the time"
 " quanta for data bits; it can be a value between 1 and 16 inclusive"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:83
+#: ../../library/pyb.CAN.rst:89
 msgid ""
 "*brs_baudrate* if a baudrate other than 0 is provided, this function will"
 " try to automatically calculate the CAN data bit time (overriding "
 "*brs_prescaler*, *brs_bs1* and *brs_bs2*) that satisfies both the "
-"baudrate and the desired *brs_sample_point*."
+"*brs_baudrate* (within .1%) and the desired *brs_sample_point* (to the "
+"nearest 1%). For more precise control over the BRS timing, set the "
+"*brs_prescaler*, *brs_bs1* and *brs_bs2* parameters directly."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:86
+#: ../../library/pyb.CAN.rst:93
 msgid ""
-"*brs_sample_point* given in a percentage of the data bit time, the "
 "*brs_sample_point* specifies the position of the bit sample with respect "
-"to the whole data bit time. The default *brs_sample_point* is 75%."
+"to the whole nominal bit time, expressed as an integer percentage of the "
+"nominal bit time. The default *brs_sample_point* is 75%. This parameter "
+"is ignored unless *brs_baudrate* is set."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:90
+#: ../../library/pyb.CAN.rst:97
 msgid ""
 "The time quanta tq is the basic unit of time for the CAN bus.  tq is the "
 "CAN prescaler value divided by PCLK1 (the frequency of internal "
 "peripheral bus 1); see :meth:`pyb.freq()` to determine PCLK1."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:94
+#: ../../library/pyb.CAN.rst:101
 msgid ""
 "A single bit is made up of the synchronisation segment, which is always 1"
 " tq. Then follows bit segment 1, then bit segment 2.  The sample point is"
@@ -17130,28 +17240,28 @@ msgid ""
 "+ BS2 multiplied by the time quanta tq."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:100
+#: ../../library/pyb.CAN.rst:107
 msgid ""
 "For example, with PCLK1=42MHz, prescaler=100, sjw=1, bs1=6, bs2=8, the "
 "value of tq is 2.38 microseconds.  The bittime is 35.7 microseconds, and "
 "the baudrate is 28kHz."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:104
+#: ../../library/pyb.CAN.rst:111
 msgid "See page 680 of the STM32F405 datasheet for more details."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:108
+#: ../../library/pyb.CAN.rst:115
 msgid "Turn off the CAN bus."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:112
+#: ../../library/pyb.CAN.rst:119
 msgid ""
 "Force a software restart of the CAN controller without resetting its "
 "configuration."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:115
+#: ../../library/pyb.CAN.rst:122
 msgid ""
 "If the controller enters the bus-off state then it will no longer "
 "participate in bus activity.  If the controller is not configured to "
@@ -17160,39 +17270,39 @@ msgid ""
 "protocol to leave the bus-off state and go into the error active state."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:123
+#: ../../library/pyb.CAN.rst:130
 msgid "Return the state of the controller.  The return value can be one of:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:125
+#: ../../library/pyb.CAN.rst:132
 msgid "``CAN.STOPPED`` -- the controller is completely off and reset;"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:126
+#: ../../library/pyb.CAN.rst:133
 msgid ""
 "``CAN.ERROR_ACTIVE`` -- the controller is on and in the Error Active "
 "state (both TEC and REC are less than 96);"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:128
+#: ../../library/pyb.CAN.rst:135
 msgid ""
 "``CAN.ERROR_WARNING`` -- the controller is on and in the Error Warning "
 "state (at least one of TEC or REC is 96 or greater);"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:130
+#: ../../library/pyb.CAN.rst:137
 msgid ""
 "``CAN.ERROR_PASSIVE`` -- the controller is on and in the Error Passive "
 "state (at least one of TEC or REC is 128 or greater);"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:132
+#: ../../library/pyb.CAN.rst:139
 msgid ""
 "``CAN.BUS_OFF`` -- the controller is on but not participating in bus "
 "activity (TEC overflowed beyond 255)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:137
+#: ../../library/pyb.CAN.rst:144
 msgid ""
 "Get information about the controller's error states and TX and RX "
 "buffers. If *list* is provided then it should be a list object with at "
@@ -17201,104 +17311,104 @@ msgid ""
 "value of the method is the populated list."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:143
+#: ../../library/pyb.CAN.rst:150
 msgid "The values in the list are:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:145
+#: ../../library/pyb.CAN.rst:152
 msgid "TEC value"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:146
+#: ../../library/pyb.CAN.rst:153
 msgid "REC value"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:147
+#: ../../library/pyb.CAN.rst:154
 msgid ""
 "number of times the controller enterted the Error Warning state (wrapped "
 "around to 0 after 65535)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:149
+#: ../../library/pyb.CAN.rst:156
 msgid ""
 "number of times the controller enterted the Error Passive state (wrapped "
 "around to 0 after 65535)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:151
+#: ../../library/pyb.CAN.rst:158
 msgid ""
 "number of times the controller enterted the Bus Off state (wrapped around"
 " to 0 after 65535)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:153
+#: ../../library/pyb.CAN.rst:160
 msgid "number of pending TX messages"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:154
+#: ../../library/pyb.CAN.rst:161
 msgid "number of pending RX messages on fifo 0"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:155
+#: ../../library/pyb.CAN.rst:162
 msgid "number of pending RX messages on fifo 1"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:159
+#: ../../library/pyb.CAN.rst:166
 msgid "Configure a filter bank:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:161
+#: ../../library/pyb.CAN.rst:168
 msgid ""
 "*bank* is the classic CAN controller filter bank, or CAN FD filter index,"
 " to configure."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:162
+#: ../../library/pyb.CAN.rst:169
 msgid "*mode* is the mode the filter should operate in, see the tables below."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:163
+#: ../../library/pyb.CAN.rst:170
 msgid ""
 "*fifo* is which fifo (0 or 1) a message should be stored in, if it is "
 "accepted by this filter."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:164
+#: ../../library/pyb.CAN.rst:171
 msgid ""
 "*params* is an array of values the defines the filter. The contents of "
 "the array depends on the *mode* argument."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:167 ../../library/pyb.CAN.rst:183
-#: ../../library/pyb.CAN.rst:198
+#: ../../library/pyb.CAN.rst:174 ../../library/pyb.CAN.rst:190
+#: ../../library/pyb.CAN.rst:205
 msgid "*mode*"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:167
+#: ../../library/pyb.CAN.rst:174
 msgid "Contents of *params* array for classic CAN controller"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:169 ../../library/pyb.CAN.rst:200
+#: ../../library/pyb.CAN.rst:176 ../../library/pyb.CAN.rst:207
 msgid "CAN.LIST16"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:169
+#: ../../library/pyb.CAN.rst:176
 msgid "Four 16 bit ids that will be accepted"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:171 ../../library/pyb.CAN.rst:202
+#: ../../library/pyb.CAN.rst:178 ../../library/pyb.CAN.rst:209
 msgid "CAN.LIST32"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:171
+#: ../../library/pyb.CAN.rst:178
 msgid "Two 32 bit ids that will be accepted"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:173 ../../library/pyb.CAN.rst:204
+#: ../../library/pyb.CAN.rst:180 ../../library/pyb.CAN.rst:211
 msgid "CAN.MASK16"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:176
+#: ../../library/pyb.CAN.rst:183
 msgid "Two 16 bit id/mask pairs. E.g. (1, 3, 4, 4)"
 msgstr ""
 
@@ -17318,43 +17428,43 @@ msgstr ""
 msgid "that have bit 2 = 1."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:179 ../../library/pyb.CAN.rst:206
+#: ../../library/pyb.CAN.rst:186 ../../library/pyb.CAN.rst:213
 msgid "CAN.MASK32"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:179
+#: ../../library/pyb.CAN.rst:186
 msgid "As with CAN.MASK16 but with only one 32 bit id/mask pair."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:183
+#: ../../library/pyb.CAN.rst:190
 msgid "Contents of *params* array for CAN FD controller"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:185
+#: ../../library/pyb.CAN.rst:192
 msgid "CAN.RANGE"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:185
+#: ../../library/pyb.CAN.rst:192
 msgid "Two ids that represent a range of accepted ids."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:187
+#: ../../library/pyb.CAN.rst:194
 msgid "CAN.DUAL"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:187
+#: ../../library/pyb.CAN.rst:194
 msgid "Two ids that will be accepted. For example (1, 2)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:189
+#: ../../library/pyb.CAN.rst:196
 msgid "CAN.MASK"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:189
+#: ../../library/pyb.CAN.rst:196
 msgid "One filter ID and a mask. For example (0x111, 0x7FF)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:192
+#: ../../library/pyb.CAN.rst:199
 msgid ""
 "*rtr* For classic CAN controllers, this is an array of booleans that "
 "states if a filter should accept a remote transmission request message. "
@@ -17363,86 +17473,86 @@ msgid ""
 "FD, this argument is ignored."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:198
+#: ../../library/pyb.CAN.rst:205
 msgid "length of *rtr* array"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:209
+#: ../../library/pyb.CAN.rst:216
 msgid ""
 "*extframe* If True the frame will have an extended identifier (29 bits), "
 "otherwise a standard identifier (11 bits) is used."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:215
+#: ../../library/pyb.CAN.rst:222
 msgid "Clear and disables a filter bank:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:217
+#: ../../library/pyb.CAN.rst:224
 msgid ""
 "*bank* is the classic CAN controller filter bank, or CAN FD filter index,"
 " to clear."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:218
+#: ../../library/pyb.CAN.rst:225
 msgid ""
 "*extframe* For CAN FD controllers, if True, clear an extended filter "
 "(configured with extframe=True), otherwise the clear a standard "
 "identifier (configured with extframe=False)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:223
+#: ../../library/pyb.CAN.rst:230
 msgid "Return ``True`` if any message waiting on the FIFO, else ``False``."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:227 ../../library/pyb.I2C.rst:131
+#: ../../library/pyb.CAN.rst:234 ../../library/pyb.I2C.rst:135
 #: ../../library/pyb.SPI.rst:82 ../../library/pyb.USB_HID.rst:26
 #: ../../library/pyb.USB_VCP.rst:94
 msgid "Receive data on the bus:"
 msgstr "バス上のデータを受信します:"
 
-#: ../../library/pyb.CAN.rst:229
+#: ../../library/pyb.CAN.rst:236
 msgid "*fifo* is an integer, which is the FIFO to receive on"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:230
+#: ../../library/pyb.CAN.rst:237
 msgid "*list* is an optional list object to be used as the return value"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:231
+#: ../../library/pyb.CAN.rst:238
 msgid "*timeout* is the timeout in milliseconds to wait for the receive."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:233
+#: ../../library/pyb.CAN.rst:240
 msgid "Return value: A tuple containing five values."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:235
+#: ../../library/pyb.CAN.rst:242
 msgid "The id of the message."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:236
+#: ../../library/pyb.CAN.rst:243
 msgid "A boolean that indicates if the message ID is standard or extended."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:237
+#: ../../library/pyb.CAN.rst:244
 msgid "A boolean that indicates if the message is an RTR message."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:238
+#: ../../library/pyb.CAN.rst:245
 msgid "The FMI (Filter Match Index) value."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:239
+#: ../../library/pyb.CAN.rst:246
 msgid "An array containing the data."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:241
+#: ../../library/pyb.CAN.rst:248
 msgid ""
 "If *list* is ``None`` then a new tuple will be allocated, as well as a "
 "new bytes object to contain the data (as the fifth element in the tuple)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:244
+#: ../../library/pyb.CAN.rst:251
 msgid ""
 "If *list* is not ``None`` then it should be a list object with a least "
 "five elements.  The fifth element should be a memoryview object which is "
@@ -17455,7 +17565,7 @@ msgid ""
 "data without using the heap. For example::"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:254
+#: ../../library/pyb.CAN.rst:261
 msgid ""
 "buf = bytearray(8)\n"
 "lst = [0, 0, 0, 0, memoryview(buf)]\n"
@@ -17463,23 +17573,23 @@ msgid ""
 "can.recv(0, lst)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:261
+#: ../../library/pyb.CAN.rst:268
 msgid "Send a message on the bus:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:263
+#: ../../library/pyb.CAN.rst:270
 msgid "*data* is the data to send (an integer to send, or a buffer object)."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:264
+#: ../../library/pyb.CAN.rst:271
 msgid "*id* is the id of the message to be sent."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:265
+#: ../../library/pyb.CAN.rst:272
 msgid "*timeout* is the timeout in milliseconds to wait for the send."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:266
+#: ../../library/pyb.CAN.rst:273
 msgid ""
 "*rtr* is a boolean that specifies if the message shall be sent as a "
 "remote transmission request.  If *rtr* is True then only the length of "
@@ -17487,26 +17597,27 @@ msgid ""
 "*data* are unused."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:270
+#: ../../library/pyb.CAN.rst:277
 msgid ""
 "*extframe* if True the frame will have an extended identifier (29 bits), "
 "otherwise a standard identifier (11 bits) is used."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:272
+#: ../../library/pyb.CAN.rst:279
 msgid ""
 "*fdf* for CAN FD controllers, if set to True, the frame will have an FD "
 "frame format, which supports data payloads up to 64 bytes."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:274
+#: ../../library/pyb.CAN.rst:281
 msgid ""
 "*brs* for CAN FD controllers, if set to True, the bitrate switching mode "
-"is enabled, in which the data phase is transmitted at a different bitrate."
-" See :meth:`CAN.init` for the data bit timing configuration parameters."
+"is enabled, in which the data phase is transmitted at a different "
+"bitrate. See :meth:`CAN.init` for the data bit timing configuration "
+"parameters."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:278
+#: ../../library/pyb.CAN.rst:285
 msgid ""
 "If timeout is 0 the message is placed in a buffer in one of three "
 "hardware buffers and the method returns immediately. If all three buffers"
@@ -17515,52 +17626,52 @@ msgid ""
 "within the specified time an exception is thrown."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:284 ../../library/pyb.I2C.rst:149
+#: ../../library/pyb.CAN.rst:291 ../../library/pyb.I2C.rst:153
 #: ../../library/pyb.SPI.rst:98
 msgid "Return value: ``None``."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:288
+#: ../../library/pyb.CAN.rst:295
 msgid ""
 "Register a function to be called when a message is accepted into a empty "
 "fifo:"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:290
+#: ../../library/pyb.CAN.rst:297
 msgid "*fifo* is the receiving fifo."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:291
+#: ../../library/pyb.CAN.rst:298
 msgid "*fun* is the function to be called when the fifo becomes non empty."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:293
+#: ../../library/pyb.CAN.rst:300
 msgid ""
 "The callback function takes two arguments the first is the can object it "
 "self the second is a integer that indicates the reason for the callback."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:297
+#: ../../library/pyb.CAN.rst:304
 msgid "Reason"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:299
+#: ../../library/pyb.CAN.rst:306
 msgid "A message has been accepted into a empty FIFO."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:301
+#: ../../library/pyb.CAN.rst:308
 msgid "The FIFO is full"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:303
+#: ../../library/pyb.CAN.rst:310
 msgid "A message has been lost due to a full FIFO"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:306
+#: ../../library/pyb.CAN.rst:313
 msgid "Example use of rxcallback::"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:308
+#: ../../library/pyb.CAN.rst:315
 msgid ""
 "def cb0(bus, reason):\n"
 "  print('cb0')\n"
@@ -17575,21 +17686,21 @@ msgid ""
 "can.rxcallback(0, cb0)"
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:328
+#: ../../library/pyb.CAN.rst:335
 msgid "The mode of the CAN bus used in :meth:`~CAN.init()`."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:336
+#: ../../library/pyb.CAN.rst:343
 msgid "Possible states of the CAN controller returned from :meth:`~CAN.state()`."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:343
+#: ../../library/pyb.CAN.rst:350
 msgid ""
 "The operation mode of a filter used in :meth:`~CAN.setfilter()` for "
 "classic CAN."
 msgstr ""
 
-#: ../../library/pyb.CAN.rst:349
+#: ../../library/pyb.CAN.rst:356
 msgid ""
 "The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN "
 "FD."
@@ -21218,7 +21329,7 @@ msgid ""
 "the program uses more than one pin, provide a tuple, e.g. "
 "``out_init=(PIO.OUT_LOW, PIO.OUT_LOW)``."
 msgstr ""
-"以下のパラメータは　GPIO　ピンの初期状態を　`PIO.IN_LOW`, `PIO.IN_HIGH`, "
+"以下のパラメータは GPIO ピンの初期状態を `PIO.IN_LOW`, `PIO.IN_HIGH`, "
 "`PIO.OUT_LOW`, `PIO.OUT_HIGH` のいずれかに制御します。プログラムが複数のピンを"
 "使う場合は ``out_init=(PIO.OUT_LOW, PIO.OUT_LOW)`` のようにタプルで指定します。"
 
@@ -21235,19 +21346,30 @@ msgstr ""
 
 #: ../../library/rp2.rst:38
 msgid ""
-"*sideset_init* configures the pins used side-setting. There can be at "
-"most 5."
+"*sideset_init* configures the pins used for ``.side()`` modifiers. There "
+"can be at most 5."
 msgstr ""
-"*sideset_init* はサイドセットで使うピンを構成します。最大５つのピンまで指定できます。"
+"*sideset_init* は ``.side()`` 修飾子で使うピンを構成します。"
+"最大５つのピンまで指定できます。"
 
-#: ../../library/rp2.rst:41
+#: ../../library/rp2.rst:40
+msgid ""
+"*side_pindir* when set to ``True`` configures ``.side()`` modifiers to be"
+" used for pin directions, instead of pin values (the default, when "
+"``False``)."
+msgstr ""
+"*side_pindir* を ``True`` に設定すると、 ``.side()`` 修飾子がピンの値ではなく、"
+"ピンの方向を設定するために使われるようになります(デフォルトでは ``False`` で、"
+"ピンの値が使用されます)。"
+
+#: ../../library/rp2.rst:43
 msgid ""
 "The following parameters are used by default, but can be overridden in "
 "`StateMachine.init()`:"
 msgstr ""
 "以下のパラメータがデフォルトで使われますが、 `StateMachine.init()` で上書きできます:"
 
-#: ../../library/rp2.rst:44
+#: ../../library/rp2.rst:46
 msgid ""
 "*in_shiftdir* is the default direction the ISR will shift, either "
 "`PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`."
@@ -21255,7 +21377,7 @@ msgstr ""
 "*in_shiftdir* は ISR がシフトするデフォルトの方向です。 "
 "`PIO.SHIFT_LEFT` または `PIO.SHIFT_RIGHT` のどちらかを指定します。"
 
-#: ../../library/rp2.rst:46
+#: ../../library/rp2.rst:48
 msgid ""
 "*out_shiftdir* is the default direction the OSR will shift, either "
 "`PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`."
@@ -21263,33 +21385,33 @@ msgstr ""
 "*out_shiftdir* は OSR がシフトするデフォルトの方向です。 "
 "`PIO.SHIFT_LEFT` または `PIO.SHIFT_RIGHT` のどちらかを指定します。"
 
-#: ../../library/rp2.StateMachine.rst:56 ../../library/rp2.rst:48
+#: ../../library/rp2.StateMachine.rst:56 ../../library/rp2.rst:50
 msgid ""
 "*push_thresh* is the threshold in bits before auto-push or conditional "
 "re-pushing is triggered."
 msgstr ""
 "*push_thresh* は、自動プッシュまたは条件付き再プッシュが起きる閾値をビット数で指定します。"
 
-#: ../../library/rp2.StateMachine.rst:58 ../../library/rp2.rst:50
+#: ../../library/rp2.StateMachine.rst:58 ../../library/rp2.rst:52
 msgid ""
 "*pull_thresh* is the threshold in bits before auto-pull or conditional "
 "re-pulling is triggered."
 msgstr ""
 "*pull_thresh* は、自動プルまたは条件付き再プルが起きる閾値をビット数で指定します。"
 
-#: ../../library/rp2.rst:53
+#: ../../library/rp2.rst:55
 msgid "The remaining parameters are:"
 msgstr "残りのパラメータは以下のとおりです:"
 
-#: ../../library/rp2.rst:55
+#: ../../library/rp2.rst:57
 msgid "*autopush* configures whether auto-push is enabled."
 msgstr "*autopush* は自動プッシュを有効にするかどうかを構成します。"
 
-#: ../../library/rp2.rst:56
+#: ../../library/rp2.rst:58
 msgid "*autopull* configures whether auto-pull is enabled."
 msgstr "*autopull* は自動プルを有効にするかどうかを構成します。"
 
-#: ../../library/rp2.rst:57
+#: ../../library/rp2.rst:59
 msgid ""
 "*fifo_join* configures whether the 4-word TX and RX FIFOs should be "
 "combined into a single 8-word FIFO for one direction only. The options "
@@ -21299,14 +21421,14 @@ msgstr ""
 "に結合するかどうかを構成します。指定できるのは `PIO.JOIN_NONE`, "
 "`PIO.JOIN_RX`, `PIO.JOIN_TX` のいずれかです。"
 
-#: ../../library/rp2.rst:63
+#: ../../library/rp2.rst:65
 msgid ""
 "Assemble a single PIO instruction. You usually want to use `asm_pio()` "
 "instead."
 msgstr ""
 "単一のPIO命令をアセンブルします。通常は `asm_pio()` の代わりに使います。"
 
-#: ../../library/rp2.rst:71
+#: ../../library/rp2.rst:73
 msgid ""
 "Temporarily turns the QSPI_SS pin into an input and reads its value, "
 "returning 1 for low and 0 for high. On a typical RP2040 board with a "
@@ -21316,7 +21438,7 @@ msgstr ""
 "low の場合は1を、high の場合は0を返します。"
 "RP2040ボード の BOOTSEL ボタンが押されている場合、戻り値は 1 になります。"
 
-#: ../../library/rp2.rst:76
+#: ../../library/rp2.rst:78
 msgid ""
 "Since this function temporarily disables access to the external flash "
 "memory, it also temporarily disables interrupts and the other core to "
@@ -21326,7 +21448,7 @@ msgstr ""
 "割り込みや他のコアも一時的に無効にされ、フラッシュからのコード実行の"
 "試みを防止します。"
 
-#: ../../library/rp2.rst:82
+#: ../../library/rp2.rst:84
 msgid ""
 "This exception is raised from `asm_pio()` or `asm_pio_encode()` if there "
 "is an error assembling a PIO program."
@@ -21334,11 +21456,11 @@ msgstr ""
 "この例外は `asm_pio()` または `asm_pio_encode()` での PIO プログラムの"
 "アセンブルでエラーが発生した場合に発生します。"
 
-#: ../../library/rp2.rst:87
+#: ../../library/rp2.rst:89
 msgid "PIO assembly language instructions"
 msgstr "PIO アセンブリ言語命令"
 
-#: ../../library/rp2.rst:89
+#: ../../library/rp2.rst:91
 msgid ""
 "PIO state machines are programmed in a custom assembly language with nine"
 " core PIO-machine instructions.  In MicroPython, PIO assembly routines "
@@ -21355,11 +21477,11 @@ msgstr ""
 "エンコードしてアセンブラに指示する以下のカスタム関数もサポートしています。"
 "詳細は、RP2040 データシートの3.4節を参照してください。"
 
-#: ../../library/rp2.rst:98
+#: ../../library/rp2.rst:100
 msgid "wrap_target()"
 msgstr ""
 
-#: ../../library/rp2.rst:97
+#: ../../library/rp2.rst:99
 msgid ""
 "Specify the location where execution continues after program wrapping. By"
 " default this is the start of the PIO routine."
@@ -21367,11 +21489,11 @@ msgstr ""
 "プログラムの折り返し後に実行を継続する場所を指定します。"
 "デフォルトでは、PIO ルーチンの開始点となります。"
 
-#: ../../library/rp2.rst:103
+#: ../../library/rp2.rst:105
 msgid "wrap()"
 msgstr ""
 
-#: ../../library/rp2.rst:101
+#: ../../library/rp2.rst:103
 msgid ""
 "Specify the location where the program finishes and wraps around. If this"
 " directive is not used then it is added automatically at the end of the "
@@ -21381,11 +21503,11 @@ msgstr ""
 "この指示が使われない場合は、PIOルーチンの最後に自動的に追加されます。"
 "折り返しは実行サイクルを要しません。"
 
-#: ../../library/rp2.rst:107
+#: ../../library/rp2.rst:109
 msgid "label(label)"
 msgstr ""
 
-#: ../../library/rp2.rst:106
+#: ../../library/rp2.rst:108
 msgid ""
 "Define a label called *label* at the current location.  *label* can be a "
 "string or integer."
@@ -21393,86 +21515,86 @@ msgstr ""
 "現在の位置に *label* という名前のラベルを定義します。 "
 "*label* には文字列または整数を指定します。"
 
-#: ../../library/rp2.rst:114
+#: ../../library/rp2.rst:116
 msgid "word(instr, label=None)"
 msgstr ""
 
-#: ../../library/rp2.rst:110
+#: ../../library/rp2.rst:112
 msgid "Insert an arbitrary 16-bit word in the assembled output."
 msgstr "アセンブル出力に任意の16ビットワードを挿入します。"
 
-#: ../../library/rp2.rst:112
+#: ../../library/rp2.rst:114
 msgid "*instr*: the 16-bit value"
 msgstr "*instr*: 16ビットの値"
 
-#: ../../library/rp2.rst:113
+#: ../../library/rp2.rst:115
 msgid ""
 "*label*: if given, look up the label and logical-or the label's value "
 "with *instr*"
 msgstr ""
 "*label*: 与えられた場合、ラベルを検索し、ラベルの値を instr と論理和します。"
 
-#: ../../library/rp2.rst:133
+#: ../../library/rp2.rst:135
 msgid "jmp(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:117
+#: ../../library/rp2.rst:119
 msgid "This instruction takes two forms:"
 msgstr "この命令には2つの形式があります:"
 
-#: ../../library/rp2.rst:109
+#: ../../library/rp2.rst:111
 msgid "jmp(label)"
 msgstr ""
 
-#: ../../library/rp2.rst:120
+#: ../../library/rp2.rst:122
 msgid "*label*: label to jump to unconditionally"
 msgstr "*label*: 無条件にジャンプするラベル"
 
-#: ../../library/rp2.rst:133
+#: ../../library/rp2.rst:135
 msgid "jmp(cond, label)"
 msgstr ""
 
-#: ../../library/rp2.rst:123
+#: ../../library/rp2.rst:125
 msgid "*cond*: the condition to check, one of:"
 msgstr "*cond*：チェックする条件、以下のいずれか:"
 
-#: ../../library/rp2.rst:125
+#: ../../library/rp2.rst:127
 msgid "``not_x``, ``not_y``: true if register is zero"
 msgstr "``not_x``, ``not_y``: レジスタがゼロなら真"
 
-#: ../../library/rp2.rst:126
+#: ../../library/rp2.rst:128
 msgid "``x_dec``, ``y_dec``: true if register is non-zero, and do post decrement"
 msgstr "``x_dec``, ``y_dec``: レジスタがゼロでなければ真、ポストデクリメントを行う"
 
-#: ../../library/rp2.rst:128
+#: ../../library/rp2.rst:130
 msgid "``x_not_y``: true if X is not equal to Y"
 msgstr "``x_not_y``: X と Y が等しくなければ真"
 
-#: ../../library/rp2.rst:129
+#: ../../library/rp2.rst:131
 msgid "``pin``: true if the input pin is set"
 msgstr "``pin``: 入力ピンが設定されていれば真"
 
-#: ../../library/rp2.rst:130
+#: ../../library/rp2.rst:132
 msgid "``not_osre``: true if OSR is not empty (hasn't reached its threshold)"
 msgstr "``not_osre``: OSR が空でない(閾値に達していない)場合は真"
 
-#: ../../library/rp2.rst:133
+#: ../../library/rp2.rst:135
 msgid "*label*: label to jump to if condition is true"
 msgstr "*label*: 条件が真の場合にジャンプするラベル"
 
-#: ../../library/rp2.rst:141
+#: ../../library/rp2.rst:143
 msgid "wait(polarity, src, index)"
 msgstr ""
 
-#: ../../library/rp2.rst:136
+#: ../../library/rp2.rst:138
 msgid "Block, waiting for high/low on a pin or IRQ line."
 msgstr "ブロック。ピンや IRQ ラインの high/low を待ちます。"
 
-#: ../../library/rp2.rst:138
+#: ../../library/rp2.rst:140
 msgid "*polarity*: 0 or 1, whether to wait for a low or high value"
 msgstr "*polarity*: 0 または 1。low または high の値を待つかどうか"
 
-#: ../../library/rp2.rst:139
+#: ../../library/rp2.rst:141
 msgid ""
 "*src*: one of: ``gpio`` (absolute pin), ``pin`` (pin relative to "
 "StateMachine's ``in_base`` argument), ``irq``"
@@ -21480,35 +21602,35 @@ msgstr ""
 "*src*: ``gpio`` (絶対的なピン番号)、 ``pin`` (ステートマシンの ``in_base`` 引数に"
 "対する相対的なピン番号)、 ``irq`` のいずれか"
 
-#: ../../library/rp2.rst:141
+#: ../../library/rp2.rst:143
 msgid "*index*: 0-31, the index for *src*"
 msgstr "*index*: 0-31。 *src* のインデックス"
 
-#: ../../library/rp2.rst:147
+#: ../../library/rp2.rst:149
 msgid "in_(src, bit_count)"
 msgstr ""
 
-#: ../../library/rp2.rst:144
+#: ../../library/rp2.rst:146
 msgid "Shift data in from *src* to ISR."
 msgstr "*src* から ISR にデータをシフトインする。"
 
-#: ../../library/rp2.rst:146
+#: ../../library/rp2.rst:148
 msgid "*src*: one of: ``pins``, ``x``, ``y``, ``null``, ``isr``, ``osr``"
 msgstr "*src*: ``pins``, ``x``, ``y``, ``null``, ``isr``, ``osr`` のいずれか"
 
-#: ../../library/rp2.rst:147
+#: ../../library/rp2.rst:149
 msgid "*bit_count*: number of bits to shift in (1-32)"
 msgstr "*bit_count*: シフトインするビット数(1-32)
 
-#: ../../library/rp2.rst:154
+#: ../../library/rp2.rst:156
 msgid "out(dest, bit_count)"
 msgstr ""
 
-#: ../../library/rp2.rst:150
+#: ../../library/rp2.rst:152
 msgid "Shift data out from OSR to *dest*."
 msgstr "OSR から *dest* にデータをシフトアウトする。"
 
-#: ../../library/rp2.rst:152
+#: ../../library/rp2.rst:154
 msgid ""
 "*dest*: one of: ``pins``, ``x``, ``y``, ``pindirs``, ``pc``, ``isr``, "
 "``exec``"
@@ -21516,15 +21638,15 @@ msgstr ""
 "*dest*: ``pins``, ``x``, ``y``, ``pindirs``, ``pc``, ``isr``, ``exec`` "
 "のいずれか"
 
-#: ../../library/rp2.rst:154
+#: ../../library/rp2.rst:156
 msgid "*bit_count*: number of bits to shift out (1-32)"
 msgstr "*bit_count*: シフトアウトするビット数(1-32)"
 
-#: ../../library/rp2.rst:169
+#: ../../library/rp2.rst:171
 msgid "push(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:157
+#: ../../library/rp2.rst:159
 msgid ""
 "Push ISR to the RX FIFO, then clear ISR to zero. This instruction takes "
 "the following forms:"
@@ -21532,31 +21654,31 @@ msgstr ""
 "ISR を RX FIFO にプッシュしてから、ISR をゼロにクリアする。"
 "この命令は次のような形をとります。"
 
-#: ../../library/rp2.rst:160
+#: ../../library/rp2.rst:162
 msgid "push()"
 msgstr ""
 
-#: ../../library/rp2.rst:161
+#: ../../library/rp2.rst:163
 msgid "push(block)"
 msgstr ""
 
-#: ../../library/rp2.rst:162
+#: ../../library/rp2.rst:164
 msgid "push(noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:163
+#: ../../library/rp2.rst:165
 msgid "push(iffull)"
 msgstr ""
 
-#: ../../library/rp2.rst:164
+#: ../../library/rp2.rst:166
 msgid "push(iffull, block)"
 msgstr ""
 
-#: ../../library/rp2.rst:165
+#: ../../library/rp2.rst:167
 msgid "push(iffull, noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:167
+#: ../../library/rp2.rst:169
 msgid ""
 "If ``block`` is used then the instruction stalls if the RX FIFO is full. "
 "The default is to block.  If ``iffull`` is used then it only pushes if "
@@ -21566,42 +21688,42 @@ msgstr ""
 "デフォルトでは block を指定したことになります。 ``iffull`` を指定すると、"
 "入力シフトカウントが閾値に達した場合にのみプッシュします。"
 
-#: ../../library/rp2.rst:184
+#: ../../library/rp2.rst:186
 msgid "pull(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:172
+#: ../../library/rp2.rst:174
 msgid ""
 "Pull from the TX FIFO into OSR. This instruction takes the following "
 "forms:"
 msgstr ""
 "TX FIFO から OSR にプルします。この命令は次のような形をとります:"
 
-#: ../../library/rp2.rst:175
+#: ../../library/rp2.rst:177
 msgid "pull()"
 msgstr ""
 
-#: ../../library/rp2.rst:176
+#: ../../library/rp2.rst:178
 msgid "pull(block)"
 msgstr ""
 
-#: ../../library/rp2.rst:177
+#: ../../library/rp2.rst:179
 msgid "pull(noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:178
+#: ../../library/rp2.rst:180
 msgid "pull(ifempty)"
 msgstr ""
 
-#: ../../library/rp2.rst:168
+#: ../../library/rp2.rst:170
 msgid "pull(ifempty, block)"
 msgstr ""
 
-#: ../../library/rp2.rst:180
+#: ../../library/rp2.rst:182
 msgid "pull(ifempty, noblock)"
 msgstr ""
 
-#: ../../library/rp2.rst:182
+#: ../../library/rp2.rst:184
 msgid ""
 "If ``block`` is used then the instruction stalls if the TX FIFO is empty."
 " The default is to block.  If ``ifempty`` is used then it only pulls if "
@@ -21611,21 +21733,21 @@ msgstr ""
 "デフォルトでは block を指定したことになります。 "
 "``ifempty`` を指定した場合、出力シフトカウントが閾値に達した場合にのみプルします。"
 
-#: ../../library/rp2.rst:192
+#: ../../library/rp2.rst:194
 msgid "mov(dest, src)"
 msgstr ""
 
-#: ../../library/rp2.rst:187
+#: ../../library/rp2.rst:189
 msgid "Move into *dest* the value from *src*."
 msgstr "*src* の値を *dest* に移します。"
 
-#: ../../library/rp2.rst:189
+#: ../../library/rp2.rst:191
 msgid "*dest*: one of: ``pins``, ``x``, ``y``, ``exec``, ``pc``, ``isr``, ``osr``"
 msgstr ""
 "*dest*: "
 "``pins``, ``x``, ``y``, ``exec``, ``pc``, ``isr``, ``osr`` のいずれか"
 
-#: ../../library/rp2.rst:190
+#: ../../library/rp2.rst:192
 msgid ""
 "*src*: one of: ``pins``, ``x``, ``y``, ``null``, ``status``, ``isr``, "
 "``osr``; this argument can be optionally modified by wrapping it in "
@@ -21636,31 +21758,31 @@ msgstr ""
 "この引数は、オプションで ``invert()`` または ``reverse()`` でラップして"
 "変更できます(両方一緒にはできません)。"
 
-#: ../../library/rp2.rst:209
+#: ../../library/rp2.rst:211
 msgid "irq(...)"
 msgstr ""
 
-#: ../../library/rp2.rst:195
+#: ../../library/rp2.rst:197
 msgid "Set or clear an IRQ flag. This instruction takes two forms:"
 msgstr "IRQ フラグを設定する。この命令は２つの形式をとります:""
 
-#: ../../library/rp2.rst:199
+#: ../../library/rp2.rst:201
 msgid "irq(index)"
 msgstr ""
 
-#: ../../library/rp2.rst:199 ../../library/rp2.rst:203
+#: ../../library/rp2.rst:201 ../../library/rp2.rst:205
 msgid "*index*: 0-7, or ``rel(0)`` to ``rel(7)``"
 msgstr "*index*: 0-7 または ``rel(0)`` から ``rel(7)``"
 
-#: ../../library/rp2.rst:203
+#: ../../library/rp2.rst:205
 msgid "irq(mode, index)"
 msgstr ""
 
-#: ../../library/rp2.rst:202
+#: ../../library/rp2.rst:204
 msgid "*mode*: one of: ``block``, ``clear``"
 msgstr "*mode*" ``block``, ``clear`` のいずれか"
 
-#: ../../library/rp2.rst:205
+#: ../../library/rp2.rst:207
 msgid ""
 "If ``block`` is used then the instruction stalls until the flag is "
 "cleared by another entity.  If ``clear`` is used then the flag is cleared"
@@ -21673,52 +21795,52 @@ msgstr ""
 "相対的な IRQ インデックスは、ステートマシンIDを IRQ インデックスに modulo-4 加算"
 "したものです。IRQ の 0-3 はプロセッサから見え、4-7 はステートマシンの内部にあります。"
 
-#: ../../library/rp2.rst:215
+#: ../../library/rp2.rst:217
 msgid "set(dest, data)"
 msgstr ""
 
-#: ../../library/rp2.rst:212
+#: ../../library/rp2.rst:214
 msgid "Set *dest* with the value *data*."
 msgstr "値 *data* を *dest* に設定します。"
 
-#: ../../library/rp2.rst:214
+#: ../../library/rp2.rst:216
 msgid "*dest*: ``pins``, ``x``, ``y``, ``pindirs``"
 msgstr "*dest*: ``pins``, ``x``, ``y``, ``pindirs`` のいずれか"
 
-#: ../../library/rp2.rst:215
+#: ../../library/rp2.rst:217
 msgid "*data*: value (0-31)"
 msgstr "*data*: 値 (0-31)"
 
-#: ../../library/rp2.rst:219
+#: ../../library/rp2.rst:221
 msgid "nop()"
 msgstr ""
 
-#: ../../library/rp2.rst:218
+#: ../../library/rp2.rst:220
 msgid ""
 "This is a pseudoinstruction that assembles to ``mov(y, y)`` and has no "
 "side effect."
 msgstr "これは ``mov(y, y)`` にアセンブルする擬似命令でサイド効果はありません。"
 
-#: ../../library/rp2.rst:225
+#: ../../library/rp2.rst:227
 msgid ".side(value)"
 msgstr ""
 
-#: ../../library/rp2.rst:222
+#: ../../library/rp2.rst:224
 msgid ""
 "This is a modifier which can be applied to any instruction, and is used "
 "to control side-set pin values."
 msgstr ""
 "これは任意の命令に適用できる修飾子で、サイドセットピンの値を制御するために使います。"
 
-#: ../../library/rp2.rst:225
+#: ../../library/rp2.rst:227
 msgid "*value*: the value (bits) to output on the side-set pins"
 msgstr "*value*: サイドセットピンに出力する値(ビット)"
 
-#: ../../library/rp2.rst:232
+#: ../../library/rp2.rst:234
 msgid ".delay(value)"
 msgstr ""
 
-#: ../../library/rp2.rst:228
+#: ../../library/rp2.rst:230
 msgid ""
 "This is a modifier which can be applied to any instruction, and specifies"
 " how many cycles to delay for after the instruction executes."
@@ -21726,18 +21848,18 @@ msgstr ""
 "これは任意の命令に適用できる修飾子で、その命令が実行された後に何サイクル遅らせるかを"
 "指定します。"
 
-#: ../../library/rp2.rst:231
+#: ../../library/rp2.rst:233
 msgid ""
 "*value*: cycles to delay, 0-31 (maximum value reduced if side-set pins "
 "are used)"
 msgstr ""
 "*value*: 遅らせるサイクル数。0-31 (サイドセットピンを併用している場合、最大値は減少します)"
 
-#: ../../library/rp2.rst:236
+#: ../../library/rp2.rst:238
 msgid "[value]"
 msgstr ""
 
-#: ../../library/rp2.rst:235
+#: ../../library/rp2.rst:237
 msgid "This is a modifier and is equivalent to ``.delay(value)``."
 msgstr "これは修飾子で、.delay(value)と同等です。"
 
@@ -23776,11 +23898,49 @@ msgid "This exception does NOT exist. Instead its base class, OSError, is used."
 msgstr ""
 "この例外は存在しません。代わりにベースクラスの OSError が使われます。"
 
+#: ../../library/ssl.rst:121
+msgid "DTLS support"
+msgstr "DTLS サポート"
+
 #: ../../library/ssl.rst:126
+msgid "This is a MicroPython extension."
+msgstr "これは MicroPython 拡張です。"
+
+#: ../../library/ssl.rst:128
+msgid ""
+"This module supports DTLS in client and server mode via the "
+"`PROTOCOL_DTLS_CLIENT` and `PROTOCOL_DTLS_SERVER` constants that can be "
+"used as the ``protocol`` argument of `SSLContext`."
+msgstr ""
+"このモジュールは DTLS のクライアントモードとサーバーモードをサポートしており、 "
+"`SSLContext` の ``protocol`` 引数として `PROTOCOL_DTLS_CLIENT` "
+"と `PROTOCOL_DTLS_SERVER` 定数を指定できます。"
+
+#: ../../library/ssl.rst:132
+msgid ""
+"In this case the underlying socket is expected to behave as a datagram "
+"socket (i.e. like the socket opened with ``socket.socket`` with "
+"``socket.AF_INET`` as ``af`` and ``socket.SOCK_DGRAM`` as ``type``)."
+msgstr ""
+"この場合、基盤となるソケットはデータグラムソケット(``af`` に ``socket.AF_INET`` 、"
+"``type`` に ``socket.SOCK_DGRAM`` を指定した ``socket.socket`` でオープン"
+"したソケットのようなもの)として動作する必要があります。"
+
+#: ../../library/ssl.rst:136
+msgid ""
+"DTLS is only supported on ports that use mbed TLS, and it is not enabled "
+"by default: it requires enabling ``MBEDTLS_SSL_PROTO_DTLS`` in the "
+"specific port configuration."
+msgstr ""
+"DTLS は mbed TLS を使用するポートでのみサポートされており、デフォルトでは"
+"有効になっていません。有効にするには、特定のポート設定で ``MBEDTLS_SSL_PROTO_DTLS`` "
+"を有効にする必要があります。"
+
+#: ../../library/ssl.rst:147
 msgid "Supported values for the *protocol* parameter."
 msgstr "*protocol* パラメーターでサポートされる値です。"
 
-#: ../../library/ssl.rst:132
+#: ../../library/ssl.rst:153
 msgid ""
 "Supported values for *cert_reqs* parameter, and the "
 ":attr:`SSLContext.verify_mode` attribute."

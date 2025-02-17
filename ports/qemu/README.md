@@ -105,9 +105,7 @@ can also be tested with this command (this is currently supported only for the
     $ make test_natmod
 
 The same remarks about manually running the tests apply for native modules, but
-`run-natmodtests.py` should be run instead of `run-tests.py`.  In this case you
-also have to explicitly pass the architecture you are running native modules to
-`run-natmodtests.py` ("--arch rv32imc" for the `VIRT_RV32` board).
+`run-natmodtests.py` should be run instead of `run-tests.py`.
 
 Extra make options
 ------------------
@@ -122,3 +120,5 @@ The following options can be specified on the `make` command line:
 - `QEMU_DEBUG_ARGS`: defaults to `-s` (gdb on TCP port 1234), but can be overridden
   with different qemu gdb arguments.
 - `QEMU_DEBUG_EXTRA`: extra options to pass to qemu when `QEMU_DEBUG=1` is used.
+- `MICROPY_HEAP_SIZE`: pass in an optional value (in bytes) for overriding the GC
+  heap size used by the port.
