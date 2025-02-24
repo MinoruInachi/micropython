@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-16 10:19+0900\n"
-"PO-Revision-Date: 2025-02-17 01:11+0900\n"
+"PO-Revision-Date: 2025-02-24 21:33+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2531,7 +2531,7 @@ msgstr ""
 #: ../../library/pyb.RTC.rst:26 ../../library/pyb.SPI.rst:48
 #: ../../library/pyb.Servo.rst:39 ../../library/pyb.Switch.rst:32
 #: ../../library/pyb.Timer.rst:63 ../../library/pyb.Timer.rst:248
-#: ../../library/pyb.UART.rst:85 ../../library/pyb.USB_HID.rst:22
+#: ../../library/pyb.UART.rst:85 ../../librarcccccccy/pyb.USB_HID.rst:22
 #: ../../library/pyb.USB_VCP.rst:22 ../../library/rp2.DMA.rst:76
 #: ../../library/rp2.Flash.rst:25 ../../library/rp2.PIO.rst:28
 #: ../../library/rp2.StateMachine.rst:27 ../../library/select.rst:32
@@ -11889,8 +11889,8 @@ msgid ""
 msgstr ""
 "from machine import UART\n"
 "\n"
-"uart = UART(1, 9600)                         # 与えたボーレートで初期化\n"
-"uart.init(9600, bits=8, parity=None, stop=1) # 与えたパラメータで初期化"
+"uart = UART(1, 9600)                         # 指定したボーレートで初期化\n"
+"uart.init(9600, bits=8, parity=None, stop=1) # 指定したパラメータで初期化"
 
 #: ../../library/machine.UART.rst:19
 msgid "Supported parameters differ on a board:"
@@ -11902,9 +11902,9 @@ msgid ""
 "only 8 and 9 bits are supported.  With parity enabled, only 7 and 8 bits "
 "are supported."
 msgstr ""
-"pyboard: bits は 7, 8, 9 にすることができます。stop は 1 または 2 にすることが"
-"できます。 *parity=None* の場合、bitsは 8 と 9 のみがサポートされます。parity "
-"を有効にすると 7 と 8 のビット幅のみがサポートされます。"
+"pyboard: bits には 7, 8, 9 を指定できます。stop には 1 か 2 を指定できます。 "
+"*parity=None* の場合、bits には 8 か 9 のみを指定できます。parity "
+"を有効にすると bits には 7 か 8 のみを指定できます。"
 
 #: ../../library/machine.UART.rst:25
 msgid "WiPy/CC3200: Bits can be 5, 6, 7, 8. Stop can be 1 or 2."
@@ -11930,7 +11930,7 @@ msgstr ""
 "uart.read()         # 可能な限り文字を読み込む\n"
 "uart.readline()     # 1行を読み込む\n"
 "uart.readinto(buf)  # 読み込んで、与えたバッファに格納\n"
-"uart.write('abc')   # 3文字を書き込む"
+"uart.write('abc')   # 3文字を書き出す"
 
 #: ../../library/machine.UART.rst:41
 msgid "Construct a UART object of the given id."
@@ -11950,7 +11950,7 @@ msgstr "*bits* は１文字あたりのビット数で、7, 8, 9 を指定でき
 
 #: ../../library/machine.UART.rst:52
 msgid "*parity* is the parity, ``None``, 0 (even) or 1 (odd)."
-msgstr "*parity* はパリティビットで、 ``None``, 0 (偶数)または 1 (奇数)を指定できます。"
+msgstr "*parity* はパリティビットで、 ``None``, 0 (偶数), 1 (奇数)を指定できます。"
 
 #: ../../library/machine.UART.rst:53
 msgid "*stop* is the number of stop bits, 1 or 2."
@@ -20235,42 +20235,55 @@ msgid ""
 "uart = UART(1, 9600)                         # init with given baudrate\n"
 "uart.init(9600, bits=8, parity=None, stop=1) # init with given parameters"
 msgstr ""
+"from pyb import UART\n"
+"\n"
+"uart = UART(1, 9600)                         # 指定したボーレートで初期化\n"
+"uart.init(9600, bits=8, parity=None, stop=1) # 指定したパラメータで初期化"
 
 #: ../../library/pyb.UART.rst:19
 msgid ""
 "Bits can be 7, 8 or 9.  Parity can be None, 0 (even) or 1 (odd).  Stop "
 "can be 1 or 2."
 msgstr ""
+"bits には 7, 8, 9 を指定できます。parity には None, 0 (偶数), 1 (奇数) を"
+"指定できます。stop には 1 か 2 を指定できます。
 
 #: ../../library/pyb.UART.rst:21 ../../library/pyb.UART.rst:108
 msgid ""
 "*Note:* with parity=None, only 8 and 9 bits are supported.  With parity "
 "enabled, only 7 and 8 bits are supported."
 msgstr ""
+"*注記:* parity=None の場合、bits には 8 か 9 のみを指定できます。parity "
+"を有効にすると bits には 7 か 8 のみを指定できます。"
 
 #: ../../library/pyb.UART.rst:33
 msgid "Individual characters can be read/written using::"
-msgstr ""
+msgstr "１文字単位の読込み/書出しは次のようにします::"
 
 #: ../../library/pyb.UART.rst:35
 msgid ""
 "uart.readchar()     # read 1 character and returns it as an integer\n"
 "uart.writechar(42)  # write 1 character"
 msgstr ""
+"uart.readchar()     # １文字を読み込み、整数として返す\n"
+"uart.writechar(42)  # １文字を書き出す"
 
 #: ../../library/pyb.UART.rst:38
 msgid "To check if there is anything to be read, use::"
-msgstr ""
+msgstr "読み込めるものがあるかのチェックは次のようにします::"
 
 #: ../../library/pyb.UART.rst:40
 msgid "uart.any()          # returns the number of characters waiting"
-msgstr ""
+msgstr "uart.any()          # 読込みを待機している文字数を返す"
 
 #: ../../library/pyb.UART.rst:43
 msgid ""
 "*Note:* The stream functions ``read``, ``write``, etc. are new in "
 "MicroPython v1.3.4. Earlier versions use ``uart.send`` and ``uart.recv``."
 msgstr ""
+"*注記:* ストリーム関数 ``read``, ``write`` などは MicroPython v1.3.4 で"
+"新しく追加されました。それ以前のバージョンでは ``uart.send`` と ``uart.recv`` "
+"を使います。"
 
 #: ../../library/pyb.UART.rst:51
 msgid ""
@@ -20282,94 +20295,115 @@ msgid ""
 "If extra arguments are given, the bus is initialised. See ``init`` for "
 "parameters of initialisation."
 msgstr ""
+"指定したバス上に UART オブジェクトを構築します。"
+"Pyboard のバスは 1-4, 6, 'XA', 'XB', 'YA', 'YB' のいずれかになります。"
+"Pyboard Lite のバスは 1, 2, 6, 'XB', 'YA' のいずれかになります。"
+"Pyboard D のバスは 1-4, 'XA', 'YA', 'YB' のいずれかになります。"
+"追加のパラメータを指定しない場合、UART オブジェクトは作成されますが初期化はされません"
+"(以前のバスの設定が残っている場合は、それを引き継ぎます)。"
+"追加の引数が指定された場合、バスが初期化されます。初期化のパラメータについては ``init`` "
+"を参照してください。"
 
 #: ../../library/pyb.UART.rst:60
 msgid "The physical pins of the UART buses on Pyboard are:"
-msgstr ""
+msgstr "Pyboard 上の UART バスの物理ピン配置は次のとおりです:"
 
 #: ../../library/pyb.UART.rst:62 ../../library/pyb.UART.rst:76
 msgid "``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``"
-msgstr ""
+msgstr "``UART(4)`` ``UART('XA')``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``"
 
 #: ../../library/pyb.UART.rst:63 ../../library/pyb.UART.rst:70
 msgid "``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``"
-msgstr ""
+msgstr "``UART(1)`` ``UART('XB')``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``"
 
 #: ../../library/pyb.UART.rst:64 ../../library/pyb.UART.rst:71
 msgid "``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``"
-msgstr ""
+msgstr "``UART(6)`` ``UART('YA')``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``"
 
 #: ../../library/pyb.UART.rst:65 ../../library/pyb.UART.rst:78
 msgid "``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``"
-msgstr ""
+msgstr "``UART(3)`` ``UART('YB')``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``"
 
 #: ../../library/pyb.UART.rst:66 ../../library/pyb.UART.rst:79
 msgid "``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``"
-msgstr ""
+msgstr "``UART(2)``: ``(TX, RX) = (X3, X4) = (PA2, PA3)``"
 
 #: ../../library/pyb.UART.rst:68
 msgid "The Pyboard Lite supports UART(1), UART(2) and UART(6) only, pins are:"
 msgstr ""
+"Pyboard Lite は UART(1), UART(2), UART(6) のみをサポートします。"
+"物理ピン配置は次のとおりです:"
 
 #: ../../library/pyb.UART.rst:72
 msgid "``UART(2)`` is on: ``(TX, RX) = (X1, X2) = (PA2, PA3)``"
-msgstr ""
+msgstr "``UART(2)``: ``(TX, RX) = (X1, X2) = (PA2, PA3)``"
 
 #: ../../library/pyb.UART.rst:74
 msgid ""
 "The Pyboard D supports UART(1), UART(2), UART(3) and UART(4) only, pins "
 "are:"
 msgstr ""
+"Pyboard Dは UART(1), UART(2), UART(3), UART(4) のみをサポートします。"
+"物理ピン配置は次のとおりです:"
 
 #: ../../library/pyb.UART.rst:77
 msgid "``UART(1)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PA9, PA10)``"
-msgstr ""
+msgstr "``UART(1)`` ``UART('YA')``: ``(TX, RX) = (Y1, Y2) = (PA9, PA10)``"
 
 #: ../../library/pyb.UART.rst:81
 msgid ""
 "*Note:* Pyboard D has ``UART(1)`` on ``YA``, unlike Pyboard and Pyboard "
 "Lite that both have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``."
 msgstr ""
+"*注記:* Pyboard D では ``UART(1)`` が ``YA`` に配置されています。"
+"一方、Pyboard および Pyboard Lite では ``UART(1)`` が ``XB`` 、 "
+"``UART(6)`` は ``YA`` に配置されています。"
 
 #: ../../library/pyb.UART.rst:91
 msgid "``baudrate`` is the clock rate."
-msgstr ""
+msgstr "``baudrate`` はクロックレートです。"
 
 #: ../../library/pyb.UART.rst:92
 msgid "``bits`` is the number of bits per character, 7, 8 or 9."
-msgstr ""
+msgstr "``bits`` は１文字あたりのビット数で、7, 8, 9 を指定できます。"
 
 #: ../../library/pyb.UART.rst:93
 msgid "``parity`` is the parity, ``None``, 0 (even) or 1 (odd)."
-msgstr ""
+msgstr "``parity`` はパリティビットで、 ``None``, 0 (偶数), 1 (奇数)を指定できます。"
 
 #: ../../library/pyb.UART.rst:94
 msgid "``stop`` is the number of stop bits, 1 or 2."
-msgstr ""
+msgstr "``stop`` はストップビットの数で、1 または 2 を指定できます。"
 
 #: ../../library/pyb.UART.rst:95
 msgid ""
 "``flow`` sets the flow control type. Can be 0, ``UART.RTS``, ``UART.CTS``"
 " or ``UART.RTS | UART.CTS``."
 msgstr ""
+"``flow`` はフロー制御の種別です。 0, ``UART.RTS``, ``UART.CTS``, "
+"``UART.RTS | UART.CTS`` のいずれかを指定できます。"
 
 #: ../../library/pyb.UART.rst:97
 msgid ""
 "``timeout`` is the timeout in milliseconds to wait for writing/reading "
 "the first character."
 msgstr ""
+"``timeout`` は最初の文字の読み書きを待つ時間を指定します(ミリ秒単位)。"
 
 #: ../../library/pyb.UART.rst:98
 msgid ""
 "``timeout_char`` is the timeout in milliseconds to wait between "
 "characters while writing or reading."
 msgstr ""
+msgstr "*timeout_char* は文字間の読み書きの待機時間を指定します(ミリ秒単位)。"
 
 #: ../../library/pyb.UART.rst:99
 msgid ""
 "``read_buf_len`` is the character length of the read buffer (0 to "
 "disable)."
 msgstr ""
+"``read_buf_len`` は読込みバッファの文字長を指定します"
+"(0 に設定するとバッファが無効になります)。"
 
 #: ../../library/pyb.UART.rst:101
 #, python-format
@@ -20382,10 +20416,17 @@ msgid ""
 ":func:`pyb.freq <pyb.freq>` to reduce the bus frequencies to get lower "
 "baudrates."
 msgstr ""
+"このメソッドは、ボーレートを希望値の 5% 以内に設定できなかった場合に例外を発生させます。"
+"最小ボーレートは、UART が属するバスの周波数によって決まります。"
+"UART(1) と UART(6) は APB2 に属し、その他の UART は APB1 に属します。"
+"デフォルトのバス周波数では、UART(1) と UART(6) の最小ボーレートは 1300、"
+"その他の UART の最小ボーレートは 650 です。"
+"より低いボーレートを使用するには :func:`pyb.freq <pyb.freq>` を使って"
+"バスの周波数を下げてください。"
 
 #: ../../library/pyb.UART.rst:117
 msgid "Returns the number of bytes waiting (may be 0)."
-msgstr ""
+msgstr "読込みを待機しているバイト数を返します(待機しているものがない場合は 0 を返します)。"
 
 #: ../../library/pyb.UART.rst:121
 msgid ""
@@ -20394,26 +20435,35 @@ msgid ""
 "otherwise returns when sufficient characters arrive or the timeout "
 "elapses."
 msgstr ""
+"文字を読み取ります。 "
+"``nbytes`` が指定されている場合、最大 nbytes バイトを読み取ります。 "
+"``nbytes`` 分のデータがバッファ内に存在する場合は即座に返します。"
+"そうでない場合、十分なデータが到着するかタイムアウトするまで待機します。 "
 
 #: ../../library/pyb.UART.rst:125
 msgid ""
 "If ``nbytes`` is not given then the method reads as much data as "
 "possible.  It returns after the timeout has elapsed."
 msgstr ""
+"``nbytes`` が指定されていない場合、可能な限り多くのデータを読み取ります。"
+"タイムアウトするまでデータを取得し続け、時間切れになった時点で返します。"
 
 #: ../../library/pyb.UART.rst:128
 msgid ""
 "*Note:* for 9 bit characters each character takes two bytes, ``nbytes`` "
 "must be even, and the number of characters is ``nbytes/2``."
 msgstr ""
+"*注記:* 9ビット文字モードの場合、各文字は2バイトで表現されます。"
+"このため ``nbytes`` は偶数である必要があります。読み取る文字数は ``nbytes/2`` "
+"になります。"
 
 #: ../../library/pyb.UART.rst:136
 msgid "Receive a single character on the bus."
-msgstr ""
+msgstr "バスから単一文字を受信します。"
 
 #: ../../library/pyb.UART.rst:138
 msgid "Return value: The character read, as an integer.  Returns -1 on timeout."
-msgstr ""
+msgstr "戻り値: 読み取った文字(整数として返します)。タイムアウト時は -1 を返します。"
 
 #: ../../library/pyb.UART.rst:142
 msgid ""
@@ -20430,12 +20480,16 @@ msgid ""
 " is immediate. If the timeout elapses, all available data is returned "
 "regardless of whether a newline exists."
 msgstr ""
+"改行で終わる行 を読み込みます。"
+"そのような行が存在する場合は 即座に返します。"
+"タイムアウトした場合、改行がなくても利用可能なデータをすべて返します。"
 
 #: ../../library/pyb.UART.rst:154
 msgid ""
 "Return value: the line read or ``None`` on timeout if no data is "
 "available."
 msgstr ""
+"戻り値: 読み込んだ行。データが存在せずにタイムアウトが発生した場合は ``None`` を返します。"
 
 #: ../../library/pyb.UART.rst:158
 msgid ""
@@ -20444,54 +20498,74 @@ msgid ""
 " bytes are used for each character (little endian), and ``buf`` must "
 "contain an even number of bytes."
 msgstr ""
+"バスにバッファ内のバイトデータを書き出します。"
+"7ビットまたは8ビットの文字の場合、各バイトが1文字として扱われます。"
+"9ビットの文字の場合、1文字につき2バイト(リトルエンディアン)を使い、 "
+"``buf`` は偶数バイト数を含む必要があります。"
 
 #: ../../library/pyb.UART.rst:163
 msgid ""
 "Return value: number of bytes written. If a timeout occurs and no bytes "
 "were written returns ``None``."
 msgstr ""
+"戻り値: 書き出したバイト数。"
+"タイムアウトが発生し、1バイトも書き出せなかった場合は ``None`` を返します。"
 
 #: ../../library/pyb.UART.rst:168
 msgid ""
 "Write a single character on the bus.  ``char`` is an integer to write. "
 "Return value: ``None``. See note below if CTS flow control is used."
 msgstr ""
+"バスに単一文字を書き出します。 "
+"``char`` には書き出す整数値を指定します。"
+"戻り値は ``None`` です。"
+"CTS フロー制御を使っている場合の動作については、以下の注意事項を参照してください。"
 
 #: ../../library/pyb.UART.rst:173
 msgid ""
 "Send a break condition on the bus.  This drives the bus low for a "
 "duration of 13 bits. Return value: ``None``."
 msgstr ""
+"バスにブレークコンディションを送信します。"
+"これは、バスを13ビット分の時間だけ low にします。"
+"戻り値は ``None`` です。"
 
-#: ../../library/pyb.UART.rst:183 ../../library/pyb.USB_VCP.rst:119
+#: ../../library/pyb.UART.rst:183 ../../library/pyb.USB_VCP.rst:129
 msgid "to select the flow control type."
-msgstr ""
+msgstr "フロー制御の種別。"
 
 #: ../../library/pyb.UART.rst:186
 msgid "Flow Control"
-msgstr ""
+msgstr "フロー制御"
 
 #: ../../library/pyb.UART.rst:188
 msgid ""
 "On Pyboards V1 and V1.1 ``UART(2)`` and ``UART(3)`` support RTS/CTS "
 "hardware flow control using the following pins:"
 msgstr ""
+"Pyboard V1 と V1.1 では ``UART(2)`` と ``UART(3)`` は RTS/CTS "
+"ハードウェアフロー制御をサポートし、対応するピンは次のとおりです:"
 
 #: ../../library/pyb.UART.rst:191
 msgid ""
 "``UART(2)`` is on: ``(TX, RX, nRTS, nCTS) = (X3, X4, X2, X1) = (PA2, PA3,"
 " PA1, PA0)``"
 msgstr ""
+"``UART(2)``: ``(TX, RX, nRTS, nCTS) = (X3, X4, X2, X1) = (PA2, PA3,"
+" PA1, PA0)``"
 
 #: ../../library/pyb.UART.rst:192
 msgid ""
 "``UART(3)`` is on :``(TX, RX, nRTS, nCTS) = (Y9, Y10, Y7, Y6) = (PB10, "
 "PB11, PB14, PB13)``"
 msgstr ""
+"``UART(3)``: ``(TX, RX, nRTS, nCTS) = (Y9, Y10, Y7, Y6) = (PB10, "
+"PB11, PB14, PB13)``"
 
 #: ../../library/pyb.UART.rst:194
 msgid "On the Pyboard Lite only ``UART(2)`` supports flow control on these pins:"
 msgstr ""
+"Pyboard Lite では ``UART(2)`` のみフロー制御をサポートし、ピン配置は次のとおりです:"
 
 #: ../../library/pyb.UART.rst:196
 msgid "``(TX, RX, nRTS, nCTS) = (X1, X2, X4, X3) = (PA2, PA3, PA1, PA0)``"
@@ -20502,6 +20576,8 @@ msgid ""
 "In the following paragraphs the term \"target\" refers to the device "
 "connected to the UART."
 msgstr ""
+"以降の段落において「ターゲット」という用語は、UART に接続されている"
+"デバイスを指すものとします。"
 
 #: ../../library/pyb.UART.rst:201
 msgid ""
@@ -20512,14 +20588,20 @@ msgid ""
 " signal should be connected to the target's ``nRTS`` and the Pyboard's "
 "``nRTS`` to the target's ``nCTS``."
 msgstr ""
+"UART の ``init()`` メソッドで ``flow`` に ``UART.RTS`` と ``UART.CTS`` の"
+"いずれか、または両方を指定すると、対応するフロー制御ピンが有効になります。 "
+"``nRTS`` は アクティブ low の出力、 ``nCTS`` は プルアップ付きのアクティブ low の"
+"入力になります。フロー制御を有効にするには、Pyboard の ``nCTS`` をターゲットデバイスの "
+"``nRTS`` に接続し、Pyboard の ``nRTS`` をターゲットの ``nCTS`` に接続する"
+"必要があります。"
 
 #: ../../library/pyb.UART.rst:208
 msgid "CTS: target controls Pyboard transmitter"
-msgstr ""
+msgstr "CTS: ターゲットが Pyboard の転送を制御"
 
 #: ../../library/pyb.UART.rst:210
 msgid "If CTS flow control is enabled the write behaviour is as follows:"
-msgstr ""
+msgstr "CTS フロー制御が有効な場合、書き込みの動作は次のようになります:"
 
 #: ../../library/pyb.UART.rst:212
 msgid ""
@@ -20531,6 +20613,12 @@ msgid ""
 " character will remain in the UART pending ``nCTS``. The number of bytes "
 "composing this character will be included in the return value."
 msgstr ""
+"Pyboard の ``UART.write(buf)`` メソッドが呼び出されると、 ``nCTS`` が "
+"``False`` の間、送信が一時停止します。タイムアウト期間内にバッファ全体が送信"
+"されなかった場合、タイムアウトが発生します。このメソッドは送信されたバイト数を返すため、"
+"必要に応じて残りのデータを送信することができます。タイムアウトが発生すると、"
+"１文字が UART 内に保持され、 ``nCTS`` の状態を待ちます。この文字を構成する"
+"バイト数も、戻り値に含まれます。"
 
 #: ../../library/pyb.UART.rst:219
 msgid ""
@@ -20539,14 +20627,18 @@ msgid ""
 " ``OSError 116`` will be raised. The character will be transmitted as "
 "soon as the target asserts ``nCTS``."
 msgstr ""
+"``UART.writechar()`` を ``nCTS`` が ``False`` の状態で呼び出した場合、"
+"ターゲットが適切なタイミングで ``nCTS`` をアサートしない限り、このメソッドは"
+"タイムアウトします。タイムアウトすると ``OSError 116`` が発生します。"
+"ターゲットが ``nCTS`` をアサートすると、その時点で文字が送信されます。"
 
 #: ../../library/pyb.UART.rst:224
 msgid "RTS: Pyboard controls target's transmitter"
-msgstr ""
+msgstr "RTS: Pyboard がターゲットの転送を制御"
 
 #: ../../library/pyb.UART.rst:226
 msgid "If RTS flow control is enabled, behaviour is as follows:"
-msgstr ""
+msgstr "RTS フロー制御が有効な場合の動作は次のようになります:"
 
 #: ../../library/pyb.UART.rst:228
 msgid ""
@@ -20555,6 +20647,11 @@ msgid ""
 "cause ``nRTS`` to go ``False``: the target should cease transmission. "
 "``nRTS`` will go ``True`` when characters are read from the buffer."
 msgstr ""
+"バッファリングされた入力が使われている場合(``read_buf_len`` > 0)、"
+"受信した文字はバッファに格納されます。バッファが満杯になると、"
+"次の文字が到着した時点で ``nRTS`` が ``False`` になります。"
+"これにより、ターゲットは送信を停止する必要があります。"
+"バッファからデータが読み取られると ``nRTS`` は ``True`` に戻ります。"
 
 #: ../../library/pyb.UART.rst:233
 msgid ""
@@ -20565,6 +20662,11 @@ msgid ""
 "character will be placed in the buffer and will be included in the result"
 " of a subsequent ``any()`` call."
 msgstr ""
+"``any()`` メソッドはバッファ内のバイト数を返すことに注意してください。"
+"バッファの長さを ``N`` バイトと仮定します。"
+"バッファが満杯になり、さらに 1 文字が到着すると ``nRTS`` は ``False`` になります。 "
+"``any()`` はこの時点で ``N`` を返します。その後、データが読み取られると、"
+"追加の文字がバッファに格納され、次回の ``any()`` 呼び出し時に含まれます。"
 
 #: ../../library/pyb.UART.rst:239
 msgid ""
@@ -20572,6 +20674,9 @@ msgid ""
 "character will cause ``nRTS`` to go ``False`` until the character is "
 "read."
 msgstr ""
+"バッファリングされた入力が使われていない場合(``read_buf_len`` == 0)、"
+"文字が到着すると ``nRTS`` が ``False`` になり、その文字が読み取られるまで "
+"``nRTS`` は ``False`` のままとなります。"
 
 #: ../../library/pyb.USB_HID.rst:5
 msgid "class USB_HID -- USB Human Interface Device (HID)"
@@ -20625,7 +20730,7 @@ msgstr "``data`` は送信するデータです(整数のタプル/リスト、�
 
 #: ../../library/pyb.USB_VCP.rst:5
 msgid "class USB_VCP -- USB virtual comm port"
-msgstr ""
+msgstr "クラス USB_VCP -- USB 仮想 COM ポート"
 
 #: ../../library/pyb.USB_VCP.rst:7
 msgid ""
@@ -20633,39 +20738,68 @@ msgid ""
 "the USB virtual comm port.  It can be used to read and write data over "
 "USB to the connected host."
 msgstr ""
+"USB_VCP クラスは、USB 仮想 COM ポートを表す `stream` ライクなオブジェクトを"
+"作成できるようにします。これにより、接続されたホストと USB 経由でデータの送受信を"
+"行うことができます。"
 
 #: ../../library/pyb.USB_VCP.rst:17
-msgid "Create a new USB_VCP object."
+msgid ""
+"Create a new USB_VCP object.  The *id* argument specifies which USB VCP "
+"port to use."
 msgstr ""
+"新しい USB_VCP オブジェクトを作成します。"
+"引数 *id* には、使用する USB VCP ポートを指定します。"
 
-#: ../../library/pyb.USB_VCP.rst:25
+#: ../../library/pyb.USB_VCP.rst:26
+msgid ""
+"Configure the USB VCP port.  If the *flow* argument is not -1 then the "
+"value sets the flow control, which can be a bitwise-or of ``USB_VCP.RTS``"
+" and ``USB_VCP.CTS``. RTS is used to control read behaviour and CTS, to "
+"control write behaviour."
+msgstr ""
+"USB VCP ポートを設定します。"
+"引数 *flow* が -1 でない場合、その値はフロー制御を設定します。"
+"これは ``USB_VCP.RTS`` と ``USB_VCP.CTS`` とのビット単位の論理和を"
+"取った値になります。RTS は読み取り動作 を制御します。CTS は書き込み動作を"
+"制御します。"
+
+#: ../../library/pyb.USB_VCP.rst:32
 msgid ""
 "Set the character which interrupts running Python code.  This is set to 3"
 " (CTRL-C) by default, and when a CTRL-C character is received over the "
 "USB VCP port, a KeyboardInterrupt exception is raised."
 msgstr ""
+"実行中の Python コードに割り込む文字を設定します。"
+"デフォルトでは 3 (CTRL-C)に設定されており、USB VCP ポート経由で "
+"CTRL-C 文字を受信すると KeyboardInterrupt 例外が発生します。"
 
-#: ../../library/pyb.USB_VCP.rst:29
+#: ../../library/pyb.USB_VCP.rst:36
 msgid ""
 "Set to -1 to disable this interrupt feature.  This is useful when you "
 "want to send raw bytes over the USB VCP port."
 msgstr ""
+"この割り込み機能を無効にするには -1 を設定します。"
+"これは、USB VCP ポート経由で生のバイトデータを送信したい場合に便利です。"
 
-#: ../../library/pyb.USB_VCP.rst:34
+#: ../../library/pyb.USB_VCP.rst:41
 msgid "Return ``True`` if USB is connected as a serial device, else ``False``."
 msgstr ""
+"USB がシリアルデバイスとして接続されている場合は ``True`` を返し、"
+"それ以外の場合は ``False`` を返します。"
 
-#: ../../library/pyb.USB_VCP.rst:38
+#: ../../library/pyb.USB_VCP.rst:45
 msgid "Return ``True`` if any characters waiting, else ``False``."
-msgstr ""
+msgstr "待機中の文字がある場合は ``True`` を返し、そうでない場合は ``False`` を返します。"
 
-#: ../../library/pyb.USB_VCP.rst:42
+#: ../../library/pyb.USB_VCP.rst:49
 msgid ""
 "This method does nothing.  It exists so the USB_VCP object can act as a "
 "file."
 msgstr ""
+"このメソッドは何も実行しません。USB_VCP オブジェクトをファイルと同様に"
+"扱うために存在します。"
 
-#: ../../library/pyb.USB_VCP.rst:47
+#: ../../library/pyb.USB_VCP.rst:54
 msgid ""
 "Read at most ``nbytes`` from the serial device and return them as a bytes"
 " object.  If ``nbytes`` is not specified then the method reads all "
@@ -20673,62 +20807,77 @@ msgid ""
 " in non-blocking mode, so if no pending data available, this method will "
 "return immediately with ``None`` value."
 msgstr ""
+"シリアルデバイスから最大 ``nbytes`` バイトを読み取り、bytes オブジェクトとして返します。 "
+"``nbytes`` が指定されていない場合、このメソッドはシリアルデバイスから利用可能なすべての"
+"バイトを読み取ります。"
+"USB_VCP `stream` は暗黙的に非ブロッキングモードで動作するため、データが利用可能でない"
+"場合、このメソッドは即座に ``None`` を返します。"
 
-#: ../../library/pyb.USB_VCP.rst:56
+#: ../../library/pyb.USB_VCP.rst:63
 msgid ""
 "Read bytes from the serial device and store them into ``buf``, which "
 "should be a buffer-like object.  At most ``len(buf)`` bytes are read. If "
 "``maxlen`` is given and then at most ``min(maxlen, len(buf))`` bytes are "
 "read."
 msgstr ""
+"シリアルデバイスからバイトを読み取って ``buf`` に格納します。"
+"この buf はバッファライクなオブジェクトである必要があります。"
+"最大で ``len(buf)`` バイトが読み取られます。 ``maxlen`` が"
+"指定された場合は ``min(maxlen, len(buf))`` バイトまで読み取られます。"
 
-#: ../../library/pyb.USB_VCP.rst:61
+#: ../../library/pyb.USB_VCP.rst:68
 msgid ""
 "Returns the number of bytes read and stored into ``buf`` or ``None`` if "
 "no pending data available."
 msgstr ""
+"読み取って ``buf`` に格納したバイト数を返します。データが利用可能でない場合は "
+"``None`` を返します。"
 
-#: ../../library/pyb.USB_VCP.rst:66
+#: ../../library/pyb.USB_VCP.rst:73
 msgid "Read a whole line from the serial device."
-msgstr ""
+msgstr "シリアルデバイスから1行全体を読み取ります。"
 
-#: ../../library/pyb.USB_VCP.rst:68
+#: ../../library/pyb.USB_VCP.rst:75
 msgid ""
 "Returns a bytes object containing the data, including the trailing "
 "newline character or ``None`` if no pending data available."
 msgstr ""
+"改行文字を末尾に含むデータを bytes オブジェクトとして返します。"
+"利用可能なデータがない場合は ``None`` を返します。""
 
-#: ../../library/pyb.USB_VCP.rst:73
+#: ../../library/pyb.USB_VCP.rst:80
 msgid ""
 "Read as much data as possible from the serial device, breaking it into "
 "lines."
 msgstr ""
+"シリアルデバイスから可能な限り多くのデータを読み取り、行ごとに分割します。"
 
-#: ../../library/pyb.USB_VCP.rst:76
+#: ../../library/pyb.USB_VCP.rst:83
 msgid ""
 "Returns a list of bytes objects, each object being one of the lines. Each"
 " line will include the newline character."
 msgstr ""
+"各行を含む bytes オブジェクトのリストを返します。各行には改行文字が含まれます。"
 
-#: ../../library/pyb.USB_VCP.rst:81
+#: ../../library/pyb.USB_VCP.rst:88
 msgid "Write the bytes from ``buf`` to the serial device."
-msgstr ""
+msgstr "``buf`` からの bytes データをシリアルデバイスに書き込みます。"
 
-#: ../../library/pyb.USB_VCP.rst:83
+#: ../../library/pyb.USB_VCP.rst:90
 msgid "Returns the number of bytes written."
-msgstr ""
+msgstr "書き込んだバイト数を返します。"
 
-#: ../../library/pyb.USB_VCP.rst:98
+#: ../../library/pyb.USB_VCP.rst:105
 msgid "Send data over the USB VCP:"
-msgstr ""
+msgstr "USB VCP を介してデータを送信します。"
 
-#: ../../library/pyb.USB_VCP.rst:100
+#: ../../library/pyb.USB_VCP.rst:107
 msgid "``data`` is the data to send (an integer to send, or a buffer object)."
-msgstr ""
+msgstr "``data`` は送信するデータです(送信する整数、またはバッファオブジェクト)。"
 
-#: ../../library/pyb.USB_VCP.rst:103
+#: ../../library/pyb.USB_VCP.rst:110
 msgid "Return value: number of bytes sent."
-msgstr ""
+msgstr "戻り値: 送信したバイト数。"
 
 #: ../../library/pyb.USB_VCP.rst:114
 msgid ""
@@ -20736,20 +20885,24 @@ msgid ""
 "occurs.  The *handler* function must take exactly one argument, which "
 "will be the USB VCP object.  Pass in ``None`` to disable the callback."
 msgstr ""
+"イベント *trigger* が発生したときに呼び出されるハンドラー *handler* を登録します。 "
+"*handler* 関数は引数として USB VCP オブジェクトを１つ受け取る必要があります。 "
+"``None`` を指定するとコールバックを無効化できます。"
 
 #: ../../library/pyb.USB_VCP.rst:118
 msgid "Valid values for *trigger* are:"
-msgstr ""
+msgstr "指定できる *trigger* の値は以下のとおりです:"
 
 #: ../../library/pyb.USB_VCP.rst:120
 msgid ""
 "``USB_VCP.IRQ_RX``: new data is available for reading from the USB VCP "
 "object."
 msgstr ""
+"``USB_VCP.IRQ_RX``: USB VCP オブジェクトで新しいデータが読み取り可能になったとき。"
 
 #: ../../library/pyb.USB_VCP.rst:133
 msgid "IRQ trigger values for :meth:`USB_VCP.irq`."
-msgstr ""
+msgstr ":meth:`USB_VCP.irq` で使う IRQ トリガー値。"
 
 #: ../../library/random.rst:2
 msgid ":mod:`random` -- generate random numbers"
