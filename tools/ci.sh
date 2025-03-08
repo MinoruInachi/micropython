@@ -106,17 +106,31 @@ function ci_code_size_build {
 # .mpy file format
 
 function ci_mpy_format_setup {
+    sudo apt-get update
+    sudo apt-get install python2.7
     sudo pip3 install pyelftools
+    python2.7 --version
+    python3 --version
 }
 
 function ci_mpy_format_test {
     # Test mpy-tool.py dump feature on bytecode
-    python2 ./tools/mpy-tool.py -xd tests/frozen/frozentest.mpy
+    python2.7 ./tools/mpy-tool.py -xd tests/frozen/frozentest.mpy
     python3 ./tools/mpy-tool.py -xd tests/frozen/frozentest.mpy
+
+    # Build MicroPython
+    ci_unix_standard_build
+    micropython=./ports/unix/build-standard/micropython
+    $micropython -m mip install --target . argparse __future__
+    export MICROPYPATH=.
+
+    # Test mpy-tool.py running under MicroPython
+    $micropython ./tools/mpy-tool.py -x -d tests/frozen/frozentest.mpy
 
     # Test mpy-tool.py dump feature on native code
     make -C examples/natmod/features1
     ./tools/mpy-tool.py -xd examples/natmod/features1/features1.mpy
+    $micropython ./tools/mpy-tool.py -x -d examples/natmod/features1/features1.mpy
 }
 
 ########################################################################################
@@ -136,6 +150,7 @@ function ci_cc3200_build {
 
 # GitHub tag of ESP-IDF to use for CI (note: must be a tag or a branch)
 IDF_VER=v5.2.2
+PYTHON_VER=$(python --version | cut -d' ' -f2)
 
 export IDF_CCACHE_ENABLE=1
 
@@ -268,18 +283,18 @@ function ci_powerpc_build {
 # ports/qemu
 
 function ci_qemu_setup_arm {
-    ci_mpy_format_setup
     ci_gcc_arm_setup
     sudo apt-get update
     sudo apt-get install qemu-system
+    sudo pip3 install pyelftools
     qemu-system-arm --version
 }
 
 function ci_qemu_setup_rv32 {
-    ci_mpy_format_setup
     ci_gcc_riscv_setup
     sudo apt-get update
     sudo apt-get install qemu-system
+    sudo pip3 install pyelftools
     qemu-system-riscv32 --version
 }
 
@@ -342,7 +357,8 @@ function ci_rp2_build {
     make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO2 submodules
     make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO2
     make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO submodules
-    make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO
+    # This build doubles as a build test for disabling threads in the config
+    make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO CFLAGS_EXTRA=-DMICROPY_PY_THREAD=0
 
     # Test building ninaw10 driver and NIC interface.
     make ${MAKEOPTS} -C ports/rp2 BOARD=ARDUINO_NANO_RP2040_CONNECT submodules
@@ -579,10 +595,11 @@ function ci_unix_coverage_run_native_mpy_tests {
 function ci_unix_32bit_setup {
     sudo dpkg --add-architecture i386
     sudo apt-get update
-    sudo apt-get install gcc-multilib g++-multilib libffi-dev:i386
+    sudo apt-get install gcc-multilib g++-multilib libffi-dev:i386 python2.7
     sudo pip3 install setuptools
     sudo pip3 install pyelftools
     gcc --version
+    python2.7 --version
     python3 --version
 }
 
@@ -601,12 +618,12 @@ function ci_unix_coverage_32bit_run_native_mpy_tests {
 
 function ci_unix_nanbox_build {
     # Use Python 2 to check that it can run the build scripts
-    ci_unix_build_helper PYTHON=python2 VARIANT=nanbox CFLAGS_EXTRA="-DMICROPY_PY_MATH_CONSTANTS=1"
+    ci_unix_build_helper PYTHON=python2.7 VARIANT=nanbox CFLAGS_EXTRA="-DMICROPY_PY_MATH_CONSTANTS=1"
     ci_unix_build_ffi_lib_helper gcc -m32
 }
 
 function ci_unix_nanbox_run_tests {
-    ci_unix_run_tests_full_helper nanbox PYTHON=python2
+    ci_unix_run_tests_full_helper nanbox PYTHON=python2.7
 }
 
 function ci_unix_float_build {

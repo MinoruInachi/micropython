@@ -848,7 +848,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         test_file_abspath = os.path.abspath(test_file).replace("\\", "/")
 
         if args.filters:
-            # Default verdict is the opposit of the first action
+            # Default verdict is the opposite of the first action
             verdict = "include" if args.filters[0][0] == "exclude" else "exclude"
             for action, pat in args.filters:
                 if pat.search(test_file):
@@ -996,11 +996,23 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
             if output_expected is not None:
                 with open(filename_expected, "wb") as f:
                     f.write(output_expected)
+            else:
+                rm_f(filename_expected)  # in case left over from previous failed run
             with open(filename_mupy, "wb") as f:
                 f.write(output_mupy)
             failed_tests.append((test_name, test_file))
 
         test_count.increment()
+
+        # Print a note if this looks like it might have been a misfired unittest
+        if not uses_unittest and not test_passed:
+            with open(test_file, "r") as f:
+                if any(re.match("^import.+unittest", l) for l in f.readlines()):
+                    print(
+                        "NOTE: {} may be a unittest that doesn't run unittest.main()".format(
+                            test_file
+                        )
+                    )
 
     if pyb:
         num_threads = 1
