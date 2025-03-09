@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-16 10:19+0900\n"
-"PO-Revision-Date: 2025-02-24 21:33+0900\n"
+"POT-Creation-Date: 2025-03-08 23:44+0900\n"
+"PO-Revision-Date: 2025-03-09 00:27+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -6299,7 +6299,7 @@ msgstr "テキストの描画"
 
 #: ../../library/framebuf.rst:117
 msgid ""
-"Write text to the FrameBuffer using the the coordinates as the upper-left"
+"Write text to the FrameBuffer using the coordinates as the upper-left"
 " corner of the text. The color of the text can be defined by the optional"
 " argument but is otherwise a default value of 1. All characters have "
 "dimensions of 8x8 pixels and there is currently no way to change the "
@@ -10255,9 +10255,9 @@ msgstr ""
 "次のメソッドは、コアの Pin API には含まれておらず、特定のポートでのみ"
 "実装されています。"
 
-#: ../../library/machine.Pin.rst:214 ../../library/machine.Pin.rst:218
-msgid "Availability: nrf, rp2, stm32 ports."
-msgstr "対応ポート: nrf, rp2, stm32 ポート。"
+#: ../../library/machine.Pin.rst:212 ../../library/machine.Pin.rst:218
+msgid "Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports."
+msgstr "対応ポート: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ポート。"
 
 #: ../../library/machine.Pin.rst:222
 msgid ""
@@ -10296,8 +10296,8 @@ msgid "Toggle output pin from \"0\" to \"1\" or vice-versa."
 msgstr "出力ピンの \"0\" と \"1\" を切り替えます。"
 
 #: ../../library/machine.Pin.rst:245
-msgid "Availability: mimxrt, samd, rp2 ports."
-msgstr "対応ポート: mimxrt, samd, rp2 ポート。"
+msgid "Availability: cc3200, esp32, esp8266, mimxrt, rp2, samd ports."
+msgstr "対応ポート: cc3200, esp32, esp8266, mimxrt, rp2, samd ポート。"
 
 #: ../../library/machine.Pin.rst:250
 msgid ""
@@ -12062,10 +12062,10 @@ msgstr "WiPy では、次のキーワード指定のみのパラメータがサ�
 msgid ""
 "*pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in "
 "that order). Any of the pins can be None if one wants the UART to operate"
-" with limited functionality. If the RTS pin is given the the RX pin must "
-"be given as well. The same applies to CTS. When no pins are given, then "
-"the default set of TX and RX pins is taken, and hardware flow control "
-"will be disabled. If *pins* is ``None``, no pin assignment will be made."
+" with limited functionality. If the RTS pin is given the RX pin must be "
+"given as well. The same applies to CTS. When no pins are given, then the "
+"default set of TX and RX pins is taken, and hardware flow control will be"
+" disabled. If *pins* is ``None``, no pin assignment will be made."
 msgstr ""
 "pins は TX, RX, RTS, CTS ピンを(この順序で)示す4または2項目のリストです。限られた"
 "機能で UART を動作させたい場合は、どのピンも None にできます。RTS ピンが与えられて"
@@ -15075,14 +15075,38 @@ msgstr "``STAT_GOT_IP`` -- 接続成功"
 #: ../../library/network.WLAN.rst:87
 msgid ""
 "When called with one argument *param* should be a string naming the "
-"status parameter to retrieve.  Supported parameters in WiFI STA mode are:"
-" ``'rssi'``."
+"status parameter to retrieve, and different parameters are supported "
+"depending on the mode the WiFi is in."
 msgstr ""
 "１つの引数 *param* を指定して呼び出された場合、 *param* は取得するステータス"
-"パラメータの名前を表す文字列にする必要があります。WiFi STA モードでサポートされている"
-"パラメータは ``'rssi'`` です。"
+"パラメータの名前を表す文字列にする必要があります。"
+"WiFi の動作モードによって、サポートされるパラメータは異なります。"
 
-#: ../../library/network.WLAN.rst:92
+#: ../../library/network.WLAN.rst:91
+msgid ""
+"In STA mode, passing ``'rssi'`` returns a signal strength indicator "
+"value, whose format varies depending on the port (this is available on "
+"all ports that support WiFi network interfaces, except for CC3200)."
+msgstr ""
+"STA モードでは ``'rssi'`` を指定すると、受信信号強度の値が返されます。"
+"この値の形式はポートによって異なります(WiFi ネットワークインタフェースを"
+"サポートするすべてのポートで利用可能ですが、CC3200 は除きます)。"
+
+#: ../../library/network.WLAN.rst:95
+msgid ""
+"In AP mode, passing ``'stations'`` returns a list of connected WiFi "
+"stations (this is available on all ports that support WiFi network "
+"interfaces, except for CC3200).  The format of the station information "
+"entries varies across ports, providing either the raw BSSID of the "
+"connected station, the IP address of the connected station, or both."
+msgstr ""
+"AP モードでは ``'stations'`` を指定すると、接続されている WiFi ステーションの"
+"リストが返されます(WiFi ネットワークインタフェースをサポートするすべてのポートで"
+"利用可能ですが、CC3200 は除きます)。ステーション情報のエントリの形式はポートに"
+"よって異なり、接続されたステーションの BSSID、IPアドレス、またはその両方が"
+"提供されます。"
+
+#: ../../library/network.WLAN.rst:103
 msgid ""
 "In case of STA mode, returns ``True`` if connected to a WiFi access point"
 " and has a valid IP address.  In AP mode returns ``True`` when a station "
@@ -15092,7 +15116,7 @@ msgstr ""
 "``True`` を返します。AP モードの場合、ステーションが接続されていれば ``True`` を"
 "返します。これら以外では ``False`` を返します。"
 
-#: ../../library/network.WLAN.rst:108
+#: ../../library/network.WLAN.rst:119
 msgid ""
 "Get or set general network interface parameters. These methods allow to "
 "work with additional parameters beyond standard IP configuration (as "
@@ -15110,7 +15134,7 @@ msgstr ""
 "一度に設定できます。問合せを実行する場合、パラメータ名は文字列として引用符で囲みます。"
 "一度に問合せできるパラメータは1つだけです。"
 
-#: ../../library/network.WLAN.rst:121
+#: ../../library/network.WLAN.rst:132
 msgid ""
 "Following are commonly supported parameters (availability of a specific "
 "parameter depends on network technology type, driver, and "
@@ -15120,70 +15144,70 @@ msgstr ""
 "ネットワーク技術の種類、ドライバー、 :term:`MicroPython ポート <MicroPython port>` "
 "によって異なります)。"
 
-#: ../../library/network.WLAN.rst:125
+#: ../../library/network.WLAN.rst:136
 msgid "Parameter"
 msgstr "パラメータ"
 
-#: ../../library/network.WLAN.rst:125
+#: ../../library/network.WLAN.rst:136
 msgid "Description"
 msgstr "説明"
 
-#: ../../library/network.WLAN.rst:127
+#: ../../library/network.WLAN.rst:138
 msgid "mac"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:127
+#: ../../library/network.WLAN.rst:138
 msgid "MAC address (bytes)"
 msgstr "MAC アドレス(bytes 型オブジェクト)"
 
-#: ../../library/network.WLAN.rst:128
+#: ../../library/network.WLAN.rst:139
 msgid "essid"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:128
+#: ../../library/network.WLAN.rst:139
 msgid "WiFi access point name (string)"
 msgstr "WiFi アクセスポイント名(文字列)"
 
-#: ../../library/network.WLAN.rst:129
+#: ../../library/network.WLAN.rst:140
 msgid "channel"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:129
+#: ../../library/network.WLAN.rst:140
 msgid ""
 "WiFi channel (integer). Depending on the port this may only be supported "
 "on the AP interface."
 msgstr ""
 "WiFi チャンネル(整数)。ポートによっては、AP インタフェースでのみサポートとなっている。"
 
-#: ../../library/network.WLAN.rst:130
+#: ../../library/network.WLAN.rst:141
 msgid "hidden"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:130
+#: ../../library/network.WLAN.rst:141
 msgid "Whether ESSID is hidden (boolean)"
 msgstr "ESSID が非表示かどうか(ブール型)"
 
-#: ../../library/network.WLAN.rst:131
+#: ../../library/network.WLAN.rst:142
 msgid "authmode"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:131
+#: ../../library/network.WLAN.rst:142
 msgid "Authentication mode supported (enumeration, see module constants)"
 msgstr "サポートされている認証モード(列挙値、モジュール定数を参照)"
 
-#: ../../library/network.WLAN.rst:132
+#: ../../library/network.WLAN.rst:143
 msgid "password"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:132
+#: ../../library/network.WLAN.rst:143
 msgid "Access password (string)"
 msgstr "アクセスパスワード(文字列)"
 
-#: ../../library/network.WLAN.rst:133
+#: ../../library/network.WLAN.rst:144
 msgid "hostname"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:133
+#: ../../library/network.WLAN.rst:144
 msgid ""
 "The hostname that will be sent to DHCP (STA interfaces) and mDNS (if "
 "supported, both STA and AP). (Deprecated, use :func:`network.hostname` "
@@ -15192,38 +15216,38 @@ msgstr ""
 "DHCP (STA インターフェース)および mDNS (サポートされていれば STA と AP の両方)に"
 "送信されるホスト名。(非推奨、代わりに :func:`network.hostname` を使ってください)"
 
-#: ../../library/network.WLAN.rst:134
+#: ../../library/network.WLAN.rst:145
 msgid "reconnects"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:134
+#: ../../library/network.WLAN.rst:145
 msgid "Number of reconnect attempts to make (integer, 0=none, -1=unlimited)"
 msgstr "再接続を試みる回数(整数値、0=再接続なし、-1=無制限)"
 
-#: ../../library/network.WLAN.rst:135
+#: ../../library/network.WLAN.rst:146
 msgid "txpower"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:135
+#: ../../library/network.WLAN.rst:146
 msgid "Maximum transmit power in dBm (integer or float)"
 msgstr "最大信号強度(dBm 単位で整数または浮動小数点数で指定)"
 
-#: ../../library/network.WLAN.rst:136
+#: ../../library/network.WLAN.rst:147
 msgid "pm"
 msgstr ""
 
-#: ../../library/network.WLAN.rst:136
+#: ../../library/network.WLAN.rst:147
 msgid "WiFi Power Management setting (see below for allowed values)"
 msgstr "WiFi 電力管理設定(指定できる値は後述)"
 
-#: ../../library/network.WLAN.rst:146
+#: ../../library/network.WLAN.rst:157
 msgid ""
 "Allowed values for the ``WLAN.config(pm=...)`` network interface "
 "parameter:"
 msgstr ""
 "``WLAN.config(pm=...)`` ネットワークインタフェースパラメータに指定できる値:"
 
-#: ../../library/network.WLAN.rst:148
+#: ../../library/network.WLAN.rst:159
 msgid ""
 "``PM_PERFORMANCE``: enable WiFi power management to balance power savings"
 " and WiFi performance"
@@ -15231,7 +15255,7 @@ msgstr ""
 "``PM_PERFORMANCE``: WiFi の電力管理を有効にし、電力の節約と WiFi の"
 "パフォーマンスをバランスさせます。"
 
-#: ../../library/network.WLAN.rst:150
+#: ../../library/network.WLAN.rst:161
 msgid ""
 "``PM_POWERSAVE``: enable WiFi power management with additional power "
 "savings and reduced WiFi performance"
@@ -15239,7 +15263,7 @@ msgstr ""
 "``PM_POWERSAVE``: WiFi の電力管理を有効にし、電力節約を優先して、WiFi の"
 "パフォーマンス低下させます。"
 
-#: ../../library/network.WLAN.rst:152
+#: ../../library/network.WLAN.rst:163
 msgid "``PM_NONE``: disable wifi power management"
 msgstr "``PM_NONE``: WiFi の電力管理を無効にします。"
 
@@ -24739,7 +24763,14 @@ msgstr "*_machine* - 基盤マシンを説明する文字列"
 msgid "*_mpy* - supported mpy file-format version (optional attribute)"
 msgstr "*_mpy* - サポートしている mpy ファイルフォーマットバージョン(オプション属性)"
 
-#: ../../library/sys.rst:79
+#: ../../library/sys.rst:78
+msgid ""
+"*_build* - string that can help identify the configuration that "
+"MicroPython was built with"
+msgstr ""
+"*_build* - MicroPython がビルドされた際の構成を識別するのに役立つ文字列"
+
+#: ../../library/sys.rst:81
 msgid ""
 "This object is the recommended way to distinguish MicroPython from other "
 "Python implementations (note that it still may not exist in the very "
@@ -24748,7 +24779,7 @@ msgstr ""
 "このオブジェクトは、MicroPython を他の Python 実装と区別する推奨手段です(しかし、"
 "最小限のポートには存在しないことに注意してください)。"
 
-#: ../../library/sys.rst:83
+#: ../../library/sys.rst:85
 msgid ""
 "Starting with version 1.22.0-preview, the fourth node *releaselevel* in "
 "*implementation.version* is either an empty string or ``\"preview\"``."
@@ -24756,7 +24787,37 @@ msgstr ""
 "バージョン 1.22.0-preview 以降、 *implementation.version* の４番目の項目 "
 "*releaselevel* は空文字列または ``\"preview\"`` になります。"
 
-#: ../../library/sys.rst:89
+#: ../../library/sys.rst:88
+msgid ""
+"The *_build* entry was added in version 1.25.0 and is a hyphen-separated "
+"set of elements.  New elements may be appended in the future so it's best"
+" to access this field using ``sys.implementation._build.split(\"-\")``.  "
+"The elements that are currently used are:"
+msgstr ""
+"*_build* エントリはバージョン 1.25.0 で追加され、ハイフンで区切られた要素の"
+"セットになります。将来的に新しい要素が追加される可能性があるため、"
+"このフィールドには ``sys.implementation._build.split(\"-\")`` を"
+"使ってアクセスするのが最適です。現在使用されている要素は以下のとおりです:"
+
+#: ../../library/sys.rst:93
+msgid ""
+"On the unix, webassembly and windows ports the first element is the "
+"variant name, for example ``'standard'``."
+msgstr ""
+"unix、webassembly、windows ポートでは、最初の要素がバリアント名です。"
+"たとえば ``'standard'`` などとなります。"
+
+#: ../../library/sys.rst:95
+msgid ""
+"On microcontroller targets, the first element is the board name and the "
+"second element (if present) is the board variant, for example "
+"``'RPI_PICO2-RISCV'``"
+msgstr ""
+"マイコン向けのターゲットでは最初の要素がボード名となります。"
+"２番目の要素は(あれば)ボードのバリアントを示し、たとえば "
+"RPI_PICO2-RISCV などとなります。"
+
+#: ../../library/sys.rst:101
 msgid ""
 "CPython mandates more attributes for this object, but the actual useful "
 "bare minimum is implemented in MicroPython."
@@ -24764,7 +24825,7 @@ msgstr ""
 "CPython ではこのオブジェクトにもっと多くの属性がありますが、MicroPython では実際に"
 "有用となる最低限のものだけを実装しています。"
 
-#: ../../library/sys.rst:94
+#: ../../library/sys.rst:106
 msgid ""
 "Maximum value which a native integer type can hold on the current "
 "platform, or maximum value representable by MicroPython integer type, if "
@@ -24775,7 +24836,7 @@ msgstr ""
 "最大値より小さい場合は MicroPython 整数型で表現可能な最大値(MicroPython ポートで "
 "長整数をサポートしないとした場合)。"
 
-#: ../../library/sys.rst:99
+#: ../../library/sys.rst:111
 msgid ""
 "This attribute is useful for detecting \"bitness\" of a platform (32-bit "
 "vs 64-bit, etc.). It's recommended to not compare this attribute to some "
@@ -24785,7 +24846,7 @@ msgstr ""
 "便利です。この属性をある値と直接比較するのよりも、その属性のビット数をカウントする"
 "ことをお勧めします。"
 
-#: ../../library/sys.rst:103
+#: ../../library/sys.rst:115
 msgid ""
 "bits = 0\n"
 "v = sys.maxsize\n"
@@ -24815,7 +24876,7 @@ msgstr ""
 "    # (たとえば31)になる可能性があるので、 \"> 16\", \"> 32\", \"> 64\" の\n"
 "    # の比較スタイルを使用してください。"
 
-#: ../../library/sys.rst:119
+#: ../../library/sys.rst:131
 msgid ""
 "Dictionary of loaded modules. On some ports, it may not include builtin "
 "modules."
@@ -24823,11 +24884,11 @@ msgstr ""
 "読み込まれたモジュールの辞書。一部のポートでは、組込みモジュールが含まれていない"
 "可能性があります。"
 
-#: ../../library/sys.rst:124
+#: ../../library/sys.rst:136
 msgid "A mutable list of directories to search for imported modules."
 msgstr "import するモジュールを検索するディレクトリの変更可能なリスト。"
 
-#: ../../library/sys.rst:129
+#: ../../library/sys.rst:141
 msgid ""
 "On MicroPython, an entry with the value ``\".frozen\"`` will indicate "
 "that import should search :term:`frozen modules <frozen module>` at that "
@@ -24840,7 +24901,7 @@ msgstr ""
 "凍結モジュールが見つからなければ、 ``.frozen`` というディレクトリを *探さず* 、"
 "代わりに ``sys.path`` の次のエントリで検索を続行します。"
 
-#: ../../library/sys.rst:136
+#: ../../library/sys.rst:148
 msgid ""
 "The platform that MicroPython is running on. For OS/RTOS ports, this is "
 "usually an identifier of the OS, e.g. ``\"linux\"``. For baremetal ports "
@@ -24858,7 +24919,7 @@ msgstr ""
 "実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
-#: ../../library/sys.rst:146
+#: ../../library/sys.rst:158
 msgid ""
 "Mutable attributes holding strings, which are used for the REPL prompt.  "
 "The defaults give the standard Python prompt of ``>>>`` and ``...``."
@@ -24866,19 +24927,19 @@ msgstr ""
 "REPL プロンプトに使う文字列を保持する変更可能属性です。"
 "デフォルトでは、標準的な Python プロンプトである ``>>>`` や ``...`` を表示します。"
 
-#: ../../library/sys.rst:151
+#: ../../library/sys.rst:163
 msgid "Standard error `stream`."
 msgstr "標準エラーの `stream` 。"
 
-#: ../../library/sys.rst:155
+#: ../../library/sys.rst:167
 msgid "Standard input `stream`."
 msgstr "標準入力の `stream` 。"
 
-#: ../../library/sys.rst:159
+#: ../../library/sys.rst:171
 msgid "Standard output `stream`."
 msgstr "標準出力の `stream` 。"
 
-#: ../../library/sys.rst:163
+#: ../../library/sys.rst:175
 msgid ""
 "A mutable attribute holding an integer value which is the maximum number "
 "of traceback entries to store in an exception.  Set to 0 to disable "
@@ -24887,22 +24948,22 @@ msgstr ""
 "例外に格納するトレースバックエントリの最大数を整数値で保持する変更可能属性です。"
 "0 を設定すると、トレースバックの追加を無効にします。デフォルトは 1000 です。"
 
-#: ../../library/sys.rst:167
+#: ../../library/sys.rst:179
 msgid "Note: this is not available on all ports."
 msgstr "注記: これはすべてのポートで使用できるわけではありません。"
 
-#: ../../library/sys.rst:171
+#: ../../library/sys.rst:183
 msgid "Python language version that this implementation conforms to, as a string."
 msgstr "この処理系が準拠する Python 言語バージョンを表す文字列。"
 
-#: ../../library/sys.rst:175
+#: ../../library/sys.rst:187
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
 "この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
-#: ../../library/sys.rst:180
+#: ../../library/sys.rst:192
 msgid ""
 "Only the first three version numbers (major, minor, micro) are supported "
 "and they can be referenced only by index, not by name."
