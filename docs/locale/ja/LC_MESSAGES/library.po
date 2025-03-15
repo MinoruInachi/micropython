@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-08 23:44+0900\n"
-"PO-Revision-Date: 2025-03-09 00:27+0900\n"
+"POT-Creation-Date: 2025-03-15 17:34+0900\n"
+"PO-Revision-Date: 2025-03-15 18:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -10627,42 +10627,58 @@ msgstr ""
 "*slot* は、使用可能なインターフェースのどれを使用するかを選択します。"
 "この指定を省略すると、デフォルトのインターフェースが選択されます。"
 
-#: ../../library/machine.SDCard.rst:40
-msgid "*width* selects the bus width for the SD/MMC interface."
-msgstr "*width* は、SD/MMCインターフェイスのバス幅を選択します。"
+#: ../../library/machine.SDCard.rst:41
+msgid ""
+"*width* selects the bus width for the SD/MMC interface. This many data "
+"pins must be connected to the SD card."
+msgstr ""
+"*width* は、SD/MMCインターフェイスのバス幅を選択します。"
+"この数のデータピンを SD カードに接続する必要があります。"
 
-#: ../../library/machine.SDCard.rst:42
+#: ../../library/machine.SDCard.rst:44
 msgid "*cd* can be used to specify a card-detect pin."
 msgstr "*cd* でカード検出ピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:44
+#: ../../library/machine.SDCard.rst:46
 msgid "*wp* can be used to specify a write-protect pin."
 msgstr "*wp* で書き込み保護ピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:46
+#: ../../library/machine.SDCard.rst:48
 msgid "*sck* can be used to specify an SPI clock pin."
 msgstr "*sck* で SPI クロックピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:48
+#: ../../library/machine.SDCard.rst:50
 msgid "*miso* can be used to specify an SPI miso pin."
 msgstr "*miso* で SPI miso ピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:50
+#: ../../library/machine.SDCard.rst:52
 msgid "*mosi* can be used to specify an SPI mosi pin."
 msgstr "*miso* で SPI mosi ピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:52
+#: ../../library/machine.SDCard.rst:54
 msgid "*cs* can be used to specify an SPI chip select pin."
 msgstr "*cs* で SPI チップ選択ピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:54
-msgid ""
-"*freq* selects the SD/MMC interface frequency in Hz (only supported on "
-"the ESP32)."
-msgstr ""
-"*freq* は SD/MMC インタフェースの周波数を Hz で指定します(ESP32 でのみサポート)。"
+#: ../../library/machine.SDCard.rst:56
+msgid "The following additional parameters are only present on ESP32 port:"
+msgstr "以降の追加パラメータは、ESP32 ポートでのみ指定できます。"
 
-#: ../../library/machine.SDCard.rst:57
+#: ../../library/machine.SDCard.rst:58
+msgid "*cmd* can be used to specify the SD CMD pin (ESP32-S3 only)."
+msgstr "*cmd* は SD CMD ピンを指定できます(ESP32-S3 のみ)。"
+
+#: ../../library/machine.SDCard.rst:60
+msgid ""
+"*data* can be used to specify a list or tuple of SD data bus pins "
+"(ESP32-S3 only)."
+msgstr ""
+"*data* は SD データバスのピンをリストまたはタプルで指定できます(ESP32-S3 のみ)。"
+
+#: ../../library/machine.SDCard.rst:63
+msgid "*freq* selects the SD/MMC interface frequency in Hz."
+msgstr "*freq* は SD/MMC インタフェースの周波数を Hz で指定します。"
+
+#: ../../library/machine.SDCard.rst:66
 msgid "Implementation-specific details"
 msgstr "ハードウェア固有の詳細"
 
@@ -10685,230 +10701,442 @@ msgid ""
 msgstr ""
 "標準の PyBoard にはスロットが1つしかありません。引数は不要またはサポートされていません。"
 
-#: ../../library/machine.SDCard.rst:68
+#: ../../library/machine.SDCard.rst:77 ../../library/machine.SDCard.rst:91
+#: ../../library/machine.UART.rst:216
 msgid "ESP32"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:70
+#: ../../library/machine.SDCard.rst:79
 msgid ""
-"The ESP32 provides two channels of SD/MMC hardware and also supports "
-"access to SD Cards through either of the two SPI ports that are generally"
-" available to the user. As a result the *slot* argument can take a value "
-"between 0 and 3, inclusive. Slots 0 and 1 use the built-in SD/MMC "
-"hardware while slots 2 and 3 use the SPI ports. Slot 0 supports 1, 4 or "
-"8-bit wide access while slot 1 supports 1 or 4-bit access; the SPI slots "
-"only support 1-bit access."
+"SD cards support access in both SD/MMC mode and the simpler (but slower) "
+"SPI mode."
 msgstr ""
-"ESP32 は SD/MMC ハードウェアの2つのチャネルを提供し、ユーザーが通常利用できる2つの "
-"SPI ポートのいずれかを介したSDカードへのアクセスもサポートします。結果として、 "
-"*slot* 引数は 0 から 3 までの値を取ることができます。スロット 0 と 1 は組み込みの "
-"SD/MMCハードウェアを使い、スロット 2 と 3 は SPI ポートを使います。スロット 0 は "
-"1, 4, 8ビット幅のアクセスをサポートし、スロット1 は 1 または 4ビットアクセスを"
-"サポートします。SPIスロットは1ビットアクセスのみをサポートします。"
-
-#: ../../library/machine.SDCard.rst:78
-msgid ""
-"Slot 0 is used to communicate with on-board flash memory on most ESP32 "
-"modules and so will be unavailable to the user."
-msgstr ""
-"スロット 0 は、ほとんどの ESP32 モジュールではオンボードのフラッシュメモリとの通信に"
-"使っているため、ユーザーは使用できません。"
+"SD カードは SD/MMC モードと、よりシンプルな(ただし遅い) SPI モードの両方で"
+"アクセスできます。"
 
 #: ../../library/machine.SDCard.rst:82
 msgid ""
-"Most ESP32 modules that provide an SD card slot using the dedicated "
-"hardware only wire up 1 data pin, so the default value for *width* is 1."
+"SPI mode makes use of a `SPI` host peripheral, which cannot concurrently "
+"be used for other SPI interactions."
 msgstr ""
-"専用ハードウェアを使って SD カードスロットを提供するほとんどの ESP32 モジュールは、"
-"1データピンのみを配線しているため *width* のデフォルト値は1です。"
+"SPI モードでは `SPI` ホストペリフェラルを使いますが、このペリフェラルは他の SPI 通信と"
+"同時に使えません。"
 
-#: ../../library/machine.SDCard.rst:86
+#: ../../library/machine.SDCard.rst:85
 msgid ""
-"The pins used by the dedicated SD/MMC hardware are fixed. The pins used "
-"by the SPI hardware can be reassigned."
+"The ``slot`` argument determines which mode is used. Different values are"
+" supported on different chips:"
 msgstr ""
-"専用の SD/MMC ハードウェアで使われているピンは固定されています。SPI ハードウェアで"
-"使うピンは再割り当てできます。"
+"``slot`` 引数によって使うモードが決まります。指定できる値はチップによって異なります。"
 
 #: ../../library/machine.SDCard.rst:89
-msgid ""
-"If any of the SPI signals are remapped then all of the SPI signals will "
-"pass through a GPIO multiplexer unit which can limit the performance of "
-"high frequency signals. Since the normal operating speed for SD cards is "
-"40MHz this can cause problems on some cards."
-msgstr ""
-"SPI 信号のいずれかが再マッピングされると、すべての SPI 信号が GPIO マルチプレクサ"
-"ユニットを通過するため、高周波信号のパフォーマンスが制限される可能性があります。"
-"SDカードの通常の動作速度は 40MHz であるため、一部のカードで問題が発生する"
-"場合があります。"
+msgid "Chip"
+msgstr "チップ"
 
+#: ../../library/machine.SDCard.rst:89
+msgid "Slot 0"
+msgstr "スロット 0"
+
+#: ../../library/machine.SDCard.rst:89
+msgid "Slot 1"
+msgstr "スロット 1"
+
+#: ../../library/machine.SDCard.rst:89
+msgid "Slot 2"
+msgstr "スロット 2"
+
+#: ../../library/machine.SDCard.rst:89
+msgid "Slot 3"
+msgstr "スロット 3"
+
+#: ../../library/machine.SDCard.rst:91 ../../library/machine.SDCard.rst:95
+#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:104
+msgid "SD/MMC"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:91 ../../library/machine.SDCard.rst:94
 #: ../../library/machine.SDCard.rst:95
-msgid "The default (and preferred) pin assignment are as follows:"
-msgstr "デフォルト(および推奨)のピン割り当ては次のとおりです。"
+msgid "SPI (id=1)"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:91 ../../library/machine.SDCard.rst:92
+#: ../../library/machine.SDCard.rst:93 ../../library/machine.SDCard.rst:94
+#: ../../library/machine.SDCard.rst:95
+msgid "SPI (id=0)"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:92
+msgid "ESP32-C3"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:93
+msgid "ESP32-C6"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:94
+msgid "ESP32-S2"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:95 ../../library/machine.SDCard.rst:144
+msgid "ESP32-S3"
+msgstr ""
 
 #: ../../library/machine.SDCard.rst:98
+msgid "Different slots support different data bus widths (number of data pins):"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:101 ../../library/machine.SDCard.rst:125
+#: ../../library/machine.SDCard.rst:152
 msgid "Slot"
 msgstr "スロット"
 
-#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:261
+#: ../../library/machine.SDCard.rst:101 ../../library/wm8960.rst:102
+msgid "Type"
+msgstr "種別"
+
+#: ../../library/machine.SDCard.rst:101
+msgid "Supported data widths"
+msgstr "サポートするデータ幅"
+
+#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:152
+#: ../../library/pyb.CAN.rst:306 ../../library/wm8960.rst:78
+#: ../../library/wm8960.rst:92 ../../library/wm8960.rst:104
+#: ../../library/wm8960.rst:119 ../../library/wm8960.rst:132
+#: ../../library/wm8960.rst:143 ../../library/wm8960.rst:176
 msgid "0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98 ../../library/pyb.CAN.rst:182
-#: ../../library/pyb.CAN.rst:263
+#: ../../library/machine.SDCard.rst:103
+msgid "1, 4, 8"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:105
+#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:125
+#: ../../library/machine.SDCard.rst:152 ../../library/pyb.CAN.rst:213
+#: ../../library/pyb.CAN.rst:308 ../../library/struct.rst:28
+#: ../../library/struct.rst:30 ../../library/wm8960.rst:79
+#: ../../library/wm8960.rst:91 ../../library/wm8960.rst:105
+#: ../../library/wm8960.rst:120 ../../library/wm8960.rst:133
+#: ../../library/wm8960.rst:144 ../../library/wm8960.rst:163
+#: ../../library/wm8960.rst:177
 msgid "1"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98 ../../library/machine.SDCard.rst:105
-#: ../../library/pyb.CAN.rst:178 ../../library/pyb.CAN.rst:180
-#: ../../library/pyb.CAN.rst:265
+#: ../../library/machine.SDCard.rst:104
+msgid "1, 4"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:105 ../../library/machine.SDCard.rst:125
+#: ../../library/machine.SDCard.rst:131 ../../library/machine.SDCard.rst:152
+#: ../../library/machine.SDCard.rst:158 ../../library/machine.SDCard.rst:168
+#: ../../library/pyb.CAN.rst:209 ../../library/pyb.CAN.rst:211
+#: ../../library/pyb.CAN.rst:310 ../../library/struct.rst:32
+#: ../../library/struct.rst:34 ../../library/struct.rst:48
+#: ../../library/wm8960.rst:80 ../../library/wm8960.rst:90
+#: ../../library/wm8960.rst:106 ../../library/wm8960.rst:121
+#: ../../library/wm8960.rst:145 ../../library/wm8960.rst:164
 msgid "2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98
+#: ../../library/machine.SDCard.rst:105 ../../library/machine.SDCard.rst:106
+msgid "SPI"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:125
+#: ../../library/machine.SDCard.rst:152 ../../library/wm8960.rst:93
+#: ../../library/wm8960.rst:107 ../../library/wm8960.rst:146
 msgid "3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:100
-msgid "Signal"
+#: ../../library/machine.SDCard.rst:109
+msgid ""
+"Most ESP32 modules that provide an SD card slot using the dedicated "
+"hardware only wire up 1 data pin, so the default value for ``width`` is "
+"1."
 msgstr ""
+"ほとんどの ESP32 モジュールでは、専用ハードウェアを介して SD カードスロットを"
+"提供する際に、データピンを1本だけ接続しているため、 ``width`` のデフォルト値は "
+"1 になっています。"
 
-#: ../../library/machine.SDCard.rst:100
+#: ../../library/machine.SDCard.rst:113
+msgid "Additional details depend on which ESP32 family chip is in use:"
+msgstr "さらなる詳細は、使用している ESP32 ファミリーのチップによって異なります:"
+
+#: ../../library/machine.SDCard.rst:116
+msgid "Original ESP32"
+msgstr "オリジナルの ESP32"
+
+#: ../../library/machine.SDCard.rst:118
+msgid ""
+"In SD/MMC mode (slot 1), pin assignments in SD/MMC mode are fixed on the "
+"original ESP32. The SPI mode slots (2 & 3) allow pins to be set to "
+"different values in the constructor."
+msgstr ""
+"SD/MMC モード(スロット1)では、オリジナルの ESP32 においてピンの割り当てが固定"
+"されています。SPI モードのスロット(2 & 3)では、コンストラクタ内で異なるピンを"
+"設定できます。"
+
+#: ../../library/machine.SDCard.rst:122
+msgid "The default pin assignments are as follows:"
+msgstr "デフォルトのピン割り当ては次のとおりです:"
+
+#: ../../library/machine.SDCard.rst:125
+msgid "Can be set"
+msgstr "設定可能か"
+
+#: ../../library/machine.SDCard.rst:127 ../../library/machine.SDCard.rst:154
+msgid "Signal"
+msgstr "信号線"
+
+#: ../../library/machine.SDCard.rst:127 ../../library/machine.SDCard.rst:154
 msgid "Pin"
 msgstr "ピン"
 
-#: ../../library/machine.SDCard.rst:102
-msgid "sck"
+#: ../../library/machine.SDCard.rst:129 ../../library/machine.SDCard.rst:156
+msgid "CLK"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:102
-msgid "6"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:102
+#: ../../library/machine.SDCard.rst:129 ../../library/machine.SDCard.rst:135
+#: ../../library/machine.SDCard.rst:156 ../../library/machine.SDCard.rst:166
 msgid "14"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:102 ../../library/machine.SDCard.rst:114
-msgid "18"
+#: ../../library/machine.SDCard.rst:129 ../../library/machine.SDCard.rst:130
+#: ../../library/machine.SDCard.rst:131 ../../library/machine.SDCard.rst:132
+#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:134
+msgid "No"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:103
-msgid "cmd"
+#: ../../library/machine.SDCard.rst:130 ../../library/machine.SDCard.rst:157
+msgid "CMD"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:103
-msgid "11"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:104
+#: ../../library/machine.SDCard.rst:130 ../../library/machine.SDCard.rst:136
+#: ../../library/machine.SDCard.rst:157 ../../library/machine.SDCard.rst:169
 msgid "15"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:104
-msgid "cs"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:113
-msgid "5"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:105
-msgid "miso"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:105
-msgid "19"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:105 ../../library/machine.SDCard.rst:109
-msgid "12"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:106
-msgid "mosi"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:106
-msgid "23"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:110
-msgid "13"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:107
+#: ../../library/machine.SDCard.rst:131 ../../library/machine.SDCard.rst:158
 msgid "D0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:107
-msgid "7"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:108
+#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:159
 msgid "D1"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:108
-msgid "8"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:108 ../../library/pyb.CAN.rst:176
+#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:159
+#: ../../library/pyb.CAN.rst:207 ../../library/struct.rst:36
+#: ../../library/struct.rst:38 ../../library/struct.rst:40
+#: ../../library/struct.rst:42 ../../library/struct.rst:50
+#: ../../library/wm8960.rst:108 ../../library/wm8960.rst:147
+#: ../../library/wm8960.rst:165
 msgid "4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:109
+#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:160
 msgid "D2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:109
-msgid "9"
+#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:137
+#: ../../library/machine.SDCard.rst:160
+msgid "12"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:110
+#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:161
 msgid "D3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:110
-msgid "10"
+#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:138
+#: ../../library/machine.SDCard.rst:161 ../../library/machine.SDCard.rst:167
+msgid "13"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:111
+#: ../../library/machine.SDCard.rst:135 ../../library/machine.SDCard.rst:166
+msgid "sck"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:135
+msgid "18"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:135 ../../library/machine.SDCard.rst:136
+#: ../../library/machine.SDCard.rst:137 ../../library/machine.SDCard.rst:138
+msgid "Yes"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:136 ../../library/machine.SDCard.rst:167
+msgid "cs"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:136 ../../library/wm8960.rst:109
+#: ../../library/wm8960.rst:122 ../../library/wm8960.rst:148
+msgid "5"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:137 ../../library/machine.SDCard.rst:168
+msgid "miso"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:137 ../../library/wm8960.rst:94
+msgid "19"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:138 ../../library/machine.SDCard.rst:169
+msgid "mosi"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:138
+msgid "23"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:141
+msgid ""
+"The ``cd`` and ``wp`` pins are not fixed in either mode and default to "
+"disabled, unless set."
+msgstr ""
+"``cd`` と ``wp`` ピンは、どちらのモードでも固定されておらず、設定しない限り"
+"無効になります。"
+
+#: ../../library/machine.SDCard.rst:146
+msgid ""
+"The ESP32-S3 chip allows pins to be set to different values for both "
+"SD/MMC and SPI mode access."
+msgstr ""
+"ESP32-S3 チップでは、SD/MMC モードおよび SPI モードの両方でピンの値を自由に"
+"設定できます。"
+
+#: ../../library/machine.SDCard.rst:149
+msgid "If not set, default pin assignments are as follows:"
+msgstr ""
+"設定しない場合のデフォルトのピン割り当ては次のとおりです:"
+
+#: ../../library/machine.SDCard.rst:162
 msgid "D4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:111
-msgid "16"
+#: ../../library/machine.SDCard.rst:162
+msgid "33*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:112
+#: ../../library/machine.SDCard.rst:163
 msgid "D5"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:112
-msgid "17"
+#: ../../library/machine.SDCard.rst:163 ../../library/machine.SDCard.rst:167
+msgid "34*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:113
+#: ../../library/machine.SDCard.rst:164
 msgid "D6"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:113
+#: ../../library/machine.SDCard.rst:164 ../../library/machine.SDCard.rst:169
+msgid "35*"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:165
 msgid "D7"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:118
+#: ../../library/machine.SDCard.rst:165
+msgid "36*"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:166 ../../library/machine.SDCard.rst:168
+msgid "37*"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:172
+msgid "Slots 0 and 1 cannot both be in use at the same time."
+msgstr "スロット0と1は同時に使えません。"
+
+#: ../../library/machine.SDCard.rst:174
+msgid ""
+"Pins marked with an asterisk * in the table must be changed from the "
+"default if the ESP32-S3 board is configured for Octal SPI Flash or PSRAM."
+msgstr ""
+"表内でアスタリスク * が付いているピンは、ESP32-S3 ボードが Octal SPI Flash "
+"または PSRAM 用に構成されている場合、デフォルトから変更する必要があります。"
+
+#: ../../library/machine.SDCard.rst:178
+msgid ""
+"To access a card in SD/MMC mode, set ``slot`` parameter value 0 or 1 and "
+"parameters ``sck`` (for CLK), ``cmd`` and ``data`` as needed to assign "
+"pins. If the ``data`` argument is passed then it should be a list or "
+"tuple of data pins or pin numbers with length equal to the ``width`` "
+"argument. For example::"
+msgstr ""
+"SD/MMC モードでカードにアクセスするには ``slot`` パラメータを 0 または 1 に"
+"設定し、 ``sck`` (CLK用)、 ``cmd`` 、 ``data`` パラメータを指定して"
+"ピンを割り当てます。 ``data`` 引数を指定する場合、それは ``width`` 引数と"
+"同じ長さのデータピンまたはピン番号のリストまたはタプルである必要があります。"
+"たとえば次のようになります:"
+
+#: ../../library/machine.SDCard.rst:183
+msgid "sd = SDCard(slot=0, width=4, sck=8, cmd=9, data=(10, 11, 12, 13))"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:185
+msgid ""
+"To access a card in SPI mode, set ``slot`` parameter value 2 or 3 and "
+"pass parameters ``sck``, ``cs``, ``miso``, ``mosi`` as needed to assign "
+"pins."
+msgstr ""
+"SPI モードでカードにアクセスするには、 ``slot`` パラメータの値を 2 または 3 に"
+"設定し、 ``sck``, ``cs``, ``miso``, ``mosi`` の各パラメータを指定して"
+"ピンを割り当てます。"
+
+#: ../../library/machine.SDCard.rst:188
+msgid ""
+"In either mode the ``cd`` and ``wp`` pins default to disabled, unless set"
+" in the constructor."
+msgstr ""
+"どちらのモードでも ``cd`` と ``wp`` は、コンストラクタで設定しない限り無効の"
+"ままとなります。"
+
+#: ../../library/machine.SDCard.rst:192
+msgid "Other ESP32 chips"
+msgstr "その他の ESP32 チップ"
+
+#: ../../library/machine.SDCard.rst:194
+msgid ""
+"Other ESP32 family chips do not have hardware SD/MMC host controllers and"
+" can only access SD cards in SPI mode."
+msgstr ""
+"その他の ESP32 ファミリのチップにはハードウェア SD/MMC ホストコントローラーがなく、"
+"SDカードには SPI モードでのみアクセス可能です。"
+
+#: ../../library/machine.SDCard.rst:197
+msgid ""
+"To access a card in SPI mode, set ``slot`` parameter value 2 or 3 and "
+"pass parameters ``sck``, ``cs``, ``miso``, ``mosi`` to assign pins."
+msgstr ""
+"SPI モードでカードにアクセスするには、 ``slot`` パラメータの値を 2 または 3 に"
+"設定し、 ``sck``, ``cs``, ``miso``, ``mosi`` の各パラメータを指定して"
+"ピンを割り当てます。"
+
+#: ../../library/machine.SDCard.rst:200
+msgid ""
+"ESP32-C3 and ESP32-C6 only have one available `SPI` bus, so the only "
+"valid ``slot`` parameter value is 2. Using this bus for the SD card will "
+"prevent also using it for :class:`machine.SPI`."
+msgstr ""
+"ESP32-C3 と ESP32-C6 には利用可能な `SPI` バスが１つしかないため、有効な "
+"``slot`` パラメータの値は 2 のみです。このバスを SD カード用に使うと、 "
+":class:`machine.SPI` との併用はできなくなります。"
+
+#: ../../library/machine.SDCard.rst:205
 msgid "cc3200"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:120
+#: ../../library/machine.SDCard.rst:207
 msgid ""
 "You can set the pins used for SPI access by passing a tuple as the *pins*"
 " argument."
 msgstr ""
 "*pins* 引数にタプルを渡すことにより、SPI アクセスに使うピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:123
+#: ../../library/machine.SDCard.rst:210
 msgid ""
 "*Note:* The current cc3200 SD card implementation names the this class "
 ":class:`machine.SD` rather than :class:`machine.SDCard` ."
@@ -10916,11 +11144,11 @@ msgstr ""
 "*注記:* 現在の cc3200 SDカードの実装では :class:`machine.SDCard` ではなく、"
 ":class:`machine.SD` のほうを使います。"
 
-#: ../../library/machine.SDCard.rst:127
+#: ../../library/machine.SDCard.rst:214
 msgid "mimxrt"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:129
+#: ../../library/machine.SDCard.rst:216
 msgid ""
 "The SDCard module for the mimxrt port only supports access via dedicated "
 "SD/MMC peripheral (USDHC) in 4-bit mode with 50MHz clock frequency "
@@ -10933,7 +11161,7 @@ msgstr ""
 "MIMXRT1011 コントローラは USDHC ペリフェラルをサポートしていません。したがって、"
 "このコントローラでは ``machine.SDCard`` モジュールが機能しません。"
 
-#: ../../library/machine.SDCard.rst:134
+#: ../../library/machine.SDCard.rst:221
 msgid ""
 "Due to the decision to only support 4-bit mode with 50MHz clock frequency"
 " the interface has been simplified, and the constructor signature is:"
@@ -10941,7 +11169,7 @@ msgstr ""
 "クロック周波数 50MHz の4ビットモードのみをサポートすることにしたため、"
 "インタフェースは簡素化され、コンストラクタのシグネチャは次のようになっています。"
 
-#: ../../library/machine.SDCard.rst:140
+#: ../../library/machine.SDCard.rst:227
 msgid ""
 "The pins used for the USDHC peripheral have to be configured in "
 "``mpconfigboard.h``. Most of the controllers supported by the mimxrt port"
@@ -10954,11 +11182,11 @@ msgstr ""
 "提供します。したがって、ピン設定はマクロ ``MICROPY_USDHCx`` (x は1または2)を使って"
 "行います。"
 
-#: ../../library/machine.SDCard.rst:145
+#: ../../library/machine.SDCard.rst:232
 msgid "The following shows an example configuration for USDHC1::"
 msgstr "以下は USDHC1 の設定例を示しています::"
 
-#: ../../library/machine.SDCard.rst:147
+#: ../../library/machine.SDCard.rst:234
 msgid ""
 "#define MICROPY_USDHC1 \\\n"
 "  { \\\n"
@@ -10972,18 +11200,18 @@ msgid ""
 "  }"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:158
+#: ../../library/machine.SDCard.rst:245
 msgid ""
 "If the card detect pin is not used (cb_b pin) then the respective entry "
 "has to be filled with the following dummy value::"
 msgstr ""
 "カード検出ピンを使わない場合(cb_b ピン)、各エントリに次のダミー値を設定する必要があります。"
 
-#: ../../library/machine.SDCard.rst:161
+#: ../../library/machine.SDCard.rst:248
 msgid "#define USDHC_DUMMY_PIN NULL , 0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:163
+#: ../../library/machine.SDCard.rst:250
 msgid ""
 "Based on the definition of macro ``MICROPY_USDHC1`` and/or "
 "``MICROPY_USDHC2`` the ``machine.SDCard`` module either supports one or "
