@@ -17287,7 +17287,7 @@ msgstr ""
 
 #: ../../library/pyb.CAN.rst:5
 msgid "class CAN -- controller area network communication bus"
-msgstr ""
+msgstr "クラス CAN -- Controller Area Network 通信バス"
 
 #: ../../library/pyb.CAN.rst:7
 msgid ""
@@ -17297,12 +17297,18 @@ msgid ""
 " use a CAN transceiver to convert the CAN logic signals from the pyboard "
 "to the correct voltage levels on the bus."
 msgstr ""
+"CAN は、クラシック CAN (F4、F7 MCU で利用可能)および CAN FD (H7 シリーズ)"
+"コントローラーをサポートしています。"
+"物理レベルで CAN バスは RX と TX の 2 本のラインで構成されます。"
+"Pyboard を CAN バスに接続するには、CAN トランシーバーを使って、Pyboard の "
+"CAN ロジック信号をバス上の適切な電圧レベルに変換する必要があることに注意してください。"
 
 #: ../../library/pyb.CAN.rst:12
 msgid ""
 "Example usage for classic CAN controller in Loopback (transceiver-less) "
 "mode::"
 msgstr ""
+"クラシック CAN コントローラーをループバック(トランシーバー不要)モードで使用する例::"
 
 #: ../../library/pyb.CAN.rst:14
 msgid ""
@@ -17313,12 +17319,19 @@ msgid ""
 "can.send('message!', 123)   # send a message with id 123\n"
 "can.recv(0)                 # receive message on FIFO 0"
 msgstr ""
+"from pyb import CAN\n"
+"can = CAN(1, CAN.LOOPBACK)\n"
+"can.setfilter(0, CAN.LIST16, 0, (123, 124, 125, 126))  # set a filter to "
+"receive messages with id=123, 124, 125 and 126\n"
+"can.send('message!', 123)   # id 123 でメッセージを送信\n"
+"can.recv(0)                 # FIFO 0 上でメッセージを受信"
 
 #: ../../library/pyb.CAN.rst:20
 msgid ""
 "Example usage for CAN FD controller with all of the possible options "
 "enabled::"
 msgstr ""
+"すべてのオプションを有効にした CAN FD コントローラーの使用例::"
 
 #: ../../library/pyb.CAN.rst:22
 msgid ""
@@ -17330,12 +17343,21 @@ msgid ""
 "can.send('a'*64, 0xFFFF, fdf=True, brs=True, extframe=True)\n"
 "can.recv(0)"
 msgstr ""
+"# FD フレーム + BRS モード + 拡張フレーム ID。500 Kbit/s のアービトレーション"
+"フェーズ、1Mbit/s のデータフェーズ。\n"
+"can = CAN(1, CAN.NORMAL, baudrate=500_000, brs_baudrate=1_000_000, "
+"sample_point=80)\n"
+"can.setfilter(0, CAN.RANGE, 0, (0xFFF0, 0xFFFF))\n"
+"can.send('a'*64, 0xFFFF, fdf=True, brs=True, extframe=True)\n"
+"can.recv(0)"
 
 #: ../../library/pyb.CAN.rst:28
 msgid ""
 "The following CAN module functions and their arguments are available for "
 "both classic and FD CAN controllers, unless otherwise stated."
 msgstr ""
+"以降の CAN モジュール関数とその引数は、特に明記されていない限り、"
+"クラシック CAN コントローラーと FD CAN コントローラーの両方で利用できます。"
 
 #: ../../library/pyb.CAN.rst:36
 msgid ""
@@ -17345,26 +17367,32 @@ msgid ""
 " bus, if any).  If extra arguments are given, the bus is initialised. See"
 " :meth:`CAN.init` for parameters of initialisation."
 msgstr ""
+"指定したバス上に CAN オブジェクトを構築します。 "
+"*bus* は 1-2 または 'YA'、'YB' を指定できます。"
+"追加のパラメータを指定しない場合、CAN オブジェクトは作成されますが初期化されません"
+"(バスの最後の初期化設定が保持されている場合は、それが適用されます)。"
+"追加の引数を指定すると、バスが初期化されます。"
+"初期化のパラメータについては :meth:`CAN.init` を参照してください。"
 
 #: ../../library/pyb.CAN.rst:42
 msgid "The physical pins of the CAN buses are:"
-msgstr ""
+msgstr "CAN バスの物理ピンは次のとおりです。"
 
 #: ../../library/pyb.CAN.rst:44
 msgid "``CAN(1)`` is on ``YA``: ``(RX, TX) = (Y3, Y4) = (PB8, PB9)``"
-msgstr ""
+msgstr "``CAN(1)`` 、 ``YA``: ``(RX, TX) = (Y3, Y4) = (PB8, PB9)``"
 
 #: ../../library/pyb.CAN.rst:45
 msgid "``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``"
-msgstr ""
+msgstr "``CAN(2)`` 、 ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``"
 
 #: ../../library/pyb.CAN.rst:53
 msgid "Initialise the CAN bus with the given parameters:"
-msgstr ""
+msgstr "指定したパラメータでCANバスを初期化します。"
 
 #: ../../library/pyb.CAN.rst:55
 msgid "*mode* is one of:  NORMAL, LOOPBACK, SILENT, SILENT_LOOPBACK"
-msgstr ""
+msgstr "*mode* は NORMAL、LOOPBACK、SILENT、SILENT_LOOPBACK のいずれか"
 
 #: ../../library/pyb.CAN.rst:56
 msgid ""
@@ -17373,6 +17401,9 @@ msgid ""
 "between 1 and 1024 inclusive for classic CAN, and between 1 and 512 "
 "inclusive for CAN FD."
 msgstr ""
+"*prescaler* は、CAN 入力クロックを分周して名目ビット時間クオンタを生成する値です。"
+"クラシックCANでは 1～1024 の範囲の値を指定できます。"
+"CAN FD では 1～512 の範囲の値を指定できます。"
 
 #: ../../library/pyb.CAN.rst:59
 msgid ""
@@ -17380,6 +17411,9 @@ msgid ""
 "nominal bits; it can be a value between 1 and 4 inclusive for classic "
 "CAN, and between 1 and 128 inclusive for CAN FD."
 msgstr ""
+"*sjw* は再同期ジャンプ幅であり、Nominal Bit のタイムクオンタムの単位数で指定します。"
+"クラシック CAN では 1～4 の範囲の値を指定できます。"
+"CAN FDでは 1～128 の範囲の値を指定できます。"
 
 #: ../../library/pyb.CAN.rst:61
 msgid ""
@@ -17387,6 +17421,10 @@ msgid ""
 "quanta for nominal bits; it can be a value between 1 and 16 inclusive for"
 " classic CAN, and between 2 and 256 inclusive for CAN FD."
 msgstr ""
+"*bs1* はサンプルポイントの位置を定義するものであり、Nominal Bit のタイムクオンタムの"
+"単位数で指定します。"
+"クラシック CAN では 1～16 の範囲の値を指定できます。"
+"CAN FD では 2～256 の範囲の値を指定できます。"
 
 #: ../../library/pyb.CAN.rst:63
 msgid ""
@@ -17394,6 +17432,10 @@ msgid ""
 "quanta for nominal bits; it can be a value between 1 and 8 inclusive for "
 "classic CAN, and between 2 and 128 inclusive for CAN FD."
 msgstr ""
+"*bs2* は転送ポイントの位置を定義するものであり、Nominal Bit のタイムクオンタムの"
+"単位数で指定します。"
+"クラシック CAN では 1～8 の範囲の値を指定できます。"
+"CAN FD では 2～128 の範囲の値を指定できます。"
 
 #: ../../library/pyb.CAN.rst:65
 msgid ""
@@ -17402,6 +17444,9 @@ msgid ""
 "disabled then :meth:`~CAN.restart()` can be used to leave the bus-off "
 "state"
 msgstr ""
+"*auto_restart* は、コントローラーがバスオフ状態に入った後、自動的に通信を再開"
+"するかを設定します。"
+"無効の場合でも、 :meth:`~CAN.restart()` を使ってバスオフ状態を解除できます。"
 
 #: ../../library/pyb.CAN.rst:68
 msgid ""
@@ -17412,6 +17457,12 @@ msgid ""
 " control over the CAN timing, set the *prescaler*, *bs1* and *bs2* "
 "parameters directly."
 msgstr ""
+"*baudrate* に 0 以外の値を指定すると、この関数は CAN の Nominal Bit 時間を"
+"自動計算しようとします(*prescaler*, *bs1*, *bs2* を上書きします)。"
+"設定した *baudrate* (誤差 0.1% 以内)と *sample_point* (1% 単位で最も近い値)を"
+"満たすように調整されます。"
+"CAN のタイミングを正確に制御したい場合は *prescaler*, *bs1*, *bs2* を"
+"直接設定してください。"
 
 #: ../../library/pyb.CAN.rst:72
 msgid ""
@@ -17420,18 +17471,26 @@ msgid ""
 "nominal bit time. The default *sample_point* is 75%. This parameter is "
 "ignored unless *baudrate* is set."
 msgstr ""
+"*sample_point* はビットサンプルの位置を、名目ビット時間全体に対する整数"
+"パーセントで指定します。"
+"デフォルトの *sample_point* は 75% です。 "
+"*baudrate* が設定されていない場合、このパラメータは無視されます。"
 
 #: ../../library/pyb.CAN.rst:75
 msgid ""
 "*num_filter_banks* for classic CAN, this is the number of banks that will"
 " be assigned to CAN(1), the rest of the 28 are assigned to CAN(2)."
 msgstr ""
+"num_filter_banks は、クラシック CAN の場合、CAN(1) に割り当てる"
+"バンクの数を指定します。28 バンクの内の残りは CAN(2) に割り当てられます。"
 
 #: ../../library/pyb.CAN.rst:78
 msgid ""
 "The remaining parameters are only present on boards with CAN FD support, "
 "and configure the optional CAN FD Bit Rate Switch (BRS) feature:"
 msgstr ""
+"残りのパラメータは、CAN FD をサポートするボードにのみ存在し、オプションの "
+"CAN FD ビットレートスイッチ (BRS)機能を設定します。"
 
 #: ../../library/pyb.CAN.rst:81
 msgid ""
