@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2024,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 14:37+0900\n"
-"PO-Revision-Date: 2024-12-31 10:11+0900\n"
+"POT-Creation-Date: 2025-03-29 22:09+0900\n"
+"PO-Revision-Date: 2025-03-29 23:43+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -224,14 +224,109 @@ msgid "import rp2"
 msgstr ""
 
 #: ../../rp2/quickref.rst:59
+msgid "Networking"
+msgstr "ネットワーキング"
+
+#: ../../rp2/quickref.rst:62
+msgid "WLAN"
+msgstr ""
+
+#: ../../rp2/quickref.rst:65
+msgid ""
+"This section applies only to devices that include WiFi support, such as "
+"the `Pico W`_ and `Pico 2 W`_."
+msgstr ""
+"本章は `Pico W`_ や `Pico 2 W`_ など、WiFi をサポートするデバイスにのみ適用されます。"
+
+#: ../../rp2/quickref.rst:67
+msgid "The :class:`network.WLAN` class in the :mod:`network` module::"
+msgstr ":mod:`network` モジュールの :class:`network.WLAN` クラス::"
+
+#: ../../rp2/quickref.rst:69
+msgid ""
+"import network\n"
+"\n"
+"wlan = network.WLAN()       # create station interface (the default, see "
+"below for an access point interface)\n"
+"wlan.active(True)           # activate the interface\n"
+"wlan.scan()                 # scan for access points\n"
+"wlan.isconnected()          # check if the station is connected to an AP\n"
+"wlan.connect('ssid', 'key') # connect to an AP\n"
+"wlan.config('mac')          # get the interface's MAC address\n"
+"wlan.ipconfig('addr4')      # get the interface's IPv4 addresses\n"
+"\n"
+"ap = network.WLAN(network.WLAN.IF_AP) # create access-point interface\n"
+"ap.config(ssid='RP2-AP')              # set the SSID of the access point\n"
+"ap.config(max_clients=10)             # set how many clients can connect "
+"to the network\n"
+"ap.active(True)                       # activate the interface"
+msgstr ""
+"import network\n"
+"\n"
+"wlan = network.WLAN()       # ステーションインタフェースを作成(デフォルト。"
+"アクセスポイントインタフェースについては後述)\n"
+"wlan.active(True)           # インタフェースをアクティブ化\n"
+"wlan.scan()                 # アクセスポイントをスキャン\n"
+"wlan.isconnected()          # ステーションが AP に繋がったかをチェック\n"
+"wlan.connect('ssid', 'key') # AP に接続\n"
+"wlan.config('mac')          # インタフェースの MAC アドレスを取得\n"
+"wlan.ipconfig('addr4')      # インタフェースの IPv4 アドレスを取得\n"
+"\n"
+"ap = network.WLAN(network.WLAN.IF_AP) # アクセスポイントインタフェースを作成\n"
+"ap.config(ssid='RP2-AP')              # アクセスポイントの SSID を設定\n"
+"ap.config(max_clients=10)             # ネットワークに接続できるクライアント数を"
+"設定\n"
+"ap.active(True)                       # インタフェースをアクティブ化"
+
+#: ../../rp2/quickref.rst:84
+msgid "A useful function for connecting to your local WiFi network is::"
+msgstr "ローカルの WiFi ネットワークに接続するには、次の関数を流用してください::"
+
+#: ../../rp2/quickref.rst:86
+msgid ""
+"def do_connect():\n"
+"    import machine, network\n"
+"    wlan = network.WLAN()\n"
+"    wlan.active(True)\n"
+"    if not wlan.isconnected():\n"
+"        print('connecting to network...')\n"
+"        wlan.connect('ssid', 'key')\n"
+"        while not wlan.isconnected():\n"
+"            machine.idle()\n"
+"    print('network config:', wlan.ipconfig('addr4'))"
+msgstr ""
+
+#: ../../rp2/quickref.rst:97
+msgid ""
+"Once the network is established the :mod:`socket <socket>` module can be "
+"used to create and use TCP/UDP sockets as usual, and the ``requests`` "
+"module for convenient HTTP requests."
+msgstr ""
+"ネットワークが確立されると :mod:`socket <socket>` モジュールを使って、"
+"通常どおり TCP/UDP ソケットを作成して使用できます。"
+"HTTP リクエストするには ``requests`` モジュールを使うと便利です。"
+
+#: ../../rp2/quickref.rst:101
+msgid ""
+"After a call to ``wlan.connect()``, the device will by default retry to "
+"connect **forever**, even when the authentication failed or no AP is in "
+"range. ``wlan.status()`` will return ``network.STAT_CONNECTING`` in this "
+"state until a connection succeeds or the interface gets disabled."
+msgstr ""
+"``wlan.connect()`` を呼んだ後、認証に失敗した場合やAPが範囲内にない場合でも、"
+"デバイスはデフォルトで **永遠** に接続を再試行します。 "
+"この状態で ``wlan.status()`` は、接続が成功するかインターフェースが無効になるまで、 "
+"``network.STAT_CONNECTING`` を返します。"
+
+#: ../../rp2/quickref.rst:110
 msgid "Delay and timing"
 msgstr "遅延とタイミング"
 
-#: ../../rp2/quickref.rst:61
+#: ../../rp2/quickref.rst:112
 msgid "Use the :mod:`time <time>` module::"
 msgstr ":mod:`time <time>` モジュールを使います::"
 
-#: ../../rp2/quickref.rst:63
+#: ../../rp2/quickref.rst:114
 msgid ""
 "import time\n"
 "\n"
@@ -249,11 +344,11 @@ msgstr ""
 "start = time.ticks_ms() # ミリ秒カウンター値を取得\n"
 "delta = time.ticks_diff(time.ticks_ms(), start) # 時差を計算"
 
-#: ../../rp2/quickref.rst:72
+#: ../../rp2/quickref.rst:123
 msgid "Timers"
 msgstr "タイマー"
 
-#: ../../rp2/quickref.rst:74
+#: ../../rp2/quickref.rst:125
 msgid ""
 "RP2040's system timer peripheral provides a global microsecond timebase "
 "and generates interrupts for it.  The software timer is available "
@@ -266,11 +361,11 @@ msgstr ""
 "(メモリが許す限り)無制限です。タイマーID (現時点では id=1 がサポートされています)を"
 "指定する必要は無く、デフォルトで指定されます。"
 
-#: ../../rp2/quickref.rst:80
+#: ../../rp2/quickref.rst:131
 msgid "Use the :mod:`machine.Timer` class::"
 msgstr ":mod:`machine.Timer` クラスを使います::"
 
-#: ../../rp2/quickref.rst:82
+#: ../../rp2/quickref.rst:133
 msgid ""
 "from machine import Timer\n"
 "\n"
@@ -279,15 +374,15 @@ msgid ""
 "tim.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(2))"
 msgstr ""
 
-#: ../../rp2/quickref.rst:91
+#: ../../rp2/quickref.rst:142
 msgid "Pins and GPIO"
 msgstr "ピンと GPIO"
 
-#: ../../rp2/quickref.rst:93
+#: ../../rp2/quickref.rst:144
 msgid "Use the :ref:`machine.Pin <machine.Pin>` class::"
 msgstr ":ref:`machine.Pin <machine.Pin>` クラスを使います::"
 
-#: ../../rp2/quickref.rst:95
+#: ../../rp2/quickref.rst:146
 msgid ""
 "from machine import Pin\n"
 "\n"
@@ -315,11 +410,11 @@ msgstr ""
 "p4 = Pin(4, Pin.IN, Pin.PULL_UP) # 内部プルアップ抵抗を有効化\n"
 "p5 = Pin(5, Pin.OUT, value=1) # 作成時にピンを high に設定"
 
-#: ../../rp2/quickref.rst:109
+#: ../../rp2/quickref.rst:160
 msgid "Programmable IO (PIO)"
 msgstr "プログラマブル IO (PIO)"
 
-#: ../../rp2/quickref.rst:111
+#: ../../rp2/quickref.rst:162
 msgid ""
 "PIO is useful to build low-level IO interfaces from scratch.  See the "
 ":mod:`rp2` module for detailed explanation of the assembly instructions."
@@ -327,11 +422,11 @@ msgstr ""
 "PIO は低レベルの IO インターフェースを一から構築するのに便利です。"
 "アセンブリ命令の詳細な説明については :mod:`rp2` モジュールを参照してください。"
 
-#: ../../rp2/quickref.rst:114
+#: ../../rp2/quickref.rst:165
 msgid "Example using PIO to blink an LED at 1Hz::"
 msgstr "PIO を使って 1Hz で LED を点滅させる例::"
 
-#: ../../rp2/quickref.rst:116
+#: ../../rp2/quickref.rst:167
 msgid ""
 "from machine import Pin\n"
 "import rp2\n"
@@ -379,11 +474,11 @@ msgstr ""
 "sm = rp2.StateMachine(0, blink_1hz, freq=2000, set_base=Pin(25))\n"
 "sm.active(1)"
 
-#: ../../rp2/quickref.rst:140
+#: ../../rp2/quickref.rst:191
 msgid "UART (serial bus)"
 msgstr "UART (シリアルバス)"
 
-#: ../../rp2/quickref.rst:142
+#: ../../rp2/quickref.rst:193
 msgid ""
 "There are two UARTs, UART0 and UART1. UART0 can be mapped to GPIO 0/1, "
 "12/13 and 16/17, and UART1 to GPIO 4/5 and 8/9."
@@ -391,11 +486,11 @@ msgstr ""
 "UART0 と UART1 の２つの UART があります。UART0 は GPIO 0/1、12/13、16/17 に、
 "UART1 は GPIO 4/5、8/9 にマッピングできます。"
 
-#: ../../rp2/quickref.rst:146
+#: ../../rp2/quickref.rst:197
 msgid "See :ref:`machine.UART <machine.UART>`. ::"
 msgstr ":ref:`machine.UART <machine.UART>` を参照 ::"
 
-#: ../../rp2/quickref.rst:148
+#: ../../rp2/quickref.rst:199
 msgid ""
 "from machine import UART, Pin\n"
 "uart1 = UART(1, baudrate=9600, tx=Pin(4), rx=Pin(5))\n"
@@ -407,7 +502,7 @@ msgstr ""
 "uart1.write('hello')  # 5バイト書き出す\n"
 "uart1.read(5)         # 5バイトまで読み込む"
 
-#: ../../rp2/quickref.rst:155
+#: ../../rp2/quickref.rst:206
 msgid ""
 "REPL over UART is disabled by default. You can see the :ref:`rp2_intro` "
 "for details on how to enable REPL over UART."
@@ -415,11 +510,11 @@ msgstr ""
 "REPL over UART はデフォルトで無効になっています。REPL over UART を有効にする"
 "方法については :ref:`rp2_intro` を参照してください。"
 
-#: ../../rp2/quickref.rst:160
+#: ../../rp2/quickref.rst:211
 msgid "PWM (pulse width modulation)"
 msgstr "PWM (パルス幅変調)"
 
-#: ../../rp2/quickref.rst:162
+#: ../../rp2/quickref.rst:213
 msgid ""
 "There are 8 independent PWM generators called slices, which each have two"
 " channels making it 16 PWM channels in total which can be clocked from "
@@ -440,11 +535,11 @@ msgstr ""
 "特定のチャネルは異なる GPIO ピンに割り当てることもできます(Pinout を参照)。"
 "たとえば、スライス0のチャネルAは GPIO0 と GPIO16 の両方に割り当てることができます。"
 
-#: ../../rp2/quickref.rst:172
+#: ../../rp2/quickref.rst:223
 msgid "Use the ``machine.PWM`` class::"
 msgstr "``machine.PWM`` クラスを使います::"
 
-#: ../../rp2/quickref.rst:174
+#: ../../rp2/quickref.rst:225
 msgid ""
 "from machine import Pin, PWM\n"
 "\n"
@@ -474,11 +569,11 @@ msgstr ""
 "print(pwm0)             # PWM オブジェクトのプロパティを表示\n"
 "pwm0.deinit()           # スライス0の PWM を無効化し、チャンネルAとBを停止"
 
-#: ../../rp2/quickref.rst:188
+#: ../../rp2/quickref.rst:239
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../rp2/quickref.rst:190
+#: ../../rp2/quickref.rst:241
 msgid ""
 "RP2040 has five ADC channels in total, four of which are 12-bit SAR based"
 " ADCs: GP26, GP27, GP28 and GP29. The input signal for ADC0, ADC1, ADC2 "
@@ -494,11 +589,11 @@ msgstr ""
 "標準的な ADC のレンジは 0-3.3V です。５チャンネル目は内蔵の温度センサに"
 "接続されており、温度の測定に使えます。"
 
-#: ../../rp2/quickref.rst:197
+#: ../../rp2/quickref.rst:248
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使ってください::"
 
-#: ../../rp2/quickref.rst:199
+#: ../../rp2/quickref.rst:250
 msgid ""
 "from machine import ADC, Pin\n"
 "adc = ADC(Pin(26))     # create ADC object on ADC pin\n"
@@ -509,7 +604,7 @@ msgstr ""
 "adc = ADC(Pin(26))     # ADC ピンの ADC オブジェクトを作成\n"
 "adc.read_u16()         # 0.0v - 3.3v 範囲を 0-65535 の値で読込み"
 
-#: ../../rp2/quickref.rst:203
+#: ../../rp2/quickref.rst:254
 msgid ""
 "The argument of the constructor ADC specifies either a Pin by number, "
 "name of as Pin object, or a channel number in the range 0 - 3 or "
@@ -527,11 +622,11 @@ msgstr ""
 "ピンが他に設定されていない場合、これが原因でADCの読み取りが誤ってしまう可能性が"
 "あります。"
 
-#: ../../rp2/quickref.rst:212
+#: ../../rp2/quickref.rst:263
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../rp2/quickref.rst:214
+#: ../../rp2/quickref.rst:265
 msgid ""
 "Software SPI (using bit-banging) works on all pins, and is accessed via "
 "the :ref:`machine.SoftSPI <machine.SoftSPI>` class::"
@@ -539,7 +634,7 @@ msgstr ""
 "ソフトウェア SPI (ビットバンギング)はすべてのピンで動作し、 "
 ":ref:`machine.SoftSPI <machine.SoftSPI>` クラスを介してアクセスします::"
 
-#: ../../rp2/quickref.rst:217
+#: ../../rp2/quickref.rst:268
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -592,7 +687,7 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../rp2/quickref.rst:240
+#: ../../rp2/quickref.rst:291
 msgid ""
 "Currently *all* of ``sck``, ``mosi`` and ``miso`` *must* be specified "
 "when initialising Software SPI."
@@ -600,11 +695,11 @@ msgstr ""
 "現在のところ、ソフトウェア SPI を初期化するときには ``sck``, ``mosi``, ``miso`` "
 "*すべて* を指定しなければなりません。"
 
-#: ../../rp2/quickref.rst:244
+#: ../../rp2/quickref.rst:295
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../rp2/quickref.rst:246
+#: ../../rp2/quickref.rst:297
 msgid ""
 "The RP2040 has 2 hardware SPI buses which is accessed via the "
 ":ref:`machine.SPI <machine.SPI>` class and has the same methods as "
@@ -613,7 +708,7 @@ msgstr ""
 "RP2040 には :ref:`machine.SPI <machine.SPI>` クラスを使って"
 "アクセスできる２つのハードウェア SPI があり、先のソフトウェア API と同じメソッドが使えます::"
 
-#: ../../rp2/quickref.rst:250
+#: ../../rp2/quickref.rst:301
 msgid ""
 "from machine import Pin, SPI\n"
 "\n"
@@ -624,11 +719,11 @@ msgid ""
 "sck=Pin(6), mosi=Pin(7), miso=Pin(4))"
 msgstr ""
 
-#: ../../rp2/quickref.rst:257
+#: ../../rp2/quickref.rst:308
 msgid "Software I2C bus"
 msgstr "ソフトウェア I2C バス"
 
-#: ../../rp2/quickref.rst:259
+#: ../../rp2/quickref.rst:310
 msgid ""
 "Software I2C (using bit-banging) works on all output-capable pins, and is"
 " accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
@@ -636,7 +731,7 @@ msgstr ""
 "ソフトウェア I2C (ビット・バンギングを使用)は、出力可能なすべてのピンで動作し、 "
 ":ref:`machine.SoftI2C <machine.SoftI2C>` クラスを使ってアクセスします。"
 
-#: ../../rp2/quickref.rst:262
+#: ../../rp2/quickref.rst:313
 msgid ""
 "from machine import Pin, SoftI2C\n"
 "\n"
@@ -662,11 +757,11 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをペリフェラルに書き込み"
 
-#: ../../rp2/quickref.rst:275
+#: ../../rp2/quickref.rst:326
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../rp2/quickref.rst:277
+#: ../../rp2/quickref.rst:328
 msgid ""
 "The driver is accessed via the :ref:`machine.I2C <machine.I2C>` class and"
 " has the same methods as software I2C above::"
@@ -674,7 +769,7 @@ msgstr ""
 "ハードウェア I2C には :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。
 "このクラスには先述のソフトウェア I2C と同じメソッドがあります::"
 
-#: ../../rp2/quickref.rst:280
+#: ../../rp2/quickref.rst:331
 msgid ""
 "from machine import Pin, I2C\n"
 "\n"
@@ -686,15 +781,15 @@ msgstr ""
 "i2c = I2C(0)   # デフォルトの割当て: scl=Pin(5), sda=Pin(4)\n"
 "i2c = I2C(1, scl=Pin(3), sda=Pin(2), freq=400_000)"
 
-#: ../../rp2/quickref.rst:286
+#: ../../rp2/quickref.rst:337
 msgid "I2S bus"
 msgstr "I2S バス"
 
-#: ../../rp2/quickref.rst:288
+#: ../../rp2/quickref.rst:339
 msgid "See :ref:`machine.I2S <machine.I2S>`. ::"
 msgstr ":ref:`machine.I2S <machine.I2S>` を参照::"
 
-#: ../../rp2/quickref.rst:290
+#: ../../rp2/quickref.rst:341
 msgid ""
 "from machine import I2S, Pin\n"
 "\n"
@@ -717,11 +812,11 @@ msgstr ""
 "format=I2S.MONO, rate=22050, ibuf=40000) # I2S オブジェクトの作成\n"
 "i2s.readinto(buf)          # I2S デバイスからのオーディオサンプルでバッファを埋める"
 
-#: ../../rp2/quickref.rst:298
+#: ../../rp2/quickref.rst:349
 msgid "The ``ws`` pin number must be one greater than the ``sck`` pin number."
 msgstr "``ws`` のピン番号は ``sck`` のピン番号よりも1つ大きくなければなりません。"
 
-#: ../../rp2/quickref.rst:300
+#: ../../rp2/quickref.rst:351
 msgid ""
 "The I2S class is currently available as a Technical Preview.  During the "
 "preview period, feedback from users is encouraged.  Based on this "
@@ -731,19 +826,19 @@ msgstr ""
 "プレビュー期間中、ユーザーの皆様からのフィードバックをお待ちしています。"
 "このフィードバックに基づいて、I2S クラスの API と実装が変更される可能性があります。"
 
-#: ../../rp2/quickref.rst:303
+#: ../../rp2/quickref.rst:354
 msgid "Two I2S buses are supported with id=0 and id=1."
 msgstr "2つのI2Sバス、id=0 と id=1 がサポートされています。"
 
-#: ../../rp2/quickref.rst:306
+#: ../../rp2/quickref.rst:357
 msgid "Real time clock (RTC)"
 msgstr "リアルタイムクロック (RTC)"
 
-#: ../../rp2/quickref.rst:308
+#: ../../rp2/quickref.rst:359
 msgid "See :ref:`machine.RTC <machine.RTC>` ::"
 msgstr ":ref:`machine.RTC <machine.RTC>` を参照::"
 
-#: ../../rp2/quickref.rst:310
+#: ../../rp2/quickref.rst:361
 msgid ""
 "from machine import RTC\n"
 "\n"
@@ -763,11 +858,11 @@ msgstr ""
 "                                             # 曜日の値は無視される\n"
 "rtc.datetime() # 日時を取得"
 
-#: ../../rp2/quickref.rst:318
+#: ../../rp2/quickref.rst:370
 msgid "WDT (Watchdog timer)"
 msgstr "WDT (ウォッチドッグタイマー)"
 
-#: ../../rp2/quickref.rst:320
+#: ../../rp2/quickref.rst:372
 msgid ""
 "The RP2040 has a watchdog which is a countdown timer that can restart "
 "parts of the chip if it reaches zero."
@@ -775,11 +870,11 @@ msgstr ""
 "RP2040 にはカウントダウンタイマーであるウォッチドッグが搭載されており、"
 "これがゼロになるとチップの一部を再起動できます。"
 
-#: ../../rp2/quickref.rst:323
+#: ../../rp2/quickref.rst:375
 msgid "See :ref:`machine.WDT <machine.WDT>`. ::"
 msgstr ":ref:`machine.WDT <machine.WDT>` を参照::"
 
-#: ../../rp2/quickref.rst:325
+#: ../../rp2/quickref.rst:377
 msgid ""
 "from machine import WDT\n"
 "\n"
@@ -793,19 +888,19 @@ msgstr ""
 "wdt = WDT(timeout=5000)\n"
 "wdt.feed()"
 
-#: ../../rp2/quickref.rst:331
+#: ../../rp2/quickref.rst:383
 msgid "The maximum value for timeout is 8388 ms."
 msgstr "タイムアウトの最大値は 8388 ms です。"
 
-#: ../../rp2/quickref.rst:334
+#: ../../rp2/quickref.rst:386
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../rp2/quickref.rst:336
+#: ../../rp2/quickref.rst:388
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../rp2/quickref.rst:338
+#: ../../rp2/quickref.rst:390
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -829,11 +924,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../rp2/quickref.rst:349
+#: ../../rp2/quickref.rst:401
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 デバイス用の特定のドライバーがあります::"
 
-#: ../../rp2/quickref.rst:351
+#: ../../rp2/quickref.rst:403
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -844,7 +939,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../rp2/quickref.rst:359
+#: ../../rp2/quickref.rst:411
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -854,16 +949,16 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../rp2/quickref.rst:364
+#: ../../rp2/quickref.rst:416
 msgid "NeoPixel and APA106 driver"
 msgstr "NeoPixel/APA106 ドライバー"
 
-#: ../../rp2/quickref.rst:366
+#: ../../rp2/quickref.rst:418
 msgid "Use the ``neopixel`` and ``apa106`` modules::"
 msgstr "``neopixel`` と ``apa106`` モジュールを使います"
 "(訳注: 今のところ apa106 モジュールは rp2 でサポートされていません)::"
 
-#: ../../rp2/quickref.rst:368
+#: ../../rp2/quickref.rst:420
 msgid ""
 "from machine import Pin\n"
 "from neopixel import NeoPixel\n"
@@ -883,21 +978,21 @@ msgstr ""
 "np.write()              # 全ピクセルにデータ書込み\n"
 "r, g, b = np[0]         # 第１ピクセルの色を取得"
 
-#: ../../rp2/quickref.rst:378
+#: ../../rp2/quickref.rst:430
 msgid ""
 "The APA106 driver extends NeoPixel, but internally uses a different "
 "colour order::"
 msgstr ""
 "APA106 ドライバーは NeoPixel を継承していますが、内部的には異なる色順を使っています::"
 
-#: ../../rp2/quickref.rst:380
+#: ../../rp2/quickref.rst:432
 msgid ""
 "from apa106 import APA106\n"
 "ap = APA106(pin, 8)\n"
 "r, g, b = ap[0]"
 msgstr ""
 
-#: ../../rp2/quickref.rst:384
+#: ../../rp2/quickref.rst:436
 msgid ""
 "APA102 (DotStar) uses a different driver as it has an additional clock "
 "pin."
