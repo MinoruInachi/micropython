@@ -22,6 +22,15 @@ function ci_gcc_riscv_setup {
     riscv64-unknown-elf-gcc --version
 }
 
+function ci_picotool_setup {
+    # Manually installing picotool ensures we use a release version, and speeds up the build.
+    git clone https://github.com/raspberrypi/pico-sdk.git
+    (cd pico-sdk && git submodule update --init lib/mbedtls)
+    git clone https://github.com/raspberrypi/picotool.git
+    (cd picotool && mkdir build && cd build && cmake -DPICO_SDK_PATH=../../pico-sdk .. && make && sudo make install)
+    picotool version
+}
+
 ########################################################################################
 # c code formatting
 
@@ -62,6 +71,7 @@ function ci_code_size_setup {
     gcc --version
     ci_gcc_arm_setup
     ci_gcc_riscv_setup
+    ci_picotool_setup
 }
 
 function ci_code_size_build {
@@ -355,6 +365,7 @@ function ci_renesas_ra_board_build {
 
 function ci_rp2_setup {
     ci_gcc_arm_setup
+    ci_picotool_setup
 }
 
 function ci_rp2_build {
@@ -859,4 +870,19 @@ function ci_zephyr_run_tests {
     # Issues with zephyr tests:
     # - inf_nan_arith fails pow(-1, nan) test
     (cd tests && ./run-tests.py -t execpty:"qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -monitor null -serial pty -kernel ../ports/zephyr/build/zephyr/zephyr.elf" -d basics float --exclude inf_nan_arith)
+}
+
+########################################################################################
+# ports/alif
+
+function ci_alif_setup {
+    ci_gcc_arm_setup
+}
+
+function ci_alif_ae3_build {
+    make ${MAKEOPTS} -C mpy-cross
+    make ${MAKEOPTS} -C ports/alif BOARD=OPENMV_AE3 MCU_CORE=M55_HP submodules
+    make ${MAKEOPTS} -C ports/alif BOARD=OPENMV_AE3 MCU_CORE=M55_HE submodules
+    make ${MAKEOPTS} -C ports/alif BOARD=OPENMV_AE3 MCU_CORE=M55_DUAL
+    make ${MAKEOPTS} -C ports/alif BOARD=ALIF_ENSEMBLE MCU_CORE=M55_DUAL
 }
