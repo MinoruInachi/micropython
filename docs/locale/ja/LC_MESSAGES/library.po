@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 22:09+0900\n"
-"PO-Revision-Date: 2025-03-29 22:43+0900\n"
+"POT-Creation-Date: 2025-05-21 19:22+0900\n"
+"PO-Revision-Date: 2025-05-23 12:43+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3878,10 +3878,62 @@ msgstr ""
 "表示される現在の \"free\" と \"max new split\" の値の合計です。"
 
 #: ../../library/esp32.rst:85
+msgid ""
+"Returns information about running ESP-IDF/FreeRTOS tasks, which include "
+"MicroPython threads. This data is useful to gain insight into how much "
+"time tasks spend running or if they are blocked for significant parts of "
+"time, and to determine if allocated stacks are fully utilized or might be"
+" reduced."
+msgstr ""
+"ESP-IDF/FreeRTOS タスク(MicroPython のスレッドも含む)に関する情報を返します。"
+"このデータは、タスクがどれだけの時間実行されているか、または長時間ブロックされていない"
+"かを把握するのに役立ちます。また、割り当てたスタックが十分に足りているか、"
+"それとも削減可能かを判断する際にも有用です。"
+
+#: ../../library/esp32.rst:90
+msgid ""
+"``CONFIG_FREERTOS_USE_TRACE_FACILITY=y`` must be set in the board "
+"configuration to make this method available. Additionally configuring "
+"``CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS=y`` and "
+"``CONFIG_FREERTOS_VTASKLIST_INCLUDE_COREID=y`` is recommended to be able "
+"to retrieve the total and per-task runtime and the core ID respectively."
+msgstr ""
+"このメソッドを使用するには、ボード設定で ``CONFIG_FREERTOS_USE_TRACE_FACILITY=y`` "
+"が有効になっている必要があります。"
+"さらに ``CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS=y`` および "
+"``CONFIG_FREERTOS_VTASKLIST_INCLUDE_COREID=y`` を設定することで、"
+"タスクごと実行時間とその合計、実行中のコア ID を取得できるようになるため推奨されます。"
+
+#: ../../library/esp32.rst:96
+msgid ""
+"The return value is a 2-tuple where the first value is the total runtime,"
+" and the second a list of tasks. Each task is a 7-tuple containing: the "
+"task ID, name, current state, priority, runtime, stack high water mark, "
+"and the ID of the core it is running on. Runtime and core ID will be None"
+" when the respective FreeRTOS configuration option is not enabled."
+msgstr ""
+"戻り値は2項目のタプルで、最初の値は実行時間の合計、2番目はタスクのリストです。"
+"各タスクは7項目のタプルで構成され、内容はタスクID、名前、現在の状態、優先度、"
+"実行時間、スタックのハイウォーターマーク、実行中のコアIDです。"
+"FreeRTOS の該当設定が有効でない場合、実行時間およびコアIDは None になります。"
+
+#: ../../library/esp32.rst:102
+msgid ""
+"For an easier to use output based on this function you can use the `utop "
+"library <https://github.com/micropython/micropython-"
+"lib/tree/master/micropython/utop>`_, which implements a live overview "
+"similar to the Unix ``top`` command."
+msgstr ""
+"この関数に基づく、より見やすい出力を得るには Unix の top コマンドに似た"
+"リアルタイム概要表示を実装している `utop ライブラリ "
+"<https://github.com/micropython/micropython-"
+"lib/tree/master/micropython/utop>`_ が使えます。"
+
+#: ../../library/esp32.rst:108
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:87
+#: ../../library/esp32.rst:110
 msgid ""
 "This class gives access to the partitions in the device's flash memory "
 "and includes methods to enable over-the-air (OTA) updates."
@@ -3889,7 +3941,7 @@ msgstr ""
 "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 "加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:92
+#: ../../library/esp32.rst:115
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -3900,7 +3952,7 @@ msgstr ""
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。 "
 "*block_size* は個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:98
+#: ../../library/esp32.rst:121
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
@@ -3911,18 +3963,18 @@ msgstr ""
 "注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
 "は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:102
+#: ../../library/esp32.rst:125
 msgid ""
 "*block_size* specifies the byte size of an individual block used by the "
 "returned objects."
 msgstr ""
 "*block_size* は、返されるオブジェクトが使う個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:107
+#: ../../library/esp32.rst:130
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:115 ../../library/pyb.Flash.rst:44
+#: ../../library/esp32.rst:138 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`vfs.AbstractBlockDev`."
@@ -3930,11 +3982,11 @@ msgstr ""
 "これらのメソッドは :class:`vfs.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:121
+#: ../../library/esp32.rst:144
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:123
+#: ../../library/esp32.rst:146
 msgid ""
 "Do not enter :func:`deepsleep<machine.deepsleep>` after changing the OTA "
 "boot partition, without first performing a hard "
@@ -3946,7 +3998,7 @@ msgstr ""
 "入らないでください。そうしておけば、ブートローダーが新しいイメージをブートする"
 "前に新しいイメージの検証を行います。"
 
-#: ../../library/esp32.rst:130
+#: ../../library/esp32.rst:153
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object. Typical usage is "
@@ -3957,7 +4009,7 @@ msgstr ""
 "返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
 "これは現在更新中のパーティションの次のパーティションを返します。"
 
-#: ../../library/esp32.rst:136
+#: ../../library/esp32.rst:159
 msgid ""
 "Signals that the current boot is considered successful. Calling "
 "``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
@@ -3978,7 +4030,7 @@ msgstr ""
 "呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
 "場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:151
+#: ../../library/esp32.rst:174
 msgid ""
 "Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
 " is the partition that will be booted at the next reset and ``RUNNING`` "
@@ -3988,7 +4040,7 @@ msgstr ""
 "``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
 "は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:158
+#: ../../library/esp32.rst:181
 msgid ""
 "Used in `Partition.find` to specify the partition type: ``APP`` is for "
 "bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
@@ -4000,15 +4052,15 @@ msgstr ""
 "``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
 "パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
 
-#: ../../library/esp32.rst:165
+#: ../../library/esp32.rst:188
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:170
+#: ../../library/esp32.rst:193
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:172
+#: ../../library/esp32.rst:195
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -4020,7 +4072,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:177
+#: ../../library/esp32.rst:200
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -4050,7 +4102,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:189
+#: ../../library/esp32.rst:212
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -4062,7 +4114,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:195
+#: ../../library/esp32.rst:218
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (1-``PULSE_MAX``) number. There"
@@ -4072,7 +4124,7 @@ msgstr ""
 "(1-``PULSE_MAX``)の数値を乗算することで定義できます。"
 "8つのチャネル(0-7)があり、それぞれ異なるクロック分周器を使えます。"
 
-#: ../../library/esp32.rst:199
+#: ../../library/esp32.rst:222
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -4083,7 +4135,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:204
+#: ../../library/esp32.rst:227
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -4093,7 +4145,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:208
+#: ../../library/esp32.rst:231
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -4102,7 +4154,7 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:215
+#: ../../library/esp32.rst:238
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -4121,7 +4173,7 @@ msgstr ""
 "ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
 "が低電圧を意味します。"
 
-#: ../../library/esp32.rst:224
+#: ../../library/esp32.rst:247
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -4132,7 +4184,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:231
+#: ../../library/esp32.rst:254
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -4140,7 +4192,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:236
+#: ../../library/esp32.rst:259
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -4148,7 +4200,7 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:241
+#: ../../library/esp32.rst:264
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
@@ -4160,7 +4212,7 @@ msgstr ""
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
 
-#: ../../library/esp32.rst:248
+#: ../../library/esp32.rst:271
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
@@ -4173,11 +4225,11 @@ msgstr ""
 "ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
 "転送を停止します。"
 
-#: ../../library/esp32.rst:255
+#: ../../library/esp32.rst:278
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
 msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:257
+#: ../../library/esp32.rst:280
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -4187,7 +4239,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:261
+#: ../../library/esp32.rst:284
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -4195,7 +4247,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:264
+#: ../../library/esp32.rst:287
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -4203,7 +4255,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:267
+#: ../../library/esp32.rst:290
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and ``PULSE_MAX`` units. Output levels are any value "
@@ -4214,7 +4266,7 @@ msgstr ""
 "1から ``PULSE_MAX`` の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:272
+#: ../../library/esp32.rst:295
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -4223,7 +4275,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:275
+#: ../../library/esp32.rst:298
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -4236,7 +4288,7 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:283
+#: ../../library/esp32.rst:306
 msgid ""
 "Select which RMT channel is used by the `machine.bitstream` "
 "implementation. *value* can be ``None`` or a valid RMT channel number.  "
@@ -4246,7 +4298,7 @@ msgstr ""
 "*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
 "デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
 
-#: ../../library/esp32.rst:287
+#: ../../library/esp32.rst:310
 msgid ""
 "Passing in ``None`` disables the use of RMT and instead selects a bit-"
 "banging implementation for `machine.bitstream`."
@@ -4254,22 +4306,22 @@ msgstr ""
 "``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
 "ビットバング実装が選択されます。"
 
-#: ../../library/esp32.rst:290
+#: ../../library/esp32.rst:313
 msgid ""
 "Passing in no argument will not change the channel.  This function "
 "returns the current channel number."
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:298
+#: ../../library/esp32.rst:321
 msgid "Maximum integer that can be set for a pulse duration."
 msgstr "パルス幅に設定できる最大整数値。"
 
-#: ../../library/esp32.rst:301
+#: ../../library/esp32.rst:324
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:303
+#: ../../library/esp32.rst:326
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -4277,7 +4329,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:308
+#: ../../library/esp32.rst:331
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -4285,31 +4337,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:313
+#: ../../library/esp32.rst:336
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:317
+#: ../../library/esp32.rst:340
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:321
+#: ../../library/esp32.rst:344
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:325
+#: ../../library/esp32.rst:348
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:334
+#: ../../library/esp32.rst:357
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:337
+#: ../../library/esp32.rst:360
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:339
+#: ../../library/esp32.rst:362
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -4323,7 +4375,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:346
+#: ../../library/esp32.rst:369
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -4332,14 +4384,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:351
+#: ../../library/esp32.rst:374
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:356
+#: ../../library/esp32.rst:379
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -4347,7 +4399,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:360
+#: ../../library/esp32.rst:383
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -4355,7 +4407,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:365
+#: ../../library/esp32.rst:388
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -4368,7 +4420,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:372
+#: ../../library/esp32.rst:395
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -4380,11 +4432,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:378
+#: ../../library/esp32.rst:401
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:382
+#: ../../library/esp32.rst:405
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -9583,27 +9635,27 @@ msgid ""
 "from machine import PWM\n"
 "\n"
 "pwm = PWM(pin, freq=50, duty_u16=8192)  # create a PWM object on a pin\n"
-"                                        # and set freq and duty\n"
-"pwm.duty_u16(32768)     # set duty to 50%\n"
+"                                        # and set freq 50 Hz and duty "
+"12.5%\n"
+"pwm.duty_u16(32768)                     # set duty to 50%\n"
 "\n"
 "# reinitialise with a period of 200us, duty of 5us\n"
 "pwm.init(freq=5000, duty_ns=5000)\n"
 "\n"
-"pwm.duty_ns(3000)       # set pulse width to 3us\n"
+"pwm.duty_ns(3000)                       # set pulse width to 3us\n"
 "\n"
 "pwm.deinit()"
 msgstr ""
 "from machine import PWM\n"
 "\n"
 "pwm = PWM(pin, freq=50, duty_u16=8192)  # ピンの PWM オブジェクトを作成し、\n"
-"                                        # 周波数とパルス幅を設定\n"
-"pwm = PWM(pin)          # 指定のピンの PWM オブジェクトを作成\n"
-"pwm.duty_u16(32768)     # パルス幅を 50% に設定\n"
+"                                        # 周波数 50 Hz とパルス幅 12.5% を設定\n"
+"pwm.duty_u16(32768)                     # パルス幅を 50% に設定\n"
 "\n"
 "# 200us の周期、デューティ比を 5us で再初期化\n"
 "pwm.init(freq=5000, duty_ns=5000)\n"
 "\n"
-"pwm.duty_ns(3000)       # 3us のデューティ比を設定\n"
+"pwm.duty_ns(3000)                       # パルス幅を 3us に設定\n"
 "\n"
 "pwm.deinit()"
 
@@ -9644,13 +9696,14 @@ msgstr "*invert* に True を指定すると、それぞれの出力を反転さ
 msgid ""
 "Setting *freq* may affect other PWM objects if the objects share the same"
 " underlying PWM generator (this is hardware specific). Only one of "
-"*duty_u16* and *duty_ns* should be specified at a time. *invert* is not "
-"available at all ports."
+"*duty_u16* and *duty_ns* should be specified at a time. *invert* is "
+"available only on the esp32, mimxrt, nrf, rp2, samd and zephyr ports."
 msgstr ""
 "オブジェクトが同じ基盤の PWM ジェネレーターを共有している場合に "
 "*freq* を設定すると他の PWM オブジェクトに影響を与える可能性があります"
 "(これはハードウェアによります)。一度に指定する必要があるのは *duty_u16 * と "
-"*duty_ns* のいずれか１つだけです。 *invert* については指定できないポートがあります。"
+"*duty_ns* のいずれか１つだけです。 *invert* については "
+"esp32, mimxrt, nrf, rp2, samd, zephyr ポートでのみ利用可能です。"
 
 #: ../../library/machine.PWM.rst:50
 msgid ""
@@ -9790,7 +9843,7 @@ msgstr ""
 "この場合、 *duty_u16* の下位8ビットは重要ではありません。したがって、"
 
 #: ../../library/machine.PWM.rst:119
-msgid "pwm=PWM(Pin(13), freq=300_000, duty_u16=2**16//2)"
+msgid "pwm=PWM(Pin(13), freq=300_000, duty_u16=65536//2)"
 msgstr ""
 
 #: ../../library/machine.PWM.rst:121
@@ -9798,7 +9851,7 @@ msgid "and::"
 msgstr "と"
 
 #: ../../library/machine.PWM.rst:123
-msgid "pwm=PWM(Pin(13), freq=300_000, duty_u16=2**16//2 + 255)"
+msgid "pwm=PWM(Pin(13), freq=300_000, duty_u16=65536//2 + 255)"
 msgstr ""
 
 #: ../../library/machine.PWM.rst:125
@@ -27555,10 +27608,10 @@ msgstr ""
 
 #: ../../library/wm8960.rst:361
 msgid ""
-"Record with a Sparkfun WM8960 breakout board with Teensy in secondary "
+"Record with a SparkFun WM8960 breakout board with Teensy in secondary "
 "mode (default)::"
 msgstr ""
-"セカンダリーモード(デフォルト)で Teensy と Sparkfun WM8960 ブレイクアウトボード"
+"セカンダリーモード(デフォルト)で Teensy と SparkFun WM8960 ブレイクアウトボード"
 "による録音::"
 
 #: ../../library/wm8960.rst:363
@@ -27567,7 +27620,7 @@ msgid ""
 "#\n"
 "# The breakout board uses a fixed 24MHz MCLK. Therefore the internal\n"
 "# PLL must be used as sysclk, which is the master audio clock.\n"
-"# The Sparkfun board has the WS pins for RX and TX connected on the\n"
+"# The SparkFun board has the WS pins for RX and TX connected on the\n"
 "# board. Therefore adc_sync must be set to sync_adc, to configure\n"
 "# it's ADCLRC pin as input.\n"
 "#\n"
@@ -27585,7 +27638,7 @@ msgstr ""
 "#\n"
 "# ブレイクアウトボードは固定の24MHz MCLKを使っています。したがって、内部 PLLを\n"
 "# sysclk として使用する必要があります。これはマスターオーディオクロックです。\n"
-"# Sparkfun ボードには、RX および TX 用の WS ピンがボード上で接続されています。\n"
+"# SparkFun ボードには、RX および TX 用の WS ピンがボード上で接続されています。\n"
 "# したがって、adc_sync は sync_adc に設定する必要があり、これにより ADCLRC \n"
 "# ピンが入力として構成されます。\n"
 "#\n"
@@ -27601,17 +27654,17 @@ msgstr ""
 
 #: ../../library/wm8960.rst:382
 msgid ""
-"Play with a Sparkfun WM8960 breakout board with Teensy in secondary mode "
+"Play with a SparkFun WM8960 breakout board with Teensy in secondary mode "
 "(default)::"
 msgstr ""
-"セカンダリーモード(デフォルト)で Teensy と Sparkfun WM8960 ブレイクアウトボード"
+"セカンダリーモード(デフォルト)で Teensy と SparkFun WM8960 ブレイクアウトボード"
 "による再生::"
 
 #: ../../library/wm8960.rst:384
 msgid ""
 "# The breakout board uses a fixed 24MHz MCLK. Therefore the internal\n"
 "# PLL must be used as sysclk, which is the master audio clock.\n"
-"# The Sparkfun board has the WS pins for RX and TX connected on the\n"
+"# The SparkFun board has the WS pins for RX and TX connected on the\n"
 "# board. Therefore adc_sync must be set to sync_adc, to configure\n"
 "# it's ADCLRC pin as input.\n"
 "\n"
@@ -27626,7 +27679,7 @@ msgid ""
 msgstr ""
 "# ブレイクアウトボードは固定の24MHz MCLKを使っています。したがって、内部 PLLを\n"
 "# sysclk として使用する必要があります。これはマスターオーディオクロックです。\n"
-"# Sparkfun ボードには、RX および TX 用の WS ピンがボード上で接続されています。\n"
+"# SparkFun ボードには、RX および TX 用の WS ピンがボード上で接続されています。\n"
 "# したがって、adc_sync は sync_adc に設定する必要があり、これにより ADCLRC \n"
 "# ピンが入力として構成されます。\n"
 "\n"
@@ -27674,20 +27727,20 @@ msgstr ""
 
 #: ../../library/zephyr.rst:27
 msgid ""
-"Runs the Zephyr debug thread analyzer on the current thread and prints "
-"stack size statistics in the format:"
+"Runs the Zephyr debug thread analyzer on the current thread on the given "
+"cpu and prints stack size statistics in the format:"
 msgstr ""
-"現在のスレッドで Zephyr デバッグスレッドアナライザを実行し、スタックサイズの統計情報を"
-"表示します:"
+"現在のスレッドに対して、指定した cpu 上で Zephyr のデバッグスレッドアナライザーを"
+"実行し、次の形式でスタックサイズの統計情報を出力します:"
 
-#: ../../library/zephyr.rst:29
+#: ../../library/zephyr.rst:30
 msgid ""
 "\"``thread_name``-20s: STACK: unused ``available_stack_space`` usage "
 "``stack_space_used`` / ``stack_size`` (``percent_stack_space_used`` %); "
 "CPU: ``cpu_utilization`` %\""
 msgstr ""
 
-#: ../../library/zephyr.rst:32
+#: ../../library/zephyr.rst:33
 msgid ""
 "*CPU utilization is only printed if runtime statistics are configured via"
 " the ``CONFIG_THREAD_RUNTIME_STATS`` kconfig*"
@@ -27695,7 +27748,7 @@ msgstr ""
 "*CPU使用率は、``CONFIG_THREAD_RUNTIME_STATS`` kconfig でランタイム統計が"
 "設定されている場合にのみ表示されます。*"
 
-#: ../../library/zephyr.rst:34
+#: ../../library/zephyr.rst:35
 msgid ""
 "This function can only be accessed if ``CONFIG_THREAD_ANALYZER`` is "
 "configured for the port in ``zephyr/prj.conf``. For more information, see "
@@ -27710,7 +27763,15 @@ msgstr ""
 "analyzer.html#thread-analyzer>`_ "
 "を参照してください。"
 
-#: ../../library/zephyr.rst:40
+#: ../../library/zephyr.rst:39
+msgid ""
+"Note that the ``cpu`` argument is only used in Zephyr v4.0.0 and newer "
+"and ignored otherwise."
+msgstr ""
+"なお、 ``cpu`` 引数は Zephyr v4.0.0 以降でのみ使われ、"
+"それより前のバージョンでは無視されます。"
+
+#: ../../library/zephyr.rst:44
 msgid ""
 "Executes the given command on an UART backend. This function can only be "
 "accessed if ``CONFIG_SHELL_BACKEND_SERIAL`` is configured for the port in"
@@ -27720,7 +27781,7 @@ msgstr ""
 "この関数は、 ``zephyr/prj.conf`` でポートに ``CONFIG_SHELL_BACKEND_SERIAL`` "
 "が設定されている場合にのみアクセスできます。"
 
-#: ../../library/zephyr.rst:43
+#: ../../library/zephyr.rst:47
 msgid ""
 "A list of possible commands can be found in the documentation for Zephyr "
 "`shell commands "
@@ -27731,7 +27792,7 @@ msgstr ""
 "<https://docs.zephyrproject.org/latest/reference/shell/index.html?highlight=shell_execute_cmd#commands>`_ "
 "を参照してください。"
 
-#: ../../library/zephyr.rst:55
+#: ../../library/zephyr.rst:59
 msgid "Additional Modules"
 msgstr "追加モジュール"
 

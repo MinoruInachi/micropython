@@ -30,6 +30,7 @@
 #include <string.h>
 
 #include <zephyr/kernel.h>
+#include <zephyr/version.h>
 #ifdef CONFIG_NETWORKING
 #include <zephyr/net/net_context.h>
 #endif
@@ -61,6 +62,10 @@
 #include "modzephyr.h"
 
 static char heap[MICROPY_HEAP_SIZE];
+
+#if defined(CONFIG_USB_DEVICE_STACK_NEXT)
+extern int mp_usbd_init(void);
+#endif // defined(CONFIG_USB_DEVICE_STACK_NEXT)
 
 void init_zephyr(void) {
     // We now rely on CONFIG_NET_APP_SETTINGS to set up bootstrap
@@ -97,7 +102,11 @@ static void vfs_init(void) {
     int ret = 0;
 
     #ifdef CONFIG_DISK_DRIVER_SDMMC
+    #if KERNEL_VERSION_NUMBER >= ZEPHYR_VERSION(4, 0, 0)
+    mp_obj_t args[] = { mp_obj_new_str_from_cstr(DT_PROP(DT_INST(0, zephyr_sdmmc_disk), disk_name)) };
+    #else
     mp_obj_t args[] = { mp_obj_new_str_from_cstr(CONFIG_SDMMC_VOLUME_NAME) };
+    #endif
     bdev = MP_OBJ_TYPE_GET_SLOT(&zephyr_disk_access_type, make_new)(&zephyr_disk_access_type, ARRAY_SIZE(args), 0, args);
     mount_point_str = "/sd";
     #elif defined(CONFIG_FLASH_MAP) && FIXED_PARTITION_EXISTS(storage_partition)
@@ -136,6 +145,10 @@ soft_reset:
 
     #ifdef CONFIG_USB_DEVICE_STACK
     usb_enable(NULL);
+    #endif
+
+    #ifdef CONFIG_USB_DEVICE_STACK_NEXT
+    mp_usbd_init();
     #endif
 
     #if MICROPY_VFS
@@ -206,7 +219,7 @@ mp_obj_t mp_builtin_open(size_t n_args, const mp_obj_t *args, mp_map_t *kwargs) 
 MP_DEFINE_CONST_FUN_OBJ_KW(mp_builtin_open_obj, 1, mp_builtin_open);
 #endif
 
-NORETURN void nlr_jump_fail(void *val) {
+MP_NORETURN void nlr_jump_fail(void *val) {
     while (1) {
         ;
     }

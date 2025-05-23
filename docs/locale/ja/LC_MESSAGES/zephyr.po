@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 22:22+0900\n"
-"PO-Revision-Date: 2024-10-28 23:09+0900\n"
+"POT-Creation-Date: 2025-05-21 19:22+0900\n"
+"PO-Revision-Date: 2025-05-23 18:49+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -178,19 +178,53 @@ msgstr ""
 "switch.irq(lambda t: print(\"SW2 changed\"))    # スイッチの状態の変更時に割り込みを有効化"
 
 #: ../../zephyr/quickref.rst:60
+msgid "PWM"
+msgstr ""
+
+#: ../../zephyr/quickref.rst:62
+msgid "Use the :ref:`machine.PWM <machine.PWM>` class::"
+msgstr ":ref:`machine.PWM <machine.PWM>` クラスを使います::"
+
+#: ../../zephyr/quickref.rst:64
+msgid ""
+"from machine import PWM\n"
+"\n"
+"pwm = PWM((\"pwm0\", 0), freq=3921568, duty_ns=200, invert=True)    # "
+"create pwm on PWM0\n"
+"print(pwm)                                                        # print"
+" pwm\n"
+"\n"
+"print(pwm.duty_ns())                                              # print"
+" pwm duty cycle in nanoseconds\n"
+"pwm.duty_ns(255)                                                  # set "
+"new pwm duty cycle in nanoseconds\n"
+"\n"
+"pwm.deinit()"
+msgstr ""
+"from machine import PWM\n"
+"\n"
+"pwm = PWM((\"pwm0\", 0), freq=3921568, duty_ns=200, invert=True)    # PWM0 について pwm を作成\n"
+"print(pwm)                                                        # pwm を表示\n"
+"\n"
+"print(pwm.duty_ns())                                              # pwm のデューティ比をナノ秒単位で表示\n"
+"pwm.duty_ns(255)                                                  # pwm の新しいデューティ比をナノ秒単位で設定\n"
+"\n"
+"pwm.deinit()"
+
+#: ../../zephyr/quickref.rst:75
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../zephyr/quickref.rst:62
+#: ../../zephyr/quickref.rst:77
 msgid "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class::"
 msgstr ""
 "ハードウェア I2C には :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。"
 
-#: ../../zephyr/quickref.rst:64
+#: ../../zephyr/quickref.rst:79
 msgid ""
 "from machine import I2C\n"
 "\n"
-"i2c = I2C(\"I2C_0\")          # construct an i2c bus\n"
+"i2c = I2C(\"i2c0\")           # construct an i2c bus\n"
 "print(i2c)                  # print device name\n"
 "\n"
 "i2c.scan()                  # scan the device for available I2C slaves\n"
@@ -208,7 +242,7 @@ msgid ""
 msgstr ""
 "from machine import I2C\n"
 "\n"
-"i2c = I2C(\"I2C_0\")          # I2C バスを構築\n"
+"i2c = I2C(\"i2c0\")          # i2c バスを構築\n"
 "print(i2c)                  # デバイス名を表示\n"
 "\n"
 "i2c.scan()                  # 利用可能な I2C スレーブのデバイスをスキャン\n"
@@ -222,16 +256,16 @@ msgstr ""
 "buf = bytearray(8)                  # サイズ 8 のバッファを作成\n"
 "i2c.writeto(0x1D, b'abcd')          # スレーブ 0x1D に buf を書き込み"
 
-#: ../../zephyr/quickref.rst:81
+#: ../../zephyr/quickref.rst:96
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../zephyr/quickref.rst:83
+#: ../../zephyr/quickref.rst:98
 msgid "Hardware SPI is accessed via the :ref:`machine.SPI <machine.SPI>` class::"
 msgstr ""
 ":ref:`machine.SPI <machine.SPI>` クラスを介してアクセスします::"
 
-#: ../../zephyr/quickref.rst:85
+#: ../../zephyr/quickref.rst:100
 msgid ""
 "from machine import SPI\n"
 "\n"
@@ -286,11 +320,11 @@ msgstr ""
 "spi.write_readinto(b'abcd', buf)    # MOSI への書き出しと MISO からのバッファへの読み込み\n"
 "spi.write_readinto(buf, buf)        # MOSI への buf の書き出しと buf への読み込み"
 
-#: ../../zephyr/quickref.rst:108 ../../zephyr/tutorial/storage.rst:12
+#: ../../zephyr/quickref.rst:123 ../../zephyr/tutorial/storage.rst:12
 msgid "Disk Access"
 msgstr "ディスクアクセス"
 
-#: ../../zephyr/quickref.rst:110
+#: ../../zephyr/quickref.rst:125
 msgid ""
 "Use the :ref:`zephyr.DiskAccess <zephyr.DiskAccess>` class to support "
 "filesystem::"
@@ -299,7 +333,7 @@ msgstr ""
 ":ref:`zephyr.DiskAccess <zephyr.DiskAccess>` "
 "クラスを使います::"
 
-#: ../../zephyr/quickref.rst:112
+#: ../../zephyr/quickref.rst:127
 msgid ""
 "import vfs\n"
 "from zephyr import DiskAccess\n"
@@ -329,11 +363,11 @@ msgstr ""
 "    f.write('Hello world')                  # ファイルに書き出し\n"
 "print(open('/sd/hello.txt').read())      # ファイルの内容を表示"
 
-#: ../../zephyr/quickref.rst:125 ../../zephyr/tutorial/storage.rst:35
+#: ../../zephyr/quickref.rst:140 ../../zephyr/tutorial/storage.rst:35
 msgid "Flash Area"
 msgstr "フラッシュ領域"
 
-#: ../../zephyr/quickref.rst:127
+#: ../../zephyr/quickref.rst:142
 msgid ""
 "Use the :ref:`zephyr.FlashArea <zephyr.FlashArea>` class to support "
 "filesystem::"
@@ -342,7 +376,7 @@ msgstr ""
 ":ref:`zephyr.FlashArea <zephyr.FlashArea>` "
 "クラスを使います。"
 
-#: ../../zephyr/quickref.rst:129
+#: ../../zephyr/quickref.rst:144
 msgid ""
 "import vfs\n"
 "from zephyr import FlashArea\n"
@@ -372,11 +406,19 @@ msgstr ""
 "    f.write('Hello world')                  # ファイルに書き出し\n"
 "print(open('/flash/hello.txt').read())      # ファイルの内容を表示"
 
-#: ../../zephyr/quickref.rst:142
+#: ../../zephyr/quickref.rst:156
+msgid ""
+"The FlashAreas' IDs that are available are listed in the FlashArea "
+"module, as ID_*."
+msgstr ""
+"指定できる FlashArea の ID は、ID_* という名前で FlashArea モジュール内に"
+"定義されています。"
+
+#: ../../zephyr/quickref.rst:159
 msgid "Sensor"
 msgstr "センサー"
 
-#: ../../zephyr/quickref.rst:144
+#: ../../zephyr/quickref.rst:161
 msgid ""
 "Use the :ref:`zsensor.Sensor <zsensor.Sensor>` class to access sensor "
 "data::"
@@ -384,7 +426,7 @@ msgstr ""
 "センサーデータにアクセスするには "
 ":ref:`zsensor.Sensor <zsensor.Sensor>` クラスを使います::"
 
-#: ../../zephyr/quickref.rst:146
+#: ../../zephyr/quickref.rst:163
 msgid ""
 "import zsensor\n"
 "from zsensor import Sensor\n"
@@ -692,7 +734,7 @@ msgstr ""
 
 #: ../../zephyr/tutorial/repl.rst:34
 msgid ""
-"*** Booting Zephyr OS build v3.7.0 ***\n"
+"*** Booting Zephyr OS build v4.0.0 ***\n"
 "MicroPython v1.24.0-preview.179.g5b85b24bd on 2024-08-05; zephyr-"
 "frdm_k64f with mk64f12\n"
 "Type \"help()\" for more information.\n"

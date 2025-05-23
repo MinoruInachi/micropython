@@ -62,7 +62,8 @@
 #define MICROPY_STACK_CHECK_MARGIN          (1024)
 #define MICROPY_ENABLE_EMERGENCY_EXCEPTION_BUF (1)
 #define MICROPY_LONGINT_IMPL                (MICROPY_LONGINT_IMPL_MPZ)
-#define MICROPY_ERROR_REPORTING             (MICROPY_ERROR_REPORTING_NORMAL)
+#define MICROPY_ERROR_REPORTING             (MICROPY_ERROR_REPORTING_NORMAL) // Debugging Note: Increase the error reporting level to view
+                                                                             // __FUNCTION__, __LINE__, __FILE__ in check_esp_err() exceptions
 #define MICROPY_WARNINGS                    (1)
 #define MICROPY_FLOAT_IMPL                  (MICROPY_FLOAT_IMPL_FLOAT)
 #define MICROPY_STREAMS_POSIX_API           (1)
@@ -390,4 +391,9 @@ void boardctrl_startup(void);
 // The minimum string length threshold for string printing to stdout operations to be GIL-aware.
 #ifndef MICROPY_PY_STRING_TX_GIL_THRESHOLD
 #define MICROPY_PY_STRING_TX_GIL_THRESHOLD  (20)
+#endif
+
+// Code can override this to provide a custom ESP-IDF entry point.
+#ifndef MICROPY_ESP_IDF_ENTRY
+#define MICROPY_ESP_IDF_ENTRY app_main
 #endif

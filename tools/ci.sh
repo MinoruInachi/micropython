@@ -159,7 +159,7 @@ function ci_cc3200_build {
 # ports/esp32
 
 # GitHub tag of ESP-IDF to use for CI (note: must be a tag or a branch)
-IDF_VER=v5.2.2
+IDF_VER=v5.4.1
 PYTHON=$(command -v python3 2> /dev/null)
 PYTHON_VER=$(${PYTHON:-python} --version | cut -d' ' -f2)
 
@@ -209,7 +209,7 @@ function ci_esp32_build_s3_c3 {
 
 function ci_esp8266_setup {
     sudo pip3 install pyserial esptool==3.3.1 pyelftools ar
-    wget https://github.com/jepler/esp-open-sdk/releases/download/2018-06-10/xtensa-lx106-elf-standalone.tar.gz
+    wget https://micropython.org/resources/xtensa-lx106-elf-standalone.tar.gz
     zcat xtensa-lx106-elf-standalone.tar.gz | tar x
     # Remove this esptool.py so pip version is used instead
     rm xtensa-lx106-elf/bin/esptool.py
@@ -818,9 +818,9 @@ function ci_windows_build {
 ########################################################################################
 # ports/zephyr
 
-ZEPHYR_DOCKER_VERSION=v0.26.13
-ZEPHYR_SDK_VERSION=0.16.8
-ZEPHYR_VERSION=v3.7.0
+ZEPHYR_DOCKER_VERSION=v0.27.4
+ZEPHYR_SDK_VERSION=0.17.0
+ZEPHYR_VERSION=v4.0.0
 
 function ci_zephyr_setup {
     IMAGE=ghcr.io/zephyrproject-rtos/ci:${ZEPHYR_DOCKER_VERSION}

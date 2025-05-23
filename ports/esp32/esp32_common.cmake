@@ -28,6 +28,11 @@ if(NOT DEFINED MICROPY_PY_TINYUSB)
     endif()
 endif()
 
+# Enable error text compression by default.
+if(NOT MICROPY_ROM_TEXT_COMPRESSION)
+    set(MICROPY_ROM_TEXT_COMPRESSION ON)
+endif()
+
 # Include core source components.
 include(${MICROPY_DIR}/py/py.cmake)
 
@@ -37,7 +42,9 @@ include(${MICROPY_DIR}/py/py.cmake)
 if(NOT CMAKE_BUILD_EARLY_EXPANSION)
     # Enable extmod components that will be configured by extmod.cmake.
     # A board may also have enabled additional components.
-    set(MICROPY_PY_BTREE ON)
+    if (NOT DEFINED MICROPY_PY_BTREE)
+        set(MICROPY_PY_BTREE ON)
+    endif()
 
     include(${MICROPY_DIR}/py/usermod.cmake)
     include(${MICROPY_DIR}/extmod/extmod.cmake)
@@ -73,9 +80,7 @@ list(APPEND MICROPY_SOURCE_DRIVERS
     ${MICROPY_DIR}/drivers/dht/dht.c
 )
 
-list(APPEND GIT_SUBMODULES lib/tinyusb)
 if(MICROPY_PY_TINYUSB)
-    set(TINYUSB_SRC "${MICROPY_DIR}/lib/tinyusb/src")
     string(TOUPPER OPT_MCU_${IDF_TARGET} tusb_mcu)
 
     list(APPEND MICROPY_DEF_TINYUSB
@@ -83,12 +88,6 @@ if(MICROPY_PY_TINYUSB)
     )
 
     list(APPEND MICROPY_SOURCE_TINYUSB
-        ${TINYUSB_SRC}/tusb.c
-        ${TINYUSB_SRC}/common/tusb_fifo.c
-        ${TINYUSB_SRC}/device/usbd.c
-        ${TINYUSB_SRC}/device/usbd_control.c
-        ${TINYUSB_SRC}/class/cdc/cdc_device.c
-        ${TINYUSB_SRC}/portable/synopsys/dwc2/dcd_dwc2.c
         ${MICROPY_DIR}/shared/tinyusb/mp_usbd.c
         ${MICROPY_DIR}/shared/tinyusb/mp_usbd_cdc.c
         ${MICROPY_DIR}/shared/tinyusb/mp_usbd_descriptor.c
@@ -96,7 +95,6 @@ if(MICROPY_PY_TINYUSB)
     )
 
     list(APPEND MICROPY_INC_TINYUSB
-        ${TINYUSB_SRC}
         ${MICROPY_DIR}/shared/tinyusb/
     )
 
@@ -244,6 +242,7 @@ endif()
 
 # Set compile options for this port.
 target_compile_definitions(${MICROPY_TARGET} PUBLIC
+    ${MICROPY_DEF_COMPONENT}
     ${MICROPY_DEF_CORE}
     ${MICROPY_DEF_BOARD}
     ${MICROPY_DEF_TINYUSB}
@@ -256,6 +255,7 @@ target_compile_definitions(${MICROPY_TARGET} PUBLIC
 
 # Disable some warnings to keep the build output clean.
 target_compile_options(${MICROPY_TARGET} PUBLIC
+    ${MICROPY_COMPILE_COMPONENT}
     -Wno-clobbered
     -Wno-deprecated-declarations
     -Wno-missing-field-initializers
@@ -271,7 +271,9 @@ target_include_directories(${MICROPY_TARGET} PUBLIC
 )
 
 # Add additional extmod and usermod components.
-target_link_libraries(${MICROPY_TARGET} micropy_extmod_btree)
+if (MICROPY_PY_BTREE)
+    target_link_libraries(${MICROPY_TARGET} micropy_extmod_btree)
+endif()
 target_link_libraries(${MICROPY_TARGET} usermod)
 
 # Extra linker options
