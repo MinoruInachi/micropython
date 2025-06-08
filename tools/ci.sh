@@ -93,23 +93,30 @@ function ci_code_size_build {
     function code_size_build_step {
         COMMIT=$1
         OUTFILE=$2
-        IGNORE_ERRORS=$3
 
         echo "Building ${COMMIT}..."
         git checkout --detach $COMMIT
         git submodule update --init $SUBMODULES
         git show -s
         tools/metrics.py clean $PORTS_TO_CHECK
-        tools/metrics.py build $PORTS_TO_CHECK | tee $OUTFILE || $IGNORE_ERRORS
+        tools/metrics.py build $PORTS_TO_CHECK | tee $OUTFILE
+        return $?
     }
+
+    # Allow errors from tools/metrics.py to propagate out of the pipe above.
+    set -o pipefail
 
     # build reference, save to size0
     # ignore any errors with this build, in case master is failing
-    code_size_build_step $REFERENCE ~/size0 true
+    code_size_build_step $REFERENCE ~/size0
     # build PR/branch, save to size1
-    code_size_build_step $COMPARISON ~/size1 false
+    code_size_build_step $COMPARISON ~/size1
+    STATUS=$?
 
+    set +o pipefail
     unset -f code_size_build_step
+
+    return $STATUS
 }
 
 ########################################################################################
@@ -524,38 +531,25 @@ function ci_native_mpy_modules_build {
     else
         arch=$1
     fi
-    for natmod in features1 features3 features4 heapq re
+    for natmod in deflate features1 features3 features4 framebuf heapq random re
     do
-        make -C examples/natmod/$natmod clean
+        make -C examples/natmod/$natmod ARCH=$arch clean
         make -C examples/natmod/$natmod ARCH=$arch
     done
-
-    # deflate, framebuf, and random currently cannot build on xtensa due to
-    # some symbols that have been removed from the compiler's runtime, in
-    # favour of being provided from ROM.
-    if [ $arch != "xtensa" ]; then
-        for natmod in deflate framebuf random
-        do
-            make -C examples/natmod/$natmod clean
-            make -C examples/natmod/$natmod ARCH=$arch
-        done
-    fi
 
     # features2 requires soft-float on armv7m, rv32imc, and xtensa.  On armv6m
     # the compiler generates absolute relocations in the object file
     # referencing soft-float functions, which is not supported at the moment.
-    make -C examples/natmod/features2 clean
+    make -C examples/natmod/features2 ARCH=$arch clean
     if [ $arch = "rv32imc" ] || [ $arch = "armv7m" ] || [ $arch = "xtensa" ]; then
         make -C examples/natmod/features2 ARCH=$arch MICROPY_FLOAT_IMPL=float
     elif [ $arch != "armv6m" ]; then
         make -C examples/natmod/features2 ARCH=$arch
     fi
 
-    # btree requires thread local storage support on rv32imc, whilst on xtensa
-    # it relies on symbols that are provided from ROM but not exposed to
-    # natmods at the moment.
-    if [ $arch != "rv32imc" ] && [ $arch != "xtensa" ]; then
-        make -C examples/natmod/btree clean
+    # btree requires thread local storage support on rv32imc.
+    if [ $arch != "rv32imc" ]; then
+        make -C examples/natmod/btree ARCH=$arch clean
         make -C examples/natmod/btree ARCH=$arch
     fi
 }

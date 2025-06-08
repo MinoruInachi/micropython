@@ -271,8 +271,10 @@ Use the :mod:`time <time>` module::
 Timers
 ------
 
-The ESP32 port has four hardware timers. Use the :ref:`machine.Timer <machine.Timer>` class
-with a timer ID from 0 to 3 (inclusive)::
+The ESP32 port has one, two or four hardware timers, depending on the ESP32 device type.
+There is 1 timer for ESP32C2, 2 timers for ESP32C4, ESP32C6 and ESP32H4, and
+4 timers otherwise. Use the :ref:`machine.Timer <machine.Timer>` class
+with a timer ID of 0, 0 and 1, or from 0 to 3 (inclusive)::
 
     from machine import Timer
 
@@ -282,7 +284,8 @@ with a timer ID from 0 to 3 (inclusive)::
     tim1 = Timer(1)
     tim1.init(period=2000, mode=Timer.PERIODIC, callback=lambda t:print(1))
 
-The period is in milliseconds.
+The period is in milliseconds. When using UART.IRQ_RXIDLE, timer 0 is needed for
+the IRQ_RXIDLE mechanism and must not be used otherwise.
 
 Virtual timers are not currently supported on this port.
 
@@ -541,14 +544,27 @@ Legacy methods:
 
     Equivalent to ``ADC.block().init(bits=bits)``.
 
-For compatibility, the ``ADC`` object also provides constants matching the
-supported ADC resolutions:
+The only chip that can switch resolution to a lower one is the normal esp32.
+The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
 
+For compatibility, the ``ADC`` object also provides constants matching the
+supported ADC resolutions, per chip:
+
+ESP32:
   - ``ADC.WIDTH_9BIT`` = 9
   - ``ADC.WIDTH_10BIT`` = 10
   - ``ADC.WIDTH_11BIT`` = 11
   - ``ADC.WIDTH_12BIT`` = 12
 
+ESP32 C3 & S3:
+  - ``ADC.WIDTH_12BIT`` = 12
+
+ESP32 S2:
+  - ``ADC.WIDTH_13BIT`` = 13
+
+.. method:: ADC.deinit()
+
+    Provided to deinit the adc driver.
 
 Software SPI bus
 ----------------

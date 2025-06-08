@@ -105,14 +105,11 @@ PC_PLATFORMS = ("darwin", "linux", "win32")
 # These are tests that are difficult to detect that they should not be run on the given target.
 platform_tests_to_skip = {
     "esp8266": (
-        "micropython/viper_args.py",  # too large
-        "micropython/viper_binop_arith.py",  # too large
-        "misc/rge_sm.py",  # too large
+        "misc/rge_sm.py",  # incorrect values due to object representation C
     ),
     "minimal": (
         "basics/class_inplace_op.py",  # all special methods not supported
         "basics/subclass_native_init.py",  # native subclassing corner cases not support
-        "misc/rge_sm.py",  # too large
         "micropython/opt_level.py",  # don't assume line numbers are stored
     ),
     "nrf": (
@@ -272,22 +269,17 @@ def detect_test_platform(pyb, args):
     print()
 
 
-def prepare_script_for_target(args, *, script_filename=None, script_text=None, force_plain=False):
+def prepare_script_for_target(args, *, script_text=None, force_plain=False):
     if force_plain or (not args.via_mpy and args.emit == "bytecode"):
-        if script_filename is not None:
-            with open(script_filename, "rb") as f:
-                script_text = f.read()
+        # A plain test to run as-is, no processing needed.
+        pass
     elif args.via_mpy:
         tempname = tempfile.mktemp(dir="")
         mpy_filename = tempname + ".mpy"
 
-        if script_filename is None:
-            script_filename = tempname + ".py"
-            cleanup_script_filename = True
-            with open(script_filename, "wb") as f:
-                f.write(script_text)
-        else:
-            cleanup_script_filename = False
+        script_filename = tempname + ".py"
+        with open(script_filename, "wb") as f:
+            f.write(script_text)
 
         try:
             subprocess.check_output(
@@ -303,8 +295,7 @@ def prepare_script_for_target(args, *, script_filename=None, script_text=None, f
             script_text = b"__buf=" + bytes(repr(f.read()), "ascii") + b"\n"
 
         rm_f(mpy_filename)
-        if cleanup_script_filename:
-            rm_f(script_filename)
+        rm_f(script_filename)
 
         script_text += bytes(injected_import_hook_code, "ascii")
     else:
@@ -315,9 +306,21 @@ def prepare_script_for_target(args, *, script_filename=None, script_text=None, f
 
 
 def run_script_on_remote_target(pyb, args, test_file, is_special):
-    had_crash, script = prepare_script_for_target(
-        args, script_filename=test_file, force_plain=is_special
-    )
+    with open(test_file, "rb") as f:
+        script = f.read()
+
+    # If the test is not a special test, prepend it with a print to indicate that it started.
+    # If the print does not execute this means that the test did not even start, eg it was
+    # too large for the target.
+    prepend_start_test = not is_special
+    if prepend_start_test:
+        if script.startswith(b"#"):
+            script = b"print('START TEST')" + script
+        else:
+            script = b"print('START TEST')\n" + script
+
+    had_crash, script = prepare_script_for_target(args, script_text=script, force_plain=is_special)
+
     if had_crash:
         return True, script
 
@@ -328,9 +331,19 @@ def run_script_on_remote_target(pyb, args, test_file, is_special):
     except pyboard.PyboardError as e:
         had_crash = True
         if not is_special and e.args[0] == "exception":
-            output_mupy = e.args[1] + e.args[2] + b"CRASH"
+            if prepend_start_test and e.args[1] == b"" and b"MemoryError" in e.args[2]:
+                output_mupy = b"SKIP-TOO-LARGE\n"
+            else:
+                output_mupy = e.args[1] + e.args[2] + b"CRASH"
         else:
             output_mupy = bytes(e.args[0], "ascii") + b"\nCRASH"
+
+    if prepend_start_test:
+        if output_mupy.startswith(b"START TEST\r\n"):
+            output_mupy = output_mupy.removeprefix(b"START TEST\r\n")
+        else:
+            had_crash = True
+
     return had_crash, output_mupy
 
 
@@ -474,7 +487,7 @@ def run_micropython(pyb, args, test_file, test_file_abspath, is_special=False):
     output_mupy = output_mupy.replace(b"\r\n", b"\n")
 
     # don't try to convert the output if we should skip this test
-    if had_crash or output_mupy in (b"SKIP\n", b"CRASH"):
+    if had_crash or output_mupy in (b"SKIP\n", b"SKIP-TOO-LARGE\n", b"CRASH"):
         return output_mupy
 
     # skipped special tests will output "SKIP" surrounded by other interpreter debug output
@@ -605,9 +618,7 @@ class PyboardNodeRunner:
 def run_tests(pyb, tests, args, result_dir, num_threads=1):
     test_count = ThreadSafeCounter()
     testcase_count = ThreadSafeCounter()
-    passed_tests = ThreadSafeCounter([])
-    failed_tests = ThreadSafeCounter([])
-    skipped_tests = ThreadSafeCounter([])
+    test_results = ThreadSafeCounter([])
 
     skip_tests = set()
     skip_native = False
@@ -896,7 +907,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
 
         if skip_it:
             print("skip ", test_file)
-            skipped_tests.append((test_name, test_file))
+            test_results.append((test_name, test_file, "skip", ""))
             return
 
         # Run the test on the MicroPython target.
@@ -911,7 +922,11 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
                 # start-up code (eg boot.py) when preparing to run the next test.
                 pyb.read_until(1, b"raw REPL; CTRL-B to exit\r\n")
             print("skip ", test_file)
-            skipped_tests.append((test_name, test_file))
+            test_results.append((test_name, test_file, "skip", ""))
+            return
+        elif output_mupy == b"SKIP-TOO-LARGE\n":
+            print("lrge ", test_file)
+            test_results.append((test_name, test_file, "skip", "too large"))
             return
 
         # Look at the output of the test to see if unittest was used.
@@ -994,7 +1009,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         # Print test summary, update counters, and save .exp/.out files if needed.
         if test_passed:
             print("pass ", test_file, extra_info)
-            passed_tests.append((test_name, test_file))
+            test_results.append((test_name, test_file, "pass", ""))
             rm_f(filename_expected)
             rm_f(filename_mupy)
         else:
@@ -1006,7 +1021,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
                 rm_f(filename_expected)  # in case left over from previous failed run
             with open(filename_mupy, "wb") as f:
                 f.write(output_mupy)
-            failed_tests.append((test_name, test_file))
+            test_results.append((test_name, test_file, "fail", ""))
 
         test_count.increment()
 
@@ -1035,9 +1050,13 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
             print(line)
         sys.exit(1)
 
-    passed_tests = sorted(passed_tests.value)
-    skipped_tests = sorted(skipped_tests.value)
-    failed_tests = sorted(failed_tests.value)
+    test_results = test_results.value
+    passed_tests = list(r for r in test_results if r[2] == "pass")
+    skipped_tests = list(r for r in test_results if r[2] == "skip" and r[3] != "too large")
+    skipped_tests_too_large = list(
+        r for r in test_results if r[2] == "skip" and r[3] == "too large"
+    )
+    failed_tests = list(r for r in test_results if r[2] == "fail")
 
     print(
         "{} tests performed ({} individual testcases)".format(
@@ -1050,6 +1069,13 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         print(
             "{} tests skipped: {}".format(
                 len(skipped_tests), " ".join(test[0] for test in skipped_tests)
+            )
+        )
+
+    if len(skipped_tests_too_large) > 0:
+        print(
+            "{} tests skipped because they are too large: {}".format(
+                len(skipped_tests_too_large), " ".join(test[0] for test in skipped_tests_too_large)
             )
         )
 
@@ -1069,9 +1095,11 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
     with open(os.path.join(result_dir, RESULTS_FILE), "w") as f:
         json.dump(
             {
+                # The arguments passed on the command-line.
                 "args": vars(args),
-                "passed_tests": [test[1] for test in passed_tests],
-                "skipped_tests": [test[1] for test in skipped_tests],
+                # A list of all results of the form [(test, result, reason), ...].
+                "results": list(test[1:] for test in test_results),
+                # A list of failed tests.  This is deprecated, use the "results" above instead.
                 "failed_tests": [test[1] for test in failed_tests],
             },
             f,
@@ -1248,7 +1276,7 @@ the last matching regex is used:
         results_file = os.path.join(args.result_dir, RESULTS_FILE)
         if os.path.exists(results_file):
             with open(results_file, "r") as f:
-                tests = json.load(f)["failed_tests"]
+                tests = list(test[0] for test in json.load(f)["results"] if test[1] == "fail")
         else:
             tests = []
     elif len(args.files) == 0:
