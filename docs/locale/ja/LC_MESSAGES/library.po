@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-21 19:22+0900\n"
-"PO-Revision-Date: 2025-05-23 12:43+0900\n"
+"POT-Creation-Date: 2025-06-08 10:10+0900\n"
+"PO-Revision-Date: 2025-06-08 18:23+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -6390,6 +6390,37 @@ msgstr ""
 
 #: ../../library/framebuf.rst:140
 msgid ""
+"*fbuf* can be another FrameBuffer instance, or a tuple or list of the "
+"form::"
+msgstr ""
+"*fbuf* には、別の FrameBuffer インスタンス、次の形式のタプルもしくはリストを"
+"指定できます::"
+
+#: ../../library/framebuf.rst:142
+msgid "(buffer, width, height, format)"
+msgstr ""
+
+#: ../../library/framebuf.rst:144 ../../library/network.WLANWiPy.rst:67
+#: ../../library/pyb.Pin.rst:247
+msgid "or::"
+msgstr "または::"
+
+#: ../../library/framebuf.rst:146
+msgid "(buffer, width, height, format, stride)"
+msgstr ""
+
+#: ../../library/framebuf.rst:148
+msgid ""
+"This matches the signature of the FrameBuffer constructor, and the "
+"elements of the tuple/list are the same as the arguments to the "
+"constructor except that the *buffer* here can be read-only."
+msgstr ""
+"これは FrameBuffer コンストラクタのシグネチャに一致しており、"
+"タプルまたはリストの各要素はコンストラクタの引数と同じですが、"
+"ここでの *buffer* は読み取り専用でもかまいません。"
+
+#: ../../library/framebuf.rst:152
+msgid ""
 "The *palette* argument enables blitting between FrameBuffers with "
 "differing formats. Typical usage is to render a monochrome or grayscale "
 "glyph/icon to a color display. The *palette* is a FrameBuffer instance "
@@ -6413,7 +6444,7 @@ msgstr ""
 "現在のピクセルの色は、x位置が対応するソースピクセルの色になっている *palette* "
 "ピクセルの色になります。"
 
-#: ../../library/framebuf.rst:156
+#: ../../library/framebuf.rst:168
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are vertically mapped with bit 0 being nearest the top of the "
@@ -6427,7 +6458,7 @@ msgstr ""
 "８垂直ピクセルを占有します。後続のバイトは、右端に達するまで連続した水平位置に"
 "現れます。さらに後続のバイトは、最左端から8ピクセル下の位置でレンダリングされます。"
 
-#: ../../library/framebuf.rst:165
+#: ../../library/framebuf.rst:177
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -6440,7 +6471,7 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:174
+#: ../../library/framebuf.rst:186
 msgid ""
 "Monochrome (1-bit) color format This defines a mapping where the bits in "
 "a byte are horizontally mapped. Each byte occupies 8 horizontal pixels "
@@ -6453,19 +6484,19 @@ msgstr ""
 "後続のバイトは右端に達するまで連続した水平位置に現れます。さらに後続のバイトは"
 "1ピクセル下の次の行にレンダリングされます。"
 
-#: ../../library/framebuf.rst:183
+#: ../../library/framebuf.rst:195
 msgid "Red Green Blue (16-bit, 5+6+5) color format"
 msgstr "レッドグリーンブルー(16ビット、5+6+5)カラーフォーマット"
 
-#: ../../library/framebuf.rst:187
+#: ../../library/framebuf.rst:199
 msgid "Grayscale (2-bit) color format"
 msgstr "グレースケール(2ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:191
+#: ../../library/framebuf.rst:293
 msgid "Grayscale (4-bit) color format"
 msgstr "グレースケール(4ビット)カラーフォーマット"
 
-#: ../../library/framebuf.rst:195
+#: ../../library/framebuf.rst:207
 msgid "Grayscale (8-bit) color format"
 msgstr "グレースケール(8ビット)カラーフォーマット"
 
@@ -12645,10 +12676,14 @@ msgid "STM32"
 msgstr ""
 
 #: ../../library/machine.UART.rst:227
-msgid "The ESP32 port does not support the option hard=True."
-msgstr "ESP32 ポートでは hard=True オプションをサポートしていません。"
+msgid ""
+"The ESP32 port does not support the option hard=True. It uses Timer(0) "
+"for UART.IRQ_RXIDLE, so this timer cannot be used for other means."
+msgstr "
+"ESP32 ポートでは hard=True オプションをサポートしていません。"
+"UART.IRQ_RXIDLE では Timer(0) を使うため、このタイマーを他の用途には使えません。"
 
-#: ../../library/machine.UART.rst:229
+#: ../../library/machine.UART.rst:230
 msgid ""
 "The rp2 port's UART.IRQ_TXIDLE is only triggered when the message is "
 "longer than 5 characters and the trigger happens when still 5 characters "
@@ -12657,7 +12692,7 @@ msgstr ""
 "rp2 ポートの UART.IRQ_TXIDLE は、メッセージが５文字以上で、"
 "送信すべき文字がまだ 5 文字残っているときに発生します。"
 
-#: ../../library/machine.UART.rst:233
+#: ../../library/machine.UART.rst:234
 msgid ""
 "The rp2 port's UART.IRQ_BREAK needs receiving valid characters for "
 "triggering again."
@@ -12665,14 +12700,14 @@ msgstr ""
 "rp2 ポートの UART.IRQ_BREAK が再び発生されるようになるには"
 "有効な文字を受信する必要があります。"
 
-#: ../../library/machine.UART.rst:236
+#: ../../library/machine.UART.rst:237
 msgid ""
 "The SAMD port's UART.IRQ_TXIDLE is triggered while the last character is "
 "sent."
 msgstr ""
 "SAMD ポートの UART.IRQ_TXIDLE は、最後の文字を送信している間に発生します。"
 
-#: ../../library/machine.UART.rst:238
+#: ../../library/machine.UART.rst:239
 msgid ""
 "On STM32F4xx MCU's, using the trigger UART.IRQ_RXIDLE the handler will be"
 " called once after the first character and then after the end of the "
@@ -12682,23 +12717,23 @@ msgstr ""
 "ハンドラは最初の文字受信後とメッセージの終わりでラインが"
 "アイドル状態のときに呼び出されます。"
 
-#: ../../library/machine.UART.rst:243
+#: ../../library/machine.UART.rst:244
 msgid "Availability: cc3200, esp32, mimxrt, nrf, renesas-ra, rp2, samd, stm32."
 msgstr "対応ポート: cc3200, esp32, mimxrt, nrf, renesas-ra, rp2, samd, stm32"
 
-#: ../../library/machine.UART.rst:251
+#: ../../library/machine.UART.rst:252
 msgid "Flow control options."
 msgstr "フロー制御オプション。"
 
-#: ../../library/machine.UART.rst:253
+#: ../../library/machine.UART.rst:254
 msgid "Availability: esp32, mimxrt, renesas-ra, rp2, stm32."
 msgstr "対応ポート: esp32, mimxrt, renesas-ra, rp2, stm32"
 
-#: ../../library/machine.UART.rst:260
+#: ../../library/machine.UART.rst:261
 msgid "IRQ trigger sources"
 msgstr "IRQ トリガーソース"
 
-#: ../../library/machine.UART.rst:262
+#: ../../library/machine.UART.rst:263
 msgid "Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200."
 msgstr "対応ポート: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200"
 
@@ -23978,7 +24013,19 @@ msgstr ""
 "ソケットからデータを受信します。戻り値は受信したデータを表すバイト列オブジェクトです。"
 "一度に受信するデータの最大量は *bufsize* で指定します。"
 
-#: ../../library/socket.rst:237
+#: ../../library/socket.rst:235
+msgid ""
+"Most ports support the optional *flags* argument. Available *flags* are "
+"defined as constants in the socket module and have the same meaning as in"
+" CPython. ``MSG_PEEK`` and ``MSG_DONTWAIT`` are supported on all ports "
+"which accept the *flags* argument."
+msgstr ""
+"ほとんどのポートは、オプションの *flags* 引数をサポートしています。"
+"指定できるフラグは socket モジュールで定数として定義されており、"
+"CPython における意味と同じです。 ``MSG_PEEK`` と ``MSG_DONTWAIT`` は "
+"*flags* 引数を受け付けるすべてのポートでサポートされています。"
+
+#: ../../library/socket.rst:241
 msgid ""
 "Send data to the socket. The socket should not be connected to a remote "
 "socket, since the destination socket is specified by *address*."
@@ -23986,7 +24033,7 @@ msgstr ""
 "ソケットにデータを送信します。このメソッドでは接続先を *address* で指定するので、"
 "ソケットがリモートソケットに接続済みではいけません。"
 
-#: ../../library/socket.rst:242
+#: ../../library/socket.rst:246
 msgid ""
 "Receive data from the socket. The return value is a pair *(bytes, "
 "address)* where *bytes* is a bytes object representing the data received "
@@ -23996,7 +24043,14 @@ msgstr ""
 "*bytes* は受信データを表すバイト列オブジェクトで、 *address* はデータを送信する"
 "ソケットのアドレスです。"
 
-#: ../../library/socket.rst:248
+#: ../../library/socket.rst:250
+msgid ""
+"See the `recv` function for an explanation of the optional *flags* "
+"argument."
+msgstr ""
+"オプションの *flags* 引数の説明については `recv` 関数を参照してください。"
+
+#: ../../library/socket.rst:254
 msgid ""
 "Set the value of the given socket option. The needed symbolic constants "
 "are defined in the socket module (SO_* etc.). The *value* can be an "
@@ -24006,11 +24060,11 @@ msgstr ""
 "モジュール(SO_* など)で定義されています。 *value* は整数、None、またはバッファを表す"
 "バイト列ライクなオブジェクトのいずれかです。"
 
-#: ../../library/socket.rst:254
+#: ../../library/socket.rst:260
 msgid "**Note**: Not every port supports this method, see below."
 msgstr "**注記**: すべてのポートがこのメソッドをサポートしているわけではありません。下記を参照してください。"
 
-#: ../../library/socket.rst:256
+#: ../../library/socket.rst:262
 msgid ""
 "Set a timeout on blocking socket operations. The value argument can be a "
 "nonnegative floating point number expressing seconds, or None. If a non-"
@@ -24025,7 +24079,7 @@ msgstr ""
 "ゼロを指定した場合、ソケットは非ブロッキングモードになります。None を指定した場合、"
 "ソケットはブロックモードになります。"
 
-#: ../../library/socket.rst:262
+#: ../../library/socket.rst:268
 msgid ""
 "Not every :term:`MicroPython port` supports this method. A more portable "
 "and generic solution is to use `select.poll` object. This allows to wait"
@@ -24038,7 +24092,7 @@ msgstr ""
 "だけでなく、ポーリングをサポートする汎用の `stream` オブジェクトも対象になります)。"
 "たとえば次のように使います::"
 
-#: ../../library/socket.rst:267
+#: ../../library/socket.rst:273
 msgid ""
 "# Instead of:\n"
 "s.settimeout(1.0)  # time in seconds\n"
@@ -24062,7 +24116,7 @@ msgstr ""
 "if not res:\n"
 "    # s から入力されなくなったということは、操作がタイムアウトしている"
 
-#: ../../library/socket.rst:281
+#: ../../library/socket.rst:287
 msgid ""
 "CPython raises a ``socket.timeout`` exception in case of timeout, which "
 "is an `OSError` subclass. MicroPython raises an OSError directly instead."
@@ -24074,7 +24128,7 @@ msgstr ""
 "例外を捕らえるのに ``except OSError:`` を使えば、コードは MicroPython と "
 "CPython の両方で動作します。
 
-#: ../../library/socket.rst:288
+#: ../../library/socket.rst:294
 msgid ""
 "Set blocking or non-blocking mode of the socket: if flag is false, the "
 "socket is set to non-blocking, else to blocking mode."
@@ -24082,19 +24136,19 @@ msgstr ""
 "ソケットをブロッキングモード、または非ブロッキングモードに設定します。flag が False "
 "の場合にはソケットは非ブロッキングモードになり、True の場合にはブロッキングモードになります。"
 
-#: ../../library/socket.rst:291
+#: ../../library/socket.rst:297
 msgid "This method is a shorthand for certain `settimeout()` calls:"
 msgstr "このメソッドは、次の `settimeout()` 呼び出しの省略形です:"
 
-#: ../../library/socket.rst:293
+#: ../../library/socket.rst:299
 msgid "``sock.setblocking(True)`` is equivalent to ``sock.settimeout(None)``"
 msgstr "``sock.setblocking(True)`` は ``sock.settimeout(None)`` と等価です"
 
-#: ../../library/socket.rst:294
+#: ../../library/socket.rst:300
 msgid "``sock.setblocking(False)`` is equivalent to ``sock.settimeout(0)``"
 msgstr "``sock.setblocking(False)`` は ``sock.settimeout(0.0)`` と等価です"
 
-#: ../../library/socket.rst:298
+#: ../../library/socket.rst:304
 msgid ""
 "Return a file object associated with the socket. The exact returned type "
 "depends on the arguments given to makefile(). The support is limited to "
@@ -24106,7 +24160,7 @@ msgstr ""
 "されています。CPython の引数: "*encoding*, *errors* and *newline* はサポート"
 "されていません。"
 
-#: ../../library/socket.rst:305
+#: ../../library/socket.rst:311
 msgid ""
 "As MicroPython doesn't support buffered streams, values of *buffering* "
 "parameter is ignored and treated as if it was 0 (unbuffered)."
@@ -24114,14 +24168,14 @@ msgstr ""
 "MicroPython はバッファ付きストリームをサポートしていないため、 *buffering* "
 "パラメータの値は無視され、0 (バッファなし)のように扱われます。"
 
-#: ../../library/socket.rst:311
+#: ../../library/socket.rst:317
 msgid ""
 "Closing the file object returned by makefile() WILL close the original "
 "socket as well."
 msgstr ""
 "makefile() から返されたファイルオブジェクトを閉じると、元のソケットも閉じられます。"
 
-#: ../../library/socket.rst:316
+#: ../../library/socket.rst:322
 msgid ""
 "Read up to size bytes from the socket. Return a bytes object. If *size* "
 "is not given, it reads all data available from the socket until EOF; as "
@@ -24137,7 +24191,7 @@ msgstr ""
 "ただし、これはノンブロッキングソケットでは不可能なことがあり、そのような場合は返される"
 "データが少なくなります。"
 
-#: ../../library/socket.rst:324
+#: ../../library/socket.rst:330
 msgid ""
 "Read bytes into the *buf*.  If *nbytes* is specified then read at most "
 "that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as "
@@ -24148,19 +24202,19 @@ msgstr ""
 "*len(buf)* バイトを読み込みます。 `read()` と同様に、このメソッドは"
 "「短い読み込みなし」ポリシーにしたがいます。"
 
-#: ../../library/socket.rst:328
+#: ../../library/socket.rst:334
 msgid "Return value: number of bytes read and stored into *buf*."
 msgstr "戻り値: *buf* に読み込んで格納されたバイト数。"
 
-#: ../../library/socket.rst:332
+#: ../../library/socket.rst:338
 msgid "Read a line, ending in a newline character."
 msgstr "改行文字で終わる行を読みます。"
 
-#: ../../library/socket.rst:334
+#: ../../library/socket.rst:340
 msgid "Return value: the line read."
 msgstr "戻り値: 読み込んだ行。"
 
-#: ../../library/socket.rst:338
+#: ../../library/socket.rst:344
 msgid ""
 "Write the buffer of bytes to the socket. This function will try to write "
 "all data to a socket (no \"short writes\"). This may be not possible with"
@@ -24172,15 +24226,15 @@ msgstr ""
 "これはノンブロッキングソケットでは不可能なことがあり、そのような場合は戻り値が "
 "*buf* の長さより短くなります。"
 
-#: ../../library/socket.rst:343
+#: ../../library/socket.rst:349
 msgid "Return value: number of bytes written."
 msgstr "戻り値: 書き込んだバイト数"
 
-#: ../../library/socket.rst:347
+#: ../../library/socket.rst:353
 msgid "MicroPython does NOT have this exception."
 msgstr "MicroPython にはこの例外がありません。"
 
-#: ../../library/socket.rst:352
+#: ../../library/socket.rst:358
 msgid ""
 "CPython used to have a ``socket.error`` exception which is now "
 "deprecated, and is an alias of `OSError`. In MicroPython, use `OSError` "
@@ -25328,16 +25382,17 @@ msgstr ""
 
 #: ../../library/time.rst:12
 msgid ""
-"**Time Epoch**: Unix port uses standard for POSIX systems epoch of "
-"1970-01-01 00:00:00 UTC. However, some embedded ports use epoch of "
-"2000-01-01 00:00:00 UTC. Epoch year may be determined with "
-"``gmtime(0)[0]``."
+"**Time Epoch**: The unix, windows, webassembly, alif, mimxrt and rp2 "
+"ports use the standard for POSIX systems epoch of 1970-01-01 00:00:00 "
+"UTC. The other embedded ports use an epoch of 2000-01-01 00:00:00 UTC. "
+"Epoch year may be determined with ``gmtime(0)[0]``."
 msgstr ""
-"エポックタイム: Unix ポートは、1970年1月1日 00:00:00 UTC の POSIX システム"
-"エポックの標準を使います。ただし、組込み機器のポートによっては、2000年1月1日 "
-"00:00:00 UTC のエポックを使います。エポック年は ``gmtime(0)[0]`` で分かります。"
+"**エポックタイム**: unix, windows, webassembly, alif, mimxrt, rp2 ポートは、"
+"1970年1月1日 00:00:00 UTC の POSIX システムのエポック標準を使います。"
+"その他の組込み機器のポートは、2000年1月1日 00:00:00 UTC のエポックを使います。"
+"エポック年は ``gmtime(0)[0]`` で分かります。"
 
-#: ../../library/time.rst:16
+#: ../../library/time.rst:17
 msgid ""
 "**Maintaining actual calendar date/time**: This requires a Real Time "
 "Clock (RTC). On systems with underlying OS (including some RTOS), an RTC "
@@ -25357,7 +25412,7 @@ msgstr ""
 "``machine.RTC().datetime(tuple)`` 関数を使って設定し、以下の手段によって維持"
 "されます。"
 
-#: ../../library/time.rst:25
+#: ../../library/time.rst:26
 msgid ""
 "By a backup battery (which may be an additional, optional component for a"
 " particular board)."
@@ -25365,11 +25420,11 @@ msgstr ""
 "バックアップバッテリ(特定のボード用の追加オプションコンポーネントとして用意されている"
 "こともあります)。"
 
-#: ../../library/time.rst:27
+#: ../../library/time.rst:28
 msgid "Using networked time protocol (requires setup by a port/user)."
 msgstr "NTP (Networked Time Protocol)を利用(ポート/ユーザーによる設定が必須)。"
 
-#: ../../library/time.rst:28
+#: ../../library/time.rst:29
 msgid ""
 "Set manually by a user on each power-up (many boards then maintain RTC "
 "time across hard resets, though some may require setting it again in such"
@@ -25378,7 +25433,7 @@ msgstr ""
 "各電源投入時にユーザが手動で設定(多くのボードはハードリセット時に RTC 時間を設定"
 "しますが、再度設定する必要があるボードもあります)。"
 
-#: ../../library/time.rst:32
+#: ../../library/time.rst:33
 msgid ""
 "If actual calendar time is not maintained with a system/MicroPython RTC, "
 "functions below which require reference to current absolute time may "
@@ -25387,7 +25442,7 @@ msgstr ""
 "実際のカレンダー時間が システム/MicroPython RTC で維持されていない場合、現在の"
 "絶対時間を参照する必要がある関数は、期待どおりに動作しない可能性があります。"
 
-#: ../../library/time.rst:42
+#: ../../library/time.rst:43
 msgid ""
 "Convert the time *secs* expressed in seconds since the Epoch (see above) "
 "into an 8-tuple which contains: ``(year, month, mday, hour, minute, "
@@ -25399,7 +25454,7 @@ msgstr ""
 "minute, second, weekday, yearday)`` に変換します。 *secs* を与えないか "
 "None である場合は RTC の現在時間を使います。"
 
-#: ../../library/time.rst:46
+#: ../../library/time.rst:47
 msgid ""
 "The `gmtime()` function returns a date-time tuple in UTC, and "
 "`localtime()` returns a date-time tuple in local time."
@@ -25407,52 +25462,52 @@ msgstr ""
 "`gmtime()` 関数は日時を UTC で返し、 `localtime()` は日時をローカル時間で"
 "返します。"
 
-#: ../../library/time.rst:49
+#: ../../library/time.rst:50
 msgid "The format of the entries in the 8-tuple are:"
 msgstr "８項目のタプルのフォーマットは次のとおりです:"
 
-#: ../../library/time.rst:51
+#: ../../library/time.rst:52
 msgid "year includes the century (for example 2014)."
 msgstr "year: 西暦の年(たとえば 2014)"
 
-#: ../../library/time.rst:52
+#: ../../library/time.rst:53
 msgid "month   is 1-12"
 msgstr "month: 月を表す 1-12"
 
-#: ../../library/time.rst:53
+#: ../../library/time.rst:54
 msgid "mday    is 1-31"
 msgstr "mday: 日を表す 1-31"
 
-#: ../../library/time.rst:54
+#: ../../library/time.rst:55
 msgid "hour    is 0-23"
 msgstr "hour: 時を表す 0-23"
 
-#: ../../library/time.rst:55
+#: ../../library/time.rst:56
 msgid "minute  is 0-59"
 msgstr "minute: 分を表す 0-59"
 
-#: ../../library/time.rst:56
+#: ../../library/time.rst:57
 msgid "second  is 0-59"
 msgstr "second: 秒を表す 0-59"
 
-#: ../../library/time.rst:57
+#: ../../library/time.rst:58
 msgid "weekday is 0-6 for Mon-Sun"
 msgstr "weekday: 月曜-日曜を表す 0-6"
 
-#: ../../library/time.rst:58
+#: ../../library/time.rst:59
 msgid "yearday is 1-366"
 msgstr "yearday: 年内の通算日数を表す 1-366"
 
-#: ../../library/time.rst:62
+#: ../../library/time.rst:63
 msgid ""
 "This is inverse function of localtime. It's argument is a full 8-tuple "
 "which expresses a time as per localtime. It returns an integer which is "
-"the number of seconds since Jan 1, 2000."
+"the number of seconds since the time epoch."
 msgstr ""
 "これは localtime の逆関数です。引数は、ローカルタイムの時間を表現する完全な"
-"８項目のタプルです。この関数は2000年1月1日以降の秒数を整数で返します。"
+"８項目のタプルです。この関数はエポックタイム以降の秒数を整数で返します。"
 
-#: ../../library/time.rst:68
+#: ../../library/time.rst:69
 msgid ""
 "Sleep for the given number of seconds. Some boards may accept *seconds* "
 "as a floating-point number to sleep for a fractional number of seconds. "
@@ -25464,11 +25519,11 @@ msgstr ""
 "`sleep_us()` 関数との整合性のために、浮動小数点の引数を受け付けないことに注意"
 "してください。"
 
-#: ../../library/time.rst:75
+#: ../../library/time.rst:76
 msgid "Delay for given number of milliseconds, should be positive or 0."
 msgstr "指定のミリ秒間遅延します。ミリ秒の指定は0以上の整数である必要があります。"
 
-#: ../../library/time.rst:77
+#: ../../library/time.rst:78
 msgid ""
 "This function will delay for at least the given number of milliseconds, "
 "but may take longer than that if other processing must take place, for "
@@ -25481,11 +25536,11 @@ msgstr ""
 "*ms* に 0 を渡しても、他の処理が行われることがあります。より正確な遅延のためには "
 "`sleep_us()` を使用してください。"
 
-#: ../../library/time.rst:79
+#: ../../library/time.rst:85
 msgid "Delay for given number of microseconds, should be positive or 0."
 msgstr "指定のマイクロ秒間だけ遅延します。マイクロ秒の指定は0以上の整数である必要があります。"
 
-#: ../../library/time.rst:86
+#: ../../library/time.rst:87
 msgid ""
 "This function attempts to provide an accurate delay of at least *us* "
 "microseconds, but it may take longer if the system has other higher "
@@ -25494,7 +25549,7 @@ msgstr ""
 "この関数は、少なくとも *us* マイクロ秒の正確な遅延を提供しようとしますが、"
 "システムが他のより優先度の高い処理を実行している場合は、それ以上かかることがあります。"
 
-#: ../../library/time.rst:83
+#: ../../library/time.rst:93
 msgid ""
 "Returns an increasing millisecond counter with an arbitrary reference "
 "point, that wraps around after some value."
@@ -25502,7 +25557,7 @@ msgstr ""
 "呼出し時点での稼働時間をミリ秒単位で返します。稼働時間は最大値に達すると"
 "ラップアラウンドします(一周して最低値に戻ります)。"
 
-#: ../../library/time.rst:86
+#: ../../library/time.rst:96
 msgid ""
 "The wrap-around value is not explicitly exposed, but we will refer to it "
 "as *TICKS_MAX* to simplify discussion. Period of the values is "
@@ -25527,7 +25582,7 @@ msgstr ""
 "として扱う必要があります。利用できる操作は後述するように `ticks_diff()` と "
 "`ticks_add()` 関数です。"
 
-#: ../../library/time.rst:97
+#: ../../library/time.rst:107
 msgid ""
 "Note: Performing standard mathematical operations (+, -) or relational "
 "operators (<, <=, >, >=) directly on these value will lead to invalid "
@@ -25539,11 +25594,11 @@ msgstr ""
 "直接実行すると無効な結果になります。数値演算を実行し、その結果を引数として "
 "`ticks_diff()` か `ticks_add()` に渡すと無効な結果につながります。"
 
-#: ../../library/time.rst:105
+#: ../../library/time.rst:115
 msgid "Just like `ticks_ms()` above, but in microseconds."
 msgstr "上記の `ticks_ms()` と同様ですが、マイクロ秒単位となります。"
 
-#: ../../library/time.rst:109
+#: ../../library/time.rst:119
 msgid ""
 "Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible "
 "resolution in the system. This is usually CPU clocks, and that's why the "
@@ -25563,11 +25618,11 @@ msgstr ""
 "より具体的な情報が提供される場合があります。この関数は、非常に細かいベンチマークや非常に"
 "タイトなリアルタイムループで使うことを目的としています。ポータブルコードでの使用は避けてください。"
 
-#: ../../library/time.rst:118
+#: ../../library/time.rst:128
 msgid "Availability: Not every port implements this function."
 msgstr "対応ポート: すべてのポートがこの機能を実装しているわけではありません。"
 
-#: ../../library/time.rst:123
+#: ../../library/time.rst:133
 msgid ""
 "Offset ticks value by a given number, which can be either positive or "
 "negative. Given a *ticks* value, this function allows to calculate ticks "
@@ -25589,11 +25644,11 @@ msgstr ""
 "`ticks_add()` はイベント/タスクのデッドラインを算出するのに便利です。"
 "(注記: デッドラインを扱うには `ticks_diff()` を使う必要があります。)"
 
-#: ../../library/time.rst:133
+#: ../../library/time.rst:143
 msgid "Examples::"
 msgstr "サンプルコード::"
 
-#: ../../library/time.rst:135
+#: ../../library/time.rst:145
 msgid ""
 "# Find out what ticks value there was 100ms ago\n"
 "print(ticks_add(time.ticks_ms(), -100))\n"
@@ -25626,7 +25681,7 @@ msgstr ""
 "`ticks_ms()`, `ticks_us()`, `ticks_cpu()` 関数の戻り値(ラップアラウンド"
 "である可能性のある符号付きの値)の間のティック値の差を計算します。"
 
-#: ../../library/time.rst:152
+#: ../../library/time.rst:162
 msgid ""
 "The argument order is the same as for subtraction operator, "
 "``ticks_diff(ticks1, ticks2)`` has the same meaning as ``ticks1 - "
@@ -25665,7 +25720,7 @@ msgstr ""
 "ティック *TICKS_PERIOD/2* になると、関数は代わりに *-TICKS_PERIOD/2* "
 "を返します。つまり、結果値は可能な値の負の範囲にラップアラウンドします。"
 
-#: ../../library/time.rst:170
+#: ../../library/time.rst:180
 msgid ""
 "Informal rationale of the constraints above: Suppose you are locked in a "
 "room with no means to monitor passing of time except a standard 12-notch "
@@ -25686,14 +25741,14 @@ msgstr ""
 "はまります。アプリケーションが単一のタスクを長時間実行しないようにしてください。"
 "ステップ単位にタスクを実行し、ステップの間で時間を計測するようにしてください。"
 
-#: ../../library/time.rst:179
+#: ../../library/time.rst:189
 msgid ""
 "`ticks_diff()` is designed to accommodate various usage patterns, among "
 "them:"
 msgstr ""
 "`ticks_diff()` は、さまざまな使用パターンに対応するように設計されています:"
 
-#: ../../library/time.rst:181
+#: ../../library/time.rst:191
 msgid ""
 "Polling with timeout. In this case, the order of events is known, and you"
 " will deal only with positive results of `ticks_diff()`::"
@@ -25701,7 +25756,7 @@ msgstr ""
 "タイムアウトのポーリング - この場合、イベントの順序は既知であり、次のように "
 "`ticks_diff()` の正の結果のみを処理します::"
 
-#: ../../library/time.rst:184
+#: ../../library/time.rst:194
 msgid ""
 "# Wait for GPIO pin to be asserted, but at most 500us\n"
 "start = time.ticks_us()\n"
@@ -25715,7 +25770,7 @@ msgstr ""
 "    if time.ticks_diff(time.ticks_us(), start) > 500:\n"
 "        raise TimeoutError"
 
-#: ../../library/time.rst:190
+#: ../../library/time.rst:200
 msgid ""
 "Scheduling events. In this case, `ticks_diff()` result may be negative if"
 " an event is overdue::"
@@ -25723,7 +25778,7 @@ msgstr ""
 "イベントのスケジューリング - この場合、イベントが期限切れになると `ticks_diff()` "
 "の結果が負になります::"
 
-#: ../../library/time.rst:193
+#: ../../library/time.rst:203
 msgid ""
 "# This code snippet is not optimized\n"
 "now = time.ticks_ms()\n"
@@ -25753,7 +25808,7 @@ msgstr ""
 "    print(\"Oops, running late, tell task to run faster!\")\n"
 "    task.run(run_faster=true)"
 
-#: ../../library/time.rst:207
+#: ../../library/time.rst:217
 msgid ""
 "Note: Do not pass `time()` values to `ticks_diff()`, you should use "
 "normal mathematical operations on them. But note that `time()` may (and "
@@ -25766,7 +25821,7 @@ msgstr ""
 "これは `2038年問題 <https://ja.wikipedia.org/wiki/2038%E5%B9%B4%E5%95%8F%E9%A1%8C>`_ "
 "として知られています。"
 
-#: ../../library/time.rst:214
+#: ../../library/time.rst:224
 msgid ""
 "Returns the number of seconds, as an integer, since the Epoch, assuming "
 "that underlying RTC is set and maintained as described above. If an RTC "
@@ -25789,7 +25844,7 @@ msgstr ""
 "カレンダー時刻が必要な場合は、引数を指定しない `gmtime()` や `localtime()` "
 "の方が良いでしょう。"
 
-#: ../../library/time.rst:227
+#: ../../library/time.rst:237
 msgid ""
 "In CPython, this function returns number of seconds since Unix epoch, "
 "1970-01-01 00:00 UTC, as a floating-point, usually having microsecond "
@@ -25809,7 +25864,7 @@ msgstr ""
 "バッテリ駆動の RTC がないため、最後の電源投入から、または他の相対的なハードウェア固有の"
 "ポイント(リセットなど)からの秒数が返されます。"
 
-#: ../../library/time.rst:240
+#: ../../library/time.rst:250
 msgid ""
 "Similar to `time()` but returns nanoseconds since the Epoch, as an "
 "integer (usually a big integer, so will allocate on the heap)."
