@@ -46,6 +46,27 @@ static MP_NORETURN void raise_exc(mp_obj_t exc, mp_lexer_t *lex) {
     nlr_raise(exc);
 }
 
+#if MICROPY_LONGINT_IMPL != MICROPY_LONGINT_IMPL_LONGLONG
+// For the common small integer parsing case, we parse directly to mp_int_t and
+// check that the value doesn't overflow a smallint (in which case we fail over
+// to bigint parsing if supported)
+typedef mp_int_t parsed_int_t;
+
+#define PARSED_INT_MUL_OVERFLOW mp_small_int_mul_overflow
+#define PARSED_INT_FITS MP_SMALL_INT_FITS
+#else
+// In the special case where bigint support is long long, we save code size by
+// parsing directly to long long and then return either a bigint or smallint
+// from the same result.
+//
+// To avoid pulling in (slow) signed 64-bit math routines we do the initial
+// parsing to an unsigned long long and only convert to signed at the end.
+typedef unsigned long long parsed_int_t;
+
+#define PARSED_INT_MUL_OVERFLOW mp_mul_ull_overflow
+#define PARSED_INT_FITS(I) ((I) <= (unsigned long long)LLONG_MAX)
+#endif
+
 mp_obj_t mp_parse_num_integer(const char *restrict str_, size_t len, int base, mp_lexer_t *lex) {
     const byte *restrict str = (const byte *)str_;
     const byte *restrict top = str + len;
@@ -76,7 +97,7 @@ mp_obj_t mp_parse_num_integer(const char *restrict str_, size_t len, int base, m
     str += mp_parse_num_base((const char *)str, top - str, &base);
 
     // string should be an integer number
-    mp_int_t int_val = 0;
+    parsed_int_t parsed_val = 0;
     const byte *restrict str_val_start = str;
     for (; str < top; str++) {
         // get next digit as a value
@@ -98,25 +119,29 @@ mp_obj_t mp_parse_num_integer(const char *restrict str_, size_t len, int base, m
             break;
         }
 
-        // add next digi and check for overflow
-        if (mp_small_int_mul_overflow(int_val, base)) {
+        // add next digit and check for overflow
+        if (PARSED_INT_MUL_OVERFLOW(parsed_val, base, &parsed_val)) {
             goto overflow;
         }
-        int_val = int_val * base + dig;
-        if (!MP_SMALL_INT_FITS(int_val)) {
+        parsed_val += dig;
+        if (!PARSED_INT_FITS(parsed_val)) {
             goto overflow;
         }
     }
 
-    // negate value if needed
-    if (neg) {
-        int_val = -int_val;
-    }
-
-    // create the small int
-    ret_val = MP_OBJ_NEW_SMALL_INT(int_val);
-
+    #if MICROPY_LONGINT_IMPL != MICROPY_LONGINT_IMPL_LONGLONG
+    // The PARSED_INT_FITS check above ensures parsed_val fits in small int representation
+    ret_val = MP_OBJ_NEW_SMALL_INT(neg ? (-parsed_val) : parsed_val);
 have_ret_val:
+    #else
+    // The PARSED_INT_FITS check above ensures parsed_val won't overflow signed long long
+    long long signed_val = parsed_val;
+    if (neg) {
+        signed_val = -signed_val;
+    }
+    ret_val = mp_obj_new_int_from_ll(signed_val); // Could be large or small int
+    #endif
+
     // check we parsed something
     if (str == str_val_start) {
         goto value_error;
@@ -135,6 +160,7 @@ have_ret_val:
     return ret_val;
 
 overflow:
+    #if MICROPY_LONGINT_IMPL != MICROPY_LONGINT_IMPL_LONGLONG
     // reparse using long int
     {
         const char *s2 = (const char *)str_val_start;
@@ -142,6 +168,9 @@ overflow:
         str = (const byte *)s2;
         goto have_ret_val;
     }
+    #else
+    mp_raise_msg(&mp_type_OverflowError, MP_ERROR_TEXT("result overflows long long storage"));
+    #endif
 
 value_error:
     {
@@ -227,13 +256,13 @@ mp_obj_t mp_parse_num_float(const char *str, size_t len, bool allow_imag, mp_lex
 
     const char *top = str + len;
     mp_float_t dec_val = 0;
-    bool dec_neg = false;
 
     #if MICROPY_PY_BUILTINS_COMPLEX
     unsigned int real_imag_state = REAL_IMAG_STATE_START;
     mp_float_t dec_real = 0;
-parse_start:
+parse_start:;
     #endif
+    bool dec_neg = false;
 
     // skip leading space
     for (; str < top && unichar_isspace(*str); str++) {
@@ -252,24 +281,18 @@ parse_start:
     const char *str_val_start = str;
 
     // determine what the string is
-    if (str < top && (str[0] | 0x20) == 'i') {
-        // string starts with 'i', should be 'inf' or 'infinity' (case insensitive)
-        if (str + 2 < top && (str[1] | 0x20) == 'n' && (str[2] | 0x20) == 'f') {
-            // inf
-            str += 3;
-            dec_val = (mp_float_t)INFINITY;
-            if (str + 4 < top && (str[0] | 0x20) == 'i' && (str[1] | 0x20) == 'n' && (str[2] | 0x20) == 'i' && (str[3] | 0x20) == 't' && (str[4] | 0x20) == 'y') {
-                // infinity
-                str += 5;
-            }
+    if (str + 2 < top && (str[0] | 0x20) == 'i' && (str[1] | 0x20) == 'n' && (str[2] | 0x20) == 'f') {
+        // 'inf' or 'infinity' (case insensitive)
+        str += 3;
+        dec_val = (mp_float_t)INFINITY;
+        if (str + 4 < top && (str[0] | 0x20) == 'i' && (str[1] | 0x20) == 'n' && (str[2] | 0x20) == 'i' && (str[3] | 0x20) == 't' && (str[4] | 0x20) == 'y') {
+            // infinity
+            str += 5;
         }
-    } else if (str < top && (str[0] | 0x20) == 'n') {
-        // string starts with 'n', should be 'nan' (case insensitive)
-        if (str + 2 < top && (str[1] | 0x20) == 'a' && (str[2] | 0x20) == 'n') {
-            // NaN
-            str += 3;
-            dec_val = MICROPY_FLOAT_C_FUN(nan)("");
-        }
+    } else if (str + 2 < top && (str[0] | 0x20) == 'n' && (str[1] | 0x20) == 'a' && (str[2] | 0x20) == 'n') {
+        // 'nan' (case insensitive)
+        str += 3;
+        dec_val = MICROPY_FLOAT_C_FUN(nan)("");
     } else {
         // string should be a decimal number
         parse_dec_in_t in = PARSE_DEC_IN_INTG;

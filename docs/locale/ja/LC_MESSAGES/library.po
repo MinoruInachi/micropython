@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-08 10:10+0900\n"
-"PO-Revision-Date: 2025-06-08 18:23+0900\n"
+"POT-Creation-Date: 2025-07-26 10:33+0900\n"
+"PO-Revision-Date: 2025-07-26 19:22+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3751,7 +3751,11 @@ msgstr ""
 "タッチでデバイスをスリープから復帰させるかどうかを設定します。 *wake* はブール型で"
 "なければなりません。"
 
-#: ../../library/esp32.rst:23
+#: ../../library/esp32.rst:21
+msgid "This is only available for boards that have touch sensor support."
+msgstr "これはタッチセンサーのサポートのあるボードでのみ利用可能です。"
+
+#: ../../library/esp32.rst:25
 msgid ""
 "Configure whether or not the Ultra-Low-Power co-processor can wake the "
 "device from sleep. *wake* should be a boolean value."
@@ -3760,6 +3764,10 @@ msgstr ""
 "*wake* 引数はブール値でなければなりません。"
 
 #: ../../library/esp32.rst:28
+msgid "This is only available for boards that have ULP coprocessor support."
+msgstr "これは ULP コプロセッサーのサポートのあるボードでのみ利用可能です。"
+
+#: ../../library/esp32.rst:32
 msgid ""
 "Configure how EXT0 wakes the device from sleep.  *pin* can be ``None`` or "
 "a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or "
@@ -3769,7 +3777,11 @@ msgstr ""
 "あるいは有効な Pin オブジェクトを指定します。 *level* には ``esp32.WAKEUP_ALL_LOW`` "
 "または ``esp32.WAKEUP_ANY_HIGH`` を指定する必要があります。"
 
-#: ../../library/esp32.rst:34
+#: ../../library/esp32.rst:36
+msgid "This is only available for boards that have ext0 support."
+msgstr "これは ext0 のサポートのあるボードでのみ利用可能です。"
+
+#: ../../library/esp32.rst:40
 msgid ""
 "Configure how EXT1 wakes the device from sleep.  *pins* can be ``None`` "
 "or a tuple/list of valid Pin objects.  *level* should be "
@@ -3779,7 +3791,11 @@ msgstr ""
 "あるいは有効な Pin オブジェクトのタプル/リストを指定します。 *level* には "
 "``esp32.WAKEUP_ALL_LOW`` または ``esp32.WAKEUP_ANY_HIGH`` を指定する必要があります。"
 
-#: ../../library/esp32.rst:40
+#: ../../library/esp32.rst:44
+msgid "This is only available for boards that have ext1 support."
+msgstr "これは ext1 のサポートのあるボードでのみ利用可能です。"
+
+#: ../../library/esp32.rst:48
 msgid ""
 "Configure whether non-RTC GPIO pin configuration is retained during deep-"
 "sleep mode for held pads. *enable* should be a boolean value."
@@ -3787,14 +3803,14 @@ msgstr ""
 "ディープスリープモード中のパッドホールドについて、RTC 以外の GPIO ピンの設定を"
 "保持するかどうかを設定します。 *enable* 引数はブール値でなければなりません。"
 
-#: ../../library/esp32.rst:45
+#: ../../library/esp32.rst:53
 msgid ""
 "Read the raw value of the internal temperature sensor, returning an "
 "integer."
 msgstr ""
 "内部温度センサーの素の値を読み、整数を返します。"
 
-#: ../../library/esp32.rst:49
+#: ../../library/esp32.rst:57
 msgid ""
 "Returns information about the ESP-IDF heap memory regions. One of them "
 "contains the MicroPython heap and the others are used by ESP-IDF, e.g., "
@@ -3810,7 +3826,7 @@ msgstr ""
 "把握するのに役立ちます。また、アロケーションの失敗により ESP-IDF の"
 "操作が失敗した場合の状況を知ることができるかもしれません。"
 
-#: ../../library/esp32.rst:55
+#: ../../library/esp32.rst:63
 msgid ""
 "The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` "
 "values but the two most useful ones are predefined as `esp32.HEAP_DATA` "
@@ -3822,7 +3838,7 @@ msgstr ""
 "`esp32.HEAP_DATA` はデータヒープ領域用であり、 "
 "`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
 
-#: ../../library/esp32.rst:59
+#: ../../library/esp32.rst:67
 msgid ""
 "The return value is a list of 4-tuples, where each 4-tuple corresponds to"
 " one heap and contains: the total bytes, the free bytes, the largest free"
@@ -3832,11 +3848,11 @@ msgstr ""
 "タプルの各項目は、合計バイト数、空きバイト数、最大空きブロック数、"
 "時間経過にともなう最小空きブロック数を意味します。"
 
-#: ../../library/esp32.rst:63
+#: ../../library/esp32.rst:71
 msgid "Example after booting::"
 msgstr "ブート後の例::"
 
-#: ../../library/esp32.rst:65
+#: ../../library/esp32.rst:73
 msgid ""
 ">>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)\n"
 "[(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512,"
@@ -3844,7 +3860,7 @@ msgid ""
 " (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]"
 msgstr ""
 
-#: ../../library/esp32.rst:69
+#: ../../library/esp32.rst:77
 msgid ""
 "Free IDF heap memory in the `esp32.HEAP_DATA` region is available to be "
 "automatically added to the MicroPython heap to prevent a MicroPython "
@@ -3859,7 +3875,7 @@ msgstr ""
 "には *役立ちません* 。代わりに :func:`micropython.mem_info()` および "
 ":func:`gc.mem_free()` を使ってください:"
 
-#: ../../library/esp32.rst:76
+#: ../../library/esp32.rst:84
 msgid ""
 "The \"max new split\" value in :func:`micropython.mem_info()` output "
 "corresponds to the largest free block of ESP-IDF heap that could be "
@@ -3869,7 +3885,7 @@ msgstr ""
 "ESP-IDF ヒープの最大の空きブロックに対応し、必要に応じて MicroPython ヒープに"
 "自動的に追加できるものです。"
 
-#: ../../library/esp32.rst:80
+#: ../../library/esp32.rst:88
 msgid ""
 "The result of :func:`gc.mem_free()` is the total of the current \"free\" "
 "and \"max new split\" values printed by :func:`micropython.mem_info()`."
@@ -3877,7 +3893,7 @@ msgstr ""
 ":func:`gc.mem_free()` の結果は、 :func:`micropython.mem_info()` によって"
 "表示される現在の \"free\" と \"max new split\" の値の合計です。"
 
-#: ../../library/esp32.rst:85
+#: ../../library/esp32.rst:93
 msgid ""
 "Returns information about running ESP-IDF/FreeRTOS tasks, which include "
 "MicroPython threads. This data is useful to gain insight into how much "
@@ -3890,7 +3906,7 @@ msgstr ""
 "かを把握するのに役立ちます。また、割り当てたスタックが十分に足りているか、"
 "それとも削減可能かを判断する際にも有用です。"
 
-#: ../../library/esp32.rst:90
+#: ../../library/esp32.rst:98
 msgid ""
 "``CONFIG_FREERTOS_USE_TRACE_FACILITY=y`` must be set in the board "
 "configuration to make this method available. Additionally configuring "
@@ -3904,7 +3920,7 @@ msgstr ""
 "``CONFIG_FREERTOS_VTASKLIST_INCLUDE_COREID=y`` を設定することで、"
 "タスクごと実行時間とその合計、実行中のコア ID を取得できるようになるため推奨されます。"
 
-#: ../../library/esp32.rst:96
+#: ../../library/esp32.rst:104
 msgid ""
 "The return value is a 2-tuple where the first value is the total runtime,"
 " and the second a list of tasks. Each task is a 7-tuple containing: the "
@@ -3917,7 +3933,7 @@ msgstr ""
 "実行時間、スタックのハイウォーターマーク、実行中のコアIDです。"
 "FreeRTOS の該当設定が有効でない場合、実行時間およびコアIDは None になります。"
 
-#: ../../library/esp32.rst:102
+#: ../../library/esp32.rst:110
 msgid ""
 "For an easier to use output based on this function you can use the `utop "
 "library <https://github.com/micropython/micropython-"
@@ -3929,11 +3945,11 @@ msgstr ""
 "<https://github.com/micropython/micropython-"
 "lib/tree/master/micropython/utop>`_ が使えます。"
 
-#: ../../library/esp32.rst:108
+#: ../../library/esp32.rst:116
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:110
+#: ../../library/esp32.rst:118
 msgid ""
 "This class gives access to the partitions in the device's flash memory "
 "and includes methods to enable over-the-air (OTA) updates."
@@ -3941,7 +3957,7 @@ msgstr ""
 "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 "加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:115
+#: ../../library/esp32.rst:123
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -3952,7 +3968,7 @@ msgstr ""
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。 "
 "*block_size* は個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:121
+#: ../../library/esp32.rst:129
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
@@ -3963,18 +3979,18 @@ msgstr ""
 "注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
 "は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:125
+#: ../../library/esp32.rst:133
 msgid ""
 "*block_size* specifies the byte size of an individual block used by the "
 "returned objects."
 msgstr ""
 "*block_size* は、返されるオブジェクトが使う個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:130
+#: ../../library/esp32.rst:138
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:138 ../../library/pyb.Flash.rst:44
+#: ../../library/esp32.rst:146 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`vfs.AbstractBlockDev`."
@@ -3982,11 +3998,11 @@ msgstr ""
 "これらのメソッドは :class:`vfs.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:144
+#: ../../library/esp32.rst:152
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:146
+#: ../../library/esp32.rst:154
 msgid ""
 "Do not enter :func:`deepsleep<machine.deepsleep>` after changing the OTA "
 "boot partition, without first performing a hard "
@@ -3998,7 +4014,7 @@ msgstr ""
 "入らないでください。そうしておけば、ブートローダーが新しいイメージをブートする"
 "前に新しいイメージの検証を行います。"
 
-#: ../../library/esp32.rst:153
+#: ../../library/esp32.rst:161
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object. Typical usage is "
@@ -4009,7 +4025,7 @@ msgstr ""
 "返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
 "これは現在更新中のパーティションの次のパーティションを返します。"
 
-#: ../../library/esp32.rst:159
+#: ../../library/esp32.rst:167
 msgid ""
 "Signals that the current boot is considered successful. Calling "
 "``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
@@ -4030,7 +4046,7 @@ msgstr ""
 "呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
 "場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:174
+#: ../../library/esp32.rst:182
 msgid ""
 "Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
 " is the partition that will be booted at the next reset and ``RUNNING`` "
@@ -4040,7 +4056,7 @@ msgstr ""
 "``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
 "は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:181
+#: ../../library/esp32.rst:189
 msgid ""
 "Used in `Partition.find` to specify the partition type: ``APP`` is for "
 "bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
@@ -4052,15 +4068,15 @@ msgstr ""
 "``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
 "パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
 
-#: ../../library/esp32.rst:188
+#: ../../library/esp32.rst:196
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:193
+#: ../../library/esp32.rst:201
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:195
+#: ../../library/esp32.rst:203
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -4072,7 +4088,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:200
+#: ../../library/esp32.rst:208
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -4102,7 +4118,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:212
+#: ../../library/esp32.rst:220
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -4114,7 +4130,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:218
+#: ../../library/esp32.rst:226
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (1-``PULSE_MAX``) number. There"
@@ -4124,7 +4140,7 @@ msgstr ""
 "(1-``PULSE_MAX``)の数値を乗算することで定義できます。"
 "8つのチャネル(0-7)があり、それぞれ異なるクロック分周器を使えます。"
 
-#: ../../library/esp32.rst:222
+#: ../../library/esp32.rst:230
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -4135,7 +4151,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:227
+#: ../../library/esp32.rst:235
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -4145,7 +4161,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:231
+#: ../../library/esp32.rst:239
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -4154,7 +4170,7 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:238
+#: ../../library/esp32.rst:246
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -4173,7 +4189,7 @@ msgstr ""
 "ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
 "が低電圧を意味します。"
 
-#: ../../library/esp32.rst:247
+#: ../../library/esp32.rst:255
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -4184,7 +4200,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:254
+#: ../../library/esp32.rst:262
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -4192,7 +4208,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:259
+#: ../../library/esp32.rst:267
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -4200,7 +4216,7 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:264
+#: ../../library/esp32.rst:272
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
@@ -4212,7 +4228,7 @@ msgstr ""
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
 
-#: ../../library/esp32.rst:271
+#: ../../library/esp32.rst:279
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
@@ -4225,11 +4241,11 @@ msgstr ""
 "ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
 "転送を停止します。"
 
-#: ../../library/esp32.rst:278
+#: ../../library/esp32.rst:286
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
 msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:280
+#: ../../library/esp32.rst:288
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -4239,7 +4255,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:284
+#: ../../library/esp32.rst:292
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -4247,7 +4263,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:287
+#: ../../library/esp32.rst:295
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -4255,7 +4271,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:290
+#: ../../library/esp32.rst:298
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and ``PULSE_MAX`` units. Output levels are any value "
@@ -4266,7 +4282,7 @@ msgstr ""
 "1から ``PULSE_MAX`` の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:295
+#: ../../library/esp32.rst:303
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -4275,7 +4291,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:298
+#: ../../library/esp32.rst:306
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -4288,7 +4304,7 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:306
+#: ../../library/esp32.rst:314
 msgid ""
 "Select which RMT channel is used by the `machine.bitstream` "
 "implementation. *value* can be ``None`` or a valid RMT channel number.  "
@@ -4298,7 +4314,7 @@ msgstr ""
 "*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
 "デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
 
-#: ../../library/esp32.rst:310
+#: ../../library/esp32.rst:318
 msgid ""
 "Passing in ``None`` disables the use of RMT and instead selects a bit-"
 "banging implementation for `machine.bitstream`."
@@ -4306,22 +4322,22 @@ msgstr ""
 "``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
 "ビットバング実装が選択されます。"
 
-#: ../../library/esp32.rst:313
+#: ../../library/esp32.rst:321
 msgid ""
 "Passing in no argument will not change the channel.  This function "
 "returns the current channel number."
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:321
+#: ../../library/esp32.rst:329
 msgid "Maximum integer that can be set for a pulse duration."
 msgstr "パルス幅に設定できる最大整数値。"
 
-#: ../../library/esp32.rst:324
+#: ../../library/esp32.rst:332
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:326
+#: ../../library/esp32.rst:334
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -4329,7 +4345,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:331
+#: ../../library/esp32.rst:339
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -4337,31 +4353,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:336
+#: ../../library/esp32.rst:344
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:340
+#: ../../library/esp32.rst:348
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:344
+#: ../../library/esp32.rst:352
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:348
+#: ../../library/esp32.rst:356
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:357
+#: ../../library/esp32.rst:365
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:360
+#: ../../library/esp32.rst:368
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:362
+#: ../../library/esp32.rst:370
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -4375,7 +4391,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:369
+#: ../../library/esp32.rst:377
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -4384,14 +4400,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:374
+#: ../../library/esp32.rst:382
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:379
+#: ../../library/esp32.rst:387
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -4399,7 +4415,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:383
+#: ../../library/esp32.rst:391
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -4407,7 +4423,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:388
+#: ../../library/esp32.rst:396
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -4420,7 +4436,7 @@ msgstr ""
 "でも常にバイナリデータとして書き込みます。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:395
+#: ../../library/esp32.rst:403
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -4432,11 +4448,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:401
+#: ../../library/esp32.rst:409
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:405
+#: ../../library/esp32.rst:413
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -24425,7 +24441,15 @@ msgstr ""
 "照合するためのホスト名を指定します。また、これはサーバー名表示(SNI: "
 "Server Name Indication)としても使われ、サーバーが適切な証明書を提示できるようにします。"
 
-#: ../../library/ssl.rst:94
+#: ../../library/ssl.rst:92
+msgid ""
+"*client_id* is a MicroPython-specific extension argument used only when "
+"implementing a DTLS Server. See :ref:`dtls` for details."
+msgstr ""
+"*client_id* は MicroPython 固有の拡張引数であり、DTLS サーバーを実装する場合に"
+"のみ使われます。詳細については :ref:`dtls` を参照してください。"
+
+#: ../../library/ssl.rst:97
 msgid ""
 "Some implementations of ``ssl`` module do NOT validate server "
 "certificates, which makes an SSL connection established prone to man-in-"
@@ -24434,7 +24458,7 @@ msgstr ""
 "``ssl`` モジュールの実装によってはサーバー証明書の検証が行われないため、"
 "中間者攻撃を受けやすい SSL 接続になってしまいます。"
 
-#: ../../library/ssl.rst:97
+#: ../../library/ssl.rst:100
 msgid ""
 "CPython's ``wrap_socket`` returns an ``SSLSocket`` object which has "
 "methods typical for sockets, such as ``send``, ``recv``, etc. "
@@ -24446,14 +24470,14 @@ msgstr ""
 "メソッドがあります。MicroPython の ``wrap_socket`` は CPython の "
 "``SSLObject`` に類似のオブジェクトを返しますが、ソケットメソッドはありません。"
 
-#: ../../library/ssl.rst:104
+#: ../../library/ssl.rst:107
 msgid ""
 "Set or get the behaviour for verification of peer certificates.  Must be "
 "one of the ``CERT_*`` constants."
 msgstr ""
 "ピア証明書の検証の動作を設定/取得します。 ``CERT_*`` 定数のいずれかにしなければなりません。"
 
-#: ../../library/ssl.rst:109
+#: ../../library/ssl.rst:112
 msgid ""
 "``ssl.CERT_REQUIRED`` requires the device's date/time to be properly set,"
 " e.g. using `mpremote rtc --set <mpremote_command_rtc>` or ``ntptime``, "
@@ -24464,30 +24488,30 @@ msgstr ""
 "使って設定できます。また、クライアント側の場合は ``server_hostname`` が"
 "指定されている必要があります。"
 
-#: ../../library/ssl.rst:118
+#: ../../library/ssl.rst:121
 msgid "This exception does NOT exist. Instead its base class, OSError, is used."
 msgstr ""
 "この例外は存在しません。代わりにベースクラスの OSError が使われます。"
 
-#: ../../library/ssl.rst:121
+#: ../../library/ssl.rst:126
 msgid "DTLS support"
 msgstr "DTLS サポート"
 
-#: ../../library/ssl.rst:126
+#: ../../library/ssl.rst:131
 msgid "This is a MicroPython extension."
 msgstr "これは MicroPython 拡張です。"
 
-#: ../../library/ssl.rst:128
+#: ../../library/ssl.rst:133
 msgid ""
-"This module supports DTLS in client and server mode via the "
-"`PROTOCOL_DTLS_CLIENT` and `PROTOCOL_DTLS_SERVER` constants that can be "
-"used as the ``protocol`` argument of `SSLContext`."
+"On most ports, this module supports DTLS in client and server mode via "
+"the `PROTOCOL_DTLS_CLIENT` and `PROTOCOL_DTLS_SERVER` constants that can "
+"be used as the ``protocol`` argument of `SSLContext`."
 msgstr ""
-"このモジュールは DTLS のクライアントモードとサーバーモードをサポートしており、 "
-"`SSLContext` の ``protocol`` 引数として `PROTOCOL_DTLS_CLIENT` "
+"たいていのポートにおいて、このモジュールは DTLS のクライアントモードとサーバーモードを"
+"サポートしており、 `SSLContext` の ``protocol`` 引数として `PROTOCOL_DTLS_CLIENT` "
 "と `PROTOCOL_DTLS_SERVER` 定数を指定できます。"
 
-#: ../../library/ssl.rst:132
+#: ../../library/ssl.rst:137
 msgid ""
 "In this case the underlying socket is expected to behave as a datagram "
 "socket (i.e. like the socket opened with ``socket.socket`` with "
@@ -24497,21 +24521,93 @@ msgstr ""
 "``type`` に ``socket.SOCK_DGRAM`` を指定した ``socket.socket`` でオープン"
 "したソケットのようなもの)として動作する必要があります。"
 
-#: ../../library/ssl.rst:136
+#: ../../library/ssl.rst:141
 msgid ""
-"DTLS is only supported on ports that use mbed TLS, and it is not enabled "
-"by default: it requires enabling ``MBEDTLS_SSL_PROTO_DTLS`` in the "
-"specific port configuration."
+"DTLS is only supported on ports that use mbedTLS, and it is enabled by "
+"default in most configurations but can be manually disabled by defining "
+"``MICROPY_PY_SSL_DTLS`` to 0."
 msgstr ""
-"DTLS は mbed TLS を使用するポートでのみサポートされており、デフォルトでは"
-"有効になっていません。有効にするには、特定のポート設定で ``MBEDTLS_SSL_PROTO_DTLS`` "
-"を有効にする必要があります。"
+"DTLS は mbedTLS を使うポートでのみサポートされており、デフォルトでは"
+"たいていのビルドオプションで有効になってます。ビルドオプションで "
+"``MBEDTLS_SSL_PROTO_DTLS`` を 0 にすることにより無効にできます。"
 
-#: ../../library/ssl.rst:147
+#: ../../library/ssl.rst:146
+msgid "DTLS server support"
+msgstr "DTLS サーバーのサポート"
+
+#: ../../library/ssl.rst:148
+msgid ""
+"MicroPython's DTLS server support is configured with \"Hello Verify\" as "
+"required for DTLS 1.2. This is transparent for DTLS clients, but there "
+"are relevant considerations when implementing a DTLS server in "
+"MicroPython:"
+msgstr ""
+"MicroPython における DTLS サーバーのサポートは、DTLS 1.2 で要求される "
+"\"Hello Verify\" に対応するように構成されています。これは DTLS クライアントに"
+"とっては透過的ですが、MicroPython で DTLS サーバーを実装する際には"
+"次の点に注意が必要です:"
+
+#: ../../library/ssl.rst:152
+msgid ""
+"The server should pass an additional argument *client_id* when calling "
+"`SSLContext.wrap_socket()`. This ID must be a `bytes` object (or similar)"
+" with a transport-specific identifier representing the client."
+msgstr ""
+"サーバーは `SSLContext.wrap_socket()` を呼び出す際に、追加の引数 *client_id* を"
+"渡す必要があります。この ID は、クライアントを識別するトランスポート固有の識別子であり、 "
+"`bytes` オブジェクト(または同等のもの)でなければなりません。"
+
+#: ../../library/ssl.rst:156
+msgid ""
+"The simplest approach is to convert the tuple of ``(client_ip, "
+"client_port)`` returned from ``socket.recv_from()`` into a byte string, "
+"i.e.::"
+msgstr ""
+"最も簡単な方法は ``socket.recv_from()`` によって返される "
+"``(client_ip, client_port)`` のタプルをバイト列に変換することです。"
+"つまり、以下のようになります::"
+
+#: ../../library/ssl.rst:159
+msgid ""
+"_, client_addr = sock.recvfrom(1, socket.MSG_PEEK)\n"
+"sock.connect(client_addr)  # Connect back to the client\n"
+"sock = ssl_ctx.wrap_socket(sock, server_side=True,\n"
+"                           client_id=repr(client_addr).encode())"
+msgstr ""
+
+#: ../../library/ssl.rst:164
+msgid ""
+"The first time a client connects, the server call to ``wrap_socket`` will"
+" fail with a `OSError` error \"Hello Verify Required\". This is because "
+"the DTLS \"Hello Verify\" cookie is not yet known by the client. If the "
+"same client connects a second time then ``wrap_socket`` will succeed."
+msgstr ""
+"クライアントが最初に接続してきたとき、サーバー側で ``wrap_socket`` を呼び出すと、 "
+"`OSError` エラー \"Hello Verify Required\" が発生して失敗します。"
+"これは、DTLS の \"Hello Verify\" クッキーがまだクライアント側で認識されていない"
+"ためです。同じクライアントが2回目に接続してくると ``wrap_socket`` が成功します。"
+
+#: ../../library/ssl.rst:169
+msgid ""
+"DTLS cookies for \"Hello Verify\" are associated with the `SSLContext` "
+"object, so the same `SSLContext` object should be used to wrap a "
+"subsequent connection from the same client. The cookie implementation "
+"includes a timeout and has constant memory use regardless of how many "
+"clients connect, so it's OK to reuse the same `SSLContext` object for the"
+" lifetime of the server."
+msgstr ""
+"\"Hello Verify\" のための DTLS クッキーは `SSLContext` オブジェクトに"
+"関連付けられているため、同じクライアントからの再接続には同じ `SSLContext` "
+"オブジェクトを使って wrap_socket を呼び出す必要があります。"
+"クッキーの実装にはタイムアウト機構が含まれており、接続するクライアント数に"
+"関係なくメモリ使用量は一定なので、サーバーの存続期間中ずっと同じ `SSLContext` "
+"オブジェクトを使い続けても問題ありません。"
+
+#: ../../library/ssl.rst:183
 msgid "Supported values for the *protocol* parameter."
 msgstr "*protocol* パラメーターでサポートされる値です。"
 
-#: ../../library/ssl.rst:153
+#: ../../library/ssl.rst:189
 msgid ""
 "Supported values for *cert_reqs* parameter, and the "
 ":attr:`SSLContext.verify_mode` attribute."
@@ -25048,7 +25144,7 @@ msgstr ""
 #: ../../library/sys.rst:14
 msgid ""
 "Terminate current program with a given exit code. Underlyingly, this "
-"function raises as `SystemExit` exception. If an argument is given, its "
+"function raises a `SystemExit` exception. If an argument is given, its "
 "value given as an argument to `SystemExit`."
 msgstr ""
 "与えた終了コードで現在のプログラムを終了します。基本的に、この関数は "
@@ -25164,7 +25260,15 @@ msgid ""
 msgstr ""
 "*_build* - MicroPython がビルドされた際の構成を識別するのに役立つ文字列"
 
-#: ../../library/sys.rst:81
+#: ../../library/sys.rst:80
+msgid ""
+"*_thread* - optional string attribute, exists if the target has threading"
+" and is either \"GIL\" or \"unsafe\""
+msgstr ""
+"*_thread* - オプションの文字列属性で、ターゲットがマルチスレッドをサポートしている場合に "
+""\"GIL\" または \"unsafe\" のどちらかの値となる"
+
+#: ../../library/sys.rst:83
 msgid ""
 "This object is the recommended way to distinguish MicroPython from other "
 "Python implementations (note that it still may not exist in the very "
@@ -25173,7 +25277,7 @@ msgstr ""
 "このオブジェクトは、MicroPython を他の Python 実装と区別する推奨手段です(しかし、"
 "最小限のポートには存在しないことに注意してください)。"
 
-#: ../../library/sys.rst:85
+#: ../../library/sys.rst:87
 msgid ""
 "Starting with version 1.22.0-preview, the fourth node *releaselevel* in "
 "*implementation.version* is either an empty string or ``\"preview\"``."
@@ -25181,7 +25285,7 @@ msgstr ""
 "バージョン 1.22.0-preview 以降、 *implementation.version* の４番目の項目 "
 "*releaselevel* は空文字列または ``\"preview\"`` になります。"
 
-#: ../../library/sys.rst:88
+#: ../../library/sys.rst:90
 msgid ""
 "The *_build* entry was added in version 1.25.0 and is a hyphen-separated "
 "set of elements.  New elements may be appended in the future so it's best"
@@ -25193,7 +25297,7 @@ msgstr ""
 "このフィールドには ``sys.implementation._build.split(\"-\")`` を"
 "使ってアクセスするのが最適です。現在使用されている要素は以下のとおりです:"
 
-#: ../../library/sys.rst:93
+#: ../../library/sys.rst:95
 msgid ""
 "On the unix, webassembly and windows ports the first element is the "
 "variant name, for example ``'standard'``."
@@ -25201,7 +25305,7 @@ msgstr ""
 "unix、webassembly、windows ポートでは、最初の要素がバリアント名です。"
 "たとえば ``'standard'`` などとなります。"
 
-#: ../../library/sys.rst:95
+#: ../../library/sys.rst:97
 msgid ""
 "On microcontroller targets, the first element is the board name and the "
 "second element (if present) is the board variant, for example "
@@ -25211,7 +25315,25 @@ msgstr ""
 "２番目の要素は(あれば)ボードのバリアントを示し、たとえば "
 "RPI_PICO2-RISCV などとなります。"
 
-#: ../../library/sys.rst:101
+#: ../../library/sys.rst:100
+msgid ""
+"The *_thread* entry was added in version 1.26.0 and if it exists then the"
+" target has the ``_thread`` module.  If the target enables the GIL "
+"(global interpreter lock) then this attribute is ``\"GIL\"``.  Otherwise "
+"the attribute is ``\"unsafe\"`` and the target has threading but does not"
+" enable the GIL, and mutable Python objects (such as `bytearray`, `list` "
+"and `dict`) that are shared amongst threads must be protected explicitly "
+"by locks such as ``_thread.allocate_lock``."
+msgstr ""
+"*_thread* エントリはバージョン 1.26.0 で追加されました。このエントリが存在する場合、"
+"そのターゲットには ``_thread`` モジュールが含まれています。ターゲットが GIL "
+"(グローバルインタプリタロック)を有効にしている場合、この属性は ``\"GIL\"`` "
+"となります。GIL を有効にしていない場合は属性が ``\"unsafe\"`` となり、"
+"スレッド機能はあるものの GIL は無効です。この場合、ミュータブルな Python オブジェクト"
+"(`bytearray`, `list`, `dict` など)をスレッド間で共有する際には、 "
+"``_thread.allocate_lock`` のようなロックで明示的に保護する必要があります。"
+
+#: ../../library/sys.rst:111
 msgid ""
 "CPython mandates more attributes for this object, but the actual useful "
 "bare minimum is implemented in MicroPython."
@@ -25219,7 +25341,7 @@ msgstr ""
 "CPython ではこのオブジェクトにもっと多くの属性がありますが、MicroPython では実際に"
 "有用となる最低限のものだけを実装しています。"
 
-#: ../../library/sys.rst:106
+#: ../../library/sys.rst:116
 msgid ""
 "Maximum value which a native integer type can hold on the current "
 "platform, or maximum value representable by MicroPython integer type, if "
@@ -25230,7 +25352,7 @@ msgstr ""
 "最大値より小さい場合は MicroPython 整数型で表現可能な最大値(MicroPython ポートで "
 "長整数をサポートしないとした場合)。"
 
-#: ../../library/sys.rst:111
+#: ../../library/sys.rst:121
 msgid ""
 "This attribute is useful for detecting \"bitness\" of a platform (32-bit "
 "vs 64-bit, etc.). It's recommended to not compare this attribute to some "
@@ -25240,7 +25362,7 @@ msgstr ""
 "便利です。この属性をある値と直接比較するのよりも、その属性のビット数をカウントする"
 "ことをお勧めします。"
 
-#: ../../library/sys.rst:115
+#: ../../library/sys.rst:125
 msgid ""
 "bits = 0\n"
 "v = sys.maxsize\n"
@@ -25270,7 +25392,7 @@ msgstr ""
 "    # (たとえば31)になる可能性があるので、 \"> 16\", \"> 32\", \"> 64\" の\n"
 "    # の比較スタイルを使用してください。"
 
-#: ../../library/sys.rst:131
+#: ../../library/sys.rst:141
 msgid ""
 "Dictionary of loaded modules. On some ports, it may not include builtin "
 "modules."
@@ -25278,11 +25400,11 @@ msgstr ""
 "読み込まれたモジュールの辞書。一部のポートでは、組込みモジュールが含まれていない"
 "可能性があります。"
 
-#: ../../library/sys.rst:136
+#: ../../library/sys.rst:146
 msgid "A mutable list of directories to search for imported modules."
 msgstr "import するモジュールを検索するディレクトリの変更可能なリスト。"
 
-#: ../../library/sys.rst:141
+#: ../../library/sys.rst:151
 msgid ""
 "On MicroPython, an entry with the value ``\".frozen\"`` will indicate "
 "that import should search :term:`frozen modules <frozen module>` at that "
@@ -25295,7 +25417,7 @@ msgstr ""
 "凍結モジュールが見つからなければ、 ``.frozen`` というディレクトリを *探さず* 、"
 "代わりに ``sys.path`` の次のエントリで検索を続行します。"
 
-#: ../../library/sys.rst:148
+#: ../../library/sys.rst:158
 msgid ""
 "The platform that MicroPython is running on. For OS/RTOS ports, this is "
 "usually an identifier of the OS, e.g. ``\"linux\"``. For baremetal ports "
@@ -25313,7 +25435,7 @@ msgstr ""
 "実装で動いているのか)を確認する必要がある場合は代わりに `sys.implementation` "
 "を使ってください。"
 
-#: ../../library/sys.rst:158
+#: ../../library/sys.rst:168
 msgid ""
 "Mutable attributes holding strings, which are used for the REPL prompt.  "
 "The defaults give the standard Python prompt of ``>>>`` and ``...``."
@@ -25321,19 +25443,19 @@ msgstr ""
 "REPL プロンプトに使う文字列を保持する変更可能属性です。"
 "デフォルトでは、標準的な Python プロンプトである ``>>>`` や ``...`` を表示します。"
 
-#: ../../library/sys.rst:163
+#: ../../library/sys.rst:173
 msgid "Standard error `stream`."
 msgstr "標準エラーの `stream` 。"
 
-#: ../../library/sys.rst:167
+#: ../../library/sys.rst:177
 msgid "Standard input `stream`."
 msgstr "標準入力の `stream` 。"
 
-#: ../../library/sys.rst:171
+#: ../../library/sys.rst:181
 msgid "Standard output `stream`."
 msgstr "標準出力の `stream` 。"
 
-#: ../../library/sys.rst:175
+#: ../../library/sys.rst:185
 msgid ""
 "A mutable attribute holding an integer value which is the maximum number "
 "of traceback entries to store in an exception.  Set to 0 to disable "
@@ -25342,22 +25464,22 @@ msgstr ""
 "例外に格納するトレースバックエントリの最大数を整数値で保持する変更可能属性です。"
 "0 を設定すると、トレースバックの追加を無効にします。デフォルトは 1000 です。"
 
-#: ../../library/sys.rst:179
+#: ../../library/sys.rst:189
 msgid "Note: this is not available on all ports."
 msgstr "注記: これはすべてのポートで使用できるわけではありません。"
 
-#: ../../library/sys.rst:183
+#: ../../library/sys.rst:193
 msgid "Python language version that this implementation conforms to, as a string."
 msgstr "この処理系が準拠する Python 言語バージョンを表す文字列。"
 
-#: ../../library/sys.rst:187
+#: ../../library/sys.rst:197
 msgid ""
 "Python language version that this implementation conforms to, as a tuple "
 "of ints."
 msgstr ""
 "この実装が準拠している Python 言語バージョンを表す int の タプル。"
 
-#: ../../library/sys.rst:192
+#: ../../library/sys.rst:202
 msgid ""
 "Only the first three version numbers (major, minor, micro) are supported "
 "and they can be referenced only by index, not by name."

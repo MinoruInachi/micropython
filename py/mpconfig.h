@@ -426,6 +426,11 @@
 #define MICROPY_EMIT_INLINE_RV32 (0)
 #endif
 
+// Whether to enable the human-readable native instructions emitter
+#ifndef MICROPY_EMIT_NATIVE_DEBUG
+#define MICROPY_EMIT_NATIVE_DEBUG (0)
+#endif
+
 // Convenience definition for whether any native emitter is enabled
 #define MICROPY_EMIT_NATIVE (MICROPY_EMIT_X64 || MICROPY_EMIT_X86 || MICROPY_EMIT_THUMB || MICROPY_EMIT_ARM || MICROPY_EMIT_XTENSA || MICROPY_EMIT_XTENSAWIN || MICROPY_EMIT_RV32 || MICROPY_EMIT_NATIVE_DEBUG)
 
@@ -888,6 +893,64 @@ typedef double mp_float_t;
 #define MICROPY_FULL_CHECKS (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_CORE_FEATURES)
 #endif
 
+// Ports can choose to use timestamps based on 2000-01-01 or 1970-01-01
+// Default is timestamps based on 2000-01-01
+#if !defined(MICROPY_EPOCH_IS_2000) && !defined(MICROPY_EPOCH_IS_1970)
+#define MICROPY_EPOCH_IS_2000 (1)
+#define MICROPY_EPOCH_IS_1970 (0)
+#elif !defined(MICROPY_EPOCH_IS_1970)
+#define MICROPY_EPOCH_IS_1970 (1 - (MICROPY_EPOCH_IS_2000))
+#elif !defined(MICROPY_EPOCH_IS_2000)
+#define MICROPY_EPOCH_IS_2000 (1 - (MICROPY_EPOCH_IS_1970))
+#endif
+
+// To maintain reasonable compatibility with CPython on embedded systems,
+// and avoid breaking anytime soon, time functions are defined to work
+// at least between 1970 and 2099 (included) on any machine.
+//
+// Specific ports can enable extended date support
+// - after 2099 using MICROPY_TIME_SUPPORT_Y2100_AND_BEYOND
+// - before 1970 using MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE
+// The largest possible range is year 1600 to year 3000
+//
+// By default, extended date support is only enabled for machines using 64 bit pointers,
+// but it can be enabled by specific ports
+#ifndef MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE
+#if MP_SSIZE_MAX > 2147483647
+#define MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE (1)
+#else
+#define MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE (0)
+#endif
+#endif
+
+// When support for dates <1970 is enabled, supporting >=2100 does not cost anything
+#ifndef MICROPY_TIME_SUPPORT_Y2100_AND_BEYOND
+#define MICROPY_TIME_SUPPORT_Y2100_AND_BEYOND (MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE)
+#endif
+
+// The type to be used to represent platform-specific timestamps depends on the choices above
+#define MICROPY_TIMESTAMP_IMPL_LONG_LONG (0)
+#define MICROPY_TIMESTAMP_IMPL_UINT (1)
+#define MICROPY_TIMESTAMP_IMPL_TIME_T (2)
+
+#ifndef MICROPY_TIMESTAMP_IMPL
+#if MICROPY_TIME_SUPPORT_Y2100_AND_BEYOND || MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE || MICROPY_EPOCH_IS_2000
+#define MICROPY_TIMESTAMP_IMPL (MICROPY_TIMESTAMP_IMPL_LONG_LONG)
+#else
+#define MICROPY_TIMESTAMP_IMPL (MICROPY_TIMESTAMP_IMPL_UINT)
+#endif
+#endif
+
+// `mp_timestamp_t` is the type that should be used by the port
+// to represent timestamps, and is referenced to the platform epoch
+#if MICROPY_TIMESTAMP_IMPL == MICROPY_TIMESTAMP_IMPL_LONG_LONG
+typedef long long mp_timestamp_t;
+#elif MICROPY_TIMESTAMP_IMPL == MICROPY_TIMESTAMP_IMPL_UINT
+typedef mp_uint_t mp_timestamp_t;
+#elif MICROPY_TIMESTAMP_IMPL == MICROPY_TIMESTAMP_IMPL_TIME_T
+typedef time_t mp_timestamp_t;
+#endif
+
 // Whether POSIX-semantics non-blocking streams are supported
 #ifndef MICROPY_STREAMS_NON_BLOCK
 #define MICROPY_STREAMS_NON_BLOCK (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES)
@@ -1019,6 +1082,11 @@ typedef double mp_float_t;
 // Support for VFS POSIX component, to mount a POSIX filesystem within VFS
 #ifndef MICROPY_VFS_POSIX
 #define MICROPY_VFS_POSIX (0)
+#endif
+
+// Whether to include support for writable POSIX filesystems.
+#ifndef MICROPY_VFS_POSIX_WRITABLE
+#define MICROPY_VFS_POSIX_WRITABLE (1)
 #endif
 
 // Support for VFS FAT component, to mount a FAT filesystem within VFS
@@ -1321,6 +1389,11 @@ typedef double mp_float_t;
 // Whether to set __file__ for imported modules
 #ifndef MICROPY_PY___FILE__
 #define MICROPY_PY___FILE__ (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_CORE_FEATURES)
+#endif
+
+// Whether to process __all__ when importing all public symbols from module
+#ifndef MICROPY_MODULE___ALL__
+#define MICROPY_MODULE___ALL__ (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_BASIC_FEATURES)
 #endif
 
 // Whether to provide mem-info related functions in micropython module
@@ -1873,6 +1946,11 @@ typedef double mp_float_t;
 #define MICROPY_PY_SSL_MBEDTLS_NEED_ACTIVE_CONTEXT (MICROPY_PY_SSL_ECDSA_SIGN_ALT)
 #endif
 
+// Whether to support DTLS protocol (non-CPython feature)
+#ifndef MICROPY_PY_SSL_DTLS
+#define MICROPY_PY_SSL_DTLS (MICROPY_SSL_MBEDTLS && MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_EXTRA_FEATURES)
+#endif
+
 // Whether to provide the "vfs" module
 #ifndef MICROPY_PY_VFS
 #define MICROPY_PY_VFS (MICROPY_CONFIG_ROM_LEVEL_AT_LEAST_CORE_FEATURES && MICROPY_VFS)
@@ -2109,13 +2187,16 @@ typedef double mp_float_t;
 // Archs where mp_int_t == long, long != int
 #define UINT_FMT "%lu"
 #define INT_FMT "%ld"
+#define HEX_FMT "%lx"
 #elif defined(_WIN64)
 #define UINT_FMT "%llu"
 #define INT_FMT "%lld"
+#define HEX_FMT "%llx"
 #else
 // Archs where mp_int_t == int
 #define UINT_FMT "%u"
 #define INT_FMT "%d"
+#define HEX_FMT "%x"
 #endif
 #endif // INT_FMT
 

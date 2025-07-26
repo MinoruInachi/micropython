@@ -76,12 +76,13 @@
 #ifndef MICROPY_FLOAT_IMPL // can be configured by each board via mpconfigboard.mk
 #define MICROPY_FLOAT_IMPL          (MICROPY_FLOAT_IMPL_FLOAT)
 #endif
+#define MICROPY_TIME_SUPPORT_Y1969_AND_BEFORE (1)
 #define MICROPY_USE_INTERNAL_ERRNO  (1)
 #define MICROPY_SCHEDULER_STATIC_NODES (1)
 #define MICROPY_SCHEDULER_DEPTH     (8)
 #define MICROPY_VFS                 (1)
 #ifndef MICROPY_VFS_ROM
-#define MICROPY_VFS_ROM (MICROPY_HW_ROMFS_ENABLE_INTERNAL_FLASH || MICROPY_HW_ROMFS_ENABLE_EXTERNAL_QSPI)
+#define MICROPY_VFS_ROM (MICROPY_HW_ROMFS_ENABLE_INTERNAL_FLASH || MICROPY_HW_ROMFS_ENABLE_EXTERNAL_QSPI || MICROPY_HW_ROMFS_ENABLE_EXTERNAL_XSPI)
 #endif
 
 // control over Python builtins
@@ -205,20 +206,6 @@ extern const struct _mp_obj_type_t network_lan_type;
 #define MICROPY_HW_NIC_ETH
 #endif
 
-#if MICROPY_PY_NETWORK_CYW43
-extern const struct _mp_obj_type_t mp_network_cyw43_type;
-#define MICROPY_HW_NIC_CYW43                { MP_ROM_QSTR(MP_QSTR_WLAN), MP_ROM_PTR(&mp_network_cyw43_type) },
-#else
-#define MICROPY_HW_NIC_CYW43
-#endif
-
-#if MICROPY_PY_NETWORK_WIZNET5K
-extern const struct _mp_obj_type_t mod_network_nic_type_wiznet5k;
-#define MICROPY_HW_NIC_WIZNET5K             { MP_ROM_QSTR(MP_QSTR_WIZNET5K), MP_ROM_PTR(&mod_network_nic_type_wiznet5k) },
-#else
-#define MICROPY_HW_NIC_WIZNET5K
-#endif
-
 // extra constants
 #define MICROPY_PORT_CONSTANTS \
     MACHINE_BUILTIN_MODULE_CONSTANTS \
@@ -231,8 +218,6 @@ extern const struct _mp_obj_type_t mod_network_nic_type_wiznet5k;
 
 #define MICROPY_PORT_NETWORK_INTERFACES \
     MICROPY_HW_NIC_ETH  \
-    MICROPY_HW_NIC_CYW43 \
-    MICROPY_HW_NIC_WIZNET5K \
     MICROPY_BOARD_NETWORK_INTERFACES \
 
 #define MP_STATE_PORT MP_STATE_VM
@@ -245,8 +230,6 @@ extern const struct _mp_obj_type_t mod_network_nic_type_wiznet5k;
 
 // Assume that if we already defined the obj repr then we also defined these items
 #ifndef MICROPY_OBJ_REPR
-#define UINT_FMT "%u"
-#define INT_FMT "%d"
 typedef int mp_int_t; // must be pointer size
 typedef unsigned int mp_uint_t; // must be pointer size
 #endif

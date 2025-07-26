@@ -825,6 +825,12 @@ static mp_uint_t lwip_tcp_receive(lwip_socket_obj_t *socket, byte *buf, mp_uint_
     // Check for any pending errors
     STREAM_ERROR_CHECK(socket);
 
+    if (socket->state == STATE_LISTENING) {
+        // original socket in listening state, not the accepted connection.
+        *_errno = MP_ENOTCONN;
+        return -1;
+    }
+
     if (socket->incoming.tcp.pbuf == NULL) {
 
         // Non-blocking socket or flag
@@ -901,7 +907,7 @@ static const mp_obj_type_t lwip_socket_type;
 
 static void lwip_socket_print(const mp_print_t *print, mp_obj_t self_in, mp_print_kind_t kind) {
     lwip_socket_obj_t *self = MP_OBJ_TO_PTR(self_in);
-    mp_printf(print, "<socket state=%d timeout=%d incoming=", self->state, self->timeout);
+    mp_printf(print, "<socket state=%d timeout=" UINT_FMT " incoming=", self->state, self->timeout);
     if (self->type == MOD_NETWORK_SOCK_STREAM) {
         mp_printf(print, "%p off=%d>", self->incoming.tcp.pbuf, self->recv_offset);
     } else {

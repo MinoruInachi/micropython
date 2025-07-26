@@ -379,7 +379,27 @@ _BUILTIN_COMMAND_EXPANSIONS = {
     # Disk used/free.
     "df": [
         "exec",
-        "import os\nprint('mount \\tsize \\tused \\tavail \\tuse%')\nfor _m in [''] + os.listdir('/'):\n _s = os.stat('/' + _m)\n if not _s[0] & 1 << 14: continue\n _s = os.statvfs(_m)\n if _s[0]:\n  _size = _s[0] * _s[2]; _free = _s[0] * _s[3]; print(_m, _size, _size - _free, _free, int(100 * (_size - _free) / _size), sep='\\t')",
+        """
+import os,vfs
+_f = "{:<10}{:>9}{:>9}{:>9}{:>5} {}"
+print(_f.format("filesystem", "size", "used", "avail", "use%", "mounted on"))
+try:
+ _ms = vfs.mount()
+except:
+ _ms = []
+ for _m in [""] + os.listdir("/"):
+  _m = "/" + _m
+  _s = os.stat(_m)
+  if _s[0] & 1 << 14:
+   _ms.append(("<unknown>",_m))
+for _v,_p in _ms:
+ _s = os.statvfs(_p)
+ _sz = _s[0]*_s[2]
+ if _sz:
+  _av = _s[0]*_s[3]
+  _us = 100*(_sz-_av)//_sz
+  print(_f.format(str(_v), _sz, _sz-_av, _av, _us, _p))
+""",
     ],
     # Other shortcuts.
     "reset": {
@@ -578,7 +598,7 @@ def main():
                 cmd == "fs"
                 and len(command_args) >= 1
                 and command_args[0] in ("ls", "tree")
-                and sum(1 for a in command_args if not a.startswith('-')) == 1
+                and sum(1 for a in command_args if not a.startswith("-")) == 1
             ):
                 command_args.append("")
 
@@ -600,7 +620,11 @@ def main():
         # If no commands were "actions" then implicitly finish with the REPL
         # using default args.
         if state.run_repl_on_completion():
-            do_repl(state, argparse_repl().parse_args([]))
+            disconnected = do_repl(state, argparse_repl().parse_args([]))
+
+            # Handle disconnection message
+            if disconnected:
+                print("\ndevice disconnected")
 
         return 0
     except CommandError as e:
