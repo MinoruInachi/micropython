@@ -102,6 +102,50 @@ __import__('__injected_test')
 # Platforms associated with the unix port, values of `sys.platform`.
 PC_PLATFORMS = ("darwin", "linux", "win32")
 
+# Tests to skip for specific emitters.
+emitter_tests_to_skip = {
+    # Some tests are known to fail with native emitter.
+    # Remove them from the below when they work.
+    "native": (
+        # These require raise_varargs.
+        "basics/gen_yield_from_close.py",
+        "basics/try_finally_return2.py",
+        "basics/try_reraise.py",
+        "basics/try_reraise2.py",
+        "misc/features.py",
+        # These require checking for unbound local.
+        "basics/annotate_var.py",
+        "basics/del_deref.py",
+        "basics/del_local.py",
+        "basics/scope_implicit.py",
+        "basics/unboundlocal.py",
+        # These require "raise from".
+        "basics/exception_chain.py",
+        # These require proper traceback info.
+        "basics/sys_tracebacklimit.py",
+        "misc/print_exception.py",
+        "micropython/emg_exc.py",
+        "micropython/heapalloc_traceback.py",
+        "micropython/opt_level_lineno.py",
+        "thread/thread_exc2.py",
+        # These require stack-allocated slice optimisation.
+        "micropython/heapalloc_slice.py",
+        # These require running the scheduler.
+        "micropython/schedule.py",
+        "extmod/asyncio_event_queue.py",
+        "extmod/asyncio_iterator_event.py",
+        # These require sys.exc_info().
+        "misc/sys_exc_info.py",
+        # These require sys.settrace().
+        "misc/sys_settrace_cov.py",
+        "misc/sys_settrace_features.py",
+        "misc/sys_settrace_generator.py",
+        "misc/sys_settrace_loop.py",
+        # These are bytecode-specific tests.
+        "stress/bytecode_limit.py",
+    ),
+}
+
 # Tests to skip on specific targets.
 # These are tests that are difficult to detect that they should not be run on the given target.
 platform_tests_to_skip = {
@@ -350,7 +394,7 @@ def run_script_on_remote_target(pyb, args, test_file, is_special):
     return had_crash, output_mupy
 
 
-special_tests = [
+tests_with_regex_output = [
     base_path(file)
     for file in (
         "micropython/meminfo.py",
@@ -367,10 +411,7 @@ def run_micropython(pyb, args, test_file, test_file_abspath, is_special=False):
     had_crash = False
     if pyb is None:
         # run on PC
-        if (
-            test_file_abspath.startswith((base_path("cmdline/"), base_path("feature_check/")))
-            or test_file_abspath in special_tests
-        ):
+        if test_file_abspath.startswith((base_path("cmdline/"), base_path("feature_check/"))):
             # special handling for tests of the unix cmdline program
             is_special = True
 
@@ -502,7 +543,7 @@ def run_micropython(pyb, args, test_file, test_file_abspath, is_special=False):
     if is_special and not had_crash and b"\nSKIP\n" in output_mupy:
         return b"SKIP\n"
 
-    if is_special or test_file_abspath in special_tests:
+    if is_special or test_file_abspath in tests_with_regex_output:
         # convert parts of the output that are not stable across runs
         with open(test_file + ".exp", "rb") as f:
             lines_exp = []
@@ -785,12 +826,16 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         skip_tests.add(
             "float/float2int_intbig.py"
         )  # requires fp32, there's float2int_fp30_intbig.py instead
+        skip_tests.add(
+            "float/float_struct_e.py"
+        )  # requires fp32, there's float_struct_e_fp30.py instead
         skip_tests.add("float/bytes_construct.py")  # requires fp32
         skip_tests.add("float/bytearray_construct.py")  # requires fp32
         skip_tests.add("float/float_format_ints_power10.py")  # requires fp32
     if upy_float_precision < 64:
         skip_tests.add("float/float_divmod.py")  # tested by float/float_divmod_relaxed.py instead
         skip_tests.add("float/float2int_doubleprec_intbig.py")
+        skip_tests.add("float/float_struct_e_doubleprec.py")
         skip_tests.add("float/float_format_ints_doubleprec.py")
         skip_tests.add("float/float_parse_doubleprec.py")
 
@@ -820,6 +865,9 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         skip_tests.add("basics/exception_chain.py")  # warning is not printed
         skip_tests.add("micropython/meminfo.py")  # output is very different to PC output
 
+    # Skip emitter-specific tests.
+    skip_tests.update(emitter_tests_to_skip.get(args.emit, ()))
+
     # Skip platform-specific tests.
     skip_tests.update(platform_tests_to_skip.get(args.platform, ()))
 
@@ -832,46 +880,6 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         if not sysconfig.get_platform().startswith("mingw"):
             # Works but CPython uses '\' path separator
             skip_tests.add("import/import_file.py")
-
-    # Some tests are known to fail with native emitter
-    # Remove them from the below when they work
-    if args.emit == "native":
-        skip_tests.add("basics/gen_yield_from_close.py")  # require raise_varargs
-        skip_tests.update(
-            {"basics/%s.py" % t for t in "try_reraise try_reraise2".split()}
-        )  # require raise_varargs
-        skip_tests.add("basics/annotate_var.py")  # requires checking for unbound local
-        skip_tests.add("basics/del_deref.py")  # requires checking for unbound local
-        skip_tests.add("basics/del_local.py")  # requires checking for unbound local
-        skip_tests.add("basics/exception_chain.py")  # raise from is not supported
-        skip_tests.add("basics/scope_implicit.py")  # requires checking for unbound local
-        skip_tests.add("basics/sys_tracebacklimit.py")  # requires traceback info
-        skip_tests.add("basics/try_finally_return2.py")  # requires raise_varargs
-        skip_tests.add("basics/unboundlocal.py")  # requires checking for unbound local
-        skip_tests.add("misc/features.py")  # requires raise_varargs
-        skip_tests.add(
-            "misc/print_exception.py"
-        )  # because native doesn't have proper traceback info
-        skip_tests.add("misc/sys_exc_info.py")  # sys.exc_info() is not supported for native
-        skip_tests.add("misc/sys_settrace_features.py")  # sys.settrace() not supported
-        skip_tests.add("misc/sys_settrace_generator.py")  # sys.settrace() not supported
-        skip_tests.add("misc/sys_settrace_loop.py")  # sys.settrace() not supported
-        skip_tests.add(
-            "micropython/emg_exc.py"
-        )  # because native doesn't have proper traceback info
-        skip_tests.add(
-            "micropython/heapalloc_slice.py"
-        )  # because native doesn't do the stack-allocated slice optimisation
-        skip_tests.add(
-            "micropython/heapalloc_traceback.py"
-        )  # because native doesn't have proper traceback info
-        skip_tests.add(
-            "micropython/opt_level_lineno.py"
-        )  # native doesn't have proper traceback info
-        skip_tests.add("micropython/schedule.py")  # native code doesn't check pending events
-        skip_tests.add("stress/bytecode_limit.py")  # bytecode specific test
-        skip_tests.add("extmod/asyncio_event_queue.py")  # native can't run schedule
-        skip_tests.add("extmod/asyncio_iterator_event.py")  # native can't run schedule
 
     def run_one_test(test_file):
         test_file = test_file.replace("\\", "/")
@@ -1145,29 +1153,11 @@ class append_filter(argparse.Action):
         args.filters.append((option, re.compile(value)))
 
 
-def main():
-    global injected_import_hook_code
-
-    cmd_parser = argparse.ArgumentParser(
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        description="""Run and manage tests for MicroPython.
-
+test_instance_description = """\
 By default the tests are run against the unix port of MicroPython. To run it
 against something else, use the -t option.  See below for details.
-
-Tests are discovered by scanning test directories for .py files or using the
-specified test files. If test files nor directories are specified, the script
-expects to be ran in the tests directory (where this file is located) and the
-builtin tests suitable for the target platform are ran.
-
-When running tests, run-tests.py compares the MicroPython output of the test with the output
-produced by running the test through CPython unless a <test>.exp file is found, in which
-case it is used as comparison.
-
-If a test fails, run-tests.py produces a pair of <test>.out and <test>.exp files in the result
-directory with the MicroPython output and the expectations, respectively.
-""",
-        epilog="""\
+"""
+test_instance_epilog = """\
 The -t option accepts the following for the test instance:
 - unix - use the unix port of MicroPython, specified by the MICROPY_MICROPYTHON
   environment variable (which defaults to the standard variant of either the unix
@@ -1183,7 +1173,35 @@ The -t option accepts the following for the test instance:
 - execpty:<command> - execute a command and attach to the printed /dev/pts/<n> device
 - <a>.<b>.<c>.<d> - connect to the given IPv4 address
 - anything else specifies a serial port
+"""
 
+test_directory_description = """\
+Tests are discovered by scanning test directories for .py files or using the
+specified test files. If test files nor directories are specified, the script
+expects to be ran in the tests directory (where this file is located) and the
+builtin tests suitable for the target platform are ran.
+"""
+
+
+def main():
+    global injected_import_hook_code
+
+    cmd_parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=f"""Run and manage tests for MicroPython.
+
+{test_instance_description}
+{test_directory_description}
+
+When running tests, run-tests.py compares the MicroPython output of the test with the output
+produced by running the test through CPython unless a <test>.exp file is found, in which
+case it is used as comparison.
+
+If a test fails, run-tests.py produces a pair of <test>.out and <test>.exp files in the result
+directory with the MicroPython output and the expectations, respectively.
+""",
+        epilog=f"""\
+{test_instance_epilog}
 Options -i and -e can be multiple and processed in the order given. Regex
 "search" (vs "match") operation is used. An action (include/exclude) of
 the last matching regex is used:
