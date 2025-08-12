@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-26 10:33+0900\n"
-"PO-Revision-Date: 2025-07-26 21:17+0900\n"
+"POT-Creation-Date: 2025-08-11 01:22+0900\n"
+"PO-Revision-Date: 2025-08-12 20:56+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3580,11 +3580,28 @@ msgstr ""
 "テストをするのに便利です。ほとんどの MicroPython ボードでは、UART を介して "
 "REPL を利用できます。これは通常、ホストPCでUSB経由でアクセスできます。"
 
-#: ../../../reference/glossary.rst:190
+#: ../../reference/glossary.rst:190
+msgid "small integer"
+msgstr "小整数"
+
+#: ../../reference/glossary.rst:192
+msgid ""
+"MicroPython optimises the internal representation of integers such that "
+"\"small\" values do not take up space on the heap, and calculations with "
+"them do not require heap allocation. On most 32-bit ports, this "
+"corresponds to values in the interval ``-2**30 <= x < 2**30``, but this "
+"should be considered an implementation detail and not relied upon."
+msgstr ""
+"MicroPython では、整数の内部表現を最適化しており、「小さい」値はヒープ領域を消費せず、"
+"これらを使った計算もヒープ領域の確保を必要としません。"
+"ほとんどの 32ビットポートでは、この「小さい」値は ``-2**30 <= x < 2**30`` の範囲に"
+"相当しますが、これはあくまで実装上の詳細であり、この仕様に依存すべきではありません。"
+
+#: ../../../reference/glossary.rst:197
 msgid "stream"
 msgstr "ストリーム"
 
-#: ../../../reference/glossary.rst:192
+#: ../../../reference/glossary.rst:199
 msgid ""
 "Also known as a \"file-like object\". A Python object which provides "
 "sequential read-write access to the underlying data. A stream object "
@@ -3603,11 +3620,11 @@ msgstr ""
 "しているので、異なるコンテキスト間でも一貫かつ交換可能に使えます。"
 "MicroPython のストリームの詳細については、 `io` モジュールを参照してください。"
 
-#: ../../../reference/glossary.rst:200
+#: ../../../reference/glossary.rst:207
 msgid "UART"
 msgstr ""
 
-#: ../../../reference/glossary.rst:202
+#: ../../../reference/glossary.rst:209
 msgid ""
 "Acronym for \"Universal Asynchronous Receiver/Transmitter\". This is a "
 "peripheral that sends data over a pair of pins (TX & RX). Many boards "
@@ -3619,11 +3636,11 @@ msgstr ""
 "多くのボードには、少なくとも１つの UART をホストPCの USB 経由の"
 "シリアルポートとして使えるようになっています。"
 
-#: ../../../reference/glossary.rst:206
+#: ../../../reference/glossary.rst:213
 msgid "upip"
 msgstr ""
 
-#: ../../../reference/glossary.rst:208
+#: ../../../reference/glossary.rst:215
 msgid ""
 "A now-obsolete package manager for MicroPython, inspired by "
 ":term:`CPython`'s pip, but much smaller and with reduced functionality. "
@@ -3633,11 +3650,11 @@ msgstr ""
 "影響されていますが、はるかに小さく、機能も限定されています。"
 "このツールの代わりとなる :term:`mip` を参照してください。"
 
-#: ../../reference/glossary.rst:211
+#: ../../reference/glossary.rst:218
 msgid "webrepl"
 msgstr ""
 
-#: ../../reference/glossary.rst:213
+#: ../../reference/glossary.rst:220
 msgid ""
 "A way of connecting to the REPL (and transferring files) on a device over"
 " the internet from a browser. See https://micropython.org/webrepl"
@@ -5423,9 +5440,6 @@ msgid ""
 "Each command is of the form ``<command name> [--options] [args...]``. For"
 " commands that support multiple arguments (e.g. a list of files), the "
 "argument list can be terminated with ``+``."
-
-"For commands that support multiple arguments (e.g. a list of files), the "
-"argument list can be terminated with ``+``."
 msgstr ""
 "各コマンドは ``<command name> [--options] [args...]`` という形式になっています。"
 "複数の引数をサポートするコマンド(ファイルのリストなど)の場合、引数リストは ``+`` で"
@@ -5594,12 +5608,12 @@ msgid ""
 "**Note:** Instead of using the ``connect`` command, there are several "
 ":ref:`pre-defined shortcuts <mpremote_shortcuts>` for common device "
 "paths. For example the ``a0`` shortcut command is equivalent to ``connect"
-" /dev/ttyACM0`` (Linux), or ``c0`` for ``COM0`` (Windows)."
+" /dev/ttyACM0`` (Linux), or ``c1`` for ``COM1`` (Windows)."
 msgstr ""
 "**注記:** ``connect`` コマンドを使う代わりに、一般的なデバイスパスのために"
 ":ref:`事前定義したショートカット <mpremote_shortcuts>` をいくつか用意して"
 "あります。たとえば ``a0`` ショートカットコマンドは "
-"``connect /dev/ttyACM0`` (Linux)と同等、 ``c0`` は は ``COM0`` (Windows)と"
+"``connect /dev/ttyACM0`` (Linux)と同等、 ``c1`` は ``COM1`` (Windows)と"
 "同等などです。"
 
 #: ../../reference/mpremote.rst:113
@@ -6126,7 +6140,7 @@ msgstr ""
 #: ../../reference/mpremote.rst:381
 msgid "**romfs** -- manage ROMFS partitions on the device:"
 msgstr ""
-**romfs** -- デバイスの ROMFS パーティションを管理します:"
+"**romfs** -- デバイスの ROMFS パーティションを管理します:"
 
 #: ../../reference/mpremote.rst:383
 msgid "$ mpremote romfs <sub-command>"
@@ -6320,44 +6334,64 @@ msgstr ""
 
 #: ../../reference/mpremote.rst:490
 msgid ""
-"Additional shortcuts can be defined by in user-configuration files, which"
-" is located at ``.config/mpremote/config.py``. This file should define a "
-"dictionary named ``commands``. The keys of this dictionary are the "
-"shortcuts and the values are either a string or a list-of-strings:"
+"Additional shortcuts can be defined in the user configuration file "
+"``mpremote/config.py``, located in the User Configuration Directory. The "
+"correct location for each OS is determined using the ``platformdirs`` "
+"module."
 msgstr ""
-"追加のショートカットは ``.config/mpremote/config.py`` にあるユーザー設定ファイルで"
-"定義できます。このファイル内で ``commands`` という名前の辞書で定義します。"
+"追加のショートカットは ``mpremote/config.py`` にあるユーザー設定ファイルで"
+"定義できます。各OSにおける正しい場所は ``platformdirs`` モジュールによって"
+"決定されます。"
+
+#: ../../reference/mpremote.rst:494
+msgid ""
+"This is typically: - ``$XDG_CONFIG_HOME/mpremote/config.py`` - "
+"``$HOME/.config/mpremote/config.py`` - "
+"``$env:LOCALAPPDATA/mpremote/config.py``"
+msgstr ""
+"通常の場所は次のとおりです: - "
+"$XDG_CONFIG_HOME/mpremote/config.py`` - "
+"``$HOME/.config/mpremote/config.py`` - "
+"``$env:LOCALAPPDATA/mpremote/config.py``"
+
+#: ../../reference/mpremote.rst:499
+msgid ""
+"The ``config.py``` file should define a dictionary named ``commands``. "
+"The keys of this dictionary are the shortcuts and the values are either a"
+" string or a list-of-strings:"
+msgstr ""
+"``config.py`` ファイル内で ``commands`` という名前の辞書で定義します。"
 "この辞書のキーはショートカットで、値は文字列または文字列のリストです:"
 
-#: ../../reference/mpremote.rst:495
+#: ../../reference/mpremote.rst:502
 msgid "\"c33\": \"connect id:334D335C3138\","
 msgstr ""
 
-#: ../../reference/mpremote.rst:499
+#: ../../reference/mpremote.rst:506
 msgid "The command ``c33`` is replaced by ``connect id:334D335C3138``."
 msgstr ""
 "これにより、コマンド ``c33`` は ``connect id:334D335C3138`` に"
 "置換されるようになります。"
 
-#: ../../reference/mpremote.rst:501
+#: ../../reference/mpremote.rst:508
 msgid "\"test\": [\"mount\", \".\", \"exec\", \"import test\"],"
 msgstr ""
 
-#: ../../reference/mpremote.rst:505
+#: ../../reference/mpremote.rst:512
 msgid "The command ``test`` is replaced by ``mount . exec \"import test\"``."
 msgstr ""
 "これにより、コマンド ``test`` は ``mount . exec \"import test\"`` に"
 "置換されるようになります。"
 
-#: ../../reference/mpremote.rst:507
+#: ../../reference/mpremote.rst:514
 msgid "Shortcuts can also accept arguments. For example:"
 msgstr "ショートカットは、引数を受け付けることもできます。たとえば次のように使います:"
 
-#: ../../reference/mpremote.rst:509
+#: ../../reference/mpremote.rst:516
 msgid "\"multiply x=4 y=7\": \"eval x*y\","
 msgstr ""
 
-#: ../../reference/mpremote.rst:513
+#: ../../reference/mpremote.rst:520
 msgid ""
 "Running ``mpremote times 3 7`` will set ``x`` and ``y`` as variables on "
 "the device, then evaluate the expression ``x*y``."
@@ -6365,11 +6399,11 @@ msgstr ""
 "``mpremote times 3 7`` を実行すると、デバイスの変数として ``x`` と ``y`` "
 "が設定され、 ``x*y`` という式が評価されます。"
 
-#: ../../reference/mpremote.rst:515
+#: ../../reference/mpremote.rst:522
 msgid "An example ``config.py`` might look like:"
 msgstr "``config.py`` の例を次に示します:"
 
-#: ../../reference/mpremote.rst:489
+#: ../../reference/mpremote.rst:524
 msgid ""
 "commands = {\n"
 "    \"c33\": \"connect id:334D335C3138\", # Connect to a specific device "
@@ -6415,18 +6449,18 @@ msgstr ""
 "    \"demo\": [\"run\", \"path/to/demo.py\"], # デバイスで demo.py を実行。\n"
 "}"
 
-#: ../../reference/mpremote.rst:547
+#: ../../reference/mpremote.rst:554
 msgid ""
 "Connect to the first available device and implicitly run the ``repl`` "
 "command."
 msgstr ""
 "最初に見つかったデバイスに接続し、暗黙に ``repl`` コマンドを実行します。"
 
-#: ../../reference/mpremote.rst:549
+#: ../../reference/mpremote.rst:556
 msgid "mpremote a1"
 msgstr ""
 
-#: ../../reference/mpremote.rst:553
+#: ../../reference/mpremote.rst:560
 msgid ""
 "Connect to the device at ``/dev/ttyACM1`` (Linux) and implicitly run the "
 "``repl`` command. See :ref:`shortcuts <mpremote_shortcuts>` above."
@@ -6434,11 +6468,11 @@ msgstr ""
 "``/dev/ttyACM1`` (Linux) のデバイスに接続し、暗黙に ``repl`` コマンドを実行します。"
 "上記の :ref:`ショートカット <mpremote_shortcuts>` を参照してください。"
 
-#: ../../reference/mpremote.rst:556
+#: ../../reference/mpremote.rst:563
 msgid "mpremote c1"
 msgstr ""
 
-#: ../../reference/mpremote.rst:560
+#: ../../reference/mpremote.rst:567
 msgid ""
 "Connect to the device at ``COM1`` (Windows) and implicitly run the "
 "``repl`` command. See :ref:`shortcuts <mpremote_shortcuts>` above."
@@ -6446,34 +6480,34 @@ msgstr ""
 "``COM1`` (Windows) のデバイスに接続し、暗黙に ``repl`` コマンドを実行します。"
 "上記の :ref:`ショートカット <mpremote_shortcuts>` を参照してください。"
 
-#: ../../reference/mpremote.rst:563
+#: ../../reference/mpremote.rst:570
 msgid "mpremote connect /dev/ttyUSB0"
 msgstr ""
 
-#: ../../reference/mpremote.rst:567
+#: ../../reference/mpremote.rst:574
 msgid ""
 "Explicitly specify which device to connect to, and as above, implicitly "
 "run the ``repl`` command."
 msgstr ""
 "明示的に指定したデバイスに接続し、暗黙に ``repl`` コマンドを実行します。"
 
-#: ../../reference/mpremote.rst:570
+#: ../../reference/mpremote.rst:577
 msgid "mpremote a1 ls"
 msgstr ""
 
-#: ../../reference/mpremote.rst:574
+#: ../../reference/mpremote.rst:581
 msgid "Connect to the device at ``/dev/ttyACM0`` and then run the ``ls`` command."
 msgstr "``/dev/ttyACM0`` のデバイスに接続し、 ``ls`` コマンドを実行します。"
 
-#: ../../reference/mpremote.rst:576
+#: ../../reference/mpremote.rst:583
 msgid "It is equivalent to ``mpremote connect /dev/ttyACM1 fs ls``."
 msgstr "これは ``mpremote connect /dev/ttyACM1 fs ls`` と同等です。"
 
-#: ../../reference/mpremote.rst:578
+#: ../../reference/mpremote.rst:585
 msgid "mpremote exec \"import micropython; micropython.mem_info()\""
 msgstr ""
 
-#: ../../reference/mpremote.rst:582
+#: ../../reference/mpremote.rst:589
 msgid ""
 "Run the specified Python command and display any output. This is "
 "equivalent to typing the command at the REPL prompt."
@@ -6481,19 +6515,19 @@ msgstr ""
 "指定の Python コマンドを実行し、出力を表示します。"
 "これは REPL プロンプトでコマンドをタイプするのと同等です。"
 
-#: ../../reference/mpremote.rst:585
+#: ../../reference/mpremote.rst:592
 msgid "mpremote eval 1/2 eval 3/4"
 msgstr ""
 
-#: ../../reference/mpremote.rst:589
+#: ../../reference/mpremote.rst:596
 msgid "Evaluate each expression in turn and print the results."
 msgstr "それぞれの式を順番に評価して、結果を表示します。"
 
-#: ../../reference/mpremote.rst:591
+#: ../../reference/mpremote.rst:598
 msgid "mpremote a0 eval 1/2 a1 eval 3/4"
 msgstr ""
 
-#: ../../reference/mpremote.rst:595
+#: ../../reference/mpremote.rst:602
 msgid ""
 "Evaluate ``1/2`` on the device at ``/dev/ttyACM0``, then ``3/4`` on the "
 "device at ``/dev/ttyACM1``, printing each result."
@@ -6501,11 +6535,11 @@ msgstr ""
 "``/dev/ttyACM0`` のデバイスで ``1/2`` を評価し、次に ``/dev/ttyACM1`` の"
 "デバイスで ``3/4`` を評価し、それぞれの結果を表示します。"
 
-#: ../../reference/mpremote.rst:598
+#: ../../reference/mpremote.rst:605
 msgid "mpremote resume exec \"print_state_info()\" soft-reset"
 msgstr ""
 
-#: ../../reference/mpremote.rst:602
+#: ../../reference/mpremote.rst:609
 msgid ""
 "Connect to the device without triggering a :ref:`soft reset <soft_reset>`"
 " and execute the ``print_state_info()`` function (e.g. to find out "
@@ -6514,22 +6548,22 @@ msgstr ""
 ":ref:`ソフトリセット <soft_reset>` することなくデバイスに接続し、 ``print_state_info()`` 関数"
 "(例: 現在のプログラム状態に関する情報を調べる)を実行し、その後にソフトリセットします。"
 
-#: ../../reference/mpremote.rst:606
+#: ../../reference/mpremote.rst:613
 msgid "mpremote reset sleep 0.5 bootloader"
 msgstr ""
 
-#: ../../reference/mpremote.rst:610
+#: ../../reference/mpremote.rst:617
 msgid ""
 "Hard-reset the device, wait 500ms for it to become available, then enter "
 "the bootloader."
 msgstr ""
 "デバイスをハードリセットし、使えるようになるまで 500ms 待機した後にブートローダに入ります。"
 
-#: ../../reference/mpremote.rst:613
+#: ../../reference/mpremote.rst:620
 msgid "mpremote cp utils/driver.py :utils/driver.py + run test.py"
 msgstr ""
 
-#: ../../reference/mpremote.rst:617
+#: ../../reference/mpremote.rst:624
 msgid ""
 "Update the copy of utils/driver.py on the device, then execute the local "
 "``test.py`` script on the device. ``test.py`` is never copied to the "
@@ -6539,18 +6573,18 @@ msgstr ""
 "スクリプトを実行します。 ``test.py`` はデバイスのファイルシステムにはコピーせず、"
 "RAM から実行します。"
 
-#: ../../reference/mpremote.rst:621
+#: ../../reference/mpremote.rst:628
 msgid "mpremote cp utils/driver.py :utils/driver.py + exec \"import app\""
 msgstr ""
 
-#: ../../reference/mpremote.rst:625
+#: ../../reference/mpremote.rst:632
 msgid ""
 "Update the copy of utils/driver.py on the device, then execute app.py on "
 "the device."
 msgstr ""
 "デバイス上の utils/driver.py のコピーを更新し、デバイス上で app.py を実行します。"
 
-#: ../../reference/mpremote.rst:628
+#: ../../reference/mpremote.rst:635
 msgid ""
 "This is a common development workflow to update a single file and then "
 "re-start your program. In this scenario, your ``main.py`` on the device "
@@ -6560,11 +6594,11 @@ msgstr ""
 "開発ワークフローです。このシナリオでは、デバイス上の ``main.py`` でも "
 "``import app.py`` を実行しています。"
 
-#: ../../reference/mpremote.rst:632
+#: ../../reference/mpremote.rst:639
 msgid "mpremote cp utils/driver.py :utils/driver.py + soft-reset repl"
 msgstr ""
 
-#: ../../reference/mpremote.rst:636
+#: ../../reference/mpremote.rst:663
 msgid ""
 "Update the copy of utils/driver.py on the device, then trigger a soft-"
 "reset to restart your program, and then monitor the output via the "
@@ -6573,19 +6607,19 @@ msgstr ""
 "デバイス上の utils/driver.py のコピーを更新し、ソフトリセットしてプログラムを再起動し、"
 " ``repl`` コマンドで出力をモニターします。"
 
-#: ../../reference/mpremote.rst:639
+#: ../../reference/mpremote.rst:646
 msgid "mpremote cp -r utils/ :utils/ + soft-reset repl"
 msgstr ""
 
-#: ../../reference/mpremote.rst:643
+#: ../../reference/mpremote.rst:650
 msgid "Same as above, but update the entire utils directory first."
 msgstr "１つ前のものと同じですが、最初に utils ディレクトリ全体を更新します。"
 
-#: ../../reference/mpremote.rst:645
+#: ../../reference/mpremote.rst:652
 msgid "mpremote mount ."
 msgstr ""
 
-#: ../../reference/mpremote.rst:649
+#: ../../reference/mpremote.rst:656
 msgid ""
 "Mount the current local directory at ``/remote`` on the device and starts"
 " a ``repl`` session which will use ``/remote`` as the working directory."
@@ -6593,11 +6627,11 @@ msgstr ""
 "デバイスの ``/remote`` に現在のローカルディレクトリをマウントし、 ``/remote`` を"
 "作業ディレクトリとして使う ``repl`` セッションを開始します。"
 
-#: ../../reference/mpremote.rst:652
+#: ../../reference/mpremote.rst:659
 msgid "mpremote mount . exec \"import demo\""
 msgstr ""
 
-#: ../../reference/mpremote.rst:656
+#: ../../reference/mpremote.rst:663
 msgid ""
 "After mounting the current local directory, executes ``demo.py`` from the"
 " mounted directory."
@@ -6605,11 +6639,11 @@ msgstr ""
 "現在のローカルディレクトリをマウントした後、マウントしたディレクトリから ``demo.py`` を"
 "実行します。"
 
-#: ../../reference/mpremote.rst:659
+#: ../../reference/mpremote.rst:666
 msgid "mpremote mount app run test.py"
 msgstr ""
 
-#: ../../reference/mpremote.rst:663
+#: ../../reference/mpremote.rst:670
 msgid ""
 "After mounting the local directory ``app`` as ``/remote`` on the device, "
 "executes the local ``test.py`` from the host's current directory without "
@@ -6619,11 +6653,11 @@ msgstr ""
 "ホストのカレントディレクトリからローカルの ``test.py`` をファイルシステムに"
 "コピーせずに実行します。"
 
-#: ../../reference/mpremote.rst:667
+#: ../../reference/mpremote.rst:674
 msgid "mpremote mount . repl --inject-code \"import demo\""
 msgstr ""
 
-#: ../../reference/mpremote.rst:671
+#: ../../reference/mpremote.rst:678
 msgid ""
 "After mounting the current local directory, executes ``demo.py`` from the"
 " mounted directory each time ``Ctrl-J`` is pressed."
@@ -6631,7 +6665,7 @@ msgstr ""
 "現在のローカルディレクトリをマウントした後、 ``Ctrl-J`` を押すたびにマウントされた"
 "ディレクトリから ``demo.py`` を実行します。"
 
-#: ../../reference/mpremote.rst:674
+#: ../../reference/mpremote.rst:681
 msgid ""
 "You will first need to press ``Ctrl-D`` to reset the interpreter state "
 "(which will preserve the mount) before pressing ``Ctrl-J`` to re-import "
@@ -6640,11 +6674,11 @@ msgstr ""
 "``Ctrl-J`` を押して ``demo.py`` を再インポートする前に、まず ``Ctrl-D`` を"
 "押してインタプリタの状態をリセットする必要があります(マウントは維持されます)。"
 
-#: ../../reference/mpremote.rst:678
+#: ../../reference/mpremote.rst:685
 msgid "mpremote mount app repl --inject-file demo.py"
 msgstr ""
 
-#: ../../reference/mpremote.rst:682
+#: ../../reference/mpremote.rst:689
 msgid ""
 "Same as above, but executes the contents of the local file demo.py at the"
 " REPL every time ``Ctrl-K`` is pressed. As above, use Ctrl-D to reset the"
@@ -6654,61 +6688,61 @@ msgstr ""
 "``demo.py`` の内容を実行します。１つ前のものと同様に、最初に ``Ctrl-D`` で"
 "インタプリタの状態をリセットしてください。"
 
-#: ../../reference/mpremote.rst:686
+#: ../../reference/mpremote.rst:693
 msgid "mpremote cat boot.py"
 msgstr ""
 
-#: ../../reference/mpremote.rst:690
+#: ../../reference/mpremote.rst:697
 msgid "Displays the contents of ``boot.py`` on the device."
 msgstr "デバイス上の ``boot.py`` の内容を表示します。"
 
-#: ../../reference/mpremote.rst:692
+#: ../../reference/mpremote.rst:699
 msgid "mpremote edit utils/driver.py"
 msgstr ""
 
-#: ../../reference/mpremote.rst:696
+#: ../../reference/mpremote.rst:703
 msgid "Edit ``utils/driver.py`` on the device using your local ``$EDITOR``."
 msgstr ""
 "ローカルの環境変数 ``$EDITOR`` に設定したエディタを使って、デバイス上の "
 "``utils/driver.py`` を編集します。"
 
-#: ../../reference/mpremote.rst:698
+#: ../../reference/mpremote.rst:705
 msgid "mpremote cp :main.py ."
 msgstr ""
 
-#: ../../reference/mpremote.rst:702
+#: ../../reference/mpremote.rst:709
 msgid "Copy ``main.py`` from the device to the local directory."
 msgstr "デバイスから ``main.py`` をローカルディレクトリにコピーします。"
 
-#: ../../reference/mpremote.rst:704
+#: ../../reference/mpremote.rst:711
 msgid "mpremote cp main.py :"
 msgstr ""
 
-#: ../../reference/mpremote.rst:708
+#: ../../reference/mpremote.rst:715
 msgid "Copy ``main.py`` from the local directory to the device."
 msgstr "ローカルディレクトリから ``main.py`` をデバイスにコピーします。"
 
-#: ../../reference/mpremote.rst:710
+#: ../../reference/mpremote.rst:717
 msgid "mpremote cp :a.py :b.py"
 msgstr ""
 
-#: ../../reference/mpremote.rst:714
+#: ../../reference/mpremote.rst:721
 msgid "Copy ``a.py`` on the device to ``b.py`` on the device."
 msgstr "デバイスの ``a.py`` をデバイスの ``b.py`` にコピーします。"
 
-#: ../../reference/mpremote.rst:716
+#: ../../reference/mpremote.rst:723
 msgid "mpremote cp -r dir/ :"
 msgstr ""
 
-#: ../../reference/mpremote.rst:720
+#: ../../reference/mpremote.rst:727
 msgid "Recursively copy the local directory ``dir`` to the remote device."
 msgstr "ローカルディレクトリ ``dir`` をリモートデバイスへ再帰的にコピーします。"
 
-#: ../../reference/mpremote.rst:722
+#: ../../reference/mpremote.rst:729
 msgid "mpremote cp a.py b.py : + repl"
 msgstr ""
 
-#: ../../reference/mpremote.rst:726
+#: ../../reference/mpremote.rst:733
 msgid ""
 "Copy ``a.py`` and ``b.py`` from the local directory to the device, then "
 "run the ``repl`` command."
@@ -6716,11 +6750,11 @@ msgstr ""
 "ローカルディレクトリから ``a.py`` と ``b.py`` をデバイスにコピーし、 "
 "``repl`` コマンドを実行します。"
 
-#: ../../reference/mpremote.rst:729
+#: ../../reference/mpremote.rst:736
 msgid "mpremote mip install aioble"
 msgstr ""
 
-#: ../../reference/mpremote.rst:733
+#: ../../reference/mpremote.rst:740
 msgid ""
 "Install the ``aioble`` package from :term:`micropython-lib` to the "
 "device. See :ref:`packages`."
@@ -6728,11 +6762,11 @@ msgstr ""
 ":term:`micropython-lib` から ``aioble`` パッケージをデバイスに"
 "インストールします。 :ref:`packages` を参照してください。"
 
-#: ../../reference/mpremote.rst:736
+#: ../../reference/mpremote.rst:743
 msgid "mpremote mip install github:org/repo@branch"
 msgstr ""
 
-#: ../../reference/mpremote.rst:740
+#: ../../reference/mpremote.rst:747
 msgid ""
 "Install the package from the specified branch at org/repo on GitHub to "
 "the device. See :ref:`packages`."
@@ -6740,11 +6774,11 @@ msgstr ""
 "GitHub の org/repo で指定されたブランチからパッケージを端末にインストールします。 "
 ":ref:`packages` を参照してください。"
 
-#: ../../reference/mpremote.rst:743
+#: ../../reference/mpremote.rst:750
 msgid "mpremote mip install gitlab:org/repo@branch"
 msgstr ""
 
-#: ../../reference/mpremote.rst:747
+#: ../../reference/mpremote.rst:754
 msgid ""
 "Install the package from the specified branch at org/repo on GitLab to "
 "the device. See :ref:`packages`."
@@ -6752,11 +6786,11 @@ msgstr ""
 "GitLab の org/repo で指定されたブランチからパッケージを端末にインストールします。 "
 ":ref:`packages` を参照してください。"
 
-#: ../../reference/mpremote.rst:750
+#: ../../reference/mpremote.rst:757
 msgid "mpremote mip install --target /flash/third-party functools"
 msgstr ""
 
-#: ../../reference/mpremote.rst:754
+#: ../../reference/mpremote.rst:761
 msgid ""
 "Install the ``functools`` package from :term:`micropython-lib` to the "
 "``/flash/third-party`` directory on the device. See :ref:`packages`."
