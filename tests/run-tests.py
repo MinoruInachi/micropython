@@ -102,6 +102,11 @@ __import__('__injected_test')
 # Platforms associated with the unix port, values of `sys.platform`.
 PC_PLATFORMS = ("darwin", "linux", "win32")
 
+# Mapping from `sys.platform` to the port name, for special cases.
+# See `platform_to_port()` function.
+platform_to_port_map = {"pyboard": "stm32", "WiPy": "cc3200"}
+platform_to_port_map.update({p: "unix" for p in PC_PLATFORMS})
+
 # Tests to skip for specific emitters.
 emitter_tests_to_skip = {
     # Some tests are known to fail with native emitter.
@@ -121,13 +126,6 @@ emitter_tests_to_skip = {
         "basics/unboundlocal.py",
         # These require "raise from".
         "basics/exception_chain.py",
-        # These require proper traceback info.
-        "basics/sys_tracebacklimit.py",
-        "misc/print_exception.py",
-        "micropython/emg_exc.py",
-        "micropython/heapalloc_traceback.py",
-        "micropython/opt_level_lineno.py",
-        "thread/thread_exc2.py",
         # These require stack-allocated slice optimisation.
         "micropython/heapalloc_slice.py",
         # These require running the scheduler.
@@ -252,6 +250,10 @@ def convert_regex_escapes(line):
     return bytes("".join(cs), "utf8")
 
 
+def platform_to_port(platform):
+    return platform_to_port_map.get(platform, platform)
+
+
 def get_test_instance(test_instance, baudrate, user, password):
     if test_instance.startswith("port:"):
         _, port = test_instance.split(":", 1)
@@ -292,12 +294,14 @@ def detect_test_platform(pyb, args):
     output = run_feature_check(pyb, args, "target_info.py")
     if output.endswith(b"CRASH"):
         raise ValueError("cannot detect platform: {}".format(output))
-    platform, arch, thread = str(output, "ascii").strip().split()
+    platform, arch, thread, float_prec, unicode = str(output, "ascii").strip().split()
     if arch == "None":
         arch = None
     inlineasm_arch = detect_inline_asm_arch(pyb, args)
     if thread == "None":
         thread = None
+    float_prec = int(float_prec)
+    unicode = unicode == "True"
 
     args.platform = platform
     args.arch = arch
@@ -305,6 +309,8 @@ def detect_test_platform(pyb, args):
         args.mpy_cross_flags = "-march=" + arch
     args.inlineasm_arch = inlineasm_arch
     args.thread = thread
+    args.float_prec = float_prec
+    args.unicode = unicode
 
     print("platform={}".format(platform), end="")
     if arch:
@@ -313,6 +319,10 @@ def detect_test_platform(pyb, args):
         print(" inlineasm={}".format(inlineasm_arch), end="")
     if thread:
         print(" thread={}".format(thread), end="")
+    if float_prec:
+        print(" float={}-bit".format(float_prec), end="")
+    if unicode:
+        print(" unicode", end="")
     print()
 
 
@@ -678,14 +688,11 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
     skip_async = False
     skip_const = False
     skip_revops = False
-    skip_io_module = False
     skip_fstring = False
     skip_endian = False
     skip_inlineasm = False
     has_complex = True
     has_coverage = False
-
-    upy_float_precision = 32
 
     if True:
         # Even if we run completely different tests in a different directory,
@@ -737,11 +744,6 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         if output == b"TypeError\n":
             skip_revops = True
 
-        # Check if io module exists, and skip such tests if it doesn't
-        output = run_feature_check(pyb, args, "io_module.py")
-        if output != b"io\n":
-            skip_io_module = True
-
         # Check if fstring feature is enabled, and skip such tests if it doesn't
         output = run_feature_check(pyb, args, "fstring.py")
         if output != b"a=1\n":
@@ -774,11 +776,6 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
             skip_tests.add("cmdline/repl_words_move.py")
 
         upy_byteorder = run_feature_check(pyb, args, "byteorder.py")
-        upy_float_precision = run_feature_check(pyb, args, "float.py")
-        try:
-            upy_float_precision = int(upy_float_precision)
-        except ValueError:
-            upy_float_precision = 0
         has_complex = run_feature_check(pyb, args, "complex.py") == b"complex\n"
         has_coverage = run_feature_check(pyb, args, "coverage.py") == b"coverage\n"
         cpy_byteorder = subprocess.check_output(
@@ -814,7 +811,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
             # fails with stack overflow on Debug builds
             skip_tests.add("misc/sys_settrace_features.py")
 
-    if upy_float_precision == 0:
+    if args.float_prec == 0:
         skip_tests.add("extmod/uctypes_le_float.py")
         skip_tests.add("extmod/uctypes_native_float.py")
         skip_tests.add("extmod/uctypes_sizeof_float.py")
@@ -822,7 +819,7 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         skip_tests.add("extmod/json_loads_float.py")
         skip_tests.add("extmod/random_extra_float.py")
         skip_tests.add("misc/rge_sm.py")
-    if upy_float_precision < 32:
+    if args.float_prec < 32:
         skip_tests.add(
             "float/float2int_intbig.py"
         )  # requires fp32, there's float2int_fp30_intbig.py instead
@@ -832,12 +829,15 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         skip_tests.add("float/bytes_construct.py")  # requires fp32
         skip_tests.add("float/bytearray_construct.py")  # requires fp32
         skip_tests.add("float/float_format_ints_power10.py")  # requires fp32
-    if upy_float_precision < 64:
+    if args.float_prec < 64:
         skip_tests.add("float/float_divmod.py")  # tested by float/float_divmod_relaxed.py instead
         skip_tests.add("float/float2int_doubleprec_intbig.py")
         skip_tests.add("float/float_struct_e_doubleprec.py")
         skip_tests.add("float/float_format_ints_doubleprec.py")
         skip_tests.add("float/float_parse_doubleprec.py")
+
+    if not args.unicode:
+        skip_tests.add("extmod/json_loads.py")  # tests loading a utf-8 character
 
     if not has_complex:
         skip_tests.add("float/complex1.py")
@@ -864,6 +864,9 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
     if args.platform not in PC_PLATFORMS:
         skip_tests.add("basics/exception_chain.py")  # warning is not printed
         skip_tests.add("micropython/meminfo.py")  # output is very different to PC output
+        skip_tests.add("unicode/file1.py")  # requires local file access
+        skip_tests.add("unicode/file2.py")  # requires local file access
+        skip_tests.add("unicode/file_invalid.py")  # requires local file access
 
     # Skip emitter-specific tests.
     skip_tests.update(emitter_tests_to_skip.get(args.emit, ()))
@@ -909,7 +912,6 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         is_slice = test_name.find("slice") != -1 or test_name in misc_slice_tests
         is_async = test_name.startswith(("async_", "asyncio_")) or test_name.endswith("_async")
         is_const = test_name.startswith("const")
-        is_io_module = test_name.startswith("io_")
         is_fstring = test_name.startswith("string_fstring")
         is_inlineasm = test_name.startswith("asm")
 
@@ -924,7 +926,6 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
         skip_it |= skip_async and is_async
         skip_it |= skip_const and is_const
         skip_it |= skip_revops and "reverse_op" in test_name
-        skip_it |= skip_io_module and is_io_module
         skip_it |= skip_fstring and is_fstring
         skip_it |= skip_inlineasm and is_inlineasm
 
@@ -986,7 +987,11 @@ def run_tests(pyb, tests, args, result_dir, num_threads=1):
             # Expected output is result of running unittest.
             output_expected = None
         else:
-            test_file_expected = test_file + ".exp"
+            # Prefer emitter-specific expected output.
+            test_file_expected = test_file + "." + args.emit + ".exp"
+            if not os.path.isfile(test_file_expected):
+                # Fall back to generic expected output.
+                test_file_expected = test_file + ".exp"
             if os.path.isfile(test_file_expected):
                 # Expected output given by a file, so read that in.
                 with open(test_file_expected, "rb") as f:
@@ -1194,8 +1199,8 @@ def main():
 {test_directory_description}
 
 When running tests, run-tests.py compares the MicroPython output of the test with the output
-produced by running the test through CPython unless a <test>.exp file is found, in which
-case it is used as comparison.
+produced by running the test through CPython unless a <test>.exp file is found (or a
+<test>.native.exp file when using the native emitter), in which case it is used as comparison.
 
 If a test fails, run-tests.py produces a pair of <test>.out and <test>.exp files in the result
 directory with the MicroPython output and the expectations, respectively.
@@ -1343,45 +1348,26 @@ the last matching regex is used:
                 "micropython",
                 "misc",
                 "extmod",
+                "stress",
             )
             if args.inlineasm_arch is not None:
                 test_dirs += ("inlineasm/{}".format(args.inlineasm_arch),)
             if args.thread is not None:
                 test_dirs += ("thread",)
-            if args.platform == "pyboard":
-                # run pyboard tests
-                test_dirs += ("float", "stress", "ports/stm32")
-            elif args.platform == "mimxrt":
-                test_dirs += ("float", "stress")
-            elif args.platform == "renesas-ra":
-                test_dirs += ("float", "ports/renesas-ra")
-            elif args.platform == "rp2":
-                test_dirs += ("float", "stress", "ports/rp2")
-            elif args.platform == "esp32":
-                test_dirs += ("float", "stress")
-            elif args.platform in ("esp8266", "minimal", "samd", "nrf"):
+            if args.float_prec > 0:
                 test_dirs += ("float",)
-            elif args.platform == "WiPy":
-                # run WiPy tests
-                test_dirs += ("ports/cc3200",)
-            elif args.platform in PC_PLATFORMS:
+            if args.unicode:
+                test_dirs += ("unicode",)
+            port_specific_test_dir = "ports/{}".format(platform_to_port(args.platform))
+            if os.path.isdir(port_specific_test_dir):
+                test_dirs += (port_specific_test_dir,)
+            if args.platform in PC_PLATFORMS:
                 # run PC tests
                 test_dirs += (
-                    "float",
                     "import",
                     "io",
-                    "stress",
-                    "unicode",
                     "cmdline",
-                    "ports/unix",
                 )
-            elif args.platform == "qemu":
-                test_dirs += (
-                    "float",
-                    "ports/qemu",
-                )
-            elif args.platform == "webassembly":
-                test_dirs += ("float", "ports/webassembly")
         else:
             # run tests from these directories
             test_dirs = args.test_dirs
