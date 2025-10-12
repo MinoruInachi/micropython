@@ -108,7 +108,7 @@ void rtc_init_start(bool force_init) {
     // Enable the RTC APB bus clock, to communicate with the RTC.
     #if defined(STM32H5)
     __HAL_RCC_RTC_CLK_ENABLE();
-    #elif defined(STM32WL)
+    #elif defined(STM32G0) || defined(STM32WL)
     __HAL_RCC_RTCAPB_CLK_ENABLE();
     #endif
 
@@ -771,6 +771,7 @@ mp_obj_t pyb_rtc_wakeup(size_t n_args, const mp_obj_t *args) {
 
     // set the callback
     MP_STATE_PORT(pyb_extint_callback)[EXTI_RTC_WAKEUP] = callback;
+    pyb_extint_callback_arg[EXTI_RTC_WAKEUP] = MP_OBJ_NEW_SMALL_INT(EXTI_RTC_WAKEUP);
 
     // disable register write protection
     RTC->WPR = 0xca;

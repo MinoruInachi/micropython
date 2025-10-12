@@ -47,6 +47,8 @@
 #define MICROPY_PERSISTENT_CODE_LOAD (1)
 #define MICROPY_ENABLE_SOURCE_LINE  (1)
 #define MICROPY_STACK_CHECK         (1)
+#define MICROPY_STACK_CHECK_MARGIN  (512)
+#define MICROPY_STACK_SIZE_HARD_IRQ (CONFIG_ISR_STACK_SIZE)
 #define MICROPY_ENABLE_GC           (1)
 #define MICROPY_ENABLE_FINALISER    (MICROPY_VFS)
 #define MICROPY_HELPER_REPL         (1)
@@ -169,4 +171,10 @@ typedef long mp_off_t;
         mp_handle_pending(true); \
         k_msleep(1); \
     } while (0);
+#endif
+
+// Compatibility switches
+
+#ifdef CONFIG_NEWLIB_LIBC
+#define MICROPY_PY_MATH_POW_FIX_NAN (1)
 #endif

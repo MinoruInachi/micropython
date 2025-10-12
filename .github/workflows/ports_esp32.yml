@@ -12,6 +12,10 @@ on:
       - 'lib/**'
       - 'drivers/**'
       - 'ports/esp32/**'
+  schedule:
+     # Scheduled run exists to keep master branch ESP-IDF cache entry hot
+     # and prevent creating many redundant per-branch cache entries instead.
+     - cron: "20 0 * * *"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -47,7 +51,7 @@ jobs:
 
     - name: Install ESP-IDF packages
       if: steps.cache_esp_idf.outputs.cache-hit != 'true'
-      run: source tools/ci.sh && ci_esp32_idf_setup
+      run: tools/ci.sh esp32_idf_setup
 
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
@@ -55,4 +59,4 @@ jobs:
         key: esp32-${{ matrix.ci_func }}
 
     - name: Build ci_${{matrix.ci_func }}
-      run: source tools/ci.sh && ci_${{ matrix.ci_func }}
+      run: tools/ci.sh ${{ matrix.ci_func }}

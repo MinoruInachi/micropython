@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-23 15:20+0900\n"
-"PO-Revision-Date: 2025-08-23 15:30+0900\n"
+"POT-Creation-Date: 2025-10-12 10:14+0900\n"
+"PO-Revision-Date: 2025-10-12 19:21+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -12854,13 +12854,15 @@ msgid ""
 "Memory can't be allocated inside irq handlers (an interrupt) and so "
 "exceptions raised within a handler don't give much information.  See "
 ":func:`micropython.alloc_emergency_exception_buf` for how to get around "
-"this limitation."
+"this limitation, which applies to all callbacks of Timers created with "
+"``hard=True``."
 msgstr ""
-"irq ハンドラ(割り込み)内でメモリを割り当てることはできず、そのためにハンドラ内で"
-"発生した例外には多くの情報を持ちません。この制限を回避する方法については "
+"irq ハンドラ(割り込み)内ではメモリを割り当てることができないため、ハンドラ内で"
+"発生した例外から得られる情報はあまり多くありません。この制限を回避する方法については "
 ":func:`micropython.alloc_emergency_exception_buf` を参照してください。"
+"この制限は ``hard=True`` で作成されたタイマーのすべてのコールバックに適用されます。"
 
-#: ../../library/machine.Timer.rst:24
+#: ../../library/machine.Timer.rst:25
 msgid ""
 "If you are using a WiPy board please refer to :ref:`machine.TimerWiPy "
 "<machine.TimerWiPy>` instead of this class."
@@ -12868,8 +12870,7 @@ msgstr ""
 "WiPy ボードを使用している場合、このクラスの代わりに "
 ":ref:`machine.TimerWiPy <machine.TimerWiPy>` を参照してください。"
 
-#: ../../library/machine.Timer.rst:32
-#: ../../library/machine.TimerWiPy.rst:36
+#: ../../library/machine.Timer.rst:33
 msgid ""
 "Construct a new timer object of the given ``id``. ``id`` of -1 constructs"
 " a virtual timer (if supported by a board). ``id`` shall not be passed as"
@@ -12879,15 +12880,15 @@ msgstr ""
 "(ボードでサポートしていれば)仮想タイマーを構築します。 ``id`` をキーワード引数で"
 "渡してはなりません。"
 
-#: ../../library/machine.Timer.rst:36
+#: ../../library/machine.Timer.rst:37
 msgid "See ``init`` for parameters of initialisation."
 msgstr "初期化パラメータについては ``init`` を参照してください。"
 
-#: ../../library/machine.Timer.rst:43 ../../library/machine.TimerWiPy.rst:44
+#: ../../library/machine.Timer.rst:44 ../../library/machine.TimerWiPy.rst:44
 msgid "Initialise the timer. Example::"
 msgstr "タイマーを初期化します。たとえば次のように使います::"
 
-#: ../../library/machine.Timer.rst:45
+#: ../../library/machine.Timer.rst:46
 msgid ""
 "def mycallback(t):\n"
 "    pass\n"
@@ -12913,17 +12914,17 @@ msgstr ""
 "# 1000ms 後に１度だけ実行\n"
 "tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)"
 
-#: ../../library/machine.Timer.rst:57 ../../library/machine.TimerWiPy.rst:49
-#: ../../library/pyb.Timer.rst:73 ../../library/pyb.Timer.rst:146
+#: ../../library/machine.Timer.rst:58 ../../library/machine.TimerWiPy.rst:49
+#: ../../library/pyb.Timer.rst:73 ../../library/pyb.Timer.rst:158
 msgid "Keyword arguments:"
 msgstr "キーワード引数:"
 
-#: ../../library/machine.Timer.rst:59 ../../library/machine.TimerWiPy.rst:51
-#: ../../library/pyb.Timer.rst:90 ../../library/pyb.Timer.rst:148
+#: ../../library/machine.Timer.rst:60 ../../library/machine.TimerWiPy.rst:51
+#: ../../library/pyb.Timer.rst:90 ../../library/pyb.Timer.rst:160
 msgid "``mode`` can be one of:"
 msgstr "``mode`` は次のいずれかになります。"
 
-#: ../../library/machine.Timer.rst:61
+#: ../../library/machine.Timer.rst:62
 msgid ""
 "``Timer.ONE_SHOT`` - The timer runs once until the configured period of "
 "the channel expires."
@@ -12931,14 +12932,14 @@ msgstr ""
 "``Timer.ONE_SHOT`` - タイマーは、設定したチャネルの周期が経過した後に1回だけ"
 "実行します。"
 
-#: ../../library/machine.Timer.rst:63
+#: ../../library/machine.Timer.rst:64
 msgid ""
 "``Timer.PERIODIC`` - The timer runs periodically at the configured "
 "frequency of the channel."
 msgstr ""
 "``Timer.PERIODIC`` - タイマーは、チャネルの設定した周期で定期的に実行します。"
 
-#: ../../library/machine.Timer.rst:66
+#: ../../library/machine.Timer.rst:67
 msgid ""
 "``freq`` - The timer frequency, in units of Hz.  The upper bound of the "
 "frequency is dependent on the port.  When both the ``freq`` and "
@@ -12949,11 +12950,11 @@ msgstr ""
 "``freq`` と ``period`` の両方の引数を与えた場合、 ``freq`` の方を優先し、 "
 "``period`` は無視します。"
 
-#: ../../library/machine.Timer.rst:71
+#: ../../library/machine.Timer.rst:72
 msgid "``period`` - The timer period, in milliseconds."
 msgstr "``period`` - タイマー期間(ミリ秒単位)。"
 
-#: ../../library/machine.Timer.rst:73
+#: ../../library/machine.Timer.rst:74
 msgid ""
 "``callback`` - The callable to call upon expiration of the timer period. "
 "The callback must take one argument, which is passed the Timer object. "
@@ -12967,14 +12968,43 @@ msgstr ""
 "タイマー満了時に次の例外が発生します: ``TypeError: 'NoneType' object isn't "
 "callable``"
 
-#: ../../library/machine.Timer.rst:81 ../../library/machine.TimerWiPy.rst:65
+#: ../../library/machine.Timer.rst:80 ../../library/pyb.Timer.rst:118
+msgid "``hard`` can be one of:"
+msgstr "``hard`` は次のいずれかです:"
+
+#: ../../library/machine.Timer.rst:82 ../../library/pyb.Timer.rst:120
+msgid ""
+"``True`` - The callback will be executed in hard interrupt context, which"
+" minimises delay and jitter but is subject to the limitations described "
+"in :ref:`isr_rules` including being unable to allocate on the heap."
+msgstr ""
+"``True`` - コールバックはハード割り込みコンテキストで実行されます。"
+"これにより遅延やジッタ(時間の揺らぎ)が最小限に抑えられますが、 "
+":ref:`isr_rules` で説明されている制限(ヒープ上でのメモリ割り当てができないことなど)を"
+"受けます。"
+
+#: ../../library/machine.Timer.rst:86 ../../library/pyb.Timer.rst:124
+msgid ""
+"``False`` - The callback will be scheduled as a soft interrupt, allowing "
+"it to allocate but possibly also introducing garbage-collection delays "
+"and jitter."
+msgstr ""
+"``False`` - コールバックはソフト割り込みとしてスケジュールされ、"
+"メモリ割り当てが可能になりますが、ガベージコレクションの遅延とジッターも"
+"発生する可能性があります。"
+
+#: ../../library/machine.Timer.rst:90
+msgid "The default value of this option is port-specific for historical reasons."
+msgstr "このオプションのデフォルト値は、歴史的な理由によりポート固有です。"
+
+#: ../../library/machine.Timer.rst:95 ../../library/machine.TimerWiPy.rst:65
 msgid ""
 "Deinitialises the timer. Stops the timer, and disables the timer "
 "peripheral."
 msgstr ""
 "タイマーを非初期化します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
 
-#: ../../library/machine.Timer.rst:89 ../../library/machine.TimerWiPy.rst:159
+#: ../../library/machine.Timer.rst:103 ../../library/machine.TimerWiPy.rst:159
 msgid "Timer operating mode."
 msgstr "タイマー操作モード。"
 
@@ -17291,11 +17321,68 @@ msgstr ""
 msgid "The function returns the previous stream-like object in the given slot."
 msgstr "この関数は、指定したスロットの前のストリームライク風オブジェクトを返します。"
 
-#: ../../library/os.rst:137 ../../library/vfs.rst:11
+#: ../../library/os.rst:138
+msgid ""
+"Notify the MicroPython REPL that input is available on a stream-like "
+"object previously registered via `os.dupterm()`."
+msgstr ""
+"`os.dupterm()` を介して以前に登録されたストリームライクなオブジェクトで"
+"入力が利用可能であることを MicroPython REPL に通知します。"
+
+#: ../../library/os.rst:141
+msgid ""
+"This function should be called by custom stream implementations (e.g., "
+"UART, Bluetooth, or other non-USB REPL streams) to inform the REPL that "
+"input is ready to be read. Proper use ensures that special characters "
+"such as Ctrl+C (used to trigger KeyboardInterrupt) are processed promptly"
+" by the REPL, enabling expected interruption behavior for user code."
+msgstr ""
+"この関数は、カスタムストリーム実装(UART、Bluetooth、その他のUSB以外のREPLストリーム"
+"など)によって呼び出され、入力の読み取り準備が完了したことを REPL に通知する必要が"
+"あります。適切に使うことで、Ctrl+C (KeyboardInterrupt のトリガーに使用)などの"
+"特殊文字が REPL によって迅速に処理され、ユーザーコードで期待される割り込み動作が"
+"可能になります。"
+
+#: ../../library/os.rst:147
+msgid ""
+"The *obj_in* parameter is ignored by `os.dupterm_notify()`, but is "
+"required to allow calling dupterm_notify from an interrupt handler such "
+"as `UART.irq()`."
+msgstr ""
+"*obj_in* パラメータは `os.dupterm_notify()` では無視されますが、 "
+"`UART.irq()` などの割り込みハンドラから dupterm_notify を呼び出すために必要です。"
+
+#: ../../library/os.rst:150
+msgid "Example:"
+msgstr "例:"
+
+#: ../../library/os.rst:152
+msgid ""
+"from machine import UART\n"
+"import os\n"
+"uart = UART(0)\n"
+"os.dupterm(uart, 0)\n"
+"uart.irq(os.dupterm_notify, machine.UART.IRQ_RX)"
+msgstr ""
+
+#: ../../library/os.rst:161
+msgid ""
+"If the ``dupterm_notify()`` function is not called, input from the custom"
+" stream may not be detected or processed until the next REPL poll, "
+"potentially delaying KeyboardInterrupts or other control signals. This is"
+" especially important for UART, Bluetooth and other non-standard REPL "
+"connections, where automatic notification is not guaranteed."
+msgstr ""
+"``dupterm_notify()`` 関数が呼び出されない場合、カスタムストリームからの入力は"
+"次回の REPL ポーリングまで検出または処理されない可能性があり、KeyboardInterrupts "
+"やその他の制御信号が遅延する可能性があります。これは、自動通知が保証されない UART、"
+"Bluetooth、その他の非標準REPL接続において特に重要です。"
+
+#: ../../library/os.rst:168 ../../library/vfs.rst:11
 msgid "Filesystem mounting"
 msgstr "ファイルシステムのマウント"
 
-#: ../../library/os.rst:139
+#: ../../library/os.rst:170
 msgid ""
 "The following functions and classes have been moved to the :mod:`vfs` "
 "module. They are provided in this module only for backwards compatibility"
@@ -17305,27 +17392,27 @@ msgstr ""
 "このモジュールでは、後方互換性のために提供されており、"
 "MicroPython のバージョン2では削除されます。"
 
-#: ../../library/os.rst:145
+#: ../../library/os.rst:176
 msgid "See `vfs.mount`."
 msgstr "`vfs.mount` を参照。"
 
-#: ../../library/os.rst:149
+#: ../../library/os.rst:180
 msgid "See `vfs.umount`."
 msgstr "`vfs.umount` を参照。"
 
-#: ../../library/os.rst:153
+#: ../../library/os.rst:184
 msgid "See `vfs.VfsFat`."
 msgstr "`vfs.VfsFat` を参照。"
 
-#: ../../library/os.rst:157
+#: ../../library/os.rst:188
 msgid "See `vfs.VfsLfs1`."
 msgstr "`vfs.VfsLfs1` を参照。"
 
-#: ../../library/os.rst:161
+#: ../../library/os.rst:192
 msgid "See `vfs.VfsLfs2`."
 msgstr "`vfs.VfsLfs2` を参照。"
 
-#: ../../library/os.rst:165
+#: ../../library/os.rst:196
 msgid "See `vfs.VfsPosix`."
 msgstr "`vfs.VfsPosix` を参照。"
 
@@ -17399,6 +17486,19 @@ msgstr ""
 "*(lib, version)* という2つの文字列からなるタプルを返します。"
 "ここで、 *lib* は MicroPython がリンクされている libc の名前であり、 "
 "*version* はこの libc の対応するバージョンです。"
+
+#: ../../library/platform.rst:42
+msgid ""
+"Returns a string with a detailed name of the processor, if one is "
+"available. If no name for the processor is known, it will return an empty"
+" string instead."
+msgstr ""
+"プロセッサの詳細な名前(存在する場合)を含む文字列を返します。"
+"プロセッサの名前が不明な場合は、代わりに空の文字列を返します。"
+
+#: ../../library/platform.rst:46
+msgid "This is currently available only on RISC-V targets (both 32 and 64 bits)."
+msgstr "これは現在、RISC-V ターゲット(32ビットと64ビットの両方)でのみ利用可能です。"
 
 #: ../../library/pyb.rst:2
 msgid ":mod:`pyb` --- functions related to the board"
@@ -21264,19 +21364,23 @@ msgstr ""
 "``mode=Pin.ALT, alt=Pin.AFn_TIMx`` を持つ Pin オブジェクトを構築します。"
 "ピンの GPIO 入力機能は alt モードで使えます(``pull=``, ``value()``, ``irq()``)。"
 
-#: ../../library/pyb.Timer.rst:118
+#: ../../library/pyb.Timer.rst:128
+msgid "The default value of this option is True."
+msgstr "このオプションのデフォルト値は True です。"
+
+#: ../../library/pyb.Timer.rst:130
 msgid "You must either specify freq or both of period and prescaler."
 msgstr "freq または period と prescaler の両方の指定は必須です。"
 
-#: ../../library/pyb.Timer.rst:122
+#: ../../library/pyb.Timer.rst:134
 msgid "Deinitialises the timer."
 msgstr "タイマーを無効化します。"
 
-#: ../../library/pyb.Timer.rst:124
+#: ../../library/pyb.Timer.rst:136
 msgid "Disables the callback (and the associated irq)."
 msgstr "コールバック(および関連する割り込み)を無効にします。"
 
-#: ../../library/pyb.Timer.rst:126
+#: ../../library/pyb.Timer.rst:138
 msgid ""
 "Disables any channel callbacks (and the associated irq). Stops the timer,"
 " and disables the timer peripheral."
@@ -21284,7 +21388,7 @@ msgstr ""
 "チャネルコールバック(および関連する割り込み)を無効にします。"
 "タイマーを停止し、タイマーペリフェラルを無効にします。"
 
-#: ../../library/pyb.Timer.rst:131
+#: ../../library/pyb.Timer.rst:143
 msgid ""
 "Set the function to be called when the timer triggers. ``fun`` is passed "
 "1 argument, the timer object. If ``fun`` is ``None`` then the callback "
@@ -21294,7 +21398,7 @@ msgstr ""
 "``fun`` には1つの引数、つまりタイマーオブジェクトが渡されます。 "
 "``fun`` に ``None`` を指定した場合、コールバックが無効になります。"
 
-#: ../../library/pyb.Timer.rst:137
+#: ../../library/pyb.Timer.rst:149
 msgid ""
 "If only a channel number is passed, then a previously initialized channel"
 " object is returned (or ``None`` if there is no previous channel)."
@@ -21302,7 +21406,7 @@ msgstr ""
 "チャネル番号のみを指定した場合、以前に初期化されたチャネルオブジェクトが返されます"
 "(以前のチャネルが存在しない場合は ``None`` が返されます)。"
 
-#: ../../library/pyb.Timer.rst:142
+#: ../../library/pyb.Timer.rst:164
 msgid ""
 "Each channel can be configured to perform pwm, output compare, or input "
 "capture. All channels share the same underlying timer, which means that "
@@ -21312,7 +21416,7 @@ msgstr ""
 "すべてのチャネルは、同じ基盤タイマーを共有しています。つまり同じタイマークロックを
 "共有していることになります。"
 
-#: ../../library/pyb.Timer.rst:150
+#: ../../library/pyb.Timer.rst:162
 msgid "``Timer.PWM`` --- configure the timer in PWM mode (active high)."
 msgstr "``Timer.PWM`` --- タイマーを PWM モード(アクティブハイ)に設定します。"
 
@@ -21320,11 +21424,11 @@ msgstr "``Timer.PWM`` --- タイマーを PWM モード(アクティブハイ)�
 msgid "``Timer.PWM_INVERTED`` --- configure the timer in PWM mode (active low)."
 msgstr "``Timer.PWM_INVERTED`` --- タイマーを PWM モード(アクティブロー)に設定します。"
 
-#: ../../library/pyb.Timer.rst:152
+#: ../../library/pyb.Timer.rst:164
 msgid "``Timer.OC_TIMING`` --- indicates that no pin is driven."
 msgstr "``Timer.OC_TIMING`` --- ピンが駆動されていないことを示します。"
 
-#: ../../library/pyb.Timer.rst:153
+#: ../../library/pyb.Timer.rst:165
 msgid ""
 "``Timer.OC_ACTIVE`` --- the pin will be made active when a compare match "
 "occurs (active is determined by polarity)"
@@ -21332,21 +21436,21 @@ msgstr ""
 "``Timer.OC_ACTIVE`` --- 比較一致が発生するとピンがアクティブになります"
 "(アクティブは極性によって決まります)。"
 
-#: ../../library/pyb.Timer.rst:154
+#: ../../library/pyb.Timer.rst:166
 msgid ""
 "``Timer.OC_INACTIVE`` --- the pin will be made inactive when a compare "
 "match occurs."
 msgstr ""
 "``Timer.OC_INACTIVE`` --- 比較一致が発生するとピンが非アクティブになります。"
 
-#: ../../library/pyb.Timer.rst:155
+#: ../../library/pyb.Timer.rst:167
 msgid ""
 "``Timer.OC_TOGGLE`` --- the pin will be toggled when an compare match "
 "occurs."
 msgstr ""
 "``Timer.OC_TOGGLE`` --- 比較一致が発生するとピンがトグルします。"
 
-#: ../../library/pyb.Timer.rst:156
+#: ../../library/pyb.Timer.rst:168
 msgid ""
 "``Timer.OC_FORCED_ACTIVE`` --- the pin is forced active (compare match is"
 " ignored)."
@@ -21354,7 +21458,7 @@ msgstr ""
 "``Timer.OC_FORCED_ACTIVE`` --- ピンは強制的にアクティブになります"
 "(比較一致は無視されます)。"
 
-#: ../../library/pyb.Timer.rst:157
+#: ../../library/pyb.Timer.rst:169
 msgid ""
 "``Timer.OC_FORCED_INACTIVE`` --- the pin is forced inactive (compare "
 "match is ignored)."
@@ -21362,11 +21466,11 @@ msgstr ""
 "``Timer.OC_FORCED_INACTIVE`` --- ピンは強制的に非アクティブになります"
 "(比較一致は無視されます)。"
 
-#: ../../library/pyb.Timer.rst:158
+#: ../../library/pyb.Timer.rst:170
 msgid "``Timer.IC`` --- configure the timer in Input Capture mode."
 msgstr "``Timer.IC`` --- タイマーを入力キャプチャモードに設定します。"
 
-#: ../../library/pyb.Timer.rst:159
+#: ../../library/pyb.Timer.rst:171
 msgid ""
 "``Timer.ENC_A`` --- configure the timer in Encoder mode. The counter only"
 " changes when CH1 changes."
@@ -21374,7 +21478,7 @@ msgstr ""
 "``Timer.ENC_A`` --- タイマーをエンコーダモードに設定します。カウンターは CH1 の"
 "変化時のみ変更されます。"
 
-#: ../../library/pyb.Timer.rst:160
+#: ../../library/pyb.Timer.rst:172
 msgid ""
 "``Timer.ENC_B`` --- configure the timer in Encoder mode. The counter only"
 " changes when CH2 changes."
@@ -21382,7 +21486,7 @@ msgstr ""
 "``Timer.ENC_B`` --- タイマーをエンコーダモードに設定します。カウンターは CH2 の"
 "変化時のみ変更されます。"
 
-#: ../../library/pyb.Timer.rst:161
+#: ../../library/pyb.Timer.rst:173
 msgid ""
 "``Timer.ENC_AB`` --- configure the timer in Encoder mode. The counter "
 "changes when CH1 or CH2 changes."
@@ -21390,11 +21494,11 @@ msgstr ""
 "``Timer.ENC_AB`` --- タイマーをエンコーダモードに設定します。カウンターは CH1 "
 "または CH2 の変化時に変更されます。"
 
-#: ../../library/pyb.Timer.rst:163
+#: ../../library/pyb.Timer.rst:175
 msgid "``callback`` - as per TimerChannel.callback()"
 msgstr "``callback`` - TimerChannel.callback() と同様です。"
 
-#: ../../library/pyb.Timer.rst:165
+#: ../../library/pyb.Timer.rst:177
 msgid ""
 "``pin`` None (the default) or a Pin object. If specified (and not None) "
 "this will cause the alternate function of the indicated pin to be "
@@ -21406,69 +21510,69 @@ msgstr ""
 "対して設定されます。ピンがこのタイマーチャネルのための代替機能をサポートしていない場合、"
 "エラーが発生します。"
 
-#: ../../library/pyb.Timer.rst:170
+#: ../../library/pyb.Timer.rst:182
 msgid "Keyword arguments for Timer.PWM modes:"
 msgstr "Timer.PWM モード用のキーワード引数:"
 
-#: ../../library/pyb.Timer.rst:172
+#: ../../library/pyb.Timer.rst:184
 msgid "``pulse_width`` - determines the initial pulse width value to use."
 msgstr "``pulse_width`` - 使用する初期パルス幅の値を決定します。"
 
-#: ../../library/pyb.Timer.rst:173
+#: ../../library/pyb.Timer.rst:185
 msgid ""
 "``pulse_width_percent`` - determines the initial pulse width percentage "
 "to use."
 msgstr ""
 "``pulse_width_percent`` - 使用する初期パルス幅のパーセンテージを決定します。"
 
-#: ../../library/pyb.Timer.rst:175
+#: ../../library/pyb.Timer.rst:187
 msgid "Keyword arguments for Timer.OC modes:"
 msgstr "Timer.OC モード用のキーワード引数:"
 
-#: ../../library/pyb.Timer.rst:177
+#: ../../library/pyb.Timer.rst:189
 msgid "``compare`` - determines the initial value of the compare register."
 msgstr "``compare`` - 比較レジスタの初期値を決定します。"
 
-#: ../../library/pyb.Timer.rst:179 ../../library/pyb.Timer.rst:186
+#: ../../library/pyb.Timer.rst:191 ../../library/pyb.Timer.rst:198
 msgid "``polarity`` can be one of:"
 msgstr "``polarity`` は次のいずれかになります:
 
-#: ../../library/pyb.Timer.rst:181
+#: ../../library/pyb.Timer.rst:193
 msgid "``Timer.HIGH`` - output is active high"
 msgstr "``Timer.HIGH`` - 出力がアクティブハイ。"
 
-#: ../../library/pyb.Timer.rst:182
+#: ../../library/pyb.Timer.rst:194
 msgid "``Timer.LOW`` - output is active low"
 msgstr "``Timer.LOW`` - 出力がアクティブロー。"
 
-#: ../../library/pyb.Timer.rst:184
+#: ../../library/pyb.Timer.rst:196
 msgid "Optional keyword arguments for Timer.IC modes:"
 msgstr "Timer.IC モード用のオプションのキーワード引数:"
 
-#: ../../library/pyb.Timer.rst:188
+#: ../../library/pyb.Timer.rst:200
 msgid "``Timer.RISING`` - captures on rising edge."
 msgstr "``Timer.RISING`` - 立ち上がりエッジでキャプチャします。"
 
-#: ../../library/pyb.Timer.rst:189
+#: ../../library/pyb.Timer.rst:201
 msgid "``Timer.FALLING`` - captures on falling edge."
 msgstr "``Timer.FALLING`` - 立ち下がりエッジでキャプチャします。"
 
-#: ../../library/pyb.Timer.rst:190
+#: ../../library/pyb.Timer.rst:202
 msgid "``Timer.BOTH`` - captures on both edges."
 msgstr "``Timer.BOTH`` - 両方のエッジでキャプチャします。"
 
-#: ../../library/pyb.Timer.rst:192
+#: ../../library/pyb.Timer.rst:204
 msgid ""
 "Note that capture only works on the primary channel, and not on the "
 "complimentary channels."
 msgstr ""
 "キャプチャはプライマリチャネルでのみ機能し、補助チャネルでは機能しないことに注意してください。"
 
-#: ../../library/pyb.Timer.rst:195
+#: ../../library/pyb.Timer.rst:207
 msgid "Notes for Timer.ENC modes:"
 msgstr "Timer.ENCモードに関する注意事項:"
 
-#: ../../library/pyb.Timer.rst:197
+#: ../../library/pyb.Timer.rst:209
 msgid ""
 "Requires 2 pins, so one or both pins will need to be configured to use "
 "the appropriate timer AF using the Pin API."
@@ -21476,23 +21580,23 @@ msgstr ""
 "2つのピンが必要なので、1つまたは両方のピンをPin APIを使用して適切なタイマーAFを"
 "使うように設定する必要があります。"
 
-#: ../../library/pyb.Timer.rst:199
+#: ../../library/pyb.Timer.rst:211
 msgid "Read the encoder value using the timer.counter() method."
 msgstr "timer.counter() メソッドを使用してエンコーダの値を読み込みます。"
 
-#: ../../library/pyb.Timer.rst:200
+#: ../../library/pyb.Timer.rst:212
 msgid "Only works on CH1 and CH2 (and not on CH1N or CH2N)"
 msgstr "CH1 および CH2 でのみ動作し、CH1N または CH2N では動作しません。"
 
-#: ../../library/pyb.Timer.rst:201
+#: ../../library/pyb.Timer.rst:213
 msgid "The channel number is ignored when setting the encoder mode."
 msgstr "エンコーダモードを設定する際にチャネル番号は無視されます。"
 
-#: ../../library/pyb.Timer.rst:203
+#: ../../library/pyb.Timer.rst:215
 msgid "PWM Example::"
 msgstr "PWM の例::"
 
-#: ../../library/pyb.Timer.rst:205
+#: ../../library/pyb.Timer.rst:217
 msgid ""
 "timer = pyb.Timer(2, freq=1000)\n"
 "ch2 = timer.channel(2, pyb.Timer.PWM, pin=pyb.Pin.board.X2, "
@@ -21501,7 +21605,7 @@ msgid ""
 "pulse_width=16000)"
 msgstr ""
 
-#: ../../library/pyb.Timer.rst:209
+#: ../../library/pyb.Timer.rst:221
 msgid ""
 "PWM Motor Example with complementary outputs, dead time, break input and "
 "break callback::"
@@ -21509,7 +21613,7 @@ msgstr ""
 "PWMモーターの例。互い補完する出力、デッドタイム、ブレーク入力、ブレークコールバック"
 "を使っています::"
 
-#: ../../library/pyb.Timer.rst:211
+#: ../../library/pyb.Timer.rst:223
 msgid ""
 "from pyb import Timer\n"
 "from machine import Pin # machine.Pin supports alt mode and irq on the "
@@ -21536,29 +21640,29 @@ msgstr ""
 "timer = pyb.Timer(8, freq=1000, deadtime=1008, brk=Timer.BRK_LOW)\n"
 "ch1 = timer.channel(1, pyb.Timer.PWM, pulse_width_percent=30)"
 
-#: ../../library/pyb.Timer.rst:222
+#: ../../library/pyb.Timer.rst:234
 msgid "Get or set the timer counter."
 msgstr "タイマーカウンターを取得または設定します。"
 
-#: ../../library/pyb.Timer.rst:226
+#: ../../library/pyb.Timer.rst:238
 msgid ""
 "Get or set the frequency for the timer (changes prescaler and period if "
 "set)."
 msgstr "タイマーの周波数を取得または設定します(設定の場合、プリスケーラと期間が変更されます)。"
 
-#: ../../library/pyb.Timer.rst:230
+#: ../../library/pyb.Timer.rst:242
 msgid "Get or set the period of the timer."
 msgstr "タイマーの期間を取得または設定します。"
 
-#: ../../library/pyb.Timer.rst:234
+#: ../../library/pyb.Timer.rst:246
 msgid "Get or set the prescaler for the timer."
 msgstr "タイマーのプリスケーラを取得または設定します。"
 
-#: ../../library/pyb.Timer.rst:238
+#: ../../library/pyb.Timer.rst:250
 msgid "Get the frequency of the source of the timer."
 msgstr "タイマーのソース周波数を取得します。"
 
-#: ../../library/pyb.Timer.rst:252
+#: ../../library/pyb.Timer.rst:264
 msgid ""
 "Set the function to be called when the timer channel triggers. ``fun`` is"
 " passed 1 argument, the timer object. If ``fun`` is ``None`` then the "
@@ -21568,7 +21672,7 @@ msgstr ""
 "``fun`` は1つの引数をとり、タイマーオブジェクトが渡されます。 "
 "``fun`` が ``None`` の場合、コールバックは無効になります。"
 
-#: ../../library/pyb.Timer.rst:258
+#: ../../library/pyb.Timer.rst:270
 msgid ""
 "Get or set the capture value associated with a channel. capture, compare,"
 " and pulse_width are all aliases for the same function. capture is the "
@@ -21578,7 +21682,7 @@ msgstr ""
 "capture, compare, pulse_width はすべて同じ関数の別名です。"
 "チャネルが入力キャプチャモードの場合、capture は論理的な名前として使います。"
 
-#: ../../library/pyb.Timer.rst:264
+#: ../../library/pyb.Timer.rst:276
 msgid ""
 "Get or set the compare value associated with a channel. capture, compare,"
 " and pulse_width are all aliases for the same function. compare is the "
@@ -21588,7 +21692,7 @@ msgstr ""
 "capture, compare, pulse_width はすべて同じ関数の別名です。"
 "チャネルが出力比較モードの場合、compare は論理的な名前として使います。"
 
-#: ../../library/pyb.Timer.rst:270
+#: ../../library/pyb.Timer.rst:282
 msgid ""
 "Get or set the pulse width value associated with a channel. capture, "
 "compare, and pulse_width are all aliases for the same function. "
@@ -21598,7 +21702,7 @@ msgstr ""
 "capture, compare, pulse_width はすべて同じ関数の別名です。"
 "チャネルが PWM モードの場合、pulse_width は論理的な名前として使います。"
 
-#: ../../library/pyb.Timer.rst:274
+#: ../../library/pyb.Timer.rst:286
 msgid ""
 "In edge aligned mode, a pulse_width of ``period + 1`` corresponds to a "
 "duty cycle of 100% In center aligned mode, a pulse width of ``period`` "
@@ -21608,7 +21712,7 @@ msgstr ""
 "に対応します。センターアラインモードでは、period のパルス幅はデューティサイクルが "
 "100% に対応します。"
 
-#: ../../library/pyb.Timer.rst:279
+#: ../../library/pyb.Timer.rst:291
 msgid ""
 "Get or set the pulse width percentage associated with a channel.  The "
 "value is a number between 0 and 100 and sets the percentage of the timer "
@@ -21621,7 +21725,7 @@ msgstr ""
 "設定します。値は、より正確な制御のために整数または浮動小数点数にできます。"
 "たとえば、値が25の場合、デューティサイクルは25%になります。"
 
-#: ../../library/pyb.Timer.rst:292
+#: ../../library/pyb.Timer.rst:304
 msgid ""
 "Configures the timer to count Up, Down, or from 0 to ARR and then back "
 "down to 0."
@@ -21629,7 +21733,7 @@ msgstr ""
 "タイマーをカウントがアップ、ダウン、または「0 から ARR まで、そして0に戻る」ように"
 "設定します。"
 
-#: ../../library/pyb.Timer.rst:298
+#: ../../library/pyb.Timer.rst:310
 msgid "Configures the break mode when passed to the ``brk`` keyword argument."
 msgstr ""
 "``brk`` キーワード引数に渡すことでブレークモードを設定します。"

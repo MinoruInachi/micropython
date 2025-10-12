@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-26 10:33+0900\n"
-"PO-Revision-Date: 2025-07-26 11:27+0900\n"
+"POT-Creation-Date: 2025-10-12 10:14+0900\n"
+"PO-Revision-Date: 2025-10-12 11:26+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1408,11 +1408,11 @@ msgstr ""
 
 #: ../../develop/gettingstarted.rst:109
 msgid ""
-"Python is also required. Python 2 is supported for now, but we recommend "
-"using Python 3. Check that you have Python available on your system:"
+"Python 3 is also required. Check that you have Python available on your "
+"system:"
 msgstr ""
-"Python も必要です。今のところ Python 2 でも大丈夫ですが、Python 3 の利用を"
-"お勧めします。お使いのシステムで Python が利用可能であることを確認してください:"
+"Python 3 も必要です。お使いのシステムで Python が利用可能であることを"
+"確認してください:"
 
 #: ../../develop/gettingstarted.rst:112
 msgid ""
@@ -1719,10 +1719,143 @@ msgid "See also :ref:`writingtests`."
 msgstr ":ref:`writingtests` も参照してください。"
 
 #: ../../develop/gettingstarted.rst:286
+msgid "Additional make targets for developers"
+msgstr "開発者用の追加 make ターゲット"
+
+#: ../../develop/gettingstarted.rst:288
+msgid ""
+"In all ``make``-based ports, there is a target to print the size of a "
+"specific object file. When a change is confined to a single file, this is"
+" useful when testing variations to find smaller alternatives."
+msgstr ""
+"すべての ``make`` ベースのポートには、特定のオブジェクトファイルのサイズを"
+"出力するターゲットがあります。変更が単一のファイルに限定されている場合、"
+"これはバリエーションをテストしてより小さな代替案を見つけるのに役立ちます。"
+
+#: ../../develop/gettingstarted.rst:291
+msgid ""
+"For instance, to print the size of ``objstr.o`` in the ``py/`` directory "
+"when making a unix standard build:"
+msgstr ""
+"たとえば、 Unix 標準ビルドを作成するときに ``py/`` ディレクトリ内にある "
+"``objstr.o`` のサイズを出力するには次のようにします:"
+
+#: ../../develop/gettingstarted.rst:293
+msgid "$ make build-standard/py/objstr.sz"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:297
+msgid "Similarly, there is a target to save the preprocessed version of a file:"
+msgstr "同様に、ファイルの前処理済みバージョンを保存するターゲットもあります。"
+
+#: ../../develop/gettingstarted.rst:299
+msgid "$ make build-standard/py/objstr.pp"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:303
+msgid "In ``ports/unix`` there are additional targets related to running tests:"
+msgstr "``ports/unix`` には、テストの実行に関連する追加のターゲットがあります。"
+
+#: ../../develop/gettingstarted.rst:305
+msgid ""
+"$ make test//int       # Run all tests matching the pattern \"int\"\n"
+"$ make test/ports/unix # Run all tests in ports/unix\n"
+"$ make test-failures   # Re-run only the failed tests\n"
+"$ make print-failures  # print the differences for failed tests\n"
+"$ make clean-failures  # delete the .exp and .out files from failed tests"
+msgstr ""
+"$ make test//int       # パターン \"int\" にマッチすべてのテストを実行\n"
+"$ make test/ports/unix # ports/unix にあるすべてのテストを実行\n"
+"$ make test-failures   # 失敗したテストだけを再実行\n"
+"$ make print-failures  # 失敗したテストの差分を出力\n"
+"$ make clean-failures  # 失敗したテストから .exp と .out ファイルを削除"
+
+#: ../../develop/gettingstarted.rst:314
+msgid "Using ci.sh locally"
+msgstr "ci.sh のローカルでの使用"
+
+#: ../../develop/gettingstarted.rst:316
+msgid ""
+"MicroPython uses GitHub Actions for continuous integration. To reduce "
+"dependence on any specific CI system, the actual build steps for Unix-"
+"based builds are in the file ``tools/ci.sh``. This can also be used as a "
+"script on developer desktops, with caveats:"
+msgstr ""
+"MicroPython は継続的インテグレーションに GitHub Actions を使います。"
+"特定の CI システムへの依存を減らすため、Unix ベースのビルドの実際のビルド手順は"
+"ファイル ``tools/ci.sh`` に記述されています。これは開発者のデスクトップ上で"
+"スクリプトとして使用することもできますが、次の点に注意してください:"
+
+#: ../../develop/gettingstarted.rst:320
+msgid ""
+"For most steps, An Ubuntu/Debian system similar to the one used during CI"
+" is assumed."
+msgstr ""
+"ほとんどの手順では、CI で使う環境に Ubuntu/Debian システムと同様のものが"
+"想定されています。"
+
+#: ../../develop/gettingstarted.rst:321
+msgid "Some specific steps assume specific Ubuntu versions."
+msgstr "いくつかの具体的な手順では、特定の Ubuntu バージョンが前提となります。"
+
+#: ../../develop/gettingstarted.rst:322
+msgid ""
+"The setup steps may invoke the system package manager to install "
+"packages, download and install software from the internet, etc."
+msgstr ""
+"セットアップ手順では、システムパッケージマネージャーを呼び出して"
+"パッケージをインストールしたり、インターネットからソフトウェアを"
+"ダウンロードしてインストールしたりする場合があります。"
+
+#: ../../develop/gettingstarted.rst:325
+msgid "To get a usage message including the list of commands, run:"
+msgstr "コマンドのリストを含む使用方法メッセージを出すには、次のコマンドを実行します:"
+
+#: ../../develop/gettingstarted.rst:327
+msgid "$ tools/ci.sh --help"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:331
+msgid "As an example, you can build and test the unix minimal port with:"
+msgstr "たとえば、次のようにして UNIX の最小限のポートをビルドしてテストできます。"
+
+#: ../../develop/gettingstarted.rst:333
+msgid "$ tools/ci.sh unix_minimal_build unix_minimal_run_tests"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:337
+msgid ""
+"If you use the bash shell, you can add a ``ci`` command with tab "
+"completion:"
+msgstr ""
+"bash シェルを使っているなら、Tab 補完で ``ci`` コマンドを追加できます。"
+
+#: ../../develop/gettingstarted.rst:339
+msgid ""
+"$ eval `tools/ci.sh --bash-completion`\n"
+"$ ci unix_cov<tab>"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:344
+msgid ""
+"This will complete the ci step name to ``unix_coverage_``. Pressing tab a"
+" second time will show the list of matching steps:"
+msgstr ""
+"これにより、ci 手順名が ``unix_coverage_`` に補完されます。"
+"Tab キーをもう一度押すと、一致する手順のリストが表示されます。"
+
+#: ../../develop/gettingstarted.rst:347
+msgid ""
+"$ ci unix_coverage_<tab>\n"
+"unix_coverage_32bit_build\n"
+"unix_coverage_32bit_run_native_mpy_tests…"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:354
 msgid "Folder structure"
 msgstr "フォルダ構造"
 
-#: ../../develop/gettingstarted.rst:288
+#: ../../develop/gettingstarted.rst:356
 msgid ""
 "There are a couple of directories to take note of in terms of where "
 "certain implementation details are. The following is a break down of the "
@@ -1731,19 +1864,19 @@ msgstr ""
 "特定の実装の詳細がどこにあるかという点で注意すべきディレクトリがいくつかあります。"
 "以下はソースコードのトップレベルのフォルダの内訳です。"
 
-#: ../../develop/gettingstarted.rst:291
+#: ../../develop/gettingstarted.rst:359
 msgid "py"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:288
+#: ../../develop/gettingstarted.rst:361
 msgid "Contains the compiler, runtime, and core library implementation."
 msgstr "コンパイラ、ランタイム、コアライブラリの実装が含まれています。"
 
-#: ../../develop/gettingstarted.rst:295
+#: ../../develop/gettingstarted.rst:363
 msgid "mpy-cross"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:297
+#: ../../develop/gettingstarted.rst:365
 msgid ""
 "Has the MicroPython cross-compiler which pre-compiles the Python scripts "
 "to bytecode."
@@ -1751,19 +1884,19 @@ msgstr ""
 "Python スクリプトをバイトコードにプリコンパイルする MicroPython クロスコンパイラが"
 "あります。"
 
-#: ../../develop/gettingstarted.rst:299
+#: ../../develop/gettingstarted.rst:367
 msgid "ports"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:231
+#: ../../develop/gettingstarted.rst:369
 msgid "Code for all the versions of MicroPython for the supported ports."
 msgstr "サポートされているポートの MicroPython のすべてのバージョンのコード。"
 
-#: ../../develop/gettingstarted.rst:233
+#: ../../develop/gettingstarted.rst:371
 msgid "lib"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:305
+#: ../../develop/gettingstarted.rst:373
 msgid ""
 "Low-level C libraries used by any port which are mostly 3rd-party "
 "libraries."
@@ -1771,47 +1904,47 @@ msgstr ""
 "どのポートでも使用される低レベルの C ライブラリで、ほとんどがサードパーティ製の"
 "ライブラリです。"
 
-#: ../../develop/gettingstarted.rst:307
+#: ../../develop/gettingstarted.rst:375
 msgid "drivers"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:309
+#: ../../develop/gettingstarted.rst:377
 msgid ""
 "Has drivers for specific hardware and intended to work across multiple "
 "ports."
 msgstr ""
 "特定のハードウェア用のドライバーがあり、複数のポートで動作することを目的としています。"
 
-#: ../../develop/gettingstarted.rst:311
+#: ../../develop/gettingstarted.rst:379
 msgid "extmod"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:313
+#: ../../develop/gettingstarted.rst:381
 msgid "Contains a C implementation of more non-core modules."
 msgstr ""
 "より多くの非コアモジュールの C 実装が含まれています。"
 
-#: ../../develop/gettingstarted.rst:315
+#: ../../develop/gettingstarted.rst:383
 msgid "docs"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:317
+#: ../../develop/gettingstarted.rst:385
 msgid "Has the standard documentation found at https://docs.micropython.org/."
 msgstr "https://docs.micropython.org/ にある標準ドキュメントがあります。"
 
-#: ../../develop/gettingstarted.rst:319
+#: ../../develop/gettingstarted.rst:387
 msgid "tests"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:324
+#: ../../develop/gettingstarted.rst:389
 msgid "An implementation of the test suite."
 msgstr "テストスイートの実装です。"
 
-#: ../../develop/gettingstarted.rst:323
+#: ../../develop/gettingstarted.rst:391
 msgid "tools"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:325
+#: ../../develop/gettingstarted.rst:393
 msgid ""
 "Contains scripts used by the build and CI process, as well as user tools "
 "such as ``pyboard.py`` and ``mpremote``."
@@ -1819,11 +1952,11 @@ msgstr ""
 "ビルドと CI プロセスで使うスクリプト、および ``pyboard.py`` や ``mpremote`` "
 "などのユーザーツールが含まれています。"
 
-#: ../../develop/gettingstarted.rst:328
+#: ../../develop/gettingstarted.rst:396
 msgid "examples"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:330
+#: ../../develop/gettingstarted.rst:398
 msgid ""
 "Example code for building MicroPython as a library as well as native "
 "modules."
@@ -3387,7 +3520,6 @@ msgid ""
 "#include \"py/compile.h\"\n"
 "#include \"py/gc.h\"\n"
 "#include \"py/mperrno.h\"\n"
-"#include \"py/stackctrl.h\"\n"
 "#include \"shared/runtime/gchelper.h\"\n"
 "#include \"shared/runtime/pyexec.h\"\n"
 "\n"
@@ -3396,7 +3528,7 @@ msgid ""
 "\n"
 "int main(int argc, char **argv) {\n"
 "    // Initialise the MicroPython runtime.\n"
-"    mp_stack_ctrl_init();\n"
+"    mp_cstack_init_with_sp_here(2048);\n"
 "    gc_init(heap, heap + sizeof(heap));\n"
 "    mp_init();\n"
 "\n"
@@ -3435,11 +3567,11 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/porting.rst:90
+#: ../../develop/porting.rst:89
 msgid "We also need a Makefile at this point for the port:"
 msgstr "また、この時点で移植用の Makefile が必要です:"
 
-#: ../../develop/porting.rst:92
+#: ../../develop/porting.rst:91
 msgid ""
 "# Include the core environment definitions; this will set $(TOP).\n"
 "include ../../py/mkenv.mk\n"
@@ -3480,15 +3612,15 @@ msgid ""
 "include $(TOP)/py/mkrules.mk"
 msgstr ""
 
-#: ../../develop/porting.rst:132
+#: ../../develop/porting.rst:131
 msgid "Remember to use proper tabs to indent the Makefile."
 msgstr "Makefile のインデントには適切なタブを使うことを忘れないでください。"
 
-#: ../../develop/porting.rst:135
+#: ../../develop/porting.rst:134
 msgid "MicroPython Configurations"
 msgstr "MicroPython の設定"
 
-#: ../../develop/porting.rst:137
+#: ../../develop/porting.rst:136
 msgid ""
 "After integrating the minimal code above, the next step is to create the "
 "MicroPython configuration files for the port. The compile-time "
@@ -3499,11 +3631,11 @@ msgstr ""
 "作成することです。コンパイル時の設定は ``mpconfigport.h`` で、時間保持などの追加の"
 "ハードウェア抽象化関数は ``mphalport.h`` で設定します。"
 
-#: ../../develop/porting.rst:142
+#: ../../develop/porting.rst:141
 msgid "The following is an example of an ``mpconfigport.h`` file:"
 msgstr "以下は ``mpconfigport.h`` ファイルの例です:"
 
-#: ../../develop/porting.rst:144
+#: ../../develop/porting.rst:143
 msgid ""
 "#include <stdint.h>\n"
 "\n"
@@ -3540,7 +3672,7 @@ msgid ""
 "#define MP_STATE_PORT MP_STATE_VM"
 msgstr ""
 
-#: ../../develop/porting.rst:178
+#: ../../develop/porting.rst:177
 msgid ""
 "This configuration file contains machine-specific configurations "
 "including aspects like if different MicroPython features should be "
@@ -3551,26 +3683,26 @@ msgstr ""
 "マシン固有の設定が含まれています。例えば、 ``#define MICROPY_ENABLE_GC (1)`` "
 "などです。この設定を ``(0)`` にすると、その機能は無効になります。"
 
-#: ../../develop/porting.rst:182
+#: ../../develop/porting.rst:181
 msgid ""
 "Other configurations include type definitions, root pointers, board name,"
 " microcontroller name etc."
 msgstr ""
 "その他、型定義、ルートポインタ、ボード名、マイコン名などの設定も可能です。"
 
-#: ../../develop/porting.rst:185
+#: ../../develop/porting.rst:184
 msgid "Similarly, an minimal example ``mphalport.h`` file looks like this:"
 msgstr "同様に、最小限のサンプルの ``mphalport.h`` ファイルは次のようになります:"
 
-#: ../../develop/porting.rst:187
+#: ../../develop/porting.rst:186
 msgid "static inline void mp_hal_set_interrupt_char(char c) {}"
 msgstr ""
 
-#: ../../develop/porting.rst:192
+#: ../../develop/porting.rst:191
 msgid "Support for standard input/output"
 msgstr "標準入出力のサポート"
 
-#: ../../develop/porting.rst:194
+#: ../../develop/porting.rst:193
 msgid ""
 "MicroPython requires at least a way to output characters, and to have a "
 "REPL it also requires a way to input characters. Functions for this can "
@@ -3580,7 +3712,7 @@ msgstr ""
 "入力する方法も必要です。このための関数は、たとえば ``mphalport.c`` という"
 "ファイルに実装できます:"
 
-#: ../../develop/porting.rst:198
+#: ../../develop/porting.rst:197
 msgid ""
 "#include <unistd.h>\n"
 "#include \"py/mpconfig.h\"\n"
@@ -3600,7 +3732,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/porting.rst:217
+#: ../../develop/porting.rst:216
 msgid ""
 "These input and output functions have to be modified depending on the "
 "specific board API. This example uses the standard input/output stream."
@@ -3608,15 +3740,15 @@ msgstr ""
 "これらの入出力関数は、特定のボード API に応じて変更する必要があります。"
 "この例では、標準的な入出力ストリームを使っています。"
 
-#: ../../develop/porting.rst:221
+#: ../../develop/porting.rst:220
 msgid "Building and running"
 msgstr "ビルドと実行"
 
-#: ../../develop/porting.rst:223
+#: ../../develop/porting.rst:222
 msgid "At this stage the directory of the new port should contain::"
 msgstr "この段階で、新しいポートのディレクトリには、次のものが含まれているはずです:"
 
-#: ../../develop/porting.rst:225
+#: ../../develop/porting.rst:224
 msgid ""
 "ports/example_port/\n"
 "├── main.c\n"
@@ -3626,7 +3758,7 @@ msgid ""
 "└── mphalport.h"
 msgstr ""
 
-#: ../../develop/porting.rst:232
+#: ../../develop/porting.rst:231
 msgid ""
 "The port can now be built by running ``make`` (or otherwise, depending on"
 " your system)."
@@ -3634,7 +3766,7 @@ msgstr ""
 "これで、 ``make`` を実行することでポートをビルドできます"
 "(システムによっては、そうでない場合もあります)。"
 
-#: ../../develop/porting.rst:234
+#: ../../develop/porting.rst:233
 msgid ""
 "If you are using the default compiler settings in the Makefile given "
 "above then this will create an executable called ``build/firmware.elf`` "
@@ -3646,19 +3778,19 @@ msgstr ""
 "機能的な REPL を得るためには、まずターミナルを raw モードに設定する必要が"
 "あるかもしれません:"
 
-#: ../../develop/porting.rst:238
+#: ../../develop/porting.rst:237
 msgid ""
 "$ stty raw opost -echo\n"
 "$ ./build/firmware.elf"
 msgstr ""
 
-#: ../../develop/porting.rst:243
+#: ../../develop/porting.rst:242
 msgid "That should give a MicroPython REPL.  You can then run commands like:"
 msgstr ""
 "これで MicroPython の REPL が表示されるはずです。"
 "そして、次のようなコマンドを実行できます:"
 
-#: ../../develop/porting.rst:245
+#: ../../develop/porting.rst:244
 msgid ""
 "MicroPython v1.13 on 2021-01-01; example-board with unknown-cpu\n"
 ">>> import sys\n"
@@ -3667,16 +3799,16 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../develop/porting.rst:253
+#: ../../develop/porting.rst:252
 msgid "Use Ctrl-D to exit, and then run ``reset`` to reset the terminal."
 msgstr ""
 "Ctrl-D で終了し、 ``reset`` を実行してターミナルをリセットします。"
 
-#: ../../develop/porting.rst:256
+#: ../../develop/porting.rst:255
 msgid "Adding a module to the port"
 msgstr "ポートへのモジュール追加"
 
-#: ../../develop/porting.rst:258
+#: ../../develop/porting.rst:257
 msgid ""
 "To add a custom module like ``myport``, first add the module definition "
 "in a file ``modmyport.c``:"
@@ -3684,7 +3816,7 @@ msgstr ""
 "``myport`` のようなカスタムモジュールを追加するには、まず ``modmyport.c`` "
 "というファイルにモジュール定義を追加します:"
 
-#: ../../develop/porting.rst:261
+#: ../../develop/porting.rst:260
 msgid ""
 "#include \"py/runtime.h\"\n"
 "\n"
@@ -3710,7 +3842,7 @@ msgid ""
 "MP_REGISTER_MODULE(MP_QSTR_myport, myport_module);"
 msgstr ""
 
-#: ../../develop/porting.rst:284
+#: ../../develop/porting.rst:283
 msgid ""
 "You will also need to edit the Makefile to add ``modmyport.c`` to the "
 "``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
@@ -3720,7 +3852,7 @@ msgstr ""
 "(qstr がこの新しいファイルで検索されるように) ``SRC_QSTR`` に同じファイルを"
 "加える新しい行を、次のように追加する必要があります:"
 
-#: ../../develop/porting.rst:288
+#: ../../develop/porting.rst:287
 msgid ""
 "SRC_C = \\\n"
 "    main.c \\\n"
@@ -3731,14 +3863,14 @@ msgid ""
 "SRC_QSTR += modmyport.c"
 msgstr ""
 
-#: ../../develop/porting.rst:298
+#: ../../develop/porting.rst:297
 msgid ""
 "If all went correctly then, after rebuilding, you should be able to "
 "import the new module:"
 msgstr ""
 "すべてが正しく行われていれば、再構築後、新しいモジュールをインポートできるはずです:"
 
-#: ../../develop/porting.rst:300
+#: ../../develop/porting.rst:299
 msgid ""
 ">>> import myport\n"
 ">>> myport.info()\n"

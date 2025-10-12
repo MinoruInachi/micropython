@@ -209,6 +209,9 @@ static int do_repl(void) {
         mp_hal_stdio_mode_raw();
 
     input_restart:
+        // If the GC is locked at this point there is no way out except a reset,
+        // so force the GC to be unlocked to help the user debug what went wrong.
+        MP_STATE_THREAD(gc_lock_depth) = 0;
         vstr_reset(&line);
         int ret = readline(&line, mp_repl_get_ps1());
         mp_parse_input_kind_t parse_input_kind = MP_PARSE_SINGLE_INPUT;
@@ -666,12 +669,18 @@ MP_NOINLINE int main_(int argc, char **argv) {
                 subpkg_tried = false;
 
             reimport:
+                mp_hal_set_interrupt_char(CHAR_CTRL_C);
                 if (nlr_push(&nlr) == 0) {
                     mod = mp_builtin___import__(MP_ARRAY_SIZE(import_args), import_args);
+                    mp_hal_set_interrupt_char(-1);
+                    mp_handle_pending(true);
                     nlr_pop();
                 } else {
                     // uncaught exception
-                    return handle_uncaught_exception(nlr.ret_val) & 0xff;
+                    mp_hal_set_interrupt_char(-1);
+                    mp_handle_pending(false);
+                    ret = handle_uncaught_exception(nlr.ret_val) & 0xff;
+                    break;
                 }
 
                 // If this module is a package, see if it has a `__main__.py`.
