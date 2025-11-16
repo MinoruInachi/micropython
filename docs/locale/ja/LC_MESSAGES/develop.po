@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 10:14+0900\n"
-"PO-Revision-Date: 2025-10-12 11:26+0900\n"
+"POT-Creation-Date: 2025-11-16 10:09+0900\n"
+"PO-Revision-Date: 2025-11-16 10:45+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3658,8 +3658,6 @@ msgid ""
 "\n"
 "// Type definitions for the specific machine.\n"
 "\n"
-"typedef intptr_t mp_int_t; // must be pointer size\n"
-"typedef uintptr_t mp_uint_t; // must be pointer size\n"
 "typedef long mp_off_t;\n"
 "\n"
 "// We need to provide a declaration/definition of alloca().\n"
@@ -3672,7 +3670,7 @@ msgid ""
 "#define MP_STATE_PORT MP_STATE_VM"
 msgstr ""
 
-#: ../../develop/porting.rst:177
+#: ../../develop/porting.rst:175
 msgid ""
 "This configuration file contains machine-specific configurations "
 "including aspects like if different MicroPython features should be "
@@ -3683,7 +3681,7 @@ msgstr ""
 "マシン固有の設定が含まれています。例えば、 ``#define MICROPY_ENABLE_GC (1)`` "
 "などです。この設定を ``(0)`` にすると、その機能は無効になります。"
 
-#: ../../develop/porting.rst:181
+#: ../../develop/porting.rst:179
 msgid ""
 "Other configurations include type definitions, root pointers, board name,"
 " microcontroller name etc."
@@ -3694,15 +3692,15 @@ msgstr ""
 msgid "Similarly, an minimal example ``mphalport.h`` file looks like this:"
 msgstr "同様に、最小限のサンプルの ``mphalport.h`` ファイルは次のようになります:"
 
-#: ../../develop/porting.rst:186
+#: ../../develop/porting.rst:184
 msgid "static inline void mp_hal_set_interrupt_char(char c) {}"
 msgstr ""
 
-#: ../../develop/porting.rst:191
+#: ../../develop/porting.rst:189
 msgid "Support for standard input/output"
 msgstr "標準入出力のサポート"
 
-#: ../../develop/porting.rst:193
+#: ../../develop/porting.rst:191
 msgid ""
 "MicroPython requires at least a way to output characters, and to have a "
 "REPL it also requires a way to input characters. Functions for this can "
@@ -3712,7 +3710,7 @@ msgstr ""
 "入力する方法も必要です。このための関数は、たとえば ``mphalport.c`` という"
 "ファイルに実装できます:"
 
-#: ../../develop/porting.rst:197
+#: ../../develop/porting.rst:195
 msgid ""
 "#include <unistd.h>\n"
 "#include \"py/mpconfig.h\"\n"
@@ -3732,7 +3730,7 @@ msgid ""
 "}"
 msgstr ""
 
-#: ../../develop/porting.rst:216
+#: ../../develop/porting.rst:214
 msgid ""
 "These input and output functions have to be modified depending on the "
 "specific board API. This example uses the standard input/output stream."
@@ -3740,15 +3738,15 @@ msgstr ""
 "これらの入出力関数は、特定のボード API に応じて変更する必要があります。"
 "この例では、標準的な入出力ストリームを使っています。"
 
-#: ../../develop/porting.rst:220
+#: ../../develop/porting.rst:218
 msgid "Building and running"
 msgstr "ビルドと実行"
 
-#: ../../develop/porting.rst:222
+#: ../../develop/porting.rst:220
 msgid "At this stage the directory of the new port should contain::"
 msgstr "この段階で、新しいポートのディレクトリには、次のものが含まれているはずです:"
 
-#: ../../develop/porting.rst:224
+#: ../../develop/porting.rst:222
 msgid ""
 "ports/example_port/\n"
 "├── main.c\n"
@@ -3758,7 +3756,7 @@ msgid ""
 "└── mphalport.h"
 msgstr ""
 
-#: ../../develop/porting.rst:231
+#: ../../develop/porting.rst:229
 msgid ""
 "The port can now be built by running ``make`` (or otherwise, depending on"
 " your system)."
@@ -3766,7 +3764,7 @@ msgstr ""
 "これで、 ``make`` を実行することでポートをビルドできます"
 "(システムによっては、そうでない場合もあります)。"
 
-#: ../../develop/porting.rst:233
+#: ../../develop/porting.rst:231
 msgid ""
 "If you are using the default compiler settings in the Makefile given "
 "above then this will create an executable called ``build/firmware.elf`` "
@@ -3778,19 +3776,19 @@ msgstr ""
 "機能的な REPL を得るためには、まずターミナルを raw モードに設定する必要が"
 "あるかもしれません:"
 
-#: ../../develop/porting.rst:237
+#: ../../develop/porting.rst:235
 msgid ""
 "$ stty raw opost -echo\n"
 "$ ./build/firmware.elf"
 msgstr ""
 
-#: ../../develop/porting.rst:242
+#: ../../develop/porting.rst:240
 msgid "That should give a MicroPython REPL.  You can then run commands like:"
 msgstr ""
 "これで MicroPython の REPL が表示されるはずです。"
 "そして、次のようなコマンドを実行できます:"
 
-#: ../../develop/porting.rst:244
+#: ../../develop/porting.rst:242
 msgid ""
 "MicroPython v1.13 on 2021-01-01; example-board with unknown-cpu\n"
 ">>> import sys\n"
@@ -3799,16 +3797,16 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../develop/porting.rst:252
+#: ../../develop/porting.rst:250
 msgid "Use Ctrl-D to exit, and then run ``reset`` to reset the terminal."
 msgstr ""
 "Ctrl-D で終了し、 ``reset`` を実行してターミナルをリセットします。"
 
-#: ../../develop/porting.rst:255
+#: ../../develop/porting.rst:253
 msgid "Adding a module to the port"
 msgstr "ポートへのモジュール追加"
 
-#: ../../develop/porting.rst:257
+#: ../../develop/porting.rst:255
 msgid ""
 "To add a custom module like ``myport``, first add the module definition "
 "in a file ``modmyport.c``:"
@@ -3816,7 +3814,7 @@ msgstr ""
 "``myport`` のようなカスタムモジュールを追加するには、まず ``modmyport.c`` "
 "というファイルにモジュール定義を追加します:"
 
-#: ../../develop/porting.rst:260
+#: ../../develop/porting.rst:258
 msgid ""
 "#include \"py/runtime.h\"\n"
 "\n"
@@ -3842,7 +3840,7 @@ msgid ""
 "MP_REGISTER_MODULE(MP_QSTR_myport, myport_module);"
 msgstr ""
 
-#: ../../develop/porting.rst:283
+#: ../../develop/porting.rst:281
 msgid ""
 "You will also need to edit the Makefile to add ``modmyport.c`` to the "
 "``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
@@ -3852,7 +3850,7 @@ msgstr ""
 "(qstr がこの新しいファイルで検索されるように) ``SRC_QSTR`` に同じファイルを"
 "加える新しい行を、次のように追加する必要があります:"
 
-#: ../../develop/porting.rst:287
+#: ../../develop/porting.rst:285
 msgid ""
 "SRC_C = \\\n"
 "    main.c \\\n"
@@ -3863,14 +3861,14 @@ msgid ""
 "SRC_QSTR += modmyport.c"
 msgstr ""
 
-#: ../../develop/porting.rst:297
+#: ../../develop/porting.rst:295
 msgid ""
 "If all went correctly then, after rebuilding, you should be able to "
 "import the new module:"
 msgstr ""
 "すべてが正しく行われていれば、再構築後、新しいモジュールをインポートできるはずです:"
 
-#: ../../develop/porting.rst:299
+#: ../../develop/porting.rst:297
 msgid ""
 ">>> import myport\n"
 ">>> myport.info()\n"
@@ -4200,6 +4198,188 @@ msgid ""
 msgstr ""
 "QSTRプール(および文字列データを格納する基盤となる「チャンク」)は、"
 "最小サイズでオンデマンドでヒープに割り当てられます。"
+
+#: ../../develop/support_tiers.rst:2
+msgid "MicroPython Support Tiers"
+msgstr "MicroPython サポートレベル"
+
+#: ../../develop/support_tiers.rst:4
+msgid ""
+"MicroPython operates with a set of Support Tier levels for the various "
+"ports. Tiers 1, 2 and 3 are the main Tier levels with Tier 1 being the "
+"most mature and actively maintained.  There is also Tier M for additional"
+" ports used primarily for maintenance, development and testing. These "
+"Tier levels are defined in the table below."
+msgstr ""
+"MicroPython は、様々なポートに対して複数のレベルでサポートします。"
+"レベル 1、2、3 が主要なサポートレベルです。"
+"レベル 1 は最も成熟しており、積極的にメンテナンスされています。"
+"また、主にメンテナンス、開発、テストに使用される追加ポートにレベル M があります。"
+"これらのレベルは、次の表のように定義されています。"
+
+#: ../../develop/support_tiers.rst:14
+msgid "Tier 1"
+msgstr "レベル 1"
+
+#: ../../develop/support_tiers.rst:14
+msgid "Tier 2"
+msgstr "レベル 2"
+
+#: ../../develop/support_tiers.rst:14
+msgid "Tier 3"
+msgstr "レベル 3"
+
+#: ../../develop/support_tiers.rst:14
+msgid "Tier M"
+msgstr "レベル M"
+
+#: ../../develop/support_tiers.rst:16
+msgid "builds pass under CI"
+msgstr "CI でビルドがパスする"
+
+#: ../../develop/support_tiers.rst:16 ../../develop/support_tiers.rst:18
+#: ../../develop/support_tiers.rst:20 ../../develop/support_tiers.rst:22
+#: ../../develop/support_tiers.rst:24 ../../develop/support_tiers.rst:26
+#: ../../develop/support_tiers.rst:28 ../../develop/support_tiers.rst:30
+#: ../../develop/support_tiers.rst:32
+msgid "✔"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:18
+msgid "tests run under CI (where possible)"
+msgstr "CI で(可能な場合)テストを実行する"
+
+#: ../../develop/support_tiers.rst:20
+msgid "actively maintained"
+msgstr "活発に維持している"
+
+#: ../../develop/support_tiers.rst:22
+msgid "stable Python API"
+msgstr "安定した Python API"
+
+#: ../../develop/support_tiers.rst:24
+msgid "new features actively developed"
+msgstr "活発に新機能を開発"
+
+#: ../../develop/support_tiers.rst:26
+msgid "tested on hardware for releases"
+msgstr "リリース時にハードウェアでテスト"
+
+#: ../../develop/support_tiers.rst:28
+msgid "prioritized bug reports"
+msgstr "バグレポートに優先対応"
+
+#: ../../develop/support_tiers.rst:30
+msgid "regressions warrant a patch release"
+msgstr "リグレッションにパッチリリースが必須"
+
+#: ../../develop/support_tiers.rst:32
+msgid "has port-specific documentation"
+msgstr "ポート固有のドキュメント"
+
+#: ../../develop/support_tiers.rst:35
+msgid ""
+"Lower Tiers may tick more boxes, but the above table defines the minimum "
+"requirements for a port to belong to a Tier."
+msgstr ""
+"より低いサポートレベルでより多くのボックスにチェックが付くこともありますが、"
+"上記の表はポートがサポートレベルに属するための最小要件を定義しています。"
+
+#: ../../develop/support_tiers.rst:38
+msgid "Tier 1 ports:"
+msgstr "レベル 1 ポート:"
+
+#: ../../develop/support_tiers.rst:40
+msgid "esp32"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:41
+msgid "mimxrt"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:42
+msgid "rp2"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:43
+msgid "samd"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:44
+msgid "stm32"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:45
+msgid "unix"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:46
+msgid "windows"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:48
+msgid "Tier 2 ports:"
+msgstr "レベル 2 ポート:"
+
+#: ../../develop/support_tiers.rst:50
+msgid "alif"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:51
+msgid "embed"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:52
+msgid "nrf"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:53
+msgid "renesas-ra"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:54
+msgid "webassembly"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:55
+msgid "zephyr"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:57
+msgid "Tier 3 ports:"
+msgstr "レベル 3 ポート:"
+
+#: ../../develop/support_tiers.rst:59
+msgid "cc3200"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:60
+msgid "esp8266"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:61
+msgid "pic16bit"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:62
+msgid "powerpc"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:64
+msgid "Tier M ports:"
+msgstr "レベル M ポート:"
+
+#: ../../develop/support_tiers.rst:66
+msgid "bare-arm"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:67
+msgid "minimal"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:68
+msgid "qemu"
+msgstr ""
 
 #: ../../develop/writingtests.rst:4
 msgid "Writing tests"

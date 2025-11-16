@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 10:14+0900\n"
-"PO-Revision-Date: 2025-10-12 19:21+0900\n"
+"POT-Creation-Date: 2025-11-16 10:09+0900\n"
+"PO-Revision-Date: 2025-11-16 13:15+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3807,20 +3807,39 @@ msgstr "これは ext1 のサポートのあるボードでのみ利用可能で
 
 #: ../../library/esp32.rst:48
 msgid ""
+"Configure how GPIO wakes the device from sleep.  *pins* can be ``None`` "
+"or a tuple/list of valid Pin objects.  *level* should be "
+"``esp32.WAKEUP_ALL_LOW`` or ``esp32.WAKEUP_ANY_HIGH``."
+msgstr ""
+"GPIO がデバイスをスリープ状態から復帰させる方法を設定します。"
+"*pins* には ``None`` あるいは有効な Pin オブジェクトのタプル/リストを指定できます。 "
+"*level* には ``esp32.WAKEUP_ALL_LOW`` か ``esp32.WAKEUP_ANY_HIGH`` を"
+"指定します。"
+
+#: ../../library/esp32.rst:52
+msgid ""
+"Some boards don't support waking on GPIO from deep sleep, on those "
+"boards, the pins set here can only be used to wake from light sleep."
+msgstr ""
+"一部のボードはディープ スリープからの GPIO による起床をサポートしていません。"
+"そのようなボードでは、ここで設定されたピンはライトスリープからの起床にのみ使えます。"
+
+#: ../../library/esp32.rst:57
+msgid ""
 "Configure whether non-RTC GPIO pin configuration is retained during deep-"
 "sleep mode for held pads. *enable* should be a boolean value."
 msgstr ""
 "ディープスリープモード中のパッドホールドについて、RTC 以外の GPIO ピンの設定を"
 "保持するかどうかを設定します。 *enable* 引数はブール値でなければなりません。"
 
-#: ../../library/esp32.rst:53
+#: ../../library/esp32.rst:62
 msgid ""
 "Read the raw value of the internal temperature sensor, returning an "
 "integer."
 msgstr ""
 "内部温度センサーの素の値を読み、整数を返します。"
 
-#: ../../library/esp32.rst:57
+#: ../../library/esp32.rst:66
 msgid ""
 "Returns information about the ESP-IDF heap memory regions. One of them "
 "contains the MicroPython heap and the others are used by ESP-IDF, e.g., "
@@ -3836,7 +3855,7 @@ msgstr ""
 "把握するのに役立ちます。また、アロケーションの失敗により ESP-IDF の"
 "操作が失敗した場合の状況を知ることができるかもしれません。"
 
-#: ../../library/esp32.rst:63
+#: ../../library/esp32.rst:72
 msgid ""
 "The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` "
 "values but the two most useful ones are predefined as `esp32.HEAP_DATA` "
@@ -3848,7 +3867,7 @@ msgstr ""
 "`esp32.HEAP_DATA` はデータヒープ領域用であり、 "
 "`esp32.HEAP_EXEC` はネイティブコードエミッタで使用される実行可能領域用です。"
 
-#: ../../library/esp32.rst:67
+#: ../../library/esp32.rst:76
 msgid ""
 "The return value is a list of 4-tuples, where each 4-tuple corresponds to"
 " one heap and contains: the total bytes, the free bytes, the largest free"
@@ -3858,11 +3877,11 @@ msgstr ""
 "タプルの各項目は、合計バイト数、空きバイト数、最大空きブロック数、"
 "時間経過にともなう最小空きブロック数を意味します。"
 
-#: ../../library/esp32.rst:71
+#: ../../library/esp32.rst:80
 msgid "Example after booting::"
 msgstr "ブート後の例::"
 
-#: ../../library/esp32.rst:73
+#: ../../library/esp32.rst:82
 msgid ""
 ">>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)\n"
 "[(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512,"
@@ -3870,7 +3889,7 @@ msgid ""
 " (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]"
 msgstr ""
 
-#: ../../library/esp32.rst:77
+#: ../../library/esp32.rst:86
 msgid ""
 "Free IDF heap memory in the `esp32.HEAP_DATA` region is available to be "
 "automatically added to the MicroPython heap to prevent a MicroPython "
@@ -3885,7 +3904,7 @@ msgstr ""
 "には *役立ちません* 。代わりに :func:`micropython.mem_info()` および "
 ":func:`gc.mem_free()` を使ってください:"
 
-#: ../../library/esp32.rst:84
+#: ../../library/esp32.rst:93
 msgid ""
 "The \"max new split\" value in :func:`micropython.mem_info()` output "
 "corresponds to the largest free block of ESP-IDF heap that could be "
@@ -3895,7 +3914,7 @@ msgstr ""
 "ESP-IDF ヒープの最大の空きブロックに対応し、必要に応じて MicroPython ヒープに"
 "自動的に追加できるものです。"
 
-#: ../../library/esp32.rst:88
+#: ../../library/esp32.rst:97
 msgid ""
 "The result of :func:`gc.mem_free()` is the total of the current \"free\" "
 "and \"max new split\" values printed by :func:`micropython.mem_info()`."
@@ -3903,7 +3922,7 @@ msgstr ""
 ":func:`gc.mem_free()` の結果は、 :func:`micropython.mem_info()` によって"
 "表示される現在の \"free\" と \"max new split\" の値の合計です。"
 
-#: ../../library/esp32.rst:93
+#: ../../library/esp32.rst:102
 msgid ""
 "Returns information about running ESP-IDF/FreeRTOS tasks, which include "
 "MicroPython threads. This data is useful to gain insight into how much "
@@ -3916,7 +3935,7 @@ msgstr ""
 "かを把握するのに役立ちます。また、割り当てたスタックが十分に足りているか、"
 "それとも削減可能かを判断する際にも有用です。"
 
-#: ../../library/esp32.rst:98
+#: ../../library/esp32.rst:107
 msgid ""
 "``CONFIG_FREERTOS_USE_TRACE_FACILITY=y`` must be set in the board "
 "configuration to make this method available. Additionally configuring "
@@ -3930,7 +3949,7 @@ msgstr ""
 "``CONFIG_FREERTOS_VTASKLIST_INCLUDE_COREID=y`` を設定することで、"
 "タスクごと実行時間とその合計、実行中のコア ID を取得できるようになるため推奨されます。"
 
-#: ../../library/esp32.rst:104
+#: ../../library/esp32.rst:113
 msgid ""
 "The return value is a 2-tuple where the first value is the total runtime,"
 " and the second a list of tasks. Each task is a 7-tuple containing: the "
@@ -3943,7 +3962,7 @@ msgstr ""
 "実行時間、スタックのハイウォーターマーク、実行中のコアIDです。"
 "FreeRTOS の該当設定が有効でない場合、実行時間およびコアIDは None になります。"
 
-#: ../../library/esp32.rst:110
+#: ../../library/esp32.rst:119
 msgid ""
 "For an easier to use output based on this function you can use the `utop "
 "library <https://github.com/micropython/micropython-"
@@ -3955,11 +3974,11 @@ msgstr ""
 "<https://github.com/micropython/micropython-"
 "lib/tree/master/micropython/utop>`_ が使えます。"
 
-#: ../../library/esp32.rst:116
+#: ../../library/esp32.rst:125
 msgid "Flash partitions"
 msgstr "フラッシュのパーティション"
 
-#: ../../library/esp32.rst:118
+#: ../../library/esp32.rst:127
 msgid ""
 "This class gives access to the partitions in the device's flash memory "
 "and includes methods to enable over-the-air (OTA) updates."
@@ -3967,7 +3986,7 @@ msgstr ""
 "このクラスは、デバイスのフラッシュメモリ内のパーティションへのアクセスを提供します。"
 "加えて、over-the-air (OTA) 更新を可能にするメソッドもあります。"
 
-#: ../../library/esp32.rst:123
+#: ../../library/esp32.rst:132
 msgid ""
 "Create an object representing a partition.  *id* can be a string which is"
 " the label of the partition to retrieve, or one of the constants: "
@@ -3978,7 +3997,7 @@ msgstr ""
 "ラベルである文字列、または定数 BOOT または RUNNING のいずれかです。 "
 "*block_size* は個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:129
+#: ../../library/esp32.rst:138
 msgid ""
 "Find a partition specified by *type*, *subtype* and *label*.  Returns a "
 "(possibly empty) list of Partition objects. Note: ``subtype=0xff`` "
@@ -3989,18 +4008,18 @@ msgstr ""
 "注記: ``subtype=0xff`` 任意のサブタイプにマッチ、 ``label=None`` "
 "は任意のラベルにマッチします。"
 
-#: ../../library/esp32.rst:133
+#: ../../library/esp32.rst:142
 msgid ""
 "*block_size* specifies the byte size of an individual block used by the "
 "returned objects."
 msgstr ""
 "*block_size* は、返されるオブジェクトが使う個々のブロックのバイトサイズを指定します。"
 
-#: ../../library/esp32.rst:138
+#: ../../library/esp32.rst:147
 msgid "Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``."
 msgstr "``(type, subtype, addr, size, label, encrypted)`` の６項目のタプルを返します。"
 
-#: ../../library/esp32.rst:146 ../../library/pyb.Flash.rst:44
+#: ../../library/esp32.rst:155 ../../library/pyb.Flash.rst:44
 msgid ""
 "These methods implement the simple and :ref:`extended <block-device-"
 "interface>` block protocol defined by :class:`vfs.AbstractBlockDev`."
@@ -4008,11 +4027,11 @@ msgstr ""
 "これらのメソッドは :class:`vfs.AbstractBlockDev` によって定義されたシンプルで"
 ":ref:`extended <block-device-interface>` ブロックプロトコルを実装します。"
 
-#: ../../library/esp32.rst:152
+#: ../../library/esp32.rst:161
 msgid "Sets the partition as the boot partition."
 msgstr "パーティションをブートパーティションとして設定します。"
 
-#: ../../library/esp32.rst:154
+#: ../../library/esp32.rst:163
 msgid ""
 "Do not enter :func:`deepsleep<machine.deepsleep>` after changing the OTA "
 "boot partition, without first performing a hard "
@@ -4024,7 +4043,7 @@ msgstr ""
 "入らないでください。そうしておけば、ブートローダーが新しいイメージをブートする"
 "前に新しいイメージの検証を行います。"
 
-#: ../../library/esp32.rst:161
+#: ../../library/esp32.rst:170
 msgid ""
 "Gets the next update partition after this one, and returns a new "
 "Partition object. Typical usage is "
@@ -4035,7 +4054,7 @@ msgstr ""
 "返します。よく使うのは ``Partition(Partition.RUNNING).get_next_update()`` で、"
 "これは現在更新中のパーティションの次のパーティションを返します。"
 
-#: ../../library/esp32.rst:167
+#: ../../library/esp32.rst:176
 msgid ""
 "Signals that the current boot is considered successful. Calling "
 "``mark_app_valid_cancel_rollback`` is required on the first boot of a new"
@@ -4056,7 +4075,7 @@ msgstr ""
 "呼び出しても問題なく、esptool を使ってロードしたファームウェアをブートする"
 "場合は呼び出す必要ありません。"
 
-#: ../../library/esp32.rst:182
+#: ../../library/esp32.rst:191
 msgid ""
 "Used in the `Partition` constructor to fetch various partitions: ``BOOT``"
 " is the partition that will be booted at the next reset and ``RUNNING`` "
@@ -4066,7 +4085,7 @@ msgstr ""
 "``BOOT`` は次のリセット時に起動されるパーティションで、 ``RUNNING`` "
 "は現在実行中のパーティションです。"
 
-#: ../../library/esp32.rst:189
+#: ../../library/esp32.rst:198
 msgid ""
 "Used in `Partition.find` to specify the partition type: ``APP`` is for "
 "bootable firmware partitions (typically labelled ``factory``, ``ota_0``, "
@@ -4078,15 +4097,15 @@ msgstr ""
 "``ota_0``, ``ota_1`` などのラベルがついています)、 ``DATA`` はその他の"
 "パーティションです(たとえば ``nvs``, ``otadata``, ``phy_init``, ``vfs``)。"
 
-#: ../../library/esp32.rst:196
+#: ../../library/esp32.rst:205
 msgid "Used in `idf_heap_info`."
 msgstr "`idf_heap_info` で使います。"
 
-#: ../../library/esp32.rst:202
+#: ../../library/esp32.rst:211
 msgid "PCNT"
 msgstr ""
 
-#: ../../library/esp32.rst:204
+#: ../../library/esp32.rst:213
 msgid ""
 "This class provides access to the ESP32 hardware support for pulse "
 "counting. There are 8 pulse counter units, with id 0..7."
@@ -4094,7 +4113,7 @@ msgstr ""
 "このクラスは、ESP32 のパルスカウント機能(pulse counting)へのアクセスを提供します。"
 "パルスカウンターユニットは 8 個あり、0 から 7 の id がついています。"
 
-#: ../../library/esp32.rst:207
+#: ../../library/esp32.rst:216
 msgid ""
 "See the :ref:`machine.Counter <machine.Counter>` and "
 ":ref:`machine.Encoder <machine.Encoder>` classes for simpler and portable"
@@ -4106,29 +4125,29 @@ msgstr ""
 ":ref:`machine.Encoder <machine.Encoder>` クラスを参照してください。"
 "これらのクラスは :class:`PCNT` を薄い Python ラッパーとして実装したものです。"
 
-#: ../../library/esp32.rst:214
+#: ../../library/esp32.rst:223
 msgid "Returns the singleton PCNT instance for the given unit ``id``."
 msgstr "指定したユニット ``id`` に対応する PCNT インスタンス(シングルトン)を返します。"
 
-#: ../../library/esp32.rst:216
+#: ../../library/esp32.rst:225
 msgid "Keyword arguments are passed to the ``init()`` method as described below."
 msgstr "キーワード引数は、後述の ``init()`` メソッドに渡されます。"
 
-#: ../../library/esp32.rst:221
+#: ../../library/esp32.rst:230
 msgid "(Re-)initialise a pulse counter unit. Supported keyword arguments are:"
 msgstr ""
 "(再)初期化を行い、パルスカウンターユニットを設定します。"
 "サポートしているキーワード引数は次のとおりです。"
 
-#: ../../library/esp32.rst:223
+#: ../../library/esp32.rst:232
 msgid "``channel``: see description below"
 msgstr "``channel``: 後述の説明を参照してください。"
 
-#: ../../library/esp32.rst:224
+#: ../../library/esp32.rst:233
 msgid "``pin``: the input Pin to monitor for pulses"
 msgstr "``pin``: パルス入力を監視する入力ピン。"
 
-#: ../../library/esp32.rst:225
+#: ../../library/esp32.rst:234
 msgid ""
 "``rising``: an action to take on a rising edge - one of "
 "``PCNT.INCREMENT``, ``PCNT.DECREMENT`` or ``PCNT.IGNORE`` (the default)"
@@ -4136,14 +4155,14 @@ msgstr ""
 "``rising``: 立ち上がりエッジでの動作 - "
 "``PCNT.INCREMENT``, ``PCNT.DECREMENT``, ``PCNT.IGNORE`` (デフォルト)のいずれか"
 
-#: ../../library/esp32.rst:227
+#: ../../library/esp32.rst:236
 msgid ""
 "``falling``: an action to take on a falling edge (takes the save values "
 "as the ``rising`` argument)."
 msgstr ""
 "``falling``: 立ち下がりエッジでの動作(``rising`` 引数と同じ値を取ります)。
 
-#: ../../library/esp32.rst:229
+#: ../../library/esp32.rst:238
 msgid ""
 "``mode_pin``: ESP32 pulse counters support monitoring a second pin and "
 "altering the behaviour of the counter based on its level - set this "
@@ -4153,7 +4172,7 @@ msgstr ""
 "そのレベルに応じてカウンターの動作を変更できます - このキーワード引数に"
 "任意の入力ピンを設定します"
 
-#: ../../library/esp32.rst:232
+#: ../../library/esp32.rst:241
 msgid ""
 "``mode_low``: set to either ``PCNT.HOLD`` or ``PCNT.REVERSE`` to either "
 "suspend counting or reverse the direction of the counter (i.e., "
@@ -4164,7 +4183,7 @@ msgstr ""
 "``PCNT.HOLD`` (カウント停止)または ``PCNT.REVERSE`` (カウント方向反転: "
 "``PCNT.INCREMENT`` が ``PCNT.DECREMENT`` となり、その逆も同様)のどちらか"
 
-#: ../../library/esp32.rst:236
+#: ../../library/esp32.rst:245
 msgid ""
 "``mode_high``: as ``mode_low`` but for the behaviour when ``mode_pin`` is"
 " high"
@@ -4172,7 +4191,7 @@ msgstr ""
 "``mode_high``: ``mode_pin`` が high のときの動作を ``mode_low`` と同様に"
 "指定します。"
 
-#: ../../library/esp32.rst:238
+#: ../../library/esp32.rst:247
 msgid ""
 "``filter``: set to a value 1..1023, in ticks of the 80MHz clock, to "
 "enable the pulse width filter"
@@ -4180,21 +4199,21 @@ msgstr ""
 "``filter``: パルス幅フィルターを有効にします。値は 1..1023 "
 "(80MHz クロックのティック単位)で指定。"
 
-#: ../../library/esp32.rst:240
+#: ../../library/esp32.rst:249
 msgid ""
 "``min``: set to the minimum level of the counter value when decrementing "
 "(-32768..-1) or 0 to disable"
 msgstr ""
 "``min``: カウント減少時の最小値を設定します(-32768..-1)。0 を指定すると無効"
 
-#: ../../library/esp32.rst:242
+#: ../../library/esp32.rst:251
 msgid ""
 "``max``: set to the maximum level of the counter value when incrementing "
 "(1..32767) or 0 to disable"
 msgstr ""
 "``max``: カウント増加時の最大値を設定します(1..32767)。0 を指定すると無効"
 
-#: ../../library/esp32.rst:244
+#: ../../library/esp32.rst:253
 msgid ""
 "``threshold0``: sets the counter value for the ``PCNT.IRQ_THRESHOLD0`` "
 "event (see ``irq`` method)"
@@ -4202,7 +4221,7 @@ msgstr ""
 "``threshold0``: ``PCNT.IRQ_THRESHOLD0`` イベントのカウンター値を設定します"
 "(``irq`` メソッド参照)。"
 
-#: ../../library/esp32.rst:246
+#: ../../library/esp32.rst:255
 msgid ""
 "``threshold1``: sets the counter value for the ``PCNT.IRQ_THRESHOLD1`` "
 "event (see ``irq`` method)"
@@ -4210,11 +4229,11 @@ msgstr ""
 "``threshold1``: ``PCNT.IRQ_THRESHOLD1`` イベントのカウンター値を設定します"
 "(``irq`` メソッド参照)。"
 
-#: ../../library/esp32.rst:248
+#: ../../library/esp32.rst:257
 msgid "``value``: can be set to ``0`` to reset the counter value"
 msgstr "``value``: カウンター値をリセットする場合は 0 を指定します。"
 
-#: ../../library/esp32.rst:250
+#: ../../library/esp32.rst:259
 msgid ""
 "The hardware initialisation is done in stages and so some of the keyword "
 "arguments can be used in groups or in isolation to partially reconfigure "
@@ -4223,7 +4242,7 @@ msgstr ""
 "ハードウェアの初期化は段階的に行われるため、キーワード引数によっては組み合わせまたは単独で"
 "指定して、ユニットを部分的に再設定できます:"
 
-#: ../../library/esp32.rst:254
+#: ../../library/esp32.rst:263
 msgid ""
 "the ``pin`` keyword (optionally combined with ``mode_pin``) can be used "
 "to change just the bound pin(s)"
@@ -4231,7 +4250,7 @@ msgstr ""
 "``pin`` キーワードを(必要に応じて ``mode_pin`` と組み合わせて)使うと、"
 "バインドするピンだけを変更できます。"
 
-#: ../../library/esp32.rst:256
+#: ../../library/esp32.rst:265
 msgid ""
 "``rising``, ``falling``, ``mode_low`` and ``mode_high`` can be used "
 "(singly or together) to change the counting logic - omitted keywords use "
@@ -4241,14 +4260,14 @@ msgstr ""
 "カウントのロジックを変更できます。省略されたキーワードにはデフォルト値"
 "(``PCNT.IGNORE`` または ``PCNT.NORMAL``)を適用します。"
 
-#: ../../library/esp32.rst:259
+#: ../../library/esp32.rst:268
 msgid ""
 "``filter`` can be used to change only the pulse width filter (with 0 "
 "disabling it)"
 msgstr ""
 "``filter`` はパルス幅フィルターだけを変更できます(0 を指定すると無効化)。"
 
-#: ../../library/esp32.rst:261
+#: ../../library/esp32.rst:270
 msgid ""
 "each of ``min``, ``max``, ``threshold0`` and ``threshold1`` can be used "
 "to change these limit/event values individually; however, setting any "
@@ -4259,7 +4278,7 @@ msgstr ""
 "カウンターはゼロにリセットされます(つまり暗黙的に ``value=0`` が指定された"
 "ことになります)。"
 
-#: ../../library/esp32.rst:266
+#: ../../library/esp32.rst:275
 msgid ""
 "Each pulse counter unit supports two channels, 0 and 1, each able to "
 "monitor different pins with different counting logic but updating the "
@@ -4274,7 +4293,7 @@ msgstr ""
 "``falling``, ``mode_pin``, ``mode_low``, ``mode_high`` "
 "の各キーワード引数を指定します。"
 
-#: ../../library/esp32.rst:272
+#: ../../library/esp32.rst:281
 msgid ""
 "The second channel can be used to configure 4X quadrature decoding with a"
 " single counter unit::"
@@ -4282,7 +4301,7 @@ msgstr ""
 "この第２チャンネルを利用すると、1 つのカウンターユニットで 4X 直交デコード"
 "(quadrature decoding)を構成できます。"
 
-#: ../../library/esp32.rst:275
+#: ../../library/esp32.rst:284
 msgid ""
 "pin_a = Pin(2, Pin.INPUT, pull=Pin.PULL_UP)\n"
 "pin_b = Pin(3, Pin.INPUT, pull=Pin.PULL_UP)\n"
@@ -4294,11 +4313,11 @@ msgid ""
 "rotary.start()"
 msgstr ""
 
-#: ../../library/esp32.rst:284
+#: ../../library/esp32.rst:293
 msgid "Call this method with no arguments to return the current counter value."
 msgstr "このメソッドを引数なしで呼び出すと、現在のカウンター値を返します。"
 
-#: ../../library/esp32.rst:286
+#: ../../library/esp32.rst:295
 msgid ""
 "If the optional *value* argument is set to ``0`` then the counter is "
 "reset (but the previous value is returned). Read and reset is not atomic "
@@ -4310,32 +4329,32 @@ msgstr ""
 "ではないため、パルスが取りこぼされる可能性があります。"
 "``0`` 以外の値を指定するとエラーが発生します。"
 
-#: ../../library/esp32.rst:293
+#: ../../library/esp32.rst:302
 msgid "ESP32 pulse counters support interrupts on these counter events:"
 msgstr ""
 "ESP32 のパルスカウンターは、次のカウンターイベントに対する割込みをサポートしています。"
 
-#: ../../library/esp32.rst:295
+#: ../../library/esp32.rst:304
 msgid "``PCNT.IRQ_ZERO``: the counter has reset to zero"
 msgstr "``PCNT.IRQ_ZERO``: カウンターがゼロにリセットされた"
 
-#: ../../library/esp32.rst:296
+#: ../../library/esp32.rst:305
 msgid "``PCNT.IRQ_MIN``: the counter has hit the ``min`` value"
 msgstr "``PCNT.IRQ_MIN``: カウンターが最小値に達した"
 
-#: ../../library/esp32.rst:297
+#: ../../library/esp32.rst:306
 msgid "``PCNT.IRQ_MAX``: the counter has hit the ``max`` value"
 msgstr "``PCNT.IRQ_MAX``: カウンターが最大値に達した"
 
-#: ../../library/esp32.rst:298
+#: ../../library/esp32.rst:307
 msgid "``PCNT.IRQ_THRESHOLD0``: the counter has hit the ``threshold0`` value"
 msgstr "``PCNT.IRQ_THRESHOLD0``: カウンターが ``threshold0`` の値に達した"
 
-#: ../../library/esp32.rst:299
+#: ../../library/esp32.rst:308
 msgid "``PCNT.IRQ_THRESHOLD1``: the counter has hit the ``threshold1`` value"
 msgstr "``PCNT.IRQ_THRESHOLD1``: カウンターが ``threshold1`` の値に到達した"
 
-#: ../../library/esp32.rst:301
+#: ../../library/esp32.rst:310
 msgid ""
 "``trigger`` should be a bit-mask of the desired events OR'ed together. "
 "The ``handler`` function should take a single argument which is the "
@@ -4345,7 +4364,7 @@ msgstr ""
 "ビットマスクを指定します。 ``handler`` 関数は、発生元となった :class:`PCNT` "
 "インスタンスを単一の引数として受け取ります。"
 
-#: ../../library/esp32.rst:305
+#: ../../library/esp32.rst:314
 msgid ""
 "This method returns a callback object. The callback object can be used to"
 " access the bit-mask of events that are outstanding on the PCNT unit.::"
@@ -4354,7 +4373,7 @@ msgstr ""
 "コールバックオブジェクトを使うと、その PCNT ユニットで"
 "保留中のイベントのビットマスクにアクセスできます。"
 
-#: ../../library/esp32.rst:308
+#: ../../library/esp32.rst:317
 msgid ""
 "def pcnt_irq(pcnt):\n"
 "    flags = pcnt.irq().flags()\n"
@@ -4367,7 +4386,7 @@ msgid ""
 "pcnt.irq(handler=pcnt_irq, trigger=PCNT.IRQ_ZERO | PCNT.IRQ_MAX | ...)"
 msgstr ""
 
-#: ../../library/esp32.rst:318
+#: ../../library/esp32.rst:327
 msgid ""
 "**Note:** Accessing ``irq.flags()`` will clear the flags, so only call it"
 " once per invocation of the handler."
@@ -4375,7 +4394,7 @@ msgstr ""
 "**注記:** ``irq.flags()`` を呼び出すとフラグはクリアされるため、ハンドラの呼出しごとに"
 "一度だけ実行してください。"
 
-#: ../../library/esp32.rst:321
+#: ../../library/esp32.rst:330
 msgid ""
 "The handler is called with the MicroPython scheduler and so will run at a"
 " point after the interrupt. If another interrupt occurs before the "
@@ -4388,7 +4407,7 @@ msgstr ""
 "発生した場合、それらのイベントはまとめられ、1 回の呼び出しとして処理されます。"
 "このとき、ビットマスクには発生したすべてのイベントが示されます。"
 
-#: ../../library/esp32.rst:326
+#: ../../library/esp32.rst:335
 msgid ""
 "To avoid race conditions between a handler being called and retrieving "
 "the current counter value, the ``value()`` method will force execution of"
@@ -4399,7 +4418,7 @@ msgstr ""
 "起きるのを避けるため、 ``value()`` メソッドは現在のカウンター値を返す前に、"
 "保留中のイベントを強制的に実行します(必要に応じて値をリセットします)。"
 
-#: ../../library/esp32.rst:331
+#: ../../library/esp32.rst:340
 msgid ""
 "Only one handler can be in place per-unit. Set ``handler`` to ``None`` to"
 " disable the event interrupt."
@@ -4407,7 +4426,7 @@ msgstr ""
 "各ユニットにつき設定できるハンドラは１つだけです。 ``handler`` に None を設定すると、"
 "そのユニットのイベント割り込みが無効化されます。"
 
-#: ../../library/esp32.rst:335
+#: ../../library/esp32.rst:344
 msgid ""
 "ESP32 pulse counters reset to *zero* when reaching the minimum or maximum"
 " value. Thus the ``IRQ_ZERO`` event will also trigger when either of "
@@ -4417,7 +4436,7 @@ msgstr ""
 "したがって、これらのイベントが発生した場合にも ``IRQ_ZERO`` イベントが"
 "同時にトリガーされます。"
 
-#: ../../library/esp32.rst:339
+#: ../../library/esp32.rst:348
 msgid ""
 "See the :ref:`machine.Counter <machine.Counter>` and "
 ":ref:`machine.Encoder <machine.Encoder>` classes for simpler abstractions"
@@ -4427,11 +4446,11 @@ msgstr ""
 ":ref:`machine.Counter <machine.Counter>` クラスと "
 ":ref:`machine.Encoder <machine.Encoder>` クラスを参照してください。"
 
-#: ../../library/esp32.rst:346
+#: ../../library/esp32.rst:355
 msgid "RMT"
 msgstr ""
 
-#: ../../library/esp32.rst:348
+#: ../../library/esp32.rst:357
 msgid ""
 "The RMT (Remote Control) module, specific to the ESP32, was originally "
 "designed to send and receive infrared remote control signals. However, "
@@ -4443,7 +4462,7 @@ msgstr ""
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
 "生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
 
-#: ../../library/esp32.rst:353
+#: ../../library/esp32.rst:362
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
@@ -4473,7 +4492,7 @@ msgstr ""
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
-#: ../../library/esp32.rst:365
+#: ../../library/esp32.rst:374
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
@@ -4485,7 +4504,7 @@ msgstr ""
 "現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
-#: ../../library/esp32.rst:371
+#: ../../library/esp32.rst:380
 msgid ""
 "``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
 "by multiplying the resolution by a 15-bit (1-``PULSE_MAX``) number. There"
@@ -4495,7 +4514,7 @@ msgstr ""
 "(1-``PULSE_MAX``)の数値を乗算することで定義できます。"
 "8つのチャネル(0-7)があり、それぞれ異なるクロック分周器を使えます。"
 
-#: ../../library/esp32.rst:375
+#: ../../library/esp32.rst:384
 msgid ""
 "So, in the example above, the 80MHz clock is divided by 8. Thus the "
 "resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
@@ -4506,7 +4525,7 @@ msgstr ""
 "開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
 "[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
-#: ../../library/esp32.rst:380
+#: ../../library/esp32.rst:389
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -4516,7 +4535,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:384
+#: ../../library/esp32.rst:393
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -4525,7 +4544,7 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:391
+#: ../../library/esp32.rst:400
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
 " required and identifies which RMT channel (0-7) will be configured. "
@@ -4544,7 +4563,7 @@ msgstr ""
 "ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
 "が低電圧を意味します。"
 
-#: ../../library/esp32.rst:400
+#: ../../library/esp32.rst:409
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -4555,7 +4574,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:407
+#: ../../library/esp32.rst:416
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -4563,7 +4582,7 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:412
+#: ../../library/esp32.rst:421
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
 "(source_freq / clock_div)``."
@@ -4571,7 +4590,7 @@ msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
 
-#: ../../library/esp32.rst:417
+#: ../../library/esp32.rst:426
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
@@ -4583,7 +4602,7 @@ msgstr ""
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
 
-#: ../../library/esp32.rst:424
+#: ../../library/esp32.rst:433
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
@@ -4596,11 +4615,11 @@ msgstr ""
 "ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
 "転送を停止します。"
 
-#: ../../library/esp32.rst:431
+#: ../../library/esp32.rst:440
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
 msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:433
+#: ../../library/esp32.rst:442
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -4610,7 +4629,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:437
+#: ../../library/esp32.rst:446
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -4618,7 +4637,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:440
+#: ../../library/esp32.rst:449
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -4626,7 +4645,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:443
+#: ../../library/esp32.rst:452
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and ``PULSE_MAX`` units. Output levels are any value "
@@ -4637,7 +4656,7 @@ msgstr ""
 "1から ``PULSE_MAX`` の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:448
+#: ../../library/esp32.rst:457
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -4646,7 +4665,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:451
+#: ../../library/esp32.rst:460
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -4659,7 +4678,7 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:459
+#: ../../library/esp32.rst:468
 msgid ""
 "Select which RMT channel is used by the `machine.bitstream` "
 "implementation. *value* can be ``None`` or a valid RMT channel number.  "
@@ -4669,7 +4688,7 @@ msgstr ""
 "*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
 "デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
 
-#: ../../library/esp32.rst:463
+#: ../../library/esp32.rst:472
 msgid ""
 "Passing in ``None`` disables the use of RMT and instead selects a bit-"
 "banging implementation for `machine.bitstream`."
@@ -4677,22 +4696,22 @@ msgstr ""
 "``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
 "ビットバング実装が選択されます。"
 
-#: ../../library/esp32.rst:466
+#: ../../library/esp32.rst:475
 msgid ""
 "Passing in no argument will not change the channel.  This function "
 "returns the current channel number."
 msgstr ""
 "引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
 
-#: ../../library/esp32.rst:474
+#: ../../library/esp32.rst:483
 msgid "Maximum integer that can be set for a pulse duration."
 msgstr "パルス幅に設定できる最大整数値。"
 
-#: ../../library/esp32.rst:477
+#: ../../library/esp32.rst:486
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:479
+#: ../../library/esp32.rst:488
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -4700,7 +4719,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:484
+#: ../../library/esp32.rst:493
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -4708,31 +4727,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:489
+#: ../../library/esp32.rst:498
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:493
+#: ../../library/esp32.rst:502
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:497
+#: ../../library/esp32.rst:506
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:501
+#: ../../library/esp32.rst:510
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:510
+#: ../../library/esp32.rst:519
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:513
+#: ../../library/esp32.rst:522
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:515
+#: ../../library/esp32.rst:524
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -4746,7 +4765,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:522
+#: ../../library/esp32.rst:531
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -4755,14 +4774,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:527
+#: ../../library/esp32.rst:536
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:532
+#: ../../library/esp32.rst:541
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -4770,7 +4789,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:536
+#: ../../library/esp32.rst:545
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -4778,7 +4797,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:541
+#: ../../library/esp32.rst:550
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -4791,7 +4810,7 @@ msgstr ""
 "でも常にバイナリデータとして書き出します。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:548
+#: ../../library/esp32.rst:557
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -4803,11 +4822,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:554
+#: ../../library/esp32.rst:563
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:558
+#: ../../library/esp32.rst:567
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -29230,7 +29249,7 @@ msgstr ":mod:`zsensor` --- Zephyr センサーバインディング"
 
 #: ../../library/zephyr.zsensor.rst:9
 msgid "The ``zsensor`` module contains a class for using sensors with Zephyr."
-msgstr ""
+msgstr "``zsensor`` モジュールには Zephyr でセンサーを使うためのクラスがあります。"
 
 #: ../../library/zephyr.zsensor.rst:14
 msgid "class Sensor --- sensor control for the Zephyr port"
@@ -29254,15 +29273,20 @@ msgid ""
 "quantities that a given sensor can measure are called a sensor channels. "
 "Sensors can have multiple channels to represent different axes of one "
 "property or different properties a sensor can measure. See `Channels`_ "
-"below for defined sensor channels."
+"below for defined sensor channels. Each channel may have multiple "
+"attributes that can be changed and/or queried. See `Channel Attributes`_ "
+"below for defined sensor channel attributes."
 msgstr ""
 "各ボードのために Zephyr devicetree でセンサーが定義されています。"
 "特定のセンサーが測定できる数量は、センサーチャンネルと呼ばれます。"
 "センサーは、1つのプロパティの異なる軸またはセンサーが測定できる異なる"
 "プロパティを表すために、複数のチャンネルを持つことがあります。"
 "定義されたセンサーチャネルについては、後述の `Channels`_ を参照してください。"
+"各チャンネルには、変更または照会可能な複数の属性を設定できます。"
+"定義済みのセンサーチャンネル属性については、後述の `Channel Attributes`_ を"
+"参照してください。"
 
-#: ../../library/zephyr.zsensor.rst:30
+#: ../../library/zephyr.zsensor.rst:31
 msgid ""
 "Device names are defined in the devicetree for your board. For example, "
 "the device name for the accelerometer in the FRDM-k64f board is "
@@ -29271,7 +29295,7 @@ msgstr ""
 "デバイス名は、ボードの devicetree で定義されています。たとえば、FRDM-k64f "
 "ボードの加速度センサーのデバイス名は「FXOS8700」です。"
 
-#: ../../library/zephyr.zsensor.rst:38
+#: ../../library/zephyr.zsensor.rst:39
 msgid ""
 "Obtains a measurement sample from the sensor device using Zephyr "
 "sensor_sample_fetch and stores it in an internal driver buffer as a "
@@ -29283,11 +29307,11 @@ msgstr ""
 "値の小数部を百万倍した整数)というペアです。成功した場合は None を返し、失敗した場合は "
 "OSError になります。"
 
-#: ../../library/zephyr.zsensor.rst:45
+#: ../../library/zephyr.zsensor.rst:46
 msgid "Returns the value of the sensor measurement sample as a float."
 msgstr "計測したセンサー値を float で返します。"
 
-#: ../../library/zephyr.zsensor.rst:49
+#: ../../library/zephyr.zsensor.rst:50
 msgid ""
 "Returns the value of the sensor measurement sample in millionths. (Ex. "
 "value of ``(1, 500000)`` returns as ``1500000``)"
@@ -29295,7 +29319,7 @@ msgstr ""
 "計測したセンサー値を100万倍した値を返します。(例: 値が "
 "``(1, 500000)`` であれば ``1500000`` を返します)"
 
-#: ../../library/zephyr.zsensor.rst:54
+#: ../../library/zephyr.zsensor.rst:55
 msgid ""
 "Returns the value of sensor measurement sample in thousandths. (Ex. value"
 " of ``(1, 500000)`` returns as ``1500``)"
@@ -29303,7 +29327,7 @@ msgstr ""
 "計測したセンサー値を1000倍した値を返します。(例: 値が "
 "``(1, 500000)`` であれば ``1500`` を返します)"
 
-#: ../../library/zephyr.zsensor.rst:59
+#: ../../library/zephyr.zsensor.rst:60
 msgid ""
 "Returns only the integer value of the measurement sample. (Ex. value of "
 "``(1, 500000)`` returns as ``1``)"
@@ -29311,69 +29335,217 @@ msgstr ""
 "計測したセンサー値の整数部だけを返します。(例: 値が "
 "``(1, 500000)`` であれば ``1`` を返します)"
 
-#: ../../library/zephyr.zsensor.rst:63
+#: ../../library/zephyr.zsensor.rst:65
+msgid ""
+"Set the given channel's attribute to the given value. ``val1`` may be a "
+"float, in which case ``val2`` is not given, or ``val1`` can be used for "
+"the value's integer part and ``val2`` for the value's fractional part in "
+"millionths."
+msgstr ""
+"指定したチャンネルの属性を指定した値に設定します。 "
+"``val1`` が float 型である場合は ``val2`` を指定しません。 "
+"``val1`` が整数型である場合は ``val2`` に100万分の1単位の小数部分を指定します。"
+
+#: ../../library/zephyr.zsensor.rst:70
+msgid "Returns ``None`` if successful, or raises ``OSError``."
+msgstr "成功した場合は ``None`` を返します。それ以外の場合は ``OSError`` が発生します。"
+
+#: ../../library/zephyr.zsensor.rst:74
+msgid "Returns the value of the sensor channel's attribute as a float."
+msgstr "センサーのチャンネル属性値を float 型で返します。"
+
+#: ../../library/zephyr.zsensor.rst:76
+msgid "Many sensors do not support this or any other of the ``attr_get`` methods."
+msgstr "多くのセンサーは、これも含めて ``attr_get`` 系のメソッドをサポートしていません。"
+
+#: ../../library/zephyr.zsensor.rst:80
+msgid ""
+"Returns the value of the sensor channel's attribute in millionths. (Ex. "
+"value of ``(1, 500000)`` returns as ``1500000``)"
+msgstr ""
+"センサーのチャンネル属性値を100万倍した値を返します。(例: 値が ``(1, 500000)`` "
+"であれば ``1500000`` を返します)"
+
+#: ../../library/zephyr.zsensor.rst:85
+msgid ""
+"Returns the value of the sensor channel's attribute in thousandths. (Ex. "
+"value of ``(1, 500000)`` returns as ``1500``)"
+msgstr ""
+"センサーのチャンネル属性値を1000倍した値を返します。(例: 値が ``(1, 500000)`` "
+"であれば ``1500`` を返します)"
+
+#: ../../library/zephyr.zsensor.rst:90
+msgid ""
+"Returns only the integer value of the channel's attribute. (Ex. value of "
+"``(1, 500000)`` returns as ``1``)"
+msgstr ""
+"センサーのチャンネル属性値の整数部だけを返します。(例: 値が ``(1, 500000)`` "
+"であれば ``1`` を返します)"
+
+#: ../../library/zephyr.zsensor.rst:94
 msgid "Channels"
 msgstr "チャンネル"
 
-#: ../../library/zephyr.zsensor.rst:67
+#: ../../library/zephyr.zsensor.rst:98
 msgid "Acceleration on the X axis, in m/s^2."
 msgstr "X軸の加速度(m/s^2)。"
 
-#: ../../library/zephyr.zsensor.rst:71
+#: ../../library/zephyr.zsensor.rst:102
 msgid "Acceleration on the Y axis, in m/s^2."
 msgstr "Y軸の加速度(m/s^2)。"
 
-#: ../../library/zephyr.zsensor.rst:75
+#: ../../library/zephyr.zsensor.rst:106
 msgid "Acceleration on the Z axis, in m/s^2."
 msgstr "Z軸の加速度(m/s^2)。"
 
-#: ../../library/zephyr.zsensor.rst:79
+#: ../../library/zephyr.zsensor.rst:110
+msgid ""
+"Pseudo-channel representing all three accelerometer axes. Used for "
+":meth:`Sensor.attr_set` and the ``Sensor.attr_get_xxx()`` methods."
+msgstr ""
+"加速度計の3軸すべてを表す擬似チャネル。 "
+":meth:`Sensor.attr_set` と ``Sensor.attr_get_xxx()`` メソッドで使います。"
+
+#: ../../library/zephyr.zsensor.rst:115
 msgid "Angular velocity around the X axis, in radians/s."
 msgstr "X軸の角速度(radians/s)。"
 
-#: ../../library/zephyr.zsensor.rst:83
+#: ../../library/zephyr.zsensor.rst:119
 msgid "Angular velocity around the Y axis, in radians/s."
 msgstr "Y軸の角速度(radians/s)。"
 
-#: ../../library/zephyr.zsensor.rst:87
+#: ../../library/zephyr.zsensor.rst:123
 msgid "Angular velocity around the Z axis, in radians/s."
 msgstr "Z軸の角速度(radians/s)。"
 
-#: ../../library/zephyr.zsensor.rst:91
+#: ../../library/zephyr.zsensor.rst:127
+msgid ""
+"Pseudo-channel representing all three gyroscope axes. Used for "
+":meth:`Sensor.attr_set` and the ``Sensor.attr_get_xxx()`` methods."
+msgstr ""
+"ジャイロスコープの3軸すべてを表す擬似チャネル。 "
+":meth:`Sensor.attr_set` と ``Sensor.attr_get_xxx()`` メソッドで使います。"
+
+#: ../../library/zephyr.zsensor.rst:132
 msgid "Magnetic field on the X axis, in Gauss."
 msgstr "X軸の角速度(radians/s)。"
 
-#: ../../library/zephyr.zsensor.rst:95
+#: ../../library/zephyr.zsensor.rst:136
 msgid "Magnetic field on the Y axis, in Gauss."
 msgstr "Y軸の磁場(ガウス)。"
 
-#: ../../library/zephyr.zsensor.rst:99
+#: ../../library/zephyr.zsensor.rst:140
 msgid "Magnetic field on the Z axis, in Gauss."
 msgstr "Z軸の磁場(ガウス)。"
 
-#: ../../library/zephyr.zsensor.rst:103
+#: ../../library/zephyr.zsensor.rst:144
 msgid "Device die temperature in degrees Celsius."
 msgstr "デバイスのダイ温度(摂氏)。"
 
-#: ../../library/zephyr.zsensor.rst:107
+#: ../../library/zephyr.zsensor.rst:148
 msgid "Pressure in kilopascal."
 msgstr "気圧(キロパスカル)。"
 
-#: ../../library/zephyr.zsensor.rst:111
+#: ../../library/zephyr.zsensor.rst:152
 msgid "Proximity. Dimensionless. A value of 1 indicates that an object is close."
 msgstr "近接度。無次元。値が1の場合、物体が近いことを示します。"
 
-#: ../../library/zephyr.zsensor.rst:115
+#: ../../library/zephyr.zsensor.rst:156
 msgid "Humidity, in percent."
 msgstr "湿度(パーセント)。"
 
-#: ../../library/zephyr.zsensor.rst:119
+#: ../../library/zephyr.zsensor.rst:160
 msgid "Illuminance in visible spectrum, in lux."
 msgstr "可視スペクトル内の照度(ルクス)。"
 
-#: ../../library/zephyr.zsensor.rst:123
+#: ../../library/zephyr.zsensor.rst:164
 msgid "Altitude, in meters."
 msgstr "高度(メートル)。"
+
+#: ../../library/zephyr.zsensor.rst:167
+msgid "Channel Attributes"
+msgstr "チャンネル属性"
+
+#: ../../library/zephyr.zsensor.rst:171
+msgid ""
+"Sensor sampling frequency, i.e. how many times a second the sensor takes "
+"a measurement."
+msgstr ""
+"センサーのサンプリング周波数、つまりセンサーが 1 秒間に測定を実行する回数。"
+
+#: ../../library/zephyr.zsensor.rst:175
+msgid "Lower threshold for trigger."
+msgstr "トリガーの下限しきい値。"
+
+#: ../../library/zephyr.zsensor.rst:179
+msgid "Upper threshold for trigger."
+msgstr "トリガーの上限しきい値。"
+
+#: ../../library/zephyr.zsensor.rst:183
+msgid "Threshold for any-motion (slope) trigger."
+msgstr "任意の動き(傾斜)トリガーのしきい値。"
+
+#: ../../library/zephyr.zsensor.rst:187
+msgid ""
+"Duration for which the slope values needs to be outside the threshold for"
+" the trigger to fire."
+msgstr ""
+"トリガーを起動するために傾斜値がしきい値外になる必要がある期間。"
+
+#: ../../library/zephyr.zsensor.rst:193
+msgid "Oversampling factor."
+msgstr "オーバーサンプリング係数。"
+
+#: ../../library/zephyr.zsensor.rst:197
+msgid "Sensor range, in SI units."
+msgstr "SI 単位でのセンサー範囲。"
+
+#: ../../library/zephyr.zsensor.rst:201
+msgid ""
+"The sensor value returned will be altered by the amount indicated by "
+"offset: final_value = sensor_value + offset."
+msgstr ""
+"返されるセンサー値は、オフセットで示された量だけ変更されます: "
+"final_value = sensor_value + offset"
+
+#: ../../library/zephyr.zsensor.rst:205
+msgid ""
+"Calibration target. This will be used by the internal chip's algorithms "
+"to calibrate itself on a certain axis, or all of them."
+msgstr ""
+"キャリブレーションターゲット。"
+"これは、内部チップのアルゴリズムが特定の軸、またはすべての軸でキャリブレーションを"
+"行うために使います。"
+
+#: ../../library/zephyr.zsensor.rst:209
+msgid "Configure the operating modes of a sensor."
+msgstr "センサーの動作モードを構成します。"
+
+#: ../../library/zephyr.zsensor.rst:213
+msgid "Set a calibration value needed by a sensor."
+msgstr "センサーに必要なキャリブレーション値を設定します。"
+
+#: ../../library/zephyr.zsensor.rst:217
+msgid "Enable/disable sensor features."
+msgstr "センサー機能を有効/無効にします。"
+
+#: ../../library/zephyr.zsensor.rst:221
+msgid "Alert threshold or alert enable/disable."
+msgstr "アラートしきい値またはアラートの有効化/無効化。"
+
+#: ../../library/zephyr.zsensor.rst:225
+msgid ""
+"Free-fall duration represented in milliseconds. If the sampling frequency"
+" is changed during runtime, this attribute should be set to adjust "
+"freefall duration to the new sampling frequency."
+msgstr ""
+"自由落下の持続時間をミリ秒単位で表します。実行中にサンプリング周波数が変更された場合は、"
+"この属性を設定して、自由落下の持続時間を新しいサンプリング周波数に合わせて調整する必要が"
+"あります。"
+
+#: ../../library/zephyr.zsensor.rst:230
+msgid "Hardware batch duration in ticks."
+msgstr "ハードウェアバッチ期間(ティック単位)。"
 
 #: ../../library/zlib.rst:2
 msgid ":mod:`zlib` -- zlib compression & decompression"
