@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-12 10:14+0900\n"
-"PO-Revision-Date: 2025-10-12 12:29+0900\n"
+"POT-Creation-Date: 2025-12-07 10:30+0900\n"
+"PO-Revision-Date: 2025-12-07 11:06+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2103,18 +2103,19 @@ msgid ""
 "import esp32\n"
 "from machine import Pin\n"
 "\n"
-"r = esp32.RMT(0, pin=Pin(18), clock_div=8)\n"
-"r   # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8)\n"
-"# The channel resolution is 100ns (1/(source_freq/clock_div)).\n"
+"r = esp32.RMT(pin=Pin(18), resolution_hz=10000000)\n"
+"r   # RMT(pin=18, source_freq=80000000, resolution_hz=10000000)\n"
+"# The channel resolution is based on resolution_hz, i.e. 100ns for "
+"10000000\n"
 "r.write_pulses((1, 20, 2, 40), 0) # Send 0 for 100ns, 1 for 2000ns, 0 for"
 " 200ns, 1 for 4000ns"
 msgstr ""
 "import esp32\n"
 "from machine import Pin\n"
 "\n"
-"r = esp32.RMT(0, pin=Pin(18), clock_div=8)\n"
-"r   # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8)\n"
-"# チャンネルの分解能は 100ns (1/(source_freq/clock_div)).\n"
+"r = esp32.RMT(pin=Pin(18), resolution_hz=10000000)\n"
+"r   # RMT(pin=18, source_freq=80000000, resolution_hz=10000000)\n"
+"# チャンネルの分解能は resolution_hz が元になる。10000000 であれば 100ns\n"
 "r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
 " 0 を 200ns, 1 を 4000ns 送信"
 
@@ -2239,25 +2240,23 @@ msgstr ""
 #: ../../esp32/quickref.rst:905
 msgid ""
 "For low-level driving of a NeoPixel see `machine.bitstream`. This low-"
-"level driver uses an RMT channel by default.  To configure this see "
-"`RMT.bitstream_channel`."
+"level driver uses an RMT channel by default."
 msgstr ""
 "NeoPixel の低レベル駆動については `machine.bitstream` を参照してください。"
 "この低レベルドライバは、デフォルトで RMT チャンネルを使います。"
-"この設定については `RMT.bitstream_channel` を参照してください。"
 
-#: ../../esp32/quickref.rst:909
+#: ../../esp32/quickref.rst:908
 msgid ""
 "APA102 (DotStar) uses a different driver as it has an additional clock "
 "pin."
 msgstr ""
 "APA102 (DotStar)はクロック端子が追加されているため、別のドライバーを使います。"
 
-#: ../../esp32/quickref.rst:912
+#: ../../esp32/quickref.rst:911
 msgid "Capacitive touch"
 msgstr "静電容量タッチ"
 
-#: ../../esp32/quickref.rst:914
+#: ../../esp32/quickref.rst:913
 msgid ""
 "ESP32, ESP32-S2 and ESP32-S3 support capacitive touch via the "
 "``TouchPad`` class in the ``machine`` module::"
@@ -2265,7 +2264,7 @@ msgstr ""
 "ESP32, ESP32-S2, ESP32-S3 では ``machine`` モジュールの ``TouchPad`` "
 "クラスを使った静電容量方式タッチをサポートします::"
 
-#: ../../esp32/quickref.rst:917
+#: ../../esp32/quickref.rst:916
 msgid ""
 "from machine import TouchPad, Pin\n"
 "\n"
@@ -2277,7 +2276,7 @@ msgstr ""
 "t = TouchPad(Pin(14))\n"
 "t.read()              # タッチすると小さい数値を返す"
 
-#: ../../esp32/quickref.rst:922
+#: ../../esp32/quickref.rst:921
 msgid ""
 "``TouchPad.read`` returns a value proportional to the capacitance between"
 " the pin and the board's Ground connection. On ESP32 the number becomes "
@@ -2288,7 +2287,7 @@ msgstr ""
 "ESP32 では、ピン(または接続されたタッチパッド)に触れるとその値が小さくなり、"
 "ESP32-S2やESP32-S3では、ピンに触れるとその値が大きくなります。"
 
-#: ../../esp32/quickref.rst:927
+#: ../../esp32/quickref.rst:926
 msgid ""
 "In all cases, a touch causes a significant change in the return value. "
 "Note the returned values are *relative* and can vary depending on the "
@@ -2299,39 +2298,39 @@ msgstr ""
 "ただし、返される値は *相対的* なもので、ボードや周囲の環境によって異なる場合があるため、"
 "キャリブレーション(基準値や移動平均との比較など)が必要になる場合があります。"
 
-#: ../../esp32/quickref.rst:933
+#: ../../esp32/quickref.rst:932
 msgid "Chip"
 msgstr "マイコン"
 
-#: ../../esp32/quickref.rst:933
+#: ../../esp32/quickref.rst:932
 msgid "Touch-enabled pins"
 msgstr "タッチをサポートするピン"
 
-#: ../../esp32/quickref.rst:935
+#: ../../esp32/quickref.rst:934
 msgid "0, 2, 4, 12, 13, 14, 15, 27, 32, 33"
 msgstr ""
 
-#: ../../esp32/quickref.rst:936
+#: ../../esp32/quickref.rst:935
 msgid "ESP32-S2"
 msgstr ""
 
-#: ../../esp32/quickref.rst:936 ../../esp32/quickref.rst:937
+#: ../../esp32/quickref.rst:935 ../../esp32/quickref.rst:936
 msgid "1 to 14 inclusive"
 msgstr "1 から 14 の間"
 
-#: ../../esp32/quickref.rst:937
+#: ../../esp32/quickref.rst:936
 msgid "ESP32-S3"
 msgstr ""
 
-#: ../../esp32/quickref.rst:940
+#: ../../esp32/quickref.rst:939
 msgid "Trying to assign to any other pins will result in a ``ValueError``."
 msgstr "他のピンに割り当てようとすると ``ValueError`` が発生します。"
 
-#: ../../esp32/quickref.rst:942
+#: ../../esp32/quickref.rst:941
 msgid "Note that TouchPads can be used to wake an ESP32 from sleep::"
 msgstr "TouchPad を使ってESP32をスリープから復帰させることもできます::"
 
-#: ../../esp32/quickref.rst:944
+#: ../../esp32/quickref.rst:943
 msgid ""
 "import machine\n"
 "from machine import TouchPad, Pin\n"
@@ -2351,7 +2350,7 @@ msgstr ""
 "esp32.wake_on_touch(True)\n"
 "machine.lightsleep()        # タッチされる MCU をスリープさせる"
 
-#: ../../esp32/quickref.rst:953
+#: ../../esp32/quickref.rst:952
 msgid ""
 "For more details on touchpads refer to `Espressif Touch Sensor "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html>`_."
@@ -2360,15 +2359,15 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/touch_pad.html>`_ "
 "を参照してください。"
 
-#: ../../esp32/quickref.rst:958
+#: ../../esp32/quickref.rst:957
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../esp32/quickref.rst:960
+#: ../../esp32/quickref.rst:959
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../esp32/quickref.rst:962
+#: ../../esp32/quickref.rst:961
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -2396,11 +2395,11 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../esp32/quickref.rst:976
+#: ../../esp32/quickref.rst:975
 msgid "WebREPL (web browser interactive prompt)"
 msgstr "WebREPL (Web ベースの対話プロンプト)"
 
-#: ../../esp32/quickref.rst:978
+#: ../../esp32/quickref.rst:977
 msgid ""
 "WebREPL (REPL over WebSockets, accessible via a web browser) is an "
 "experimental feature available in ESP32 port. Download web client from "
@@ -2413,12 +2412,12 @@ msgstr ""
 "(http://micropython.org/webrepl で入手可能なホストバージョン)"
 "からダウンロードしてきて、次のコマンドを実行して設定してください::"
 
-#: ../../esp32/quickref.rst:983
+#: ../../esp32/quickref.rst:982
 msgid ""
 "import webrepl_setup"
 msgstr ""
 
-#: ../../esp32/quickref.rst:985
+#: ../../esp32/quickref.rst:984
 msgid ""
 "and following on-screen instructions. After reboot, it will be available "
 "for connection. If you disabled automatic start-up on boot, you may run "
@@ -2427,7 +2426,7 @@ msgstr ""
 "画面の指示にしたがいます。再起動後、接続可能になります。起動時に自動起動を無効にした"
 "場合は、次のコマンドを使用してデーモンを実行することができます::"
 
-#: ../../esp32/quickref.rst:989
+#: ../../esp32/quickref.rst:988
 msgid ""
 "import webrepl\n"
 "webrepl.start()\n"
@@ -2441,7 +2440,7 @@ msgstr ""
 "# もしくは指定のパスワードでスタート\n"
 "webrepl.start(password='mypass')"
 
-#: ../../esp32/quickref.rst:995
+#: ../../esp32/quickref.rst:994
 msgid ""
 "The WebREPL daemon listens on all active interfaces, which can be STA or AP.  "
 "This allows you to connect to the ESP32 via a router (the STA interface) or "
@@ -2451,7 +2450,7 @@ msgstr ""
 "これにより、ルータ(STA インターフェイス)を介してでも、またはアクセスポイントに接続している"
 "ときでも直接 ESP32 に接続できます。"
 
-#: ../../esp32/quickref.rst:999
+#: ../../esp32/quickref.rst:998
 msgid ""
 "In addition to terminal/command prompt access, WebREPL also has provision "
 "for file transfer (both upload and download).  The web client has buttons for "
@@ -2463,7 +2462,7 @@ msgstr ""
 "対応する機能のボタンがあります。また、上記のリポジトリのコマンドラインクライアント"
 "``webrepl_cli.py`` を使うこともできます。"
 
-#: ../../esp32/quickref.rst:1004
+#: ../../esp32/quickref.rst:1003
 msgid ""
 "See the MicroPython forum for other community-supported alternatives to "
 "transfer files to an ESP32 board."

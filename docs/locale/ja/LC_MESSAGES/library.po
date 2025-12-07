@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-16 10:09+0900\n"
-"PO-Revision-Date: 2025-11-16 13:15+0900\n"
+"POT-Creation-Date: 2025-12-07 10:30+0900\n"
+"PO-Revision-Date: 2025-12-07 20:14+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2975,6 +2975,48 @@ msgid ""
 "b 3"
 msgstr ""
 
+#: ../../library/collections.rst:107
+msgid ""
+"Remove and return a (key, value) pair from the dictionary. Pairs are "
+"returned in LIFO order."
+msgstr ""
+"辞書から (キー, 値) のペアを削除して返します。ペアは LIFO 順で返されます。
+
+#: ../../library/collections.rst:110 ../../library/gc.rst:29
+#: ../../library/gc.rst:39 ../../library/gc.rst:61 ../../library/io.rst:15
+#: ../../library/io.rst:118 ../../library/select.rst:79
+#: ../../library/select.rst:96 ../../library/socket.rst:12
+#: ../../library/socket.rst:96 ../../library/socket.rst:284
+#: ../../library/socket.rst:308 ../../library/socket.rst:314
+#: ../../library/socket.rst:355 ../../library/ssl.rst:48
+#: ../../library/ssl.rst:128 ../../library/struct.rst:64
+#: ../../library/sys.rst:28 ../../library/sys.rst:39 ../../library/sys.rst:108
+#: ../../library/sys.rst:148 ../../library/sys.rst:199
+#: ../../library/time.rst:234
+msgid "Difference to CPython"
+msgstr "CPython との違い"
+
+#: ../../library/collections.rst:113
+msgid ""
+"``OrderedDict.popitem()`` does not support the ``last=False`` argument "
+"and will always remove and return the last item if present."
+msgstr ""
+"``OrderedDict.popitem()`` は ``last=False`` 引数をサポートしていないため、"
+"最後の項目が存在する場合は常にそれを削除して返します。"
+
+#: ../../library/collections.rst:116
+msgid ""
+"A workaround for this is to use ``pop(<first_key>)`` to remove the first "
+"item::"
+msgstr ""
+"この問題を回避するには ``pop(<first_key>)`` で最初の項目を削除します。"
+
+#: ../../library/collections.rst:118
+msgid ""
+"first_key = next(iter(d))\n"
+"d.pop(first_key)"
+msgstr ""
+
 #: ../../library/cryptolib.rst:2
 msgid ":mod:`cryptolib` -- cryptographic ciphers"
 msgstr ":mod:`cryptolib` -- 暗号化アルゴリズム"
@@ -4460,72 +4502,64 @@ msgid ""
 msgstr ""
 "ESP32 に固有の RMT (リモートコントロール)モジュールは、もともと赤外線リモートコントロール"
 "信号を送受信するために設計されました。ただし、柔軟な設計と非常に正確な(12.5ns程度の)パルス"
-"生成により、他の多くのタイプのデジタル信号の送受信にも使用できます::"
+"生成により、他の多くのタイプのデジタル信号の転送/受信にも使用できます::"
 
 #: ../../library/esp32.rst:362
 msgid ""
 "import esp32\n"
 "from machine import Pin\n"
 "\n"
-"r = esp32.RMT(0, pin=Pin(18), clock_div=8)\n"
-"r  # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8, "
+"r = esp32.RMT(pin=Pin(18), resolution_hz=10000000)\n"
+"r  # RMT(pin=18, source_freq=80000000, resolution_hz=10000000, "
 "idle_level=0)\n"
 "\n"
 "# To apply a carrier frequency to the high output\n"
-"r = esp32.RMT(0, pin=Pin(18), clock_div=8, tx_carrier=(38000, 50, 1))\n"
+"r = esp32.RMT(pin=Pin(18), resolution_hz=10000000, tx_carrier=(38000, 50,"
+" 1))\n"
 "\n"
-"# The channel resolution is 100ns (1/(source_freq/clock_div)).\n"
+"# The channel resolution is 100ns (1/resolution_hz)\n"
 "r.write_pulses((1, 20, 2, 40), 0)  # Send 0 for 100ns, 1 for 2000ns, 0 "
 "for 200ns, 1 for 4000ns"
 msgstr ""
 "import esp32\n"
 "from machine import Pin\n"
 "\n"
-"r = esp32.RMT(0, pin=Pin(18), clock_div=8)\n"
-"r  # RMT(channel=0, pin=18, source_freq=80000000, clock_div=8, "
+"r = esp32.RMT(pin=Pin(18), resolution_hz=10000000)\n"
+"r  # RMT(pin=18, source_freq=80000000, resolution_hz=10000000, "
 "idle_level=0)\n"
 "\n"
 "# 高出力にキャリア周波数を適用する場合\n"
-"r = esp32.RMT(0, pin=Pin(18), clock_div=8, tx_carrier=(38000, 50, 1))\n"
+"r = esp32.RMT(pin=Pin(18), resolution_hz=10000000, tx_carrier=(38000, 50,"
+" 1))\n"
 "\n"
 "# チャンネルの分解能は 100ns (1/(source_freq/clock_div))\n"
-"r.write_pulses((1, 20, 2, 40), 0)  # 0 を 100ns, 1 を 2000ns,"
-" 0 を 200ns, 1 を 4000ns 送信"
+"r.write_pulses((1, 20, 2, 40), 0)  # Send 0 for 100ns, 1 for 2000ns, 0 "
+"for 200ns, 1 for 4000ns"
 
 #: ../../library/esp32.rst:374
 msgid ""
 "The input to the RMT module is an 80MHz clock (in the future it may be "
 "able to configure the input clock but, for now, it's fixed). "
-"``clock_div`` *divides* the clock input which determines the resolution "
-"of the RMT channel. The numbers specified in ``write_pulses`` are "
-"multiplied by the resolution to define the pulses."
+"``resolution_hz`` determines the resolution of the RMT channel. The "
+"numbers specified in ``write_pulses`` are multiplied by the resolution to"
+" define the pulses."
 msgstr ""
-"RMT モジュールへの入力は 80MHz クロックです(将来的には入力クロックを設定できる可能性もありますが、"
-"現時点では固定です)。RMT チャネルの分解能は、クロック入力を  ``clock_div`` で除算することにより決まります。"
+"RMTモジュールへの入力は 80MHz クロックです(将来的に入力クロックを設定できるようになる"
+"可能性もありますが、現時点では固定です)。 "
+"``resolution_hz`` は RMT チャンネルの分解能を決定します。 "
 "``write_pulses`` で指定した数値については、分解能を乗算してパルスが決まります。"
 
 #: ../../library/esp32.rst:380
 msgid ""
-"``clock_div`` is an 8-bit divider (0-255) and each pulse can be defined "
-"by multiplying the resolution by a 15-bit (1-``PULSE_MAX``) number. There"
-" are eight channels (0-7) and each can have a different clock divider."
+"So, in the example above, the resolution is resolution is (1/10Mhz) = "
+"100ns. Since the ``start`` level is 0 and toggles with each number, the "
+"bitstream is ``0101`` with durations of [100ns, 2000ns, 100ns, 4000ns]."
 msgstr ""
-"``clock_div`` は8ビット(0-255)の分周器で、各パルスは、分解能に15ビット"
-"(1-``PULSE_MAX``)の数値を乗算することで定義できます。"
-"8つのチャネル(0-7)があり、それぞれ異なるクロック分周器を使えます。"
+"したがって、上記の例で分解能は (1/10MHz) = 100ns です。"
+"開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` "
+"で各ビットについて [100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
 
 #: ../../library/esp32.rst:384
-msgid ""
-"So, in the example above, the 80MHz clock is divided by 8. Thus the "
-"resolution is (1/(80Mhz/8)) 100ns. Since the ``start`` level is 0 and "
-"toggles with each number, the bitstream is ``0101`` with durations of "
-"[100ns, 2000ns, 100ns, 4000ns]."
-msgstr ""
-"上記の例では80MHzクロックを8で除算しています。したがって分解能は (1/(80Mhz/8)) で 100ns になります。"
-"開始レベルは 0 であり、各数値でレベルが切り替わるので、ビットストリームは ``0101`` で各ビットについて "
-"[100ns, 2000ns, 100ns, 4000ns] の持続時間を有します。"
-
-#: ../../library/esp32.rst:389
 msgid ""
 "For more details see Espressif's `ESP-IDF RMT documentation. "
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
@@ -4535,7 +4569,7 @@ msgstr ""
 "<https://docs.espressif.com/projects/esp-idf/en/latest/api-"
 "reference/peripherals/rmt.html>`_ を参照してください。"
 
-#: ../../library/esp32.rst:393
+#: ../../library/esp32.rst:388
 msgid ""
 "The current MicroPython RMT implementation lacks some features, most "
 "notably receiving pulses. RMT should be considered a *beta feature* and "
@@ -4544,26 +4578,49 @@ msgstr ""
 "現在の MicroPython RMT 実装にはいくつかの機能がありませんが、最も顕著なのは受信パルスです。"
 "RMT は *ベータ機能* と見なすべきであり、インターフェースは将来変更する可能性があります。"
 
-#: ../../library/esp32.rst:400
+#: ../../library/esp32.rst:395
 msgid ""
 "This class provides access to one of the eight RMT channels. *channel* is"
-" required and identifies which RMT channel (0-7) will be configured. "
-"*pin*, also required, configures which Pin is bound to the RMT channel. "
-"*clock_div* is an 8-bit clock divider that divides the source clock "
-"(80MHz) to the RMT channel allowing the resolution to be specified. "
-"*idle_level* specifies what level the output will be when no transmission"
-" is in progress and can be any value that converts to a boolean, with "
-"``True`` representing high voltage and ``False`` representing low."
+" optional and a dummy parameter for backward compatibility. *pin* is "
+"required and configures which Pin is bound to the RMT channel. "
+"*resolution_hz* defines the resolution/unit of the samples. For example, "
+"1,000,000 means the unit is microsecond. The pulse widths can assume "
+"values up to *RMT.PULSE_MAX*, so the resolution should be selected "
+"accordingly to the signal to be transmitted. *clock_div* (deprecated) is "
+"equivalent to *resolution_hz*, but expressed as a clock divider that "
+"divides the source clock (80MHz) to the RMT channel allowing the "
+"resolution to be specified. Either *clock_div* and *resolution_hz* may be"
+" supplied, but not both. *num_symbols* specifies the RMT buffer allocated"
+" for this channel (minimum 48 or 64, depending on chip), from a small "
+"pool of symbols (192 to 512, depending on chip) that are shared by all "
+"channels. This buffer does not limit the size of the pulse train that you"
+" can send, but bigger buffers reduce the CPU load and the potential of "
+"glitches/imprecise pulse lengths. *idle_level* specifies what level the "
+"output will be when no transmission is in progress and can be any value "
+"that converts to a boolean, with ``True`` representing high voltage and "
+"``False`` representing low."
 msgstr ""
-"このクラスは、8つのRMTチャネルの1つへのアクセスを提供します。 *channel* は必須であり、"
-"どの RMT チャネル(0-7)を使うのかを識別します。 *pin* も必須であり、RMTチャネルに"
-"バインドするピンを設定します。 *clock_div* はソースクロック(80MHz)を分割する"
-"8ビットのクロック分周器であり、RMTチャネルの分解能を指定できます。 "
-"*idle_level* は、送信が行われていないときの出力レベルを指定するもので、 "
-"ブール型に変換される任意の値を指定でき、 ``True`` が高電圧、 ``False`` "
-"が低電圧を意味します。"
+"このクラスは８つのの RMT チャンネルの１つへのアクセスを提供します。 "
+"*channel* はオプションであり、後方互換性のためのダミー引数です。 "
+"*pin* は必須でであり、その RMT チャンネルに結び付けられるピンを設定します。 "
+"*resolution_hz* はサンプルの分解能／単位を定義します。"
+"例として 1,000,000 を指定すると、単位はマイクロ秒になります。"
+"パルス幅は最大で *RMT.PULSE_MAX* までの値を取れるため、転送する信号に応じて"
+"適切な分解能を選ぶ必要があります。 "
+"*clock_div* (非推奨)は ``resolution_hz`` と同等ですが、ソースクロック"
+"(80MHz)を RMT チャンネルに分周して分解能を設定する方式です。 "
+"*clock_div* と *resolution_hz* はどちらか一方のみ指定できます(両方同時には不可)。 "
+"*num_symbols* はこのチャンネルに割り当てる RMT バッファのサイズを指定します"
+"(チップにより最小 48 または 64)。"
+"このバッファはチップ内の小さなシンボルプール(192～512 の範囲、チップによる)から"
+"分配され、すべてのチャンネルで共有されます。"
+"このバッファは送信できるパルストレインの長さ自体を制限しませんが、バッファが"
+"大きいほど CPU 負荷が減り、グリッチやパルス幅の不正確さが発生しにくくなります。 "
+"*idle_level* は送信が行われていないときに出力がどのレベルになるかを指定します。"
+"真偽値へ変換可能な任意の値を指定でき、 ``True`` は高電圧、 ``False`` は"
+"低電圧を表します。"
 
-#: ../../library/esp32.rst:409
+#: ../../library/esp32.rst:415
 msgid ""
 "To enable the transmission carrier feature, *tx_carrier* should be a "
 "tuple of three positive integers: carrier frequency, duty percent (``0`` "
@@ -4574,7 +4631,7 @@ msgstr ""
 "３項目はそれぞれキャリア周波数、デューティ比(``0`` から ``100`` で指定)、キャリアを適用"
 "する出力レベル(*idle_level* と同様のブール値)を意味します。
 
-#: ../../library/esp32.rst:416
+#: ../../library/esp32.rst:422
 msgid ""
 "Returns the source clock frequency. Currently the source clock is not "
 "configurable so this will always return 80MHz."
@@ -4582,44 +4639,107 @@ msgstr ""
 "ソースクロック周波数を返します。現在のところソースクロックは設定できないため、"
 "常に 80MHz が返されます。"
 
-#: ../../library/esp32.rst:421
+#: ../../library/esp32.rst:427
 msgid ""
 "Return the clock divider. Note that the channel resolution is ``1 / "
-"(source_freq / clock_div)``."
+"(source_freq / clock_div)``. (Method deprecated. The value may not be "
+"faithful if resolution was supplied as *resolution_hz*.)"
 msgstr ""
 "クロック分周器を返します。チャネルの分解能は ``1 / (source_freq / clock_div)`` "
 "であることに注意してください。"
+"(このメソッドは非推奨です。 分解能 が *resolution_hz* として指定された場合、"
+"この値は正確でない可能性があります。)"
 
-#: ../../library/esp32.rst:426
+#: ../../library/esp32.rst:433
 msgid ""
 "Returns ``True`` if the channel is idle or ``False`` if a sequence of "
 "pulses started with `RMT.write_pulses` is being transmitted. If the "
 "*timeout* keyword argument is given then block for up to this many "
-"milliseconds for transmission to complete."
+"milliseconds for transmission to complete. Timeout of -1 blocks until "
+"transmission is complete (and blocks forever if loop is enabled)."
 msgstr ""
 "チャネルがアイドル状態であれば ``True`` を返します。"
 "`RMT.write_pulses` で開始したパルスのシーケンスが転送中の状態にあれば "
 "``False`` を返します。 *timeout* キーワード引数を指定した場合、"
 "伝送が完了するまでの間、最大で指定のミリ秒だけブロックします。"
+"タイムアウトに -1 を指定すると、送信が完了するまでブロックします"
+"(ループが有効な場合は永久にブロックします)。"
 
-#: ../../library/esp32.rst:433
+#: ../../library/esp32.rst:441
 msgid ""
 "Configure looping on the channel. *enable_loop* is bool, set to ``True`` "
 "to enable looping on the *next* call to `RMT.write_pulses`. If called "
 "with ``False`` while a looping sequence is currently being transmitted "
-"then the current loop iteration will be completed and then transmission "
-"will stop."
+"then the transmission will stop. (Method deprecated by `RMT.loop_count`.)"
 msgstr ""
 "チャネルのループを設定します。 *enable_loop* はブール型で、 ``True`` にすると、 "
 "`RMT.write_pulses` の *次の* 呼び出しでループを有効にします。"
-"ループシーケンスの転送中に ``False`` で呼び出された場合、現在のループを完了し、"
-"転送を停止します。"
+"ループシーケンスの転送中に ``False`` で呼び出された場合は転送を停止します。"
+"(このメソッドは `RMT.loop_count` により非推奨となりました。)"
 
-#: ../../library/esp32.rst:440
+#: ../../library/esp32.rst:448
+msgid ""
+"Configure looping on the channel. *n* is int. Affects the *next* call to "
+"`RMT.write_pulses`. Set to ``0`` to disable looping, ``-1`` to enable "
+"infinite looping, or a positive number to loop for a given number of "
+"times. If *n* is changed, the current transmission is stopped."
+msgstr ""
+"チャンネルのループ動作を設定します。 *n* は整数です。"
+"この設定は次回の `RMT.write_pulses` 呼び出しに影響します。"
+"ループを無効にするには ``0`` 、無限ループにするには ``-1`` 、"
+"指定した回数だけループさせるには 正の整数 を設定します。 "
+"*n* が変更された場合、現在の転送は停止します。"
+
+#: ../../library/esp32.rst:453
+msgid ""
+"Note: looping for a finite number of times is not supported by all "
+"flavors of ESP32."
+msgstr ""
+"注記: 有限回数のループは、すべての ESP32 系デバイスでサポートされているわけではありません。"
+
+#: ../../library/esp32.rst:458
+msgid ""
+"If called without parameters, returns *True* if there is an ongoing "
+"transmission."
+msgstr ""
+"パラメータなしで呼び出した場合、転送が進行中であれば *True* を返します。"
+
+#: ../../library/esp32.rst:460
+msgid ""
+"If called with parameter *False*, stops the ongoing transmission. This is"
+" useful to stop an infinite transmission loop. The current loop is "
+"finished and transmission stops. The object is not invalidated, and the "
+"RMT channel is again enabled when a new transmission is started."
+msgstr ""
+"パラメータに *False* を指定すると、進行中の転送を停止します。"
+"これは無限ループの転送を停止するのに便利です。"
+"現在実行中のループは最後まで送られ、その後に転送が停止します。"
+"オブジェクトは無効化されず、新しい転送が開始されれば再び RMT チャンネルは有効になります。"
+
+#: ../../library/esp32.rst:466
+msgid ""
+"Calling with parameter *True* does not restart transmission. A new "
+"transmission should always be initiated by *write_pulses()*."
+msgstr ""
+"パラメータに *True* を指定しても転送は再開されません。"
+"新しい転送は必ず *write_pulses()* で開始する必要があります。"
+
+#: ../../library/esp32.rst:471
+msgid ""
+"Release all RMT resources and invalidate the object. All subsequent "
+"method calls will raise OSError. Useful to free RMT resources without "
+"having to wait for the object to be garbage-collected."
+msgstr ""
+"すべての RMT リソースを解放し、オブジェクトを無効化します。"
+"その後のメソッド呼び出しはすべて OSError を発生させます。"
+"これは、オブジェクトがガーベジコレクトされるのを待たずに RMT リソースを"
+"解放するのに便利です。"
+
+#: ../../library/esp32.rst:477
 msgid "Begin transmitting a sequence. There are three ways to specify this:"
-msgstr "シーケンスの送信を開始します。これを指定するには、次の3つの方法があります:"
+msgstr "シーケンスの転送 を開始します。これを指定するには、次の3つの方法があります:"
 
-#: ../../library/esp32.rst:442
+#: ../../library/esp32.rst:479
 msgid ""
 "**Mode 1:** *duration* is a list or tuple of durations. The optional "
 "*data* argument specifies the initial output level. The output level will"
@@ -4629,7 +4749,7 @@ msgstr ""
 "オプションの *data* 引数は初期出力レベルを指定します。"
 "出力レベルは各期間の後に切り替わります。"
 
-#: ../../library/esp32.rst:446
+#: ../../library/esp32.rst:483
 msgid ""
 "**Mode 2:** *duration* is a positive integer and *data* is a list or "
 "tuple of output levels. *duration* specifies a fixed duration for each."
@@ -4637,7 +4757,7 @@ msgstr ""
 "**モード2:** *duration* は正の整数であり、 *data* は出力レベルのリスト"
 "またはタプルです。 *duration* には毎回固定のパルス幅を指定します。"
 
-#: ../../library/esp32.rst:449
+#: ../../library/esp32.rst:486
 msgid ""
 "**Mode 3:** *duration* and *data* are lists or tuples of equal length, "
 "specifying individual durations and the output level for each."
@@ -4645,7 +4765,7 @@ msgstr ""
 "**モード3:** *duration* と *data* は同じ長さのリストまたはタプルであり、"
 "個々のパルス幅とそれぞれの出力レベルを指定します。"
 
-#: ../../library/esp32.rst:452
+#: ../../library/esp32.rst:489
 msgid ""
 "Durations are in integer units of the channel resolution (as described "
 "above), between 1 and ``PULSE_MAX`` units. Output levels are any value "
@@ -4656,7 +4776,7 @@ msgstr ""
 "1から ``PULSE_MAX`` の間の値となります。出力レベルはブール型に変換できる任意の値であり、 "
 "``True`` が高電圧、 ``False`` が低電圧を意味します。"
 
-#: ../../library/esp32.rst:457
+#: ../../library/esp32.rst:494
 msgid ""
 "If transmission of an earlier sequence is in progress then this method "
 "will block until that transmission is complete before beginning the new "
@@ -4665,7 +4785,7 @@ msgstr ""
 "以前のシーケンスの送信が進行中の場合、このメソッドは以前の伝送が完了するまで"
 "新しいシーケンスを開始をブロックします。"
 
-#: ../../library/esp32.rst:460
+#: ../../library/esp32.rst:497
 msgid ""
 "If looping has been enabled with `RMT.loop`, the sequence will be "
 "repeated indefinitely. Further calls to this method will block until the "
@@ -4678,40 +4798,67 @@ msgstr ""
 "新しいパルスシーケンスのループをすぐに開始します。126 パルスより長い"
 "ループシーケンスは、ハードウェアでサポートされていません。"
 
-#: ../../library/esp32.rst:468
-msgid ""
-"Select which RMT channel is used by the `machine.bitstream` "
-"implementation. *value* can be ``None`` or a valid RMT channel number.  "
-"The default RMT channel is the highest numbered one."
-msgstr ""
-"`machine.bitstream` の実装でどのRMTチャンネルを使用するかを選択します。 "
-"*value* には ``None`` または有効な RMT チャンネル番号を指定します。"
-"デフォルトの RMT チャンネルは最も大きい番号のチャンネルです。"
+#: ../../library/esp32.rst:505
+msgid "Configure RMT usage in the `machine.bitstream` implementation."
+msgstr "`machine.bitstream` の実装における RMT の利用方法を設定します。"
 
-#: ../../library/esp32.rst:472
+#: ../../library/esp32.rst:507
 msgid ""
-"Passing in ``None`` disables the use of RMT and instead selects a bit-"
-"banging implementation for `machine.bitstream`."
+"If *value* is ``True``, bitstream tries to use RMT if possible. If "
+"*value* is ``False``, bitstream sticks to the bit-banging implementation."
 msgstr ""
-"``None`` を渡すと、RMT の使用が無効になり、代わりに `machine.bitstream` の"
-"ビットバング実装が選択されます。"
+"*value* が ``True`` の場合、可能であれば bitstream は RMT を使用しようとします。"
+"*value* が ``False`` の場合、bitstream はビットバンギング方式を使用し続けます。"
 
-#: ../../library/esp32.rst:475
+#: ../../library/esp32.rst:510
 msgid ""
-"Passing in no argument will not change the channel.  This function "
-"returns the current channel number."
+"If no parameter is supplied, it returns the current state. The default "
+"state is ``True``."
 msgstr ""
-"引数なしで渡すとチャンネルは変更されません。この関数は現在のチャンネル番号を返します。"
+"パラメータを指定しない場合、現在の設定状態を返します。"
+"デフォルト値は ``True`` です。"
 
-#: ../../library/esp32.rst:483
+#: ../../library/esp32.rst:515
+msgid ""
+"*This function is deprecated and will be replaced by "
+"`RMT.bitstream_rmt()`.*"
+msgstr ""
+"*この関数は非推奨であり、今後は `RMT.bitstream_rmt()` を使うようにしてください。*"
+
+#: ../../library/esp32.rst:517
+msgid ""
+"Passing in no argument will return ``1`` if RMT was enabled for the "
+"`machine.bitstream` feature, and ``None`` otherwise."
+msgstr ""
+"引数なしで呼び出した場合、 `machine.bitstream` 機能に対して RMT が"
+"有効であれば ``1`` を、さもなければ ``None`` を返します。"
+
+#: ../../library/esp32.rst:520
+msgid ""
+"Passing any non-negative integer argument is equivalent to calling "
+"``RMT.bitstream_rmt(True)``."
+msgstr ""
+"非負整数を引数として渡すことは ``RMT.bitstream_rmt(True)`` を呼び出すことと同等です。"
+
+#: ../../library/esp32.rst:522
+msgid ""
+"In previous versions of MicroPython it was necessary to use this function"
+" to assign a specific RMT channel number for the bitstream, but the "
+"channel number is now assigned dynamically."
+msgstr ""
+"以前の MicroPython では、bitstream 用に特定の RMT チャンネル番号を割り当てる"
+"ために本関数を使う必要がありましたが、現在ではチャンネル番号は動的に割り当てられる"
+"ようになりました。"
+
+#: ../../library/esp32.rst:531
 msgid "Maximum integer that can be set for a pulse duration."
 msgstr "パルス幅に設定できる最大整数値。"
 
-#: ../../library/esp32.rst:486
+#: ../../library/esp32.rst:534
 msgid "Ultra-Low-Power co-processor"
 msgstr "超低消費電力コプロセッサー"
 
-#: ../../library/esp32.rst:488
+#: ../../library/esp32.rst:536
 msgid ""
 "This class gives access to the Ultra Low Power (ULP) co-processor on the "
 "ESP32, ESP32-S2 and ESP32-S3 chips."
@@ -4719,7 +4866,7 @@ msgstr ""
 "このクラスは、ESP32、ESP32-S2、ESP32-S3 チップの超低消費電力"
 "(ULP: Ultra-Low-Power)コプロセッサへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:493
+#: ../../library/esp32.rst:541
 msgid ""
 "This class does not provide access to the RISCV ULP co-processor "
 "available on the ESP32-S2 and ESP32-S3 chips."
@@ -4727,31 +4874,31 @@ msgstr ""
 "このクラスでは、ESP32-S2 および ESP32-S3 チップに搭載されている RISCV ULP "
 "コプロセッサにアクセスできません。"
 
-#: ../../library/esp32.rst:498
+#: ../../library/esp32.rst:546
 msgid "This class provides access to the Ultra-Low-Power co-processor."
 msgstr "このクラスは超低消費電力コプロセッサーへのアクセスを提供します。"
 
-#: ../../library/esp32.rst:502
+#: ../../library/esp32.rst:550
 msgid "Set the wake-up period."
 msgstr "起床期間を設定します。"
 
-#: ../../library/esp32.rst:506
+#: ../../library/esp32.rst:554
 msgid "Load a *program_binary* into the ULP at the given *load_addr*."
 msgstr "与えた *load_addr* で *program_binary* を ULP にロードします。"
 
-#: ../../library/esp32.rst:510
+#: ../../library/esp32.rst:558
 msgid "Start the ULP running at the given *entry_point*."
 msgstr "与えた *entry_point* で ULP を起動します。"
 
-#: ../../library/esp32.rst:519
+#: ../../library/esp32.rst:567
 msgid "Selects the wake level for pins."
 msgstr "ピンの起床レベル。"
 
-#: ../../library/esp32.rst:522
+#: ../../library/esp32.rst:570
 msgid "Non-Volatile Storage"
 msgstr "不揮発ストレージ"
 
-#: ../../library/esp32.rst:524
+#: ../../library/esp32.rst:572
 msgid ""
 "This class gives access to the Non-Volatile storage managed by ESP-IDF. "
 "The NVS is partitioned into namespaces and each namespace contains typed "
@@ -4765,7 +4912,7 @@ msgstr ""
 "など様々ですは、ドライバーは現在のところサポートしているのは、32ビット符号付き整数と"
 "バイナリデータのみです。"
 
-#: ../../library/esp32.rst:531
+#: ../../library/esp32.rst:579
 msgid ""
 "Changes to NVS need to be committed to flash by calling the commit "
 "method. Failure to call commit results in changes being lost at the next "
@@ -4774,14 +4921,14 @@ msgstr ""
 "NVS への変更は、commit メソッドを呼び出してフラッシュメモリにコミットする必要があります。"
 "commit の呼び出しに失敗すると、次のリセット時に変更が失われます。"
 
-#: ../../library/esp32.rst:536
+#: ../../library/esp32.rst:584
 msgid ""
 "Create an object providing access to a namespace (which is automatically "
 "created if not present)."
 msgstr ""
 "名前空間へのアクセスを提供するオブジェクトを作成します(存在しない場合は自動的に作成されます)。"
 
-#: ../../library/esp32.rst:541
+#: ../../library/esp32.rst:589
 msgid ""
 "Sets a 32-bit signed integer value for the specified key. Remember to "
 "call *commit*!"
@@ -4789,7 +4936,7 @@ msgstr ""
 "指定のキーに32ビットの符号付き整数値を設定します。 "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:545
+#: ../../library/esp32.rst:593
 msgid ""
 "Returns the signed integer value for the specified key. Raises an OSError"
 " if the key does not exist or has a different type."
@@ -4797,7 +4944,7 @@ msgstr ""
 "指定のキーとペアになっている符号付き整数値を返します。キーが存在しないか、"
 "値の型が異なる場合、OSError が発生します。
 
-#: ../../library/esp32.rst:550
+#: ../../library/esp32.rst:598
 msgid ""
 "Sets a binary blob value for the specified key. The value passed in must "
 "support the buffer protocol, e.g. bytes, bytearray, str. (Note that esp-"
@@ -4810,7 +4957,7 @@ msgstr ""
 "でも常にバイナリデータとして書き出します。) "
 "*commit* の呼出しを忘れないでください！"
 
-#: ../../library/esp32.rst:557
+#: ../../library/esp32.rst:605
 msgid ""
 "Reads the value of the blob for the specified key into the buffer, which "
 "must be a bytearray. Returns the actual length read. Raises an OSError if"
@@ -4822,11 +4969,11 @@ msgstr ""
 "キーが存在しない場合、値の型が異なる場合、バッファ長が足りない場合は OSError が"
 "発生します。"
 
-#: ../../library/esp32.rst:563
+#: ../../library/esp32.rst:611
 msgid "Erases a key-value pair."
 msgstr "キーと値のペアを消去します。"
 
-#: ../../library/esp32.rst:567
+#: ../../library/esp32.rst:615
 msgid "Commits changes made by *set_xxx* methods to flash."
 msgstr "*set_xxx* メソッドによって行われた変更をフラッシュメモリにコミットします。"
 
@@ -5135,41 +5282,45 @@ msgstr ""
 
 #: ../../library/espnow.rst:167
 msgid ""
-"*rate*: (ESP32 only) Set the transmission speed for ESPNow packets. Must "
-"be set to a number from the allowed numeric values in `enum "
-"wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
-"idf/en/v5.2.3/esp32/ api-"
+"*rate*: (ESP32 only) Set the transmission data rate for ESPNow packets. "
+"The default setting is `espnow.RATE_1M`. It's recommended to use one of "
+"the other ``espnow.RATE_nnn`` constants to set this, but it's also "
+"possible to pass an integer corresponding to the `enum wifi_phy_rate_t "
+"<https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32/ api-"
 "reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_. This "
 "parameter is actually *write-only* due to ESP-IDF not providing any means"
-" for querying the radio interface's rate parameter."
+" for querying the radio interface's rate parameter. See also `espnow-"
+"long-range`. This API currently doesn't work on ESP32-C6."
 msgstr ""
-"*rate*: (ESP32のみ) ESPNow パケットの送信速度を設定します。"
-"`enum wifi_phy_rate_t <https://docs.espressif.com/projects/esp-"
-"idf/en/v4.4.1/esp32/ api-"
-"reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_ "
-"列挙値のいずれかに設定する必要があります。このパラメータは実際には *書出し専用* です。"
+"*rate*: (ESP32のみ) ESPNow パケットの転送データレートを設定します。"
+"デフォルト設定は `espnow.RATE_1M` です。この値を設定する際には、他の "
+"``espnow.RATE_nnn`` 定数を使用することが推奨されますが、 `wifi_phy_rate_t "
+"<https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32/ api-"
+"reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_ 列挙値に"
+"対応する整数を渡すことも可能です。このパラメータは実際には *書出し専用* です。"
 "これは ESP-IDF が無線インターフェースのレートパラメータを取得する手段を提供"
-"していないためです。"
+"していないためです。 `espnow-long-range` も参照してください。"
+"なお、この API は現在 ESP32-C6 では動作しません。"
 
-#: ../../library/espnow.rst:177
+#: ../../library/espnow.rst:179
 msgid "``None`` or the value of the parameter being queried."
 msgstr "パラメータ値の取得の場合はその値、そうでない場合は ``None`` を返します。"
 
-#: ../../library/espnow.rst:181 ../../library/espnow.rst:238
-#: ../../library/espnow.rst:279 ../../library/espnow.rst:472
-#: ../../library/espnow.rst:492 ../../library/espnow.rst:508
+#: ../../library/espnow.rst:183 ../../library/espnow.rst:240
+#: ../../library/espnow.rst:281 ../../library/espnow.rst:474
+#: ../../library/espnow.rst:494 ../../library/espnow.rst:510
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_INIT\")`` if not initialised."
 msgstr "初期化されない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_INIT\")`` が発生。"
 
-#: ../../library/espnow.rst:182
+#: ../../library/espnow.rst:184
 msgid "``ValueError()`` on invalid configuration options or values."
 msgstr "無効な設定オプションまたは値が指定された場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:185
+#: ../../library/espnow.rst:187
 msgid "Sending and Receiving Data"
 msgstr "データの送受信"
 
-#: ../../library/espnow.rst:187
+#: ../../library/espnow.rst:189
 msgid ""
 "A wifi interface (``network.WLAN.IF_STA`` or ``network.WLAN.IF_AP``) must"
 " be `active()<network.WLAN.active>` before messages can be sent or "
@@ -5181,7 +5332,7 @@ msgstr ""
 "ありますが、WLAN インタフェースを接続したり設定する必要はありません。 "
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:192
+#: ../../library/espnow.rst:194
 msgid ""
 "import network\n"
 "\n"
@@ -5195,7 +5346,7 @@ msgstr ""
 "sta.active(True)\n"
 "sta.disconnect()    # ESP8266 用"
 
-#: ../../library/espnow.rst:198
+#: ../../library/espnow.rst:200
 msgid ""
 "**Note:** The ESP8266 has a *feature* that causes it to automatically "
 "reconnect to the last wifi Access Point when set "
@@ -5212,7 +5363,7 @@ msgstr ""
 "の後に `disconnect()<network.WLAN.disconnect>` を呼び出すことで、"
 "これを回避できます。"
 
-#: ../../library/espnow.rst:208
+#: ../../library/espnow.rst:210
 msgid ""
 "Send the data contained in ``msg`` to the peer with given network ``mac``"
 " address. In the second form, ``mac=None`` and ``sync=True``. The peer "
@@ -5223,7 +5374,7 @@ msgstr ""
 "2番目の形式では、 ``mac=None`` と ``sync=True`` になります。ピアは、メッセージを"
 "送信する前に `ESPNow.add_peer()<ESPNow.add_peer()>` で登録しておく必要があります。"
 
-#: ../../library/espnow.rst:215
+#: ../../library/espnow.rst:217
 msgid ""
 "*mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or "
 "``None``. If *mac* is ``None`` (ESP32 only) the message will be sent to "
@@ -5233,32 +5384,32 @@ msgstr ""
 "*mac* が ``None`` の場合(ESP32 のみ)、ブロードキャストまたはマルチキャスト MAC "
 "アドレスを除くすべての登録されたピアにメッセージを送信します。"
 
-#: ../../library/espnow.rst:220
+#: ../../library/espnow.rst:222
 msgid ""
 "*msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250) bytes "
 "long."
 msgstr ""
 "*msg*: 最大長が ``espnow.MAX_DATA_LEN`` (250)である文字列またはバイト列。"
 
-#: ../../library/espnow.rst:223
+#: ../../library/espnow.rst:225
 msgid "*sync*:"
 msgstr ""
 
-#: ../../library/espnow.rst:225
+#: ../../library/espnow.rst:227
 msgid ""
 "``True``: (default) send ``msg`` to the peer(s) and wait for a response "
 "(or not)."
 msgstr ""
 "``True``: (デフォルト) メッセージをピアに送信し、応答を待機します(応答がない場合もあり)。
 
-#: ../../library/espnow.rst:228
+#: ../../library/espnow.rst:230
 msgid ""
 "``False`` send ``msg`` and return immediately. Responses from the peers "
 "will be discarded."
 msgstr ""
 "``False``: メッセージを送信し、すぐに返信します。ピアからの応答は破棄されます。"
 
-#: ../../library/espnow.rst:233
+#: ../../library/espnow.rst:235
 msgid ""
 "``True`` if ``sync=False`` or if ``sync=True`` and *all* peers respond, "
 "else ``False``."
@@ -5266,12 +5417,12 @@ msgstr ""
 "``sync=False`` または ``sync=True`` かつすべてのピアから応答があった場合は "
 "``True`` 、さもなければ ``False`` 。"
 
-#: ../../library/espnow.rst:239
+#: ../../library/espnow.rst:241
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if peer is not registered."
 msgstr ""
 "ピアが登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` が発生。"
 
-#: ../../library/espnow.rst:240
+#: ../../library/espnow.rst:242
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` the wifi interface is not "
 "`active()<network.WLAN.active>`."
@@ -5279,7 +5430,7 @@ msgstr ""
 "wifi インタフェース が `active()<network.WLAN.active>` でなければ、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` が発生。"
 
-#: ../../library/espnow.rst:242
+#: ../../library/espnow.rst:244
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_NO_MEM\")`` internal ESP-NOW buffers are "
 "full."
@@ -5287,11 +5438,11 @@ msgstr ""
 "内部の ESP-NOW バッファが一杯になると、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_NO_MEM\")`` が発生。"
 
-#: ../../library/espnow.rst:244
+#: ../../library/espnow.rst:246
 msgid "``ValueError()`` on invalid values for the parameters."
 msgstr "パラメータの値が不正な場合は ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:246
+#: ../../library/espnow.rst:248
 msgid ""
 "**Note**: A peer will respond with success if its wifi interface is "
 "`active()<network.WLAN.active>` and set to the same channel as the "
@@ -5305,7 +5456,7 @@ msgstr ""
 "同じチャンネルに設定されていれば、ピアは成功で応答します(Espressif の ESP-NOW "
 "ドキュメントを参照)。"
 
-#: ../../library/espnow.rst:253
+#: ../../library/espnow.rst:255
 msgid ""
 "Wait for an incoming message and return the ``mac`` address of the peer "
 "and the message. **Note**: It is **not** necessary to register a peer "
@@ -5316,23 +5467,23 @@ msgstr ""
 "**注記**: ピアからメッセージを受信するために、"
 "(`add_peer()<ESPNow.add_peer()>` を使って)ピアを登録しておく必要はありません。"
 
-#: ../../library/espnow.rst:259
+#: ../../library/espnow.rst:261
 msgid "*timeout_ms*: (Optional): May have the following values."
 msgstr "*timeout_ms*: (オプション): 次の値を指定できます。"
 
-#: ../../library/espnow.rst:261
+#: ../../library/espnow.rst:263
 msgid "``0``: No timeout. Return immediately if no data is available;"
 msgstr "``0``: タイムアウトなし。受信可能なデータがない場合はすぐに戻ります。"
 
-#: ../../library/espnow.rst:262
+#: ../../library/espnow.rst:264
 msgid "``> 0``: Specify a timeout value in milliseconds;"
 msgstr "``> 0``: ミリ秒単位のタイムアウト値を指定します。"
 
-#: ../../library/espnow.rst:263
+#: ../../library/espnow.rst:265
 msgid "``< 0``: Do not timeout, ie. wait forever for new messages; or"
 msgstr "``< 0``: タイムアウトしない、すなわち新しいメッセージを受信するまで永遠に待機します。"
 
-#: ../../library/espnow.rst:264
+#: ../../library/espnow.rst:266
 msgid ""
 "``None`` (or not provided): Use the default timeout value set with "
 "`ESPNow.config()`."
@@ -5340,26 +5491,26 @@ msgstr ""
 "``None`` (または指定なし): `ESPNow.config()` で設定したデフォルトの"
 "タイムアウト値を使用します。"
 
-#: ../../library/espnow.rst:269
+#: ../../library/espnow.rst:271
 msgid "``(None, None)`` if timeout is reached before a message is received, or"
 msgstr "メッセージを受信する前にタイムアウトが発生した場合は ``(None、None)`` が返ります。"
 
-#: ../../library/espnow.rst:271
+#: ../../library/espnow.rst:273
 msgid "``[mac, msg]``: where:"
 msgstr "``[mac、msg]`` は次のものです:"
 
-#: ../../library/espnow.rst:273
+#: ../../library/espnow.rst:275
 msgid ""
 "``mac`` is a bytestring containing the address of the device which sent "
 "the message, and"
 msgstr ""
 "``mac`` はメッセージを送信したデバイスのアドレスを含むバイト列"
 
-#: ../../library/espnow.rst:275
+#: ../../library/espnow.rst:277
 msgid "``msg`` is a bytestring containing the message."
 msgstr "``msg`` はメッセージを含むバイト列
 
-#: ../../library/espnow.rst:280
+#: ../../library/espnow.rst:282
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` if the wifi interface is not "
 "`active()<network.WLAN.active>`."
@@ -5367,11 +5518,11 @@ msgstr ""
 "wifi インタフェースが `active()<network.WLAN.active>` されていない場合、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` が発生。"
 
-#: ../../library/espnow.rst:282
+#: ../../library/espnow.rst:284
 msgid "``ValueError()`` on invalid *timeout_ms* values."
 msgstr "*timeout_ms* の値が無効な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:284
+#: ../../library/espnow.rst:286
 msgid ""
 "`ESPNow.recv()` will allocate new storage for the returned list and the "
 "``peer`` and ``msg`` bytestrings. This can lead to memory fragmentation "
@@ -5383,7 +5534,7 @@ msgstr ""
 "引き起こす可能性があります。メモリに優しい代替手段として `ESPNow.irecv()` を"
 "参照してください。"
 
-#: ../../library/espnow.rst:292
+#: ../../library/espnow.rst:294
 msgid ""
 "Works like `ESPNow.recv()` but will reuse internal bytearrays to store "
 "the return values: ``[mac, msg]``, so that no new memory is allocated on "
@@ -5392,11 +5543,11 @@ msgstr ""
 "`ESPNow.recv()` と同様に機能しますが、返される値 ``[mac、msg]`` を格納するために"
 "内部のバイト配列を再利用するため、各呼び出しで新しいメモリが割り当てられることはありません。"
 
-#: ../../library/espnow.rst:296 ../../library/espnow.rst:331
+#: ../../library/espnow.rst:298 ../../library/espnow.rst:333
 msgid "*timeout_ms*: (Optional) Timeout in milliseconds (see `ESPNow.recv()`)."
 msgstr "*timeout_ms*: (オプション) ミリ秒単位のタイムアウト値(`ESPNow.recv()` を参照)。"
 
-#: ../../library/espnow.rst:302
+#: ../../library/espnow.rst:304
 msgid ""
 "As for `ESPNow.recv()`, except that ``msg`` is a bytearray, instead of a "
 "bytestring. On the ESP8266, ``mac`` will also be a bytearray."
@@ -5404,11 +5555,11 @@ msgstr ""
 "`ESPNow.recv()` と違い、 ``msg`` はバイト列ではなく bytearray です。"
 "ESP8266 では ``mac`` も bytearray になります。"
 
-#: ../../library/espnow.rst:307 ../../library/espnow.rst:342
+#: ../../library/espnow.rst:309 ../../library/espnow.rst:344
 msgid "See `ESPNow.recv()`."
 msgstr "`ESPNow.recv()` を参照。"
 
-#: ../../library/espnow.rst:309
+#: ../../library/espnow.rst:311
 msgid ""
 "**Note:** You may also read messages by iterating over the ESPNow object,"
 " which will use the `irecv()` method for alloc-free reads, eg: ::"
@@ -5417,7 +5568,7 @@ msgstr ""
 "この方法では、メモリ割当て/解放の対策として `irecv()` メソッドを使っています。"
 "たとえば次のように使います::"
 
-#: ../../library/espnow.rst:312
+#: ../../library/espnow.rst:314
 msgid ""
 "import espnow\n"
 "e = espnow.ESPNow(); e.active(True)\n"
@@ -5427,7 +5578,7 @@ msgid ""
 "        break"
 msgstr ""
 
-#: ../../library/espnow.rst:321
+#: ../../library/espnow.rst:323
 msgid ""
 "Wait for an incoming message and return the length of the message in "
 "bytes. This is the low-level method used by both `recv()<ESPNow.recv()>` "
@@ -5436,7 +5587,7 @@ msgstr ""
 "送信されてくるメッセージを待機し、メッセージの長さをバイト数で返します。"
 "これは `recv()<ESPNow.recv()>` と `irecv()` の両方で使われる低レベルメソッドです。"
 
-#: ../../library/espnow.rst:327
+#: ../../library/espnow.rst:329
 msgid ""
 "*data*: A list of at least two elements, ``[peer, msg]``. ``msg`` must be"
 " a bytearray large enough to hold the message (250 bytes). On the "
@@ -5450,7 +5601,7 @@ msgstr ""
 "これらの bytearray には、送信元の MAC アドレスとメッセージが格納されます"
 "(後述の ESP32 についての注記を参照)。"
 
-#: ../../library/espnow.rst:337
+#: ../../library/espnow.rst:339
 msgid ""
 "Length of message in bytes or 0 if *timeout_ms* is reached before a "
 "message is received."
@@ -5458,11 +5609,11 @@ msgstr ""
 "メッセージのバイト数。メッセージが受信される前に *timeout_ms* が経過した場合は 0 "
 "を返します。"
 
-#: ../../library/espnow.rst:344
+#: ../../library/espnow.rst:346
 msgid "**Note:** On the ESP32:"
 msgstr "**注記:** ESP32の場合:"
 
-#: ../../library/espnow.rst:346
+#: ../../library/espnow.rst:348
 msgid ""
 "It is unnecessary to provide a bytearray in the first element of the "
 "``data`` list because it will be replaced by a reference to a unique "
@@ -5472,7 +5623,7 @@ msgstr ""
 "これは、**ピアデバイステーブル** (`ESPNow.peers_table` を参照)内の"
 "一意のピアアドレスへの参照に置換されます。"
 
-#: ../../library/espnow.rst:349
+#: ../../library/espnow.rst:351
 msgid ""
 "If the list is at least 4 elements long, the rssi and timestamp values "
 "will be saved as the 3rd and 4th elements."
@@ -5480,18 +5631,18 @@ msgstr ""
 "リストが少なくとも4つの要素である場合、rssi およびタイムスタンプ値が3番目および4番目"
 "の要素として保存されます。"
 
-#: ../../library/espnow.rst:354
+#: ../../library/espnow.rst:356
 msgid "Check if data is available to be read with `ESPNow.recv()`."
 msgstr "`ESPNow.recv()` で読み込めるデータがあるかをチェックします。"
 
-#: ../../library/espnow.rst:356
+#: ../../library/espnow.rst:358
 msgid ""
 "For more sophisticated querying of available characters use "
 "`select.poll()`::"
 msgstr ""
 "より高度な文字のクエリングには、`select.poll()` を使ってください::"
 
-#: ../../library/espnow.rst:358
+#: ../../library/espnow.rst:360
 msgid ""
 "import select\n"
 "import espnow\n"
@@ -5502,19 +5653,19 @@ msgid ""
 "poll.poll(timeout)"
 msgstr ""
 
-#: ../../library/espnow.rst:368
+#: ../../library/espnow.rst:370
 msgid "``True`` if data is available to be read, else ``False``."
 msgstr "データを読み込める場合は ``True`` 、そうでない場合は ``False`` を返します。"
 
-#: ../../library/espnow.rst:374
+#: ../../library/espnow.rst:376
 msgid "A 5-tuple containing the number of packets sent/received/lost:"
 msgstr "送信/受信/損失したパケット数を持つ、次の5要素のタプルを返します:"
 
-#: ../../library/espnow.rst:376
+#: ../../library/espnow.rst:378
 msgid "``(tx_pkts, tx_responses, tx_failures, rx_packets, rx_dropped_packets)``"
 msgstr ""
 
-#: ../../library/espnow.rst:378
+#: ../../library/espnow.rst:380
 msgid ""
 "Incoming packets are *dropped* when the recv buffers are full. To reduce "
 "packet loss, increase the ``rxbuf`` config parameters and ensure you are "
@@ -5523,18 +5674,18 @@ msgstr ""
 "受信バッファが一杯になると、着信パケットが *破棄* されます。パケット損失を減らすには、 "
 "``rxbuf`` 構成パラメータを増やし、できるだけ速くメッセージを読み込むようにしてむください。"
 
-#: ../../library/espnow.rst:382
+#: ../../library/espnow.rst:384
 msgid ""
 "**Note**: Dropped packets will still be acknowledged to the sender as "
 "received."
 msgstr ""
 "**注記**: パケットが破棄されても、送信側としては受信されたとみなします。"
 
-#: ../../library/espnow.rst:386
+#: ../../library/espnow.rst:388
 msgid "Peer Management"
 msgstr "ピア管理"
 
-#: ../../library/espnow.rst:388
+#: ../../library/espnow.rst:390
 msgid ""
 "On ESP32 devices, the Espressif ESP-NOW software requires that other "
 "devices (peers) must be *registered* using `add_peer()` before we can "
@@ -5547,7 +5698,7 @@ msgstr ""
 "しておく必要があります(これは、ESP8266 デバイスでは強制 *されません* )。"
 "ピアから暗号化されていないメッセージを受信するのであれば、ピアの登録は *要りません* 。"
 
-#: ../../library/espnow.rst:394
+#: ../../library/espnow.rst:396
 msgid ""
 "**Encrypted messages**: To receive an *encrypted* message, the receiving "
 "device must first register the sender and use the same encryption keys as"
@@ -5557,7 +5708,7 @@ msgstr ""
 "受信側のデバイスがまず送信者を登録し、送信者と同じ暗号化キー(PMKとLMK)を"
 "使う必要があります(`set_pmk()` と `add_peer()` を参照。"
 
-#: ../../library/espnow.rst:400
+#: ../../library/espnow.rst:402
 msgid ""
 "Set the Primary Master Key (PMK) which is used to encrypt the Local "
 "Master Keys (LMK) for encrypting messages. If this is not set, a default "
@@ -5568,7 +5719,7 @@ msgstr ""
 "設定しない場合、Espressif ESP-NOW ソフトウェアスタックによってデフォルトの PMK "
 "が使われます。"
 
-#: ../../library/espnow.rst:404
+#: ../../library/espnow.rst:406
 msgid ""
 "**Note:** messages will only be encrypted if *lmk* is also set in "
 "`ESPNow.add_peer()` (see `Security <https://docs.espressif.com/projects"
@@ -5581,7 +5732,7 @@ msgstr ""
 "/esp-idf/en/latest/ esp32/api-reference/network/esp_now.html#security>`_ "
 "を参照)。"
 
-#: ../../library/espnow.rst:412
+#: ../../library/espnow.rst:414
 msgid ""
 "*pmk*: Must be a byte string, bytearray or string of length "
 "`espnow.KEY_LEN` (16 bytes)."
@@ -5589,15 +5740,15 @@ msgstr ""
 "*pmk*: `espnow.KEY_LEN` (16バイト)の長さのバイト列、bytearray、または文字列"
 "である必要があります。"
 
-#: ../../library/espnow.rst:417 ../../library/espnow.rst:483
+#: ../../library/espnow.rst:419 ../../library/espnow.rst:485
 msgid "``None``"
 msgstr ""
 
-#: ../../library/espnow.rst:421
+#: ../../library/espnow.rst:423
 msgid "``ValueError()`` on invalid *pmk* values."
 msgstr "*pmk* 値が不正な場合、 ``ValueError(）`` が発生。"
 
-#: ../../library/espnow.rst:426
+#: ../../library/espnow.rst:428
 msgid ""
 "Add/register the provided *mac* address as a peer. Additional parameters "
 "may also be specified as positional or keyword arguments (any parameter "
@@ -5607,11 +5758,11 @@ msgstr ""
 "追加のパラメータを位置引数またはキーワード引数として指定することもできます"
 "(パラメータに ``None`` を指定するとデフォルト値が適用されます)。"
 
-#: ../../library/espnow.rst:432
+#: ../../library/espnow.rst:434
 msgid "*mac*: The MAC address of the peer (as a 6-byte byte-string)."
 msgstr "*mac*: ピアのMACアドレス(6バイトのバイト列)。"
 
-#: ../../library/espnow.rst:434
+#: ../../library/espnow.rst:436
 msgid ""
 "*lmk*: The Local Master Key (LMK) key used to encrypt data transfers with"
 " this peer (unless the *encrypt* parameter is set to ``False``). Must be:"
@@ -5620,14 +5771,14 @@ msgstr ""
 "(*encrypt* パラメータが ``False`` に設定されていない場合に限ります)。"
 "次のいずれかである必要があります。"
 
-#: ../../library/espnow.rst:438
+#: ../../library/espnow.rst:440
 msgid ""
 "a byte-string or bytearray or string of length ``espnow.KEY_LEN`` (16 "
 "bytes), or"
 msgstr ""
 "長さが ``espnow.KEY_LEN`` (16バイト)のバイト列、bytearray、または文字列"
 
-#: ../../library/espnow.rst:441
+#: ../../library/espnow.rst:443
 msgid ""
 "any non ``True`` python value (default= ``b''``), signifying an *empty* "
 "key which will disable encryption."
@@ -5635,7 +5786,7 @@ msgstr ""
 "``True`` 以外の任意のPython値(デフォルト= ``b''``)。"
 "これは暗号化を無効にする空のキーを示します。"
 
-#: ../../library/espnow.rst:444
+#: ../../library/espnow.rst:446
 msgid ""
 "*channel*: The wifi channel (2.4GHz) to communicate with this peer. Must "
 "be an integer from 0 to 14. If channel is set to 0 the current channel of"
@@ -5649,7 +5800,7 @@ msgstr ""
 "値はインタフェースに現在設定されているチャンネルと一致している必要があります"
 "(詳細は :func:`WLAN.config` を参照)。(デフォルト=0)"
 
-#: ../../library/espnow.rst:450
+#: ../../library/espnow.rst:452
 msgid ""
 "*ifidx*: (ESP32 only) Index of the wifi interface which will be used to "
 "send data to this peer. Must be an integer set to ``network.WLAN.IF_STA``"
@@ -5663,7 +5814,7 @@ msgstr ""
 "された整数でなければなりません。(デフォルト=0/``network.WLAN.IF_STA``)。"
 "詳細については、後述の `ESPNow and Wifi Operation`_ を参照してください。"
 
-#: ../../library/espnow.rst:456
+#: ../../library/espnow.rst:458
 msgid ""
 "*encrypt*: (ESP32 only) If set to ``True`` data exchanged with this peer "
 "will be encrypted with the PMK and LMK. (default = ``True`` if *lmk* is "
@@ -5673,11 +5824,11 @@ msgstr ""
 "するには ``True`` に設定します。(*lmk* に適正値が指定されていればデフォルトは "
 "``True`` 、さもなければ ``False``)"
 
-#: ../../library/espnow.rst:460
+#: ../../library/espnow.rst:462
 msgid "**ESP8266**: Keyword args may not be used on the ESP8266."
 msgstr "**ESP8266**: ESP8266 ではキーワード引数を指定できません。"
 
-#: ../../library/espnow.rst:462
+#: ../../library/espnow.rst:464
 msgid ""
 "**Note:** The maximum number of peers which may be registered is 20 "
 "(`espnow.MAX_TOTAL_PEER_NUM`), with a maximum of 6 "
@@ -5695,13 +5846,13 @@ msgstr ""
 "/esp-idf/en/latest/esp32/api-reference/network/ "
 "esp_now.html#c.ESP_NOW_MAX_ENCRYPT_PEER_NUM>`_ を参照)。"
 
-#: ../../library/espnow.rst:473
+#: ../../library/espnow.rst:475
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` if *mac* is already registered."
 msgstr ""
 "*mac* がすでに登録されている場合、 ``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:475
+#: ../../library/espnow.rst:477
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` if too many peers are already "
 "registered."
@@ -5709,7 +5860,7 @@ msgstr ""
 "登録するピアが多すぎる場合、 ``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:477
+#: ../../library/espnow.rst:479
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` if a channel value was set that"
 " doesn't match the channel currently configured for this interface."
@@ -5717,29 +5868,29 @@ msgstr ""
 "チャンネル値がこのインターフェースに現在設定されているチャンネルと一致していない場合、"
 "``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` が発生。"
 
-#: ../../library/espnow.rst:480
+#: ../../library/espnow.rst:482
 msgid "``ValueError()`` on invalid keyword args or values."
 msgstr "キーワード引数または値が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:484
+#: ../../library/espnow.rst:486
 msgid "Deregister the peer associated with the provided *mac* address."
 msgstr "指定した *mac* アドレスに関連付けられたピアを登録解除します。"
 
-#: ../../library/espnow.rst:493 ../../library/espnow.rst:509
+#: ../../library/espnow.rst:495 ../../library/espnow.rst:511
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if *mac* is not registered."
 msgstr ""
 "*mac* が登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:495 ../../library/espnow.rst:511
+#: ../../library/espnow.rst:497 ../../library/espnow.rst:513
 msgid "``ValueError()`` on invalid *mac* values."
 msgstr "*mac* が不正な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:499
+#: ../../library/espnow.rst:501
 msgid "Return information on a registered peer."
 msgstr "登録されているピアに関する情報を返します。"
 
-#: ../../library/espnow.rst:503
+#: ../../library/espnow.rst:505
 msgid ""
 "``(mac, lmk, channel, ifidx, encrypt)``: a tuple of the \"peer info\" "
 "associated with the given *mac* address."
@@ -5747,30 +5898,30 @@ msgstr ""
 "``(mac, lmk, channel, ifidx, encrypt)``: 指定した *mac* アドレスに"
 "関連付けられた「ピア情報」のタプル。"
 
-#: ../../library/espnow.rst:515
+#: ../../library/espnow.rst:517
 msgid "Return the number of registered peers:"
 msgstr "登録されているピア数を返します:"
 
-#: ../../library/espnow.rst:517
+#: ../../library/espnow.rst:519
 msgid "``(peer_num, encrypt_num)``: where"
 msgstr "``(peer_num, encrypt_num)``:"
 
-#: ../../library/espnow.rst:519
+#: ../../library/espnow.rst:521
 msgid "``peer_num`` is the number of peers which are registered, and"
 msgstr "``peer_num`` は登録されているピア数。"
 
-#: ../../library/espnow.rst:520
+#: ../../library/espnow.rst:522
 msgid "``encrypt_num`` is the number of encrypted peers."
 msgstr "``encrypt_num`` は暗号化されたピア数。"
 
-#: ../../library/espnow.rst:524
+#: ../../library/espnow.rst:526
 msgid ""
 "Return the \"peer info\" parameters for all the registered peers (as a "
 "tuple of tuples)."
 msgstr ""
 "登録されているすべてのピアの「ピア情報」パラメータを(タプルのタプルとして)返します"。
 
-#: ../../library/espnow.rst:530
+#: ../../library/espnow.rst:532
 msgid ""
 "Modify the parameters of the peer associated with the provided *mac* "
 "address. Parameters may be provided as positional or keyword arguments "
@@ -5782,11 +5933,11 @@ msgstr ""
 "(`ESPNow.add_peer()` を参照)。パラメータを指定しない場合(もしくは ``None`` を
 "指定した場合)、既存のパラメータ値を返します。"
 
-#: ../../library/espnow.rst:536
+#: ../../library/espnow.rst:538
 msgid "Callback Methods"
 msgstr "コールバックメソッド"
 
-#: ../../library/espnow.rst:540
+#: ../../library/espnow.rst:542
 msgid ""
 "Set a callback function to be called *as soon as possible* after a "
 "message has been received from another ESPNow device. The callback "
@@ -5802,7 +5953,7 @@ msgstr ""
 "メッセージを読み込み、読み込みのタイムアウトをゼロに設定することをお勧めします。"
 "たとえば、次のように使います::"
 
-#: ../../library/espnow.rst:546
+#: ../../library/espnow.rst:548
 msgid ""
 "def recv_cb(e):\n"
 "    while True:  # Read out all messages waiting in the buffer\n"
@@ -5820,7 +5971,7 @@ msgstr ""
 "        print(mac, msg)\n"
 "e.irq(recv_cb)"
 
-#: ../../library/espnow.rst:554
+#: ../../library/espnow.rst:556
 msgid ""
 "The `irq()<ESPNow.irq()>` callback method is an alternative method for "
 "processing incoming messages, especially if the data rate is moderate and"
@@ -5831,7 +5982,7 @@ msgstr ""
 "着信したメッセージを処理するための代替方法ですが、"
 "いくつかの注意点があります:"
 
-#: ../../library/espnow.rst:558
+#: ../../library/espnow.rst:560
 msgid ""
 "The scheduler stack *can* overflow and callbacks will be missed if "
 "packets are arriving at a sufficient rate or if other MicroPython "
@@ -5848,7 +5999,7 @@ msgstr ""
 "このメソッドは、メッセージのバースト処理や高スループット、"
 "他のハードウェア操作に忙しいデバイスの処理に対しては、信頼性が低い場合があります。"
 
-#: ../../library/espnow.rst:565
+#: ../../library/espnow.rst:567
 msgid ""
 "For more information on *scheduled* function callbacks see: "
 "`micropython.schedule()<micropython.schedule>`."
@@ -5857,7 +6008,70 @@ msgstr ""
 "`micropython.schedule()<micropython.schedule>` "
 "を参照してください。"
 
-#: ../../library/espnow.rst:580
+#: ../../library/espnow.rst:579
+msgid ""
+"The following constants correspond to different transmit data rates on "
+"ESP32 only. Lower data rates are generally more reliable over long "
+"distances:"
+msgstr ""
+"以下の定数は、ESP32 のみで使用可能な、異なる転送データレートに対応しています。"
+"データレートが低いほど、一般的に長距離でより信頼性が高くなります。"
+
+#: ../../library/espnow.rst:585
+msgid "See  `espnow-long-range`."
+msgstr "`espnow-long-range` を参照してください。"
+
+#: ../../library/espnow.rst:596
+msgid ""
+"Unless using the two proprietary long range data rates, only the sender "
+"must configure the data rate."
+msgstr ""
+"2つの独自(プロプライエタリ)な長距離データレートを使用しない限り、"
+"送信側でデータレートを設定するだけです。"
+
+#: ../../library/espnow.rst:602
+msgid "Long Range Mode"
+msgstr "長距離モード"
+
+#: ../../library/espnow.rst:604
+msgid "(ESP32 Only, except ESP32-C2)"
+msgstr "(ESP32-C2 を除く ESP32 のみ)"
+
+#: ../../library/espnow.rst:606
+msgid ""
+"To use the `espnow.RATE_LORA_250K` and `espnow.RATE_LORA_500K` data "
+"rates, first set the `WLAN` interface object to long-range mode, i.e.::"
+msgstr ""
+"`espnow.RATE_LORA_250K` と `espnow.RATE_LORA_500K` のデータレートを"
+"使うには、まず `WLAN` インタフェースオブジェクトをロングレンジモードに設定する"
+"必要があります。つまり、次のようにします:"
+
+#: ../../library/espnow.rst:609
+msgid ""
+"import network, espnow\n"
+"sta = network.WLAN(network.WLAN.IF_STA)\n"
+"sta.active(True)\n"
+"sta.config(channel=6, protocol=WLAN.PROTOCOL_LR)  # Set on sender & "
+"receiver\n"
+"e = espnow.ESPNow()\n"
+"e.config(rate=espnow.RATE_LORA_250K)  # Needed on sender only"
+msgstr ""
+"import network, espnow\n"
+"sta = network.WLAN(network.WLAN.IF_STA)\n"
+"sta.active(True)\n"
+"sta.config(channel=6, protocol=WLAN.PROTOCOL_LR)  # Set on sender & "
+"receiver\n"
+"e = espnow.ESPNow()\n"
+"e.config(rate=espnow.RATE_LORA_250K)  # 送信側のみ必要"
+
+#: ../../library/espnow.rst:616
+msgid ""
+"For more information about the limitations of long-range mode, see "
+"`WLAN.PROTOCOL_LR`."
+msgstr ""
+"長距離モードの制限について詳しくは `WLAN.PROTOCOL_LR` を参照してください。"
+
+#: ../../library/espnow.rst:621
 msgid ""
 "If the underlying Espressif ESP-NOW software stack returns an error code,"
 " the MicroPython espnow module will raise an ``OSError(errnum, "
@@ -5873,7 +6087,7 @@ msgstr ""
 "reference/network/esp_now.html#api-reference>`_ にある"
 "エラーコードの名前に設定されます。次に例を示します::"
 
-#: ../../library/espnow.rst:588
+#: ../../library/espnow.rst:629
 msgid ""
 "try:\n"
 "    e.send(peer, 'Hello')\n"
@@ -5890,11 +6104,11 @@ msgid ""
 "        raise err"
 msgstr ""
 
-#: ../../library/espnow.rst:603
+#: ../../library/espnow.rst:644
 msgid "Wifi Signal Strength (RSSI) - (ESP32 only)"
 msgstr "Wifi 信号強度 (RSSI) - (ESP32 のみ)"
 
-#: ../../library/espnow.rst:605
+#: ../../library/espnow.rst:646
 msgid ""
 "The ESPNow object maintains a **peer device table** which contains the "
 "signal strength and timestamp of the last received message from all "
@@ -5909,33 +6123,33 @@ msgstr ""
 "ピアデバイスのネットワーク内でデバイスの近接性を追跡し、 *最も近い隣接デバイス* "
 "を特定するために使えます。この機能は ESP8266 デバイスでは使えません。"
 
-#: ../../library/espnow.rst:613
+#: ../../library/espnow.rst:654
 msgid ""
 "A reference to the **peer device table**: a dict of known peer devices "
 "and rssi values::"
 msgstr ""
 "**ピアデバイステーブル** への参照: 既知のピアデバイスと RSSI 値の辞書です。"
 
-#: ../../library/espnow.rst:616
+#: ../../library/espnow.rst:657
 msgid "{peer: [rssi, time_ms], ...}"
 msgstr ""
 
-#: ../../library/espnow.rst:618
+#: ../../library/espnow.rst:659
 msgid "where:"
 msgstr "ここでの各項目は次のとおりです:"
 
-#: ../../library/espnow.rst:620
+#: ../../library/espnow.rst:661
 msgid "``peer`` is the peer MAC address (as `bytes`);"
 msgstr "``peer`` はピアの MAC アドレス(`bytes`)です。"
 
-#: ../../library/espnow.rst:621
+#: ../../library/espnow.rst:662
 msgid ""
 "``rssi`` is the wifi signal strength in dBm (-127 to 0) of the last "
 "message received from the peer; and"
 msgstr ""
 "``rssi`` はピアからの最新の受信メッセージの wifi 信号強度です(dBm: -127 から 0 の範囲)。"
 
-#: ../../library/espnow.rst:623
+#: ../../library/espnow.rst:664
 msgid ""
 "``time_ms`` is the time the message was received (in milliseconds since "
 "system boot - wraps every 12 days)."
@@ -5943,14 +6157,14 @@ msgstr ""
 "``time_ms`` はメッセージの受信時刻です(システム起動からのミリ秒単位の経過時間、"
 "12日ごとにラップ)。"
 
-#: ../../library/espnow.rst:628
+#: ../../library/espnow.rst:669
 msgid ""
 ">>> e.peers_table\n"
 "{b'\\xaa\\xaa\\xaa\\xaa\\xaa\\xaa': [-31, 18372],\n"
 " b'\\xbb\\xbb\\xbb\\xbb\\xbb\\xbb': [-43, 12541]}"
 msgstr ""
 
-#: ../../library/espnow.rst:632
+#: ../../library/espnow.rst:673
 msgid ""
 "**Note**: the ``mac`` addresses returned by `recv()` are references to "
 "the ``peer`` key values in the **peer device table**."
@@ -5958,7 +6172,7 @@ msgstr ""
 "**注記**: `recv()` によって返される ``mac`` アドレスは、"
 "ピアデバイステーブルのピアキーの値への参照です。"
 
-#: ../../library/espnow.rst:635
+#: ../../library/espnow.rst:676
 msgid ""
 "**Note**: RSSI and timestamp values in the device table are updated only "
 "when the message is read by the application."
@@ -5966,11 +6180,11 @@ msgstr ""
 "**注記**: デバイステーブル内の RSSI とタイムスタンプの値は、アプリケーションによって"
 "メッセージが読み込まれたときにのみ更新されます。"
 
-#: ../../library/espnow.rst:639
+#: ../../library/espnow.rst:680
 msgid "Supporting asyncio"
 msgstr "asyncio のサポート"
 
-#: ../../library/espnow.rst:641
+#: ../../library/espnow.rst:682
 msgid ""
 "A supplementary module (`aioespnow`) is available to provide "
 ":doc:`asyncio<asyncio>` support."
@@ -5978,7 +6192,7 @@ msgstr ""
 "追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<asyncio>` を"
 "サポートします。"
 
-#: ../../library/espnow.rst:644
+#: ../../library/espnow.rst:685
 msgid ""
 "**Note:** Asyncio support is available on all ESP32 targets as well as "
 "those ESP8266 boards which include the asyncio module (ie. ESP8266 "
@@ -5989,11 +6203,11 @@ msgstr ""
 "(すなわち、少なくとも2MBのフラッシュメモリを持つ ESP8266 デバイス)"
 "でも使えます。"
 
-#: ../../library/espnow.rst:648
+#: ../../library/espnow.rst:689
 msgid "A small async server example::"
 msgstr "次は小さな非同期サーバーの例です::"
 
-#: ../../library/espnow.rst:650
+#: ../../library/espnow.rst:691
 msgid ""
 "import network\n"
 "import aioespnow\n"
@@ -6037,7 +6251,7 @@ msgid ""
 "asyncio.run(main(e, peer, 120, 10))"
 msgstr ""
 
-#: ../../library/espnow.rst:694
+#: ../../library/espnow.rst:735
 msgid ""
 "The `AIOESPNow` class inherits all the methods of `ESPNow<espnow.ESPNow>`"
 " and extends the interface with the following async methods."
@@ -6045,7 +6259,7 @@ msgstr ""
 "`AIOESPNow` クラスは `ESPNow<espnow.ESPNow>` のすべてのメソッドを継承し、"
 "以下の非同期メソッドでインタフェースを拡張します。"
 
-#: ../../library/espnow.rst:699
+#: ../../library/espnow.rst:740
 msgid ""
 "Asyncio support for `ESPNow.recv()`. Note that this method does not take "
 "a timeout value as argument."
@@ -6053,7 +6267,7 @@ msgstr ""
 "`ESPNow.recv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:704
+#: ../../library/espnow.rst:745
 msgid ""
 "Asyncio support for `ESPNow.irecv()`. Note that this method does not take"
 " a timeout value as argument."
@@ -6061,11 +6275,11 @@ msgstr ""
 "`ESPNow.irecv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:710
+#: ../../library/espnow.rst:751
 msgid "Asyncio support for `ESPNow.send()`."
 msgstr "`ESPNow.send()` の Asyncio サポート。"
 
-#: ../../library/espnow.rst:714
+#: ../../library/espnow.rst:755
 msgid ""
 "`AIOESPNow` also supports reading incoming messages by asynchronous "
 "iteration using ``async for``; eg::"
@@ -6073,7 +6287,7 @@ msgstr ""
 "`AIOESPNow` は、非同期イテレーションを使って受信メッセージを読み込むための "
 "Async for もサポートしています。例えば次のようにして使います::"
 
-#: ../../library/espnow.rst:717
+#: ../../library/espnow.rst:758
 msgid ""
 "e = AIOESPNow()\n"
 "e.active(True)\n"
@@ -6085,11 +6299,11 @@ msgid ""
 "asyncio.run(recv_till_halt(e))"
 msgstr ""
 
-#: ../../library/espnow.rst:727
+#: ../../library/espnow.rst:768
 msgid "Broadcast and Multicast"
 msgstr "ブロードキャストとマルチキャスト"
 
-#: ../../library/espnow.rst:729
+#: ../../library/espnow.rst:770
 msgid ""
 "All active ESPNow clients will receive messages sent to their MAC address"
 " and all devices (**except ESP8266 devices**) will also receive messages "
@@ -6101,7 +6315,7 @@ msgstr ""
 "*ブロードキャスト* MAC アドレス(``b'\\xff\\xff\\xff\\xff\\xff\\xff'``)"
 "またはマルチキャスト MAC アドレス宛てに送信されたメッセージも受信します。"
 
-#: ../../library/espnow.rst:734
+#: ../../library/espnow.rst:775
 msgid ""
 "All ESPNow devices (including ESP8266 devices) can also send messages to "
 "the broadcast MAC address or any multicast MAC address."
@@ -6109,7 +6323,7 @@ msgstr ""
 "すべての ESPNow デバイス(ESP8266デバイスを含む)は、ブロードキャスト MAC アドレス"
 "または任意のマルチキャスト MAC アドレスにもメッセージを送信できます。"
 
-#: ../../library/espnow.rst:737
+#: ../../library/espnow.rst:778
 msgid ""
 "To `send()<ESPNow.send()>` a broadcast message, the broadcast (or "
 "multicast) MAC address must first be registered using "
@@ -6126,7 +6340,7 @@ msgstr ""
 "ブロードキャストアドレスまたはマルチキャストアドレス宛てに送信されたメッセージは"
 "暗号化できません。"
 
-#: ../../library/espnow.rst:744
+#: ../../library/espnow.rst:785
 msgid ""
 "**Note**: `ESPNow.send(None, msg)<ESPNow.send()>` will send to all "
 "registered peers *except* the broadcast address. To send a broadcast or "
@@ -6138,18 +6352,18 @@ msgstr ""
 "送信するには、ブロードキャスト(またはマルチキャスト) MAC アドレスをピアとして"
 "指定する必要があります。たとえば次のようにします::"
 
-#: ../../library/espnow.rst:749
+#: ../../library/espnow.rst:790
 msgid ""
 "bcast = b'\\xff' * 6\n"
 "e.add_peer(bcast)\n"
 "e.send(bcast, \"Hello World!\")"
 msgstr ""
 
-#: ../../library/espnow.rst:754
+#: ../../library/espnow.rst:795
 msgid "ESPNow and Wifi Operation"
 msgstr "ESPNow と Wifi 操作"
 
-#: ../../library/espnow.rst:756
+#: ../../library/espnow.rst:797
 msgid ""
 "ESPNow messages may be sent and received on any "
 "`active()<network.WLAN.active>` `WLAN<network.WLAN()>` interface "
@@ -6167,7 +6381,7 @@ msgstr ""
 "に接続すると(`ESP32 Quickref <../esp32/quickref.html#networking>`__ "
 "を)、次のようなことが起こり、ESPNow 通信に影響を与えます:"
 
-#: ../../library/espnow.rst:763
+#: ../../library/espnow.rst:804
 msgid ""
 "Wifi Power-saving Mode (`network.WLAN.PM_PERFORMANCE`) is automatically "
 "activated and"
@@ -6175,14 +6389,14 @@ msgstr ""
 "Wifi パワーセービングモード(`network.WLAN.PM_PERFORMANCE`)が自動的に"
 "アクティベートされる。"
 
-#: ../../library/espnow.rst:765
+#: ../../library/espnow.rst:806
 msgid ""
 "The radio on the esp device changes wifi ``channel`` to match the channel"
 " used by the Access Point."
 msgstr ""
 "esp デバイスの無線機が、アクセスポイントで使用されているチャンネルに合わせて変更される。"
 
-#: ../../library/espnow.rst:768
+#: ../../library/espnow.rst:809
 msgid ""
 "**Wifi Power-saving Mode:** (see `Espressif Docs "
 "<https://docs.espressif.com/ projects/esp-idf/en/latest/esp32/api-guides/"
@@ -6198,15 +6412,15 @@ msgstr ""
 "ESPNow メッセージの受信が信頼性に欠ける状態になります。"
 "これに対処する方法は次のいずれかです:"
 
-#: ../../library/espnow.rst:775
+#: ../../library/espnow.rst:816
 msgid "Disabling the power-saving mode on the STA_IF interface;"
 msgstr "STA_IF インタフェースでパワーセービングモードを無効化"
 
-#: ../../library/espnow.rst:775
+#: ../../library/espnow.rst:818
 msgid "Use ``sta.config(pm=sta.PM_NONE)``"
 msgstr "``sta.config(pm=sta.PM_NONE)`` を使用"
 
-#: ../../library/espnow.rst:779
+#: ../../library/espnow.rst:820
 msgid ""
 "Turning on the AP_IF interface, which will disable the power saving mode."
 " However, the device will then be advertising an active wifi access "
@@ -6216,23 +6430,23 @@ msgstr ""
 "ただし、デバイスはアクティブな Wifi アクセスポイントをアドバタインジングする"
 "ことになります。"
 
-#: ../../library/espnow.rst:782
+#: ../../library/espnow.rst:823
 msgid ""
 "You **may** also choose to send your messages via the AP_IF interface, "
 "but this is not necessary."
 msgstr ""
 "メッセージを AP_IF インターフェース経由で送信することもできますが、これは必須ではありません。"
 
-#: ../../library/espnow.rst:784
+#: ../../library/espnow.rst:825
 msgid "ESP8266 peers must send messages to this AP_IF interface (see below)."
 msgstr ""
 "ESP8266 のピアは、この AP_IF インターフェースにメッセージを送信する必要があります(後述)。"
 
-#: ../../library/espnow.rst:786
+#: ../../library/espnow.rst:827
 msgid "Configuring ESPNow clients to retry sending messages."
 msgstr "ESPNow クライアントのメッセージ送信のリトライ設定を行うこと。"
 
-#: ../../library/espnow.rst:788
+#: ../../library/espnow.rst:829
 msgid ""
 "**Receiving messages from an ESP8266 device:** Strangely, an ESP32 device"
 " connected to a wifi network using method 1 or 2 above, will receive "
@@ -6248,7 +6462,7 @@ msgstr ""
 "AP_IF インターフェースを ``active(True)`` に設定し、 **さらに** 、メッセージを"
 "AP_IF MAC アドレス宛てに送信する必要があります。"
 
-#: ../../library/espnow.rst:795
+#: ../../library/espnow.rst:836
 msgid ""
 "**Managing wifi channels:** Any other ESPNow devices wishing to "
 "communicate with a device which is also connected to a Wifi Access Point "
@@ -6262,11 +6476,11 @@ msgstr ""
 "ESPNow を介して接続されたセンサーグループからのメッセージのプロキシとして"
 "機能することです:"
 
-#: ../../library/espnow.rst:801
+#: ../../library/espnow.rst:842
 msgid "**Proxy:** ::"
 msgstr "**プロキシ:** ::"
 
-#: ../../library/espnow.rst:803
+#: ../../library/espnow.rst:844
 msgid ""
 "import network, time, espnow\n"
 "\n"
@@ -6283,11 +6497,11 @@ msgid ""
 "    # Receive espnow messages and forward them to MQTT broker over wifi"
 msgstr ""
 
-#: ../../library/espnow.rst:817
+#: ../../library/espnow.rst:858
 msgid "**Sensor:** ::"
 msgstr "**センサー:** ::"
 
-#: ../../library/espnow.rst:819
+#: ../../library/espnow.rst:860
 msgid ""
 "import network, espnow\n"
 "\n"
@@ -6303,11 +6517,11 @@ msgid ""
 "    time.sleep(1)"
 msgstr ""
 
-#: ../../library/espnow.rst:831
+#: ../../library/espnow.rst:872
 msgid "Other issues to take care with when using ESPNow with wifi are:"
 msgstr "ESPNow を Wifi と併用する際に注意するべき他の問題は次のとおりです:"
 
-#: ../../library/espnow.rst:833
+#: ../../library/espnow.rst:874
 msgid ""
 "**Set WIFI to known state on startup:** MicroPython does not reset the "
 "wifi peripheral after a soft reset. This can lead to unexpected "
@@ -6321,7 +6535,7 @@ msgstr ""
 "起動時に所望の状態に設定する前に非アクティブにするようにしてください。"
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:839
+#: ../../library/espnow.rst:880
 msgid ""
 "import network, time\n"
 "\n"
@@ -6340,14 +6554,14 @@ msgid ""
 "sta, ap = wifi_reset()"
 msgstr ""
 
-#: ../../library/espnow.rst:854
+#: ../../library/espnow.rst:895
 msgid ""
 "Remember that a soft reset occurs every time you connect to the device "
 "REPL and when you type ``ctrl-D``."
 msgstr ""
 "ソフトリセットは、デバイスを REPL に接続したり、 ``ctrl-D`` を入力すると常に発生します。"
 
-#: ../../library/espnow.rst:857
+#: ../../library/espnow.rst:898
 msgid ""
 "**STA_IF and AP_IF always operate on the same channel:** the AP_IF will "
 "change channel when you connect to a wifi network; regardless of the "
@@ -6367,7 +6581,7 @@ msgstr ""
 "実際には、デバイス上には1つの Wifi 無線機しかなく、STA_IF と AP_IF の"
 "仮想デバイスで共有されています。"
 
-#: ../../library/espnow.rst:866
+#: ../../library/espnow.rst:907
 msgid ""
 "**Disable automatic channel assignment on your wifi router:** If the wifi"
 " router for your wifi network is configured to automatically assign the "
@@ -6389,7 +6603,7 @@ msgstr ""
 "デバイスを現在のチャンネルで期待されるピアを見つけることができない場合に Wifi チャンネルを"
 "再スキャンするように構成します。"
 
-#: ../../library/espnow.rst:876
+#: ../../library/espnow.rst:917
 msgid ""
 "**MicroPython re-scans wifi channels when trying to reconnect:** If the "
 "esp device is connected to a Wifi Access Point that goes down, "
@@ -6405,7 +6619,7 @@ msgstr ""
 "間は ESPNow メッセージが失われます。 ``sta.config(reconnects=0)`` によって"
 "これを無効にできますが、接続が失われた後の自動再接続も無効になります。"
 
-#: ../../library/espnow.rst:883
+#: ../../library/espnow.rst:924
 msgid ""
 "Some versions of the ESP IDF only permit sending ESPNow packets from the "
 "STA_IF interface to peers which have been registered on the same wifi "
@@ -6414,15 +6628,15 @@ msgstr ""
 "一部の ESP IDF バージョンでは、STA_IF インタフェースからの ESPNow パケットの"
 "送信は、STA_IF と同じ Wifi チャンネルに登録されたピアに対してのみ許可されます。"
 
-#: ../../library/espnow.rst:887
+#: ../../library/espnow.rst:928
 msgid "ESPNOW: Peer channel is not equal to the home channel, send fail!"
 msgstr ""
 
-#: ../../library/espnow.rst:890
+#: ../../library/espnow.rst:931
 msgid "ESPNow and Sleep Modes"
 msgstr "ESPNow とスリープモード"
 
-#: ../../library/espnow.rst:892
+#: ../../library/espnow.rst:933
 msgid ""
 "The `machine.lightsleep([time_ms])<machine.lightsleep>` and "
 "`machine.deepsleep([time_ms])<machine.deepsleep>` functions can be used "
@@ -6450,11 +6664,11 @@ msgstr ""
 "に設定されている場合、どのスリープモードに入る前に両方のインターフェースを "
 "`active(False)<network.WLAN.active()>` に設定する必要があります。"
 
-#: ../../library/espnow.rst:905
+#: ../../library/espnow.rst:946
 msgid "**Example:** deep sleep::"
 msgstr "例：ディープスリープ::"
 
-#: ../../library/espnow.rst:905
+#: ../../library/espnow.rst:948
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -6474,11 +6688,11 @@ msgid ""
 "machine.deepsleep(10000)          # Sleep for 10 seconds then reboot"
 msgstr ""
 
-#: ../../library/espnow.rst:923
+#: ../../library/espnow.rst:964
 msgid "**Example:** light sleep::"
 msgstr "例：ライトスリープ::"
 
-#: ../../library/espnow.rst:925
+#: ../../library/espnow.rst:996
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -8592,43 +8806,27 @@ msgstr ""
 "誤動作、ロックアップ、ボードのクラッシュ、および極端な場合にはハードウェアの損傷を"
 "招く可能性があります。"
 
-#: ../../library/machine.rst:16
-msgid ""
-"A note of callbacks used by functions and class methods of :mod:`machine`"
-" module: all these callbacks should be considered as executing in an "
-"interrupt context. This is true for both physical devices with IDs >= 0 "
-"and \"virtual\" devices with negative IDs like -1 (these \"virtual\" "
-"devices are still thin shims on top of real hardware and real hardware "
-"interrupts). See :ref:`isr_rules`."
-msgstr ""
-":mod:`machine` モジュールの関数とクラスが使うコールバックについての注記: "
-"これらのコールバックはすべて、割り込みコンテキストでの実行とみなされるべきです。"
-"これは ID >= 0 の物理デバイスと、-1 などの負のIDを持つ「仮想」デバイスの両方に"
-"当てはまります(「仮想」デバイスであっても、実際のハードウェアと実際のハードウェア"
-"割り込みのがある上に小さく用意されているものです)。 :ref:`isr_rules` を参照して"
-"ください。"
-
-#: ../../library/machine.rst:23 ../../library/stm.rst:13
+#: ../../library/machine.rst:15 ../../library/stm.rst:13
 msgid "Memory access"
 msgstr "メモリアクセス"
 
-#: ../../library/machine.rst:25 ../../library/stm.rst:15
+#: ../../library/machine.rst:17 ../../library/stm.rst:15
 msgid "The module exposes three objects used for raw memory access."
 msgstr "このモジュールは、素のメモリアクセスに使う3つのオブジェクトを提供します。"
 
-#: ../../library/machine.rst:29 ../../library/stm.rst:19
+#: ../../library/machine.rst:21 ../../library/stm.rst:19
 msgid "Read/write 8 bits of memory."
 msgstr "メモリを８ビットで読み書きします。"
 
-#: ../../library/machine.rst:33 ../../library/stm.rst:23
+#: ../../library/machine.rst:25 ../../library/stm.rst:23
 msgid "Read/write 16 bits of memory."
 msgstr "メモリを１６ビットで読み書きします。"
 
-#: ../../library/machine.rst:37 ../../library/stm.rst:27
+#: ../../library/machine.rst:29 ../../library/stm.rst:27
 msgid "Read/write 32 bits of memory."
 msgstr "メモリを３２ビットで読み書きします。"
 
-#: ../../library/machine.rst:39
+#: ../../library/machine.rst:31
 msgid ""
 "Use subscript notation ``[...]`` to index these objects with the address "
 "of interest. Note that the address is the byte address, regardless of the"
@@ -8638,11 +8836,11 @@ msgstr ""
 "これらのオブジェクトのインデックス添字表記 ``[...]`` を使ってください。"
 "なお、アクセスするメモリのサイズに関係なく、アドレスはバイトアドレスです。"
 
-#: ../../library/machine.rst:43
+#: ../../library/machine.rst:35
 msgid "Example use (registers are specific to an stm32 microcontroller):"
 msgstr "使用例(レジスタは stm32 マイクロコントローラに固有のものです):"
 
-#: ../../library/machine.rst:45
+#: ../../library/machine.rst:37
 msgid ""
 "import machine\n"
 "from micropython import const\n"
@@ -8658,11 +8856,11 @@ msgid ""
 "value = (machine.mem32[GPIOA + GPIO_IDR] >> 3) & 1"
 msgstr ""
 
-#: ../../library/machine.rst:61 ../../library/pyb.rst:72
+#: ../../library/machine.rst:53 ../../library/pyb.rst:72
 msgid "Reset related functions"
 msgstr "リセット関連の関数"
 
-#: ../../library/machine.rst:65
+#: ../../library/machine.rst:57
 msgid ""
 ":ref:`Hard resets <hard_reset>` the device in a manner similar to pushing"
 " the external RESET button."
@@ -8670,7 +8868,7 @@ msgstr ""
 "外部 RESET ボタンを押すのと同じようにデバイスを :ref:`ハードリセット <hard_reset>` "
 "します。"
 
-#: ../../library/machine.rst:70
+#: ../../library/machine.rst:62
 msgid ""
 "Performs a :ref:`soft reset <soft_reset>` of the interpreter, deleting "
 "all Python objects and resetting the Python heap."
@@ -8678,7 +8876,7 @@ msgstr ""
 "インタープリタの :ref:`ソフトリセット <soft_reset>` を実行します。"
 "すべての Python オブジェクトを削除し、Python のヒープをリセットします。"
 
-#: ../../library/machine.rst:75
+#: ../../library/machine.rst:67
 msgid ""
 "Get the reset cause. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -8686,7 +8884,7 @@ msgstr ""
 "リセット原因を取得します。戻り値については :ref:`定数 <machine_constants>` を"
 "参照してください。"
 
-#: ../../library/machine.rst:79
+#: ../../library/machine.rst:71
 msgid ""
 "Reset the device and enter its bootloader.  This is typically used to put"
 " the device into a state where it can be programmed with new firmware."
@@ -8694,7 +8892,7 @@ msgstr ""
 "デバイスをリセットし、ブートローダに入ります。これは通常、デバイスを新しい"
 "ファームウェアでプログラム可能な状態にするために使います。"
 
-#: ../../library/machine.rst:82
+#: ../../library/machine.rst:74
 msgid ""
 "Some ports support passing in an optional *value* argument which can "
 "control which bootloader to enter, what to pass to it, or other things."
@@ -8702,11 +8900,11 @@ msgstr ""
 "一部のポートでは、オプションの *value* 引数を渡すことができ、"
 "どのブートローダに入るか、何を渡すかなどを制御できます。"
 
-#: ../../library/machine.rst:86 ../../library/pyb.rst:97
+#: ../../library/machine.rst:78 ../../library/pyb.rst:97
 msgid "Interrupt related functions"
 msgstr "割り込み関連の関数"
 
-#: ../../library/machine.rst:88
+#: ../../library/machine.rst:80
 msgid ""
 "The following functions allow control over interrupts.  Some systems "
 "require interrupts to operate correctly so disabling them for long "
@@ -8721,7 +8919,7 @@ msgstr ""
 "コア機能が損なわれることがあります。割り込みは最小限の時間だけ無効にし、"
 "その後は以前の状態に戻してください。たとえば次のようにします::"
 
-#: ../../library/machine.rst:94
+#: ../../library/machine.rst:86
 msgid ""
 "import machine\n"
 "\n"
@@ -8743,7 +8941,7 @@ msgstr ""
 "# 割り込みを有効にする\n"
 "machine.enable_irq(state)"
 
-#: ../../library/machine.rst:107
+#: ../../library/machine.rst:99
 msgid ""
 "Disable interrupt requests. Returns the previous IRQ state which should "
 "be considered an opaque value. This return value should be passed to the "
@@ -8754,7 +8952,7 @@ msgstr ""
 "値とみなす必要があります。この戻り値は `disable_irq()` を呼び出す前の"
 "元の状態に割り込みを復元するために `enable_irq()` 関数に渡す必要があります。"
 
-#: ../../library/machine.rst:114
+#: ../../library/machine.rst:106
 msgid ""
 "Re-enable interrupt requests. The *state* parameter should be the value "
 "that was returned from the most recent call to the `disable_irq()` "
@@ -8763,22 +8961,22 @@ msgstr ""
 "割り込み要求を再度有効にします。 *state* パラメータは `disable_irq()` 関数の"
 "最も最近の呼び出しから返された値である必要があります。"
 
-#: ../../library/machine.rst:119 ../../library/pyb.rst:115
+#: ../../library/machine.rst:111 ../../library/pyb.rst:115
 msgid "Power related functions"
 msgstr "電力関連の関数"
 
-#: ../../library/machine.rst:124
+#: ../../library/machine.rst:115
 msgid "Returns the CPU frequency in hertz."
 msgstr "CPU周波数をヘルツ単位で返します。"
 
-#: ../../library/machine.rst:125
+#: ../../library/machine.rst:117
 msgid ""
 "On some ports this can also be used to set the CPU frequency by passing "
 "in *hz*."
 msgstr ""
 "一部のポートでは *hz* を指定することで CPU の周波数を設定できます。"
 
-#: ../../library/machine.rst:129
+#: ../../library/machine.rst:121
 msgid ""
 "Gates the clock to the CPU, useful to reduce power consumption at any "
 "time during short or long periods. Peripherals continue working and "
@@ -8789,7 +8987,7 @@ msgstr ""
 "ペリフェラルは動作を継続できるようになっており、任意の割り込みが発生した際、"
 ""または CPU が停止してから最大1ミリ秒後に実行を再開します。"
 
-#: ../../library/machine.rst:134
+#: ../../library/machine.rst:126
 msgid ""
 "It is recommended to call this function inside any tight loop that is "
 "continuously checking for an external change (i.e. polling). This will "
@@ -8802,18 +9000,18 @@ msgstr ""
 "できます。さらに消費電力を削減するには :func:`lightsleep`, "
 ":func:`time.sleep()`, :func:`time.sleep_ms()` 関数を参照してください。"
 
-#: ../../library/machine.rst:142
+#: ../../library/machine.rst:134
 msgid ""
 "This function is deprecated, use :func:`lightsleep()` instead with no "
 "arguments."
 msgstr ""
 "この関数は廃止予定です。代わりに :func:`lightsleep()` を引数なしで使ってください。"
 
-#: ../../library/machine.rst:147
+#: ../../library/machine.rst:139
 msgid "Stops execution in an attempt to enter a low power state."
 msgstr "実行を停止して、低電力状態に入ります。"
 
-#: ../../library/machine.rst:149
+#: ../../library/machine.rst:141
 msgid ""
 "If *time_ms* is specified then this will be the maximum time in milliseconds that "
 "the sleep will last for.  Otherwise the sleep can last indefinitely."
@@ -8821,7 +9019,7 @@ msgstr ""
 "*time_ms* が指定されている場合、これはスリープが続く最大ミリ秒単位の時間になります。"
 "指定しなければスリープが無期限に続くようになります。"
 
-#: ../../library/machine.rst:152
+#: ../../library/machine.rst:144
 msgid ""
 "With or without a timeout, execution may resume at any time if there are "
 "events that require processing.  Such events, or wake sources, should be "
@@ -8831,7 +9029,7 @@ msgstr ""
 "そのようなイベントまたは起床元となる `Pin` の変化や `RTC` タイムアウトなどは、"
 "スリープ前に設定する必要があります。"
 
-#: ../../library/machine.rst:156
+#: ../../library/machine.rst:148
 msgid ""
 "The precise behaviour and power-saving capabilities of lightsleep and deepsleep is "
 "highly dependent on the underlying hardware, but the general properties are:"
@@ -8839,7 +9037,7 @@ msgstr ""
 "ライトスリープ(lightsleep)とディープスリープ(deepsleep)の正確な動作と省電力機能は、"
 "基盤となるハードウェアに大きく依存しますが、一般的な特性は次のとおりです。"
 
-#: ../../library/machine.rst:159
+#: ../../library/machine.rst:151
 msgid ""
 "A lightsleep has full RAM and state retention.  Upon wake execution is resumed "
 "from the point where the sleep was requested, with all subsystems operational."
@@ -8847,7 +9045,7 @@ msgstr ""
 "ライトスリープには RAM と状態の完全な保持があります。スリープ解除が要求された時点から実行が"
 "再開され、すべてのサブシステムが動作可能になります。"
 
-#: ../../library/machine.rst:162
+#: ../../library/machine.rst:154
 msgid ""
 "A deepsleep may not retain RAM or any other state of the system (for example "
 "peripherals or network interfaces).  Upon wake execution is resumed from the main "
@@ -8860,7 +9058,7 @@ msgstr ""
 "から実行が再開されます。 `reset_cause()` 関数は `machine.DEEPSLEEP` を返します。"
 "これは他のリセットとディープスリープからの起床を区別するのに使えます。"
 
-#: ../../library/machine.rst:170
+#: ../../library/machine.rst:162
 msgid ""
 "Get the wake reason. See :ref:`constants <machine_constants>` for the "
 "possible return values."
@@ -8868,15 +9066,15 @@ msgstr ""
 "起床の理由を取得します。戻り値については :ref:`定数 <machine_constants>` "
 "を参照してください。"
 
-#: ../../library/machine.rst:172
+#: ../../library/machine.rst:164
 msgid "Availability: ESP32, WiPy."
 msgstr "対応ポート: ESP32、WiPy。"
 
-#: ../../library/machine.rst:175 ../../library/pyb.rst:187
+#: ../../library/machine.rst:167 ../../library/pyb.rst:187
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../library/machine.rst:179
+#: ../../library/machine.rst:171
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -8889,7 +9087,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../library/machine.rst:186
+#: ../../library/machine.rst:178
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -8899,7 +9097,7 @@ msgstr ""
 "*pulse_level* 引数には、低パルスを計時する場合に 0、高パルスを計時する"
 "場合に 1 を指定します。"
 
-#: ../../library/machine.rst:190
+#: ../../library/machine.rst:182
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -8912,7 +9110,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../library/machine.rst:195
+#: ../../library/machine.rst:187
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -8923,7 +9121,7 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../library/machine.rst:202
+#: ../../library/machine.rst:194
 msgid ""
 "Transmits *data* by bit-banging the specified *pin*. The *encoding* "
 "argument specifies how the bits are encoded, and *timing* is an encoding-"
@@ -8933,11 +9131,11 @@ msgstr ""
 "引数 *encoding* には、ビットのエンコード方法を指定し、 *timing* には"
 "エンコードに応じたタイミングを指定します。"
 
-#: ../../library/machine.rst:206
+#: ../../library/machine.rst:198
 msgid "The supported encodings are:"
 msgstr "サポートされているエンコーディングは次のとおりです:"
 
-#: ../../library/machine.rst:208
+#: ../../library/machine.rst:200
 msgid ""
 "``0`` for \"high low\" pulse duration modulation. This will transmit 0 "
 "and 1 bits as timed pulses, starting with the most significant bit. The "
@@ -8952,7 +9150,7 @@ msgstr ""
 "ナノ秒の4項目タプルでなければなりません。"
 "たとえば ``(400, 850, 800, 450)`` は 800kHz の WS2812 RGB LED のタイミング仕様です。"
 
-#: ../../library/machine.rst:215
+#: ../../library/machine.rst:207
 msgid ""
 "The accuracy of the timing varies between ports. On Cortex M0 at 48MHz, "
 "it is at best +/- 120ns, however on faster MCUs (ESP8266, ESP32, STM32, "
@@ -8962,7 +9160,7 @@ msgstr ""
 "せいぜい +/-120ns 程度ですが、より高速なMCU(ESP8266, ESP32, STM32, Pyboard）では "
 "+/-30ns 程度になります。"
 
-#: ../../library/machine.rst:219
+#: ../../library/machine.rst:211
 msgid ""
 "For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel` module "
 "for a higher-level API."
@@ -8970,23 +9168,24 @@ msgstr ""
 "WS2812/NeoPixel ストリップの制御については、上位の API である :mod:`neopixel` "
 "モジュールを参照してください。"
 
-#: ../../library/machine.rst:224
+#: ../../library/machine.rst:216
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
-#: ../../library/machine.I2C.rst:104 ../../library/machine.rst:227
+#: ../../library/machine.I2C.rst:104 ../../library/machine.RTC.rst:58
+#: ../../library/machine.rst:218
 msgid "Availability: WiPy."
 msgstr "対応ポート: WiPy"
 
-#: ../../library/machine.rst:238
+#: ../../library/machine.rst:229
 msgid "IRQ wake values."
 msgstr "IRQ 起床値。"
 
-#: ../../library/machine.rst:246
+#: ../../library/machine.rst:237
 msgid "Reset causes."
 msgstr "リセット原因。"
 
-#: ../../library/machine.rst:252
+#: ../../library/machine.rst:243
 msgid "Wake-up reasons."
 msgstr "起床理由。"
 
@@ -9490,6 +9689,160 @@ msgstr "パルスエッジの選択に使用。"
 #: ../../library/machine.Counter.rst:93
 msgid "Select the counting direction."
 msgstr "カウント方向の選択に使用。"
+
+#: ../../library/machine.DAC.rst:5 ../../library/pyb.DAC.rst:5
+msgid "class DAC -- digital to analog conversion"
+msgstr "クラス DAC -- デジタル-アナログ変換"
+
+#: ../../library/machine.DAC.rst:7
+msgid "The DAC is used to output an analog voltage based on a digital value."
+msgstr "DAC は、デジタル値に基づいてアナログ電圧を出力するために使用されます。"
+
+#: ../../library/machine.DAC.rst:9
+msgid "The output voltage will be between 0 and 3.3V."
+msgstr "出力電圧は 0〜3.3V の範囲になります。"
+
+#: ../../library/machine.DAC.rst:11
+msgid "DAC is currently supported on ESP32 [#esp32_dac]_, SAMD and Renesas RA."
+msgstr "DAC は現在、ESP32 [#esp32_dac]_, SAMD, Renesas RA でサポートされています。"
+
+#: ../../library/machine.DAC.rst:14
+msgid ""
+"The STM32 port has similar functionality to ``machine.DAC``. See "
+":ref:`pyb.DAC <pyb.DAC>` for details."
+msgstr ""
+"STM32 ポートには machine.DAC と同等の機能があります。詳細については "
+":ref:`pyb.DAC <pyb.DAC>` を参照してください。"
+
+#: ../../library/machine.DAC.rst:17
+msgid "Example usage (ESP32)::"
+msgstr "使用例 (ESP32)::"
+
+#: ../../library/machine.DAC.rst:19
+msgid ""
+"from machine import DAC\n"
+"\n"
+"dac = DAC(pin)    # create a DAC object acting on a pin\n"
+"dac.write(128)    # write a value to the DAC\n"
+"dac.write(255)    # output maximum value, 3.3V"
+msgstr ""
+"from machine import DAC\n"
+"\n"
+"dac = DAC(pin)    # 指定ピンについての DAC オブジェクトを作成\n"
+"dac.write(128)    # DAC への値の書出し\n"
+"dac.write(255)    # 最大値(3.3V)の出力"
+
+#: ../../library/machine.DAC.rst:30 ../../library/pyb.DAC.rst:54
+msgid "Construct a new DAC object."
+msgstr "新しい DAC オブジェクトを作成します。"
+
+#: ../../library/machine.DAC.rst:32
+msgid ""
+"``id`` is a pin object (ESP32 and Renesas RA) or an index to a DAC "
+"resource (SAMD)."
+msgstr ""
+"``id`` は、(ESP32 と Renesas RA では)ピンオブジェクト、(SAMD では) DAC リソース"
+"へのインデックス番号です。"
+
+#: ../../library/machine.DAC.rst:35
+msgid ""
+"On the ESP32, DAC functionality is available on pins 25 and 26. On the "
+"ESP32-S2, pins 17 and 18. See :ref:`ESP32 Quickref <esp32_quickref>` for "
+"more details."
+msgstr ""
+"ESP32 では DAC 機能は ピン 25 と 26 で利用可能です。"
+"ESP32-S2 では ピン 17 と 18 です。"
+"詳細は :ref:`ESP32 Quickref <esp32_quickref>` を参照してください。"
+
+#: ../../library/machine.DAC.rst:40
+msgid ""
+"SAMD21 has one DAC resource, SAMD51 has two. See :ref:`SAMD Quickref "
+"<samd_quickref>` for more details."
+msgstr ""
+"SAMD21 には DAC リソースが 1 つ、SAMD51 には 2 つ あります。"
+"詳細は :ref:`SAMD Quickref <samd_quickref>` を参照してください。"
+
+#: ../../library/machine.DAC.rst:48
+msgid "Output an analog voltage to the pin connected to the DAC."
+msgstr "DAC に接続されたピンへアナログ電圧を出力します。"
+
+#: ../../library/machine.DAC.rst:50
+msgid ""
+"``value`` is a representation of the desired output; a linear "
+"interpolation of 0-3.3V, though the range differs depending on the port "
+"and micro, see below:"
+msgstr ""
+"``value`` は希望する出力の表現で、0〜3.3V を線形補間した値です。"
+"ただし、実際の範囲は使用するポートやマイコンによって異なります。以下を参照してください:"
+
+#: ../../library/machine.DAC.rst:54
+msgid "*Port/micro*"
+msgstr "ポート"
+
+#: ../../library/machine.DAC.rst:54
+msgid "Bits"
+msgstr "ビット長"
+
+#: ../../library/machine.DAC.rst:54
+msgid "Range"
+msgstr "範囲"
+
+#: ../../library/machine.DAC.rst:56 ../../library/machine.SDCard.rst:77
+#: ../../library/machine.SDCard.rst:91 ../../library/machine.UART.rst:216
+msgid "ESP32"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:56 ../../library/struct.rst:44
+#: ../../library/struct.rst:46 ../../library/struct.rst:52
+#: ../../library/wm8960.rst:151 ../../library/wm8960.rst:166
+msgid "8"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:56
+msgid "0-255"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:58
+msgid "SAMD21"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:58 ../../library/wm8960.rst:153
+msgid "10"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:58
+msgid "0-1023"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:60
+msgid "SAMD51"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:60 ../../library/machine.DAC.rst:62
+#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:137
+#: ../../library/machine.SDCard.rst:160
+msgid "12"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:60 ../../library/machine.DAC.rst:62
+msgid "0-4095"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:62
+msgid "Renesas RA"
+msgstr ""
+
+#: ../../library/machine.DAC.rst:66
+msgid "Footnotes"
+msgstr "脚注"
+
+#: ../../library/machine.DAC.rst:67
+msgid ""
+"The original ESP32 and ESP32-S2 *only*, since DAC hardware is not present"
+" on other microcontrollers in the family."
+msgstr ""
+"オリジナルの ESP32 と ESP32-S2 *のみ* に該当します。"
+"それ以外の ESP32 系マイクロコントローラには DAC ハードウェアが搭載されていないためです。"
 
 #: ../../library/machine.Encoder.rst:5
 msgid "class Encoder -- quadrature decoding"
@@ -10259,7 +10612,7 @@ msgstr ""
 
 #: ../../library/machine.I2CTarget.rst:129
 msgid ""
-"``IRQ_ADDR_MATCH_READ`` indicates that the target was addressed by a "
+"``IRQ_ADDR_MATCH_WRITE`` indicates that the target was addressed by a "
 "controller for a write transaction."
 msgstr ""
 "``IRQ_ADDR_MATCH_WRITE`` は、書出しトランザクションのコントローラーにターゲットが"
@@ -10311,13 +10664,13 @@ msgstr "次の制約に注意してください:"
 
 #: ../../library/machine.I2CTarget.rst:144
 msgid ""
-"``IRQ_ADDR_MATCH_READ``, ``IRQ_ADDR_MATCH_READ``, ``IRQ_READ_REQ`` and "
+"``IRQ_ADDR_MATCH_READ``, ``IRQ_ADDR_MATCH_WRITE``, ``IRQ_READ_REQ`` and "
 "``IRQ_WRITE_REQ`` must be handled by a hard IRQ callback (with the *hard*"
 " argument set to ``True``).  This is because these events have very "
 "strict timing requirements and must usually be satisfied synchronously "
 "with the hardware event."
 msgstr ""
-"``IRQ_ADDR_MATCH_READ``, ``IRQ_ADDR_MATCH_READ``, ``IRQ_READ_REQ``, "
+"``IRQ_ADDR_MATCH_READ``, ``IRQ_ADDR_MATCH_WRITE``, ``IRQ_READ_REQ``, "
 "``IRQ_WRITE_REQ`` は、ハードIRQコールバック(*hard* 引数に ``True`` を指定)で"
 "処理する必要があります。これは、これらのイベントが非常に厳しいタイミング制約を持ち、"
 "通常はハードウェアイベントと同期して即座に処理する必要があるためです。"
@@ -12841,47 +13194,22 @@ msgid "class Timer -- control hardware timers"
 msgstr "クラス Timer -- ハードウェアタイマーの制御"
 
 #: ../../library/machine.Timer.rst:7
-#: ../../library/machine.TimerWiPy.rst:14
 msgid ""
-"Hardware timers deal with timing of periods and events. Timers are "
-"perhaps the most flexible and heterogeneous kind of hardware in MCUs and "
-"SoCs, differently greatly from a model to a model. MicroPython's Timer "
-"class defines a baseline operation of executing a callback with a given "
-"period (or once after some delay), and allow specific boards to define "
-"more non-standard behaviour (which thus won't be portable to other "
-"boards)."
+"Timer class provides the ability to trigger a Python callback function "
+"after an expiry time, or periodically at a regular interval."
 msgstr ""
-"ハードウェアタイマーは周期処理や時間イベントを扱います。"
-"タイマーは、おそらく MCU や SoC により最も柔軟で様々な種類のある"
-"ハードウェアであり、モデルごとに大きな違いがあります。"
-"MicroPython の Timer クラスは、指定した周期で(または少し経過後に1回だけ)"
-"コールバックを実行するベースライン操作を定義します。ボードによっては標準的でない"
-"動作を定義できます(したがって他のボードへの移植性はありません)。"
+"Timer クラスは、指定した時間が経過した後、または一定の周期で、Python の"
+"コールバック関数を実行する機能を提供します。"
 
-#: ../../library/machine.Timer.rst:14
-#: ../../library/machine.TimerWiPy.rst:21
+#: ../../library/machine.Timer.rst:10
 msgid ""
-"See discussion of :ref:`important constraints <machine_callbacks>` on "
-"Timer callbacks."
+"The available features and restrictions of Timer objects vary depending "
+"on the MicroPython board and port."
 msgstr ""
-"Timer のコールバックに関する :ref:`重要な制約 <machine_callbacks>` "
-"の議論を見てください。"
+"Timer オブジェクトで利用できる機能や制約は、利用する MicroPython のボードや"
+"ポートによって異なります。"
 
-#: ../../library/machine.Timer.rst:19
-#: ../../library/machine.TimerWiPy.rst:26
-msgid ""
-"Memory can't be allocated inside irq handlers (an interrupt) and so "
-"exceptions raised within a handler don't give much information.  See "
-":func:`micropython.alloc_emergency_exception_buf` for how to get around "
-"this limitation, which applies to all callbacks of Timers created with "
-"``hard=True``."
-msgstr ""
-"irq ハンドラ(割り込み)内ではメモリを割り当てることができないため、ハンドラ内で"
-"発生した例外から得られる情報はあまり多くありません。この制限を回避する方法については "
-":func:`micropython.alloc_emergency_exception_buf` を参照してください。"
-"この制限は ``hard=True`` で作成されたタイマーのすべてのコールバックに適用されます。"
-
-#: ../../library/machine.Timer.rst:25
+#: ../../library/machine.Timer.rst:13
 msgid ""
 "If you are using a WiPy board please refer to :ref:`machine.TimerWiPy "
 "<machine.TimerWiPy>` instead of this class."
@@ -12889,25 +13217,80 @@ msgstr ""
 "WiPy ボードを使用している場合、このクラスの代わりに "
 ":ref:`machine.TimerWiPy <machine.TimerWiPy>` を参照してください。"
 
-#: ../../library/machine.Timer.rst:33
+#: ../../library/machine.Timer.rst:17
+msgid "Timer Types"
+msgstr "タイマーの種別"
+
+#: ../../library/machine.Timer.rst:19
 msgid ""
-"Construct a new timer object of the given ``id``. ``id`` of -1 constructs"
-" a virtual timer (if supported by a board). ``id`` shall not be passed as"
-" a keyword argument."
+"There are two types of Timer in MicroPython, but not all ports support "
+"both:"
 msgstr ""
-"指定した ``id`` の新しいタイマーオブジェクトを構築します。 ``id`` が -1 の場合は、"
-"(ボードでサポートしていれば)仮想タイマーを構築します。 ``id`` をキーワード引数で"
-"渡してはなりません。"
+"MicroPython には２種類のタイマーが存在しますが、すべてのポートが両方を"
+"サポートしているわけではありません:"
+
+#: ../../library/machine.Timer.rst:21
+msgid ""
+"Virtual timers. These are managed in software, and are generally more "
+"flexible. Multiple virtual timers can be constructed and active at once. "
+"The ``id`` of a virtual timer is ``-1``. Not all ports support virtual "
+"timers, but it's recommended to use them when available."
+msgstr ""
+"仮想タイマー: ソフトウェアで管理されるタイマーで、一般的に柔軟性があります。"
+"複数の仮想タイマーを同時に作成して動作させることができます。"
+"仮想タイマーの ``id`` は ``-1`` です。"
+"すべてのポートが仮想タイマーをサポートしているわけではありませんが、"
+"利用可能な場合は仮想タイマーの使用が推奨されます。"
+
+#: ../../library/machine.Timer.rst:25
+msgid ""
+"Hardware timers. Hardware timers have integer ``id`` values starting at "
+"``0``. The number of available ``id`` values is determined by the "
+"hardware. Hardware timers may be more accurate for very fine sub-"
+"millisecond timing (especially when ``hard=True`` is supported and set, "
+"see :ref:`isr_rules`.) Most microcontroller ports support hardware "
+"timers, except Zephyr and RP2 which only support virtual timers."
+msgstr ""
+"ハードウェアタイマー: ハードウェアタイマーは ``0`` から始まる整数の ``id`` を持ちます。"
+"利用可能な ``id`` の数はハードウェアにより決まります。"
+"ハードウェアタイマーは、特に ``hard=True`` がサポートされ設定されている場合、"
+"サブミリ秒精度の非常に細かいタイミングでより高精度になります(:ref:`isr_rules` を参照)。"
+"多くのマイコン向けポートはハードウェアタイマーをサポートしていますが、Zephyr と "
+"RP2 は仮想タイマーのみをサポートしています。"
 
 #: ../../library/machine.Timer.rst:37
-msgid "See ``init`` for parameters of initialisation."
-msgstr "初期化パラメータについては ``init`` を参照してください。"
+msgid "Construct a new Timer object with the given ``id``."
+msgstr ""指定した ``id`` で新しいタイマーオブジェクトを構築します。"
 
-#: ../../library/machine.Timer.rst:44 ../../library/machine.TimerWiPy.rst:44
+#: ../../library/machine.Timer.rst:39
+msgid ""
+"On ports which support virtual timers the ``id`` parameter is optional - "
+"the default value is ``-1`` which constructs a virtual timer."
+msgstr ""
+"仮想タイマーをサポートするポートでは、 ``id`` パラメータは任意指定です。"
+"デフォルト値は ``-1`` で、これは仮想タイマーを生成します。"
+
+#: ../../library/machine.Timer.rst:42
+msgid ""
+"On ports which support hardware timers, setting the ``id`` parameter to a"
+" non-negative integer determines which timer to use."
+msgstr ""
+"ハードウェアタイマーをサポートするポートでは、 ``id`` に ``0`` 以上の整数を"
+"指定することで、使用するタイマーを決定します。"
+
+#: ../../library/machine.Timer.rst:45
+msgid "``id`` shall not be passed as a keyword argument."
+msgstr "``id`` は キーワード引数として渡してはいけません。"
+
+#: ../../library/machine.Timer.rst:47
+msgid "Any additional parameters are handled the same as :func:`Timer.init()`."
+msgstr "その他の追加パラメータは :func:`Timer.init()` と同じように処理されます。"
+
+#: ../../library/machine.Timer.rst:54 ../../library/machine.TimerWiPy.rst:34
 msgid "Initialise the timer. Example::"
 msgstr "タイマーを初期化します。たとえば次のように使います::"
 
-#: ../../library/machine.Timer.rst:46
+#: ../../library/machine.Timer.rst:56
 msgid ""
 "def mycallback(t):\n"
 "    pass\n"
@@ -12933,17 +13316,17 @@ msgstr ""
 "# 1000ms 後に１度だけ実行\n"
 "tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)"
 
-#: ../../library/machine.Timer.rst:58 ../../library/machine.TimerWiPy.rst:49
+#: ../../library/machine.Timer.rst:68 ../../library/machine.TimerWiPy.rst:39
 #: ../../library/pyb.Timer.rst:73 ../../library/pyb.Timer.rst:158
 msgid "Keyword arguments:"
 msgstr "キーワード引数:"
 
-#: ../../library/machine.Timer.rst:60 ../../library/machine.TimerWiPy.rst:51
+#: ../../library/machine.Timer.rst:70 ../../library/machine.TimerWiPy.rst:41
 #: ../../library/pyb.Timer.rst:90 ../../library/pyb.Timer.rst:160
 msgid "``mode`` can be one of:"
 msgstr "``mode`` は次のいずれかになります。"
 
-#: ../../library/machine.Timer.rst:62
+#: ../../library/machine.Timer.rst:72
 msgid ""
 "``Timer.ONE_SHOT`` - The timer runs once until the configured period of "
 "the channel expires."
@@ -12951,14 +13334,14 @@ msgstr ""
 "``Timer.ONE_SHOT`` - タイマーは、設定したチャネルの周期が経過した後に1回だけ"
 "実行します。"
 
-#: ../../library/machine.Timer.rst:64
+#: ../../library/machine.Timer.rst:74
 msgid ""
 "``Timer.PERIODIC`` - The timer runs periodically at the configured "
 "frequency of the channel."
 msgstr ""
 "``Timer.PERIODIC`` - タイマーは、チャネルの設定した周期で定期的に実行します。"
 
-#: ../../library/machine.Timer.rst:67
+#: ../../library/machine.Timer.rst:77
 msgid ""
 "``freq`` - The timer frequency, in units of Hz.  The upper bound of the "
 "frequency is dependent on the port.  When both the ``freq`` and "
@@ -12969,25 +13352,30 @@ msgstr ""
 "``freq`` と ``period`` の両方の引数を与えた場合、 ``freq`` の方を優先し、 "
 "``period`` は無視します。"
 
-#: ../../library/machine.Timer.rst:72
+#: ../../library/machine.Timer.rst:82
 msgid "``period`` - The timer period, in milliseconds."
 msgstr "``period`` - タイマー期間(ミリ秒単位)。"
 
-#: ../../library/machine.Timer.rst:74
+#: ../../library/machine.Timer.rst:84
 msgid ""
 "``callback`` - The callable to call upon expiration of the timer period. "
-"The callback must take one argument, which is passed the Timer object. "
+"The callback must take one argument, which is passed the Timer object."
+msgstr ""
+"``callback`` - タイマー期間が終了したときに呼び出されるコールバックです。"
+"コールバックは１つの引数を取らなければならず、その引数にはタイマーオブジェクトが"
+"渡されます。"
+
+#: ../../library/machine.Timer.rst:87
+msgid ""
 "The ``callback`` argument shall be specified. Otherwise an exception will"
 " occur upon timer expiration: ``TypeError: 'NoneType' object isn't "
 "callable``"
 msgstr ""
-"``callback`` - タイマー期間が終了したときに呼び出されるコールバックです。"
-"コールバックは１つの引数を取らなければならず、その引数にはタイマーオブジェクトが"
-"渡されます。コールバックの引数は指定しなければなりません。さもなければ、"
+"``callback`` 引数は指定しなければなりません。さもなければ、"
 "タイマー満了時に次の例外が発生します: ``TypeError: 'NoneType' object isn't "
 "callable``"
 
-#: ../../library/machine.Timer.rst:80 ../../library/pyb.Timer.rst:118
+#: ../../library/machine.Timer.rst:91 ../../library/pyb.Timer.rst:118
 msgid "``hard`` can be one of:"
 msgstr "``hard`` は次のいずれかです:"
 
@@ -12995,14 +13383,20 @@ msgstr "``hard`` は次のいずれかです:"
 msgid ""
 "``True`` - The callback will be executed in hard interrupt context, which"
 " minimises delay and jitter but is subject to the limitations described "
+"in :ref:`isr_rules`. Not all ports support hard interrupts, see the port "
+"documentation for more information."
+
+"``True`` - The callback will be executed in hard interrupt context, which"
+" minimises delay and jitter but is subject to the limitations described "
 "in :ref:`isr_rules` including being unable to allocate on the heap."
 msgstr ""
 "``True`` - コールバックはハード割り込みコンテキストで実行されます。"
 "これにより遅延やジッタ(時間の揺らぎ)が最小限に抑えられますが、 "
-":ref:`isr_rules` で説明されている制限(ヒープ上でのメモリ割り当てができないことなど)を"
-"受けます。"
+":ref:`isr_rules` で説明されている制限を受けます。"
+"すべてのポートがハード割り込みをサポートしているわけではありません。"
+"詳細については、各ポートのドキュメントを参照してください。"
 
-#: ../../library/machine.Timer.rst:86 ../../library/pyb.Timer.rst:124
+#: ../../library/machine.Timer.rst:97 ../../library/pyb.Timer.rst:124
 msgid ""
 "``False`` - The callback will be scheduled as a soft interrupt, allowing "
 "it to allocate but possibly also introducing garbage-collection delays "
@@ -13012,18 +13406,20 @@ msgstr ""
 "メモリ割り当てが可能になりますが、ガベージコレクションの遅延とジッターも"
 "発生する可能性があります。"
 
-#: ../../library/machine.Timer.rst:90
-msgid "The default value of this option is port-specific for historical reasons."
-msgstr "このオプションのデフォルト値は、歴史的な理由によりポート固有です。"
+#: ../../library/machine.Timer.rst:101
+msgid ""
+"The default value of this parameter is port-specific for historical "
+"reasons."
+msgstr ""このパラメータのデフォルト値は、歴史的な理由によりポート固有です。""
 
-#: ../../library/machine.Timer.rst:95 ../../library/machine.TimerWiPy.rst:65
+#: ../../library/machine.Timer.rst:105 ../../library/machine.TimerWiPy.rst:55
 msgid ""
 "Deinitialises the timer. Stops the timer, and disables the timer "
 "peripheral."
 msgstr ""
 "タイマーを非初期化します。タイマーを停止し、タイマーのペリフェラルを無効にします。"
 
-#: ../../library/machine.Timer.rst:103 ../../library/machine.TimerWiPy.rst:159
+#: ../../library/machine.Timer.rst:113 ../../library/machine.TimerWiPy.rst:152
 msgid "Timer operating mode."
 msgstr "タイマー操作モード。"
 
@@ -13039,81 +13435,103 @@ msgid ""
 "more general :ref:`machine.Timer <machine.Timer>` class."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:46
+#: ../../library/machine.TimerWiPy.rst:14
+msgid ""
+"Hardware timers deal with timing of periods and events. Timers are "
+"perhaps the most flexible and heterogeneous kind of hardware in MCUs and "
+"SoCs, differently greatly from a model to a model. MicroPython's Timer "
+"class defines a baseline operation of executing a callback with a given "
+"period (or once after some delay), and allow specific boards to define "
+"more non-standard behaviour (which thus won't be portable to other "
+"boards)."
+msgstr ""
+"ハードウェアタイマーは周期処理や時間イベントを扱います。タイマーは、おそらく MCU や "
+"SoC により最も柔軟で様々な種類のあるハードウェアであり、モデルごとに大きな違いが"
+"あります。MicroPython の Timer クラスは、指定した周期で(または少し経過後に"
+"1回だけ)コールバックを実行するベースライン操作を定義します。ボードによっては"
+"標準的でない動作を定義できます(したがって他のボードへの移植性はありません)。"
+
+#: ../../library/machine.TimerWiPy.rst:26
+msgid ""
+"Construct a new timer object of the given id. Id of -1 constructs a "
+"virtual timer (if supported by a board)."
+msgstr ""
+
+#: ../../library/machine.TimerWiPy.rst:36
 msgid ""
 "tim.init(Timer.PERIODIC)             # periodic 16-bit timer\n"
 "tim.init(Timer.ONE_SHOT, width=32)   # one shot 32-bit timer"
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:53
+#: ../../library/machine.TimerWiPy.rst:43
 msgid ""
 "``TimerWiPy.ONE_SHOT`` - The timer runs once until the configured period "
 "of the channel expires."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:55
+#: ../../library/machine.TimerWiPy.rst:45
 msgid ""
 "``TimerWiPy.PERIODIC`` - The timer runs periodically at the configured "
 "frequency of the channel."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:57
+#: ../../library/machine.TimerWiPy.rst:47
 msgid "``TimerWiPy.PWM``      - Output a PWM signal on a pin."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:59
+#: ../../library/machine.TimerWiPy.rst:49
 msgid ""
 "``width`` must be either 16 or 32 (bits). For really low frequencies < "
 "5Hz (or large periods), 32-bit timers should be used. 32-bit mode is only"
 " available for ``ONE_SHOT`` AND ``PERIODIC`` modes."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:69
+#: ../../library/machine.TimerWiPy.rst:59
 msgid ""
 "If only a channel identifier passed, then a previously initialized "
 "channel object is returned (or ``None`` if there is no previous channel)."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:72 ../../library/pyb.Timer.rst:132
+#: ../../library/machine.TimerWiPy.rst:62 ../../library/pyb.Timer.rst:152
 msgid "Otherwise, a TimerChannel object is initialized and returned."
 msgstr "さもなければ、TimerChannel オブジェクトを初期化して返します。"
 
-#: ../../library/machine.TimerWiPy.rst:74
+#: ../../library/machine.TimerWiPy.rst:64
 msgid ""
 "The operating mode is the one configured to the Timer object that was "
 "used to create the channel."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:77
+#: ../../library/machine.TimerWiPy.rst:67
 msgid ""
 "``channel`` if the width of the timer is 16-bit, then must be either "
 "``TIMER.A``, ``TIMER.B``. If the width is 32-bit then it **must be** "
 "``TIMER.A | TIMER.B``."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:80
+#: ../../library/machine.TimerWiPy.rst:70
 msgid "Keyword only arguments:"
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:82
+#: ../../library/machine.TimerWiPy.rst:72
 msgid "``freq`` sets the frequency in Hz."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:83
+#: ../../library/machine.TimerWiPy.rst:73
 msgid "``period`` sets the period in microseconds."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:87
+#: ../../library/machine.TimerWiPy.rst:77
 msgid "Either ``freq`` or ``period`` must be given, never both."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:89
+#: ../../library/machine.TimerWiPy.rst:79
 msgid ""
 "``polarity`` this is applicable for ``PWM``, and defines the polarity of "
 "the duty cycle"
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:90
+#: ../../library/machine.TimerWiPy.rst:80
 msgid ""
 "``duty_cycle`` only applicable to ``PWM``. It's a percentage "
 "(0.00-100.00). Since the WiPy doesn't support floating point numbers the "
@@ -13121,7 +13539,7 @@ msgid ""
 "represent 100.00, 5050 represents 50.50, and so on."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:96
+#: ../../library/machine.TimerWiPy.rst:86
 msgid ""
 "When the channel is in PWM mode, the corresponding pin is assigned "
 "automatically, therefore there's no need to assign the alternate function"
@@ -13129,83 +13547,83 @@ msgid ""
 "functionality are the following:"
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:100
+#: ../../library/machine.TimerWiPy.rst:90
 msgid "``GP24`` on Timer 0 channel A."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:101
+#: ../../library/machine.TimerWiPy.rst:91
 msgid "``GP25`` on Timer 1 channel A."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:102
+#: ../../library/machine.TimerWiPy.rst:92
 msgid "``GP9``  on Timer 2 channel B."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:103
+#: ../../library/machine.TimerWiPy.rst:93
 msgid "``GP10`` on Timer 3 channel A."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:104
+#: ../../library/machine.TimerWiPy.rst:94
 msgid "``GP11`` on Timer 3 channel B."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:107
+#: ../../library/machine.TimerWiPy.rst:97
 #: ../../library/pyb.Timer.rst:222
 msgid "class TimerChannel --- setup a channel for a timer"
 msgstr "クラス TimerChannel --- タイマーのチャネルを設定"
 
-#: ../../library/machine.TimerWiPy.rst:109
+#: ../../library/machine.TimerWiPy.rst:99
 #: ../../library/pyb.Timer.rst:224
 msgid "Timer channels are used to generate/capture a signal using a timer."
 msgstr ""
 "タイマーチャネルは、タイマーを使用して信号を生成またはキャプチャするのに使います。"
 
-#: ../../library/machine.TimerWiPy.rst:111
+#: ../../library/machine.TimerWiPy.rst:101
 #: ../../library/pyb.Timer.rst:226
 msgid "TimerChannel objects are created using the Timer.channel() method."
 msgstr "TimerChannel オブジェクトは、Timer.channel() メソッドをで作成します。"
 
-#: ../../library/machine.TimerWiPy.rst:118
+#: ../../library/machine.TimerWiPy.rst:108
 msgid ""
 "The behaviour of this callback is heavily dependent on the operating mode"
 " of the timer channel:"
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:121
+#: ../../library/machine.TimerWiPy.rst:111
 msgid ""
 "If mode is ``TimerWiPy.PERIODIC`` the callback is executed periodically "
 "with the configured frequency or period."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:123
+#: ../../library/machine.TimerWiPy.rst:113
 msgid ""
 "If mode is ``TimerWiPy.ONE_SHOT`` the callback is executed once when the "
 "configured timer expires."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:125
+#: ../../library/machine.TimerWiPy.rst:115
 msgid ""
 "If mode is ``TimerWiPy.PWM`` the callback is executed when reaching the "
 "duty cycle value."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:128
+#: ../../library/machine.TimerWiPy.rst:118
 msgid "The accepted params are:"
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:130
+#: ../../library/machine.TimerWiPy.rst:120
 msgid ""
 "``priority`` level of the interrupt. Can take values in the range 1-7. "
 "Higher values represent higher priorities."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:132
+#: ../../library/machine.TimerWiPy.rst:122
 msgid ""
 "``handler`` is an optional function to be called when the interrupt is "
 "triggered."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:133
+#: ../../library/machine.TimerWiPy.rst:123
 msgid ""
 "``trigger`` must be ``TimerWiPy.TIMEOUT`` when the operating mode is "
 "either ``TimerWiPy.PERIODIC`` or ``TimerWiPy.ONE_SHOT``. In the case that"
@@ -13213,19 +13631,25 @@ msgid ""
 "``TimerWiPy.MATCH``."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:137
+#: ../../library/machine.TimerWiPy.rst:127
+msgid ""
+"Note that callback handlers are hard interrupts, and the constraints "
+"described in :ref:`isr_rules` apply when they are executed."
+msgstr ""
+
+#: ../../library/machine.TimerWiPy.rst:130
 msgid "Returns a callback object."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:141
+#: ../../library/machine.TimerWiPy.rst:134
 msgid "Get or set the timer channel frequency (in Hz)."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:145
+#: ../../library/machine.TimerWiPy.rst:138
 msgid "Get or set the timer channel period (in microseconds)."
 msgstr ""
 
-#: ../../library/machine.TimerWiPy.rst:149
+#: ../../library/machine.TimerWiPy.rst:142
 msgid ""
 "Get or set the duty cycle of the PWM signal. It's a percentage "
 "(0.00-100.00). Since the WiPy doesn't support floating point numbers the "
@@ -16612,14 +17036,26 @@ msgstr ""
 msgid "WiFi Power Management setting (see below for allowed values)"
 msgstr "WiFi 電力管理設定(指定できる値は後述)"
 
-#: ../../library/network.WLAN.rst:157
+#: ../../library/network.WLAN.rst:148
+msgid "protocol"
+msgstr ""
+
+#: ../../library/network.WLAN.rst:148
+msgid ""
+"(ESP32 Only.) WiFi Low level 802.11 protocol. See "
+"`WLAN.PROTOCOL_DEFAULTS`."
+msgstr ""
+"(ESP32 のみ) WiFi 低レベル 802.11 プロトコル。 "
+"`WLAN.PROTOCOL_DEFAULTS` を参照。"
+
+#: ../../library/network.WLAN.rst:158
 msgid ""
 "Allowed values for the ``WLAN.config(pm=...)`` network interface "
 "parameter:"
 msgstr ""
 "``WLAN.config(pm=...)`` ネットワークインタフェースパラメータに指定できる値:"
 
-#: ../../library/network.WLAN.rst:159
+#: ../../library/network.WLAN.rst:160
 msgid ""
 "``PM_PERFORMANCE``: enable WiFi power management to balance power savings"
 " and WiFi performance"
@@ -16627,7 +17063,7 @@ msgstr ""
 "``PM_PERFORMANCE``: WiFi の電力管理を有効にし、電力の節約と WiFi の"
 "パフォーマンスをバランスさせます。"
 
-#: ../../library/network.WLAN.rst:161
+#: ../../library/network.WLAN.rst:162
 msgid ""
 "``PM_POWERSAVE``: enable WiFi power management with additional power "
 "savings and reduced WiFi performance"
@@ -16635,9 +17071,58 @@ msgstr ""
 "``PM_POWERSAVE``: WiFi の電力管理を有効にし、電力節約を優先して、WiFi の"
 "パフォーマンス低下させます。"
 
-#: ../../library/network.WLAN.rst:163
+#: ../../library/network.WLAN.rst:164
 msgid "``PM_NONE``: disable wifi power management"
 msgstr "``PM_NONE``: WiFi の電力管理を無効にします。"
+
+#: ../../library/network.WLAN.rst:168
+msgid "ESP32 Protocol Constants"
+msgstr "ESP32 プロトコル定数"
+
+#: ../../library/network.WLAN.rst:170
+msgid ""
+"The following ESP32-only constants relate to the "
+"``WLAN.config(protocol=...)`` network interface parameter:"
+msgstr ""
+"次の ESP32 専用の定数は ``WLAN.config(protocol=...)`` "
+"ネットワークインタフェースのパラメータに関連します:"
+
+#: ../../library/network.WLAN.rst:175
+msgid ""
+"A bitmap representing all of the default 802.11 Wi-Fi modes supported by "
+"the chip. Consult `ESP-IDF Wi-Fi Protocols`_ documentation for details."
+msgstr ""
+"チップがサポートするすべてのデフォルト 802.11 Wi-Fi モードを表すビットマップです。"
+"詳細は `ESP-IDF Wi-Fi Protocols`_ ドキュメントを参照してください。"
+
+#: ../../library/network.WLAN.rst:180
+msgid ""
+"This value corresponds to the `Espressif proprietary \"long-range\" "
+"mode`_, which is not compatible with standard Wi-Fi devices. By setting "
+"this protocol it's possible for an ESP32 STA in long-range mode to "
+"connect to an ESP32 AP in long-range mode, or to use `ESP-NOW long range "
+"modes <espnow-long-range>`."
+msgstr ""
+"この値は `Espressif proprietary \"long-range\" mode`_ モードに対応します。"
+"これは標準的な Wi-Fi デバイスとは互換性がありません。"
+"このプロトコルを設定することで、長距離モードの ESP32 STA が長距離モードの ESP32 AP "
+"に接続したり、 `ESP-NOW の長距離モード <espnow-long-range>` を使用したりできます。"
+
+#: ../../library/network.WLAN.rst:186
+msgid ""
+"This mode can be bitwise ORed with some standard 802.11 protocol bits "
+"(including `WLAN.PROTOCOL_DEFAULTS`) in order to support a mix of "
+"standard Wi-Fi modes as well as LR mode, consult the `Espressif long-"
+"range documentation`_ for more details."
+msgstr ""
+"このモードは、一部の標準 802.11 プロトコルビット"
+"(`WLAN.PROTOCOL_DEFAULTS` を含む)とビットORで組み合わせることが可能で、"
+"標準 Wi-Fi モードと LR モードを混在させることができます。"
+"詳細は `Espressif long-range documentation`_ を参照してください。
+
+#: ../../library/network.WLAN.rst:191
+msgid "Long range mode is not supported on ESP32-C2."
+msgstr "長距離モードは ESP32-C2 ではサポートされていません。"
 
 #: ../../library/network.WLANWiPy.rst:5
 msgid "class WLANWiPy -- WiPy specific WiFi control"
@@ -17191,16 +17676,15 @@ msgstr ""
 
 #: ../../library/os.rst:58
 msgid ""
-"Some platforms may return a 4-tuple that includes the entry's *size*.  "
-"For file entries, *size* is an integer representing the size of the file "
-"or -1 if unknown.  Its meaning is currently undefined for directory "
-"entries."
+"*size* is an integer that may be included depending on the filesystem "
+"type. For file entries, *size* represents the size of the file or -1 if "
+"unknown. Its meaning is currently undefined for directory entries."
 msgstr ""
-"一部のプラットフォームでは、エントリのサイズを含む4タプルが返されることがあります。"
-"ファイルエントリの場合、 *size* はファイルのサイズを表す整数で、未知の場合は -1 です。"
-"現在のところ、ディレクトリエントリについては未定義です。"
+"*size* は、ファイルシステムの種類によっては含まれる整数値です。"
+"ファイル項目の場合、size はファイルサイズを表し、サイズが不明な場合は -1 になります。"
+"ディレクトリ項目に対しては、現時点では *size* の意味は未定義です。"
 
-#: ../../library/os.rst:65
+#: ../../library/os.rst:64
 msgid ""
 "With no argument, list the current directory.  Otherwise list the given "
 "directory."
@@ -17208,75 +17692,75 @@ msgstr ""
 "引数を指定しない場合は、カレントディレクトリ内のエントリを表示します。"
 "それ以外の場合は指定されたディレクトリ内のエントリを表示します。"
 
-#: ../../library/os.rst:69
+#: ../../library/os.rst:68
 msgid "Create a new directory."
 msgstr "新規にディレクトリを作成します。"
 
-#: ../../library/os.rst:73
+#: ../../library/os.rst:72
 msgid "Remove a file."
 msgstr "ファイルを削除します。"
 
-#: ../../library/os.rst:77
+#: ../../library/os.rst:76
 msgid "Remove a directory."
 msgstr "ディレクトリを削除します。"
 
-#: ../../library/os.rst:81
+#: ../../library/os.rst:80
 msgid "Rename a file."
 msgstr "ファイルの名前を変更します。"
 
-#: ../../library/os.rst:85
+#: ../../library/os.rst:84
 msgid "Get the status of a file or directory."
 msgstr "ファイルまたはディレクトリのステータスを取得します。"
 
-#: ../../library/os.rst:89
+#: ../../library/os.rst:88
 msgid "Get the status of a filesystem."
 msgstr "ファイルシステムの状態を取得します。"
 
-#: ../../library/os.rst:91
+#: ../../library/os.rst:90
 msgid "Returns a tuple with the filesystem information in the following order:"
 msgstr "次の順序でファイルシステム情報を含むタプルを返します。"
 
-#: ../../library/os.rst:93
+#: ../../library/os.rst:92
 msgid "``f_bsize`` -- file system block size"
 msgstr "``f_bsize`` -- ファイルシステムのブロックサイズ"
 
-#: ../../library/os.rst:94
+#: ../../library/os.rst:93
 msgid "``f_frsize`` -- fragment size"
 msgstr "``f_frsize`` -- フラグメントサイズ"
 
-#: ../../library/os.rst:95
+#: ../../library/os.rst:94
 msgid "``f_blocks`` -- size of fs in f_frsize units"
 msgstr "``f_blocks`` -- f_frsize 単位の fs のサイズ"
 
-#: ../../library/os.rst:96
+#: ../../library/os.rst:95
 msgid "``f_bfree`` -- number of free blocks"
 msgstr "``f_bfree`` -- 空きブロックの数"
 
-#: ../../library/os.rst:97
+#: ../../library/os.rst:96
 msgid "``f_bavail`` -- number of free blocks for unprivileged users"
 msgstr "``f_bavail`` -- 権限なしユーザーのための空きブロック数"
 
-#: ../../library/os.rst:98
+#: ../../library/os.rst:97
 msgid "``f_files`` -- number of inodes"
 msgstr "``f_files`` -- iノード数"
 
-#: ../../library/os.rst:99
+#: ../../library/os.rst:98
 msgid "``f_ffree`` -- number of free inodes"
 msgstr "``f_ffree`` -- フリーのiノードの数"
 
-#: ../../library/os.rst:100
+#: ../../library/os.rst:99
 msgid "``f_favail`` -- number of free inodes for unprivileged users"
 msgstr "``f_favail`` -- 権限なしユーザの空きiノード数"
 
-#: ../../library/os.rst:101
+#: ../../library/os.rst:109
 msgid "``f_flag`` -- mount flags"
 msgstr "``f_flag`` -- マウントフラグ"
 
-#: ../../library/os.rst:102
+#: ../../library/os.rst:101
 msgid "``f_namemax`` -- maximum filename length"
 msgstr "``f_namemax`` -- 最大ファイル名の長さ"
 
-#: ../../library/os.rst:104
+#: ../../library/os.rst:103
 msgid ""
 "Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail`` and "
 "the ``f_flags`` parameter may return ``0`` as they can be unavailable in "
@@ -17285,15 +17769,15 @@ msgstr ""
 "iノードに関連するパラメータ ``f_files``, ``f_ffree``, ``f_avail``, "
 "``f_flags`` は、ポート固有の実装で使えない場合には 0 になります。"
 
-#: ../../library/os.rst:110
+#: ../../library/os.rst:109
 msgid "Sync all filesystems."
 msgstr "すべてのファイルシステムを同期します。"
 
-#: ../../library/os.rst:113
+#: ../../library/os.rst:112
 msgid "Terminal redirection and duplication"
 msgstr "ターミナルのリダイレクトと複製"
 
-#: ../../library/os.rst:117
+#: ../../library/os.rst:116
 msgid ""
 "Duplicate or switch the MicroPython terminal (the REPL) on the given "
 "`stream`-like object. The *stream_object* argument must be a native "
@@ -17308,7 +17792,7 @@ msgstr ""
 "ものでなければなりません。ストリームは非ブロッキングモードで、 ``readinto()`` "
 "は読み込み可能なデータがない場合は ``None`` を返すようにします。"
 
-#: ../../library/os.rst:123
+#: ../../library/os.rst:122
 msgid ""
 "After calling this function all terminal output is repeated on this "
 "stream, and any input that is available on the stream is passed on to the"
@@ -17317,7 +17801,7 @@ msgstr ""
 "この関数を呼び出した後、すべての端末出力がこのストリーム上で繰り返され、"
 "ストリーム上で利用可能なすべての入力がターミナル入力に渡されます。"
 
-#: ../../library/os.rst:126
+#: ../../library/os.rst:125
 msgid ""
 "The *index* parameter should be a non-negative integer and specifies "
 "which duplication slot is set.  A given port may implement more than one "
@@ -17328,7 +17812,7 @@ msgstr ""
 "ポートは２つ以上のスロットを実装できます(スロット 0 は常に使用可能です)。"
 "その場合、端末の入出力は設定されているすべてのスロットに複製されます。"
 
-#: ../../library/os.rst:131
+#: ../../library/os.rst:130
 msgid ""
 "If ``None`` is passed as the *stream_object* then duplication is "
 "cancelled on the slot given by *index*."
@@ -17336,11 +17820,11 @@ msgstr ""
 "*stream_object* に ``None`` を渡した場合、 *index* によって指定された"
 "スロットで重複が取り消されます。"
 
-#: ../../library/os.rst:134
+#: ../../library/os.rst:133
 msgid "The function returns the previous stream-like object in the given slot."
 msgstr "この関数は、指定したスロットの前のストリームライク風オブジェクトを返します。"
 
-#: ../../library/os.rst:138
+#: ../../library/os.rst:137
 msgid ""
 "Notify the MicroPython REPL that input is available on a stream-like "
 "object previously registered via `os.dupterm()`."
@@ -17348,7 +17832,7 @@ msgstr ""
 "`os.dupterm()` を介して以前に登録されたストリームライクなオブジェクトで"
 "入力が利用可能であることを MicroPython REPL に通知します。"
 
-#: ../../library/os.rst:141
+#: ../../library/os.rst:140
 msgid ""
 "This function should be called by custom stream implementations (e.g., "
 "UART, Bluetooth, or other non-USB REPL streams) to inform the REPL that "
@@ -17362,7 +17846,7 @@ msgstr ""
 "特殊文字が REPL によって迅速に処理され、ユーザーコードで期待される割り込み動作が"
 "可能になります。"
 
-#: ../../library/os.rst:147
+#: ../../library/os.rst:146
 msgid ""
 "The *obj_in* parameter is ignored by `os.dupterm_notify()`, but is "
 "required to allow calling dupterm_notify from an interrupt handler such "
@@ -17371,11 +17855,11 @@ msgstr ""
 "*obj_in* パラメータは `os.dupterm_notify()` では無視されますが、 "
 "`UART.irq()` などの割り込みハンドラから dupterm_notify を呼び出すために必要です。"
 
-#: ../../library/os.rst:150
+#: ../../library/os.rst:149
 msgid "Example:"
 msgstr "例:"
 
-#: ../../library/os.rst:152
+#: ../../library/os.rst:151
 msgid ""
 "from machine import UART\n"
 "import os\n"
@@ -17384,7 +17868,7 @@ msgid ""
 "uart.irq(os.dupterm_notify, machine.UART.IRQ_RX)"
 msgstr ""
 
-#: ../../library/os.rst:161
+#: ../../library/os.rst:160
 msgid ""
 "If the ``dupterm_notify()`` function is not called, input from the custom"
 " stream may not be detected or processed until the next REPL poll, "
@@ -17397,11 +17881,11 @@ msgstr ""
 "やその他の制御信号が遅延する可能性があります。これは、自動通知が保証されない UART、"
 "Bluetooth、その他の非標準REPL接続において特に重要です。"
 
-#: ../../library/os.rst:168 ../../library/vfs.rst:11
+#: ../../library/os.rst:167 ../../library/vfs.rst:11
 msgid "Filesystem mounting"
 msgstr "ファイルシステムのマウント"
 
-#: ../../library/os.rst:170
+#: ../../library/os.rst:169
 msgid ""
 "The following functions and classes have been moved to the :mod:`vfs` "
 "module. They are provided in this module only for backwards compatibility"
@@ -17411,27 +17895,27 @@ msgstr ""
 "このモジュールでは、後方互換性のために提供されており、"
 "MicroPython のバージョン2では削除されます。"
 
-#: ../../library/os.rst:176
+#: ../../library/os.rst:175
 msgid "See `vfs.mount`."
 msgstr "`vfs.mount` を参照。"
 
-#: ../../library/os.rst:180
+#: ../../library/os.rst:179
 msgid "See `vfs.umount`."
 msgstr "`vfs.umount` を参照。"
 
-#: ../../library/os.rst:184
+#: ../../library/os.rst:183
 msgid "See `vfs.VfsFat`."
 msgstr "`vfs.VfsFat` を参照。"
 
-#: ../../library/os.rst:188
+#: ../../library/os.rst:187
 msgid "See `vfs.VfsLfs1`."
 msgstr "`vfs.VfsLfs1` を参照。"
 
-#: ../../library/os.rst:192
+#: ../../library/os.rst:191
 msgid "See `vfs.VfsLfs2`."
 msgstr "`vfs.VfsLfs2` を参照。"
 
-#: ../../library/os.rst:196
+#: ../../library/os.rst:195
 msgid "See `vfs.VfsPosix`."
 msgstr "`vfs.VfsPosix` を参照。"
 

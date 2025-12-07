@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-16 10:09+0900\n"
-"PO-Revision-Date: 2025-11-16 10:45+0900\n"
+"POT-Creation-Date: 2025-12-07 10:30+0900\n"
+"PO-Revision-Date: 2025-12-07 10:47+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1831,12 +1831,29 @@ msgstr ""
 "bash シェルを使っているなら、Tab 補完で ``ci`` コマンドを追加できます。"
 
 #: ../../develop/gettingstarted.rst:339
-msgid ""
-"$ eval `tools/ci.sh --bash-completion`\n"
-"$ ci unix_cov<tab>"
+msgid "$ eval $(tools/ci.sh --bash-completion)"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:344
+#: ../../develop/gettingstarted.rst:343
+msgid ""
+"For the zsh shell, replace ``--bash-completion`` with ``--zsh-"
+"completion``. For the fish shell, replace ``--bash-completion`` with "
+"``--fish-completion``."
+msgstr ""
+"zsh を使っている場合は ``--bash-completion`` を ``--zsh-completion`` "
+"に置き換えてください。"
+"fish を使っている場合は ``--bash-completion`` を ``--fish-completion`` "
+"に置き換えてください。"
+
+#: ../../develop/gettingstarted.rst:346
+msgid "Then, typing:"
+msgstr "そして次のように入力してみてください:"
+
+#: ../../develop/gettingstarted.rst:348
+msgid "$ ci unix_cov<tab>"
+msgstr ""
+
+#: ../../develop/gettingstarted.rst:352
 msgid ""
 "This will complete the ci step name to ``unix_coverage_``. Pressing tab a"
 " second time will show the list of matching steps:"
@@ -1844,18 +1861,18 @@ msgstr ""
 "これにより、ci 手順名が ``unix_coverage_`` に補完されます。"
 "Tab キーをもう一度押すと、一致する手順のリストが表示されます。"
 
-#: ../../develop/gettingstarted.rst:347
+#: ../../develop/gettingstarted.rst:355
 msgid ""
 "$ ci unix_coverage_<tab>\n"
 "unix_coverage_32bit_build\n"
 "unix_coverage_32bit_run_native_mpy_tests…"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:354
+#: ../../develop/gettingstarted.rst:362
 msgid "Folder structure"
 msgstr "フォルダ構造"
 
-#: ../../develop/gettingstarted.rst:356
+#: ../../develop/gettingstarted.rst:364
 msgid ""
 "There are a couple of directories to take note of in terms of where "
 "certain implementation details are. The following is a break down of the "
@@ -1864,19 +1881,19 @@ msgstr ""
 "特定の実装の詳細がどこにあるかという点で注意すべきディレクトリがいくつかあります。"
 "以下はソースコードのトップレベルのフォルダの内訳です。"
 
-#: ../../develop/gettingstarted.rst:359
+#: ../../develop/gettingstarted.rst:367
 msgid "py"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:361
+#: ../../develop/gettingstarted.rst:369
 msgid "Contains the compiler, runtime, and core library implementation."
 msgstr "コンパイラ、ランタイム、コアライブラリの実装が含まれています。"
 
-#: ../../develop/gettingstarted.rst:363
+#: ../../develop/gettingstarted.rst:371
 msgid "mpy-cross"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:365
+#: ../../develop/gettingstarted.rst:373
 msgid ""
 "Has the MicroPython cross-compiler which pre-compiles the Python scripts "
 "to bytecode."
@@ -1884,19 +1901,19 @@ msgstr ""
 "Python スクリプトをバイトコードにプリコンパイルする MicroPython クロスコンパイラが"
 "あります。"
 
-#: ../../develop/gettingstarted.rst:367
+#: ../../develop/gettingstarted.rst:375
 msgid "ports"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:369
+#: ../../develop/gettingstarted.rst:377
 msgid "Code for all the versions of MicroPython for the supported ports."
 msgstr "サポートされているポートの MicroPython のすべてのバージョンのコード。"
 
-#: ../../develop/gettingstarted.rst:371
+#: ../../develop/gettingstarted.rst:379
 msgid "lib"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:373
+#: ../../develop/gettingstarted.rst:381
 msgid ""
 "Low-level C libraries used by any port which are mostly 3rd-party "
 "libraries."
@@ -1904,47 +1921,47 @@ msgstr ""
 "どのポートでも使用される低レベルの C ライブラリで、ほとんどがサードパーティ製の"
 "ライブラリです。"
 
-#: ../../develop/gettingstarted.rst:375
+#: ../../develop/gettingstarted.rst:383
 msgid "drivers"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:377
+#: ../../develop/gettingstarted.rst:385
 msgid ""
 "Has drivers for specific hardware and intended to work across multiple "
 "ports."
 msgstr ""
 "特定のハードウェア用のドライバーがあり、複数のポートで動作することを目的としています。"
 
-#: ../../develop/gettingstarted.rst:379
+#: ../../develop/gettingstarted.rst:387
 msgid "extmod"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:381
+#: ../../develop/gettingstarted.rst:389
 msgid "Contains a C implementation of more non-core modules."
 msgstr ""
 "より多くの非コアモジュールの C 実装が含まれています。"
 
-#: ../../develop/gettingstarted.rst:383
+#: ../../develop/gettingstarted.rst:391
 msgid "docs"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:385
+#: ../../develop/gettingstarted.rst:393
 msgid "Has the standard documentation found at https://docs.micropython.org/."
 msgstr "https://docs.micropython.org/ にある標準ドキュメントがあります。"
 
-#: ../../develop/gettingstarted.rst:387
+#: ../../develop/gettingstarted.rst:395
 msgid "tests"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:389
+#: ../../develop/gettingstarted.rst:397
 msgid "An implementation of the test suite."
 msgstr "テストスイートの実装です。"
 
-#: ../../develop/gettingstarted.rst:391
+#: ../../develop/gettingstarted.rst:399
 msgid "tools"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:393
+#: ../../develop/gettingstarted.rst:401
 msgid ""
 "Contains scripts used by the build and CI process, as well as user tools "
 "such as ``pyboard.py`` and ``mpremote``."
@@ -1952,11 +1969,11 @@ msgstr ""
 "ビルドと CI プロセスで使うスクリプト、および ``pyboard.py`` や ``mpremote`` "
 "などのユーザーツールが含まれています。"
 
-#: ../../develop/gettingstarted.rst:396
+#: ../../develop/gettingstarted.rst:404
 msgid "examples"
 msgstr ""
 
-#: ../../develop/gettingstarted.rst:398
+#: ../../develop/gettingstarted.rst:406
 msgid ""
 "Example code for building MicroPython as a library as well as native "
 "modules."
