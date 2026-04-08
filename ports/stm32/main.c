@@ -41,6 +41,7 @@
 #include "lib/littlefs/lfs2_util.h"
 #include "extmod/modmachine.h"
 #include "extmod/modnetwork.h"
+#include "extmod/machine_can.h"
 #include "extmod/vfs.h"
 #include "extmod/vfs_fat.h"
 #include "extmod/vfs_lfs.h"
@@ -409,13 +410,13 @@ void stm32_main(uint32_t reset_mode) {
     LL_MEM_EnableClockLowPower(LL_MEM_AXISRAM1 | LL_MEM_AXISRAM2 | LL_MEM_AXISRAM3
         | LL_MEM_AXISRAM4 | LL_MEM_AXISRAM5 | LL_MEM_AXISRAM6 | LL_MEM_AHBSRAM1 | LL_MEM_AHBSRAM2
         | LL_MEM_BKPSRAM | LL_MEM_FLEXRAM | LL_MEM_CACHEAXIRAM | LL_MEM_VENCRAM | LL_MEM_BOOTROM);
-    LL_AHB5_GRP1_EnableClockLowPower(LL_AHB5_GRP1_PERIPH_XSPI2 | LL_AHB5_GRP1_PERIPH_XSPIM);
     LL_APB4_GRP1_EnableClock(LL_APB4_GRP1_PERIPH_RTC | LL_APB4_GRP1_PERIPH_RTCAPB);
     LL_APB4_GRP1_EnableClockLowPower(LL_APB4_GRP1_PERIPH_RTC | LL_APB4_GRP1_PERIPH_RTCAPB);
 
     // Enable some AHB peripherals during sleep.
     LL_AHB1_GRP1_EnableClockLowPower(LL_AHB1_GRP1_PERIPH_ALL); // GPDMA1, ADC12
     LL_AHB4_GRP1_EnableClockLowPower(LL_AHB4_GRP1_PERIPH_ALL); // GPIOA-Q, PWR, CRC
+    LL_AHB5_GRP1_EnableClockLowPower(LL_AHB5_GRP1_PERIPH_ALL); // DMA2D, ETH, FMC, GFXMMU, GPU2D, HPDMA, XSPI, JPEG, MCE, CACHEAXI, NPU, OTG, PSSI, SDMMC
 
     // Enable some APB peripherals during sleep.
     LL_APB1_GRP1_EnableClockLowPower(LL_APB1_GRP1_PERIPH_ALL); // I2C, I3C, LPTIM, SPI, TIM, UART, WWDG
@@ -763,9 +764,15 @@ soft_reset_exit:
     #endif
     #if MICROPY_HW_ENABLE_CAN
     pyb_can_deinit_all();
+    #if MICROPY_PY_MACHINE_CAN
+    machine_can_deinit_all();
     #endif
+    #endif // MICROPY_HW_ENABLE_CAN
     #if MICROPY_HW_ENABLE_DAC
     dac_deinit_all();
+    #endif
+    #if MICROPY_PY_MACHINE_PWM
+    machine_pwm_deinit_all();
     #endif
     #if MICROPY_PY_MACHINE
     machine_deinit();
