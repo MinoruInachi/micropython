@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
-# Damien P. George, Paul Sokolovsky, and contributors
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2026,
+# MicroPython authors and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-07 10:30+0900\n"
-"PO-Revision-Date: 2025-12-07 10:47+0900\n"
+"POT-Creation-Date: 2026-04-08 11:19+0900\n"
+"PO-Revision-Date: 2026-04-09 17:51+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2720,49 +2720,67 @@ msgstr "``x64`` (64 ビット x86)"
 
 #: ../../develop/natmod.rst:37
 msgid "``armv6m`` (ARM Thumb, eg Cortex-M0)"
-msgstr "``armv6m`` (ARM Thumb, Cortex-M0 など)"
+msgstr "``armv6m`` (ARM Thumb: Cortex-M0 など)"
 
 #: ../../develop/natmod.rst:38
 msgid "``armv7m`` (ARM Thumb 2, eg Cortex-M3)"
-msgstr "``armv7m`` (ARM Thumb 2, Cortex-M3 など)"
+msgstr "``armv7m`` (ARM Thumb 2: Cortex-M3 など)"
 
 #: ../../develop/natmod.rst:39
 msgid ""
 "``armv7emsp`` (ARM Thumb 2, single precision float, eg Cortex-M4F, "
 "Cortex-M7)"
 msgstr ""
-"``armv7emsp`` (ARM Thumb 2, 単精度浮動小数点, Cortex-M4F, Cortex-M7 など)"
+"``armv7emsp`` (ARM Thumb 2, 単精度浮動小数点: Cortex-M4F, Cortex-M7 など)"
 
 #: ../../develop/natmod.rst:40
 msgid "``armv7emdp`` (ARM Thumb 2, double precision float, eg Cortex-M7)"
-msgstr "``armv7emdp`` (ARM Thumb 2, 倍精度浮動小数点, Cortex-M7 など)"
+msgstr "``armv7emdp`` (ARM Thumb 2, 倍精度浮動小数点: Cortex-M7 など)"
 
 #: ../../develop/natmod.rst:41
 msgid "``xtensa`` (non-windowed, eg ESP8266)"
-msgstr "``xtensa`` (ウィンドウなし, ESP8266 など)"
+msgstr "``xtensa`` (ウィンドウなし: ESP8266 など)"
 
 #: ../../develop/natmod.rst:42
 msgid "``xtensawin`` (windowed with window size 8, eg ESP32, ESP32S3)"
-msgstr "``xtensawin`` (ウィンドウサイズ 8, ESP32, ESP32S3 など)"
+msgstr "``xtensawin`` (ウィンドウサイズ 8: ESP32, ESP32S3 など)"
 
 #: ../../develop/natmod.rst:43
 msgid ""
 "``rv32imc`` (RISC-V 32 bits with compressed instructions, eg ESP32C3, "
 "ESP32C6)"
 msgstr ""
-"``rv32imc`` (圧縮命令のある RISC-V 32 ビット, ESP32C3, ESP32C6 など)"
+"``rv32imc`` (RISC-V 32 ビット, 圧縮命令あり: ESP32C3, ESP32C6 など)"
 
-#: ../../develop/natmod.rst:45
+#: ../../develop/natmod.rst:44
+msgid "``rv64imc`` (RISC-V 64 bits with compressed instructions)"
+msgstr "``rv64imc`` (RISC-V 64 ビット, 圧縮命令あり)"
+
+#: ../../develop/natmod.rst:46
+msgid ""
+"If the chosen platform supports explicit architecture flags and you want "
+"to let the output .mpy file carry those flags' value, you must pass them "
+"to the ``ARCH_FLAGS`` flags variable when building the .mpy file."
+msgstr ""
+"選択したプラットフォームが明示的なアーキテクチャフラグをサポートしていて、"
+"出力する .mpy ファイルにそれらのフラグの値を適用させたい場合、"
+".mpy ファイルをビルドする際に ``ARCH_FLAGS`` フラグ変数へそれらを指定する"
+"必要があります。"
+
+#: ../../develop/natmod.rst:50
 msgid ""
 "When compiling and linking the native .mpy file the architecture must be "
 "chosen and the corresponding file can only be imported on that "
-"architecture.  For more details about .mpy files see :ref:`mpy_files`."
+"architecture (and if architecture flags are present, only if they match "
+"the target's capabilities). For more details about .mpy files see "
+":ref:`mpy_files`."
 msgstr ""
-"ネイティブ .mpy ファイルをコンパイル・リンクする場合、アーキテクチャの選択が必要です。"
-"該当ファイルはそのアーキテクチャにのみインポートできます。 .mpy ファイルの詳細に"
-"ついては :ref:`mpy_files` ファイルを参照してください。"
+"ネイティブ .mpy ファイルをコンパイル/リンクする場合、アーキテクチャの選択が必要です。"
+"該当ファイルはそのアーキテクチャにのみインポートできます(さらにアーキテクチャフラグが#
+"存在する場合は、ターゲット側のものと一致していなければなりません)。"
+".mpy ファイルの詳細については :ref:`mpy_files` ファイルを参照してください。"
 
-#: ../../develop/natmod.rst:49
+#: ../../develop/natmod.rst:55
 msgid ""
 "Native code must be compiled as position independent code (PIC) and use a"
 " global offset table (GOT), although the details of this varies from "
@@ -2775,38 +2793,38 @@ msgstr ""
 "で .mpy ファイルをインポートする場合、インポート機構はネイティブコードの基本的な再配置を"
 "行えます。これには、text, rodata, BSS セクションの再配置も含まれます。"
 
-#: ../../develop/natmod.rst:55
+#: ../../develop/natmod.rst:61
 msgid "Supported features of the linker and dynamic loader are:"
 msgstr "リンカとダイナミックローダーがサポートされている機能は次のとおりです:"
 
-#: ../../develop/natmod.rst:57
+#: ../../develop/natmod.rst:63
 msgid "executable code (text)"
 msgstr "実行可能コード (text)"
 
-#: ../../develop/natmod.rst:58
+#: ../../develop/natmod.rst:64
 msgid ""
 "read-only data (rodata), including strings and constant data (arrays, "
 "structs, etc)"
 msgstr ""
 "文字列および定数データ(配列、構造体など)を含む読み取り専用データ (rodata)"
 
-#: ../../develop/natmod.rst:59
+#: ../../develop/natmod.rst:65
 msgid "zeroed data (BSS)"
 msgstr "ゼロに初期化されるデータ (BSS)"
 
-#: ../../develop/natmod.rst:60
+#: ../../develop/natmod.rst:66
 msgid "pointers in text to text, rodata and BSS"
 msgstr "text 中の text, rodata, BSS へのポインター"
 
-#: ../../develop/natmod.rst:61
+#: ../../develop/natmod.rst:67
 msgid "pointers in rodata to text, rodata and BSS"
 msgstr "rodata 中の text, rodata, BSS へのポインター"
 
-#: ../../develop/natmod.rst:63
+#: ../../develop/natmod.rst:69
 msgid "The known limitations are:"
 msgstr "既知の制限は次のとおりです。"
 
-#: ../../develop/natmod.rst:65
+#: ../../develop/natmod.rst:71
 msgid ""
 "data sections are not supported; workaround: use BSS data and initialise "
 "the data values explicitly"
@@ -2814,14 +2832,14 @@ msgstr ""
 "data セクションはサポートしていません。回避策: BSSデータを使い、データ値を明示的に"
 "初期化してください"
 
-#: ../../develop/natmod.rst:68
+#: ../../develop/natmod.rst:74
 msgid ""
 "static BSS variables are not supported; workaround: use global BSS "
 "variables"
 msgstr ""
 "静的 BSS 変数はサポートしていません。回避策: グローバル BSS 変数を使ってください"
 
-#: ../../develop/natmod.rst:70
+#: ../../develop/natmod.rst:76
 msgid ""
 "thread-local storage variables are not supported on rv32imc; workaround: "
 "use global BSS variables or allocate some space on the heap to store them"
@@ -2830,7 +2848,7 @@ msgstr ""
 "回避策: グローバル BSS セクションの変数を使うか、"
 "ヒープに領域を確保して格納用に使います。"
 
-#: ../../develop/natmod.rst:73
+#: ../../develop/natmod.rst:79
 msgid ""
 "So, if your C code has writable data, make sure the data is defined "
 "globally, without an initialiser, and only written to within functions."
@@ -2838,7 +2856,7 @@ msgstr ""
 "このため、C コードに書き込み可能なデータがある場合、データが初期化子なしで"
 "グローバルに定義され、関数内でのみ書き込まれていることを確認してください。"
 
-#: ../../develop/natmod.rst:76
+#: ../../develop/natmod.rst:82
 msgid ""
 "The native module is not automatically linked against the standard static"
 " libraries like ``libm.a`` and ``libgcc.a``, which can lead to "
@@ -2856,7 +2874,7 @@ msgstr ""
 "ただし、これらはネイティブモジュールにリンクされるのみで、他のモジュールやシステムと"
 "共有されることはありません。"
 
-#: ../../develop/natmod.rst:83
+#: ../../develop/natmod.rst:89
 msgid ""
 "Linker limitation: the native module is not linked against the symbol "
 "table of the full MicroPython firmware.  Rather, it is linked against an "
@@ -2887,7 +2905,7 @@ msgstr ""
 "機能に制限があり、現在は主にESP8266ポートのROMシンボルリスト"
 "(``ports/esp8266/boards/eagle.rom.addr.v6.ld``)の解析に使われています。
 
-#: ../../develop/natmod.rst:96
+#: ../../develop/natmod.rst:102
 msgid ""
 "New symbols can be added to the end of the table and the firmware "
 "rebuilt. The symbols also need to be added to ``tools/mpy_ld.py``'s "
@@ -2904,11 +2922,11 @@ msgstr ""
 "シンボルが関数の場合には、マクロまたはスタブを ``py/dynruntime.h``　に追加して、"
 "関数を簡単に呼び出せるようにする必要があります。"
 
-#: ../../develop/natmod.rst:104
+#: ../../develop/natmod.rst:110
 msgid "Defining a native module"
 msgstr "ネイティブモジュールの定義"
 
-#: ../../develop/natmod.rst:106
+#: ../../develop/natmod.rst:112
 msgid ""
 "A native .mpy module is defined by a set of files that are used to build "
 "the .mpy. The filesystem layout consists of two main parts, the source "
@@ -2918,7 +2936,7 @@ msgstr ""
 "ファイルシステムのレイアウトは、ソースファイルと Makefile の2つの主要部分で"
 "構成します。"
 
-#: ../../develop/natmod.rst:109
+#: ../../develop/natmod.rst:115
 msgid ""
 "In the simplest case only a single C source file is required, which "
 "contains all the code that will be compiled into the .mpy module.  This C"
@@ -2934,7 +2952,7 @@ msgstr ""
 "この関数は、モジュールのエントリポイントであり、モジュールがインポートされる"
 "ときに呼び出されます。"
 
-#: ../../develop/natmod.rst:115
+#: ../../develop/natmod.rst:121
 msgid ""
 "The module can be split into multiple C source files if desired.  Parts "
 "of the module can also be implemented in Python.  All source files should"
@@ -2947,28 +2965,30 @@ msgstr ""
 "する必要があります(後述)。これには C ソースファイルと、結果の .mpy ファイルに含まれる "
 "Python ファイルの両方を含めます。"
 
-#: ../../develop/natmod.rst:121
+#: ../../develop/natmod.rst:127
 msgid ""
 "The ``Makefile`` contains the build configuration for the module and list"
 " the source files used to build the .mpy module.  It should define "
 "``MPY_DIR`` as the location of the MicroPython repository (to find header"
 " files, the relevant Makefile fragment, and the ``mpy_ld.py`` tool), "
 "``MOD`` as the name of the module, ``SRC`` as the list of source files, "
-"optionally specify the machine architecture via ``ARCH``, and then "
-"include ``py/dynruntime.mk``."
+"optionally specify the machine architecture via ``ARCH``, along with "
+"optional machine architecture flags specified via ``ARCH_FLAGS``, and "
+"then include ``py/dynruntime.mk``."
 msgstr ""
 "``Makefile`` はモジュールのビルド設定および .mpy モジュールをビルドするのに使う"
 "ソースファイルの指定を含めます。変数 ``MPY_DIR`` には MicroPython リポジトリ
 "(ヘッダファイル、関連する Makefile 断片、 ``mpy_ld.py`` ツールが存在)の場所を"
 "指定します。変数 ``MOD`` にはモジュールの名前を指定します。変数 ``SRC`` には"
 "ソースファイルの一覧を指定します。オプションでマシンアーキテクチャを指定するには変数 "
-"``ARCH`` を使います。さらに ``py/dynruntime.mk`` のインクルードも必要です。
+"``ARCH`` を使い、追加のアーキテクチャフラグがある場合には ARCH_FLAGS で指定し、"
+"さらに ``py/dynruntime.mk`` のインクルードも必要です。"
 
-#: ../../develop/natmod.rst:129
+#: ../../develop/natmod.rst:136
 msgid "Minimal example"
 msgstr "最小限の例"
 
-#: ../../develop/natmod.rst:131
+#: ../../develop/natmod.rst:138
 msgid ""
 "This section provides a fully working example of a simple module named "
 "``factorial``. This module provides a single function "
@@ -2979,22 +2999,22 @@ msgstr ""
 "このモジュールは入力の階乗を計算して結果を返す単一の関数 ``factorial.factorial(x)`` "
 "を提供します。"
 
-#: ../../develop/natmod.rst:135
+#: ../../develop/natmod.rst:142
 msgid "Directory layout::"
 msgstr "ディレクトリのレイアウト"
 
-#: ../../develop/natmod.rst:137
+#: ../../develop/natmod.rst:144
 msgid ""
 "factorial/\n"
 "├── factorial.c\n"
 "└── Makefile"
 msgstr ""
 
-#: ../../develop/natmod.rst:141
+#: ../../develop/natmod.rst:148
 msgid "The file ``factorial.c`` contains:"
 msgstr "ファイル ``factorial.c`` の内容は以下のとおりです:"
 
-#: ../../develop/natmod.rst:143
+#: ../../develop/natmod.rst:150
 msgid ""
 "// Include the header file to get access to the MicroPython API\n"
 "#include \"py/dynruntime.h\"\n"
@@ -3070,11 +3090,11 @@ msgstr ""
 "    MP_DYNRUNTIME_INIT_EXIT\n"
 "}"
 
-#: ../../develop/natmod.rst:180
+#: ../../develop/natmod.rst:187
 msgid "The file ``Makefile`` contains:"
 msgstr "ファイル ``Makefile`` の内容は以下のとおりです:"
 
-#: ../../develop/natmod.rst:182
+#: ../../develop/natmod.rst:189
 msgid ""
 "# Location of top-level MicroPython directory\n"
 "MPY_DIR = ../../..\n"
@@ -3086,7 +3106,7 @@ msgid ""
 "SRC = factorial.c\n"
 "\n"
 "# Architecture to build for (x86, x64, armv6m, armv7m, xtensa, xtensawin,"
-" rv32imc)\n"
+" rv32imc, rv64imc)\n"
 "ARCH = x64\n"
 "\n"
 "# Include to get the rules for compiling and linking the module\n"
@@ -3102,28 +3122,28 @@ msgstr ""
 "SRC = factorial.c\n"
 "\n"
 "# ビルド対象のアーキテクチャ(x86, x64, armv6m, armv7m, xtensa, xtensawin,"
-" rv32imc)\n"
+" rv32imc, rv64imc)\n"
 "ARCH = x64\n"
 "\n"
 "# このインクルードにより、モジュールをコンパイル・リンクするルールを取得\n"
 "include $(MPY_DIR)/py/dynruntime.mk"
 
-#: ../../develop/natmod.rst:200
+#: ../../develop/natmod.rst:207
 msgid "Compiling the module"
 msgstr "モジュールのコンパイル"
 
-#: ../../develop/natmod.rst:202
+#: ../../develop/natmod.rst:209
 msgid "The prerequisite tools needed to build a native .mpy file are:"
 msgstr "ネイティブ .mpy ファイルをビルドするために必要となるツールは以下の通りです:"
 
-#: ../../develop/natmod.rst:204
+#: ../../develop/natmod.rst:211
 msgid ""
 "The MicroPython repository (at least the ``py/`` and ``tools/`` "
 "directories)."
 msgstr ""
 "MicroPython リポジトリ(少なくとも ``py/`` と ``tools/`` ディレクトリ)。"
 
-#: ../../develop/natmod.rst:205
+#: ../../develop/natmod.rst:212
 msgid ""
 "CPython 3, and the library pyelftools (eg ``pip install "
 "'pyelftools>=0.25'``)."
@@ -3131,15 +3151,15 @@ msgstr ""
 "CPython 3 とライブラリ pyelftools (``pip install 'pyelftools>=0.25'`` "
 "などでインストール)。"
 
-#: ../../develop/natmod.rst:206
+#: ../../develop/natmod.rst:213
 msgid "GNU make."
 msgstr ""
 
-#: ../../develop/natmod.rst:207
+#: ../../develop/natmod.rst:214
 msgid "A C compiler for the target architecture (if C source is used)."
 msgstr "ターゲットアーキテクチャ用の C コンパイラ(C ソースが使われている場合)。"
 
-#: ../../develop/natmod.rst:208
+#: ../../develop/natmod.rst:215
 msgid ""
 "Optionally ``mpy-cross``, built from the MicroPython repository (if .py "
 "source is used)."
@@ -3147,29 +3167,37 @@ msgstr ""
 "オプションで MicroPython リポジトリでビルドした ``mpy-cross`` "
 "(.py ソースを使用している場合)。"
 
-#: ../../develop/natmod.rst:210
+#: ../../develop/natmod.rst:217
 msgid ""
 "Be sure to select the correct ``ARCH`` for the target you are going to "
 "run on. Then build with::"
 msgstr ""
 "実行するターゲットに対して適切な ``ARCH`` を選択してください。ビルドは次のように行います::"
 
-#: ../../develop/natmod.rst:213
+#: ../../develop/natmod.rst:220
 msgid "$ make"
 msgstr ""
 
-#: ../../develop/natmod.rst:215
+#: ../../develop/natmod.rst:222
 msgid ""
 "Without modifying the Makefile you can specify the target architecture "
 "via::"
 msgstr ""
 "Makefile を変更しなくても、次のようにしてターゲットのアーキテクチャを指定できます::"
 
-#: ../../develop/natmod.rst:217
+#: ../../develop/natmod.rst:224
 msgid "$ make ARCH=armv7m"
 msgstr ""
 
-#: ../../develop/natmod.rst:222
+#: ../../develop/natmod.rst:226
+msgid "Same applies for optional architecture flags via::"
+msgstr "オプションのアーキテクチャフラグについても同様に指定できます::"
+
+#: ../../develop/natmod.rst:228
+msgid "$ make ARCH=rv32imc ARCH_FLAGS=zba"
+msgstr ""
+
+#: ../../develop/natmod.rst:233
 msgid ""
 "Once the module is built there should be a file called ``factorial.mpy``."
 "  Copy this so it is accessible on the filesystem of your MicroPython "
@@ -3181,7 +3209,7 @@ msgstr ""
 "インポートパスで見つけられるようにします。これで作成したモジュールを、他のモジュールと"
 "同じように Python でアクセスできるようになります。例えば次のように使います::"
 
-#: ../../develop/natmod.rst:227
+#: ../../develop/natmod.rst:238
 msgid ""
 "import factorial\n"
 "print(factorial.factorial(10))\n"
@@ -3191,42 +3219,43 @@ msgstr ""
 "print(factorial.factorial(10))\n"
 "# 3628800 が表示されるはず"
 
-#: ../../develop/natmod.rst:232
+#: ../../develop/natmod.rst:243
 msgid "Using Picolibc when building modules"
 msgstr "モジュールのビルド時における Picolibc の使用について"
 
-#: ../../develop/natmod.rst:234
+#: ../../develop/natmod.rst:245
 msgid ""
 "Using `Picolibc <https://github.com/picolibc/picolibc>`_ as your C "
 "standard library is not only supported, but in fact it is the default for"
-" the rv32imc platform.  However, there are a couple of things worth "
-"mentioning to make sure you don't run into problems later when building "
-"code."
+" the rv32imc and rv64imc platforms.  However, there are a couple of "
+"things worth mentioning to make sure you don't run into problems later "
+"when building code."
 msgstr ""
 "C 標準ライブラリとして `Picolibc <https://github.com/picolibc/picolibc>`_ "
-"を使うことはサポートされているだけでなく、rv32imc プラットフォームでは実際に"
+"を使うことはサポートされているだけでなく、rv32imc と rv64imc のプラットフォームでは実際に"
 "デフォルト設定となっています。しかし、コードをビルドする際に後々問題が発生しないよう、"
 "いくつか留意すべき点があります。"
 
-#: ../../develop/natmod.rst:239
+#: ../../develop/natmod.rst:250
 msgid ""
 "Some pre-built Picolibc versions (for example, those provided by Ubuntu "
 "Linux as the ``picolibc-arm-none-eabi``, ``picolibc-riscv64-unknown-"
 "elf``, and ``picolibc-xtensa-lx106-elf`` packages) assume thread-local "
 "storage (TLS) is available at runtime, but unfortunately MicroPython "
-"modules do not support that on some architectures (namely ``rv32imc``).  "
-"This means that some functionalities provided by Picolibc will default to"
-" use TLS, returning an error either during compilation or during linking."
+"modules do not support that on some architectures (namely ``rv32imc`` and"
+" ``rv64imc``).  This means that some functionalities provided by Picolibc"
+" will default to use TLS, returning an error either during compilation or"
+" during linking."
 msgstr ""
 "Ubuntu Linux が提供する ``picolibc-arm-none-eabi``, "
 "``picolibc-riscv64-unknown-elf``, ``picolibc-xtensa-lx106-elf`` といった"
 "一部の事前ビルド済み Picolibc バージョンは、実行時にスレッドローカルストレージ"
 "(TLS)が利用可能であることを前提としています。しかし残念ながら、MicroPython の"
-"モジュールは一部のアーキテクチャ(特に ``rv32imc``)では TLS をサポートしていません。"
-"このため、Picolibc が提供する一部の機能はデフォルトで TLS を使おうとし、"
-"コンパイル時やリンク時にエラーが発生することがあります。"
+"モジュールは一部のアーキテクチャ(特に ``rv32imc`` と ``rv64imc``)では TLS を"
+"サポートしていません。このため、Picolibc が提供する一部の機能はデフォルトで TLS を"
+"使おうとすると、コンパイル時やリンク時にエラーが発生することがあります。"
 
-#: ../../develop/natmod.rst:247
+#: ../../develop/natmod.rst:258
 msgid ""
 "For an example on how this may affect you, the ``examples/natmod/btree`` "
 "example module contains a workaround to make sure ``errno`` works (look "
@@ -3238,11 +3267,11 @@ msgstr ""
 "回避策が含まれています(Makefile 内の ``__PICOLIBC_ERRNO_FUNCTION`` を探し、"
 "そこからたどると詳細が分かります)。"
 
-#: ../../develop/natmod.rst:252
+#: ../../develop/natmod.rst:263
 msgid "Further examples"
 msgstr "さらなる例"
 
-#: ../../develop/natmod.rst:254
+#: ../../develop/natmod.rst:265
 msgid ""
 "See ``examples/natmod/`` for further examples which show many of the "
 "available features of native .mpy modules.  Such features include:"
@@ -3250,31 +3279,31 @@ msgstr ""
 "ネイティブ .mpy モジュールで利用可能な機能の多くを示すさらなる例については "
 "``examples/natmod/`` を参照してください。以下の例があります:"
 
-#: ../../develop/natmod.rst:257
+#: ../../develop/natmod.rst:268
 msgid "using multiple C source files"
 msgstr "複数の C ソースファイルの利用"
 
-#: ../../develop/natmod.rst:258
+#: ../../develop/natmod.rst:269
 msgid "including Python code alongside C code"
 msgstr "C コード と Python コードを一緒に含める"
 
-#: ../../develop/natmod.rst:259
+#: ../../develop/natmod.rst:270
 msgid "rodata and BSS data"
 msgstr "rodata と BSS データ"
 
-#: ../../develop/natmod.rst:260
+#: ../../develop/natmod.rst:271
 msgid "memory allocation"
 msgstr "メモリー割り当て"
 
-#: ../../develop/natmod.rst:261
+#: ../../develop/natmod.rst:272
 msgid "use of floating point"
 msgstr "浮動小数点の利用"
 
-#: ../../develop/natmod.rst:262
+#: ../../develop/natmod.rst:273
 msgid "exception handling"
 msgstr "例外処理"
 
-#: ../../develop/natmod.rst:263
+#: ../../develop/natmod.rst:274
 msgid "including external C libraries"
 msgstr "外部 C ライブラリの取り込み"
 
@@ -4517,3 +4546,202 @@ msgid ""
 "$ ./run-tests.py float/builtin*.py"
 msgstr ""
 
+#: ../../develop/writingtests.rst:73
+msgid "Using run-tests.py"
+msgstr "run-tests.py の使用方法"
+
+#: ../../develop/writingtests.rst:75
+msgid ""
+"The ``run-tests.py`` script supports several parameters to customize test"
+" execution:"
+msgstr ""
+"``run-tests.py`` スクリプトにはテストの実行をカスタマイズするための"
+"パラメータがあります。"
+
+#: ../../develop/writingtests.rst:77
+msgid "**Target and Device Selection:**"
+msgstr "**ターゲットとデバイスの選択:**"
+
+#: ../../develop/writingtests.rst:79
+msgid "``-t, --test-instance``"
+msgstr ""
+
+#: ../../develop/writingtests.rst:81
+msgid "The -t option accepts the following for the test instance:"
+msgstr "オプション -t はテストする対象について次の値を受け付けます:"
+
+#: ../../develop/writingtests.rst:83
+msgid ""
+"**unix** - use the unix port of MicroPython, specified by the "
+"MICROPY_MICROPYTHON environment variable (which defaults to the standard "
+"variant of either the unix or windows ports, depending on the host "
+"platform)"
+msgstr ""
+"**unix** - MICROPY_MICROPYTHON 環境変数で指定した MicroPython の unix ポートを"
+"使います(デフォルトではホストプラットフォームに応じて、unix ポート または Windows "
+"ポートの標準バージョンを使います)"
+
+#: ../../develop/writingtests.rst:86
+msgid ""
+"**webassembly** - use the webassembly port of MicroPython, specified by "
+"the MICROPY_MICROPYTHON_MJS environment variable (which defaults to the "
+"standard variant of the webassembly port)"
+msgstr ""
+"**webassembly** - MICROPY_MICROPYTHON_MJS 環境変数で指定した "
+"MicroPython の webassembly ポートを使います(デフォルトでは標準バージョンの "
+"webassembly ポートを使います)"
+
+#: ../../develop/writingtests.rst:89
+msgid "**port:<device>** - connect to and use the given serial port device"
+msgstr "**port:<デバイス>** - 指定したシリアルポートデバイスに接続して使います"
+
+#: ../../develop/writingtests.rst:90
+msgid "**a<n>** - connect to and use /dev/ttyACM<n>"
+msgstr "**a<n>** - /dev/ttyACM<n>に接続して使います"
+
+#: ../../develop/writingtests.rst:91
+msgid "**u<n>** - connect to and use /dev/ttyUSB<n>"
+msgstr "**u<n>** - /dev/ttyUSB<n> に接続して使います"
+
+#: ../../develop/writingtests.rst:92
+msgid "**c<n>** - connect to and use COM<n>"
+msgstr "**c<n>** - COM<n> に接続して使います"
+
+#: ../../develop/writingtests.rst:93
+msgid "**exec:<command>** - execute a command and attach to it's stdin/stdout"
+msgstr "**exec:<コマンド>** - コマンドを実行し、その標準入力/標準出力に接続します"
+
+#: ../../develop/writingtests.rst:94
+msgid ""
+"**execpty:<command>** - execute a command and attach to the printed "
+"/dev/pts/<n> device"
+msgstr ""
+"**execpty:<コマンド>** - コマンドを実行し、表示した /dev/pts/<n> "
+"デバイスに接続します"
+
+#: ../../develop/writingtests.rst:95
+msgid "**<a>.<b>.<c>.<d>** - connect to the given IPv4 address"
+msgstr "**<a>.<b>.<c>.<d>** - 指定した IPv4 アドレスに接続します"
+
+#: ../../develop/writingtests.rst:96
+msgid "anything else specifies a serial port"
+msgstr "それ以外のものはシリアルポートを指定します"
+
+#: ../../develop/writingtests.rst:98
+msgid "**Test Selection:**"
+msgstr "テストの選択"
+
+#: ../../develop/writingtests.rst:100
+msgid "``-d, --test-dirs`` - Specify one or more test directories to run"
+msgstr "``-d, --test-dirs`` - 実行するテストディレクトリを 1 つ以上指定する"
+
+#: ../../develop/writingtests.rst:101
+msgid "``-i, --include REGEX`` - Include tests matching regex pattern"
+msgstr "``-i, --include REGEX`` - 正規表現パターンに一致するテストを含める"
+
+#: ../../develop/writingtests.rst:102
+msgid "``-e, --exclude REGEX`` - Exclude tests matching regex pattern"
+msgstr "``-e, --exclude REGEX`` - 正規表現パターンに一致するテストを除外する"
+
+#: ../../develop/writingtests.rst:103
+msgid "``files`` - Specific test files to run"
+msgstr "``files`` - 実行する特定のテストファイル"
+
+#: ../../develop/writingtests.rst:105
+msgid "**Execution Options:**"
+msgstr "**実行オプション**"
+
+#: ../../develop/writingtests.rst:107
+msgid ""
+"``--emit <EMITTER>`` - MicroPython emitter, EMITTER can be bytecode or "
+"native. Default: bytecode"
+msgstr ""
+"``--emit <EMITTER>`` - MicroPythonエミッター。EMITTER には bytecode または "
+"native を指定できます。デフォルトは bytecode"
+
+#: ../../develop/writingtests.rst:108
+msgid "``--via-mpy`` - Compile .py files to .mpy first"
+msgstr "``--via-mpy`` - 最初に .py ファイルを .mpy にコンパイル"
+
+#: ../../develop/writingtests.rst:109
+msgid "``--heapsize`` - Set heap size for tests"
+msgstr "``--heapsize`` - テスト用のヒープサイズを設定"
+
+#: ../../develop/writingtests.rst:110
+msgid "``-j, --jobs N`` - Number of tests to run simultaneously"
+msgstr "``-j, --jobs N`` - 同時に実行するテストの数"
+
+#: ../../develop/writingtests.rst:112
+msgid ""
+"Set the MICROPY_MPYCROSS environment variable to use a specific version "
+"of ``mpy-cross`` when using ``--via-mpy``."
+msgstr ""
+"``--via-mpy`` 指定時に ``mpy-cross`` の特定のバージョンを使うには、"
+"MICROPY_MPYCROSS 環境変数を設定します。"
+
+#: ../../develop/writingtests.rst:114
+msgid "**Result Management:**"
+msgstr "**結果の管理**"
+
+#: ../../develop/writingtests.rst:116
+msgid "``-r, --result-dir`` - Directory for test results. Default: results/"
+msgstr "``-r, --result-dir`` - テスト結果の保存先ディレクトリ。デフォルト: results/"
+
+#: ../../develop/writingtests.rst:117
+msgid "``--print-failures`` - Show diff of failed tests and exit"
+msgstr "``--print-failures`` - 失敗したテストの差分を表示して終了"
+
+#: ../../develop/writingtests.rst:118
+msgid "``--clean-failures`` - Delete .exp and .out files from prior failed tests"
+msgstr ""
+"``--clean-failures`` - 以前に失敗したテストの .exp ファイルと .out ファイルを削除"
+
+#: ../../develop/writingtests.rst:119
+msgid "``--run-failures`` - Re-run only previously failed tests"
+msgstr "``--run-failures`` - 以前に失敗したテストのみを再実行"
+
+#: ../../develop/writingtests.rst:121
+msgid "**Examples:**"
+msgstr "**実行例:**"
+
+#: ../../develop/writingtests.rst:123
+msgid ""
+"# Run only basic tests with native emitter\n"
+"$ ./run-tests.py --emit native -d basics extmod\n"
+"\n"
+"# Run tests excluding async functionality\n"
+"$ ./run-tests.py -e async\n"
+"\n"
+"# Run tests matching *_pep_*\n"
+"$ ./run-tests.py -i *_pep_*\n"
+"\n"
+"# Run specific test files in parallel\n"
+"$ ./run-tests.py -j 4 basics/list*.py\n"
+"\n"
+"# Test on connected ESP32 board\n"
+"$ ./run-tests.py -t /dev/ttyUSB0\n"
+"# or\n"
+"$ ./run-tests.py -t u0\n"
+"\n"
+"# Re-run only failed tests from previous run\n"
+"$ ./run-tests.py --run-failures"
+msgstr ""
+"# ネイティブエミッターありで基本テストのみを実行\n"
+"$ ./run-tests.py --emit native -d basics extmod\n"
+"\n"
+"# async 機能を除いたテストを実行\n"
+"$ ./run-tests.py -e async\n"
+"\n"
+"# *_pep_* に一致するテストを実行\n"
+"$ ./run-tests.py -i *_pep_*\n"
+"\n"
+"# 指定したテストファイルを並行に実行\n"
+"$ ./run-tests.py -j 4 basics/list*.py\n"
+"\n"
+"# ESP32 ボードに接続してテスト\n"
+"$ ./run-tests.py -t /dev/ttyUSB0\n"
+"# or\n"
+"$ ./run-tests.py -t u0\n"
+"\n"
+"# 以前の実行で失敗したテストだけを再実行\n"
+"$ ./run-tests.py --run-failures"

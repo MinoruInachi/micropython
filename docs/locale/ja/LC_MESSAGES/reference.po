@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
-# Damien P. George, Paul Sokolovsky, and contributors
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2026,
+# MicroPython authors and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-16 10:09+0900\n"
-"PO-Revision-Date: 2025-11-16 21:24+0900\n"
+"POT-Creation-Date: 2026-04-08 11:19+0900\n"
+"PO-Revision-Date: 2026-04-13 19:38+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -7354,17 +7354,18 @@ msgstr ""
 #: ../../reference/mpyfiles.rst:195
 msgid ""
 "See also the ``-march-flags`` command-line option in both ``mpy-tool.py``"
-" and ``mpy-cross`` to set this value when creating MPY files."
+" and ``mpy-cross``, and the ``--arch-flags`` command-line option in "
+"``mpy_ld.py`` to set this value when creating MPY files."
 msgstr ""
-"MPY ファイルを作成するときにこの値を設定するには、 ``mpy-tool.py`` と "
-"``mpy-cross`` の両方にある ``-march-flags`` コマンドライン オプションも"
-"参照してください。"
+"MPY ファイルを作成する際にこの値を設定するには ``mpy-tool.py`` と "
+"``mpy-cross`` の両方にある ``-march-flags`` コマンドラインオプションと "
+"``mpy_ld.py`` の ``--arch-flags`` コマンドラインオプションも参照してください。"
 
-#: ../../reference/mpyfiles.rst:199
+#: ../../reference/mpyfiles.rst:200
 msgid "The global qstr and constant tables"
 msgstr "グローバルな qstr と定数のテーブル"
 
-#: ../../reference/mpyfiles.rst:201
+#: ../../reference/mpyfiles.rst:202
 msgid ""
 "An .mpy file contains a single qstr table, and a single constant object "
 "table. These are global to the .mpy file, they are referenced by all "
@@ -7383,37 +7384,37 @@ msgstr ""
 "定数オブジェクトテーブルには .mpy ファイルが必要とするすべての定数オブジェクトへの"
 "参照が置かれます。"
 
-#: ../../reference/mpyfiles.rst:212 ../../reference/mpyfiles.rst:213
-#: ../../reference/mpyfiles.rst:227 ../../reference/mpyfiles.rst:229
+#: ../../reference/mpyfiles.rst:213 ../../reference/mpyfiles.rst:214
+#: ../../reference/mpyfiles.rst:228 ../../reference/mpyfiles.rst:230
 msgid "vuint"
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:212
+#: ../../reference/mpyfiles.rst:213
 msgid "number of qstrs"
 msgstr "qstr 数"
 
-#: ../../reference/mpyfiles.rst:213
+#: ../../reference/mpyfiles.rst:214
 msgid "number of constant objects"
 msgstr "定数オブジェクト数"
 
-#: ../../reference/mpyfiles.rst:214 ../../reference/mpyfiles.rst:215
-#: ../../reference/mpyfiles.rst:228 ../../reference/mpyfiles.rst:230
+#: ../../reference/mpyfiles.rst:215 ../../reference/mpyfiles.rst:216
+#: ../../reference/mpyfiles.rst:229 ../../reference/mpyfiles.rst:231
 msgid "..."
 msgstr ""
 
-#: ../../reference/mpyfiles.rst:214
+#: ../../reference/mpyfiles.rst:215
 msgid "qstr data"
 msgstr "qstr データ"
 
-#: ../../reference/mpyfiles.rst:215
+#: ../../reference/mpyfiles.rst:216
 msgid "encoded constant objects"
 msgstr "エンコードした定数オブジェクト"
 
-#: ../../reference/mpyfiles.rst:219
+#: ../../reference/mpyfiles.rst:220
 msgid "Raw code elements"
 msgstr "raw コードの要素"
 
-#: ../../reference/mpyfiles.rst:221
+#: ../../reference/mpyfiles.rst:222
 msgid ""
 "A raw-code element contains code, either bytecode or native machine code."
 "  Its contents are:"
@@ -7421,23 +7422,23 @@ msgstr ""
 "raw コードの要素には、バイトコードまたはネイティブマシンコードのコードが含まれます。"
 "その内容は次のとおりです:"
 
-#: ../../reference/mpyfiles.rst:227
+#: ../../reference/mpyfiles.rst:228
 msgid "type, size and whether there are sub-raw-code elements"
 msgstr "タイプ、サイズ、サブ raw コードの有無"
 
-#: ../../reference/mpyfiles.rst:228
+#: ../../reference/mpyfiles.rst:229
 msgid "code (bytecode or machine code)"
 msgstr "コード(バイトコードまたはマシンコード)"
 
-#: ../../reference/mpyfiles.rst:229
+#: ../../reference/mpyfiles.rst:230
 msgid "number of sub-raw-code elements (only if non-zero)"
 msgstr "サブ raw コード要素数(0でない場合のみ)"
 
-#: ../../reference/mpyfiles.rst:230
+#: ../../reference/mpyfiles.rst:231
 msgid "sub-raw-code elements"
 msgstr "サブ raw コード要素"
 
-#: ../../reference/mpyfiles.rst:233
+#: ../../reference/mpyfiles.rst:234
 msgid ""
 "The first vuint in a raw-code element encodes the type of code stored in "
 "this element (the two least-significant bits), whether this raw-code has "
@@ -7448,7 +7449,7 @@ msgstr ""
 "(最下位2ビット)、この raw コードに子があるかどうか(最下位3ビット)、"
 "それに続くコードの長さ(そのために確保すべきRAMの量)をエンコードしています。"
 
-#: ../../reference/mpyfiles.rst:238
+#: ../../reference/mpyfiles.rst:239
 msgid ""
 "Following the vuint comes the code itself.  Unless the code type is viper"
 " code with relocations, this code is constant data and does not need to "
@@ -7458,7 +7459,7 @@ msgstr ""
 "コード種別が再配置を伴うバイパーコードでない限り、このコードは定数データであり、"
 "更新する必要はありません。"
 
-#: ../../reference/mpyfiles.rst:241
+#: ../../reference/mpyfiles.rst:242
 msgid ""
 "If this raw-code has any children (as indicated by a bit in the first "
 "vuint), following the code comes a vuint counting the number of sub-raw-"
@@ -7467,7 +7468,7 @@ msgstr ""
 "この raw コードが(最初の vuint のビットで示されるように)子を持つ場合、"
 "コードの後に、サブ raw コードの要素数をカウントする vuint が来ます。"
 
-#: ../../reference/mpyfiles.rst:244
+#: ../../reference/mpyfiles.rst:245
 msgid "Finally any sub-raw-code elements are stored, recursively."
 msgstr "最後にサブ raw コード要素が再帰的に保存されます。"
 
@@ -9756,19 +9757,10 @@ msgstr ""
 "ネイティブコードエミッターの現在の実装には一定の制限があります。"
 
 #: ../../../reference/speed_python.rst:246
-msgid "Context managers are not supported (the ``with`` statement)."
-msgstr ""
-"コンテキストマネージャはサポートされていません(``with`` ステートメント)。
-
-#: ../../../reference/speed_python.rst:247
-msgid "Generators are not supported."
-msgstr "ジェネレータはサポートされていません。"
-
-#: ../../../reference/speed_python.rst:248
 msgid "If ``raise`` is used an argument must be supplied."
 msgstr "``raise`` を使う場合は、引数を指定する必要があります。"
 
-#: ../../reference/speed_python.rst:249
+#: ../../reference/speed_python.rst:247
 msgid ""
 "The background scheduler (see `micropython.schedule`) is not run during "
 "execution of native code."
@@ -9776,15 +9768,15 @@ msgstr ""
 "バックグラウンドスケジューラ(`micropython.schedule` を参照)は、"
 "ネイティブコードの実行中には動きません。"
 
-#: ../../reference/speed_python.rst:251
+#: ../../reference/speed_python.rst:249
 msgid ""
-"On targets with thrteading and the GIL, the GIL is not released during "
+"On targets with threading and the GIL, the GIL is not released during "
 "execution of native code."
 msgstr ""
-"マルチスレッドと GIL (グローバルインタプリタロック)を持つターゲットでは、"
+"スレッドと GIL (グローバルインタプリタロック)を持つターゲットでは、"
 "ネイティブコードの実行中に GIL が解放されません。"
 
-#: ../../reference/speed_python.rst:254
+#: ../../reference/speed_python.rst:252
 msgid ""
 "To mitigate the last two points, long running native functions should "
 "call ``time.sleep(0)`` periodically, which will run the scheduler and "
@@ -9794,7 +9786,7 @@ msgstr ""
 "``time.sleep(0)`` を呼び出すべきです。これによりスケジューラが動き、GIL の"
 "切り替えが行われます。"
 
-#: ../../../reference/speed_python.rst:257
+#: ../../../reference/speed_python.rst:255
 msgid ""
 "The trade-off for the improved performance (roughly twice as fast as "
 "bytecode) is an increase in compiled code size."
@@ -9802,11 +9794,11 @@ msgstr ""
 "パフォーマンスの向上(バイトコードの約2倍の速さ)とのトレードオフは、"
 "コンパイルされたコードサイズの増加です。"
 
-#: ../../../reference/speed_python.rst:261
+#: ../../../reference/speed_python.rst:259
 msgid "The Viper code emitter"
 msgstr "バイパーコードエミッター"
 
-#: ../../../reference/speed_python.rst:263
+#: ../../../reference/speed_python.rst:261
 msgid ""
 "The optimisations discussed above involve standards-compliant Python "
 "code. The Viper code emitter is not fully compliant. It supports special "
@@ -9820,7 +9812,7 @@ msgstr ""
 "整数には機械語のワードを使うため、整数の処理も非準拠です: 32ビットハードウェアの"
 "算術は 2**32 の範囲で実行します。"
 
-#: ../../../reference/speed_python.rst:268
+#: ../../../reference/speed_python.rst:266
 msgid ""
 "Like the Native emitter Viper produces machine instructions but further "
 "optimisations are performed, substantially increasing performance "
@@ -9831,7 +9823,7 @@ msgstr ""
 "さらに最適化が行われ、特に整数演算とビット操作のパフォーマンスが大幅に向上します。"
 "バイパーはデコレータを使って呼び出されます:"
 
-#: ../../../reference/speed_python.rst:272
+#: ../../../reference/speed_python.rst:270
 msgid ""
 "@micropython.viper\n"
 "def foo(self, arg: int) -> int:\n"
@@ -9841,7 +9833,7 @@ msgstr ""
 "def foo(self, arg: int) -> int:\n"
 "    # コード"
 
-#: ../../../reference/speed_python.rst:278
+#: ../../../reference/speed_python.rst:276
 msgid ""
 "As the above fragment illustrates it is beneficial to use Python type "
 "hints to assist the Viper optimiser. Type hints provide information on "
@@ -9863,18 +9855,18 @@ msgstr ""
 "型ヒントとして使うために提供しています。そのような関数が ``0xffffffff`` を返す場合、"
 "Python は結果を -1 ではなく、2**32 -1 として解釈します。"
 
-#: ../../../reference/speed_python.rst:286
+#: ../../../reference/speed_python.rst:284
 msgid ""
 "In addition to the restrictions imposed by the native emitter the "
 "following constraints apply:"
 msgstr ""
 "バイパーでは、ネイティブエミッターの制限に加えて以下の制限が適用されます:"
 
-#: ../../../reference/speed_python.rst:288
+#: ../../../reference/speed_python.rst:286
 msgid "Default argument values are not permitted."
 msgstr "デフォルトの引数値は許可されていません。"
 
-#: ../../../reference/speed_python.rst:282
+#: ../../../reference/speed_python.rst:280
 msgid "Floating point may be used but is not optimised."
 msgstr "浮動小数点は使えますが、最適化されません。"
 
@@ -9882,23 +9874,23 @@ msgstr "浮動小数点は使えますが、最適化されません。"
 msgid "Viper provides pointer types to assist the optimiser. These comprise"
 msgstr "バイパーは最適化を支援するためのポインタ型を提供します。次のものがあります。"
 
-#: ../../../reference/speed_python.rst:293
+#: ../../../reference/speed_python.rst:291
 msgid "``ptr`` Pointer to an object."
 msgstr "``ptr`` オブジェクトのポインター"
 
-#: ../../../reference/speed_python.rst:294
+#: ../../../reference/speed_python.rst:292
 msgid "``ptr8`` Points to a byte."
 msgstr "``ptr8`` バイトを指すポインター"
 
-#: ../../../reference/speed_python.rst:295
+#: ../../../reference/speed_python.rst:293
 msgid "``ptr16`` Points to a 16 bit half-word."
 msgstr "``ptr16`` 16ビット、半ワードを指すポインター"
 
-#: ../../../reference/speed_python.rst:296
+#: ../../../reference/speed_python.rst:294
 msgid "``ptr32`` Points to a 32 bit machine word."
 msgstr "``ptr32`` 32ビットマシンワードを指すポインター"
 
-#: ../../../reference/speed_python.rst:298
+#: ../../../reference/speed_python.rst:296
 msgid ""
 "The concept of a pointer may be unfamiliar to Python programmers. It has "
 "similarities to a Python `memoryview` object in that it provides direct "
@@ -9920,11 +9912,11 @@ msgstr ""
 "ことです。ポインターを使用したプログラミングは危険です。境界チェックは実行されず、"
 "コンパイラはバッファオーバーランエラーを防ぐために何もしません。"
 
-#: ../../../reference/speed_python.rst:307
+#: ../../../reference/speed_python.rst:305
 msgid "Typical usage is to cache variables:"
 msgstr "典型的な使い方は変数をキャッシュすることです:"
 
-#: ../../../reference/speed_python.rst:309
+#: ../../../reference/speed_python.rst:307
 msgid ""
 "@micropython.viper\n"
 "def foo(self, arg: int) -> int:\n"
@@ -9941,7 +9933,7 @@ msgstr ""
 "        bar = buf[x] # ポインターでデータ項目にアクセス\n"
 "        # 以下省略"
 
-#: ../../../reference/speed_python.rst:318
+#: ../../../reference/speed_python.rst:316
 msgid ""
 "In this instance the compiler \"knows\" that ``buf`` is the address of an"
 " array of bytes; it can emit code to rapidly compute the address of "
@@ -9956,7 +9948,7 @@ msgstr ""
 "数マイクロ秒かかることがあるため、これらはクリティカルなタイミングループではなく関数の"
 "開始時に実行する必要があります。キャストの規則は次のとおりです:"
 
-#: ../../../reference/speed_python.rst:324
+#: ../../../reference/speed_python.rst:322
 msgid ""
 "Casting operators are currently: ``int``, ``bool``, ``uint``, ``ptr``, "
 "``ptr8``, ``ptr16`` and ``ptr32``."
@@ -9964,17 +9956,17 @@ msgstr ""
 "キャスト演算子には現在のところ ``int``, ``bool``, ``uint``, ``ptr``, ``ptr8``, "
 "``ptr16``, ``ptr32`` があります。"
 
-#: ../../../reference/speed_python.rst:325
+#: ../../../reference/speed_python.rst:323
 msgid "The result of a cast will be a native Viper variable."
 msgstr ""
 "キャストの結果は、ネイティブのバイパー変数になります。"
 
-#: ../../../reference/speed_python.rst:326
+#: ../../../reference/speed_python.rst:324
 msgid "Arguments to a cast can be a Python object or a native Viper variable."
 msgstr ""
 "キャストの引数には、Python オブジェクトまたはネイティブのバイパー変数を指定できます。"
 
-#: ../../../reference/speed_python.rst:327
+#: ../../../reference/speed_python.rst:325
 msgid ""
 "If argument is a native Viper variable, then cast is a no-op (i.e. costs "
 "nothing at runtime) that just changes the type (e.g. from ``uint`` to "
@@ -9984,7 +9976,7 @@ msgstr ""
 "``ptr8``)、キャストは何もしない(実行時にコストはかからない)ので、このポインターで"
 "ストア/ロードできるようになります。"
 
-#: ../../../reference/speed_python.rst:330
+#: ../../../reference/speed_python.rst:328
 msgid ""
 "If the argument is a Python object and the cast is ``int`` or ``uint``, "
 "then the Python object must be of integral type and the value of that "
@@ -9993,7 +9985,7 @@ msgstr ""
 "引数が Python オブジェクトであり、キャストが ``int`` または ``uint`` である場合、"
 "Python オブジェクトは整数型でなければならず、その整数オブジェクトの値が返されます。"
 
-#: ../../../reference/speed_python.rst:332
+#: ../../../reference/speed_python.rst:330
 msgid ""
 "The argument to a bool cast must be integral type (boolean or integer); "
 "when used as a return type the viper function will return True or False "
@@ -10002,7 +9994,7 @@ msgstr ""
 "bool キャストへの引数は整数型(ブール値または整数)でなければなりません。"
 "戻り値の型として使われた場合、バイパー関数は True または False オブジェクトを返します。"
 
-#: ../../../reference/speed_python.rst:334
+#: ../../../reference/speed_python.rst:332
 msgid ""
 "If the argument is a Python object and the cast is ``ptr``, ``ptr``, "
 "``ptr16`` or ``ptr32``, then the Python object must either have the "
@@ -10015,21 +10007,21 @@ msgstr ""
 "ポインタを返す場合)、整数型のものでなければなりません(この場合、その整数オブジェクトの"
 "値が返されます)。"
 
-#: ../../reference/speed_python.rst:339
+#: ../../reference/speed_python.rst:337
 msgid ""
 "Writing to a pointer which points to a read-only object will lead to "
 "undefined behaviour."
 msgstr ""
 "読取り専用オブジェクトを指すポインターへの書込みは、未定義の動作になります。"
 
-#: ../../../reference/speed_python.rst:341
+#: ../../../reference/speed_python.rst:339
 msgid ""
 "The following example illustrates the use of a ``ptr16`` cast to toggle "
 "pin X1 ``n`` times:"
 msgstr ""
 "次はピン X1 を ``n`` 回切り替えるために ``ptr16`` キャストを使った例を示しています。
 
-#: ../../../reference/speed_python.rst:343
+#: ../../../reference/speed_python.rst:341
 msgid ""
 "BIT0 = const(1)\n"
 "@micropython.viper\n"
@@ -10039,7 +10031,7 @@ msgid ""
 "        odr[0] ^= BIT0"
 msgstr ""
 
-#: ../../../reference/speed_python.rst:352
+#: ../../../reference/speed_python.rst:350
 msgid ""
 "A detailed technical description of the three code emitters may be found "
 "on Kickstarter here `Note 1 "
@@ -10054,11 +10046,11 @@ msgstr ""
 "`Note 2 <https://www.kickstarter.com/projects/214379695/micro-python-python-for-microcontrollers/posts/665145>`_ "
 "にあります。"
 
-#: ../../../reference/speed_python.rst:357
+#: ../../../reference/speed_python.rst:355
 msgid "Accessing hardware directly"
 msgstr "ハードウェアに直接アクセスする"
 
-#: ../../../reference/speed_python.rst:361
+#: ../../../reference/speed_python.rst:359
 msgid ""
 "Code examples in this section are given for the Pyboard. The techniques "
 "described however may be applied to other MicroPython ports too."
@@ -10066,7 +10058,7 @@ msgstr ""
 "この章のコード例は pyboard 用です。ただし、ここで説明した手法は他の MicroPython "
 "ポートにも適用できます。"
 
-#: ../../../reference/speed_python.rst:364
+#: ../../../reference/speed_python.rst:362
 msgid ""
 "This comes into the category of more advanced programming and involves "
 "some knowledge of the target MCU. Consider the example of toggling an "
@@ -10076,11 +10068,11 @@ msgstr ""
 "pyboard で出力ピンを切り替える例を考えてみましょう。標準的なアプローチは、次のように"
 "書くことです。"
 
-#: ../../../reference/speed_python.rst:368
+#: ../../../reference/speed_python.rst:366
 msgid "mypin.value(mypin.value() ^ 1) # mypin was instantiated as an output pin"
 msgstr "mypin.value(mypin.value() ^ 1) # mypin は出力ピンとしてインスタンス化したもの"
 
-#: ../../../reference/speed_python.rst:372
+#: ../../../reference/speed_python.rst:370
 msgid ""
 "This involves the overhead of two calls to the :class:`~machine.Pin` "
 "instance's :meth:`~machine.Pin.value()` method. This overhead can be "
@@ -10097,7 +10089,7 @@ msgstr ""
 "定数のセットを提供します。緑色のLEDに対応するピン ``P4`` (CPU ピン ``A14``)の"
 "高速トグルは、次のように実行できます。"
 
-#: ../../reference/speed_python.rst:379
+#: ../../reference/speed_python.rst:377
 msgid ""
 "import machine\n"
 "import stm\n"
