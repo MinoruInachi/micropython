@@ -21,6 +21,8 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath("."))
 
+os.environ['MICROPY_VERSION'] = '1.28.0'
+
 # The MICROPY_VERSION env var should be "vX.Y.Z" (or unset).
 micropy_version = os.getenv("MICROPY_VERSION") or "latest"
 micropy_all_versions = (os.getenv("MICROPY_ALL_VERSIONS") or "latest").split(",")
