@@ -1,24 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2025,
+# Copyright (C) - The MicroPython Documentation is Copyright © 2014-2026,
 # Damien P. George, Paul Sokolovsky, and contributors
 # This file is distributed under the same license as the MicroPython
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-08 10:10+0900\n"
-"PO-Revision-Date: 2025-06-08 18:41+0900\n"
+"POT-Creation-Date: 2026-06-28 11:26+0900\n"
+"PO-Revision-Date: 2026-07-05 21:22+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.13.1\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../samd/general.rst:4
 msgid "General information about the SAMD port"
@@ -4714,22 +4714,23 @@ msgstr ""
 "ピンは Pin クラスと同様に指定します。PWM 信号線のピン割当てについては "
 ":ref:`SAMD の入出力ピン <samd_pinout>` を参照してください。"
 
-#: ../../samd/quickref.rst:240
+#: ../../samd/quickref.rst:245
 msgid "ADC (analog to digital conversion)"
 msgstr "ADC (アナログ/デジタル変換)"
 
-#: ../../samd/quickref.rst:242
+#: ../../samd/quickref.rst:247 ../../samd/quickref.rst:267
 msgid ""
 "On the SAMD21/SAMD51 ADC functionality is available on Pins labelled "
 "'Ann'."
 msgstr ""
-msgstr "SAMD21/SAMD51 での ADC 機能は 'Ann' とラベル付けられたピンで利用できます。"
+"SAMD21/SAMD51 の ADC 機能は「Ann」とラベル付けされたピンで利用できます。"
 
-#: ../../samd/quickref.rst:244
+#: ../../samd/quickref.rst:249 ../../samd/quickref.rst:269
 msgid "Use the :ref:`machine.ADC <machine.ADC>` class::"
 msgstr ":ref:`machine.ADC <machine.ADC>` クラスを使います::"
 
-#: ../../samd/quickref.rst:246
+#: ../../samd/quickref.rst:251
+msgid ""
 msgid ""
 "from machine import ADC\n"
 "\n"
@@ -4738,15 +4739,14 @@ msgid ""
 "adc0.read_u16()                  # read value, 0-65535 across voltage "
 "range 0.0v - 3.3v\n"
 "adc1 = ADC(Pin('A1'), average=1) # create ADC object on ADC pin, average=1"
-"average=1"
 msgstr ""
 "from machine import ADC\n"
 "\n"
 "adc0 = ADC(Pin('A0'))            # ADC ピンの ADC オブジェクトを average=16 で作成\n"
-"adc0.read_u16()                  # 生のアナログ値を 0-65535 (0.0v - 3.3v)の範囲で読込み\n"
+"adc0.read_u16()                  # 値を 0-65535 (0.0v - 3.3v)の範囲で読み込む\n"
 "adc1 = ADC(Pin('A1'), average=1) # ADC ピンの ADC オブジェクトを average=1 で作成"
 
-#: ../../samd/quickref.rst:252
+#: ../../samd/quickref.rst:257
 msgid ""
 "The resolution of the ADC is 12 bit with 12 bit accuracy, irrespective of"
 " the value returned by read_u16(). If you need a higher resolution or "
@@ -4755,78 +4755,126 @@ msgstr ""
 "ADC の分解能は12bitで、read_u16() が返す値とは関係なく、10～11bit の精度を持ちます。"
 "より高い分解能や精度が必要な場合は、外部 ADC を使用してください。"
 
-#: ../../samd/quickref.rst:257
+#: ../../samd/quickref.rst:262
 msgid "ADC Constructor"
 msgstr "ADC コンストラクタ"
 
-#: ../../samd/quickref.rst:262
-msgid "Construct and return a new ADC object using the following parameters:"
-msgstr "次のパラメータを使って新しい ADC オブジェクトを構築して返します:"
-
-#: ../../samd/quickref.rst:268
-msgid ""
-"*average* is used to reduce the noise. With a value of 16 the LSB noise "
-"is about 1 digit."
-msgstr ""
-"*average* はノイズを減らすために使われます。値が16の場合、LSBノイズは1桁程度です。"
-
-#: ../../samd/quickref.rst:269
-msgid "*vref* sets the reference voltage for the ADC."
-msgstr "*vref* は ADC の基準電圧を設定します。"
-
 #: ../../samd/quickref.rst:271
-msgid "The default setting is for 3.3V. Other values are:"
-msgstr "デフォルトの設定は 3.3V です。他に設定できる値は次のとおりです:"
-
-#: ../../samd/quickref.rst:274 ../../samd/quickref.rst:317
-msgid "vref"
+msgid ""
+"from machine import ADC\n"
+"\n"
+"adc0 = ADC(Pin(\"A0\"))            # create ADC object on ADC pin, "
+"average=16\n"
+"adc0.read_u16()                  # read value, 0-65536 across voltage "
+"range 0.0v - 3.3v\n"
+"adc1 = ADC(Pin(\"A1\"), average=1) # create ADC object on ADC pin, "
+"average=1"
 msgstr ""
+"from machine import ADC\n"
+"\n"
+"adc0 = ADC(Pin(\"A0\"))            # ADC ピンの ADC オブジェクトを average=16 で作成\n"
+"adc0.read_u16()                  # 値を 0-65535 (0.0v - 3.3v)の範囲で読み込む\n"
+"adc1 = ADC(Pin(\"A1\"), average=1) # ADC ピンの ADC オブジェクトを average=1 で作成"
 
-#: ../../samd/quickref.rst:274 ../../samd/quickref.rst:317
+#: ../../samd/quickref.rst:277
+msgid ""
+"The resolution of the ADC is set by the bits keyword option. The default "
+"is 12. Suitable values are 8, 10 and 12. If you need a higher resolution "
+"or better accuracy, use an external ADC. The default value of average is "
+"16. Averaging is used to reduce the noise. With a value of 16 the LSB "
+"noise is about 1 digit. When averaging is enabled, the resolution is "
+"forced to 12 bits. The vref=n option sets the reference voltage for the "
+"ADC. The default setting is for 3.3V. Other values are:"
+msgstr ""
+"ADC の分解能は、bits キーワードオプションで指定します。デフォルト値は 12 です。"
+"適切な値は 8, 10, 12 です。より高い分解能または精度が必要な場合は、"
+"外部 ADC を使ってください。"
+"average のデフォルト値は16です。この平均化の指定はノイズを低減するために使われます。"
+"値が16の場合、LSB ノイズは約1桁です。平均化が有効になっている場合、分解能は12ビットに"
+"強制されます。vref=n オプションは、ADCの基準電圧を設定します。"
+"デフォルト設定は3.3Vです。他に設定できる値は次のとおりです:"
+
+#: ../../samd/quickref.rst:286 ../../samd/quickref.rst:371
+msgid "Symbol"
+msgstr "定数名"
+
+#: ../../samd/quickref.rst:286 ../../samd/quickref.rst:371
+msgid "Value"
+msgstr "値"
+
+#: ../../samd/quickref.rst:286 ../../samd/quickref.rst:371
 msgid "SAMD21"
 msgstr ""
 
-#: ../../samd/quickref.rst:274 ../../samd/quickref.rst:317
+#: ../../samd/quickref.rst:286 ../../samd/quickref.rst:371
 msgid "SAMD51"
 msgstr ""
 
-#: ../../samd/quickref.rst:276
+#: ../../samd/quickref.rst:288 ../../samd/quickref.rst:373
+msgid "INT_VREF"
+msgstr ""
+
+#: ../../samd/quickref.rst:288
 msgid "1.0V voltage reference"
 msgstr "1.0V 基準電圧"
 
-#: ../../samd/quickref.rst:276
-msgid "internal bandgap reference (1V)"
-msgstr "内部バンドギャップリファレンス(1V)"
+#: ../../samd/quickref.rst:288
+msgid "1V internal bandgap reference"
+msgstr "1V の 内部バンドギャップリファレンス"
 
-#: ../../samd/quickref.rst:277
+#: ../../samd/quickref.rst:289 ../../samd/quickref.rst:374
+msgid "VDDA"
+msgstr ""
+
+#: ../../samd/quickref.rst:289
 msgid "1/1.48 Analogue voltage supply"
 msgstr "1/1.48 アナログ電圧供給"
 
-#: ../../samd/quickref.rst:277 ../../samd/quickref.rst:320
+#: ../../samd/quickref.rst:289 ../../samd/quickref.rst:374
 msgid "Analogue voltage supply"
 msgstr "アナログ電圧供給"
 
-#: ../../samd/quickref.rst:278
+#: ../../samd/quickref.rst:290
+msgid "VDDA2"
+msgstr ""
+
+#: ../../samd/quickref.rst:290
 msgid "1/2 Analogue voltage supply"
 msgstr "1/2 アナログ電圧供給"
 
-#: ../../samd/quickref.rst:279
-msgid "External reference A"
-msgstr "外部リファレンス A"
+#: ../../samd/quickref.rst:291
+msgid "External reference A (PA03)"
+msgstr "外部リファレンス A (PA03)"
 
-#: ../../samd/quickref.rst:280
-msgid "External reference B"
-msgstr "外部リファレンス B"
+#: ../../samd/quickref.rst:292 ../../samd/quickref.rst:376
+msgid "AREFB"
+msgstr ""
 
-#: ../../samd/quickref.rst:281
-msgid "External reference C"
-msgstr "外部リファレンス C"
+#: ../../samd/quickref.rst:292
+msgid "External reference B (PA04)"
+msgstr "外部リファレンス B (PA04)"
 
-#: ../../samd/quickref.rst:285
+#: ../../samd/quickref.rst:293
+msgid "AREFC"
+msgstr ""
+
+#: ../../samd/quickref.rst:293
+msgid "External reference C (PA06)"
+msgstr "外部リファレンス C (PA06)"
+
+#: ../../samd/quickref.rst:296
+msgid ""
+"The callback keyword option is used for timed ADC sampling. The callback "
+"is executed when all data has been sampled."
+msgstr ""
+"callback キーワードオプションは、周期 ADC サンプリングに使われます。"
+"コールバックは、すべてのデータがサンプリングされた後に実行されます。"
+
+#: ../../samd/quickref.rst:300
 msgid "ADC Methods"
 msgstr "ADC メソッド"
 
-#: ../../samd/quickref.rst:289
+#: ../../samd/quickref.rst:304
 msgid ""
 "Read a single ADC value as unsigned 16 bit quantity. The voltage range is"
 " defined by the vref option of the constructor, the resolutions by the "
@@ -4835,13 +4883,88 @@ msgstr ""
 "１つの ADC 値を符号なし16ビット量として読み出します。"
 "電圧範囲はコンストラクタの vref オプションで、分解能は bits オプションで定義します。"
 
-#: ../../samd/quickref.rst:293
-msgid "DAC (digital to analog conversion)"
+#: ../../samd/quickref.rst:309
+msgid ""
+"Read ADC values into the data buffer at a supplied frequency. The buffer "
+"must be preallocated. Values are stored as 16 bit quantities in the "
+"binary range given by the bits option. If bits=12, the value range is "
+"0-4095. The voltage range is defined by the vref option. The sampling "
+"frequency range depends on the bits and average setting. At bits=8 and "
+"average=1, the largest rate is >1 MHz for SAMD51 and 350kHz for SAMD21. "
+"the lowest sampling rate is 1 Hz. The call to the method returns "
+"immediately, The data transfer is done by DMA in the background, "
+"controlled by a hardware timer. If in the constructor a callback was "
+"defined, it will be called after all data has been read. Alternatively, "
+"the method busy() can be used to tell, if the capture has finished."
+msgstr ""
+"freq に指定した周期で ADC 値をデータバッファに読み込みます。"
+"バッファは事前に割り当てておく必要があります。"
+"値は bits オプションで指定されたバイナリ範囲の16ビット値として格納されます。"
+"bits=12 の場合、値の範囲は 0～4095 です。電圧範囲は vref オプションで定義されます。"
+"サンプリング周波数範囲は、bits と average の設定によって異なります。"
+"bits=8, average=1 の場合、最大レートはSAMD51で1MHz超、SAMD21で350kHzです。"
+"最小サンプリングレートは1Hzです。"
+"メソッドの呼び出しは即座に戻ります。データ転送はバックグラウンドでハードウェアタイマーに"
+"よって制御されるDMAによって行われます。コンストラクタでコールバックが定義されている場合、"
+"すべてのデータが読み取られた後にコールバックが呼び出されます。あるいは busy() メソッドを"
+"使ってキャプチャが完了したかどうかを確認できます。"
+
+#: ../../samd/quickref.rst:320
+msgid "Example for a call to adc.read_timed() and a callback::"
+msgstr "adc.read_timed() の呼び出しとコールバックの例::"
+
+#: ../../samd/quickref.rst:322
+msgid ""
+"from machine import ADC\n"
+"from array import array\n"
+"\n"
+"def finished(adc_o):\n"
+"    print(\"Sampling finished on ADC\", adc_o)\n"
+"\n"
+"# create ADC object on ADC pin A0, average=1\n"
+"adc = ADC(Pin(\"A0\"), average=1, callback=finished)\n"
+"buffer = array(\"H\", bytearray(512))  # create an array for 256 ADC "
+"values\n"
+"adc.read_timed(buffer, 10000)        # read 256 12 bit values at a "
+"frequency of\n"
+"                                     # 10 kHz and call finished() when "
+"done."
+msgstr ""
+"from machine import ADC\n"
+"from array import array\n"
+"\n"
+"def finished(adc_o):\n"
+"    print(\"Sampling finished on ADC\", adc_o)\n"
+"\n"
+"# create ADC object on ADC pin A0, average=1\n"
+"adc = ADC(Pin(\"A0\"), average=1, callback=finished)\n"
+"buffer = array(\"H\", bytearray(512))  # 256 ADC 値の配列を作成\n"
+"adc.read_timed(buffer, 10000)        # 周期 10kHz で 256 の 12 ビット値を\n"
+"                                     # 読み込み、完了時に finished() を呼び出す。"
+
+#: ../../samd/quickref.rst:336
+msgid ""
+"busy() returns `True` while the data acquisition using read_timed() is "
+"ongoing, `False` otherwise."
+msgstr ""
+"busy() は、read_timed() によるデータ取得が進行中の場合は `True` を返し、"
+"それ以外の場合は `False` を返します。"
+
+#: ../../samd/quickref.rst:341
+msgid ""
+"Deinitialize an ADC object and release the resources used by it, "
+"especially the ADC channel and the timer used for read_timed()."
+msgstr ""
+"ADC オブジェクトを無効化し、それが使っていたリソース、特に ADC チャネルと "
+"read_timed() で使用されるタイマーを解放します。"
+
+#: ../../samd/quickref.rst:346
+msgid "DAC (digital to analogue conversion)"
 msgstr "DAC (デジタル/アナログ変換)"
 
 #: ../../samd/quickref.rst:295
 msgid ""
-"The DAC class provides a fast digital to analog conversion. Usage "
+"The DAC class provides a fast digital to analogue conversion. Usage "
 "example::"
 msgstr ""
 "DAC クラスは、デジタルからアナログへの高速変換を実現します。使用例:"
@@ -4850,67 +4973,60 @@ msgstr ""
 msgid ""
 "from machine import DAC\n"
 "\n"
-"dac0 = DAC(0)                    # create DAC object on DAC pin A0\n"
-"dac0.write(1023)                 # write value, 0-4095 across voltage "
-"range 0.0v - 3.3v\n"
-"dac1 = DAC(1)                    # create DAC object on DAC pin A1\n"
-"dac1.write(2000)                 # write value, 0-4095 across voltage "
-"range 0.0v - 3.3v"
+"dac0 = DAC(0)            # create DAC object on DAC pin A0\n"
+"dac0.write(1023)         # write value, 0-4095 across voltage range 0.0V "
+"- 3.3V\n"
+"dac1 = DAC(1)            # create DAC object on DAC pin A1\n"
+"dac1.write(2000)         # write value, 0-4095 across voltage range 0.0V "
+"- 3.3V"
 msgstr ""
 "from machine import DAC\n"
 "\n"
-"dac0 = DAC(0)                    # DAC ピン A0 の DAC オブジェクトを作成\n"
-"dac0.write(1023)                 # 電圧範囲 0.0V～3.3V を 0～4095の値で書込み\n"
-"dac1 = DAC(1)                    # DAC ピン A1 の DAC オブジェクトを作成\n"
-"dac1.write(2000)                 # 電圧範囲 0.0V～3.3V を 0～4095の値で書込み"
+"dac0 = DAC(0)            # DAC ピン A0 の DAC オブジェクトを作成\n"
+"dac0.write(1023)         # 電圧範囲 0.0V～3.3V を 0～4095の値で書き出す\n"
+"dac1 = DAC(1)            # DAC ピン A1 の DAC オブジェクトを作成\n"
+"dac1.write(2000)         # 電圧範囲 0.0V～3.3V を 0～4095の値で＂書き出す"
 
-#: ../../samd/quickref.rst:304
+#: ../../samd/quickref.rst:364
 msgid ""
 "The resolution of the DAC is 12 bit for SAMD51 and 10 bit for SAMD21. "
-"SAMD21 devices have 1 DAC channel at GPIO PA02, SAMD51 devices have 2 DAC"
-" channels at GPIO PA02 and PA05."
+"SAMD21 devices have 1 DAC channel at GPIO PA02, accepting only 0 as id. "
+"SAMD51 devices have 2 DAC channels at GPIO PA02 and PA05 with values 0 "
+"and 1 for the id. The vref arguments defines the output voltage range, "
+"the callback option is used for dac_timed(). Suitable values for vref "
+"are:"
 msgstr ""
-"DAC の解像度は、SAMD51 の場合は 12 ビット、SAMD21 の場合は 10 ビットです。"
-"SAMD21 デバイスは GPIO PA02 に 1 つの DAC チャンネルを持ち、SAMD51 デバイスは "
-"GPIO PA02 と PA05 に 2 つの DAC チャンネルを持っています。"
+"DAC の分解能は、SAMD51 では12ビット、SAMD21 では10ビットです。"
+"SA​​MD21 デバイスは、GPIO PA02 に1つの DAC チャンネルを持ち、ID として 0 "
+"のみを受け入れます。SAMD51 デバイスは、GPIO PA02 と PA05 に2つの DAC "
+"チャンネルを持ち、ID の値は 0 と 1 です。vref 引数は出力電圧範囲を定義し、"
+"コールバックオプションは dac_timed() で使われます。vref の適切な値は次のとおりです:"
 
-#: ../../samd/quickref.rst:308
-msgid "DAC Constructor"
-msgstr "DAC コンストラクタ"
-
-#: ../../samd/quickref.rst:313
-msgid ""
-"The vref arguments defines the output voltage range, the callback option "
-"is used for dac_timed(). Suitable values for vref are:"
-msgstr ""
-"引数 vref は出力電圧範囲を定義し、callback オプションは dac_timed() で使われます。"
-"vref に適した値は次のとおりです:"
-
-#: ../../samd/quickref.rst:319
+#: ../../samd/quickref.rst:373
 msgid "Internal voltage reference"
 msgstr "内部基準電圧"
 
-#: ../../samd/quickref.rst:319
+#: ../../samd/quickref.rst:373
 msgid "Internal bandgap reference (~1V)"
 msgstr "内部バンドギャップリファレンス(〜1V)"
 
-#: ../../samd/quickref.rst:321
+#: ../../samd/quickref.rst:375
 msgid "External reference"
 msgstr "外部リファレンス"
 
-#: ../../samd/quickref.rst:321
+#: ../../samd/quickref.rst:375
 msgid "Unbuffered external reference"
 msgstr "バッファなし外部リファレンス"
 
-#: ../../samd/quickref.rst:322
+#: ../../samd/quickref.rst:376
 msgid "Buffered external reference"
 msgstr "バッファあり外部リファレンス"
 
-#: ../../samd/quickref.rst:326
+#: ../../samd/quickref.rst:381
 msgid "DAC Methods"
 msgstr "DAC メソッド"
 
-#: ../../samd/quickref.rst:330
+#: ../../samd/quickref.rst:385
 msgid ""
 "Write a single value to the selected DAC output. The value range is "
 "0-1023 for SAMD21 and 0-4095 for SAMD51. The voltage range depends on the"
@@ -4919,11 +5035,98 @@ msgstr ""
 "選択した DAC 出力に１つの値を書き込みます。値の範囲は、SAMD21 の場合は 0-1023 で、"
 "SAMD51 の場合は 0-4095 です。電圧範囲は、vref の設定に依存します。"
 
-#: ../../samd/quickref.rst:334
+#: ../../samd/quickref.rst:390
+msgid ""
+"The call to dac_timed() allows to output a series of analogue values at a"
+" given rate. data must be a buffer with 16 bit values in the range of the"
+" DAC (10 bit of 12 bit). freq may have a range of 1Hz to ~200kHz for "
+"SAMD21 and 1 Hz to ~500kHz for SAMD51. The optional argument count "
+"specifies, how often data output will be repeated. The range is 1 - "
+"(2**32 - 1). If count == 0, the data output will be repeated until "
+"stopped by a call to deinit(). If the data has been output count times, a"
+" callback will be called, if given."
+msgstr ""
+"dac_timed() 関数を呼び出すと、指定されたレートで一連のアナログ値を出力できます。"
+"データは、DAC の許容範囲((12 ビットのうち 10 ビット)の16ビット値を持つバッファで"
+"ある必要があります。freq の範囲は、SAMD21 の場合は 1Hz～200kHz、SAMD51 の"
+"場合は 1Hz～500kHz です。オプション引数 count は、データ出力が繰り返される頻度を"
+"指定します。範囲は 1 - (2**32 - 1) です。count が 0 の場合、deinit() が"
+"呼び出されて停止されるまでデータ出力が繰り返されます。データが count 回出力された"
+"場合、指定されていればコールバックが呼び出されます。"
+
+#: ../../samd/quickref.rst:398
+msgid "Example::"
+msgstr "使用例::"
+
+#: ../../samd/quickref.rst:400
+msgid ""
+"from machine import DAC\n"
+"from array import array\n"
+"\n"
+"data = array(\"H\", [i for i in range(0, 4096, 256)]) # create a step "
+"sequence\n"
+"\n"
+"def done(dac_o):\n"
+"    print(\"Sequence done at\", dac_o)\n"
+"\n"
+"dac = DAC(0, callback=done)\n"
+"dac.write_timed(data, 1000, 10) # output data 10 times at a rate of 1000 "
+"values/s\n"
+"                                # and call done() when finished."
+msgstr ""
+"from machine import DAC\n"
+"from array import array\n"
+"\n"
+"data = array(\"H\", [i for i in range(0, 4096, 256)]) # ステップシーケンスを作成\n"
+"\n"
+"def done(dac_o):\n"
+"    print(\"Sequence done at\", dac_o)\n"
+"\n"
+"dac = DAC(0, callback=done)\n"
+"dac.write_timed(data, 1000, 10) # 1000値/秒のレートでデータを10回出力し、\n"
+"                                # 完了時に done() を呼び出す。"
+
+#: ../../samd/quickref.rst:412
+msgid ""
+"The data transfer is done by DMA and not affected by python code "
+"execution. It is possible to restart dac.write_timed() in the callback "
+"function with changed parameters."
+msgstr ""
+"データ転送は DMA によって行われ、Python コードの実行には影響されません。"
+"コールバック関数内で、変更されたパラメータを使って dac.write_timed() を"
+"再開することが可能です。"
+
+#: ../../samd/quickref.rst:420
+msgid ""
+"Tell, whether a write_timed() activity is ongoing. It returns `True` if "
+"yes, `False` otherwise."
+msgstr ""
+"write_timed() アクティビティが進行中かどうかを判定します。"
+"進行中の場合は `True` を、そうでない場合は `False` を返します。"
+
+#: ../../samd/quickref.rst:426
+msgid ""
+"Deinitialize the DAC and release the resources used by it, especially the"
+" DMA channel and the Timer. On most SAMD21 boards, there is just one "
+"timer available for dac.write_timed() and adc.read_timed(). So they "
+"cannot run both at the same time, and releasing the timer may be "
+"important. The DAC driver consumes a substantial amount of current. "
+"deinit() will reduce that as well. After calling deinit(), the DAC "
+"objects cannot be used any more and must be recreated."
+msgstr ""
+"DAC を無効化、DACが使用するリソース(特に DMA チャネルとタイマーなど)を解放します。"
+"ほとんどの SAMD21 ボードでは、dac.write_timed() と adc.read_timed() に"
+"使えるタイマーは1つしかありません。そのため、両方を同時に実行することはできず、"
+"タイマーを解放することが重要になる場合があります。"
+"DAC ドライバはかなりの電流を消費します。deinit() を実行すると、その消費電流も"
+"削減されます。deinit() を呼び出した後、DAC オブジェクトは使えなくなるため、"
+"再作成する必要があります。"
+
+#: ../../samd/quickref.rst:435
 msgid "Software SPI bus"
 msgstr "ソフトウェア SPI バス"
 
-#: ../../samd/quickref.rst:336
+#: ../../samd/quickref.rst:437
 msgid ""
 "Software SPI (using bit-banging) works on all pins, and is accessed via "
 "the :ref:`machine.SoftSPI <machine.SoftSPI>` class. ::"
@@ -4931,7 +5134,7 @@ msgstr ""
 "ソフトウェア SPI (ビットバンギング)はすべてのピンで動作し、 "
 ":ref:`machine.SoftSPI <machine.SoftSPI>` クラスを介してアクセスします::"
 
-#: ../../samd/quickref.rst:339
+#: ../../samd/quickref.rst:440
 msgid ""
 "from machine import Pin, SoftSPI\n"
 "\n"
@@ -4985,15 +5188,15 @@ msgstr ""
 "spi.write_readinto(b'1234', buf) # MOSI に書き込み、MISO からバッファに読み込み\n"
 "spi.write_readinto(buf, buf) # MOSI に buf を書き込み、MISO から buf に読み込み"
 
-#: ../../samd/quickref.rst:369
+#: ../../samd/quickref.rst:462
 msgid "The highest supported baud rate is 500000."
 msgstr "サポートしている最大ボーレートは 500000 です。"
 
-#: ../../samd/quickref.rst:364
+#: ../../samd/quickref.rst:465
 msgid "Hardware SPI bus"
 msgstr "ハードウェア SPI バス"
 
-#: ../../samd/quickref.rst:371
+#: ../../samd/quickref.rst:467
 msgid ""
 "The SAMD21/SAMD51 MCUs have up to eight hardware so called SERCOM "
 "devices, which can be used as UART, SPI or I2C device, but not every MCU "
@@ -5007,7 +5210,7 @@ msgstr ""
 ":ref:`machine.SPI <machine.SPI>` クラスを使ってアクセスします。
 "このクラスには先述のソフトウェア SPI と同じメソッドがあります::"
 
-#: ../../samd/quickref.rst:376
+#: ../../samd/quickref.rst:472
 msgid ""
 "from machine import SPI\n"
 "\n"
@@ -5016,7 +5219,7 @@ msgid ""
 "spi.write('Hello World')"
 msgstr ""
 
-#: ../../samd/quickref.rst:381
+#: ../../samd/quickref.rst:477
 msgid ""
 "For the assignment of Pins to SPI devices and signals, refer to "
 ":ref:`SAMD pinout <samd_pinout>`. If the id, miso, mosi or sck pins are "
@@ -5028,7 +5231,7 @@ msgstr ""
 "id、miso、mosi、sck ピンを指定しない場合は、デフォルト値が適用されます。"
 "そのため、次のようにして SPI オブジェクトを作成できます。"
 
-#: ../../samd/quickref.rst:385
+#: ../../samd/quickref.rst:481
 msgid ""
 "from machine import SPI\n"
 "spi = SPI()  # Use the default device and default baudrate\n"
@@ -5039,7 +5242,7 @@ msgstr ""
 "spi = SPI()  # デフォルトのデバイスとデフォルトのボーレートを使用\n"
 "spi = SPI(baudrate=12_000_000)  # デフォルトのデバイスを使い使用し、ボーレートを変更"
 
-#: ../../samd/quickref.rst:389
+#: ../../samd/quickref.rst:485
 msgid ""
 "If the MISO signal shall be omitted, it must be defined as miso=None. The"
 " first positional argument (if given) is assumed to be the SPI id. If the"
@@ -5051,7 +5254,7 @@ msgstr ""
 "SPI の id を省略し、ボーレートを変更する場合は、baudrate キーワードを使って"
 "指定する必要があります。"
 
-#: ../../samd/quickref.rst:394
+#: ../../samd/quickref.rst:490
 msgid ""
 "Note: Even if the highest reliable baud rate at the moment is about 24 "
 "Mhz, setting a baud rate will not always result in exactly that "
@@ -5060,11 +5263,11 @@ msgstr ""
 "注記: 現時点で最も信頼性の高いボーレートが 24MHz 程度であっても、"
 "特に高いボーレートでは、ボーレートの設定が必ずしもその通りの周波数になるとは限りません。"
 
-#: ../../samd/quickref.rst:399
+#: ../../samd/quickref.rst:495
 msgid "Software I2C bus"
 msgstr "ソフトウェア I2C バス"
 
-#: ../../samd/quickref.rst:401
+#: ../../samd/quickref.rst:497
 msgid ""
 "Software I2C (using bit-banging) works on all output-capable pins, and is"
 " accessed via the :ref:`machine.SoftI2C <machine.SoftI2C>` class::"
@@ -5072,7 +5275,7 @@ msgstr ""
 "ソフトウェア I2C (ビット・バンギングを使用)は、出力可能なすべてのピンで動作し、 "
 ":ref:`machine.SoftI2C <machine.SoftI2C>` クラスを使ってアクセスします。"
 
-#: ../../samd/quickref.rst:404
+#: ../../samd/quickref.rst:500
 msgid ""
 "from machine import Pin, SoftI2C\n"
 "\n"
@@ -5098,15 +5301,15 @@ msgstr ""
 "buf = bytearray(10)     # 10バイトのバッファを作成\n"
 "i2c.writeto(0x3a, buf)  # 与えたバッファをペリフェラルに書き込み"
 
-#: ../../samd/quickref.rst:416
+#: ../../samd/quickref.rst:512
 msgid "The highest supported freq is 400000."
 msgstr "サポートしている最大周波数は 400000 です。"
 
-#: ../../samd/quickref.rst:419
+#: ../../samd/quickref.rst:515
 msgid "Hardware I2C bus"
 msgstr "ハードウェア I2C バス"
 
-#: ../../samd/quickref.rst:421
+#: ../../samd/quickref.rst:517
 msgid ""
 "The SAMD21/SAMD51 MCUs have up to eight hardware so called SERCOM "
 "devices, which can be used as UART, SPI or I2C device, but not every MCU "
@@ -5122,7 +5325,7 @@ msgstr ""
 "<samd_pinout>` を参照してください。"
 "id、scl、sda ピンを指定しない場合はデフォルト値が適用されます。"
 
-#: ../../samd/quickref.rst:427
+#: ../../samd/quickref.rst:523
 msgid ""
 "Hardware I2C is accessed via the :ref:`machine.I2C <machine.I2C>` class "
 "and has the same methods as software SPI above::"
@@ -5130,7 +5333,7 @@ msgstr ""
 "ハードウェア I2C は :ref:`machine.I2C <machine.I2C>` クラスを使ってアクセスします。
 "このクラスには先述のソフトウェア I2C と同じメソッドがあります::"
 
-#: ../../samd/quickref.rst:430
+#: ../../samd/quickref.rst:526
 msgid ""
 "from machine import I2C\n"
 "\n"
@@ -5148,7 +5351,7 @@ msgstr ""
 "i2c2 = I2C()   # id, scl, sda はデフォルト値を使用\n"
 "i2c2 = I2C(freq=100_000) # デフォルトのデバイスを使い、freq を指定"
 
-#: ../../samd/quickref.rst:438
+#: ../../samd/quickref.rst:534
 msgid ""
 "The first positional argument (if given) is assumed to be the I2C id. If "
 "the freq is changed and the I2C id is omitted, it must be set using the "
@@ -5157,15 +5360,15 @@ msgstr ""
 "最初の位置引数が指定された場合、それは I2C の id として扱われます。"
 "I2C の id を省略し、freq を変更する場合、freq キーワードを使って指定する必要があります。"
 
-#: ../../samd/quickref.rst:443
+#: ../../samd/quickref.rst:539
 msgid "OneWire driver"
 msgstr "OneWire ドライバー"
 
-#: ../../samd/quickref.rst:445
+#: ../../samd/quickref.rst:541
 msgid "The OneWire driver is implemented in software and works on all pins::"
 msgstr "OneWire ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../samd/quickref.rst:447
+#: ../../samd/quickref.rst:543
 msgid ""
 "from machine import Pin\n"
 "import onewire\n"
@@ -5189,11 +5392,11 @@ msgstr ""
 "ow.write('123')         # バスに複数バイト書込み\n"
 "ow.select_rom(b'12345678') # ROM コードで指定したデバイスを選択"
 
-#: ../../samd/quickref.rst:458
+#: ../../samd/quickref.rst:554
 msgid "There is a specific driver for DS18S20 and DS18B20 devices::"
 msgstr "DS18S20 と DS18B20 のデバイスに対応したドライバが用意されています::"
 
-#: ../../samd/quickref.rst:460
+#: ../../samd/quickref.rst:556
 msgid ""
 "import time, ds18x20\n"
 "ds = ds18x20.DS18X20(ow)\n"
@@ -5204,7 +5407,7 @@ msgid ""
 "    print(ds.read_temp(rom))"
 msgstr ""
 
-#: ../../samd/quickref.rst:468
+#: ../../samd/quickref.rst:564
 msgid ""
 "Be sure to put a 4.7k pull-up resistor on the data line.  Note that the "
 "``convert_temp()`` method must be called each time you want to sample the"
@@ -5214,15 +5417,15 @@ msgstr ""
 "``convert_temp()`` メソッドは、温度をサンプリングするたびに呼び出す"
 "必要があることに注意してください。"
 
-#: ../../samd/quickref.rst:473
+#: ../../samd/quickref.rst:569
 msgid "DHT driver"
 msgstr "DHT ドライバー"
 
-#: ../../samd/quickref.rst:475
+#: ../../samd/quickref.rst:571
 msgid "The DHT driver is implemented in software and works on all pins::"
 msgstr "DHT ドライバーはソフトウェアで実装され、すべてのピンで動作します::"
 
-#: ../../samd/quickref.rst:477
+#: ../../samd/quickref.rst:573
 msgid ""
 "import dht\n"
 "import machine\n"
@@ -5250,7 +5453,7 @@ msgstr ""
 "d.temperature() # 例: 23.6 (°C)\n"
 "d.humidity()    # 例: 41.3 (% RH)"
 
-#: ../../samd/quickref.rst:490
+#: ../../samd/quickref.rst:586
 msgid ""
 "Be sure to have a 4.7k pull-up resistor on the data line.  Some DHT "
 "modules may already have one."
@@ -5258,15 +5461,15 @@ msgstr ""
 "4.7k のプルアップ抵抗をデータラインに接続してください。"
 "DHT モジュールの中にはプルアップ抵抗が実装済みのものもあります。
 
-#: ../../samd/quickref.rst:494
+#: ../../samd/quickref.rst:590
 msgid "Driving an APA102 LED"
 msgstr "APA102 LED の駆動"
 
-#: ../../samd/quickref.rst:496
+#: ../../samd/quickref.rst:592
 msgid "The APA102 on some Adafruit boards can be controlled using SoftSPI::"
 msgstr "一部の Adafruit ボードにある APA102 は SoftSPI で制御できます::"
 
-#: ../../samd/quickref.rst:498
+#: ../../samd/quickref.rst:594
 msgid ""
 "from machine import SoftSPI, Pin\n"
 "# create the SPI object. miso can be any unused pin.\n"
@@ -5296,7 +5499,7 @@ msgstr ""
 "# LED を赤に設定\n"
 "write(128, 0, 0)"
 
-#: ../../samd/quickref.rst:512
+#: ../../samd/quickref.rst:608
 msgid ""
 "Since SoftSPI does not allow miso to be undefined, miso has to be "
 "assigned to an otherwise unused pin."
@@ -5304,11 +5507,11 @@ msgstr ""
 "SoftSPI では miso を未定義にできないため、miso を未使用のピンに割り当てる"
 "必要があります。"
 
-#: ../../samd/quickref.rst:516
+#: ../../samd/quickref.rst:612
 msgid "Driving a Neopixel LED"
 msgstr "Neopixel LED の駆動"
 
-#: ../../samd/quickref.rst:518
+#: ../../samd/quickref.rst:614
 msgid ""
 "The built-in machine.bitstream() method supports driving Neopixel LEDs in"
 " combination with the Neopixel driver from the MicroPython driver "
@@ -5317,7 +5520,7 @@ msgstr ""
 "組込みの machine.bitstream() メソッドは、MicroPython ドライバーライブラリにある"
 "Neopixel ドライバーと組み合わせて、NeoPixel LED の駆動をサポートします::"
 
-#: ../../samd/quickref.rst:521
+#: ../../samd/quickref.rst:617
 msgid ""
 "import neopixel\n"
 "import machine\n"
@@ -5345,7 +5548,7 @@ msgstr ""
 "# LED の表示を更新\n"
 "n.write()"
 
-#: ../../samd/quickref.rst:534
+#: ../../samd/quickref.rst:630
 msgid ""
 "machine.bitstream() is set up for a SAMD21 clock frequency of 48MHz and a"
 " SAMD51 clock frequency of 120 MHz. At other clock frequencies, the "
@@ -5354,11 +5557,11 @@ msgstr ""
 "machine.bitstream() は、SAMD21 のクロック周波数 48MHz と SAMD51 のクロック"
 "周波数 120MHz を想定して設定されています。他のクロック周波数では、タイミングが合いません。"
 
-#: ../../samd/quickref.rst:538
+#: ../../samd/quickref.rst:634
 msgid "Transferring files"
 msgstr "ファイル転送"
 
-#: ../../samd/quickref.rst:540
+#: ../../samd/quickref.rst:636
 msgid ""
 "Files can be transferred to the SAMD21/SAMD51 devices for instance with "
 "the :ref:`mpremote <mpremote>` tool. See the MicroPython forum for "

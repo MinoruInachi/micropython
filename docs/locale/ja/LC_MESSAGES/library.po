@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-08 11:19+0900\n"
-"PO-Revision-Date: 2026-04-13 18:17+0900\n"
+"POT-Creation-Date: 2026-06-28 11:26+0900\n"
+"PO-Revision-Date: 2026-07-02 21:26+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.13.1\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../library/_thread.rst:2
 msgid ":mod:`_thread` -- multithreading support"
@@ -2684,42 +2684,32 @@ msgstr ""
 "MicroPython では `byteorder` は位置パラメータでなければなりません(位置"
 "パラメータとすることは CPython でも可能です)。"
 
-#: ../../library/builtins.rst:87
-msgid ""
-"The optional ``signed`` kwarg from CPython is not supported. MicroPython "
-"currently converts negative integers as signed, and positive as unsigned."
-" (:ref:`Details <cpydiff_types_int_to_bytes>`.)"
-msgstr ""
-"CPython にあるオプションの ``signed`` キーワード引数はサポートしていません。"
-"MicroPython は、現在のところ負の整数は符号付き、正の整数は符号なしとして変換します。"
-" (:ref:`詳細 <cpydiff_types_int_to_bytes>`.)"
-
-#: ../../library/builtins.rst:109
+#: ../../library/builtins.rst:105
 msgid "|see_cpython| `python:memoryview`."
 msgstr ""
 
-#: ../../library/builtins.rst:143
+#: ../../library/builtins.rst:139
 msgid "The *slice* builtin is the type that slice objects have."
 msgstr "*slice* 組込み型は、スライスオブジェクトが持つデータ型です。"
 
-#: ../../library/builtins.rst:163 ../../library/espnow.rst:578
-#: ../../library/ssl.rst:114
+#: ../../library/builtins.rst:159 ../../library/espnow.rst:645
+#: ../../library/ssl.rst:142
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../../library/builtins.rst:177
+#: ../../library/builtins.rst:173
 msgid "|see_cpython| `python:KeyboardInterrupt`."
 msgstr ""
 
-#: ../../library/builtins.rst:179
+#: ../../library/builtins.rst:175
 msgid "See also in the context of :ref:`soft_bricking`."
 msgstr ":ref:`soft_bricking` の記載も参照してください。"
 
-#: ../../library/builtins.rst:199
+#: ../../library/builtins.rst:195
 msgid "|see_cpython| `python:SystemExit`."
 msgstr ""
 
-#: ../../library/builtins.rst:201
+#: ../../library/builtins.rst:196
 msgid ""
 "On non-embedded ports (i.e. Windows and Unix), an unhandled "
 "``SystemExit`` exits the MicroPython process in a similar way to CPython."
@@ -2727,7 +2717,7 @@ msgstr ""
 "組込み系ではないポート(WindowsやUnixなど)では、処理されない ``SystemExit`` が発生すると、"
 "CPython と同様にMicroPythonプロセスが終了します。"
 
-#: ../../library/builtins.rst:204
+#: ../../library/builtins.rst:199
 msgid ""
 "On embedded ports, an unhandled ``SystemExit`` currently causes a "
 ":ref:`soft_reset` of MicroPython."
@@ -2735,7 +2725,7 @@ msgstr ""
 "一方、組込み系のポートでは、現在のところ処理されない ``SystemExit`` が発生すると "
 "MicroPython の :ref:`soft_reset` が行われます。"
 
-#: ../../library/builtins.rst:209
+#: ../../library/builtins.rst:205
 msgid "|see_cpython| `python:TypeError`."
 msgstr ""
 
@@ -5127,18 +5117,22 @@ msgid "Encrypted and unencrypted communication (up to 6 encrypted peers),"
 msgstr "暗号化された通信と暗号化されていない通信(最大6つの暗号化されたピア)"
 
 #: ../../library/espnow.rst:39
-msgid "Message sizes up to 250 bytes,"
-msgstr "最大250バイトのメッセージサイズ"
+msgid "Message sizes up to 1470 bytes (For ESP-NOW v2),"
+msgstr "最大1470バイト(ESP-NOW v2の場合)のメッセージサイズ"
 
 #: ../../library/espnow.rst:41
 msgid ""
-"Can operate alongside Wifi operation (:doc:`network.WLAN<network.WLAN>`) "
+"Can operate alongside Wi-Fi operation (:doc:`network.WLAN<network.WLAN>`) "
 "on ESP32 and ESP8266 devices."
 msgstr ""
-"ESP32 および ESP8266 デバイスの Wifi 操作(:doc:`network.WLAN<network.WLAN>`)"
+"ESP32 および ESP8266 デバイスの Wi-Fi 操作(:doc:`network.WLAN<network.WLAN>`)"
 "と並行して動作可能"
 
 #: ../../library/espnow.rst:44
+msgid "Track the Wi-Fi signal strength (RSSI) of ESP-NOW peer devices."
+msgstr "ESP-NOW ピアデバイスの Wi-Fi 信号強度(RSSI)の追跡サポート"
+
+#: ../../library/espnow.rst:46
 msgid ""
 "It is especially useful for small IoT networks, latency sensitive or "
 "power sensitive applications (such as battery operated devices) and for "
@@ -5148,22 +5142,63 @@ msgstr ""
 "消費電力を抑えたいアプリケーション(バッテリー駆動デバイスなど)、デバイス間の"
 "長距離通信(数百メートル)に特に有用です。"
 
-#: ../../library/espnow.rst:48
-msgid ""
-"This module also supports tracking the Wifi signal strength (RSSI) of "
-"peer devices."
-msgstr ""
-"このモジュールは、ピアデバイスの Wifi 信号強度(RSSI)の追跡もサポートしています。"
-
 #: ../../library/espnow.rst:51
-msgid "A simple example would be:"
-msgstr "簡単な例は次のようになります:"
+msgid "ESP-NOW Versions"
+msgstr "ESP-NOW のバージョン"
 
 #: ../../library/espnow.rst:53
+msgid ""
+"Since ESP-IDF V5.4, two ESP-NOW versions are supported when running on "
+"ESP32: V1 and V2."
+msgstr ""
+"ESP-IDF V5.4以降、ESP32上で動作する ESP-NOW は V1 と V2 の2つのバージョンが"
+"サポートされています。"
+
+#: ../../library/espnow.rst:56
+msgid "The maximum packet length supported by V2 devices is 1470 bytes"
+msgstr "V2デバイスでサポートされる最大パケット長は1470バイト"
+
+#: ../../library/espnow.rst:57
+msgid "The maximum packet length supported by V1 devices is 250 bytes."
+msgstr "V1デバイスでサポートされる最大パケット長は250バイト"
+
+#: ../../library/espnow.rst:59
+msgid ""
+"To check at runtime whether ESP-NOW V2 is available, check the value of "
+"`espnow.MAX_DATA_LEN`."
+msgstr ""
+"実行時に ESP-NOW V2 が利用可能かどうかを確認するには `espnow.MAX_DATA_LEN` の"
+"値を確認してください。"
+
+#: ../../library/espnow.rst:62
+msgid ""
+"ESP-NOW V2 devices are capable of receiving packets from both V2 and V1 "
+"devices."
+msgstr ""
+"ESP-NOW V2 デバイスは、V2デバイスとV1デバイスの両方からパケットを受信できます。"
+
+#: ../../library/espnow.rst:64
+msgid ""
+"ESP-NOW V1 devices (including ESP8266) can receive packets from other V1 "
+"devices, or from V2 devices if the packet length doesn't exceed 250 "
+"bytes. For packets exceeding this length, a V1 device will either "
+"truncate the data to the first 250 bytes or discard the packet entirely."
+msgstr ""
+"ESP-NOW V1デバイス (ESP8266 を含む)は、他のV1デバイスからパケットを受信できます。"
+"また、パケット長が250バイトを超えない場合は、V2デバイスからもパケットを受信できます。"
+"この長さを超えるパケットの場合、V1デバイスはデータを最初の250バイトに切り詰めるか、"
+"パケット全体を破棄します。"
+
+#: ../../library/espnow.rst:70 ../../library/gc.rst:85
+#: ../../library/machine.CAN.rst:43 ../../library/machine.CAN.rst:274
+msgid "Example"
+msgstr "サンプルコード"
+
+#: ../../library/espnow.rst:72
 msgid "**Sender:** ::"
 msgstr "**送信側:** ::"
 
-#: ../../library/espnow.rst:55
+#: ../../library/espnow.rst:74
 msgid ""
 "import network\n"
 "import espnow\n"
@@ -5184,12 +5219,29 @@ msgid ""
 "    e.send(peer, str(i)*20, True)\n"
 "e.send(peer, b'end')"
 msgstr ""
+"import network\n"
+"import espnow\n"
+"\n"
+"# send()/recv() するには WLAN インタフェースを有効にしなければならない\n"
+"sta = network.WLAN(network.WLAN.IF_STA)  # または network.WLAN.IF_AP\n"
+"sta.active(True)\n"
+"sta.disconnect()      # ESP8266 では必要\n"
+"\n"
+"e = espnow.ESPNow()\n"
+"e.active(True)\n"
+"peer = b'\\xbb\\xbb\\xbb\\xbb\\xbb\\xbb'   # ピア wifi インタフェースの MAC アドレス\n"
+"e.add_peer(peer)      # send() の前に add_peer() が必要\n"
+"\n"
+"e.send(peer, \"Starting...\")\n"
+"for i in range(100):\n"
+"    e.send(peer, str(i)*20, True)\n"
+"e.send(peer, b'end')"
 
-#: ../../library/espnow.rst:73
+#: ../../library/espnow.rst:92
 msgid "**Receiver:** ::"
 msgstr "**受信側:** ::"
 
-#: ../../library/espnow.rst:75
+#: ../../library/espnow.rst:94
 msgid ""
 "import network\n"
 "import espnow\n"
@@ -5209,12 +5261,29 @@ msgid ""
 "        if msg == b'end':\n"
 "            break"
 msgstr ""
+"import network\n"
+"import espnow\n"
+"\n"
+"# send()/recv() するには WLAN インタフェースを有効にしなければならない\n"
+"sta = network.WLAN(network.WLAN.IF_STA)\n"
+"sta.active(True)\n"
+"sta.disconnect()   # ESP8266 が最後に接続したアクセスポイントに自動接続するため\n"
+"\n"
+"e = espnow.ESPNow()\n"
+"e.active(True)\n"
+"\n"
+"while True:\n"
+"    host, msg = e.recv()\n"
+"    if msg:             # msg == None if timeout in recv()\n"
+"        print(host, msg)\n"
+"        if msg == b'end':\n"
+"            break"
 
-#: ../../library/espnow.rst:94
+#: ../../library/espnow.rst:113
 msgid "class ESPNow"
 msgstr "クラス ESPNow"
 
-#: ../../library/espnow.rst:101
+#: ../../library/espnow.rst:120
 msgid ""
 "Returns the singleton ESPNow object. As this is a singleton, all calls to"
 " `espnow.ESPNow()` return a reference to the same object."
@@ -5222,7 +5291,7 @@ msgstr ""
 "シンゲルトンの ESPNow オブジェクトを返します。これはシンゲルトンであるため、 "
 "`espnow.ESPNow()` の呼び出しは同じオブジェクトへの参照を返します。"
 
-#: ../../library/espnow.rst:105
+#: ../../library/espnow.rst:124
 msgid ""
 "Some methods are available only on the ESP32 due to code size "
 "restrictions on the ESP8266 and differences in the Espressif API."
@@ -5230,18 +5299,18 @@ msgstr ""
 "ESP8266 におけるコードサイズの制限や Espressif API の違いにより、"
 "一部のメソッドは ESP32 のみで利用可能です。"
 
-#: ../../library/espnow.rst:113
+#: ../../library/espnow.rst:132
 msgid ""
 "Initialise or de-initialise the ESP-NOW communication protocol depending "
 "on the value of the ``flag`` optional argument."
 msgstr ""
 "オプション引数 ``flag`` の値に応じて、ESP-NOW 通信プロトコルを初期化または終了処理します。"
 
-#: ../../library/espnow.rst:118
+#: ../../library/espnow.rst:137
 msgid "*flag*: Any python value which can be converted to a boolean type."
 msgstr "*flag*: ブール型に変換可能な任意のPython値。"
 
-#: ../../library/espnow.rst:120
+#: ../../library/espnow.rst:139
 msgid ""
 "``True``: Prepare the software and hardware for use of the ESP-NOW "
 "communication protocol, including:"
@@ -5249,23 +5318,23 @@ msgstr ""
 "``True``: ESP-NOW 通信プロトコルを使えるようにソフトウェアとハードウェアを"
 "準備します。具体的には次のことを行います。"
 
-#: ../../library/espnow.rst:123
+#: ../../library/espnow.rst:142
 msgid "initialise the ESPNow data structures,"
 msgstr "ESPNow データ構造体の初期化"
 
-#: ../../library/espnow.rst:124
+#: ../../library/espnow.rst:143
 msgid "allocate the recv data buffer,"
 msgstr "受信データバッファの割り当て"
 
-#: ../../library/espnow.rst:125
+#: ../../library/espnow.rst:144
 msgid "invoke esp_now_init() and"
 msgstr "esp_now_init() の呼び出し"
 
-#: ../../library/espnow.rst:126
+#: ../../library/espnow.rst:145
 msgid "register the send and recv callbacks."
 msgstr "送受信双方のコールバック登録"
 
-#: ../../library/espnow.rst:128
+#: ../../library/espnow.rst:147
 msgid ""
 "``False``: De-initialise the Espressif ESP-NOW software stack "
 "(esp_now_deinit()), disable callbacks, deallocate the recv data buffer "
@@ -5274,20 +5343,20 @@ msgstr ""
 "``False``: Espressif ESP-NOW ソフトウェアスタックの終了処理(esp_now_deinit())、"
 "コールバック無効化、受信データバッファ解放、すべてのピアの登録解除をします。"
 
-#: ../../library/espnow.rst:132
+#: ../../library/espnow.rst:151
 msgid ""
 "If *flag* is not provided, return the current status of the ESPNow "
 "interface."
 msgstr ""
 "*flag* が提供されていない場合、ESPNow インタフェースの現在の状態を返します。"
 
-#: ../../library/espnow.rst:137
+#: ../../library/espnow.rst:156
 msgid "``True`` if interface is currently *active*, else ``False``."
 msgstr ""
 "インタフェースが現在アクティブな場合は ``True`` 、"
 "それ以外の場合は ``False`` を返します。"
 
-#: ../../library/espnow.rst:142
+#: ../../library/espnow.rst:161
 msgid ""
 "Set or get configuration values of the ESPNow interface. To set values, "
 "use the keyword syntax, and one or more parameters can be set at a time. "
@@ -5298,50 +5367,58 @@ msgstr ""
 "キーワード構文を使用し、一度に1つ以上のパラメータを設定できます。"
 "値を取得するには、パラメータ名を文字列で引用符で囲み、1つのパラメータのみで問い合わせます。"
 
-#: ../../library/espnow.rst:147
+#: ../../library/espnow.rst:166
 msgid "**Note:** *Getting* parameters is not supported on the ESP8266."
 msgstr "**注記:** ESP8266ではパラメータの *取得* をサポートしていません。"
 
-#: ../../library/espnow.rst:151
+#: ../../library/espnow.rst:170
 msgid ""
-"*rxbuf*: (default=526) Get/set the size in bytes of the internal buffer "
-"used to store incoming ESPNow packet data. The default size is selected "
-"to fit two max-sized ESPNow packets (250 bytes) with associated "
-"mac_address (6 bytes), a message byte count (1 byte) and RSSI data plus "
-"buffer overhead. Increase this if you expect to receive a lot of large "
-"packets or expect bursty incoming traffic."
+"*rxbuf*: (default=528 or 2972) Get/set the size in bytes of the internal "
+"buffer used to store incoming ESP-NOW packet data. The default size is "
+"selected to fit two max-sized ESP-NOW packets (250 or 1470 bytes) with "
+"associated mac_address (6 bytes), a message byte count (2 byte) and RSSI "
+"data plus buffer overhead. Increase this if you expect to receive a lot "
+"of large packets or expect bursty incoming traffic."
 msgstr ""
-"*rxbuf*: (デフォルト=526) ESPNow パケットデータを格納するために使う内部バッファの"
-"サイズをバイト単位で取得または設定します。デフォルトのサイズは、関連する mac_address "
-"(6バイト)、メッセージバイト数(1バイト)、RSSI データとバッファオーバーヘッドを持つ"
-"最大サイズの2つの ESPNow パケットに合わせて選択されます。"
-"多数の大きなパケットを受信する場合や、バースト状態のトラフィックが予想される場合は、"
-"この値を増やしてください。"
+"*rxbuf*: (デフォルト=526 または 2972) ESP-NOW パケットデータを格納するために"
+"使う内部バッファのサイズをバイト単位で取得または設定します。デフォルトのサイズは、"
+"関連する mac_address (6バイト)、メッセージバイト数(2バイト)、RSSI データと"
+"バッファオーバーヘッドを持つ最大サイズの2つの ESP-NOW パケット(250 または 1470 "
+"バイト)に合わせて選択されます。多数の大きなパケットを受信する場合や、バースト状態の"
+"トラフィックが予想される場合は、この値を増やしてください。"
 
-#: ../../library/espnow.rst:158
+#: ../../library/espnow.rst:177
 msgid ""
-"**Note:** The recv buffer is allocated by `ESPNow.active()`. Changing "
-"this value will have no effect until the next call of "
+"If only using ESP-NOW V1 packets and low throughput, recommend setting "
+"``rxbuf=528`` here to reduce memory overhead."
+msgstr ""
+"ESP-NOW V1 パケットのみを使い、スループットが低い場合は、メモリオーバーヘッドを"
+"削減するために、 ``rxbuf=528`` に設定することをお勧めします。"
+
+#: ../../library/espnow.rst:180
+msgid ""
+"The recv buffer is allocated by `ESPNow.active()`. Changing this value "
+"will have no effect until the next call of "
 "`ESPNow.active(True)<ESPNow.active()>`."
 msgstr ""
-"**注記 :** 受信バッファは `ESPNow.active()` によって割り当てられます。"
+"受信バッファは `ESPNow.active()` によって割り当てられます。"
 "この値を変更しても、次の `ESPNow.active(True)<ESPNow.active()>` "
 "の呼び出しが行われるまで効果はありません。"
 
-#: ../../library/espnow.rst:162
+#: ../../library/espnow.rst:184
 msgid ""
-"*timeout_ms*: (default=300,000) Default timeout (in milliseconds) for "
-"receiving ESPNow messages. If *timeout_ms* is less than zero, then wait "
+"*timeout_ms*: (default=300_000) Default timeout (in milliseconds) for "
+"receiving ESP-NOW messages. If *timeout_ms* is less than zero, then wait "
 "forever. The timeout can also be provided as arg to "
 "`recv()`/`irecv()`/`recvinto()`."
 msgstr ""
-"*timeout_ms*: (デフォルト=300,000) ESPNowメッセージを受信するためのデフォルトの"
+"*timeout_ms*: (デフォルト=300,000) ESP-NOW メッセージを受信するためのデフォルトの"
 "タイムアウト値(ミリ秒単位)。 *timeout_ms* が負の値の場合は無期限に待機します。"
 "タイムアウトは `recv()`/`irecv()`/`recvinto()` の引数としても指定できます。"
 
-#: ../../library/espnow.rst:167
+#: ../../library/espnow.rst:189
 msgid ""
-"*rate*: (ESP32 only) Set the transmission data rate for ESPNow packets. "
+"*rate*: (ESP32 only) Set the transmission data rate for ESP-NOW packets. "
 "The default setting is `espnow.RATE_1M`. It's recommended to use one of "
 "the other ``espnow.RATE_nnn`` constants to set this, but it's also "
 "possible to pass an integer corresponding to the `enum wifi_phy_rate_t "
@@ -5351,7 +5428,7 @@ msgid ""
 " for querying the radio interface's rate parameter. See also `espnow-"
 "long-range`. This API currently doesn't work on ESP32-C6."
 msgstr ""
-"*rate*: (ESP32のみ) ESPNow パケットの転送データレートを設定します。"
+"*rate*: (ESP32のみ) ESP-NOW パケットの転送データレートを設定します。"
 "デフォルト設定は `espnow.RATE_1M` です。この値を設定する際には、他の "
 "``espnow.RATE_nnn`` 定数を使用することが推奨されますが、 `wifi_phy_rate_t "
 "<https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32/ api-"
@@ -5361,25 +5438,25 @@ msgstr ""
 "していないためです。 `espnow-long-range` も参照してください。"
 "なお、この API は現在 ESP32-C6 では動作しません。"
 
-#: ../../library/espnow.rst:179
+#: ../../library/espnow.rst:201
 msgid "``None`` or the value of the parameter being queried."
 msgstr "パラメータ値の取得の場合はその値、そうでない場合は ``None`` を返します。"
 
-#: ../../library/espnow.rst:183 ../../library/espnow.rst:240
-#: ../../library/espnow.rst:281 ../../library/espnow.rst:474
-#: ../../library/espnow.rst:494 ../../library/espnow.rst:510
+#: ../../library/espnow.rst:205 ../../library/espnow.rst:262
+#: ../../library/espnow.rst:303 ../../library/espnow.rst:500
+#: ../../library/espnow.rst:520 ../../library/espnow.rst:536
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_INIT\")`` if not initialised."
 msgstr "初期化されない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_INIT\")`` が発生。"
 
-#: ../../library/espnow.rst:184
+#: ../../library/espnow.rst:206
 msgid "``ValueError()`` on invalid configuration options or values."
 msgstr "無効な設定オプションまたは値が指定された場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:187
+#: ../../library/espnow.rst:209
 msgid "Sending and Receiving Data"
 msgstr "データの送受信"
 
-#: ../../library/espnow.rst:189
+#: ../../library/espnow.rst:211
 msgid ""
 "A wifi interface (``network.WLAN.IF_STA`` or ``network.WLAN.IF_AP``) must"
 " be `active()<network.WLAN.active>` before messages can be sent or "
@@ -5391,7 +5468,7 @@ msgstr ""
 "ありますが、WLAN インタフェースを接続したり設定する必要はありません。 "
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:194
+#: ../../library/espnow.rst:216
 msgid ""
 "import network\n"
 "\n"
@@ -5405,7 +5482,7 @@ msgstr ""
 "sta.active(True)\n"
 "sta.disconnect()    # ESP8266 用"
 
-#: ../../library/espnow.rst:200
+#: ../../library/espnow.rst:222
 msgid ""
 "**Note:** The ESP8266 has a *feature* that causes it to automatically "
 "reconnect to the last wifi Access Point when set "
@@ -5422,7 +5499,7 @@ msgstr ""
 "の後に `disconnect()<network.WLAN.disconnect>` を呼び出すことで、"
 "これを回避できます。"
 
-#: ../../library/espnow.rst:210
+#: ../../library/espnow.rst:232
 msgid ""
 "Send the data contained in ``msg`` to the peer with given network ``mac``"
 " address. In the second form, ``mac=None`` and ``sync=True``. The peer "
@@ -5433,42 +5510,42 @@ msgstr ""
 "2番目の形式では、 ``mac=None`` と ``sync=True`` になります。ピアは、メッセージを"
 "送信する前に `ESPNow.add_peer()<ESPNow.add_peer()>` で登録しておく必要があります。"
 
-#: ../../library/espnow.rst:217
+#: ../../library/espnow.rst:239
 msgid ""
-"*mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or "
+"*mac*: byte string exactly `espnow.ADDR_LEN` (6 bytes) long or "
 "``None``. If *mac* is ``None`` (ESP32 only) the message will be sent to "
 "all registered peers, except any broadcast or multicast MAC addresses."
 msgstr ""
-"*mac*: 長さが厳密に ``espnow.ADDR_LEN`` (6バイト)であるバイト列か ``None`` 。 "
+"*mac*: 長さが厳密に `espnow.ADDR_LEN` (6バイト)であるバイト列か ``None`` 。 "
 "*mac* が ``None`` の場合(ESP32 のみ)、ブロードキャストまたはマルチキャスト MAC "
 "アドレスを除くすべての登録されたピアにメッセージを送信します。"
 
-#: ../../library/espnow.rst:222
+#: ../../library/espnow.rst:244
 msgid ""
-"*msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250) bytes "
-"long."
+"*msg*: string or byte-string up to `espnow.MAX_DATA_LEN` (250 or 1470) "
+"bytes long."
 msgstr ""
-"*msg*: 最大長が ``espnow.MAX_DATA_LEN`` (250)である文字列またはバイト列。"
+"*msg*: 最大長が `espnow.MAX_DATA_LEN` (250 または 1470)である文字列またはバイト列。"
 
-#: ../../library/espnow.rst:225
+#: ../../library/espnow.rst:247
 msgid "*sync*:"
 msgstr ""
 
-#: ../../library/espnow.rst:227
+#: ../../library/espnow.rst:249
 msgid ""
 "``True``: (default) send ``msg`` to the peer(s) and wait for a response "
 "(or not)."
 msgstr ""
 "``True``: (デフォルト) メッセージをピアに送信し、応答を待機します(応答がない場合もあり)。
 
-#: ../../library/espnow.rst:230
+#: ../../library/espnow.rst:252
 msgid ""
 "``False`` send ``msg`` and return immediately. Responses from the peers "
 "will be discarded."
 msgstr ""
 "``False``: メッセージを送信し、すぐに返信します。ピアからの応答は破棄されます。"
 
-#: ../../library/espnow.rst:235
+#: ../../library/espnow.rst:257
 msgid ""
 "``True`` if ``sync=False`` or if ``sync=True`` and *all* peers respond, "
 "else ``False``."
@@ -5476,12 +5553,12 @@ msgstr ""
 "``sync=False`` または ``sync=True`` かつすべてのピアから応答があった場合は "
 "``True`` 、さもなければ ``False`` 。"
 
-#: ../../library/espnow.rst:241
+#: ../../library/espnow.rst:263
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if peer is not registered."
 msgstr ""
 "ピアが登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` が発生。"
 
-#: ../../library/espnow.rst:242
+#: ../../library/espnow.rst:264
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` the wifi interface is not "
 "`active()<network.WLAN.active>`."
@@ -5489,7 +5566,7 @@ msgstr ""
 "wifi インタフェース が `active()<network.WLAN.active>` でなければ、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` が発生。"
 
-#: ../../library/espnow.rst:244
+#: ../../library/espnow.rst:266
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_NO_MEM\")`` internal ESP-NOW buffers are "
 "full."
@@ -5497,11 +5574,15 @@ msgstr ""
 "内部の ESP-NOW バッファが一杯になると、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_NO_MEM\")`` が発生。"
 
-#: ../../library/espnow.rst:246
-msgid "``ValueError()`` on invalid values for the parameters."
-msgstr "パラメータの値が不正な場合は ``ValueError()`` が発生。"
+#: ../../library/espnow.rst:268
+msgid ""
+"``ValueError()`` or ``TypeError()`` on invalid values or types for the "
+"parameters."
+msgstr ""
+"パラメーターの値または型が無効である場合、 ``ValueError()`` または "
+"``TypeError()`` が発生。"
 
-#: ../../library/espnow.rst:248
+#: ../../library/espnow.rst:270
 msgid ""
 "**Note**: A peer will respond with success if its wifi interface is "
 "`active()<network.WLAN.active>` and set to the same channel as the "
@@ -5515,7 +5596,7 @@ msgstr ""
 "同じチャンネルに設定されていれば、ピアは成功で応答します(Espressif の ESP-NOW "
 "ドキュメントを参照)。"
 
-#: ../../library/espnow.rst:255
+#: ../../library/espnow.rst:277
 msgid ""
 "Wait for an incoming message and return the ``mac`` address of the peer "
 "and the message. **Note**: It is **not** necessary to register a peer "
@@ -5526,23 +5607,23 @@ msgstr ""
 "**注記**: ピアからメッセージを受信するために、"
 "(`add_peer()<ESPNow.add_peer()>` を使って)ピアを登録しておく必要はありません。"
 
-#: ../../library/espnow.rst:261
+#: ../../library/espnow.rst:283
 msgid "*timeout_ms*: (Optional): May have the following values."
 msgstr "*timeout_ms*: (オプション): 次の値を指定できます。"
 
-#: ../../library/espnow.rst:263
+#: ../../library/espnow.rst:285
 msgid "``0``: No timeout. Return immediately if no data is available;"
 msgstr "``0``: タイムアウトなし。受信可能なデータがない場合はすぐに戻ります。"
 
-#: ../../library/espnow.rst:264
+#: ../../library/espnow.rst:286
 msgid "``> 0``: Specify a timeout value in milliseconds;"
 msgstr "``> 0``: ミリ秒単位のタイムアウト値を指定します。"
 
-#: ../../library/espnow.rst:265
+#: ../../library/espnow.rst:287
 msgid "``< 0``: Do not timeout, ie. wait forever for new messages; or"
 msgstr "``< 0``: タイムアウトしない、すなわち新しいメッセージを受信するまで永遠に待機します。"
 
-#: ../../library/espnow.rst:266
+#: ../../library/espnow.rst:288
 msgid ""
 "``None`` (or not provided): Use the default timeout value set with "
 "`ESPNow.config()`."
@@ -5550,26 +5631,26 @@ msgstr ""
 "``None`` (または指定なし): `ESPNow.config()` で設定したデフォルトの"
 "タイムアウト値を使用します。"
 
-#: ../../library/espnow.rst:271
+#: ../../library/espnow.rst:293
 msgid "``(None, None)`` if timeout is reached before a message is received, or"
 msgstr "メッセージを受信する前にタイムアウトが発生した場合は ``(None、None)`` が返ります。"
 
-#: ../../library/espnow.rst:273
+#: ../../library/espnow.rst:295
 msgid "``[mac, msg]``: where:"
 msgstr "``[mac、msg]`` は次のものです:"
 
-#: ../../library/espnow.rst:275
+#: ../../library/espnow.rst:297
 msgid ""
 "``mac`` is a bytestring containing the address of the device which sent "
 "the message, and"
 msgstr ""
 "``mac`` はメッセージを送信したデバイスのアドレスを含むバイト列"
 
-#: ../../library/espnow.rst:277
+#: ../../library/espnow.rst:299
 msgid "``msg`` is a bytestring containing the message."
 msgstr "``msg`` はメッセージを含むバイト列
 
-#: ../../library/espnow.rst:282
+#: ../../library/espnow.rst:304
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` if the wifi interface is not "
 "`active()<network.WLAN.active>`."
@@ -5577,11 +5658,11 @@ msgstr ""
 "wifi インタフェースが `active()<network.WLAN.active>` されていない場合、 "
 "``OSError(num, \"ESP_ERR_ESPNOW_IF\")`` が発生。"
 
-#: ../../library/espnow.rst:284
+#: ../../library/espnow.rst:306
 msgid "``ValueError()`` on invalid *timeout_ms* values."
 msgstr "*timeout_ms* の値が無効な場合、 ``ValueError()`` が発生。"
 
-#: ../../library/espnow.rst:286
+#: ../../library/espnow.rst:308
 msgid ""
 "`ESPNow.recv()` will allocate new storage for the returned list and the "
 "``peer`` and ``msg`` bytestrings. This can lead to memory fragmentation "
@@ -5593,7 +5674,7 @@ msgstr ""
 "引き起こす可能性があります。メモリに優しい代替手段として `ESPNow.irecv()` を"
 "参照してください。"
 
-#: ../../library/espnow.rst:294
+#: ../../library/espnow.rst:316
 msgid ""
 "Works like `ESPNow.recv()` but will reuse internal bytearrays to store "
 "the return values: ``[mac, msg]``, so that no new memory is allocated on "
@@ -5602,11 +5683,11 @@ msgstr ""
 "`ESPNow.recv()` と同様に機能しますが、返される値 ``[mac、msg]`` を格納するために"
 "内部のバイト配列を再利用するため、各呼び出しで新しいメモリが割り当てられることはありません。"
 
-#: ../../library/espnow.rst:298 ../../library/espnow.rst:333
+#: ../../library/espnow.rst:322 ../../library/espnow.rst:357
 msgid "*timeout_ms*: (Optional) Timeout in milliseconds (see `ESPNow.recv()`)."
 msgstr "*timeout_ms*: (オプション) ミリ秒単位のタイムアウト値(`ESPNow.recv()` を参照)。"
 
-#: ../../library/espnow.rst:304
+#: ../../library/espnow.rst:326
 msgid ""
 "As for `ESPNow.recv()`, except that ``msg`` is a bytearray, instead of a "
 "bytestring. On the ESP8266, ``mac`` will also be a bytearray."
@@ -5614,11 +5695,11 @@ msgstr ""
 "`ESPNow.recv()` と違い、 ``msg`` はバイト列ではなく bytearray です。"
 "ESP8266 では ``mac`` も bytearray になります。"
 
-#: ../../library/espnow.rst:309 ../../library/espnow.rst:344
+#: ../../library/espnow.rst:331 ../../library/espnow.rst:366
 msgid "See `ESPNow.recv()`."
 msgstr "`ESPNow.recv()` を参照。"
 
-#: ../../library/espnow.rst:311
+#: ../../library/espnow.rst:333
 msgid ""
 "**Note:** You may also read messages by iterating over the ESPNow object,"
 " which will use the `irecv()` method for alloc-free reads, eg: ::"
@@ -5627,7 +5708,7 @@ msgstr ""
 "この方法では、メモリ割当て/解放の対策として `irecv()` メソッドを使っています。"
 "たとえば次のように使います::"
 
-#: ../../library/espnow.rst:314
+#: ../../library/espnow.rst:336
 msgid ""
 "import espnow\n"
 "e = espnow.ESPNow(); e.active(True)\n"
@@ -5637,7 +5718,7 @@ msgid ""
 "        break"
 msgstr ""
 
-#: ../../library/espnow.rst:323
+#: ../../library/espnow.rst:345
 msgid ""
 "Wait for an incoming message and return the length of the message in "
 "bytes. This is the low-level method used by both `recv()<ESPNow.recv()>` "
@@ -5646,21 +5727,21 @@ msgstr ""
 "送信されてくるメッセージを待機し、メッセージの長さをバイト数で返します。"
 "これは `recv()<ESPNow.recv()>` と `irecv()` の両方で使われる低レベルメソッドです。"
 
-#: ../../library/espnow.rst:329
+#: ../../library/espnow.rst:351
 msgid ""
 "*data*: A list of at least two elements, ``[peer, msg]``. ``msg`` must be"
-" a bytearray large enough to hold the message (250 bytes). On the "
-"ESP8266, ``peer`` should be a bytearray of 6 bytes. The MAC address of "
-"the sender and the message will be stored in these bytearrays (see Note "
-"on ESP32 below)."
+" a bytearray large enough to hold the received message (recommended at "
+"least `espnow.MAX_DATA_LEN`). On the ESP8266, ``peer`` should be a "
+"bytearray of 6 bytes. The MAC address of the sender and the message will "
+"be stored in these bytearrays (see Note on ESP32 below)."
 msgstr ""
-"*data*: 少なくとも２つの要素 ``[peer、msg]`` からなるリスト。 "
-"``msg`` はメッセージを保持するために十分な大きさの bytearray である必要があります"
-"(250バイト)。ESP8266で、 ``peer`` は6バイトの bytearray である必要があります。"
-"これらの bytearray には、送信元の MAC アドレスとメッセージが格納されます"
-"(後述の ESP32 についての注記を参照)。"
+"*data*: 少なくとも２つの要素 ``[peer, msg]`` からなるリスト。 "
+"``msg`` は、受信したメッセージを格納するのに十分な大きさのバイト配列である必要があります"
+"(`espnow.MAX_DATA_LEN` 以上を推奨)。ESP8266 において ``peer`` は 6 バイトの "
+"bytearray である必要があります。送信元の MAC アドレスとメッセージは、この bytearray "
+"に格納されます(後述の ESP32 に関する注記を参照)。"
 
-#: ../../library/espnow.rst:339
+#: ../../library/espnow.rst:361
 msgid ""
 "Length of message in bytes or 0 if *timeout_ms* is reached before a "
 "message is received."
@@ -5668,11 +5749,21 @@ msgstr ""
 "メッセージのバイト数。メッセージが受信される前に *timeout_ms* が経過した場合は 0 "
 "を返します。"
 
-#: ../../library/espnow.rst:346
+#: ../../library/espnow.rst:368
+msgid ""
+"This function will also raise a ``ValueError`` if the received message is"
+" too large for the provided buffer. If this error is raised, received "
+"message(s) will be lost."
+msgstr ""
+"この関数は、受信したメッセージが指定されたバッファに対して大きすぎる場合、 "
+"``ValueError`` を発生させます。このエラーが発生した場合、受信した"
+"メッセージは失われます。"
+
+#: ../../library/espnow.rst:372
 msgid "**Note:** On the ESP32:"
 msgstr "**注記:** ESP32の場合:"
 
-#: ../../library/espnow.rst:348
+#: ../../library/espnow.rst:374
 msgid ""
 "It is unnecessary to provide a bytearray in the first element of the "
 "``data`` list because it will be replaced by a reference to a unique "
@@ -5682,7 +5773,7 @@ msgstr ""
 "これは、**ピアデバイステーブル** (`ESPNow.peers_table` を参照)内の"
 "一意のピアアドレスへの参照に置換されます。"
 
-#: ../../library/espnow.rst:351
+#: ../../library/espnow.rst:377
 msgid ""
 "If the list is at least 4 elements long, the rssi and timestamp values "
 "will be saved as the 3rd and 4th elements."
@@ -5690,18 +5781,18 @@ msgstr ""
 "リストが少なくとも4つの要素である場合、rssi およびタイムスタンプ値が3番目および4番目"
 "の要素として保存されます。"
 
-#: ../../library/espnow.rst:356
+#: ../../library/espnow.rst:382
 msgid "Check if data is available to be read with `ESPNow.recv()`."
 msgstr "`ESPNow.recv()` で読み込めるデータがあるかをチェックします。"
 
-#: ../../library/espnow.rst:358
+#: ../../library/espnow.rst:384
 msgid ""
 "For more sophisticated querying of available characters use "
 "`select.poll()`::"
 msgstr ""
 "より高度な文字のクエリングには、`select.poll()` を使ってください::"
 
-#: ../../library/espnow.rst:360
+#: ../../library/espnow.rst:386
 msgid ""
 "import select\n"
 "import espnow\n"
@@ -5712,19 +5803,19 @@ msgid ""
 "poll.poll(timeout)"
 msgstr ""
 
-#: ../../library/espnow.rst:370
+#: ../../library/espnow.rst:396
 msgid "``True`` if data is available to be read, else ``False``."
 msgstr "データを読み込める場合は ``True`` 、そうでない場合は ``False`` を返します。"
 
-#: ../../library/espnow.rst:376
+#: ../../library/espnow.rst:402
 msgid "A 5-tuple containing the number of packets sent/received/lost:"
 msgstr "送信/受信/損失したパケット数を持つ、次の5要素のタプルを返します:"
 
-#: ../../library/espnow.rst:378
+#: ../../library/espnow.rst:404
 msgid "``(tx_pkts, tx_responses, tx_failures, rx_packets, rx_dropped_packets)``"
 msgstr ""
 
-#: ../../library/espnow.rst:380
+#: ../../library/espnow.rst:406
 msgid ""
 "Incoming packets are *dropped* when the recv buffers are full. To reduce "
 "packet loss, increase the ``rxbuf`` config parameters and ensure you are "
@@ -5733,18 +5824,18 @@ msgstr ""
 "受信バッファが一杯になると、着信パケットが *破棄* されます。パケット損失を減らすには、 "
 "``rxbuf`` 構成パラメータを増やし、できるだけ速くメッセージを読み込むようにしてむください。"
 
-#: ../../library/espnow.rst:384
+#: ../../library/espnow.rst:410
 msgid ""
 "**Note**: Dropped packets will still be acknowledged to the sender as "
 "received."
 msgstr ""
 "**注記**: パケットが破棄されても、送信側としては受信されたとみなします。"
 
-#: ../../library/espnow.rst:388
+#: ../../library/espnow.rst:414
 msgid "Peer Management"
 msgstr "ピア管理"
 
-#: ../../library/espnow.rst:390
+#: ../../library/espnow.rst:416
 msgid ""
 "On ESP32 devices, the Espressif ESP-NOW software requires that other "
 "devices (peers) must be *registered* using `add_peer()` before we can "
@@ -5757,7 +5848,7 @@ msgstr ""
 "しておく必要があります(これは、ESP8266 デバイスでは強制 *されません* )。"
 "ピアから暗号化されていないメッセージを受信するのであれば、ピアの登録は *要りません* 。"
 
-#: ../../library/espnow.rst:396
+#: ../../library/espnow.rst:422
 msgid ""
 "**Encrypted messages**: To receive an *encrypted* message, the receiving "
 "device must first register the sender and use the same encryption keys as"
@@ -5767,7 +5858,7 @@ msgstr ""
 "受信側のデバイスがまず送信者を登録し、送信者と同じ暗号化キー(PMKとLMK)を"
 "使う必要があります(`set_pmk()` と `add_peer()` を参照。"
 
-#: ../../library/espnow.rst:402
+#: ../../library/espnow.rst:428
 msgid ""
 "Set the Primary Master Key (PMK) which is used to encrypt the Local "
 "Master Keys (LMK) for encrypting messages. If this is not set, a default "
@@ -5778,7 +5869,7 @@ msgstr ""
 "設定しない場合、Espressif ESP-NOW ソフトウェアスタックによってデフォルトの PMK "
 "が使われます。"
 
-#: ../../library/espnow.rst:406
+#: ../../library/espnow.rst:432
 msgid ""
 "**Note:** messages will only be encrypted if *lmk* is also set in "
 "`ESPNow.add_peer()` (see `Security <https://docs.espressif.com/projects"
@@ -5791,7 +5882,7 @@ msgstr ""
 "/esp-idf/en/latest/ esp32/api-reference/network/esp_now.html#security>`_ "
 "を参照)。"
 
-#: ../../library/espnow.rst:414
+#: ../../library/espnow.rst:440
 msgid ""
 "*pmk*: Must be a byte string, bytearray or string of length "
 "`espnow.KEY_LEN` (16 bytes)."
@@ -5799,15 +5890,15 @@ msgstr ""
 "*pmk*: `espnow.KEY_LEN` (16バイト)の長さのバイト列、bytearray、または文字列"
 "である必要があります。"
 
-#: ../../library/espnow.rst:419 ../../library/espnow.rst:485
+#: ../../library/espnow.rst:445 ../../library/espnow.rst:516
 msgid "``None``"
 msgstr ""
 
-#: ../../library/espnow.rst:423
+#: ../../library/espnow.rst:449
 msgid "``ValueError()`` on invalid *pmk* values."
 msgstr "*pmk* 値が不正な場合、 ``ValueError(）`` が発生。"
 
-#: ../../library/espnow.rst:428
+#: ../../library/espnow.rst:454
 msgid ""
 "Add/register the provided *mac* address as a peer. Additional parameters "
 "may also be specified as positional or keyword arguments (any parameter "
@@ -5817,11 +5908,11 @@ msgstr ""
 "追加のパラメータを位置引数またはキーワード引数として指定することもできます"
 "(パラメータに ``None`` を指定するとデフォルト値が適用されます)。"
 
-#: ../../library/espnow.rst:434
+#: ../../library/espnow.rst:460
 msgid "*mac*: The MAC address of the peer (as a 6-byte byte-string)."
 msgstr "*mac*: ピアのMACアドレス(6バイトのバイト列)。"
 
-#: ../../library/espnow.rst:436
+#: ../../library/espnow.rst:462
 msgid ""
 "*lmk*: The Local Master Key (LMK) key used to encrypt data transfers with"
 " this peer (unless the *encrypt* parameter is set to ``False``). Must be:"
@@ -5830,14 +5921,14 @@ msgstr ""
 "(*encrypt* パラメータが ``False`` に設定されていない場合に限ります)。"
 "次のいずれかである必要があります。"
 
-#: ../../library/espnow.rst:440
+#: ../../library/espnow.rst:466
 msgid ""
 "a byte-string or bytearray or string of length ``espnow.KEY_LEN`` (16 "
 "bytes), or"
 msgstr ""
 "長さが ``espnow.KEY_LEN`` (16バイト)のバイト列、bytearray、または文字列"
 
-#: ../../library/espnow.rst:443
+#: ../../library/espnow.rst:469
 msgid ""
 "any non ``True`` python value (default= ``b''``), signifying an *empty* "
 "key which will disable encryption."
@@ -5845,7 +5936,7 @@ msgstr ""
 "``True`` 以外の任意のPython値(デフォルト= ``b''``)。"
 "これは暗号化を無効にする空のキーを示します。"
 
-#: ../../library/espnow.rst:446
+#: ../../library/espnow.rst:472
 msgid ""
 "*channel*: The wifi channel (2.4GHz) to communicate with this peer. Must "
 "be an integer from 0 to 14. If channel is set to 0 the current channel of"
@@ -5859,7 +5950,7 @@ msgstr ""
 "値はインタフェースに現在設定されているチャンネルと一致している必要があります"
 "(詳細は :func:`WLAN.config` を参照)。(デフォルト=0)"
 
-#: ../../library/espnow.rst:452
+#: ../../library/espnow.rst:478
 msgid ""
 "*ifidx*: (ESP32 only) Index of the wifi interface which will be used to "
 "send data to this peer. Must be an integer set to ``network.WLAN.IF_STA``"
@@ -5873,7 +5964,7 @@ msgstr ""
 "された整数でなければなりません。(デフォルト=0/``network.WLAN.IF_STA``)。"
 "詳細については、後述の `ESPNow and Wifi Operation`_ を参照してください。"
 
-#: ../../library/espnow.rst:458
+#: ../../library/espnow.rst:484
 msgid ""
 "*encrypt*: (ESP32 only) If set to ``True`` data exchanged with this peer "
 "will be encrypted with the PMK and LMK. (default = ``True`` if *lmk* is "
@@ -5883,11 +5974,11 @@ msgstr ""
 "するには ``True`` に設定します。(*lmk* に適正値が指定されていればデフォルトは "
 "``True`` 、さもなければ ``False``)"
 
-#: ../../library/espnow.rst:462
+#: ../../library/espnow.rst:488
 msgid "**ESP8266**: Keyword args may not be used on the ESP8266."
 msgstr "**ESP8266**: ESP8266 ではキーワード引数を指定できません。"
 
-#: ../../library/espnow.rst:464
+#: ../../library/espnow.rst:490
 msgid ""
 "**Note:** The maximum number of peers which may be registered is 20 "
 "(`espnow.MAX_TOTAL_PEER_NUM`), with a maximum of 6 "
@@ -5905,13 +5996,13 @@ msgstr ""
 "/esp-idf/en/latest/esp32/api-reference/network/ "
 "esp_now.html#c.ESP_NOW_MAX_ENCRYPT_PEER_NUM>`_ を参照)。"
 
-#: ../../library/espnow.rst:475
+#: ../../library/espnow.rst:501
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` if *mac* is already registered."
 msgstr ""
 "*mac* がすでに登録されている場合、 ``OSError(num, \"ESP_ERR_ESPNOW_EXIST\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:477
+#: ../../library/espnow.rst:503
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` if too many peers are already "
 "registered."
@@ -5919,7 +6010,7 @@ msgstr ""
 "登録するピアが多すぎる場合、 ``OSError(num, \"ESP_ERR_ESPNOW_FULL\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:479
+#: ../../library/espnow.rst:505
 msgid ""
 "``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` if a channel value was set that"
 " doesn't match the channel currently configured for this interface."
@@ -5927,29 +6018,30 @@ msgstr ""
 "チャンネル値がこのインターフェースに現在設定されているチャンネルと一致していない場合、"
 "``OSError(num, \"ESP_ERR_ESPNOW_CHAN\")`` が発生。"
 
-#: ../../library/espnow.rst:482
-msgid "``ValueError()`` on invalid keyword args or values."
-msgstr "キーワード引数または値が不正な場合、 ``ValueError()`` が発生。"
+#: ../../library/espnow.rst:508
+msgid "``ValueError()`` or ``TypeError()`` on invalid keyword args or values."
+msgstr ""
+"キーワード引数または値が不正な場合、 ``ValueError()`` または ``TypeError()`` が発生。"
 
-#: ../../library/espnow.rst:486
+#: ../../library/espnow.rst:512
 msgid "Deregister the peer associated with the provided *mac* address."
 msgstr "指定した *mac* アドレスに関連付けられたピアを登録解除します。"
 
-#: ../../library/espnow.rst:495 ../../library/espnow.rst:511
+#: ../../library/espnow.rst:521 ../../library/espnow.rst:537
 msgid "``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` if *mac* is not registered."
 msgstr ""
 "*mac* が登録されていない場合、 ``OSError(num, \"ESP_ERR_ESPNOW_NOT_FOUND\")`` "
 "が発生。"
 
-#: ../../library/espnow.rst:497 ../../library/espnow.rst:513
-msgid "``ValueError()`` on invalid *mac* values."
-msgstr "*mac* が不正な場合、 ``ValueError()`` が発生。"
+#: ../../library/espnow.rst:523 ../../library/espnow.rst:539
+msgid "``ValueError()`` or ``TypeError()`` on invalid *mac* values."
+msgstr "*mac* の値が不正な場合、 ``ValueError()`` または ``TypeError()`` が発生。"
 
-#: ../../library/espnow.rst:501
+#: ../../library/espnow.rst:527
 msgid "Return information on a registered peer."
 msgstr "登録されているピアに関する情報を返します。"
 
-#: ../../library/espnow.rst:505
+#: ../../library/espnow.rst:531
 msgid ""
 "``(mac, lmk, channel, ifidx, encrypt)``: a tuple of the \"peer info\" "
 "associated with the given *mac* address."
@@ -5957,30 +6049,30 @@ msgstr ""
 "``(mac, lmk, channel, ifidx, encrypt)``: 指定した *mac* アドレスに"
 "関連付けられた「ピア情報」のタプル。"
 
-#: ../../library/espnow.rst:517
+#: ../../library/espnow.rst:543
 msgid "Return the number of registered peers:"
 msgstr "登録されているピア数を返します:"
 
-#: ../../library/espnow.rst:519
+#: ../../library/espnow.rst:545
 msgid "``(peer_num, encrypt_num)``: where"
 msgstr "``(peer_num, encrypt_num)``:"
 
-#: ../../library/espnow.rst:521
+#: ../../library/espnow.rst:547
 msgid "``peer_num`` is the number of peers which are registered, and"
 msgstr "``peer_num`` は登録されているピア数。"
 
-#: ../../library/espnow.rst:522
+#: ../../library/espnow.rst:548
 msgid "``encrypt_num`` is the number of encrypted peers."
 msgstr "``encrypt_num`` は暗号化されたピア数。"
 
-#: ../../library/espnow.rst:526
+#: ../../library/espnow.rst:552
 msgid ""
 "Return the \"peer info\" parameters for all the registered peers (as a "
 "tuple of tuples)."
 msgstr ""
 "登録されているすべてのピアの「ピア情報」パラメータを(タプルのタプルとして)返します"。
 
-#: ../../library/espnow.rst:532
+#: ../../library/espnow.rst:558
 msgid ""
 "Modify the parameters of the peer associated with the provided *mac* "
 "address. Parameters may be provided as positional or keyword arguments "
@@ -5992,11 +6084,11 @@ msgstr ""
 "(`ESPNow.add_peer()` を参照)。パラメータを指定しない場合(もしくは ``None`` を
 "指定した場合)、既存のパラメータ値を返します。"
 
-#: ../../library/espnow.rst:538
+#: ../../library/espnow.rst:564
 msgid "Callback Methods"
 msgstr "コールバックメソッド"
 
-#: ../../library/espnow.rst:542
+#: ../../library/espnow.rst:568
 msgid ""
 "Set a callback function to be called *as soon as possible* after a "
 "message has been received from another ESPNow device. The callback "
@@ -6012,7 +6104,7 @@ msgstr ""
 "メッセージを読み込み、読み込みのタイムアウトをゼロに設定することをお勧めします。"
 "たとえば、次のように使います::"
 
-#: ../../library/espnow.rst:548
+#: ../../library/espnow.rst:574
 msgid ""
 "def recv_cb(e):\n"
 "    while True:  # Read out all messages waiting in the buffer\n"
@@ -6030,7 +6122,7 @@ msgstr ""
 "        print(mac, msg)\n"
 "e.irq(recv_cb)"
 
-#: ../../library/espnow.rst:556
+#: ../../library/espnow.rst:582
 msgid ""
 "The `irq()<ESPNow.irq()>` callback method is an alternative method for "
 "processing incoming messages, especially if the data rate is moderate and"
@@ -6041,7 +6133,7 @@ msgstr ""
 "着信したメッセージを処理するための代替方法ですが、"
 "いくつかの注意点があります:"
 
-#: ../../library/espnow.rst:560
+#: ../../library/espnow.rst:586
 msgid ""
 "The scheduler stack *can* overflow and callbacks will be missed if "
 "packets are arriving at a sufficient rate or if other MicroPython "
@@ -6050,7 +6142,6 @@ msgid ""
 "dealing with bursts of messages, or high throughput or on a device which "
 "is busy dealing with other hardware operations."
 msgstr ""
-
 "パケットが十分なレートで到着している場合や、他の MicroPython コンポーネント"
 "(例: bluetooth, machine.Pin.irq(), machine.timer, i2s, ...)が"
 "スケジューラスタックを使用している場合、スケジューラスタックがオーバーフローして、"
@@ -6058,7 +6149,7 @@ msgstr ""
 "このメソッドは、メッセージのバースト処理や高スループット、"
 "他のハードウェア操作に忙しいデバイスの処理に対しては、信頼性が低い場合があります。"
 
-#: ../../library/espnow.rst:567
+#: ../../library/espnow.rst:593
 msgid ""
 "For more information on *scheduled* function callbacks see: "
 "`micropython.schedule()<micropython.schedule>`."
@@ -6067,7 +6158,7 @@ msgstr ""
 "`micropython.schedule()<micropython.schedule>` "
 "を参照してください。"
 
-#: ../../library/espnow.rst:579
+#: ../../library/espnow.rst:605
 msgid ""
 "The following constants correspond to different transmit data rates on "
 "ESP32 only. Lower data rates are generally more reliable over long "
@@ -6076,11 +6167,11 @@ msgstr ""
 "以下の定数は、ESP32 のみで使用可能な、異なる転送データレートに対応しています。"
 "データレートが低いほど、一般的に長距離でより信頼性が高くなります。"
 
-#: ../../library/espnow.rst:585
+#: ../../library/espnow.rst:611
 msgid "See  `espnow-long-range`."
 msgstr "`espnow-long-range` を参照してください。"
 
-#: ../../library/espnow.rst:596
+#: ../../library/espnow.rst:622
 msgid ""
 "Unless using the two proprietary long range data rates, only the sender "
 "must configure the data rate."
@@ -6088,15 +6179,15 @@ msgstr ""
 "2つの独自(プロプライエタリ)な長距離データレートを使用しない限り、"
 "送信側でデータレートを設定するだけです。"
 
-#: ../../library/espnow.rst:602
+#: ../../library/espnow.rst:628
 msgid "Long Range Mode"
 msgstr "長距離モード"
 
-#: ../../library/espnow.rst:604
+#: ../../library/espnow.rst:630
 msgid "(ESP32 Only, except ESP32-C2)"
 msgstr "(ESP32-C2 を除く ESP32 のみ)"
 
-#: ../../library/espnow.rst:606
+#: ../../library/espnow.rst:632
 msgid ""
 "To use the `espnow.RATE_LORA_250K` and `espnow.RATE_LORA_500K` data "
 "rates, first set the `WLAN` interface object to long-range mode, i.e.::"
@@ -6105,7 +6196,7 @@ msgstr ""
 "使うには、まず `WLAN` インタフェースオブジェクトをロングレンジモードに設定する"
 "必要があります。つまり、次のようにします:"
 
-#: ../../library/espnow.rst:609
+#: ../../library/espnow.rst:635
 msgid ""
 "import network, espnow\n"
 "sta = network.WLAN(network.WLAN.IF_STA)\n"
@@ -6123,14 +6214,14 @@ msgstr ""
 "e = espnow.ESPNow()\n"
 "e.config(rate=espnow.RATE_LORA_250K)  # 送信側のみ必要"
 
-#: ../../library/espnow.rst:616
+#: ../../library/espnow.rst:642
 msgid ""
 "For more information about the limitations of long-range mode, see "
 "`WLAN.PROTOCOL_LR`."
 msgstr ""
 "長距離モードの制限について詳しくは `WLAN.PROTOCOL_LR` を参照してください。"
 
-#: ../../library/espnow.rst:621
+#: ../../library/espnow.rst:647
 msgid ""
 "If the underlying Espressif ESP-NOW software stack returns an error code,"
 " the MicroPython espnow module will raise an ``OSError(errnum, "
@@ -6146,7 +6237,7 @@ msgstr ""
 "reference/network/esp_now.html#api-reference>`_ にある"
 "エラーコードの名前に設定されます。次に例を示します::"
 
-#: ../../library/espnow.rst:629
+#: ../../library/espnow.rst:655
 msgid ""
 "try:\n"
 "    e.send(peer, 'Hello')\n"
@@ -6163,11 +6254,11 @@ msgid ""
 "        raise err"
 msgstr ""
 
-#: ../../library/espnow.rst:644
+#: ../../library/espnow.rst:670
 msgid "Wifi Signal Strength (RSSI) - (ESP32 only)"
 msgstr "Wifi 信号強度 (RSSI) - (ESP32 のみ)"
 
-#: ../../library/espnow.rst:646
+#: ../../library/espnow.rst:672
 msgid ""
 "The ESPNow object maintains a **peer device table** which contains the "
 "signal strength and timestamp of the last received message from all "
@@ -6182,33 +6273,33 @@ msgstr ""
 "ピアデバイスのネットワーク内でデバイスの近接性を追跡し、 *最も近い隣接デバイス* "
 "を特定するために使えます。この機能は ESP8266 デバイスでは使えません。"
 
-#: ../../library/espnow.rst:654
+#: ../../library/espnow.rst:680
 msgid ""
 "A reference to the **peer device table**: a dict of known peer devices "
 "and rssi values::"
 msgstr ""
 "**ピアデバイステーブル** への参照: 既知のピアデバイスと RSSI 値の辞書です。"
 
-#: ../../library/espnow.rst:657
+#: ../../library/espnow.rst:683
 msgid "{peer: [rssi, time_ms], ...}"
 msgstr ""
 
-#: ../../library/espnow.rst:659
+#: ../../library/espnow.rst:685
 msgid "where:"
 msgstr "ここでの各項目は次のとおりです:"
 
-#: ../../library/espnow.rst:661
+#: ../../library/espnow.rst:687
 msgid "``peer`` is the peer MAC address (as `bytes`);"
 msgstr "``peer`` はピアの MAC アドレス(`bytes`)です。"
 
-#: ../../library/espnow.rst:662
+#: ../../library/espnow.rst:688
 msgid ""
 "``rssi`` is the wifi signal strength in dBm (-127 to 0) of the last "
 "message received from the peer; and"
 msgstr ""
 "``rssi`` はピアからの最新の受信メッセージの wifi 信号強度です(dBm: -127 から 0 の範囲)。"
 
-#: ../../library/espnow.rst:664
+#: ../../library/espnow.rst:690
 msgid ""
 "``time_ms`` is the time the message was received (in milliseconds since "
 "system boot - wraps every 12 days)."
@@ -6216,14 +6307,14 @@ msgstr ""
 "``time_ms`` はメッセージの受信時刻です(システム起動からのミリ秒単位の経過時間、"
 "12日ごとにラップ)。"
 
-#: ../../library/espnow.rst:669
+#: ../../library/espnow.rst:695
 msgid ""
 ">>> e.peers_table\n"
 "{b'\\xaa\\xaa\\xaa\\xaa\\xaa\\xaa': [-31, 18372],\n"
 " b'\\xbb\\xbb\\xbb\\xbb\\xbb\\xbb': [-43, 12541]}"
 msgstr ""
 
-#: ../../library/espnow.rst:673
+#: ../../library/espnow.rst:699
 msgid ""
 "**Note**: the ``mac`` addresses returned by `recv()` are references to "
 "the ``peer`` key values in the **peer device table**."
@@ -6231,7 +6322,7 @@ msgstr ""
 "**注記**: `recv()` によって返される ``mac`` アドレスは、"
 "ピアデバイステーブルのピアキーの値への参照です。"
 
-#: ../../library/espnow.rst:676
+#: ../../library/espnow.rst:702
 msgid ""
 "**Note**: RSSI and timestamp values in the device table are updated only "
 "when the message is read by the application."
@@ -6239,11 +6330,11 @@ msgstr ""
 "**注記**: デバイステーブル内の RSSI とタイムスタンプの値は、アプリケーションによって"
 "メッセージが読み込まれたときにのみ更新されます。"
 
-#: ../../library/espnow.rst:680
+#: ../../library/espnow.rst:706
 msgid "Supporting asyncio"
 msgstr "asyncio のサポート"
 
-#: ../../library/espnow.rst:682
+#: ../../library/espnow.rst:708
 msgid ""
 "A supplementary module (`aioespnow`) is available to provide "
 ":doc:`asyncio<asyncio>` support."
@@ -6251,7 +6342,7 @@ msgstr ""
 "追加のモジュール(`aioespnow`)が利用可能であり、 :doc:`asyncio<asyncio>` を"
 "サポートします。"
 
-#: ../../library/espnow.rst:685
+#: ../../library/espnow.rst:711
 msgid ""
 "**Note:** Asyncio support is available on all ESP32 targets as well as "
 "those ESP8266 boards which include the asyncio module (ie. ESP8266 "
@@ -6262,11 +6353,11 @@ msgstr ""
 "(すなわち、少なくとも2MBのフラッシュメモリを持つ ESP8266 デバイス)"
 "でも使えます。"
 
-#: ../../library/espnow.rst:689
+#: ../../library/espnow.rst:715
 msgid "A small async server example::"
 msgstr "次は小さな非同期サーバーの例です::"
 
-#: ../../library/espnow.rst:691
+#: ../../library/espnow.rst:717
 msgid ""
 "import network\n"
 "import aioespnow\n"
@@ -6310,7 +6401,7 @@ msgid ""
 "asyncio.run(main(e, peer, 120, 10))"
 msgstr ""
 
-#: ../../library/espnow.rst:735
+#: ../../library/espnow.rst:761
 msgid ""
 "The `AIOESPNow` class inherits all the methods of `ESPNow<espnow.ESPNow>`"
 " and extends the interface with the following async methods."
@@ -6318,7 +6409,7 @@ msgstr ""
 "`AIOESPNow` クラスは `ESPNow<espnow.ESPNow>` のすべてのメソッドを継承し、"
 "以下の非同期メソッドでインタフェースを拡張します。"
 
-#: ../../library/espnow.rst:740
+#: ../../library/espnow.rst:766
 msgid ""
 "Asyncio support for `ESPNow.recv()`. Note that this method does not take "
 "a timeout value as argument."
@@ -6326,7 +6417,7 @@ msgstr ""
 "`ESPNow.recv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:745
+#: ../../library/espnow.rst:771
 msgid ""
 "Asyncio support for `ESPNow.irecv()`. Note that this method does not take"
 " a timeout value as argument."
@@ -6334,11 +6425,11 @@ msgstr ""
 "`ESPNow.irecv()` の Asyncio サポート。"
 "このメソッドは引数としてタイムアウト値を取りません。"
 
-#: ../../library/espnow.rst:751
+#: ../../library/espnow.rst:777
 msgid "Asyncio support for `ESPNow.send()`."
 msgstr "`ESPNow.send()` の Asyncio サポート。"
 
-#: ../../library/espnow.rst:755
+#: ../../library/espnow.rst:781
 msgid ""
 "`AIOESPNow` also supports reading incoming messages by asynchronous "
 "iteration using ``async for``; eg::"
@@ -6346,7 +6437,7 @@ msgstr ""
 "`AIOESPNow` は、非同期イテレーションを使って受信メッセージを読み込むための "
 "Async for もサポートしています。例えば次のようにして使います::"
 
-#: ../../library/espnow.rst:758
+#: ../../library/espnow.rst:784
 msgid ""
 "e = AIOESPNow()\n"
 "e.active(True)\n"
@@ -6358,11 +6449,11 @@ msgid ""
 "asyncio.run(recv_till_halt(e))"
 msgstr ""
 
-#: ../../library/espnow.rst:768
+#: ../../library/espnow.rst:794
 msgid "Broadcast and Multicast"
 msgstr "ブロードキャストとマルチキャスト"
 
-#: ../../library/espnow.rst:770
+#: ../../library/espnow.rst:796
 msgid ""
 "All active ESPNow clients will receive messages sent to their MAC address"
 " and all devices (**except ESP8266 devices**) will also receive messages "
@@ -6374,7 +6465,7 @@ msgstr ""
 "*ブロードキャスト* MAC アドレス(``b'\\xff\\xff\\xff\\xff\\xff\\xff'``)"
 "またはマルチキャスト MAC アドレス宛てに送信されたメッセージも受信します。"
 
-#: ../../library/espnow.rst:775
+#: ../../library/espnow.rst:801
 msgid ""
 "All ESPNow devices (including ESP8266 devices) can also send messages to "
 "the broadcast MAC address or any multicast MAC address."
@@ -6382,7 +6473,7 @@ msgstr ""
 "すべての ESPNow デバイス(ESP8266デバイスを含む)は、ブロードキャスト MAC アドレス"
 "または任意のマルチキャスト MAC アドレスにもメッセージを送信できます。"
 
-#: ../../library/espnow.rst:778
+#: ../../library/espnow.rst:804
 msgid ""
 "To `send()<ESPNow.send()>` a broadcast message, the broadcast (or "
 "multicast) MAC address must first be registered using "
@@ -6399,7 +6490,7 @@ msgstr ""
 "ブロードキャストアドレスまたはマルチキャストアドレス宛てに送信されたメッセージは"
 "暗号化できません。"
 
-#: ../../library/espnow.rst:785
+#: ../../library/espnow.rst:811
 msgid ""
 "**Note**: `ESPNow.send(None, msg)<ESPNow.send()>` will send to all "
 "registered peers *except* the broadcast address. To send a broadcast or "
@@ -6411,18 +6502,18 @@ msgstr ""
 "送信するには、ブロードキャスト(またはマルチキャスト) MAC アドレスをピアとして"
 "指定する必要があります。たとえば次のようにします::"
 
-#: ../../library/espnow.rst:790
+#: ../../library/espnow.rst:816
 msgid ""
 "bcast = b'\\xff' * 6\n"
 "e.add_peer(bcast)\n"
 "e.send(bcast, \"Hello World!\")"
 msgstr ""
 
-#: ../../library/espnow.rst:795
+#: ../../library/espnow.rst:821
 msgid "ESPNow and Wifi Operation"
 msgstr "ESPNow と Wifi 操作"
 
-#: ../../library/espnow.rst:797
+#: ../../library/espnow.rst:823
 msgid ""
 "ESPNow messages may be sent and received on any "
 "`active()<network.WLAN.active>` `WLAN<network.WLAN()>` interface "
@@ -6440,7 +6531,7 @@ msgstr ""
 "に接続すると(`ESP32 Quickref <../esp32/quickref.html#networking>`__ "
 "を)、次のようなことが起こり、ESPNow 通信に影響を与えます:"
 
-#: ../../library/espnow.rst:804
+#: ../../library/espnow.rst:830
 msgid ""
 "Wifi Power-saving Mode (`network.WLAN.PM_PERFORMANCE`) is automatically "
 "activated and"
@@ -6448,14 +6539,14 @@ msgstr ""
 "Wifi パワーセービングモード(`network.WLAN.PM_PERFORMANCE`)が自動的に"
 "アクティベートされる。"
 
-#: ../../library/espnow.rst:806
+#: ../../library/espnow.rst:832
 msgid ""
 "The radio on the esp device changes wifi ``channel`` to match the channel"
 " used by the Access Point."
 msgstr ""
 "esp デバイスの無線機が、アクセスポイントで使用されているチャンネルに合わせて変更される。"
 
-#: ../../library/espnow.rst:809
+#: ../../library/espnow.rst:835
 msgid ""
 "**Wifi Power-saving Mode:** (see `Espressif Docs "
 "<https://docs.espressif.com/ projects/esp-idf/en/latest/esp32/api-guides/"
@@ -6471,15 +6562,15 @@ msgstr ""
 "ESPNow メッセージの受信が信頼性に欠ける状態になります。"
 "これに対処する方法は次のいずれかです:"
 
-#: ../../library/espnow.rst:816
+#: ../../library/espnow.rst:842
 msgid "Disabling the power-saving mode on the STA_IF interface;"
 msgstr "STA_IF インタフェースでパワーセービングモードを無効化"
 
-#: ../../library/espnow.rst:818
+#: ../../library/espnow.rst:844
 msgid "Use ``sta.config(pm=sta.PM_NONE)``"
 msgstr "``sta.config(pm=sta.PM_NONE)`` を使用"
 
-#: ../../library/espnow.rst:820
+#: ../../library/espnow.rst:846
 msgid ""
 "Turning on the AP_IF interface, which will disable the power saving mode."
 " However, the device will then be advertising an active wifi access "
@@ -6489,23 +6580,23 @@ msgstr ""
 "ただし、デバイスはアクティブな Wifi アクセスポイントをアドバタインジングする"
 "ことになります。"
 
-#: ../../library/espnow.rst:823
+#: ../../library/espnow.rst:849
 msgid ""
 "You **may** also choose to send your messages via the AP_IF interface, "
 "but this is not necessary."
 msgstr ""
 "メッセージを AP_IF インターフェース経由で送信することもできますが、これは必須ではありません。"
 
-#: ../../library/espnow.rst:825
+#: ../../library/espnow.rst:851
 msgid "ESP8266 peers must send messages to this AP_IF interface (see below)."
 msgstr ""
 "ESP8266 のピアは、この AP_IF インターフェースにメッセージを送信する必要があります(後述)。"
 
-#: ../../library/espnow.rst:827
+#: ../../library/espnow.rst:853
 msgid "Configuring ESPNow clients to retry sending messages."
 msgstr "ESPNow クライアントのメッセージ送信のリトライ設定を行うこと。"
 
-#: ../../library/espnow.rst:829
+#: ../../library/espnow.rst:855
 msgid ""
 "**Receiving messages from an ESP8266 device:** Strangely, an ESP32 device"
 " connected to a wifi network using method 1 or 2 above, will receive "
@@ -6521,7 +6612,7 @@ msgstr ""
 "AP_IF インターフェースを ``active(True)`` に設定し、 **さらに** 、メッセージを"
 "AP_IF MAC アドレス宛てに送信する必要があります。"
 
-#: ../../library/espnow.rst:836
+#: ../../library/espnow.rst:862
 msgid ""
 "**Managing wifi channels:** Any other ESPNow devices wishing to "
 "communicate with a device which is also connected to a Wifi Access Point "
@@ -6535,11 +6626,11 @@ msgstr ""
 "ESPNow を介して接続されたセンサーグループからのメッセージのプロキシとして"
 "機能することです:"
 
-#: ../../library/espnow.rst:842
+#: ../../library/espnow.rst:868
 msgid "**Proxy:** ::"
 msgstr "**プロキシ:** ::"
 
-#: ../../library/espnow.rst:844
+#: ../../library/espnow.rst:870
 msgid ""
 "import network, time, espnow\n"
 "\n"
@@ -6556,11 +6647,11 @@ msgid ""
 "    # Receive espnow messages and forward them to MQTT broker over wifi"
 msgstr ""
 
-#: ../../library/espnow.rst:858
+#: ../../library/espnow.rst:884
 msgid "**Sensor:** ::"
 msgstr "**センサー:** ::"
 
-#: ../../library/espnow.rst:860
+#: ../../library/espnow.rst:886
 msgid ""
 "import network, espnow\n"
 "\n"
@@ -6576,11 +6667,11 @@ msgid ""
 "    time.sleep(1)"
 msgstr ""
 
-#: ../../library/espnow.rst:872
+#: ../../library/espnow.rst:898
 msgid "Other issues to take care with when using ESPNow with wifi are:"
 msgstr "ESPNow を Wifi と併用する際に注意するべき他の問題は次のとおりです:"
 
-#: ../../library/espnow.rst:874
+#: ../../library/espnow.rst:900
 msgid ""
 "**Set WIFI to known state on startup:** MicroPython does not reset the "
 "wifi peripheral after a soft reset. This can lead to unexpected "
@@ -6594,7 +6685,7 @@ msgstr ""
 "起動時に所望の状態に設定する前に非アクティブにするようにしてください。"
 "たとえば次のようにします::"
 
-#: ../../library/espnow.rst:880
+#: ../../library/espnow.rst:906
 msgid ""
 "import network, time\n"
 "\n"
@@ -6613,14 +6704,14 @@ msgid ""
 "sta, ap = wifi_reset()"
 msgstr ""
 
-#: ../../library/espnow.rst:895
+#: ../../library/espnow.rst:921
 msgid ""
 "Remember that a soft reset occurs every time you connect to the device "
 "REPL and when you type ``ctrl-D``."
 msgstr ""
 "ソフトリセットは、デバイスを REPL に接続したり、 ``ctrl-D`` を入力すると常に発生します。"
 
-#: ../../library/espnow.rst:898
+#: ../../library/espnow.rst:924
 msgid ""
 "**STA_IF and AP_IF always operate on the same channel:** the AP_IF will "
 "change channel when you connect to a wifi network; regardless of the "
@@ -6640,7 +6731,7 @@ msgstr ""
 "実際には、デバイス上には1つの Wifi 無線機しかなく、STA_IF と AP_IF の"
 "仮想デバイスで共有されています。"
 
-#: ../../library/espnow.rst:907
+#: ../../library/espnow.rst:933
 msgid ""
 "**Disable automatic channel assignment on your wifi router:** If the wifi"
 " router for your wifi network is configured to automatically assign the "
@@ -6662,7 +6753,7 @@ msgstr ""
 "デバイスを現在のチャンネルで期待されるピアを見つけることができない場合に Wifi チャンネルを"
 "再スキャンするように構成します。"
 
-#: ../../library/espnow.rst:917
+#: ../../library/espnow.rst:943
 msgid ""
 "**MicroPython re-scans wifi channels when trying to reconnect:** If the "
 "esp device is connected to a Wifi Access Point that goes down, "
@@ -6678,7 +6769,7 @@ msgstr ""
 "間は ESPNow メッセージが失われます。 ``sta.config(reconnects=0)`` によって"
 "これを無効にできますが、接続が失われた後の自動再接続も無効になります。"
 
-#: ../../library/espnow.rst:924
+#: ../../library/espnow.rst:950
 msgid ""
 "Some versions of the ESP IDF only permit sending ESPNow packets from the "
 "STA_IF interface to peers which have been registered on the same wifi "
@@ -6687,15 +6778,15 @@ msgstr ""
 "一部の ESP IDF バージョンでは、STA_IF インタフェースからの ESPNow パケットの"
 "送信は、STA_IF と同じ Wifi チャンネルに登録されたピアに対してのみ許可されます。"
 
-#: ../../library/espnow.rst:928
+#: ../../library/espnow.rst:954
 msgid "ESPNOW: Peer channel is not equal to the home channel, send fail!"
 msgstr ""
 
-#: ../../library/espnow.rst:931
+#: ../../library/espnow.rst:957
 msgid "ESPNow and Sleep Modes"
 msgstr "ESPNow とスリープモード"
 
-#: ../../library/espnow.rst:933
+#: ../../library/espnow.rst:959
 msgid ""
 "The `machine.lightsleep([time_ms])<machine.lightsleep>` and "
 "`machine.deepsleep([time_ms])<machine.deepsleep>` functions can be used "
@@ -6723,11 +6814,11 @@ msgstr ""
 "に設定されている場合、どのスリープモードに入る前に両方のインターフェースを "
 "`active(False)<network.WLAN.active()>` に設定する必要があります。"
 
-#: ../../library/espnow.rst:946
+#: ../../library/espnow.rst:972
 msgid "**Example:** deep sleep::"
 msgstr "例：ディープスリープ::"
 
-#: ../../library/espnow.rst:948
+#: ../../library/espnow.rst:974
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -6747,11 +6838,11 @@ msgid ""
 "machine.deepsleep(10000)          # Sleep for 10 seconds then reboot"
 msgstr ""
 
-#: ../../library/espnow.rst:964
+#: ../../library/espnow.rst:990
 msgid "**Example:** light sleep::"
 msgstr "例：ライトスリープ::"
 
-#: ../../library/espnow.rst:996
+#: ../../library/espnow.rst:992
 msgid ""
 "import network, machine, espnow\n"
 "\n"
@@ -7168,15 +7259,15 @@ msgstr "グレースケール(8ビット)カラーフォーマット"
 msgid ":mod:`gc` -- control the garbage collector"
 msgstr ":mod:`gc` -- ガベージコレクションの制御"
 
-#: ../../library/gc.rst:7
+#: ../../library/gc.rst:8
 msgid "|see_cpython_module| :mod:`python:gc`."
 msgstr ""
 
-#: ../../library/gc.rst:14
+#: ../../library/gc.rst:15
 msgid "Enable automatic garbage collection."
 msgstr "自動ガベージコレクションを有効にします。"
 
-#: ../../library/gc.rst:18
+#: ../../library/gc.rst:19
 msgid ""
 "Disable automatic garbage collection.  Heap memory can still be "
 "allocated, and garbage collection can still be initiated manually using "
@@ -7185,31 +7276,27 @@ msgstr ""
 "自動ガベージコレクションを無効にします。無効にしてもヒープメモリの割り当ては"
 "可能であり、ガベージコレクションも :meth:`gc.collect` を使って手動で開始できます。"
 
-#: ../../library/gc.rst:23
+#: ../../library/gc.rst:24
+msgid ""
+"Returns True if automatic garbage collection is enabled, and False "
+"otherwise."
+msgstr ""
+"自動ガベージコレクションが有効になっている場合は True を返し、"
+"そうでない場合は False を返します。"
+
+#: ../../library/gc.rst:28
 msgid "Run a garbage collection."
 msgstr "ガベージコレクションを実行します。"
 
-#: ../../library/gc.rst:27
+#: ../../library/gc.rst:32
 msgid "Return the number of bytes of heap RAM that are allocated by Python code."
 msgstr "Python コードによって割り当てられているヒープ RAM のバイト数を返します。"
 
-#: ../../library/gc.rst:29 ../../library/gc.rst:39 ../../library/gc.rst:61
-#: ../../library/io.rst:15 ../../library/io.rst:118 ../../library/select.rst:79
-#: ../../library/select.rst:96 ../../library/socket.rst:12
-#: ../../library/socket.rst:96 ../../library/socket.rst:278
-#: ../../library/socket.rst:302 ../../library/socket.rst:308
-#: ../../library/socket.rst:349 ../../library/ssl.rst:48
-#: ../../library/struct.rst:64 ../../library/sys.rst:25
-#: ../../library/sys.rst:36 ../../library/sys.rst:83 ../../library/sys.rst:123
-#: ../../library/sys.rst:174 ../../library/time.rst:233
-msgid "Difference to CPython"
-msgstr "CPython との違い"
-
-#: ../../library/gc.rst:32 ../../library/gc.rst:42
+#: ../../library/gc.rst:37 ../../library/gc.rst:47
 msgid "This function is MicroPython extension."
 msgstr "この関数は、MicroPythonの拡張機能です。"
 
-#: ../../library/gc.rst:36
+#: ../../library/gc.rst:41
 msgid ""
 "Return the number of bytes of heap RAM that is available for Python code "
 "to allocate, or -1 if this amount is not known."
@@ -7217,7 +7304,7 @@ msgstr ""
 "Python 使用可能なコードが割り当てられるヒープ RAM のバイト数を返します。"
 "この量がわからない場合は -1 を返します。"
 
-#: ../../library/gc.rst:46
+#: ../../library/gc.rst:51
 msgid ""
 "Set or query the additional GC allocation threshold. Normally, a "
 "collection is triggered only when a new allocation cannot be satisfied, "
@@ -7241,7 +7328,7 @@ msgstr ""
 "これは、ヒューリスティックな尺度であり、その効果はアプリケーションごとに異なり、 "
 "*amount* パラメータの最適値も異なります。"
 
-#: ../../library/gc.rst:58
+#: ../../library/gc.rst:63
 msgid ""
 "Calling the function without argument will return the current value of "
 "the threshold. A value of -1 means a disabled allocation threshold."
@@ -7249,7 +7336,7 @@ msgstr ""
 "引数なしで関数を呼び出すと、しきい値の現在の値が返されます。値が -1 の場合は"
 "無効な割り当てしきい値であることを意味します。"
 
-#: ../../library/gc.rst:64
+#: ../../library/gc.rst:69
 msgid ""
 "This function is a MicroPython extension. CPython has a similar function "
 "- ``set_threshold()``, but due to different GC implementations, its "
@@ -7257,6 +7344,72 @@ msgid ""
 msgstr ""
 "この関数は、MicroPython の拡張機能です。CPython も同様の機能 ``set_threshold()`` "
 "を持っていますが、GCの実装が異なるため、シグネチャとセマンティクスが異なります。"
+
+#: ../../library/gc.rst:76
+msgid ""
+"To trigger a garbage collection each time 32768 bytes of RAM have been "
+"allocated in total::"
+msgstr ""
+"合計 32768 バイトの RAM が割り当てられるたびにガベージコレクションをトリガーします::"
+
+#: ../../library/gc.rst:78
+msgid "gc.threshold(32768)"
+msgstr ""
+
+#: ../../library/gc.rst:80
+msgid ""
+"To restore the default behaviour, only triggering garbage collection when"
+" out of memory::"
+msgstr ""
+"デフォルトの動作に戻し、メモリ不足の場合にのみガベージコレクションをトリガーします::"
+
+#: ../../library/gc.rst:82
+msgid "gc.threshold(-1)"
+msgstr ""
+
+#: ../../library/gc.rst:87
+msgid ""
+">>> import gc\n"
+">>> gc.mem_free() # Gets number of bytes free in memory\n"
+"8192\n"
+">>> gc.mem_alloc() # Gets number of bytes allocated in memory\n"
+"1024\n"
+">>> foo = bytearray(1000) # Create a big array of data\n"
+">>> gc.mem_free() # Show that there's less memory available\n"
+"7168\n"
+">>> gc.mem_alloc() # Show that there's more memory used\n"
+"2048\n"
+">>> del foo # Delete the object\n"
+">>> gc.mem_free() # Show that collection hasn't run yet\n"
+"7168\n"
+">>> gc.mem_alloc() # That memory is still allocated\n"
+"2048\n"
+">>> gc.collect() # Manually run the collection\n"
+">>> gc.mem_free() # Now we have reclaimed that memory\n"
+"8192\n"
+">>> gc.mem_alloc() # That memory is no longer allocated\n"
+"1024"
+msgstr ""
+">>> import gc\n"
+">>> gc.mem_free() # メモリ内の空きバイト数を取得\n"
+"8192\n"
+">>> gc.mem_alloc() # メモリに割り当てられたバイト数を取得\n"
+"1024\n"
+">>> foo = bytearray(1000) # 大きなデータ配列を作成\n"
+">>> gc.mem_free() # 使用可能なメモリが減ったことを示す\n"
+"7168\n"
+">>> gc.mem_alloc() # メモリ使用量が増えていることを示す\n"
+"2048\n"
+">>> del foo # オブジェクトを削除\n"
+">>> gc.mem_free() # コレクションがまだ実行されていないことを示す\n"
+"7168\n"
+">>> gc.mem_alloc() # そのメモリはまだ割り当てられている\n"
+"2048\n"
+">>> gc.collect() # コレクションを手動で実行\n"
+">>> gc.mem_free() # 今、そのメモリを取り戻した\n"
+"8192\n"
+">>> gc.mem_alloc() # そのメモリはもはや割り当てられてない\n"
+"1024"
 
 #: ../../library/gzip.rst:2
 msgid ":mod:`gzip` -- gzip compression & decompression"
@@ -8049,14 +8202,15 @@ msgstr ""
 #: ../../library/io.rst:73
 msgid ""
 "Note that for efficiency, MicroPython doesn't provide abstract base "
-"classes corresponding to the hierarchy above, and it's not possible to "
-"implement, or subclass, a stream class in pure Python."
+"classes corresponding to the hierarchy above.  However, the "
+":class:`IOBase` class can be subclassed to implement custom stream "
+"objects in pure Python."
 msgstr ""
 "効率を上げるために、MicroPython は上記の階層に対応する抽象基底クラスを提供して"
-"いないことに注意してください。純粋な Python にあるストリームクラスを実装または"
-"サブクラス化することはできません。"
+"いないことに注意してください。ただし :class:`IOBase` クラスをサブクラス化することで、"
+"純粋な Python でカスタムストリームオブジェクトを実装できます。"
 
-#: ../../library/io.rst:82
+#: ../../library/io.rst:83
 msgid ""
 "Open a file. Builtin ``open()`` function is aliased to this function. All"
 " ports (which provide access to file system) are required to support "
@@ -8067,6 +8221,141 @@ msgstr ""
 "サポートする必要がありますが、他の引数のサポートはポートによって異なります。"
 
 #: ../../library/io.rst:92
+msgid ""
+"Base class for implementing custom stream objects in Python. Subclasses "
+"can override ``readinto``, ``write``, and ``ioctl`` to create objects "
+"that work with ``print()``, ``json.dump()``, ``select.poll()``, "
+"``open()`` via a user filesystem, and other stream consumers."
+msgstr ""
+"Python でカスタムストリームオブジェクトを実装するための基底クラス。"
+"サブクラスは ``readinto``, ``write``, ``ioctl`` をオーバーライドして、 "
+"``print()``, ``json.dump()``, ``select.poll()``, "
+"ユーザーファイルシステム経由の ``open()``, およびその他のストリームコンシューマーと"
+"連携するオブジェクトを作成できます。"
+
+#: ../../library/io.rst:100
+msgid ""
+"In CPython, ``io.IOBase`` has a much larger API surface. MicroPython's "
+"``IOBase`` is minimal: the C stream infrastructure provides standard "
+"methods like ``read()``, ``readline()``, ``seek()``, ``close()``, and "
+"``flush()`` automatically. Subclasses only need to implement the methods "
+"below."
+msgstr ""
+"CPython で ``io.IOBase`` の API サーフェスははるかに広範です。"
+"一方、MicroPython の IOBase は最小限で、C ストリームインフラストラクチャが "
+"``read()``, ``readline()``, ``seek()``, ``close()``, ``flush()`` "
+"などの標準メソッドを自動的に提供します。サブクラスは以下のメソッドのみを実装すれば"
+"済みます。"
+
+#: ../../library/io.rst:106
+msgid ""
+"Subclasses implement some or all of the following methods. The C stream "
+"layer calls these internally when user code calls standard stream "
+"functions."
+msgstr ""
+"サブクラスは、以下のメソッドの一部または全部を実装します。Cストリーム層は、"
+"ユーザーコードが標準ストリーム関数を呼び出す際に、これらのメソッドを内部的に呼び出します。"
+
+#: ../../library/io.rst:112
+msgid ""
+"Read data into *buf* (a ``bytearray`` sized by the caller). Return the "
+"number of bytes read, 0 at EOF, or ``None`` if no data is available on a "
+"non-blocking stream. Return a negative errno value (e.g. ``-errno.EIO`` "
+"or ``-1``) to signal an error."
+msgstr ""
+"*buf* (呼び出し元がサイズが決められた ``bytearray``)にデータを読み込みます。"
+"戻り値は読み込んだバイト数です。EOF の場合は 0、非ブロッキングストリームでデータが"
+"利用できない場合は ``None`` を返します。"
+"エラーが発生した場合は、負の errno 値(errno.EIO または 1 など)を返します。"
+
+#: ../../library/io.rst:119
+msgid ""
+"Write *buf* (a ``bytearray``) to the stream. Return the number of bytes "
+"written, or ``None`` if a non-blocking stream cannot accept data. Return "
+"a negative errno value to signal an error."
+msgstr ""
+"*buf* (``bytearray``)をストリームに書き出します。戻り値は書き出したバイト数です。"
+"非ブロッキングストリームがデータを受け入れられない場合は ``None`` を返します。"
+"エラーが発生した場合は、負の errno 値を返します。"
+
+#: ../../library/io.rst:125
+msgid ""
+"Control the stream and query its properties. The operation to perform is "
+"given by *op* which is one of the following integers:"
+msgstr ""
+"ストリームを制御し、そのプロパティを照会します。実行する操作は、以下の整数の"
+"いずれかである *op* で指定されます。"
+
+#: ../../library/io.rst:128
+msgid "1 -- flush write buffers (*arg* is unused)"
+msgstr "1 -- 書き込みバッファをフラッシュ(*arg* は未使用)"
+
+#: ../../library/io.rst:129
+msgid ""
+"3 -- poll for readiness; *arg* is a bitmask of events to check, return a "
+"bitmask of ready events. Poll flags:"
+msgstr ""
+"3 -- 準備完了をポーリング。 *arg* はチェックするイベントのビットマスクで、"
+"準備完了イベントのビットマスクを返します。ポーリングフラグは次のとおり:"
+
+#: ../../library/io.rst:132
+msgid "``0x0001`` -- data available for reading"
+msgstr "``0x0001`` -- 読み取り可能なデータ"
+
+#: ../../library/io.rst:133
+msgid "``0x0004`` -- stream ready for writing"
+msgstr "``0x0004`` -- ストリーム書き込み準備完了"
+
+#: ../../library/io.rst:134
+msgid "``0x0008`` -- error condition"
+msgstr "``0x0008`` -- エラー状態"
+
+#: ../../library/io.rst:135
+msgid "``0x0010`` -- hang up (e.g. connection closed)"
+msgstr "0x0010`` -- ハングアップ(例：接続が閉じた)"
+
+#: ../../library/io.rst:136
+msgid "``0x0020`` -- invalid request"
+msgstr "``0x0020`` -- 不正なリクエスト"
+
+#: ../../library/io.rst:138
+msgid "4 -- close the stream (*arg* is unused)"
+msgstr "4 -- ストリームを閉じる(*arg* は未使用)"
+
+#: ../../library/io.rst:139
+msgid "11 -- return the preferred read buffer size, or 0 (*arg* is unused)"
+msgstr "11 -- 優先される読み取りバッファサイズ、または0を返します(*arg* は未使用)"
+
+#: ../../library/io.rst:141
+msgid ""
+"As a minimum ``ioctl(4, ...)`` should be handled to support stream "
+"closure. Implement ``ioctl(3, ...)`` if the stream will be used with "
+"``select.poll()`` or ``asyncio``."
+msgstr ""
+"ストリームのクローズをサポートするために、最低限 ``ioctl(4, ...)`` を処理する"
+"必要があります。ストリームを ``select.poll()`` または ``asyncio`` で使う場合、 "
+"``ioctl(3, ...)`` を実装してください。
+
+#: ../../library/io.rst:145
+msgid ""
+"Other operations exist for advanced use cases (2 = seek, 5 = timeout, 10 "
+"= fileno); see ``py/stream.h`` for the full list."
+msgstr ""
+"高度な使用例向けに他の操作も存在します(2 = seek, 5 = timeout, 10 "
+"= fileno)。完全なリストについては ``py/stream.h`` を参照してください。"
+
+#: ../../library/io.rst:148
+msgid ""
+"Must always return an integer. Return 0 for success, or ``-1`` for "
+"unsupported operations. (Returning 0 for an unhandled operation tells the"
+" C layer the operation was processed successfully, which may cause "
+"incorrect behaviour.)"
+msgstr ""
+"必ず整数を返してください。成功した場合は0を、サポートされていない操作の場合は1を"
+"返してください。(未処理の操作に対して0を返すと、Cレイヤーに対して操作が正常に"
+"処理されたと判断され、誤った動作を引き起こす可能性があります。)"
+
+#: ../../library/io.rst:156
 msgid ""
 "In-memory file-like objects for input/output. `StringIO` is used for "
 "text-mode I/O (similar to a normal file opened with \"t\" modifier). "
@@ -8086,11 +8375,11 @@ msgstr ""
 "``read()``, ``write()``, ``seek()``, ``flush()``, ``close()`` が使え、"
 "加えて以下のメソッドが使えます。"
 
-#: ../../library/io.rst:104
+#: ../../library/io.rst:168
 msgid "Get the current contents of the underlying buffer which holds data."
 msgstr "データを保持するバッファの現在の内容を取得します。"
 
-#: ../../library/io.rst:111
+#: ../../library/io.rst:175
 msgid ""
 "Create an empty `StringIO`/`BytesIO` object, preallocated to hold up to "
 "*alloc_size* number of bytes. That means that writing that amount of "
@@ -8106,9 +8395,95 @@ msgstr ""
 "MicroPython の拡張であり、エンドユーザーアプリケーションではなく、特別な場合"
 "およびシステムレベルのライブラリーでのみ使用することをお勧めします。"
 
-#: ../../library/io.rst:121
+#: ../../library/io.rst:185
 msgid "These constructors are a MicroPython extension."
 msgstr "これらのコンストラクタは MicroPython の拡張です。"
+
+#: ../../library/io.rst:188
+msgid "IOBase Examples"
+msgstr "IOBase の使用例"
+
+#: ../../library/io.rst:190
+msgid "A minimal write-only stream that collects output into a buffer::"
+msgstr "出力をバッファに収集する最小限の書き込み専用ストリーム::"
+
+#: ../../library/io.rst:192
+msgid ""
+"import io\n"
+"\n"
+"class MyOutput(io.IOBase):\n"
+"    def __init__(self):\n"
+"        self.data = bytearray()\n"
+"\n"
+"    def write(self, buf):\n"
+"        self.data.extend(buf)\n"
+"        return len(buf)\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == 4:  # close\n"
+"            return 0\n"
+"        return -1\n"
+"\n"
+"s = MyOutput()\n"
+"print(\"hello\", file=s)\n"
+"print(s.data)  # bytearray(b'hello\\n')"
+msgstr ""
+
+#: ../../library/io.rst:211
+msgid "A readable stream that can be used with ``select.poll()``::"
+msgstr "``select.poll()`` で使用できる読み取り可能なストリーム::"
+
+#: ../../library/io.rst:213
+#, python-format
+msgid ""
+"import io, select\n"
+"from micropython import const\n"
+"\n"
+"_MP_STREAM_POLL = const(3)\n"
+"_MP_STREAM_POLL_RD = const(0x0001)\n"
+"_MP_STREAM_CLOSE = const(4)\n"
+"\n"
+"class RingBuffer(io.IOBase):\n"
+"    def __init__(self, size):\n"
+"        self._buf = bytearray(size)\n"
+"        self._size = size\n"
+"        self._wpos = 0\n"
+"        self._rpos = 0\n"
+"\n"
+"    def _available(self):\n"
+"        return (self._wpos - self._rpos) % self._size\n"
+"\n"
+"    def put(self, data):\n"
+"        for b in data:\n"
+"            self._buf[self._wpos % self._size] = b\n"
+"            self._wpos = (self._wpos + 1) % self._size\n"
+"\n"
+"    def readinto(self, buf):\n"
+"        n = min(len(buf), self._available())\n"
+"        for i in range(n):\n"
+"            buf[i] = self._buf[self._rpos % self._size]\n"
+"            self._rpos = (self._rpos + 1) % self._size\n"
+"        return n\n"
+"\n"
+"    def ioctl(self, op, arg):\n"
+"        if op == _MP_STREAM_POLL:\n"
+"            if arg & _MP_STREAM_POLL_RD and self._available() > 0:\n"
+"                return _MP_STREAM_POLL_RD\n"
+"            return 0\n"
+"        if op == _MP_STREAM_CLOSE:\n"
+"            return 0\n"
+"        return -1\n"
+"\n"
+"rb = RingBuffer(64)\n"
+"rb.put(b\"test data\")\n"
+"\n"
+"poller = select.poll()\n"
+"poller.register(rb, select.POLLIN)\n"
+"for obj, flags in poller.poll(0):\n"
+"    buf = bytearray(16)\n"
+"    n = obj.readinto(buf)\n"
+"    print(buf[:n])  # bytearray(b'test data')"
+msgstr ""
 
 #: ../../library/json.rst:2
 msgid ":mod:`json` -- JSON encoding and decoding"
@@ -9140,11 +9515,22 @@ msgstr ""
 msgid "Availability: ESP32, WiPy."
 msgstr "対応ポート: ESP32、WiPy。"
 
-#: ../../library/machine.rst:167 ../../library/pyb.rst:187
+#: ../../library/machine.rst:168
+msgid ""
+"Returns the GPIO pin numbers of those pins which caused wakeup from deep "
+"sleep as a tuple of integers."
+msgstr ""
+"ディープスリープからの復帰を引き起こしたGPIOピンのピン番号を整数のタプルとして返します。"
+
+#: ../../library/machine.rst:171
+msgid "Availability: ESP32."
+msgstr "対応ポート: ESP32。"
+
+#: ../../library/machine.rst:174 ../../library/pyb.rst:187
 msgid "Miscellaneous functions"
 msgstr "その他の関数"
 
-#: ../../library/machine.rst:171
+#: ../../library/machine.rst:178
 msgid ""
 "Returns a byte string with a unique identifier of a board/SoC. It will "
 "vary from a board/SoC instance to another, if underlying hardware allows."
@@ -9157,7 +9543,7 @@ msgstr ""
 "(短い ID が必要な場合は、完全な値の部分文字列を使用してください)。一部の "
 "MicroPython ポートにおいて、ID はネットワークの MAC アドレスに対応します。"
 
-#: ../../library/machine.rst:178
+#: ../../library/machine.rst:185
 msgid ""
 "Time a pulse on the given *pin*, and return the duration of the pulse in "
 "microseconds.  The *pulse_level* argument should be 0 to time a low pulse"
@@ -9167,7 +9553,7 @@ msgstr ""
 "*pulse_level* 引数には、低パルスを計時する場合に 0、高パルスを計時する"
 "場合に 1 を指定します。"
 
-#: ../../library/machine.rst:182
+#: ../../library/machine.rst:189
 msgid ""
 "If the current input value of the pin is different to *pulse_level*, the "
 "function first (*) waits until the pin input becomes equal to "
@@ -9180,7 +9566,7 @@ msgstr ""
 "時間を測ります(**)。ピンが既に *pulse_level* に等しい場合、計測はすぐに開始"
 "されます。"
 
-#: ../../library/machine.rst:187
+#: ../../library/machine.rst:194
 msgid ""
 "The function will return -2 if there was timeout waiting for condition "
 "marked (*) above, and -1 if there was timeout during the main "
@@ -9191,7 +9577,7 @@ msgstr ""
 "(**)の場合は -1 を返します。タイムアウト時間は両方のケースで同じで、 *timeout_us* "
 "(マイクロ秒単位)で指定します。"
 
-#: ../../library/machine.rst:194
+#: ../../library/machine.rst:201
 msgid ""
 "Transmits *data* by bit-banging the specified *pin*. The *encoding* "
 "argument specifies how the bits are encoded, and *timing* is an encoding-"
@@ -9201,11 +9587,11 @@ msgstr ""
 "引数 *encoding* には、ビットのエンコード方法を指定し、 *timing* には"
 "エンコードに応じたタイミングを指定します。"
 
-#: ../../library/machine.rst:198
+#: ../../library/machine.rst:205
 msgid "The supported encodings are:"
 msgstr "サポートされているエンコーディングは次のとおりです:"
 
-#: ../../library/machine.rst:200
+#: ../../library/machine.rst:207
 msgid ""
 "``0`` for \"high low\" pulse duration modulation. This will transmit 0 "
 "and 1 bits as timed pulses, starting with the most significant bit. The "
@@ -9220,7 +9606,7 @@ msgstr ""
 "ナノ秒の4項目タプルでなければなりません。"
 "たとえば ``(400, 850, 800, 450)`` は 800kHz の WS2812 RGB LED のタイミング仕様です。"
 
-#: ../../library/machine.rst:207
+#: ../../library/machine.rst:214
 msgid ""
 "The accuracy of the timing varies between ports. On Cortex M0 at 48MHz, "
 "it is at best +/- 120ns, however on faster MCUs (ESP8266, ESP32, STM32, "
@@ -9230,7 +9616,7 @@ msgstr ""
 "せいぜい +/-120ns 程度ですが、より高速なMCU(ESP8266, ESP32, STM32, Pyboard）では "
 "+/-30ns 程度になります。"
 
-#: ../../library/machine.rst:211
+#: ../../library/machine.rst:218
 msgid ""
 "For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel` module "
 "for a higher-level API."
@@ -9238,7 +9624,7 @@ msgstr ""
 "WS2812/NeoPixel ストリップの制御については、上位の API である :mod:`neopixel` "
 "モジュールを参照してください。"
 
-#: ../../library/machine.rst:216
+#: ../../library/machine.rst:223
 msgid "Return a 24-bit software generated random number."
 msgstr "24ビットのソフトウェア生成乱数を返します。"
 
@@ -13200,7 +13586,7 @@ msgid ""
 "Contains pins named after the board's silkscreen or schematic labels. For"
 " example ``Pin.board.X1`` or ``Pin.board.LED``."
 msgstr ""
-ボードのシルクスクリーンまたは回路図ラベルにちなんで名付けられたピンが含まれています。"
+"ボードのシルクスクリーンまたは回路図ラベルにちなんで名付けられたピンが含まれています。"
 "たとえば ``Pin.board.X1`` や ``Pin.board.LED`` などです。"
 
 #: ../../library/machine.Pin.rst:255
@@ -13274,7 +13660,7 @@ msgid ""
 "Use ``help(Pin.board)`` or ``help(Pin.cpu)`` to list the pin names "
 "available on a particular board."
 msgstr ""
-``help(Pin.board)`` または ``help(Pin.cpu)`` を使えば、特定のボードで"
+"``help(Pin.board)`` または ``help(Pin.cpu)`` を使えば、特定のボードで"
 "利用可能なピン名を一覧表示できます。"
 
 #: ../../library/machine.Pin.rst:290
@@ -13297,7 +13683,38 @@ msgstr ""
 "プルアップ/ダウン抵抗があるかどうかを選択します。プルしないときには ``None`` "
 "を使ってください。"
 
+#: ../../library/machine.Pin.rst:308
+msgid ""
+"Some ports have a different constants set that can be used to select "
+"hardware-specific behaviour:"
+msgstr ""
+"ポートによっては、ハードウェア固有の動作を選択するために使用できる異なる"
+"定数セットが用意されています。"
+
+#: ../../library/machine.Pin.rst:311
+msgid ""
+"The esp8266 port does not have pull-down resistors on GPIO pins, hence "
+"``Pin.PULL_DOWN`` is not supported."
+msgstr ""
+"esp8266 ポートには GPIO ピンにプルダウン抵抗がないため、 "
+"``Pin.PULL_DOWN`` はサポートされていません。"
+
 #: ../../library/machine.Pin.rst:313
+msgid ""
+"The mimxrt port has several extra constants to enable different pull "
+"modes: ``Pin.PULL_UP_22K`` enables a 22KΩ pull-up on the pin, "
+"``Pin.PULL_UP_47K`` enables a 47KΩ pull-up on the pin, and "
+"``Pin.PULL_HOLD`` that puts the pin into high-impedance mode.  The "
+"``Pin.PULL_UP`` and ``Pin.PULL_DOWN`` constants will use a 100KΩ internal"
+" resistor."
+msgstr ""
+"mimxrt ポートでは、さまざまなプルモードを有効にするための追加定数がいくつかあります。"
+"``Pin.PULL_UP_22K`` は、ピンに 22KΩ のプルアップ抵抗を有効にします。"
+"``Pin.PULL_UP_47K`` は、ピンに 47KΩ のプルアップ抵抗を有効にします。"
+"``Pin.PULL_HOLD`` は、ピンを高インピーダンスモードにします。"
+"``Pin.PULL_UP`` および ``Pin.PULL_DOWN`` 定数は、100KΩ の内部抵抗を使います。"
+
+#: ../../library/machine.Pin.rst:324
 msgid ""
 "Selects the pin drive strength.  A port may define additional drive "
 "constants with increasing number corresponding to increasing drive "
@@ -13307,7 +13724,7 @@ msgstr ""
 "ポートに依存して、さらにドライブ定数を定義することができ、"
 "数が大きいほどドライブ電流値が強くなります。"
 
-#: ../../library/machine.Pin.rst:322
+#: ../../library/machine.Pin.rst:333
 msgid "Selects the IRQ trigger type."
 msgstr "IRQ トリガタイプを選択します。"
 
@@ -13653,14 +14070,22 @@ msgstr ""
 "*data* は SD データバスのピンをリストまたはタプルで指定できます(ESP32-S3 のみ)。"
 
 #: ../../library/machine.SDCard.rst:63
+msgid ""
+"*ldo* can be used to specify the internal LDO channel used for SD card "
+"logic level for SDIO 3.0 (ESP32-P4 only)."
+msgstr ""
+"*ldo* は SDIO 3.0 の SD カードロジック レベルに使用される内部 LDO チャネルを"
+"指定するために使用できます(ESP32-P4 のみ)。"
+
+#: ../../library/machine.SDCard.rst:66
 msgid "*freq* selects the SD/MMC interface frequency in Hz."
 msgstr "*freq* は SD/MMC インタフェースの周波数を Hz で指定します。"
 
-#: ../../library/machine.SDCard.rst:66
+#: ../../library/machine.SDCard.rst:69
 msgid "Implementation-specific details"
 msgstr "ハードウェア固有の詳細"
 
-#: ../../library/machine.SDCard.rst:59
+#: ../../library/machine.SDCard.rst:71
 msgid ""
 "Different implementations of the ``SDCard`` class on different hardware "
 "support varying subsets of the options above."
@@ -13668,23 +14093,18 @@ msgstr ""
 "異なるハードウェア上の ``SDCard`` クラスの実装は、上記のオプションの"
 "さまざまなサブセットをサポートします。"
 
-#: ../../library/machine.SDCard.rst:63
+#: ../../library/machine.SDCard.rst:75
 msgid "PyBoard"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:65
+#: ../../library/machine.SDCard.rst:77
 msgid ""
 "The standard PyBoard has just one slot. No arguments are necessary or "
 "supported."
 msgstr ""
 "標準の PyBoard にはスロットが1つしかありません。引数は不要またはサポートされていません。"
 
-#: ../../library/machine.SDCard.rst:77 ../../library/machine.SDCard.rst:91
-#: ../../library/machine.UART.rst:216
-msgid "ESP32"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:79
+#: ../../library/machine.SDCard.rst:82
 msgid ""
 "SD cards support access in both SD/MMC mode and the simpler (but slower) "
 "SPI mode."
@@ -13692,7 +14112,7 @@ msgstr ""
 "SD カードは SD/MMC モードと、よりシンプルな(ただし遅い) SPI モードの両方で"
 "アクセスできます。"
 
-#: ../../library/machine.SDCard.rst:82
+#: ../../library/machine.SDCard.rst:85
 msgid ""
 "SPI mode makes use of a `SPI` host peripheral, which cannot concurrently "
 "be used for other SPI interactions."
@@ -13700,83 +14120,83 @@ msgstr ""
 "SPI モードでは `SPI` ホストペリフェラルを使いますが、このペリフェラルは他の SPI 通信と"
 "同時に使えません。"
 
-#: ../../library/machine.SDCard.rst:85
+#: ../../library/machine.SDCard.rst:88
 msgid ""
 "The ``slot`` argument determines which mode is used. Different values are"
 " supported on different chips:"
 msgstr ""
 "``slot`` 引数によって使うモードが決まります。指定できる値はチップによって異なります。"
 
-#: ../../library/machine.SDCard.rst:89
+#: ../../library/machine.SDCard.rst:92
 msgid "Chip"
 msgstr "チップ"
 
-#: ../../library/machine.SDCard.rst:89
+#: ../../library/machine.SDCard.rst:92
 msgid "Slot 0"
 msgstr "スロット 0"
 
-#: ../../library/machine.SDCard.rst:89
+#: ../../library/machine.SDCard.rst:92
 msgid "Slot 1"
 msgstr "スロット 1"
 
-#: ../../library/machine.SDCard.rst:89
+#: ../../library/machine.SDCard.rst:92
 msgid "Slot 2"
 msgstr "スロット 2"
 
-#: ../../library/machine.SDCard.rst:89
+#: ../../library/machine.SDCard.rst:92
 msgid "Slot 3"
 msgstr "スロット 3"
 
-#: ../../library/machine.SDCard.rst:91 ../../library/machine.SDCard.rst:95
-#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:104
+#: ../../library/machine.SDCard.rst:94 ../../library/machine.SDCard.rst:98
+#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:107
 msgid "SD/MMC"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:91 ../../library/machine.SDCard.rst:94
-#: ../../library/machine.SDCard.rst:95
+#: ../../library/machine.SDCard.rst:94 ../../library/machine.SDCard.rst:97
+#: ../../library/machine.SDCard.rst:98
 msgid "SPI (id=1)"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:91 ../../library/machine.SDCard.rst:92
-#: ../../library/machine.SDCard.rst:93 ../../library/machine.SDCard.rst:94
-#: ../../library/machine.SDCard.rst:95
+#: ../../library/machine.SDCard.rst:94 ../../library/machine.SDCard.rst:95
+#: ../../library/machine.SDCard.rst:96 ../../library/machine.SDCard.rst:97
+#: ../../library/machine.SDCard.rst:98
 msgid "SPI (id=0)"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:92
+#: ../../library/machine.SDCard.rst:95
 msgid "ESP32-C3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:93
+#: ../../library/machine.SDCard.rst:96
 msgid "ESP32-C6"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:94
+#: ../../library/machine.SDCard.rst:97
 msgid "ESP32-S2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:95 ../../library/machine.SDCard.rst:144
+#: ../../library/machine.SDCard.rst:98 ../../library/machine.SDCard.rst:147
 msgid "ESP32-S3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:98
+#: ../../library/machine.SDCard.rst:101
 msgid "Different slots support different data bus widths (number of data pins):"
-msgstr ""
+msgstr "異なるスロットは異なるデータバス幅(データピンの数)をサポートします:"
 
-#: ../../library/machine.SDCard.rst:101 ../../library/machine.SDCard.rst:125
-#: ../../library/machine.SDCard.rst:152
+#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:128
+#: ../../library/machine.SDCard.rst:155
 msgid "Slot"
 msgstr "スロット"
 
-#: ../../library/machine.SDCard.rst:101 ../../library/wm8960.rst:102
+#: ../../library/machine.SDCard.rst:104 ../../library/wm8960.rst:102
 msgid "Type"
 msgstr "種別"
 
-#: ../../library/machine.SDCard.rst:101
+#: ../../library/machine.SDCard.rst:104
 msgid "Supported data widths"
 msgstr "サポートするデータ幅"
 
-#: ../../library/machine.SDCard.rst:103 ../../library/machine.SDCard.rst:152
+#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:155
 #: ../../library/pyb.CAN.rst:306 ../../library/wm8960.rst:78
 #: ../../library/wm8960.rst:92 ../../library/wm8960.rst:104
 #: ../../library/wm8960.rst:119 ../../library/wm8960.rst:132
@@ -13784,13 +14204,13 @@ msgstr "サポートするデータ幅"
 msgid "0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:103
+#: ../../library/machine.SDCard.rst:106
 msgid "1, 4, 8"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:104 ../../library/machine.SDCard.rst:105
-#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:125
-#: ../../library/machine.SDCard.rst:152 ../../library/pyb.CAN.rst:213
+#: ../../library/machine.SDCard.rst:107 ../../library/machine.SDCard.rst:108
+#: ../../library/machine.SDCard.rst:109 ../../library/machine.SDCard.rst:128
+#: ../../library/machine.SDCard.rst:155 ../../library/pyb.CAN.rst:213
 #: ../../library/pyb.CAN.rst:308 ../../library/struct.rst:28
 #: ../../library/struct.rst:30 ../../library/wm8960.rst:79
 #: ../../library/wm8960.rst:91 ../../library/wm8960.rst:105
@@ -13800,13 +14220,13 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:104
+#: ../../library/machine.SDCard.rst:107
 msgid "1, 4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:105 ../../library/machine.SDCard.rst:125
-#: ../../library/machine.SDCard.rst:131 ../../library/machine.SDCard.rst:152
-#: ../../library/machine.SDCard.rst:158 ../../library/machine.SDCard.rst:168
+#: ../../library/machine.SDCard.rst:108 ../../library/machine.SDCard.rst:128
+#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:155
+#: ../../library/machine.SDCard.rst:161 ../../library/machine.SDCard.rst:171
 #: ../../library/pyb.CAN.rst:209 ../../library/pyb.CAN.rst:211
 #: ../../library/pyb.CAN.rst:310 ../../library/struct.rst:32
 #: ../../library/struct.rst:34 ../../library/struct.rst:48
@@ -13816,17 +14236,17 @@ msgstr ""
 msgid "2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:105 ../../library/machine.SDCard.rst:106
+#: ../../library/machine.SDCard.rst:108 ../../library/machine.SDCard.rst:109
 msgid "SPI"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:106 ../../library/machine.SDCard.rst:125
-#: ../../library/machine.SDCard.rst:152 ../../library/wm8960.rst:93
+#: ../../library/machine.SDCard.rst:109 ../../library/machine.SDCard.rst:128
+#: ../../library/machine.SDCard.rst:155 ../../library/wm8960.rst:93
 #: ../../library/wm8960.rst:107 ../../library/wm8960.rst:146
 msgid "3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:109
+#: ../../library/machine.SDCard.rst:112
 msgid ""
 "Most ESP32 modules that provide an SD card slot using the dedicated "
 "hardware only wire up 1 data pin, so the default value for ``width`` is "
@@ -13836,15 +14256,15 @@ msgstr ""
 "提供する際に、データピンを1本だけ接続しているため、 ``width`` のデフォルト値は "
 "1 になっています。"
 
-#: ../../library/machine.SDCard.rst:113
+#: ../../library/machine.SDCard.rst:116
 msgid "Additional details depend on which ESP32 family chip is in use:"
 msgstr "さらなる詳細は、使用している ESP32 ファミリーのチップによって異なります:"
 
-#: ../../library/machine.SDCard.rst:116
+#: ../../library/machine.SDCard.rst:119
 msgid "Original ESP32"
 msgstr "オリジナルの ESP32"
 
-#: ../../library/machine.SDCard.rst:118
+#: ../../library/machine.SDCard.rst:121
 msgid ""
 "In SD/MMC mode (slot 1), pin assignments in SD/MMC mode are fixed on the "
 "original ESP32. The SPI mode slots (2 & 3) allow pins to be set to "
@@ -13854,55 +14274,55 @@ msgstr ""
 "されています。SPI モードのスロット(2 & 3)では、コンストラクタ内で異なるピンを"
 "設定できます。"
 
-#: ../../library/machine.SDCard.rst:122
+#: ../../library/machine.SDCard.rst:125
 msgid "The default pin assignments are as follows:"
 msgstr "デフォルトのピン割り当ては次のとおりです:"
 
-#: ../../library/machine.SDCard.rst:125
+#: ../../library/machine.SDCard.rst:128
 msgid "Can be set"
 msgstr "設定可能か"
 
-#: ../../library/machine.SDCard.rst:127 ../../library/machine.SDCard.rst:154
+#: ../../library/machine.SDCard.rst:130 ../../library/machine.SDCard.rst:157
 msgid "Signal"
 msgstr "信号線"
 
-#: ../../library/machine.SDCard.rst:127 ../../library/machine.SDCard.rst:154
+#: ../../library/machine.SDCard.rst:130 ../../library/machine.SDCard.rst:157
 msgid "Pin"
 msgstr "ピン"
 
-#: ../../library/machine.SDCard.rst:129 ../../library/machine.SDCard.rst:156
+#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:159
 msgid "CLK"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:129 ../../library/machine.SDCard.rst:135
-#: ../../library/machine.SDCard.rst:156 ../../library/machine.SDCard.rst:166
+#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:138
+#: ../../library/machine.SDCard.rst:159 ../../library/machine.SDCard.rst:169
 msgid "14"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:129 ../../library/machine.SDCard.rst:130
-#: ../../library/machine.SDCard.rst:131 ../../library/machine.SDCard.rst:132
-#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:134
+#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:133
+#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:135
+#: ../../library/machine.SDCard.rst:136 ../../library/machine.SDCard.rst:137
 msgid "No"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:130 ../../library/machine.SDCard.rst:157
+#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:160
 msgid "CMD"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:130 ../../library/machine.SDCard.rst:136
-#: ../../library/machine.SDCard.rst:157 ../../library/machine.SDCard.rst:169
+#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:139
+#: ../../library/machine.SDCard.rst:160 ../../library/machine.SDCard.rst:172
 msgid "15"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:131 ../../library/machine.SDCard.rst:158
+#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:161
 msgid "D0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:159
+#: ../../library/machine.SDCard.rst:135 ../../library/machine.SDCard.rst:162
 msgid "D1"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:132 ../../library/machine.SDCard.rst:159
+#: ../../library/machine.SDCard.rst:135 ../../library/machine.SDCard.rst:162
 #: ../../library/pyb.CAN.rst:207 ../../library/struct.rst:36
 #: ../../library/struct.rst:38 ../../library/struct.rst:40
 #: ../../library/struct.rst:42 ../../library/struct.rst:50
@@ -13911,63 +14331,58 @@ msgstr ""
 msgid "4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:160
+#: ../../library/machine.SDCard.rst:136 ../../library/machine.SDCard.rst:163
 msgid "D2"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:133 ../../library/machine.SDCard.rst:137
-#: ../../library/machine.SDCard.rst:160
-msgid "12"
-msgstr ""
-
-#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:161
+#: ../../library/machine.SDCard.rst:137 ../../library/machine.SDCard.rst:164
 msgid "D3"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:134 ../../library/machine.SDCard.rst:138
-#: ../../library/machine.SDCard.rst:161 ../../library/machine.SDCard.rst:167
+#: ../../library/machine.SDCard.rst:137 ../../library/machine.SDCard.rst:141
+#: ../../library/machine.SDCard.rst:164 ../../library/machine.SDCard.rst:170
 msgid "13"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:135 ../../library/machine.SDCard.rst:166
+#: ../../library/machine.SDCard.rst:138 ../../library/machine.SDCard.rst:169
 msgid "sck"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:135
+#: ../../library/machine.SDCard.rst:138
 msgid "18"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:135 ../../library/machine.SDCard.rst:136
-#: ../../library/machine.SDCard.rst:137 ../../library/machine.SDCard.rst:138
+#: ../../library/machine.SDCard.rst:138 ../../library/machine.SDCard.rst:139
+#: ../../library/machine.SDCard.rst:140 ../../library/machine.SDCard.rst:141
 msgid "Yes"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:136 ../../library/machine.SDCard.rst:167
+#: ../../library/machine.SDCard.rst:139 ../../library/machine.SDCard.rst:170
 msgid "cs"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:136 ../../library/wm8960.rst:109
+#: ../../library/machine.SDCard.rst:139 ../../library/wm8960.rst:109
 #: ../../library/wm8960.rst:122 ../../library/wm8960.rst:148
 msgid "5"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:137 ../../library/machine.SDCard.rst:168
+#: ../../library/machine.SDCard.rst:140 ../../library/machine.SDCard.rst:171
 msgid "miso"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:137 ../../library/wm8960.rst:94
+#: ../../library/machine.SDCard.rst:140 ../../library/wm8960.rst:94
 msgid "19"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:138 ../../library/machine.SDCard.rst:169
+#: ../../library/machine.SDCard.rst:141 ../../library/machine.SDCard.rst:172
 msgid "mosi"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:138
+#: ../../library/machine.SDCard.rst:141
 msgid "23"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:141
+#: ../../library/machine.SDCard.rst:144
 msgid ""
 "The ``cd`` and ``wp`` pins are not fixed in either mode and default to "
 "disabled, unless set."
@@ -13975,7 +14390,7 @@ msgstr ""
 "``cd`` と ``wp`` ピンは、どちらのモードでも固定されておらず、設定しない限り"
 "無効になります。"
 
-#: ../../library/machine.SDCard.rst:146
+#: ../../library/machine.SDCard.rst:149
 msgid ""
 "The ESP32-S3 chip allows pins to be set to different values for both "
 "SD/MMC and SPI mode access."
@@ -13983,52 +14398,52 @@ msgstr ""
 "ESP32-S3 チップでは、SD/MMC モードおよび SPI モードの両方でピンの値を自由に"
 "設定できます。"
 
-#: ../../library/machine.SDCard.rst:149
+#: ../../library/machine.SDCard.rst:152
 msgid "If not set, default pin assignments are as follows:"
 msgstr ""
 "設定しない場合のデフォルトのピン割り当ては次のとおりです:"
 
-#: ../../library/machine.SDCard.rst:162
+#: ../../library/machine.SDCard.rst:165
 msgid "D4"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:162
+#: ../../library/machine.SDCard.rst:166
 msgid "33*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:163
+#: ../../library/machine.SDCard.rst:166
 msgid "D5"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:163 ../../library/machine.SDCard.rst:167
+#: ../../library/machine.SDCard.rst:166 ../../library/machine.SDCard.rst:170
 msgid "34*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:164
+#: ../../library/machine.SDCard.rst:167
 msgid "D6"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:164 ../../library/machine.SDCard.rst:169
+#: ../../library/machine.SDCard.rst:167 ../../library/machine.SDCard.rst:172
 msgid "35*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:165
+#: ../../library/machine.SDCard.rst:168
 msgid "D7"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:165
+#: ../../library/machine.SDCard.rst:168
 msgid "36*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:166 ../../library/machine.SDCard.rst:168
+#: ../../library/machine.SDCard.rst:169 ../../library/machine.SDCard.rst:171
 msgid "37*"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:172
+#: ../../library/machine.SDCard.rst:175
 msgid "Slots 0 and 1 cannot both be in use at the same time."
 msgstr "スロット0と1は同時に使えません。"
 
-#: ../../library/machine.SDCard.rst:174
+#: ../../library/machine.SDCard.rst:177
 msgid ""
 "Pins marked with an asterisk * in the table must be changed from the "
 "default if the ESP32-S3 board is configured for Octal SPI Flash or PSRAM."
@@ -14036,7 +14451,7 @@ msgstr ""
 "表内でアスタリスク * が付いているピンは、ESP32-S3 ボードが Octal SPI Flash "
 "または PSRAM 用に構成されている場合、デフォルトから変更する必要があります。"
 
-#: ../../library/machine.SDCard.rst:178
+#: ../../library/machine.SDCard.rst:181
 msgid ""
 "To access a card in SD/MMC mode, set ``slot`` parameter value 0 or 1 and "
 "parameters ``sck`` (for CLK), ``cmd`` and ``data`` as needed to assign "
@@ -14050,11 +14465,11 @@ msgstr ""
 "同じ長さのデータピンまたはピン番号のリストまたはタプルである必要があります。"
 "たとえば次のようになります:"
 
-#: ../../library/machine.SDCard.rst:183
+#: ../../library/machine.SDCard.rst:186
 msgid "sd = SDCard(slot=0, width=4, sck=8, cmd=9, data=(10, 11, 12, 13))"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:185
+#: ../../library/machine.SDCard.rst:188
 msgid ""
 "To access a card in SPI mode, set ``slot`` parameter value 2 or 3 and "
 "pass parameters ``sck``, ``cs``, ``miso``, ``mosi`` as needed to assign "
@@ -14064,7 +14479,7 @@ msgstr ""
 "設定し、 ``sck``, ``cs``, ``miso``, ``mosi`` の各パラメータを指定して"
 "ピンを割り当てます。"
 
-#: ../../library/machine.SDCard.rst:188
+#: ../../library/machine.SDCard.rst:191
 msgid ""
 "In either mode the ``cd`` and ``wp`` pins default to disabled, unless set"
 " in the constructor."
@@ -14072,11 +14487,32 @@ msgstr ""
 "どちらのモードでも ``cd`` と ``wp`` は、コンストラクタで設定しない限り無効の"
 "ままとなります。"
 
-#: ../../library/machine.SDCard.rst:192
+#: ../../library/machine.SDCard.rst:195
+msgid "ESP32-P4"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:197
+msgid ""
+"The ESP32-P4 has multiple internal adjustable LDO regulators, and some "
+"boards use one of LDOs to control the SD card logic level required by "
+"SDIO 3.0. Most boards will automatically select the correct LDO channel, "
+"but it may be necessary to manually specify the ``ldo`` parameter as an "
+"integer (1 through 4). For example::"
+msgstr ""
+"ESP32-P4 には複数の内部調整可能な LDO レギュレータがあり、一部のボードでは "
+"LDO の1つを使用して SDIO 3.0 で要求されるSDカードのロジックレベルを制御します。"
+"ほとんどのボードは適切な LDO チャネルを自動的に選択しますが、 ``ldo`` パラメータを"
+"整数(1～4)として手動で指定する必要がある場合もあります。たとえば次のように指定します::"
+
+#: ../../library/machine.SDCard.rst:202
+msgid "sd = SDCard(ldo=4)"
+msgstr ""
+
+#: ../../library/machine.SDCard.rst:205
 msgid "Other ESP32 chips"
 msgstr "その他の ESP32 チップ"
 
-#: ../../library/machine.SDCard.rst:194
+#: ../../library/machine.SDCard.rst:207
 msgid ""
 "Other ESP32 family chips do not have hardware SD/MMC host controllers and"
 " can only access SD cards in SPI mode."
@@ -14084,7 +14520,7 @@ msgstr ""
 "その他の ESP32 ファミリのチップにはハードウェア SD/MMC ホストコントローラーがなく、"
 "SDカードには SPI モードでのみアクセス可能です。"
 
-#: ../../library/machine.SDCard.rst:197
+#: ../../library/machine.SDCard.rst:210
 msgid ""
 "To access a card in SPI mode, set ``slot`` parameter value 2 or 3 and "
 "pass parameters ``sck``, ``cs``, ``miso``, ``mosi`` to assign pins."
@@ -14093,7 +14529,7 @@ msgstr ""
 "設定し、 ``sck``, ``cs``, ``miso``, ``mosi`` の各パラメータを指定して"
 "ピンを割り当てます。"
 
-#: ../../library/machine.SDCard.rst:200
+#: ../../library/machine.SDCard.rst:213
 msgid ""
 "ESP32-C3 and ESP32-C6 only have one available `SPI` bus, so the only "
 "valid ``slot`` parameter value is 2. Using this bus for the SD card will "
@@ -14103,18 +14539,18 @@ msgstr ""
 "``slot`` パラメータの値は 2 のみです。このバスを SD カード用に使うと、 "
 ":class:`machine.SPI` との併用はできなくなります。"
 
-#: ../../library/machine.SDCard.rst:205
+#: ../../library/machine.SDCard.rst:218
 msgid "cc3200"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:207
+#: ../../library/machine.SDCard.rst:220
 msgid ""
 "You can set the pins used for SPI access by passing a tuple as the *pins*"
 " argument."
 msgstr ""
 "*pins* 引数にタプルを渡すことにより、SPI アクセスに使うピンを指定できます。"
 
-#: ../../library/machine.SDCard.rst:210
+#: ../../library/machine.SDCard.rst:223
 msgid ""
 "*Note:* The current cc3200 SD card implementation names the this class "
 ":class:`machine.SD` rather than :class:`machine.SDCard` ."
@@ -14122,11 +14558,11 @@ msgstr ""
 "*注記:* 現在の cc3200 SDカードの実装では :class:`machine.SDCard` ではなく、"
 ":class:`machine.SD` のほうを使います。"
 
-#: ../../library/machine.SDCard.rst:214
+#: ../../library/machine.SDCard.rst:227
 msgid "mimxrt"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:216
+#: ../../library/machine.SDCard.rst:229
 msgid ""
 "The SDCard module for the mimxrt port only supports access via dedicated "
 "SD/MMC peripheral (USDHC) in 4-bit mode with 50MHz clock frequency "
@@ -14139,7 +14575,7 @@ msgstr ""
 "MIMXRT1011 コントローラは USDHC ペリフェラルをサポートしていません。したがって、"
 "このコントローラでは ``machine.SDCard`` モジュールが機能しません。"
 
-#: ../../library/machine.SDCard.rst:221
+#: ../../library/machine.SDCard.rst:234
 msgid ""
 "Due to the decision to only support 4-bit mode with 50MHz clock frequency"
 " the interface has been simplified, and the constructor signature is:"
@@ -14147,7 +14583,7 @@ msgstr ""
 "クロック周波数 50MHz の4ビットモードのみをサポートすることにしたため、"
 "インタフェースは簡素化され、コンストラクタのシグネチャは次のようになっています。"
 
-#: ../../library/machine.SDCard.rst:227
+#: ../../library/machine.SDCard.rst:240
 msgid ""
 "The pins used for the USDHC peripheral have to be configured in "
 "``mpconfigboard.h``. Most of the controllers supported by the mimxrt port"
@@ -14160,11 +14596,11 @@ msgstr ""
 "提供します。したがって、ピン設定はマクロ ``MICROPY_USDHCx`` (x は1または2)を使って"
 "行います。"
 
-#: ../../library/machine.SDCard.rst:232
+#: ../../library/machine.SDCard.rst:245
 msgid "The following shows an example configuration for USDHC1::"
 msgstr "以下は USDHC1 の設定例を示しています::"
 
-#: ../../library/machine.SDCard.rst:234
+#: ../../library/machine.SDCard.rst:247
 msgid ""
 "#define MICROPY_USDHC1 \\\n"
 "  { \\\n"
@@ -14178,18 +14614,18 @@ msgid ""
 "  }"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:245
+#: ../../library/machine.SDCard.rst:258
 msgid ""
 "If the card detect pin is not used (cb_b pin) then the respective entry "
 "has to be filled with the following dummy value::"
 msgstr ""
 "カード検出ピンを使わない場合(cb_b ピン)、各エントリに次のダミー値を設定する必要があります。"
 
-#: ../../library/machine.SDCard.rst:248
+#: ../../library/machine.SDCard.rst:261
 msgid "#define USDHC_DUMMY_PIN NULL , 0"
 msgstr ""
 
-#: ../../library/machine.SDCard.rst:250
+#: ../../library/machine.SDCard.rst:263
 msgid ""
 "Based on the definition of macro ``MICROPY_USDHC1`` and/or "
 "``MICROPY_USDHC2`` the ``machine.SDCard`` module either supports one or "
@@ -16065,19 +16501,25 @@ msgid "The Endpoint number for the completed transfer."
 msgstr "完了した転送のエンドポイント番号。"
 
 #: ../../library/machine.USBDevice.rst:158
-msgid "Result value: ``True`` if the transfer succeeded, ``False`` otherwise."
-msgstr "結果値: 転送が成功した場合は ``True`` 、それ以外は ``False`` 。"
+msgid ""
+"Result value. This is an integer which is ``0`` (`XFER_SUCCESS`) on "
+"success, or one of the non-zero values `XFER_FAILED` or `XFER_STALLED` if"
+" the transfer failed."
+msgstr ""
+"結果値: これは整数値で、転送が成功した場合は ``0`` (`XFER_SUCCESS`)、"
+"転送が失敗した場合は 0 以外の値 `XFER_FAILED` または "
+"`XFER_STALLED` のいずれかになります。"
 
-#: ../../library/machine.USBDevice.rst:160
+#: ../../library/machine.USBDevice.rst:161
 msgid ""
 "Number of bytes successfully transferred. In the case of a \"short\" "
-"transfer, The result is ``True`` and ``xferred_bytes`` will be smaller "
-"than the length of the buffer submitted for the transfer."
+"transfer, the result is ``0`` (`XFER_SUCCESS`) and ``xferred_bytes`` will"
+" be smaller than the length of the buffer submitted for the transfer."
 msgstr ""
-"成功したバイト数。 \"short\" 転送の場合、結果は ``True`` であり、 "
-"``xferred_bytes`` は転送のために提出されたバッファの長さよりも小さくなります。"
+"正常に転送されたバイト数。 \"short\" 転送の場合、結果は ``0`` (`XFER_SUCCESS`)となり、 "
+"``xferred_bytes`` は転送のために送信されたバッファの長さよりも小さくなります。"
 
-#: ../../library/machine.USBDevice.rst:165
+#: ../../library/machine.USBDevice.rst:166
 msgid ""
 "If a bus reset occurs (see :func:`USBDevice.reset`), ``xfer_cb`` is not "
 "called for any transfers that have not already completed."
@@ -16085,7 +16527,7 @@ msgstr ""
 "バスのリセットが発生した場合(:func:`USBDevice.reset` を参照)、 "
 "``xfer_cb`` がまだ完了していない転送に対しては呼び出されません。"
 
-#: ../../library/machine.USBDevice.rst:171
+#: ../../library/machine.USBDevice.rst:172
 msgid ""
 "Returns the current active state of this runtime USB device as a boolean."
 " The runtime USB device is \"active\" when it is available to interact "
@@ -16095,7 +16537,7 @@ msgstr ""
 "USB ランタイムデバイスは、ホストとのやり取りが可能な場合に「アクティブ」ですが、"
 "USB ホストが実際に存在していることを意味するわけではありません。"
 
-#: ../../library/machine.USBDevice.rst:176
+#: ../../library/machine.USBDevice.rst:177
 msgid ""
 "If the optional ``value`` argument is set to a truthy value, then the USB"
 " device will be activated."
@@ -16103,7 +16545,7 @@ msgstr ""
 "オプションの ``value`` 引数が真の値に設定されている場合、"
 "USBデバイスはアクティブになります。"
 
-#: ../../library/machine.USBDevice.rst:179
+#: ../../library/machine.USBDevice.rst:180
 msgid ""
 "If the optional ``value`` argument is set to a falsey value, then the USB"
 " device is deactivated. While the USB device is deactivated, it will not "
@@ -16113,7 +16555,7 @@ msgstr ""
 "USB デバイスは非アクティブになります。USBデバイスが非アクティブの間は、"
 "USB ホストによって検出されません。"
 
-#: ../../library/machine.USBDevice.rst:183
+#: ../../library/machine.USBDevice.rst:184
 msgid ""
 "To simulate a disconnect and a reconnect of the USB device, call "
 "``active(False)`` followed by ``active(True)``. This may be necessary if "
@@ -16125,7 +16567,7 @@ msgstr ""
 "構成が変更された場合、すなわちホストが新しいデバイスを認識した場合に、"
 "必要な場合があります。"
 
-#: ../../library/machine.USBDevice.rst:190
+#: ../../library/machine.USBDevice.rst:191
 msgid ""
 "This attribute holds the current built-in driver configuration, and must "
 "be set to one of the ``USBDevice.BUILTIN_`` named constants defined on "
@@ -16134,11 +16576,11 @@ msgstr ""
 "この属性は、現在の組み込みドライバー構成を保持し、このオブジェクトで定義された "
 "``USBDevice.BUILTIN_`` 名前付き定数のいずれかに設定する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:193
+#: ../../library/machine.USBDevice.rst:194
 msgid "By default it holds the value :data:`USBDevice.BUILTIN_NONE`."
 msgstr "デフォルトでは :data:`USBDevice.BUILTIN_NONE` の値が保持されます。"
 
-#: ../../library/machine.USBDevice.rst:195
+#: ../../library/machine.USBDevice.rst:196
 msgid ""
 "Runtime USB device must be inactive when setting this field. Call the "
 ":func:`USBDevice.active` function to deactivate before setting if "
@@ -16148,7 +16590,7 @@ msgstr ""
 "なりません。設定が必要な場合(設定後に再度アクティブにする)には、"
 "設定する前に :func:`USBDevice.active` 関数を呼び出して非アクティブにしてください。"
 
-#: ../../library/machine.USBDevice.rst:199
+#: ../../library/machine.USBDevice.rst:200
 msgid ""
 "If this value is set to any value other than "
 ":data:`USBDevice.BUILTIN_NONE` then the following restrictions apply to "
@@ -16157,7 +16599,7 @@ msgstr ""
 "この値が :data:`USBDevice.BUILTIN_NONE` 以外の値に設定されている場合、"
 "次の制限が :func:`USBDevice.config` の引数に適用されます:"
 
-#: ../../library/machine.USBDevice.rst:202
+#: ../../library/machine.USBDevice.rst:203
 msgid ""
 "``desc_cfg`` should begin with the built-in USB interface descriptor data"
 " accessible via :data:`USBDevice.builtin_driver` attribute ``desc_cfg``. "
@@ -16172,7 +16614,7 @@ msgstr ""
 "``itf_max``, ``str_max``, ``ep_max`` で定義された最大組込み値を開始として、"
 "インタフェース、文字列、エンドポイント番号を使用する必要があります。"
 
-#: ../../library/machine.USBDevice.rst:209
+#: ../../library/machine.USBDevice.rst:210
 msgid ""
 "The ``bNumInterfaces`` field in the built-in configuration descriptor "
 "will also need to be updated if any new interfaces are appended to the "
@@ -16181,7 +16623,7 @@ msgstr ""
 "``desc_cfg`` の末尾に新しいインターフェースが追加された場合、"
 "組込み構成記述子内の ``bNumInterfaces`` フィールドも更新する必要があります。 "
 
-#: ../../library/machine.USBDevice.rst:213
+#: ../../library/machine.USBDevice.rst:214
 msgid ""
 "``desc_strs`` should either be ``None`` or a list/dictionary where index "
 "values less than ``USBDevice.builtin_driver.str_max`` are missing or have"
@@ -16195,7 +16637,7 @@ msgstr ""
 "予約されます。これらのインデックスのいずれかに異なる文字列を配置すると、"
 "組込みドライバーのその文字列がオーバーライドされます。"
 
-#: ../../library/machine.USBDevice.rst:221
+#: ../../library/machine.USBDevice.rst:222
 msgid ""
 "Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature is "
 "enabled by the host. This has to be enabled in the USB attributes, and on"
@@ -16207,7 +16649,7 @@ msgstr ""
 "必要があります。リモートウェイクアップが有効でアクティブであり、ホストが起動された場合は "
 "``True`` を返します。"
 
-#: ../../library/machine.USBDevice.rst:228
+#: ../../library/machine.USBDevice.rst:229
 msgid ""
 "Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be an "
 "object implementing the buffer interface, with read access for ``IN`` "
@@ -16218,7 +16660,7 @@ msgstr ""
 "``OUT`` エンドポイントに対して書出しアクセスを持つバッファインタフェースを"
 "実装するオブジェクトでなければなりません。"
 
-#: ../../library/machine.USBDevice.rst:232
+#: ../../library/machine.USBDevice.rst:233
 msgid ""
 "``ep`` cannot be the control Endpoint number 0. Control transfers are "
 "built up through successive executions of ``control_xfer_cb``, see above."
@@ -16226,7 +16668,7 @@ msgstr ""
 "``ep`` は制御エンドポイント番号0にすることはできません。"
 "制御転送は ``control_xfer_cb`` を連続して実行することによって構築されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:236
+#: ../../library/machine.USBDevice.rst:237
 msgid ""
 "Returns ``True`` if successful, ``False`` if the transfer could not be "
 "queued (as USB device is not configured by host, or because another "
@@ -16236,15 +16678,15 @@ msgstr ""
 "``False`` を返します(USB デバイスがホストによって構成されていないか、"
 "このエンドポイントに別の転送がキューに入れられているため)。"
 
-#: ../../library/machine.USBDevice.rst:240
+#: ../../library/machine.USBDevice.rst:241
 msgid ""
 "When the USB host completes the transfer, the ``xfer_cb`` callback is "
 "called (see above)."
 msgstr ""
 "USB ホストが転送を完了すると ``xfer_cb`` コールバックが呼び出されます(上記を参照)。"
 
-#: ../../library/machine.USBDevice.rst:243
-#: ../../library/machine.USBDevice.rst:262
+#: ../../library/machine.USBDevice.rst:244
+#: ../../library/machine.USBDevice.rst:263
 msgid ""
 "Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not "
 "active."
@@ -16252,16 +16694,16 @@ msgstr ""
 "USB デバイスがアクティブでない場合 ``OSError`` が発生し、"
 "理由として ``MP_EINVAL`` が指定されます。"
 
-#: ../../library/machine.USBDevice.rst:248
+#: ../../library/machine.USBDevice.rst:249
 msgid "Calling this function gets or sets the STALL state of a device endpoint."
 msgstr ""
 "この関数を呼び出すと、デバイスのエンドポイントの STALL 状態を取得または設定します。"
 
-#: ../../library/machine.USBDevice.rst:250
+#: ../../library/machine.USBDevice.rst:251
 msgid "``ep`` is the number of the endpoint."
 msgstr "``ep`` はエンドポイントの番号です。"
 
-#: ../../library/machine.USBDevice.rst:252
+#: ../../library/machine.USBDevice.rst:253
 msgid ""
 "If the optional ``stall`` parameter is set, this is a boolean flag for "
 "the STALL state."
@@ -16269,14 +16711,14 @@ msgstr ""
 "オプションの ``stall`` パラメータが設定されている場合、これは ``STALL`` "
 "状態のブールフラグです。"
 
-#: ../../library/machine.USBDevice.rst:255
+#: ../../library/machine.USBDevice.rst:256
 msgid ""
 "The return value is the current stall state of the endpoint (before any "
 "change made by this function)."
 msgstr ""
 "戻り値は、この関数によって行われた変更前のエンドポイントの現在の stall 状態です。"
 
-#: ../../library/machine.USBDevice.rst:258
+#: ../../library/machine.USBDevice.rst:259
 msgid ""
 "An endpoint that is set to STALL may remain stalled until this function "
 "is called again, or STALL may be cleared automatically by the USB host."
@@ -16284,7 +16726,7 @@ msgstr ""
 "STALL に設定されたエンドポイントは、この関数が再度呼び出されるか、"
 "USBホストによって自動的にクリアされるまで、STALL のままである可能性があります。"
 
-#: ../../library/machine.USBDevice.rst:274
+#: ../../library/machine.USBDevice.rst:275
 msgid ""
 "These constant objects hold the built-in descriptor data which is "
 "compiled into the MicroPython firmware. ``USBDevice.BUILTIN_NONE`` and "
@@ -16297,7 +16739,7 @@ msgstr ""
 "``USBDevice.BUILTIN_DEFAULT`` は常に存在します。ファームウェアのビルド構成と"
 "実際の組み込みドライバによって、追加のオブジェクトが存在する場合があります。"
 
-#: ../../library/machine.USBDevice.rst:279
+#: ../../library/machine.USBDevice.rst:280
 msgid ""
 "Currently at most one of ``USBDevice.BUILTIN_CDC``, "
 "``USBDevice.BUILTIN_MSC`` and ``USBDevice.BUILTIN_CDC_MSC`` is defined "
@@ -16313,7 +16755,7 @@ msgstr ""
 "定義されています。将来的には、複数の組み込みドライバ構成のうちの1つを"
 "選択するサポートが追加されるかもしれません。"
 
-#: ../../library/machine.USBDevice.rst:287
+#: ../../library/machine.USBDevice.rst:288
 msgid ""
 "These values are assigned to :data:`USBDevice.builtin_driver` to get/set "
 "the built-in configuration."
@@ -16321,18 +16763,18 @@ msgstr ""
 "これらの値は、組み込み構成を取得/設定するために "
 ":data:`USBDevice.builtin_driver` に割り当てられます。"
 
-#: ../../library/machine.USBDevice.rst:290
+#: ../../library/machine.USBDevice.rst:291
 msgid "Each object contains the following read-only fields:"
 msgstr "各オブジェクトには、次の読込み専用フィールドが含まれています:"
 
-#: ../../library/machine.USBDevice.rst:292
+#: ../../library/machine.USBDevice.rst:293
 msgid ""
 "``itf_max`` - One more than the highest bInterfaceNumber value used in "
 "the built-in configuration descriptor."
 msgstr ""
 "``itf_max`` - 組込み構成記述子で使用されるbInterfaceNumber値の最大値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:294
+#: ../../library/machine.USBDevice.rst:295
 msgid ""
 "``ep_max`` - One more than the highest bEndpointAddress value used in the"
 " built-in configuration descriptor. Does not include any ``IN`` flag bit "
@@ -16341,26 +16783,56 @@ msgstr ""
 "``ep_max`` - 組込み構成記述子で使用される bEndpointAddress 値の最大値より"
 "1大きい値。 ``IN`` フラグビット(0x80)は含まれません。"
 
-#: ../../library/machine.USBDevice.rst:297
+#: ../../library/machine.USBDevice.rst:298
 msgid ""
 "``str_max`` - One more than the highest string descriptor index value "
 "used by any built-in descriptor."
 msgstr ""
 "``str_max`` - 任意の組込み記述子で使用される最大の文字列記述子インデックス値より1大きい値。"
 
-#: ../../library/machine.USBDevice.rst:299
+#: ../../library/machine.USBDevice.rst:300
 msgid ""
 "``desc_dev`` - ``bytes`` object containing the built-in USB device "
 "descriptor."
 msgstr ""
 "``desc_dev`` - 組込み USB デバイス記述子を含むbytesオブジェクト。"
 
-#: ../../library/machine.USBDevice.rst:301
+#: ../../library/machine.USBDevice.rst:302
 msgid ""
 "``desc_cfg`` - ``bytes`` object containing the complete built-in USB "
 "configuration descriptor."
 msgstr ""
 "``desc_cfg`` - 完全な組込み USB 構成記述子を含む ``bytes`` オブジェクト。"
+
+#: ../../library/machine.USBDevice.rst:309
+msgid ""
+"These are integer constants that represent the possible transfer result "
+"values passed to the ``xfer_cb`` callback (see `USBDevice.config`)."
+msgstr ""
+"これらは ``xfer_cb`` コールバックに渡される可能性のある転送結果値を表す"
+"整数定数です(`USBDevice.config` を参照)。"
+
+#: ../../library/machine.USBDevice.rst:313
+msgid ""
+"``XFER_SUCCESS`` has value ``0`` and indicates the transfer was "
+"successful."
+msgstr ""
+"``XFER_SUCCESS`` の値は ``0`` で、転送が成功したことを示します。"
+
+#: ../../library/machine.USBDevice.rst:315
+msgid ""
+"``XFER_FAILED`` indicates the transfer failed due to low-level integrity "
+"errors."
+msgstr ""
+"``XFER_FAILED`` は、低レベルの整合性エラーにより転送が失敗したことを示します。"
+
+#: ../../library/machine.USBDevice.rst:317
+msgid "``XFER_STALLED`` indicates that the host has stalled this endpoint."
+msgstr "``XFER_STALLED`` は、ホストがこのエンドポイントを停止させたことを示します。"
+
+#: ../../library/machine.USBDevice.rst:319
+msgid "All failure values are non-zero integers."
+msgstr "すべての失敗値はゼロ以外の整数です。"
 
 #: ../../library/machine.WDT.rst:5
 msgid "class WDT -- watchdog timer"
@@ -16777,16 +17249,136 @@ msgstr ""
 
 #: ../../library/micropython.rst:64
 msgid ""
+#: ../../library/micropython.rst:64
+msgid ""
 "The information that is printed is implementation dependent, but "
-"currently includes the amount of stack and heap used.  In verbose mode it"
-" prints out the entire heap indicating which blocks are used and which "
-"are free."
+"currently includes the amount of stack and heap used. In verbose mode it "
+"prints out a summary of the entire heap indicating which blocks are used "
+"and which are free."
 msgstr ""
 "表示する情報は実装に依存しますが、現在使っているスタックとヒープのサイズは含みます。"
-"冗長モードではヒープ全体を出力し、どのブロックが使用され、どのブロックが空いて"
-"いるかを示します。"
+"冗長モードではヒープ全体の概要を出力し、どのブロックが使用中でどのブロックが空いている"
+"かを示します。"
 
-#: ../../library/micropython.rst:70
+#: ../../library/micropython.rst:69
+msgid ""
+"The exact output of verbose mode varies between ports, but in general "
+"each letter represents a single 16 byte block of memory. Each line of "
+"output represents 0x400 bytes or 1KiB of RAM."
+msgstr ""
+"冗長モードの正確な出力はポートによって異なりますが、一般的に各文字は16バイトの"
+"メモリブロックを表します。出力の各行は 0x400 バイト、つまり 1KiB の RAM を"
+"表します。"
+
+#: ../../library/micropython.rst:73
+msgid "The meaning of each letter:"
+msgstr "各文字の意味は次のとおりです:"
+
+#: ../../library/micropython.rst:76
+msgid "Symbol"
+msgstr "シンボル"
+
+#: ../../library/micropython.rst:76
+msgid "Meaning"
+msgstr "意味"
+
+#: ../../library/micropython.rst:78
+msgid "."
+msgstr ""
+
+#: ../../library/micropython.rst:78
+msgid "free block"
+msgstr "空きブロック"
+
+#: ../../library/micropython.rst:79 ../../library/struct.rst:32
+msgid "h"
+msgstr ""
+
+#: ../../library/micropython.rst:79
+msgid "head block"
+msgstr "ヘッドブロック"
+
+#: ../../library/micropython.rst:80
+msgid "="
+msgstr ""
+
+#: ../../library/micropython.rst:80
+msgid "tail block"
+msgstr "テールブロック"
+
+#: ../../library/micropython.rst:81
+msgid "m"
+msgstr ""
+
+#: ../../library/micropython.rst:81
+msgid "marked head block"
+msgstr "マークされたヘッドブロック"
+
+#: ../../library/micropython.rst:82
+msgid "T"
+msgstr ""
+
+#: ../../library/micropython.rst:82
+msgid "tuple"
+msgstr ""
+
+#: ../../library/micropython.rst:83 ../../library/struct.rst:42
+msgid "L"
+msgstr ""
+
+#: ../../library/micropython.rst:83
+msgid "list"
+msgstr ""
+
+#: ../../library/micropython.rst:84
+msgid "D"
+msgstr ""
+
+#: ../../library/micropython.rst:84
+msgid "dict"
+msgstr ""
+
+#: ../../library/micropython.rst:85
+msgid "F"
+msgstr ""
+
+#: ../../library/micropython.rst:85 ../../library/struct.rst:50
+msgid "float"
+msgstr ""
+
+#: ../../library/micropython.rst:86 ../../library/struct.rst:30
+msgid "B"
+msgstr ""
+
+#: ../../library/micropython.rst:86
+msgid "byte code"
+msgstr "バイトコード"
+
+#: ../../library/micropython.rst:87
+msgid "M"
+msgstr ""
+
+#: ../../library/micropython.rst:87
+msgid "module"
+msgstr "モジュール"
+
+#: ../../library/micropython.rst:88
+msgid "S"
+msgstr ""
+
+#: ../../library/micropython.rst:88
+msgid "string or bytes"
+msgstr "文字列またはバイト列"
+
+#: ../../library/micropython.rst:89
+msgid "A"
+msgstr ""
+
+#: ../../library/micropython.rst:89
+msgid "bytearray"
+msgstr ""
+
+#: ../../library/micropython.rst:95
 msgid ""
 "Print information about currently interned strings.  If the *verbose* "
 "argument is given then extra information is printed."
@@ -16794,7 +17386,7 @@ msgstr ""
 "現在のところのインターンド文字列(内部に蓄えられている文字列)に関する情報を表示します。 "
 "*verbose* を指定すると冗長モードとなり、詳しい情報を表示します。"
 
-#: ../../library/micropython.rst:73
+#: ../../library/micropython.rst:98
 msgid ""
 "The information that is printed is implementation dependent, but "
 "currently includes the number of interned strings and the amount of RAM "
@@ -16805,7 +17397,7 @@ msgstr ""
 "RAM のサイズは含みます。冗長モードでは RAM 上のインターンド文字列すべての名前を"
 "表示します。"
 
-#: ../../library/micropython.rst:79
+#: ../../library/micropython.rst:104
 msgid ""
 "Return an integer representing the current amount of stack that is being "
 "used.  The absolute value of this is not particularly useful, rather it "
@@ -16814,7 +17406,7 @@ msgstr ""
 "現在使われているスタックのサイズを表す整数を返します。この値そのものは特に有用では"
 "なく、異なる時点でのスタック使用量の違いを計算するために使用されるべきです。"
 
-#: ../../library/micropython.rst:87
+#: ../../library/micropython.rst:112
 msgid ""
 "Lock or unlock the heap.  When locked no memory allocation can occur and "
 "a `MemoryError` will be raised if any heap allocation is attempted. "
@@ -16824,7 +17416,7 @@ msgstr ""
 "ヒープを割り当てようとした場合は `MemoryError` が発生します。"
 "`heap_locked()` は、ヒープが現在ロックされていれば真値を返します。"
 
-#: ../../library/micropython.rst:91
+#: ../../library/micropython.rst:116
 msgid ""
 "These functions can be nested, ie `heap_lock()` can be called multiple "
 "times in a row and the lock-depth will increase, and then `heap_unlock()`"
@@ -16835,7 +17427,7 @@ msgstr ""
 "出すことができ、ロックの深さが増します。その後、ヒープを再度使用可能にするためには "
 "`heap_unlock()` を同じ回数呼び出す必要があります。"
 
-#: ../../library/micropython.rst:95
+#: ../../library/micropython.rst:120
 msgid ""
 "Both `heap_unlock()` and `heap_locked()` return the current lock depth "
 "(after unlocking for the former) as a non-negative integer, with 0 "
@@ -16845,14 +17437,14 @@ msgstr ""
 "(heap_unlock() ではロック解除後の値)。返される値は 0 以上の整数値です。0 は"
 "ヒープがロックされていないことを意味します。"
 
-#: ../../library/micropython.rst:99
+#: ../../library/micropython.rst:124
 msgid ""
 "If the REPL becomes active with the heap locked then it will be "
 "forcefully unlocked."
 msgstr ""
 "ヒープがロックされた状態で REPL が有効になると、強制的にロックが解除されます。"
 
-#: ../../library/micropython.rst:102
+#: ../../library/micropython.rst:127
 msgid ""
 "Note: `heap_locked()` is not enabled on most ports by default, requires "
 "``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``."
@@ -16861,7 +17453,7 @@ msgstr ""
 "有効にするにはビルド時に ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED`` "
 "の設定が必要となります。"
 
-#: ../../library/micropython.rst:107
+#: ../../library/micropython.rst:132
 msgid ""
 "Set the character that will raise a `KeyboardInterrupt` exception.  By "
 "default this is set to 3 during script execution, corresponding to "
@@ -16872,7 +17464,7 @@ msgstr ""
 "実行中は 3 に設定されていて、これは Ctrl-C に該当します。この関数に -1 を渡すと"
 "Ctrl-C のキャプチャが無効になり、3 を渡すと元に戻ります。"
 
-#: ../../library/micropython.rst:112
+#: ../../library/micropython.rst:137
 msgid ""
 "This function can be used to prevent the capturing of Ctrl-C on the "
 "incoming stream of characters that is usually used for the REPL, in case "
@@ -16881,7 +17473,7 @@ msgstr ""
 "この関数は、通常は REPL で使っている文字の入力ストリームを他の目的で使う場合、"
 "そのストリームで Ctrl-C がキャプチャーされるのを防ぐために使えます。"
 
-#: ../../library/micropython.rst:118
+#: ../../library/micropython.rst:143
 msgid ""
 "Schedule the function *func* to be executed \"very soon\".  The function "
 "is passed the value *arg* as its single argument.  \"Very soon\" means "
@@ -16894,11 +17486,11 @@ msgstr ""
 "できるだけ早くに関数を実行すること、効率的にもしようとしていること、および次の条件が"
 "満たされるよう最善を尽くすことを意味します。"
 
-#: ../../library/micropython.rst:124
+#: ../../library/micropython.rst:149
 msgid "A scheduled function will never preempt another scheduled function."
 msgstr "スケジュールされた関数が他のスケジュールされた機能を横取りすることはありません。"
 
-#: ../../library/micropython.rst:125
+#: ../../library/micropython.rst:150
 msgid ""
 "Scheduled functions are always executed \"between opcodes\" which means "
 "that all fundamental Python operations (such as appending to a list) are "
@@ -16907,7 +17499,7 @@ msgstr ""
 "スケジュールされた関数は常に「オペコード間」で実行されます。つまり、すべての基本的な "
 "Python 操作(リストへの追加など)はアトミックであることが保証されています。"
 
-#: ../../library/micropython.rst:128
+#: ../../library/micropython.rst:153
 msgid ""
 "A given port may define \"critical regions\" within which scheduled "
 "functions will never be executed.  Functions may be scheduled within a "
@@ -16920,7 +17512,7 @@ msgstr ""
 "スケジュールされますが、その範囲が終了するまで実行されません。クリティカル"
 "範囲の例としては、割り込み割り込みハンドラ(IRQ)があります。"
 
-#: ../../library/micropython.rst:133
+#: ../../library/micropython.rst:158
 msgid ""
 "Inside native code functions, scheduled functions are not called unless "
 "the native code calls a function that specifically does so."
@@ -16928,16 +17520,16 @@ msgstr ""
 "ネイティブコード関数内では、スケジュールされた関数は、ネイティブコードが"
 "明示的に呼び出すようにしない限り呼び出されません。"
 
-#: ../../library/micropython.rst:135
+#: ../../library/micropython.rst:160
 msgid ""
 "Certain functions including ``poll.poll``, ``poll.ipoll``, ``time.sleep``"
 " and ``time.sleep_ms`` (including zero-duration sleeps) will call "
 "scheduled functions."
 msgstr ""
-``poll.poll``, ``poll.ipoll``, ``time.sleep``, ``time.sleep_ms`` "
+"``poll.poll``, ``poll.ipoll``, ``time.sleep``, ``time.sleep_ms`` "
 "などの(期間ゼロのスリープを含む)特定の関数は、スケジュールされた関数を呼び出します。"
 
-#: ../../library/micropython.rst:139
+#: ../../library/micropython.rst:164
 msgid ""
 "A use for this function is to schedule a callback from a preempting IRQ. "
 "Such an IRQ puts restrictions on the code that runs in the IRQ (for "
@@ -16948,7 +17540,7 @@ msgstr ""
 "そのような IRQ は IRQ で実行されるコードに制限を課し(例えばヒープはロックされるかも"
 "しれません)、後で呼び出すために関数をスケジュールすることはそれらの制限を取り除きます。"
 
-#: ../../library/micropython.rst:144
+#: ../../library/micropython.rst:169
 msgid ""
 "On multi-threaded ports, the scheduled function's behaviour depends on "
 "whether the Global Interpreter Lock (GIL) is enabled for the specific "
@@ -16957,7 +17549,7 @@ msgstr ""
 "マルチスレッド対応のポートでは、スケジュールされた関数の動作は、そのポートでの"
 "グローバルインタプリタロック(GIL)が有効か無効かによって異なります。"
 
-#: ../../library/micropython.rst:147
+#: ../../library/micropython.rst:172
 msgid ""
 "If GIL is enabled, the function can preempt any thread and run in its "
 "context."
@@ -16965,7 +17557,7 @@ msgstr ""
 "GIL が有効な場合、関数は任意のスレッドをプリエンプトして、そのスレッドの"
 "コンテキストで実行できます。"
 
-#: ../../library/micropython.rst:149
+#: ../../library/micropython.rst:174
 msgid ""
 "If GIL is disabled, the function will only preempt the main thread and "
 "run in its context."
@@ -16973,7 +17565,7 @@ msgstr ""
 "GIL が無効な場合、関数はメインスレッドのみをプリエンプトし、"
 "そのコンテキストで実行されます。"
 
-#: ../../library/micropython.rst:152
+#: ../../library/micropython.rst:177
 msgid ""
 "Note: If `schedule()` is called from a preempting IRQ, when memory "
 "allocation is not allowed and the callback to be passed to `schedule()` "
@@ -16991,7 +17583,7 @@ msgstr ""
 "その参照を `schedule()` に渡すことです。これについては "
 "「Pythonオブジェクトの作成」の :ref:`参考資料 <isr_rules>` を参照してください 。"
 
-#: ../../library/micropython.rst:161
+#: ../../library/micropython.rst:186
 msgid ""
 "There is a finite queue to hold the scheduled functions and `schedule()` "
 "will raise a `RuntimeError` if the queue is full."
@@ -16999,7 +17591,7 @@ msgstr ""
 "スケジュールされた関数を保持するための有限のキューがあり、キューがいっぱいになると "
 "`schedule()` は `RuntimeError` を起こします。"
 
-#: ../../library/micropython.rst:171
+#: ../../library/micropython.rst:196
 msgid ""
 "Provides a fixed-size ringbuffer for bytes with a stream interface. Can "
 "be considered like a fifo queue variant of `io.BytesIO`."
@@ -17007,7 +17599,7 @@ msgstr ""
 "ストリームインターフェースを備えた、バイトの固定サイズリングバッファを提供します。"
 "これは `io.BytesIO` の FIFO キューのバリアントと考えることができます。"
 
-#: ../../library/micropython.rst:174
+#: ../../library/micropython.rst:199
 msgid ""
 "When created with integer size a suitable buffer will be allocated. "
 "Alternatively a `bytearray` or similar buffer protocol object can be "
@@ -17017,7 +17609,7 @@ msgstr ""
 "`bytearray` や類似のバッファプロトコルオブジェクトをコンストラクタに渡して、"
 "その場で利用することもできます。"
 
-#: ../../library/micropython.rst:178
+#: ../../library/micropython.rst:203
 msgid ""
 "The classic ringbuffer algorithm is used which allows for any size buffer"
 " to be used however one byte will be consumed for tracking. If "
@@ -17035,7 +17627,7 @@ msgstr ""
 "ただし、事前に割り当てられたバッファを渡した場合、元の長さより1バイト少なくなり、 "
 "``RingIO(bytearray(16))`` では15バイトのデータしか保持できません。"
 
-#: ../../library/micropython.rst:186
+#: ../../library/micropython.rst:211
 msgid ""
 "A RingIO instance can be IRQ / thread safe when used to pass data in a "
 "single direction eg. when written to in an IRQ and read from in a non-IRQ"
@@ -17048,11 +17640,11 @@ msgstr ""
 "しかし、IRQと非IRQの両方から同じインスタンスに書き出そうとすると、"
 "データの破損が発生することがよくあります。"
 
-#: ../../library/micropython.rst:193
+#: ../../library/micropython.rst:218
 msgid "Returns an integer counting the number of characters that can be read."
 msgstr "読み込める文字数を整数で返します。"
 
-#: ../../library/micropython.rst:197
+#: ../../library/micropython.rst:222
 msgid ""
 "Read available characters. This is a non-blocking function. If ``nbytes``"
 " is specified then read at most that many bytes, otherwise read as much "
@@ -17062,7 +17654,7 @@ msgstr ""
 "``nbytes`` が指定されている場合は、最大でそのバイト数までを読み込み、"
 "指定されていない場合は可能な限り多くのデータを読み込みます。"
 
-#: ../../library/micropython.rst:201
+#: ../../library/micropython.rst:226
 msgid ""
 "Return value: a bytes object containing the bytes read. Will be zero-"
 "length bytes object if no data is available."
@@ -17070,7 +17662,7 @@ msgstr ""
 "戻り値: 読み込んだバイトを含むバイト列オブジェクト。"
 "データが利用できない場合は、長さがゼロのバイト列オブジェクトが返されます。"
 
-#: ../../library/micropython.rst:206
+#: ../../library/micropython.rst:231
 msgid ""
 "Read a line, ending in a newline character or return if one exists in the"
 " buffer, else return available bytes in buffer. If ``nbytes`` is "
@@ -17080,11 +17672,11 @@ msgstr ""
 "それ以外の場合はバッファ内の利用可能なバイトを返します。 ``nbytes`` が"
 "指定されている場合は、最大でそのバイト数までを読み込みます。"
 
-#: ../../library/micropython.rst:210
+#: ../../library/micropython.rst:235
 msgid "Return value: a bytes object containing the line read."
 msgstr "戻り値: 読み込んだ行を含む bytes オブジェクト。"
 
-#: ../../library/micropython.rst:214
+#: ../../library/micropython.rst:239
 msgid ""
 "Read available bytes into the provided ``buf``.  If ``nbytes`` is "
 "specified then read at most that many bytes.  Otherwise, read at most "
@@ -17094,11 +17686,11 @@ msgstr ""
 "指定されている場合は、最大でそのバイト数までを読み込み、それ以外の場合は "
 "``len(buf)`` バイトまでを読み込みます。"
 
-#: ../../library/micropython.rst:218
+#: ../../library/micropython.rst:243
 msgid "Return value: Integer count of the number of bytes read into ``buf``."
 msgstr "戻り値: ``buf`` に読み込んだバイト数を表す整数。"
 
-#: ../../library/micropython.rst:222
+#: ../../library/micropython.rst:247
 msgid ""
 "Non-blocking write of bytes from ``buf`` into the ringbuffer, limited by "
 "the available space in the ringbuffer."
@@ -17106,11 +17698,11 @@ msgstr ""
 "``buf`` からリングバッファにバイト列を書き出し(非ブロッキング)。"
 "リングバッファの空き容量に制限されます。"
 
-#: ../../library/micropython.rst:225
+#: ../../library/micropython.rst:250
 msgid "Return value: Integer count of bytes written."
 msgstr "戻り値: 書き出したバイト数を示す整数。"
 
-#: ../../library/micropython.rst:229
+#: ../../library/micropython.rst:2
 msgid ""
 "No-op provided as part of standard `stream` interface. Has no effect on "
 "data in the ringbuffer."
@@ -18638,21 +19230,254 @@ msgid "protocol"
 msgstr ""
 
 #: ../../library/network.WLAN.rst:148
-msgid ""
-"(ESP32 Only.) WiFi Low level 802.11 protocol. See "
-"`WLAN.PROTOCOL_DEFAULTS`."
+msgid "(ESP32 Only.) WiFi Low level 802.11 protocol. See `WLAN.PROTOCOL_DEFAULT`."
 msgstr ""
-"(ESP32 のみ) WiFi 低レベル 802.11 プロトコル。 "
-"`WLAN.PROTOCOL_DEFAULTS` を参照。"
+"(ESP32 のみ) WiFi 低レベル 802.11 プロトコル。 `WLAN.PROTOCOL_DEFAULT` を参照。"
 
-#: ../../library/network.WLAN.rst:158
+#: ../../library/network.WLAN.rst:149
+msgid "bandwidth"
+msgstr ""
+
+#: ../../library/network.WLAN.rst:149
+msgid "(ESP32 Only.) WiFi channel bandwidth. See `WLAN.BANDWIDTH_20` and others."
+msgstr ""
+"(ESP32 のみ) WiFiチャネル帯域幅。 `WLAN.BANDWIDTH_20` などを参照してください。"
+
+#: ../../library/network.WLAN.rst:153
+msgid "CSI Methods (ESP32 only)"
+msgstr "CSI メソッド (ESP32 のみ)"
+
+#: ../../library/network.WLAN.rst:156
+msgid ""
+"These methods are only available on ESP32 builds with CSI support "
+"enabled. The standard generic ESP32, ESP32-C3, ESP32-C5, ESP32-C6, and "
+"ESP32-S3 board definitions enable this in their default configuration. "
+"Other builds need ``CONFIG_ESP_WIFI_CSI_ENABLED=y`` in the ESP-IDF "
+"configuration."
+msgstr ""
+"これらのメソッドは、CSI サポートが有効になっている ESP32 ビルドでのみ利用可能です。"
+"標準の汎用 ESP32、ESP32-C3、ESP32-C5、ESP32-C6、ESP32-S3 ボード定義では、"
+"デフォルト設定でこの機能が有効になっています。その他のビルドでは、ESP-IDF 設定で "
+"``CONFIG_ESP_WIFI_CSI_ENABLED=y`` を設定する必要があります。"
+
+#: ../../library/network.WLAN.rst:161
+msgid ""
+"Channel State Information (CSI) provides per-packet physical layer "
+"channel data derived from received Wi-Fi frames. CSI capture requires an "
+"active Wi-Fi connection and incoming traffic to the device. Without "
+"traffic, no CSI frames will be captured."
+msgstr ""
+"チャンネル状態情報(CSI: Channel State Information)は、受信した Wi-Fi "
+"フレームから得られるパケットごとの物理層チャンネルデータを提供します。"
+"CSI の取得には、アクティブな Wi-Fi 接続とデバイスへの受信トラフィックが"
+"必要です。トラフィックがない場合、CSI フレームは取得されません。"
+
+#: ../../library/network.WLAN.rst:166
+msgid ""
+"Other Espressif CSI options are hard-coded to defaults intended for "
+"connected station capture."
+msgstr ""
+"Espressif のその他のCSIオプションは、接続されたステーションのキャプチャを"
+"目的としたデフォルト値にハードコーディングされています。"
+
+#: ../../library/network.WLAN.rst:171
+msgid "Enable CSI capture and allocate a circular buffer for received frames."
+msgstr ""
+"CSI キャプチャを有効にし、受信フレーム用の循環バッファを割り当てます。"
+
+#: ../../library/network.WLAN.rst:173
+msgid ""
+"The optional ``buffer_size`` argument sets the number of frames stored "
+"before new incoming frames are dropped. Larger values reduce drops at the"
+" cost of RAM. The exact maximum depends on the build, but it is limited "
+"by the underlying ringbuffer implementation to roughly 100 frames."
+msgstr ""
+"オプションの ``buffer_size`` 引数は、新しい受信フレームが破棄される前に"
+"格納されるフレーム数を指定します。値が大きいほど、RAMを消費しますが、破棄される"
+"フレーム数は減少します。正確な最大値はビルドによって異なりますが、基盤となる"
+"リングバッファの実装によって約100フレームに制限されます。"
+
+#: ../../library/network.WLAN.rst:178
+msgid ""
+"Raises ``OSError`` if CSI cannot be enabled, for example if Wi-Fi is not "
+"active or the ESP-IDF rejects the configuration."
+msgstr ""
+"CSI を有効にできない場合(たとえば Wi-Fi がアクティブでない場合や、"
+"ESP-IDF が構成を拒否した場合など)は ``OSError`` が発生します。"
+
+#: ../../library/network.WLAN.rst:183
+msgid ""
+"import network\n"
+"import time\n"
+"\n"
+"wlan = network.WLAN(network.WLAN.IF_STA)\n"
+"wlan.active(True)\n"
+"wlan.config(protocol=network.MODE_11B | network.MODE_11G | "
+"network.MODE_11N)\n"
+"wlan.config(pm=wlan.PM_NONE)\n"
+"wlan.connect(\"SSID\", \"password\")\n"
+"\n"
+"while not wlan.isconnected():\n"
+"    time.sleep_ms(100)\n"
+"\n"
+"wlan.csi_enable(buffer_size=32)"
+msgstr ""
+
+#: ../../library/network.WLAN.rst:199
+msgid "Disable CSI capture and clean up resources."
+msgstr ""
+"CSI キャプチャを無効にしてリソースをクリーンアップします。"
+
+#: ../../library/network.WLAN.rst:203
+msgid "Read a CSI frame from the buffer."
+msgstr "バッファから CSI フレームを読み取ります。"
+
+#: ../../library/network.WLAN.rst:205
+msgid ""
+"**Returns:** A list containing CSI frame data, or ``None`` if no frames "
+"are available."
+msgstr ""
+"**戻り値:** CSI フレーム データを含むリスト。"
+"フレームが利用できない場合は None になります。"
+
+#: ../../library/network.WLAN.rst:208
+msgid ""
+"If the optional ``result`` argument is provided, it must be a previous "
+"list returned by `WLAN.csi_read()`. The list will be updated in place and"
+" returned again. This reduces heap churn in busy read loops by reusing "
+"the existing list object and, when the captured frame fits, the existing "
+"CSI data ``bytearray``."
+msgstr ""
+"オプションの ``result`` 引数が指定されている場合、それは `WLAN.csi_read()` "
+"によって、以前に返されたリストである必要があります。リストはインプレースで更新され、"
+"再度返されます。これにより、既存のリスト オブジェクトと、キャプチャされた"
+"フレームが収まる場合は既存の CSI データ ``bytearray`` を再利用することで、"
+"ビジーな読み取りループでのヒープの変動が軽減されます。"
+
+#: ../../library/network.WLAN.rst:214
+msgid "**Frame list fields (in order):**"
+msgstr "**フレームリストフィールド(順不同):**"
+
+#: ../../library/network.WLAN.rst:216
+msgid "**0 - rssi** (int): Received signal strength in dBm"
+msgstr "**0 - rssi** (int): 受信信号強度(dBm)"
+
+#: ../../library/network.WLAN.rst:217
+msgid "**1 - channel** (int): Wi-Fi channel number"
+msgstr "**1 - channel** (int): Wi-Fi チャンネル番号"
+
+#: ../../library/network.WLAN.rst:218
+msgid "**2 - mac** (bytes): Source MAC address (6 bytes)"
+msgstr "**2 - mac** (bytes): 送信元MACアドレス(6バイト)"
+
+#: ../../library/network.WLAN.rst:219
+msgid "**3 - timestamp** (int): Timestamp in microseconds"
+msgstr "**3 - timestamp** (int): タイムスタンプ(マイクロ秒単位)"
+
+#: ../../library/network.WLAN.rst:220
+msgid "**4 - local_timestamp** (int): Local timestamp from Wi-Fi hardware"
+msgstr "**4 - local_timestamp** (int): Wi-Fi ハードウェアからのローカルタイムスタンプ"
+
+#: ../../library/network.WLAN.rst:221
+msgid "**5 - data** (bytearray): CSI raw data (I/Q components as int8_t values)"
+msgstr "**5 - data** (bytearray): CSI 生データ(int8_t 値としての I/Q コンポーネント）"
+
+#: ../../library/network.WLAN.rst:222
+msgid "**6 - rate** (int): Data rate"
+msgstr "**6 - rate** (int): データレート"
+
+#: ../../library/network.WLAN.rst:223
+msgid "**7 - sig_mode** (int): Signal mode (legacy, HT, VHT)"
+msgstr "**7 - sig_mode** (int): 信号モード(レガシー, HT, VHT)"
+
+#: ../../library/network.WLAN.rst:224
+msgid "**8 - mcs** (int): Modulation and Coding Scheme index"
+msgstr "**8 - mcs** (int): 変調および符号化方式インデックス"
+
+#: ../../library/network.WLAN.rst:225
+msgid "**9 - cwb** (int): Channel bandwidth"
+msgstr "**9 - cwb** (int): チャンネル帯域幅"
+
+#: ../../library/network.WLAN.rst:226
+msgid "**10 - smoothing** (int): Smoothing applied"
+msgstr "**10 - smoothing** (int): 平滑化処理を適用"
+
+#: ../../library/network.WLAN.rst:227
+msgid "**11 - not_sounding** (int): Not sounding frame"
+msgstr "**11 - not_sounding** (int): Not sounding フレーム"
+
+#: ../../library/network.WLAN.rst:228
+msgid "**12 - aggregation** (int): Aggregation"
+msgstr "**12 - aggregation** (int): 集約"
+
+#: ../../library/network.WLAN.rst:229
+msgid "**13 - stbc** (int): STBC"
+msgstr "**13 - stbc** (int): STBC"
+
+#: ../../library/network.WLAN.rst:230
+msgid "**14 - fec_coding** (int): FEC coding"
+msgstr "**14 - fec_coding** (int): FEC コーディング"
+
+#: ../../library/network.WLAN.rst:231
+msgid "**15 - sgi** (int): Short GI"
+msgstr "**15 - sgi** (int): ショート GI"
+
+#: ../../library/network.WLAN.rst:232
+msgid "**16 - noise_floor** (int): Background noise level in dBm"
+msgstr "**16 - noise_floor** (int): 背景雑音レベル(dBm)"
+
+#: ../../library/network.WLAN.rst:233
+msgid "**17 - ampdu_cnt** (int): AMPDU count"
+msgstr "**17 - ampdu_cnt** (int): AMPDU カウント"
+
+#: ../../library/network.WLAN.rst:234
+msgid "**18 - secondary_channel** (int): Secondary channel"
+msgstr "**18 - secondary_channel** (int): セカンダリーチャンネル"
+
+#: ../../library/network.WLAN.rst:235
+msgid "**19 - ant** (int): Antenna"
+msgstr "**19 - ant** (int): アンテナ"
+
+#: ../../library/network.WLAN.rst:236
+msgid "**20 - sig_len** (int): Signal length"
+msgstr "**20 - sig_len** (int): 信号長"
+
+#: ../../library/network.WLAN.rst:237
+msgid "**21 - rx_state** (int): RX state"
+msgstr "**21 - rx_state** (int): RX 状態"
+
+#: ../../library/network.WLAN.rst:239
+msgid ""
+"Some metadata fields may be ``0`` on targets where ESP-IDF does not "
+"provide the corresponding value in the public CSI receive structure."
+msgstr ""
+"ESP-IDF がパブリック CSI 受信構造で対応する値を提供しないターゲットでは、"
+"一部のメタデータフィールドが ``0`` になる場合があります。"
+
+#: ../../library/network.WLAN.rst:244
+msgid "Get the number of CSI frames available in the buffer."
+msgstr "バッファ内で使用可能な CSI フレーム数を取得します。"
+
+#: ../../library/network.WLAN.rst:248
+msgid ""
+"Get the number of CSI frames dropped due to buffer overflow. Frames are "
+"dropped when the buffer is full and new frames arrive faster than they "
+"can be read. Increase ``buffer_size`` in ``csi_enable()`` to reduce "
+"drops."
+msgstr ""
+"バッファオーバーフローによりドロップされた CSI フレームの数を取得します。"
+"バッファがいっぱいになり、新しいフレームが読み取り速度よりも速く到着すると、"
+"フレームがドロップされます。ドロップを減らすには ``csi_enable()`` の "
+"``buffer_size`` を増やしてください。"
+
+#: ../../library/network.WLAN.rst:260
 msgid ""
 "Allowed values for the ``WLAN.config(pm=...)`` network interface "
 "parameter:"
 msgstr ""
 "``WLAN.config(pm=...)`` ネットワークインタフェースパラメータに指定できる値:"
 
-#: ../../library/network.WLAN.rst:160
+#: ../../library/network.WLAN.rst:262
 msgid ""
 "``PM_PERFORMANCE``: enable WiFi power management to balance power savings"
 " and WiFi performance"
@@ -18660,7 +19485,7 @@ msgstr ""
 "``PM_PERFORMANCE``: WiFi の電力管理を有効にし、電力の節約と WiFi の"
 "パフォーマンスをバランスさせます。"
 
-#: ../../library/network.WLAN.rst:162
+#: ../../library/network.WLAN.rst:264
 msgid ""
 "``PM_POWERSAVE``: enable WiFi power management with additional power "
 "savings and reduced WiFi performance"
@@ -18668,15 +19493,15 @@ msgstr ""
 "``PM_POWERSAVE``: WiFi の電力管理を有効にし、電力節約を優先して、WiFi の"
 "パフォーマンス低下させます。"
 
-#: ../../library/network.WLAN.rst:164
+#: ../../library/network.WLAN.rst:266
 msgid "``PM_NONE``: disable wifi power management"
 msgstr "``PM_NONE``: WiFi の電力管理を無効にします。"
 
-#: ../../library/network.WLAN.rst:168
+#: ../../library/network.WLAN.rst:270
 msgid "ESP32 Protocol Constants"
 msgstr "ESP32 プロトコル定数"
 
-#: ../../library/network.WLAN.rst:170
+#: ../../library/network.WLAN.rst:272
 msgid ""
 "The following ESP32-only constants relate to the "
 "``WLAN.config(protocol=...)`` network interface parameter:"
@@ -18684,7 +19509,7 @@ msgstr ""
 "次の ESP32 専用の定数は ``WLAN.config(protocol=...)`` "
 "ネットワークインタフェースのパラメータに関連します:"
 
-#: ../../library/network.WLAN.rst:175
+#: ../../library/network.WLAN.rst:277
 msgid ""
 "A bitmap representing all of the default 802.11 Wi-Fi modes supported by "
 "the chip. Consult `ESP-IDF Wi-Fi Protocols`_ documentation for details."
@@ -18692,7 +19517,7 @@ msgstr ""
 "チップがサポートするすべてのデフォルト 802.11 Wi-Fi モードを表すビットマップです。"
 "詳細は `ESP-IDF Wi-Fi Protocols`_ ドキュメントを参照してください。"
 
-#: ../../library/network.WLAN.rst:180
+#: ../../library/network.WLAN.rst:282
 msgid ""
 "This value corresponds to the `Espressif proprietary \"long-range\" "
 "mode`_, which is not compatible with standard Wi-Fi devices. By setting "
@@ -18705,7 +19530,7 @@ msgstr ""
 "このプロトコルを設定することで、長距離モードの ESP32 STA が長距離モードの ESP32 AP "
 "に接続したり、 `ESP-NOW の長距離モード <espnow-long-range>` を使用したりできます。"
 
-#: ../../library/network.WLAN.rst:186
+#: ../../library/network.WLAN.rst:288
 msgid ""
 "This mode can be bitwise ORed with some standard 802.11 protocol bits "
 "(including `WLAN.PROTOCOL_DEFAULT`) in order to support a mix of "
@@ -18717,9 +19542,63 @@ msgstr ""
 "標準 Wi-Fi モードと LR モードを混在させることができます。"
 "詳細は `Espressif long-range documentation`_ を参照してください。
 
-#: ../../library/network.WLAN.rst:191
+#: ../../library/network.WLAN.rst:293
 msgid "Long range mode is not supported on ESP32-C2."
 msgstr "長距離モードは ESP32-C2 ではサポートされていません。"
+
+#: ../../library/network.WLAN.rst:301
+msgid ""
+"Allowed values for the ``WLAN.config(bandwidth=...)`` network interface "
+"parameter:"
+msgstr ""
+"``WLAN.config(bandwidth=...)`` ネットワークインターフェイスパラメータに"
+"指定可能な値:
+
+#: ../../library/network.WLAN.rst:303
+msgid ""
+"``BANDWIDTH_20``: specifies a 20MHz wide WiFi channel when in STA and AP "
+"mode"
+msgstr ""
+"``BANDWIDTH_20``: STA および AP モード時に 20MHz 幅の WiFi チャンネルを指定します。"
+
+#: ../../library/network.WLAN.rst:304
+msgid ""
+"``BANDWIDTH_40``: specifies a 40MHz wide WiFi channel when in STA and AP "
+"mode"
+msgstr ""
+"``BANDWIDTH_40``: STA および AP モード時に 40MHz 幅の WiFi チャンネルを指定します。"
+
+#: ../../library/network.WLAN.rst:305
+msgid ""
+"``BANDWIDTH_80``: specifies a 80MHz wide WiFi channel when in AP mode, "
+"may not be available on all ESP32 models"
+msgstr ""
+"``BANDWIDTH_80``: AP モード時に 80MHz 幅の WiFi チャンネルを指定します。"
+"すべての ESP32 モデルで使えるとは限りません。"
+
+#: ../../library/network.WLAN.rst:307
+msgid ""
+"``BANDWIDTH_160``: specifies a 160MHz wide WiFi channel when in AP mode, "
+"may not be available on all ESP32 models"
+msgstr ""
+"``BANDWIDTH_160``: AP モード時に 160MHz 幅の WiFi チャネルを指定します。"
+"すべての ESP32 モデルで使えるとは限りません。"
+
+#: ../../library/network.WLAN.rst:309
+msgid ""
+"``BANDWIDTH_80_80``: specifies a multi-antenna 80MHz + 80MHz wide WiFi "
+"channel setup when in AP mode, may not be available on all ESP32 models."
+msgstr ""
+"``BANDWIDTH_80_80``: AP モード時にマルチアンテナ 80MHz + 80MHz 幅の "
+"WiFi チャネル設定を指定します。すべての ESP32 モデルで使えるとは限りません。"
+
+#: ../../library/network.WLAN.rst:312
+msgid ""
+"When in STA mode, bandwidth can only be changed when the adapter is not "
+"connected to a network.  In AP mode it can be changed at any time."
+msgstr ""
+"STA モードでは、アダプタがネットワークに接続されていない場合にのみ帯域幅を変更"
+"できます。AP モードでは、いつでも変更できます。"
 
 #: ../../library/network.WLANWiPy.rst:5
 msgid "class WLANWiPy -- WiPy specific WiFi control"
@@ -23598,54 +24477,62 @@ msgid ""
 msgstr ""
 "``pulse_width_percent`` - 使用する初期パルス幅のパーセンテージを決定します。"
 
+#: ../../library/pyb.Timer.rst:186
+msgid "``pulse_width_us`` - determines the initial pulse width in microseconds."
+msgstr "``pulse_width_us`` - 初期パルス幅をマイクロ秒単位で決定します。"
+
 #: ../../library/pyb.Timer.rst:187
+msgid "``pulse_width_ns`` - determines the initial pulse width in nanoseconds."
+msgstr "``pulse_width_ns`` - 初期パルス幅をナノ秒単位で決定します。"
+
+#: ../../library/pyb.Timer.rst:189
 msgid "Keyword arguments for Timer.OC modes:"
 msgstr "Timer.OC モード用のキーワード引数:"
 
-#: ../../library/pyb.Timer.rst:189
+#: ../../library/pyb.Timer.rst:191
 msgid "``compare`` - determines the initial value of the compare register."
 msgstr "``compare`` - 比較レジスタの初期値を決定します。"
 
-#: ../../library/pyb.Timer.rst:191 ../../library/pyb.Timer.rst:198
+#: ../../library/pyb.Timer.rst:193 ../../library/pyb.Timer.rst:200
 msgid "``polarity`` can be one of:"
 msgstr "``polarity`` は次のいずれかになります:
 
-#: ../../library/pyb.Timer.rst:193
+#: ../../library/pyb.Timer.rst:195
 msgid "``Timer.HIGH`` - output is active high"
 msgstr "``Timer.HIGH`` - 出力がアクティブハイ。"
 
-#: ../../library/pyb.Timer.rst:194
+#: ../../library/pyb.Timer.rst:196
 msgid "``Timer.LOW`` - output is active low"
 msgstr "``Timer.LOW`` - 出力がアクティブロー。"
 
-#: ../../library/pyb.Timer.rst:196
+#: ../../library/pyb.Timer.rst:198
 msgid "Optional keyword arguments for Timer.IC modes:"
 msgstr "Timer.IC モード用のオプションのキーワード引数:"
 
-#: ../../library/pyb.Timer.rst:200
+#: ../../library/pyb.Timer.rst:202
 msgid "``Timer.RISING`` - captures on rising edge."
 msgstr "``Timer.RISING`` - 立ち上がりエッジでキャプチャします。"
 
-#: ../../library/pyb.Timer.rst:201
+#: ../../library/pyb.Timer.rst:203
 msgid "``Timer.FALLING`` - captures on falling edge."
 msgstr "``Timer.FALLING`` - 立ち下がりエッジでキャプチャします。"
 
-#: ../../library/pyb.Timer.rst:202
+#: ../../library/pyb.Timer.rst:204
 msgid "``Timer.BOTH`` - captures on both edges."
 msgstr "``Timer.BOTH`` - 両方のエッジでキャプチャします。"
 
-#: ../../library/pyb.Timer.rst:204
+#: ../../library/pyb.Timer.rst:206
 msgid ""
 "Note that capture only works on the primary channel, and not on the "
 "complimentary channels."
 msgstr ""
 "キャプチャはプライマリチャネルでのみ機能し、補助チャネルでは機能しないことに注意してください。"
 
-#: ../../library/pyb.Timer.rst:207
+#: ../../library/pyb.Timer.rst:209
 msgid "Notes for Timer.ENC modes:"
 msgstr "Timer.ENCモードに関する注意事項:"
 
-#: ../../library/pyb.Timer.rst:209
+#: ../../library/pyb.Timer.rst:211
 msgid ""
 "Requires 2 pins, so one or both pins will need to be configured to use "
 "the appropriate timer AF using the Pin API."
@@ -23653,23 +24540,23 @@ msgstr ""
 "2つのピンが必要なので、1つまたは両方のピンをPin APIを使用して適切なタイマーAFを"
 "使うように設定する必要があります。"
 
-#: ../../library/pyb.Timer.rst:211
+#: ../../library/pyb.Timer.rst:213
 msgid "Read the encoder value using the timer.counter() method."
 msgstr "timer.counter() メソッドを使用してエンコーダの値を読み込みます。"
 
-#: ../../library/pyb.Timer.rst:212
+#: ../../library/pyb.Timer.rst:214
 msgid "Only works on CH1 and CH2 (and not on CH1N or CH2N)"
 msgstr "CH1 および CH2 でのみ動作し、CH1N または CH2N では動作しません。"
 
-#: ../../library/pyb.Timer.rst:213
+#: ../../library/pyb.Timer.rst:215
 msgid "The channel number is ignored when setting the encoder mode."
 msgstr "エンコーダモードを設定する際にチャネル番号は無視されます。"
 
-#: ../../library/pyb.Timer.rst:215
+#: ../../library/pyb.Timer.rst:217
 msgid "PWM Example::"
 msgstr "PWM の例::"
 
-#: ../../library/pyb.Timer.rst:217
+#: ../../library/pyb.Timer.rst:219
 msgid ""
 "timer = pyb.Timer(2, freq=1000)\n"
 "ch2 = timer.channel(2, pyb.Timer.PWM, pin=pyb.Pin.board.X2, "
@@ -23678,7 +24565,7 @@ msgid ""
 "pulse_width=16000)"
 msgstr ""
 
-#: ../../library/pyb.Timer.rst:221
+#: ../../library/pyb.Timer.rst:223
 msgid ""
 "PWM Motor Example with complementary outputs, dead time, break input and "
 "break callback::"
@@ -23686,7 +24573,7 @@ msgstr ""
 "PWMモーターの例。互い補完する出力、デッドタイム、ブレーク入力、ブレークコールバック"
 "を使っています::"
 
-#: ../../library/pyb.Timer.rst:223
+#: ../../library/pyb.Timer.rst:225
 msgid ""
 "from pyb import Timer\n"
 "from machine import Pin # machine.Pin supports alt mode and irq on the "
@@ -23713,29 +24600,29 @@ msgstr ""
 "timer = pyb.Timer(8, freq=1000, deadtime=1008, brk=Timer.BRK_LOW)\n"
 "ch1 = timer.channel(1, pyb.Timer.PWM, pulse_width_percent=30)"
 
-#: ../../library/pyb.Timer.rst:234
+#: ../../library/pyb.Timer.rst:236
 msgid "Get or set the timer counter."
 msgstr "タイマーカウンターを取得または設定します。"
 
-#: ../../library/pyb.Timer.rst:238
+#: ../../library/pyb.Timer.rst:240
 msgid ""
 "Get or set the frequency for the timer (changes prescaler and period if "
 "set)."
 msgstr "タイマーの周波数を取得または設定します(設定の場合、プリスケーラと期間が変更されます)。"
 
-#: ../../library/pyb.Timer.rst:242
+#: ../../library/pyb.Timer.rst:244
 msgid "Get or set the period of the timer."
 msgstr "タイマーの期間を取得または設定します。"
 
-#: ../../library/pyb.Timer.rst:246
+#: ../../library/pyb.Timer.rst:248
 msgid "Get or set the prescaler for the timer."
 msgstr "タイマーのプリスケーラを取得または設定します。"
 
-#: ../../library/pyb.Timer.rst:250
+#: ../../library/pyb.Timer.rst:252
 msgid "Get the frequency of the source of the timer."
 msgstr "タイマーのソース周波数を取得します。"
 
-#: ../../library/pyb.Timer.rst:264
+#: ../../library/pyb.Timer.rst:266
 msgid ""
 "Set the function to be called when the timer channel triggers. ``fun`` is"
 " passed 1 argument, the timer object. If ``fun`` is ``None`` then the "
@@ -23745,7 +24632,7 @@ msgstr ""
 "``fun`` は1つの引数をとり、タイマーオブジェクトが渡されます。 "
 "``fun`` が ``None`` の場合、コールバックは無効になります。"
 
-#: ../../library/pyb.Timer.rst:270
+#: ../../library/pyb.Timer.rst:272
 msgid ""
 "Get or set the capture value associated with a channel. capture, compare,"
 " and pulse_width are all aliases for the same function. capture is the "
@@ -23755,7 +24642,7 @@ msgstr ""
 "capture, compare, pulse_width はすべて同じ関数の別名です。"
 "チャネルが入力キャプチャモードの場合、capture は論理的な名前として使います。"
 
-#: ../../library/pyb.Timer.rst:276
+#: ../../library/pyb.Timer.rst:278
 msgid ""
 "Get or set the compare value associated with a channel. capture, compare,"
 " and pulse_width are all aliases for the same function. compare is the "
@@ -23765,7 +24652,7 @@ msgstr ""
 "capture, compare, pulse_width はすべて同じ関数の別名です。"
 "チャネルが出力比較モードの場合、compare は論理的な名前として使います。"
 
-#: ../../library/pyb.Timer.rst:282
+#: ../../library/pyb.Timer.rst:284
 msgid ""
 "Get or set the pulse width value associated with a channel. capture, "
 "compare, and pulse_width are all aliases for the same function. "
@@ -23775,7 +24662,7 @@ msgstr ""
 "capture, compare, pulse_width はすべて同じ関数の別名です。"
 "チャネルが PWM モードの場合、pulse_width は論理的な名前として使います。"
 
-#: ../../library/pyb.Timer.rst:286
+#: ../../library/pyb.Timer.rst:288
 msgid ""
 "In edge aligned mode, a pulse_width of ``period + 1`` corresponds to a "
 "duty cycle of 100% In center aligned mode, a pulse width of ``period`` "
@@ -23785,7 +24672,7 @@ msgstr ""
 "に対応します。センターアラインモードでは、period のパルス幅はデューティサイクルが "
 "100% に対応します。"
 
-#: ../../library/pyb.Timer.rst:291
+#: ../../library/pyb.Timer.rst:293
 msgid ""
 "Get or set the pulse width percentage associated with a channel.  The "
 "value is a number between 0 and 100 and sets the percentage of the timer "
@@ -23798,7 +24685,35 @@ msgstr ""
 "設定します。値は、より正確な制御のために整数または浮動小数点数にできます。"
 "たとえば、値が25の場合、デューティサイクルは25%になります。"
 
-#: ../../library/pyb.Timer.rst:304
+#: ../../library/pyb.Timer.rst:301
+msgid ""
+"Get or set the pulse width in microseconds associated with a channel. The"
+" value is converted to/from timer ticks using the timer's clock and "
+"prescaler. Conversions are performed assuming simple up-counting and do "
+"not account for center-aligned mode. For example, passing 1000 sets the "
+"pulse width to 1 ms."
+msgstr ""
+"チャネルに関連付けられたパルス幅をマイクロ秒単位で取得または設定します。"
+"値は、タイマーのクロックとプリスケーラを使ってタイマーティックとの間で変換されます。"
+"変換は単純なアップカウントを前提として実行され、中央揃えモードは考慮されません。"
+"たとえば 1000 を渡すと、パルス幅は 1ms に設定されます。"
+
+#: ../../library/pyb.Timer.rst:309
+msgid ""
+"Get or set the pulse width in nanoseconds associated with a channel. The "
+"value is converted to/from timer ticks using the timer's clock and "
+"prescaler. Conversions are performed assuming simple up-counting and do "
+"not account for center-aligned mode. This method offers finer resolution "
+"than ``pulse_width_us()`` and matches the interface of "
+":meth:`machine.PWM.duty_ns`."
+msgstr ""
+"チャネルに関連付けられたパルス幅をナノ秒単位で取得または設定します。"
+"値は、タイマーのクロックとプリスケーラを使ってタイマーティックとの間で変換されます。"
+"変換は単純なアップカウントを前提として実行され、中央揃えモードは考慮されません。"
+"このメソッドは ``pulse_width_us()`` よりも細かい分解能を提供し、 "
+":meth:`machine.PWM.duty_ns` のインターフェースと一致します。"
+
+#: ../../library/pyb.Timer.rst:322
 msgid ""
 "Configures the timer to count Up, Down, or from 0 to ARR and then back "
 "down to 0."
@@ -23806,7 +24721,7 @@ msgstr ""
 "タイマーをカウントがアップ、ダウン、または「0 から ARR まで、そして0に戻る」ように"
 "設定します。"
 
-#: ../../library/pyb.Timer.rst:310
+#: ../../library/pyb.Timer.rst:328
 msgid "Configures the break mode when passed to the ``brk`` keyword argument."
 msgstr ""
 "``brk`` キーワード引数に渡すことでブレークモードを設定します。"
@@ -25638,7 +26553,7 @@ msgstr "クラス DMA -- RP2040 の DMA コントローラーへのアクセス"
 #: ../../library/rp2.DMA.rst:7
 msgid ""
 "The :class:`DMA` class offers access to the RP2040's Direct Memory Access"
-" (DMA) controller, providing the ability move data between memory blocks "
+" (DMA) controller, providing the ability to move data between memory blocks "
 "and/or IO registers. The DMA controller has its own, separate read and "
 "write bus master connections onto the bus fabric and each DMA channel can"
 " independently read data from one address and write it back to another "
@@ -25663,7 +26578,18 @@ msgstr ""
 "<https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf>`_ "
 "の2.5章を参照してください。"
 
-#: ../../library/rp2.DMA.rst:20
+#: ../../library/rp2.DMA.rst:17
+msgid ""
+"The companion class :class:`DMATimer` provides access to the DMA "
+"controller's pacing timers. These timers can be used to control the speed"
+" of transfers into memory or peripherals that do not have their own "
+"transfer request signalling."
+msgstr ""
+"コンパニオンクラス :class:`DMATimer` は、DMA コントローラのペースタイマーへの"
+"アクセスを提供します。これらのタイマーは、独自の転送要求シグナリングを持たない"
+"メモリまたは周辺機器への転送速度を制御するために使えます。"
+
+#: ../../library/rp2.DMA.rst:24
 msgid ""
 "The simplest use of the DMA controller is to move data from one block of "
 "memory to another. This can be accomplished with the following code::"
@@ -25671,7 +26597,7 @@ msgstr ""
 "DMA コントローラーの最もシンプルな使用方法は、メモリの１つのブロックから別のブロックに"
 "データを移動することです。これは次のコードで実行できます::"
 
-#: ../../library/rp2.DMA.rst:23
+#: ../../library/rp2.DMA.rst:27
 msgid ""
 "a = bytearray(32*1024)\n"
 "b = bytearray(32*1024)\n"
@@ -25694,7 +26620,7 @@ msgstr ""
 "while d.active():\n"
 "    pass"
 
-#: ../../library/rp2.DMA.rst:33
+#: ../../library/rp2.DMA.rst:37
 msgid ""
 "Note that while this example sits in an idle loop while it waits for the "
 "transfer to complete, the program could just as well do some useful work "
@@ -25703,7 +26629,7 @@ msgstr ""
 "この例では転送が完了するのを待機していますが、"
 "プログラムはこの時に待機する代わりに有用な作業を行うこともできます。"
 
-#: ../../library/rp2.DMA.rst:36
+#: ../../library/rp2.DMA.rst:40
 msgid ""
 "Another, perhaps more common use of the DMA controller is to transfer "
 "between memory and an IO peripheral. In this situation the address of the"
@@ -25729,7 +26655,7 @@ msgstr ""
 "バイト配列から PIO ステートマシンの TX FIFO にデータを1バイトずつ転送するコードは"
 "次のようになります::"
 
-#: ../../library/rp2.DMA.rst:46
+#: ../../library/rp2.DMA.rst:50
 msgid ""
 "# pio_num is index of the PIO block being used, sm_num is the state "
 "machine in that block.\n"
@@ -25769,7 +26695,7 @@ msgstr ""
 "    trigger=True\n"
 ")"
 
-#: ../../library/rp2.DMA.rst:64
+#: ../../library/rp2.DMA.rst:68
 msgid ""
 "Note that in this example the value given for the write address is just "
 "the PIO state machine to which we are sending the data. This works "
@@ -25780,12 +26706,12 @@ msgstr ""
 "これは、PIO ステートマシンがバッファプロトコルを提供し、そのデータ FIFO レジスタに"
 "直接アクセスできるためです。"
 
-#: ../../library/rp2.DMA.rst:73
+#: ../../library/rp2.DMA.rst:77
 msgid "Claim one of the DMA controller channels for exclusive use."
 msgstr ""
 "DMA コントローラーチャネルの１つの排他的な利用を要求します。"
 
-#: ../../library/rp2.DMA.rst:80
+#: ../../library/rp2.DMA.rst:84
 msgid ""
 "Configure the DMA registers for the channel and optionally start the "
 "transfer. Parameters are:"
@@ -25793,7 +26719,7 @@ msgstr ""
 "チャネルの DMA レジスタを設定し、オプションで転送を開始します。"
 "パラメータは以下のとおりです:"
 
-#: ../../library/rp2.DMA.rst:83
+#: ../../library/rp2.DMA.rst:87
 msgid ""
 "*read*: The address from which the DMA controller will start reading data"
 " or an object that will provide data to be read. It can be an integer or "
@@ -25803,7 +26729,7 @@ msgstr ""
 "または読み込むデータを提供するオブジェクト。"
 "整数またはバッファプロトコルをサポートする任意のオブジェクトを指定できます。"
 
-#: ../../library/rp2.DMA.rst:86
+#: ../../library/rp2.DMA.rst:90
 msgid ""
 "*write*: The address to which the DMA controller will start writing or an"
 " object into which data will be written. It can be an integer or any "
@@ -25813,7 +26739,7 @@ msgstr ""
 "またはデータが書き出されるオブジェクト。"
 "整数またはバッファプロトコルをサポートする任意のオブジェクトを指定できます。"
 
-#: ../../library/rp2.DMA.rst:89
+#: ../../library/rp2.DMA.rst:93
 msgid ""
 "*count*: The number of bus transfers that will execute before this "
 "channel stops. Note that this is the number of transfers, not the number "
@@ -25826,7 +26752,7 @@ msgstr ""
 "転送が2または4バイト幅である場合、移動されるデータの合計量"
 "(つまり必要なバッファのサイズ)はそれに応じて乗算する必要があります。"
 
-#: ../../library/rp2.DMA.rst:93
+#: ../../library/rp2.DMA.rst:97
 msgid ""
 "*ctrl*: The value for the DMA control register. This is an integer value "
 "that is typically packed using the :meth:`DMA.pack_ctrl()`."
@@ -25834,15 +26760,15 @@ msgstr ""
 "*ctrl*: DMA 制御レジスタの値。これは通常 :meth:`DMA.pack_ctrl()` "
 "を使ってパックした整数値です。"
 
-#: ../../library/rp2.DMA.rst:95
+#: ../../library/rp2.DMA.rst:99
 msgid "*trigger*: Optionally commence the transfer immediately."
 msgstr "*trigger*: オプションで転送をすぐに開始します。"
 
-#: ../../library/rp2.DMA.rst:99
+#: ../../library/rp2.DMA.rst:103
 msgid "Returns the IRQ object for this DMA channel and optionally configures it."
 msgstr "この DMA チャネルの IRQ オブジェクトを返し、オプションで構築します。"
 
-#: ../../library/rp2.DMA.rst:103
+#: ../../library/rp2.DMA.rst:107
 msgid ""
 "Release the claim on the underlying DMA channel and free the interrupt "
 "handler. The :class:`DMA` object can not be used after this operation."
@@ -25850,7 +26776,7 @@ msgstr ""
 "基礎となる DMA チャネルの所有権を解放し、割り込みハンドラを解放します。"
 "この操作後、 :class:`DMA` オブジェクトは使えなくなります。"
 
-#: ../../library/rp2.DMA.rst:108
+#: ../../library/rp2.DMA.rst:112
 msgid ""
 "Pack the values provided in the keyword arguments into the named fields "
 "of a new control register value. Any field that is not provided will be "
@@ -25867,7 +26793,7 @@ msgstr ""
 "この値を `DMA.ctrl` 属性の現在の値に設定することで、フィールドのサブセットを"
 "簡単にオーバーライドできます。"
 
-#: ../../library/rp2.DMA.rst:114
+#: ../../library/rp2.DMA.rst:118
 msgid ""
 "The keys for the keyword arguments can be any key returned by the "
 ":meth:`DMA.unpack_ctrl()` method. The writable values are:"
@@ -25875,11 +26801,11 @@ msgstr ""
 "キーワード引数のキーは :meth:`DMA.unpack_ctrl()` メソッドによって"
 "返されるキーである可能性があります。書出し可能な値は以下の通りです:"
 
-#: ../../library/rp2.DMA.rst:117
+#: ../../library/rp2.DMA.rst:121
 msgid "*enable*: ``bool`` Set to enable the channel (default: ``True``)."
 msgstr "*enable*: ``bool`` チャネルを有効にするかを設定(デフォルト: ``True``)。"
 
-#: ../../library/rp2.DMA.rst:119
+#: ../../library/rp2.DMA.rst:123
 msgid ""
 "*high_pri*: ``bool`` Make this channel's bus traffic high priority "
 "(default: ``False``)."
@@ -25887,49 +26813,50 @@ msgstr ""
 "*high_pri*: ``bool`` このチャネルのバストラフィックを高優先度にする"
 "(デフォルト: ``False``)。"
 
-#: ../../library/rp2.DMA.rst:121
+#: ../../library/rp2.DMA.rst:125
 msgid "*size*: ``int`` Transfer size: 0=byte, 1=half word, 2=word (default: 2)."
 msgstr "*size*: ``int`` 転送サイズ: 0=バイト、1=ハーフワード、2=ワード(デフォルト: 2)。"
 
-#: ../../library/rp2.DMA.rst:123
+#: ../../library/rp2.DMA.rst:127
 msgid ""
 "*inc_read*: ``bool`` Increment the read address after each transfer "
 "(default: ``True``)."
 msgstr ""
 "*inc_read*: ``bool`` 各転送後に読込みアドレスをインクリメント(デフォルト: ``Tru``)。"
 
-#: ../../library/rp2.DMA.rst:125
+#: ../../library/rp2.DMA.rst:129
 msgid ""
 "*inc_write*: ``bool`` Increment the write address after each transfer "
 "(default: ``True``)."
 msgstr ""
 "*inc_write*: ``bool`` 各転送後に書き出しアドレスを増やす(デフォル: ``True``)。"
 
-#: ../../library/rp2.DMA.rst:127
+#: ../../library/rp2.DMA.rst:131
 msgid ""
 "*ring_size*: ``int`` If non-zero, only the bottom ``ring_size`` bits of "
 "one address register will change when an address is incremented, causing "
 "the address to wrap at the next ``1 << ring_size`` byte boundary. Which "
 "address is wrapped is controlled by the ``ring_sel`` flag. A zero value "
-"disables address wrapping."
+"disables address wrapping (default: 0)."
 msgstr ""
 "*ring_size*: ``int`` ゼロでない場合、アドレスがインクリメントされるときに"
 "１つのアドレスレジスタの下位 ``ring_size`` ビットのみが変更され、"
 "次の ``1 << ring_size`` バイトの境界でアドレスがラップされます。"
 "どのアドレスがラップされるかは ``ring_sel`` フラグで制御されます。"
-"値がゼロの場合はアドレスのラップを無効にします。"
+"値がゼロの場合はアドレスのラップを無効にします(デフォルト: 0)。"
 
-#: ../../library/rp2.DMA.rst:133
+#: ../../library/rp2.DMA.rst:137
 msgid ""
 "*ring_sel*: ``bool`` Set to ``False`` to have the ``ring_size`` apply to "
-"the read address or ``True`` to apply to the write address."
+"the read address or ``True`` to apply to the write address (default: "
+"``False``)."
 msgstr ""
 "*ring_sel*: ``bool`` リングサイズを読み込みアドレスに適用するか、"
 "書き出しアドレスに適用するかを指定。 ``False`` を指定すると、"
 "リングサイズが読み込みアドレスに適用します。 "
-"``True`` を指定すると、書き出しアドレスに適用します。"
+"``True`` を指定すると、書き出しアドレスに適用します(デフォルト: ``False``)。"
 
-#: ../../library/rp2.DMA.rst:136
+#: ../../library/rp2.DMA.rst:140
 msgid ""
 "*chain_to*: ``int`` The channel number for a channel to trigger after "
 "this transfer completes. Setting this value to this DMA object's own "
@@ -25939,15 +26866,21 @@ msgstr ""
 "この値をこの DMA オブジェクトの自身のチャネル番号に設定すると、チェイニングが"
 "無効になります(これがデフォルト)。"
 
-#: ../../library/rp2.DMA.rst:140
+#: ../../library/rp2.DMA.rst:144
 msgid ""
 "*treq_sel*: ``int`` Select a Transfer Request signal. See section 2.5.3 "
-"in the RP2040 datasheet for details."
+"in the RP2040 datasheet for details. You may also pass a "
+":class:`DMATimer` instance to use that timer for pacing the transfer.  "
+"The default is ``0x3f`` (``PERMANENT``), which means the DMA channel runs"
+" at full bus speed without waiting for any external request."
 msgstr ""
 "*treq_sel*: ``int`` 転送リクエスト信号を選択します。"
-"詳細については、RP2040 データシートの2.5.3章を参照してください。"
+"詳細については、RP2040 データシートの2.5.3章を参照してください。 "
+":class:`DMATimer` インスタンスを渡して、そのタイマーを転送のペース制御に"
+"使うこともできます。デフォルトは ``0x3f`` (``PERMANENT``)で、"
+"これは DMA チャネルが外部からの要求を待たずにフルバス速度で動作することを意味します。"
 
-#: ../../library/rp2.DMA.rst:143
+#: ../../library/rp2.DMA.rst:149
 msgid ""
 "*irq_quiet*: ``bool`` Do not generate interrupt at the end of each "
 "transfer. Interrupts will instead be generated when a zero value is "
@@ -25958,39 +26891,39 @@ msgstr ""
 "代わりに、トリガーレジスタにゼロ値が書き出されると割り込みが生成され、"
 "チェインされた転送シーケンスが停止します(デフォルト: ``True``)。"
 
-#: ../../library/rp2.DMA.rst:148
+#: ../../library/rp2.DMA.rst:154
 msgid ""
 "*bswap*: ``bool`` If set to true, bytes in words or half-words will be "
-"reversed before writing (default: ``True``)."
+"reversed before writing (default: ``False``)."
 msgstr ""
 "*bswap*: ``bool`` ``True`` を指定すると、ワードやハーフワードのバイトを書き出す前に"
-"逆順になります(デフォルト: ``True``)。"
+"逆順になります(デフォルト: ``False``)。"
 
-#: ../../library/rp2.DMA.rst:151
+#: ../../library/rp2.DMA.rst:157
 msgid ""
 "*sniff_en*: ``bool`` Set to ``True`` to allow data to be accessed by the "
-"chips sniff hardware (default: ``False``)."
+"chip's sniff hardware (default: ``False``)."
 msgstr ""
 "*sniff_en*: ``bool`` データがチップのスニフハードウェアによってアクセス可能に"
 "なるようにする(デフォルト: ``False``)。"
 
-#: ../../library/rp2.DMA.rst:154
+#: ../../library/rp2.DMA.rst:160
 msgid ""
 "*write_err*: ``bool`` Setting this to ``True`` will clear a previously "
-"reported write error."
+"reported write error (default: ``False``)."
 msgstr ""
 "*write_err*: ``bool`` ``True`` を指定すると、以前に報告された書き出しエラーが"
-"クリアされます。"
+"クリアされます(デフォルト: ``False``)。"
 
-#: ../../library/rp2.DMA.rst:157
+#: ../../library/rp2.DMA.rst:163
 msgid ""
 "*read_err*: ``bool`` Setting this to ``True`` will clear a previously "
-"reported read error."
+"reported read error (default: ``False``)."
 msgstr ""
 "*read_err*: ``bool`` ``True`` を指定すると、以前に報告された読み込みエラーが"
-"クリアされます。"
+"クリアされます(デフォルト: ``False``)。"
 
-#: ../../library/rp2.DMA.rst:160
+#: ../../library/rp2.DMA.rst:166
 msgid ""
 "See the description of the ``CH0_CTRL_TRIG`` register in section 2.5.7 of"
 " the RP2040 datasheet for details of all of these fields."
@@ -25998,7 +26931,7 @@ msgstr ""
 "これらのフィールドの詳細については、RP2040 データシートの2.5.7章の "
 "``CH0_CTRL_TRIG`` レジスタの説明を参照してください。"
 
-#: ../../library/rp2.DMA.rst:165
+#: ../../library/rp2.DMA.rst:171
 msgid ""
 "Unpack a value for a DMA channel control register into a dictionary with "
 "key/value pairs for each of the fields in the control register.  *value* "
@@ -26007,7 +26940,7 @@ msgstr ""
 "DMA チャネル制御レジスタの値を辞書に展開し、制御レジスタの各フィールドに対する"
 "キー/値のペアを返します。 *value* は展開する ``ctrl`` レジスタの値です。"
 
-#: ../../library/rp2.DMA.rst:169
+#: ../../library/rp2.DMA.rst:175
 msgid ""
 "This method will return values for all the keys that can be passed to "
 "``DMA.pack_ctrl``. In addition, it will also return the read-only flags "
@@ -26024,15 +26957,11 @@ msgstr ""
 "これらの値はパッキング時に無視されるため、制御レジスタを展開して作成された辞書は、"
 "直接パッキング用のキーワード引数として使えます。"
 
-#: ../../library/rp2.DMA.rst:178
+#: ../../library/rp2.DMA.rst:184
 msgid "Gets or sets whether the DMA channel is currently running."
 msgstr "DMA チャネルが現在実行中かどうかを取得または設定します。"
 
-#: ../../library/rp2.DMA.rst:187
-msgid "Attributes"
-msgstr "属性"
-
-#: ../../library/rp2.DMA.rst:191
+#: ../../library/rp2.DMA.rst:197
 msgid ""
 "This attribute reflects the address from which the next bus transfer will"
 " read. It may be written with either an integer or an object that "
@@ -26042,7 +26971,7 @@ msgstr ""
 "整数またはバッファプロトコルをサポートするオブジェクトで書き出すことができ、"
 "即時に効果があります。"
 
-#: ../../library/rp2.DMA.rst:197
+#: ../../library/rp2.DMA.rst:203
 msgid ""
 "This attribute reflects the address to which the next bus transfer will "
 "write.  It may be written with either an integer or an object that "
@@ -26052,7 +26981,7 @@ msgstr ""
 "整数またはバッファプロトコルをサポートするオブジェクトで書き出すことができ、"
 "即時に効果があります。"
 
-#: ../../library/rp2.DMA.rst:203
+#: ../../library/rp2.DMA.rst:209
 msgid ""
 "Reading this attribute will return the number of remaining bus transfers "
 "in the *current* transfer sequence. Writing this attribute sets the total"
@@ -26061,7 +26990,7 @@ msgstr ""
 "この属性を読み込むと、現在の転送シーケンスでの残りのバス転送の数が返されます。"
 "この属性に書き出すと、次の転送シーケンスの合計転送数が設定されます。"
 
-#: ../../library/rp2.DMA.rst:209
+#: ../../library/rp2.DMA.rst:215
 msgid ""
 "This attribute reflects DMA channel control register. It is typically "
 "written with an integer packed using the :meth:`DMA.pack_ctrl()` method. "
@@ -26072,7 +27001,7 @@ msgstr ""
 "通常 :meth:`DMA.pack_ctrl()` メソッドを使ってパックした整数で書き出します。"
 "返されたレジスタ値は :meth:`DMA.unpack_ctrl()` メソッドを使ってアンパックできます。"
 
-#: ../../library/rp2.DMA.rst:215
+#: ../../library/rp2.DMA.rst:221
 msgid ""
 "The channel number of the DMA channel. This can be passed in the "
 "``chain_to`` argument of `DMA.pack_ctrl()` on another channel to allow "
@@ -26081,7 +27010,7 @@ msgstr ""
 "DMA チャネルのチャネル番号。これは `DMA.pack_ctrl()` の ``chain_to`` 引数に"
 "別のチャネルのチャネル番号を渡すことで、DMA チェイニングを許可できます。"
 
-#: ../../library/rp2.DMA.rst:220
+#: ../../library/rp2.DMA.rst:226
 msgid ""
 "This attribute is an array-like object that allows direct access to the "
 "DMA channel's registers. The index is by word, rather than by byte, so "
@@ -26093,11 +27022,11 @@ msgstr ""
 "オフセットを4で割ったものです。レジスタの詳細については、RP2040 データシートを"
 "参照してください。"
 
-#: ../../library/rp2.DMA.rst:226
+#: ../../library/rp2.DMA.rst:232
 msgid "Chaining and trigger register access"
 msgstr "チェイニングとトリガーレジスタのアクセス"
 
-#: ../../library/rp2.DMA.rst:228
+#: ../../library/rp2.DMA.rst:234
 msgid ""
 "The DMA controller in the RP2040 offers a couple advanced features to "
 "allow one DMA channel to initiate a transfer on another channel. One is "
@@ -26114,7 +27043,7 @@ msgstr ""
 "直接書き出せる能力と組み合わされると、CPU の介入なしに複雑なトランザクションを"
 "実行できるようになります。"
 
-#: ../../library/rp2.DMA.rst:235
+#: ../../library/rp2.DMA.rst:241
 msgid ""
 "Below is an example of using both chaining and register triggering to "
 "implement gathering of multiple blocks of data into a single destination."
@@ -26127,7 +27056,7 @@ msgstr ""
 "RP2040 データシートの2.5章を参照してください。以下のコードは、2.5.6.2章の例の "
 "Python 版です。"
 
-#: ../../library/rp2.DMA.rst:240
+#: ../../library/rp2.DMA.rst:246
 msgid ""
 "from rp2 import DMA\n"
 "from uctypes import addressof\n"
@@ -26241,13 +27170,140 @@ msgstr ""
 "gather_strings(input, output)\n"
 "print(output)"
 
-#: ../../library/rp2.DMA.rst:292
+#: ../../library/rp2.DMA.rst:298
 msgid ""
 "This example idles while waiting for the transfer to complete; "
 "alternatively it could set an interrupt handler and return immediately."
 msgstr ""
 "この例では、転送が完了するのを待ってアイドル状態になりますが、"
 "代わりに割り込みハンドラを設定してすぐに返すこともできます。"
+
+#: ../../library/rp2.DMA.rst:302
+msgid "class DMATimer -- pacing timers for DMA transfers"
+msgstr "クラス DMATimer -- DMA 転送用のペーシングタイマー"
+
+#: ../../library/rp2.DMA.rst:304
+msgid ""
+"The RP2040 and RP2350 DMA controllers provide four \"pacing\" timers that"
+" can be used to control the rate at which DMA transfers take place. In "
+"the absence of specifying a transfer request signal using the "
+"``treq_sel`` parameter in the control configuration the DMA controller "
+"will try to transfer data as fast as the bus will allow, which can be as "
+"fast as the system clock speed. Often I/O operations should happen at "
+"some lower rate, and it is also sometimes valuable to moderate the rate "
+"of transfers from memory to memory in order to avoid overloading the bus "
+"(particularly when using external PSRAM, which is much slower than the "
+"on-chip SRAM). By using a :class:`DMATimer` the user can select a rate "
+"that is a rational fraction of the system clock speed. Each timer can "
+"independently trigger transfer requests at rate that is ``X/Y`` times the"
+" system clock, where ``X < Y``."
+msgstr ""
+"RP2040 および RP2350 DMAコントローラは、DMA転送の速度を制御するために使える４つの"
+"「ペーシング」タイマーを備えています。制御構成の ``treq_sel`` パラメータを使って"
+"転送要求信号を指定しない場合、DMAコントローラはバスが許容する限り高速にデータを"
+"転送しようとします。これはシステムクロック速度と同程度の速度になる可能性があります。"
+"多くの場合、I/O 操作は低速で行われる必要があり、バスの過負荷を避けるためにメモリ間の"
+"転送速度を調整することも有効な場合があります(特に、オンチップ SRAM よりもはるかに"
+"低速な外部 PSRAM を使う場合)。 :class:`DMATimer` を使うことで、システムクロック"
+"速度の有理数の割合となる速度を選択できます。各タイマーは、システムクロックの ``X/Y`` "
+"倍の速度で転送要求を個別にトリガーできます(``X < Y``)。"
+
+#: ../../library/rp2.DMA.rst:316
+msgid ""
+":class:`DMATimer` objects can be used directly as the value for treq_sel "
+"passed into the :meth:`DMA.pack_ctrl()` function, since the value if "
+"``int(dma_timer)`` is the index of the transfer request selector for the "
+"timer. Thus if you want to pace a transfer to run at 10,000 operations "
+"per second you can use::"
+msgstr ""
+":class:`DMATimer` オブジェクトは :meth:`DMA.pack_ctrl()` 関数に渡される "
+"treq_sel の値として直接使用できます。 ``int(dma_timer)`` の値は、"
+"タイマーの転送要求セレクタのインデックスだからです。したがって、転送を毎秒 10000 "
+"オペレーションで実行するようにペースを調整したい場合は、次のように使用できます::"
+
+#: ../../library/rp2.DMA.rst:321
+msgid ""
+"dma = rp2.DMA()\n"
+"timer = rp2.DMATimer(freq=10000)\n"
+"ctrl = d.pack_ctrl(treq_sel=timer)  # Default control value with paced by"
+" the timer\n"
+"dma.config(read=src, write=dst, count=length, ctrl=ctrl, trigger=True)"
+msgstr ""
+"dma = rp2.DMA()\n"
+"timer = rp2.DMATimer(freq=10000)\n"
+"ctrl = d.pack_ctrl(treq_sel=timer)  # タイマーによってペースが調整されるデフォルトの制御値\n"
+"dma.config(read=src, write=dst, count=length, ctrl=ctrl, trigger=True)"
+
+#: ../../library/rp2.DMA.rst:326
+msgid ""
+"Note: The underlying DMA pacing timer will get released when a "
+":class:`DMATimer` gets garbage collected. If you are setting in motion a "
+"DMA transfer that is not expected to complete before the timer object "
+"goes out of scope then it is a good idea to keep a reference to it so "
+"that the timer does not get reassigned to some other caller (which might "
+"change the frequency on you)."
+msgstr ""
+"注記: :class:`DMATimer` がガベージコレクションされると、基となる DMA "
+"ペーシングタイマーは解放されます。タイマーオブジェクトがスコープ外になる前に"
+"完了しないと予想されるDMA転送を開始する場合は、タイマーが他の呼び出し元に"
+"再割り当てされないように、タイマーへの参照を保持しておくことをお勧めします"
+"(再割り当てされると、タイマーの周波数が変わってしまう可能性があるためです)。"
+
+#: ../../library/rp2.DMA.rst:337
+msgid ""
+"Claim one of the DMA pacing timers for exclusive use and optionally set "
+"the frequency or ratio."
+msgstr ""
+"DMA ペースタイマーのうち1つを専用に割り当て、必要に応じて周波数または比率を設定します。"
+
+#: ../../library/rp2.DMA.rst:339
+msgid "*timer_id*: Which timer to use. Leave empty to select any unclaimed timer."
+msgstr ""
+"*timer_id*: 使用するタイマーを指定します。空欄のままにすると、"
+"未割り当てのタイマーがどれでも選択されます。"
+
+#: ../../library/rp2.DMA.rst:340
+msgid "*freq*: The optional value to assign to the :attr:`freq` attribute."
+msgstr ""
+"*freq*: :attr:`freq` 属性に割り当てるオプションの値。"
+
+#: ../../library/rp2.DMA.rst:341
+msgid "*ratio*: The optional value to assign to the :attr:`ratio` attribute."
+msgstr ""
+"*ratio*: :attr:`ratio` 属性に割り当てるオプションの値。"
+
+#: ../../library/rp2.DMA.rst:343
+msgid "If both ``freq`` and ``ratio`` are provided then ``ratio`` is used."
+msgstr ""
+"``freq`` と ``ratio``の両方が指定されている場合は ``ratio`` が適用されます。"
+
+#: ../../library/rp2.DMA.rst:350
+msgid "Release the exclusive claim on the underlying timer."
+msgstr "基盤となるタイマーの独占的権利を解放します。"
+
+#: ../../library/rp2.DMA.rst:357
+msgid ""
+"Set or read the ``(X, Y)`` tuple for the system clock division ratio. "
+"When setting the ratio both X and Y need to in the range 0 < X, Y < "
+"65536."
+msgstr ""
+"システムクロックの分周比を表す ``(X, Y)`` タプルを設定または読み取ります。"
+"分周比を設定する際は、X と Yの両方が 0 < X, Y < 65536 の範囲内である"
+"必要があります。"
+
+#: ../../library/rp2.DMA.rst:362
+msgid ""
+"Set or read the DMATimer frequency in Hz. When setting, the frequency "
+"will be set to the closest frequency that can be achieved by the divider."
+" Reading the frequency back will show the actual selected frequency, to "
+"the nearest 1Hz. The requested value needs be less than or equal to the "
+"system clock speed and greater than or equal to 1/65535 of the system "
+"clock."
+msgstr ""
+"DMATimer の周波数を Hz 単位で設定または読み取ります。設定時には、分周器で実現可能な"
+"最も近い周波数に設定されます。周波数を読み取ると、実際に選択された周波数が最も近い 1Hz "
+"単位で表示されます。要求される値は、システムクロック速度以下かつシステムクロックの "
+"1/65535 以上である必要があります。"
 
 #: ../../library/rp2.PIO.rst:5
 msgid "class PIO -- advanced PIO usage"
@@ -27597,7 +28653,60 @@ msgstr ""
 "<https://wiki.mozilla.org/Security/Cipher_Suites>`_ "
 "である文字列のリストを指定してください。"
 
-#: ../../library/ssl.rst:71
+#: ../../library/ssl.rst:72
+msgid ""
+"The pre-shared key (PSK) identity and key to authenticate with as a "
+"client. Set both to use PSK: *psk_identity* is the identity sent to the "
+"server and *psk_key* is the shared key, both as `bytes` objects."
+msgstr ""
+"クライアントとして認証に使用する事前共有鍵(PSK: pre-shared key)の ID と鍵。"
+"PSK を使用するように両方を設定します。 *psk_identity* はサーバーに送信される "
+"ID、 *psk_key* は共有鍵で、どちらも `bytes` オブジェクトです。"
+
+#: ../../library/ssl.rst:76
+msgid ""
+"While PSK is configured the context offers only PSK cipher suites, so the"
+" connection cannot fall back to a non-PSK (e.g. certificate-based) suite."
+msgstr ""
+"PSK が設定されている間は、コンテキストは PSK 暗号スイートのみを提供するため、"
+"接続は非vPSK スイート(証明書ベースなど)にフォールバックできません。"
+
+#: ../../library/ssl.rst:79
+msgid "Availability depends on the port's mbedTLS being built with PSK support."
+msgstr ""
+"利用可能かどうかは、ポートの mbedTLS が PSK サポート付きで構築されているかどうかに"
+"依存します。"
+
+#: ../../library/ssl.rst:83
+msgid ""
+"A mapping used by a server to look up the key for the identity presented "
+"by a connecting client.  Set it to accept PSK clients::"
+msgstr ""
+"接続してきたクライアントから提示された ID に対応するキーをサーバーが"
+"検索するために使うマッピング。PSK クライアントを受け入れるように設定します::"
+
+#: ../../library/ssl.rst:86
+#, python-brace-format
+msgid "ctx.server_psk_keys = {b\"my-identity\": b\"my-key\"}"
+msgstr ""
+
+#: ../../library/ssl.rst:88
+msgid ""
+"Its ``get()`` method is called with the client's identity (a `bytes` "
+"object) and should return the corresponding key as a `bytes` object, or "
+"``None`` to reject an unknown identity.  Any object providing such a "
+"``get()`` method may be used, so keys can be computed or fetched on "
+"demand.  As with the client, the context is restricted to PSK cipher "
+"suites while this is set."
+msgstr ""
+"このマッピングについては、クライアントの ID (`bytes` オブジェクト)を引数として "
+"``get()`` メソッドが呼び出され、対応するキーを `bytes` オブジェクトとして返し、"
+"不明な ID を拒否する場合は ``None`` を返す必要があります。"
+"このような ``get()`` メソッドを提供するオブジェクトであればどれでも使えるため、"
+"必要に応じてキーを計算または取得できます。クライアントと同様に、この設定が有効に"
+"なっている間は、コンテキストは PSK 暗号スイートに限定されます。"
+
+#: ../../library/ssl.rst:96
 msgid ""
 "Takes a `stream` *sock* (usually socket.socket instance of "
 "``SOCK_STREAM`` type), and returns an instance of ssl.SSLSocket, wrapping"
@@ -27609,7 +28718,7 @@ msgstr ""
 "返されるオブジェクトには ``read()``, ``write()`` のような"
 "通常の `stream` インスタンスのインタフェースメソッドがあります。"
 
-#: ../../library/ssl.rst:76
+#: ../../library/ssl.rst:101
 msgid ""
 "*server_side* selects whether the wrapped socket is on the server or "
 "client side. A server-side SSL socket should be created from a normal "
@@ -27621,7 +28730,7 @@ msgstr ""
 ":meth:`~socket.socket.accept()` から返される通常のソケットから作成する"
 "必要があります。"
 
-#: ../../library/ssl.rst:80
+#: ../../library/ssl.rst:105
 msgid ""
 "*do_handshake_on_connect* determines whether the handshake is done as "
 "part of the ``wrap_socket`` or whether it is deferred to be done as part "
@@ -27642,7 +28751,7 @@ msgstr ""
 "AXTLS では、ハンドシェイクは最初の読み書きまで延期できますが、その後は完了する"
 "までブロックされることに注意してください。"
 
-#: ../../library/ssl.rst:88
+#: ../../library/ssl.rst:113
 msgid ""
 "*server_hostname* is for use as a client, and sets the hostname to check "
 "against the received server certificate.  It also sets the name for "
@@ -27653,7 +28762,7 @@ msgstr ""
 "照合するためのホスト名を指定します。また、これはサーバー名表示(SNI: "
 "Server Name Indication)としても使われ、サーバーが適切な証明書を提示できるようにします。"
 
-#: ../../library/ssl.rst:92
+#: ../../library/ssl.rst:117
 msgid ""
 "*client_id* is a MicroPython-specific extension argument used only when "
 "implementing a DTLS Server. See :ref:`dtls` for details."
@@ -27661,7 +28770,7 @@ msgstr ""
 "*client_id* は MicroPython 固有の拡張引数であり、DTLS サーバーを実装する場合に"
 "のみ使われます。詳細については :ref:`dtls` を参照してください。"
 
-#: ../../library/ssl.rst:97
+#: ../../library/ssl.rst:122
 msgid ""
 "Some implementations of ``ssl`` module do NOT validate server "
 "certificates, which makes an SSL connection established prone to man-in-"
@@ -27670,7 +28779,7 @@ msgstr ""
 "``ssl`` モジュールの実装によってはサーバー証明書の検証が行われないため、"
 "中間者攻撃を受けやすい SSL 接続になってしまいます。"
 
-#: ../../library/ssl.rst:100
+#: ../../library/ssl.rst:125
 msgid ""
 "CPython's ``wrap_socket`` returns an ``SSLSocket`` object which has "
 "methods typical for sockets, such as ``send``, ``recv``, etc. "
@@ -27682,14 +28791,14 @@ msgstr ""
 "メソッドがあります。MicroPython の ``wrap_socket`` は CPython の "
 "``SSLObject`` に類似のオブジェクトを返しますが、ソケットメソッドはありません。"
 
-#: ../../library/ssl.rst:107
+#: ../../library/ssl.rst:132
 msgid ""
 "Set or get the behaviour for verification of peer certificates.  Must be "
 "one of the ``CERT_*`` constants."
 msgstr ""
 "ピア証明書の検証の動作を設定/取得します。 ``CERT_*`` 定数のいずれかにしなければなりません。"
 
-#: ../../library/ssl.rst:112
+#: ../../library/ssl.rst:137
 msgid ""
 "``ssl.CERT_REQUIRED`` requires the device's date/time to be properly set,"
 " e.g. using `mpremote rtc --set <mpremote_command_rtc>` or ``ntptime``, "
@@ -27700,20 +28809,20 @@ msgstr ""
 "使って設定できます。また、クライアント側の場合は ``server_hostname`` が"
 "指定されている必要があります。"
 
-#: ../../library/ssl.rst:121
+#: ../../library/ssl.rst:146
 msgid "This exception does NOT exist. Instead its base class, OSError, is used."
 msgstr ""
 "この例外は存在しません。代わりにベースクラスの OSError が使われます。"
 
-#: ../../library/ssl.rst:126
+#: ../../library/ssl.rst:151
 msgid "DTLS support"
 msgstr "DTLS サポート"
 
-#: ../../library/ssl.rst:131
+#: ../../library/ssl.rst:156
 msgid "This is a MicroPython extension."
 msgstr "これは MicroPython 拡張です。"
 
-#: ../../library/ssl.rst:133
+#: ../../library/ssl.rst:158
 msgid ""
 "On most ports, this module supports DTLS in client and server mode via "
 "the `PROTOCOL_DTLS_CLIENT` and `PROTOCOL_DTLS_SERVER` constants that can "
@@ -27723,7 +28832,7 @@ msgstr ""
 "サポートしており、 `SSLContext` の ``protocol`` 引数として `PROTOCOL_DTLS_CLIENT` "
 "と `PROTOCOL_DTLS_SERVER` 定数を指定できます。"
 
-#: ../../library/ssl.rst:137
+#: ../../library/ssl.rst:162
 msgid ""
 "In this case the underlying socket is expected to behave as a datagram "
 "socket (i.e. like the socket opened with ``socket.socket`` with "
@@ -27733,7 +28842,7 @@ msgstr ""
 "``type`` に ``socket.SOCK_DGRAM`` を指定した ``socket.socket`` でオープン"
 "したソケットのようなもの)として動作する必要があります。"
 
-#: ../../library/ssl.rst:141
+#: ../../library/ssl.rst:166
 msgid ""
 "DTLS is only supported on ports that use mbedTLS, and it is enabled by "
 "default in most configurations but can be manually disabled by defining "
@@ -27743,11 +28852,11 @@ msgstr ""
 "たいていのビルドオプションで有効になってます。ビルドオプションで "
 "``MBEDTLS_SSL_PROTO_DTLS`` を 0 にすることにより無効にできます。"
 
-#: ../../library/ssl.rst:146
+#: ../../library/ssl.rst:171
 msgid "DTLS server support"
 msgstr "DTLS サーバーのサポート"
 
-#: ../../library/ssl.rst:148
+#: ../../library/ssl.rst:173
 msgid ""
 "MicroPython's DTLS server support is configured with \"Hello Verify\" as "
 "required for DTLS 1.2. This is transparent for DTLS clients, but there "
@@ -27759,7 +28868,7 @@ msgstr ""
 "とっては透過的ですが、MicroPython で DTLS サーバーを実装する際には"
 "次の点に注意が必要です:"
 
-#: ../../library/ssl.rst:152
+#: ../../library/ssl.rst:177
 msgid ""
 "The server should pass an additional argument *client_id* when calling "
 "`SSLContext.wrap_socket()`. This ID must be a `bytes` object (or similar)"
@@ -27769,7 +28878,7 @@ msgstr ""
 "渡す必要があります。この ID は、クライアントを識別するトランスポート固有の識別子であり、 "
 "`bytes` オブジェクト(または同等のもの)でなければなりません。"
 
-#: ../../library/ssl.rst:156
+#: ../../library/ssl.rst:181
 msgid ""
 "The simplest approach is to convert the tuple of ``(client_ip, "
 "client_port)`` returned from ``socket.recv_from()`` into a byte string, "
@@ -27779,7 +28888,7 @@ msgstr ""
 "``(client_ip, client_port)`` のタプルをバイト列に変換することです。"
 "つまり、以下のようになります::"
 
-#: ../../library/ssl.rst:159
+#: ../../library/ssl.rst:184
 msgid ""
 "_, client_addr = sock.recvfrom(1, socket.MSG_PEEK)\n"
 "sock.connect(client_addr)  # Connect back to the client\n"
@@ -27787,7 +28896,7 @@ msgid ""
 "                           client_id=repr(client_addr).encode())"
 msgstr ""
 
-#: ../../library/ssl.rst:164
+#: ../../library/ssl.rst:189
 msgid ""
 "The first time a client connects, the server call to ``wrap_socket`` will"
 " fail with a `OSError` error \"Hello Verify Required\". This is because "
@@ -27799,7 +28908,7 @@ msgstr ""
 "これは、DTLS の \"Hello Verify\" クッキーがまだクライアント側で認識されていない"
 "ためです。同じクライアントが2回目に接続してくると ``wrap_socket`` が成功します。"
 
-#: ../../library/ssl.rst:169
+#: ../../library/ssl.rst:194
 msgid ""
 "DTLS cookies for \"Hello Verify\" are associated with the `SSLContext` "
 "object, so the same `SSLContext` object should be used to wrap a "
@@ -28318,7 +29427,7 @@ msgid ""
 "string formatting methods like ``str.format()`` instead."
 msgstr ""
 "MicroPython には ``format()`` 組み込み関数がありません。"
-代わりに ``str.format()`` のような文字列フォーマットメソッドを使ってください。"
+"代わりに ``str.format()`` のような文字列フォーマットメソッドを使ってください。"
 
 #: ../../library/string.templatelib.rst:149
 msgid "Example Usage"
@@ -30587,7 +31696,17 @@ msgstr ""
 "を開始点として、デバイスから *buf* (バイトの配列)にブロックを読み込みます。"
 "読み込むブロック数は *buf* の長さで与えられ、読み込むバイト数になります。"
 
-#: ../../library/vfs.rst:169
+#: ../../library/vfs.rst:166 ../../library/vfs.rst:190
+msgid ""
+"Upon success the method should return ``None`` or 0.  Upon failure it "
+"should return a negative integer corresponding to an ``OSError`` errno "
+"code."
+msgstr ""
+"メソッドが成功した場合、 ``None`` または 0 を返す必要があります。"
+"失敗した場合、 ``OSError`` errno コードに対応する負の整数を返す"
+"必要があります。"
+
+#: ../../library/vfs.rst:172
 msgid ""
 "The first form writes aligned, multiples of blocks, and requires that the"
 " blocks that are written to be first erased (if necessary) by this "
@@ -30602,7 +31721,7 @@ msgstr ""
 "書き出します。書き出すブロック数は *buf* の長さで与えられ、ブロックサイズの倍数に"
 "なります。"
 
-#: ../../library/vfs.rst:176
+#: ../../library/vfs.rst:179
 msgid ""
 "The second form allows writing at arbitrary locations within a block, and"
 " arbitrary lengths.  Only the bytes being written should be changed, and "
@@ -30619,7 +31738,7 @@ msgstr ""
 "を開始点として、 *buf* （バイト配列）からデバイスに書き出します。"
 "書き出すバイト数は *buf* の長さで指定されます。"
 
-#: ../../library/vfs.rst:184
+#: ../../library/vfs.rst:187
 msgid ""
 "Note that implementations must never implicitly erase blocks if the "
 "offset argument is specified, even if it is zero."
@@ -30627,7 +31746,7 @@ msgstr ""
 "offset 引数が指定されている場合、たとえゼロであっても、実装がブロックを暗黙的に"
 "消去してはならないことに注意してください。"
 
-#: ../../library/vfs.rst:189
+#: ../../library/vfs.rst:195
 msgid ""
 "Control the block device and query its parameters.  The operation to "
 "perform is given by *op* which is one of the following integers:"
@@ -30635,26 +31754,26 @@ msgstr ""
 "ブロックデバイスの制御とパラメータ問い合わせをおこないます。実行する操作は *op* に"
 "次の整数のうちの１つで指定します。"
 
-#: ../../library/vfs.rst:192
+#: ../../library/vfs.rst:198
 msgid "1 -- initialise the device (*arg* is unused)"
 msgstr "1 -- デバイスを初期化します(*arg* は未使用)"
 
-#: ../../library/vfs.rst:193
+#: ../../library/vfs.rst:199
 msgid "2 -- shutdown the device (*arg* is unused)"
 msgstr "2 -- デバイスをシャットダウンします(*arg* は未使用)"
 
-#: ../../library/vfs.rst:194
+#: ../../library/vfs.rst:200
 msgid "3 -- sync the device (*arg* is unused)"
 msgstr "3 -- デバイスを同期します(*arg* は未使用)"
 
-#: ../../library/vfs.rst:195
+#: ../../library/vfs.rst:201
 msgid ""
 "4 -- get a count of the number of blocks, should return an integer (*arg*"
 " is unused)"
 msgstr ""
 "4 -- ブロック数を取得し、整数で返します(*arg* は未使用)"
 
-#: ../../library/vfs.rst:197
+#: ../../library/vfs.rst:203
 msgid ""
 "5 -- get the number of bytes in a block, should return an integer, or "
 "``None`` in which case the default value of 512 is used (*arg* is unused)"
@@ -30662,11 +31781,11 @@ msgstr ""
 "5 -- ブロック内のバイト数を取得し、整数で返します。 ``None`` の場合はデフォルト値"
 "の 512 が使われます(*arg* は未使用)"
 
-#: ../../library/vfs.rst:200
+#: ../../library/vfs.rst:206
 msgid "6 -- erase a block, *arg* is the block number to erase"
 msgstr "6 -- ブロックを消去します。 *arg* は消去するブロック数です"
 
-#: ../../library/vfs.rst:202
+#: ../../library/vfs.rst:208
 msgid ""
 "As a minimum ``ioctl(4, ...)`` must be intercepted; for littlefs "
 "``ioctl(6, ...)`` must also be intercepted. The need for others is "
@@ -30676,7 +31795,7 @@ msgstr ""
 "littlefs については ``ioctl(6, ...)`` も受け付けられる必要があります。"
 "その他の操作が受け付けられるかはハードウェアに依存します。"
 
-#: ../../library/vfs.rst:206
+#: ../../library/vfs.rst:212
 msgid ""
 "Prior to any call to ``writeblocks(block, ...)`` littlefs issues "
 "``ioctl(6, block)``. This enables a device driver to erase the block "
@@ -30689,7 +31808,7 @@ msgstr ""
 "ブロックを消去できます。あるいは、ドライバが ``ioctl(6, block)`` を捉えて 0 (成功)を"
 "返すようにするかもしれません。この場合、ドライバは消去の必要性を検出する責任を負います。"
 
-#: ../../library/vfs.rst:212
+#: ../../library/vfs.rst:218
 msgid ""
 "Unless otherwise stated ``ioctl(op, arg)`` can return ``None``. "
 "Consequently an implementation can ignore unused values of ``op``. Where "

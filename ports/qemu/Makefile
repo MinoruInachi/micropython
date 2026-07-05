@@ -64,6 +64,18 @@ else ifeq ($(SUPPORTS_HARDWARE_FP_DOUBLE),1)
 CFLAGS += -DMICROPY_HW_FPU=1
 endif
 
+ifneq ($(MICROPY_HW_ROMFS_PART0_START),)
+CFLAGS += -DMICROPY_HW_ROMFS_ENABLE_PART0=1
+CFLAGS += -DMICROPY_HW_ROMFS_PART0_START=$(MICROPY_HW_ROMFS_PART0_START)
+CFLAGS += -DMICROPY_HW_ROMFS_PART0_SIZE=$(MICROPY_HW_ROMFS_PART0_SIZE)
+endif
+
+ifneq ($(MICROPY_HW_ROMFS_PART1_START),)
+CFLAGS += -DMICROPY_HW_ROMFS_ENABLE_PART1=1
+CFLAGS += -DMICROPY_HW_ROMFS_PART1_START=$(MICROPY_HW_ROMFS_PART1_START)
+CFLAGS += -DMICROPY_HW_ROMFS_PART1_SIZE=$(MICROPY_HW_ROMFS_PART1_SIZE)
+endif
+
 ################################################################################
 # ARM specific settings
 
@@ -93,7 +105,7 @@ GCC_VERSION = $(word 1, $(subst ., , $(shell $(CC) -dumpversion)))
 
 RV32_ABI = ilp32
 
-QEMU_ARGS += -bios none
+QEMU_ARGS += -bios none -cpu rv32,zcd=off,zcmp=on
 
 # GCC 10 and lower do not recognise the Zicsr extension in the architecture name.
 ifeq ($(shell test $(GCC_VERSION) -le 10; echo $$?),0)
@@ -208,7 +220,16 @@ CFLAGS += $(SPECS_FRAGMENT)
 LDFLAGS += $(SPECS_FRAGMENT)
 endif
 
-RUN_TESTS_FULL_ARGS = -t execpty:"$(QEMU_SYSTEM) $(QEMU_ARGS) -serial pty -kernel ../ports/qemu/$<" $(RUN_TESTS_ARGS)
+# Mount the ROMFS test image only if no other ROMFS partition has been mounted on slot 0.
+
+ROMFS_TEST_IMAGE = assets/random_romfs.bin
+
+# Mount the ROMFS test image specifically for test runs (if there is a slot 0).
+ifneq ($(MICROPY_HW_ROMFS_PART0_START),)
+QEMU_TEST_ARGS = -device loader,file=$(ROMFS_TEST_IMAGE),addr=$(MICROPY_HW_ROMFS_PART0_START),force-raw=on
+endif
+
+RUN_TESTS_FULL_ARGS = -t execpty:"$(QEMU_SYSTEM) $(QEMU_ARGS) $(QEMU_TEST_ARGS) -serial pty -kernel ../ports/qemu/$<" $(RUN_TESTS_ARGS)
 
 ################################################################################
 # Source files and libraries

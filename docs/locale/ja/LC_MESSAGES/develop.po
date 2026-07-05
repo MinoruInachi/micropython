@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-08 11:19+0900\n"
-"PO-Revision-Date: 2026-04-09 17:51+0900\n"
+"POT-Creation-Date: 2026-06-28 11:26+0900\n"
+"PO-Revision-Date: 2026-06-28 18:34+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.13.1\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: ../../develop/cmodules.rst:4
 msgid "MicroPython external C modules"
@@ -37,12 +37,12 @@ msgstr ""
 #: ../../develop/cmodules.rst:10
 msgid ""
 "If your limitations can't be resolved with suggestions in "
-":ref:`speed_python`, writing some or all of your module in C (and/or C++ "
-"if implemented for your port) is a viable option."
+":ref:`speed_python`, writing some or all of your module in C (and/or "
+":ref:`C++ if implemented for your port<cxx_support>`) is a viable option."
 msgstr ""
 ":ref:`MicroPython 性能の最大化 <speed_python>` に提示しているもので解決できない場合、"
-"モジュールの一部または全部を C 言語で書くのが現実的な解です(ポートによっては C++ も"
-"使います)。"
+"モジュールの一部または全部を C 言語で書くのが現実的な解です"
+"(:ref:`ポートによっては C++ も使います<cxx_support>`)。"
 
 #: ../../develop/cmodules.rst:14
 msgid ""
@@ -578,6 +578,164 @@ msgstr ""
 "sleep_ms(1000)\n"
 "print(watch.time())\n"
 "# 1000 に近い値が表示されるはず"
+
+#: ../../develop/cmodules.rst:293
+msgid "C Dynamic Memory Allocation"
+msgstr "C の動的メモリ割当て"
+
+#: ../../develop/cmodules.rst:295
+msgid ""
+"MicroPython uses its own \"Python heap\" for `memorymanagement`, which is"
+" not the same as the \"C heap\" used by C library functions ``malloc()``,"
+" ``free()``, etc. Not every MicroPython port comes with a \"C heap\" at "
+"all."
+msgstr ""
+"MicroPythonは `memorymanagement` に独自の「Pythonヒープ」を使いますが、"
+"これは C ライブラリ関数 ``malloc()``, ``free()`` などで使う「Cヒープ」とは"
+"異なります。すべての MicroPython ポートで「Cヒープ」がサポートされている"
+"わけではありません。"
+
+#: ../../develop/cmodules.rst:299
+msgid ""
+"Tier 1 & 2 ports have varying support for C dynamic memory allocation via"
+" a \"C heap\":"
+msgstr ""
+"レベル 1 および 2 のポートでは「Cヒープ」を介した C 動的メモリ割当てのサポートが"
+"異なります。"
+
+#: ../../develop/cmodules.rst:302
+msgid ""
+"unix, windows, esp32 and webassembly ports support C dynamic memory "
+"allocation."
+msgstr ""
+"unix、windows、esp32、webAssembly ポートでは C 言語の動的メモリ割当てをサポート"
+"しています。"
+
+#: ../../develop/cmodules.rst:304
+msgid ""
+"rp2 port will fail to allocate any memory at runtime unless the firmware "
+"is built with ``MICROPY_C_HEAP_SIZE=n`` to reserve ``n`` bytes of memory "
+"for a C heap. This memory will not be available for Python code to use."
+msgstr ""
+"rp2 ポートでは、ファームウェアが ``MICROPY_C_HEAP_SIZE=n`` でビルドされ、"
+"C 言語のヒープ用に n バイトのメモリが予約されていない限り、実行時にメモリを"
+"割り当てられません。このメモリは Python コードでは使えません。"
+
+#: ../../develop/cmodules.rst:307
+msgid ""
+"alif, mimxrt, nrf, renesas-ra, samd, and stm32 port builds that include "
+"dynamic C allocation will fail at link-time with errors such as "
+"``undefined reference to `malloc'``. MicroPython has no built-in support "
+"for dynamic C allocation on these ports. Any solution requires manually "
+"adding a C heap implementation to the custom build."
+msgstr ""
+"alif、mimxrt、nrf、renesas-ra、samd、stm32 ポートのビルドに動的 C 割当てが"
+"含まれている場合、 ``undefined reference to `malloc'`` などのエラーが発生し、"
+"リンク時に失敗します。MicroPythonはこれらのポートで動的 C 割当てを組み込みで"
+"サポートしていません。解決策としては、カスタムビルドにCヒープ実装を手動で追加する"
+"必要があります。"
+
+#: ../../develop/cmodules.rst:312
+msgid "zephyr port currently does not support building with user modules."
+msgstr ""
+"zephyr ポートは現在、ユーザーモジュールを含んだビルドをサポートしていません。"
+
+#: ../../develop/cmodules.rst:315
+msgid "Python heap as C heap"
+msgstr "Python ヒープと C ヒープ"
+
+#: ../../develop/cmodules.rst:317
+msgid ""
+"It may be practical for C code to call \"Python heap\" dynamic allocation"
+" functions such ``m_malloc()``, ``m_malloc0()`` and ``m_free()`` instead."
+msgstr ""
+"C コードから「Pythonヒープ」動的割り当て関数を呼び出す方が実用的かもしれません。"
+"「Pythonヒープ」動的割当て関数には ``m_malloc()``, ``m_malloc0()``, "
+"``m_free()`` などがあります。"
+
+#: ../../develop/cmodules.rst:320
+msgid "See `python_memory_from_c` for more information about this approach."
+msgstr ""
+"このアプローチの詳細については `python_memory_from_c` を参照してください。"
+
+#: ../../develop/cmodules.rst:325
+msgid "C++ Modules"
+msgstr "C++ モジュール"
+
+#: ../../develop/cmodules.rst:327
+msgid ""
+"Most Tier 1 & 2 MicroPython ports (and some Tier 3) support building C++ "
+"user modules, using the C++-specific environment variables described "
+"above."
+msgstr ""
+"レベル 1 と 2 の MicroPython ポートのほとんど(および一部のレベル 3)は、"
+"上記で説明した C++ 固有の環境変数を使った C++ ユーザーモジュールのビルドを"
+"サポートしています。"
+
+#: ../../develop/cmodules.rst:330
+msgid ""
+"Integrating C++ and MicroPython successfully involves some additional "
+"considerations:"
+msgstr ""
+"C++ と MicroPython を正常に統合するには、いくつかの追加的な考慮事項があります:"
+
+#: ../../develop/cmodules.rst:334
+msgid "C++ Dynamic Memory Allocation"
+msgstr "C++ 動的メモリ割り当て"
+
+#: ../../develop/cmodules.rst:336
+msgid ""
+"C++ programs (as well as C++ Standard Library features) typically use "
+"dynamic memory allocation. The C++ default memory allocator (i.e. "
+"operators ``new`` and ``delete``) is typically implemented as a layer on "
+"top of `c_heap`."
+msgstr ""
+"C++ プログラム(および C++ 標準ライブラリの機能)は通常、動的メモリ割当てを"
+"使います。C++ のデフォルトのメモリ割当て(つまり ``new`` と ``delete`` 演算子)は"
+"通常、 `c_heap` 上のレイヤーとして実装されています。"
+
+#: ../../develop/cmodules.rst:340
+msgid ""
+"For MicroPython ports which don't include C dynamic memory allocation "
+"support, C++ dynamic memory allocation can be supported in one of two "
+"ways:"
+msgstr ""
+"C の動的メモリ割当てのサポートが含まれていない MicroPython ポートの場合、"
+"C++ の動的メモリ割当ては 2 つの方法のいずれかでサポートできます。"
+
+#: ../../develop/cmodules.rst:343
+msgid "Implement C dynamic memory allocation in your custom build."
+msgstr "カスタムビルドで C 言語の動的メモリ割当てを実装します。"
+
+#: ../../develop/cmodules.rst:344
+msgid "Implement a custom C++ allocator in your custom build."
+msgstr "カスタムビルドでカスタム C++ アロケータを実装します。"
+
+#: ../../develop/cmodules.rst:347
+msgid "Linkage Considerations"
+msgstr "リンクに関する考慮事項"
+
+#: ../../develop/cmodules.rst:349
+msgid ""
+"Because MicroPython is a C-based project, any symbols which link to or "
+"from MicroPython need to be qualified ``extern \"C\"`` in C++ code."
+msgstr ""
+"MicroPython は C 言語ベースのプロジェクトであるため、MicroPython にリンクする、"
+"または MicroPython からリンクされるシンボルは、C++ コード内で ``extern \"C\"`` で"
+"修飾する必要があります。"
+
+#: ../../develop/cmodules.rst:352
+msgid ""
+"It's strongly recommended to follow the pattern demonstrated in "
+"`examples/usercmodule/cppexample "
+"<https://github.com/micropython/micropython/blob/master/examples/usercmodule/cppexample>`_,"
+" where the Python module is implemented in a minimal C file wrapper "
+"around the C++ code."
+msgstr ""
+"`examples/usercmodule/cppexample "
+"<https://github.com/micropython/micropython/blob/master/examples/usercmodule/cppexample>`_ "
+"で示されているパターンにしたがうことを強くお勧めします。このパターンで、"
+"Python モジュールは C++ コードをラップする最小限の C ファイルで実装されています。"
 
 #: ../../develop/compiler.rst:4
 msgid "The Compiler"
@@ -2085,29 +2243,23 @@ msgstr ""
 #: ../../develop/library.rst:28
 msgid ""
 "Like CPython, MicroPython has core builtin modules that can be accessed "
-"through import statements. An example is the ``gc`` module discussed in "
-":ref:`memorymanagement`."
+"through import statements. An example is the :mod:`gc` module discussed "
+"in :ref:`memorymanagement`."
 msgstr ""
 "CPython と同様に、MicroPython にもコアとなる組込みモジュールがあり、"
-"import 文でアクセスできます。例として、 :ref:`memorymanagement` で取り上げた ``gc`` "
-"モジュールの場合について示します。"
+"import 文でアクセスできます。例として、 :ref:`memorymanagement` で取り上げた "
+":mod:`gc` モジュールの場合について示します。"
 
 #: ../../develop/library.rst:31
 msgid ""
-">>> import gc\n"
-">>> gc.enable()\n"
-">>>"
+"MicroPython has several other builtin standard/core modules like "
+":mod:`io`, :mod:`array`, etc. Adding a new core module involves several "
+"modifications."
 msgstr ""
-
-#: ../../develop/library.rst:37
-msgid ""
-"MicroPython has several other builtin standard/core modules like ``io``, "
-"``array`` etc. Adding a new core module involves several modifications."
-msgstr ""
-"MicroPython には、他にも ``io`` や ``array`` などの標準/コアモジュールがいくつか"
+"MicroPython には、他にも :mod:`io` や :mod:`array` などの標準/コアモジュールがいくつか"
 "組み込まれています。新しいコアモジュールの追加にはいくつかの修正が必要です。"
 
-#: ../../develop/library.rst:40
+#: ../../develop/library.rst:34
 msgid ""
 "First, create the ``C`` file in the ``py/`` directory. In this example we"
 " are adding a hypothetical new module ``subsystem`` in the file "
@@ -2117,7 +2269,7 @@ msgstr ""
 "この例では ``odsubsystem.c`` というファイルに、仮想的な新しいモジュール "
 "``subsystem`` を追加しています:"
 
-#: ../../develop/library.rst:43
+#: ../../develop/library.rst:37
 msgid ""
 "#include \"py/builtin.h\"\n"
 "#include \"py/runtime.h\"\n"
@@ -2147,7 +2299,7 @@ msgid ""
 "#endif"
 msgstr ""
 
-#: ../../develop/library.rst:71
+#: ../../develop/library.rst:65
 msgid ""
 "The implementation includes a definition of all functions related to the "
 "module and adds the functions to the module's global table in "
@@ -2160,14 +2312,14 @@ msgstr ""
 "また、 ``mp_module_subsystem`` でモジュールオブジェクトを作成します。"
 "そして、 ``MP_REGISTER_MODULE`` マクロにより、モジュールはより広いシステムに登録されます。"
 
-#: ../../develop/library.rst:76
+#: ../../develop/library.rst:70
 msgid ""
 "After building and running the modified MicroPython, the module should "
 "now be importable:"
 msgstr ""
 "修正した MicroPython をビルドして実行すると、モジュールをインポートできるようになります:"
 
-#: ../../develop/library.rst:78
+#: ../../develop/library.rst:72
 msgid ""
 ">>> import subsystem\n"
 ">>> subsystem.info()\n"
@@ -2175,7 +2327,7 @@ msgid ""
 ">>>"
 msgstr ""
 
-#: ../../develop/library.rst:85
+#: ../../develop/library.rst:79
 msgid ""
 "Our ``info()`` function currently returns just a single number but can be"
 " extended to do anything.  Similarly, more functions can be added to this"
@@ -2330,86 +2482,202 @@ msgstr "メモリー管理"
 msgid ""
 "Unlike programming languages such as C/C++, MicroPython hides memory "
 "management details from the developer by supporting automatic memory "
-"management. Automatic memory management is a technique used by operating "
-"systems or applications to automatically manage the allocation and "
-"deallocation of memory. This eliminates challenges such as forgetting to "
-"free the memory allocated to an object. Automatic memory management also "
-"avoids the critical issue of using memory that is already released. "
-"Automatic memory management takes many forms, one of them being garbage "
-"collection (GC)."
+"management of a \":ref:`Python heap<heap>`\" that holds all Python "
+"objects. MicroPython uses garbage collection (GC) for automatic memory "
+"management. The garbage collector is responsible for freeing memory which"
+" is no longer in use."
 msgstr ""
 "C/C++ などのプログラミング言語と違い、MicroPython は自動メモリー管理をサポート"
-"することで、メモリー管理の詳細を開発者から隠蔽しています。自動メモリー管理とは、"
-"オペレーティングシステムやアプリケーションが、メモリの割り当てと解放を自動的に管理"
-"するために使う手法です。これにより、オブジェクトに割り当てられたメモリーの解放を忘れる"
-"といった問題がなくなります。また、自動メモリ管理は、すでに解放されているメモリーを"
-"使ってしまうという重大な問題を回避できます。自動メモリー管理には様々な形態がありますが、"
-"その１つがガベージコレクション(GC: Garbage Collection)です。"
+"することで、すべての Python オブジェクトを保持する"
+"「 :ref:`Python ヒープ <heap>` 」のメモリー管理の詳細を開発者から隠蔽しています。"
+"MicroPython は、自動メモリ管理にガベージコレクション(GC: Garbage Collection)を"
+"使います。ガベージコレクタは、使わなくなったメモリを解放する役割を担います。"
 
-#: ../../develop/memorymgt.rst:14
-msgid "The garbage collector usually has two responsibilities;"
-msgstr "ガベージコレクションは通常２つの責任を負っています。"
-
-#: ../../develop/memorymgt.rst:16
-msgid "Allocate new objects in available memory."
-msgstr "利用可能なメモリに新しいオブジェクトを割り当てる。"
-
-#: ../../develop/memorymgt.rst:17
-msgid "Free unused memory."
-msgstr "使わなくなったメモリーを解放する。"
-
-#: ../../develop/memorymgt.rst:19
+#: ../../develop/memorymgt.rst:12
 msgid ""
-"There are many GC algorithms but MicroPython uses the `Mark and Sweep "
+"Specifically, MicroPython uses a `Mark and Sweep "
 "<https://en.wikipedia.org/wiki/Tracing_garbage_collection#Basic_algorithm>`_"
-" policy for managing memory. This algorithm has a mark phase that "
-"traverses the heap marking all live objects while the sweep phase goes "
-"through the heap reclaiming all unmarked objects."
+" garbage collection algorithm. This algorithm has a mark phase that scans"
+" the heap marking all live objects, and then a sweep phase goes through "
+"the heap reclaiming all unmarked objects."
 msgstr ""
-"多くの GC アルゴリズムがありますが、MicroPython は「マーク＆スイープ」"
-"(`Mark and Sweep "
-"<https://en.wikipedia.org/wiki/Tracing_garbage_collection#Basic_algorithm>`_ )"
-"というポリシーでメモリー管理を行います。このアルゴリズムは、ヒープを横断してすべての"
-"生きているオブジェクトをマークするマークフェーズと、ヒープを横断してすべてのマーク"
-"されていないオブジェクトを回収するスイープフェーズを持っています。"
+"具体的に、MicroPython は `マークアンドスイープ方式 "
+"<https://en.wikipedia.org/wiki/Tracing_garbage_collection#Basic_algorithm>`_ "
+"のガベージコレクションアルゴリズムを採用しています。このアルゴリズムは、"
+"ヒープをスキャンしてすべての生存オブジェクトにマークを付けるマークフェーズと、"
+"ヒープをスキャンしてマークされていないすべてのオブジェクトを解放するスイープフェーズで"
+"構成されています。"
+
+#: ../../develop/memorymgt.rst:18
+msgid ""
+"The MicroPython garbage collector is by default automatic, but manual "
+"control is available through the :mod:`gc` built-in module."
+msgstr ""
+"MicroPython のガベージコレクタはデフォルトでは自動ですが、 :mod:`gc` "
+"組込みモジュールを使って手動で制御することも可能です。"
 
 #: ../../develop/memorymgt.rst:24
-msgid ""
-"Garbage collection functionality in MicroPython is available through the "
-"``gc`` built-in module:"
-msgstr ""
-"MicroPython のガベージコレクション機能は ``gc`` 組込みモジュールで利用できます。"
+msgid "MicroPython Memory from C code"
+msgstr "C コードからの MicroPython メモリ"
 
-#: ../../develop/memorymgt.rst:27
+#: ../../develop/memorymgt.rst:26
 msgid ""
-">>> x = 5\n"
-">>> x\n"
-"5\n"
-">>> import gc\n"
-">>> gc.enable()\n"
-">>> gc.mem_alloc()\n"
-"1312\n"
-">>> gc.mem_free()\n"
-"2071392\n"
-">>> gc.collect()\n"
-"19\n"
-">>> gc.disable()\n"
-">>>"
+"Awareness of the garbage collector is needed when writing C code that "
+"allocates memory from the \"Python heap\" (i.e. functions ``m_malloc()``,"
+" ``m_malloc0()``, ``m_free()``, etc)."
 msgstr ""
+"「Python ヒープ」からメモリを割り当てる C コード(``m_malloc()``, ``m_malloc0()``, "
+"``m_free()`` などの関数)を書く際には、ガベージコレクタの仕組みを理解しておく"
+"必要があります。"
 
-#: ../../develop/memorymgt.rst:43
+#: ../../develop/memorymgt.rst:30
 msgid ""
-"Even when ``gc.disable()`` is invoked, collection can be triggered with "
-"``gc.collect()``."
+"The mark phase of the garbage collector scans for live pointers to heap "
+"memory starting from the following roots:"
 msgstr ""
-"``gc.disable()`` を実行した場合でも、 ``gc.collect()`` で"
-"メモリー回収を起動できます。"
+"ガベージコレクタのマークフェーズでは、以下のルートから始まるヒープメモリへの有効な"
+"ポインタをスキャンします。"
 
-#: ../../develop/memorymgt.rst:46
+#: ../../develop/memorymgt.rst:33
+msgid "The stack of the main Python runtime (or REPL)."
+msgstr "メインの Python ランタイム(または REPL)のスタック。"
+
+#: ../../develop/memorymgt.rst:34
+msgid ""
+"The stacks of each \"Python thread\", for ports which implement Python "
+"threads on top of native operating system threads or tasks."
+msgstr ""
+"ネイティブのオペレーティングシステムのスレッドまたはタスク上に Python スレッドを"
+"実装するポートの場合、各「Python スレッド」のスタック。"
+
+#: ../../develop/memorymgt.rst:36
+msgid ""
+"The \"root pointers\" defined in C code using the macro "
+"``MP_REGISTER_ROOT_POINTER``. These are the recommended way to have "
+"statically scoped pointers to the Python heap."
+msgstr ""
+"マクロ ``MP_REGISTER_ROOT_POINTER`` を使って C コードで定義された"
+"「ルートポインタ」。これは Python ヒープへの静的スコープポインタを"
+"持つための推奨される方法です。"
+
+#: ../../develop/memorymgt.rst:39
+msgid ""
+"Tracked allocations made with the ``m_tracked_calloc()``, "
+"``m_tracked_realloc`` and ``m_tracked_free()`` functions. These special "
+"functions allow allocating a block of memory which is always considered "
+"live by the garbage collector. Similar to memory allocation in C, this "
+"memory is only freed by calling ``m_tracked_free()`` or by soft reset. "
+"There is a small memory usage and runtime overhead to each tracked "
+"allocation. This feature is not enabled by default on all ports."
+msgstr ""
+"``m_tracked_calloc()``, ``m_tracked_realloc``, ``m_tracked_free()`` "
+"関数を使って行われた追跡可能なメモリ割り当て。これらの特殊関数を使用すると、"
+"ガベージコレクタによって常に有効とみなされるメモリブロックを割り当てることができます。"
+"C 言語のメモリ割り当てと同様に、このメモリは ``m_tracked_free()`` を呼び出すか、"
+"ソフトリセットを実行することによってのみ解放されます。追跡可能なメモリ割り当てごとに、"
+"わずかなメモリ使用量と実行時オーバーヘッドが発生します。この機能は、すべてのポートで"
+"デフォルトで有効になっているわけではありません。"
+
+#: ../../develop/memorymgt.rst:47
+msgid ""
+"The garbage collector then recursively scans and marks all the memory "
+"pointed to by the root pointers, until all addresses are exhausted. This "
+"is sufficient to find all Python objects that are still in use by the "
+"MicroPython runtime."
+msgstr ""
+"ガベージコレクタは、ルートポインタが指すすべてのメモリを再帰的にスキャンしてマークし、"
+"すべてのアドレスが使い果たされるまで続けます。これにより、MicroPython ランタイム"
+"によってまだ使われているすべての Python オブジェクトを見つけられます。"
+
+#: ../../develop/memorymgt.rst:51
+msgid ""
+"However, the following memory will **not** be scanned by the garbage "
+"collector and could be freed prematurely:"
+msgstr ""
+"ただし、以下のメモリはガベージコレクタによってスキャンされず、早期に解放される"
+"可能性があります。"
+
+#: ../../develop/memorymgt.rst:54
+msgid "Static or global C variables which contain pointers to heap memory."
+msgstr "ヒープメモリへのポインタを含む静的またはグローバルなC変数。"
+
+#: ../../develop/memorymgt.rst:55
+msgid ""
+"Pointers which don't point to the \"head\" of an allocated buffer (i.e. "
+"to the exact address returned by ``m_malloc()``), but instead to an "
+"address inside the allocated buffer (for example, a pointer to a nested "
+"struct). For performance reasons, the garbage collector doesn't mark the "
+"enclosing buffer in these cases."
+msgstr ""
+"割り当て済みバッファの「先頭」(つまり ``m_malloc()`` によって返される正確なアドレス)"
+"ではなく、割り当て済みバッファ内のアドレス(たとえば、ネストされた構造体へのポインタ)を"
+"指すポインタ。パフォーマンス上の理由から、これらの場合、ガベージコレクタは囲んでいる"
+"バッファをマークしません。"
+
+#: ../../develop/memorymgt.rst:60
+msgid ""
+"The stack of any thread or RTOS task which isn't running Python code or "
+"manually registered as a \"Python thread\" (for ports which support "
+"native threads or tasks)."
+msgstr ""
+"Pythonコードを実行していない、または「Pythonスレッド」として手動で登録されていない"
+"スレッドまたは RTOS タスクのスタック(ネイティブスレッドまたはタスクをサポートする"
+"ポートの場合)。"
+
+#: ../../develop/memorymgt.rst:64
+msgid "Ways to avoid use-after-free in these scenarios:"
+msgstr "このようなシナリオで解放後の使用を回避する方法:"
+
+#: ../../develop/memorymgt.rst:66
+msgid ""
+"Use the tracked allocation API ``m_tracked_calloc()``, "
+"``m_tracked_realloc()`` and ``m_tracked_free()``."
+msgstr ""
+"トラッキングする割り当て API である ``m_tracked_calloc()``, "
+"``m_tracked_realloc()``, ``m_tracked_free()`` を使う。"
+
+#: ../../develop/memorymgt.rst:68
+msgid ""
+"Register a root pointer (see above), instead of storing a pointer in a "
+"static variable."
+msgstr ""
+"静的変数にポインタを格納する代わりに、ルートポインタを登録する(上記参照)。"
+
+#: ../../develop/memorymgt.rst:70
+msgid ""
+"Restructure the code, for example by having an API where Python code "
+"initialises a singleton Python object (implemented in C) which holds all "
+"of the relevant pointers instead of having them in static variables."
+msgstr ""
+"コードを再構築する。たとえば、Python コードがすべての関連ポインタを保持する"
+"シングルトン Python オブジェクト(C で実装)を初期化する API を用意するなどして、"
+"静的変数にポインタを格納する代わりに、コードを再構築する。"
+
+#: ../../develop/memorymgt.rst:74
+msgid ""
+":ref:`soft_reset` always clears the Python heap and frees all memory. "
+"It's important not to hold any pointers to the heap after a soft reset, "
+"as they will become dangling pointers to freed memory."
+msgstr ""
+":ref:`soft_reset` は常に Python ヒープをクリアし、すべてのメモリを解放します。"
+"ソフトリセット後はヒープへのポインタを保持しないことが重要です。解放されたメモリへの"
+"ダングリングポインタになるからです。"
+
+#: ../../develop/memorymgt.rst:78
+msgid ""
+"Some ports support a \"C heap\" as well (see `c_heap`), in which case you"
+" can allocate memory that will stay valid over soft reset by calling "
+"standard C functions ``malloc``, etc."
+msgstr ""
+"一部のポートは「C ヒープ」もサポートしています(`c_heap` を参照)。"
+"その場合、標準の C 関数 ``malloc`` などを呼び出すことで、"
+"ソフトリセット後も有効なメモリを割り当てられます。"
+
+#: ../../develop/memorymgt.rst:83
 msgid "The object model"
 msgstr "オブジェクトモデル"
 
-#: ../../develop/memorymgt.rst:48
+#: ../../develop/memorymgt.rst:85
 msgid ""
 "All MicroPython objects are referred to by the ``mp_obj_t`` data type. "
 "This is usually word-sized (i.e. the same size as a pointer on the target"
@@ -2425,7 +2693,7 @@ msgstr ""
 "たとえば ``OBJ_REPR_D`` は 32 ビットアーキテクチャ上であっても 64 ビットサイズの "
 "``mp_obj_t`` を持ちます。"
 
-#: ../../develop/memorymgt.rst:54
+#: ../../develop/memorymgt.rst:91
 msgid ""
 "An ``mp_obj_t`` represents a MicroPython object, for example an integer, "
 "float, type, dict or class instance. Some objects, like booleans and "
@@ -2443,18 +2711,18 @@ msgstr ""
 "``mp_obj_t`` 内の一部は、それがどのような種類のオブジェクトであるかを示すタグに"
 "なっています。"
 
-#: ../../develop/memorymgt.rst:60
+#: ../../develop/memorymgt.rst:97
 msgid ""
 "See ``py/mpconfig.h`` for the specific details of the available "
 "representations."
 msgstr ""
 "利用可能な表現の具体的な詳細については ``py/mpconfig.h`` を参照してください。"
 
-#: ../../develop/memorymgt.rst:62
+#: ../../develop/memorymgt.rst:99
 msgid "**Pointer tagging**"
 msgstr "**ポインタータグ**"
 
-#: ../../develop/memorymgt.rst:64
+#: ../../develop/memorymgt.rst:101
 msgid ""
 "Because pointers are word-aligned, when they are stored in an "
 "``mp_obj_t`` the lower bits of this object handle will be zero.  For "
@@ -2464,11 +2732,11 @@ msgstr ""
 "このオブジェクトハンドルの下位ビットはゼロになります。たとえば、32 ビット"
 "アーキテクチャでは、下位 2 ビットは 0 になります。"
 
-#: ../../develop/memorymgt.rst:68 ../../develop/memorymgt.rst:88
+#: ../../develop/memorymgt.rst:105 ../../develop/memorymgt.rst:125
 msgid "``********|********|********|******00``"
 msgstr ""
 
-#: ../../develop/memorymgt.rst:70
+#: ../../develop/memorymgt.rst:107
 msgid ""
 "These bits are reserved for purposes of storing a tag. The tag stores "
 "extra information as opposed to introducing a new field to store that "
@@ -2483,15 +2751,15 @@ msgstr ""
 "具象オブジェクトを扱っているかどうかを示し、それぞれに異なるセマンティクスが"
 "適用されます。"
 
-#: ../../develop/memorymgt.rst:75
+#: ../../develop/memorymgt.rst:112
 msgid "For small integers the mapping is this:"
 msgstr "小さい整数の場合、マッピングは次のようになります:"
 
-#: ../../develop/memorymgt.rst:77
+#: ../../develop/memorymgt.rst:114
 msgid "``********|********|********|*******1``"
 msgstr ""
 
-#: ../../develop/memorymgt.rst:79
+#: ../../develop/memorymgt.rst:116
 msgid ""
 "Where the asterisks hold the actual integer value.  For an interned "
 "string or an immediate object (e.g. ``True``) the layout of the "
@@ -2501,27 +2769,27 @@ msgstr ""
 "隔離化した文字列または即値オブジェクト(``True`` など)の場合、 "
 "`` mp_obj_t`` 値のレイアウトはそれぞれ次のようになります:"
 
-#: ../../develop/memorymgt.rst:82
+#: ../../develop/memorymgt.rst:119
 msgid "``********|********|********|*****010``"
 msgstr ""
 
-#: ../../develop/memorymgt.rst:84
+#: ../../develop/memorymgt.rst:121
 msgid "``********|********|********|*****110``"
 msgstr ""
 
-#: ../../develop/memorymgt.rst:86
+#: ../../develop/memorymgt.rst:123
 msgid "While a concrete object that is none of the above takes the form:"
 msgstr "上記のいずれでもない具象オブジェクトは、次のような形式をとります:"
 
-#: ../../develop/memorymgt.rst:90
+#: ../../develop/memorymgt.rst:127
 msgid "The stars here correspond to the address of the concrete object in memory."
 msgstr "上記のアスタリスクは、メモリー上の具象オブジェクトのアドレスに相当します。"
 
-#: ../../develop/memorymgt.rst:93
+#: ../../develop/memorymgt.rst:130
 msgid "Allocation of objects"
 msgstr "オブジェクトの割当て"
 
-#: ../../develop/memorymgt.rst:95
+#: ../../develop/memorymgt.rst:132
 msgid ""
 "The value of a small integer is stored directly in the ``mp_obj_t`` and "
 "will be allocated in-place, not on the heap or elsewhere.  As such, "
@@ -2534,7 +2802,7 @@ msgstr ""
 "与えません。同様に、すでにテキストデータが別の場所に保存されている隔離化文字列や、 "
 "``None``, ``False``, ``True`` などの即値も同様です。"
 
-#: ../../develop/memorymgt.rst:101
+#: ../../develop/memorymgt.rst:138
 msgid ""
 "Everything else which is a concrete object is allocated on the heap and "
 "its object structure is such that a field is reserved in the object "
@@ -2544,7 +2812,7 @@ msgstr ""
 "そのオブジェクト構造は、オブジェクトの型を格納するフィールドが"
 "オブジェクトヘッダに予約されているようなものです。"
 
-#: ../../develop/memorymgt.rst:104
+#: ../../develop/memorymgt.rst:141
 msgid ""
 "+++++++++++\n"
 "+         +\n"
@@ -2566,7 +2834,7 @@ msgstr ""
 "+         +\n"
 "+++++++++++"
 
-#: ../../develop/memorymgt.rst:116
+#: ../../develop/memorymgt.rst:153
 msgid ""
 "The heap's smallest unit of allocation is a block, which is four machine "
 "words in size (16 bytes on a 32-bit machine, 32 bytes on a 64-bit "
@@ -2577,11 +2845,11 @@ msgstr ""
 "16バイト、64ビットマシンでは32バイト)です。また、ヒープに割り当てられた別の構造体が、"
 "各ブロック内のオブジェクトの割り当てを追跡します。この構造体はビットマップと呼ばれています。"
 
-#: ../../develop/memorymgt.rst:122
+#: ../../develop/memorymgt.rst:159
 msgid ".. image:: develop/img/bitmap.png"
 msgstr ""
 
-#: ../../develop/memorymgt.rst:123
+#: ../../develop/memorymgt.rst:160
 msgid ""
 "The bitmap tracks whether a block is \"free\" or \"in use\" and use two "
 "bits to track this state for each block."
@@ -2589,7 +2857,7 @@ msgstr ""
 "ビットマップは、ブロックが「空き」なのか「使用中」なのかを追跡し、"
 "ブロックごとに2ビットを使います。"
 
-#: ../../develop/memorymgt.rst:126
+#: ../../develop/memorymgt.rst:163
 msgid ""
 "The mark-sweep garbage collector manages the objects allocated on the "
 "heap, and also utilises the bitmap to mark objects that are still in use."
@@ -2601,11 +2869,11 @@ msgstr ""
 "また、まだ使用中のオブジェクトをマークするためにビットマップを利用します。"
 "これらの詳細の完全な実装は py/gc.c を参照してください。"
 
-#: ../../develop/memorymgt.rst:131
+#: ../../develop/memorymgt.rst:168
 msgid "**Allocation: heap layout**"
 msgstr "**割当て: ヒープレイアウト**"
 
-#: ../../develop/memorymgt.rst:133
+#: ../../develop/memorymgt.rst:170
 msgid ""
 "The heap is arranged such that it consists of blocks in pools. A block "
 "can have different properties:"
@@ -2613,28 +2881,28 @@ msgstr ""
 "ヒープはプール内のブロックから構成されるように配置されます。"
 "ブロックは異なるプロパティを持てます。"
 
-#: ../../develop/memorymgt.rst:136
+#: ../../develop/memorymgt.rst:173
 msgid "*ATB(allocation table byte):* If set, then the block is a normal block"
 msgstr ""
 "*ATB(Allocation Table Byte):* 設定されている場合、そのブロックは通常のブロックです。"
 
-#: ../../develop/memorymgt.rst:137
+#: ../../develop/memorymgt.rst:174
 msgid "*FREE:* Free block"
 msgstr "*FREE:* フリーブロック"
 
-#: ../../develop/memorymgt.rst:138
+#: ../../develop/memorymgt.rst:175
 msgid "*HEAD:* Head of a chain of blocks"
 msgstr "*HEAD：* ブロックのチェーンの先頭"
 
-#: ../../develop/memorymgt.rst:139
+#: ../../develop/memorymgt.rst:176
 msgid "*TAIL:* In the tail of a chain of blocks"
 msgstr "*TAIL:* ブロックのチェーンの最後尾"
 
-#: ../../develop/memorymgt.rst:140
+#: ../../develop/memorymgt.rst:177
 msgid "*MARK :* Marked head block"
 msgstr "*MARK:* マークされたヘッドブロック"
 
-#: ../../develop/memorymgt.rst:141
+#: ../../develop/memorymgt.rst:178
 msgid "*FTB(finaliser table byte):* If set, then the block has a finaliser"
 msgstr ""
 "*FTB(Finaliser Table Byte):* 設定されている場合，そのブロックはファイナライザを持ちます"
@@ -3836,23 +4104,25 @@ msgstr ""
 
 #: ../../develop/porting.rst:242
 msgid ""
-"MicroPython v1.13 on 2021-01-01; example-board with unknown-cpu\n"
-">>> import sys\n"
-">>> sys.implementation\n"
-"('micropython', (1, 13, 0))\n"
+"MicroPython v1.26.0-preview on 2025-08-01; minimal with unknown-cpu\n"
+">>> def sum(n, m):\n"
+"...     return n + m\n"
+"...\n"
+">>> 3, 4, sum(3, 4)\n"
+"(3, 4, 7)\n"
 ">>>"
 msgstr ""
 
-#: ../../develop/porting.rst:250
+#: ../../develop/porting.rst:252
 msgid "Use Ctrl-D to exit, and then run ``reset`` to reset the terminal."
 msgstr ""
 "Ctrl-D で終了し、 ``reset`` を実行してターミナルをリセットします。"
 
-#: ../../develop/porting.rst:253
+#: ../../develop/porting.rst:255
 msgid "Adding a module to the port"
 msgstr "ポートへのモジュール追加"
 
-#: ../../develop/porting.rst:255
+#: ../../develop/porting.rst:257
 msgid ""
 "To add a custom module like ``myport``, first add the module definition "
 "in a file ``modmyport.c``:"
@@ -3860,7 +4130,7 @@ msgstr ""
 "``myport`` のようなカスタムモジュールを追加するには、まず ``modmyport.c`` "
 "というファイルにモジュール定義を追加します:"
 
-#: ../../develop/porting.rst:258
+#: ../../develop/porting.rst:260
 msgid ""
 "#include \"py/runtime.h\"\n"
 "\n"
@@ -3886,7 +4156,7 @@ msgid ""
 "MP_REGISTER_MODULE(MP_QSTR_myport, myport_module);"
 msgstr ""
 
-#: ../../develop/porting.rst:281
+#: ../../develop/porting.rst:283
 msgid ""
 "You will also need to edit the Makefile to add ``modmyport.c`` to the "
 "``SRC_C`` list, and a new line adding the same file to ``SRC_QSTR`` (so "
@@ -3896,7 +4166,7 @@ msgstr ""
 "(qstr がこの新しいファイルで検索されるように) ``SRC_QSTR`` に同じファイルを"
 "加える新しい行を、次のように追加する必要があります:"
 
-#: ../../develop/porting.rst:285
+#: ../../develop/porting.rst:287
 msgid ""
 "SRC_C = \\\n"
 "    main.c \\\n"
@@ -3907,14 +4177,14 @@ msgid ""
 "SRC_QSTR += modmyport.c"
 msgstr ""
 
-#: ../../develop/porting.rst:295
+#: ../../develop/porting.rst:297
 msgid ""
 "If all went correctly then, after rebuilding, you should be able to "
 "import the new module:"
 msgstr ""
 "すべてが正しく行われていれば、再構築後、新しいモジュールをインポートできるはずです:"
 
-#: ../../develop/porting.rst:297
+#: ../../develop/porting.rst:299
 msgid ""
 ">>> import myport\n"
 ">>> myport.info()\n"
