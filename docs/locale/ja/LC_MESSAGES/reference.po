@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-28 11:26+0900\n"
-"PO-Revision-Date: 2026-07-03 23:51+0900\n"
+"POT-Creation-Date: 2026-07-12 09:57+0900\n"
+"PO-Revision-Date: 2026-07-12 14:08+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1975,45 +1975,94 @@ msgid ""
 "eliminating Unicode can be painless."
 msgstr ""
 "Python3 は Unicode サポートを導入しました。これは文字列とバイトの配列の間の区別を"
-"もたらしました。MicroPython は文字列内のすべての文字が ASCII である(つまり < 126 "
-"の値を持つ)限り、Unicode 文字列が追加のスペースを取らないことを保証します。8 ビット"
-"全域の値が必要であれば、追加のスペースが不要になるように `bytes` や `bytearray` "
-"オブジェクトが使えます。ほとんどの文字列メソッド(たとえば :meth:`str.strip()`) は "
-"`bytes` インスタンスにも適用されるため、Unicode を排除する処理は簡単です。"
+"もたらしました。MicroPython は文字列内のすべての文字が ASCII である限り(つまり、"
+"文字コードが < 126)、Unicode 文字列が追加のスペースを取らないことを保証します。"
+"8 ビット全域の値が必要であれば、追加のスペースが不要になるように `bytes` や "
+"`bytearray` オブジェクトが使えます。ほとんどの文字列メソッド(たとえば "
+":meth:`str.strip()`) は `bytes` インスタンスにも適用されるため、Unicode を"
+"排除する処理は簡単です。"
 
 #: ../../../reference/constrained.rst:248
 msgid ""
 "s = 'the quick brown fox'   # A string instance\n"
 "b = b'the quick brown fox'  # A bytes instance"
 msgstr ""
+"s = 'the quick brown fox'   # 文字列インスタンス\n"
+"b = b'the quick brown fox'  # バイト列インスタンス"
 
-#: ../../../reference/constrained.rst:253
+#: ../../reference/constrained.rst:253
 msgid ""
 "Where it is necessary to convert between strings and bytes the "
-":meth:`str.encode` and the :meth:`bytes.decode` methods can be used. Note"
-" that both strings and bytes are immutable. Any operation which takes as "
-"input such an object and produces another implies at least one RAM "
+":meth:`str.encode` and the :meth:`bytes.decode` methods can be used. "
+"MicroPython validates the encoding parameter and only supports UTF-8 and "
+"ASCII. The :meth:`bytes.decode` method also supports error handlers "
+"(``'ignore'`` and ``'replace'``) for handling invalid UTF-8, when enabled"
+" in the build configuration."
+msgstr ""
+"文字列とバイトを変換する必要がある場合は、 ":meth:`str.encode` と "
+":meth:`bytes.decode` メソッドを使えます。"
+"MicroPython はエンコードパラメータを検証し、UTF-8 と ASCII のみをサポートします。"
+"また :meth:`bytes.decode` メソッドは、ビルド構成で有効になっている場合、"
+"無効な UTF-8 を処理するためのエラーハンドラ(``'ignore'`` と ``'replace'``)も"
+"サポートします。"
+
+#: ../../reference/constrained.rst:259
+msgid ""
+"For memory-conscious applications processing untrusted data, using the "
+"``'ignore'`` error handler can be more efficient than ``'strict'`` mode "
+"(the default), as it avoids raising exceptions while still recovering "
+"valid text::"
+msgstr ""
+"メモリ使用量を重視するアプリケーションが信頼できないデータを処理する場合、 "
+"``'ignore'`` エラーハンドラを使う方が、 ``'strict'`` モード(デフォルト)よりも"
+"効率的です。これは、例外を発生させることなく有効なテキストを復元できるためです。"
+
+#: ../../reference/constrained.rst:263
+msgid ""
+"# Strict mode (default) raises an error on invalid UTF-8\n"
+"try:\n"
+"    s = data.decode('utf-8')\n"
+"except UnicodeError:\n"
+"    # Handle error\n"
+"    pass\n"
+"\n"
+"# Ignore mode skips invalid bytes (more memory-efficient)\n"
+"s = data.decode('utf-8', 'ignore')"
+msgstr ""
+"# strict モード(デフォルト)では、無効な UTF-8 でエラーが発生\n"
+"try:\n"
+"    s = data.decode('utf-8')\n"
+"except UnicodeError:\n"
+"    # Handle error\n"
+"    pass\n"
+"\n"
+"# ignore モードでは、無効なバイトをスキップ(メモリ効率が向上)\n"
+"s = data.decode('utf-8', 'ignore')"
+
+#: ../../reference/constrained.rst:273
+msgid ""
+"Note that both strings and bytes are immutable. Any operation which takes"
+" as input such an object and produces another implies at least one RAM "
 "allocation to produce the result. In the second line below a new bytes "
 "object is allocated. This would also occur if ``foo`` were a string."
 msgstr ""
-"文字列とバイトを変換する必要がある場合は、 ":meth:`str.encode` と "
-":meth:`bytes.decode` メソッドを使えます。文字列とバイト列の両方が不変であることに"
+"文字列とバイト列の両方が不変であることに"
 "注意してください。そのようなオブジェクトを入力として受け取り、別のオブジェクトを"
-"生成する演算は、結果を生成するために少なくとも1つのRAM割り当てを意味します。次の"
-"コードの２行目には、新しい bytes オブジェクトが割り当てられています。foo が"
+"生成する演算は、結果を生成するために少なくとも1つの RAM 割当てを意味します。次の"
+"コードの２行目には、新しい bytes オブジェクトが割り当てられています。 ``foo`` が"
 "文字列の場合も同様です。"
 
-#: ../../../reference/constrained.rst:260
+#: ../../../reference/constrained.rst:279
 msgid ""
 "foo = b'   empty whitespace'\n"
 "foo = foo.lstrip()"
 msgstr ""
 
-#: ../../../reference/constrained.rst:265
+#: ../../../reference/constrained.rst:284
 msgid "**Runtime compiler execution**"
 msgstr "**ランタイムコンパイラの実行**"
 
-#: ../../../reference/constrained.rst:267
+#: ../../../reference/constrained.rst:286
 msgid ""
 "The Python functions `eval` and `exec` invoke the compiler at runtime, "
 "which requires significant amounts of RAM. Note that the ``pickle`` "
@@ -2025,11 +2074,11 @@ msgstr ""
 "ライブラリは `exec` を利用していることに注意してください。オブジェクトのシリアル化"
 "については `json` ライブラリを使うと、RAM の効率が上がる可能性があります 。"
 
-#: ../../../reference/constrained.rst:272
+#: ../../../reference/constrained.rst:291
 msgid "**Storing strings in flash**"
 msgstr "**文字列をフラッシュに保存する**"
 
-#: ../../../reference/constrained.rst:274
+#: ../../../reference/constrained.rst:293
 msgid ""
 "Python strings are immutable hence have the potential to be stored in "
 "read only memory. The compiler can place in flash strings defined in "
@@ -2044,15 +2093,15 @@ msgstr ""
 "ツールチェーンを用意する必要があります。モジュールをインポートして実行できる限り、"
 "モジュールが完全にデバッグされていなくても、この手順を実行できます。"
 
-#: ../../../reference/constrained.rst:280
+#: ../../../reference/constrained.rst:299
 msgid "After importing the modules, execute:"
 msgstr "モジュールをインポートした後に次を実行してください:"
 
-#: ../../reference/constrained.rst:281 ../../reference/constrained.rst:292
+#: ../../reference/constrained.rst:301 ../../reference/constrained.rst:312
 msgid "micropython.qstr_info(1)"
 msgstr ""
 
-#: ../../../reference/constrained.rst:286
+#: ../../../reference/constrained.rst:305
 msgid ""
 "Then copy and paste all the Q(xxx) lines into a text editor. Check for "
 "and remove lines which are obviously invalid. Open the file "
@@ -2068,15 +2117,15 @@ msgstr ""
 "ファイルの末尾に貼り付けます。ファイルを保存し、ファームウェアを再構築してフラッシュ"
 "します。結果はモジュールをインポートして再度発行することで確認できます:"
 
-#: ../../../reference/constrained.rst:297
+#: ../../../reference/constrained.rst:316
 msgid "The Q(xxx) lines should be gone."
 msgstr "Q(xxx) 行は消えます。"
 
-#: ../../../reference/constrained.rst:302
+#: ../../../reference/constrained.rst:321
 msgid "The heap"
 msgstr "ヒープ"
 
-#: ../../../reference/constrained.rst:304
+#: ../../../reference/constrained.rst:323
 msgid ""
 "When a running program instantiates an object the necessary RAM is "
 "allocated from a fixed size pool known as the heap. When the object goes "
@@ -2093,27 +2142,27 @@ msgstr ""
 "回収し、空きヒープに戻します。このプロセスは自動的に実行されますが、 `gc.collect()` "
 "によって直接呼び出すこともできます。"
 
-#: ../../../reference/constrained.rst:311
+#: ../../../reference/constrained.rst:330
 msgid ""
 "The discourse on this is somewhat involved. For a 'quick fix' issue the "
 "following periodically:"
 msgstr ""
 "これについての説明は多少複雑です。「迅速な修正」のために、定期的に以下を発行してください:"
 
-#: ../../reference/constrained.rst:314 ../../reference/constrained.rst:415
+#: ../../reference/constrained.rst:333 ../../reference/constrained.rst:422
 msgid ""
 "gc.collect()\n"
 "gc.threshold(gc.mem_free() // 4 + gc.mem_alloc())"
 msgstr ""
 
-#: ../../reference/constrained.rst:319
+#: ../../reference/constrained.rst:338
 msgid ""
 "For more information, see below and the documentation for built-in module"
 " :mod:`gc`."
 msgstr ""
 "詳細については、下記および組込みモジュール :mod:`gc` のドキュメントを参照してください。"
 
-#: ../../reference/constrained.rst:322
+#: ../../reference/constrained.rst:341
 msgid ""
 "For details from MicroPython internals/developer perspective, see also "
 ":doc:`/develop/memorymgt`."
@@ -2121,11 +2170,11 @@ msgstr ""
 "MicroPython の内部構造や開発者の視点からの詳細については "
 ":doc:`/develop/memorymgt` も参照してください。
 
-#: ../../../reference/constrained.rst:326
+#: ../../../reference/constrained.rst:345
 msgid "Fragmentation"
 msgstr "フラグメンテーション"
 
-#: ../../../reference/constrained.rst:328
+#: ../../../reference/constrained.rst:347
 msgid ""
 "Say a program creates an object ``foo``, then an object ``bar``. "
 "Subsequently ``foo`` goes out of scope but ``bar`` remains. The RAM used "
@@ -2144,7 +2193,7 @@ msgstr ""
 "あります。使用可能な RAM がかなりあるにもかかわらず、特定のオブジェクトを割り当てるための"
 "隣接スペースが不足し、プログラムがメモリーエラーで失敗します。"
 
-#: ../../../reference/constrained.rst:337
+#: ../../../reference/constrained.rst:356
 msgid ""
 "The techniques outlined above aim to minimise this. Where large permanent"
 " buffers or other objects are required it is best to instantiate these "
@@ -2157,11 +2206,11 @@ msgstr ""
 "早い段階でこれらをインスタンス化するのが最善です。ヒープの状態を監視し、GC を制御"
 "することで、さらに改善することができます。これらの概要は以下の通りです。"
 
-#: ../../../reference/constrained.rst:344
+#: ../../../reference/constrained.rst:363
 msgid "Reporting"
 msgstr "レポート機能"
 
-#: ../../../reference/constrained.rst:346
+#: ../../../reference/constrained.rst:365
 msgid ""
 "A number of library functions are available to report on memory "
 "allocation and to control GC. These are to be found in the `gc` and "
@@ -2173,7 +2222,7 @@ msgstr ""
 "貼り付けることができます(``Ctrl-e`` で貼り付けモードに入り、 ``Ctrl-d`` "
 "で実行します)。"
 
-#: ../../../reference/constrained.rst:351
+#: ../../../reference/constrained.rst:370
 msgid ""
 "import gc\n"
 "import micropython\n"
@@ -2197,34 +2246,34 @@ msgid ""
 "micropython.mem_info(1)"
 msgstr ""
 
-#: ../../../reference/constrained.rst:370
+#: ../../../reference/constrained.rst:389
 msgid "Methods employed above:"
 msgstr "上記で採用したメソッド:"
 
-#: ../../../reference/constrained.rst:372
+#: ../../../reference/constrained.rst:391
 msgid "`gc.collect()` Force a garbage collection. See footnote."
 msgstr "`gc.collect()` ガベージコレクションを強制します。脚注を参照してください。"
 
-#: ../../../reference/constrained.rst:373
+#: ../../../reference/constrained.rst:392
 msgid "`micropython.mem_info()` Print a summary of RAM utilisation."
 msgstr "`micropython.mem_info()` RAM 使用率の要約を表示します。"
 
-#: ../../../reference/constrained.rst:374
+#: ../../../reference/constrained.rst:393
 msgid "`gc.mem_free()` Return the free heap size in bytes."
 msgstr "`gc.mem_free()` 空きヒープサイズをバイト数で返します。"
 
-#: ../../../reference/constrained.rst:375
+#: ../../../reference/constrained.rst:394
 msgid "`gc.mem_alloc()` Return the number of bytes currently allocated."
 msgstr "`gc.mem_alloc()` 現在割り当てられているバイト数を返します。"
 
-#: ../../../reference/constrained.rst:376
+#: ../../../reference/constrained.rst:395
 msgid ""
 "``micropython.mem_info(1)`` Print a table of heap utilisation (detailed "
 "below)."
 msgstr ""
 "``micropython.mem_info(1)`` ヒープ使用率の表を表示します(詳細は後述)。"
 
-#: ../../../reference/constrained.rst:378
+#: ../../../reference/constrained.rst:397
 msgid ""
 "The numbers produced are dependent on the platform, but it can be seen "
 "that declaring the function uses a small amount of RAM in the form of "
@@ -2239,7 +2288,7 @@ msgstr ""
 "10KiB 以上が使われますが、戻り時に a はスコープ外となり、ガベージとなります。"
 "最後は `gc.collect()` により、そのメモリが回収されます。"
 
-#: ../../reference/constrained.rst:385
+#: ../../reference/constrained.rst:404
 msgid ""
 "The verbose output from ``micropython.mem_info(1)`` is documented at "
 "`micropython.mem_info()`."
@@ -2247,11 +2296,11 @@ msgstr ""
 "``micropython.mem_info(1)`` の冗長出力については `micropython.mem_info()` "
 "に記載されています。"
 
-#: ../../../reference/constrained.rst:389
+#: ../../../reference/constrained.rst:408
 msgid "Control of garbage collection"
 msgstr "ガベージコレクションの制御"
 
-#: ../../../reference/constrained.rst:391
+#: ../../../reference/constrained.rst:410
 msgid ""
 "A GC can be demanded at any time by issuing `gc.collect()`. It is "
 "advantageous to do this at intervals, firstly to preempt fragmentation "
@@ -2266,7 +2315,7 @@ msgstr ""
 "(pyboardでは約1ms)。明示的な呼び出しは、プログラム内の適切な時点で確実に発生する"
 "ようにしながら、GC による遅延を最小限に抑えることができます。"
 
-#: ../../../reference/constrained.rst:397
+#: ../../../reference/constrained.rst:416
 msgid ""
 "Automatic GC is provoked under the following circumstances. When an "
 "attempt at allocation fails, a GC is performed and the allocation re-"
@@ -2279,7 +2328,7 @@ msgstr ""
 "RAM の量がしきい値を下回ると、自動 GC がトリガーされます。実行が進むにつれて、"
 "このしきい値を調整することができます。"
 
-#: ../../../reference/constrained.rst:408
+#: ../../../reference/constrained.rst:427
 #, python-format
 msgid ""
 "This will provoke a GC when more than 25% of the currently free heap "
@@ -2287,7 +2336,7 @@ msgid ""
 msgstr ""
 "これは、現在の空きヒープの25％以上が占有されるようになると、GCを引き起こします。"
 
-#: ../../../reference/constrained.rst:411
+#: ../../../reference/constrained.rst:430
 msgid ""
 "In general modules should instantiate data objects at runtime using "
 "constructors or other initialisation functions. The reason is that if "
@@ -2301,11 +2350,11 @@ msgstr ""
 "です。モジュールがインポート時にデータをインスタンス化する場合は、インポート後に "
 "`gc.collect()` を実行すると、問題が改善します。"
 
-#: ../../../reference/constrained.rst:418
+#: ../../../reference/constrained.rst:437
 msgid "String operations"
 msgstr "文字列操作"
 
-#: ../../../reference/constrained.rst:420
+#: ../../../reference/constrained.rst:439
 msgid ""
 "MicroPython handles strings in an efficient manner and understanding this"
 " can help in designing applications to run on microcontrollers. When a "
@@ -2322,7 +2371,7 @@ msgstr ""
 "されたモジュールでは、その単一のインスタンスは RAM に配置されますが、前述のように、"
 "バイトコードとして凍結されたモジュールではフラッシュに配置されます。"
 
-#: ../../../reference/constrained.rst:427
+#: ../../../reference/constrained.rst:446
 msgid ""
 "String comparisons are also performed efficiently using hashing rather "
 "than character by character. The penalty for using strings rather than "
@@ -2333,11 +2382,11 @@ msgstr ""
 "整数ではなく文字列を使用することによるペナルティは、パフォーマンスと RAM の使用量の"
 "両方の点で小さい場合があります。これは、C プログラマにとっては驚くべきことです。"
 
-#: ../../../reference/constrained.rst:433
+#: ../../../reference/constrained.rst:452
 msgid "Postscript"
 msgstr "あとがき"
 
-#: ../../../reference/constrained.rst:435
+#: ../../../reference/constrained.rst:454
 msgid ""
 "MicroPython passes, returns and (by default) copies objects by reference."
 " A reference occupies a single machine word so these processes are "
@@ -2347,7 +2396,7 @@ msgstr ""
 "参照は単一のマシンワードを占有するため、これらのプロセスは RAM の使用と速度の点で"
 "効率的です。"
 
-#: ../../../reference/constrained.rst:439
+#: ../../../reference/constrained.rst:458
 msgid ""
 "Where variables are required whose size is neither a byte nor a machine "
 "word there are standard libraries which can assist in storing these "
@@ -2358,11 +2407,11 @@ msgstr ""
 "実行するのを助けることができる標準ライブラリがあります。"
 "`array`, `struct`, `uctypes` モジュールを参照してください。"
 
-#: ../../../reference/constrained.rst:445
+#: ../../../reference/constrained.rst:464
 msgid "Footnote: gc.collect() return value"
 msgstr "脚注: gc.collect（）の戻り値"
 
-#: ../../../reference/constrained.rst:447
+#: ../../../reference/constrained.rst:466
 msgid ""
 "On Unix and Windows platforms the `gc.collect()` method returns an "
 "integer which signifies the number of distinct memory regions that were "
@@ -10023,3 +10072,509 @@ msgid ""
 "BIT14 = const(1 << 14)\n"
 "machine.mem16[stm.GPIOA + stm.GPIO_ODR] ^= BIT14"
 msgstr ""
+
+#: ../../reference/unicode_support.rst:4
+msgid "Unicode Support"
+msgstr "Unicode のサポート"
+
+#: ../../reference/unicode_support.rst:6
+msgid ""
+"MicroPython provides Unicode support for strings.  All Tier 1, 2 and 3 "
+"ports have Unicode support enabled by default, but it is possible to "
+"change that with a different build configuration."
+msgstr ""
+"MicroPython は文字列の Unicode をサポートしています。レベル 1、2、3 のすべての"
+"ポートはデフォルトで Unicode サポートを有効にしていますが、ビルド構成を変更することで"
+"変更することもできます。 "
+
+#: ../../reference/unicode_support.rst:11
+msgid "Terminology"
+msgstr "用語"
+
+#: ../../reference/unicode_support.rst:13
+msgid "This document uses the following Unicode terms:"
+msgstr ""
+このドキュメントでは、次の Unicode 用語を使います:"
+
+#: ../../reference/unicode_support.rst:15
+msgid ""
+"**Code point**: a single Unicode value in the range U+0000 to U+10FFFF, "
+"for example U+0041 ``A`` or U+1F600 😀.  MicroPython strings are sequences"
+" of code points."
+msgstr ""
+"**コードポイント**: U+0000 から U+10FFFF の範囲にある単一の Unicode 値。"
+"たとえば、U+0041 ``A`` または U+1F600 😀 などです。MicroPython の文字列は、"
+"コードポイントのシーケンスです。"
+
+#: ../../reference/unicode_support.rst:18
+msgid ""
+"**Character**: informally used to mean a code point.  Be aware that a "
+"user-perceived character (a *grapheme*) may consist of several code "
+"points, such as a base letter followed by combining marks."
+msgstr ""
+"**文字**: 非公式にはコードポイントを意味します。ユーザーが認識する文字(*グラフェム*)は、"
+"基本文字と結合記号など、複数のコードポイントで構成される場合があることに注意してください。"
+
+#: ../../reference/unicode_support.rst:21
+msgid ""
+"**Byte**: a single 8-bit value.  In UTF-8 each code point is stored as "
+"one to four bytes (see below)."
+msgstr ""
+"**バイト**: 8ビットの単一の値。UTF-8 では、各コードポイントは1～4バイトで格納されます"
+"(下記参照)。"
+
+#: ../../reference/unicode_support.rst:24
+msgid ""
+"Operations such as ``len()``, indexing and slicing act on code points, "
+"not on graphemes or display width, so a base letter followed by a "
+"combining mark counts as two code points."
+msgstr ""
+"``len()`` 、インデックス、スライスなどの操作は、文字や表示幅ではなく、"
+"コードポイントに対して作用するため、基本文字の後に結合記号が続く場合は、"
+"2つのコードポイントとしてカウントされます。"
+
+#: ../../reference/unicode_support.rst:29
+msgid "Character Encoding"
+msgstr "文字のエンコード"
+
+#: ../../reference/unicode_support.rst:31
+msgid ""
+"MicroPython uses UTF-8 encoding for all strings. When Unicode support is "
+"enabled (``MICROPY_PY_BUILTINS_STR_UNICODE``), strings can contain any "
+"valid Unicode code point from U+0000 to U+10FFFF."
+msgstr ""
+"MicroPython は、すべての文字列に UTF-8 エンコーディングを使います。"
+"Unicode サポートが有効になっている場合(``MICROPY_PY_BUILTINS_STR_UNICODE``)、"
+"文字列には U+0000 から U+10FFFF までの有効な Unicode コードポイントを"
+"含められます。"
+
+#: ../../reference/unicode_support.rst:35
+msgid ""
+"ASCII characters (0-127) are stored in a single byte, making them as "
+"memory-efficient as on systems without Unicode support. Multi-byte UTF-8 "
+"code points use 2-4 bytes depending on the code point:"
+msgstr ""
+"ASCII文字(0-127)は1バイトに格納されるため、Unicode をサポートしていないシステムと"
+"同程度のメモリ効率を実現します。マルチバイト UTF-8 コードポイントは、コードポイントに"
+"応じて2～4バイトを使用します。"
+
+#: ../../reference/unicode_support.rst:39
+msgid "U+0000 to U+007F: 1 byte (ASCII)"
+msgstr "U+0000 to U+007F: 1 バイト(ASCII)"
+
+#: ../../reference/unicode_support.rst:40
+msgid "U+0080 to U+07FF: 2 bytes"
+msgstr "U+0080 to U+07FF: 2バイト"
+
+#: ../../reference/unicode_support.rst:41
+msgid "U+0800 to U+FFFF: 3 bytes"
+msgstr "U+0800 to U+FFFF: 3バイト"
+
+#: ../../reference/unicode_support.rst:42
+msgid "U+10000 to U+10FFFF: 4 bytes"
+msgstr "U+10000 to U+10FFFF: 4バイト"
+
+#: ../../reference/unicode_support.rst:45
+msgid "Encoding and Decoding"
+msgstr "エンコードとデコード"
+
+#: ../../reference/unicode_support.rst:47
+msgid ""
+"The :meth:`bytes.decode` and :meth:`str.encode` methods support the "
+"following encodings:"
+msgstr ""
+":meth:`bytes.decode` と :meth:`str.encode` メソッドは、次のエンコーディングを"
+"サポートしています:"
+
+#: ../../reference/unicode_support.rst:49
+msgid "UTF-8 (``'utf-8'`` or ``'utf8'``)"
+msgstr "UTF-8 (``'utf-8'`` または ``'utf8'``)"
+
+#: ../../reference/unicode_support.rst:50
+msgid "ASCII (``'ascii'``)"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:52
+msgid ""
+"Other encodings (such as ``'latin-1'``, ``'utf-16'``, etc.) are not "
+"supported and will raise ``LookupError``."
+msgstr ""
+"その他のエンコーディング(``'latin-1'``, ``'utf-16'`` など)はサポートされておらず、"
+" ``LookupError`` が発生します。"
+
+#: ../../reference/unicode_support.rst:55
+#: ../../reference/unicode_support.rst:72
+#: ../../reference/unicode_support.rst:105
+#: ../../reference/unicode_support.rst:124
+msgid "Example::"
+msgstr "使用例::"
+
+#: ../../reference/unicode_support.rst:57
+msgid ""
+">>> '日本語'.encode('utf-8')\n"
+"b'\\xe6\\x97\\xa5\\xe6\\x9c\\xac\\xe8\\xaa\\x9e'\n"
+">>> b'\\xe6\\x97\\xa5\\xe6\\x9c\\xac\\xe8\\xaa\\x9e'.decode('utf-8')\n"
+"'日本語'"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:63
+msgid "Error Handling"
+msgstr "エラー処理"
+
+#: ../../reference/unicode_support.rst:65
+msgid ""
+"When decoding bytes that contain invalid UTF-8 sequences, the ``errors`` "
+"parameter of :meth:`bytes.decode` controls the behavior:"
+msgstr ""
+"無効な UTF-8 シーケンスを含むバイトをデコードする場合、 :meth:`bytes.decode` の "
+"``errors`` パラメータによって動作が制御されます。"
+
+#: ../../reference/unicode_support.rst:68
+msgid "``'strict'`` (default): Raise ``UnicodeError``"
+msgstr "``'strict'`` (デフォルト): ``UnicodeError`` 例外を発生"
+
+#: ../../reference/unicode_support.rst:69
+msgid ""
+"``'ignore'``: Skip invalid bytes (requires "
+"``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS``)"
+msgstr ""
+``'ignore'``: 無効なバイトをスキップ"
+"(``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS`` を有効にしてのビルドが必要)"
+
+#: ../../reference/unicode_support.rst:70
+msgid ""
+"``'replace'``: Replace invalid bytes with U+FFFD � (requires "
+"``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS``)"
+msgstr ""
+"``'replace'``: 無効なバイトを U+FFFD � に置換"
+"(``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS`` を有効にしてのビルドが必要)"
+
+#: ../../reference/unicode_support.rst:74
+msgid ""
+">>> # Strict mode (default) raises an error\n"
+">>> b'hello\\xffworld'.decode('utf-8')\n"
+"UnicodeError: invalid UTF-8\n"
+"\n"
+">>> # Ignore mode skips invalid bytes\n"
+">>> b'hello\\xffworld'.decode('utf-8', 'ignore')\n"
+"'helloworld'\n"
+"\n"
+">>> # Replace mode substitutes replacement character\n"
+">>> b'hello\\xffworld'.decode('utf-8', 'replace')\n"
+"'hello�world'"
+msgstr ""
+">>> # strict モード(デフォルト)ではエラーを発生\n"
+">>> b'hello\\xffworld'.decode('utf-8')\n"
+"UnicodeError: invalid UTF-8\n"
+"\n"
+">>> # ignore モードは無効なバイトをスキップ\n"
+">>> b'hello\\xffworld'.decode('utf-8', 'ignore')\n"
+"'helloworld'\n"
+"\n"
+">>> # replace モードは無効なバイトを置換文字に\n"
+">>> b'hello\\xffworld'.decode('utf-8', 'replace')\n"
+"'hello�world'"
+
+#: ../../reference/unicode_support.rst:86
+msgid ""
+"For memory-conscious applications, consider using ``'ignore'`` mode when "
+"processing untrusted or partially corrupted data, as it avoids raising "
+"exceptions while still recovering valid text."
+msgstr ""
+"メモリ使用量を重視するアプリケーションでは、信頼できないデータや部分的に破損したデータを"
+"処理する際に ``'ignore'`` モードの使用を検討してください。このモードでは、"
+"例外を発生させることなく、有効なテキストを復元できます。"
+
+#: ../../reference/unicode_support.rst:90
+msgid ""
+"The same ``errors`` handling applies when decoding any bytes-like object,"
+" including via the ``str()`` constructor (for example ``str(buf, 'utf-8',"
+" 'replace')`` where ``buf`` is a ``bytes``, ``bytearray``, ``memoryview``"
+" or ``array`` object)."
+msgstr ""
+"バイト列のようなオブジェクトをデコードする場合、 ``str()`` コンストラクタを使う場合も"
+"含め、同じエラー処理が適用されます(たとえば ``buf`` がバイト列、バイト配列、メモリビュー、"
+"または配列オブジェクトである場合の ``str(buf, 'utf-8', 'replace')`` など)。"
+
+#: ../../reference/unicode_support.rst:96
+msgid "String Methods"
+msgstr "文字列のメソッド"
+
+#: ../../reference/unicode_support.rst:98
+msgid ""
+"When Unicode support is enabled, string methods operate on code points "
+"rather than bytes:"
+msgstr ""
+"Unicode サポートが有効になっている場合、文字列メソッドはバイトではなくコードポイントに"
+"対して動作します:"
+
+#: ../../reference/unicode_support.rst:100
+msgid ":meth:`str.center` - Counts code points for width calculation"
+msgstr ""
+":meth:`str.center` - 幅の計算のためにコードポイントをカウントします。"
+
+#: ../../reference/unicode_support.rst:101
+msgid "``len(s)`` - Returns number of code points (not bytes)"
+msgstr ""
+"``len(s)`` - コードポイントの数を返します(バイトではありません)。"
+
+#: ../../reference/unicode_support.rst:102
+msgid "String indexing and slicing work on code-point boundaries"
+msgstr ""
+"文字列のインデックスとスライスはコードポイントの境界で動作します。"
+
+#: ../../reference/unicode_support.rst:103
+msgid ""
+"No support for display width calculations (East Asian width, combining "
+"characters, etc.)"
+msgstr ""
+"表示幅の計算はサポートしていません(東アジアの幅、文字の結合など)。"
+
+#: ../../reference/unicode_support.rst:107
+msgid ""
+">>> s = 'Hello 世界'\n"
+">>> len(s)           # 8 code points\n"
+"8\n"
+">>> len(s.encode())  # 12 bytes\n"
+"12\n"
+">>> s.center(12)     # Centered by code-point count\n"
+"'  Hello 世界  '"
+msgstr ""
+">>> s = 'Hello 世界'\n"
+">>> len(s)           # 8 コードポイント\n"
+"8\n"
+">>> len(s.encode())  # 12 バイト\n"
+"12\n"
+">>> s.center(12)     # コードポイントのカウントによる中央寄せ\n"
+"'  Hello 世界  '"
+
+#: ../../reference/unicode_support.rst:116
+msgid "String Formatting"
+msgstr "文字列のフォーマット"
+
+#: ../../reference/unicode_support.rst:118
+#, python-brace-format, python-format
+msgid "The ``%c`` format specifier and ``{:c}`` format code support full Unicode:"
+msgstr ""
+"``%c`` フォーマット指定子と ``{:c}`` フォーマットコードは完全な Unicode を"
+"サポートします:"
+
+#: ../../reference/unicode_support.rst:120
+msgid "Accepts code points from 0 to 0x10FFFF"
+msgstr "0 から 0x10FFFF までのコードポイントを受け入れます。"
+
+#: ../../reference/unicode_support.rst:121
+msgid "Properly encodes multi-byte UTF-8 code points"
+msgstr "マルチバイト UTF-8 コードポイントを適切にエンコードします。"
+
+#: ../../reference/unicode_support.rst:122
+msgid "Raises ``ValueError`` for invalid code points"
+msgstr "無効なコードポイントの場合は ValueError を発生させます。"
+
+#: ../../reference/unicode_support.rst:126
+#, python-brace-format, python-format
+msgid ""
+">>> '%c' % 65           # ASCII\n"
+"'A'\n"
+">>> '%c' % 0x03B1       # Greek α\n"
+"'α'\n"
+">>> '%c' % 0x1F600      # Emoji 😀\n"
+"'😀'\n"
+">>> '{:c}'.format(0x4E2D)  # Chinese 中\n"
+"'中'\n"
+"\n"
+">>> # Invalid code point\n"
+">>> '%c' % 0x110000\n"
+"ValueError: %c arg not in range(0x110000)"
+msgstr ""
+">>> '%c' % 65           # ASCII\n"
+"'A'\n"
+">>> '%c' % 0x03B1       # ギリシャ語 α\n"
+"'α'\n"
+">>> '%c' % 0x1F600      # 絵文字 😀\n"
+"'😀'\n"
+">>> '{:c}'.format(0x4E2D)  # 中国語 中\n"
+"'中'\n"
+"\n"
+">>> # 無効なコードポイント\n"
+">>> '%c' % 0x110000\n"
+"ValueError: %c arg not in range(0x110000)"
+
+#: ../../reference/unicode_support.rst:139
+msgid "F-strings also support the ``:c`` format code::"
+msgstr "f文字列も ``:c`` フォーマットコードをサポートしています::"
+
+#: ../../reference/unicode_support.rst:141
+#, python-brace-format
+msgid ""
+">>> code_point = 0x2665  # Heart suit ♥\n"
+">>> f'I {code_point:c} Python'\n"
+"'I ♥ Python'"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:146
+msgid "Build Configuration"
+msgstr "ビルド設定"
+
+#: ../../reference/unicode_support.rst:148
+msgid ""
+"Unicode features are controlled by several build-time flags in "
+"``mpconfigport.h``:"
+msgstr ""
+"Unicode機能は ``mpconfigport.h`` にあるいくつかのビルド時フラグによって"
+"制御されます:"
+
+#: ../../reference/unicode_support.rst:157
+msgid "``MICROPY_PY_BUILTINS_STR_UNICODE``"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:151
+msgid ""
+"Enable Unicode string support. When enabled, strings can contain any "
+"valid Unicode character and string operations work on character "
+"boundaries rather than byte boundaries."
+msgstr ""
+"Unicode 文字列サポートを有効にします。有効にすると、文字列には有効な Unicode 文字を"
+"含めることができ、文字列操作はバイト境界ではなく文字境界で行われます。"
+
+#: ../../reference/unicode_support.rst:155
+msgid "Default: Enabled at ``MICROPY_CONFIG_ROM_LEVEL_BASIC_FEATURES`` and above."
+msgstr ""
+"デフォルト: ``MICROPY_CONFIG_ROM_LEVEL_BASIC_FEATURES`` 以上で有効。"
+
+#: ../../reference/unicode_support.rst:157
+#: ../../reference/unicode_support.rst:165
+msgid "Enabled on all Tier 1, 2 and 3 ports."
+msgstr "レベル 1、2、3 のすべてのポートで有効。"
+
+#: ../../reference/unicode_support.rst:165
+msgid "``MICROPY_PY_BUILTINS_STR_UNICODE_CHECK``"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:160
+msgid ""
+"Enable UTF-8 validation during string operations. When disabled, string "
+"operations may produce incorrect results with invalid UTF-8 sequences."
+msgstr ""
+"文字列操作時に UTF-8 検証を有効にします。無効にすると、無効なUTF-8シーケンスで"
+"文字列操作の結果が正しくない場合があります。"
+
+#: ../../reference/unicode_support.rst:163
+msgid "Default: Follows ``MICROPY_PY_BUILTINS_STR_UNICODE`` setting."
+msgstr "デフォルト: ``MICROPY_PY_BUILTINS_STR_UNICODE`` 設定にしたがい。"
+
+#: ../../reference/unicode_support.rst:175
+msgid "``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS``"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:168
+msgid ""
+"Enable the ``'ignore'`` and ``'replace'`` error handlers for "
+":meth:`bytes.decode`. When enabled, invalid UTF-8 bytes can be either "
+"skipped (``'ignore'``) or replaced with U+FFFD (``'replace'``)."
+msgstr ""
+":meth:`bytes.decode` のエラー ハンドラ ``'ignore'`` と ``'replace'`` を"
+"有効にします。有効にすると、無効な UTF-8 バイトはスキップ(``'ignore'``)するか、"
+"U+FFFD に置き換える(``'replace'``)ことができます。"
+
+#: ../../reference/unicode_support.rst:172
+msgid "Default: Enabled at ``MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES`` and above."
+msgstr ""
+"デフォルト: ``MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES`` 以上で有効。"
+
+#: ../../reference/unicode_support.rst:174
+msgid ""
+"Enabled on alif, esp32, esp8266, mimxrt, renesas-ra, rp2, samd (SAMD51 "
+"only), stm32, unix and webassembly ports."
+msgstr ""
+"alif、esp32、esp8266、mimxrt、renesas-ra、rp2、samd (SAMD51 のみ)、"
+"stm32、unix、webassembly ポートで有効。"
+
+#: ../../reference/unicode_support.rst:178
+msgid "Example Configuration"
+msgstr "ビルド設定の例"
+
+#: ../../reference/unicode_support.rst:180
+msgid "For a constrained port with limited flash, disable error handlers::"
+msgstr ""
+"フラッシュメモリ容量が制限された制約のあるポートでは、エラーハンドラを無効にします::"
+
+#: ../../reference/unicode_support.rst:182
+msgid "#define MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS (0)"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:184
+msgid "For a port with more resources, enable all Unicode features::"
+msgstr ""
+"リソースが豊富なポートの場合は、すべての Unicode 機能を有効にします::"
+
+#: ../../reference/unicode_support.rst:186
+msgid ""
+"#define MICROPY_CONFIG_ROM_LEVEL "
+"(MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES)\n"
+"// This automatically enables:\n"
+"// - MICROPY_PY_BUILTINS_STR_UNICODE\n"
+"// - MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS"
+msgstr ""
+"#define MICROPY_CONFIG_ROM_LEVEL "
+"(MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES)\n"
+"// これにより、以下が自動的に有効になります::\n"
+"// - MICROPY_PY_BUILTINS_STR_UNICODE\n"
+"// - MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS"
+
+#: ../../reference/unicode_support.rst:192
+msgid "Limitations"
+msgstr "制限事項"
+
+#: ../../reference/unicode_support.rst:194
+msgid "MicroPython's Unicode support has some limitations compared to CPython:"
+msgstr ""
+"MicroPython の Unicodeサポートは、CPythonと比較していくつかの制限があります:"
+
+#: ../../reference/unicode_support.rst:196
+msgid "Only UTF-8 and ASCII encodings are supported"
+msgstr "UTF-8 と ASCII エンコーディングのみをサポート"
+
+#: ../../reference/unicode_support.rst:197
+msgid "No support for Unicode normalization"
+msgstr "Unicode 正規化のサポートなし"
+
+#: ../../reference/unicode_support.rst:198
+msgid "No locale-aware string operations"
+msgstr "ロケールを考慮した文字列操作のサポートなし"
+
+#: ../../reference/unicode_support.rst:199
+msgid ""
+"The ``errors`` parameter accepts only positional arguments (not keyword "
+"arguments)"
+msgstr ""
+"``errors`` パラメータは位置引数でのみ受け付け(キーワード引数は受け付けない)。"
+
+#: ../../reference/unicode_support.rst:200
+msgid ""
+"String methods like ``upper()``, ``lower()``, etc. work correctly only "
+"for ASCII"
+msgstr ""
+"``upper()``, ``lower()`` などの文字列メソッドは ASCII でのみ正しく動作"
+
+#: ../../reference/unicode_support.rst:201
+msgid ""
+"The MicroPython interactive REPL and ``input()`` function currently have "
+"limited Unicode support.  The line editor is unaware of the displayed "
+"width of characters: wide characters (for example many CJK characters) "
+"take two terminal columns, while a grapheme cluster (a base code point "
+"plus combining marks, or an emoji sequence) can span several code points "
+"yet occupy a single column.  Because editing tracks code points rather "
+"than displayed columns, line-editing keys such as backspace and the "
+"left/right arrows may leave the cursor misaligned with the text shown on "
+"screen. A workaround is to place the Unicode text in a UTF-8 encoded "
+"MicroPython script and run it using ``mpremote run <script.py>``."
+msgstr ""
+"MicroPython の対話型REPLと ``input()`` 関数は、現在 Unicode のサポートが限定的です。"
+"行エディタは文字の表示幅を認識しません。幅の広い文字(たとえば、多くのCJK文字)は２つの"
+"終端列を占めますが、文字クラスター(基本コードポイントと結合記号、または絵文字シーケンス)は"
+"複数のコードポイントにまたがっても1つの列を占めることがあります。"
+"編集では表示される列ではなくコードポイントが追跡されるため、バックスペースキーや左右の"
+"矢印キーなどの行編集キーを使うと、カーソルが画面に表示されるテキストとずれてしまうことが"
+"あります。この問題を回避するには、Unicode テキストを UTF-8 エンコードした "
+"MicroPython スクリプトに配置し、 ``mpremote run <script.py>`` で実行します。"

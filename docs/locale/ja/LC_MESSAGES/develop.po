@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-28 11:26+0900\n"
-"PO-Revision-Date: 2026-06-28 18:34+0900\n"
+"POT-Creation-Date: 2026-07-12 09:57+0900\n"
+"PO-Revision-Date: 2026-07-12 10:08+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -4777,6 +4777,20 @@ msgstr ""
 
 #: ../../develop/writingtests.rst:49
 msgid ""
+"When writing tests for name or string-related functionality, please add "
+"both English/ASCII as well as non-English/non-ASCII text and include "
+"Unicode examples. Please do add comments in English explaining the "
+"meaning and intent of the Unicode text. This help ensure Unicode support "
+"is tested and verified across different platforms."
+msgstr ""
+"名前や文字列関連の機能に関するテストを作成する際は、英語/ASCII テキストと"
+"非英語/非ASCIIテキストの両方を含め、Unicode の例も記載してください。"
+"Unicode テキストの意味と意図を説明する英語のコメントも必ず追加してください。"
+"これにより、異なるプラットフォーム間で Unicode サポートがテストされ、"
+"検証されることが保証されます。"
+
+#: ../../develop/writingtests.rst:54
+msgid ""
 "For tests that can't be compared to CPython (i.e. micropython-specific "
 "functionality), you can provide a ``.py.exp`` file which will be used as "
 "the truth for comparison."
@@ -4784,7 +4798,7 @@ msgstr ""
 "CPython と比較できないテスト(つまり micropython 固有の機能)の場合、"
 "比較用の正解として使う ``.py.exp`` ファイルを提供できます。"
 
-#: ../../develop/writingtests.rst:52
+#: ../../develop/writingtests.rst:57
 msgid ""
 "The other way to run tests, which is useful when running on targets other"
 " than the Unix port, is:"
@@ -4792,35 +4806,35 @@ msgstr ""
 "テストを実行するもう1つの方法は、Unix ポート以外のターゲットで実行する場合に役立ちます。"
 "その実行方法とは次のとおりです:"
 
-#: ../../develop/writingtests.rst:54
+#: ../../develop/writingtests.rst:59
 msgid ""
 "$ cd tests\n"
 "$ ./run-tests.py"
 msgstr ""
 
-#: ../../develop/writingtests.rst:59
+#: ../../develop/writingtests.rst:64
 msgid "Then to run on a board:"
 msgstr "ボード上で実行するには次のようにします:"
 
-#: ../../develop/writingtests.rst:61
+#: ../../develop/writingtests.rst:66
 msgid "$ ./run-tests.py -t /dev/ttyACM0"
 msgstr ""
 
-#: ../../develop/writingtests.rst:65
+#: ../../develop/writingtests.rst:70
 msgid "And to run only a certain set of tests (eg a directory):"
 msgstr "また、特定のテストセット(ディレクトリなど)のみを実行するには次のようにします。"
 
-#: ../../develop/writingtests.rst:67
+#: ../../develop/writingtests.rst:72
 msgid ""
 "$ ./run-tests.py -d basics\n"
 "$ ./run-tests.py float/builtin*.py"
 msgstr ""
 
-#: ../../develop/writingtests.rst:73
+#: ../../develop/writingtests.rst:78
 msgid "Using run-tests.py"
 msgstr "run-tests.py の使用方法"
 
-#: ../../develop/writingtests.rst:75
+#: ../../develop/writingtests.rst:80
 msgid ""
 "The ``run-tests.py`` script supports several parameters to customize test"
 " execution:"
@@ -4828,19 +4842,19 @@ msgstr ""
 "``run-tests.py`` スクリプトにはテストの実行をカスタマイズするための"
 "パラメータがあります。"
 
-#: ../../develop/writingtests.rst:77
+#: ../../develop/writingtests.rst:82
 msgid "**Target and Device Selection:**"
 msgstr "**ターゲットとデバイスの選択:**"
 
-#: ../../develop/writingtests.rst:79
+#: ../../develop/writingtests.rst:84
 msgid "``-t, --test-instance``"
 msgstr ""
 
-#: ../../develop/writingtests.rst:81
+#: ../../develop/writingtests.rst:86
 msgid "The -t option accepts the following for the test instance:"
 msgstr "オプション -t はテストする対象について次の値を受け付けます:"
 
-#: ../../develop/writingtests.rst:83
+#: ../../develop/writingtests.rst:88
 msgid ""
 "**unix** - use the unix port of MicroPython, specified by the "
 "MICROPY_MICROPYTHON environment variable (which defaults to the standard "
@@ -4851,7 +4865,7 @@ msgstr ""
 "使います(デフォルトではホストプラットフォームに応じて、unix ポート または Windows "
 "ポートの標準バージョンを使います)"
 
-#: ../../develop/writingtests.rst:86
+#: ../../develop/writingtests.rst:91
 msgid ""
 "**webassembly** - use the webassembly port of MicroPython, specified by "
 "the MICROPY_MICROPYTHON_MJS environment variable (which defaults to the "
@@ -4861,27 +4875,27 @@ msgstr ""
 "MicroPython の webassembly ポートを使います(デフォルトでは標準バージョンの "
 "webassembly ポートを使います)"
 
-#: ../../develop/writingtests.rst:89
+#: ../../develop/writingtests.rst:94
 msgid "**port:<device>** - connect to and use the given serial port device"
 msgstr "**port:<デバイス>** - 指定したシリアルポートデバイスに接続して使います"
 
-#: ../../develop/writingtests.rst:90
+#: ../../develop/writingtests.rst:95
 msgid "**a<n>** - connect to and use /dev/ttyACM<n>"
 msgstr "**a<n>** - /dev/ttyACM<n>に接続して使います"
 
-#: ../../develop/writingtests.rst:91
+#: ../../develop/writingtests.rst:96
 msgid "**u<n>** - connect to and use /dev/ttyUSB<n>"
 msgstr "**u<n>** - /dev/ttyUSB<n> に接続して使います"
 
-#: ../../develop/writingtests.rst:92
+#: ../../develop/writingtests.rst:97
 msgid "**c<n>** - connect to and use COM<n>"
 msgstr "**c<n>** - COM<n> に接続して使います"
 
-#: ../../develop/writingtests.rst:93
+#: ../../develop/writingtests.rst:98
 msgid "**exec:<command>** - execute a command and attach to it's stdin/stdout"
 msgstr "**exec:<コマンド>** - コマンドを実行し、その標準入力/標準出力に接続します"
 
-#: ../../develop/writingtests.rst:94
+#: ../../develop/writingtests.rst:99
 msgid ""
 "**execpty:<command>** - execute a command and attach to the printed "
 "/dev/pts/<n> device"
@@ -4889,39 +4903,39 @@ msgstr ""
 "**execpty:<コマンド>** - コマンドを実行し、表示した /dev/pts/<n> "
 "デバイスに接続します"
 
-#: ../../develop/writingtests.rst:95
+#: ../../develop/writingtests.rst:100
 msgid "**<a>.<b>.<c>.<d>** - connect to the given IPv4 address"
 msgstr "**<a>.<b>.<c>.<d>** - 指定した IPv4 アドレスに接続します"
 
-#: ../../develop/writingtests.rst:96
+#: ../../develop/writingtests.rst:101
 msgid "anything else specifies a serial port"
 msgstr "それ以外のものはシリアルポートを指定します"
 
-#: ../../develop/writingtests.rst:98
+#: ../../develop/writingtests.rst:103
 msgid "**Test Selection:**"
 msgstr "テストの選択"
 
-#: ../../develop/writingtests.rst:100
+#: ../../develop/writingtests.rst:105
 msgid "``-d, --test-dirs`` - Specify one or more test directories to run"
 msgstr "``-d, --test-dirs`` - 実行するテストディレクトリを 1 つ以上指定する"
 
-#: ../../develop/writingtests.rst:101
+#: ../../develop/writingtests.rst:106
 msgid "``-i, --include REGEX`` - Include tests matching regex pattern"
 msgstr "``-i, --include REGEX`` - 正規表現パターンに一致するテストを含める"
 
-#: ../../develop/writingtests.rst:102
+#: ../../develop/writingtests.rst:107
 msgid "``-e, --exclude REGEX`` - Exclude tests matching regex pattern"
 msgstr "``-e, --exclude REGEX`` - 正規表現パターンに一致するテストを除外する"
 
-#: ../../develop/writingtests.rst:103
+#: ../../develop/writingtests.rst:108
 msgid "``files`` - Specific test files to run"
 msgstr "``files`` - 実行する特定のテストファイル"
 
-#: ../../develop/writingtests.rst:105
+#: ../../develop/writingtests.rst:110
 msgid "**Execution Options:**"
 msgstr "**実行オプション**"
 
-#: ../../develop/writingtests.rst:107
+#: ../../develop/writingtests.rst:112
 msgid ""
 "``--emit <EMITTER>`` - MicroPython emitter, EMITTER can be bytecode or "
 "native. Default: bytecode"
@@ -4929,19 +4943,19 @@ msgstr ""
 "``--emit <EMITTER>`` - MicroPythonエミッター。EMITTER には bytecode または "
 "native を指定できます。デフォルトは bytecode"
 
-#: ../../develop/writingtests.rst:108
+#: ../../develop/writingtests.rst:113
 msgid "``--via-mpy`` - Compile .py files to .mpy first"
 msgstr "``--via-mpy`` - 最初に .py ファイルを .mpy にコンパイル"
 
-#: ../../develop/writingtests.rst:109
+#: ../../develop/writingtests.rst:114
 msgid "``--heapsize`` - Set heap size for tests"
 msgstr "``--heapsize`` - テスト用のヒープサイズを設定"
 
-#: ../../develop/writingtests.rst:110
+#: ../../develop/writingtests.rst:115
 msgid "``-j, --jobs N`` - Number of tests to run simultaneously"
 msgstr "``-j, --jobs N`` - 同時に実行するテストの数"
 
-#: ../../develop/writingtests.rst:112
+#: ../../develop/writingtests.rst:117
 msgid ""
 "Set the MICROPY_MPYCROSS environment variable to use a specific version "
 "of ``mpy-cross`` when using ``--via-mpy``."
@@ -4949,32 +4963,32 @@ msgstr ""
 "``--via-mpy`` 指定時に ``mpy-cross`` の特定のバージョンを使うには、"
 "MICROPY_MPYCROSS 環境変数を設定します。"
 
-#: ../../develop/writingtests.rst:114
+#: ../../develop/writingtests.rst:119
 msgid "**Result Management:**"
 msgstr "**結果の管理**"
 
-#: ../../develop/writingtests.rst:116
+#: ../../develop/writingtests.rst:121
 msgid "``-r, --result-dir`` - Directory for test results. Default: results/"
 msgstr "``-r, --result-dir`` - テスト結果の保存先ディレクトリ。デフォルト: results/"
 
-#: ../../develop/writingtests.rst:117
+#: ../../develop/writingtests.rst:122
 msgid "``--print-failures`` - Show diff of failed tests and exit"
 msgstr "``--print-failures`` - 失敗したテストの差分を表示して終了"
 
-#: ../../develop/writingtests.rst:118
+#: ../../develop/writingtests.rst:123
 msgid "``--clean-failures`` - Delete .exp and .out files from prior failed tests"
 msgstr ""
 "``--clean-failures`` - 以前に失敗したテストの .exp ファイルと .out ファイルを削除"
 
-#: ../../develop/writingtests.rst:119
+#: ../../develop/writingtests.rst:124
 msgid "``--run-failures`` - Re-run only previously failed tests"
 msgstr "``--run-failures`` - 以前に失敗したテストのみを再実行"
 
-#: ../../develop/writingtests.rst:121
+#: ../../develop/writingtests.rst:126
 msgid "**Examples:**"
 msgstr "**実行例:**"
 
-#: ../../develop/writingtests.rst:123
+#: ../../develop/writingtests.rst:128
 msgid ""
 "# Run only basic tests with native emitter\n"
 "$ ./run-tests.py --emit native -d basics extmod\n"
