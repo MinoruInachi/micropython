@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2019, Michael Neuling, IBM Corporation.
+ * Copyright (c) 2026 Andrew Leech
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#ifndef MICROPY_INCLUDED_POWERPC_UNISTD_H
-#define MICROPY_INCLUDED_POWERPC_UNISTD_H
 
-// powerpc gcc compiler doesn't seem to have unistd.h file
+// This file is never compiled standalone, it's included directly from
+// extmod/machine_mem.c via MICROPY_PY_MACHINE_MEM_BACKUP_INCLUDEFILE.
 
-typedef int ssize_t;
+#include "machine_rtc.h"
 
-#endif // MICROPY_INCLUDED_POWERPC_UNISTD_H
+// Shares storage with RTC.memory(); don't mix the two APIs on the same data.
+static const mp_obj_array_t machine_mem_backup_regions[] = {
+    BACKUP_MV('B', MICROPY_HW_RTC_USER_MEM_MAX, (void *)rtc_user_mem_data),
+};

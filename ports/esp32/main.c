@@ -197,12 +197,9 @@ soft_reset_exit:
     wifi_csi_deinit();
     #endif
 
-    // Deinit uart before timers, as esp32 uart
-    // depends on a timer instance
     #if MICROPY_PY_MACHINE_UART
     machine_uart_deinit_all();
     #endif
-    machine_timer_deinit_all();
 
     #if MICROPY_PY_ESP32_PCNT
     esp32_pcnt_deinit_all();
@@ -323,4 +320,15 @@ void *esp_native_code_commit(void *buf, size_t len, void *reloc) {
     }
     memcpy(p, buf, len);
     return p;
+}
+
+
+// Workaround for https://github.com/espressif/esp-insights/issues/38
+extern int  __real_esp_efuse_rtc_calib_get_ver(void);
+int __wrap_esp_efuse_rtc_calib_get_ver(void) {
+    #if CONFIG_ETH_USE_OPENETH // detect QEMU build
+    return 1;
+    #else
+    return __real_esp_efuse_rtc_calib_get_ver();
+    #endif
 }

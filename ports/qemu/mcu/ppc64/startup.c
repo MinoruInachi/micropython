@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2019, Michael Neuling, IBM Corporation.
+ * Copyright (c) 2026 Alessandro Gatti
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,33 @@
  * THE SOFTWARE.
  */
 
-void lpc_uart_init(void);
-char lpc_uart_read(void);
-void lpc_uart_write(char c);
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "uart.h"
+
+extern int main(int argc, char **argv);
+
+void _entry_point(void) {
+    // Enable UART
+    uart_init();
+    // Now that we have a basic system up and running we can call main
+    main(0, 0);
+    // Finished
+    exit(0);
+}
+
+void exit(int status) {
+    // QEMU doesn't support semihosting for PPC64 yet.  Crash the machine
+    // on exit, since we cannot exit cleanly.
+    __builtin_unreachable();
+}
+
+#ifndef NDEBUG
+void __assert_fail(const char *file, int line, const char *func, const char *expr) {
+    (void)func;
+    printf("Assertion '%s' failed, at file %s:%d\n", expr, file, line);
+    exit(1);
+}
+#endif

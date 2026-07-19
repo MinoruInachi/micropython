@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2019, Michael Neuling, IBM Corporation.
+ * Copyright (c) 2026 Andrew Leech
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,11 @@
  * THE SOFTWARE.
  */
 
-void potato_uart_init(void);
-char potato_uart_read(void);
-void potato_uart_write(char c);
+// This file is never compiled standalone, it's included directly from
+// extmod/machine_mem.c via MICROPY_PY_MACHINE_MEM_BACKUP_INCLUDEFILE.
+
+// SAMD51 BKUPRAM lives in the backup power domain; retains across resets and
+// power-off with VBAT. SAMD21 has no equivalent (only SAMD51 compiles this file).
+static const mp_obj_array_t machine_mem_backup_regions[] = {
+    BACKUP_MV('B', BKUPRAM_SIZE, (void *)BKUPRAM_ADDR),
+};

@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2019, Michael Neuling, IBM Corporation.
+ * Copyright (c) 2026 Andrew Leech
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,22 +24,11 @@
  * THE SOFTWARE.
  */
 
-#define mftb()  ({unsigned long rval;                                   \
-                  __asm__ volatile ("mftb %0" : "=r" (rval)); rval;})
+// This file is never compiled standalone, it's included directly from
+// extmod/machine_mem.c via MICROPY_PY_MACHINE_MEM_BACKUP_INCLUDEFILE.
 
-#define TBFREQ 512000000
-
-static inline mp_uint_t mp_hal_ticks_ms(void) {
-    unsigned long tb = mftb();
-
-    return tb * 1000 / TBFREQ;
-}
-
-static inline mp_uint_t mp_hal_ticks_us(void) {
-    unsigned long tb = mftb();
-
-    return tb * 1000000 / TBFREQ;
-}
-
-static inline void mp_hal_set_interrupt_char(char c) {
-}
+// Static backing store for machine.mem_backup coverage testing.
+static uint8_t machine_mem_backup_buf[64];
+static const mp_obj_array_t machine_mem_backup_regions[] = {
+    BACKUP_MV('B', sizeof(machine_mem_backup_buf), (void *)machine_mem_backup_buf),
+};
