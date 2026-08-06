@@ -3,9 +3,8 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2025 Phil Howard
- *                    Mike Bell
- *                    Kirk D. Benell
+ * Copyright (c) 2020-2021 Damien P. George
+ * Copyright (c) 2022-2024 Infineon Technologies AG
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,20 +24,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#ifndef MICROPY_INCLUDED_PSOCEDGE_MODPSOCEDGE_H
+#define MICROPY_INCLUDED_PSOCEDGE_MODPSOCEDGE_H
 
-#include "pico/stdlib.h"
 
-#ifndef MICROPY_INCLUDED_RP2_RP2_PSRAM_H
-#define MICROPY_INCLUDED_RP2_RP2_PSRAM_H
+// micropython includes
+#include "py/obj.h"
 
-#if MICROPY_HW_ENABLE_PSRAM
-#ifndef MICROPY_HW_PSRAM_CS_PIN
-#error "MICROPY_HW_ENABLE_PSRAM requires MICROPY_HW_PSRAM_CS_PIN"
-#endif
+extern const mp_obj_type_t psoc_edge_qspi_flash_type;
 
-#define PSRAM_BASE _u(0x11000000)
-
-extern size_t psram_init(uint cs_pin);
-#endif
-
-#endif
+#endif // MICROPY_INCLUDED_PSOCEDGE_MODPSOCEDGE_H

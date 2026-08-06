@@ -251,23 +251,29 @@ function ci_esp32_build_common {
     make ${MAKEOPTS} -C ports/esp32 submodules
 }
 
-function ci_esp32_build_cmod_spiram_s2 {
+function ci_esp32_build_cmod_spiram_d2wd {
     ci_esp32_build_common
 
+    # Combined USER_C_MODULES + freeze manifest test on ESP32_GENERIC.
     make ${MAKEOPTS} -C ports/esp32 \
         USER_C_MODULES=../../../examples/usercmodule/micropython.cmake \
-        FROZEN_MANIFEST=$(pwd)/ports/esp32/boards/manifest_test.py
+        FROZEN_MANIFEST="$(pwd)/ports/esp32/boards/manifest_test.py"
 
     # Test building native .mpy with xtensawin architecture.
     ci_native_mpy_modules_build xtensawin
 
-    make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC BOARD_VARIANT=SPIRAM
-    make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC_S2
+    # Test the c_module() codepath on the SPIRAM variant.
+    make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC BOARD_VARIANT=SPIRAM \
+        FROZEN_MANIFEST="$(pwd)/tests/tools/manifest_c_module.py"
+
+    # D2WD is the variant with smallest application partition in flash
+    make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC BOARD_VARIANT=D2WD
 }
 
-function ci_esp32_build_s3_c3 {
+function ci_esp32_build_s2_s3_c3 {
     ci_esp32_build_common
 
+    make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC_S2
     make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC_S3
     make ${MAKEOPTS} -C ports/esp32 BOARD=ESP32_GENERIC_C3
 }
@@ -346,6 +352,21 @@ function ci_nrf_build {
     make ${MAKEOPTS} -C ports/nrf BOARD=MICROBIT USER_C_MODULES=../../examples/usercmodule
     make ${MAKEOPTS} -C ports/nrf BOARD=PCA10056 SD=s140
     make ${MAKEOPTS} -C ports/nrf BOARD=PCA10090
+}
+
+########################################################################################
+# ports/psoc-edge
+
+function ci_psoc_edge_setup {
+    ci_gcc_arm_setup
+    sudo apt remove python3-packaging python3-jsonschema python3-cryptography
+    sudo pip3 install edgeprotecttools
+}
+
+function ci_psoc_edge_build {
+    make ${MAKEOPTS} -C mpy-cross
+    make ${MAKEOPTS} -C ports/psoc-edge submodules
+    make ${MAKEOPTS} -C ports/psoc-edge
 }
 
 ########################################################################################
@@ -485,9 +506,11 @@ function ci_rp2_build {
     make ${MAKEOPTS} -C ports/rp2 submodules
     make ${MAKEOPTS} -C ports/rp2
     make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO_W submodules
+    # Legacy USER_C_MODULES coverage on RPI_PICO_W.
     make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO_W USER_C_MODULES=../../examples/usercmodule/micropython.cmake
     make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO2 submodules
-    make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO2
+    # Test c_module() on RPI_PICO2.
+    make ${MAKEOPTS} -C ports/rp2 BOARD=RPI_PICO2 FROZEN_MANIFEST="$(pwd)/tests/tools/manifest_c_module.py"
     make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO submodules
     # This build doubles as a build test for disabling threads in the config
     make ${MAKEOPTS} -C ports/rp2 BOARD=W5100S_EVB_PICO CFLAGS_EXTRA=-DMICROPY_PY_THREAD=0
@@ -543,6 +566,12 @@ function ci_stm32_pyb_build {
     make ${MAKEOPTS} -C ports/stm32/mboot BOARD=PYBV10 CFLAGS_EXTRA='-DMBOOT_FSLOAD=1 -DMBOOT_VFS_LFS2=1'
     make ${MAKEOPTS} -C ports/stm32/mboot BOARD=PYBD_SF6
     make ${MAKEOPTS} -C ports/stm32/mboot BOARD=STM32F769DISC CFLAGS_EXTRA='-DMBOOT_ADDRESS_SPACE_64BIT=1 -DMBOOT_SDCARD_ADDR=0x100000000ULL -DMBOOT_SDCARD_BYTE_SIZE=0x400000000ULL -DMBOOT_FSLOAD=1 -DMBOOT_VFS_FAT=1'
+}
+
+function ci_stm32_build_cmod {
+    make ${MAKEOPTS} -C mpy-cross
+    make ${MAKEOPTS} -C ports/stm32 submodules
+    make ${MAKEOPTS} -C ports/stm32 BOARD=PYBV11 FROZEN_MANIFEST="$(pwd)/tests/tools/manifest_c_module.py"
 }
 
 function ci_stm32_nucleo_build {
@@ -687,6 +716,13 @@ function ci_unix_run_tests_full_helper {
     ci_unix_run_tests_full_extra $micropython
 }
 
+function ci_unix_run_native_mpy_tests_helper {
+    variant=$1
+    shift
+    MICROPYPATH=examples/natmod/features2 ./ports/unix/build-$variant/micropython -m features2
+    (cd tests && MICROPY_MICROPYTHON=../ports/unix/build-$variant/micropython ./run-natmodtests.py "$@" extmod/*.py)
+}
+
 function ci_native_mpy_modules_build {
     if [ "$1" = "" ]; then
         arch=x64
@@ -712,6 +748,14 @@ function ci_native_mpy_modules_32bit_build {
     ci_native_mpy_modules_build x86
 }
 
+function ci_native_mpy_modules_clang_build {
+    # This currently only supports the host architecture (assumed to be x64).
+    for natmod in btree deflate features1 features2 features3 features4 framebuf heapq random re
+    do
+        make -C examples/natmod/$natmod CC=clang
+    done
+}
+
 function ci_unix_minimal_build {
     make ${MAKEOPTS} -C ports/unix VARIANT=minimal
 }
@@ -727,6 +771,10 @@ function ci_unix_standard_build {
 
 function ci_unix_standard_run_tests {
     ci_unix_run_tests_full_helper standard
+}
+
+function ci_unix_standard_run_native_mpy_tests {
+    ci_unix_run_native_mpy_tests_helper standard "$@"
 }
 
 function ci_unix_standard_v2_build {
@@ -803,8 +851,7 @@ function ci_unix_coverage_run_mpy_merge_tests {
 }
 
 function ci_unix_coverage_run_native_mpy_tests {
-    MICROPYPATH=examples/natmod/features2 ./ports/unix/build-coverage/micropython -m features2
-    (cd tests && ./run-natmodtests.py "$@" extmod/*.py)
+    ci_unix_run_native_mpy_tests_helper coverage "$@"
 }
 
 function ci_unix_32bit_setup {
@@ -870,6 +917,7 @@ function ci_unix_gil_enabled_run_tests {
 function ci_unix_clang_setup {
     sudo apt-get update
     sudo apt-get install clang
+    pip3 install ar pyelftools
     clang --version
 }
 
