@@ -120,7 +120,7 @@ void mp_task(void *pvParameter) {
     #endif
     machine_init();
 
-    #if MICROPY_SSL_MBEDTLS
+    #if MICROPY_SSL_MBEDTLS && defined(MBEDTLS_PLATFORM_TIME_ALT)
     // Configure time function, for mbedtls certificate time validation.
     mbedtls_platform_set_time(platform_mbedtls_time);
     #endif

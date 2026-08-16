@@ -18,7 +18,7 @@ INC += -I$(TOP)
 
 # compiler settings
 CWARN = -Wall -Werror
-CWARN += -Wextra -Wno-unused-parameter -Wpointer-arith
+CWARN += -Wno-unknown-warning-option -Wno-unterminated-string-initialization -Wno-gnu-folding-constant -Wextra -Wno-unused-parameter -Wpointer-arith
 CFLAGS += $(INC) $(CWARN) -std=gnu99 $(COPT) $(CFLAGS_EXTRA)
 CFLAGS += -fdata-sections -ffunction-sections -fno-asynchronous-unwind-tables
 
@@ -60,3 +60,6 @@ OBJ = $(PY_CORE_O)
 OBJ += $(addprefix $(BUILD)/, $(SRC_C:.c=.o))
 
 include $(TOP)/py/mkrules.mk
+
+# amyboard-clang-overrides: keep last so they win over -Wextra (see grab_submodules.sh)
+CFLAGS += -Wno-unknown-warning-option -Wno-unterminated-string-initialization -Wno-gnu-folding-constant

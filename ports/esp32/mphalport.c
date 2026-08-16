@@ -48,6 +48,12 @@
 #include "usb_serial_jtag.h"
 #include "uart.h"
 
+#ifdef TAB5
+extern uint8_t tfb_fg_pal_color;
+extern uint8_t tfb_bg_pal_color;
+void display_tfb_str(unsigned char *str, uint16_t len, uint8_t format, uint8_t fg_color, uint8_t bg_color);
+#endif
+
 #if MICROPY_PY_STRING_TX_GIL_THRESHOLD < 0
 #error "MICROPY_PY_STRING_TX_GIL_THRESHOLD must be positive"
 #endif
@@ -149,6 +155,14 @@ int mp_hal_stdin_rx_chr(void) {
 }
 
 mp_uint_t mp_hal_stdout_tx_strn(const char *str, size_t len) {
+    #ifdef TAB5
+    // Keep UART/USB stdout, but also mirror REPL output to the TFB overlay
+    // so TAB5 shows the same on-LCD REPL behavior as ESP32-S3 boards.
+    if (len) {
+        display_tfb_str((unsigned char *)str, len, 0, tfb_fg_pal_color, tfb_bg_pal_color);
+    }
+    #endif
+
     // Only release the GIL if many characters are being sent
     mp_uint_t ret = len;
     bool did_write = false;
