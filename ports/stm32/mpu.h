@@ -28,7 +28,9 @@
 
 #include "irq.h"
 
-#if (defined(STM32F4) && defined(MICROPY_HW_ETH_MDC)) || defined(STM32F469xx) || defined(STM32F7) || defined(STM32G4) || defined(STM32H7) || defined(STM32WB)
+#if (defined(STM32F4) && defined(MICROPY_HW_ETH_MDC)) || \
+    defined(STM32F412Cx) || defined(STM32F412Rx) || defined(STM32F412Vx) || defined(STM32F412Zx) || \
+    defined(STM32F469xx) || defined(STM32F7) || defined(STM32G4) || defined(STM32H7) || defined(STM32WB)
 
 #define MPU_REGION_ETH      (MPU_REGION_NUMBER0)
 #define MPU_REGION_QSPI1    (MPU_REGION_NUMBER1)
@@ -164,7 +166,8 @@ static inline void mpu_config_end(uint32_t irq_state) {
 #endif
 
 static inline void mpu_init(void) {
-    // Configure attribute 0, inner-outer non-cacheable (=0x44).
+    // Configure MPU_ATTRIBUTES_NUMBER0: inner-outer non-cacheable (=0x44).
+    // This attribute is used both here and in mpu_config_region().
     __DMB();
     MPU->MAIR0 = (MPU->MAIR0 & ~MPU_MAIR0_Attr0_Msk)
         | 0x44 << MPU_MAIR0_Attr0_Pos;
@@ -200,12 +203,6 @@ static inline void mpu_config_region(uint32_t region, uint32_t base_addr, uint32
     } else if (region == MPU_REGION_ETH || region == MPU_REGION_DMA_UNCACHED_1 || region == MPU_REGION_DMA_UNCACHED_2 || region == MPU_REGION_BKPSRAM) {
         // Configure region to make DMA memory non-cacheable.
 
-        __DMB();
-        // Configure attribute 1, inner-outer non-cacheable (=0x44).
-        MPU->MAIR0 = (MPU->MAIR0 & ~MPU_MAIR0_Attr1_Msk)
-            | 0x44 << MPU_MAIR0_Attr1_Pos;
-        __DMB();
-
         // RBAR
         //  BASE          Bits [31:5] of base address
         //  SH[4:3]  00 = Non-shareable
@@ -214,15 +211,16 @@ static inline void mpu_config_region(uint32_t region, uint32_t base_addr, uint32
 
         // RLAR
         //  LIMIT         Limit address. Contains bits[31:5] of the upper inclusive limit of the selected MPU memory region
-        //  AT[3:1] 001 = Attribute 1
+        //  AT[3:1] 000 = Attribute 0
         //  EN[0]     1 = Enabled
+        __DMB();
         MPU->RNR = region;
         MPU->RBAR = (base_addr & MPU_RBAR_BASE_Msk)
             | MPU_ACCESS_NOT_SHAREABLE << MPU_RBAR_SH_Pos
             | MPU_REGION_ALL_RW << MPU_RBAR_AP_Pos
             | MPU_INSTRUCTION_ACCESS_DISABLE << MPU_RBAR_XN_Pos;
         MPU->RLAR = ((base_addr + size - 1) & MPU_RLAR_LIMIT_Msk)
-            | MPU_ATTRIBUTES_NUMBER1 << MPU_RLAR_AttrIndx_Pos
+            | MPU_ATTRIBUTES_NUMBER0 << MPU_RLAR_AttrIndx_Pos
             | MPU_REGION_ENABLE << MPU_RLAR_EN_Pos;
     }
     __DMB();

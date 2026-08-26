@@ -89,7 +89,7 @@ static bool machine_timer_handler(machine_timer_obj_t *self) {
 
 machine_timer_obj_t *machine_timer_create(mp_int_t id) {
     // Check hardware timer ID is valid
-    if (id >= SOC_TIMER_GROUP_TOTAL_TIMERS) {
+    if (id >= (mp_int_t)SOC_TIMER_GROUP_TOTAL_TIMERS) {
         mp_raise_msg_varg(&mp_type_ValueError, MP_ERROR_TEXT("Timer(%d) doesn't exist, there are only %d hardware timers"), id, SOC_TIMER_GROUP_TOTAL_TIMERS);
     }
 
@@ -219,9 +219,11 @@ mp_obj_t machine_timer_deinit(mp_obj_t self_in) {
     machine_timer_obj_t *self = self_in;
     machine_timer_stop(self);
     if (self->id >= 0) {
-        esp_err_t result = gptimer_disable(self->handle.hardware);
-        if (result != ESP_ERR_INVALID_STATE) {
-            check_esp_err(result);
+        if (self->handler != NULL) {
+            esp_err_t result = gptimer_disable(self->handle.hardware);
+            if (result != ESP_ERR_INVALID_STATE) {
+                check_esp_err(result);
+            }
         }
     } else {
         // Virtual timers may be immediately garbage collected
