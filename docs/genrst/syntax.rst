@@ -2,7 +2,196 @@
 
 Syntax
 ======
-Generated Fri 05 Jul 2024 06:33:57 UTC
+
+
+Generated Sat 08 Aug 2026 01:23:30 UTC
+
+Annotations
+-----------
+
+.. _cpydiff_syntax_annotation_expression:
+
+MicroPython accepts type annotations on expressions where CPython forbids them.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** To reduce code size, MicroPython does not check the form of expressions with type annotations applied.
+
+**Workaround:** Always check for valid Python code using a linting tool.
+
+The expressions themselves are not evaluated.
+
+Sample code::
+
+    
+    
+    def test(expr):
+        code = f"def f():\n    {expr}: int"
+        print(code)
+        try:
+            exec(code)
+            print("OK")
+        except SyntaxError as e:
+            print("SyntaxError")
+        print()
+    
+    
+    test("print('test')")
+    test("[x,y]")
+    test("x,y")
+
++----------------------------+----------------------------+
+| CPython output:            | MicroPython output:        |
++----------------------------+----------------------------+
+| ::                         | ::                         |
+|                            |                            |
+|     def f():               |     def f():               |
+|         print('test'): int |         print('test'): int |
+|     SyntaxError            |     OK                     |
+|                            |                            |
+|     def f():               |     def f():               |
+|         [x,y]: int         |         [x,y]: int         |
+|     SyntaxError            |     OK                     |
+|                            |                            |
+|     def f():               |     def f():               |
+|         x,y: int           |         x,y: int           |
+|     SyntaxError            |     OK                     |
++----------------------------+----------------------------+
+
+Literals
+--------
+
+.. _cpydiff_syntax_literal_underscore:
+
+MicroPython accepts underscores in numeric literals where CPython doesn't
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** Different parser implementation
+
+MicroPython's tokenizer ignores underscores in numeric literals, while CPython
+rejects multiple consecutive underscores and underscores after the last digit.
+
+**Workaround:** Remove the underscores not accepted by CPython.
+
+Sample code::
+
+    
+    try:
+        print(eval("1__1"))
+    except SyntaxError:
+        print("Should not work")
+    try:
+        print(eval("1_"))
+    except SyntaxError:
+        print("Should not work")
+
++---------------------+---------------------+
+| CPython output:     | MicroPython output: |
++---------------------+---------------------+
+| ::                  | ::                  |
+|                     |                     |
+|     Should not work |     11              |
+|     Should not work |     1               |
++---------------------+---------------------+
+
+.. _cpydiff_syntax_spaces:
+
+MicroPython requires spaces between literal numbers and keywords or ".", CPython doesn't
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** Different parser implementation
+
+MicroPython's tokenizer treats a sequence like ``1and`` as a single token, while CPython treats it as two tokens.
+
+Since CPython 3.11, when the literal number is followed by a token, this syntax causes a ``SyntaxWarning`` for an "invalid literal". When a literal number is followed by a "." denoting attribute access, CPython does not warn.
+
+**Workaround:** Add a space between the integer literal and the intended next token.
+
+This also fixes the ``SyntaxWarning`` in CPython.
+
+Sample code::
+
+    
+    try:
+        print(eval("1and 0"))
+    except SyntaxError:
+        print("Should have worked")
+    try:
+        print(eval("1or 0"))
+    except SyntaxError:
+        print("Should have worked")
+    try:
+        print(eval("1if 1else 0"))
+    except SyntaxError:
+        print("Should have worked")
+    try:
+        print(eval("0x1.to_bytes(1)"))
+    except SyntaxError:
+        print("Should have worked")
+
++--------------------------------------------------------+------------------------+
+| CPython output:                                        | MicroPython output:    |
++--------------------------------------------------------+------------------------+
+| ::                                                     | ::                     |
+|                                                        |                        |
+|     <string>:1: SyntaxWarning: invalid decimal literal |     Should have worked |
+|     0                                                  |     Should have worked |
+|     <string>:1: SyntaxWarning: invalid decimal literal |     Should have worked |
+|     1                                                  |     Should have worked |
+|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
+|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
+|     1                                                  |                        |
+|     b'\x01'                                            |                        |
++--------------------------------------------------------+------------------------+
+
+Operators
+---------
+
+.. _cpydiff_syntax_assign_expr:
+
+MicroPython allows := to assign to the iteration variable in nested comprehensions, CPython does not.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code size. Although it is a syntax error to assign to the iteration variable in a standard comprehension (same as CPython), it doesn't check if an inner nested comprehension assigns to the iteration variable of the outer comprehension.
+
+**Workaround:** Do not use := to assign to the iteration variable of a comprehension.
+
+Sample code::
+
+    
+    print([[(j := i) for i in range(2)] for j in range(2)])
+
++-------------------------------------------------------------------------------------------+----------------------+
+| CPython output:                                                                           | MicroPython output:  |
++-------------------------------------------------------------------------------------------+----------------------+
+| ::                                                                                        | ::                   |
+|                                                                                           |                      |
+|       File "<stdin>", line 8                                                              |     [[0, 1], [0, 1]] |
+|     SyntaxError: assignment expression cannot rebind comprehension iteration variable 'j' |                      |
++-------------------------------------------------------------------------------------------+----------------------+
+
+Unicode
+-------
+
+.. _cpydiff_syntax_unicode_nameesc:
+
+Unicode name escapes are not implemented
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sample code::
+
+    
+    print("\N{LATIN SMALL LETTER A}")
+
++-----------------+-----------------------------------------------+
+| CPython output: | MicroPython output:                           |
++-----------------+-----------------------------------------------+
+| ::              | ::                                            |
+|                 |                                               |
+|     a           |     NotImplementedError: unicode name escapes |
++-----------------+-----------------------------------------------+
+
+Unpacking
+---------
 
 .. _cpydiff_syntax_arg_unpacking:
 
@@ -32,96 +221,13 @@ Sample code::
     )
     
 
-+-------------+--------------------------------------------+
-| CPy output: | uPy output:                                |
-+-------------+--------------------------------------------+
-| ::          | ::                                         |
-|             |                                            |
-|     67      |     Traceback (most recent call last):     |
-|             |       File "<stdin>", line 21, in <module> |
-|             |     SyntaxError: too many args             |
-+-------------+--------------------------------------------+
-
-Operators
----------
-
-.. _cpydiff_syntax_assign_expr:
-
-MicroPython allows using := to assign to the variable of a comprehension, CPython raises a SyntaxError.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** MicroPython is optimised for code size and doesn't check this case.
-
-**Workaround:** Do not rely on this behaviour if writing CPython compatible code.
-
-Sample code::
-
-    print([i := -1 for i in range(4)])
-
-+-------------------------------------------------------------------------------------------+-------------------------------------------------+
-| CPy output:                                                                               | uPy output:                                     |
-+-------------------------------------------------------------------------------------------+-------------------------------------------------+
-| ::                                                                                        | ::                                              |
-|                                                                                           |                                                 |
-|       File "<stdin>", line 7                                                              |     Traceback (most recent call last):          |
-|     SyntaxError: assignment expression cannot rebind comprehension iteration variable 'i' |       File "<stdin>", line 7, in <listcomp>     |
-|                                                                                           |     SyntaxError: identifier redefined as global |
-+-------------------------------------------------------------------------------------------+-------------------------------------------------+
-
-Spaces
-------
-
-.. _cpydiff_syntax_spaces:
-
-uPy requires spaces between literal numbers and keywords, CPy doesn't
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Sample code::
-
-    try:
-        print(eval("1and 0"))
-    except SyntaxError:
-        print("Should have worked")
-    try:
-        print(eval("1or 0"))
-    except SyntaxError:
-        print("Should have worked")
-    try:
-        print(eval("1if 1else 0"))
-    except SyntaxError:
-        print("Should have worked")
-
-+--------------------------------------------------------+------------------------+
-| CPy output:                                            | uPy output:            |
-+--------------------------------------------------------+------------------------+
-| ::                                                     | ::                     |
-|                                                        |                        |
-|     0                                                  |     Should have worked |
-|     1                                                  |     Should have worked |
-|     1                                                  |     Should have worked |
-|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
-|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
-|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
-|     <string>:1: SyntaxWarning: invalid decimal literal |                        |
-+--------------------------------------------------------+------------------------+
-
-Unicode
--------
-
-.. _cpydiff_syntax_unicode_nameesc:
-
-Unicode name escapes are not implemented
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Sample code::
-
-    print("\N{LATIN SMALL LETTER A}")
-
-+-------------+-----------------------------------------------+
-| CPy output: | uPy output:                                   |
-+-------------+-----------------------------------------------+
-| ::          | ::                                            |
-|             |                                               |
-|     a       |     NotImplementedError: unicode name escapes |
-+-------------+-----------------------------------------------+
++-----------------+--------------------------------------------+
+| CPython output: | MicroPython output:                        |
++-----------------+--------------------------------------------+
+| ::              | ::                                         |
+|                 |                                            |
+|     67          |     Traceback (most recent call last):     |
+|                 |       File "<stdin>", line 21, in <module> |
+|                 |     SyntaxError: too many args             |
++-----------------+--------------------------------------------+
 

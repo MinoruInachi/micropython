@@ -2,7 +2,9 @@
 
 Modules
 =======
-Generated Fri 05 Jul 2024 06:33:57 UTC
+
+
+Generated Sat 08 Aug 2026 01:23:30 UTC
 
 .. Preamble section inserted into generated output
 
@@ -52,19 +54,20 @@ Comparison between different typecodes not supported
 
 Sample code::
 
+    
     import array
     
     array.array("b", [1, 2]) == array.array("i", [1, 2])
 
-+-------------+-------------------------------------------+
-| CPy output: | uPy output:                               |
-+-------------+-------------------------------------------+
-|             | ::                                        |
-|             |                                           |
-|             |     Traceback (most recent call last):    |
-|             |       File "<stdin>", line 9, in <module> |
-|             |     NotImplementedError:                  |
-+-------------+-------------------------------------------+
++-----------------+--------------------------------------------+
+| CPython output: | MicroPython output:                        |
++-----------------+--------------------------------------------+
+|                 | ::                                         |
+|                 |                                            |
+|                 |     Traceback (most recent call last):     |
+|                 |       File "<stdin>", line 10, in <module> |
+|                 |     NotImplementedError:                   |
++-----------------+--------------------------------------------+
 
 .. _cpydiff_module_array_constructor:
 
@@ -77,18 +80,19 @@ Overflow checking is not implemented
 
 Sample code::
 
+    
     import array
     
     a = array.array("b", [257])
     print(a)
 
 +--------------------------------------------------------+---------------------+
-| CPy output:                                            | uPy output:         |
+| CPython output:                                        | MicroPython output: |
 +--------------------------------------------------------+---------------------+
 | ::                                                     | ::                  |
 |                                                        |                     |
 |     Traceback (most recent call last):                 |     array('b', [1]) |
-|       File "<stdin>", line 9, in <module>              |                     |
+|       File "<stdin>", line 10, in <module>             |                     |
 |     OverflowError: signed char is greater than maximum |                     |
 +--------------------------------------------------------+---------------------+
 
@@ -99,19 +103,20 @@ Looking for integer not implemented
 
 Sample code::
 
+    
     import array
     
     print(1 in array.array("B", b"12"))
 
-+-------------+-------------------------------------------+
-| CPy output: | uPy output:                               |
-+-------------+-------------------------------------------+
-| ::          | ::                                        |
-|             |                                           |
-|     False   |     Traceback (most recent call last):    |
-|             |       File "<stdin>", line 9, in <module> |
-|             |     NotImplementedError:                  |
-+-------------+-------------------------------------------+
++-----------------+--------------------------------------------+
+| CPython output: | MicroPython output:                        |
++-----------------+--------------------------------------------+
+| ::              | ::                                         |
+|                 |                                            |
+|     False       |     Traceback (most recent call last):     |
+|                 |       File "<stdin>", line 10, in <module> |
+|                 |     NotImplementedError:                   |
++-----------------+--------------------------------------------+
 
 .. _cpydiff_modules_array_deletion:
 
@@ -120,6 +125,7 @@ Array deletion not implemented
 
 Sample code::
 
+    
     import array
     
     a = array.array("b", (1, 2, 3))
@@ -127,12 +133,12 @@ Sample code::
     print(a)
 
 +------------------------+-------------------------------------------------------------+
-| CPy output:            | uPy output:                                                 |
+| CPython output:        | MicroPython output:                                         |
 +------------------------+-------------------------------------------------------------+
 | ::                     | ::                                                          |
 |                        |                                                             |
 |     array('b', [1, 3]) |     Traceback (most recent call last):                      |
-|                        |       File "<stdin>", line 10, in <module>                  |
+|                        |       File "<stdin>", line 11, in <module>                  |
 |                        |     TypeError: 'array' object doesn't support item deletion |
 +------------------------+-------------------------------------------------------------+
 
@@ -143,51 +149,21 @@ Subscript with step != 1 is not yet implemented
 
 Sample code::
 
+    
     import array
     
     a = array.array("b", (1, 2, 3))
     print(a[3:2:2])
 
-+----------------+---------------------------------------------------------------------------+
-| CPy output:    | uPy output:                                                               |
-+----------------+---------------------------------------------------------------------------+
-| ::             | ::                                                                        |
-|                |                                                                           |
-|     array('b') |     Traceback (most recent call last):                                    |
-|                |       File "<stdin>", line 10, in <module>                                |
-|                |     NotImplementedError: only slices with step=1 (aka None) are supported |
-+----------------+---------------------------------------------------------------------------+
-
-builtins
---------
-
-.. _cpydiff_builtin_next_arg2:
-
-Second argument to next() is not implemented
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** MicroPython is optimised for code space.
-
-**Workaround:** Instead of ``val = next(it, deflt)`` use::
-
-    try:
-        val = next(it)
-    except StopIteration:
-        val = deflt
-
-Sample code::
-
-    print(next(iter(range(0)), 42))
-
-+-------------+-----------------------------------------------------------------------+
-| CPy output: | uPy output:                                                           |
-+-------------+-----------------------------------------------------------------------+
-| ::          | ::                                                                    |
-|             |                                                                       |
-|     42      |     Traceback (most recent call last):                                |
-|             |       File "<stdin>", line 12, in <module>                            |
-|             |     TypeError: function takes 1 positional arguments but 2 were given |
-+-------------+-----------------------------------------------------------------------+
++-----------------+---------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                       |
++-----------------+---------------------------------------------------------------------------+
+| ::              | ::                                                                        |
+|                 |                                                                           |
+|     array('b')  |     Traceback (most recent call last):                                    |
+|                 |       File "<stdin>", line 11, in <module>                                |
+|                 |     NotImplementedError: only slices with step=1 (aka None) are supported |
++-----------------+---------------------------------------------------------------------------+
 
 json
 ----
@@ -199,25 +175,21 @@ JSON module does not throw exception when object is not serialisable
 
 Sample code::
 
+    
     import json
     
-    a = bytes(x for x in range(256))
     try:
-        z = json.dumps(a)
-        x = json.loads(z)
-        print("Should not get here")
+        print(json.dumps(b"shouldn't be able to serialise bytes"))
     except TypeError:
         print("TypeError")
 
-+---------------+--------------------------------------------+
-| CPy output:   | uPy output:                                |
-+---------------+--------------------------------------------+
-| ::            | ::                                         |
-|               |                                            |
-|     TypeError |     Traceback (most recent call last):     |
-|               |       File "<stdin>", line 12, in <module> |
-|               |     UnicodeError:                          |
-+---------------+--------------------------------------------+
++-----------------+--------------------------------------------+
+| CPython output: | MicroPython output:                        |
++-----------------+--------------------------------------------+
+| ::              | ::                                         |
+|                 |                                            |
+|     TypeError   |     "shouldn't be able to serialise bytes" |
++-----------------+--------------------------------------------+
 
 os
 --
@@ -231,6 +203,7 @@ os
 
 Sample code::
 
+    
     import os
     
     try:
@@ -243,15 +216,15 @@ Sample code::
         os.putenv("NEW_VARIABLE", "VALUE")
         print(os.getenv("NEW_VARIABLE"))
 
-+-------------+-------------------------+
-| CPy output: | uPy output:             |
-+-------------+-------------------------+
-| ::          | ::                      |
-|             |                         |
-|     None    |     should not get here |
-|     VALUE   |     None                |
-|             |     VALUE               |
-+-------------+-------------------------+
++-----------------+-------------------------+
+| CPython output: | MicroPython output:     |
++-----------------+-------------------------+
+| ::              | ::                      |
+|                 |                         |
+|     None        |     should not get here |
+|     VALUE       |     None                |
+|                 |     VALUE               |
++-----------------+-------------------------+
 
 .. _cpydiff_modules_os_getenv:
 
@@ -262,20 +235,21 @@ Sample code::
 
 Sample code::
 
+    
     import os
     
     print(os.getenv("NEW_VARIABLE"))
     os.putenv("NEW_VARIABLE", "VALUE")
     print(os.getenv("NEW_VARIABLE"))
 
-+-------------+-------------+
-| CPy output: | uPy output: |
-+-------------+-------------+
-| ::          | ::          |
-|             |             |
-|     None    |     None    |
-|     None    |     VALUE   |
-+-------------+-------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     None        |     None            |
+|     None        |     VALUE           |
++-----------------+---------------------+
 
 random
 ------
@@ -298,15 +272,15 @@ Sample code::
     x = random.getrandbits(64)
     print("{}".format(x))
 
-+--------------------------+--------------------------------------------+
-| CPy output:              | uPy output:                                |
-+--------------------------+--------------------------------------------+
-| ::                       | ::                                         |
-|                          |                                            |
-|     14669065511843755481 |     Traceback (most recent call last):     |
-|                          |       File "<stdin>", line 11, in <module> |
-|                          |     ValueError: bits must be 32 or less    |
-+--------------------------+--------------------------------------------+
++-------------------------+--------------------------------------------+
+| CPython output:         | MicroPython output:                        |
++-------------------------+--------------------------------------------+
+| ::                      | ::                                         |
+|                         |                                            |
+|     7739502431650035787 |     Traceback (most recent call last):     |
+|                         |       File "<stdin>", line 11, in <module> |
+|                         |     ValueError: bits must be 32 or less    |
++-------------------------+--------------------------------------------+
 
 .. _cpydiff_modules_random_randint:
 
@@ -327,11 +301,11 @@ Sample code::
     print("x={}".format(x))
 
 +-----------------------------------------------+-----------------------------------------------------------------+
-| CPy output:                                   | uPy output:                                                     |
+| CPython output:                               | MicroPython output:                                             |
 +-----------------------------------------------+-----------------------------------------------------------------+
 | ::                                            | ::                                                              |
 |                                               |                                                                 |
-|     x=340282366920938463463374607431768211456 |     Traceback (most recent call last):                          |
+|     x=340282366920938463463374607431768211455 |     Traceback (most recent call last):                          |
 |                                               |       File "<stdin>", line 11, in <module>                      |
 |                                               |     OverflowError: overflow converting long int to machine word |
 +-----------------------------------------------+-----------------------------------------------------------------+
@@ -341,11 +315,12 @@ struct
 
 .. _cpydiff_modules_struct_fewargs:
 
-Struct pack with too few args, not checked by uPy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Struct pack with too few args, not checked by MicroPython
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sample code::
 
+    
     import struct
     
     try:
@@ -355,7 +330,7 @@ Sample code::
         print("struct.error")
 
 +------------------+-------------------------+
-| CPy output:      | uPy output:             |
+| CPython output:  | MicroPython output:     |
 +------------------+-------------------------+
 | ::               | ::                      |
 |                  |                         |
@@ -365,11 +340,12 @@ Sample code::
 
 .. _cpydiff_modules_struct_manyargs:
 
-Struct pack with too many args, not checked by uPy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Struct pack with too many args, not checked by MicroPython
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sample code::
 
+    
     import struct
     
     try:
@@ -379,7 +355,7 @@ Sample code::
         print("struct.error")
 
 +------------------+-------------------------+
-| CPy output:      | uPy output:             |
+| CPython output:  | MicroPython output:     |
 +------------------+-------------------------+
 | ::               | ::                      |
 |                  |                         |
@@ -389,8 +365,8 @@ Sample code::
 
 .. _cpydiff_modules_struct_whitespace_in_format:
 
-Struct pack with whitespace in format, whitespace ignored by CPython, error on uPy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Struct pack with whitespace in format, whitespace ignored by CPython, error on MicroPython
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Cause:** MicroPython is optimised for code size.
 
@@ -398,6 +374,7 @@ Struct pack with whitespace in format, whitespace ignored by CPython, error on u
 
 Sample code::
 
+    
     import struct
     
     try:
@@ -406,14 +383,14 @@ Sample code::
     except:
         print("struct.error")
 
-+------------------------+------------------+
-| CPy output:            | uPy output:      |
-+------------------------+------------------+
-| ::                     | ::               |
-|                        |                  |
-|     b'\x01\x02'        |     struct.error |
-|     Should have worked |                  |
-+------------------------+------------------+
++------------------------+---------------------+
+| CPython output:        | MicroPython output: |
++------------------------+---------------------+
+| ::                     | ::                  |
+|                        |                     |
+|     b'\x01\x02'        |     struct.error    |
+|     Should have worked |                     |
++------------------------+---------------------+
 
 sys
 ---
@@ -427,18 +404,19 @@ Overriding sys.stdin, sys.stdout and sys.stderr not possible
 
 Sample code::
 
+    
     import sys
     
     sys.stdin = None
     print(sys.stdin)
 
-+-------------+--------------------------------------------------------------+
-| CPy output: | uPy output:                                                  |
-+-------------+--------------------------------------------------------------+
-| ::          | ::                                                           |
-|             |                                                              |
-|     None    |     Traceback (most recent call last):                       |
-|             |       File "<stdin>", line 9, in <module>                    |
-|             |     AttributeError: 'module' object has no attribute 'stdin' |
-+-------------+--------------------------------------------------------------+
++-----------------+--------------------------------------------------------------+
+| CPython output: | MicroPython output:                                          |
++-----------------+--------------------------------------------------------------+
+| ::              | ::                                                           |
+|                 |                                                              |
+|     None        |     Traceback (most recent call last):                       |
+|                 |       File "<stdin>", line 10, in <module>                   |
+|                 |     AttributeError: 'module' object has no attribute 'stdin' |
++-----------------+--------------------------------------------------------------+
 

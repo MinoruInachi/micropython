@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-12 09:57+0900\n"
-"PO-Revision-Date: 2026-07-12 14:08+0900\n"
+"POT-Creation-Date: 2026-08-08 08:44+0900\n"
+"PO-Revision-Date: 2026-08-08 12:27+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -4937,6 +4937,68 @@ msgid "module(\"foo.py\", base_path=\"src/drivers\")"
 msgstr ""
 
 #: ../../reference/manifest.rst:154
+msgid "Include a C module directory in the build."
+msgstr "ビルドにCモジュールディレクトリを含めます。"
+
+#: ../../reference/manifest.rst:156
+msgid ""
+"The *module_path* should be a directory containing a ``micropython.mk`` "
+"and/or ``micropython.cmake`` file that defines the C module."
+msgstr ""
+"*module_path* は、Cモジュールを定義する ``micropython.mk`` ファイルや "
+"``micropython.cmake`` ファイルを含むディレクトリである必要があります。"
+
+#: ../../reference/manifest.rst:159
+msgid "This function can be called multiple times to include multiple C modules:"
+msgstr ""
+"この関数は複数回呼び出すことで、複数のCモジュールを含めることができます。"
+
+#: ../../reference/manifest.rst:161
+msgid ""
+"c_module(\"$(MPY_DIR)/examples/usercmodule/cexample\")\n"
+"c_module(\"$(BOARD_DIR)/../../drivers/sensor\")"
+msgstr ""
+
+#: ../../reference/manifest.rst:166
+msgid "Supports ``$(VAR)`` path substitution just like other manifest functions."
+msgstr ""
+"他のマニフェスト関数と同様に ``$(VAR)`` パス置換をサポートします。"
+
+#: ../../reference/manifest.rst:168
+msgid ""
+"``c_module()`` only takes effect when the manifest is loaded as a "
+"``FROZEN_MANIFEST`` (it has no effect when the manifest is processed in "
+"package-build or compile-only modes). Modules added with ``c_module()`` "
+"are merged with any paths passed on the command line via "
+"``USER_C_MODULES``; both sources combine additively and duplicate paths "
+"are de-duplicated."
+msgstr ""
+"``c_module()`` は、マニフェストが ``FROZEN_MANIFEST`` としてロードされた場合にのみ"
+"有効です(パッケージビルドモードまたはコンパイル専用モードでマニフェストが処理される"
+"場合は無効です)。 ``c_module()`` で追加されたモジュールは ``USER_C_MODULES`` を"
+"介してコマンドラインで渡されたパスとマージされます。両方のソースが加算的に結合され、"
+"重複するパスについては、その重複が削除されます。"
+
+#: ../../reference/manifest.rst:175
+msgid ""
+"The referenced C module directories must already be present on disk at "
+"build time. If a path points into a submodule, ensure that ``make "
+"submodules`` has been run first."
+msgstr ""
+"参照されるCモジュールディレクトリは、ビルド時に既にディスク上に存在している必要が"
+"あります。パスがサブモジュールを指している場合は、まず ``make submodules`` が"
+"実行されていることを確認してください。"
+
+#: ../../reference/manifest.rst:179
+msgid ""
+"Note: on Makefile-based ports, paths containing whitespace are not "
+"supported (a GNU make limitation). CMake-based ports handle whitespace "
+"paths correctly."
+msgstr ""
+"注記: Makefile ベースのポートでは、空白を含むパスはサポートされていません"
+"(GNU makeの制限)。CMakeベースのポートでは、空白を含むパスが正しく処理されます。"
+
+#: ../../reference/manifest.rst:185
 msgid ""
 "Require a package by name (and its dependencies) from :term:`micropython-"
 "lib`."
@@ -4944,7 +5006,7 @@ msgstr ""
 ":term:`micropython-lib` から名前(およびその依存関係)によって"
 "パッケージを要求します。"
 
-#: ../../reference/manifest.rst:156
+#: ../../reference/manifest.rst:187
 msgid ""
 "Optionally specify *library* (a string) to reference a package from a "
 "library that has been previously registered with `add_library`. Otherwise"
@@ -4954,11 +5016,11 @@ msgstr ""
 "ライブラリからパッケージを参照します。それ以外の場合は、ライブラリパスのリストが適用"
 "使用されます。"
 
-#: ../../reference/manifest.rst:162
+#: ../../reference/manifest.rst:193
 msgid "Include another manifest."
 msgstr "別のマニフェストを取り込みます。"
 
-#: ../../reference/manifest.rst:164
+#: ../../reference/manifest.rst:195
 msgid ""
 "Typically a manifest used for compiling firmware will need to include the"
 " port manifest, which might include frozen modules that are required for "
@@ -4968,18 +5030,18 @@ msgstr ""
 "必要があります。ポートマニフェストには、ボードの動作に必要な凍結モジュールを定義して"
 "います。"
 
-#: ../../reference/manifest.rst:168
+#: ../../reference/manifest.rst:199
 msgid ""
 "The *manifest* argument can be a string (filename) or an iterable of "
 "strings."
 msgstr ""
 "*manifest* 引数には文字列(ファイル名)または文字列のイテラブルを指定します。"
 
-#: ../../reference/manifest.rst:171
+#: ../../reference/manifest.rst:202
 msgid "Relative paths are resolved with respect to the current manifest file."
 msgstr "相対パスは、現在のマニフェストファイルを基準に解決されます。"
 
-#: ../../reference/manifest.rst:173
+#: ../../reference/manifest.rst:204
 msgid ""
 "If the path is to a directory, then it implicitly includes the "
 "manifest.py file inside that directory."
@@ -4987,24 +5049,24 @@ msgstr ""
 "パスがディレクトリである場合、そのディレクトリ内の manifest.py ファイルを"
 "暗黙的に取り込みます。"
 
-#: ../../reference/manifest.rst:176
+#: ../../reference/manifest.rst:207
 msgid ""
 "You can use the variables above, such as ``$(PORT_DIR)`` in "
 "``manifest_path``."
 msgstr ""
 "``manifest_path`` 内では ``$(PORT_DIR)`` などの変数を使えます。"
 
-#: ../../reference/manifest.rst:180
+#: ../../reference/manifest.rst:211
 msgid ""
 "Define metadata for this manifest file. This is useful for manifests for "
 "micropython-lib packages."
 msgstr ""
 
-#: ../../reference/manifest.rst:184
+#: ../../reference/manifest.rst:215
 msgid "Low-level functions"
 msgstr "低レベル関数"
 
-#: ../../reference/manifest.rst:186
+#: ../../reference/manifest.rst:217
 msgid ""
 "These functions are documented for completeness, but with the exception "
 "of ``freeze_as_str`` all functionality can be accessed via the high-level"
@@ -5013,7 +5075,7 @@ msgstr ""
 "これらの関数は完全性のためにドキュメント化してますが、 ``freeze_as_str`` を除く"
 "すべての機能は高レベル関数を介してアクセスできます。"
 
-#: ../../reference/manifest.rst:191
+#: ../../reference/manifest.rst:222
 msgid ""
 "Freeze the input specified by *path*, automatically determining its type."
 "  A ``.py`` script will be compiled to a ``.mpy`` first then frozen, and "
@@ -5023,7 +5085,7 @@ msgstr ""
 "``.py`` スクリプトは最初に ``.mpy`` にコンパイルしてから凍結し、 "
 "``.mpy`` ファイルは直接凍結します。"
 
-#: ../../reference/manifest.rst:195
+#: ../../reference/manifest.rst:226
 msgid ""
 "*path* must be a directory, which is the base directory to begin "
 "searching for files.  When importing the resulting frozen modules, the "
@@ -5034,15 +5096,15 @@ msgstr ""
 "ディレクトリです。凍結されたモジュールをインポートする際、モジュール名は *path* の"
 "後から始まります。つまり、モジュール名には *path* が含まれません。"
 
-#: ../../reference/manifest.rst:200
+#: ../../reference/manifest.rst:231
 msgid "If *path* is relative, it is resolved to the current ``manifest.py``."
 msgstr "*path* が相対パスの場合、現在の ``manifest.py`` を基準に解決されます。"
 
-#: ../../reference/manifest.rst:202
+#: ../../reference/manifest.rst:233
 msgid "If *script* is None, all files in *path* will be frozen."
 msgstr "*script* が None の場合、 *path* 内のすべてのファイルを凍結します。"
 
-#: ../../reference/manifest.rst:204
+#: ../../reference/manifest.rst:235
 msgid ""
 "If *script* is an iterable then ``freeze()`` is called on all items of "
 "the iterable (with the same *path* and *opt* passed through)."
@@ -5050,7 +5112,7 @@ msgstr ""
 "*script* がイテラブルなオブジェクトである場合、イテラブルのすべての項目について "
 "``freeze()`` を呼び出します(*path* と *opt* が渡されます)。"
 
-#: ../../reference/manifest.rst:207
+#: ../../reference/manifest.rst:238
 msgid ""
 "If *script* is a string then it specifies the file or directory to "
 "freeze, and can include extra directories before the file or last "
@@ -5062,7 +5124,7 @@ msgstr ""
 "凍結するファイルまたはディレクトリは *path* 内で検索されます。"
 "*script* がディレクトリである場合、そのディレクトリ内のすべてのファイルを凍結します。"
 
-#: ../../reference/manifest.rst:212
+#: ../../reference/manifest.rst:243
 msgid ""
 "*opt* is the optimisation level to pass to mpy-cross when compiling "
 "``.py`` to ``.mpy``.  These levels are described in "
@@ -5071,7 +5133,7 @@ msgstr ""
 "*opt* は ``.py`` から ``.mpy`` へのコンパイル時に mpy-cross に渡す最適化レベルです。"
 "レベルについての説明は :func:`micropython.opt_level` にあります。"
 
-#: ../../reference/manifest.rst:217
+#: ../../reference/manifest.rst:248
 msgid ""
 "Freeze the given *path* and all ``.py`` scripts within it as a string, "
 "which will be compiled upon import."
@@ -5079,7 +5141,7 @@ msgstr ""
 "指定した *path* とその中にあるすべての ``.py`` スクリプトを文字列として凍結します。"
 "この文字列として凍結したものはインポート時にコンパイルされます。"
 
-#: ../../reference/manifest.rst:222
+#: ../../reference/manifest.rst:253
 msgid ""
 "Freeze the input by first compiling the ``.py`` scripts to ``.mpy`` "
 "files, then freezing the resulting ``.mpy`` files.  See ``freeze()`` for "
@@ -5089,7 +5151,7 @@ msgstr ""
 "結果の ``.mpy`` ファイルを凍結することで、入力を凍結します。"
 "引数に関する詳細は ``freeze()`` を参照してください。"
 
-#: ../../reference/manifest.rst:228
+#: ../../reference/manifest.rst:259
 msgid ""
 "Freeze the input, which must be ``.mpy`` files that are frozen directly. "
 "See ``freeze()`` for further details on the arguments."
@@ -5097,11 +5159,11 @@ msgstr ""
 "コンパイル済の ``.mpy`` ファイルでなければならない入力を凍結します。"
 "引数に関する詳細は ``freeze()`` を参照してください。"
 
-#: ../../reference/manifest.rst:232 ../../reference/mpremote.rst:483
+#: ../../reference/manifest.rst:263 ../../reference/mpremote.rst:548
 msgid "Examples"
 msgstr "サンプル"
 
-#: ../../reference/manifest.rst:234
+#: ../../reference/manifest.rst:265
 msgid ""
 "To freeze a single file from the current directory which will be "
 "available as ``import mydriver``, use:"
@@ -5109,11 +5171,11 @@ msgstr ""
 "現在のディレクトリから単一のファイルをインポート可能なモジュールとして凍結するには"
 "次のようにします:"
 
-#: ../../reference/manifest.rst:237
+#: ../../reference/manifest.rst:268
 msgid "module(\"mydriver.py\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:241
+#: ../../reference/manifest.rst:272
 msgid ""
 "To freeze a directory of files in a subdirectory \"mydriver\" of the "
 "current directory which will be available as ``import mydriver``, use:"
@@ -5121,26 +5183,26 @@ msgstr ""
 "現在のディレクトリのサブディレクトリ \"mydriver\" のファイルを"
 "インポート可能なモジュールとして凍結するには次のようにします:"
 
-#: ../../reference/manifest.rst:244
+#: ../../reference/manifest.rst:275
 msgid "package(\"mydriver\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:248
+#: ../../reference/manifest.rst:279
 msgid "To freeze the \"hmac\" library from :term:`micropython-lib`, use:"
 msgstr ":term:`micropython-lib` の \"hmac\" ライブラリを凍結するには次のようにします:"
 
-#: ../../reference/manifest.rst:250
+#: ../../reference/manifest.rst:281
 msgid "require(\"hmac\")"
 msgstr ""
 
-#: ../../reference/manifest.rst:254
+#: ../../reference/manifest.rst:285
 msgid ""
 "A more complete example of a custom ``manifest.py`` file for the "
 "``PYBD_SF2`` board is:"
 msgstr ""
 "``PYBD_SF2`` ボードのカスタム ``manifest.py`` ファイルの例を次に示します:"
 
-#: ../../reference/manifest.rst:257
+#: ../../reference/manifest.rst:288
 msgid ""
 "# Include the board's default manifest.\n"
 "include(\"$(BOARD_DIR)/manifest.py\")\n"
@@ -5156,17 +5218,17 @@ msgstr ""
 "# micropython-lib から aiorepl を追加\n"
 "require(\"aiorepl\")"
 
-#: ../../reference/manifest.rst:266
+#: ../../reference/manifest.rst:297
 msgid "Then the board can be compiled with"
 msgstr "このファイルを使って、次のようにしてボードをビルドできます。"
 
-#: ../../reference/manifest.rst:268
+#: ../../reference/manifest.rst:299
 msgid ""
 "$ cd ports/stm32\n"
 "$ make BOARD=PYBD_SF2 FROZEN_MANIFEST=~/src/myproject/manifest.py"
 msgstr ""
 
-#: ../../reference/manifest.rst:273
+#: ../../reference/manifest.rst:304
 msgid ""
 "Note that most boards do not have their own ``manifest.py``, rather they "
 "use the port one directly, in which case your manifest should just "
@@ -10093,8 +10155,7 @@ msgstr "用語"
 
 #: ../../reference/unicode_support.rst:13
 msgid "This document uses the following Unicode terms:"
-msgstr ""
-このドキュメントでは、次の Unicode 用語を使います:"
+msgstr "このドキュメントでは、次の Unicode 用語を使います:"
 
 #: ../../reference/unicode_support.rst:15
 msgid ""
@@ -10197,19 +10258,25 @@ msgstr ""
 #: ../../reference/unicode_support.rst:52
 msgid ""
 "Other encodings (such as ``'latin-1'``, ``'utf-16'``, etc.) are not "
-"supported and will raise ``LookupError``."
+"supported and will raise ``LookupError``. The encoding argument must also"
+" match one of the supported strings exactly (for example, ``'utf8'`` is "
+"valid but ``'UTF8'`` is not). `More details "
+"<cpydiff_types_bytes_decode_encoding>`."
 msgstr ""
-"その他のエンコーディング(``'latin-1'``, ``'utf-16'`` など)はサポートされておらず、"
-" ``LookupError`` が発生します。"
+"その他のエンコーディング(``'latin-1'``, ``'utf-16'`` など)はサポートされておらず、 "
+"``LookupError`` が発生します。エンコーディング引数は、サポートされている文字列の"
+"いずれかと完全に一致する必要があります(たとえば ``'utf8'`` は有効ですが ``'UTF8'`` "
+"は無効です)。詳細は `こちら <cpydiff_types_bytes_decode_encoding>` を"
+"参照してください。"
 
-#: ../../reference/unicode_support.rst:55
-#: ../../reference/unicode_support.rst:72
-#: ../../reference/unicode_support.rst:105
-#: ../../reference/unicode_support.rst:124
+#: ../../reference/unicode_support.rst:57
+#: ../../reference/unicode_support.rst:74
+#: ../../reference/unicode_support.rst:122
+#: ../../reference/unicode_support.rst:141
 msgid "Example::"
 msgstr "使用例::"
 
-#: ../../reference/unicode_support.rst:57
+#: ../../reference/unicode_support.rst:59
 msgid ""
 ">>> '日本語'.encode('utf-8')\n"
 "b'\\xe6\\x97\\xa5\\xe6\\x9c\\xac\\xe8\\xaa\\x9e'\n"
@@ -10217,11 +10284,11 @@ msgid ""
 "'日本語'"
 msgstr ""
 
-#: ../../reference/unicode_support.rst:63
+#: ../../reference/unicode_support.rst:65
 msgid "Error Handling"
 msgstr "エラー処理"
 
-#: ../../reference/unicode_support.rst:65
+#: ../../reference/unicode_support.rst:67
 msgid ""
 "When decoding bytes that contain invalid UTF-8 sequences, the ``errors`` "
 "parameter of :meth:`bytes.decode` controls the behavior:"
@@ -10229,11 +10296,11 @@ msgstr ""
 "無効な UTF-8 シーケンスを含むバイトをデコードする場合、 :meth:`bytes.decode` の "
 "``errors`` パラメータによって動作が制御されます。"
 
-#: ../../reference/unicode_support.rst:68
+#: ../../reference/unicode_support.rst:70
 msgid "``'strict'`` (default): Raise ``UnicodeError``"
 msgstr "``'strict'`` (デフォルト): ``UnicodeError`` 例外を発生"
 
-#: ../../reference/unicode_support.rst:69
+#: ../../reference/unicode_support.rst:71
 msgid ""
 "``'ignore'``: Skip invalid bytes (requires "
 "``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS``)"
@@ -10241,7 +10308,7 @@ msgstr ""
 ``'ignore'``: 無効なバイトをスキップ"
 "(``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS`` を有効にしてのビルドが必要)"
 
-#: ../../reference/unicode_support.rst:70
+#: ../../reference/unicode_support.rst:72
 msgid ""
 "``'replace'``: Replace invalid bytes with U+FFFD � (requires "
 "``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS``)"
@@ -10249,7 +10316,7 @@ msgstr ""
 "``'replace'``: 無効なバイトを U+FFFD � に置換"
 "(``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS`` を有効にしてのビルドが必要)"
 
-#: ../../reference/unicode_support.rst:74
+#: ../../reference/unicode_support.rst:76
 msgid ""
 ">>> # Strict mode (default) raises an error\n"
 ">>> b'hello\\xffworld'.decode('utf-8')\n"
@@ -10275,7 +10342,7 @@ msgstr ""
 ">>> b'hello\\xffworld'.decode('utf-8', 'replace')\n"
 "'hello�world'"
 
-#: ../../reference/unicode_support.rst:86
+#: ../../reference/unicode_support.rst:88
 msgid ""
 "For memory-conscious applications, consider using ``'ignore'`` mode when "
 "processing untrusted or partially corrupted data, as it avoids raising "
@@ -10285,7 +10352,7 @@ msgstr ""
 "処理する際に ``'ignore'`` モードの使用を検討してください。このモードでは、"
 "例外を発生させることなく、有効なテキストを復元できます。"
 
-#: ../../reference/unicode_support.rst:90
+#: ../../reference/unicode_support.rst:92
 msgid ""
 "The same ``errors`` handling applies when decoding any bytes-like object,"
 " including via the ``str()`` constructor (for example ``str(buf, 'utf-8',"
@@ -10296,11 +10363,48 @@ msgstr ""
 "含め、同じエラー処理が適用されます(たとえば ``buf`` がバイト列、バイト配列、メモリビュー、"
 "または配列オブジェクトである場合の ``str(buf, 'utf-8', 'replace')`` など)。"
 
-#: ../../reference/unicode_support.rst:96
+#: ../../reference/unicode_support.rst:97
+msgid "Encoding to Bytes"
+msgstr "バイト列へのエンコード"
+
+#: ../../reference/unicode_support.rst:99
+msgid ""
+"Function ``str.encode()`` and the ``bytes()`` constructor accept an "
+"``encoding`` argument which can be ``'utf8'``, ``'utf-8'`` or "
+"``'ascii'``::"
+msgstr ""
+"関数 ``str.encode()`` と ``bytes()`` コンストラクタは "
+"``'utf8'``, ``'utf-8'``, ``'ascii'`` のいずれかのエンコード引数を受け取ります。"
+
+#: ../../reference/unicode_support.rst:102
+msgid ""
+">>> \"abc\".encode(\"ascii\")\n"
+"b'abc'"
+msgstr ""
+
+#: ../../reference/unicode_support.rst:105
+msgid ""
+"If encoding ``'ascii'`` is specified then an exception is raised if the "
+"string contains non-ASCII characters."
+msgstr ""
+"エンコーディングとして ``'ascii'`` が指定されている場合、文字列に非ASCII文字が"
+"含まれていると例外が発生します。"
+
+#: ../../reference/unicode_support.rst:108
+msgid ""
+"The ``'ignore'`` and ``'replace'`` ``errors`` values are not supported in"
+" these conversions from string to bytes and `any errors argument is "
+"ignored <cpydiff_types_str_encode_errors>`."
+msgstr ""
+"文字列からバイト列への変換では、``'ignore'`` と ``'replace'`` の ``errors`` "
+"値はサポートされておらず、 `エラー引数はすべて無視されます "
+"<cpydiff_types_str_encode_errors>` 。"
+
+#: ../../reference/unicode_support.rst:113
 msgid "String Methods"
 msgstr "文字列のメソッド"
 
-#: ../../reference/unicode_support.rst:98
+#: ../../reference/unicode_support.rst:115
 msgid ""
 "When Unicode support is enabled, string methods operate on code points "
 "rather than bytes:"
@@ -10308,29 +10412,29 @@ msgstr ""
 "Unicode サポートが有効になっている場合、文字列メソッドはバイトではなくコードポイントに"
 "対して動作します:"
 
-#: ../../reference/unicode_support.rst:100
+#: ../../reference/unicode_support.rst:117
 msgid ":meth:`str.center` - Counts code points for width calculation"
 msgstr ""
 ":meth:`str.center` - 幅の計算のためにコードポイントをカウントします。"
 
-#: ../../reference/unicode_support.rst:101
+#: ../../reference/unicode_support.rst:118
 msgid "``len(s)`` - Returns number of code points (not bytes)"
 msgstr ""
 "``len(s)`` - コードポイントの数を返します(バイトではありません)。"
 
-#: ../../reference/unicode_support.rst:102
+#: ../../reference/unicode_support.rst:119
 msgid "String indexing and slicing work on code-point boundaries"
 msgstr ""
 "文字列のインデックスとスライスはコードポイントの境界で動作します。"
 
-#: ../../reference/unicode_support.rst:103
+#: ../../reference/unicode_support.rst:120
 msgid ""
 "No support for display width calculations (East Asian width, combining "
 "characters, etc.)"
 msgstr ""
 "表示幅の計算はサポートしていません(東アジアの幅、文字の結合など)。"
 
-#: ../../reference/unicode_support.rst:107
+#: ../../reference/unicode_support.rst:124
 msgid ""
 ">>> s = 'Hello 世界'\n"
 ">>> len(s)           # 8 code points\n"
@@ -10348,30 +10452,30 @@ msgstr ""
 ">>> s.center(12)     # コードポイントのカウントによる中央寄せ\n"
 "'  Hello 世界  '"
 
-#: ../../reference/unicode_support.rst:116
+#: ../../reference/unicode_support.rst:133
 msgid "String Formatting"
 msgstr "文字列のフォーマット"
 
-#: ../../reference/unicode_support.rst:118
+#: ../../reference/unicode_support.rst:135
 #, python-brace-format, python-format
 msgid "The ``%c`` format specifier and ``{:c}`` format code support full Unicode:"
 msgstr ""
 "``%c`` フォーマット指定子と ``{:c}`` フォーマットコードは完全な Unicode を"
 "サポートします:"
 
-#: ../../reference/unicode_support.rst:120
+#: ../../reference/unicode_support.rst:137
 msgid "Accepts code points from 0 to 0x10FFFF"
 msgstr "0 から 0x10FFFF までのコードポイントを受け入れます。"
 
-#: ../../reference/unicode_support.rst:121
+#: ../../reference/unicode_support.rst:138
 msgid "Properly encodes multi-byte UTF-8 code points"
 msgstr "マルチバイト UTF-8 コードポイントを適切にエンコードします。"
 
-#: ../../reference/unicode_support.rst:122
+#: ../../reference/unicode_support.rst:139
 msgid "Raises ``ValueError`` for invalid code points"
 msgstr "無効なコードポイントの場合は ValueError を発生させます。"
 
-#: ../../reference/unicode_support.rst:126
+#: ../../reference/unicode_support.rst:143
 #, python-brace-format, python-format
 msgid ""
 ">>> '%c' % 65           # ASCII\n"
@@ -10400,11 +10504,11 @@ msgstr ""
 ">>> '%c' % 0x110000\n"
 "ValueError: %c arg not in range(0x110000)"
 
-#: ../../reference/unicode_support.rst:139
+#: ../../reference/unicode_support.rst:156
 msgid "F-strings also support the ``:c`` format code::"
 msgstr "f文字列も ``:c`` フォーマットコードをサポートしています::"
 
-#: ../../reference/unicode_support.rst:141
+#: ../../reference/unicode_support.rst:158
 #, python-brace-format
 msgid ""
 ">>> code_point = 0x2665  # Heart suit ♥\n"
@@ -10412,11 +10516,11 @@ msgid ""
 "'I ♥ Python'"
 msgstr ""
 
-#: ../../reference/unicode_support.rst:146
+#: ../../reference/unicode_support.rst:163
 msgid "Build Configuration"
 msgstr "ビルド設定"
 
-#: ../../reference/unicode_support.rst:148
+#: ../../reference/unicode_support.rst:165
 msgid ""
 "Unicode features are controlled by several build-time flags in "
 "``mpconfigport.h``:"
@@ -10424,11 +10528,11 @@ msgstr ""
 "Unicode機能は ``mpconfigport.h`` にあるいくつかのビルド時フラグによって"
 "制御されます:"
 
-#: ../../reference/unicode_support.rst:157
+#: ../../reference/unicode_support.rst:174
 msgid "``MICROPY_PY_BUILTINS_STR_UNICODE``"
 msgstr ""
 
-#: ../../reference/unicode_support.rst:151
+#: ../../reference/unicode_support.rst:168
 msgid ""
 "Enable Unicode string support. When enabled, strings can contain any "
 "valid Unicode character and string operations work on character "
@@ -10437,21 +10541,21 @@ msgstr ""
 "Unicode 文字列サポートを有効にします。有効にすると、文字列には有効な Unicode 文字を"
 "含めることができ、文字列操作はバイト境界ではなく文字境界で行われます。"
 
-#: ../../reference/unicode_support.rst:155
+#: ../../reference/unicode_support.rst:172
 msgid "Default: Enabled at ``MICROPY_CONFIG_ROM_LEVEL_BASIC_FEATURES`` and above."
 msgstr ""
 "デフォルト: ``MICROPY_CONFIG_ROM_LEVEL_BASIC_FEATURES`` 以上で有効。"
 
-#: ../../reference/unicode_support.rst:157
-#: ../../reference/unicode_support.rst:165
+#: ../../reference/unicode_support.rst:174
+#: ../../reference/unicode_support.rst:182
 msgid "Enabled on all Tier 1, 2 and 3 ports."
 msgstr "レベル 1、2、3 のすべてのポートで有効。"
 
-#: ../../reference/unicode_support.rst:165
+#: ../../reference/unicode_support.rst:182
 msgid "``MICROPY_PY_BUILTINS_STR_UNICODE_CHECK``"
 msgstr ""
 
-#: ../../reference/unicode_support.rst:160
+#: ../../reference/unicode_support.rst:177
 msgid ""
 "Enable UTF-8 validation during string operations. When disabled, string "
 "operations may produce incorrect results with invalid UTF-8 sequences."
@@ -10459,15 +10563,15 @@ msgstr ""
 "文字列操作時に UTF-8 検証を有効にします。無効にすると、無効なUTF-8シーケンスで"
 "文字列操作の結果が正しくない場合があります。"
 
-#: ../../reference/unicode_support.rst:163
+#: ../../reference/unicode_support.rst:180
 msgid "Default: Follows ``MICROPY_PY_BUILTINS_STR_UNICODE`` setting."
 msgstr "デフォルト: ``MICROPY_PY_BUILTINS_STR_UNICODE`` 設定にしたがい。"
 
-#: ../../reference/unicode_support.rst:175
+#: ../../reference/unicode_support.rst:192
 msgid "``MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS``"
 msgstr ""
 
-#: ../../reference/unicode_support.rst:168
+#: ../../reference/unicode_support.rst:185
 msgid ""
 "Enable the ``'ignore'`` and ``'replace'`` error handlers for "
 ":meth:`bytes.decode`. When enabled, invalid UTF-8 bytes can be either "
@@ -10477,12 +10581,12 @@ msgstr ""
 "有効にします。有効にすると、無効な UTF-8 バイトはスキップ(``'ignore'``)するか、"
 "U+FFFD に置き換える(``'replace'``)ことができます。"
 
-#: ../../reference/unicode_support.rst:172
+#: ../../reference/unicode_support.rst:189
 msgid "Default: Enabled at ``MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES`` and above."
 msgstr ""
 "デフォルト: ``MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES`` 以上で有効。"
 
-#: ../../reference/unicode_support.rst:174
+#: ../../reference/unicode_support.rst:191
 msgid ""
 "Enabled on alif, esp32, esp8266, mimxrt, renesas-ra, rp2, samd (SAMD51 "
 "only), stm32, unix and webassembly ports."
@@ -10490,25 +10594,25 @@ msgstr ""
 "alif、esp32、esp8266、mimxrt、renesas-ra、rp2、samd (SAMD51 のみ)、"
 "stm32、unix、webassembly ポートで有効。"
 
-#: ../../reference/unicode_support.rst:178
+#: ../../reference/unicode_support.rst:195
 msgid "Example Configuration"
 msgstr "ビルド設定の例"
 
-#: ../../reference/unicode_support.rst:180
+#: ../../reference/unicode_support.rst:197
 msgid "For a constrained port with limited flash, disable error handlers::"
 msgstr ""
 "フラッシュメモリ容量が制限された制約のあるポートでは、エラーハンドラを無効にします::"
 
-#: ../../reference/unicode_support.rst:182
+#: ../../reference/unicode_support.rst:199
 msgid "#define MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS (0)"
 msgstr ""
 
-#: ../../reference/unicode_support.rst:184
+#: ../../reference/unicode_support.rst:201
 msgid "For a port with more resources, enable all Unicode features::"
 msgstr ""
 "リソースが豊富なポートの場合は、すべての Unicode 機能を有効にします::"
 
-#: ../../reference/unicode_support.rst:186
+#: ../../reference/unicode_support.rst:203
 msgid ""
 "#define MICROPY_CONFIG_ROM_LEVEL "
 "(MICROPY_CONFIG_ROM_LEVEL_EXTRA_FEATURES)\n"
@@ -10522,42 +10626,42 @@ msgstr ""
 "// - MICROPY_PY_BUILTINS_STR_UNICODE\n"
 "// - MICROPY_PY_BUILTINS_BYTES_DECODE_ERRORS"
 
-#: ../../reference/unicode_support.rst:192
+#: ../../reference/unicode_support.rst:209
 msgid "Limitations"
 msgstr "制限事項"
 
-#: ../../reference/unicode_support.rst:194
+#: ../../reference/unicode_support.rst:211
 msgid "MicroPython's Unicode support has some limitations compared to CPython:"
 msgstr ""
 "MicroPython の Unicodeサポートは、CPythonと比較していくつかの制限があります:"
 
-#: ../../reference/unicode_support.rst:196
+#: ../../reference/unicode_support.rst:213
 msgid "Only UTF-8 and ASCII encodings are supported"
 msgstr "UTF-8 と ASCII エンコーディングのみをサポート"
 
-#: ../../reference/unicode_support.rst:197
+#: ../../reference/unicode_support.rst:214
 msgid "No support for Unicode normalization"
 msgstr "Unicode 正規化のサポートなし"
 
-#: ../../reference/unicode_support.rst:198
+#: ../../reference/unicode_support.rst:215
 msgid "No locale-aware string operations"
 msgstr "ロケールを考慮した文字列操作のサポートなし"
 
-#: ../../reference/unicode_support.rst:199
+#: ../../reference/unicode_support.rst:216
 msgid ""
 "The ``errors`` parameter accepts only positional arguments (not keyword "
 "arguments)"
 msgstr ""
 "``errors`` パラメータは位置引数でのみ受け付け(キーワード引数は受け付けない)。"
 
-#: ../../reference/unicode_support.rst:200
+#: ../../reference/unicode_support.rst:217
 msgid ""
 "String methods like ``upper()``, ``lower()``, etc. work correctly only "
 "for ASCII"
 msgstr ""
 "``upper()``, ``lower()`` などの文字列メソッドは ASCII でのみ正しく動作"
 
-#: ../../reference/unicode_support.rst:201
+#: ../../reference/unicode_support.rst:218
 msgid ""
 "The MicroPython interactive REPL and ``input()`` function currently have "
 "limited Unicode support.  The line editor is unaware of the displayed "

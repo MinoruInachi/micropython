@@ -2,7 +2,9 @@
 
 Builtin types
 =============
-Generated Fri 05 Jul 2024 06:33:57 UTC
+
+
+Generated Sat 08 Aug 2026 01:23:30 UTC
 
 Exception
 ---------
@@ -18,19 +20,20 @@ All exceptions have readable ``value`` and ``errno`` attributes, not just ``Stop
 
 Sample code::
 
+    
     e = Exception(1)
     print(e.value)
     print(e.errno)
 
-+-----------------------------------------------------------------+-------------+
-| CPy output:                                                     | uPy output: |
-+-----------------------------------------------------------------+-------------+
-| ::                                                              | ::          |
-|                                                                 |             |
-|     Traceback (most recent call last):                          |     1       |
-|       File "<stdin>", line 8, in <module>                       |     1       |
-|     AttributeError: 'Exception' object has no attribute 'value' |             |
-+-----------------------------------------------------------------+-------------+
++-----------------------------------------------------------------+---------------------+
+| CPython output:                                                 | MicroPython output: |
++-----------------------------------------------------------------+---------------------+
+| ::                                                              | ::                  |
+|                                                                 |                     |
+|     Traceback (most recent call last):                          |     1               |
+|       File "<stdin>", line 9, in <module>                       |     1               |
+|     AttributeError: 'Exception' object has no attribute 'value' |                     |
++-----------------------------------------------------------------+---------------------+
 
 .. _cpydiff_types_exception_chaining:
 
@@ -39,24 +42,25 @@ Exception chaining not implemented
 
 Sample code::
 
+    
     try:
         raise TypeError
     except TypeError:
         raise ValueError
 
 +-------------------------------------------------------------------------+--------------------------------------------+
-| CPy output:                                                             | uPy output:                                |
+| CPython output:                                                         | MicroPython output:                        |
 +-------------------------------------------------------------------------+--------------------------------------------+
 | ::                                                                      | ::                                         |
 |                                                                         |                                            |
 |     Traceback (most recent call last):                                  |     Traceback (most recent call last):     |
-|       File "<stdin>", line 8, in <module>                               |       File "<stdin>", line 10, in <module> |
+|       File "<stdin>", line 9, in <module>                               |       File "<stdin>", line 11, in <module> |
 |     TypeError                                                           |     ValueError:                            |
 |                                                                         |                                            |
 |     During handling of the above exception, another exception occurred: |                                            |
 |                                                                         |                                            |
 |     Traceback (most recent call last):                                  |                                            |
-|       File "<stdin>", line 10, in <module>                              |                                            |
+|       File "<stdin>", line 11, in <module>                              |                                            |
 |     ValueError                                                          |                                            |
 +-------------------------------------------------------------------------+--------------------------------------------+
 
@@ -71,19 +75,20 @@ User-defined attributes for builtin exceptions are not supported
 
 Sample code::
 
+    
     e = Exception()
     e.x = 0
     print(e.x)
 
-+-------------+-------------------------------------------------------------+
-| CPy output: | uPy output:                                                 |
-+-------------+-------------------------------------------------------------+
-| ::          | ::                                                          |
-|             |                                                             |
-|     0       |     Traceback (most recent call last):                      |
-|             |       File "<stdin>", line 8, in <module>                   |
-|             |     AttributeError: 'Exception' object has no attribute 'x' |
-+-------------+-------------------------------------------------------------+
++-----------------+-------------------------------------------------------------+
+| CPython output: | MicroPython output:                                         |
++-----------------+-------------------------------------------------------------+
+| ::              | ::                                                          |
+|                 |                                                             |
+|     0           |     Traceback (most recent call last):                      |
+|                 |       File "<stdin>", line 9, in <module>                   |
+|                 |     AttributeError: 'Exception' object has no attribute 'x' |
++-----------------+-------------------------------------------------------------+
 
 .. _cpydiff_types_exception_loops:
 
@@ -94,6 +99,7 @@ Exception in while loop condition may have unexpected line number
 
 Sample code::
 
+    
     l = ["-foo", "-bar"]
     
     i = 0
@@ -102,14 +108,14 @@ Sample code::
         i += 1
 
 +--------------------------------------------+--------------------------------------------+
-| CPy output:                                | uPy output:                                |
+| CPython output:                            | MicroPython output:                        |
 +--------------------------------------------+--------------------------------------------+
 | ::                                         | ::                                         |
 |                                            |                                            |
 |     iter                                   |     iter                                   |
 |     iter                                   |     iter                                   |
 |     Traceback (most recent call last):     |     Traceback (most recent call last):     |
-|       File "<stdin>", line 10, in <module> |       File "<stdin>", line 12, in <module> |
+|       File "<stdin>", line 11, in <module> |       File "<stdin>", line 13, in <module> |
 |     IndexError: list index out of range    |     IndexError: list index out of range    |
 +--------------------------------------------+--------------------------------------------+
 
@@ -137,16 +143,102 @@ Sample code::
     
     a = A()
 
-+-------------+-------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                             |
-+-------------+-------------------------------------------------------------------------+
-|             | ::                                                                      |
-|             |                                                                         |
-|             |     Traceback (most recent call last):                                  |
-|             |       File "<stdin>", line 18, in <module>                              |
-|             |       File "<stdin>", line 15, in __init__                              |
-|             |     AttributeError: type object 'Exception' has no attribute '__init__' |
-+-------------+-------------------------------------------------------------------------+
++-----------------+-------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                     |
++-----------------+-------------------------------------------------------------------------+
+|                 | ::                                                                      |
+|                 |                                                                         |
+|                 |     Traceback (most recent call last):                                  |
+|                 |       File "<stdin>", line 18, in <module>                              |
+|                 |       File "<stdin>", line 15, in __init__                              |
+|                 |     AttributeError: type object 'Exception' has no attribute '__init__' |
++-----------------+-------------------------------------------------------------------------+
+
+OSError
+-------
+
+.. _cpydiff_types_oserror_errnomap:
+
+OSError constructor returns a plain OSError for all errno values, rather than a relevant subtype.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython does not include the CPython-standard OSError subclasses.
+
+**Workaround:** Catch OSError and use its errno attribute to discriminate the cause.
+
+Sample code::
+
+    
+    import errno
+    
+    errno_list = [  # i.e. the set implemented by micropython
+        errno.EPERM,
+        errno.ENOENT,
+        errno.EIO,
+        errno.EBADF,
+        errno.EAGAIN,
+        errno.ENOMEM,
+        errno.EACCES,
+        errno.EEXIST,
+        errno.ENODEV,
+        errno.EISDIR,
+        errno.EINVAL,
+        errno.EOPNOTSUPP,
+        errno.EADDRINUSE,
+        errno.ECONNABORTED,
+        errno.ECONNRESET,
+        errno.ENOBUFS,
+        errno.ENOTCONN,
+        errno.ETIMEDOUT,
+        errno.ECONNREFUSED,
+        errno.EHOSTUNREACH,
+        errno.EALREADY,
+        errno.EINPROGRESS,
+    ]
+    
+    
+    def errno_output_type(n):
+        try:
+            raise OSError(n, "")
+        except OSError as e:
+            return f"{type(e).__name__}"
+        except Exception as e:
+            return f"non-OSError {type(e).__name__}"
+        else:
+            return "no error"
+    
+    
+    for n in errno_list:
+        print(errno.errorcode[n], "=", errno_output_type(n))
+
++-------------------------------------------+----------------------------+
+| CPython output:                           | MicroPython output:        |
++-------------------------------------------+----------------------------+
+| ::                                        | ::                         |
+|                                           |                            |
+|     EPERM = PermissionError               |     EPERM = OSError        |
+|     ENOENT = FileNotFoundError            |     ENOENT = OSError       |
+|     EIO = OSError                         |     EIO = OSError          |
+|     EBADF = OSError                       |     EBADF = OSError        |
+|     EAGAIN = BlockingIOError              |     EAGAIN = OSError       |
+|     ENOMEM = OSError                      |     ENOMEM = OSError       |
+|     EACCES = PermissionError              |     EACCES = OSError       |
+|     EEXIST = FileExistsError              |     EEXIST = OSError       |
+|     ENODEV = OSError                      |     ENODEV = OSError       |
+|     EISDIR = IsADirectoryError            |     EISDIR = OSError       |
+|     EINVAL = OSError                      |     EINVAL = OSError       |
+|     EOPNOTSUPP = OSError                  |     EOPNOTSUPP = OSError   |
+|     EADDRINUSE = OSError                  |     EADDRINUSE = OSError   |
+|     ECONNABORTED = ConnectionAbortedError |     ECONNABORTED = OSError |
+|     ECONNRESET = ConnectionResetError     |     ECONNRESET = OSError   |
+|     ENOBUFS = OSError                     |     ENOBUFS = OSError      |
+|     ENOTCONN = OSError                    |     ENOTCONN = OSError     |
+|     ETIMEDOUT = TimeoutError              |     ETIMEDOUT = OSError    |
+|     ECONNREFUSED = ConnectionRefusedError |     ECONNREFUSED = OSError |
+|     EHOSTUNREACH = OSError                |     EHOSTUNREACH = OSError |
+|     EALREADY = BlockingIOError            |     EALREADY = OSError     |
+|     EINPROGRESS = BlockingIOError         |     EINPROGRESS = OSError  |
++-------------------------------------------+----------------------------+
 
 bytearray
 ---------
@@ -158,22 +250,142 @@ Array slice assignment with unsupported RHS
 
 Sample code::
 
+    
     b = bytearray(4)
     b[0:1] = [1, 2]
     print(b)
 
 +----------------------------------------+-------------------------------------------------------------+
-| CPy output:                            | uPy output:                                                 |
+| CPython output:                        | MicroPython output:                                         |
 +----------------------------------------+-------------------------------------------------------------+
 | ::                                     | ::                                                          |
 |                                        |                                                             |
 |     bytearray(b'\x01\x02\x00\x00\x00') |     Traceback (most recent call last):                      |
-|                                        |       File "<stdin>", line 8, in <module>                   |
+|                                        |       File "<stdin>", line 9, in <module>                   |
 |                                        |     NotImplementedError: array/bytes required on right side |
 +----------------------------------------+-------------------------------------------------------------+
 
 bytes
 -----
+
+.. _cpydiff_types_bytes_decode_encoding:
+
+bytes.decode() only supports encoding arguments 'utf8', 'utf-8' and 'ascii'. Other encodings like 'latin-1' are not supported. Other string forms such as 'UTF8' are not supported.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for embedded systems and only includes UTF-8 and ASCII codec support with simple matching to save memory and code size. `The same restriction applies to str constructor <cpydiff_types_str_encoding>`. See also `unicode_support`.
+
+**Workaround:** Convert data to UTF-8 before processing, or implement custom encoding/decoding if needed. Ensure encoding argument is one of the accepted forms.
+
+Sample code::
+
+    
+    # Both CPython and MicroPython support utf8 and ascii encodings
+    print(b"caf\xc3\xa9".decode("utf8"))  # codespell:ignore caf
+    print(b"cafe".decode("ascii"))
+    
+    # MicroPython does not support additional encodings
+    try:
+        b"\xe9".decode("latin-1")  # 'é' in latin-1
+        print("latin-1 supported")
+    except (ValueError, NotImplementedError, LookupError) as e:
+        print("latin-1 not supported:", type(e).__name__)
+    
+    try:
+        b"\x80".decode("cp1252")  # Euro sign in cp1252
+        print("cp1252 supported")
+    except (ValueError, NotImplementedError, LookupError) as e:
+        print("cp1252 not supported:", type(e).__name__)
+    
+    # Encoding arguments must match exactly in MicroPython
+    try:
+        b"hello".decode("ASCII")
+        print("Capital letters ASCII supported")
+    except (ValueError, NotImplementedError, LookupError) as e:
+        print("Capital letters ASCII not supported:", type(e).__name__)
+
++-------------------------------------+------------------------------------------------------+
+| CPython output:                     | MicroPython output:                                  |
++-------------------------------------+------------------------------------------------------+
+| ::                                  | ::                                                   |
+|                                     |                                                      |
+|     café                            |     café                                             |
+|     cafe                            |     cafe                                             |
+|     latin-1 supported               |     latin-1 not supported: LookupError               |
+|     cp1252 supported                |     cp1252 not supported: LookupError                |
+|     Capital letters ASCII supported |     Capital letters ASCII not supported: LookupError |
++-------------------------------------+------------------------------------------------------+
+
+.. _cpydiff_types_bytes_decode_kwargs:
+
+bytes.decode() does not accept keyword arguments, only positional arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython optimizes for code size and does not implement keyword argument handling for bytes.decode()
+
+**Workaround:** Use positional arguments instead of keyword arguments
+
+Sample code::
+
+    
+    # CPython accepts keyword arguments, MicroPython only accepts positional
+    b = b"hello\xffworld"
+    
+    try:
+        # Using keyword arguments
+        result = b.decode(encoding="utf-8", errors="ignore")
+        print("kwargs supported:", repr(result))
+    except TypeError as e:
+        print("kwargs not supported: TypeError")
+        # Workaround: use positional arguments
+        result = b.decode("utf-8", "ignore")
+        print("positional args work:", repr(result))
+
++------------------------------------+----------------------------------------+
+| CPython output:                    | MicroPython output:                    |
++------------------------------------+----------------------------------------+
+| ::                                 | ::                                     |
+|                                    |                                        |
+|     kwargs supported: 'helloworld' |     kwargs not supported: TypeError    |
+|                                    |     positional args work: 'helloworld' |
++------------------------------------+----------------------------------------+
+
+.. _cpydiff_types_bytes_encoding:
+
+bytes() constructor only supports encoding arguments 'utf8', 'utf-8' and 'ascii'. Other encodings like 'latin-1' are not supported. Other string forms such as 'UTF8' are not supported.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for embedded systems and has limited codec support to save code size. `A similar restriction applies to str.encode() <cpydiff_types_str_encode_encoding>`. See also `unicode_support`.
+
+**Workaround:** Implement other encoding conversions manually by parsing the result of str.encode() or bytes() constructor.
+
+Sample code::
+
+    
+    # Both CPython and MicroPython can encode this emoji as UTF-8 bytes
+    print(bytes("😀", "utf8"))
+    
+    # Both CPython and MicroPython will fail to encode this emoji as ASCII bytes
+    try:
+        print(bytes("😀", "ascii"))
+    except UnicodeError:
+        print("UnicodeError")
+    
+    # Other encodings or string formats aren't accepted by MicroPython
+    try:
+        print(bytes("😀", "UTF-8"))
+    except LookupError:
+        print("LookupError")
+
++-------------------------+-------------------------+
+| CPython output:         | MicroPython output:     |
++-------------------------+-------------------------+
+| ::                      | ::                      |
+|                         |                         |
+|     b'\xf0\x9f\x98\x80' |     b'\xf0\x9f\x98\x80' |
+|     UnicodeError        |     UnicodeError        |
+|     b'\xf0\x9f\x98\x80' |     LookupError         |
++-------------------------+-------------------------+
 
 .. _cpydiff_types_bytes_format:
 
@@ -186,17 +398,18 @@ bytes objects support .format() method
 
 Sample code::
 
+    
     print(b"{}".format(1))
 
-+--------------------------------------------------------------+-------------+
-| CPy output:                                                  | uPy output: |
-+--------------------------------------------------------------+-------------+
-| ::                                                           | ::          |
-|                                                              |             |
-|     Traceback (most recent call last):                       |     b'1'    |
-|       File "<stdin>", line 7, in <module>                    |             |
-|     AttributeError: 'bytes' object has no attribute 'format' |             |
-+--------------------------------------------------------------+-------------+
++--------------------------------------------------------------+---------------------+
+| CPython output:                                              | MicroPython output: |
++--------------------------------------------------------------+---------------------+
+| ::                                                           | ::                  |
+|                                                              |                     |
+|     Traceback (most recent call last):                       |     b'1'            |
+|       File "<stdin>", line 8, in <module>                    |                     |
+|     AttributeError: 'bytes' object has no attribute 'format' |                     |
++--------------------------------------------------------------+---------------------+
 
 .. _cpydiff_types_bytes_keywords:
 
@@ -207,17 +420,18 @@ bytes() with keywords not implemented
 
 Sample code::
 
+    
     print(bytes("abc", encoding="utf8"))
 
-+-------------+----------------------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                                            |
-+-------------+----------------------------------------------------------------------------------------+
-| ::          | ::                                                                                     |
-|             |                                                                                        |
-|     b'abc'  |     Traceback (most recent call last):                                                 |
-|             |       File "<stdin>", line 7, in <module>                                              |
-|             |     NotImplementedError: keyword argument(s) not implemented - use normal args instead |
-+-------------+----------------------------------------------------------------------------------------+
++-----------------+----------------------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                                    |
++-----------------+----------------------------------------------------------------------------------------+
+| ::              | ::                                                                                     |
+|                 |                                                                                        |
+|     b'abc'      |     Traceback (most recent call last):                                                 |
+|                 |       File "<stdin>", line 8, in <module>                                              |
+|                 |     NotImplementedError: keyword argument(s) not implemented - use normal args instead |
++-----------------+----------------------------------------------------------------------------------------+
 
 .. _cpydiff_types_bytes_subscrstep:
 
@@ -230,17 +444,49 @@ Bytes subscription with step != 1 not implemented
 
 Sample code::
 
+    
     print(b"123"[0:3:2])
 
-+-------------+---------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                               |
-+-------------+---------------------------------------------------------------------------+
-| ::          | ::                                                                        |
-|             |                                                                           |
-|     b'13'   |     Traceback (most recent call last):                                    |
-|             |       File "<stdin>", line 7, in <module>                                 |
-|             |     NotImplementedError: only slices with step=1 (aka None) are supported |
-+-------------+---------------------------------------------------------------------------+
++-----------------+---------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                       |
++-----------------+---------------------------------------------------------------------------+
+| ::              | ::                                                                        |
+|                 |                                                                           |
+|     b'13'       |     Traceback (most recent call last):                                    |
+|                 |       File "<stdin>", line 8, in <module>                                 |
+|                 |     NotImplementedError: only slices with step=1 (aka None) are supported |
++-----------------+---------------------------------------------------------------------------+
+
+complex
+-------
+
+.. _cpydiff_types_complex_parser:
+
+MicroPython's complex() accepts certain incorrect values that CPython rejects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is highly optimized for memory usage.
+
+**Workaround:** Do not use non-standard complex literals as argument to complex()
+
+MicroPython's ``complex()`` function accepts literals that contain a space and
+no sign between the real and imaginary parts, and interprets it as a plus.
+
+Sample code::
+
+    
+    try:
+        print(complex("1 1j"))
+    except ValueError:
+        print("ValueError")
+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     ValueError  |     (1+1j)          |
++-----------------+---------------------+
 
 dict
 ----
@@ -256,25 +502,26 @@ Dictionary keys view does not behave as a set.
 
 Sample code::
 
+    
     print({1: 2, 3: 4}.keys() & {1})
 
-+-------------+------------------------------------------------------------------+
-| CPy output: | uPy output:                                                      |
-+-------------+------------------------------------------------------------------+
-| ::          | ::                                                               |
-|             |                                                                  |
-|     {1}     |     Traceback (most recent call last):                           |
-|             |       File "<stdin>", line 7, in <module>                        |
-|             |     TypeError: unsupported types for __and__: 'dict_view', 'set' |
-+-------------+------------------------------------------------------------------+
++-----------------+------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                              |
++-----------------+------------------------------------------------------------------+
+| ::              | ::                                                               |
+|                 |                                                                  |
+|     {1}         |     Traceback (most recent call last):                           |
+|                 |       File "<stdin>", line 8, in <module>                        |
+|                 |     TypeError: unsupported types for __and__: 'dict_view', 'set' |
++-----------------+------------------------------------------------------------------+
 
 float
 -----
 
 .. _cpydiff_types_float_implicit_conversion:
 
-uPy allows implicit conversion of objects in maths operations while CPython does not.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MicroPython allows implicit conversion of objects in maths operations while CPython does not.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Workaround:** Objects should be wrapped in ``float(obj)`` for compatibility with CPython.
 
@@ -289,32 +536,15 @@ Sample code::
     
     print(2.0 * Test())
 
-+----------------------------------------------------------------------+-------------+
-| CPy output:                                                          | uPy output: |
-+----------------------------------------------------------------------+-------------+
-| ::                                                                   | ::          |
-|                                                                      |             |
-|     Traceback (most recent call last):                               |     1.0     |
-|       File "<stdin>", line 14, in <module>                           |             |
-|     TypeError: unsupported operand type(s) for *: 'float' and 'Test' |             |
-+----------------------------------------------------------------------+-------------+
-
-.. _cpydiff_types_float_rounding:
-
-uPy and CPython outputs formats may differ
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Sample code::
-
-    print("%.1g" % -9.9)
-
-+-------------+-------------+
-| CPy output: | uPy output: |
-+-------------+-------------+
-| ::          | ::          |
-|             |             |
-|     -1e+01  |     -10     |
-+-------------+-------------+
++----------------------------------------------------------------------+---------------------+
+| CPython output:                                                      | MicroPython output: |
++----------------------------------------------------------------------+---------------------+
+| ::                                                                   | ::                  |
+|                                                                      |                     |
+|     Traceback (most recent call last):                               |     1.0             |
+|       File "<stdin>", line 14, in <module>                           |                     |
+|     TypeError: unsupported operand type(s) for *: 'float' and 'Test' |                     |
++----------------------------------------------------------------------+---------------------+
 
 int
 ---
@@ -335,7 +565,7 @@ Sample code::
     print("{} is {} bits long.".format(x, x.bit_length()))
 
 +-------------------------+----------------------------------------------------------------+
-| CPy output:             | uPy output:                                                    |
+| CPython output:         | MicroPython output:                                            |
 +-------------------------+----------------------------------------------------------------+
 | ::                      | ::                                                             |
 |                         |                                                                |
@@ -362,47 +592,16 @@ Sample code::
     a = A(42)
     print(a + a)
 
-+-------------+-------------------------------------------------------------+
-| CPy output: | uPy output:                                                 |
-+-------------+-------------------------------------------------------------+
-| ::          | ::                                                          |
-|             |                                                             |
-|     84      |     Traceback (most recent call last):                      |
-|             |       File "<stdin>", line 14, in <module>                  |
-|             |       File "<stdin>", line 10, in <lambda>                  |
-|             |     TypeError: unsupported types for __radd__: 'int', 'int' |
-+-------------+-------------------------------------------------------------+
-
-.. _cpydiff_types_int_to_bytes:
-
-``to_bytes`` method doesn't implement signed parameter.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** The ``signed`` keyword-only parameter is not implemented for ``int.to_bytes()``.
-
-When the integer is negative, MicroPython behaves the same as CPython ``int.to_bytes(..., signed=True)``
-
-When the integer is non-negative, MicroPython behaves the same as CPython ``int.to_bytes(..., signed=False)``.
-
-(The difference is subtle, but in CPython a positive integer converted with ``signed=True`` may require one byte more in the output length, in order to fit the 0 sign bit.)
-
-**Workaround:** Take care when calling ``to_bytes()`` on an integer value which may be negative.
-
-Sample code::
-
-    
-    x = -1
-    print(x.to_bytes(1, "big"))
-
-+-----------------------------------------------------------+-------------+
-| CPy output:                                               | uPy output: |
-+-----------------------------------------------------------+-------------+
-| ::                                                        | ::          |
-|                                                           |             |
-|     Traceback (most recent call last):                    |     b'\xff' |
-|       File "<stdin>", line 16, in <module>                |             |
-|     OverflowError: can't convert negative int to unsigned |             |
-+-----------------------------------------------------------+-------------+
++-----------------+-------------------------------------------------------------+
+| CPython output: | MicroPython output:                                         |
++-----------------+-------------------------------------------------------------+
+| ::              | ::                                                          |
+|                 |                                                             |
+|     84          |     Traceback (most recent call last):                      |
+|                 |       File "<stdin>", line 14, in <module>                  |
+|                 |       File "<stdin>", line 10, in <lambda>                  |
+|                 |     TypeError: unsupported types for __radd__: 'int', 'int' |
++-----------------+-------------------------------------------------------------+
 
 list
 ----
@@ -416,19 +615,20 @@ List delete with step != 1 not implemented
 
 Sample code::
 
+    
     l = [1, 2, 3, 4]
     del l[0:4:2]
     print(l)
 
-+-------------+-------------------------------------------+
-| CPy output: | uPy output:                               |
-+-------------+-------------------------------------------+
-| ::          | ::                                        |
-|             |                                           |
-|     [2, 4]  |     Traceback (most recent call last):    |
-|             |       File "<stdin>", line 8, in <module> |
-|             |     NotImplementedError:                  |
-+-------------+-------------------------------------------+
++-----------------+-------------------------------------------+
+| CPython output: | MicroPython output:                       |
++-----------------+-------------------------------------------+
+| ::              | ::                                        |
+|                 |                                           |
+|     [2, 4]      |     Traceback (most recent call last):    |
+|                 |       File "<stdin>", line 9, in <module> |
+|                 |     NotImplementedError:                  |
++-----------------+-------------------------------------------+
 
 .. _cpydiff_types_list_store_noniter:
 
@@ -441,17 +641,18 @@ List slice-store with non-iterable on RHS is not implemented
 
 Sample code::
 
+    
     l = [10, 20]
     l[0:1] = range(4)
     print(l)
 
 +----------------------+-----------------------------------------------------+
-| CPy output:          | uPy output:                                         |
+| CPython output:      | MicroPython output:                                 |
 +----------------------+-----------------------------------------------------+
 | ::                   | ::                                                  |
 |                      |                                                     |
 |     [0, 1, 2, 3, 20] |     Traceback (most recent call last):              |
-|                      |       File "<stdin>", line 8, in <module>           |
+|                      |       File "<stdin>", line 9, in <module>           |
 |                      |     TypeError: object 'range' isn't a tuple or list |
 +----------------------+-----------------------------------------------------+
 
@@ -464,17 +665,18 @@ List store with step != 1 not implemented
 
 Sample code::
 
+    
     l = [1, 2, 3, 4]
     l[0:4:2] = [5, 6]
     print(l)
 
 +------------------+-------------------------------------------+
-| CPy output:      | uPy output:                               |
+| CPython output:  | MicroPython output:                       |
 +------------------+-------------------------------------------+
 | ::               | ::                                        |
 |                  |                                           |
 |     [5, 2, 6, 4] |     Traceback (most recent call last):    |
-|                  |       File "<stdin>", line 8, in <module> |
+|                  |       File "<stdin>", line 9, in <module> |
 |                  |     NotImplementedError:                  |
 +------------------+-------------------------------------------+
 
@@ -494,42 +696,258 @@ In the worst case scenario, resizing an object which is the target of a memoryvi
 
 Sample code::
 
+    
     b = bytearray(b"abcdefg")
     m = memoryview(b)
     b.extend(b"hijklmnop")
     print(b, bytes(m))
 
 +----------------------------------------------------------------------+-----------------------------------------------+
-| CPy output:                                                          | uPy output:                                   |
+| CPython output:                                                      | MicroPython output:                           |
 +----------------------------------------------------------------------+-----------------------------------------------+
 | ::                                                                   | ::                                            |
 |                                                                      |                                               |
 |     Traceback (most recent call last):                               |     bytearray(b'abcdefghijklmnop') b'abcdefg' |
-|       File "<stdin>", line 11, in <module>                           |                                               |
+|       File "<stdin>", line 12, in <module>                           |                                               |
 |     BufferError: Existing exports of data: object cannot be re-sized |                                               |
 +----------------------------------------------------------------------+-----------------------------------------------+
+
+range
+-----
+
+.. _cpydiff_types_range_limits:
+
+Range arguments must fit in a machine word; large start or stop values misbehave.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** Range stores its arguments as the C mp_int_t type, and intermediate calculations also use it.
+
+**Workaround:** Avoid using such ranges
+
+Sample code::
+
+    
+    from sys import maxsize
+    
+    # A range including `maxsize-1` cannot be created
+    try:
+        print(range(-maxsize - 1, 0))
+    except OverflowError:
+        print("OverflowError")
+    
+    # A range with start or stop outside [-maxsize, maxsize] cannot be created, even if the range itself would be small.
+    try:
+        print(range(maxsize + 1, maxsize + 2))
+    except OverflowError:
+        print("OverflowError")
+    
+    # A range with `stop-start` exceeding sys.maxsize has incorrect len(), while CPython cannot calculate len().
+    try:
+        print(len(range(-maxsize, maxsize)))
+    except OverflowError:
+        print("OverflowError")
+    
+    # A range with `stop-start` exceeding sys.maxsize has incorrect len()
+    try:
+        print(len(range(-maxsize, maxsize, maxsize)))
+    except OverflowError:
+        print("OverflowError")
+
++-----------------------------------------------------+---------------------+
+| CPython output:                                     | MicroPython output: |
++-----------------------------------------------------+---------------------+
+| ::                                                  | ::                  |
+|                                                     |                     |
+|     range(-9223372036854775808, 0)                  |     OverflowError   |
+|     range(9223372036854775808, 9223372036854775809) |     OverflowError   |
+|     OverflowError                                   |     0               |
+|     2                                               |     0               |
++-----------------------------------------------------+---------------------+
 
 str
 ---
 
-.. _cpydiff_types_str_endswith:
+.. _cpydiff_types_str_encode_encoding:
 
-Start/end indices such as str.endswith(s, start) not implemented
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+str.encode() constructor only supports encoding arguments 'utf8', 'utf-8' and 'ascii'. Other encodings like 'latin-1' are not supported. Other string forms such as 'UTF8' are not supported.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for embedded systems and has limited codec support to save code size. `A similar restriction applies to bytes constructor <cpydiff_types_bytes_encoding>`. See also `unicode_support`.
+
+**Workaround:** Implement encoding conversions manually by parsing the result of str.encode() or bytes() constructor.
 
 Sample code::
 
-    print("abc".endswith("c", 1))
+    
+    # Both CPython and MicroPython can encode this emoji as UTF-8 bytes
+    print("😀".encode("utf8"))
+    
+    # Both CPython and MicroPython will fail to encode this emoji as ASCII bytes
+    try:
+        print("😀".encode("ascii"))
+    except UnicodeError:
+        print("UnicodeError")
+    
+    # Other encodings or string formats aren't accepted by MicroPython:
+    try:
+        print("😀".encode("UTF-8"))
+    except LookupError:
+        print("LookupError")
 
-+-------------+--------------------------------------------+
-| CPy output: | uPy output:                                |
-+-------------+--------------------------------------------+
-| ::          | ::                                         |
-|             |                                            |
-|     True    |     Traceback (most recent call last):     |
-|             |       File "<stdin>", line 7, in <module>  |
-|             |     NotImplementedError: start/end indices |
-+-------------+--------------------------------------------+
++-------------------------+-------------------------+
+| CPython output:         | MicroPython output:     |
++-------------------------+-------------------------+
+| ::                      | ::                      |
+|                         |                         |
+|     b'\xf0\x9f\x98\x80' |     b'\xf0\x9f\x98\x80' |
+|     UnicodeError        |     UnicodeError        |
+|     b'\xf0\x9f\x98\x80' |     LookupError         |
++-------------------------+-------------------------+
+
+.. _cpydiff_types_str_encode_errors:
+
+str.encode() and bytes() constructor ignore any ``errors`` argument specified. If the encoding is specified as ``'ascii'`` and a non-ASCII byte is found in the string then an exception is always raised.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for embedded systems and has limited codec support to save code size. See also `unicode_support`.
+
+**Workaround:** Handle encoding errors manually by parsing the result of str.encode() or bytes() constructor.
+
+Sample code::
+
+    
+    # CPython will replace the emoji with an ASCII '?' but MicroPython will
+    # raise an exception
+    try:
+        print("😀".encode("ascii", "replace"))
+    except UnicodeError:
+        print("UnicodeError")
+    
+    # CPython will ignore the emoji in the result but MicroPython will raise an exception
+    try:
+        print("😀".encode("ascii", "ignore"))
+    except UnicodeError:
+        print("UnicodeError")
+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     b'?'        |     UnicodeError    |
+|     b''         |     UnicodeError    |
++-----------------+---------------------+
+
+.. _cpydiff_types_str_encoding:
+
+str() constructor only supports encoding arguments 'utf8', 'utf-8' and 'ascii'. Other encodings like 'latin-1' are not supported. Other string forms such as 'UTF8' are not supported.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for embedded systems and only includes UTF-8 and ASCII codec support with simple matching to save memory and code size. `The same restriction applies to bytes.decode() <cpydiff_types_bytes_decode_encoding>`. See also `unicode_support`.
+
+**Workaround:** Convert data to UTF-8 before processing, or implement custom encoding/decoding if needed. Ensure encoding argument is one of the accepted forms.
+
+Sample code::
+
+    
+    # Both CPython and MicroPython support utf8 and ascii encodings
+    print(str(b"caf\xc3\xa9", "utf8"))  # codespell:ignore caf
+    print(str(b"cafe", "ascii"))
+    
+    # MicroPython does not support additional encodings
+    try:
+        str(b"\xe9", "latin-1")  # 'é' in latin-1
+        print("latin-1 supported")
+    except (ValueError, NotImplementedError, LookupError) as e:
+        print("latin-1 not supported:", type(e).__name__)
+    
+    try:
+        str(b"\x80", "cp1252")  # Euro sign in cp1252
+        print("cp1252 supported")
+    except (ValueError, NotImplementedError, LookupError) as e:
+        print("cp1252 not supported:", type(e).__name__)
+    
+    # Encoding arguments must match exactly in MicroPython
+    try:
+        str(b"hello", "ASCII")
+        print("Capital letters ASCII supported")
+    except (ValueError, NotImplementedError, LookupError) as e:
+        print("Capital letters ASCII not supported:", type(e).__name__)
+
++-------------------------------------+------------------------------------------------------+
+| CPython output:                     | MicroPython output:                                  |
++-------------------------------------+------------------------------------------------------+
+| ::                                  | ::                                                   |
+|                                     |                                                      |
+|     café                            |     café                                             |
+|     cafe                            |     cafe                                             |
+|     latin-1 supported               |     latin-1 not supported: LookupError               |
+|     cp1252 supported                |     cp1252 not supported: LookupError                |
+|     Capital letters ASCII supported |     Capital letters ASCII not supported: LookupError |
++-------------------------------------+------------------------------------------------------+
+
+.. _cpydiff_types_str_formatsep:
+
+MicroPython accepts the "," grouping option with any radix, unlike CPython
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** To reduce code size, MicroPython does not issue an error for this combination
+
+**Workaround:** Do not use a format string like ``{:,b}`` if CPython compatibility is required.
+
+Sample code::
+
+    
+    try:
+        print("{:,b}".format(99))
+    except ValueError:
+        print("ValueError")
+    try:
+        print("{:,x}".format(99))
+    except ValueError:
+        print("ValueError")
+    try:
+        print("{:,o}".format(99))
+    except ValueError:
+        print("ValueError")
+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     ValueError  |     110,0011        |
+|     ValueError  |     63              |
+|     ValueError  |     143             |
++-----------------+---------------------+
+
+.. _cpydiff_types_str_formatsep_float:
+
+MicroPython accepts but does not properly implement the "," or "_" grouping character for float values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** To reduce code size, MicroPython does not implement this combination. Grouping characters will not appear in the number's significant digits and will appear at incorrect locations in leading zeros.
+
+**Workaround:** Do not use a format string like ``{:,f}`` if exact CPython compatibility is required.
+
+Sample code::
+
+    
+    print("{:,f}".format(3141.159))
+    print("{:_f}".format(3141.159))
+    print("{:011,.2f}".format(3141.159))
+    print("{:011_.2f}".format(3141.159))
+
++------------------+---------------------+
+| CPython output:  | MicroPython output: |
++------------------+---------------------+
+| ::               | ::                  |
+|                  |                     |
+|     3,141.159000 |     3141.159000     |
+|     3_141.159000 |     3141.159000     |
+|     0,003,141.16 |     000,3141.16     |
+|     0_003_141.16 |     0_003141.16     |
++------------------+---------------------+
 
 .. _cpydiff_types_str_formatsubscr:
 
@@ -538,17 +956,18 @@ Attributes/subscr not implemented
 
 Sample code::
 
+    
     print("{a[0]}".format(a=[1, 2]))
 
-+-------------+---------------------------------------------------+
-| CPy output: | uPy output:                                       |
-+-------------+---------------------------------------------------+
-| ::          | ::                                                |
-|             |                                                   |
-|     1       |     Traceback (most recent call last):            |
-|             |       File "<stdin>", line 7, in <module>         |
-|             |     NotImplementedError: attributes not supported |
-+-------------+---------------------------------------------------+
++-----------------+---------------------------------------------------+
+| CPython output: | MicroPython output:                               |
++-----------------+---------------------------------------------------+
+| ::              | ::                                                |
+|                 |                                                   |
+|     1           |     Traceback (most recent call last):            |
+|                 |       File "<stdin>", line 8, in <module>         |
+|                 |     NotImplementedError: attributes not supported |
++-----------------+---------------------------------------------------+
 
 .. _cpydiff_types_str_keywords:
 
@@ -559,17 +978,18 @@ str(...) with keywords not implemented
 
 Sample code::
 
+    
     print(str(b"abc", encoding="utf8"))
 
-+-------------+----------------------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                                            |
-+-------------+----------------------------------------------------------------------------------------+
-| ::          | ::                                                                                     |
-|             |                                                                                        |
-|     abc     |     Traceback (most recent call last):                                                 |
-|             |       File "<stdin>", line 7, in <module>                                              |
-|             |     NotImplementedError: keyword argument(s) not implemented - use normal args instead |
-+-------------+----------------------------------------------------------------------------------------+
++-----------------+----------------------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                                    |
++-----------------+----------------------------------------------------------------------------------------+
+| ::              | ::                                                                                     |
+|                 |                                                                                        |
+|     abc         |     Traceback (most recent call last):                                                 |
+|                 |       File "<stdin>", line 8, in <module>                                              |
+|                 |     NotImplementedError: keyword argument(s) not implemented - use normal args instead |
++-----------------+----------------------------------------------------------------------------------------+
 
 .. _cpydiff_types_str_ljust_rjust:
 
@@ -582,17 +1002,44 @@ str.ljust() and str.rjust() not implemented
 
 Sample code::
 
+    
     print("abc".ljust(10))
 
-+-------------+-----------------------------------------------------------+
-| CPy output: | uPy output:                                               |
-+-------------+-----------------------------------------------------------+
-| ::          | ::                                                        |
-|             |                                                           |
-|     abc     |     Traceback (most recent call last):                    |
-|             |       File "<stdin>", line 7, in <module>                 |
-|             |     AttributeError: 'str' object has no attribute 'ljust' |
-+-------------+-----------------------------------------------------------+
++-----------------+-----------------------------------------------------------+
+| CPython output: | MicroPython output:                                       |
++-----------------+-----------------------------------------------------------+
+| ::              | ::                                                        |
+|                 |                                                           |
+|     abc         |     Traceback (most recent call last):                    |
+|                 |       File "<stdin>", line 8, in <module>                 |
+|                 |     AttributeError: 'str' object has no attribute 'ljust' |
++-----------------+-----------------------------------------------------------+
+
+.. _cpydiff_types_str_repr_nonprintable:
+
+repr() may print some non-printable Unicode characters literally instead of as escape sequences
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython uses a simplified heuristic to determine printable characters, avoiding the need for a full Unicode character database (saves memory). It prints characters >= U+0080 (excluding surrogates) as UTF-8. CPython uses the Unicode database to identify non-printable characters like noncharacters (U+FFFx in each plane).
+
+**Workaround:** Accept the difference for embedded use cases, or use ascii() or manual escaping if exact control is needed.
+
+Sample code::
+
+    
+    # These are noncharacters that CPython escapes but MicroPython prints
+    # showing as hex to avoid display issues in documentation tables
+    print("U+FFFF:", repr("\uffff").encode("utf-8").hex())
+    print("U+1FFFF:", repr("\U0001ffff").encode("utf-8").hex())
+
++---------------------------------------+---------------------------+
+| CPython output:                       | MicroPython output:       |
++---------------------------------------+---------------------------+
+| ::                                    | ::                        |
+|                                       |                           |
+|     U+FFFF: 275c756666666627          |     U+FFFF: 27efbfbf27    |
+|     U+1FFFF: 275c55303030316666666627 |     U+1FFFF: 27f09fbfbf27 |
++---------------------------------------+---------------------------+
 
 .. _cpydiff_types_str_rsplitnone:
 
@@ -601,15 +1048,16 @@ None as first argument for rsplit such as str.rsplit(None, n) not implemented
 
 Sample code::
 
+    
     print("a a a".rsplit(None, 1))
 
 +------------------+-------------------------------------------+
-| CPy output:      | uPy output:                               |
+| CPython output:  | MicroPython output:                       |
 +------------------+-------------------------------------------+
 | ::               | ::                                        |
 |                  |                                           |
 |     ['a a', 'a'] |     Traceback (most recent call last):    |
-|                  |       File "<stdin>", line 7, in <module> |
+|                  |       File "<stdin>", line 8, in <module> |
 |                  |     NotImplementedError: rsplit(None,n)   |
 +------------------+-------------------------------------------+
 
@@ -620,17 +1068,18 @@ Subscript with step != 1 is not yet implemented
 
 Sample code::
 
+    
     print("abcdefghi"[0:9:2])
 
-+-------------+---------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                               |
-+-------------+---------------------------------------------------------------------------+
-| ::          | ::                                                                        |
-|             |                                                                           |
-|     acegi   |     Traceback (most recent call last):                                    |
-|             |       File "<stdin>", line 7, in <module>                                 |
-|             |     NotImplementedError: only slices with step=1 (aka None) are supported |
-+-------------+---------------------------------------------------------------------------+
++-----------------+---------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                       |
++-----------------+---------------------------------------------------------------------------+
+| ::              | ::                                                                        |
+|                 |                                                                           |
+|     acegi       |     Traceback (most recent call last):                                    |
+|                 |       File "<stdin>", line 8, in <module>                                 |
+|                 |     NotImplementedError: only slices with step=1 (aka None) are supported |
++-----------------+---------------------------------------------------------------------------+
 
 tuple
 -----
@@ -642,15 +1091,16 @@ Tuple load with step != 1 not implemented
 
 Sample code::
 
+    
     print((1, 2, 3, 4)[0:4:2])
 
-+-------------+---------------------------------------------------------------------------+
-| CPy output: | uPy output:                                                               |
-+-------------+---------------------------------------------------------------------------+
-| ::          | ::                                                                        |
-|             |                                                                           |
-|     (1, 3)  |     Traceback (most recent call last):                                    |
-|             |       File "<stdin>", line 7, in <module>                                 |
-|             |     NotImplementedError: only slices with step=1 (aka None) are supported |
-+-------------+---------------------------------------------------------------------------+
++-----------------+---------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                       |
++-----------------+---------------------------------------------------------------------------+
+| ::              | ::                                                                        |
+|                 |                                                                           |
+|     (1, 3)      |     Traceback (most recent call last):                                    |
+|                 |       File "<stdin>", line 8, in <module>                                 |
+|                 |     NotImplementedError: only slices with step=1 (aka None) are supported |
++-----------------+---------------------------------------------------------------------------+
 

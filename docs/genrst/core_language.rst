@@ -2,86 +2,9 @@
 
 Core language
 =============
-Generated Fri 05 Jul 2024 06:33:57 UTC
 
-.. _cpydiff_core_fstring_concat:
 
-f-strings don't support concatenation with adjacent literals if the adjacent literals contain braces
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** MicroPython is optimised for code space.
-
-**Workaround:** Use the + operator between literal strings when they are not both f-strings
-
-Sample code::
-
-    
-    x, y = 1, 2
-    print("aa" f"{x}")  # works
-    print(f"{x}" "ab")  # works
-    print("a{}a" f"{x}")  # fails
-    print(f"{x}" "a{}b")  # fails
-
-+-------------+--------------------------------------------+
-| CPy output: | uPy output:                                |
-+-------------+--------------------------------------------+
-| ::          | ::                                         |
-|             |                                            |
-|     aa1     |     aa1                                    |
-|     1ab     |     1ab                                    |
-|     a{}a1   |     Traceback (most recent call last):     |
-|     1a{}b   |       File "<stdin>", line 11, in <module> |
-|             |     IndexError: tuple index out of range   |
-+-------------+--------------------------------------------+
-
-.. _cpydiff_core_fstring_parser:
-
-f-strings cannot support expressions that require parsing to resolve unbalanced nested braces and brackets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** MicroPython is optimised for code space.
-
-**Workaround:** Always use balanced braces and brackets in expressions inside f-strings
-
-Sample code::
-
-    
-    print(f'{"hello { world"}')
-    print(f'{"hello ] world"}')
-
-+-------------------+----------------------------------------+
-| CPy output:       | uPy output:                            |
-+-------------------+----------------------------------------+
-| ::                | ::                                     |
-|                   |                                        |
-|     hello { world |     Traceback (most recent call last): |
-|     hello ] world |       File "<stdin>", line 9           |
-|                   |     SyntaxError: invalid syntax        |
-+-------------------+----------------------------------------+
-
-.. _cpydiff_core_fstring_repr:
-
-f-strings don't support !a conversions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Cause:** MicropPython does not implement ascii()
-
-**Workaround:** None
-
-Sample code::
-
-    
-    f"{'unicode text'!a}"
-
-+-------------+----------------------------------------+
-| CPy output: | uPy output:                            |
-+-------------+----------------------------------------+
-|             | ::                                     |
-|             |                                        |
-|             |     Traceback (most recent call last): |
-|             |       File "<stdin>", line 8           |
-|             |     SyntaxError: invalid syntax        |
-+-------------+----------------------------------------+
+Generated Sat 08 Aug 2026 01:23:30 UTC
 
 Classes
 -------
@@ -93,6 +16,7 @@ Special method __del__ not implemented for user-defined classes
 
 Sample code::
 
+    
     import gc
     
     
@@ -106,13 +30,199 @@ Sample code::
     
     gc.collect()
 
-+-------------+-------------+
-| CPy output: | uPy output: |
-+-------------+-------------+
-| ::          |             |
-|             |             |
-|     __del__ |             |
-+-------------+-------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              |                     |
+|                 |                     |
+|     __del__     |                     |
++-----------------+---------------------+
+
+.. _cpydiff_core_class_dir:
+
+dir() does not convert __dir__ return value to a sorted list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython's dir() returns the value from __dir__ as-is, without iterating it into a list or sorting it.
+
+**Workaround:** Have __dir__ return a sorted list directly.
+
+Sample code::
+
+    
+    
+    class C:
+        def __dir__(self):
+            return "cba"
+    
+    
+    print(dir(C()))
+
++---------------------+---------------------+
+| CPython output:     | MicroPython output: |
++---------------------+---------------------+
+| ::                  | ::                  |
+|                     |                     |
+|     ['a', 'b', 'c'] |     cba             |
++---------------------+---------------------+
+
+.. _cpydiff_core_class_initsubclass:
+
+``__init_subclass__`` isn't automatically called.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython does not currently implement PEP 487.
+
+**Workaround:** Manually call ``__init_subclass__`` after class creation if needed. e.g.::
+
+    class A(Base):
+        pass
+    A.__init_subclass__()
+
+Sample code::
+
+    
+    
+    class Base:
+        @classmethod
+        def __init_subclass__(cls):
+            print(f"Base.__init_subclass__({cls.__name__})")
+    
+    
+    class A(Base):
+        pass
+
++-------------------------------+---------------------+
+| CPython output:               | MicroPython output: |
++-------------------------------+---------------------+
+| ::                            |                     |
+|                               |                     |
+|     Base.__init_subclass__(A) |                     |
++-------------------------------+---------------------+
+
+.. _cpydiff_core_class_initsubclass_autoclassmethod:
+
+``__init_subclass__`` isn't an implicit classmethod.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython does not currently implement PEP 487. ``__init_subclass__`` is not currently in the list of special-cased class/static methods.
+
+**Workaround:** Decorate declarations of ``__init_subclass__`` with ``@classmethod``.
+
+Sample code::
+
+    
+    
+    def regularize_spelling(text, prefix="bound_"):
+        # for regularizing across the CPython "method" vs MicroPython "bound_method" spelling for the type of a bound classmethod
+        if text.startswith(prefix):
+            return text[len(prefix) :]
+        return text
+    
+    
+    class A:
+        def __init_subclass__(cls):
+            pass
+    
+        @classmethod
+        def manual_decorated(cls):
+            pass
+    
+    
+    a = type(A.__init_subclass__).__name__
+    b = type(A.manual_decorated).__name__
+    
+    print(regularize_spelling(a))
+    print(regularize_spelling(b))
+    if a != b:
+        print("FAIL")
+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     method      |     function        |
+|     method      |     method          |
+|                 |     FAIL            |
++-----------------+---------------------+
+
+.. _cpydiff_core_class_initsubclass_kwargs:
+
+MicroPython doesn't support parameterized ``__init_subclass__`` class customization.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython does not currently implement PEP 487. The MicroPython syntax tree does not include a kwargs node after the class inheritance list.
+
+**Workaround:** Use class variables or another mechanism to specify base-class customizations.
+
+Sample code::
+
+    
+    
+    class Base:
+        @classmethod
+        def __init_subclass__(cls, arg=None, **kwargs):
+            cls.init_subclass_was_called = True
+            print(f"Base.__init_subclass__({cls.__name__}, {arg=!r}, {kwargs=!r})")
+    
+    
+    class A(Base, arg="arg"):
+        pass
+    
+    
+    # Regularize across MicroPython not automatically calling __init_subclass__ either.
+    if not getattr(A, "init_subclass_was_called", False):
+        A.__init_subclass__()
+
++-----------------------------------------------------+--------------------------------------------------------+
+| CPython output:                                     | MicroPython output:                                    |
++-----------------------------------------------------+--------------------------------------------------------+
+| ::                                                  | ::                                                     |
+|                                                     |                                                        |
+|     Base.__init_subclass__(A, arg='arg', kwargs={}) |     Traceback (most recent call last):                 |
+|                                                     |       File "<stdin>", line 16, in <module>             |
+|                                                     |     TypeError: function doesn't take keyword arguments |
++-----------------------------------------------------+--------------------------------------------------------+
+
+.. _cpydiff_core_class_initsubclass_super:
+
+``__init_subclass__`` can't be defined a cooperatively-recursive way.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython does not currently implement PEP 487. The base object type does not have an ``__init_subclass__`` implementation.
+
+**Workaround:** Omit the recursive ``__init_subclass__`` call unless it's known that the grandparent also defines it.
+
+Sample code::
+
+    
+    
+    class Base:
+        @classmethod
+        def __init_subclass__(cls, **kwargs):
+            cls.init_subclass_was_called = True
+            super().__init_subclass__(**kwargs)
+    
+    
+    class A(Base):
+        pass
+    
+    
+    # Regularize across MicroPython not automatically calling __init_subclass__ either.
+    if not getattr(A, "init_subclass_was_called", False):
+        A.__init_subclass__()
+
++-----------------+-------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                     |
++-----------------+-------------------------------------------------------------------------+
+|                 | ::                                                                      |
+|                 |                                                                         |
+|                 |     Traceback (most recent call last):                                  |
+|                 |       File "<stdin>", line 22, in <module>                              |
+|                 |       File "<stdin>", line 13, in __init_subclass__                     |
+|                 |     AttributeError: 'super' object has no attribute '__init_subclass__' |
++-----------------+-------------------------------------------------------------------------+
 
 .. _cpydiff_core_class_mro:
 
@@ -139,13 +249,13 @@ Sample code::
     t = C((1, 2, 3))
     print(t)
 
-+-------------+---------------+
-| CPy output: | uPy output:   |
-+-------------+---------------+
-| ::          | ::            |
-|             |               |
-|     Foo     |     (1, 2, 3) |
-+-------------+---------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     Foo         |     (1, 2, 3)       |
++-----------------+---------------------+
 
 .. _cpydiff_core_class_name_mangling:
 
@@ -180,7 +290,7 @@ Sample code::
     class_item.do_print()
 
 +------------------------------------------------------------------------------------------+------------------------------+
-| CPy output:                                                                              | uPy output:                  |
+| CPython output:                                                                          | MicroPython output:          |
 +------------------------------------------------------------------------------------------+------------------------------+
 | ::                                                                                       | ::                           |
 |                                                                                          |                              |
@@ -190,6 +300,115 @@ Sample code::
 |       File "<stdin>", line 18, in do_print                                               |                              |
 |     NameError: name '_Foo__print_string' is not defined. Did you mean: '__print_string'? |                              |
 +------------------------------------------------------------------------------------------+------------------------------+
+
+.. _cpydiff_core_class_strrettype:
+
+``__str__`` returning non-string type does not raise TypeError
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython's instance_print does not validate that ``__str__`` or ``__repr__`` return a str or its subclass
+
+**Workaround:** Ensure ``__str__`` and ``__repr__`` always return a str instance or its subclass
+
+Sample code::
+
+    
+    
+    class Foo:
+        def __str__(self):
+            return True
+    
+    
+    print(str(Foo()))
+
++--------------------------------------------------------+---------------------+
+| CPython output:                                        | MicroPython output: |
++--------------------------------------------------------+---------------------+
+| ::                                                     | ::                  |
+|                                                        |                     |
+|     Traceback (most recent call last):                 |     True            |
+|       File "<stdin>", line 14, in <module>             |                     |
+|     TypeError: __str__ returned non-string (type bool) |                     |
++--------------------------------------------------------+---------------------+
+
+.. _cpydiff_core_class_subclassret:
+
+str() does not preserve str subclass type from ``__str__`` or ``__repr__`` return value
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** Implementation discards str subclass type returned by ``__str__`` or ``__repr__`` and always returns a plain str instance from str().
+
+**Workaround:** Do not rely on str() preserving str subclass types
+
+Sample code::
+
+    
+    
+    class MyStr(str):
+        pass
+    
+    
+    class Foo:
+        def __str__(self):
+            return MyStr("abc")
+    
+    
+    result = str(Foo())
+    print(type(result))
+
++------------------------------+---------------------+
+| CPython output:              | MicroPython output: |
++------------------------------+---------------------+
+| ::                           | ::                  |
+|                              |                     |
+|     <class '__main__.MyStr'> |     <class 'str'>   |
++------------------------------+---------------------+
+
+.. _cpydiff_core_class_super_init:
+
+When inheriting native types, calling a method in ``__init__(self, ...)`` before ``super().__init__()`` raises an ``AttributeError`` (or segfaults if ``MICROPY_BUILTIN_METHOD_CHECK_SELF_ARG`` is not enabled).
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython does not have separate ``__new__`` and ``__init__`` methods in native types.
+
+**Workaround:** Call ``super().__init__()`` first.
+
+Sample code::
+
+    
+    
+    class L1(list):
+        def __init__(self, a):
+            self.append(a)
+    
+    
+    try:
+        L1(1)
+        print("OK")
+    except AttributeError:
+        print("AttributeError")
+    
+    
+    class L2(list):
+        def __init__(self, a):
+            super().__init__()
+            self.append(a)
+    
+    
+    try:
+        L2(1)
+        print("OK")
+    except AttributeError:
+        print("AttributeError")
+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     OK          |     AttributeError  |
+|     OK          |     OK              |
++-----------------+---------------------+
 
 .. _cpydiff_core_class_supermultiple:
 
@@ -229,16 +448,16 @@ Sample code::
     
     D()
 
-+----------------+----------------+
-| CPy output:    | uPy output:    |
-+----------------+----------------+
-| ::             | ::             |
-|                |                |
-|     D.__init__ |     D.__init__ |
-|     B.__init__ |     B.__init__ |
-|     C.__init__ |     A.__init__ |
-|     A.__init__ |                |
-+----------------+----------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     D.__init__  |     D.__init__      |
+|     B.__init__  |     B.__init__      |
+|     C.__init__  |     A.__init__      |
+|     A.__init__  |                     |
++-----------------+---------------------+
 
 .. _cpydiff_core_class_superproperty:
 
@@ -264,13 +483,59 @@ Sample code::
     a = AA()
     print(a.p)
 
-+---------------+----------------+
-| CPy output:   | uPy output:    |
-+---------------+----------------+
-| ::            | ::             |
-|               |                |
-|     {'a': 10} |     <property> |
-+---------------+----------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     {'a': 10}   |     <property>      |
++-----------------+---------------------+
+
+Exceptions
+----------
+
+.. _cpydiff_core_exception_construction:
+
+Throwing a derived exception class instance in its `__init__` without first calling ``super().__init__`` is a TypeError
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** In MicroPython, an object is incompletely constructed if it does not call its superclass init function or return normally from its ``__init__``. This prevents its usage in some circumstances.
+
+**Workaround:** Call the superclass `__init__` method before raising the exception.
+
+Sample code::
+
+    
+    
+    class C(Exception):
+        def __init__(self):
+            raise self
+    
+    
+    class C1(Exception):
+        def __init__(self):
+            super().__init__()
+            raise self
+    
+    
+    try:
+        C()
+    except Exception as e:
+        print(type(e).__name__)
+    
+    try:
+        C1()
+    except Exception as e:
+        print(type(e).__name__)
+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     C           |     TypeError       |
+|     C1          |     C1              |
++-----------------+---------------------+
 
 Functions
 ---------
@@ -286,13 +551,14 @@ Error messages for methods may display unexpected argument counts
 
 Sample code::
 
+    
     try:
         [].append()
     except Exception as e:
         print(e)
 
 +--------------------------------------------------------+------------------------------------------------------------+
-| CPy output:                                            | uPy output:                                                |
+| CPython output:                                        | MicroPython output:                                        |
 +--------------------------------------------------------+------------------------------------------------------------+
 | ::                                                     | ::                                                         |
 |                                                        |                                                            |
@@ -318,15 +584,47 @@ Sample code::
     
     print(f.__module__)
 
-+--------------+---------------------------------------------------------------------+
-| CPy output:  | uPy output:                                                         |
-+--------------+---------------------------------------------------------------------+
-| ::           | ::                                                                  |
-|              |                                                                     |
-|     __main__ |     Traceback (most recent call last):                              |
-|              |       File "<stdin>", line 13, in <module>                          |
-|              |     AttributeError: 'function' object has no attribute '__module__' |
-+--------------+---------------------------------------------------------------------+
++-----------------+---------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                 |
++-----------------+---------------------------------------------------------------------+
+| ::              | ::                                                                  |
+|                 |                                                                     |
+|     __main__    |     Traceback (most recent call last):                              |
+|                 |       File "<stdin>", line 13, in <module>                          |
+|                 |     AttributeError: 'function' object has no attribute '__module__' |
++-----------------+---------------------------------------------------------------------+
+
+.. _cpydiff_core_function_star:
+
+``*args`` cannot follow a keyword argument
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code space. For more information see `this issue <https://github.com/micropython/micropython/issues/11439>`_.
+
+**Workaround:** Re-order the arguments
+
+Sample code::
+
+    
+    
+    def f(x, y):
+        return x + y
+    
+    
+    try:
+        print(f(y=1, *(3,)))
+    except Exception as e:
+        print(e)
+
++-----------------+--------------------------------------------+
+| CPython output: | MicroPython output:                        |
++-----------------+--------------------------------------------+
+| ::              | ::                                         |
+|                 |                                            |
+|     4           |     Traceback (most recent call last):     |
+|                 |       File "<stdin>", line 14, in <module> |
+|                 |     SyntaxError: * arg after kwarg         |
++-----------------+--------------------------------------------+
 
 .. _cpydiff_core_function_userattr:
 
@@ -348,15 +646,15 @@ Sample code::
     f.x = 0
     print(f.x)
 
-+-------------+------------------------------------------------------------+
-| CPy output: | uPy output:                                                |
-+-------------+------------------------------------------------------------+
-| ::          | ::                                                         |
-|             |                                                            |
-|     0       |     Traceback (most recent call last):                     |
-|             |       File "<stdin>", line 13, in <module>                 |
-|             |     AttributeError: 'function' object has no attribute 'x' |
-+-------------+------------------------------------------------------------+
++-----------------+------------------------------------------------------------+
+| CPython output: | MicroPython output:                                        |
++-----------------+------------------------------------------------------------+
+| ::              | ::                                                         |
+|                 |                                                            |
+|     0           |     Traceback (most recent call last):                     |
+|                 |       File "<stdin>", line 13, in <module>                 |
+|                 |     AttributeError: 'function' object has no attribute 'x' |
++-----------------+------------------------------------------------------------+
 
 Generator
 ---------
@@ -393,17 +691,17 @@ Sample code::
     
     func()
 
-+-------------+-------------+
-| CPy output: | uPy output: |
-+-------------+-------------+
-| ::          | ::          |
-|             |             |
-|     Enter   |     Enter   |
-|     1       |     1       |
-|     2       |     2       |
-|     3       |     3       |
-|     Exit    |             |
-+-------------+-------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     Enter       |     Enter           |
+|     1           |     1               |
+|     2           |     2               |
+|     3           |     3               |
+|     Exit        |                     |
++-----------------+---------------------+
 
 Runtime
 -------
@@ -426,13 +724,13 @@ Sample code::
     
     test()
 
-+----------------+---------------------------------------------------------------------------------------------+
-| CPy output:    | uPy output:                                                                                 |
-+----------------+---------------------------------------------------------------------------------------------+
-| ::             | ::                                                                                          |
-|                |                                                                                             |
-|     {'val': 2} |     {'test': <function test at 0x13800e260>, '__name__': '__main__', '__file__': '<stdin>'} |
-+----------------+---------------------------------------------------------------------------------------------+
++-----------------+---------------------------------------------------------------------------------------------+
+| CPython output: | MicroPython output:                                                                         |
++-----------------+---------------------------------------------------------------------------------------------+
+| ::              | ::                                                                                          |
+|                 |                                                                                             |
+|     {'val': 2}  |     {'test': <function test at 0x9bb006260>, '__name__': '__main__', '__file__': '<stdin>'} |
++-----------------+---------------------------------------------------------------------------------------------+
 
 .. _cpydiff_core_locals_eval:
 
@@ -443,6 +741,7 @@ Code running in eval() function doesn't have access to local variables
 
 Sample code::
 
+    
     val = 1
     
     
@@ -454,42 +753,100 @@ Sample code::
     
     test()
 
-+-------------+-------------+
-| CPy output: | uPy output: |
-+-------------+-------------+
-| ::          | ::          |
-|             |             |
-|     2       |     2       |
-|     2       |     1       |
-+-------------+-------------+
++-----------------+---------------------+
+| CPython output: | MicroPython output: |
++-----------------+---------------------+
+| ::              | ::                  |
+|                 |                     |
+|     2           |     2               |
+|     2           |     1               |
++-----------------+---------------------+
 
-import
-------
+f-strings
+---------
 
-.. _cpydiff_core_import_all:
+.. _cpydiff_core_fstring_concat:
 
-__all__ is unsupported in __init__.py in MicroPython.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+f-strings don't support concatenation with adjacent literals if the adjacent literals contain braces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Cause:** Not implemented.
+**Cause:** MicroPython is optimised for code space.
 
-**Workaround:** Manually import the sub-modules directly in __init__.py using ``from . import foo, bar``.
+**Workaround:** Use the + operator between literal strings when they are not both f-strings
 
 Sample code::
 
-    from modules3 import *
     
-    foo.hello()
+    x, y = 1, 2
+    print("aa" f"{x}")  # works
+    print(f"{x}" "ab")  # works
+    print("a{}a" f"{x}")  # fails
+    print(f"{x}" "a{}b")  # fails
+    
 
-+-------------+-------------------------------------------+
-| CPy output: | uPy output:                               |
-+-------------+-------------------------------------------+
-| ::          | ::                                        |
-|             |                                           |
-|     hello   |     Traceback (most recent call last):    |
-|             |       File "<stdin>", line 9, in <module> |
-|             |     NameError: name 'foo' isn't defined   |
-+-------------+-------------------------------------------+
++-----------------+--------------------------------------------+
+| CPython output: | MicroPython output:                        |
++-----------------+--------------------------------------------+
+| ::              | ::                                         |
+|                 |                                            |
+|     aa1         |     aa1                                    |
+|     1ab         |     1ab                                    |
+|     a{}a1       |     Traceback (most recent call last):     |
+|     1a{}b       |       File "<stdin>", line 12, in <module> |
+|                 |     IndexError: tuple index out of range   |
++-----------------+--------------------------------------------+
+
+.. _cpydiff_core_fstring_parser:
+
+f-strings cannot support expressions that require parsing to resolve unbalanced nested braces and brackets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicroPython is optimised for code space.
+
+**Workaround:** Always use balanced braces and brackets in expressions inside f-strings
+
+Sample code::
+
+    
+    print(f"{'hello { world'}")
+    print(f"{'hello ] world'}")
+
++-------------------+----------------------------------------+
+| CPython output:   | MicroPython output:                    |
++-------------------+----------------------------------------+
+| ::                | ::                                     |
+|                   |                                        |
+|     hello { world |     Traceback (most recent call last): |
+|     hello ] world |       File "<stdin>", line 9           |
+|                   |     SyntaxError: invalid syntax        |
++-------------------+----------------------------------------+
+
+.. _cpydiff_core_fstring_repr:
+
+f-strings don't support !a conversions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Cause:** MicropPython does not implement ascii()
+
+**Workaround:** None
+
+Sample code::
+
+    
+    f"{'unicode text'!a}"
+
++-----------------+----------------------------------------+
+| CPython output: | MicroPython output:                    |
++-----------------+----------------------------------------+
+|                 | ::                                     |
+|                 |                                        |
+|                 |     Traceback (most recent call last): |
+|                 |       File "<stdin>", line 8           |
+|                 |     SyntaxError: invalid syntax        |
++-----------------+----------------------------------------+
+
+import
+------
 
 .. _cpydiff_core_import_path:
 
@@ -502,17 +859,18 @@ __path__ attribute of a package has a different type (single string instead of l
 
 Sample code::
 
+    
     import modules
     
     print(modules.__path__)
 
-+------------------------------------------------------------------------------+------------------------------+
-| CPy output:                                                                  | uPy output:                  |
-+------------------------------------------------------------------------------+------------------------------+
-| ::                                                                           | ::                           |
-|                                                                              |                              |
-|     ['/Volumes/bufext/work/mpy/cardputer/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff/modules |
-+------------------------------------------------------------------------------+------------------------------+
++--------------------------------------------------------------------+------------------------------+
+| CPython output:                                                    | MicroPython output:          |
++--------------------------------------------------------------------+------------------------------+
+| ::                                                                 | ::                           |
+|                                                                    |                              |
+|     ['/Volumes/bufext/work/mpy/micropython/tests/cpydiff/modules'] |     ../tests/cpydiff/modules |
++--------------------------------------------------------------------+------------------------------+
 
 .. _cpydiff_core_import_split_ns_pkgs:
 
@@ -525,6 +883,7 @@ MicroPython doesn't support namespace packages split across filesystem.
 
 Sample code::
 
+    
     import sys
     
     sys.path.append(sys.path[1] + "/modules")
@@ -536,12 +895,12 @@ Sample code::
     print("Two modules of a split namespace package imported")
 
 +-------------------------------------------------------+-----------------------------------------------+
-| CPy output:                                           | uPy output:                                   |
+| CPython output:                                       | MicroPython output:                           |
 +-------------------------------------------------------+-----------------------------------------------+
 | ::                                                    | ::                                            |
 |                                                       |                                               |
 |     Two modules of a split namespace package imported |     Traceback (most recent call last):        |
-|                                                       |       File "<stdin>", line 13, in <module>    |
+|                                                       |       File "<stdin>", line 14, in <module>    |
 |                                                       |     ImportError: no module named 'subpkg.bar' |
 +-------------------------------------------------------+-----------------------------------------------+
 

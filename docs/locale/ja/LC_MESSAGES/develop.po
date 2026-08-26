@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-19 21:15+0900\n"
-"PO-Revision-Date: 2026-07-19 21:19+0900\n"
+"POT-Creation-Date: 2026-08-08 08:44+0900\n"
+"PO-Revision-Date: 2026-08-08 11:35+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -539,11 +539,60 @@ msgstr ""
 "注意してください。適切に行われなかった場合、コンパイルはされたとしても"
 "モジュールのインポートはできないでしょう。"
 
-#: ../../develop/cmodules.rst:268 ../../develop/natmod.rst:202
+#: ../../develop/cmodules.rst:268
+msgid "Specifying C modules via a manifest"
+msgstr "マニフェストによるCモジュールの指定"
+
+#: ../../develop/cmodules.rst:270
+msgid ""
+"As an alternative to passing ``USER_C_MODULES`` on the command line, C "
+"modules can be listed inside a frozen manifest using ``c_module()``. This"
+" is convenient when a board or project always pulls in the same set of C "
+"modules: the manifest becomes the single place that declares both frozen "
+"Python code and the C modules required to support it."
+msgstr ""
+"コマンドラインで ``USER_C_MODULES`` を渡す代わりに、 ``c_module()`` を使って、"
+"凍結化したマニフェスト内にCモジュールをリストすることもできます。"
+"これは、ボードやプロジェクトが常に同じCモジュールセットを取り込む場合に便利です。"
+"マニフェストは、凍結したPythonコードと、それをサポートするために必要なCモジュールの"
+"両方を宣言する唯一の場所になります。"
+
+#: ../../develop/cmodules.rst:276
+msgid ""
+"# In ports/myboard/boards/MYBOARD/manifest.py\n"
+"include(\"$(PORT_DIR)/boards/manifest.py\")\n"
+"c_module(\"$(MPY_DIR)/examples/usercmodule/cexample\")\n"
+"c_module(\"$(BOARD_DIR)/../../drivers/sensor\")"
+msgstr ""
+
+#: ../../develop/cmodules.rst:283
+#, python-brace-format
+msgid ""
+"The manifest will need to be loaded via ``FROZEN_MANIFEST`` (either set "
+"in ``mpconfigboard.{mk,cmake}`` or passed on the make command line), and "
+"modules listed with ``c_module()`` combine additively with any paths "
+"supplied via ``USER_C_MODULES`` on the command line. Duplicate paths are "
+"de-duplicated, so mixing the two is safe."
+msgstr ""
+"マニフェストは ``FROZEN_MANIFEST`` を介してロードする必要があります"
+"(``mpconfigboard.{mk,cmake}`` で設定するか、make コマンドラインで渡します)。 "
+"``c_module()`` でリストされたモジュールは、コマンドラインで ``USER_C_MODULES`` を"
+"介して指定されたパスと加算的に結合されます。重複するパスは重複排除されるため、"
+"両方を混在させても問題ありません。"
+
+#: ../../develop/cmodules.rst:289
+msgid ""
+"See :ref:`manifest` for the full ``c_module()`` API and supported "
+"``$(VAR)`` path substitutions."
+msgstr ""
+"``c_module()`` API の全機能とサポートされている ``$(VAR)`` パス置換については "
+":ref:`manifest` を参照してください。"
+
+#: ../../develop/cmodules.rst:294 ../../develop/natmod.rst:231
 msgid "Module usage in MicroPython"
 msgstr "MicroPython でのモジュールの使い方"
 
-#: ../../develop/cmodules.rst:270
+#: ../../develop/cmodules.rst:296
 msgid ""
 "Once built into your copy of MicroPython, the module can now be accessed "
 "in Python just like any other builtin module, e.g."
@@ -551,7 +600,7 @@ msgstr ""
 "MicroPython 自前でビルドすると、他の組み込みモジュールと同じように Python で"
 "アクセスできるようになります。たとえば次のように使います。"
 
-#: ../../develop/cmodules.rst:273
+#: ../../develop/cmodules.rst:299
 msgid ""
 "import cexample\n"
 "print(cexample.add_ints(1, 3))\n"
@@ -561,7 +610,7 @@ msgstr ""
 "print(cexample.add_ints(1, 3))\n"
 "# 4 が表示されるはず"
 
-#: ../../develop/cmodules.rst:279
+#: ../../develop/cmodules.rst:305
 msgid ""
 "from cexample import Timer\n"
 "from time import sleep_ms\n"
@@ -579,11 +628,11 @@ msgstr ""
 "print(watch.time())\n"
 "# 1000 に近い値が表示されるはず"
 
-#: ../../develop/cmodules.rst:293
+#: ../../develop/cmodules.rst:319
 msgid "C Dynamic Memory Allocation"
 msgstr "C の動的メモリ割当て"
 
-#: ../../develop/cmodules.rst:295
+#: ../../develop/cmodules.rst:321
 msgid ""
 "MicroPython uses its own \"Python heap\" for `memorymanagement`, which is"
 " not the same as the \"C heap\" used by C library functions ``malloc()``,"
@@ -595,7 +644,7 @@ msgstr ""
 "異なります。すべての MicroPython ポートで「Cヒープ」がサポートされている"
 "わけではありません。"
 
-#: ../../develop/cmodules.rst:299
+#: ../../develop/cmodules.rst:325
 msgid ""
 "Tier 1 & 2 ports have varying support for C dynamic memory allocation via"
 " a \"C heap\":"
@@ -603,7 +652,7 @@ msgstr ""
 "レベル 1 および 2 のポートでは「Cヒープ」を介した C 動的メモリ割当てのサポートが"
 "異なります。"
 
-#: ../../develop/cmodules.rst:302
+#: ../../develop/cmodules.rst:328
 msgid ""
 "unix, windows, esp32 and webassembly ports support C dynamic memory "
 "allocation."
@@ -611,7 +660,7 @@ msgstr ""
 "unix、windows、esp32、webAssembly ポートでは C 言語の動的メモリ割当てをサポート"
 "しています。"
 
-#: ../../develop/cmodules.rst:304
+#: ../../develop/cmodules.rst:330
 msgid ""
 "rp2 port will fail to allocate any memory at runtime unless the firmware "
 "is built with ``MICROPY_C_HEAP_SIZE=n`` to reserve ``n`` bytes of memory "
@@ -621,7 +670,7 @@ msgstr ""
 "C 言語のヒープ用に n バイトのメモリが予約されていない限り、実行時にメモリを"
 "割り当てられません。このメモリは Python コードでは使えません。"
 
-#: ../../develop/cmodules.rst:307
+#: ../../develop/cmodules.rst:333
 msgid ""
 "alif, mimxrt, nrf, renesas-ra, samd, and stm32 port builds that include "
 "dynamic C allocation will fail at link-time with errors such as "
@@ -635,16 +684,16 @@ msgstr ""
 "サポートしていません。解決策としては、カスタムビルドにCヒープ実装を手動で追加する"
 "必要があります。"
 
-#: ../../develop/cmodules.rst:312
+#: ../../develop/cmodules.rst:338
 msgid "zephyr port currently does not support building with user modules."
 msgstr ""
 "zephyr ポートは現在、ユーザーモジュールを含んだビルドをサポートしていません。"
 
-#: ../../develop/cmodules.rst:315
+#: ../../develop/cmodules.rst:341
 msgid "Python heap as C heap"
 msgstr "Python ヒープと C ヒープ"
 
-#: ../../develop/cmodules.rst:317
+#: ../../develop/cmodules.rst:343
 msgid ""
 "It may be practical for C code to call \"Python heap\" dynamic allocation"
 " functions such ``m_malloc()``, ``m_malloc0()`` and ``m_free()`` instead."
@@ -653,16 +702,16 @@ msgstr ""
 "「Pythonヒープ」動的割当て関数には ``m_malloc()``, ``m_malloc0()``, "
 "``m_free()`` などがあります。"
 
-#: ../../develop/cmodules.rst:320
+#: ../../develop/cmodules.rst:346
 msgid "See `python_memory_from_c` for more information about this approach."
 msgstr ""
 "このアプローチの詳細については `python_memory_from_c` を参照してください。"
 
-#: ../../develop/cmodules.rst:325
+#: ../../develop/cmodules.rst:351
 msgid "C++ Modules"
 msgstr "C++ モジュール"
 
-#: ../../develop/cmodules.rst:327
+#: ../../develop/cmodules.rst:353
 msgid ""
 "Most Tier 1 & 2 MicroPython ports (and some Tier 3) support building C++ "
 "user modules, using the C++-specific environment variables described "
@@ -672,18 +721,18 @@ msgstr ""
 "上記で説明した C++ 固有の環境変数を使った C++ ユーザーモジュールのビルドを"
 "サポートしています。"
 
-#: ../../develop/cmodules.rst:330
+#: ../../develop/cmodules.rst:356
 msgid ""
 "Integrating C++ and MicroPython successfully involves some additional "
 "considerations:"
 msgstr ""
 "C++ と MicroPython を正常に統合するには、いくつかの追加的な考慮事項があります:"
 
-#: ../../develop/cmodules.rst:334
+#: ../../develop/cmodules.rst:360
 msgid "C++ Dynamic Memory Allocation"
 msgstr "C++ 動的メモリ割り当て"
 
-#: ../../develop/cmodules.rst:336
+#: ../../develop/cmodules.rst:362
 msgid ""
 "C++ programs (as well as C++ Standard Library features) typically use "
 "dynamic memory allocation. The C++ default memory allocator (i.e. "
@@ -694,7 +743,7 @@ msgstr ""
 "使います。C++ のデフォルトのメモリ割当て(つまり ``new`` と ``delete`` 演算子)は"
 "通常、 `c_heap` 上のレイヤーとして実装されています。"
 
-#: ../../develop/cmodules.rst:340
+#: ../../develop/cmodules.rst:366
 msgid ""
 "For MicroPython ports which don't include C dynamic memory allocation "
 "support, C++ dynamic memory allocation can be supported in one of two "
@@ -703,19 +752,19 @@ msgstr ""
 "C の動的メモリ割当てのサポートが含まれていない MicroPython ポートの場合、"
 "C++ の動的メモリ割当ては 2 つの方法のいずれかでサポートできます。"
 
-#: ../../develop/cmodules.rst:343
+#: ../../develop/cmodules.rst:369
 msgid "Implement C dynamic memory allocation in your custom build."
 msgstr "カスタムビルドで C 言語の動的メモリ割当てを実装します。"
 
-#: ../../develop/cmodules.rst:344
+#: ../../develop/cmodules.rst:370
 msgid "Implement a custom C++ allocator in your custom build."
 msgstr "カスタムビルドでカスタム C++ アロケータを実装します。"
 
-#: ../../develop/cmodules.rst:347
+#: ../../develop/cmodules.rst:373
 msgid "Linkage Considerations"
 msgstr "リンクに関する考慮事項"
 
-#: ../../develop/cmodules.rst:349
+#: ../../develop/cmodules.rst:375
 msgid ""
 "Because MicroPython is a C-based project, any symbols which link to or "
 "from MicroPython need to be qualified ``extern \"C\"`` in C++ code."
@@ -724,7 +773,7 @@ msgstr ""
 "または MicroPython からリンクされるシンボルは、C++ コード内で ``extern \"C\"`` で"
 "修飾する必要があります。"
 
-#: ../../develop/cmodules.rst:352
+#: ../../develop/cmodules.rst:378
 msgid ""
 "It's strongly recommended to follow the pattern demonstrated in "
 "`examples/usercmodule/cppexample "
@@ -3612,7 +3661,7 @@ msgid ""
 msgstr ""
 "MicroPython がファイルシステムから Python コードをロードするとき、まずファイルを"
 "一時的なメモリ内表現にパースし、次に実行のためのバイトコードを生成する必要があります。"
-"これらは両方ともヒープ(RAM)に格納されています。このため、大量のメモリが使用される"
+"これらは両方ともヒープ(RAM)に格納されています。このため、大量のメモリを消費する"
 "可能性があります。MicroPythonクロスコンパイラを使用すると、Python モジュールの"
 "コンパイル済みバイトコードを含む ``.mpy`` ファイルを生成することができます。"
 "この場合もRAMにロードされますが、解析ステージの追加オーバーヘッドを回避できます。"
@@ -4650,46 +4699,50 @@ msgid "nrf"
 msgstr ""
 
 #: ../../develop/support_tiers.rst:53
-msgid "renesas-ra"
+msgid "psoc-edge"
 msgstr ""
 
 #: ../../develop/support_tiers.rst:54
-msgid "webassembly"
+msgid "renesas-ra"
 msgstr ""
 
 #: ../../develop/support_tiers.rst:55
+msgid "webassembly"
+msgstr ""
+
+#: ../../develop/support_tiers.rst:56
 msgid "zephyr"
 msgstr ""
 
-#: ../../develop/support_tiers.rst:57
+#: ../../develop/support_tiers.rst:58
 msgid "Tier 3 ports:"
 msgstr "レベル 3 ポート:"
 
-#: ../../develop/support_tiers.rst:59
+#: ../../develop/support_tiers.rst:60
 msgid "cc3200"
 msgstr ""
 
-#: ../../develop/support_tiers.rst:60
+#: ../../develop/support_tiers.rst:61
 msgid "esp8266"
 msgstr ""
 
-#: ../../develop/support_tiers.rst:61
+#: ../../develop/support_tiers.rst:62
 msgid "pic16bit"
 msgstr ""
 
-#: ../../develop/support_tiers.rst:63
+#: ../../develop/support_tiers.rst:64
 msgid "Tier M ports:"
 msgstr "レベル M ポート:"
 
-#: ../../develop/support_tiers.rst:65
+#: ../../develop/support_tiers.rst:66
 msgid "bare-arm"
 msgstr ""
 
-#: ../../develop/support_tiers.rst:66
+#: ../../develop/support_tiers.rst:67
 msgid "minimal"
 msgstr ""
 
-#: ../../develop/support_tiers.rst:67
+#: ../../develop/support_tiers.rst:68
 msgid "qemu"
 msgstr ""
 
