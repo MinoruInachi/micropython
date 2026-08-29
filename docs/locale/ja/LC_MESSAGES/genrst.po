@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroPython latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-08 12:38+0900\n"
-"PO-Revision-Date: 2026-08-26 22:40+0900\n"
+"POT-Creation-Date: 2026-08-29 07:39+0900\n"
+"PO-Revision-Date: 2026-08-29 19:07+0900\n"
 "Last-Translator: Minoru Inachi\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -26,7 +26,7 @@ msgstr "組込み型"
 
 #: ../../genrst/builtin_types.rst:7 ../../genrst/core_language.rst:7
 #: ../../genrst/modules.rst:7 ../../genrst/syntax.rst:7
-msgid "Generated Sat 08 Aug 2026 01:23:30 UTC"
+msgid "Generated Fri 28 Aug 2026 22:39:05 UTC"
 msgstr ""
 
 #: ../../genrst/builtin_types.rst:10
@@ -35,8 +35,8 @@ msgstr "例外"
 
 #: ../../genrst/builtin_types.rst:15
 msgid ""
-"All exceptions have readable ``value`` and ``errno`` attributes, not just"
-" ``StopIteration`` and ``OSError``."
+"All exceptions have readable ``value`` and ``errno`` attributes, not just "
+"``StopIteration`` and ``OSError``."
 msgstr ""
 "すべての例外には可視な ``value`` と ``errno`` の属性がある。 "
 "``StopIteration`` と ``OSError`` に限らない。"
@@ -48,12 +48,12 @@ msgstr "**原因:** MicroPython はコードサイズを削減するよう最適
 #: ../../genrst/builtin_types.rst:19
 msgid ""
 "**Workaround:** Only use ``value`` on ``StopIteration`` exceptions, and "
-"``errno`` on ``OSError`` exceptions.  Do not use or rely on these "
-"attributes on other exceptions."
+"``errno`` on ``OSError`` exceptions.  Do not use or rely on these attributes "
+"on other exceptions."
 msgstr ""
-"**回避策:** ``StopIteration`` 例外では ``value`` のみを使い、 ``OSError`` "
-"例外では ``errno`` のみを使います。他の例外では、これらの属性を使ったり依存したり"
-"しないでください。"
+"**回避策:** ``StopIteration`` 例外では ``value`` のみを使い、 ``OSError`` 例"
+"外では ``errno`` のみを使います。他の例外では、これらの属性を使ったり依存した"
+"りしないでください。"
 
 #: ../../genrst/builtin_types.rst:21 ../../genrst/builtin_types.rst:43
 #: ../../genrst/builtin_types.rst:76 ../../genrst/builtin_types.rst:100
@@ -98,6 +98,13 @@ msgstr ""
 #: ../../genrst/syntax.rst:205
 msgid "Sample code::"
 msgstr "サンプルコード::"
+
+#: ../../genrst/builtin_types.rst:24
+msgid ""
+"e = Exception(1)\n"
+"print(e.value)\n"
+"print(e.errno)"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:29 ../../genrst/builtin_types.rst:52
 #: ../../genrst/builtin_types.rst:84 ../../genrst/builtin_types.rst:111
@@ -187,9 +194,50 @@ msgstr "CPython 出力:"
 msgid "MicroPython output:"
 msgstr "MicroPython 出力"
 
+#: ../../genrst/builtin_types.rst:33
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"AttributeError: 'Exception' object has no attribute 'value'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:33
+msgid ""
+"1\n"
+"1"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:41
 msgid "Exception chaining not implemented"
 msgstr "例外チェーンは実装されていない"
+
+#: ../../genrst/builtin_types.rst:46
+msgid ""
+"try:\n"
+"    raise TypeError\n"
+"except TypeError:\n"
+"    raise ValueError"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:56
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"TypeError\n"
+"\n"
+"During handling of the above exception, another exception occurred:\n"
+"\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"ValueError"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:56
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"ValueError:"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:70
 msgid "User-defined attributes for builtin exceptions are not supported"
@@ -204,17 +252,63 @@ msgstr "**原因:** MicroPython はメモリ使用量について高度に最適
 msgid "**Workaround:** Use user-defined exception subclasses."
 msgstr "**回避策:** ユーザ定義の例外サブクラスを使ってください。"
 
+#: ../../genrst/builtin_types.rst:79
+msgid ""
+"e = Exception()\n"
+"e.x = 0\n"
+"print(e.x)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:88 ../../genrst/core_language.rst:654
+msgid "0"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:88
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"AttributeError: 'Exception' object has no attribute 'x'"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:96
 msgid "Exception in while loop condition may have unexpected line number"
 msgstr "while ループ条件での例外は予期しない行番号になる"
 
 #: ../../genrst/builtin_types.rst:98
 msgid ""
-"**Cause:** Condition checks are optimized to happen at the end of loop "
-"body, and that line number is reported."
+"**Cause:** Condition checks are optimized to happen at the end of loop body, "
+"and that line number is reported."
 msgstr ""
-"**原因:** 条件チェックはループ本体の最後で実行されるように最適化されているので、"
-"その行番号が報告されます。"
+"**原因:** 条件チェックはループ本体の最後で実行されるように最適化されているの"
+"で、その行番号が報告されます。"
+
+#: ../../genrst/builtin_types.rst:103
+msgid ""
+"l = [\"-foo\", \"-bar\"]\n"
+"\n"
+"i = 0\n"
+"while l[i][0] == \"-\":\n"
+"    print(\"iter\")\n"
+"    i += 1"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:115
+msgid ""
+"iter\n"
+"iter\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"IndexError: list index out of range"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:115
+msgid ""
+"iter\n"
+"iter\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 13, in <module>\n"
+"IndexError: list index out of range"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:125
 msgid "Exception.__init__ method does not exist."
@@ -222,15 +316,40 @@ msgstr "Exception.__init__ メソッドは存在しない"
 
 #: ../../genrst/builtin_types.rst:127
 msgid ""
-"**Cause:** Subclassing native classes is not fully supported in "
-"MicroPython."
+"**Cause:** Subclassing native classes is not fully supported in MicroPython."
 msgstr ""
-"**原因:** ネイティブクラスのサブクラス化は、Micropython で完全にはサポート"
-"されていません。"
+"**原因:** ネイティブクラスのサブクラス化は、Micropython で完全にはサポートさ"
+"れていません。"
 
 #: ../../genrst/builtin_types.rst:129
 msgid "**Workaround:** Call using ``super()`` instead::"
-msgstr "**回避策:** 代わりに、次のように  ``super()`` を使って呼出してください。"
+msgstr ""
+"**回避策:** 代わりに、次のように  ``super()`` を使って呼出してください。"
+
+#: ../../genrst/builtin_types.rst:131
+msgid ""
+"class A(Exception):\n"
+"    def __init__(self):\n"
+"        super().__init__()"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:139
+msgid ""
+"class A(Exception):\n"
+"    def __init__(self):\n"
+"        Exception.__init__(self)\n"
+"\n"
+"\n"
+"a = A()"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:151
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 18, in <module>\n"
+"  File \"<stdin>\", line 15, in __init__\n"
+"AttributeError: type object 'Exception' has no attribute '__init__'"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:158
 msgid "OSError"
@@ -241,22 +360,163 @@ msgid ""
 "OSError constructor returns a plain OSError for all errno values, rather "
 "than a relevant subtype."
 msgstr ""
-"OSError コンストラクタは、関連するサブタイプではなく、すべての errno 値に対して"
-"そのままの OSError を返す"
+"OSError コンストラクタは、関連するサブタイプではなく、すべての errno 値に対し"
+"てそのままの OSError を返す"
 
 #: ../../genrst/builtin_types.rst:165
 msgid ""
 "**Cause:** MicroPython does not include the CPython-standard OSError "
 "subclasses."
 msgstr ""
-"**原因:** MicroPython には CPython 標準の OSError サブクラスが含まれていません。"
+"**原因:** MicroPython には CPython 標準の OSError サブクラスが含まれていませ"
+"ん。"
 
 #: ../../genrst/builtin_types.rst:167
 msgid ""
-"**Workaround:** Catch OSError and use its errno attribute to discriminate"
-" the cause."
+"**Workaround:** Catch OSError and use its errno attribute to discriminate "
+"the cause."
 msgstr ""
-"**回避策:** OSError をキャッチし、その errno 属性を使って原因を特定してください。"
+"**回避策:** OSError をキャッチし、その errno 属性を使って原因を特定してくださ"
+"い。"
+
+#: ../../genrst/builtin_types.rst:172
+#, python-brace-format
+msgid ""
+"import errno\n"
+"\n"
+"errno_list = [  # i.e. the set implemented by micropython\n"
+"    errno.EPERM,\n"
+"    errno.ENOENT,\n"
+"    errno.EIO,\n"
+"    errno.EBADF,\n"
+"    errno.EAGAIN,\n"
+"    errno.ENOMEM,\n"
+"    errno.EACCES,\n"
+"    errno.EEXIST,\n"
+"    errno.ENODEV,\n"
+"    errno.EISDIR,\n"
+"    errno.EINVAL,\n"
+"    errno.EOPNOTSUPP,\n"
+"    errno.EADDRINUSE,\n"
+"    errno.ECONNABORTED,\n"
+"    errno.ECONNRESET,\n"
+"    errno.ENOBUFS,\n"
+"    errno.ENOTCONN,\n"
+"    errno.ETIMEDOUT,\n"
+"    errno.ECONNREFUSED,\n"
+"    errno.EHOSTUNREACH,\n"
+"    errno.EALREADY,\n"
+"    errno.EINPROGRESS,\n"
+"]\n"
+"\n"
+"\n"
+"def errno_output_type(n):\n"
+"    try:\n"
+"        raise OSError(n, \"\")\n"
+"    except OSError as e:\n"
+"        return f\"{type(e).__name__}\"\n"
+"    except Exception as e:\n"
+"        return f\"non-OSError {type(e).__name__}\"\n"
+"    else:\n"
+"        return \"no error\"\n"
+"\n"
+"\n"
+"for n in errno_list:\n"
+"    print(errno.errorcode[n], \"=\", errno_output_type(n))"
+msgstr ""
+"import errno\n"
+"\n"
+"errno_list = [  # つまり micropython が実装している集合\n"
+"    errno.EPERM,\n"
+"    errno.ENOENT,\n"
+"    errno.EIO,\n"
+"    errno.EBADF,\n"
+"    errno.EAGAIN,\n"
+"    errno.ENOMEM,\n"
+"    errno.EACCES,\n"
+"    errno.EEXIST,\n"
+"    errno.ENODEV,\n"
+"    errno.EISDIR,\n"
+"    errno.EINVAL,\n"
+"    errno.EOPNOTSUPP,\n"
+"    errno.EADDRINUSE,\n"
+"    errno.ECONNABORTED,\n"
+"    errno.ECONNRESET,\n"
+"    errno.ENOBUFS,\n"
+"    errno.ENOTCONN,\n"
+"    errno.ETIMEDOUT,\n"
+"    errno.ECONNREFUSED,\n"
+"    errno.EHOSTUNREACH,\n"
+"    errno.EALREADY,\n"
+"    errno.EINPROGRESS,\n"
+"]\n"
+"\n"
+"\n"
+"def errno_output_type(n):\n"
+"    try:\n"
+"        raise OSError(n, \"\")\n"
+"    except OSError as e:\n"
+"        return f\"{type(e).__name__}\"\n"
+"    except Exception as e:\n"
+"        return f\"non-OSError {type(e).__name__}\"\n"
+"    else:\n"
+"        return \"no error\"\n"
+"\n"
+"\n"
+"for n in errno_list:\n"
+"    print(errno.errorcode[n], \"=\", errno_output_type(n))"
+
+#: ../../genrst/builtin_types.rst:219
+msgid ""
+"EPERM = PermissionError\n"
+"ENOENT = FileNotFoundError\n"
+"EIO = OSError\n"
+"EBADF = OSError\n"
+"EAGAIN = BlockingIOError\n"
+"ENOMEM = OSError\n"
+"EACCES = PermissionError\n"
+"EEXIST = FileExistsError\n"
+"ENODEV = OSError\n"
+"EISDIR = IsADirectoryError\n"
+"EINVAL = OSError\n"
+"EOPNOTSUPP = OSError\n"
+"EADDRINUSE = OSError\n"
+"ECONNABORTED = ConnectionAbortedError\n"
+"ECONNRESET = ConnectionResetError\n"
+"ENOBUFS = OSError\n"
+"ENOTCONN = OSError\n"
+"ETIMEDOUT = TimeoutError\n"
+"ECONNREFUSED = ConnectionRefusedError\n"
+"EHOSTUNREACH = OSError\n"
+"EALREADY = BlockingIOError\n"
+"EINPROGRESS = BlockingIOError"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:219
+msgid ""
+"EPERM = OSError\n"
+"ENOENT = OSError\n"
+"EIO = OSError\n"
+"EBADF = OSError\n"
+"EAGAIN = OSError\n"
+"ENOMEM = OSError\n"
+"EACCES = OSError\n"
+"EEXIST = OSError\n"
+"ENODEV = OSError\n"
+"EISDIR = OSError\n"
+"EINVAL = OSError\n"
+"EOPNOTSUPP = OSError\n"
+"EADDRINUSE = OSError\n"
+"ECONNABORTED = OSError\n"
+"ECONNRESET = OSError\n"
+"ENOBUFS = OSError\n"
+"ENOTCONN = OSError\n"
+"ETIMEDOUT = OSError\n"
+"ECONNREFUSED = OSError\n"
+"EHOSTUNREACH = OSError\n"
+"EALREADY = OSError\n"
+"EINPROGRESS = OSError"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:244
 msgid "bytearray"
@@ -266,60 +526,182 @@ msgstr ""
 msgid "Array slice assignment with unsupported RHS"
 msgstr "配列スライスへの代入はサポートされない"
 
+#: ../../genrst/builtin_types.rst:254
+msgid ""
+"b = bytearray(4)\n"
+"b[0:1] = [1, 2]\n"
+"print(b)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:263
+msgid "bytearray(b'\\x01\\x02\\x00\\x00\\x00')"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:263
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"NotImplementedError: array/bytes required on right side"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:269
 msgid "bytes"
 msgstr ""
 
 #: ../../genrst/builtin_types.rst:274
 msgid ""
-"bytes.decode() only supports encoding arguments 'utf8', 'utf-8' and "
-"'ascii'. Other encodings like 'latin-1' are not supported. Other string "
-"forms such as 'UTF8' are not supported."
+"bytes.decode() only supports encoding arguments 'utf8', 'utf-8' and 'ascii'. "
+"Other encodings like 'latin-1' are not supported. Other string forms such as "
+"'UTF8' are not supported."
 msgstr ""
-"bytes.decode() は、エンコード引数として 'utf8', 'utf-8', 'ascii' のみを"
-"サポート。 'latin-1' などの他のエンコードはサポートしていない。 'UTF8' などの"
-"他の文字列形式もサポートしていない。"
+"bytes.decode() は、エンコード引数として 'utf8', 'utf-8', 'ascii' のみをサポー"
+"ト。 'latin-1' などの他のエンコードはサポートしていない。 'UTF8' などの他の文"
+"字列形式もサポートしていない。"
 
 #: ../../genrst/builtin_types.rst:276
 msgid ""
-"**Cause:** MicroPython is optimised for embedded systems and only "
-"includes UTF-8 and ASCII codec support with simple matching to save "
-"memory and code size. `The same restriction applies to str constructor "
+"**Cause:** MicroPython is optimised for embedded systems and only includes "
+"UTF-8 and ASCII codec support with simple matching to save memory and code "
+"size. `The same restriction applies to str constructor "
 "<cpydiff_types_str_encoding>`. See also `unicode_support`."
 msgstr ""
-"**原因:** MicroPython は組み込みシステム向けに最適化されており、"
-"メモリとコードサイズを節約するために、UTF-8 と ASCII コーデックのみを"
-"サポートし、単純なマッチングのみを行っています。 `str コンストラクタにも同じ制限が"
-"適用されます <cpydiff_types_str_encoding>` 。 "
-"`unicode_support` も参照してください。"
+"**原因:** MicroPython は組み込みシステム向けに最適化されており、メモリとコー"
+"ドサイズを節約するために、UTF-8 と ASCII コーデックのみをサポートし、単純な"
+"マッチングのみを行っています。 `str コンストラクタにも同じ制限が適用されます "
+"<cpydiff_types_str_encoding>` 。 `unicode_support` も参照してください。"
 
 #: ../../genrst/builtin_types.rst:278 ../../genrst/builtin_types.rst:848
 msgid ""
-"**Workaround:** Convert data to UTF-8 before processing, or implement "
-"custom encoding/decoding if needed. Ensure encoding argument is one of "
-"the accepted forms."
+"**Workaround:** Convert data to UTF-8 before processing, or implement custom "
+"encoding/decoding if needed. Ensure encoding argument is one of the accepted "
+"forms."
 msgstr ""
-"**回避策:** 処理前にデータをUTF-8に変換するか、必要に応じてカスタムエンコード/デコードを"
-"実装してください。エンコード引数が許容される形式のいずれかであることを確認してください。"
+"**回避策:** 処理前にデータをUTF-8に変換するか、必要に応じてカスタムエンコー"
+"ド/デコードを実装してください。エンコード引数が許容される形式のいずれかである"
+"ことを確認してください。"
+
+#: ../../genrst/builtin_types.rst:283
+msgid ""
+"# Both CPython and MicroPython support utf8 and ascii encodings\n"
+"print(b\"caf\\xc3\\xa9\".decode(\"utf8\"))  # codespell:ignore caf\n"
+"print(b\"cafe\".decode(\"ascii\"))\n"
+"\n"
+"# MicroPython does not support additional encodings\n"
+"try:\n"
+"    b\"\\xe9\".decode(\"latin-1\")  # 'é' in latin-1\n"
+"    print(\"latin-1 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"latin-1 not supported:\", type(e).__name__)\n"
+"\n"
+"try:\n"
+"    b\"\\x80\".decode(\"cp1252\")  # Euro sign in cp1252\n"
+"    print(\"cp1252 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"cp1252 not supported:\", type(e).__name__)\n"
+"\n"
+"# Encoding arguments must match exactly in MicroPython\n"
+"try:\n"
+"    b\"hello\".decode(\"ASCII\")\n"
+"    print(\"Capital letters ASCII supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"Capital letters ASCII not supported:\", type(e).__name__)"
+msgstr ""
+"# CPython と MicroPython のどちらも utf8 と ascii のエンコーディングをサポートしています\n"
+"print(b\"caf\\xc3\\xa9\".decode(\"utf8\"))  # codespell:ignore caf\n"
+"print(b\"cafe\".decode(\"ascii\"))\n"
+"\n"
+"# MicroPython はそれ以外のエンコーディングをサポートしていません\n"
+"try:\n"
+"    b\"\\xe9\".decode(\"latin-1\")  # latin-1 での 'é'\n"
+"    print(\"latin-1 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"latin-1 not supported:\", type(e).__name__)\n"
+"\n"
+"try:\n"
+"    b\"\\x80\".decode(\"cp1252\")  # cp1252 でのユーロ記号\n"
+"    print(\"cp1252 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"cp1252 not supported:\", type(e).__name__)\n"
+"\n"
+"# MicroPython ではエンコーディングの引数が厳密に一致している必要があります\n"
+"try:\n"
+"    b\"hello\".decode(\"ASCII\")\n"
+"    print(\"Capital letters ASCII supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"Capital letters ASCII not supported:\", type(e).__name__)"
+
+#: ../../genrst/builtin_types.rst:312 ../../genrst/builtin_types.rst:882
+msgid ""
+"café\n"
+"cafe\n"
+"latin-1 supported\n"
+"cp1252 supported\n"
+"Capital letters ASCII supported"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:312 ../../genrst/builtin_types.rst:882
+msgid ""
+"café\n"
+"cafe\n"
+"latin-1 not supported: LookupError\n"
+"cp1252 not supported: LookupError\n"
+"Capital letters ASCII not supported: LookupError"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:322
 msgid ""
-"bytes.decode() does not accept keyword arguments, only positional "
-"arguments"
-msgstr ""
-"bytes.decode() はキーワード引数を受け付けず、位置引数のみを受け付ける"
+"bytes.decode() does not accept keyword arguments, only positional arguments"
+msgstr "bytes.decode() はキーワード引数を受け付けず、位置引数のみを受け付ける"
 
 #: ../../genrst/builtin_types.rst:324
 msgid ""
 "**Cause:** MicroPython optimizes for code size and does not implement "
 "keyword argument handling for bytes.decode()"
 msgstr ""
-"**原因:** MicroPythonはコードサイズを最適化するため、bytes.decode() の"
-"キーワード引数処理を実装していません。"
+"**原因:** MicroPythonはコードサイズを最適化するため、bytes.decode() のキー"
+"ワード引数処理を実装していません。"
 
 #: ../../genrst/builtin_types.rst:326
 msgid "**Workaround:** Use positional arguments instead of keyword arguments"
 msgstr "**回避策:** キーワード引数の代わりに位置引数を使ってください。"
+
+#: ../../genrst/builtin_types.rst:331
+msgid ""
+"# CPython accepts keyword arguments, MicroPython only accepts positional\n"
+"b = b\"hello\\xffworld\"\n"
+"\n"
+"try:\n"
+"    # Using keyword arguments\n"
+"    result = b.decode(encoding=\"utf-8\", errors=\"ignore\")\n"
+"    print(\"kwargs supported:\", repr(result))\n"
+"except TypeError as e:\n"
+"    print(\"kwargs not supported: TypeError\")\n"
+"    # Workaround: use positional arguments\n"
+"    result = b.decode(\"utf-8\", \"ignore\")\n"
+"    print(\"positional args work:\", repr(result))"
+msgstr ""
+"# CPython はキーワード引数を受け付けますが、MicroPython は位置引数のみを受け付けます\n"
+"b = b\"hello\\xffworld\"\n"
+"\n"
+"try:\n"
+"    # キーワード引数を使う\n"
+"    result = b.decode(encoding=\"utf-8\", errors=\"ignore\")\n"
+"    print(\"kwargs supported:\", repr(result))\n"
+"except TypeError as e:\n"
+"    print(\"kwargs not supported: TypeError\")\n"
+"    # 回避策: 位置引数を使う\n"
+"    result = b.decode(\"utf-8\", \"ignore\")\n"
+"    print(\"positional args work:\", repr(result))"
+
+#: ../../genrst/builtin_types.rst:349
+msgid "kwargs supported: 'helloworld'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:349
+msgid ""
+"kwargs not supported: TypeError\n"
+"positional args work: 'helloworld'"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:356
 msgid ""
@@ -327,9 +709,9 @@ msgid ""
 "'ascii'. Other encodings like 'latin-1' are not supported. Other string "
 "forms such as 'UTF8' are not supported."
 msgstr ""
-"bytes() コンストラクタは、エンコード引数として 'utf8', 'utf-8', 'ascii' "
-"のみをサポート。 'latin-1' などの他のエンコードはサポートしない。 'UTF8' などの"
-"他の文字列形式もサポートしない。"
+"bytes() コンストラクタは、エンコード引数として 'utf8', 'utf-8', 'ascii' のみ"
+"をサポート。 'latin-1' などの他のエンコードはサポートしない。 'UTF8' などの他"
+"の文字列形式もサポートしない。"
 
 #: ../../genrst/builtin_types.rst:358
 msgid ""
@@ -338,18 +720,64 @@ msgid ""
 "str.encode() <cpydiff_types_str_encode_encoding>`. See also "
 "`unicode_support`."
 msgstr ""
-"**原因:** MicroPython は組み込みシステム向けに最適化されており、コードサイズを"
-"節約するためにコーデックのサポートを制限しています。 `str.encode() にも同様の制限が"
-"適用されます <cpydiff_types_str_encode_encoding>` 。 "
+"**原因:** MicroPython は組み込みシステム向けに最適化されており、コードサイズ"
+"を節約するためにコーデックのサポートを制限しています。 `str.encode() にも同様"
+"の制限が適用されます <cpydiff_types_str_encode_encoding>` 。 "
 "`unicode_support` も参照してください。 "
 
 #: ../../genrst/builtin_types.rst:360
 msgid ""
-"**Workaround:** Implement other encoding conversions manually by parsing "
-"the result of str.encode() or bytes() constructor."
+"**Workaround:** Implement other encoding conversions manually by parsing the "
+"result of str.encode() or bytes() constructor."
 msgstr ""
-"**回避策:** str.encode() または bytes() コンストラクタの結果を解析して、"
-"他のエンコード変換を手動で実装してください。"
+"**回避策:** str.encode() または bytes() コンストラクタの結果を解析して、他の"
+"エンコード変換を手動で実装してください。"
+
+#: ../../genrst/builtin_types.rst:365
+msgid ""
+"# Both CPython and MicroPython can encode this emoji as UTF-8 bytes\n"
+"print(bytes(\"😀\", \"utf8\"))\n"
+"\n"
+"# Both CPython and MicroPython will fail to encode this emoji as ASCII bytes\n"
+"try:\n"
+"    print(bytes(\"😀\", \"ascii\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")\n"
+"\n"
+"# Other encodings or string formats aren't accepted by MicroPython\n"
+"try:\n"
+"    print(bytes(\"😀\", \"UTF-8\"))\n"
+"except LookupError:\n"
+"    print(\"LookupError\")"
+msgstr ""
+"# CPython と MicroPython のどちらも、この絵文字を UTF-8 のバイト列にエンコードできます\n"
+"print(bytes(\"😀\", \"utf8\"))\n"
+"\n"
+"# CPython と MicroPython のどちらも、この絵文字を ASCII のバイト列にはエンコードできません\n"
+"try:\n"
+"    print(bytes(\"😀\", \"ascii\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")\n"
+"\n"
+"# MicroPython はそれ以外のエンコーディングや文字列形式を受け付けません\n"
+"try:\n"
+"    print(bytes(\"😀\", \"UTF-8\"))\n"
+"except LookupError:\n"
+"    print(\"LookupError\")"
+
+#: ../../genrst/builtin_types.rst:385 ../../genrst/builtin_types.rst:802
+msgid ""
+"b'\\xf0\\x9f\\x98\\x80'\n"
+"UnicodeError\n"
+"b'\\xf0\\x9f\\x98\\x80'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:385 ../../genrst/builtin_types.rst:802
+msgid ""
+"b'\\xf0\\x9f\\x98\\x80'\n"
+"UnicodeError\n"
+"LookupError"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:393
 msgid "bytes objects support .format() method"
@@ -357,25 +785,32 @@ msgstr "bytes オブジェクトが .format() メソッドをサポート"
 
 #: ../../genrst/builtin_types.rst:395
 #, python-format
-msgid ""
-"**Cause:** MicroPython strives to be a more regular implementation, so if"
-" both `str` and `bytes` support ``__mod__()`` (the % operator), it makes "
-"sense to support ``format()`` for both too. Support for ``__mod__`` can "
-"also be compiled out, which leaves only ``format()`` for bytes "
-"formatting."
-msgstr ""
-"**原因:** MicroPython はより一般的な実装であるため、 `str` と `bytes` の両方が "
-"``__mod__()`` (% 演算子) をサポートすると、 ``format()`` も両方でサポートする"
-"ことになります。 ``__mod__()`` のサポートが続く限り、bytes のフォーマットを行う "
-"``format()`` も残ります。"
+msgid "**Cause:** MicroPython strives to be a more regular implementation, so if both `str` and `bytes` support ``__mod__()`` (the % operator), it makes sense to support ``format()`` for both too. Support for ``__mod__`` can also be compiled out, which leaves only ``format()`` for bytes formatting."
+msgstr "**原因:** MicroPython はより一貫性のある実装を目指しています。そのため `str` と `bytes` の両方が ``__mod__()`` (% 演算子)をサポートするのであれば、両方で ``format()`` をサポートするのも理にかなっています。また ``__mod__`` のサポートはコンパイル時に外すこともでき、その場合 bytes の書式化には ``format()`` だけが残ります。"
 
 #: ../../genrst/builtin_types.rst:397
 msgid ""
-"**Workaround:** If you are interested in CPython compatibility, don't use"
-" ``.format()`` on bytes objects."
+"**Workaround:** If you are interested in CPython compatibility, don't use "
+"``.format()`` on bytes objects."
 msgstr ""
 "**回避策:** CPython との互換性にこだわるなら bytes オブジェクトに対して "
 "``.format()`` を使わないでください。"
+
+#: ../../genrst/builtin_types.rst:402
+#, python-brace-format
+msgid "print(b\"{}\".format(1))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:409
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"AttributeError: 'bytes' object has no attribute 'format'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:409
+msgid "b'1'"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:417
 msgid "bytes() with keywords not implemented"
@@ -389,6 +824,22 @@ msgstr ""
 "**回避策:** エンコーディングは位置パラメータで渡してください。たとえば "
 "``print(bytes('abc', 'utf-8'))`` のようにします。"
 
+#: ../../genrst/builtin_types.rst:424
+msgid "print(bytes(\"abc\", encoding=\"utf8\"))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:431
+msgid "b'abc'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:431 ../../genrst/builtin_types.rst:989
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"NotImplementedError: keyword argument(s) not implemented - use normal args "
+"instead"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:439
 msgid "Bytes subscription with step != 1 not implemented"
 msgstr "スライスのステップが1以外は未実装"
@@ -397,14 +848,29 @@ msgstr "スライスのステップが1以外は未実装"
 msgid "**Workaround:** Use explicit loop for this very rare operation."
 msgstr "**回避策:** このまれな操作には明示的なループを使ってください。"
 
+#: ../../genrst/builtin_types.rst:448
+msgid "print(b\"123\"[0:3:2])"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:455
+msgid "b'13'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:455 ../../genrst/builtin_types.rst:1079
+#: ../../genrst/builtin_types.rst:1102
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"NotImplementedError: only slices with step=1 (aka None) are supported"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:461
 msgid "complex"
 msgstr ""
 
 #: ../../genrst/builtin_types.rst:466
 msgid ""
-"MicroPython's complex() accepts certain incorrect values that CPython "
-"rejects"
+"MicroPython's complex() accepts certain incorrect values that CPython rejects"
 msgstr ""
 "MicroPythonの complex() 関数は、CPython では拒否されるような特定の誤った値を"
 "受け入れてしまう"
@@ -418,12 +884,28 @@ msgstr ""
 
 #: ../../genrst/builtin_types.rst:472
 msgid ""
-"MicroPython's ``complex()`` function accepts literals that contain a "
-"space and no sign between the real and imaginary parts, and interprets it"
-" as a plus."
+"MicroPython's ``complex()`` function accepts literals that contain a space "
+"and no sign between the real and imaginary parts, and interprets it as a "
+"plus."
 msgstr ""
-"MicroPython の ``complex()`` 関数では、実部と虚部の間にスペースがあっても符号の"
-"ないリテラルを受け入れ、それをプラスとして解釈します。"
+"MicroPython の ``complex()`` 関数では、実部と虚部の間にスペースがあっても符号"
+"のないリテラルを受け入れ、それをプラスとして解釈します。"
+
+#: ../../genrst/builtin_types.rst:478
+msgid ""
+"try:\n"
+"    print(complex(\"1 1j\"))\n"
+"except ValueError:\n"
+"    print(\"ValueError\")"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:488
+msgid "ValueError"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:488
+msgid "(1+1j)"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:492
 msgid "dict"
@@ -439,10 +921,25 @@ msgstr "**原因:** 未実装。"
 
 #: ../../genrst/builtin_types.rst:501
 msgid ""
-"**Workaround:** Explicitly convert keys to a set before using set "
-"operations."
+"**Workaround:** Explicitly convert keys to a set before using set operations."
+msgstr "**回避策:** 集合操作を使う前に、キーを明示的に集合に変換してください。"
+
+#: ../../genrst/builtin_types.rst:506
+#, python-brace-format
+msgid "print({1: 2, 3: 4}.keys() & {1})"
 msgstr ""
-"**回避策:** 集合操作を使う前に、キーを明示的に集合に変換してください。"
+
+#: ../../genrst/builtin_types.rst:513
+#, python-brace-format
+msgid "{1}"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:513
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"TypeError: unsupported types for __and__: 'dict_view', 'set'"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:519
 msgid "float"
@@ -450,17 +947,40 @@ msgstr ""
 
 #: ../../genrst/builtin_types.rst:524
 msgid ""
-"MicroPython allows implicit conversion of objects in maths operations "
-"while CPython does not."
+"MicroPython allows implicit conversion of objects in maths operations while "
+"CPython does not."
 msgstr ""
-"MicroPython では数学演算の際にオブジェクトの暗黙の変換が可能ですが、CPythonではできない。"
+"MicroPython では数学演算の際にオブジェクトの暗黙の変換が可能ですが、CPythonで"
+"はできない。"
 
 #: ../../genrst/builtin_types.rst:526
 msgid ""
 "**Workaround:** Objects should be wrapped in ``float(obj)`` for "
 "compatibility with CPython."
 msgstr ""
-"**回避策:** CPythonとの互換性のために、オブジェクトはfloat(obj)でラップすべき。"
+"**回避策:** CPythonとの互換性のために、オブジェクトはfloat(obj)でラップすべ"
+"き。"
+
+#: ../../genrst/builtin_types.rst:532
+msgid ""
+"class Test:\n"
+"    def __float__(self):\n"
+"        return 0.5\n"
+"\n"
+"\n"
+"print(2.0 * Test())"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:544
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"TypeError: unsupported operand type(s) for *: 'float' and 'Test'"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:544
+msgid "1.0"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:550
 msgid "int"
@@ -478,17 +998,57 @@ msgstr "**原因:** bit_length メソッドは未実装。"
 msgid "**Workaround:** Avoid using this method on MicroPython."
 msgstr "**回避策:** MicroPython ではこのメソッドを利用しない。"
 
+#: ../../genrst/builtin_types.rst:564
+#, python-brace-format
+msgid ""
+"x = 255\n"
+"print(\"{} is {} bits long.\".format(x, x.bit_length()))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:572
+msgid "255 is 8 bits long."
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:572
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"AttributeError: 'int' object has no attribute 'bit_length'"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:580
 msgid "No int conversion for int-derived types available"
 msgstr "int の派生型に対する int 変換は使えない"
 
 #: ../../genrst/builtin_types.rst:582
 msgid ""
-"**Workaround:** Avoid subclassing builtin types unless really needed. "
-"Prefer https://en.wikipedia.org/wiki/Composition_over_inheritance ."
+"**Workaround:** Avoid subclassing builtin types unless really needed. Prefer "
+"https://en.wikipedia.org/wiki/Composition_over_inheritance ."
 msgstr ""
 "**回避策:** 本当に必要でない限り、組み込み型のサブクラス化は避けてください。 "
 "https://en.wikipedia.org/wiki/Composition_over_inheritance を推奨します。"
+
+#: ../../genrst/builtin_types.rst:588
+msgid ""
+"class A(int):\n"
+"    __add__ = lambda self, other: A(int(self) + other)\n"
+"\n"
+"\n"
+"a = A(42)\n"
+"print(a + a)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:600
+msgid "84"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:600
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"  File \"<stdin>\", line 10, in <lambda>\n"
+"TypeError: unsupported types for __radd__: 'int', 'int'"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:607
 msgid "list"
@@ -502,6 +1062,24 @@ msgstr "ステップが 1 以外のリスト要素の削除は未実装"
 msgid "**Workaround:** Use explicit loop for this rare operation."
 msgstr "**回避策:** このまれな操作には明示的なループを使ってください。"
 
+#: ../../genrst/builtin_types.rst:619
+msgid ""
+"l = [1, 2, 3, 4]\n"
+"del l[0:4:2]\n"
+"print(l)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:628
+msgid "[2, 4]"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:628 ../../genrst/builtin_types.rst:678
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"NotImplementedError:"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:636
 msgid "List slice-store with non-iterable on RHS is not implemented"
 msgstr "リストのスライスへのイテレーティブの代入は未実装"
@@ -512,14 +1090,43 @@ msgstr "**原因:** 右辺はタプルかリストに制限されています。
 
 #: ../../genrst/builtin_types.rst:640
 msgid ""
-"**Workaround:** Use ``list(<iter>)`` on RHS to convert the iterable to a "
-"list"
+"**Workaround:** Use ``list(<iter>)`` on RHS to convert the iterable to a list"
 msgstr ""
-"**回避策**: イテレータブルをリストに変換するよう、右辺で ``list(<iter>)`` を使ってください。"
+"**回避策**: イテレータブルをリストに変換するよう、右辺で ``list(<iter>)`` を"
+"使ってください。"
+
+#: ../../genrst/builtin_types.rst:645
+msgid ""
+"l = [10, 20]\n"
+"l[0:1] = range(4)\n"
+"print(l)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:654
+msgid "[0, 1, 2, 3, 20]"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:654
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9, in <module>\n"
+"TypeError: object 'range' isn't a tuple or list"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:662
 msgid "List store with step != 1 not implemented"
 msgstr "ステップ 1 以外のリストスライスへの代入は未実装"
+
+#: ../../genrst/builtin_types.rst:669
+msgid ""
+"l = [1, 2, 3, 4]\n"
+"l[0:4:2] = [5, 6]\n"
+"print(l)"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:678
+msgid "[5, 2, 6, 4]"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:684
 msgid "memoryview"
@@ -531,20 +1138,21 @@ msgstr "memoryview のターゲットのリサイズは無効になる可能性�
 
 #: ../../genrst/builtin_types.rst:691
 msgid ""
-"**Cause:** CPython prevents a ``bytearray`` or ``io.bytesIO`` object from"
-" changing size while there is a ``memoryview`` object that references it."
-" MicroPython requires the programmer to manually ensure that an object is"
-" not resized while any ``memoryview`` references it."
+"**Cause:** CPython prevents a ``bytearray`` or ``io.bytesIO`` object from "
+"changing size while there is a ``memoryview`` object that references it. "
+"MicroPython requires the programmer to manually ensure that an object is not "
+"resized while any ``memoryview`` references it."
 msgstr ""
-"**原因:** CPythonは、memoryview オブジェクトが参照している間に ``bytearray`` や "
-"``io.bytesIO`` オブジェクトのサイズ変更を防ぎます。MicroPythonでは、オブジェクトが "
-"memoryview で参照されている間にプログラマーが手動でリサイズしないようにする必要があります。"
+"**原因:** CPythonは、memoryview オブジェクトが参照している間に ``bytearray`` "
+"や ``io.bytesIO`` オブジェクトのサイズ変更を防ぎます。MicroPythonでは、オブ"
+"ジェクトが memoryview で参照されている間にプログラマーが手動でリサイズしない"
+"ようにする必要があります。"
 
 #: ../../genrst/builtin_types.rst:693
 msgid ""
 "In the worst case scenario, resizing an object which is the target of a "
-"memoryview can cause the memoryview(s) to reference invalid freed memory "
-"(a use-after-free bug) and corrupt the MicroPython runtime."
+"memoryview can cause the memoryview(s) to reference invalid freed memory (a "
+"use-after-free bug) and corrupt the MicroPython runtime."
 msgstr ""
 "最悪のケースでは、memoryview のターゲットとなるオブジェクトをリサイズすると、"
 "memoryview が無効な解放されたメモリを参照する可能性があり(解放後使用バグ)、"
@@ -558,6 +1166,25 @@ msgstr ""
 "**回避策:** memoryview が割り当てられている ``bytearray`` または "
 "``io.bytesIO`` オブジェクトのサイズを変更しないでください。"
 
+#: ../../genrst/builtin_types.rst:700
+msgid ""
+"b = bytearray(b\"abcdefg\")\n"
+"m = memoryview(b)\n"
+"b.extend(b\"hijklmnop\")\n"
+"print(b, bytes(m))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:710
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 12, in <module>\n"
+"BufferError: Existing exports of data: object cannot be re-sized"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:710
+msgid "bytearray(b'abcdefghijklmnop') b'abcdefg'"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:716
 msgid "range"
 msgstr ""
@@ -567,20 +1194,90 @@ msgid ""
 "Range arguments must fit in a machine word; large start or stop values "
 "misbehave."
 msgstr ""
-"range 引数はマシンワード内に収まる必要がある。開始値または終了値が大きすぎると正しく"
-"動作しない。"
+"range 引数はマシンワード内に収まる必要がある。開始値または終了値が大きすぎる"
+"と正しく動作しない。"
 
 #: ../../genrst/builtin_types.rst:723
 msgid ""
 "**Cause:** Range stores its arguments as the C mp_int_t type, and "
 "intermediate calculations also use it."
 msgstr ""
-"**原因:** range 関数は引数をC言語の mp_int_t 型として格納し、中間計算でも"
-"この型が使われるため。"
+"**原因:** range 関数は引数をC言語の mp_int_t 型として格納し、中間計算でもこの"
+"型が使われるため。"
 
 #: ../../genrst/builtin_types.rst:725
 msgid "**Workaround:** Avoid using such ranges"
 msgstr "**回避策:** そのような range 関数の使用を避けてください。"
+
+#: ../../genrst/builtin_types.rst:730
+msgid ""
+"from sys import maxsize\n"
+"\n"
+"# A range including `maxsize-1` cannot be created\n"
+"try:\n"
+"    print(range(-maxsize - 1, 0))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")\n"
+"\n"
+"# A range with start or stop outside [-maxsize, maxsize] cannot be created, even if the range itself would be small.\n"
+"try:\n"
+"    print(range(maxsize + 1, maxsize + 2))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")\n"
+"\n"
+"# A range with `stop-start` exceeding sys.maxsize has incorrect len(), while CPython cannot calculate len().\n"
+"try:\n"
+"    print(len(range(-maxsize, maxsize)))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")\n"
+"\n"
+"# A range with `stop-start` exceeding sys.maxsize has incorrect len()\n"
+"try:\n"
+"    print(len(range(-maxsize, maxsize, maxsize)))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")"
+msgstr ""
+"from sys import maxsize\n"
+"\n"
+"# `maxsize-1` を含む range は作成できません\n"
+"try:\n"
+"    print(range(-maxsize - 1, 0))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")\n"
+"\n"
+"# start や stop が [-maxsize, maxsize] の外にある range は、range 自体が小さくても作成できません。\n"
+"try:\n"
+"    print(range(maxsize + 1, maxsize + 2))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")\n"
+"\n"
+"# `stop-start` が sys.maxsize を超える range では len() が正しくありません。一方 CPython では len() を計算できません。\n"
+"try:\n"
+"    print(len(range(-maxsize, maxsize)))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")\n"
+"\n"
+"# `stop-start` が sys.maxsize を超える range では len() が正しくありません\n"
+"try:\n"
+"    print(len(range(-maxsize, maxsize, maxsize)))\n"
+"except OverflowError:\n"
+"    print(\"OverflowError\")"
+
+#: ../../genrst/builtin_types.rst:761
+msgid ""
+"range(-9223372036854775808, 0)\n"
+"range(9223372036854775808, 9223372036854775809)\n"
+"OverflowError\n"
+"2"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:761
+msgid ""
+"OverflowError\n"
+"OverflowError\n"
+"0\n"
+"0"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:768
 msgid "str"
@@ -588,13 +1285,13 @@ msgstr ""
 
 #: ../../genrst/builtin_types.rst:773
 msgid ""
-"str.encode() constructor only supports encoding arguments 'utf8', 'utf-8'"
-" and 'ascii'. Other encodings like 'latin-1' are not supported. Other "
-"string forms such as 'UTF8' are not supported."
+"str.encode() constructor only supports encoding arguments 'utf8', 'utf-8' "
+"and 'ascii'. Other encodings like 'latin-1' are not supported. Other string "
+"forms such as 'UTF8' are not supported."
 msgstr ""
-"str.encode() コンストラクタは、エンコード引数として 'utf8', 'utf-8', "
-"'ascii' のみをサポート。 'latin-1' などの他のエンコードはサポートしていない。"
-"また 'UTF8' などの他の文字列形式もサポートしていない。"
+"str.encode() コンストラクタは、エンコード引数として 'utf8', 'utf-8', 'ascii' "
+"のみをサポート。 'latin-1' などの他のエンコードはサポートしていない。また "
+"'UTF8' などの他の文字列形式もサポートしていない。"
 
 #: ../../genrst/builtin_types.rst:775
 msgid ""
@@ -602,9 +1299,9 @@ msgid ""
 "codec support to save code size. `A similar restriction applies to bytes "
 "constructor <cpydiff_types_bytes_encoding>`. See also `unicode_support`."
 msgstr ""
-"**原因:** MicroPython は組み込みシステム向けに最適化されており、コードサイズを"
-"節約するためにコーデックのサポートを制限しています。 `同様の制限はバイトコンストラクタにも"
-"適用しています <cpydiff_types_bytes_encoding>` 。 "
+"**原因:** MicroPython は組み込みシステム向けに最適化されており、コードサイズ"
+"を節約するためにコーデックのサポートを制限しています。 `同様の制限はバイトコ"
+"ンストラクタにも適用しています <cpydiff_types_bytes_encoding>` 。 "
 "`unicode_support` も参照してください。"
 
 #: ../../genrst/builtin_types.rst:777
@@ -612,35 +1309,107 @@ msgid ""
 "**Workaround:** Implement encoding conversions manually by parsing the "
 "result of str.encode() or bytes() constructor."
 msgstr ""
-"**回避策:** str.encode() または bytes() コンストラクタの結果を解析して、"
-"エンコード変換を手動で実装してください。"
+"**回避策:** str.encode() または bytes() コンストラクタの結果を解析して、エン"
+"コード変換を手動で実装してください。"
+
+#: ../../genrst/builtin_types.rst:782
+msgid ""
+"# Both CPython and MicroPython can encode this emoji as UTF-8 bytes\n"
+"print(\"😀\".encode(\"utf8\"))\n"
+"\n"
+"# Both CPython and MicroPython will fail to encode this emoji as ASCII bytes\n"
+"try:\n"
+"    print(\"😀\".encode(\"ascii\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")\n"
+"\n"
+"# Other encodings or string formats aren't accepted by MicroPython:\n"
+"try:\n"
+"    print(\"😀\".encode(\"UTF-8\"))\n"
+"except LookupError:\n"
+"    print(\"LookupError\")"
+msgstr ""
+"# CPython と MicroPython のどちらも、この絵文字を UTF-8 のバイト列にエンコードできます\n"
+"print(\"😀\".encode(\"utf8\"))\n"
+"\n"
+"# CPython と MicroPython のどちらも、この絵文字を ASCII のバイト列にはエンコードできません\n"
+"try:\n"
+"    print(\"😀\".encode(\"ascii\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")\n"
+"\n"
+"# MicroPython はそれ以外のエンコーディングや文字列形式を受け付けません:\n"
+"try:\n"
+"    print(\"😀\".encode(\"UTF-8\"))\n"
+"except LookupError:\n"
+"    print(\"LookupError\")"
 
 #: ../../genrst/builtin_types.rst:810
 msgid ""
 "str.encode() and bytes() constructor ignore any ``errors`` argument "
-"specified. If the encoding is specified as ``'ascii'`` and a non-ASCII "
-"byte is found in the string then an exception is always raised."
+"specified. If the encoding is specified as ``'ascii'`` and a non-ASCII byte "
+"is found in the string then an exception is always raised."
 msgstr ""
-"str.encode() および bytes() コンストラクタは、指定の ``errors`` 引数を無視する。"
-"エンコーディングが ``'ascii'`` と指定されていて、文字列内に非 ASCII バイトが"
-"見つかった場合は、必ず例外が発生する。"
+"str.encode() および bytes() コンストラクタは、指定の ``errors`` 引数を無視す"
+"る。エンコーディングが ``'ascii'`` と指定されていて、文字列内に非 ASCII バイ"
+"トが見つかった場合は、必ず例外が発生する。"
 
 #: ../../genrst/builtin_types.rst:812
 msgid ""
 "**Cause:** MicroPython is optimised for embedded systems and has limited "
 "codec support to save code size. See also `unicode_support`."
 msgstr ""
-"**原因:** MicroPython は組み込みシステム向けに最適化されており、コードサイズを"
-"節約するためにコーデックのサポートが制限されています。 "
-"`unicode_support` も参照してください。"
+"**原因:** MicroPython は組み込みシステム向けに最適化されており、コードサイズ"
+"を節約するためにコーデックのサポートが制限されています。 `unicode_support` も"
+"参照してください。"
 
 #: ../../genrst/builtin_types.rst:814
 msgid ""
 "**Workaround:** Handle encoding errors manually by parsing the result of "
 "str.encode() or bytes() constructor."
 msgstr ""
-"**回避策:** str.encode() または bytes() コンストラクタの結果を解析して、"
-"エンコードエラーを手動で処理してください。"
+"**回避策:** str.encode() または bytes() コンストラクタの結果を解析して、エン"
+"コードエラーを手動で処理してください。"
+
+#: ../../genrst/builtin_types.rst:819
+msgid ""
+"# CPython will replace the emoji with an ASCII '?' but MicroPython will\n"
+"# raise an exception\n"
+"try:\n"
+"    print(\"😀\".encode(\"ascii\", \"replace\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")\n"
+"\n"
+"# CPython will ignore the emoji in the result but MicroPython will raise an exception\n"
+"try:\n"
+"    print(\"😀\".encode(\"ascii\", \"ignore\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")"
+msgstr ""
+"# CPython は絵文字を ASCII の '?' に置き換えますが、MicroPython は\n"
+"# 例外を発生させます\n"
+"try:\n"
+"    print(\"😀\".encode(\"ascii\", \"replace\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")\n"
+"\n"
+"# CPython は結果から絵文字を無視しますが、MicroPython は例外を発生させます\n"
+"try:\n"
+"    print(\"😀\".encode(\"ascii\", \"ignore\"))\n"
+"except UnicodeError:\n"
+"    print(\"UnicodeError\")"
+
+#: ../../genrst/builtin_types.rst:837
+msgid ""
+"b'?'\n"
+"b''"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:837
+msgid ""
+"UnicodeError\n"
+"UnicodeError"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:844
 msgid ""
@@ -648,38 +1417,87 @@ msgid ""
 "'ascii'. Other encodings like 'latin-1' are not supported. Other string "
 "forms such as 'UTF8' are not supported."
 msgstr ""
-"str() コンストラクタは、エンコード引数として 'utf8', 'utf-8', "'ascii' "
-"のみをサポートしている。 'latin-1' などの他のエンコードはサポートしていない。"
-"また 'UTF8' などの他の文字列形式もサポートしていない。"
+"str() コンストラクタは、エンコード引数として 'utf8', 'utf-8', \"'ascii' のみ"
+"をサポートしている。 'latin-1' などの他のエンコードはサポートしていない。ま"
+"た 'UTF8' などの他の文字列形式もサポートしていない。"
 
 #: ../../genrst/builtin_types.rst:846
 msgid ""
-"**Cause:** MicroPython is optimised for embedded systems and only "
-"includes UTF-8 and ASCII codec support with simple matching to save "
-"memory and code size. `The same restriction applies to bytes.decode() "
+"**Cause:** MicroPython is optimised for embedded systems and only includes "
+"UTF-8 and ASCII codec support with simple matching to save memory and code "
+"size. `The same restriction applies to bytes.decode() "
 "<cpydiff_types_bytes_decode_encoding>`. See also `unicode_support`."
 msgstr ""
-"**原因:** MicroPython は組み込みシステム向けに最適化されており、"
-"メモリとコードサイズを節約するために、UTF-8 と ASCII コーデックのみを"
-"サポートし、単純なマッチングのみを行っています。 `bytes.decode() にも"
-"同様の制限が適用されます <cpydiff_types_bytes_decode_encoding>` 。 "
-"`unicode_support` も参照してください。"
+"**原因:** MicroPython は組み込みシステム向けに最適化されており、メモリとコー"
+"ドサイズを節約するために、UTF-8 と ASCII コーデックのみをサポートし、単純な"
+"マッチングのみを行っています。 `bytes.decode() にも同様の制限が適用されます "
+"<cpydiff_types_bytes_decode_encoding>` 。 `unicode_support` も参照してくださ"
+"い。"
+
+#: ../../genrst/builtin_types.rst:853
+msgid ""
+"# Both CPython and MicroPython support utf8 and ascii encodings\n"
+"print(str(b\"caf\\xc3\\xa9\", \"utf8\"))  # codespell:ignore caf\n"
+"print(str(b\"cafe\", \"ascii\"))\n"
+"\n"
+"# MicroPython does not support additional encodings\n"
+"try:\n"
+"    str(b\"\\xe9\", \"latin-1\")  # 'é' in latin-1\n"
+"    print(\"latin-1 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"latin-1 not supported:\", type(e).__name__)\n"
+"\n"
+"try:\n"
+"    str(b\"\\x80\", \"cp1252\")  # Euro sign in cp1252\n"
+"    print(\"cp1252 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"cp1252 not supported:\", type(e).__name__)\n"
+"\n"
+"# Encoding arguments must match exactly in MicroPython\n"
+"try:\n"
+"    str(b\"hello\", \"ASCII\")\n"
+"    print(\"Capital letters ASCII supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"Capital letters ASCII not supported:\", type(e).__name__)"
+msgstr ""
+"# CPython と MicroPython のどちらも utf8 と ascii のエンコーディングをサポートしています\n"
+"print(str(b\"caf\\xc3\\xa9\", \"utf8\"))  # codespell:ignore caf\n"
+"print(str(b\"cafe\", \"ascii\"))\n"
+"\n"
+"# MicroPython はそれ以外のエンコーディングをサポートしていません\n"
+"try:\n"
+"    str(b\"\\xe9\", \"latin-1\")  # latin-1 での 'é'\n"
+"    print(\"latin-1 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"latin-1 not supported:\", type(e).__name__)\n"
+"\n"
+"try:\n"
+"    str(b\"\\x80\", \"cp1252\")  # cp1252 でのユーロ記号\n"
+"    print(\"cp1252 supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"cp1252 not supported:\", type(e).__name__)\n"
+"\n"
+"# MicroPython ではエンコーディングの引数が厳密に一致している必要があります\n"
+"try:\n"
+"    str(b\"hello\", \"ASCII\")\n"
+"    print(\"Capital letters ASCII supported\")\n"
+"except (ValueError, NotImplementedError, LookupError) as e:\n"
+"    print(\"Capital letters ASCII not supported:\", type(e).__name__)"
 
 #: ../../genrst/builtin_types.rst:892
 msgid ""
-"MicroPython accepts the \",\" grouping option with any radix, unlike "
-"CPython"
+"MicroPython accepts the \",\" grouping option with any radix, unlike CPython"
 msgstr ""
-"MicroPython は CPython とは異なり、任意の基数で \",\" のグループ化オプションを"
-"受け入れる。"
+"MicroPython は CPython とは異なり、任意の基数で \",\" のグループ化オプション"
+"を受け入れる。"
 
 #: ../../genrst/builtin_types.rst:894
 msgid ""
-"**Cause:** To reduce code size, MicroPython does not issue an error for "
-"this combination"
+"**Cause:** To reduce code size, MicroPython does not issue an error for this "
+"combination"
 msgstr ""
-"**原因:** コードサイズを削減するため、MicroPython はこの組み合わせに対して"
-"エラーを発行しません。"
+"**原因:** コードサイズを削減するため、MicroPython はこの組み合わせに対してエ"
+"ラーを発行しません。"
 
 #: ../../genrst/builtin_types.rst:896
 #, python-brace-format
@@ -687,39 +1505,111 @@ msgid ""
 "**Workaround:** Do not use a format string like ``{:,b}`` if CPython "
 "compatibility is required."
 msgstr ""
-"**回避策:** CPython との互換性が必要な場合は ``{:,b}`` のようなフォーマット"
-"文字列を使用しないでください。"
+"**回避策:** CPython との互換性が必要な場合は ``{:,b}`` のようなフォーマット文"
+"字列を使用しないでください。"
+
+#: ../../genrst/builtin_types.rst:901
+#, python-brace-format
+msgid ""
+"try:\n"
+"    print(\"{:,b}\".format(99))\n"
+"except ValueError:\n"
+"    print(\"ValueError\")\n"
+"try:\n"
+"    print(\"{:,x}\".format(99))\n"
+"except ValueError:\n"
+"    print(\"ValueError\")\n"
+"try:\n"
+"    print(\"{:,o}\".format(99))\n"
+"except ValueError:\n"
+"    print(\"ValueError\")"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:919
+msgid ""
+"ValueError\n"
+"ValueError\n"
+"ValueError"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:919
+msgid ""
+"110,0011\n"
+"63\n"
+"143"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:927
 msgid ""
 "MicroPython accepts but does not properly implement the \",\" or \"_\" "
 "grouping character for float values"
 msgstr ""
-"MicroPython は浮動小数点値の区切り文字として \",\" または \"_\" を受け入れるが、"
-"正しく実装していない"
+"MicroPython は浮動小数点値の区切り文字として \",\" または \"_\" を受け入れる"
+"が、正しく実装していない"
 
 #: ../../genrst/builtin_types.rst:929
 msgid ""
 "**Cause:** To reduce code size, MicroPython does not implement this "
-"combination. Grouping characters will not appear in the number's "
-"significant digits and will appear at incorrect locations in leading "
-"zeros."
+"combination. Grouping characters will not appear in the number's significant "
+"digits and will appear at incorrect locations in leading zeros."
 msgstr ""
-"**原因:** コードサイズを削減するため、MicroPython はこの組み合わせを実装していません。"
-"そのため、桁区切り文字は数値の有効桁には表示されず、先頭のゼロの位置もずれてしまいます。"
+"**原因:** コードサイズを削減するため、MicroPython はこの組み合わせを実装して"
+"いません。そのため、桁区切り文字は数値の有効桁には表示されず、先頭のゼロの位"
+"置もずれてしまいます。"
 
 #: ../../genrst/builtin_types.rst:931
 #, python-brace-format
 msgid ""
-"**Workaround:** Do not use a format string like ``{:,f}`` if exact "
-"CPython compatibility is required."
+"**Workaround:** Do not use a format string like ``{:,f}`` if exact CPython "
+"compatibility is required."
 msgstr ""
-"**回避策:** CPythonとの完全な互換性が必要な場合は ``{:,f}`` のような"
-"書式文字列を使用しないでください。"
+"**回避策:** CPythonとの完全な互換性が必要な場合は ``{:,f}`` のような書式文字"
+"列を使用しないでください。"
+
+#: ../../genrst/builtin_types.rst:936
+#, python-brace-format
+msgid ""
+"print(\"{:,f}\".format(3141.159))\n"
+"print(\"{:_f}\".format(3141.159))\n"
+"print(\"{:011,.2f}\".format(3141.159))\n"
+"print(\"{:011_.2f}\".format(3141.159))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:946
+msgid ""
+"3,141.159000\n"
+"3_141.159000\n"
+"0,003,141.16\n"
+"0_003_141.16"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:946
+msgid ""
+"3141.159000\n"
+"3141.159000\n"
+"000,3141.16\n"
+"0_003141.16"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:955
 msgid "Attributes/subscr not implemented"
 msgstr "属性/添字は未実装"
+
+#: ../../genrst/builtin_types.rst:960
+#, python-brace-format
+msgid "print(\"{a[0]}\".format(a=[1, 2]))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:967
+msgid "1"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:967
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"NotImplementedError: attributes not supported"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:975
 msgid "str(...) with keywords not implemented"
@@ -727,11 +1617,19 @@ msgstr "str(...) のキーワード引数は未実装"
 
 #: ../../genrst/builtin_types.rst:977
 msgid ""
-"**Workaround:** Input the encoding format directly. eg "
-"``print(bytes('abc', 'utf-8'))``"
+"**Workaround:** Input the encoding format directly. eg ``print(bytes('abc', "
+"'utf-8'))``"
 msgstr ""
-"**回避策:** エンコーディングは位置パラメータで指定してください。"
-"たとえば ``print(bytes('abc', 'utf-8'))`` のようにします。"
+"**回避策:** エンコーディングは位置パラメータで指定してください。たとえば "
+"``print(bytes('abc', 'utf-8'))`` のようにします。"
+
+#: ../../genrst/builtin_types.rst:982
+msgid "print(str(b\"abc\", encoding=\"utf8\"))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:989 ../../genrst/builtin_types.rst:1013
+msgid "abc"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:997
 msgid "str.ljust() and str.rjust() not implemented"
@@ -742,66 +1640,132 @@ msgid ""
 "**Cause:** MicroPython is highly optimized for memory usage. Easy "
 "workarounds available."
 msgstr ""
-"**原因:** MicroPython はメモリ使用量について高度に最適化しています。"
-"これは容易に回避できます。"
+"**原因:** MicroPython はメモリ使用量について高度に最適化しています。これは容"
+"易に回避できます。"
 
 #: ../../genrst/builtin_types.rst:1001
-#, python-brace-format, python-format
+#, python-format, python-brace-format
 msgid ""
-"**Workaround:** Instead of ``s.ljust(10)`` use ``\"%-10s\" % s``, instead"
-" of ``s.rjust(10)`` use ``\"% 10s\" % s``. Alternatively, "
-"``\"{:<10}\".format(s)`` or ``\"{:>10}\".format(s)``."
+"**Workaround:** Instead of ``s.ljust(10)`` use ``\"%-10s\" % s``, instead of "
+"``s.rjust(10)`` use ``\"% 10s\" % s``. Alternatively, ``\"{:"
+"<10}\".format(s)`` or ``\"{:>10}\".format(s)``."
 msgstr ""
-"**回避策:** ``s.ljust(10)`` の代わりに ``\"%-10s\" % s`` 、 "
-"``s.rjust(10)`` の代わりに ``\"% 10s\" % s`` を使ってください。"
-"あるいは ``\"{:<10}\".format(s)`` や ``\"{:>10}\".format(s)`` "
-"を使ってください。"
+"**回避策:** ``s.ljust(10)`` の代わりに ``\"%-10s\" % s`` 、 ``s.rjust(10)`` "
+"の代わりに ``\"% 10s\" % s`` を使ってください。あるいは ``\"{:"
+"<10}\".format(s)`` や ``\"{:>10}\".format(s)`` を使ってください。"
+
+#: ../../genrst/builtin_types.rst:1006
+msgid "print(\"abc\".ljust(10))"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:1013
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"AttributeError: 'str' object has no attribute 'ljust'"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:1021
 msgid ""
-"repr() may print some non-printable Unicode characters literally instead "
-"of as escape sequences"
+"repr() may print some non-printable Unicode characters literally instead of "
+"as escape sequences"
 msgstr ""
-"repr() は、一部の印刷不可能な Unicode 文字をエスケープシーケンスではなく"
-"文字そのものとして出力する場合がある"
+"repr() は、一部の印刷不可能な Unicode 文字をエスケープシーケンスではなく文字"
+"そのものとして出力する場合がある"
 
 #: ../../genrst/builtin_types.rst:1023
 msgid ""
-"**Cause:** MicroPython uses a simplified heuristic to determine printable"
-" characters, avoiding the need for a full Unicode character database "
-"(saves memory). It prints characters >= U+0080 (excluding surrogates) as "
-"UTF-8. CPython uses the Unicode database to identify non-printable "
-"characters like noncharacters (U+FFFx in each plane)."
+"**Cause:** MicroPython uses a simplified heuristic to determine printable "
+"characters, avoiding the need for a full Unicode character database (saves "
+"memory). It prints characters >= U+0080 (excluding surrogates) as UTF-8. "
+"CPython uses the Unicode database to identify non-printable characters like "
+"noncharacters (U+FFFx in each plane)."
 msgstr ""
-"**原因:** MicroPython は、印刷可能な文字を判断するために簡略化された"
-"ヒューリスティックを使い、完全な Unicode 文字データベースを必要としないため、"
-"メモリを節約できます。U+0080 以上の文字(サロゲート文字を除く)は UTF-8 で"
-"出力されます。CPython は Unicode データベースを使って、非文字(各プレーンの "
-"U+FFFxなど)といった印刷不可能な文字を識別します。"
+"**原因:** MicroPython は、印刷可能な文字を判断するために簡略化されたヒューリ"
+"スティックを使い、完全な Unicode 文字データベースを必要としないため、メモリを"
+"節約できます。U+0080 以上の文字(サロゲート文字を除く)は UTF-8 で出力されま"
+"す。CPython は Unicode データベースを使って、非文字(各プレーンの U+FFFxなど)"
+"といった印刷不可能な文字を識別します。"
 
 #: ../../genrst/builtin_types.rst:1025
 msgid ""
-"**Workaround:** Accept the difference for embedded use cases, or use "
-"ascii() or manual escaping if exact control is needed."
+"**Workaround:** Accept the difference for embedded use cases, or use ascii() "
+"or manual escaping if exact control is needed."
 msgstr ""
 "**回避策:** 組み込み用途の場合は差異を受け入れるか、正確な制御が必要な場合は "
 "ascii() を使うか、手動でエスケープしてください。"
 
+#: ../../genrst/builtin_types.rst:1030
+msgid ""
+"# These are noncharacters that CPython escapes but MicroPython prints\n"
+"# showing as hex to avoid display issues in documentation tables\n"
+"print(\"U+FFFF:\", repr(\"\\uffff\").encode(\"utf-8\").hex())\n"
+"print(\"U+1FFFF:\", repr(\"\\U0001ffff\").encode(\"utf-8\").hex())"
+msgstr ""
+"# これらは CPython ではエスケープされますが MicroPython ではそのまま出力される非文字です\n"
+"# ドキュメントの表で表示上の問題が起きないように16進で示しています\n"
+"print(\"U+FFFF:\", repr(\"\\uffff\").encode(\"utf-8\").hex())\n"
+"print(\"U+1FFFF:\", repr(\"\\U0001ffff\").encode(\"utf-8\").hex())"
+
+#: ../../genrst/builtin_types.rst:1040
+msgid ""
+"U+FFFF: 275c756666666627\n"
+"U+1FFFF: 275c55303030316666666627"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:1040
+msgid ""
+"U+FFFF: 27efbfbf27\n"
+"U+1FFFF: 27f09fbfbf27"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:1047
 msgid ""
-"None as first argument for rsplit such as str.rsplit(None, n) not "
-"implemented"
+"None as first argument for rsplit such as str.rsplit(None, n) not implemented"
+msgstr "str.rsplit(None, n) のように rsplit の第１引数を None にするのは未実装"
+
+#: ../../genrst/builtin_types.rst:1052
+msgid "print(\"a a a\".rsplit(None, 1))"
 msgstr ""
-"str.rsplit(None, n) のように rsplit の第１引数を None にするのは"
-"未実装"
+
+#: ../../genrst/builtin_types.rst:1059
+msgid "['a a', 'a']"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:1059
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8, in <module>\n"
+"NotImplementedError: rsplit(None,n)"
+msgstr ""
 
 #: ../../genrst/builtin_types.rst:1067 ../../genrst/modules.rst:148
 msgid "Subscript with step != 1 is not yet implemented"
 msgstr "ステップが 1 でないスライスは未実装"
 
+#: ../../genrst/builtin_types.rst:1072
+msgid "print(\"abcdefghi\"[0:9:2])"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:1079
+msgid "acegi"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:1085
+msgid "tuple"
+msgstr ""
+
 #: ../../genrst/builtin_types.rst:1090
 msgid "Tuple load with step != 1 not implemented"
 msgstr "ステップが 1 でないタプルのスライスは未実装"
+
+#: ../../genrst/builtin_types.rst:1095
+msgid "print((1, 2, 3, 4)[0:4:2])"
+msgstr ""
+
+#: ../../genrst/builtin_types.rst:1102
+msgid "(1, 3)"
+msgstr ""
 
 #: ../../genrst/core_language.rst:4
 msgid "Core language"
@@ -815,14 +1779,34 @@ msgstr "クラス"
 msgid "Special method __del__ not implemented for user-defined classes"
 msgstr "特殊メソッド __del__ はユーザ定義クラス用には未実装"
 
+#: ../../genrst/core_language.rst:20
+msgid ""
+"import gc\n"
+"\n"
+"\n"
+"class Foo:\n"
+"    def __del__(self):\n"
+"        print(\"__del__\")\n"
+"\n"
+"\n"
+"f = Foo()\n"
+"del f\n"
+"\n"
+"gc.collect()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:38
+msgid "__del__"
+msgstr ""
+
 #: ../../genrst/core_language.rst:44
 msgid "dir() does not convert __dir__ return value to a sorted list"
 msgstr "dir() は __dir__ の戻り値をソート済みリストに変換しない"
 
 #: ../../genrst/core_language.rst:46
 msgid ""
-"**Cause:** MicroPython's dir() returns the value from __dir__ as-is, "
-"without iterating it into a list or sorting it."
+"**Cause:** MicroPython's dir() returns the value from __dir__ as-is, without "
+"iterating it into a list or sorting it."
 msgstr ""
 "**原因:** MicroPython の dir() 関数は、__dir__ の値をリストに反復処理したり"
 "ソートしたりせずに、そのまま返します。"
@@ -830,6 +1814,24 @@ msgstr ""
 #: ../../genrst/core_language.rst:48
 msgid "**Workaround:** Have __dir__ return a sorted list directly."
 msgstr "**回避策:** __dir__ でソート済みのリストを直接返すようにしてください。"
+
+#: ../../genrst/core_language.rst:54
+msgid ""
+"class C:\n"
+"    def __dir__(self):\n"
+"        return \"cba\"\n"
+"\n"
+"\n"
+"print(dir(C()))"
+msgstr ""
+
+#: ../../genrst/core_language.rst:66
+msgid "['a', 'b', 'c']"
+msgstr ""
+
+#: ../../genrst/core_language.rst:66
+msgid "cba"
+msgstr ""
 
 #: ../../genrst/core_language.rst:72
 msgid "``__init_subclass__`` isn't automatically called."
@@ -841,11 +1843,35 @@ msgstr "**原因:** MicroPython は現在 PEP 487 を実装していません。
 
 #: ../../genrst/core_language.rst:76
 msgid ""
-"**Workaround:** Manually call ``__init_subclass__`` after class creation "
-"if needed. e.g.::"
+"**Workaround:** Manually call ``__init_subclass__`` after class creation if "
+"needed. e.g.::"
 msgstr ""
-"**回避策:** 必要に応じて、クラス作成後に ``__init_subclass__`` を手動で"
-"呼び出してください。例:"
+"**回避策:** 必要に応じて、クラス作成後に ``__init_subclass__`` を手動で呼び出"
+"してください。例:"
+
+#: ../../genrst/core_language.rst:78
+msgid ""
+"class A(Base):\n"
+"    pass\n"
+"A.__init_subclass__()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:86
+#, python-brace-format
+msgid ""
+"class Base:\n"
+"    @classmethod\n"
+"    def __init_subclass__(cls):\n"
+"        print(f\"Base.__init_subclass__({cls.__name__})\")\n"
+"\n"
+"\n"
+"class A(Base):\n"
+"    pass"
+msgstr ""
+
+#: ../../genrst/core_language.rst:100
+msgid "Base.__init_subclass__(A)"
+msgstr ""
 
 #: ../../genrst/core_language.rst:106
 msgid "``__init_subclass__`` isn't an implicit classmethod."
@@ -854,45 +1880,152 @@ msgstr "``__init_subclass__`` は暗黙的なクラスメソッドではない�
 #: ../../genrst/core_language.rst:108
 msgid ""
 "**Cause:** MicroPython does not currently implement PEP 487. "
-"``__init_subclass__`` is not currently in the list of special-cased "
-"class/static methods."
+"``__init_subclass__`` is not currently in the list of special-cased class/"
+"static methods."
 msgstr ""
 "**原因:** MicroPython は現在 PEP 487 を実装していません。 "
-"``__init_subclass__`` は現在、特別扱いのクラス/静的メソッドのリストに"
-"含まれていません。"
+"``__init_subclass__`` は現在、特別扱いのクラス/静的メソッドのリストに含まれて"
+"いません。"
 
 #: ../../genrst/core_language.rst:110
 msgid ""
 "**Workaround:** Decorate declarations of ``__init_subclass__`` with "
 "``@classmethod``."
 msgstr ""
-"**回避策:** ``__init_subclass__`` の宣言に ``@classmethod`` アノテーションを
+"**回避策:** ``__init_subclass__`` の宣言に ``@classmethod`` アノテーションを"
 "付けてください。"
+
+#: ../../genrst/core_language.rst:116
+msgid ""
+"def regularize_spelling(text, prefix=\"bound_\"):\n"
+"    # for regularizing across the CPython \"method\" vs MicroPython \"bound_method\" spelling for the type of a bound classmethod\n"
+"    if text.startswith(prefix):\n"
+"        return text[len(prefix) :]\n"
+"    return text\n"
+"\n"
+"\n"
+"class A:\n"
+"    def __init_subclass__(cls):\n"
+"        pass\n"
+"\n"
+"    @classmethod\n"
+"    def manual_decorated(cls):\n"
+"        pass\n"
+"\n"
+"\n"
+"a = type(A.__init_subclass__).__name__\n"
+"b = type(A.manual_decorated).__name__\n"
+"\n"
+"print(regularize_spelling(a))\n"
+"print(regularize_spelling(b))\n"
+"if a != b:\n"
+"    print(\"FAIL\")"
+msgstr ""
+"def regularize_spelling(text, prefix=\"bound_\"):\n"
+"    # 束縛されたクラスメソッドの型に対する CPython の \"method\" と MicroPython の \"bound_method\" という表記の違いを吸収するため\n"
+"    if text.startswith(prefix):\n"
+"        return text[len(prefix) :]\n"
+"    return text\n"
+"\n"
+"\n"
+"class A:\n"
+"    def __init_subclass__(cls):\n"
+"        pass\n"
+"\n"
+"    @classmethod\n"
+"    def manual_decorated(cls):\n"
+"        pass\n"
+"\n"
+"\n"
+"a = type(A.__init_subclass__).__name__\n"
+"b = type(A.manual_decorated).__name__\n"
+"\n"
+"print(regularize_spelling(a))\n"
+"print(regularize_spelling(b))\n"
+"if a != b:\n"
+"    print(\"FAIL\")"
+
+#: ../../genrst/core_language.rst:145
+msgid ""
+"method\n"
+"method"
+msgstr ""
+
+#: ../../genrst/core_language.rst:145
+msgid ""
+"function\n"
+"method\n"
+"FAIL"
+msgstr ""
 
 #: ../../genrst/core_language.rst:153
 msgid ""
 "MicroPython doesn't support parameterized ``__init_subclass__`` class "
 "customization."
 msgstr ""
-"MicroPython は、パラメータ化 ``__init_subclass__`` クラスカスタマイズを"
-"サポートしていない"
+"MicroPython は、パラメータ化 ``__init_subclass__`` クラスカスタマイズをサポー"
+"トしていない"
 
 #: ../../genrst/core_language.rst:155
 msgid ""
-"**Cause:** MicroPython does not currently implement PEP 487. The "
-"MicroPython syntax tree does not include a kwargs node after the class "
-"inheritance list."
+"**Cause:** MicroPython does not currently implement PEP 487. The MicroPython "
+"syntax tree does not include a kwargs node after the class inheritance list."
 msgstr ""
-"**原因:** MicroPython は現在 PEP 487 を実装していません。MicroPython の"
-"構文ツリーには、クラス継承リストの後に kwargs ノードが含まれていません。"
+"**原因:** MicroPython は現在 PEP 487 を実装していません。MicroPython の構文ツ"
+"リーには、クラス継承リストの後に kwargs ノードが含まれていません。"
 
 #: ../../genrst/core_language.rst:157
 msgid ""
 "**Workaround:** Use class variables or another mechanism to specify base-"
 "class customizations."
 msgstr ""
-"**回避策:** クラス変数または別のメカニズムを使用して、基底クラスのカスタマイズを"
-"指定してください。"
+"**回避策:** クラス変数または別のメカニズムを使用して、基底クラスのカスタマイ"
+"ズを指定してください。"
+
+#: ../../genrst/core_language.rst:163
+#, python-brace-format
+msgid ""
+"class Base:\n"
+"    @classmethod\n"
+"    def __init_subclass__(cls, arg=None, **kwargs):\n"
+"        cls.init_subclass_was_called = True\n"
+"        print(f\"Base.__init_subclass__({cls.__name__}, {arg=!r}, {kwargs=!r})\")\n"
+"\n"
+"\n"
+"class A(Base, arg=\"arg\"):\n"
+"    pass\n"
+"\n"
+"\n"
+"# Regularize across MicroPython not automatically calling __init_subclass__ either.\n"
+"if not getattr(A, \"init_subclass_was_called\", False):\n"
+"    A.__init_subclass__()"
+msgstr ""
+"class Base:\n"
+"    @classmethod\n"
+"    def __init_subclass__(cls, arg=None, **kwargs):\n"
+"        cls.init_subclass_was_called = True\n"
+"        print(f\"Base.__init_subclass__({cls.__name__}, {arg=!r}, {kwargs=!r})\")\n"
+"\n"
+"\n"
+"class A(Base, arg=\"arg\"):\n"
+"    pass\n"
+"\n"
+"\n"
+"# MicroPython が __init_subclass__ を自動的に呼び出さない点も吸収します。\n"
+"if not getattr(A, \"init_subclass_was_called\", False):\n"
+"    A.__init_subclass__()"
+
+#: ../../genrst/core_language.rst:183
+#, python-brace-format
+msgid "Base.__init_subclass__(A, arg='arg', kwargs={})"
+msgstr ""
+
+#: ../../genrst/core_language.rst:183
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 16, in <module>\n"
+"TypeError: function doesn't take keyword arguments"
+msgstr ""
 
 #: ../../genrst/core_language.rst:191
 msgid "``__init_subclass__`` can't be defined a cooperatively-recursive way."
@@ -900,36 +2033,100 @@ msgstr "``__init_subclass__`` は協調-再帰的な方法で定義すること�
 
 #: ../../genrst/core_language.rst:193
 msgid ""
-"**Cause:** MicroPython does not currently implement PEP 487. The base "
-"object type does not have an ``__init_subclass__`` implementation."
+"**Cause:** MicroPython does not currently implement PEP 487. The base object "
+"type does not have an ``__init_subclass__`` implementation."
 msgstr ""
-"**原因:** MicroPython は現在 PEP 487 を実装していません。基本オブジェクト型に "
-"``__init_subclass__`` の実装がありません。"
+"**原因:** MicroPython は現在 PEP 487 を実装していません。基本オブジェクト型"
+"に ``__init_subclass__`` の実装がありません。"
 
 #: ../../genrst/core_language.rst:195
 msgid ""
-"**Workaround:** Omit the recursive ``__init_subclass__`` call unless it's"
-" known that the grandparent also defines it."
+"**Workaround:** Omit the recursive ``__init_subclass__`` call unless it's "
+"known that the grandparent also defines it."
 msgstr ""
-"**回避策:** 祖父母クラスにも ``__init_subclass__`` が定義されていることが"
-"わかっている場合を除き、再帰的な ``__init_subclass__`` 呼び出しを省略してください。"
+"**回避策:** 祖父母クラスにも ``__init_subclass__`` が定義されていることがわ"
+"かっている場合を除き、再帰的な ``__init_subclass__`` 呼び出しを省略してくださ"
+"い。"
+
+#: ../../genrst/core_language.rst:201
+msgid ""
+"class Base:\n"
+"    @classmethod\n"
+"    def __init_subclass__(cls, **kwargs):\n"
+"        cls.init_subclass_was_called = True\n"
+"        super().__init_subclass__(**kwargs)\n"
+"\n"
+"\n"
+"class A(Base):\n"
+"    pass\n"
+"\n"
+"\n"
+"# Regularize across MicroPython not automatically calling __init_subclass__ either.\n"
+"if not getattr(A, \"init_subclass_was_called\", False):\n"
+"    A.__init_subclass__()"
+msgstr ""
+"class Base:\n"
+"    @classmethod\n"
+"    def __init_subclass__(cls, **kwargs):\n"
+"        cls.init_subclass_was_called = True\n"
+"        super().__init_subclass__(**kwargs)\n"
+"\n"
+"\n"
+"class A(Base):\n"
+"    pass\n"
+"\n"
+"\n"
+"# MicroPython が __init_subclass__ を自動的に呼び出さない点も吸収します。\n"
+"if not getattr(A, \"init_subclass_was_called\", False):\n"
+"    A.__init_subclass__()"
+
+#: ../../genrst/core_language.rst:221
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 22, in <module>\n"
+"  File \"<stdin>\", line 13, in __init_subclass__\n"
+"AttributeError: 'super' object has no attribute '__init_subclass__'"
+msgstr ""
 
 #: ../../genrst/core_language.rst:230
 msgid "Method Resolution Order (MRO) is not compliant with CPython"
 msgstr "メソッド解決順序(MRO: Method Resolution Order)は Cpython に未準拠"
 
-#: ../../genrst/core_language.rst:252
+#: ../../genrst/core_language.rst:232
 msgid "**Cause:** Depth first non-exhaustive method resolution order"
 msgstr "**原因:** 深さ優先の非網羅的なメソッド解決順序"
 
 #: ../../genrst/core_language.rst:234
 msgid ""
-"**Workaround:** Avoid complex class hierarchies with multiple inheritance"
-" and complex method overrides. Keep in mind that many languages don't "
-"support multiple inheritance at all."
+"**Workaround:** Avoid complex class hierarchies with multiple inheritance "
+"and complex method overrides. Keep in mind that many languages don't support "
+"multiple inheritance at all."
 msgstr ""
 "**回避策:** 多重継承と複雑なメソッドのオーバーライドがある複雑なクラス階層を"
 "避ける。多くの言語が多重継承をまったくサポートしていないことに留意。"
+
+#: ../../genrst/core_language.rst:240
+msgid ""
+"class Foo:\n"
+"    def __str__(self):\n"
+"        return \"Foo\"\n"
+"\n"
+"\n"
+"class C(tuple, Foo):\n"
+"    pass\n"
+"\n"
+"\n"
+"t = C((1, 2, 3))\n"
+"print(t)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:257
+msgid "Foo"
+msgstr ""
+
+#: ../../genrst/core_language.rst:257
+msgid "(1, 2, 3)"
+msgstr ""
 
 #: ../../genrst/core_language.rst:263
 msgid "Private Class Members name mangling is not implemented"
@@ -940,16 +2137,54 @@ msgid ""
 "**Cause:** The MicroPython compiler does not implement name mangling for "
 "private class members."
 msgstr ""
-"**原因:** MicroPython コンパイラはプライベートクラスメンバーの名前のマングリングを"
-"実装していない。"
+"**原因:** MicroPython コンパイラはプライベートクラスメンバーの名前のマングリ"
+"ングを実装していない。"
 
 #: ../../genrst/core_language.rst:267
 msgid ""
 "**Workaround:** Avoid using or having a collision with global names, by "
 "adding a unique prefix to the private class member name manually."
 msgstr ""
-"**回避策:** グローバル名との衝突を避けるため、手動でプライベートクラスメンバー名に"
-"一意のプレフィックスを追加してください。"
+"**回避策:** グローバル名との衝突を避けるため、手動でプライベートクラスメン"
+"バー名に一意のプレフィックスを追加してください。"
+
+#: ../../genrst/core_language.rst:273
+msgid ""
+"def __print_string(string):\n"
+"    print(string)\n"
+"\n"
+"\n"
+"class Foo:\n"
+"    def __init__(self, string):\n"
+"        self.string = string\n"
+"\n"
+"    def do_print(self):\n"
+"        __print_string(self.string)\n"
+"\n"
+"\n"
+"example_string = \"Example String to print.\"\n"
+"\n"
+"class_item = Foo(example_string)\n"
+"print(class_item.string)\n"
+"\n"
+"class_item.do_print()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:297
+msgid ""
+"Example String to print.\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 26, in <module>\n"
+"  File \"<stdin>\", line 18, in do_print\n"
+"NameError: name '_Foo__print_string' is not defined. Did you mean: "
+"'__print_string'?"
+msgstr ""
+
+#: ../../genrst/core_language.rst:297
+msgid ""
+"Example String to print.\n"
+"Example String to print."
+msgstr ""
 
 #: ../../genrst/core_language.rst:307
 msgid "``__str__`` returning non-string type does not raise TypeError"
@@ -957,63 +2192,146 @@ msgstr "``__str__`` が文字列型以外の型を返しても TypeError は発�
 
 #: ../../genrst/core_language.rst:309
 msgid ""
-"**Cause:** MicroPython's instance_print does not validate that "
-"``__str__`` or ``__repr__`` return a str or its subclass"
+"**Cause:** MicroPython's instance_print does not validate that ``__str__`` "
+"or ``__repr__`` return a str or its subclass"
 msgstr ""
-"**原因:** MicroPython の instance_print は ``__str__`` または "
-"``__repr__`` が str またはそのサブクラスを返すことを検証しません。"
+"**原因:** MicroPython の instance_print は ``__str__`` または ``__repr__`` "
+"が str またはそのサブクラスを返すことを検証しません。"
 
 #: ../../genrst/core_language.rst:311
 msgid ""
 "**Workaround:** Ensure ``__str__`` and ``__repr__`` always return a str "
 "instance or its subclass"
 msgstr ""
-"**回避策:** ``__str__`` と ``__repr__`` が常に str インスタンスまたは"
-"そのサブクラスを返すようにしてください。"
+"**回避策:** ``__str__`` と ``__repr__`` が常に str インスタンスまたはそのサブ"
+"クラスを返すようにしてください。"
+
+#: ../../genrst/core_language.rst:317
+msgid ""
+"class Foo:\n"
+"    def __str__(self):\n"
+"        return True\n"
+"\n"
+"\n"
+"print(str(Foo()))"
+msgstr ""
+
+#: ../../genrst/core_language.rst:329
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"TypeError: __str__ returned non-string (type bool)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:329
+msgid "True"
+msgstr ""
 
 #: ../../genrst/core_language.rst:337
 msgid ""
-"str() does not preserve str subclass type from ``__str__`` or "
-"``__repr__`` return value"
+"str() does not preserve str subclass type from ``__str__`` or ``__repr__`` "
+"return value"
 msgstr ""
-"str() は ``__str__`` または ``__repr__`` の戻り値から str サブクラスの型を"
-"保持しない"
+"str() は ``__str__`` または ``__repr__`` の戻り値から str サブクラスの型を保"
+"持しない"
 
 #: ../../genrst/core_language.rst:339
 msgid ""
-"**Cause:** Implementation discards str subclass type returned by "
-"``__str__`` or ``__repr__`` and always returns a plain str instance from "
-"str()."
+"**Cause:** Implementation discards str subclass type returned by ``__str__`` "
+"or ``__repr__`` and always returns a plain str instance from str()."
 msgstr ""
-"**原因:** 実装上 ``__str__`` または ``__repr__`` によって返される str "
-"サブクラス型が破棄され、str() からは常にプレーンな str インスタンスが返されます。"
+"**原因:** 実装上 ``__str__`` または ``__repr__`` によって返される str サブク"
+"ラス型が破棄され、str() からは常にプレーンな str インスタンスが返されます。"
 
 #: ../../genrst/core_language.rst:341
 msgid "**Workaround:** Do not rely on str() preserving str subclass types"
-msgstr ""**回避策:** str() が str サブクラス型を保持することに依存しないでください。"
+msgstr ""
+"\"**回避策:** str() が str サブクラス型を保持することに依存しないでください。"
+
+#: ../../genrst/core_language.rst:347
+msgid ""
+"class MyStr(str):\n"
+"    pass\n"
+"\n"
+"\n"
+"class Foo:\n"
+"    def __str__(self):\n"
+"        return MyStr(\"abc\")\n"
+"\n"
+"\n"
+"result = str(Foo())\n"
+"print(type(result))"
+msgstr ""
+
+#: ../../genrst/core_language.rst:364
+msgid "<class '__main__.MyStr'>"
+msgstr ""
+
+#: ../../genrst/core_language.rst:364
+msgid "<class 'str'>"
+msgstr ""
 
 #: ../../genrst/core_language.rst:370
 msgid ""
-"When inheriting native types, calling a method in ``__init__(self, ...)``"
-" before ``super().__init__()`` raises an ``AttributeError`` (or segfaults"
-" if ``MICROPY_BUILTIN_METHOD_CHECK_SELF_ARG`` is not enabled)."
+"When inheriting native types, calling a method in ``__init__(self, ...)`` "
+"before ``super().__init__()`` raises an ``AttributeError`` (or segfaults if "
+"``MICROPY_BUILTIN_METHOD_CHECK_SELF_ARG`` is not enabled)."
 msgstr ""
 "ネイティブ型を継承する場合 ``__init__(self, ...)`` 内で "
-"``super().__init__()`` より前にメソッドを呼び出すと、 "
-"``AttributeError`` が発生する(``MICROPY_BUILTIN_METHOD_CHECK_SELF_ARG`` "
-"が有効になっていない場合はセグメンテーション違反が発生する)。"
+"``super().__init__()`` より前にメソッドを呼び出すと、 ``AttributeError`` が発"
+"生する(``MICROPY_BUILTIN_METHOD_CHECK_SELF_ARG`` が有効になっていない場合はセ"
+"グメンテーション違反が発生する)。"
 
 #: ../../genrst/core_language.rst:372
 msgid ""
-"**Cause:** MicroPython does not have separate ``__new__`` and "
-"``__init__`` methods in native types."
+"**Cause:** MicroPython does not have separate ``__new__`` and ``__init__`` "
+"methods in native types."
 msgstr ""
-"**原因:** MicroPython のネイティブ型には ``__new__`` メソッドと "
-"``__init__`` メソッドが別々に用意されていません。"
+"**原因:** MicroPython のネイティブ型には ``__new__`` メソッドと ``__init__`` "
+"メソッドが別々に用意されていません。"
 
 #: ../../genrst/core_language.rst:374
 msgid "**Workaround:** Call ``super().__init__()`` first."
 msgstr "**回避策:** 最初に ``super().__init__()`` を呼び出してください。"
+
+#: ../../genrst/core_language.rst:380
+msgid ""
+"class L1(list):\n"
+"    def __init__(self, a):\n"
+"        self.append(a)\n"
+"\n"
+"\n"
+"try:\n"
+"    L1(1)\n"
+"    print(\"OK\")\n"
+"except AttributeError:\n"
+"    print(\"AttributeError\")\n"
+"\n"
+"\n"
+"class L2(list):\n"
+"    def __init__(self, a):\n"
+"        super().__init__()\n"
+"        self.append(a)\n"
+"\n"
+"\n"
+"try:\n"
+"    L2(1)\n"
+"    print(\"OK\")\n"
+"except AttributeError:\n"
+"    print(\"AttributeError\")"
+msgstr ""
+
+#: ../../genrst/core_language.rst:409
+msgid ""
+"OK\n"
+"OK"
+msgstr ""
+
+#: ../../genrst/core_language.rst:409
+msgid ""
+"AttributeError\n"
+"OK"
+msgstr ""
 
 #: ../../genrst/core_language.rst:416
 msgid "When inheriting from multiple classes super() only calls one class"
@@ -1027,13 +2345,84 @@ msgstr "**原因:** :ref:`cpydiff_core_class_mro` を参照"
 msgid "**Workaround:** See :ref:`cpydiff_core_class_mro`"
 msgstr "**回避策:** :ref:`cpydiff_core_class_mro` を参照"
 
+#: ../../genrst/core_language.rst:426
+msgid ""
+"class A:\n"
+"    def __init__(self):\n"
+"        print(\"A.__init__\")\n"
+"\n"
+"\n"
+"class B(A):\n"
+"    def __init__(self):\n"
+"        print(\"B.__init__\")\n"
+"        super().__init__()\n"
+"\n"
+"\n"
+"class C(A):\n"
+"    def __init__(self):\n"
+"        print(\"C.__init__\")\n"
+"        super().__init__()\n"
+"\n"
+"\n"
+"class D(B, C):\n"
+"    def __init__(self):\n"
+"        print(\"D.__init__\")\n"
+"        super().__init__()\n"
+"\n"
+"\n"
+"D()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:456
+msgid ""
+"D.__init__\n"
+"B.__init__\n"
+"C.__init__\n"
+"A.__init__"
+msgstr ""
+
+#: ../../genrst/core_language.rst:456
+msgid ""
+"D.__init__\n"
+"B.__init__\n"
+"A.__init__"
+msgstr ""
+
 #: ../../genrst/core_language.rst:465
 msgid ""
-"Calling super() getter property in subclass will return a property "
-"object, not the value"
+"Calling super() getter property in subclass will return a property object, "
+"not the value"
 msgstr ""
-"サブクラスでの super() ゲッター(getter)プロパティ呼出しは、値ではなく"
-"プロパティオブジェクトを返す"
+"サブクラスでの super() ゲッター(getter)プロパティ呼出しは、値ではなくプロパ"
+"ティオブジェクトを返す"
+
+#: ../../genrst/core_language.rst:471
+#, python-brace-format
+msgid ""
+"class A:\n"
+"    @property\n"
+"    def p(self):\n"
+"        return {\"a\": 10}\n"
+"\n"
+"\n"
+"class AA(A):\n"
+"    @property\n"
+"    def p(self):\n"
+"        return super().p\n"
+"\n"
+"\n"
+"a = AA()\n"
+"print(a.p)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:491
+#, python-brace-format
+msgid "{'a': 10}"
+msgstr ""
+
+#: ../../genrst/core_language.rst:491
+msgid "<property>"
+msgstr ""
 
 #: ../../genrst/core_language.rst:495
 msgid "Exceptions"
@@ -1041,29 +2430,66 @@ msgstr "例外"
 
 #: ../../genrst/core_language.rst:500
 msgid ""
-"Throwing a derived exception class instance in its `__init__` without "
-"first calling ``super().__init__`` is a TypeError"
+"Throwing a derived exception class instance in its `__init__` without first "
+"calling ``super().__init__`` is a TypeError"
 msgstr ""
-"派生例外クラスのインスタンスにおいて、最初に ``super().__init__`` を呼び出さずに "
-"__init__ 内で  raise すると ``TypeError`` になる"
+"派生例外クラスのインスタンスにおいて、最初に ``super().__init__`` を呼び出さ"
+"ずに __init__ 内で  raise すると ``TypeError`` になる"
 
 #: ../../genrst/core_language.rst:502
 msgid ""
-"**Cause:** In MicroPython, an object is incompletely constructed if it "
-"does not call its superclass init function or return normally from its "
+"**Cause:** In MicroPython, an object is incompletely constructed if it does "
+"not call its superclass init function or return normally from its "
 "``__init__``. This prevents its usage in some circumstances."
 msgstr ""
-"**原因:** MicroPython では、オブジェクトがスーパークラスの init 関数を呼び出さない"
-"場合、または __init__ メソッドから正常に戻らない場合、オブジェクトは不完全に"
-"構築されます。このため、状況によってはオブジェクトを使用できなくなることがあります。"
+"**原因:** MicroPython では、オブジェクトがスーパークラスの init 関数を呼び出"
+"さない場合、または __init__ メソッドから正常に戻らない場合、オブジェクトは不"
+"完全に構築されます。このため、状況によってはオブジェクトを使用できなくなるこ"
+"とがあります。"
 
 #: ../../genrst/core_language.rst:504
 msgid ""
 "**Workaround:** Call the superclass `__init__` method before raising the "
 "exception."
 msgstr ""
-"**回避策:** 例外を発生させる前に、スーパークラスの `__init__` メソッドを"
-"呼び出してください。"
+"**回避策:** 例外を発生させる前に、スーパークラスの `__init__` メソッドを呼び"
+"出してください。"
+
+#: ../../genrst/core_language.rst:510
+msgid ""
+"class C(Exception):\n"
+"    def __init__(self):\n"
+"        raise self\n"
+"\n"
+"\n"
+"class C1(Exception):\n"
+"    def __init__(self):\n"
+"        super().__init__()\n"
+"        raise self\n"
+"\n"
+"\n"
+"try:\n"
+"    C()\n"
+"except Exception as e:\n"
+"    print(type(e).__name__)\n"
+"\n"
+"try:\n"
+"    C1()\n"
+"except Exception as e:\n"
+"    print(type(e).__name__)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:536
+msgid ""
+"C\n"
+"C1"
+msgstr ""
+
+#: ../../genrst/core_language.rst:536
+msgid ""
+"TypeError\n"
+"C1"
+msgstr ""
 
 #: ../../genrst/core_language.rst:541
 msgid "Functions"
@@ -1079,26 +2505,61 @@ msgstr "**原因:** MicroPython は引数として \"self\" をカウントし�
 
 #: ../../genrst/core_language.rst:550
 msgid ""
-"**Workaround:** Interpret error messages with the information above in "
-"mind."
+"**Workaround:** Interpret error messages with the information above in mind."
+msgstr "**回避策:** 上記の情報を念頭に置いてエラーメッセージを解釈。"
+
+#: ../../genrst/core_language.rst:555
+msgid ""
+"try:\n"
+"    [].append()\n"
+"except Exception as e:\n"
+"    print(e)"
 msgstr ""
-"**回避策:** 上記の情報を念頭に置いてエラーメッセージを解釈。"
+
+#: ../../genrst/core_language.rst:565
+msgid "list.append() takes exactly one argument (0 given)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:565
+msgid "function takes 2 positional arguments but 1 were given"
+msgstr ""
 
 #: ../../genrst/core_language.rst:571
 msgid "Function objects do not have the ``__module__`` attribute"
-msgstr ""関数オブジェクトは ``__module__`` 属性を持たない"
+msgstr "\"関数オブジェクトは ``__module__`` 属性を持たない"
 
 #: ../../genrst/core_language.rst:573
-msgid "**Cause:** MicroPython is optimized for reduced code size and RAM usage."
+msgid ""
+"**Cause:** MicroPython is optimized for reduced code size and RAM usage."
 msgstr "**原因:** MicroPython は RAM 使用量について最適化しています。"
 
 #: ../../genrst/core_language.rst:575
 msgid ""
-"**Workaround:** Use ``sys.modules[function.__globals__['__name__']]`` for"
-" non-builtin modules."
+"**Workaround:** Use ``sys.modules[function.__globals__['__name__']]`` for "
+"non-builtin modules."
 msgstr ""
 "**回避策:** 非組込みモジュールについては "
 "``sys.modules[function.__globals__['__name__']]`` を使う。"
+
+#: ../../genrst/core_language.rst:581
+msgid ""
+"def f():\n"
+"    pass\n"
+"\n"
+"\n"
+"print(f.__module__)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:592
+msgid "__main__"
+msgstr ""
+
+#: ../../genrst/core_language.rst:592
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 13, in <module>\n"
+"AttributeError: 'function' object has no attribute '__module__'"
+msgstr ""
 
 #: ../../genrst/core_language.rst:600
 msgid "``*args`` cannot follow a keyword argument"
@@ -1106,17 +2567,39 @@ msgstr "``*args`` はキーワード引数の後に続くことはできない"
 
 #: ../../genrst/core_language.rst:602
 msgid ""
-"**Cause:** MicroPython is optimised for code space. For more information "
-"see `this issue "
-"<https://github.com/micropython/micropython/issues/11439>`_."
+"**Cause:** MicroPython is optimised for code space. For more information see "
+"`this issue <https://github.com/micropython/micropython/issues/11439>`_."
 msgstr ""
 "**原因:** MicroPython はコードスペースを最適化しています。詳細は `この問題 "
-"<https://github.com/micropython/micropython/issues/11439>`_ "
-"を参照してください。"
+"<https://github.com/micropython/micropython/issues/11439>`_ を参照してくださ"
+"い。"
 
 #: ../../genrst/core_language.rst:604
 msgid "**Workaround:** Re-order the arguments"
 msgstr "**回避策:** 引数の順序を変更してください。"
+
+#: ../../genrst/core_language.rst:610
+msgid ""
+"def f(x, y):\n"
+"    return x + y\n"
+"\n"
+"\n"
+"try:\n"
+"    print(f(y=1, *(3,)))\n"
+"except Exception as e:\n"
+"    print(e)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:624
+msgid "4"
+msgstr ""
+
+#: ../../genrst/core_language.rst:624
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"SyntaxError: * arg after kwarg"
+msgstr ""
 
 #: ../../genrst/core_language.rst:632
 msgid "User-defined attributes for functions are not supported"
@@ -1126,16 +2609,77 @@ msgstr "関数のユーザ定義属性はサポートしていない"
 msgid "**Workaround:** Use external dictionary, e.g. ``FUNC_X[f] = 0``."
 msgstr "**回避策:** 外部辞書を使う。たとえば ``FUNC_X[f] = 0`` とするなど。"
 
+#: ../../genrst/core_language.rst:642
+msgid ""
+"def f():\n"
+"    pass\n"
+"\n"
+"\n"
+"f.x = 0\n"
+"print(f.x)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:654
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 13, in <module>\n"
+"AttributeError: 'function' object has no attribute 'x'"
+msgstr ""
+
 #: ../../genrst/core_language.rst:660
 msgid "Generator"
 msgstr "ジェネレータ"
 
 #: ../../genrst/core_language.rst:665
 msgid ""
-"Context manager __exit__() not called in a generator which does not run "
-"to completion"
+"Context manager __exit__() not called in a generator which does not run to "
+"completion"
 msgstr ""
-"コンテキストマネージャーの __exit__() は完了まで実行されないジェネレータでは呼び出されない"
+"コンテキストマネージャーの __exit__() は完了まで実行されないジェネレータでは"
+"呼び出されない"
+
+#: ../../genrst/core_language.rst:671
+msgid ""
+"class foo(object):\n"
+"    def __enter__(self):\n"
+"        print(\"Enter\")\n"
+"\n"
+"    def __exit__(self, *args):\n"
+"        print(\"Exit\")\n"
+"\n"
+"\n"
+"def bar(x):\n"
+"    with foo():\n"
+"        while True:\n"
+"            x += 1\n"
+"            yield x\n"
+"\n"
+"\n"
+"def func():\n"
+"    g = bar(0)\n"
+"    for _ in range(3):\n"
+"        print(next(g))\n"
+"\n"
+"\n"
+"func()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:699
+msgid ""
+"Enter\n"
+"1\n"
+"2\n"
+"3\n"
+"Exit"
+msgstr ""
+
+#: ../../genrst/core_language.rst:699
+msgid ""
+"Enter\n"
+"1\n"
+"2\n"
+"3"
+msgstr ""
 
 #: ../../genrst/core_language.rst:707
 msgid "Runtime"
@@ -1147,12 +2691,34 @@ msgstr "ローカル変数は locals() の結果に含まれない"
 
 #: ../../genrst/core_language.rst:714
 msgid ""
-"**Cause:** MicroPython doesn't maintain symbolic local environment, it is"
-" optimized to an array of slots. Thus, local variables can't be accessed "
-"by a name."
+"**Cause:** MicroPython doesn't maintain symbolic local environment, it is "
+"optimized to an array of slots. Thus, local variables can't be accessed by a "
+"name."
 msgstr ""
-"**原因:** MicroPython はシンボリックローカル環境を維持せず、スロットの配列に最適化"
-"されています。したがって、ローカル変数には名前でアクセスできません。"
+"**原因:** MicroPython はシンボリックローカル環境を維持せず、スロットの配列に"
+"最適化されています。したがって、ローカル変数には名前でアクセスできません。"
+
+#: ../../genrst/core_language.rst:720
+msgid ""
+"def test():\n"
+"    val = 2\n"
+"    print(locals())\n"
+"\n"
+"\n"
+"test()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:732
+#, python-brace-format
+msgid "{'val': 2}"
+msgstr ""
+
+#: ../../genrst/core_language.rst:732
+#, python-brace-format
+msgid ""
+"{'test': <function test at 0xa1e806260>, '__name__': '__main__', '__file__': "
+"'<stdin>'}"
+msgstr ""
 
 #: ../../genrst/core_language.rst:738
 msgid "Code running in eval() function doesn't have access to local variables"
@@ -1160,15 +2726,41 @@ msgstr "eval() 関数で実行されるコードはローカル変数にアク�
 
 #: ../../genrst/core_language.rst:740
 msgid ""
-"**Cause:** MicroPython doesn't maintain symbolic local environment, it is"
-" optimized to an array of slots. Thus, local variables can't be accessed "
-"by a name. Effectively, ``eval(expr)`` in MicroPython is equivalent to "
+"**Cause:** MicroPython doesn't maintain symbolic local environment, it is "
+"optimized to an array of slots. Thus, local variables can't be accessed by a "
+"name. Effectively, ``eval(expr)`` in MicroPython is equivalent to "
 "``eval(expr, globals(), globals())``."
 msgstr ""
-"**原因:** MicroPython はシンボリックローカル環境を維持せず、スロットの配列に最適化"
-"されています。したがって、ローカル変数には名前でアクセスできません。"
-"効果的に、MicroPython の ``eval(expr)`` は ``eval(expr, globals(), globals())`` "
-"と同等です。"
+"**原因:** MicroPython はシンボリックローカル環境を維持せず、スロットの配列に"
+"最適化されています。したがって、ローカル変数には名前でアクセスできません。効"
+"果的に、MicroPython の ``eval(expr)`` は ``eval(expr, globals(), "
+"globals())`` と同等です。"
+
+#: ../../genrst/core_language.rst:745
+msgid ""
+"val = 1\n"
+"\n"
+"\n"
+"def test():\n"
+"    val = 2\n"
+"    print(val)\n"
+"    eval(\"print(val)\")\n"
+"\n"
+"\n"
+"test()"
+msgstr ""
+
+#: ../../genrst/core_language.rst:761
+msgid ""
+"2\n"
+"2"
+msgstr ""
+
+#: ../../genrst/core_language.rst:761
+msgid ""
+"2\n"
+"1"
+msgstr ""
 
 #: ../../genrst/core_language.rst:766
 msgid "f-strings"
@@ -1176,11 +2768,11 @@ msgstr ""
 
 #: ../../genrst/core_language.rst:771
 msgid ""
-"f-strings don't support concatenation with adjacent literals if the "
-"adjacent literals contain braces"
+"f-strings don't support concatenation with adjacent literals if the adjacent "
+"literals contain braces"
 msgstr ""
-"f-strings は、隣接するリテラルに中括弧が含まれている場合、隣接するリテラルとの"
-"連結をサポートしない"
+"f-strings は、隣接するリテラルに中括弧が含まれている場合、隣接するリテラルと"
+"の連結をサポートしない"
 
 #: ../../genrst/core_language.rst:773 ../../genrst/core_language.rst:804
 msgid "**Cause:** MicroPython is optimised for code space."
@@ -1188,25 +2780,79 @@ msgstr "**原因:** MicroPython はコードスペースを最適化していま
 
 #: ../../genrst/core_language.rst:775
 msgid ""
-"**Workaround:** Use the + operator between literal strings when they are "
-"not both f-strings"
+"**Workaround:** Use the + operator between literal strings when they are not "
+"both f-strings"
 msgstr ""
-"**回避策:** リテラル文字列同士が f-strings でない場合は、+ 演算子を使ってください。"
+"**回避策:** リテラル文字列同士が f-strings でない場合は、+ 演算子を使ってくだ"
+"さい。"
+
+#: ../../genrst/core_language.rst:780
+#, python-brace-format
+msgid ""
+"x, y = 1, 2\n"
+"print(\"aa\" f\"{x}\")  # works\n"
+"print(f\"{x}\" \"ab\")  # works\n"
+"print(\"a{}a\" f\"{x}\")  # fails\n"
+"print(f\"{x}\" \"a{}b\")  # fails"
+msgstr ""
+"x, y = 1, 2\n"
+"print(\"aa\" f\"{x}\")  # 動作します\n"
+"print(f\"{x}\" \"ab\")  # 動作します\n"
+"print(\"a{}a\" f\"{x}\")  # 失敗します\n"
+"print(f\"{x}\" \"a{}b\")  # 失敗します"
+
+#: ../../genrst/core_language.rst:792
+#, python-brace-format
+msgid ""
+"aa1\n"
+"1ab\n"
+"a{}a1\n"
+"1a{}b"
+msgstr ""
+
+#: ../../genrst/core_language.rst:792
+msgid ""
+"aa1\n"
+"1ab\n"
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 12, in <module>\n"
+"IndexError: tuple index out of range"
+msgstr ""
 
 #: ../../genrst/core_language.rst:802
 msgid ""
 "f-strings cannot support expressions that require parsing to resolve "
 "unbalanced nested braces and brackets"
 msgstr ""
-"f-strings は、不均衡な入れ子になった中括弧や角括弧を解決するために解析を必要とする式を"
-"サポートできない"
+"f-strings は、不均衡な入れ子になった中括弧や角括弧を解決するために解析を必要"
+"とする式をサポートできない"
 
 #: ../../genrst/core_language.rst:806
 msgid ""
 "**Workaround:** Always use balanced braces and brackets in expressions "
 "inside f-strings"
 msgstr ""
-"**回避策:** f-strings 内の式では、常にバランスの取れた中括弧と角括弧を使用してください。"
+"**回避策:** f-strings 内の式では、常にバランスの取れた中括弧と角括弧を使用し"
+"てください。"
+
+#: ../../genrst/core_language.rst:811
+msgid ""
+"print(f\"{'hello { world'}\")\n"
+"print(f\"{'hello ] world'}\")"
+msgstr ""
+
+#: ../../genrst/core_language.rst:819
+msgid ""
+"hello { world\n"
+"hello ] world"
+msgstr ""
+
+#: ../../genrst/core_language.rst:819
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 9\n"
+"SyntaxError: invalid syntax"
+msgstr ""
 
 #: ../../genrst/core_language.rst:827
 msgid "f-strings don't support !a conversions"
@@ -1220,59 +2866,111 @@ msgstr "**原因:** MicropPython は ascii()を 実装していません。"
 msgid "**Workaround:** None"
 msgstr "**回避策:** なし"
 
+#: ../../genrst/core_language.rst:836
+#, python-brace-format
+msgid "f\"{'unicode text'!a}\""
+msgstr ""
+
+#: ../../genrst/core_language.rst:843
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 8\n"
+"SyntaxError: invalid syntax"
+msgstr ""
+
 #: ../../genrst/core_language.rst:849
 msgid "import"
 msgstr ""
 
 #: ../../genrst/core_language.rst:854
 msgid ""
-"__path__ attribute of a package has a different type (single string "
-"instead of list of strings) in MicroPython"
+"__path__ attribute of a package has a different type (single string instead "
+"of list of strings) in MicroPython"
 msgstr ""
-"パッケージの __path__ 属性は、MicroPython では異なるデータ型を持つ(文字列の"
-"リストではなく、単一の文字列)"
+"パッケージの __path__ 属性は、MicroPython では異なるデータ型を持つ(文字列のリ"
+"ストではなく、単一の文字列)"
 
 #: ../../genrst/core_language.rst:856
 msgid ""
 "**Cause:** MicroPython doesn't support namespace packages split across "
-"filesystem. Beyond that, MicroPython's import system is highly optimized "
-"for minimal memory usage."
+"filesystem. Beyond that, MicroPython's import system is highly optimized for "
+"minimal memory usage."
 msgstr ""
-"**原因**: MicroPython はファイルシステム間で分割された名前空間パッケージを"
-"サポートしていません。それを踏まえ、MicroPython の import システムは、メモリ"
-"使用量を最小限に抑えるために高度に最適化されています。"
+"**原因**: MicroPython はファイルシステム間で分割された名前空間パッケージをサ"
+"ポートしていません。それを踏まえ、MicroPython の import システムは、メモリ使"
+"用量を最小限に抑えるために高度に最適化されています。"
 
 #: ../../genrst/core_language.rst:858
 msgid ""
 "**Workaround:** Details of import handling is inherently implementation "
 "dependent. Don't rely on such details in portable applications."
 msgstr ""
-"**回避策:** import 処理の詳細は、本質的に実装に依存する。ポータブルアプリケーション"
-"でこのような詳細に頼らないことようにする。"
+"**回避策:** import 処理の詳細は、本質的に実装に依存する。ポータブルアプリケー"
+"ションでこのような詳細に頼らないことようにする。"
+
+#: ../../genrst/core_language.rst:863
+msgid ""
+"import modules\n"
+"\n"
+"print(modules.__path__)"
+msgstr ""
+
+#: ../../genrst/core_language.rst:872
+msgid "['/Volumes/bufext/work/mpy/micropython/tests/cpydiff/modules']"
+msgstr ""
+
+#: ../../genrst/core_language.rst:872
+msgid "../tests/cpydiff/modules"
+msgstr ""
 
 #: ../../genrst/core_language.rst:878
 msgid "MicroPython doesn't support namespace packages split across filesystem."
-msgstr "MicroPythonはファイルシステムをまたぐ名前空間パッケージには対応していない。"
+msgstr ""
+"MicroPythonはファイルシステムをまたぐ名前空間パッケージには対応していない。"
 
 #: ../../genrst/core_language.rst:880
 msgid ""
-"**Cause:** MicroPython's import system is highly optimized for "
-"simplicity, minimal memory usage, and minimal filesystem search overhead."
+"**Cause:** MicroPython's import system is highly optimized for simplicity, "
+"minimal memory usage, and minimal filesystem search overhead."
 msgstr ""
-"**原因:** MicroPython の import システムは、シンプルさ、最小限のメモリ使用量、"
-"最小のファイルシステム検索オーバーヘッドのために高度に最適化されている。"
+"**原因:** MicroPython の import システムは、シンプルさ、最小限のメモリ使用"
+"量、最小のファイルシステム検索オーバーヘッドのために高度に最適化されている。"
 
 #: ../../genrst/core_language.rst:882
 msgid ""
 "**Workaround:** Don't install modules belonging to the same namespace "
-"package in different directories. For MicroPython, it's recommended to "
-"have at most 3-component module search paths: for your current "
-"application, per-user (writable), system-wide (non-writable)."
+"package in different directories. For MicroPython, it's recommended to have "
+"at most 3-component module search paths: for your current application, per-"
+"user (writable), system-wide (non-writable)."
 msgstr ""
-"**回避策:** 同じ名前空間のパッケージに属するモジュールを、異なるディレクトリに"
-"インストールしないこと。MicroPythonでは最大で3つのコンポーネントのモジュール"
-"検索パスを持つことが推奨されている: 現在のアプリケーション用、ユーザーごと(書き込み可能)、"
-"システム全体(書き込み不可)。"
+"**回避策:** 同じ名前空間のパッケージに属するモジュールを、異なるディレクトリ"
+"にインストールしないこと。MicroPythonでは最大で3つのコンポーネントのモジュー"
+"ル検索パスを持つことが推奨されている: 現在のアプリケーション用、ユーザーごと"
+"(書き込み可能)、システム全体(書き込み不可)。"
+
+#: ../../genrst/core_language.rst:887
+msgid ""
+"import sys\n"
+"\n"
+"sys.path.append(sys.path[1] + \"/modules\")\n"
+"sys.path.append(sys.path[1] + \"/modules2\")\n"
+"\n"
+"import subpkg.foo\n"
+"import subpkg.bar\n"
+"\n"
+"print(\"Two modules of a split namespace package imported\")"
+msgstr ""
+
+#: ../../genrst/core_language.rst:902
+msgid "Two modules of a split namespace package imported"
+msgstr ""
+
+#: ../../genrst/core_language.rst:902
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 14, in <module>\n"
+"ImportError: no module named 'subpkg.bar'"
+msgstr ""
 
 #: ../../genrst/index.rst:6
 msgid "MicroPython differences from CPython"
@@ -1280,230 +2978,387 @@ msgstr "MicroPythonとCPythonの違い"
 
 #: ../../genrst/index.rst:8
 msgid ""
-"MicroPython implements Python 3.4 and some select features of Python 3.5 "
-"and above.  The sections below describe the current status of these "
-"features."
+"MicroPython implements Python 3.4 and some select features of Python 3.5 and "
+"above.  The sections below describe the current status of these features."
 msgstr ""
-"MicroPython は Python 3.4 と Pythpn 3.5 以上の一部の機能を実装しています。"
-"次の章では、これらの機能の現状について説明します。"
+"MicroPython は Python 3.4 と Pythpn 3.5 以上の一部の機能を実装しています。次"
+"の章では、これらの機能の現状について説明します。"
 
-#: ../../genrst/index.rst:19
+#: ../../genrst/index.rst:20
 msgid ""
-"For the features of Python that are implemented by MicroPython, there are"
-" sometimes differences in their behaviour compared to standard Python.  "
-"The operations listed in the sections below produce conflicting results "
-"in MicroPython when compared to standard Python."
+"For the features of Python that are implemented by MicroPython, there are "
+"sometimes differences in their behaviour compared to standard Python.  The "
+"operations listed in the sections below produce conflicting results in "
+"MicroPython when compared to standard Python."
 msgstr ""
-"MicroPython で実装されている Python の機能については、標準の Python と比較して、"
-"その挙動に違いがあることがあります。次の章に記載されている操作は、標準の Python と"
-"比べると、MicroPythonでは矛盾する結果となります。"
+"MicroPython で実装されている Python の機能については、標準の Python と比較し"
+"て、その挙動に違いがあることがあります。次の章に記載されている操作は、標準の "
+"Python と比べると、MicroPythonでは矛盾する結果となります。"
 
 #: ../../genrst/modules.rst:4
 msgid "Modules"
 msgstr "モジュール"
 
-#: ../../genrst/modules.rst:10
+#: ../../genrst/modules.rst:12
 msgid "Positional-only Parameters"
 msgstr "位置引数のみ場合がある"
 
-#: ../../genrst/modules.rst:12
+#: ../../genrst/modules.rst:14
 msgid ""
-"To save code size, many functions that accept keyword arguments in "
-"CPython only accept positional arguments in MicroPython."
+"To save code size, many functions that accept keyword arguments in CPython "
+"only accept positional arguments in MicroPython."
 msgstr ""
 "コードサイズを節約するため、CPython ではキーワード引数を受け入れる関数でも、"
 "MicroPython では位置引数のみのものがあります。"
 
-#: ../../genrst/modules.rst:14
+#: ../../genrst/modules.rst:16
 msgid ""
-"MicroPython marks positional-only parameters in the same way as CPython, "
-"by inserting a ``/`` to mark the end of the positional parameters. Any "
-"function whose signature ends in ``/`` takes *only* positional arguments."
-" For more details, see `PEP 570 <https://peps.python.org/pep-0570/>`_."
+"MicroPython marks positional-only parameters in the same way as CPython, by "
+"inserting a ``/`` to mark the end of the positional parameters. Any function "
+"whose signature ends in ``/`` takes *only* positional arguments. For more "
+"details, see `PEP 570 <https://peps.python.org/pep-0570/>`_."
 msgstr ""
-"MicroPython は、位置引数のみを受け入れるように関数をマークします。"
-"そのシグネチャの末尾に ``/`` を挿入することで、CPython と同じように"
-"位置専用パラメータをマークします。シグネチャの末尾に ``/`` がある関数は、"
-"位置引数のみを受け入れます。詳細については "
-"`PEP 570 <https://peps.python.org/pep-0570/>`_ を参照してください。"
+"MicroPython は、位置引数のみを受け入れるように関数をマークします。そのシグネ"
+"チャの末尾に ``/`` を挿入することで、CPython と同じように位置専用パラメータを"
+"マークします。シグネチャの末尾に ``/`` がある関数は、位置引数のみを受け入れま"
+"す。詳細については `PEP 570 <https://peps.python.org/pep-0570/>`_ を参照して"
+"ください。"
 
-#: ../../genrst/modules.rst:17
+#: ../../genrst/modules.rst:19
 msgid "Example"
 msgstr "例"
 
-#: ../../genrst/modules.rst:19
+#: ../../genrst/modules.rst:21
 msgid ""
 "For example, in CPython 3.4 this is the signature of the constructor "
 "``socket.socket``::"
 msgstr ""
-"たとえば CPython 3.4 で ``socket.socket`` のコンストラクタのシグネチャは"
-"次のようになっています::"
+"たとえば CPython 3.4 で ``socket.socket`` のコンストラクタのシグネチャは次の"
+"ようになっています::"
 
 #: ../../genrst/modules.rst:23
-msgid ""
-"However, the signature documented in :func:`MicroPython<socket.socket>` "
-"is::"
+msgid "socket.socket(family=AF_INET, type=SOCK_STREAM, proto=0, fileno=None)"
 msgstr ""
-"しかし :func:`MicroPython<socket.socket>` "
-"で文書化されているシグネチャは次のようになっています::"
+
+#: ../../genrst/modules.rst:25
+msgid ""
+"However, the signature documented in :func:`MicroPython<socket.socket>` is::"
+msgstr ""
+"しかし :func:`MicroPython<socket.socket>` で文書化されているシグネチャは次の"
+"ようになっています::"
 
 #: ../../genrst/modules.rst:27
+msgid "socket(af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /)"
+msgstr ""
+
+#: ../../genrst/modules.rst:29
 msgid ""
 "The ``/`` at the end of the parameters indicates that they are all "
-"positional-only in MicroPython. The following code works in CPython but "
-"not in most MicroPython ports::"
+"positional-only in MicroPython. The following code works in CPython but not "
+"in most MicroPython ports::"
 msgstr ""
-"パラメーターの末尾にある ``/`` は、それらがすべて MicroPython では位置引数のみで"
-"あることを示しています。次のコードは、CPythonでは動作しますが、ほとんどの "
-"MicroPython ポートでは動作しません::"
+"パラメーターの末尾にある ``/`` は、それらがすべて MicroPython では位置引数の"
+"みであることを示しています。次のコードは、CPythonでは動作しますが、ほとんど"
+"の MicroPython ポートでは動作しません::"
 
-#: ../../genrst/modules.rst:32
+#: ../../genrst/modules.rst:31
+msgid ""
+"import socket\n"
+"s = socket.socket(type=socket.SOCK_DGRAM)"
+msgstr ""
+
+#: ../../genrst/modules.rst:34
 msgid "MicroPython will raise an exception::"
 msgstr "MicroPython では次の例外が起きるでしょう::"
 
 #: ../../genrst/modules.rst:36
+msgid "TypeError: function doesn't take keyword arguments"
+msgstr ""
+
+#: ../../genrst/modules.rst:38
 msgid "The following code will work in both CPython and MicroPython::"
 msgstr "次のコードは CPython でも MicroPython でも動作します::"
 
-#: ../../genrst/modules.rst:42
+#: ../../genrst/modules.rst:40
+msgid ""
+"import socket\n"
+"s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)"
+msgstr ""
+
+#: ../../genrst/modules.rst:44
 msgid "array"
 msgstr ""
 
-#: ../../genrst/modules.rst:47
+#: ../../genrst/modules.rst:49
 msgid "Comparison between different typecodes not supported"
 msgstr "異なるタイプコード間の比較は未サポート"
 
-#: ../../genrst/modules.rst:49
+#: ../../genrst/modules.rst:51
 msgid "**Cause:** Code size"
 msgstr "**原因:** コードサイズ"
 
-#: ../../genrst/modules.rst:51
+#: ../../genrst/modules.rst:53
 msgid "**Workaround:** Compare individual elements"
 msgstr "**回避策:** 個々の要素を比較する"
 
-#: ../../genrst/modules.rst:72
+#: ../../genrst/modules.rst:58
+msgid ""
+"import array\n"
+"\n"
+"array.array(\"b\", [1, 2]) == array.array(\"i\", [1, 2])"
+msgstr ""
+
+#: ../../genrst/modules.rst:67 ../../genrst/modules.rst:116
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 10, in <module>\n"
+"NotImplementedError:"
+msgstr ""
+
+#: ../../genrst/modules.rst:75
 msgid "Overflow checking is not implemented"
 msgstr "オーバーフローチェックは未実装"
 
-#: ../../genrst/modules.rst:74
+#: ../../genrst/modules.rst:77
 msgid ""
 "**Cause:** MicroPython implements implicit truncation in order to reduce "
 "code size and execution time"
 msgstr ""
-"**原因:** MicroPython は、コードサイズと実行時間を削減するために暗黙の切り捨てを実装"
+"**原因:** MicroPython は、コードサイズと実行時間を削減するために暗黙の切り捨"
+"てを実装"
 
-#: ../../genrst/modules.rst:76
+#: ../../genrst/modules.rst:79
 msgid ""
 "**Workaround:** If CPython compatibility is needed then mask the value "
 "explicitly"
-msgstr ""
-"**回避策:** CPythonとの互換性が必要な場合は、明示的に値をマスクする。"
+msgstr "**回避策:** CPythonとの互換性が必要な場合は、明示的に値をマスクする。"
 
-#: ../../genrst/modules.rst:98
+#: ../../genrst/modules.rst:84
+msgid ""
+"import array\n"
+"\n"
+"a = array.array(\"b\", [257])\n"
+"print(a)"
+msgstr ""
+
+#: ../../genrst/modules.rst:94
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 10, in <module>\n"
+"OverflowError: signed char is greater than maximum"
+msgstr ""
+
+#: ../../genrst/modules.rst:94
+msgid "array('b', [1])"
+msgstr ""
+
+#: ../../genrst/modules.rst:102
 msgid "Looking for integer not implemented"
 msgstr "整数の探索は未実装"
 
-#: ../../genrst/modules.rst:119
+#: ../../genrst/modules.rst:107
+msgid ""
+"import array\n"
+"\n"
+"print(1 in array.array(\"B\", b\"12\"))"
+msgstr ""
+
+#: ../../genrst/modules.rst:116
+msgid "False"
+msgstr ""
+
+#: ../../genrst/modules.rst:124
 msgid "Array deletion not implemented"
 msgstr "配列要素の削除は未実装"
 
-#: ../../genrst/modules.rst:162
-msgid "builtins"
-msgstr ""
-
-#: ../../genrst/modules.rst:167
-msgid "Second argument to next() is not implemented"
-msgstr "next() の第２引数は未実装"
-
-#: ../../genrst/modules.rst:171
-msgid "**Workaround:** Instead of ``val = next(it, deflt)`` use::"
-msgstr "**回避策**: ``val = next(it, deflt)`` とする代わりに、次のようにする::"
-
-#: ../../genrst/modules.rst:193
-msgid "deque"
-msgstr ""
-
-#: ../../genrst/modules.rst:198
-msgid "Deque not implemented"
-msgstr "deque は未実装"
-
-#: ../../genrst/modules.rst:200
+#: ../../genrst/modules.rst:129
 msgid ""
-"**Workaround:** Use regular lists. micropython-lib has implementation of "
-"collections.deque."
+"import array\n"
+"\n"
+"a = array.array(\"b\", (1, 2, 3))\n"
+"del a[1]\n"
+"print(a)"
 msgstr ""
-"**回避策:** 通常のリストを使う。micropython-lib には collections.deque "
-"の実装がある。"
 
-#: ../../genrst/modules.rst:220
+#: ../../genrst/modules.rst:140
+msgid "array('b', [1, 3])"
+msgstr ""
+
+#: ../../genrst/modules.rst:140
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"TypeError: 'array' object doesn't support item deletion"
+msgstr ""
+
+#: ../../genrst/modules.rst:153
+msgid ""
+"import array\n"
+"\n"
+"a = array.array(\"b\", (1, 2, 3))\n"
+"print(a[3:2:2])"
+msgstr ""
+
+#: ../../genrst/modules.rst:163
+msgid "array('b')"
+msgstr ""
+
+#: ../../genrst/modules.rst:163
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"NotImplementedError: only slices with step=1 (aka None) are supported"
+msgstr ""
+
+#: ../../genrst/modules.rst:169
 msgid "json"
 msgstr ""
 
-#: ../../genrst/modules.rst:225
+#: ../../genrst/modules.rst:174
 msgid "JSON module does not throw exception when object is not serialisable"
 msgstr "json モジュールは、オブジェクトが直列化可能でなくとも例外を発生しない"
 
-#: ../../genrst/modules.rst:250
+#: ../../genrst/modules.rst:179
+msgid ""
+"import json\n"
+"\n"
+"try:\n"
+"    print(json.dumps(b\"shouldn't be able to serialise bytes\"))\n"
+"except TypeError:\n"
+"    print(\"TypeError\")"
+msgstr ""
+
+#: ../../genrst/modules.rst:191
+msgid "TypeError"
+msgstr ""
+
+#: ../../genrst/modules.rst:191
+msgid "\"shouldn't be able to serialise bytes\""
+msgstr ""
+
+#: ../../genrst/modules.rst:195
 msgid "os"
 msgstr ""
 
-#: ../../genrst/modules.rst:255
+#: ../../genrst/modules.rst:200
 msgid "``environ`` attribute is not implemented"
 msgstr "``environ`` 属性は未実装"
 
-#: ../../genrst/modules.rst:257
+#: ../../genrst/modules.rst:202
 msgid "**Workaround:** Use ``getenv``, ``putenv`` and ``unsetenv``"
 msgstr "**回避策:** ``getenv``, ``putenv``, ``unsetenv`` を使う。"
 
-#: ../../genrst/modules.rst:286
+#: ../../genrst/modules.rst:207
+msgid ""
+"import os\n"
+"\n"
+"try:\n"
+"    print(os.environ.get(\"NEW_VARIABLE\"))\n"
+"    os.environ[\"NEW_VARIABLE\"] = \"VALUE\"\n"
+"    print(os.environ[\"NEW_VARIABLE\"])\n"
+"except AttributeError:\n"
+"    print(\"should not get here\")\n"
+"    print(os.getenv(\"NEW_VARIABLE\"))\n"
+"    os.putenv(\"NEW_VARIABLE\", \"VALUE\")\n"
+"    print(os.getenv(\"NEW_VARIABLE\"))"
+msgstr ""
+
+#: ../../genrst/modules.rst:224 ../../genrst/modules.rst:250
+msgid ""
+"None\n"
+"VALUE"
+msgstr ""
+
+#: ../../genrst/modules.rst:224
+msgid ""
+"should not get here\n"
+"None\n"
+"VALUE"
+msgstr ""
+
+#: ../../genrst/modules.rst:232
 msgid "``getenv`` returns actual value instead of cached value"
 msgstr "``getenv`` はキャッシュされている値ではなく、実際の値を返す"
 
-#: ../../genrst/modules.rst:288
+#: ../../genrst/modules.rst:234
 msgid "**Cause:** The ``environ`` attribute is not implemented"
 msgstr "**原因:** ``environ`` 属性が未実装"
 
-#: ../../genrst/modules.rst:308
+#: ../../genrst/modules.rst:239
+msgid ""
+"import os\n"
+"\n"
+"print(os.getenv(\"NEW_VARIABLE\"))\n"
+"os.putenv(\"NEW_VARIABLE\", \"VALUE\")\n"
+"print(os.getenv(\"NEW_VARIABLE\"))"
+msgstr ""
+
+#: ../../genrst/modules.rst:250
+msgid ""
+"None\n"
+"None"
+msgstr ""
+
+#: ../../genrst/modules.rst:255
 msgid "random"
 msgstr ""
 
-#: ../../genrst/modules.rst:313
+#: ../../genrst/modules.rst:260
 msgid "``getrandbits`` method can only return a maximum of 32 bits at a time."
-msgstr ""
-"``getrandbits`` メソッドは一度に最大32ビットまでしか返せない。"
+msgstr "``getrandbits`` メソッドは一度に最大32ビットまでしか返せない。"
 
-#: ../../genrst/modules.rst:315
+#: ../../genrst/modules.rst:262
 msgid ""
 "**Cause:** PRNG's internal state is only 32bits so it can only return a "
 "maximum of 32 bits of data at a time."
 msgstr ""
-"**原因:** は PRNG の内部状態が32ビットしかないので、一度に最大32ビットのデータしか"
-"返せない。"
+"**原因:** は PRNG の内部状態が32ビットしかないので、一度に最大32ビットのデー"
+"タしか返せない。"
 
-#: ../../genrst/modules.rst:317
+#: ../../genrst/modules.rst:264
 msgid ""
-"**Workaround:** If you need a number that has more than 32 bits then "
-"utilize the random module from micropython-lib."
+"**Workaround:** If you need a number that has more than 32 bits then utilize "
+"the random module from micropython-lib."
 msgstr ""
-"**回避策:** 32ビット以上の数値が必要な場合は、micropython-lib の random モジュール"
-"を使う。"
+"**回避策:** 32ビット以上の数値が必要な場合は、micropython-lib の random モ"
+"ジュールを使う。"
 
-#: ../../genrst/modules.rst:341
+#: ../../genrst/modules.rst:269
+#, python-brace-format
+msgid ""
+"import random\n"
+"\n"
+"\n"
+"x = random.getrandbits(64)\n"
+"print(\"{}\".format(x))"
+msgstr ""
+
+#: ../../genrst/modules.rst:280
+msgid "3111980948471249313"
+msgstr ""
+
+#: ../../genrst/modules.rst:280
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"ValueError: bits must be 32 or less"
+msgstr ""
+
+#: ../../genrst/modules.rst:288
 msgid ""
 "``randint`` method can only return an integer that is at most the native "
 "word size."
-msgstr ""
-"randint メソッドは最大でネイティブワードサイズの整数しか返せない。"
+msgstr "randint メソッドは最大でネイティブワードサイズの整数しか返せない。"
 
-#: ../../genrst/modules.rst:343
+#: ../../genrst/modules.rst:290
 msgid ""
 "**Cause:** PRNG is only able to generate 32 bits of state at a time. The "
 "result is then cast into a native sized int instead of a full int object."
 msgstr ""
-"**原因:** PRNG は一度に 32 ビットの状態しか生成できない。"
-"その結果は完全な int オブジェクトではなく、ネイティブサイズの int にキャストされる。"
+"**原因:** PRNG は一度に 32 ビットの状態しか生成できない。その結果は完全な "
+"int オブジェクトではなく、ネイティブサイズの int にキャストされる。"
 
-#: ../../genrst/modules.rst:345
+#: ../../genrst/modules.rst:292
 msgid ""
 "**Workaround:** If you need integers larger than native wordsize use the "
 "random module from micropython-lib."
@@ -1511,45 +3366,141 @@ msgstr ""
 "**回避策:** ネイティブのワードサイズより大きな整数が必要な場合は、"
 "micropython-lib の random モジュールを使う。"
 
-#: ../../genrst/modules.rst:367
+#: ../../genrst/modules.rst:297
+#, python-brace-format
+msgid ""
+"import random\n"
+"\n"
+"\n"
+"x = random.randint(2**128 - 1, 2**128)\n"
+"print(\"x={}\".format(x))"
+msgstr ""
+
+#: ../../genrst/modules.rst:308
+msgid "x=340282366920938463463374607431768211456"
+msgstr ""
+
+#: ../../genrst/modules.rst:308
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 11, in <module>\n"
+"OverflowError: overflow converting long int to machine word"
+msgstr ""
+
+#: ../../genrst/modules.rst:314
 msgid "struct"
 msgstr ""
 
-#: ../../genrst/modules.rst:372
+#: ../../genrst/modules.rst:319
 msgid "Struct pack with too few args, not checked by MicroPython"
 msgstr "struct の pack で引数が少なすぎても MicroPython はチェックしない"
 
-#: ../../genrst/modules.rst:396
+#: ../../genrst/modules.rst:324
+msgid ""
+"import struct\n"
+"\n"
+"try:\n"
+"    print(struct.pack(\"bb\", 1))\n"
+"    print(\"Should not get here\")\n"
+"except:\n"
+"    print(\"struct.error\")"
+msgstr ""
+
+#: ../../genrst/modules.rst:337 ../../genrst/modules.rst:362
+#: ../../genrst/modules.rst:391
+msgid "struct.error"
+msgstr ""
+
+#: ../../genrst/modules.rst:337
+msgid ""
+"b'\\x01\\x00'\n"
+"Should not get here"
+msgstr ""
+
+#: ../../genrst/modules.rst:344
 msgid "Struct pack with too many args, not checked by MicroPython"
 msgstr "struct の pack で引数が多すぎても MicroPython はチェックしない"
 
-#: ../../genrst/modules.rst:420
+#: ../../genrst/modules.rst:349
 msgid ""
-"Struct pack with whitespace in format, whitespace ignored by CPython, "
-"error on MicroPython"
+"import struct\n"
+"\n"
+"try:\n"
+"    print(struct.pack(\"bb\", 1, 2, 3))\n"
+"    print(\"Should not get here\")\n"
+"except:\n"
+"    print(\"struct.error\")"
+msgstr ""
+
+#: ../../genrst/modules.rst:362
+msgid ""
+"b'\\x01\\x02'\n"
+"Should not get here"
+msgstr ""
+
+#: ../../genrst/modules.rst:369
+msgid ""
+"Struct pack with whitespace in format, whitespace ignored by CPython, error "
+"on MicroPython"
 msgstr ""
 "struct の pack のフォーマットに空白がある場合、CPythonでは空白が無視され、"
 "MicroPython ではエラーが発生する。"
 
-#: ../../genrst/modules.rst:422
+#: ../../genrst/modules.rst:371
 msgid "**Cause:** MicroPython is optimised for code size."
 msgstr "**原因:** MicroPythonはコードサイズに最適化されている。"
 
-#: ../../genrst/modules.rst:424
+#: ../../genrst/modules.rst:373
 msgid "**Workaround:** Don't use spaces in format strings."
 msgstr "**回避策:** フォーマット文字列に空白を使わない。"
 
-#: ../../genrst/modules.rst:446
+#: ../../genrst/modules.rst:378
+msgid ""
+"import struct\n"
+"\n"
+"try:\n"
+"    print(struct.pack(\"b b\", 1, 2))\n"
+"    print(\"Should have worked\")\n"
+"except:\n"
+"    print(\"struct.error\")"
+msgstr ""
+
+#: ../../genrst/modules.rst:391
+msgid ""
+"b'\\x01\\x02'\n"
+"Should have worked"
+msgstr ""
+
+#: ../../genrst/modules.rst:396
 msgid "sys"
 msgstr ""
 
-#: ../../genrst/modules.rst:451
+#: ../../genrst/modules.rst:401
 msgid "Overriding sys.stdin, sys.stdout and sys.stderr not possible"
 msgstr "sys.stdin, sys.stdout, sys.stderr のオーバーライドは不可能"
 
-#: ../../genrst/modules.rst:453
+#: ../../genrst/modules.rst:403
 msgid "**Cause:** They are stored in read-only memory."
 msgstr "**原因:** これらは読取り専用メモリに格納されている。"
+
+#: ../../genrst/modules.rst:408
+msgid ""
+"import sys\n"
+"\n"
+"sys.stdin = None\n"
+"print(sys.stdin)"
+msgstr ""
+
+#: ../../genrst/modules.rst:418
+msgid "None"
+msgstr ""
+
+#: ../../genrst/modules.rst:418
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 10, in <module>\n"
+"AttributeError: 'module' object has no attribute 'stdin'"
+msgstr ""
 
 #: ../../genrst/syntax.rst:4
 msgid "Syntax"
@@ -1561,36 +3512,87 @@ msgstr "アノテーション"
 
 #: ../../genrst/syntax.rst:15
 msgid ""
-"MicroPython accepts type annotations on expressions where CPython forbids"
-" them."
-msgstr ""
-"MicroPythonは、CPython では禁止されている式への型注釈を受け入れる。"
+"MicroPython accepts type annotations on expressions where CPython forbids "
+"them."
+msgstr "MicroPythonは、CPython では禁止されている式への型注釈を受け入れる。"
 
 #: ../../genrst/syntax.rst:17
 msgid ""
 "**Cause:** To reduce code size, MicroPython does not check the form of "
 "expressions with type annotations applied."
 msgstr ""
-"**原因:** コードサイズを削減するため、MicroPython は型注釈が適用された式の形式を"
-"チェックしません。"
+"**原因:** コードサイズを削減するため、MicroPython は型注釈が適用された式の形"
+"式をチェックしません。"
 
 #: ../../genrst/syntax.rst:19
-msgid "**Workaround:** Always check for valid Python code using a linting tool."
+msgid ""
+"**Workaround:** Always check for valid Python code using a linting tool."
 msgstr ""
-"**回避策:** リンティングツールを使用して、常に有効な Python コードであることを"
-"確認してください。"
+"**回避策:** リンティングツールを使用して、常に有効な Python コードであること"
+"を確認してください。"
 
 #: ../../genrst/syntax.rst:21
 msgid "The expressions themselves are not evaluated."
 msgstr "式自体は評価されません。"
+
+#: ../../genrst/syntax.rst:27
+#, python-brace-format
+msgid ""
+"def test(expr):\n"
+"    code = f\"def f():\\n    {expr}: int\"\n"
+"    print(code)\n"
+"    try:\n"
+"        exec(code)\n"
+"        print(\"OK\")\n"
+"    except SyntaxError as e:\n"
+"        print(\"SyntaxError\")\n"
+"    print()\n"
+"\n"
+"\n"
+"test(\"print('test')\")\n"
+"test(\"[x,y]\")\n"
+"test(\"x,y\")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:47
+msgid ""
+"def f():\n"
+"    print('test'): int\n"
+"SyntaxError\n"
+"\n"
+"def f():\n"
+"    [x,y]: int\n"
+"SyntaxError\n"
+"\n"
+"def f():\n"
+"    x,y: int\n"
+"SyntaxError"
+msgstr ""
+
+#: ../../genrst/syntax.rst:47
+msgid ""
+"def f():\n"
+"    print('test'): int\n"
+"OK\n"
+"\n"
+"def f():\n"
+"    [x,y]: int\n"
+"OK\n"
+"\n"
+"def f():\n"
+"    x,y: int\n"
+"OK"
+msgstr ""
 
 #: ../../genrst/syntax.rst:61
 msgid "Literals"
 msgstr "リテラル"
 
 #: ../../genrst/syntax.rst:66
-msgid "MicroPython accepts underscores in numeric literals where CPython doesn't"
-msgstr "CPython が数値リテラルで受け入れないアンダースコアを MicroPython は受け入れる"
+msgid ""
+"MicroPython accepts underscores in numeric literals where CPython doesn't"
+msgstr ""
+"CPython が数値リテラルで受け入れないアンダースコアを MicroPython は受け入れる"
 
 #: ../../genrst/syntax.rst:68 ../../genrst/syntax.rst:101
 msgid "**Cause:** Different parser implementation"
@@ -1599,53 +3601,117 @@ msgstr "**原因:** パーサーの実装の違い。"
 #: ../../genrst/syntax.rst:70
 msgid ""
 "MicroPython's tokenizer ignores underscores in numeric literals, while "
-"CPython rejects multiple consecutive underscores and underscores after "
-"the last digit."
+"CPython rejects multiple consecutive underscores and underscores after the "
+"last digit."
 msgstr ""
 "MicroPython のトークナイザーは数値リテラル内のアンダースコアを無視しますが、"
-"CPython は連続する複数のアンダースコアと最後の桁の後のアンダースコアを拒否します。"
+"CPython は連続する複数のアンダースコアと最後の桁の後のアンダースコアを拒否し"
+"ます。"
 
 #: ../../genrst/syntax.rst:73
 msgid "**Workaround:** Remove the underscores not accepted by CPython."
 msgstr "**回避策:** CPython で受け入れられないアンダースコアを削除します。"
 
+#: ../../genrst/syntax.rst:78
+msgid ""
+"try:\n"
+"    print(eval(\"1__1\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should not work\")\n"
+"try:\n"
+"    print(eval(\"1_\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should not work\")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:92
+msgid ""
+"Should not work\n"
+"Should not work"
+msgstr ""
+
+#: ../../genrst/syntax.rst:92
+msgid ""
+"11\n"
+"1"
+msgstr ""
+
 #: ../../genrst/syntax.rst:99
 msgid ""
-"MicroPython requires spaces between literal numbers and keywords or "
-"\".\", CPython doesn't"
+"MicroPython requires spaces between literal numbers and keywords or \".\", "
+"CPython doesn't"
 msgstr ""
-"MicroPythonでは、リテラル数値とキーワードの間、リテラル数値と \".\" の間に"
-"スペースが必要だが、CPython では必要ない"
+"MicroPythonでは、リテラル数値とキーワードの間、リテラル数値と \".\" の間にス"
+"ペースが必要だが、CPython では必要ない"
 
 #: ../../genrst/syntax.rst:103
 msgid ""
-"MicroPython's tokenizer treats a sequence like ``1and`` as a single "
-"token, while CPython treats it as two tokens."
+"MicroPython's tokenizer treats a sequence like ``1and`` as a single token, "
+"while CPython treats it as two tokens."
 msgstr ""
-"MicroPython のトークナイザーは ``1and`` のようなシーケンスを単一のトークン"
-"として扱いますが、CPython はそれを 2 つのトークンとして扱います。"
+"MicroPython のトークナイザーは ``1and`` のようなシーケンスを単一のトークンと"
+"して扱いますが、CPython はそれを 2 つのトークンとして扱います。"
 
 #: ../../genrst/syntax.rst:105
 msgid ""
 "Since CPython 3.11, when the literal number is followed by a token, this "
-"syntax causes a ``SyntaxWarning`` for an \"invalid literal\". When a "
-"literal number is followed by a \".\" denoting attribute access, CPython "
-"does not warn."
+"syntax causes a ``SyntaxWarning`` for an \"invalid literal\". When a literal "
+"number is followed by a \".\" denoting attribute access, CPython does not "
+"warn."
 msgstr ""
-"CPython 3.11 以降、リテラル数値の後にトークンが続く場合、この構文は「無効なリテラル」"
-"として ``SyntaxWarning`` を引き起こします。リテラル数値の後に属性アクセスを示す \".\" が"
-"続く場合、CPython は警告を発しません。"
+"CPython 3.11 以降、リテラル数値の後にトークンが続く場合、この構文は「無効なリ"
+"テラル」として ``SyntaxWarning`` を引き起こします。リテラル数値の後に属性アク"
+"セスを示す \".\" が続く場合、CPython は警告を発しません。"
 
 #: ../../genrst/syntax.rst:107
 msgid ""
 "**Workaround:** Add a space between the integer literal and the intended "
 "next token."
-msgstr ""
-"**回避策:** 整数リテラルと次のトークンの間にスペースを追加します。"
+msgstr "**回避策:** 整数リテラルと次のトークンの間にスペースを追加します。"
 
 #: ../../genrst/syntax.rst:109
 msgid "This also fixes the ``SyntaxWarning`` in CPython."
 msgstr "これにより、CPython の ``SyntaxWarning`` も修正されます。"
+
+#: ../../genrst/syntax.rst:114
+msgid ""
+"try:\n"
+"    print(eval(\"1and 0\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")\n"
+"try:\n"
+"    print(eval(\"1or 0\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")\n"
+"try:\n"
+"    print(eval(\"1if 1else 0\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")\n"
+"try:\n"
+"    print(eval(\"0x1.to_bytes(1)\"))\n"
+"except SyntaxError:\n"
+"    print(\"Should have worked\")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:136
+msgid ""
+"<string>:1: SyntaxWarning: invalid decimal literal\n"
+"0\n"
+"<string>:1: SyntaxWarning: invalid decimal literal\n"
+"1\n"
+"<string>:1: SyntaxWarning: invalid decimal literal\n"
+"<string>:1: SyntaxWarning: invalid decimal literal\n"
+"1\n"
+"b'\\x01'"
+msgstr ""
+
+#: ../../genrst/syntax.rst:136
+msgid ""
+"Should have worked\n"
+"Should have worked\n"
+"Should have worked\n"
+"Should have worked"
+msgstr ""
 
 #: ../../genrst/syntax.rst:147
 msgid "Operators"
@@ -1656,21 +3722,19 @@ msgid ""
 "MicroPython allows := to assign to the iteration variable in nested "
 "comprehensions, CPython does not."
 msgstr ""
-"MicroPythonでは、ネストされた内包表記で反復変数に := 演算子を使って値を代入できるが、"
-"CPython ではできない。"
+"MicroPythonでは、ネストされた内包表記で反復変数に := 演算子を使って値を代入で"
+"きるが、CPython ではできない。"
 
 #: ../../genrst/syntax.rst:154
 msgid ""
-"**Cause:** MicroPython is optimised for code size. Although it is a "
-"syntax error to assign to the iteration variable in a standard "
-"comprehension (same as CPython), it doesn't check if an inner nested "
-"comprehension assigns to the iteration variable of the outer "
-"comprehension."
+"**Cause:** MicroPython is optimised for code size. Although it is a syntax "
+"error to assign to the iteration variable in a standard comprehension (same "
+"as CPython), it doesn't check if an inner nested comprehension assigns to "
+"the iteration variable of the outer comprehension."
 msgstr ""
-"**原因:** MicroPythonはコードサイズを最適化しています。"
-"標準の内包表記で反復変数に代入すると構文エラーになりますが(CPythonと同様)、"
-"内側のネストされた内包表記が外側の内包表記の反復変数に代入しているかどうかは"
-"チェックされません。"
+"**原因:** MicroPythonはコードサイズを最適化しています。標準の内包表記で反復変"
+"数に代入すると構文エラーになりますが(CPythonと同様)、内側のネストされた内包表"
+"記が外側の内包表記の反復変数に代入しているかどうかはチェックされません。"
 
 #: ../../genrst/syntax.rst:156
 msgid ""
@@ -1678,6 +3742,21 @@ msgid ""
 "comprehension."
 msgstr ""
 "**回避策:** 内包表記の反復変数に代入する際に := を使用しないでください。"
+
+#: ../../genrst/syntax.rst:161
+msgid "print([[(j := i) for i in range(2)] for j in range(2)])"
+msgstr ""
+
+#: ../../genrst/syntax.rst:168
+msgid ""
+"  File \"<stdin>\", line 8\n"
+"SyntaxError: assignment expression cannot rebind comprehension iteration "
+"variable 'j'"
+msgstr ""
+
+#: ../../genrst/syntax.rst:168
+msgid "[[0, 1], [0, 1]]"
+msgstr ""
 
 #: ../../genrst/syntax.rst:173
 msgid "Unicode"
@@ -1687,27 +3766,85 @@ msgstr ""
 msgid "Unicode name escapes are not implemented"
 msgstr "Unicode 名エスケープは未実装"
 
+#: ../../genrst/syntax.rst:183
+#, python-brace-format
+msgid "print(\"\\N{LATIN SMALL LETTER A}\")"
+msgstr ""
+
+#: ../../genrst/syntax.rst:190
+msgid "a"
+msgstr ""
+
+#: ../../genrst/syntax.rst:190
+msgid "NotImplementedError: unicode name escapes"
+msgstr ""
+
 #: ../../genrst/syntax.rst:194
 msgid "Unpacking"
 msgstr "アンパック"
 
 #: ../../genrst/syntax.rst:199
 msgid ""
-"Argument unpacking does not work if the argument being unpacked is the "
-"nth or greater argument where n is the number of bits in an MP_SMALL_INT."
+"Argument unpacking does not work if the argument being unpacked is the nth "
+"or greater argument where n is the number of bits in an MP_SMALL_INT."
 msgstr ""
-"引数の展開において、引数の数がn以上の場合(nは MP_SMALL_INT のビット数)、動作しない。"
+"引数の展開において、引数の数がn以上の場合(nは MP_SMALL_INT のビット数)、動作"
+"しない。"
 
 #: ../../genrst/syntax.rst:201
 msgid ""
-"**Cause:** The implementation uses an MP_SMALL_INT to flag args that need"
-" to be unpacked."
+"**Cause:** The implementation uses an MP_SMALL_INT to flag args that need to "
+"be unpacked."
 msgstr ""
-"**原因:** 実装では MP_SMALL_INT を使って展開する必要がある引数をフラグ付けしているます。"
+"**原因:** 実装では MP_SMALL_INT を使って展開する必要がある引数をフラグ付けし"
+"ているます。"
 
 #: ../../genrst/syntax.rst:203
 msgid "**Workaround:** Use fewer arguments."
 msgstr "**回避策:** 引数をより少なくしてください。"
 
+#: ../../genrst/syntax.rst:209
+msgid ""
+"def example(*args):\n"
+"    print(len(args))\n"
+"\n"
+"\n"
+"MORE = [\"a\", \"b\", \"c\"]\n"
+"\n"
+"example(\n"
+"    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,\n"
+"    16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,\n"
+"    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,\n"
+"    48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,\n"
+"    *MORE,\n"
+")"
+msgstr ""
 
+#: ../../genrst/syntax.rst:229
+msgid "67"
+msgstr ""
+
+#: ../../genrst/syntax.rst:229
+msgid ""
+"Traceback (most recent call last):\n"
+"  File \"<stdin>\", line 21, in <module>\n"
+"SyntaxError: too many args"
+msgstr ""
+
+#~ msgid "Second argument to next() is not implemented"
+#~ msgstr "next() の第２引数は未実装"
+
+#~ msgid "**Workaround:** Instead of ``val = next(it, deflt)`` use::"
+#~ msgstr ""
+#~ "**回避策**: ``val = next(it, deflt)`` とする代わりに、次のようにする::"
+
+#~ msgid "Deque not implemented"
+#~ msgstr "deque は未実装"
+
+#~ msgid ""
+#~ "**Workaround:** Use regular lists. micropython-lib has implementation of "
+#~ "collections.deque."
+#~ msgstr ""
+#~ "**回避策:** 通常のリストを使う。micropython-lib には collections.deque の"
+#~ "実装がある。"
 
