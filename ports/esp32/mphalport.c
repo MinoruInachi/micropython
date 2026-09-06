@@ -49,9 +49,14 @@
 #include "uart.h"
 
 #ifdef TAB5
-extern uint8_t tfb_fg_pal_color;
-extern uint8_t tfb_bg_pal_color;
-void display_tfb_str(unsigned char *str, uint16_t len, uint8_t format, uint8_t fg_color, uint8_t bg_color);
+// tulip_px_t on the Tab5 -- the BG plane and the TFB colours are native RGB565,
+// so these defaults hold a 16-bit pixel (transparent is ALPHA, 0x4daa). Reading
+// them through a uint8_t extern took only the low byte (0xaa), which is not
+// ALPHA, so every console line drew an opaque box instead of letting the
+// wallpaper through. Match the real type. (Other boards keep RGB332/uint8_t.)
+extern uint16_t tfb_fg_pal_color;
+extern uint16_t tfb_bg_pal_color;
+void display_tfb_str(unsigned char *str, uint16_t len, uint8_t format, uint16_t fg_color, uint16_t bg_color);
 #endif
 
 #if MICROPY_PY_STRING_TX_GIL_THRESHOLD < 0
